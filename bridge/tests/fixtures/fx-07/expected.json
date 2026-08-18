@@ -1,0 +1,14 @@
+{
+  "classes": [
+    "INFO", "NOTICE", "WARNING", "WARNING", "WARNING",
+    "CRITICAL", "CRITICAL", "CRITICAL", "STRATEGIC", "STRATEGIC",
+    "NOTICE", "WARNING"
+  ],
+  "wake_eligible_seq": [6, 7, 8, 9, 10],
+  "wake_after_gate_seq": [6, 7, 8, 9],
+  "wake_per_day": 4,
+  "wake_min_gap_min": 90,
+  "deferred_seq": [10],
+  "deferred_count": 1,
+  "briefing_has_deferred_in_section2": true
+}

@@ -1,0 +1,12 @@
+{"seq":1,"event_id":"E-000001","ts":"2026-08-18T07:00:01Z","source":"cron","mission_id":null,"task_id":null,"summary":"cron die-heartbeat sukses: 0 card basi","detail_ref":null}
+{"seq":2,"event_id":"E-000002","ts":"2026-08-18T07:00:02Z","source":"hermes","mission_id":null,"task_id":null,"summary":"retry pertama: panggilan model dicoba ulang","detail_ref":null}
+{"seq":3,"event_id":"E-000003","ts":"2026-08-18T07:00:03Z","source":"worker","mission_id":"M-001","task_id":"T-0003","summary":"job T-0003 gagal kedua kalinya berturut","detail_ref":null}
+{"seq":4,"event_id":"E-000004","ts":"2026-08-18T07:00:04Z","source":"cron","mission_id":"M-001","task_id":"T-0007","summary":"card T-0007 blocked: heartbeat basi 47m","detail_ref":"logs/hb-20260818.txt"}
+{"seq":5,"event_id":"E-000005","ts":"2026-08-18T07:00:05Z","source":"bridge","mission_id":null,"task_id":null,"summary":"schema drift di reader: kolom hb_at tidak cocok","detail_ref":null}
+{"seq":6,"event_id":"E-000006","ts":"2026-08-18T07:00:06Z","source":"hermes","mission_id":null,"task_id":null,"summary":"gateway degraded: provider main 429 kuota habis","detail_ref":"logs/provider-429.txt"}
+{"seq":7,"event_id":"E-000007","ts":"2026-08-18T07:00:07Z","source":"worker","mission_id":"M-001","task_id":null,"summary":"biaya mission M-001 melampaui batas harian","detail_ref":null}
+{"seq":8,"event_id":"E-000008","ts":"2026-08-18T07:00:08Z","source":"bridge","mission_id":null,"task_id":null,"summary":"tulisan di luar allowed_paths oleh worker","detail_ref":null}
+{"seq":9,"event_id":"E-000009","ts":"2026-08-18T07:00:09Z","source":"hermes","mission_id":"M-001","task_id":null,"summary":"pendapatan pertama terverifikasi: USD 12","detail_ref":"state/ECONOMICS.jsonl"}
+{"seq":10,"event_id":"E-000010","ts":"2026-08-18T07:00:10Z","source":"hermes","mission_id":"M-001","task_id":null,"summary":"kill criteria M-001 terpenuhi","detail_ref":null}
+{"seq":11,"event_id":"E-000011","ts":"2026-08-18T07:00:11Z","source":"bridge","mission_id":null,"task_id":null,"summary":"sesi kognitif dibuka: catch-up dimulai","detail_ref":null}
+{"seq":12,"event_id":"E-000012","ts":"2026-08-18T07:00:12Z","source":"bridge","mission_id":null,"task_id":null,"summary":"ground-truth mismatch: 1 dari 4 sampel berbeda","detail_ref":null}

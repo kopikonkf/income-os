@@ -1,0 +1,18 @@
+{"seq":1,"event_id":"E-000001","ts":"2026-08-18T10:04:25+00:00","class":"INFO","source":"cron","mission_id":null,"task_id":null,"summary":"heartbeat sweep: 0 card basi","detail_ref":null,"wake":false}
+{"seq":2,"event_id":"E-000002","ts":"2026-08-18T10:04:25+00:00","class":"CRITICAL","source":"hermes","mission_id":null,"task_id":null,"summary":"test: provider main 429","detail_ref":"logs/test.txt","wake":true}
+{"seq":3,"event_id":"E-000003","ts":"2026-08-18T10:04:25+00:00","class":"STRATEGIC","source":"bridge","mission_id":null,"task_id":null,"summary":"test: artifact pertama terkirim","detail_ref":null,"wake":true}
+{"seq":4,"event_id":"E-000004","ts":"2026-08-18T10:04:43+00:00","class":"INFO","source":"cron","mission_id":null,"task_id":null,"summary":"append test 1","detail_ref":null,"wake":false}
+{"seq":5,"event_id":"E-000005","ts":"2026-08-18T10:04:43+00:00","class":"NOTICE","source":"bridge","mission_id":null,"task_id":null,"summary":"append test 2","detail_ref":null,"wake":false}
+{"seq":6,"event_id":"E-000006","ts":"2026-08-18T10:04:43+00:00","class":"WARNING","source":"worker","mission_id":null,"task_id":null,"summary":"append test 3","detail_ref":null,"wake":false}
+{"seq":7,"event_id":"E-000007","ts":"2026-08-18T10:04:44+00:00","class":"INFO","source":"test","mission_id":null,"task_id":null,"summary":"concurrent 0","detail_ref":null,"wake":false}
+{"seq":8,"event_id":"E-000008","ts":"2026-08-18T10:04:45+00:00","class":"INFO","source":"test","mission_id":null,"task_id":null,"summary":"concurrent 1","detail_ref":null,"wake":false}
+{"seq":9,"event_id":"E-000009","ts":"2026-08-18T10:04:45+00:00","class":"INFO","source":"test","mission_id":null,"task_id":null,"summary":"concurrent 2","detail_ref":null,"wake":false}
+{"seq":10,"event_id":"E-000010","ts":"2026-08-18T10:04:45+00:00","class":"INFO","source":"test","mission_id":null,"task_id":null,"summary":"concurrent 3","detail_ref":null,"wake":false}
+{"seq":11,"event_id":"E-000011","ts":"2026-08-18T10:04:45+00:00","class":"INFO","source":"test","mission_id":null,"task_id":null,"summary":"concurrent 4","detail_ref":null,"wake":false}
+{"seq":12,"event_id":"E-000012","ts":"2026-08-18T10:04:45+00:00","class":"INFO","source":"test","mission_id":null,"task_id":null,"summary":"concurrent 5","detail_ref":null,"wake":false}
+{"seq":13,"event_id":"E-000013","ts":"2026-08-18T10:04:45+00:00","class":"INFO","source":"test","mission_id":null,"task_id":null,"summary":"concurrent 6","detail_ref":null,"wake":false}
+{"seq":14,"event_id":"E-000014","ts":"2026-08-18T10:04:45+00:00","class":"INFO","source":"test","mission_id":null,"task_id":null,"summary":"concurrent 7","detail_ref":null,"wake":false}
+{"seq":15,"event_id":"E-000015","ts":"2026-08-18T10:04:45+00:00","class":"INFO","source":"test","mission_id":null,"task_id":null,"summary":"concurrent 8","detail_ref":null,"wake":false}
+{"seq":16,"event_id":"E-000016","ts":"2026-08-18T10:04:46+00:00","class":"INFO","source":"test","mission_id":null,"task_id":null,"summary":"concurrent 9","detail_ref":null,"wake":false}
+{"seq":17,"event_id":"E-000017","ts":"2026-08-18T10:10:30+00:00","class":"STRATEGIC","source":"hermes","mission_id":null,"task_id":null,"summary":"B1 bootstrap selesai: 25/25 SMK PASS, Hermes v0.20.4 live, identity D3/D4 terpasang, job T-0001 diterima dengan evidence","detail_ref":"logs/B1-transcript.txt","wake":true}
+{"seq":18,"event_id":"E-000018","ts":"2026-08-18T13:11:02+00:00","class":"INFO","source":"bridge","mission_id":null,"task_id":null,"summary":"bridge P0 diimplementasikan: recent_events, system_health, BRIEFING.md (fx-07 lulus, 297 baris)","detail_ref":"C:\\DIE\\bridge\\income_os_bridge\\","wake":false}
