@@ -11,4 +11,5 @@ bridge/__pycache__/
 bridge/income_os_bridge/__pycache__/
 bridge/tests/__pycache__/
 bridge/tests/.pytest_cache/
+bin/__pycache__/
 state/projection/ACCESS.jsonl

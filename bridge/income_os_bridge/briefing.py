@@ -37,7 +37,12 @@ def render(events, wake_ids, deferred_ids, since_seq, last_briefing=None, lane_a
     classes = {c: sum(1 for e in events if e.get("class") == c) for c in config.CLASSES if sum(1 for e in events if e.get("class") == c)}
     L.append(f"event baru: {n} | by class: " + ", ".join(f"{k}={v}" for k, v in sorted(classes.items())))
     L.append("biaya 24j: tidak ada baris ECONOMICS.jsonl (bukan nol - belum tercatat)")
-    L.append("revenue kumulatif VERIFIED: USD 0.00 | PECAH TELOR: belum")
+    economics = config.STATE / "ECONOMICS.jsonl"
+    has_economics = economics.exists() and any(line.strip() for line in economics.read_text(encoding="utf-8").splitlines())
+    if has_economics:
+        L.append("revenue kumulatif VERIFIED: lihat ECONOMICS.jsonl; status perlu disaring per state VERIFIED | PECAH TELOR: belum ditentukan")
+    else:
+        L.append("revenue kumulatif VERIFIED: belum ada baris ECONOMICS.jsonl | PECAH TELOR: belum")
     L.append("")
     L.append("## 4. Menunggu keputusan")
     L.append("- tidak ada permintaan keputusan tertunda tercatat di periode ini")

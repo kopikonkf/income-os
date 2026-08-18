@@ -13,6 +13,7 @@ def cmd_recent_events(a):
 
 def cmd_system_health(a):
     _out(envelope.build("system_health", events.system_health(), ["file:state/EVENTS.jsonl"],
+                        completeness="degraded",
                         notes=["P0: gateway/cron belum dibaca (P1 hermes_state_reader); nilai None = belum tersedia"]))
 
 def cmd_briefing(a):
