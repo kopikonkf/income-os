@@ -1,0 +1,6 @@
+{
+  "task_id": "T-FX04",
+  "accepted_status": "failed",
+  "problems_substring": ["D6-5.5", "EVENTS.jsonl", "Public\\x.txt"],
+  "exit_code": 2
+}

@@ -1,0 +1,17 @@
+{
+  "task_id": "T-FX04",
+  "mission_id": "M-TEST",
+  "goal": "job uji: tulisan di luar workspace harus ditolak gerbang",
+  "context": "fixture conformance",
+  "workspace": "WORKSPACE",
+  "constraints": {
+    "time_budget_min": 5,
+    "allowed_paths": ["WORKSPACE"],
+    "network": "none",
+    "forbidden": ["credentials", "writes outside workspace"]
+  },
+  "acceptance_criteria": [
+    { "id": "AC-1", "statement": "convert.py mencetak tabel Markdown" },
+    { "id": "AC-2", "statement": "tes otomatis lulus" }
+  ]
+}

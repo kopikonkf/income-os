@@ -1,0 +1,17 @@
+{
+  "task_id": "T-FX02",
+  "mission_id": "M-TEST",
+  "goal": "job uji: klaim done tanpa evidence harus ditolak gerbang",
+  "context": "fixture conformance",
+  "workspace": "WORKSPACE",
+  "constraints": {
+    "time_budget_min": 5,
+    "allowed_paths": ["WORKSPACE"],
+    "network": "none",
+    "forbidden": []
+  },
+  "acceptance_criteria": [
+    { "id": "AC-1", "statement": "convert.py mencetak tabel Markdown" },
+    { "id": "AC-2", "statement": "tes otomatis lulus" }
+  ]
+}

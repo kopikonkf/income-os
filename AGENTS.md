@@ -205,9 +205,23 @@ Aturan:
 | Per event ekonomi | Tulis `ECONOMICS.jsonl`  • refleksi | Biaya melampaui batas → `ESCALATE` |
 | Mingguan | Audit mandiri: mission tanpa kill criteria, job tanpa evidence, skill tanpa hasil | Temuan → perbaiki atau eskalasi |
 
+## 7b. Nilai operasional (B4.1 D1-D6, ASSUMPTION sampai ada data)
+
+Angka sumber: `B4-Keputusan-dan-Tangga-Prioritas.md`; salinan mekanis di
+`bridge\income_os_bridge\config.py`. Revisi = satu baris `DECISIONS.jsonl`.
+
+| ID | Parameter | Nilai | Pemicu revisi |
+| --- | --- | --- | --- |
+| D1 | Ambang heartbeat card | `max(3× interval harapan, 15 mnt)`; job ≤ 20 mnt → 15 mnt; job ≥ 60 mnt → 30 mnt | setelah 20 job: p95 jeda heartbeat nyata |
+| D2 | Staleness lane kognitif | warn > 26 jam · alarm > 50 jam · degrade > 72 jam | setelah Phase A: p95 jeda antar-ack nyata |
+| D3 | Definisi "pendapatan VERIFIED" | uang masuk + sumber eksternal + refund lewat/≥ 7 hari + bukan dari diri sendiri | ini aturan, bukan tebakan (7 hari: ASSUMPTION) |
+| D4 | Budget A0/A1 | A0 = USD 0.00 harian & per mission · A1 = USD 5.00 harian / USD 20.00 mission (hard cap) | PECAH TELOR → A1 |
+| D5 | Wake budget | 4 wake/hari · jeda ≥ 90 mnt · 1 wake/dedupe_key/24 jam · luapan tidak dibuang | setelah 20 wake terukur (`OPEN-P5`) |
+| D6 | Retry job | 2× otomatis, backoff 2 mnt lalu 8 mnt; hanya job resumable (punya `PROGRESS.md`); tidak pernah retry non-idempotent/jaringan | setelah 20 job: kalau < 30% retry berhasil → hapus retry |
+
 ## 8. Open questions
 
-- `OPEN-G1` Ambang heartbeat dan ambang staleness lane kognitif belum ditetapkan.
+- `OPEN-G1` ~~Ambang heartbeat dan ambang staleness lane kognitif belum ditetapkan~~ → DITETAPKAN (B4.1 D1/D2); revisi menunggu data p95.
 - `OPEN-G2` Pola resumable job yang tahan restart belum diuji pada opencode CLI.
-- `OPEN-G3` Bentuk minimum sandbox untuk skill di lingkungan Windows (isolasi lemah) belum diputuskan — lihat Challenge C4.
+- `OPEN-G3` Bentuk minimum sandbox untuk skill di lingkungan Windows (isolasi lemah) belum diputuskan �?" lihat Challenge C4.
 - `OPEN-G4` Batas jumlah canary sebelum promosi belum ditetapkan.

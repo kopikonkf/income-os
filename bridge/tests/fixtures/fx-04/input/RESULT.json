@@ -1,0 +1,16 @@
+{
+  "task_id": "T-FX04",
+  "status": "done",
+  "summary": "klaim selesai dengan bukti tapi ada tulisan di luar workspace",
+  "evidence": [
+    {"claim": "AC-1", "path": "out.md"},
+    {"claim": "AC-2", "path": "test_convert.py"}
+  ],
+  "tests": [
+    {"name": "test_convert", "result": "pass"}
+  ],
+  "artifact": [
+    {"path": "out.md", "description": "tabel hasil convert"}
+  ],
+  "next_action": "none"
+}
