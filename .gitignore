@@ -13,3 +13,8 @@ bridge/tests/__pycache__/
 bridge/tests/.pytest_cache/
 bin/__pycache__/
 state/projection/ACCESS.jsonl
+
+# auto pycache
+__pycache__/
+*.pyc
+

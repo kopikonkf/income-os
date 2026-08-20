@@ -22,10 +22,12 @@ STATE = DIE / "state"
 BRIDGE = DIE / "bridge"
 PROJECTION = STATE / "projection"
 ORGANISM = STATE / "organism-test"
-HERMES_HOME = pathlib.Path(os.environ.get("HERMES_HOME", r"C:\Users\aethers\AppData\Local\hermes"))
+HERMES_AGENT_ROOT = pathlib.Path(r"C:\Users\aethers\AppData\Local\hermes")
 HERMES = pathlib.Path(sys.executable).with_name("hermes.exe")
 if not HERMES.exists():
-    HERMES = HERMES_HOME / "hermes-agent" / "venv" / "Scripts" / "hermes.exe"
+    HERMES = HERMES_AGENT_ROOT / "hermes-agent" / "venv" / "Scripts" / "hermes.exe"
+if not HERMES.exists():
+    HERMES = HERMES_AGENT_ROOT / "bin" / "hermes.exe"
 PYTHON = pathlib.Path(sys.executable)
 
 HB_SHORT_MIN = 15

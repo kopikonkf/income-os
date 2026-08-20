@@ -1,0 +1,49 @@
+{
+  "task_id": "T-FX03",
+  "status": "done",
+  "summary": "Klaim selesai tapi test gagal.",
+  "artifact": [
+    {
+      "path": "convert_fx03.py",
+      "kind": "file",
+      "description": "CSV to Markdown converter"
+    },
+    {
+      "path": "convert_test_fx03.py",
+      "kind": "file",
+      "description": "automated test"
+    },
+    {
+      "path": "out.md",
+      "kind": "file",
+      "description": "Markdown output"
+    },
+    {
+      "path": "PROGRESS.md",
+      "kind": "file",
+      "description": "progress tracker"
+    },
+    {
+      "path": "evidence/test-pytest.txt",
+      "kind": "file",
+      "description": "pytest output"
+    }
+  ],
+  "evidence": [
+    {
+      "type": "command_output",
+      "ref": "evidence/worker-stdout.txt",
+      "claim": "AC-1: output 5 baris (header + pemisah + 3 data), exit 0, linecount=5 AC-2: python -m pytest -q 1 failed, exit code 1 AC-3: PROGRESS.md ada dan menyebut langkah terakhir yang selesai"
+    }
+  ],
+  "tests": [
+    {
+      "name": "pytest",
+      "command": "python -m pytest -q",
+      "result": "fail",
+      "output_ref": "evidence/test-pytest.txt"
+    }
+  ],
+  "errors": [],
+  "next_action": null
+}

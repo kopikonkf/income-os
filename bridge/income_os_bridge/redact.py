@@ -4,7 +4,8 @@ import re
 _PATTERNS = [
     re.compile(r"\bsk-[A-Za-z0-9_-]{8,}"),
     re.compile(r"\bgh[pous]_[A-Za-z0-9_-]{10,}"),
-    re.compile(r"(?i)\b(api[_-]?key|token|secret|password|bearer)\b\s*[=:]\s*\S+"),
+    re.compile(r"(?i)\b(api[_-]?key|token|secret|password)\b\s*[=:]\s*\S+"),
+    re.compile(r"(?i)\bbearer\s+[A-Za-z0-9._~+/=-]{8,}"),
     re.compile(r"(?i)(\.env\b|\.hermes[\\/]\.env\b)"),
 ]
 

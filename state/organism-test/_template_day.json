@@ -1,0 +1,65 @@
+{
+  "day": 0,
+  "date": "2026-01-01",
+  "phase": "A",
+  "briefing": {
+    "as_of": "",
+    "seq_range": "",
+    "source_trust": "ASSUMED",
+    "wake_count": 0,
+    "deferred_count": 0
+  },
+  "projection_accuracy": null,
+  "truth_vs_projection_drift": null,
+  "events": {
+    "total_24h": 0,
+    "by_class": {
+      "INFO": 0,
+      "NOTICE": 0,
+      "WARNING": 0,
+      "CRITICAL": 0,
+      "STRATEGIC": 0
+    },
+    "new_since_last_briefing": 0
+  },
+  "wake": {
+    "triggered": 0,
+    "budget_used": 0,
+    "budget_remaining": 4,
+    "min_gap_min": 90
+  },
+  "boundary": {
+    "raw_access_violations": 0,
+    "rejected_count": 0,
+    "rejected_details": []
+  },
+  "proposals": {
+    "received": 0,
+    "format_valid": 0,
+    "decided": 0
+  },
+  "heartbeat": {
+    "cards_total": 0,
+    "cards_overdue": 0,
+    "stale_min": null
+  },
+  "fault_injection": {
+    "type": "none",
+    "detected": false,
+    "recovery_time_min": null
+  },
+  "source_trust_by_surface": {
+    "system_health": "ASSUMED",
+    "system_state": "ASSUMED",
+    "active_missions": "ASSUMED",
+    "mission_get": "ASSUMED",
+    "workers": "ASSUMED",
+    "scheduled_jobs": "ASSUMED",
+    "capabilities": "ASSUMED",
+    "recent_events": "ASSUMED",
+    "search_sessions": "ASSUMED",
+    "session_get": "ASSUMED",
+    "briefing_get": "ASSUMED"
+  },
+  "notes": ""
+}

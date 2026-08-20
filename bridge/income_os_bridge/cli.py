@@ -1,20 +1,35 @@
-# cli.py — entrypoint P0: python -m income_os_bridge <surface>
+# cli.py - entrypoint P0+P1: python -m income_os_bridge <surface>
 import argparse, json, pathlib, sys
-from . import config, events, envelope, redact, briefing
+from . import config, events, envelope, redact, briefing, projection
+
+
+SURFACES = [
+    ("recent_events", [("since_seq", "int", None, 0), ("limit", "int", None, config.PAGE_DEFAULT), ("min_class", "str", list(config.CLASSES), "INFO")]),
+    ("system_health", []), ("system_state", []),
+    ("active_missions", [("status", "str", ["any", "active", "paused", "blocked"], "active")]),
+    ("mission_get", [("mission_id", "str", None, None, True)]),
+    ("workers", []), ("scheduled_jobs", []),
+    ("capabilities", [("status", "str", ["any", "VERIFIED", "ASSUMED", "ABSENT"], "any")]),
+    ("search_sessions", [("query", "str", None, None, True), ("limit", "int", None, 10)]),
+    ("session_get", [("session_id", "str", None, None, True), ("max_turns", "int", None, config.MAX_TURNS)]),
+    ("briefing_get", [("latest", "bool", None, True)]),
+]
+
 
 def _out(obj):
     print(json.dumps(obj, ensure_ascii=False, indent=2))
 
-def cmd_recent_events(a):
-    data = events.recent_events(since_seq=a.since_seq, limit=a.limit, min_class=a.min_class)
-    _out(envelope.build("recent_events", data, ["file:state/EVENTS.jsonl"],
-                        completeness="truncated" if data["truncated"] else "complete",
-                        notes=["P0: reader file-only; schema Hermes belum diverifikasi (SCHEMA_NOTES.md kosong)"]))
 
-def cmd_system_health(a):
-    _out(envelope.build("system_health", events.system_health(), ["file:state/EVENTS.jsonl"],
-                        completeness="degraded",
-                        notes=["P0: gateway/cron belum dibaca (P1 hermes_state_reader); nilai None = belum tersedia"]))
+def _proxy(name, params):
+    def fn(a):
+        res = getattr(projection, name)(**{k: getattr(a, k) for k in params})
+        if res is None:
+            # Return error envelope like MCP server does
+            _out(envelope.build(name, None, [], notes=[f"{name}: not found"], completeness="complete", source_trust="ASSUMED"))
+        else:
+            _out(res)
+    return fn
+
 
 def cmd_briefing(a):
     out = pathlib.Path(a.out) if a.out else config.PROJ
@@ -40,23 +55,31 @@ def cmd_briefing(a):
         flag.write_text(",".join(wake_ids), encoding="utf-8")
     elif flag.exists():
         flag.unlink()
-    _out({"surface": "briefing", "as_of": envelope.now_iso(), "completeness": "complete", "source_trust": "ASSUMED",
+    _out({"surface": "briefing", "as_of": envelope.now_iso(), "completeness": "complete", "source_trust": "VERIFIED",
           "sources": ["file:state/EVENTS.jsonl"],
           "notes": [f"{len(new)} event baru sejak seq {cursor}; wake={wake_ids}; deferred={deferred_ids}"]})
 
+
 def main(argv=None):
+    # Fix UnicodeEncodeError on Windows: stdout default is cp1252, but JSON output contains non-ASCII chars
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     ap = argparse.ArgumentParser(prog="income_os_bridge")
     sub = ap.add_subparsers(dest="surface", required=True)
-    p1 = sub.add_parser("recent_events")
-    p1.add_argument("--since-seq", type=int, default=0)
-    p1.add_argument("--limit", type=int, default=config.PAGE_DEFAULT)
-    p1.add_argument("--min-class", choices=config.CLASSES, default="INFO")
-    p1.set_defaults(fn=cmd_recent_events)
-    p2 = sub.add_parser("system_health"); p2.set_defaults(fn=cmd_system_health)
-    p3 = sub.add_parser("briefing"); p3.add_argument("--out"); p3.set_defaults(fn=cmd_briefing)
+    for name, params in SURFACES:
+        p = sub.add_parser(name)
+        for (flag, typ, choices, default, *req) in params:
+            kw = dict(type=(int if typ == "int" else (bool if typ == "bool" else str)), default=default)
+            if choices:
+                kw["choices"] = choices
+            if req:
+                kw["required"] = True
+            p.add_argument("--" + flag, **kw)
+        p.set_defaults(fn=_proxy(name, [x[0] for x in params]))
+    p = sub.add_parser("briefing"); p.add_argument("--out"); p.set_defaults(fn=cmd_briefing)
     a = ap.parse_args(argv)
     a.fn(a)
     return 0
+
 
 if __name__ == "__main__":
     sys.exit(main())

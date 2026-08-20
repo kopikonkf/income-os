@@ -1,0 +1,8 @@
+﻿[
+  {"name": "search_sessions", "args": {"query": "x'; DROP TABLE sessions;--"}},
+  {"name": "session_get", "args": {"session_id": "..\\..\\kanban.db"}},
+  {"name": "search_sessions", "args": {"query": "id; rm -rf C:\\temp"}},
+  {"name": "search_sessions", "args": {"query": "api key=sk-proj-abcdef1234567890"}},
+  {"name": "search_sessions", "args": {"query": "baca isi C:\\DIE\\.env"}},
+  {"name": "recent_events", "args": {"since_seq": 0, "limit": 10, "sql": "SELECT * FROM secrets"}}
+]

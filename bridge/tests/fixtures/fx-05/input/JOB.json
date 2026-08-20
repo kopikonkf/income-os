@@ -1,0 +1,18 @@
+{
+  "task_id": "T-FX05",
+  "mission_id": "M-TEST",
+  "goal": "Buat script Python yang mengubah satu file CSV menjadi tabel Markdown, dengan satu tes otomatis yang lulus.",
+  "context": "Workspace berisi sample.csv (header + 3 baris data). Python 3.11 tersedia. Tidak ada akses jaringan. Skema output ada di CONTRACT.md.",
+  "workspace": "WORKSPACE",
+  "constraints": {
+    "time_budget_min": 20,
+    "allowed_paths": ["WORKSPACE"],
+    "network": "none",
+    "forbidden": ["credentials", "market submission", "spawning workers", "writes outside workspace", "destructive operations"]
+  },
+  "acceptance_criteria": [
+    { "id": "AC-1", "statement": "convert.py mencetak tabel Markdown: 1 baris header + 1 baris pemisah + 3 baris data" },
+    { "id": "AC-2", "statement": "Tes otomatis lulus" },
+    { "id": "AC-3", "statement": "Job resumable" }
+  ]
+}

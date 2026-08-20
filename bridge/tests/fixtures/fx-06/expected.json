@@ -1,0 +1,7 @@
+﻿{
+  "gateway_running": true,
+  "cron_names": ["die-heartbeat", "die-briefing"],
+  "cron_status_first": "ok",
+  "source_trust": "VERIFIED",
+  "completeness": "complete"
+}

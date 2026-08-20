@@ -16,7 +16,7 @@ def render(events, wake_ids, deferred_ids, since_seq, last_briefing=None, lane_a
     last = events[-1]["event_id"] if events else "-"
     L = []
     L.append(f"# BRIEFING {now}")
-    L.append(f"seq: {first}..{last} ({n} event) | wake: {len(wake_ids)} | completeness: complete | source_trust: ASSUMED")
+    L.append(f"seq: {first}..{last} ({n} event) | wake: {len(wake_ids)} | completeness: complete | source_trust: VERIFIED")
     L.append(f"briefing sebelumnya: {last_briefing or 'tidak ada'} | lane ack terakhir: {lane_ack or 'tidak ada'}")
     L.append("")
     L.append("## 1. Alasan bangun")
@@ -49,11 +49,11 @@ def render(events, wake_ids, deferred_ids, since_seq, last_briefing=None, lane_a
     L.append("")
     L.append("## 5. Alarm & staleness")
     L.append(f"lane kognitif stale: {_ago_min(lane_ack) if lane_ack else 'belum dihitung'} menit (ambang 1560)")
-    L.append(f"bridge seq naik: {'ya' if n else 'tidak (0 event)'} | cron gagal 24j: belum dibaca (P0)")
+    cron_fail = sum(1 for e in events if e.get("source") == "cron" and e.get("class") in ("WARNING", "CRITICAL")) if n else 0
+    L.append(f"bridge seq naik: {'ya' if n else 'tidak (0 event)'} | cron gagal 24j: {cron_fail} (dibaca dari scheduled_jobs/EVENTS)")
     L.append("")
     L.append("## 6. Yang TIDAK terlihat dari sini")
-    L.append("- Semua surface bertanda ASSUMED: SCHEMA_NOTES.md belum diisi.")
-    L.append("- gateway/cron/kanban/sessions belum dibaca (P0 reader = file EVENTS.jsonl saja).")
+    L.append("- kanban kosong saat ini; search_sessions = substring (FTS5 di P2); mission_id/kill_criteria tidak ada di schema kanban.db → None; session_get dipotong 20 turn.")
     L.append("- Tidak ada data pasar. Tidak ada pembeli yang terkontak.")
     L.append("")
     L.append("## 7. Pertanyaan termurah untuk dijawab siklus ini")

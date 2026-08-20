@@ -1,0 +1,7 @@
+{
+  "task_id": "T-FX05",
+  "accepted_status": "done",
+  "problems_substring": [],
+  "exit_code": 0,
+  "notes": "Fixture golden data — resume logic verification requires live worker. Test verifies PROGRESS.md is read and resume field exists in RESULT.json."
+}

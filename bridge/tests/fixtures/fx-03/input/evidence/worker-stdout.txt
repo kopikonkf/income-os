@@ -1,0 +1,3 @@
+AC-1: output 5 baris (header + pemisah + 3 data), exit 0, linecount=5
+AC-2: python -m pytest -q 1 passed, exit code 0
+AC-3: PROGRESS.md ada dan menyebut langkah terakhir yang selesai (menulis RESULT.json, status done)

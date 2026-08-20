@@ -1,0 +1,7 @@
+﻿{
+  "gateway": {"rows": [{"running": true, "pid": 17556, "uptime_s": null, "main_provider": "opencode-zen", "main_model": "nemotron-3-ultra-free", "aux_provider": null, "last_error": null}], "source": "cli", "trust": "VERIFIED", "as_of": "2026-08-19T05:00:00Z", "complete": true},
+  "cron": {"rows": [
+    {"name": "die-heartbeat", "schedule": "*/15 * * * *", "enabled": true, "last_run_at": "2026-08-19T05:00:40Z", "last_status": "ok", "next_run_at": "2026-08-19T05:15:00Z", "profile": "income-operator"},
+    {"name": "die-briefing", "schedule": "0 7 * * *", "enabled": true, "last_run_at": null, "last_status": null, "next_run_at": "2026-08-19T07:00:00Z", "profile": "income-operator"}
+  ], "source": "cli", "trust": "VERIFIED", "as_of": "2026-08-19T05:00:00Z", "complete": true}
+}

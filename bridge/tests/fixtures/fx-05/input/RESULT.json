@@ -1,0 +1,50 @@
+{
+  "task_id": "T-FX05",
+  "status": "done",
+  "summary": "Job selesai setelah resume dari langkah 3.",
+  "artifact": [
+    {
+      "path": "convert_fx05.py",
+      "kind": "file",
+      "description": "CSV to Markdown converter"
+    },
+    {
+      "path": "convert_test_fx05.py",
+      "kind": "file",
+      "description": "automated test"
+    },
+    {
+      "path": "out.md",
+      "kind": "file",
+      "description": "Markdown output"
+    },
+    {
+      "path": "PROGRESS.md",
+      "kind": "file",
+      "description": "progress tracker"
+    },
+    {
+      "path": "evidence/test-pytest.txt",
+      "kind": "file",
+      "description": "pytest output"
+    }
+  ],
+  "evidence": [
+    {
+      "type": "command_output",
+      "ref": "evidence/worker-stdout.txt",
+      "claim": "AC-1: output 5 baris (header + pemisah + 3 data), exit 0, linecount=5 AC-2: python -m pytest -q 1 passed, exit code 0 AC-3: PROGRESS.md ada dan menyebut langkah terakhir yang selesai (menulis RESULT.json, status done, resumed: true)"
+    }
+  ],
+  "tests": [
+    {
+      "name": "pytest",
+      "command": "python -m pytest -q",
+      "result": "pass",
+      "output_ref": "evidence/test-pytest.txt"
+    }
+  ],
+  "errors": [],
+  "next_action": null,
+  "resumed": true
+}
