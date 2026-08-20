@@ -3,12 +3,14 @@
 Date: 2026-08-21
 Project: Digital Income Empire — Company Holdings
 Mode: Chief Executive Architect
-Workflow stage: P1 — COMPANY BRAIN v0 (IMPLEMENTED; PUBLICATION IN PROGRESS)
+Workflow stage: P1 — COMPANY BRAIN v0 (DRAFT PR #2 OPEN)
 Canonical runtime: `C:\DIE`
 Canonical repository: https://github.com/kopikonkf/income-os
 Working branch: `architect/company-brain-v0`
 Base branch: `main`
 Base commit: `9b52d4b34403bac219085fee2aba4c01494a1637`
+Package commit: `5a93470b50583971eb9a559cb690afc77563910c`
+Draft PR: https://github.com/kopikonkf/income-os/pull/2
 
 ## Founder authorization
 
@@ -99,7 +101,7 @@ COMPLETE.
 
 ### P1 — Company Brain + Constitution + Identity
 
-IMPLEMENTATION COMPLETE; awaiting publication and Founder review/merge of draft PR #2.
+IMPLEMENTATION COMPLETE; draft PR #2 is open and awaiting Founder review/merge.
 
 ### P2 — Architect Engineering Bridge
 
@@ -204,9 +206,19 @@ Parallel safety track: harden `mcp-architect` and rotate the exposed credential.
 
 ## Publication state
 
-Current branch: `architect/company-brain-v0`.
+Publication workflow is complete.
 
-At this standing point, implementation and verification are complete. Exact-path staging, commit, push, draft PR creation, and final remote verification are the remaining authorized publication steps.
+- draft PR: https://github.com/kopikonkf/income-os/pull/2
+- state: OPEN
+- draft: TRUE
+- mergeable: TRUE
+- base: `main` at `9b52d4b34403bac219085fee2aba4c01494a1637`
+- head: `architect/company-brain-v0`
+- package commit: `5a93470b50583971eb9a559cb690afc77563910c`
+- changed files: 10
+- `state/EVENTS.jsonl`: excluded and preserved as live unstaged runtime truth
+
+Remaining action belongs to the Founder: review and merge when satisfied.
 
 ## Operating doctrine
 
