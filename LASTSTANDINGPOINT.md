@@ -3,97 +3,210 @@
 Date: 2026-08-21
 Project: Digital Income Empire — Company Holdings
 Mode: Chief Executive Architect
-Workflow stage: VERIFY — PR OPEN
-Canonical branch: `architect/state-boundary-v1`
+Workflow stage: P1 — COMPANY BRAIN v0 (IMPLEMENTED; PUBLICATION IN PROGRESS)
+Canonical runtime: `C:\DIE`
+Canonical repository: https://github.com/kopikonkf/income-os
+Working branch: `architect/company-brain-v0`
+Base branch: `main`
+Base commit: `9b52d4b34403bac219085fee2aba4c01494a1637`
 
-## Outcome
+## Founder authorization
 
-The ChatGPT Architect Custom MCP is fully verified for real writes, commits, pushes, and remote SHA parity.
-
-Controlled proof repository: `kopikonkf/mcp-architect`
-Proof commit: `f14579639422790179cc7ecf534296764d3a68e9`
-Local HEAD = remote `origin/main`; postflight worktree and staged/unstaged diffs were clean.
-
-The first DIE architecture migration has also been implemented on `kopikonkf/income-os`.
-
-Implementation commit: `8d02f2110b658f79873e59382c44251e2565e5ca`
-Pull request: https://github.com/kopikonkf/income-os/pull/1
-
-## Constitutional boundary now implemented
-
-Canonical invariant:
+Authorized scope:
 
 ```text
-ONE PHYSICAL WRITER
-DIE State Manager
-
-MULTIPLE SEMANTIC AUTHORS
-Founder
-Runtime cognition
-Hermes
-Workers
-Schedulers
-External evidence ingestors
+stage Company Brain files only
+commit
+push feature branch
+create draft PR #2
+exclude state/EVENTS.jsonl
 ```
 
-Hermes remains mission owner and the one operational control plane.
-Hermes is no longer persistence sovereignty or canonical Company Truth owner.
+No runtime state is part of this publication.
 
-Chief Executive Architect DEV access is explicitly separated from runtime Executive/Division cognition. DEV filesystem/Git/test privilege must never be inherited by autonomous runtime identities.
+## Verified platform standing
 
-`bin/die_event.py` is now labeled DIE State Writer v0. Runtime behavior and JSONL storage remain unchanged.
+ChatGPT Architect Custom MCP has semantic read/write/git/test access to the live runtime at `C:\DIE`.
 
-## Files changed in the implementation commit
+- local base HEAD = GitHub `main`
+- PR #1 merged: https://github.com/kopikonkf/income-os/pull/1
+- merge commit: `9b52d4b34403bac219085fee2aba4c01494a1637`
+- `state/EVENTS.jsonl` remains the pre-existing live append-only modification and is intentionally preserved
+- runtime and governed repository boundary remains:
 
-- `CONSTITUTION.md`
-- `AGENTS.md`
-- `IDENTITY/chatgpt-architect.md`
-- `IDENTITY/hermes-operator/SOUL.md`
-- `PROTOCOLS/a2a-combus-chatgpt-hermes.md`
-- `bin/die_event.py`
-- `docs/architecture/CODEBASE_AUTOPSY_KEEP_MODIFY_RETIRE.md`
-- `docs/architecture/CONSTITUTION_STATE_BOUNDARY_PATCH.md`
+```text
+GitHub main
+  = canonical code + constitutional/governed artifacts
+
+C:\DIE\state
+  = live append-only operational truth
+```
+
+## PR #2 implementation
+
+Company Brain v0 now exists as an executable governed package:
+
+- `COMPANY_BRAIN.md` — durable organizational entrypoint, authority order, economic fitness, continuity, and succession doctrine
+- `company/identity-registry.json` — machine-readable identity, development-plane, service, and security registry
+- `IDENTITY/founder.md` — sovereign authority and explicit multi-generation succession boundary
+- `IDENTITY/chatgpt-plus-executive.md` — company/portfolio Executive Strategic Intelligence identity
+- `IDENTITY/division-head-template.md` — reusable bounded Division Decision Engine template
+- `IDENTITY/worker-template.md` — job-only, evidence-bound replaceable specialist identity
+- `PROTOCOLS/agency-contract-v0.md` — identity resolution, authority envelope, state/decision/execution paths, and handoff contract
+- `bin/die_company_brain_check.py` — mechanical conformance validator
+- `bridge/tests/test_company_brain.py` — positive and adversarial identity/privilege tests
+
+Core enforced invariants:
+
+1. Founder is sovereign; Founder is not routine message transport.
+2. Runtime cognition never inherits Chief Executive Architect DEV.
+3. Multiple semantic authors use one physical canonical writer: DIE State Manager.
+4. Hermes remains the sole operational mission control plane.
+5. Workers receive jobs, not missions.
+6. Proxima remains a production gateway, not a second orchestrator.
+7. Company continuity survives model/account/runtime replacement.
+8. Founder succession must be explicit and externally verifiable; no AI may infer sovereignty.
+9. Verified market evidence and real revenue remain organism-level fitness signals.
 
 ## Verification evidence
 
-- Baseline before patch: `20 passed`
-- Post-patch test suite: `20 passed`
-- `python -m py_compile bin\die_event.py`: PASS
-- `git diff --check`: PASS
-- Static scan for obsolete physical-ownership phrases: PASS
-- Unstaged diff before implementation commit: empty
+```text
+python bin/die_company_brain_check.py
+PASS — identity_count=5, runtime_identity_count=4
 
-No dashboard, database, message bus, Decision Gateway, or new runtime component was added.
+python -m pytest bridge/tests -q
+27 passed
 
-## Live engineering surface
+python -m py_compile bin/die_company_brain_check.py bridge/tests/test_company_brain.py
+PASS
 
-The repo was cloned into the bounded MCP write root:
+git diff --check -- <Company Brain paths>
+PASS
+```
 
-`D:\tmp\income-os`
+Adversarial tests prove rejection of:
 
-The old `D:\Digital_Income_Empire` folder is not a Git repository.
-`C:\DIE` is not currently available as the MCP engineering repo.
+- runtime `architect_dev_access=allow`;
+- direct DEV-reserved capability injection;
+- direct inheritance from the non-inheritable Architect DEV plane;
+- indirect inheritance of a DEV-reserved capability.
 
-## Security finding — urgent
+## Current build position
 
-The current `mcp-architect` repository contains a plaintext login password in tracked documentation. Rotate it after removing the value from Git-visible docs.
+### P0 — Codebase Recovery / Autopsy
 
-The server also needs a small hardening sprint before broader production use:
+COMPLETE.
 
-- narrow the read root instead of exposing all `D:\`;
-- enforce path checks on `fs.stat`, `fs.search`, `fs.zip`, and `fs.unzip`;
-- use boundary-aware root comparison, not prefix-only matching;
-- reject invalid `cwd`/Git paths instead of silently falling back to another root;
-- ensure Git branch/commit/push use explicit authorized repository roots;
-- keep credential files blocked from read tools.
+### P1 — Company Brain + Constitution + Identity
 
-Do not expose or copy secret values into chat or commits.
+IMPLEMENTATION COMPLETE; awaiting publication and Founder review/merge of draft PR #2.
 
-## Next executable action
+### P2 — Architect Engineering Bridge
 
-1. Founder reviews and merges PR #1; it has not been auto-merged.
-2. Next safety sprint: harden `mcp-architect` and rotate the exposed login credential.
-3. Then continue DIE State Writer v0 hardening: provenance fields, typed validation, authority tests, and forward-only schema evolution.
+FUNCTIONALLY COMPLETE; SECURITY HARDENING DUE.
+
+Security debt remains:
+
+- rotate the plaintext login credential found in tracked documentation;
+- narrow broad `D:\` read root;
+- enforce path validation consistently;
+- reject invalid cwd/path instead of fallback;
+- ignore/remove runtime log artifacts.
+
+### P3 — ChatGPT Plus Line 1 + Line 2
+
+IDENTITY FOUNDATION COMPLETE; runtime interface not started. Depends on bounded `context.snapshot()` and decision contracts.
+
+### P4 — Division Decision Engine Line 1 + Line 2
+
+TEMPLATE FOUNDATION COMPLETE; first division instantiation not started.
+
+### P5 — DIE State Layer + Decision Gateway
+
+FOUNDATION EXISTS; NOT COMPLETE.
+
+Existing:
+
+- `bin/die_event.py` = DIE State Writer v0;
+- append-only EVENTS / DECISIONS / ECONOMICS;
+- provider-neutral single-writer constitutional boundary;
+- read-only bridge/projection safeguards.
+
+Missing:
+
+- typed provenance and evidence references;
+- authority validation against Company Brain principals;
+- bounded `context.snapshot()`;
+- Decision Request / Gateway;
+- forward-only schema evolution tests.
+
+### P7 — Hermes -> Worker -> Proxima
+
+PARTIAL EXISTING IMPLEMENTATION.
+
+Default remains:
+
+```text
+Hermes -> Worker -> Proxima -> Production Engine
+```
+
+A narrow direct Hermes-to-Proxima adapter is allowed only for small stateless production calls where a Worker hop adds no control or evidence value.
+
+### P8 — Dashboard
+
+BLOCKED BY DESIGN until one division and one economic loop are real.
+
+### P9 — Genome / Bootstrap / Northstar / Factory
+
+DEFERRED until Company Brain is merged; then classify each artifact as ADOPT / ADAPT / MERGE / REJECT.
+
+## Dependency position
+
+```text
+AUTOPSY / SALVAGE                    COMPLETE
+        |
+        +--> ARCHITECT DEV BRIDGE    COMPLETE, HARDENING DUE
+        |
+        +--> COMPANY BRAIN           IMPLEMENTED IN PR #2 BRANCH
+                    |
+                    v
+             DIE STATE MANAGER
+                    |
+             context.snapshot
+                    |
+          Plus / Division Cognition
+                    |
+             Decision Gateway
+                    |
+                  Hermes
+                    |
+                  Worker
+                    |
+                Proxima
+                    |
+                 Market
+                    |
+                Evidence
+                    +--------------------> loop
+```
+
+## Next executable stage after PR #2 merge
+
+Build the smallest P5 vertical slice that Company Brain now makes possible:
+
+1. validate semantic author identity and authority against the registry;
+2. define typed provenance/evidence references;
+3. produce one bounded, versioned `context.snapshot()`;
+4. prove an unauthorized principal and stale snapshot are rejected;
+5. keep Hermes as mission owner and State Manager as sole physical writer.
+
+Parallel safety track: harden `mcp-architect` and rotate the exposed credential.
+
+## Publication state
+
+Current branch: `architect/company-brain-v0`.
+
+At this standing point, implementation and verification are complete. Exact-path staging, commit, push, draft PR creation, and final remote verification are the remaining authorized publication steps.
 
 ## Operating doctrine
 
@@ -101,5 +214,7 @@ Build > Run > Verify > Refactor > Extend
 
 Do not restart the repo.
 Do not build the dashboard yet.
-Do not activate all 15 divisions yet.
+Do not activate all divisions yet.
+Do not stage or discard `state/EVENTS.jsonl`.
+Ship executable artifacts, not architecture theater.
 First real money remains the organism fitness signal.
