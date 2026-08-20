@@ -7,7 +7,7 @@ Path repo: `PROTOCOLS/a2a-combus-chatgpt-hermes.md` · Kelas: protokol · Tunduk
 
 </aside>
 
-Lapisan komunikasi semantik antara ChatGPT #A (substrat kognitif) dan Hermes (operator), tanpa Founder sebagai perantara pesan. Dokumen ini mendefinisikan topologi, permukaan akses, primitif, dan gerbang fase.
+Lapisan komunikasi semantik antara runtime cognition (compatibility name: ChatGPT #A) dan Hermes (operator), tanpa Founder sebagai perantara pesan. Canonical truth berada di DIE State Layer; dokumen ini mendefinisikan topologi, permukaan akses, primitif, dan gerbang fase.
 
 ## 1. Topologi dua lane
 
@@ -53,7 +53,7 @@ ChatGPT #A **tidak pernah** mendapatkan: shell, filesystem, akses SQLite/DB, kre
 
 Alasan: substrat kognitif berada di lingkungan yang tidak dikendalikan (akun pihak ketiga, transport browser). Kompromi di sana tidak boleh berarti kompromi pada VPS.
 
-Konsekuensi teknis: karena `hermes mcp serve` adalah **messaging bridge saja** — `conversations_list`, `conversation_get`, `messages_read`, `attachments_fetch`, `events_poll`, `events_wait`, `messages_send`, `channels_list`, `permissions_list_open`, `permissions_respond` — dan **bukan runtime introspection** (VERIFIED §2), maka dibutuhkan **Semantic Projection Layer**: Hermes memproyeksikan state internalnya menjadi pesan/artefak semantik yang dikirim lewat bridge. Proyeksi ini adalah satu-satunya jendela ChatGPT #A ke sistem.
+Konsekuensi teknis: karena `hermes mcp serve` adalah **messaging bridge saja** — `conversations_list`, `conversation_get`, `messages_read`, `attachments_fetch`, `events_poll`, `events_wait`, `messages_send`, `channels_list`, `permissions_list_open`, `permissions_respond` — dan **bukan runtime introspection** (VERIFIED §2), maka dibutuhkan **Semantic Projection Layer**: projection service mengompilasi canonical DIE state bersama typed operational evidence dari Hermes menjadi pesan/artefak semantik yang dikirim lewat bridge. Proyeksi ini adalah satu-satunya jendela runtime cognition ke sistem.
 
 Catatan status: ChatGPT Free terbukti secara empiris bisa terhubung ke custom MCP di lingkungan ini, tapi itu **environment-specific, bukan capability resmi** (VERIFIED §2). Protokol ini karena itu tidak boleh mengasumsikan konektivitas MCP langsung sebagai jaminan; jalur artefak (pesan + attachment lewat bridge) adalah jalur cadangan yang harus selalu berfungsi.
 
@@ -61,21 +61,23 @@ Catatan status: ChatGPT Free terbukti secara empiris bisa terhubung ke custom MC
 
 Hanya sembilan kategori ini yang dibagikan. Apa pun di luar ini tidak masuk lane kognitif.
 
-| # | Kategori | Isi | Owner | Akses ChatGPT #A |
+**Persistence invariant:** kolom authority/source di bawah tidak berarti physical writer. Seluruh canonical event, evidence, decision, mission state, telemetry ekonomi, dan projection checkpoint ditulis hanya oleh DIE State Manager setelah validasi.
+
+| # | Kategori | Isi | Semantic authority/source | Akses runtime cognition |
 | --- | --- | --- | --- | --- |
 | 1 | **Northstar** | Mission, vision, constraints, autonomy level | Founder | read |
 | 2 | **World** | Fakta lingkungan: infra yang ada, batas kemampuan, status transport | Hermes | read |
 | 3 | **Empire** | Aset yang dimiliki: produk, channel, akun, artifact terkirim | Hermes | read |
 | 4 | **Mission** | Mission aktif: goal, status, budget, kill criteria, job terkait | Hermes | read + propose |
 | 5 | **Experiment** | Hipotesis berjalan, desain tes, hasil | Hermes | read + propose |
-| 6 | **Decision ledger** | Keputusan + pemutus + alasan (append-only) | Hermes (mencatat) | read |
+| 6 | **Decision ledger** | Keputusan + pemutus + alasan (append-only) | Authorized decider; Hermes dapat submit operational record | read |
 | 7 | **Telemetry** | Biaya, throughput, tingkat kegagalan, waktu siklus | Hermes | read |
 | 8 | **Event stream** | Kejadian berklasifikasi (§6) | Hermes | read |
 | 9 | **Capability** | Daftar kemampuan + status VERIFIED/ASSUMED/ABSENT | Hermes | read |
 
 ## 4. Observation surface (read-only)
 
-Diproyeksikan oleh Hermes; tidak ada satu pun yang memberi akses mentah.
+Dikompilasi dari canonical DIE State Layer plus typed operational evidence dari Hermes/runtime sources; tidak ada satu pun yang memberi akses mentah.
 
 | Nama | Mengembalikan | Catatan |
 | --- | --- | --- |
@@ -127,6 +129,8 @@ Hanya lima jalur mutasi, semuanya tidak destruktif dan semuanya tercatat.
 
 Aturan: `COMMIT`, `DELEGATE`, `REPORT`, dan `SIGNAL` **hanya** boleh berasal dari Hermes. Jika muncul dari sisi kognitif, itu pelanggaran protokol → `ANOMALY`.
 
+Dalam persistence boundary, `COMMIT` adalah semantic request dari Hermes, bukan direct storage write. Mission/decision/event baru canonical setelah DIE State Manager memvalidasi dan mengembalikan committed ID/version.
+
 ### 6.2 Objek semantik
 
 | Objek | Field minimum |
@@ -143,7 +147,7 @@ Aturan: `COMMIT`, `DELEGATE`, `REPORT`, dan `SIGNAL` **hanya** boleh berasal dar
 | `AUDIT` | id, ruang lingkup, metode, temuan, rekomendasi |
 | `LEARNING` | id, observasi, hipotesis, perubahan artefak, hasil setelahnya |
 
-Setiap objek wajib punya id stabil dan tercatat di state milik Hermes. Objek yang hanya hidup di dalam percakapan tidak dianggap ada.
+Setiap objek wajib punya id stabil dan tercatat di canonical DIE State Layer melalui State Manager. Objek yang hanya hidup di dalam percakapan tidak dianggap ada.
 
 ## 7. Event classification & cognitive gate
 

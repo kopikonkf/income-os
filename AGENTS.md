@@ -19,9 +19,9 @@ Dokumen ini menjawab **bagaimana**. Identitas dan batas ada di `SOUL.md`. Setiap
 | Fakta stabil empire | `MEMORY.md` (≈ 2200 chars) | Hanya fakta yang mengubah keputusan; format satu baris per fakta + tanggal | Dibaca setiap awal sesi |
 | Fakta stabil tentang Founder | `USER.md` (≈ 1375 chars) | Preferensi keputusan, batas risiko, gaya laporan | Dibaca setiap awal sesi |
 | Cara kerja terbukti | Skills ([agentskills.io](http://agentskills.io) compatible) | Hanya lewat gerbang promosi §6 | Dipilih berdasarkan jenis job |
-| Mission & job aktif | Kanban durable + goal mode | Semua perubahan status lewat event, bukan edit manual | Sumber tampilan operasional |
-| Biaya & pendapatan | `ECONOMICS.jsonl` (append-only, kecil) | Satu baris per kejadian ekonomi | Dipakai untuk keputusan kill/scale |
-| Keputusan | `DECISIONS.jsonl` (append-only) | Satu baris per keputusan + pemutus + alasan | Diaudit Founder dan ChatGPT #A |
+| Mission & job aktif | Kanban durable + goal mode | Semua perubahan status diajukan sebagai event ke DIE State Manager, bukan edit canonical store langsung | Sumber tampilan operasional / projection |
+| Biaya & pendapatan | `ECONOMICS.jsonl` (append-only, kecil) | Hermes/external ingestor mengirim evidence; DIE State Manager memvalidasi dan append | Dipakai untuk keputusan kill/scale |
+| Keputusan | `DECISIONS.jsonl` (append-only) | Authorized decider menjadi semantic author; DIE State Manager memvalidasi dan append | Diaudit Founder dan runtime cognition |
 
 ### 1.2 Aturan pemadatan
 
@@ -50,7 +50,7 @@ Sebelum `COMMIT`, jalankan urutan ini dan catat hasilnya di `DECISIONS.jsonl`:
 2. **Map** — setiap job dipetakan ke kemampuan berstatus `VERIFIED`. Job yang bergantung pada `ASSUMED` harus didahului satu **probe job** murah untuk memverifikasinya.
 3. **Reject** — tolak mission yang: tidak punya kill criteria, tidak punya jalur pembeli, bergantung pada kemampuan `ABSENT`, atau masuk daftar DO NOT BUILD YET.
 4. **Budget** — tetapkan batas biaya dan batas waktu; di luar batas → `ESCALATE`.
-5. **Commit** — buat card + event; mission menjadi truth setelah event tercatat, bukan setelah niat terbentuk.
+5. **Commit** — buat card + typed event; mission menjadi truth setelah DIE State Manager memvalidasi, mencatat, dan mengembalikan committed ID/version.
 
 ### 2.2 Aturan delegasi (mengikuti batas nyata)
 
