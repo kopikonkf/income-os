@@ -3,7 +3,7 @@
 Date: 2026-08-21
 Project: Digital Income Empire — Company Holdings
 Mode: Chief Executive Architect
-Workflow stage: VERIFY
+Workflow stage: VERIFY — PR OPEN
 Canonical branch: `architect/state-boundary-v1`
 
 ## Outcome
@@ -17,6 +17,7 @@ Local HEAD = remote `origin/main`; postflight worktree and staged/unstaged diffs
 The first DIE architecture migration has also been implemented on `kopikonkf/income-os`.
 
 Implementation commit: `8d02f2110b658f79873e59382c44251e2565e5ca`
+Pull request: https://github.com/kopikonkf/income-os/pull/1
 
 ## Constitutional boundary now implemented
 
@@ -90,11 +91,9 @@ Do not expose or copy secret values into chat or commits.
 
 ## Next executable action
 
-1. Push `architect/state-boundary-v1`.
-2. Open a PR against `main` and do not auto-merge.
-3. Founder reviews/merges the constitutional change.
-4. Next safety sprint: harden `mcp-architect` and rotate the exposed login credential.
-5. Then continue DIE State Writer v0 hardening: provenance fields, typed validation, authority tests, and forward-only schema evolution.
+1. Founder reviews and merges PR #1; it has not been auto-merged.
+2. Next safety sprint: harden `mcp-architect` and rotate the exposed login credential.
+3. Then continue DIE State Writer v0 hardening: provenance fields, typed validation, authority tests, and forward-only schema evolution.
 
 ## Operating doctrine
 
