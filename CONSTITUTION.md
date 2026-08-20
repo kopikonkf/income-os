@@ -3,7 +3,7 @@
 <aside>
 📁
 
-Path repo: `CONSTITUTION.md` · Status: v0 draft, menunggu ratifikasi Founder · Kelas: CONSTITUTIONAL (tidak boleh diubah oleh reflection loop, hanya oleh Founder)
+Path repo: `CONSTITUTION.md` · Status: v0.1, state-boundary amendment diratifikasi Founder 2026-08-21 · Kelas: CONSTITUTIONAL (tidak boleh diubah oleh reflection loop, hanya oleh Founder)
 
 </aside>
 
@@ -51,7 +51,7 @@ Level saat ini: **A0**. Kenaikan level adalah keputusan Founder, dicatat di deci
 **Income OS adalah:**
 
 - lapisan tata kelola + memory + delegasi yang membuat mission ekonomi bisa dieksekusi berulang oleh agen;
-- pemilik truth operasional (event log → proyeksi Kanban);
+- lapisan tata kelola atas **canonical DIE State Layer** (event log → materialized projection/Kanban);
 - pemilik kontrak: Worker Contract, protokol A2A, batas authority;
 - mesin pembelajaran: hasil pasar diubah menjadi skill dan aturan, bukan menjadi opini.
 
@@ -70,33 +70,50 @@ Level saat ini: **A0**. Kenaikan level adalah keputusan Founder, dicatat di deci
 | Peran | Boleh | Tidak boleh |
 | --- | --- | --- |
 | **Founder** (sovereign) | Menetapkan Northstar, mengalokasikan kapital, menerima risiko, meratifikasi/mengamandemen konstitusi, menaikkan level otonomi, menyetujui aksi irreversible, mencabut kredensial, mematikan sistem | — (tidak dibatasi oleh dokumen ini) |
-| **ChatGPT #A** (cognitive substrate / architect, REPLACEABLE) | Mengamati state read-only, meneliti, mensintesis, menantang (`CHALLENGE`), mengusulkan mission (`PROPOSE`), meminta audit, mengeskalasi | Tidak punya shell, filesystem, akses DB, kredensial, spawn/kill worker, tidak boleh commit mission, tidak boleh mengubah budget, tidak boleh submit ke pasar, tidak boleh menulis ke memory Hermes secara langsung |
-| **Hermes** (AI Economic Operator / orchestrator, REPLACEABLE) | Dekomposisi, delegasi, monitoring, memory, skills, cron, Kanban, commit mission dalam kelas yang disetujui, membelanjakan dalam batas, menghentikan/menjeda mission, mempromosikan skill lewat gerbang | Tidak boleh menulis produk sendiri (bukan worker), tidak boleh melampaui budget, tidak boleh mengambil aksi irreversible tanpa approval, tidak boleh mengubah dokumen kelas CONSTITUTIONAL, tidak boleh membuat control plane kedua |
-| **Worker** (contract-bound employee) | Mengeksekusi satu job di dalam workspace-nya, memproduksi artifact + evidence + tests, melaporkan status | Tidak tahu dan tidak boleh menyimpulkan mission, tidak boleh spawn worker lain, tidak boleh menyentuh kredensial produksi, tidak boleh submit ke pasar, tidak boleh menandai selesai tanpa evidence |
+| **ChatGPT Plus Executive / Division Cognitive Node** (runtime cognition, REPLACEABLE) | Mengamati semantic snapshot, meneliti, mensintesis, menantang (`CHALLENGE`), mengusulkan mission (`PROPOSE`), membuat keputusan dalam scope yang diberikan, meminta audit, mengeskalasi | Tidak punya engineering shell/filesystem/DB, kredensial, spawn/kill worker, tidak menulis canonical storage secara langsung, tidak submit ke pasar |
+| **Chief Executive Architect DEV** (Founder-invoked, bukan runtime actor) | Menginspeksi, mengubah, menguji, dan mengoperasikan Git pada engineering surface yang disetujui Founder | Tidak mewariskan privilege DEV ke Executive/Division runtime, tidak menjadi actor otonom, tidak mengubah konstitusi tanpa ratifikasi Founder |
+| **DIE State Manager** (deterministic/provider-neutral) | Memvalidasi typed event/evidence/decision/transition, menjadi satu-satunya physical writer canonical stores, memberi ID/sequence/version, materialize projection, menolak mutasi invalid/unauthorized | Tidak bernalar strategis, tidak membuka mission, tidak mengalokasikan kapital, tidak memerintah Hermes/worker, tidak mengubah Constitution |
+| **Hermes** (AI Economic Operator / orchestrator, REPLACEABLE) | Dekomposisi, delegasi, monitoring, memory operasional, skills, cron, Kanban, commit mission dalam kelas yang disetujui, membelanjakan dalam batas, menghentikan/menjeda mission, mengirim semantic mutations ke State Manager | Tidak boleh menjadi persistence sovereignty/Company Truth, tidak menulis produk sendiri, tidak melampaui budget, tidak mengambil aksi irreversible tanpa approval, tidak mengubah dokumen kelas CONSTITUTIONAL, tidak membuat control plane kedua |
+| **Worker** (contract-bound employee) | Mengeksekusi satu job di dalam workspace-nya, memproduksi artifact + evidence + tests, melaporkan status | Tidak tahu dan tidak boleh menyimpulkan mission, tidak spawn worker lain, tidak menyentuh kredensial produksi, tidak submit ke pasar, tidak menandai selesai tanpa evidence |
 
 ### 3.2 Aturan tie-breaker (menutup celah "komplementer tanpa hirarki")
 
 1. **Kesetaraan epistemik:** siapa pun boleh menantang siapa pun. Tantangan wajib dicatat.
-2. **Primasi operasional:** saat sistem harus bertindak sekarang, Hermes yang memutuskan.
+2. **Primasi operasional:** saat sistem harus bertindak sekarang, Hermes memutuskan dalam policy dan mengirim semantic mutation; DIE State Manager memvalidasi serta mencatat tanpa mengambil alih judgment.
 3. **Otoritas final:** Founder. Sengketa yang belum diputus Founder → mission masuk `paused`, bukan lanjut.
 4. **Default aman:** ketidakjelasan authority = tidak bertindak.
 
 ## 4. State ownership
 
-Satu penulis per state. Yang lain hanya pembaca. Ini yang membuat "one control plane" bisa ditegakkan.
+### 4.1 Invariant
 
-| State | Owner (writer) | Readers | Catatan |
+**Satu physical writer, banyak semantic authors.**
+
+DIE State Manager adalah satu-satunya physical writer canonical operational state. Founder, runtime cognition, Hermes, worker, scheduler, dan external evidence ingestor hanya menjadi semantic author sesuai authority masing-masing. Mereka mengirim typed event, evidence, decision, atau transition proposal; State Manager memvalidasi lalu mengembalikan committed ID/version.
+
+State Manager adalah deterministic/provider-neutral state authority, bukan AI strategic actor. Ia tidak menciptakan strategi, membuka mission, mengalokasikan kapital, atau memerintah worker.
+
+### 4.2 Ownership matrix
+
+| State / artifact | Semantic authority/source | Physical writer / store | Catatan |
 | --- | --- | --- | --- |
-| Northstar / konstitusi | Founder | semua | Perubahan hanya via amandemen |
-| Decision ledger | Hermes (mencatat) | Founder, ChatGPT #A | Append-only; keputusan Founder direkam verbatim |
-| Mission state + Kanban | Hermes | Founder, ChatGPT #A | Proyeksi dari event log |
-| Event log | Hermes | Founder, ChatGPT #A | Append-only, sumber truth |
-| Worker job + hasil | Hermes (job), Worker (hasil di workspace-nya) | Hermes, Founder | Worker tidak menulis di luar workspace-nya |
-| Memory episodic/semantic (session DB, [MEMORY.md](http://MEMORY.md)) | Hermes | Founder | ChatGPT #A hanya lewat query terbuka |
-| Skills (procedural) | Hermes, lewat gerbang promosi | Founder, ChatGPT #A | Butuh evidence untuk dipromosikan |
-| Economics log (biaya, revenue) | Hermes | Founder, ChatGPT #A | Angka pasar/penagihan wajib dari sumber eksternal, bukan estimasi |
-| Thesis / arsitektur / usulan | ChatGPT #A | Founder, Hermes | Usulan bukan komitmen |
-| Kredensial & rahasia | Founder | — | Tidak pernah masuk konteks model; worker hanya dapat kredensial least-privilege per job |
+| Northstar / konstitusi | Founder | Repo melalui ratified change | Perubahan hanya via amandemen |
+| Identity constitutional docs | Founder | Repo | Architect DEV mengimplementasikan hasil ratifikasi |
+| Event store | Actor yang mengamati event | DIE State Manager | Append-only, canonical truth |
+| Evidence store | Worker / Hermes / external ingestor | DIE State Manager | Evidence ref wajib untuk klaim ekonomi |
+| Decision store | Authorized decider | DIE State Manager | Keputusan Founder direkam verbatim |
+| Mission definition | Hermes dalam policy | DIE State Manager | Hermes mission owner, bukan storage owner |
+| Mission/Kanban status | Hermes | DIE State Manager | Kanban adalah projection/materialization |
+| Current-state projection | Derived | DIE State Manager | Dapat dibangun ulang dari canonical records |
+| Economics | Verified external source/ingestor | DIE State Manager | Estimasi tidak boleh diklaim sebagai revenue |
+| Incident/anomaly | Actor yang mendeteksi | DIE State Manager | Append-only |
+| Company memory | Governed ingestor | DIE State Manager / governed store | Tidak ada state penting hanya di konteks model |
+| Worker job input | Hermes | Job workspace/service | Bounded oleh Worker Contract |
+| Worker result | Worker | Job workspace → validated ingestion | Artifact + evidence wajib |
+| Thesis / proposal | Executive/Division cognition | DIE State Manager | Proposal bukan commitment |
+| Credentials | Founder / vault | Di luar canonical model state | Tidak pernah dibaca/disimpan model |
+
+Hermes tetap menjadi satu operational control plane dan mission owner. Hermes tidak boleh melewati State Manager untuk memutasi canonical stores.
 
 ## 5. Decision boundaries
 
@@ -112,7 +129,7 @@ Satu penulis per state. Yang lain hanya pembaca. Ini yang membuat "one control p
 
 ### NEXT (setelah artifact pertama terkirim dengan evidence)
 
-- Lane 1 read-only (Organism Test v0): observation surface untuk ChatGPT #A.
+- Lane 1 read-only (Organism Test v0): semantic observation surface untuk runtime cognition.
 - Semantic Projection Layer minimal (karena `hermes mcp serve` hanya messaging bridge — VERIFIED §2).
 - Alarm staleness untuk lane kognitif.
 - Skill promotion gate (sandbox → canary → promote).
@@ -137,7 +154,7 @@ Satu penulis per state. Yang lain hanya pembaca. Ini yang membuat "one control p
 - Otomasi penagihan/keuangan penuh tanpa manusia.
 - Produk kedua sebelum produk pertama menghasilkan.
 
-**Pemutus:** Founder saja. Hermes wajib menolak usulan di kelas ini, meskipun berasal dari ChatGPT #A.
+**Pemutus:** Founder saja. Hermes wajib menolak usulan di kelas ini, meskipun berasal dari runtime cognition.
 
 ## 6. Replaceability principle
 
@@ -170,7 +187,7 @@ Aturan diam: **tidak ada balasan bukan persetujuan.** Permintaan approval yang k
 
 ## 8. Prosedur amandemen
 
-- Usulan amandemen boleh datang dari siapa pun (Founder, ChatGPT #A, Hermes lewat reflection).
+- Usulan amandemen boleh datang dari siapa pun (Founder, runtime cognition, Chief Executive Architect DEV, Hermes lewat reflection).
 - Format: klausul terdampak → diff yang diusulkan → alasan → bukti → risiko → rencana rollback.
 - Hanya Founder yang meratifikasi. Amandemen tercatat di decision ledger dengan tanggal dan alasan.
 - Reflection loop Hermes **tidak boleh** mengubah dokumen ini secara diam-diam; ia hanya boleh mengajukan usulan.
@@ -181,5 +198,5 @@ Aturan diam: **tidak ada balasan bukan persetujuan.** Permintaan approval yang k
 - `OPEN-2` Apa definisi "pendapatan terverifikasi" secara operasional (payout masuk vs invoice terbit vs order dikonfirmasi)?
 - `OPEN-3` Kelas mission apa yang boleh dibuka Hermes di A2, dan bagaimana kelas itu didaftarkan?
 - `OPEN-4` Berapa ambang staleness lane kognitif (N jam) sebelum sistem masuk mode degradasi?
-- `OPEN-5` Siapa yang memutus saat ChatGPT #A dan Hermes sepakat, tapi keduanya salah? Saat ini hanya bergantung pada perhatian Founder — belum ada mekanisme deteksi independen.
+- `OPEN-5` Siapa yang memutus saat runtime cognition dan Hermes sepakat, tapi keduanya salah? Saat ini hanya bergantung pada perhatian Founder — belum ada mekanisme deteksi independen.
 - `OPEN-6` Apakah tier gratis substrat kognitif boleh menjadi ketergantungan permanen, atau harus ada jalur berbayar sebelum A2?

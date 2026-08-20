@@ -1,5 +1,6 @@
-# C:\DIE\bin\die_event.py -- SATU-SATUNYA penulis EVENTS/DECISIONS/ECONOMICS
-# Sumber: S2-B1-Bootstrap-Hermes-VPS.md (Opus 5) B1.6
+# DIE State Writer v0 -- SATU-SATUNYA physical writer EVENTS/DECISIONS/ECONOMICS
+# Provider-neutral deterministic boundary; actors remain semantic authors.
+# Original source: S2-B1-Bootstrap-Hermes-VPS.md (Opus 5) B1.6
 import json, sys, os, time, pathlib, datetime, argparse
 try:
     import msvcrt
