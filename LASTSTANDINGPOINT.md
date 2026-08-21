@@ -3,12 +3,14 @@
 Date: 2026-08-21
 Project: Digital Income Empire — Company Holdings
 Mode: Chief Executive Architect
-Workflow stage: P6 — DECISION GATEWAY v1 (IMPLEMENTED LOCALLY; PUBLICATION AUTHORIZATION PENDING)
+Workflow stage: P6 — DECISION GATEWAY v1 (DRAFT PR #4 OPEN)
 Canonical runtime: `C:\DIE`
 Canonical repository: https://github.com/kopikonkf/income-os
 Working branch: `architect/decision-gateway-v1`
 Base branch: `main`
 Base commit: `5f4c6bc29c4646a405d8b887a2b093869515550f`
+Package commit: `4576e9b98a6d837aef2a627974e98da29f27434f`
+Draft PR: https://github.com/kopikonkf/income-os/pull/4
 
 ## Verified merge standing
 
@@ -207,7 +209,7 @@ STATE CONTEXT v1 COMPLETE. PR #3 merged.
 
 ### P6 — Decision Gateway
 
-IMPLEMENTED LOCALLY; VERIFIED; NOT YET PUBLISHED OR MERGED.
+IMPLEMENTED; VERIFIED; PUBLISHED IN DRAFT PR #4; AWAITING FOUNDER REVIEW/MERGE.
 
 ### P7 — Hermes -> Worker -> Proxima
 
@@ -253,24 +255,33 @@ Explicit exclusions:
 - `state/DECISIONS.jsonl`;
 - all runtime keys, credentials, temporary test files, and cache artifacts.
 
-No paths are staged at this standing point.
+The exact 10-path manifest was committed and pushed in package commit `4576e9b98a6d837aef2a627974e98da29f27434f`. `state/EVENTS.jsonl` remains a live, unstaged local modification and is not part of the PR.
 
-## Next authorized publication action
+## Publication state
 
-Required Founder authorization:
+Draft PR #4:
 
-```text
-AUTHORIZED: stage the exact P6 Decision Gateway v1 manifest only,
-commit, push architect/decision-gateway-v1,
-and create draft PR #4.
-Exclude state/EVENTS.jsonl, state/DECISIONS.jsonl,
-all runtime secrets, temporary files, and cache artifacts.
-Do not provision the production HMAC key.
-```
+https://github.com/kopikonkf/income-os/pull/4
+
+- state: OPEN;
+- draft: TRUE;
+- mergeable: MERGEABLE;
+- merge state: CLEAN;
+- base: `main` at `5f4c6bc29c4646a405d8b887a2b093869515550f`;
+- head branch: `architect/decision-gateway-v1`;
+- package commit: `4576e9b98a6d837aef2a627974e98da29f27434f`;
+- changed files: 10;
+- external status checks reported by GitHub: NONE;
+- local bridge regression: 54 passed;
+- production HMAC key: ABSENT / NOT PROVISIONED;
+- `state/EVENTS.jsonl`: EXCLUDED and preserved as a live unstaged modification;
+- `state/DECISIONS.jsonl`: EXCLUDED and unmodified.
+
+Remaining action for this package: Founder review and merge only. No automatic merge is authorized.
 
 After PR #4 merge:
 
-1. provision/rotate the production snapshot HMAC key through a separate authorized deployment action;
+1. provision/rotate the production snapshot HMAC key through a separate explicit Founder-authorized deployment action;
 2. build the separate ChatGPT Plus Executive Line 2 MCP transport over the P5/P6 contracts;
 3. add Hermes committed-decision acceptance/acknowledgment without creating a second orchestrator.
 
