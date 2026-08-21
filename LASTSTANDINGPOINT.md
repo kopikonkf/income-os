@@ -9,7 +9,9 @@ Canonical repository: https://github.com/kopikonkf/income-os
 Working branch: architect/executive-mcp-activation-v1
 Base branch: main
 Base/merge commit: 9cfe7ff781726a887e8ce039fd7f6bde0f79b019
-Publication status: NOT COMMITTED / NOT PUSHED / NO PR
+Implementation commit: ae2a42aee309b9eee05dbf4376ef86806c967c4d
+Draft PR: https://github.com/kopikonkf/income-os/pull/8
+Publication status: DRAFT PR #8 OPEN
 
 ## Verified merge baseline
 
@@ -82,7 +84,7 @@ All boundaries were preserved.
 
 ## Versioned Phase A implementation
 
-Created locally on architect/executive-mcp-activation-v1:
+Published in draft PR #8 from architect/executive-mcp-activation-v1:
 
 - ops/windows/executive-mcp/Install-DIEExecutiveMcpPhaseA.ps1
 - ops/windows/executive-mcp/Test-DIEExecutiveMcpPhaseA.ps1
@@ -218,9 +220,9 @@ Current canonical fact:
 
 Therefore P3 runtime activation remains blocked by design.
 
-## Current local publication manifest
+## Published Phase A manifest
 
-Exact repository files eligible for a later Phase A publication authorization:
+Exact repository files included in draft PR #8:
 
 - LASTSTANDINGPOINT.md
 - bridge/tests/test_executive_activation_bootstrap_v1.py
@@ -238,15 +240,17 @@ Explicit publication exclusions:
 - secrets, credentials, tunnel IDs
 - temporary files and cache artifacts
 
-No path is staged. No commit, push, or PR was created.
+Implementation commit ae2a42aee309b9eee05dbf4376ef86806c967c4d was pushed to
+architect/executive-mcp-activation-v1. Draft PR #8 is open. No runtime state path
+or excluded artifact was staged or committed.
 
 ## Next controlled action
 
-Immediate next action is publication only, under separate authorization, for the
-exact five-file Phase A manifest above.
+Immediate next action is Founder review and merge of draft PR #8. Phase B is not
+started and remains prohibited under the current authorization.
 
-After publication/merge, Phase B still requires separate Founder authorization.
-It is the earliest phase that may cover secure VPS-side secret provisioning, two
+After PR #8 is merged, Phase B still requires separate Founder authorization. It
+is the earliest phase that may cover secure VPS-side secret provisioning, two
 distinct tunnel identities, isolated profile initialization, doctor validation,
 MCP process lifecycle, ChatGPT registration, and lane-isolation proof.
 
