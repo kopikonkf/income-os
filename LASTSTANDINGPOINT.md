@@ -11,9 +11,10 @@ Base branch: main
 Base/merge commit: 36ffd8fe5fce05c4c51e7b712c69d0f883d76746
 Phase A implementation commit: ae2a42aee309b9eee05dbf4376ef86806c967c4d
 Phase B1 implementation commit: 2e46e43e99a6aff9c4390c3f70e1e5471d9b28b0
-Merged PR: https://github.com/kopikonkf/income-os/pull/8
-Draft PR: https://github.com/kopikonkf/income-os/pull/9
-Publication status: DRAFT PR #9 OPEN; NOT MERGED
+Phase B2A initial implementation commit: ba05dcf8f3e54092f8f92c8de488f3e0702bfce6
+Merged PRs: https://github.com/kopikonkf/income-os/pull/8 and https://github.com/kopikonkf/income-os/pull/9
+Draft PR: https://github.com/kopikonkf/income-os/pull/10
+Publication status: DRAFT PR #10 OPEN; NOT MERGED
 
 ## Verified merge baseline
 
