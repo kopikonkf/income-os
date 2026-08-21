@@ -1,80 +1,62 @@
-# Executive MCP Activation Readiness v1
+# Executive MCP Activation Readiness v1.1
 
 Status: IMPLEMENTED LOCALLY; NO DEPLOYMENT OR REGISTRATION
-Base: PR #5 merged at `bbfaaf8778d32b1d0cc96e260968323ce0c78abf`
-Activation target: ChatGPT Plus Executive, Developer mode, private Secure MCP Tunnel
+Base: PR #6 merged at `290f64a1eae218b59c3ce0bae67f6d0b8023d740`
+Activation target: private Executive Line 1/Line 2 MCP connections through Secure MCP Tunnel
 
-## 1. Audit correction
+## 1. Why v1.1 exists
 
-Executive Line 1 and Line 2 are implemented in the repository, but neither is
-an active ChatGPT connection yet. Code completion and runtime activation are
-different states.
+Activation Readiness v1 correctly separated code readiness from runtime activation,
+but its deployment gate did not include every prerequisite in the current official
+OpenAI Secure MCP Tunnel contract. It could therefore report
+`activation_ready: true` after injecting HMAC, tunnel-client, and tunnel IDs even
+when the OpenAI control-plane identity or ChatGPT workspace access was absent.
 
-The VPS audit found:
+v1.1 closes that false-positive path before any credential, tunnel, process,
+deployment, exposure, or registration is performed.
 
-- no running DIE Executive MCP process;
-- no Windows service whose executable points to `C:\DIE`;
-- no Secure MCP Tunnel client command;
-- no production snapshot HMAC key or key ID;
-- the Python MCP SDK is installed;
-- unrelated Proxima, Aether, and CodeGraph MCP processes remain outside this
-  activation boundary.
+## 2. Official OpenAI baseline
 
-The existing Chief Executive Architect MCP must not be reused: Architect DEV
-authority is a separate, Founder-invoked trust plane and cannot be inherited by
-runtime cognition.
+The official Secure MCP Tunnel guide establishes that:
 
-## 2. Current OpenAI transport baseline
+- the tunnel is outbound-only and does not require public ingress;
+- `tunnel-client` needs a `tunnel_id`, a runtime control-plane API key, and
+  reachability to the private MCP server;
+- running the client or selecting a tunnel requires **Tunnels Read + Use**;
+- tunnel access belongs to a Platform organization and must be associated with
+  the intended Platform organization and ChatGPT workspace;
+- ChatGPT Developer Mode is a separate workspace/account permission;
+- the target host needs outbound HTTPS to `api.openai.com:443` by default;
+- the client should be validated with `tunnel-client doctor` before ChatGPT
+  discovery and tool testing.
 
-Official OpenAI documentation states that ChatGPT Developer mode is available
-to Plus and supports SSE and streaming HTTP MCP connections. Write actions are
-treated as writes and require confirmation by default; accurate
-`readOnlyHint` metadata matters.
+Canonical reference:
 
-For a private MCP server, OpenAI documents Secure MCP Tunnel as the supported
-developer-mode path without exposing the private server directly to the public
-Internet. A tunnel can reach a configured stdio or HTTP MCP server.
+- https://developers.openai.com/api/docs/guides/secure-mcp-tunnels
 
-References:
+This internal Founder/Executive lane remains a private developer-mode connection.
+Public plugin submission, public HTTPS proxying, and OAuth construction remain out
+of scope.
 
-- https://developers.openai.com/api/docs/guides/developer-mode
-- https://developers.openai.com/plugins/build/mcp-server
-- https://developers.openai.com/plugins/build/auth
-- https://developers.openai.com/plugins/deploy/connect-chatgpt
+## 3. Separate trust lanes
 
-This internal activation chooses Secure MCP Tunnel. Public plugin submission,
-public HTTPS proxying, OAuth 2.1 authorization-server construction, and
-OpenAI-managed mTLS are out of scope.
-
-## 3. Two distinct lanes
-
-Line 1 and Line 2 remain separate MCP connections:
+Line 1 and Line 2 remain separate connections and require distinct tunnel IDs:
 
 ```text
 Executive Line 1
-  -> read-only tools
-  -> context_snapshot
+  -> bounded observation/context tools
   -> readOnlyHint: true
 
 Executive Line 2
   -> decision_submit only
-  -> append-only canonical write
   -> readOnlyHint: false
   -> idempotentHint: true
-  -> user confirmation required
+  -> explicit user confirmation
 ```
 
-They require distinct tunnel IDs. This prevents a read-only connection from
-silently acquiring mutation capability.
+A read-only connection must never silently inherit Line 2 mutation authority.
 
-Entrypoints:
-
-```powershell
-python bin/die_executive_line1_mcp.py
-python bin/die_executive_mcp.py
-```
-
-## 4. Non-secret readiness checker
+## 4. Fail-closed readiness contract
 
 Run:
 
@@ -82,55 +64,99 @@ Run:
 python bin/die_executive_activation_check.py
 ```
 
-The checker validates:
+Schema:
 
-- Line 1 metadata is entirely read-only;
-- Line 2 exposes exactly `decision_submit` as an idempotent write;
-- both servers publish bounded instructions;
-- server identities and entrypoints are distinct;
-- shared snapshot HMAC key presence and minimum length;
-- HMAC key ID presence;
-- Secure MCP Tunnel activation mode;
-- tunnel client presence;
-- two present, distinct tunnel IDs.
+```text
+die.executive.mcp.activation.readiness.v1.1
+```
 
-It returns booleans and blocker names only. It never returns the HMAC value or
-tunnel IDs and performs no provisioning, process start, service mutation,
-network exposure, deployment, or ChatGPT registration.
+The checker now evaluates three groups:
+
+1. code contract;
+2. OpenAI control-plane prerequisites;
+3. local deployment prerequisites.
+
+New control-plane checks:
+
+| Environment contract | Meaning | Secret |
+| --- | --- | --- |
+| `CONTROL_PLANE_API_KEY` | Runtime identity for `tunnel-client`; presence and minimum length only | Yes |
+| `DIE_OPENAI_TUNNELS_READ_USE_GRANTED` | Founder/operator attests Tunnels Read + Use is granted | No |
+| `DIE_OPENAI_TUNNEL_WORKSPACE_ASSOCIATED` | Founder/operator attests the target ChatGPT workspace is associated | No |
+| `DIE_CHATGPT_DEVELOPER_MODE_ENABLED` | Founder/operator attests Developer Mode is available and enabled | No |
+
+Existing deployment checks remain:
+
+- activation mode is `secure_mcp_tunnel`;
+- production snapshot HMAC key has at least 32 UTF-8 bytes;
+- HMAC key ID is present;
+- tunnel-client is present;
+- Line 1 and Line 2 tunnel IDs are present and distinct.
+
+Attestations accept only explicit truth values: `1`, `true`, `yes`, or `on`.
+Missing, blank, or any other value fails closed.
+
+The result returns booleans and blocker names only. It never returns the HMAC key,
+control-plane API key, tunnel IDs, raw configuration, or credential material.
 
 ## 5. Correct activation order
 
-The earlier handoff placed HMAC provisioning before the service boundary.
-The live audit showed that no DIE MCP service or tunnel client exists, so doing
-that first would create an orphaned credential.
+1. merge the v1.1 gate hardening;
+2. verify the target Platform organization, Tunnels Read + Use permission,
+   ChatGPT workspace association, and Developer Mode access;
+3. obtain separate explicit authorization to install/configure tunnel-client and
+   create two distinct tunnel identities;
+4. obtain separate explicit authorization to generate and provision the
+   production HMAC key, key ID, and tunnel runtime API key without disclosing
+   their values;
+5. set the non-secret attestations only after the corresponding facts are
+   verified;
+6. run the checker until `activation_ready: true`;
+7. start the two dedicated MCP/tunnel processes and validate both profiles with
+   `tunnel-client doctor` and MCP Inspector;
+8. register Line 1 and Line 2 separately in ChatGPT and inspect discovered
+   metadata;
+9. prove Line 1 read behavior and Line 2 confirmation/fail-closed behavior;
+10. submit the first real canonical decision only under a separate Founder
+    authorization.
 
-Correct order:
+## 6. Verification
 
-1. merge this non-secret activation-readiness package;
-2. under explicit Founder authorization, install/configure the Secure MCP
-   Tunnel client and obtain two distinct tunnel IDs;
-3. under the same or a separate explicit credential authorization, generate
-   and provision one strong snapshot HMAC key plus rotation ID into both
-   dedicated MCP process environments;
-4. run the readiness checker until `activation_ready: true`;
-5. start the two dedicated MCP processes/tunnels and verify with MCP Inspector;
-6. enable ChatGPT Developer mode, register both tunnel connections, and inspect
-   discovered metadata;
-7. prove Line 1 reads without write confirmation;
-8. prove Line 2 presents confirmation and fails closed on an unsigned request;
-9. perform the first real decision only under a separate explicit Founder
-   authorization.
+```text
+targeted activation tests
+7 passed
 
-## 6. Hard exclusions
+full bridge regression
+69 passed
 
-This package does not:
+live readiness
+schema=die.executive.mcp.activation.readiness.v1.1
+code_ready=true
+activation_ready=false
+exit=2
+secret_values_returned=false
+deployment_performed=false
+registration_performed=false
+```
 
+The expected live control-plane blockers are:
+
+- control-plane API key absent;
+- Tunnels Read + Use not yet attested;
+- target ChatGPT workspace association not yet attested;
+- ChatGPT Developer Mode not yet attested.
+
+## 7. Hard exclusions
+
+This refactor does not:
+
+- install or configure tunnel-client;
+- create or modify any OpenAI tunnel;
 - generate or provision any credential;
-- install a tunnel client;
-- create a tunnel;
-- start or register an MCP service;
+- start, stop, or register an MCP process/service;
 - expose a public port;
-- modify firewall, DNS, TLS, Cloudflare, or Windows services;
+- change firewall, DNS, TLS, Cloudflare, or Windows services;
 - mutate live `EVENTS.jsonl` or `DECISIONS.jsonl`;
+- touch projection/organism runtime artifacts;
 - connect Hermes;
-- change MCP Proxima.
+- change Worker or MCP Proxima.
