@@ -3,31 +3,32 @@
 Date: 2026-08-21
 Project: Digital Income Empire — Company Holdings
 Mode: Chief Executive Architect
-Workflow stage: P6 — DECISION GATEWAY v1 (DRAFT PR #4 OPEN)
+Workflow stage: P3 — CHATGPT PLUS EXECUTIVE LINE 2 MCP v1 (DRAFT PR #5 OPEN)
 Canonical runtime: `C:\DIE`
 Canonical repository: https://github.com/kopikonkf/income-os
-Working branch: `architect/decision-gateway-v1`
+Working branch: `architect/executive-line2-mcp-v1`
 Base branch: `main`
-Base commit: `5f4c6bc29c4646a405d8b887a2b093869515550f`
-Package commit: `4576e9b98a6d837aef2a627974e98da29f27434f`
-Draft PR: https://github.com/kopikonkf/income-os/pull/4
+Base commit: `d5d958f817b8c3bc47a284ccb355d61375389822`
+Package commit: `5284fe4a4ac5a87350e6b306cb14b3c8a34f52ac`
+Draft PR: https://github.com/kopikonkf/income-os/pull/5
 
 ## Verified merge standing
 
-PR #3 — P5 State Context v1 was merged and closed:
+PR #4 — P6 Decision Gateway v1 was merged and closed:
 
-https://github.com/kopikonkf/income-os/pull/3
+https://github.com/kopikonkf/income-os/pull/4
 
-- merged: TRUE
-- merge commit: `5f4c6bc29c4646a405d8b887a2b093869515550f`
-- `C:\DIE\main` fast-forwarded to the same merge commit
-- Company Brain validator after merge: PASS
-- regression baseline after merge: 40 passed
-- branch `architect/decision-gateway-v1` was created from the merge commit
+- merged: TRUE;
+- merged at: `2026-08-21T04:40:45Z`;
+- merge commit: `d5d958f817b8c3bc47a284ccb355d61375389822`;
+- PR head: `04a81132a29745f2533762b95a77559c8abfac98`;
+- `C:\DIE\main` fast-forwarded to the merge commit;
+- live event ledger preserved across synchronization;
+- branch `architect/executive-line2-mcp-v1` created from the merge commit.
 
-P5 State Context v1 is complete.
+P5 State Context v1 and P6 Decision Gateway v1 are now merged foundations.
 
-## Canonical synchronization and exclusion
+## Canonical synchronization and exclusions
 
 ```text
 GitHub main
@@ -37,95 +38,154 @@ C:\DIE\state
   = live append-only operational truth
 ```
 
-`state/EVENTS.jsonl` continues to receive heartbeat events. It was preserved, was not rewritten by P6, and must remain excluded from staging/publication.
+Current live standing:
 
-No synthetic P6 decision was written to live `state/DECISIONS.jsonl`. End-to-end commit verification used a temporary isolated `DIE_HOME`, which was removed immediately after the proof.
+- `state/EVENTS.jsonl` continues to receive heartbeat events and remains an unstaged local modification;
+- `state/DECISIONS.jsonl` is unmodified;
+- production `DIE_SNAPSHOT_HMAC_KEY`: ABSENT;
+- production `DIE_SNAPSHOT_HMAC_KEY_ID`: ABSENT;
+- no production key was generated, written, displayed, or provisioned;
+- all mutation tests used temporary isolated state and a temporary test-only key.
 
-## P6 Decision Gateway v1 outcome
+Neither live ledger may be staged, discarded, rewritten, or used for synthetic verification.
 
-The smallest stateless mutation router now exists.
+## Executive Line 2 MCP v1 decision
 
-Implemented:
+Line 1 remains the existing read-only observation MCP.
 
-- `die.decision.gateway.result.v1`;
-- exact normalized-wrapper input contract;
-- rejection of raw/unvalidated semantic requests;
-- registry-backed reauthorization before commit;
-- full bounded source snapshot preservation in normalized requests;
-- deterministic snapshot-integrity recomputation;
-- server HMAC trust proof required for mutation;
-- snapshot principal/scope/freshness revalidation;
-- evidence restricted to the trusted source snapshot;
-- commit-ready DECISION validation;
-- raw host path, traversal, credential-shaped input, and size rejection;
-- fail-closed writer-unavailable/writer-failure handling;
-- canonical commit through `bin/die_event.py` only;
-- `die.decision.v1` provenance fields;
-- request-ID replay protection;
-- committed/rejected typed receipt;
-- fixed next owner: `hermes-operator`;
-- route status: `ready_for_operational_acceptance`;
-- UTF-8 BOM-safe Line 2 file input on Windows.
+Line 2 is a separate dedicated mutation MCP that exposes exactly one semantic business capability:
 
-Preserved:
+`decision_submit`
 
-- DIE State Manager remains the sole physical canonical writer;
-- the Gateway owns no database, queue, daemon, ledger, scheduler, or memory;
-- Hermes remains mission owner and the sole operational control plane;
-- P6 does not dispatch to Hermes or execute a mission;
-- the existing MCP observation surface remains read-only;
-- Architect DEV remains Founder-invoked and non-inheritable;
-- no runtime actor receives filesystem, Git, service-control, or credential access;
-- no production secret is tracked or exposed.
+It deliberately does not expose:
 
-## Snapshot trust deployment gate
+- filesystem read/write;
+- raw JSON/file mutation;
+- shell or subprocess execution;
+- database access;
+- Git or repository operations;
+- service control;
+- credential access;
+- worker control;
+- Hermes dispatch;
+- Constitution or identity mutation.
 
-Mutation uses two process-environment settings:
+The transport is separate from the Chief Executive Architect development MCP and separate from MCP Proxima V2. Proxima remains the Worker ↔ Web Chat AI production-engine path.
 
-- `DIE_SNAPSHOT_HMAC_KEY` — secret, minimum 32 bytes;
-- `DIE_SNAPSHOT_HMAC_KEY_ID` — non-secret rotation identifier.
+## Fixed trust boundary
 
-The snapshot issuer and Decision Gateway must share them. The key is never committed, returned to cognition, or written to canonical state.
+The Line 2 process pins:
 
-Current standing:
+- principal: `chatgpt-plus-executive`;
+- scope: `company_portfolio`;
+- action: `state.decision.submit`;
+- object type: `DECISION`.
 
-- production HMAC key: NOT PROVISIONED by this implementation;
-- read-only snapshots without a key: AVAILABLE;
-- mutation with an unsigned/wrong-key snapshot: FAIL-CLOSED with `E_SNAPSHOT_UNTRUSTED`;
-- isolated verification key: temporary only, removed with the test environment.
+Runtime cognition cannot override or inherit those values. Caller-supplied identity is rejected rather than treated as authentication.
 
-Provisioning the production key is a deployment action separate from the code PR and requires an explicit Founder authorization.
+Accepted semantic input is limited to:
 
-## Isolated end-to-end proof
+- replay-safe `request_id`;
+- fresh signed `die.context.snapshot.v1`;
+- one bounded commit-ready decision;
+- typed evidence already present in that snapshot;
+- bounded assumptions.
 
-```json
-{
-  "first_status": "committed",
-  "first_record_id": "D-0001",
-  "first_replayed": false,
-  "second_record_id": "D-0001",
-  "second_replayed": true,
-  "decision_rows": 1,
-  "route_next_owner": "hermes-operator",
-  "signed_snapshot": true,
-  "live_events_unchanged": true,
-  "test_root": "temporary_removed"
-}
-```
-
-This proves the executable path:
+The MCP server composes existing contracts rather than bypassing them:
 
 ```text
-signed context snapshot
-  -> semantic request normalization
-  -> Decision Gateway revalidation
-  -> temporary DIE State Manager commit
-  -> committed receipt
-  -> replay without duplicate append
+ChatGPT Plus Executive
+  -> Line 1 context_snapshot
+  -> Line 2 decision_submit
+  -> P5 validate_and_normalize
+  -> P6 Decision Gateway
+  -> DIE State Manager (sole physical writer)
+  -> typed committed/rejected receipt
   -> Hermes-ready route
 ```
 
-It does not claim Hermes delivery or production activation.
+## Preserved architectural boundaries
+
+- DIE State Manager remains the sole physical canonical writer.
+- Executive Line 2 owns no database, ledger, queue, scheduler, daemon, or durable memory.
+- The observation MCP remains read-only.
+- P5 authority/freshness normalization remains mandatory.
+- P6 trust/authority/evidence revalidation remains mandatory.
+- Missing or wrong snapshot HMAC fails closed with `E_SNAPSHOT_UNTRUSTED`.
+- `request_id` replay returns the prior decision without a duplicate append.
+- A successful result is only `ready_for_operational_acceptance`.
+- Line 2 does not deliver to Hermes and does not execute workers.
+- Hermes remains the single operational control plane.
+- Architect DEV privilege remains Founder-invoked, non-runtime, and non-inheritable.
+- Remote hosting, TLS, connection authentication, ChatGPT app registration, and production key provisioning are not performed by this package.
+
+## Executable artifact
+
+Dedicated stdio MCP entrypoint:
+
+```powershell
+python bin/die_executive_mcp.py
+```
+
+MCP surface:
+
+```text
+tools/list
+  -> decision_submit only
+
+tools/call decision_submit
+  -> exact input validation
+  -> fixed Executive identity and scope
+  -> P5 normalization
+  -> P6 commit/reject
+  -> typed MCP content receipt
+```
+
+Operational safeguards include:
+
+- exact JSON Schema with `additionalProperties: false`;
+- process-local limit of 12 mutation tool calls per hour;
+- malformed JSON-RPC params rejected with `-32602`;
+- unknown tools rejected with `E_MCP_TOOL_NOT_FOUND`;
+- raw paths, traversal, secret-shaped content, stale/unsigned snapshots, forged evidence, unavailable writer, and invalid decisions fail closed;
+- serial stdio request handling;
+- append-only replay semantics delegated to the canonical State Manager.
+
+## Isolated MCP end-to-end proof
+
+The test suite starts the real `bin/die_executive_mcp.py` process with:
+
+- a temporary `DIE_HOME`;
+- a copied public identity registry;
+- a temporary test-only HMAC key;
+- a temporary event ledger.
+
+It sends:
+
+1. MCP `initialize`;
+2. MCP `tools/list`;
+3. first `decision_submit`;
+4. replay of the same `request_id`;
+5. stdin EOF for clean server exit.
+
+Verified outcome:
+
+```json
+{
+  "server": "die-executive-line2",
+  "tools": ["decision_submit"],
+  "first_status": "committed",
+  "first_canonical_mutation": true,
+  "replay_same_record_id": true,
+  "replay_canonical_mutation": false,
+  "decision_rows": 1,
+  "live_decisions_changed": false,
+  "isolated_events_changed": false,
+  "production_hmac_provisioned": false
+}
+```
+
+The temporary test directory and key are pytest-scoped and are not part of canonical runtime state.
 
 ## Verification evidence
 
@@ -133,37 +193,36 @@ It does not claim Hermes delivery or production activation.
 python bin/die_company_brain_check.py
 PASS — identity_count=5, runtime_identity_count=4
 
-python -m py_compile <P6 Python paths>
+python -m py_compile bridge/income_os_bridge/executive_mcp_server.py bin/die_executive_mcp.py
 PASS
 
 python -m pytest bridge/tests -q
-54 passed
+62 passed
 
 git diff --check
 PASS
 
-isolated Line 2 CLI commit/replay proof
-PASS
-
-live canonical DECISIONS mutation
+live state/DECISIONS.jsonl mutation
 NONE
+
+production HMAC key present
+FALSE
 ```
 
-Adversarial coverage includes:
+Coverage includes:
 
-- raw unnormalized request rejected;
-- stale snapshot rejected;
-- unsigned snapshot rejected;
-- wrong-runtime-key snapshot rejected;
-- snapshot content tampering rejected;
-- normalized authority tampering rejected;
-- evidence absent from the trusted snapshot rejected;
-- non-commit-ready decision rejected;
-- raw host path rejected after normalization;
-- unavailable/failing writer rejected without error-detail leakage;
-- repeated request does not append a duplicate decision;
-- decision commit does not mutate EVENTS;
-- Windows UTF-8 BOM input accepted.
+- exactly one business mutation tool;
+- no caller-controlled principal or scope;
+- P5/P6 composition and fixed authority;
+- unknown-field and identity-spoof rejection;
+- raw-host-path rejection;
+- unsigned snapshot rejection before writer invocation;
+- unknown-tool rejection;
+- mutation rate limiting;
+- malformed JSON-RPC params rejection;
+- append-only commit and replay;
+- isolated real stdio MCP round-trip;
+- event-ledger non-mutation.
 
 ## Current build position
 
@@ -181,27 +240,32 @@ FUNCTIONALLY COMPLETE; SECURITY HARDENING DEBT REMAINS.
 
 ### P3 — ChatGPT Plus Line 1 + Line 2
 
-PARTIAL.
+PARTIAL; EXECUTIVE LINE 2 v1 PUBLISHED IN DRAFT PR #5; AWAITING FOUNDER REVIEW/MERGE.
 
-Completed foundation:
+Completed:
 
 - Executive identity;
 - bounded Line 1 `context_snapshot`;
-- typed semantic decision request;
-- P6 committed/rejected Gateway contract.
+- P5 typed semantic request normalization;
+- P6 committed/rejected Decision Gateway;
+- dedicated Executive Line 2 stdio MCP;
+- one semantic `decision_submit` capability;
+- isolated commit/replay MCP proof.
 
 Still missing:
 
-- separate Executive Line 2 MCP transport;
-- production snapshot-signing key provisioning;
-- wake/catch-up transport;
-- committed-decision delivery/acknowledgment from Hermes.
+- Founder review and merge of Draft PR #5;
+- production snapshot-signing key provisioning through a separate authorized deployment;
+- authenticated network adapter / remote MCP hosting;
+- ChatGPT app registration and confirmation flow;
+- wake/catch-up invocation transport;
+- Hermes committed-decision delivery and acknowledgment.
 
 ### P4 — Division Decision Engine Line 1 + Line 2
 
 TEMPLATE FOUNDATION ONLY.
 
-`division-head-template` remains rejected until a registered division instance and scoped projection filter exist.
+`division-head-template` remains rejected until a registered division instance and scoped projection filter exist. Executive Line 2 identity pinning must not be reused for Division Heads.
 
 ### P5 — DIE State Layer
 
@@ -209,7 +273,7 @@ STATE CONTEXT v1 COMPLETE. PR #3 merged.
 
 ### P6 — Decision Gateway
 
-IMPLEMENTED; VERIFIED; PUBLISHED IN DRAFT PR #4; AWAITING FOUNDER REVIEW/MERGE.
+COMPLETE. PR #4 merged.
 
 ### P7 — Hermes -> Worker -> Proxima
 
@@ -221,7 +285,7 @@ Default remains:
 Hermes -> Worker -> Proxima -> Production Engine
 ```
 
-Hermes remains the one operational control plane. Proxima is not a second orchestrator.
+Hermes remains the one operational control plane. Proxima is not a Company Brain bridge and not a second orchestrator.
 
 ### P8 — Dashboard
 
@@ -231,59 +295,64 @@ BLOCKED BY DESIGN until one real division and one economic loop exist.
 
 READY FOR LATER CLASSIFICATION as ADOPT / ADAPT / MERGE / REJECT after the current decision/execution loop is operational.
 
-## Exact publication manifest for draft PR #4
+## Exact publication manifest for draft PR #5
 
 Modified:
 
-- `bin/die_event.py`
-- `bin/die_state_request.py`
-- `bridge/income_os_bridge/snapshot.py`
-- `bridge/income_os_bridge/state_request.py`
-- `docs/architecture/STATE_CONTEXT_V1.md`
 - `LASTSTANDINGPOINT.md`
 
 New:
 
-- `bin/die_decision_gateway.py`
-- `bridge/income_os_bridge/decision_gateway.py`
-- `bridge/tests/test_decision_gateway_v1.py`
-- `docs/architecture/DECISION_GATEWAY_V1.md`
+- `bin/die_executive_mcp.py`
+- `bridge/income_os_bridge/executive_mcp_server.py`
+- `bridge/tests/test_executive_line2_mcp_v1.py`
+- `docs/architecture/EXECUTIVE_LINE2_MCP_V1.md`
 
 Explicit exclusions:
 
 - `state/EVENTS.jsonl`;
 - `state/DECISIONS.jsonl`;
-- all runtime keys, credentials, temporary test files, and cache artifacts.
+- all runtime keys and credentials;
+- temporary files and temporary test state;
+- `__pycache__`, `.pytest_cache`, and all cache artifacts;
+- production HMAC provisioning;
+- remote deployment/app registration;
+- Hermes integration;
+- MCP Proxima changes.
 
-The exact 10-path manifest was committed and pushed in package commit `4576e9b98a6d837aef2a627974e98da29f27434f`. `state/EVENTS.jsonl` remains a live, unstaged local modification and is not part of the PR.
+The exact five-path manifest was committed and pushed in package commit `5284fe4a4ac5a87350e6b306cb14b3c8a34f52ac`. `state/EVENTS.jsonl` remains a live, unstaged local modification and is not part of the PR.
 
 ## Publication state
 
-Draft PR #4:
+Draft PR #5:
 
-https://github.com/kopikonkf/income-os/pull/4
+https://github.com/kopikonkf/income-os/pull/5
 
 - state: OPEN;
 - draft: TRUE;
 - mergeable: MERGEABLE;
 - merge state: CLEAN;
-- base: `main` at `5f4c6bc29c4646a405d8b887a2b093869515550f`;
-- head branch: `architect/decision-gateway-v1`;
-- package commit: `4576e9b98a6d837aef2a627974e98da29f27434f`;
-- changed files: 10;
+- base: `main` at `d5d958f817b8c3bc47a284ccb355d61375389822`;
+- head branch: `architect/executive-line2-mcp-v1`;
+- package commit: `5284fe4a4ac5a87350e6b306cb14b3c8a34f52ac`;
+- changed files: 5;
 - external status checks reported by GitHub: NONE;
-- local bridge regression: 54 passed;
+- local bridge regression: 62 passed;
 - production HMAC key: ABSENT / NOT PROVISIONED;
+- MCP deployment or registration: NOT PERFORMED;
 - `state/EVENTS.jsonl`: EXCLUDED and preserved as a live unstaged modification;
-- `state/DECISIONS.jsonl`: EXCLUDED and unmodified.
+- `state/DECISIONS.jsonl`: EXCLUDED and unmodified;
+- runtime secrets, temporary files, and caches: EXCLUDED.
 
 Remaining action for this package: Founder review and merge only. No automatic merge is authorized.
 
-After PR #4 merge:
+After PR #5 merge, keep deployment actions separate:
 
-1. provision/rotate the production snapshot HMAC key through a separate explicit Founder-authorized deployment action;
-2. build the separate ChatGPT Plus Executive Line 2 MCP transport over the P5/P6 contracts;
-3. add Hermes committed-decision acceptance/acknowledgment without creating a second orchestrator.
+1. provision/rotate the production snapshot HMAC key under explicit Founder authorization;
+2. build or configure the authenticated network-facing MCP adapter and TLS boundary;
+3. register Line 1/Line 2 with the ChatGPT Plus Executive lane and verify confirmation behavior;
+4. add Hermes committed-decision acceptance/acknowledgment without creating a second orchestrator;
+5. only then add wake/catch-up invocation transport.
 
 ## Operating doctrine
 
@@ -292,8 +361,9 @@ Build > Run > Verify > Refactor > Extend
 Do not restart the repo.
 Do not build the dashboard yet.
 Do not activate Division runtime yet.
-Do not mix Line 2 mutation into the read-only observation MCP.
+Do not merge Line 2 mutation into the read-only observation MCP.
 Do not expose raw paths, credentials, or DEV capability to runtime cognition.
 Do not stage or discard `state/EVENTS.jsonl`.
+Do not write synthetic decisions to live canonical state.
 Ship executable artifacts, not architecture theater.
 First real money remains the organism fitness signal.
