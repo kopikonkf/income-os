@@ -3,38 +3,28 @@
 Date: 2026-08-21
 Project: Digital Income Empire — Company Holdings
 Mode: Chief Executive Architect
-Workflow stage: P1 — COMPANY BRAIN v0 (DRAFT PR #2 OPEN)
+Workflow stage: P5 — STATE CONTEXT v1 (IMPLEMENTED LOCALLY; PUBLICATION AUTHORIZATION PENDING)
 Canonical runtime: `C:\DIE`
 Canonical repository: https://github.com/kopikonkf/income-os
-Working branch: `architect/company-brain-v0`
+Working branch: `architect/state-context-v1`
 Base branch: `main`
-Base commit: `9b52d4b34403bac219085fee2aba4c01494a1637`
-Package commit: `5a93470b50583971eb9a559cb690afc77563910c`
-Draft PR: https://github.com/kopikonkf/income-os/pull/2
+Base commit: `118227d52945853524339d1f8281d3ed2d49e011`
 
-## Founder authorization
+## Verified merge standing
 
-Authorized scope:
+PR #2 — Company Brain v0 was merged and closed:
 
-```text
-stage Company Brain files only
-commit
-push feature branch
-create draft PR #2
-exclude state/EVENTS.jsonl
-```
+https://github.com/kopikonkf/income-os/pull/2
 
-No runtime state is part of this publication.
+- merged: TRUE
+- merge commit: `118227d52945853524339d1f8281d3ed2d49e011`
+- `C:\DIE\main` fast-forwarded to the same merge commit
+- Company Brain validator after merge: PASS
+- baseline regression after merge: 27 passed
 
-## Verified platform standing
+P1 Company Brain is complete.
 
-ChatGPT Architect Custom MCP has semantic read/write/git/test access to the live runtime at `C:\DIE`.
-
-- local base HEAD = GitHub `main`
-- PR #1 merged: https://github.com/kopikonkf/income-os/pull/1
-- merge commit: `9b52d4b34403bac219085fee2aba4c01494a1637`
-- `state/EVENTS.jsonl` remains the pre-existing live append-only modification and is intentionally preserved
-- runtime and governed repository boundary remains:
+## Canonical synchronization and exclusion
 
 ```text
 GitHub main
@@ -44,31 +34,77 @@ C:\DIE\state
   = live append-only operational truth
 ```
 
-## PR #2 implementation
+`state/EVENTS.jsonl` continues to receive heartbeat events. It was preserved, was not rewritten by this work, and must remain excluded from staging/publication.
 
-Company Brain v0 now exists as an executable governed package:
+## P5 State Context v1 outcome
 
-- `COMPANY_BRAIN.md` — durable organizational entrypoint, authority order, economic fitness, continuity, and succession doctrine
-- `company/identity-registry.json` — machine-readable identity, development-plane, service, and security registry
-- `IDENTITY/founder.md` — sovereign authority and explicit multi-generation succession boundary
-- `IDENTITY/chatgpt-plus-executive.md` — company/portfolio Executive Strategic Intelligence identity
-- `IDENTITY/division-head-template.md` — reusable bounded Division Decision Engine template
-- `IDENTITY/worker-template.md` — job-only, evidence-bound replaceable specialist identity
-- `PROTOCOLS/agency-contract-v0.md` — identity resolution, authority envelope, state/decision/execution paths, and handoff contract
-- `bin/die_company_brain_check.py` — mechanical conformance validator
-- `bridge/tests/test_company_brain.py` — positive and adversarial identity/privilege tests
+The existing provider-neutral bridge was extended instead of creating a new database, queue, daemon, or control plane.
 
-Core enforced invariants:
+Implemented:
 
-1. Founder is sovereign; Founder is not routine message transport.
-2. Runtime cognition never inherits Chief Executive Architect DEV.
-3. Multiple semantic authors use one physical canonical writer: DIE State Manager.
-4. Hermes remains the sole operational mission control plane.
-5. Workers receive jobs, not missions.
-6. Proxima remains a production gateway, not a second orchestrator.
-7. Company continuity survives model/account/runtime replacement.
-8. Founder succession must be explicit and externally verifiable; no AI may infer sovereignty.
-9. Verified market evidence and real revenue remain organism-level fitness signals.
+- registry-backed principal authorization;
+- Executive-only `context_snapshot` MCP/CLI surface;
+- `die.context.snapshot.v1` schema;
+- deterministic snapshot ID and version;
+- exact principal/scope/authority envelope;
+- 900-second freshness TTL;
+- stale-snapshot rejection;
+- source event cursor;
+- typed provenance with source trust;
+- typed evidence references;
+- 32 KB bounded semantic output;
+- UTF-8 BOM-safe decision evidence reader;
+- invalid JSONL line isolation;
+- canonical repo-path normalization and absolute host-path redaction;
+- `die.state.request.v1` decision-request validator;
+- request/object size limits;
+- raw path, traversal, and credential-shaped input rejection;
+- normalized output marked `validated_not_committed`;
+- explicit writer identity: `die-state-manager`.
+
+Preserved:
+
+- `bin/die_event.py` remains the sole physical canonical writer;
+- Hermes remains mission owner and operational orchestrator;
+- Architect DEV remains Founder-invoked and non-inheritable;
+- no runtime identity receives filesystem/Git/service/credential access;
+- no Decision Gateway runtime was introduced;
+- no canonical state was written during validation.
+
+## Live runtime proof
+
+Live Executive snapshot:
+
+```json
+{
+  "snapshot_id": "SNAP-DBB38F198B35CFC5",
+  "schema": "die.context.snapshot.v1",
+  "ttl_s": 900,
+  "evidence_ref_count": 18,
+  "absolute_drive_path_leaks": 0,
+  "events_next_seq": 281
+}
+```
+
+Live semantic decision validation:
+
+```json
+{
+  "request_accepted": true,
+  "commit_status": "validated_not_committed",
+  "writer": "die-state-manager"
+}
+```
+
+MCP bridge proof:
+
+```json
+{
+  "server_version": "0.3.0",
+  "context_snapshot_listed": true,
+  "unknown_principal_denial": "E_UNAUTHORIZED_PRINCIPAL"
+}
+```
 
 ## Verification evidence
 
@@ -76,22 +112,33 @@ Core enforced invariants:
 python bin/die_company_brain_check.py
 PASS — identity_count=5, runtime_identity_count=4
 
+python -m py_compile <P5 Python paths>
+PASS
+
 python -m pytest bridge/tests -q
-27 passed
+40 passed
 
-python -m py_compile bin/die_company_brain_check.py bridge/tests/test_company_brain.py
+Live context_snapshot
 PASS
 
-git diff --check -- <Company Brain paths>
-PASS
+Live die_state_request validation
+PASS — validated_not_committed
+
+Absolute drive-path leakage scan
+PASS — 0
 ```
 
-Adversarial tests prove rejection of:
+Adversarial coverage includes:
 
-- runtime `architect_dev_access=allow`;
-- direct DEV-reserved capability injection;
-- direct inheritance from the non-inheritable Architect DEV plane;
-- indirect inheritance of a DEV-reserved capability.
+- unknown principal rejected;
+- uninstantiated Division template rejected;
+- Founder denied Executive snapshot action;
+- expired snapshot rejected;
+- snapshot/request principal mismatch rejected by contract;
+- DEV capability inheritance remains denied;
+- malformed evidence rejected;
+- raw host path rejected;
+- malformed JSONL line does not erase valid evidence rows.
 
 ## Current build position
 
@@ -101,7 +148,7 @@ COMPLETE.
 
 ### P1 — Company Brain + Constitution + Identity
 
-IMPLEMENTATION COMPLETE; draft PR #2 is open and awaiting Founder review/merge.
+COMPLETE. PR #2 merged.
 
 ### P2 — Architect Engineering Bridge
 
@@ -117,30 +164,38 @@ Security debt remains:
 
 ### P3 — ChatGPT Plus Line 1 + Line 2
 
-IDENTITY FOUNDATION COMPLETE; runtime interface not started. Depends on bounded `context.snapshot()` and decision contracts.
+IDENTITY + LINE 1 DATA CONTRACT FOUNDATION EXISTS.
+
+Completed foundation:
+
+- Executive identity;
+- bounded `context_snapshot`;
+- typed semantic decision request.
+
+Not complete:
+
+- deployed Executive Decision MCP;
+- separated Line 2 write transport;
+- committed Decision Gateway response;
+- wake/catch-up wiring.
 
 ### P4 — Division Decision Engine Line 1 + Line 2
 
-TEMPLATE FOUNDATION COMPLETE; first division instantiation not started.
+TEMPLATE FOUNDATION ONLY.
 
-### P5 — DIE State Layer + Decision Gateway
+`division-head-template` is intentionally rejected by State Context v1 until a real division instance and division-scoped projection filter exist.
 
-FOUNDATION EXISTS; NOT COMPLETE.
+### P5 — DIE State Layer
 
-Existing:
+STATE CONTEXT v1 IMPLEMENTED LOCALLY; NOT YET PUBLISHED OR MERGED.
 
-- `bin/die_event.py` = DIE State Writer v0;
-- append-only EVENTS / DECISIONS / ECONOMICS;
-- provider-neutral single-writer constitutional boundary;
-- read-only bridge/projection safeguards.
+Existing canonical writer remains unchanged. Authority/freshness/request validation now exists before the writer boundary.
 
-Missing:
+### P6 — Decision Gateway
 
-- typed provenance and evidence references;
-- authority validation against Company Brain principals;
-- bounded `context.snapshot()`;
-- Decision Request / Gateway;
-- forward-only schema evolution tests.
+NOT STARTED.
+
+The normalized request result is explicitly `validated_not_committed`. A future stateless Gateway may accept only this normalized form and pass an authorized commit request to DIE State Manager.
 
 ### P7 — Hermes -> Worker -> Proxima
 
@@ -152,73 +207,54 @@ Default remains:
 Hermes -> Worker -> Proxima -> Production Engine
 ```
 
-A narrow direct Hermes-to-Proxima adapter is allowed only for small stateless production calls where a Worker hop adds no control or evidence value.
+Hermes remains the one operational control plane. Proxima is not a second orchestrator.
 
 ### P8 — Dashboard
 
-BLOCKED BY DESIGN until one division and one economic loop are real.
+BLOCKED BY DESIGN until one real division and one economic loop exist.
 
 ### P9 — Genome / Bootstrap / Northstar / Factory
 
-DEFERRED until Company Brain is merged; then classify each artifact as ADOPT / ADAPT / MERGE / REJECT.
+READY FOR LATER CLASSIFICATION as ADOPT / ADAPT / MERGE / REJECT after the current state/decision loop is operational.
 
-## Dependency position
+## Exact publication manifest for PR #3
+
+Modified governed/code paths:
+
+- `bridge/income_os_bridge/cli.py`
+- `bridge/income_os_bridge/config.py`
+- `bridge/income_os_bridge/mcp_server.py`
+- `bridge/income_os_bridge/projection.py`
+- `bridge/income_os_bridge/redact.py`
+- `LASTSTANDINGPOINT.md`
+
+New paths:
+
+- `bridge/income_os_bridge/authority.py`
+- `bridge/income_os_bridge/snapshot.py`
+- `bridge/income_os_bridge/state_request.py`
+- `bridge/tests/test_state_context_v1.py`
+- `bin/die_state_request.py`
+- `docs/architecture/STATE_CONTEXT_V1.md`
+
+Explicit exclusion:
+
+- `state/EVENTS.jsonl`
+
+No paths are staged at this standing point.
+
+## Next authorized publication action
+
+Required Founder authorization:
 
 ```text
-AUTOPSY / SALVAGE                    COMPLETE
-        |
-        +--> ARCHITECT DEV BRIDGE    COMPLETE, HARDENING DUE
-        |
-        +--> COMPANY BRAIN           IMPLEMENTED IN PR #2 BRANCH
-                    |
-                    v
-             DIE STATE MANAGER
-                    |
-             context.snapshot
-                    |
-          Plus / Division Cognition
-                    |
-             Decision Gateway
-                    |
-                  Hermes
-                    |
-                  Worker
-                    |
-                Proxima
-                    |
-                 Market
-                    |
-                Evidence
-                    +--------------------> loop
+AUTHORIZED: stage the exact P5 State Context v1 manifest only,
+commit, push architect/state-context-v1,
+and create draft PR #3.
+Exclude state/EVENTS.jsonl.
 ```
 
-## Next executable stage after PR #2 merge
-
-Build the smallest P5 vertical slice that Company Brain now makes possible:
-
-1. validate semantic author identity and authority against the registry;
-2. define typed provenance/evidence references;
-3. produce one bounded, versioned `context.snapshot()`;
-4. prove an unauthorized principal and stale snapshot are rejected;
-5. keep Hermes as mission owner and State Manager as sole physical writer.
-
-Parallel safety track: harden `mcp-architect` and rotate the exposed credential.
-
-## Publication state
-
-Publication workflow is complete.
-
-- draft PR: https://github.com/kopikonkf/income-os/pull/2
-- state: OPEN
-- draft: TRUE
-- mergeable: TRUE
-- base: `main` at `9b52d4b34403bac219085fee2aba4c01494a1637`
-- head: `architect/company-brain-v0`
-- package commit: `5a93470b50583971eb9a559cb690afc77563910c`
-- changed files: 10
-- `state/EVENTS.jsonl`: excluded and preserved as live unstaged runtime truth
-
-Remaining action belongs to the Founder: review and merge when satisfied.
+After PR #3 merge, build the smallest stateless Decision Gateway slice that consumes only a fresh normalized request, returns a committed/rejected result, and preserves DIE State Manager as sole physical writer.
 
 ## Operating doctrine
 
@@ -226,7 +262,8 @@ Build > Run > Verify > Refactor > Extend
 
 Do not restart the repo.
 Do not build the dashboard yet.
-Do not activate all divisions yet.
+Do not activate Division runtime yet.
+Do not expose raw paths or DEV capability to runtime cognition.
 Do not stage or discard `state/EVENTS.jsonl`.
 Ship executable artifacts, not architecture theater.
 First real money remains the organism fitness signal.
