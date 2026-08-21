@@ -3,15 +3,17 @@
 Date: 2026-08-21
 Project: Digital Income Empire — Company Holdings
 Mode: Chief Executive Architect
-Workflow stage: P3 — EXECUTIVE MCP ACTIVATION v1 / PHASE B1 TOOLING VERIFIED / PUBLICATION AUTHORIZATION PENDING
+Workflow stage: P3 — EXECUTIVE MCP ACTIVATION v1 / PHASE B1 DRAFT PR #9 OPEN / FOUNDER REVIEW PENDING
 Canonical runtime: C:\DIE
 Canonical repository: https://github.com/kopikonkf/income-os
 Working branch: architect/executive-mcp-secure-config-v1
 Base branch: main
 Base/merge commit: c585f9d2fd3016b84f59ebc629ba339e4dc2a719
 Phase A implementation commit: ae2a42aee309b9eee05dbf4376ef86806c967c4d
+Phase B1 implementation commit: 2e46e43e99a6aff9c4390c3f70e1e5471d9b28b0
 Merged PR: https://github.com/kopikonkf/income-os/pull/8
-Publication status: PR #8 MERGED; PHASE B1 COMPLETE LOCALLY; NOTHING STAGED OR PUBLISHED
+Draft PR: https://github.com/kopikonkf/income-os/pull/9
+Publication status: DRAFT PR #9 OPEN; NOT MERGED
 
 ## Verified merge baseline
 
@@ -307,7 +309,7 @@ Do not create a Windows service or scheduled task.
 Do not commit, push, or create a PR until separate publication authorization.
 ~~~
 
-Phase B1 tooling is now verified locally but remains unstaged and unpublished.
+Phase B1 tooling is verified, committed, pushed, and published in draft PR #9.
 B2 still requires the Founder to enter two tunnel IDs and runtime secret material
 locally on the VPS through an interactive no-echo channel after separate B2
 authorization. No secret or tunnel ID may be pasted into chat or committed to Git.
@@ -364,11 +366,12 @@ Negative proof:
 - no tunnel-client doctor or run command was executed;
 - no MCP service, tunnel, Windows service, scheduled task, deployment, exposure,
   or ChatGPT registration was created;
-- no commit, push, or pull request was performed;
+- implementation commit 2e46e43e99a6aff9c4390c3f70e1e5471d9b28b0 was pushed to the feature branch;
+- draft PR #9 was created against main; no merge or Phase B2 action was performed;
 - all runtime-owned state/projection/organism-test paths remain excluded and
   untouched by the architecture work.
 
-Exact prospective publication manifest:
+Exact published Phase B1 manifest:
 
 - LASTSTANDINGPOINT.md
 - bridge/tests/test_executive_secure_config_v1.py
@@ -378,11 +381,34 @@ Exact prospective publication manifest:
 - ops/windows/executive-mcp/New-DIEExecutiveMcpSecureConfigPlan.ps1
 - ops/windows/executive-mcp/Test-DIEExecutiveMcpSecureConfig.ps1
 
+## Phase B1 publication standing
+
+Draft PR #9 is open:
+
+https://github.com/kopikonkf/income-os/pull/9
+
+- title: feat: Executive MCP secure config tooling v1;
+- state: OPEN / DRAFT;
+- base: main;
+- head: architect/executive-mcp-secure-config-v1;
+- initial implementation commit:
+  2e46e43e99a6aff9c4390c3f70e1e5471d9b28b0;
+- exact publication manifest: the seven Phase B1 paths listed above;
+- runtime-owned state/projection/organism-test paths: excluded;
+- ProgramData runtime, credentials, secret values, HMAC material, and tunnel IDs:
+  excluded;
+- Phase B2: not started.
+
+The GitHub connector could read repository state but returned HTTP 403 for PR
+creation. The already-configured VPS `gh` authentication created the authorized
+draft PR successfully. No scope was expanded.
+
 ## Next controlled action
 
-Await separate publication authorization for the exact seven-file Phase B1
-manifest above. Do not stage, commit, push, or open a PR before that authorization.
-Phase B2 activation and all external Platform/ChatGPT mutations remain prohibited.
+Founder reviews and merges draft PR #9. Do not start Phase B2 before the merge is
+confirmed and a separate Phase B2 execution authorization is issued. All runtime
+secret provisioning, profile initialization, tunnel execution, and external
+Platform/ChatGPT mutations remain prohibited.
 
 ## Operating doctrine
 
