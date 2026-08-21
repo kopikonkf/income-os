@@ -10,13 +10,18 @@ from typing import Any, Mapping
 
 from . import config, executive_mcp_server, mcp_server, snapshot
 
-SCHEMA_VERSION = "die.executive.mcp.activation.readiness.v1"
+SCHEMA_VERSION = "die.executive.mcp.activation.readiness.v1.1"
 ACTIVATION_MODE = "secure_mcp_tunnel"
 ACTIVATION_MODE_ENV = "DIE_MCP_ACTIVATION_MODE"
 TUNNEL_CLIENT_ENV = "DIE_MCP_TUNNEL_CLIENT"
 LINE1_TUNNEL_ID_ENV = "DIE_LINE1_TUNNEL_ID"
 LINE2_TUNNEL_ID_ENV = "DIE_LINE2_TUNNEL_ID"
+CONTROL_PLANE_API_KEY_ENV = "CONTROL_PLANE_API_KEY"
+TUNNELS_READ_USE_GRANTED_ENV = "DIE_OPENAI_TUNNELS_READ_USE_GRANTED"
+TARGET_WORKSPACE_ASSOCIATED_ENV = "DIE_OPENAI_TUNNEL_WORKSPACE_ASSOCIATED"
+CHATGPT_DEVELOPER_MODE_ENABLED_ENV = "DIE_CHATGPT_DEVELOPER_MODE_ENABLED"
 TUNNEL_COMMANDS = ("tunnel-client", "mcp-tunnel")
+TRUE_VALUES = frozenset({"1", "true", "yes", "on"})
 
 
 def _tool_lists() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
@@ -41,9 +46,7 @@ def _initializations() -> tuple[dict[str, Any], dict[str, Any]]:
     return line1["result"], line2["result"]
 
 
-def _tunnel_client(
-    env: Mapping[str, str],
-) -> tuple[bool, str]:
+def _tunnel_client(env: Mapping[str, str]) -> tuple[bool, str]:
     configured = env.get(TUNNEL_CLIENT_ENV, "").strip()
     if configured:
         path = pathlib.Path(configured)
@@ -52,6 +55,10 @@ def _tunnel_client(
         if shutil.which(command):
             return True, "command_path"
     return False, "absent"
+
+
+def _attested(env: Mapping[str, str], name: str) -> bool:
+    return env.get(name, "").strip().lower() in TRUE_VALUES
 
 
 def evaluate(
@@ -103,12 +110,28 @@ def evaluate(
 
     signing_key = active_env.get(snapshot.SIGNING_KEY_ENV, "")
     signing_key_id = active_env.get(snapshot.SIGNING_KEY_ID_ENV, "")
+    control_plane_api_key = active_env.get(CONTROL_PLANE_API_KEY_ENV, "")
     mode = active_env.get(ACTIVATION_MODE_ENV, "").strip()
     line1_tunnel_id = active_env.get(LINE1_TUNNEL_ID_ENV, "").strip()
     line2_tunnel_id = active_env.get(LINE2_TUNNEL_ID_ENV, "").strip()
     tunnel_client_present, tunnel_client_source = _tunnel_client(active_env)
 
-    prerequisites = {
+    control_plane_prerequisites = {
+        "control_plane_api_key_present_and_minimum_length": (
+            len(control_plane_api_key.strip().encode("utf-8")) >= 20
+        ),
+        "tunnels_read_use_permissions_attested": _attested(
+            active_env, TUNNELS_READ_USE_GRANTED_ENV
+        ),
+        "target_chatgpt_workspace_association_attested": _attested(
+            active_env, TARGET_WORKSPACE_ASSOCIATED_ENV
+        ),
+        "chatgpt_developer_mode_attested": _attested(
+            active_env, CHATGPT_DEVELOPER_MODE_ENABLED_ENV
+        ),
+    }
+
+    deployment_prerequisites = {
         "activation_mode_is_secure_mcp_tunnel": mode == ACTIVATION_MODE,
         "snapshot_hmac_key_present_and_minimum_length": (
             len(signing_key.encode("utf-8")) >= 32
@@ -124,18 +147,22 @@ def evaluate(
         ),
     }
 
-    blockers = [
-        name
-        for name, passed in {**code_checks, **prerequisites}.items()
-        if not passed
-    ]
+    all_checks = {
+        **code_checks,
+        **control_plane_prerequisites,
+        **deployment_prerequisites,
+    }
+    blockers = [name for name, passed in all_checks.items() if not passed]
     return {
         "schema_version": SCHEMA_VERSION,
         "activation_mode": ACTIVATION_MODE,
         "code_ready": code_ready,
-        "activation_ready": code_ready and all(prerequisites.values()),
+        "activation_ready": code_ready
+        and all(control_plane_prerequisites.values())
+        and all(deployment_prerequisites.values()),
         "code_checks": code_checks,
-        "deployment_prerequisites": prerequisites,
+        "control_plane_prerequisites": control_plane_prerequisites,
+        "deployment_prerequisites": deployment_prerequisites,
         "tunnel_client_source": tunnel_client_source,
         "line1_tool_count": len(line1_tools),
         "line2_tools": line2_names,
