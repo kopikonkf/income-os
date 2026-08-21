@@ -3,12 +3,14 @@
 Date: 2026-08-21
 Project: Digital Income Empire — Company Holdings
 Mode: Chief Executive Architect
-Workflow stage: P3 — CHATGPT PLUS EXECUTIVE LINE 2 MCP v1 (IMPLEMENTED LOCALLY; PUBLICATION AUTHORIZATION PENDING)
+Workflow stage: P3 — CHATGPT PLUS EXECUTIVE LINE 2 MCP v1 (DRAFT PR #5 OPEN)
 Canonical runtime: `C:\DIE`
 Canonical repository: https://github.com/kopikonkf/income-os
 Working branch: `architect/executive-line2-mcp-v1`
 Base branch: `main`
 Base commit: `d5d958f817b8c3bc47a284ccb355d61375389822`
+Package commit: `5284fe4a4ac5a87350e6b306cb14b3c8a34f52ac`
+Draft PR: https://github.com/kopikonkf/income-os/pull/5
 
 ## Verified merge standing
 
@@ -238,7 +240,7 @@ FUNCTIONALLY COMPLETE; SECURITY HARDENING DEBT REMAINS.
 
 ### P3 — ChatGPT Plus Line 1 + Line 2
 
-PARTIAL, WITH LOCAL EXECUTABLE LINE 2 v1 READY FOR PUBLICATION.
+PARTIAL; EXECUTIVE LINE 2 v1 PUBLISHED IN DRAFT PR #5; AWAITING FOUNDER REVIEW/MERGE.
 
 Completed:
 
@@ -252,7 +254,7 @@ Completed:
 
 Still missing:
 
-- publication and merge of Executive Line 2 v1;
+- Founder review and merge of Draft PR #5;
 - production snapshot-signing key provisioning through a separate authorized deployment;
 - authenticated network adapter / remote MCP hosting;
 - ChatGPT app registration and confirmation flow;
@@ -318,21 +320,31 @@ Explicit exclusions:
 - Hermes integration;
 - MCP Proxima changes.
 
-No path is staged at this standing point.
+The exact five-path manifest was committed and pushed in package commit `5284fe4a4ac5a87350e6b306cb14b3c8a34f52ac`. `state/EVENTS.jsonl` remains a live, unstaged local modification and is not part of the PR.
 
-## Next authorized publication action
+## Publication state
 
-Required Founder authorization:
+Draft PR #5:
 
-```text
-AUTHORIZED: stage the exact Executive Line 2 MCP v1 manifest only,
-commit, push architect/executive-line2-mcp-v1,
-and create draft PR #5.
-Exclude state/EVENTS.jsonl, state/DECISIONS.jsonl,
-all runtime secrets, temporary files, and cache artifacts.
-Do not provision the production HMAC key.
-Do not deploy or register the MCP service.
-```
+https://github.com/kopikonkf/income-os/pull/5
+
+- state: OPEN;
+- draft: TRUE;
+- mergeable: MERGEABLE;
+- merge state: CLEAN;
+- base: `main` at `d5d958f817b8c3bc47a284ccb355d61375389822`;
+- head branch: `architect/executive-line2-mcp-v1`;
+- package commit: `5284fe4a4ac5a87350e6b306cb14b3c8a34f52ac`;
+- changed files: 5;
+- external status checks reported by GitHub: NONE;
+- local bridge regression: 62 passed;
+- production HMAC key: ABSENT / NOT PROVISIONED;
+- MCP deployment or registration: NOT PERFORMED;
+- `state/EVENTS.jsonl`: EXCLUDED and preserved as a live unstaged modification;
+- `state/DECISIONS.jsonl`: EXCLUDED and unmodified;
+- runtime secrets, temporary files, and caches: EXCLUDED.
+
+Remaining action for this package: Founder review and merge only. No automatic merge is authorized.
 
 After PR #5 merge, keep deployment actions separate:
 
