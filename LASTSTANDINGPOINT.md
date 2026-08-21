@@ -3,12 +3,14 @@
 Date: 2026-08-21
 Project: Digital Income Empire — Company Holdings
 Mode: Chief Executive Architect
-Workflow stage: P3 — EXECUTIVE MCP ACTIVATION GATE v1.1 (IMPLEMENTED LOCALLY; PUBLICATION AUTHORIZATION PENDING)
+Workflow stage: P3 — EXECUTIVE MCP ACTIVATION GATE v1.1 (DRAFT PR #7 OPEN)
 Canonical runtime: `C:\DIE`
 Canonical repository: https://github.com/kopikonkf/income-os
 Working branch: `architect/executive-mcp-activation-gate-v1-1`
 Base branch: `main`
 Base/merge commit: `290f64a1eae218b59c3ce0bae67f6d0b8023d740`
+Package commit: `6c1ce91a477373a215149b0df7f001f93feff726`
+Draft PR: https://github.com/kopikonkf/income-os/pull/7
 
 ## Verified merge and synchronization
 
@@ -55,7 +57,7 @@ architecture PR without a separate state-governance decision.
 | P0 — Autopsy/Salvage | COMPLETE | KEEP/MODIFY/RETIRE and salvage boundary complete. |
 | P1 — Company Brain | COMPLETE | Constitution, identity package, registry, agency contract, and validator merged in PR #2. |
 | P2 — Architect MCP | FUNCTIONALLY COMPLETE | Live `C:\DIE` inspection/write/test/Git cycle works; security-hardening debt remains. |
-| P3 — Plus Line 1/2 | CODE COMPLETE v1; GATE v1.1 LOCAL; ACTIVATION PENDING | Line 1 read plane, Line 2 decision plane, and readiness v1 are merged through PR #6. Official control-plane prerequisites are being added before deployment. |
+| P3 — Plus Line 1/2 | CODE COMPLETE v1; GATE v1.1 IN DRAFT PR #7; ACTIVATION PENDING | Line 1 read plane, Line 2 decision plane, and readiness v1 are merged through PR #6. The official control-plane gate hardening is published for Founder review. |
 | P4 — Division Line 1/2 | TEMPLATE FOUNDATION ONLY | Keep inactive until one real division and scoped projection exist. |
 | P5 — State Layer | COMPLETE v1 | Signed bounded snapshots, typed evidence, replay-safe commit, and State Manager boundary merged in PR #3. |
 | P6 — Decision Gateway | COMPLETE v1 | Stateless validation/router and Hermes-ready route merged in PR #4. |
@@ -164,29 +166,38 @@ Explicit exclusions:
 - firewall, DNS, TLS, Cloudflare, or Windows service changes;
 - Hermes, Worker, or MCP Proxima changes.
 
-No path is staged at this standing point.
+The exact four-path manifest was committed and pushed in package commit `6c1ce91a477373a215149b0df7f001f93feff726`. Runtime-owned `state/` artifacts remain unstaged and excluded.
 
-## Next authorized publication action
+## Publication state
 
-Required Founder authorization:
+Draft PR #7:
 
-```text
-AUTHORIZED: stage the exact Executive MCP Activation Gate v1.1 manifest only,
-commit, push architect/executive-mcp-activation-gate-v1-1,
-and create draft PR #7.
-Exclude state/EVENTS.jsonl, state/DECISIONS.jsonl,
-all state/projection and state/organism-test runtime artifacts,
-all runtime secrets, temporary files, and cache artifacts.
-Do not install or configure tunnel-client.
-Do not create or modify any OpenAI tunnel.
-Do not generate or provision the production HMAC or control-plane API key.
-Do not start, deploy, expose, or register either MCP service.
-```
+https://github.com/kopikonkf/income-os/pull/7
 
-After PR #7 merge, activation requires a separate authorization plus confirmation
-that the Founder has access to Platform tunnel settings and the required
-organization/workspace permissions. The first real canonical decision remains a
-separate authorization after activation verification.
+- state: OPEN;
+- draft: TRUE;
+- mergeable: MERGEABLE;
+- merge state: CLEAN;
+- base: `main`;
+- head: `architect/executive-mcp-activation-gate-v1-1`;
+- package commit: `6c1ce91a477373a215149b0df7f001f93feff726`;
+- changed files: 4 exact manifest paths;
+- external check count at creation: 0;
+- targeted activation-gate tests: 7 passed;
+- full bridge regression: 69 passed;
+- readiness: `code_ready=true`, `activation_ready=false` (expected fail-closed);
+- production HMAC/control-plane keys: ABSENT;
+- tunnel installation/configuration and OpenAI tunnel mutation: NOT PERFORMED;
+- service start/deployment/exposure/registration: NOT PERFORMED;
+- all state/projection/organism runtime artifacts: EXCLUDED.
+
+PR #7 is for Founder review and manual merge only. It must not be merged automatically.
+
+After PR #7 merge, activation requires a new explicit authorization and prior
+confirmation that the Founder can access Platform tunnel settings with Tunnels
+Read + Use, associate the target ChatGPT workspace, and enable Developer Mode.
+Credential provisioning, tunnel creation, service lifecycle, ChatGPT
+registration, and the first real canonical decision remain separately gated.
 
 ## Operating doctrine
 
