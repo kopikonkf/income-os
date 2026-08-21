@@ -3,12 +3,14 @@
 Date: 2026-08-21
 Project: Digital Income Empire — Company Holdings
 Mode: Chief Executive Architect
-Workflow stage: P3 — EXECUTIVE MCP ACTIVATION READINESS v1 (IMPLEMENTED LOCALLY; PUBLICATION AUTHORIZATION PENDING)
+Workflow stage: P3 — EXECUTIVE MCP ACTIVATION READINESS v1 (DRAFT PR #6 OPEN)
 Canonical runtime: `C:\DIE`
 Canonical repository: https://github.com/kopikonkf/income-os
 Working branch: `architect/executive-mcp-activation-readiness-v1`
 Base branch: `main`
 Base commit: `bbfaaf8778d32b1d0cc96e260968323ce0c78abf`
+Package commit: `5ff8f4ce1748782a181adb5988bd8b529599fc7a`
+Draft PR: https://github.com/kopikonkf/income-os/pull/6
 
 ## Verified merge standing
 
@@ -66,7 +68,7 @@ Production credential standing:
 | P0 — Autopsy/Salvage | COMPLETE | KEEP/MODIFY/RETIRE and salvage boundary complete. |
 | P1 — Company Brain | COMPLETE | Constitution, State boundary, agency contract, identity package, registry, and validator complete; PR #2 merged. |
 | P2 — Architect MCP | FUNCTIONALLY COMPLETE | `C:\DIE` inspection/write/test/Git cycle works; security hardening debt remains. Architect DEV stays separate from runtime cognition. |
-| P3 — Plus Line 1/2 | CODE COMPLETE v1; ACTIVATION PENDING | Line 1 bounded read MCP exists; Line 2 `decision_submit` exists and PR #5 merged. Activation-readiness package is local; no tunnel, production key, process, deployment, or ChatGPT registration yet. |
+| P3 — Plus Line 1/2 | CODE COMPLETE v1; READINESS IN DRAFT PR #6; ACTIVATION PENDING | Line 1 bounded read MCP and Line 2 `decision_submit` exist. Activation-readiness package is published for Founder review; no tunnel, production key, process, deployment, exposure, or ChatGPT registration exists yet. |
 | P4 — Division Line 1/2 | TEMPLATE FOUNDATION ONLY | `division-head-template` exists but is intentionally inactive until one real division and scoped projection exist. |
 | P5 — State Layer | COMPLETE v1 | One physical State Manager writer, JSONL substrate, authority/freshness request contract, signed bounded context snapshots, typed evidence, and replay-safe decision commit exist; PR #3 merged. |
 | P6 — Decision Gateway | COMPLETE v1 | Stateless P5→State Manager commit router, typed receipt, evidence/HMAC revalidation, and Hermes-ready route exist; PR #4 merged. |
@@ -256,25 +258,33 @@ Explicit exclusions:
 - Hermes integration;
 - MCP Proxima changes.
 
-No path is staged at this standing point.
+The exact eight-path manifest was committed and pushed in package commit `5ff8f4ce1748782a181adb5988bd8b529599fc7a`. Runtime-owned `state/` artifacts remain unstaged and excluded.
 
-## Next authorized publication action
+## Publication state
 
-Required Founder authorization:
+Draft PR #6:
 
-```text
-AUTHORIZED: stage the exact Executive MCP Activation Readiness v1 manifest only,
-commit, push architect/executive-mcp-activation-readiness-v1,
-and create draft PR #6.
-Exclude state/EVENTS.jsonl, state/DECISIONS.jsonl,
-all state/projection and state/organism-test runtime artifacts,
-all runtime secrets, temporary files, and cache artifacts.
-Do not install or configure the tunnel client.
-Do not generate or provision the production HMAC key.
-Do not start, deploy, expose, or register either MCP service.
-```
+https://github.com/kopikonkf/income-os/pull/6
 
-After PR #6 merge, the next action requires a new explicit deployment-and-credential authorization defining:
+- state: OPEN;
+- draft: TRUE;
+- mergeable: MERGEABLE;
+- merge state: CLEAN;
+- base: `main`;
+- head: `architect/executive-mcp-activation-readiness-v1`;
+- package commit: `5ff8f4ce1748782a181adb5988bd8b529599fc7a`;
+- changed files: 8 exact manifest paths;
+- external check count at creation: 0;
+- bridge regression: 68 passed;
+- activation readiness: `code_ready=true`, `activation_ready=false` (expected fail-closed);
+- production HMAC key/key ID: ABSENT;
+- tunnel installation/configuration: NOT PERFORMED;
+- service start/deployment/exposure/registration: NOT PERFORMED;
+- all state/projection/organism runtime artifacts: EXCLUDED.
+
+PR #6 is for Founder review and manual merge only. It must not be merged automatically.
+
+After PR #6 merge, any activation work requires a new explicit deployment-and-credential authorization defining:
 
 1. permission to install/configure the Secure MCP Tunnel client;
 2. permission to create/use two distinct tunnel IDs;
