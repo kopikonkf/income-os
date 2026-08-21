@@ -4,6 +4,7 @@ from . import config, events, envelope, redact, briefing, projection
 
 
 SURFACES = [
+    ("context_snapshot", [("principal_id", "str", None, None, True), ("scope", "str", None, None), ("since_seq", "int", None, 0), ("limit", "int", None, config.CONTEXT_EVENT_LIMIT)]),
     ("recent_events", [("since_seq", "int", None, 0), ("limit", "int", None, config.PAGE_DEFAULT), ("min_class", "str", list(config.CLASSES), "INFO")]),
     ("system_health", []), ("system_state", []),
     ("active_missions", [("status", "str", ["any", "active", "paused", "blocked"], "active")]),

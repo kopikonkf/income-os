@@ -4,6 +4,7 @@ import os, pathlib
 
 DIE_HOME = pathlib.Path(os.environ.get("DIE_HOME", r"C:\DIE"))
 STATE = DIE_HOME / "state"
+IDENTITY_REGISTRY = DIE_HOME / "company" / "identity-registry.json"
 EVENTS = STATE / "EVENTS.jsonl"
 PROJ = STATE / "projection"
 PROJ_EVENTS = PROJ / "EVENTS.jsonl"
@@ -19,6 +20,12 @@ PAGE_DEFAULT = 50
 PAGE_MAX = 200
 MAX_RESP_BYTES = 32 * 1024
 MAX_BRIEF_BYTES = 8 * 1024
+
+# P5 v1 — bounded semantic context
+CONTEXT_SNAPSHOT_TTL_S = 15 * 60
+CONTEXT_EVENT_LIMIT = 20
+STATE_REQUEST_MAX_BYTES = 64 * 1024
+STATE_OBJECT_MAX_BYTES = 8 * 1024
 
 # B4.1 D5 — wake budget
 WAKE_PER_DAY = 4

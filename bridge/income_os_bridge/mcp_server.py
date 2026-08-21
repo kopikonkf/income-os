@@ -1,7 +1,11 @@
 ﻿import json, re, sys, time
 from collections import deque
-from . import config, projection, access_log
+from . import authority, config, projection, snapshot, access_log
 TOOLS = {
+    "context_snapshot": [("principal_id", "str", True, r"^[a-z0-9][a-z0-9-]{1,63}$", None, None, None, None),
+                         ("scope", "str", False, r"^[a-z0-9][a-z0-9_:-]{1,63}$", None, None, None, None),
+                         ("since_seq", "int", False, None, None, 0, None, 0),
+                         ("limit", "int", False, None, None, 1, 50, config.CONTEXT_EVENT_LIMIT)],
     "system_health": [],
     "system_state": [],
     "active_missions": [("status", "str", False, None, ["any", "active", "paused", "blocked"], None, None, "active")],
@@ -36,6 +40,7 @@ class RateLimit:
         return True
 _RATE = RateLimit()
 _DISPATCH = {
+    "context_snapshot": lambda a: projection.context_snapshot(a["principal_id"], a.get("scope"), a.get("since_seq", 0), a.get("limit", config.CONTEXT_EVENT_LIMIT)),
     "system_health": lambda a: projection.system_health(),
     "system_state": lambda a: projection.system_state(),
     "active_missions": lambda a: projection.active_missions(a.get("status", "active")),
@@ -99,6 +104,9 @@ def call_tool(name, args):
         return _err("E_RATE_LIMIT", "> 60 panggilan surface / jam")
     try:
         res = _DISPATCH[name](args)
+    except (authority.AuthorizationError, snapshot.SnapshotError) as e:
+        access_log.log(name, args, 0, "rejected", "ASSUMED", rejected=True)
+        return _err(e.code, e.message)
     except Exception as e:
         access_log.log(name, args, 0, "degraded", "DEGRADED", rejected=False)
         return _err("E_DEGRADED", f"reader/pengolahan gagal: {e}")
@@ -115,7 +123,7 @@ def _handle(msg):
     if method == "initialize":
         return {"jsonrpc": "2.0", "id": ident, "result": {
             "protocolVersion": "2024-11-05", "capabilities": {"tools": {}},
-            "serverInfo": {"name": "income-os-bridge", "version": "0.2.0"}}}
+            "serverInfo": {"name": "income-os-bridge", "version": "0.3.0"}}}
     if method == "tools/list":
         return {"jsonrpc": "2.0", "id": ident, "result": {
             "tools": [{"name": n, "description": "Read-only surface " + n,

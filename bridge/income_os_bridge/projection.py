@@ -1,5 +1,5 @@
 ﻿import json, datetime
-from . import config, envelope, events, redact
+from . import authority, config, envelope, events, redact, snapshot
 from . import hermes_state_reader as reader
 _ORDER = {"DEGRADED": 0, "ASSUMED": 1, "VERIFIED": 2}
 _LABEL = ["DEGRADED", "ASSUMED", "VERIFIED"]
@@ -20,10 +20,14 @@ def _jlines(p, n=None):
     out = []
     try:
         if p.exists():
-            for ln in p.read_text(encoding="utf-8").splitlines():
-                if ln.strip():
+            for ln in p.read_text(encoding="utf-8-sig").splitlines():
+                if not ln.strip():
+                    continue
+                try:
                     out.append(json.loads(ln))
-    except Exception:
+                except json.JSONDecodeError:
+                    continue
+    except (OSError, UnicodeError):
         pass
     return out[:n] if n else out
 def _stale(ev):
@@ -135,3 +139,43 @@ def session_get(session_id, max_turns=config.MAX_TURNS):
 def briefing_get(latest=True):
     p = config.BRIEFING
     return {"as_of": envelope.now_iso(), "markdown": redact.redact(p.read_text(encoding="utf-8")) if latest and p.exists() else ""}
+
+
+def _decision_evidence_refs(limit=20):
+    rows = []
+    decisions = _jlines(config.STATE / "DECISIONS.jsonl")
+    for decision in decisions[-limit:]:
+        ref = decision.get("evidence_ref")
+        decision_id = decision.get("decision_id")
+        observed_at = decision.get("ts")
+        if not ref or not decision_id or not observed_at:
+            continue
+        rows.append({
+            "evidence_id": f"EVREF-{decision_id}",
+            "kind": "decision_support",
+            "ref": redact.redact_reference(str(ref)),
+            "claim": f"Supporting reference declared by {decision_id}",
+            "trust": "ASSUMED",
+            "observed_at": str(observed_at),
+        })
+    return rows
+
+
+def context_snapshot(principal_id, scope=None, since_seq=0, limit=config.CONTEXT_EVENT_LIMIT):
+    granted = authority.authorize(
+        principal_id,
+        "context.snapshot.read",
+        scope,
+    )
+    bounded_limit = min(max(limit, 1), 50)
+    surfaces = {
+        "system_state": system_state(),
+        "system_health": system_health(),
+        "active_missions": active_missions("any"),
+        "recent_events": recent_events(since_seq, bounded_limit, "INFO"),
+    }
+    return snapshot.build(
+        granted,
+        surfaces,
+        _decision_evidence_refs(),
+    )

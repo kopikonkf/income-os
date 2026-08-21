@@ -26,3 +26,17 @@ def redact_event(ev):
         if isinstance(out.get(k), str):
             out[k] = redact(out[k])
     return out
+
+
+_REPO_ROOT = re.compile(r"(?i)\bC:\\DIE\\")
+_OTHER_ABSOLUTE_PATH = re.compile(r"(?i)\b[A-Z]:[\\/][^;\r\n]*")
+
+
+def redact_reference(text):
+    """Redact secrets and remove host-absolute paths from semantic references."""
+    if not isinstance(text, str):
+        return text
+    text = redact(text)
+    text = _REPO_ROOT.sub("repo:/", text)
+    text = text.replace("\\", "/")
+    return _OTHER_ABSOLUTE_PATH.sub("[PATH_REDACTED]", text)
