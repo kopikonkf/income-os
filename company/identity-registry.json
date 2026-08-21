@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "die.company.identity-registry",
+  "effective_date": "2026-08-21",
+  "governance": {
+    "company_brain": "COMPANY_BRAIN.md",
+    "constitution": "CONSTITUTION.md",
+    "agency_contract": "PROTOCOLS/agency-contract-v0.md",
+    "canonical_handoff": "LASTSTANDINGPOINT.md",
+    "canonical_state_writer": "die-state-manager",
+    "operational_control_plane": "hermes-operator"
+  },
+  "security": {
+    "default_policy": "deny",
+    "architect_dev_plane_id": "chief-executive-architect-dev",
+    "runtime_forbidden_capabilities": [
+      "architect_dev",
+      "repository_write",
+      "git_write",
+      "test_execution",
+      "service_control",
+      "credential_read"
+    ],
+    "runtime_architect_dev_access": "deny",
+    "dev_privilege_inheritance": "forbidden"
+  },
+  "identities": [
+    {
+      "id": "founder",
+      "kind": "human_sovereign",
+      "document": "IDENTITY/founder.md",
+      "scope": "company",
+      "runtime": false,
+      "template": false,
+      "architect_dev_access": "deny",
+      "inherits_identity_ids": [],
+      "capabilities": [
+        "northstar_ratification",
+        "capital_allocation",
+        "risk_acceptance",
+        "constitutional_amendment",
+        "autonomy_promotion",
+        "irreversible_action_approval",
+        "succession_designation"
+      ]
+    },
+    {
+      "id": "chatgpt-plus-executive",
+      "kind": "executive_strategic_intelligence",
+      "document": "IDENTITY/chatgpt-plus-executive.md",
+      "scope": "company_portfolio",
+      "runtime": true,
+      "template": false,
+      "architect_dev_access": "deny",
+      "inherits_identity_ids": [],
+      "capabilities": [
+        "semantic_observation",
+        "portfolio_synthesis",
+        "strategic_challenge",
+        "bounded_decision",
+        "mission_proposal",
+        "audit_request",
+        "escalation"
+      ]
+    },
+    {
+      "id": "division-head-template",
+      "kind": "division_decision_engine",
+      "document": "IDENTITY/division-head-template.md",
+      "scope": "single_division",
+      "runtime": true,
+      "template": true,
+      "architect_dev_access": "deny",
+      "inherits_identity_ids": [],
+      "capabilities": [
+        "bounded_semantic_observation",
+        "division_research",
+        "division_scoring",
+        "bounded_decision",
+        "mission_proposal",
+        "escalation"
+      ]
+    },
+    {
+      "id": "hermes-operator",
+      "kind": "operational_orchestrator",
+      "document": "IDENTITY/hermes-operator/SOUL.md",
+      "scope": "committed_missions",
+      "runtime": true,
+      "template": false,
+      "architect_dev_access": "deny",
+      "inherits_identity_ids": [],
+      "capabilities": [
+        "mission_orchestration",
+        "job_delegation",
+        "bounded_tool_use",
+        "worker_control",
+        "evidence_submission",
+        "semantic_state_request",
+        "operational_reporting"
+      ]
+    },
+    {
+      "id": "worker-template",
+      "kind": "replaceable_specialist",
+      "document": "IDENTITY/worker-template.md",
+      "scope": "single_job_workspace",
+      "runtime": true,
+      "template": true,
+      "architect_dev_access": "deny",
+      "inherits_identity_ids": [],
+      "capabilities": [
+        "job_execution",
+        "workspace_write",
+        "artifact_production",
+        "test_invocation",
+        "evidence_capture"
+      ]
+    }
+  ],
+  "development_planes": [
+    {
+      "id": "chief-executive-architect-dev",
+      "runtime": false,
+      "founder_invoked": true,
+      "not_inheritable": true,
+      "governed_by": "CONSTITUTION.md",
+      "capabilities": [
+        "architect_dev",
+        "repository_write",
+        "git_write",
+        "test_execution",
+        "service_control"
+      ]
+    }
+  ],
+  "services": [
+    {
+      "id": "die-state-manager",
+      "kind": "deterministic_authority_service",
+      "governed_by": "CONSTITUTION.md",
+      "sole_physical_writer": true,
+      "mission_owner": false
+    }
+  ]
+}
