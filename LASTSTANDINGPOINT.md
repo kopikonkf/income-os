@@ -3,61 +3,61 @@
 Date: 2026-08-21
 Project: Digital Income Empire — Company Holdings
 Mode: Chief Executive Architect
-Workflow stage: P3 — EXECUTIVE MCP ACTIVATION GATE v1.1 (DRAFT PR #7 OPEN)
-Canonical runtime: `C:\DIE`
+Workflow stage: P3 — EXECUTIVE MCP ACTIVATION v1 / PHASE A BOOTSTRAP COMPLETE
+Canonical runtime: C:\DIE
 Canonical repository: https://github.com/kopikonkf/income-os
-Working branch: `architect/executive-mcp-activation-gate-v1-1`
-Base branch: `main`
-Base/merge commit: `290f64a1eae218b59c3ce0bae67f6d0b8023d740`
-Package commit: `6c1ce91a477373a215149b0df7f001f93feff726`
-Draft PR: https://github.com/kopikonkf/income-os/pull/7
+Working branch: architect/executive-mcp-activation-v1
+Base branch: main
+Base/merge commit: 9cfe7ff781726a887e8ce039fd7f6bde0f79b019
+Publication status: NOT COMMITTED / NOT PUSHED / NO PR
 
-## Verified merge and synchronization
+## Verified merge baseline
 
-PR #6 — Executive MCP Activation Readiness v1 is merged and closed:
+PR #7 — Executive MCP Activation Gate v1.1 is merged and closed:
 
-https://github.com/kopikonkf/income-os/pull/6
+https://github.com/kopikonkf/income-os/pull/7
 
-- merged: TRUE;
-- merged at: `2026-08-21T07:25:39Z`;
-- PR head: `6aebdd9323034cb17442db269eb7e839e84c1382`;
-- merge commit: `290f64a1eae218b59c3ce0bae67f6d0b8023d740`;
-- `C:\DIE\main`, `origin/main`, and the verified merge commit are identical;
-- Company Brain validator after merge: PASS;
-- full bridge regression after merge: 68 passed;
-- all live runtime state changes survived synchronization.
+- merged at: 2026-08-21T07:53:37Z;
+- PR head: 4199f78114df531e0162748ced576dc482063419;
+- merge commit: 9cfe7ff781726a887e8ce039fd7f6bde0f79b019;
+- C:\DIE\main and origin/main were synchronized before the Phase A branch;
+- post-merge Company Brain validator: PASS;
+- post-merge regression before Phase A: 69 passed.
 
 ## Canonical runtime boundary
 
-```text
+~~~text
 GitHub main
   = canonical code + governed documents
 
 C:\DIE\state
   = live append-only state + generated runtime projections
-```
 
-Runtime-owned paths currently preserved and excluded:
+C:\ProgramData\DIE\ExecutiveMCP
+  = local non-secret Executive MCP activation runtime
+~~~
 
-- `state/EVENTS.jsonl` — modified;
-- `state/projection/.cursor` — modified;
-- `state/projection/BRIEFING.md` — modified;
-- `state/projection/EVENTS.jsonl` — modified;
-- `state/projection/WAKE.flag` — currently absent/deleted by runtime;
-- `state/organism-test/groundtruth-20260821.txt` — untracked runtime/test ground truth;
-- `state/DECISIONS.jsonl` — unmodified.
+Runtime-owned repository paths currently preserved and excluded:
 
-These paths must not be staged, discarded, restored, rewritten, or included in an
-architecture PR without a separate state-governance decision.
+- state/EVENTS.jsonl — modified;
+- state/projection/.cursor — modified;
+- state/projection/BRIEFING.md — modified;
+- state/projection/EVENTS.jsonl — modified;
+- state/projection/WAKE.flag — currently absent/deleted by runtime;
+- state/organism-test/groundtruth-20260821.txt — untracked runtime/test ground truth;
+- state/DECISIONS.jsonl — unmodified.
+
+These paths must not be staged, discarded, restored, rewritten, or included in
+an architecture PR without a separate state-governance decision.
 
 ## Corrected P0–P9 standing
 
 | Stage | Actual status | Canonical standing |
 | --- | --- | --- |
 | P0 — Autopsy/Salvage | COMPLETE | KEEP/MODIFY/RETIRE and salvage boundary complete. |
-| P1 — Company Brain | COMPLETE | Constitution, identity package, registry, agency contract, and validator merged in PR #2. |
-| P2 — Architect MCP | FUNCTIONALLY COMPLETE | Live `C:\DIE` inspection/write/test/Git cycle works; security-hardening debt remains. |
-| P3 — Plus Line 1/2 | CODE COMPLETE v1; GATE v1.1 IN DRAFT PR #7; ACTIVATION PENDING | Line 1 read plane, Line 2 decision plane, and readiness v1 are merged through PR #6. The official control-plane gate hardening is published for Founder review. |
+| P1 — Company Brain | COMPLETE | Constitution, identities, registry, agency contract, and validator merged in PR #2. |
+| P2 — Architect MCP | FUNCTIONALLY COMPLETE | Live C:\DIE inspection/write/test/Git cycle works; security-hardening debt remains. |
+| P3 — Plus Line 1/2 | CODE + GATE COMPLETE; PHASE A BOOTSTRAP COMPLETE; ACTIVATION STILL BLOCKED | Executive Line 1/2 and Activation Gate v1.1 are merged. Official tunnel-client is installed but no tunnel/profile/secret/process/registration exists. |
 | P4 — Division Line 1/2 | TEMPLATE FOUNDATION ONLY | Keep inactive until one real division and scoped projection exist. |
 | P5 — State Layer | COMPLETE v1 | Signed bounded snapshots, typed evidence, replay-safe commit, and State Manager boundary merged in PR #3. |
 | P6 — Decision Gateway | COMPLETE v1 | Stateless validation/router and Hermes-ready route merged in PR #4. |
@@ -65,139 +65,192 @@ architecture PR without a separate state-governance decision.
 | P8 — Dashboard | BLOCKED BY DESIGN | Start only after one real division and one economic loop are alive. |
 | P9 — Genome/Bootstrap/etc. | DEFERRED | Classify after the current decision/execution loop is operational. |
 
-## Why Activation Gate v1.1 is required
+## Phase A authorization executed
 
-Post-merge verification against current official OpenAI documentation found that
-Secure MCP Tunnel requires more than tunnel-client, tunnel IDs, and the DIE
-snapshot HMAC key.
+Founder authorized Executive MCP Activation Phase A bootstrap only, with these
+hard boundaries:
 
-The current OpenAI contract also requires:
+- versioned Windows scripts, runbook, and tests;
+- latest official tunnel-client download and fixed-path installation;
+- non-secret runtime/config/log directories with restrictive ACLs;
+- dry-run, tests, and unauthenticated outbound/local preflight;
+- no secrets, credentials, tunnel IDs, profile initialization, tunnel mutation,
+  MCP start/deploy/exposure/registration, Windows service, or scheduled task;
+- no commit, push, or PR without separate publication authorization.
 
-- a runtime control-plane API key for `tunnel-client`;
-- Tunnels Read + Use permissions;
-- association with the target Platform organization and ChatGPT workspace;
-- ChatGPT Developer Mode as a separate permission;
-- outbound HTTPS and local MCP reachability.
+All boundaries were preserved.
+
+## Versioned Phase A implementation
+
+Created locally on architect/executive-mcp-activation-v1:
+
+- ops/windows/executive-mcp/Install-DIEExecutiveMcpPhaseA.ps1
+- ops/windows/executive-mcp/Test-DIEExecutiveMcpPhaseA.ps1
+- docs/operations/EXECUTIVE_MCP_ACTIVATION_PHASE_A_V1.md
+- bridge/tests/test_executive_activation_bootstrap_v1.py
+- LASTSTANDINGPOINT.md — updated canonical handoff
+
+Installer properties:
+
+- default mode is Plan;
+- Apply uses the fixed root C:\ProgramData\DIE\ExecutiveMCP only;
+- release discovery is restricted to the official openai/tunnel-client GitHub
+  release API and official release URLs;
+- archive SHA-256 must match official SHA256SUMS.txt;
+- reported version must match the release tag;
+- tunnel-client help quickstart must succeed;
+- only the verified executable and non-secret install manifest persist;
+- transient bootstrap files are removed;
+- no activation command exists in the Phase A scripts.
+
+## Installed Phase A runtime
 
 Official source:
 
-https://developers.openai.com/api/docs/guides/secure-mcp-tunnels
+- repository: https://github.com/openai/tunnel-client
+- release: v0.0.12
+- release URL: https://github.com/openai/tunnel-client/releases/tag/v0.0.12
+- asset: tunnel-client-v0.0.12-windows-amd64.zip
+- published: 2026-08-20T05:04:29Z
 
-Readiness v1 could produce a false-positive under injected test prerequisites
-without proving these control-plane facts. v1.1 closes that path before any
-deployment occurs.
+Installation:
 
-## Executive MCP Activation Gate v1.1
+- root: C:\ProgramData\DIE\ExecutiveMCP
+- binary: C:\ProgramData\DIE\ExecutiveMCP\bin\tunnel-client.exe
+- evidence manifest:
+  C:\ProgramData\DIE\ExecutiveMCP\bin\tunnel-client.install.json
+- config directory: empty;
+- logs directory: empty;
+- runtime directory: empty after bootstrap cleanup;
+- ACL inheritance: disabled on root, bin, config, logs, and runtime;
+- ACL principals: Local System, built-in Administrators, invoking Windows
+  identity.
 
-Schema:
+Verification evidence:
 
-```text
-die.executive.mcp.activation.readiness.v1.1
-```
+- official/downloaded archive SHA-256:
+  2a2804933924e38a502d62b61f0266cb80d56d65744f4c29876b2bf9c1544356
+- installed binary SHA-256:
+  6649169733686805ca16cccd91774594d0c017fd729c37ad4ce1cd18323d9ae8
+- reported version:
+  0.0.12+881c9a8fed7cccbe6607cd419863bbca506b8215
+- version/release match: PASS;
+- help quickstart exit code: 0;
+- help-output digest recorded in the non-secret install manifest;
+- Authenticode observation: NotSigned;
+- trust basis used: exact official GitHub release URL + official checksum manifest
+  + matching version + successful quickstart help.
 
-New fail-closed prerequisites:
+## Verification result
 
-- `CONTROL_PLANE_API_KEY` is present with a safe minimum length;
-- `DIE_OPENAI_TUNNELS_READ_USE_GRANTED` is explicitly attested;
-- `DIE_OPENAI_TUNNEL_WORKSPACE_ASSOCIATED` is explicitly attested;
-- `DIE_CHATGPT_DEVELOPER_MODE_ENABLED` is explicitly attested.
+Dry-run:
 
-Only `1`, `true`, `yes`, or `on` are accepted as affirmative attestations.
+~~~text
+schema=die.executive.mcp.activation.phase-a.v1
+mode=Plan
+release=v0.0.12
+writes_performed=false
+all safety flags=false
+~~~
 
-The checker returns only booleans and blocker names. It never returns the
-control-plane API key, snapshot HMAC key, tunnel IDs, or raw configuration.
+Pre-install preflight:
 
-## Verification evidence
+~~~text
+ready=true
+Windows AMD64=true
+Line 1 bootstrap present=true
+Line 2 bootstrap present=true
+Python present=true
+tunnel-client process absent=true
+api.openai.com:443 reachable=true
+~~~
 
-```text
-targeted activation-gate tests
-7 passed
+Repository regression:
 
-full bridge regression
-69 passed
+~~~text
+Phase A targeted tests: 7 passed
+Full bridge regression: 76 passed
+git diff --check: PASS
+~~~
 
-live readiness
-schema=die.executive.mcp.activation.readiness.v1.1
-code_ready=true
-activation_ready=false
-exit=2
-secret_values_returned=false
-deployment_performed=false
-registration_performed=false
-```
+Installed-state preflight:
 
-Expected live control-plane blockers:
+~~~text
+schema=die.executive.mcp.activation.phase-a.preflight.v1
+mode=Installed
+ready=true
+failed_checks=[]
+fixed directories present=true
+all directory ACL checks=true
+binary hash matches manifest=true
+version matches release=true
+quickstart help matches manifest=true
+bootstrap workspace clean=true
+tunnel-client process absent=true
+api.openai.com:443 reachable=true
+~~~
 
-- control-plane API key absent;
-- Tunnels Read + Use not attested;
-- target ChatGPT workspace association not attested;
-- ChatGPT Developer Mode not attested.
+Post-bootstrap negative proof:
 
-Production/runtime standing remains:
+- tunnel profiles initialized: FALSE;
+- OpenAI tunnels created or modified: FALSE;
+- credentials requested or read: FALSE;
+- MCP services started/deployed/exposed/registered: FALSE;
+- Windows service created: FALSE;
+- scheduled task created: FALSE;
+- related tunnel-client process running: FALSE;
+- temporary release archive/checksum/extraction artifacts retained: FALSE.
 
-- snapshot HMAC key and key ID: ABSENT;
-- control-plane API key: ABSENT;
-- tunnel-client: ABSENT;
-- Line 1/Line 2 tunnel IDs: ABSENT;
-- Executive MCP services: NOT RUNNING / NOT INSTALLED;
-- ChatGPT Executive registrations: NOT PERFORMED.
+## Activation standing
 
-## Exact local manifest for draft PR #7
+The fail-closed activation checker was intentionally not rerun because Phase A
+must not inspect runtime secret prerequisites.
 
-Modified:
+Current canonical fact:
 
-- `LASTSTANDINGPOINT.md`
-- `bridge/income_os_bridge/activation_readiness.py`
-- `bridge/tests/test_executive_activation_readiness_v1.py`
-- `docs/architecture/EXECUTIVE_MCP_ACTIVATION_READINESS_V1.md`
+- tunnel-client binary is physically installed and verified at the fixed path;
+- it is not added to PATH and not configured as an activation environment value;
+- no runtime Platform API key or HMAC material was requested, read, generated, or
+  provisioned;
+- no Line 1 or Line 2 tunnel ID was requested, read, stored, or initialized;
+- no profile, doctor run, tunnel process, MCP process, ChatGPT registration, or
+  tool call was performed.
 
-Explicit exclusions:
+Therefore P3 runtime activation remains blocked by design.
 
-- `state/EVENTS.jsonl`;
-- `state/DECISIONS.jsonl`;
-- every file under `state/projection/`;
-- every file under `state/organism-test/`;
-- all runtime secrets and credential values;
-- temporary files and cache artifacts;
-- tunnel-client installation/configuration;
-- OpenAI tunnel creation/modification;
-- HMAC or control-plane key generation/provisioning;
-- process/service start, deployment, exposure, or registration;
-- firewall, DNS, TLS, Cloudflare, or Windows service changes;
-- Hermes, Worker, or MCP Proxima changes.
+## Current local publication manifest
 
-The exact four-path manifest was committed and pushed in package commit `6c1ce91a477373a215149b0df7f001f93feff726`. Runtime-owned `state/` artifacts remain unstaged and excluded.
+Exact repository files eligible for a later Phase A publication authorization:
 
-## Publication state
+- LASTSTANDINGPOINT.md
+- bridge/tests/test_executive_activation_bootstrap_v1.py
+- docs/operations/EXECUTIVE_MCP_ACTIVATION_PHASE_A_V1.md
+- ops/windows/executive-mcp/Install-DIEExecutiveMcpPhaseA.ps1
+- ops/windows/executive-mcp/Test-DIEExecutiveMcpPhaseA.ps1
 
-Draft PR #7:
+Explicit publication exclusions:
 
-https://github.com/kopikonkf/income-os/pull/7
+- state/EVENTS.jsonl
+- state/DECISIONS.jsonl
+- all state/projection artifacts
+- all state/organism-test artifacts
+- C:\ProgramData runtime installation and evidence manifest
+- secrets, credentials, tunnel IDs
+- temporary files and cache artifacts
 
-- state: OPEN;
-- draft: TRUE;
-- mergeable: MERGEABLE;
-- merge state: CLEAN;
-- base: `main`;
-- head: `architect/executive-mcp-activation-gate-v1-1`;
-- package commit: `6c1ce91a477373a215149b0df7f001f93feff726`;
-- changed files: 4 exact manifest paths;
-- external check count at creation: 0;
-- targeted activation-gate tests: 7 passed;
-- full bridge regression: 69 passed;
-- readiness: `code_ready=true`, `activation_ready=false` (expected fail-closed);
-- production HMAC/control-plane keys: ABSENT;
-- tunnel installation/configuration and OpenAI tunnel mutation: NOT PERFORMED;
-- service start/deployment/exposure/registration: NOT PERFORMED;
-- all state/projection/organism runtime artifacts: EXCLUDED.
+No path is staged. No commit, push, or PR was created.
 
-PR #7 is for Founder review and manual merge only. It must not be merged automatically.
+## Next controlled action
 
-After PR #7 merge, activation requires a new explicit authorization and prior
-confirmation that the Founder can access Platform tunnel settings with Tunnels
-Read + Use, associate the target ChatGPT workspace, and enable Developer Mode.
-Credential provisioning, tunnel creation, service lifecycle, ChatGPT
-registration, and the first real canonical decision remain separately gated.
+Immediate next action is publication only, under separate authorization, for the
+exact five-file Phase A manifest above.
+
+After publication/merge, Phase B still requires separate Founder authorization.
+It is the earliest phase that may cover secure VPS-side secret provisioning, two
+distinct tunnel identities, isolated profile initialization, doctor validation,
+MCP process lifecycle, ChatGPT registration, and lane-isolation proof.
+
+No secret or tunnel ID may be pasted into chat or committed to Git.
 
 ## Operating doctrine
 
