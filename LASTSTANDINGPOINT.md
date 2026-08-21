@@ -3,189 +3,184 @@
 Date: 2026-08-21
 Project: Digital Income Empire — Company Holdings
 Mode: Chief Executive Architect
-Workflow stage: P3 — CHATGPT PLUS EXECUTIVE LINE 2 MCP v1 (DRAFT PR #5 OPEN)
+Workflow stage: P3 — EXECUTIVE MCP ACTIVATION READINESS v1 (DRAFT PR #6 OPEN)
 Canonical runtime: `C:\DIE`
 Canonical repository: https://github.com/kopikonkf/income-os
-Working branch: `architect/executive-line2-mcp-v1`
+Working branch: `architect/executive-mcp-activation-readiness-v1`
 Base branch: `main`
-Base commit: `d5d958f817b8c3bc47a284ccb355d61375389822`
-Package commit: `5284fe4a4ac5a87350e6b306cb14b3c8a34f52ac`
-Draft PR: https://github.com/kopikonkf/income-os/pull/5
+Base commit: `bbfaaf8778d32b1d0cc96e260968323ce0c78abf`
+Package commit: `5ff8f4ce1748782a181adb5988bd8b529599fc7a`
+Draft PR: https://github.com/kopikonkf/income-os/pull/6
 
 ## Verified merge standing
 
-PR #4 — P6 Decision Gateway v1 was merged and closed:
+PR #5 — Executive Line 2 MCP v1 was merged and closed:
 
-https://github.com/kopikonkf/income-os/pull/4
+https://github.com/kopikonkf/income-os/pull/5
 
 - merged: TRUE;
-- merged at: `2026-08-21T04:40:45Z`;
-- merge commit: `d5d958f817b8c3bc47a284ccb355d61375389822`;
-- PR head: `04a81132a29745f2533762b95a77559c8abfac98`;
-- `C:\DIE\main` fast-forwarded to the merge commit;
-- live event ledger preserved across synchronization;
-- branch `architect/executive-line2-mcp-v1` created from the merge commit.
+- merged at: `2026-08-21T06:59:09Z`;
+- merge commit: `bbfaaf8778d32b1d0cc96e260968323ce0c78abf`;
+- PR head: `f3b11f1258f1fa0f79847b7887f438364a0e19ba`;
+- `C:\DIE\main` fast-forwarded to the same merge commit;
+- Company Brain validator after merge: PASS;
+- bridge regression after merge: 62 passed;
+- all live runtime state changes were preserved across synchronization.
 
-P5 State Context v1 and P6 Decision Gateway v1 are now merged foundations.
+P5 State Context v1, P6 Decision Gateway v1, and Executive Line 2 MCP v1 are merged foundations.
 
-## Canonical synchronization and exclusions
+## Canonical synchronization and runtime exclusions
 
 ```text
 GitHub main
   = canonical code + constitutional/governed artifacts
 
 C:\DIE\state
-  = live append-only operational truth
+  = live append-only state + generated operational projections
 ```
 
-Current live standing:
+Live runtime-owned worktree paths observed after PR #5 merge:
 
-- `state/EVENTS.jsonl` continues to receive heartbeat events and remains an unstaged local modification;
-- `state/DECISIONS.jsonl` is unmodified;
-- production `DIE_SNAPSHOT_HMAC_KEY`: ABSENT;
-- production `DIE_SNAPSHOT_HMAC_KEY_ID`: ABSENT;
-- no production key was generated, written, displayed, or provisioned;
-- all mutation tests used temporary isolated state and a temporary test-only key.
+- `state/EVENTS.jsonl` — modified by live events/heartbeats;
+- `state/projection/.cursor` — modified by projection advancement;
+- `state/projection/BRIEFING.md` — modified by projection briefing;
+- `state/projection/EVENTS.jsonl` — modified by projection output;
+- `state/projection/WAKE.flag` — currently removed by the runtime gate;
+- `state/organism-test/groundtruth-20260821.txt` — new runtime/test ground truth;
+- `state/DECISIONS.jsonl` — unmodified.
 
-Neither live ledger may be staged, discarded, rewritten, or used for synthetic verification.
+All of these are operational truth or runtime output. They must not be staged, discarded, restored, rewritten, or included in an architecture PR without a separate explicit state-governance decision.
 
-## Executive Line 2 MCP v1 decision
+Production credential standing:
 
-Line 1 remains the existing read-only observation MCP.
+- `DIE_SNAPSHOT_HMAC_KEY`: ABSENT;
+- `DIE_SNAPSHOT_HMAC_KEY_ID`: ABSENT;
+- Secure MCP Tunnel client: ABSENT;
+- Line 1 tunnel ID: ABSENT;
+- Line 2 tunnel ID: ABSENT;
+- DIE Executive MCP process/service: NOT RUNNING / NOT INSTALLED;
+- ChatGPT Executive MCP registration: NOT PERFORMED.
 
-Line 2 is a separate dedicated mutation MCP that exposes exactly one semantic business capability:
+## Corrected P0–P9 standing
 
-`decision_submit`
+| Stage | Actual status | Canonical standing |
+| --- | --- | --- |
+| P0 — Autopsy/Salvage | COMPLETE | KEEP/MODIFY/RETIRE and salvage boundary complete. |
+| P1 — Company Brain | COMPLETE | Constitution, State boundary, agency contract, identity package, registry, and validator complete; PR #2 merged. |
+| P2 — Architect MCP | FUNCTIONALLY COMPLETE | `C:\DIE` inspection/write/test/Git cycle works; security hardening debt remains. Architect DEV stays separate from runtime cognition. |
+| P3 — Plus Line 1/2 | CODE COMPLETE v1; READINESS IN DRAFT PR #6; ACTIVATION PENDING | Line 1 bounded read MCP and Line 2 `decision_submit` exist. Activation-readiness package is published for Founder review; no tunnel, production key, process, deployment, exposure, or ChatGPT registration exists yet. |
+| P4 — Division Line 1/2 | TEMPLATE FOUNDATION ONLY | `division-head-template` exists but is intentionally inactive until one real division and scoped projection exist. |
+| P5 — State Layer | COMPLETE v1 | One physical State Manager writer, JSONL substrate, authority/freshness request contract, signed bounded context snapshots, typed evidence, and replay-safe decision commit exist; PR #3 merged. |
+| P6 — Decision Gateway | COMPLETE v1 | Stateless P5→State Manager commit router, typed receipt, evidence/HMAC revalidation, and Hermes-ready route exist; PR #4 merged. |
+| P7 — Hermes/Worker/Proxima | PARTIAL EXISTING | Hermes/Worker/Proxima pipeline exists partly on VPS. Hermes decision acceptance/acknowledgment remains after Executive MCP activation. Proxima stays Worker ↔ Web Chat AI only. |
+| P8 — Dashboard | BLOCKED BY DESIGN | Start only after one real division and one economic loop are alive. |
+| P9 — Genome/Bootstrap/etc. | DEFERRED / READY FOR CLASSIFICATION | Review as ADOPT/ADAPT/MERGE/REJECT after current decision/execution loop is operational. |
 
-It deliberately does not expose:
+The table supplied in chat was an early standing point and is now superseded by this canonical audit.
 
-- filesystem read/write;
-- raw JSON/file mutation;
-- shell or subprocess execution;
-- database access;
-- Git or repository operations;
-- service control;
-- credential access;
-- worker control;
-- Hermes dispatch;
-- Constitution or identity mutation.
+## Activation-readiness architectural decision
 
-The transport is separate from the Chief Executive Architect development MCP and separate from MCP Proxima V2. Proxima remains the Worker ↔ Web Chat AI production-engine path.
+The post-PR #5 handoff originally placed production HMAC provisioning before the service boundary. Live audit found no DIE MCP service, tunnel client, or tunnel IDs. Provisioning first would create an orphaned credential.
 
-## Fixed trust boundary
-
-The Line 2 process pins:
-
-- principal: `chatgpt-plus-executive`;
-- scope: `company_portfolio`;
-- action: `state.decision.submit`;
-- object type: `DECISION`.
-
-Runtime cognition cannot override or inherit those values. Caller-supplied identity is rejected rather than treated as authentication.
-
-Accepted semantic input is limited to:
-
-- replay-safe `request_id`;
-- fresh signed `die.context.snapshot.v1`;
-- one bounded commit-ready decision;
-- typed evidence already present in that snapshot;
-- bounded assumptions.
-
-The MCP server composes existing contracts rather than bypassing them:
+Corrected principle:
 
 ```text
-ChatGPT Plus Executive
-  -> Line 1 context_snapshot
-  -> Line 2 decision_submit
-  -> P5 validate_and_normalize
-  -> P6 Decision Gateway
-  -> DIE State Manager (sole physical writer)
-  -> typed committed/rejected receipt
-  -> Hermes-ready route
+code contract
+  -> activation readiness
+  -> tunnel/service boundary
+  -> credential provisioning
+  -> activation verification
+  -> ChatGPT registration
+  -> first authorized live decision
 ```
 
-## Preserved architectural boundaries
+No deployment action is performed by the current package.
 
-- DIE State Manager remains the sole physical canonical writer.
-- Executive Line 2 owns no database, ledger, queue, scheduler, daemon, or durable memory.
-- The observation MCP remains read-only.
-- P5 authority/freshness normalization remains mandatory.
-- P6 trust/authority/evidence revalidation remains mandatory.
-- Missing or wrong snapshot HMAC fails closed with `E_SNAPSHOT_UNTRUSTED`.
-- `request_id` replay returns the prior decision without a duplicate append.
-- A successful result is only `ready_for_operational_acceptance`.
-- Line 2 does not deliver to Hermes and does not execute workers.
-- Hermes remains the single operational control plane.
-- Architect DEV privilege remains Founder-invoked, non-runtime, and non-inheritable.
-- Remote hosting, TLS, connection authentication, ChatGPT app registration, and production key provisioning are not performed by this package.
+## Current OpenAI transport baseline
 
-## Executable artifact
+Official OpenAI documentation currently establishes:
 
-Dedicated stdio MCP entrypoint:
+- ChatGPT Developer mode is available to Plus;
+- supported remote MCP protocols include SSE and streaming HTTP;
+- write tools are treated as writes and require confirmation by default;
+- `readOnlyHint` is used to distinguish read-only tools;
+- private MCP servers can be reached in developer mode through Secure MCP Tunnel;
+- the tunnel can reach configured stdio or HTTP MCP servers;
+- private/write capabilities require authentication and server-side authorization.
+
+Official references:
+
+- https://developers.openai.com/api/docs/guides/developer-mode
+- https://developers.openai.com/plugins/build/mcp-server
+- https://developers.openai.com/plugins/build/auth
+- https://developers.openai.com/plugins/deploy/connect-chatgpt
+
+For the internal Founder/Executive lane, this package selects private Secure MCP Tunnel rather than public plugin submission or a new public OAuth service.
+
+## Executive MCP Activation Readiness v1 outcome
+
+Implemented:
+
+- dedicated Line 1 bootstrap: `bin/die_executive_line1_mcp.py`;
+- existing Line 2 bootstrap preserved: `bin/die_executive_mcp.py`;
+- Line 1 server version `0.4.0`;
+- Line 2 server version `1.1.0`;
+- bounded server instructions for both lanes;
+- every Line 1 tool explicitly advertises `readOnlyHint: true`;
+- Line 2 exposes only `decision_submit` with `readOnlyHint: false`;
+- Line 2 remains `idempotentHint: true`;
+- malformed Line 1 JSON-RPC params now fail closed with `-32602`;
+- separate server names and entrypoints;
+- non-secret readiness schema `die.executive.mcp.activation.readiness.v1`;
+- readiness checker: `bin/die_executive_activation_check.py`;
+- two distinct tunnel IDs required;
+- shared HMAC key/key-ID presence validated without returning values;
+- no secret, tunnel ID, credential value, or raw config returned.
+
+Preserved:
+
+- Line 1 and Line 2 remain separate connections;
+- Line 1 remains read-only;
+- Line 2 remains the only Executive mutation surface;
+- State Manager remains the sole physical writer;
+- Hermes remains the sole operational control plane;
+- Architect MCP is not reused for runtime cognition;
+- MCP Proxima is not changed or conflated with DIE MCP;
+- no process, service, port, firewall, DNS, Cloudflare, TLS, tunnel, secret, or ChatGPT registration is mutated.
+
+## Executable readiness check
 
 ```powershell
-python bin/die_executive_mcp.py
+python bin/die_executive_activation_check.py
 ```
 
-MCP surface:
-
-```text
-tools/list
-  -> decision_submit only
-
-tools/call decision_submit
-  -> exact input validation
-  -> fixed Executive identity and scope
-  -> P5 normalization
-  -> P6 commit/reject
-  -> typed MCP content receipt
-```
-
-Operational safeguards include:
-
-- exact JSON Schema with `additionalProperties: false`;
-- process-local limit of 12 mutation tool calls per hour;
-- malformed JSON-RPC params rejected with `-32602`;
-- unknown tools rejected with `E_MCP_TOOL_NOT_FOUND`;
-- raw paths, traversal, secret-shaped content, stale/unsigned snapshots, forged evidence, unavailable writer, and invalid decisions fail closed;
-- serial stdio request handling;
-- append-only replay semantics delegated to the canonical State Manager.
-
-## Isolated MCP end-to-end proof
-
-The test suite starts the real `bin/die_executive_mcp.py` process with:
-
-- a temporary `DIE_HOME`;
-- a copied public identity registry;
-- a temporary test-only HMAC key;
-- a temporary event ledger.
-
-It sends:
-
-1. MCP `initialize`;
-2. MCP `tools/list`;
-3. first `decision_submit`;
-4. replay of the same `request_id`;
-5. stdin EOF for clean server exit.
-
-Verified outcome:
+Live audit result:
 
 ```json
 {
-  "server": "die-executive-line2",
-  "tools": ["decision_submit"],
-  "first_status": "committed",
-  "first_canonical_mutation": true,
-  "replay_same_record_id": true,
-  "replay_canonical_mutation": false,
-  "decision_rows": 1,
-  "live_decisions_changed": false,
-  "isolated_events_changed": false,
-  "production_hmac_provisioned": false
+  "schema_version": "die.executive.mcp.activation.readiness.v1",
+  "activation_mode": "secure_mcp_tunnel",
+  "code_ready": true,
+  "activation_ready": false,
+  "line1_tool_count": 12,
+  "line2_tools": ["decision_submit"],
+  "secret_values_returned": false,
+  "deployment_performed": false,
+  "registration_performed": false
 }
 ```
 
-The temporary test directory and key are pytest-scoped and are not part of canonical runtime state.
+Expected blockers before explicit deployment authorization:
+
+- activation mode not configured in the runtime environment;
+- production snapshot HMAC key absent;
+- production HMAC key ID absent;
+- tunnel client absent;
+- Line 1 tunnel ID absent;
+- Line 2 tunnel ID absent;
+- distinct-tunnel proof unavailable.
+
+This is a correct fail-closed result, not a test failure.
 
 ## Verification evidence
 
@@ -193,166 +188,111 @@ The temporary test directory and key are pytest-scoped and are not part of canon
 python bin/die_company_brain_check.py
 PASS — identity_count=5, runtime_identity_count=4
 
-python -m py_compile bridge/income_os_bridge/executive_mcp_server.py bin/die_executive_mcp.py
+python -m py_compile <activation-readiness Python paths>
 PASS
 
 python -m pytest bridge/tests -q
-62 passed
+68 passed
+
+python bin/die_executive_activation_check.py
+code_ready=true
+activation_ready=false
+exit=2 (expected until deployment prerequisites exist)
 
 git diff --check
 PASS
 
-live state/DECISIONS.jsonl mutation
+live DECISIONS mutation
 NONE
 
-production HMAC key present
-FALSE
+production credential provisioning
+NONE
+
+MCP deployment/registration
+NONE
 ```
 
 Coverage includes:
 
-- exactly one business mutation tool;
-- no caller-controlled principal or scope;
-- P5/P6 composition and fixed authority;
-- unknown-field and identity-spoof rejection;
-- raw-host-path rejection;
-- unsigned snapshot rejection before writer invocation;
-- unknown-tool rejection;
-- mutation rate limiting;
-- malformed JSON-RPC params rejection;
-- append-only commit and replay;
-- isolated real stdio MCP round-trip;
-- event-ledger non-mutation.
+- Line 1 read-only annotations;
+- Line 2 write/idempotency annotations;
+- bounded server instructions;
+- malformed Line 1 JSON-RPC rejection;
+- code-ready result without credentials;
+- no secret or tunnel-ID value leakage;
+- readiness success with injected test-only prerequisites;
+- duplicate tunnel-ID rejection;
+- real Line 1 stdio initialize/tools-list round-trip;
+- all prior P0–P6 regression behavior.
 
-## Current build position
-
-### P0 — Codebase Recovery / Autopsy
-
-COMPLETE.
-
-### P1 — Company Brain + Constitution + Identity
-
-COMPLETE. PR #2 merged.
-
-### P2 — Architect Engineering Bridge
-
-FUNCTIONALLY COMPLETE; SECURITY HARDENING DEBT REMAINS.
-
-### P3 — ChatGPT Plus Line 1 + Line 2
-
-PARTIAL; EXECUTIVE LINE 2 v1 PUBLISHED IN DRAFT PR #5; AWAITING FOUNDER REVIEW/MERGE.
-
-Completed:
-
-- Executive identity;
-- bounded Line 1 `context_snapshot`;
-- P5 typed semantic request normalization;
-- P6 committed/rejected Decision Gateway;
-- dedicated Executive Line 2 stdio MCP;
-- one semantic `decision_submit` capability;
-- isolated commit/replay MCP proof.
-
-Still missing:
-
-- Founder review and merge of Draft PR #5;
-- production snapshot-signing key provisioning through a separate authorized deployment;
-- authenticated network adapter / remote MCP hosting;
-- ChatGPT app registration and confirmation flow;
-- wake/catch-up invocation transport;
-- Hermes committed-decision delivery and acknowledgment.
-
-### P4 — Division Decision Engine Line 1 + Line 2
-
-TEMPLATE FOUNDATION ONLY.
-
-`division-head-template` remains rejected until a registered division instance and scoped projection filter exist. Executive Line 2 identity pinning must not be reused for Division Heads.
-
-### P5 — DIE State Layer
-
-STATE CONTEXT v1 COMPLETE. PR #3 merged.
-
-### P6 — Decision Gateway
-
-COMPLETE. PR #4 merged.
-
-### P7 — Hermes -> Worker -> Proxima
-
-PARTIAL EXISTING IMPLEMENTATION.
-
-Default remains:
-
-```text
-Hermes -> Worker -> Proxima -> Production Engine
-```
-
-Hermes remains the one operational control plane. Proxima is not a Company Brain bridge and not a second orchestrator.
-
-### P8 — Dashboard
-
-BLOCKED BY DESIGN until one real division and one economic loop exist.
-
-### P9 — Genome / Bootstrap / Northstar / Factory
-
-READY FOR LATER CLASSIFICATION as ADOPT / ADAPT / MERGE / REJECT after the current decision/execution loop is operational.
-
-## Exact publication manifest for draft PR #5
+## Exact publication manifest for draft PR #6
 
 Modified:
 
 - `LASTSTANDINGPOINT.md`
+- `bridge/income_os_bridge/mcp_server.py`
+- `bridge/income_os_bridge/executive_mcp_server.py`
 
 New:
 
-- `bin/die_executive_mcp.py`
-- `bridge/income_os_bridge/executive_mcp_server.py`
-- `bridge/tests/test_executive_line2_mcp_v1.py`
-- `docs/architecture/EXECUTIVE_LINE2_MCP_V1.md`
+- `bin/die_executive_line1_mcp.py`
+- `bin/die_executive_activation_check.py`
+- `bridge/income_os_bridge/activation_readiness.py`
+- `bridge/tests/test_executive_activation_readiness_v1.py`
+- `docs/architecture/EXECUTIVE_MCP_ACTIVATION_READINESS_V1.md`
 
 Explicit exclusions:
 
 - `state/EVENTS.jsonl`;
 - `state/DECISIONS.jsonl`;
-- all runtime keys and credentials;
-- temporary files and temporary test state;
+- every file under `state/projection/`;
+- every file under `state/organism-test/`;
+- runtime secrets and credential values;
+- temporary files and test state;
 - `__pycache__`, `.pytest_cache`, and all cache artifacts;
-- production HMAC provisioning;
-- remote deployment/app registration;
+- tunnel installation/configuration;
+- HMAC generation/provisioning;
+- process/service start;
+- firewall, DNS, Cloudflare, or TLS changes;
+- ChatGPT registration;
 - Hermes integration;
 - MCP Proxima changes.
 
-The exact five-path manifest was committed and pushed in package commit `5284fe4a4ac5a87350e6b306cb14b3c8a34f52ac`. `state/EVENTS.jsonl` remains a live, unstaged local modification and is not part of the PR.
+The exact eight-path manifest was committed and pushed in package commit `5ff8f4ce1748782a181adb5988bd8b529599fc7a`. Runtime-owned `state/` artifacts remain unstaged and excluded.
 
 ## Publication state
 
-Draft PR #5:
+Draft PR #6:
 
-https://github.com/kopikonkf/income-os/pull/5
+https://github.com/kopikonkf/income-os/pull/6
 
 - state: OPEN;
 - draft: TRUE;
 - mergeable: MERGEABLE;
 - merge state: CLEAN;
-- base: `main` at `d5d958f817b8c3bc47a284ccb355d61375389822`;
-- head branch: `architect/executive-line2-mcp-v1`;
-- package commit: `5284fe4a4ac5a87350e6b306cb14b3c8a34f52ac`;
-- changed files: 5;
-- external status checks reported by GitHub: NONE;
-- local bridge regression: 62 passed;
-- production HMAC key: ABSENT / NOT PROVISIONED;
-- MCP deployment or registration: NOT PERFORMED;
-- `state/EVENTS.jsonl`: EXCLUDED and preserved as a live unstaged modification;
-- `state/DECISIONS.jsonl`: EXCLUDED and unmodified;
-- runtime secrets, temporary files, and caches: EXCLUDED.
+- base: `main`;
+- head: `architect/executive-mcp-activation-readiness-v1`;
+- package commit: `5ff8f4ce1748782a181adb5988bd8b529599fc7a`;
+- changed files: 8 exact manifest paths;
+- external check count at creation: 0;
+- bridge regression: 68 passed;
+- activation readiness: `code_ready=true`, `activation_ready=false` (expected fail-closed);
+- production HMAC key/key ID: ABSENT;
+- tunnel installation/configuration: NOT PERFORMED;
+- service start/deployment/exposure/registration: NOT PERFORMED;
+- all state/projection/organism runtime artifacts: EXCLUDED.
 
-Remaining action for this package: Founder review and merge only. No automatic merge is authorized.
+PR #6 is for Founder review and manual merge only. It must not be merged automatically.
 
-After PR #5 merge, keep deployment actions separate:
+After PR #6 merge, any activation work requires a new explicit deployment-and-credential authorization defining:
 
-1. provision/rotate the production snapshot HMAC key under explicit Founder authorization;
-2. build or configure the authenticated network-facing MCP adapter and TLS boundary;
-3. register Line 1/Line 2 with the ChatGPT Plus Executive lane and verify confirmation behavior;
-4. add Hermes committed-decision acceptance/acknowledgment without creating a second orchestrator;
-5. only then add wake/catch-up invocation transport.
+1. permission to install/configure the Secure MCP Tunnel client;
+2. permission to create/use two distinct tunnel IDs;
+3. permission to generate and provision the production HMAC key and rotation ID without disclosing values;
+4. permission to start the two dedicated MCP processes/tunnels;
+5. whether ChatGPT registration will be performed by the Founder in UI or delegated through an available authorized control surface.
+
+The first real canonical decision remains a separate authorization after activation verification.
 
 ## Operating doctrine
 
@@ -361,9 +301,10 @@ Build > Run > Verify > Refactor > Extend
 Do not restart the repo.
 Do not build the dashboard yet.
 Do not activate Division runtime yet.
-Do not merge Line 2 mutation into the read-only observation MCP.
-Do not expose raw paths, credentials, or DEV capability to runtime cognition.
-Do not stage or discard `state/EVENTS.jsonl`.
+Do not merge Line 2 mutation into Line 1.
+Do not reuse Architect DEV trust for runtime cognition.
+Do not expose raw paths, credentials, or DEV capability.
+Do not stage, discard, or rewrite live state/projection/organism artifacts.
 Do not write synthetic decisions to live canonical state.
 Ship executable artifacts, not architecture theater.
 First real money remains the organism fitness signal.
