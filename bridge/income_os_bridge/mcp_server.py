@@ -1,6 +1,14 @@
 ﻿import json, re, sys, time
 from collections import deque
 from . import authority, config, projection, snapshot, access_log
+SERVER_NAME = "income-os-bridge"
+SERVER_VERSION = "0.4.0"
+SERVER_INSTRUCTIONS = (
+    "Use context_snapshot before Executive reasoning. This server is read-only: "
+    "it provides bounded semantic state and evidence, never raw filesystem, "
+    "credentials, or mutation. Use the separate Executive Line 2 server only "
+    "for a confirmed decision_submit write."
+)
 TOOLS = {
     "context_snapshot": [("principal_id", "str", True, r"^[a-z0-9][a-z0-9-]{1,63}$", None, None, None, None),
                          ("scope", "str", False, r"^[a-z0-9][a-z0-9_:-]{1,63}$", None, None, None, None),
@@ -117,22 +125,41 @@ def call_tool(name, args):
     access_log.log(name, args, len(body), res.get("completeness", "complete"), res.get("source_trust", "ASSUMED"))
     return {"content": [{"type": "text", "text": json.dumps(res, ensure_ascii=False)}]}
 def _handle(msg):
+    if not isinstance(msg, dict):
+        return {
+            "jsonrpc": "2.0",
+            "id": None,
+            "error": {"code": -32600, "message": "invalid request"},
+        }
     method = msg.get("method")
     ident = msg.get("id")
-    params = msg.get("params") or {}
+    raw_params = msg.get("params")
+    if raw_params is not None and not isinstance(raw_params, dict):
+        return {
+            "jsonrpc": "2.0",
+            "id": ident,
+            "error": {"code": -32602, "message": "invalid params"},
+        }
+    params = raw_params or {}
+    if method == "notifications/initialized":
+        return None
     if method == "initialize":
         return {"jsonrpc": "2.0", "id": ident, "result": {
-            "protocolVersion": "2024-11-05", "capabilities": {"tools": {}},
-            "serverInfo": {"name": "income-os-bridge", "version": "0.3.0"}}}
+            "protocolVersion": "2024-11-05",
+            "capabilities": {"tools": {"listChanged": False}},
+            "serverInfo": {"name": SERVER_NAME, "version": SERVER_VERSION},
+            "instructions": SERVER_INSTRUCTIONS,
+        }}
     if method == "tools/list":
         return {"jsonrpc": "2.0", "id": ident, "result": {
-            "tools": [{"name": n, "description": "Read-only surface " + n,
-                       "inputSchema": _schema(n)} for n in sorted(TOOLS)]}}
+            "tools": [_tool_definition(n) for n in sorted(TOOLS)],
+        }}
     if method == "tools/call":
-        name = (params or {}).get("name")
-        args = ((params or {}).get("arguments") or {})
+        name = params.get("name")
+        args = params.get("arguments") or {}
         return {"jsonrpc": "2.0", "id": ident, "result": call_tool(name, args)}
     return {"jsonrpc": "2.0", "id": ident, "error": {"code": -32601, "message": "method tidak dikenal"}}
+
 def _schema(name):
     props, required = {}, []
     for (field, typ, req, pattern, enum, mn, mx, default) in TOOLS[name]:
@@ -155,7 +182,27 @@ def _schema(name):
         if req:
             required.append(field)
     return {"type": "object", "properties": props, "required": required, "additionalProperties": False}
+def _tool_definition(name):
+    description = (
+        "Use this before Executive reasoning to obtain a bounded, fresh semantic "
+        "snapshot with typed evidence."
+        if name == "context_snapshot"
+        else f"Use this to read the bounded DIE semantic surface {name}."
+    )
+    return {
+        "name": name,
+        "description": description,
+        "inputSchema": _schema(name),
+        "annotations": {
+            "title": "Read " + name.replace("_", " ").title(),
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "idempotentHint": True,
+            "openWorldHint": False,
+        },
+    }
 def serve():
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     for line in sys.stdin:
         line = line.strip()
         if not line:
@@ -166,7 +213,8 @@ def serve():
             continue
         resp = _handle(msg)
         if resp is not None:
-            sys.stdout.write(json.dumps(resp) + "\n")
+            sys.stdout.write(json.dumps(resp, ensure_ascii=False) + "\n")
             sys.stdout.flush()
+    return 0
 if __name__ == "__main__":
-    serve()
+    raise SystemExit(serve())

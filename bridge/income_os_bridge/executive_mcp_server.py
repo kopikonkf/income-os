@@ -13,7 +13,13 @@ from typing import Any, Callable
 from . import authority, decision_gateway, snapshot, state_request
 
 SERVER_NAME = "die-executive-line2"
-SERVER_VERSION = "1.0.0"
+SERVER_VERSION = "1.1.0"
+SERVER_INSTRUCTIONS = (
+    "Call decision_submit only after obtaining a fresh Line 1 context_snapshot "
+    "and explicit user confirmation. This is an append-only canonical write. "
+    "Never fabricate evidence, identity, scope, or snapshot data; rejected "
+    "receipts are final unless a new valid request is prepared."
+)
 TOOL_NAME = "decision_submit"
 PRINCIPAL_ID = "chatgpt-plus-executive"
 SCOPE = "company_portfolio"
@@ -337,6 +343,7 @@ def handle(
                     "name": SERVER_NAME,
                     "version": SERVER_VERSION,
                 },
+                "instructions": SERVER_INSTRUCTIONS,
             },
         }
     if method == "tools/list":
