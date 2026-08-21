@@ -13,6 +13,8 @@ def build(surface, data, sources, notes=None, completeness="complete", source_tr
         "as_of": now_iso(),
         "completeness": completeness,
         "source_trust": source_trust,
+        "operational_control_plane": config.OPERATIONAL_CONTROL_PLANE,
+        "canonical_writer": config.CANONICAL_WRITER,
         "sources": sources,
         "notes": notes or [],
         "data": data,

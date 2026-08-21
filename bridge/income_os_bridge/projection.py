@@ -138,7 +138,10 @@ def session_get(session_id, max_turns=config.MAX_TURNS):
                           notes=[f"maks {max_turns} turn; isi file/kredensial tidak dialirkan"])
 def briefing_get(latest=True):
     p = config.BRIEFING
-    return {"as_of": envelope.now_iso(), "markdown": redact.redact(p.read_text(encoding="utf-8")) if latest and p.exists() else ""}
+    return {"as_of": envelope.now_iso(),
+            "operational_control_plane": config.OPERATIONAL_CONTROL_PLANE,
+            "canonical_writer": config.CANONICAL_WRITER,
+            "markdown": redact.redact(p.read_text(encoding="utf-8")) if latest and p.exists() else ""}
 
 
 def _decision_evidence_refs(limit=20):

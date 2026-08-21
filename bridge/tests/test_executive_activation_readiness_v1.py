@@ -154,7 +154,7 @@ def test_line1_stdio_bootstrap_initializes_and_lists_read_only_tools() -> None:
     assert completed.returncode == 0, completed.stderr
     responses = [json.loads(line) for line in completed.stdout.splitlines()]
     assert responses[0]["result"]["serverInfo"]["name"] == "income-os-bridge"
-    assert responses[0]["result"]["serverInfo"]["version"] == "0.4.0"
+    assert responses[0]["result"]["serverInfo"]["version"] == "0.5.0"
     assert all(
         tool["annotations"]["readOnlyHint"] is True
         for tool in responses[1]["result"]["tools"]

@@ -5,6 +5,9 @@ import os, pathlib
 DIE_HOME = pathlib.Path(os.environ.get("DIE_HOME", r"C:\DIE"))
 STATE = DIE_HOME / "state"
 IDENTITY_REGISTRY = DIE_HOME / "company" / "identity-registry.json"
+HERMES_PROFILE = "income-operator"
+OPERATIONAL_CONTROL_PLANE = f"hermes-operator/{HERMES_PROFILE}"
+CANONICAL_WRITER = "die-state-manager"
 EVENTS = STATE / "EVENTS.jsonl"
 PROJ = STATE / "projection"
 PROJ_EVENTS = PROJ / "EVENTS.jsonl"
@@ -57,7 +60,7 @@ HERMES_HOME = pathlib.Path(r"C:\Users\aethers\AppData\Local\hermes")
 HERMES_BIN = HERMES_HOME / "hermes-agent" / "venv" / "Scripts" / "hermes.exe"
 KANBAN_DB = HERMES_HOME / "kanban.db"
 STATE_DB_DEFAULT = HERMES_HOME / "state.db"
-STATE_DB_PROFILE = HERMES_HOME / "profiles" / "income-operator" / "state.db"
+STATE_DB_PROFILE = HERMES_HOME / "profiles" / HERMES_PROFILE / "state.db"
 CONFIG_YAML = HERMES_HOME / "config.yaml"
 CAPABILITIES_FILE = STATE / "CAPABILITIES.jsonl"
 
