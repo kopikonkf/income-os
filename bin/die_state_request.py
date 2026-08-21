@@ -14,6 +14,15 @@ sys.path.insert(0, str(BRIDGE))
 from income_os_bridge import state_request  # noqa: E402
 
 
+def _load_payload(input_path: str | None) -> object:
+    raw = (
+        pathlib.Path(input_path).read_text(encoding="utf-8-sig")
+        if input_path
+        else sys.stdin.read().lstrip("\ufeff")
+    )
+    return json.loads(raw)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(prog="die_state_request")
     parser.add_argument(
@@ -23,12 +32,7 @@ def main() -> int:
     args = parser.parse_args()
 
     try:
-        raw = (
-            pathlib.Path(args.input).read_text(encoding="utf-8")
-            if args.input
-            else sys.stdin.read()
-        )
-        request = json.loads(raw)
+        request = _load_payload(args.input)
         result = state_request.validate_and_normalize(request)
     except json.JSONDecodeError as exc:
         print(

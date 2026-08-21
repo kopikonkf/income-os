@@ -175,13 +175,9 @@ def validate_and_normalize(
                 "capability": granted["capability"],
                 "source": granted["authority_source"],
             },
-            "source_snapshot": {
-                "snapshot_id": source_snapshot["snapshot_id"],
-                "snapshot_version": source_snapshot["snapshot_version"],
-                "events_next_seq": source_snapshot.get("source_cursor", {}).get(
-                    "events_next_seq"
-                ),
-            },
+            "source_snapshot": json.loads(
+                json.dumps(source_snapshot, ensure_ascii=False)
+            ),
             "object_type": expected_object_type,
             "object": request["object"],
             "evidence_refs": evidence_refs,

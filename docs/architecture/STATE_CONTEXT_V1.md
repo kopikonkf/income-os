@@ -17,6 +17,8 @@ Extend the existing read-only bridge with the smallest provider-neutral P5 slice
 
 The slice does not create a database, queue, daemon, second writer, or Decision Gateway runtime.
 
+P6 extends the snapshot envelope with an optional server HMAC trust proof. Read-only observation remains available without a key; mutation consumers must require a valid proof.
+
 ## 2. Preserved boundaries
 
 - `bin/die_event.py` remains the only physical writer for EVENTS/DECISIONS/ECONOMICS.
@@ -60,7 +62,7 @@ Unregistered principals fail closed. Identity templates cannot act before a gove
 }
 ```
 
-The command never appends to canonical state. A future Decision Gateway/State Manager adapter may consume only normalized requests.
+The command never appends to canonical state. Its normalized output preserves the complete bounded snapshot so a downstream Gateway can recompute the deterministic snapshot ID, enforce freshness, and verify principal/scope without raw storage access.
 
 Initial supported action:
 
@@ -88,6 +90,9 @@ Validation requires:
 | `E_SCOPE_DENIED` | Requested scope exceeds registered scope |
 | `E_DEV_PRIVILEGE_DENIED` | Runtime/semantic path attempted to acquire DEV privilege |
 | `E_STALE_SNAPSHOT` | Snapshot expired |
+| `E_SNAPSHOT_INTEGRITY` | Snapshot content does not match its deterministic ID |
+| `E_SNAPSHOT_UNTRUSTED` | Mutation snapshot is unsigned or fails server HMAC verification |
+| `E_SNAPSHOT_SIGNING_KEY` | Configured runtime signing key is below the minimum strength |
 | `E_SNAPSHOT_PRINCIPAL_MISMATCH` | Request and snapshot principals differ |
 | `E_SNAPSHOT_SCOPE_MISMATCH` | Request and snapshot scopes differ |
 | `E_EVIDENCE_INVALID` | Evidence reference is incomplete or untyped |
