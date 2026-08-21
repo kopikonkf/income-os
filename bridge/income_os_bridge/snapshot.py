@@ -4,12 +4,17 @@ from __future__ import annotations
 
 import datetime as dt
 import hashlib
+import hmac
 import json
+import os
 from typing import Any
 
 from . import config
 
 SCHEMA_VERSION = "die.context.snapshot.v1"
+SIGNING_KEY_ENV = "DIE_SNAPSHOT_HMAC_KEY"
+SIGNING_KEY_ID_ENV = "DIE_SNAPSHOT_HMAC_KEY_ID"
+SIGNATURE_ALGORITHM = "HMAC-SHA256"
 TRUST_ORDER = {"DEGRADED": 0, "ASSUMED": 1, "VERIFIED": 2}
 TRUST_VALUES = set(TRUST_ORDER)
 EVIDENCE_KEYS = {
@@ -126,6 +131,46 @@ def _worst_trust(surfaces: dict[str, dict[str, Any]]) -> str:
     return min(values, key=lambda value: TRUST_ORDER.get(value, -1))
 
 
+def _canonical_bytes(payload: dict[str, Any], *excluded: str) -> bytes:
+    canonical_payload = {
+        key: value for key, value in payload.items() if key not in set(excluded)
+    }
+    return json.dumps(
+        canonical_payload,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+
+
+def _expected_snapshot_id(payload: dict[str, Any]) -> str:
+    digest = hashlib.sha256(
+        _canonical_bytes(payload, "snapshot_id", "integrity")
+    ).hexdigest()[:16].upper()
+    return "SNAP-" + digest
+
+
+def _resolve_signing_key(signing_key: str | bytes | None = None) -> bytes | None:
+    value = signing_key if signing_key is not None else os.environ.get(SIGNING_KEY_ENV)
+    if value is None:
+        return None
+    encoded = value if isinstance(value, bytes) else value.encode("utf-8")
+    if len(encoded) < 32:
+        raise SnapshotError(
+            "E_SNAPSHOT_SIGNING_KEY",
+            "snapshot signing key must contain at least 32 bytes",
+        )
+    return encoded
+
+
+def _signature(payload: dict[str, Any], key: bytes) -> str:
+    return hmac.new(
+        key,
+        _canonical_bytes(payload, "integrity"),
+        hashlib.sha256,
+    ).hexdigest()
+
+
 def build(
     authority: dict[str, Any],
     surfaces: dict[str, dict[str, Any]],
@@ -215,24 +260,71 @@ def build(
             f"snapshot exceeds {config.MAX_RESP_BYTES} bytes after bounded trimming",
         )
 
-    canonical_payload = {
-        key: value for key, value in payload.items() if key != "snapshot_id"
-    }
-    canonical = json.dumps(
-        canonical_payload,
-        ensure_ascii=False,
-        sort_keys=True,
-        separators=(",", ":"),
-    )
-    payload["snapshot_id"] = (
-        "SNAP-" + hashlib.sha256(canonical.encode("utf-8")).hexdigest()[:16].upper()
-    )
+    payload["snapshot_id"] = _expected_snapshot_id(payload)
+    signing_key = _resolve_signing_key()
+    if signing_key is not None:
+        payload["integrity"] = {
+            "algorithm": SIGNATURE_ALGORITHM,
+            "key_id": os.environ.get(SIGNING_KEY_ID_ENV, "runtime-v1"),
+            "signature": _signature(payload, signing_key),
+        }
     if encoded_size() > config.MAX_RESP_BYTES:
         raise SnapshotError(
             "E_SNAPSHOT_TOO_LARGE",
             "snapshot identifier pushed payload above semantic response-size limit",
         )
     return payload
+
+
+def assert_integrity(snapshot: Any) -> dict[str, Any]:
+    if not isinstance(snapshot, dict):
+        raise SnapshotError("E_SNAPSHOT_INVALID", "source_snapshot must be an object")
+    supplied = snapshot.get("snapshot_id")
+    if not isinstance(supplied, str):
+        raise SnapshotError("E_SNAPSHOT_INVALID", "snapshot_id is required")
+    expected = _expected_snapshot_id(snapshot)
+    if not hmac.compare_digest(supplied, expected):
+        raise SnapshotError(
+            "E_SNAPSHOT_INTEGRITY",
+            "snapshot content does not match its deterministic identifier",
+        )
+    return snapshot
+
+
+def assert_trusted(
+    snapshot: Any,
+    *,
+    signing_key: str | bytes | None = None,
+    key_id: str | None = None,
+) -> dict[str, Any]:
+    assert_integrity(snapshot)
+    proof = snapshot.get("integrity")
+    if not isinstance(proof, dict) or set(proof) != {
+        "algorithm",
+        "key_id",
+        "signature",
+    }:
+        raise SnapshotError(
+            "E_SNAPSHOT_UNTRUSTED",
+            "mutation requires a server-signed snapshot",
+        )
+    if proof.get("algorithm") != SIGNATURE_ALGORITHM:
+        raise SnapshotError("E_SNAPSHOT_UNTRUSTED", "snapshot signature algorithm is invalid")
+
+    resolved_key = _resolve_signing_key(signing_key)
+    if resolved_key is None:
+        raise SnapshotError(
+            "E_SNAPSHOT_UNTRUSTED",
+            "snapshot verification key is unavailable",
+        )
+    expected_key_id = key_id or os.environ.get(SIGNING_KEY_ID_ENV, "runtime-v1")
+    if proof.get("key_id") != expected_key_id:
+        raise SnapshotError("E_SNAPSHOT_UNTRUSTED", "snapshot signing key id is invalid")
+    supplied = proof.get("signature")
+    expected = _signature(snapshot, resolved_key)
+    if not isinstance(supplied, str) or not hmac.compare_digest(supplied, expected):
+        raise SnapshotError("E_SNAPSHOT_UNTRUSTED", "snapshot signature is invalid")
+    return snapshot
 
 
 def assert_fresh(
@@ -246,8 +338,7 @@ def assert_fresh(
         raise SnapshotError("E_SNAPSHOT_INVALID", "unsupported snapshot schema")
     if snapshot.get("snapshot_version") != 1:
         raise SnapshotError("E_SNAPSHOT_INVALID", "unsupported snapshot version")
-    if not isinstance(snapshot.get("snapshot_id"), str):
-        raise SnapshotError("E_SNAPSHOT_INVALID", "snapshot_id is required")
+    assert_integrity(snapshot)
 
     freshness = snapshot.get("freshness")
     if not isinstance(freshness, dict):
