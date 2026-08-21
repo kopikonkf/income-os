@@ -3,18 +3,19 @@
 Date: 2026-08-21
 Project: Digital Income Empire — Company Holdings
 Mode: Chief Executive Architect
-Workflow stage: P3 — EXECUTIVE MCP ACTIVATION v1 / PHASE B2B1 DRAFT PR #11 OPEN / FOUNDER REVIEW PENDING
+Workflow stage: P3 — CUSTOM MCP P0/P1 CANONICAL / EXECUTIVE MCP P2 OPTIONAL DEFERRED POST-PECAH-TELOR
 Canonical runtime: C:\DIE
 Canonical repository: https://github.com/kopikonkf/income-os
-Working branch: architect/executive-mcp-secret-provisioning-v1
+Working branch: architect/custom-mcp-decision-fabric-v1
 Base branch: main
-Base/merge commit: b88b2f17415301f43819cd675bbe1397d75c18da
+Base/merge commit: 5f622d70faa1fa19265fe1d33ff567ac4215f885
 Phase A implementation commit: ae2a42aee309b9eee05dbf4376ef86806c967c4d
 Phase B1 implementation commit: 2e46e43e99a6aff9c4390c3f70e1e5471d9b28b0
 Phase B2A initial implementation commit: ba05dcf8f3e54092f8f92c8de488f3e0702bfce6
-Merged PRs: https://github.com/kopikonkf/income-os/pull/8, https://github.com/kopikonkf/income-os/pull/9, and https://github.com/kopikonkf/income-os/pull/10
-Draft PR: https://github.com/kopikonkf/income-os/pull/11
-Publication status: DRAFT PR #11 OPEN; NOT MERGED
+Phase B2B1 implementation commit: ff6f850eb0c35a15fb62f727c69ac45cf05767d5
+Merged PRs: https://github.com/kopikonkf/income-os/pull/8, https://github.com/kopikonkf/income-os/pull/9, https://github.com/kopikonkf/income-os/pull/10, and https://github.com/kopikonkf/income-os/pull/11
+Draft PR: https://github.com/kopikonkf/income-os/pull/12
+Publication status: DRAFT PR #12 OPEN; FOUNDER REVIEW PENDING; B2B2/B2C REMAIN DEFERRED
 
 ## Verified merge baseline
 
@@ -74,11 +75,11 @@ an architecture PR without a separate state-governance decision.
 | P0 — Autopsy/Salvage | COMPLETE | KEEP/MODIFY/RETIRE and salvage boundary complete. |
 | P1 — Company Brain | COMPLETE | Constitution, identities, registry, agency contract, and validator merged in PR #2. |
 | P2 — Architect MCP | FUNCTIONALLY COMPLETE | Live C:\DIE inspection/write/test/Git cycle works; security-hardening debt remains. |
-| P3 — Plus Line 1/2 | CODE + GATE COMPLETE; PHASE A/B1/B2A MERGED; B2B1 TOOLING VERIFIED LOCALLY; ACTIVATION STILL BLOCKED | Executive Line 1/2, Activation Gate v1.1, tunnel-client bootstrap, secure-config tooling, and empty protected runtime skeleton are merged. No-echo secret-provisioning tooling is locally verified; no real secret/profile/tunnel/process/registration exists. |
+| P3 — Plus Line 1/2 | CUSTOM MCP P0/P1 CANONICAL; P2 TUNNEL DEFERRED | `income_os_bridge` is the canonical local CLI/stdio Decision Fabric. Executive tunnel-client is optional P2, gated until after PECAH TELOR and separate Founder authorization. |
 | P4 — Division Line 1/2 | TEMPLATE FOUNDATION ONLY | Keep inactive until one real division and scoped projection exist. |
 | P5 — State Layer | COMPLETE v1 | Signed bounded snapshots, typed evidence, replay-safe commit, and State Manager boundary merged in PR #3. |
 | P6 — Decision Gateway | COMPLETE v1 | Stateless validation/router and Hermes-ready route merged in PR #4. |
-| P7 — Hermes/Worker/Proxima | PARTIAL EXISTING | Hermes integration waits until Executive MCP activation is verified. Proxima remains Worker ↔ Web Chat AI only. |
+| P7 — Hermes/Worker/Proxima | PARTIAL EXISTING | Hermes income-operator is the operational control plane; P0/P1 mission proof is next. Proxima remains Worker ↔ Web Chat AI only. |
 | P8 — Dashboard | BLOCKED BY DESIGN | Start only after one real division and one economic loop are alive. |
 | P9 — Genome/Bootstrap/etc. | DEFERRED | Classify after the current decision/execution loop is operational. |
 
@@ -676,26 +677,203 @@ Explicit exclusions:
 - every real secret, credential, HMAC value, key ID, and tunnel identity;
 - profile, configuration, log, PID, temporary, and cache artifacts.
 
-## Phase B2B1 publication standing
+## PR #11 post-merge verification
 
-Founder authorized publication of the exact five-file B2B1 manifest only.
+PR #11 is merged and closed:
 
-- branch: architect/executive-mcp-secret-provisioning-v1;
-- base: main at b88b2f17415301f43819cd675bbe1397d75c18da;
-- draft PR: https://github.com/kopikonkf/income-os/pull/11;
-- runtime-owned state, projection, and organism-test paths: excluded;
-- complete C:\ProgramData runtime installation and every real secret: excluded;
-- Provision and Installed modes: not invoked;
-- Phase B2B2 and Phase B2C: not started.
+https://github.com/kopikonkf/income-os/pull/11
+
+- merged at: 2026-08-21T13:46:07Z;
+- feature head: ff6f850eb0c35a15fb62f727c69ac45cf05767d5;
+- merge commit: 5f622d70faa1fa19265fe1d33ff567ac4215f885;
+- merged diff: exactly the five authorized B2B1 paths;
+- C:\DIE\main and origin/main are synchronized at the merge commit;
+- live runtime diff fingerprint and organism ground-truth hash were identical
+  before and after fast-forward;
+- staged paths: zero.
+
+Post-merge verification executed only Plan and repository tests:
+
+~~~text
+Provisioner schema: die.executive.mcp.secret-provisioning.v1
+Provisioner mode: Plan
+Validator schema: die.executive.mcp.secret-provisioning.preflight.v1
+Validator mode: Plan
+ProgramData accessed: false
+Prompts displayed: false
+Writes performed: false
+Secret values read: false
+Tunnel identities requested or read: false
+B2B1 targeted tests: 9 passed
+Full bridge regression: 102 passed
+git diff --check: PASS
+~~~
+
+Negative proof:
+
+- Provision mode was not invoked;
+- B2B1 Installed mode was not invoked;
+- no ProgramData path or secret metadata was inspected;
+- no real API key, HMAC material, key ID, or tunnel identity was requested,
+  read, generated, provisioned, validated, printed, hashed, or stored;
+- no tunnel profile, doctor, run, MCP process, Windows service, scheduled task,
+  OpenAI tunnel mutation, deployment, exposure, or registration occurred;
+- all live state/projection/organism-test paths remain preserved and excluded.
+
+## Founder decision — Executive tunnel deferred
+
+Founder exercised sovereign authority under CONSTITUTION.md sections 1.3, 1.4,
+and 3.1:
+
+- Executive MCP tunnel activation B2B2/B2C is deferred indefinitely;
+- no OpenAI billing top-up or control-plane key will be created for foundation
+  connectivity;
+- no control-plane API key, HMAC material, key ID, tunnel identity, profile
+  initialization, doctor, or tunnel run may be requested, stored, or validated
+  until separately re-authorized after PECAH TELOR;
+- the B2A ACL-protected C:\ProgramData\DIE\ExecutiveMCP skeleton remains intact
+  and empty;
+- tunnel-client is classified as optional Transport P2, not a foundation
+  dependency.
+
+Founder/OpenCode reported that B2B2 Provision was invoked once and cancelled with
+Ctrl+C at the first no-echo prompt. No input was submitted, no secret file was
+created, no file was written, and the transaction rolled back. Architect accepts
+this as operator evidence and will not inspect secret paths.
+
+## Canonical Decision Fabric boundary
+
+- P0: local projections and read-only CLI surfaces, including recent_events,
+  system_health, and state/projection/BRIEFING.md;
+- P1: local stdio MCP and hermes_state_reader, using the income-operator profile
+  state database read-only;
+- operational control plane: hermes-operator/income-operator;
+- canonical physical writer: die-state-manager;
+- P2: optional loopback/network transport only after PECAH TELOR and explicit
+  Founder authorization.
+
+P0/P1 must evolve as the DIE Decision Fabric. P2 may not replace it and may not
+become a billing dependency for foundation operation.
+
+## Custom MCP Decision Fabric v1 implementation
+
+Implemented locally on architect/custom-mcp-decision-fabric-v1:
+
+- bridge/income_os_bridge/config.py
+- bridge/income_os_bridge/envelope.py
+- bridge/income_os_bridge/mcp_server.py
+- bridge/income_os_bridge/projection.py
+- bridge/tests/test_decision_fabric_p0_p1_v1.py
+- bridge/tests/test_executive_activation_readiness_v1.py
+- LASTSTANDINGPOINT.md
+
+Authority contract now declared on semantic P0/P1 responses:
+
+~~~text
+operational_control_plane: hermes-operator/income-operator
+canonical_writer: die-state-manager
+~~~
+
+The stdio server remains named income-os-bridge, version 0.5.0, and is explicitly
+the canonical local Decision Fabric P0/P1. P2 network transport is optional and
+Founder-gated.
+
+## SOUL and AGENTS synchronization standing
+
+Founder/OpenCode completed the trusted local synchronization that ChatGPT
+Architect correctly refused because the Hermes profile is outside configured
+write roots.
+
+SOUL:
+
+~~~text
+source: C:\DIE\IDENTITY\hermes-operator\SOUL.md
+target: C:\Users\aethers\AppData\Local\hermes\profiles\income-operator\SOUL.md
+SHA-256: 7015C2C28F0C4D7AC94E5CF667899D34489349FA5A5661B9524AAEF0E5592BA7
+result: source/target identical
+~~~
+
+AGENTS:
+
+~~~text
+source: C:\DIE\AGENTS.md
+target: C:\Users\aethers\AppData\Local\hermes\profiles\income-operator\AGENTS.md
+SHA-256 prefix: 14AE57417A5725B88049A4C8CA1ABB433F303A85EA6
+result: source/target identical
+~~~
+
+Post-sync `hermes doctor`: PASS. No restart was required. The identity sync gap
+is closed; Architect did not bypass its deny-by-default root boundary.
+
+## P0 Organism baseline result
+
+Executed through local P0 surfaces only:
+
+~~~text
+system_health: completeness=complete, source_trust=VERIFIED
+gateway_running=true
+operational_control_plane=hermes-operator/income-operator
+canonical_writer=die-state-manager
+recent_events: source_trust=VERIFIED, bounded/truncated as designed
+briefing_get: authority contract present
+ground truth Kanban: no matching tasks
+BRIEFING Kanban claim: empty
+truth-versus-projection drift for Kanban claim: 0
+event last seq: 342
+BRIEFING last seq: 307
+scheduled catch-up backlog: 35
+Decision Fabric targeted tests: 7 passed
+Full bridge regression: 109 passed
+Conformance: PASS, 109 passed / 0 failed
+git diff --check: PASS
+~~~
+
+Runtime conformance evidence:
+
+~~~text
+state/organism-test/conformance-p0-decision-fabric-20260821.json
+~~~
+
+This file is runtime evidence and must remain unstaged.
+
+The P0 foundation baseline passes. The full Organism Test business gate does not
+yet pass because there is no active mission, proposal decision, artifact shipment,
+buyer contact, or verified revenue. Architecture conformance is not PECAH TELOR.
+
+## Two-actor / two-line contract review
+
+The 2026-08-21 v2.1 design documents on D: were reviewed in full. Canonical
+functional names are used to avoid the earlier Line 1/Line 2 numbering conflict:
+
+- Wake Line: bounded actor wake-up only; it is not an MCP control plane;
+- Decision Fabric Line: scoped semantic observation and proposal through P0/P1;
+- Executive scope: company-wide observe/analyze/propose;
+- Division scope: one reusable division template first, scoped
+  observe/propose only;
+- Hermes income-operator: single operational control plane;
+- DIE State Manager: sole canonical physical writer.
+
+BrowserOS Executive wake and unofficial Division OAuth PKCE remain design-only
+actuators. They are not part of PR #12 and require separate security contracts
+and Founder authorization. Runtime Decision Fabric must never expose generic raw
+filesystem tools. The proposed living_server/living_machine implementation may
+only be adapted selectively; it may not create a second control plane or bypass
+Decision Gateway and State Manager.
 
 ## Next controlled action
 
-Founder reviews and merges draft PR #11. After merge, synchronize C:\DIE\main,
-rerun Plan and repository tests, and preserve all live runtime-owned paths.
+1. Founder reviews and merges draft PR #12; no runtime state artifact is part of
+   the PR.
+2. After merge, synchronize C:\DIE\main and rerun the Decision Fabric targeted
+   tests plus full bridge regression.
+3. Select and commit M-001, one zero-cost revenue mission, then run Organism Test
+   Day 1 through P0/P1 against real Kanban, evidence, artifact, and market
+   signals.
+4. Keep P2 tunnel-client and both wake actuators dormant until their explicit
+   gates.
 
-Do not run Provision or Installed and do not begin Founder-operated secret
-provisioning without a separate exact Phase B2B2 execution authorization.
-B2C, B2D, and B2E remain prohibited until separately authorized.
+No secret, paid control plane, dashboard, new worker, or additional transport is
+required for these actions.
 
 ## Operating doctrine
 

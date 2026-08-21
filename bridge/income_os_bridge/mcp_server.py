@@ -2,12 +2,14 @@
 from collections import deque
 from . import authority, config, projection, snapshot, access_log
 SERVER_NAME = "income-os-bridge"
-SERVER_VERSION = "0.4.0"
+SERVER_VERSION = "0.5.0"
 SERVER_INSTRUCTIONS = (
-    "Use context_snapshot before Executive reasoning. This server is read-only: "
-    "it provides bounded semantic state and evidence, never raw filesystem, "
-    "credentials, or mutation. Use the separate Executive Line 2 server only "
-    "for a confirmed decision_submit write."
+    "Canonical DIE Decision Fabric P0/P1. Operational control plane: "
+    f"{config.OPERATIONAL_CONTROL_PLANE}; canonical writer: "
+    f"{config.CANONICAL_WRITER}. Use context_snapshot before Executive "
+    "reasoning. This local CLI/stdio server is read-only: it provides bounded "
+    "semantic state and evidence, never raw filesystem, credentials, or mutation. "
+    "P2 network transport remains optional and separately Founder-gated."
 )
 TOOLS = {
     "context_snapshot": [("principal_id", "str", True, r"^[a-z0-9][a-z0-9-]{1,63}$", None, None, None, None),
