@@ -3,18 +3,18 @@
 Date: 2026-08-21
 Project: Digital Income Empire — Company Holdings
 Mode: Chief Executive Architect
-Workflow stage: P3 — EXECUTIVE MCP ACTIVATION v1 / PHASE B2A DRAFT PR #10 OPEN / FOUNDER REVIEW PENDING
+Workflow stage: P3 — EXECUTIVE MCP ACTIVATION v1 / PHASE B2B1 DRAFT PR #11 OPEN / FOUNDER REVIEW PENDING
 Canonical runtime: C:\DIE
 Canonical repository: https://github.com/kopikonkf/income-os
-Working branch: architect/executive-mcp-secure-runtime-v1
+Working branch: architect/executive-mcp-secret-provisioning-v1
 Base branch: main
-Base/merge commit: 36ffd8fe5fce05c4c51e7b712c69d0f883d76746
+Base/merge commit: b88b2f17415301f43819cd675bbe1397d75c18da
 Phase A implementation commit: ae2a42aee309b9eee05dbf4376ef86806c967c4d
 Phase B1 implementation commit: 2e46e43e99a6aff9c4390c3f70e1e5471d9b28b0
 Phase B2A initial implementation commit: ba05dcf8f3e54092f8f92c8de488f3e0702bfce6
-Merged PRs: https://github.com/kopikonkf/income-os/pull/8 and https://github.com/kopikonkf/income-os/pull/9
-Draft PR: https://github.com/kopikonkf/income-os/pull/10
-Publication status: DRAFT PR #10 OPEN; NOT MERGED
+Merged PRs: https://github.com/kopikonkf/income-os/pull/8, https://github.com/kopikonkf/income-os/pull/9, and https://github.com/kopikonkf/income-os/pull/10
+Draft PR: https://github.com/kopikonkf/income-os/pull/11
+Publication status: DRAFT PR #11 OPEN; NOT MERGED
 
 ## Verified merge baseline
 
@@ -74,7 +74,7 @@ an architecture PR without a separate state-governance decision.
 | P0 — Autopsy/Salvage | COMPLETE | KEEP/MODIFY/RETIRE and salvage boundary complete. |
 | P1 — Company Brain | COMPLETE | Constitution, identities, registry, agency contract, and validator merged in PR #2. |
 | P2 — Architect MCP | FUNCTIONALLY COMPLETE | Live C:\DIE inspection/write/test/Git cycle works; security-hardening debt remains. |
-| P3 — Plus Line 1/2 | CODE + GATE COMPLETE; PHASE A + B1 MERGED; PHASE B2A COMPLETE LOCALLY; ACTIVATION STILL BLOCKED | Executive Line 1/2, Activation Gate v1.1, Phase A bootstrap, and Phase B1 secure-config tooling are merged. The empty two-lane runtime skeleton is applied and verified locally; no secret/profile/tunnel/process/registration exists. |
+| P3 — Plus Line 1/2 | CODE + GATE COMPLETE; PHASE A/B1/B2A MERGED; B2B1 TOOLING VERIFIED LOCALLY; ACTIVATION STILL BLOCKED | Executive Line 1/2, Activation Gate v1.1, tunnel-client bootstrap, secure-config tooling, and empty protected runtime skeleton are merged. No-echo secret-provisioning tooling is locally verified; no real secret/profile/tunnel/process/registration exists. |
 | P4 — Division Line 1/2 | TEMPLATE FOUNDATION ONLY | Keep inactive until one real division and scoped projection exist. |
 | P5 — State Layer | COMPLETE v1 | Signed bounded snapshots, typed evidence, replay-safe commit, and State Manager boundary merged in PR #3. |
 | P6 — Decision Gateway | COMPLETE v1 | Stateless validation/router and Hermes-ready route merged in PR #4. |
@@ -556,27 +556,146 @@ Explicit publication exclusions:
 - secrets, credentials, secret files, profile files, tunnel IDs
 - temporary files and cache artifacts
 
-## Phase B2A publication standing
+## PR #10 post-merge verification
 
-Founder authorized publication of the exact five-file B2A manifest only.
+PR #10 is merged and closed:
 
-- branch: architect/executive-mcp-secure-runtime-v1;
-- base: main at 36ffd8fe5fce05c4c51e7b712c69d0f883d76746;
-- draft PR: https://github.com/kopikonkf/income-os/pull/10;
+https://github.com/kopikonkf/income-os/pull/10
+
+- merged at: 2026-08-21T13:11:36Z;
+- feature head: 9e11ca8de8bb8954c5bc0767043e305c572b5e98;
+- merge commit: b88b2f17415301f43819cd675bbe1397d75c18da;
+- merged diff: exactly the five authorized B2A paths;
+- C:\DIE\main and origin/main are synchronized at the merge commit;
+- runtime state diff fingerprint and organism ground-truth hash were identical
+  before and after fast-forward;
+- staged paths: zero.
+
+Post-merge verification:
+
+~~~text
+B1 secure-config: ready=true / 29 of 29 checks
+B2A Installed: ready=true / 36 of 36 checks
+B2A targeted tests: 8 passed
+Full bridge regression: 93 passed
+Managed runtime file count: 0
+Tunnel-client process absent: true
+tunnel-client.exe SHA-256 unchanged:
+6649169733686805ca16cccd91774594d0c017fd729c37ad4ce1cd18323d9ae8
+~~~
+
+## Phase B2B refinement
+
+The former B2B boundary is split to keep code review separate from real secret
+handling:
+
+- B2B1 — repository-only no-echo secret-provisioning tooling;
+- B2B2 — Founder-operated local provisioning and metadata-only verification;
+- B2C — two-lane tunnel identity/profile initialization and doctor validation;
+- B2D — controlled Line 1 activation and ChatGPT registration;
+- B2E — controlled Line 2 activation after healthy Line 1 evidence.
+
+Tunnel identities belong to B2C, not B2B1/B2B2. No tunnel identity is accepted
+or stored by the secret-provisioning tooling.
+
+## Phase B2B1 implementation
+
+Implemented locally on architect/executive-mcp-secret-provisioning-v1:
+
+- ops/windows/executive-mcp/Set-DIEExecutiveMcpSecrets.ps1
+- ops/windows/executive-mcp/Test-DIEExecutiveMcpSecrets.ps1
+- docs/operations/EXECUTIVE_MCP_SECRET_PROVISIONING_V1.md
+- bridge/tests/test_executive_secret_provisioning_v1.py
+- LASTSTANDINGPOINT.md
+
+Contracts implemented:
+
+- Plan-first provisioning and validator scripts;
+- fixed create-only Line 1 and Line 2 secret-file paths;
+- explicit Provision mode plus ConfirmInteractiveProvisioning gate;
+- directly attached interactive console requirement;
+- two-entry Read-Host -AsSecureString confirmation;
+- no plaintext command-line or environment input;
+- unmanaged BSTR handling without plaintext managed-string conversion;
+- byte/character buffer clearing and ZeroFreeBSTR cleanup;
+- Line 2 HMAC minimum 32-byte contract and strict ASCII key-id contract;
+- exact protected ACL principal and FullControl validation;
+- FileMode.CreateNew and FileShare.None writes;
+- transaction-scoped rollback of only newly created files;
+- refusal to overwrite or rotate existing files;
+- refusal to operate on non-empty lanes or while tunnel-client is running;
+- metadata-only Installed validator that never opens a secret file;
+- structural prohibition of Line 1 HMAC material;
+- tunnel identity and profile initialization deferred to B2C.
+
+## Phase B2B1 verification
+
+~~~text
+PowerShell syntax errors: 0
+Provisioner Plan: PASS
+Validator Plan: PASS
+ProgramData accessed by Plan: false
+Prompts displayed: false
+Writes performed: false
+Secret values read: false
+Tunnel identities requested or read: false
+Targeted B2B1 tests: 9 passed
+Full bridge regression: 102 passed
+Managed runtime files before tests: 0
+Managed runtime files after tests: 0
+Tunnel-client process absent: true
+Staged paths: 0
+~~~
+
+Negative proof:
+
+- Provision mode was not invoked;
+- Installed mode was not invoked;
+- no real API key, HMAC material, key ID, or tunnel identity was requested,
+  read, generated, provisioned, validated, printed, hashed, or stored;
+- no ProgramData file, profile, log, PID, or evidence artifact was created;
+- no tunnel profile, doctor, run, MCP process, Windows service, scheduled task,
+  OpenAI tunnel mutation, deployment, exposure, or registration occurred;
+- live state, projection, and organism-test artifacts remain excluded and
+  untouched by B2B1 architecture work;
+- before publication, no repository path was staged; publication is restricted to the exact five-file B2B1 manifest.
+
+## Exact B2B1 publication manifest
+
+- LASTSTANDINGPOINT.md
+- bridge/tests/test_executive_secret_provisioning_v1.py
+- docs/operations/EXECUTIVE_MCP_SECRET_PROVISIONING_V1.md
+- ops/windows/executive-mcp/Set-DIEExecutiveMcpSecrets.ps1
+- ops/windows/executive-mcp/Test-DIEExecutiveMcpSecrets.ps1
+
+Explicit exclusions:
+
+- state/EVENTS.jsonl and state/DECISIONS.jsonl;
+- all state/projection and state/organism-test runtime artifacts;
+- the complete C:\ProgramData runtime installation;
+- every real secret, credential, HMAC value, key ID, and tunnel identity;
+- profile, configuration, log, PID, temporary, and cache artifacts.
+
+## Phase B2B1 publication standing
+
+Founder authorized publication of the exact five-file B2B1 manifest only.
+
+- branch: architect/executive-mcp-secret-provisioning-v1;
+- base: main at b88b2f17415301f43819cd675bbe1397d75c18da;
+- draft PR: https://github.com/kopikonkf/income-os/pull/11;
 - runtime-owned state, projection, and organism-test paths: excluded;
-- complete C:\ProgramData runtime installation: excluded;
-- secrets, credentials, profile files, tunnel IDs, temporary files, and caches:
-  excluded;
-- Phase B2B: not started.
+- complete C:\ProgramData runtime installation and every real secret: excluded;
+- Provision and Installed modes: not invoked;
+- Phase B2B2 and Phase B2C: not started.
 
 ## Next controlled action
 
-Founder reviews and merges draft PR #10. After merge, synchronize C:\DIE\main,
-rerun the B2A repository and Installed verification, and preserve all live
-runtime-owned paths. Do not start Phase B2B without a separate exact execution
-authorization.
+Founder reviews and merges draft PR #11. After merge, synchronize C:\DIE\main,
+rerun Plan and repository tests, and preserve all live runtime-owned paths.
 
-B2B, B2C, B2D, and B2E remain prohibited until separately authorized.
+Do not run Provision or Installed and do not begin Founder-operated secret
+provisioning without a separate exact Phase B2B2 execution authorization.
+B2C, B2D, and B2E remain prohibited until separately authorized.
 
 ## Operating doctrine
 
