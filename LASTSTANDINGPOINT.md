@@ -1136,10 +1136,21 @@ temporary Runtime MCP processes stopped after probe
 PASS
 ~~~
 
+### Binding-correction publication receipt
+
+- implementation commit: `b89702e`;
+- branch: `architect/runtime-mcp-bindings-v1`;
+- draft PR: `https://github.com/kopikonkf/income-os/pull/14`;
+- base: merged `main` at `dba3ffa30a144da0237386423b2fcc347b1e61a3`;
+- manifest: 5 paths;
+- persistent services, production tokens, wake actuators, and tunnels: not
+  created or invoked.
+
 ### Next controlled action
 
-Verify and publish the non-colliding binding correction. After merge, create a
-separate activation contract for two per-principal Runtime MCP services and
-secure token provisioning, then prove live `initialize`, `tools/list`, and
-read-only `context_snapshot` for each identity. Wake actuators and P2 remain
-outside that activation. M-001 remains unselected and uncommitted.
+Founder reviews draft PR #14; Architect does not merge by inference. After
+merge, create a separate activation contract for two per-principal Runtime MCP
+services and secure token provisioning, then prove live `initialize`,
+`tools/list`, and read-only `context_snapshot` for each identity. Wake
+actuators and P2 remain outside that activation. M-001 remains unselected and
+uncommitted.
