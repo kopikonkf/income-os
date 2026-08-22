@@ -1405,3 +1405,113 @@ Founder review + merge
 Founder reviews draft PR #15 and decides whether to merge. Architect does not
 merge, provision, install, start, edit edge production, register a connector,
 or select M-001 by inference.
+
+## Two-principal Runtime MCP E2E activation — 2026-08-22
+
+Founder merged PR #15 as
+`7f5b99af653042b1e1bd85799a1ba60eafd101bc`, then completed the separately
+authorized activation gates through a local OpenCode executor. This is the
+first complete cloud-to-loopback proof for both Runtime Decision principals.
+
+| Lane | Account | Public endpoint | Service / binding | Tools | Signed snapshot | Scope | Result |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Executive | ChatGPT Plus | `https://executive-mcp.aethers.web.id/mcp` | `DIERuntimeMCPExecutive` / `127.0.0.1:8791` | 18/18 | `SNAP-5B3863A47162B024` | `company_portfolio` | PASS |
+| DIVISION-01 | ChatGPT Free | `https://division01-mcp.aethers.web.id/mcp` | `DIERuntimeMCPDivision01` / `127.0.0.1:8792` | 6/6 | `SNAP-456CE0AED2BEC70F` | `single_division` | PASS |
+
+Both services run as Automatic LocalSystem services with configured failure
+recovery. Each public endpoint travels directly through the existing
+self-hosted Cloudflare Tunnel to its pinned loopback process. Unauthenticated
+MCP requests returned HTTP 401; authenticated snapshots were fresh,
+HMAC-signed, and carried a key ID. Cross-principal tokens were rejected.
+
+Measured compliance remained intact:
+
+- one hostname, port, service, bearer root, and principal per lane;
+- no shared endpoint or token-based proxy routing;
+- zero raw filesystem, shell, Git, service-control, or credential tools;
+- no `wake_chatgpt` tool in either Runtime MCP surface;
+- Caddy Aether remained outside the request path;
+- P2 OpenAI `tunnel-client` remained dormant;
+- eight protected secret files stayed server-side and were never returned.
+
+The DIVISION-01 receipt is empirical proof that the assigned ChatGPT Free
+account can register and use this custom MCP connector. OpenAI documentation
+does not establish that as a universal Free-account entitlement, so the project
+records the measured account result without generalizing beyond it.
+
+### Upstream defects discovered during activation
+
+1. `Install-DIERuntimeMcpServices.ps1` used nested quoting through
+   `sc.exe create`; Windows PowerShell 5.1 mangled the `binPath` arguments and
+   produced `Invalid start= field`. Founder installed the same contract with
+   `New-Service` as a local workaround.
+2. `Test-DIERuntimeMcpActivation.ps1 -Mode Live` evaluated `.Count` directly
+   on an empty `Where-Object` pipeline under `Set-StrictMode -Version Latest`.
+   The crash occurred after the actual checks had passed.
+
+Repository fixes are isolated on
+`architect/runtime-mcp-live-hotfix-v1`, based on the exact PR #15 merge commit:
+
+- replace only the creation call with PowerShell 5.1 `New-Service`, while
+  retaining `sc.exe` for recovery configuration and rollback deletion;
+- verify created service metadata is `Auto` plus `LocalSystem`;
+- array-wrap the verifier's filtered secret-check pipeline before `.Count`;
+- add regression assertions for both defects and persist this live receipt.
+
+Architect did not read any secret, reinstall/restart either live service, run
+the Live verifier, modify DNS/Cloudflared/Caddy, invoke wake, change Proxima, or
+select M-001 while preparing the hotfix. Pre-existing state/projection and
+organism-test artifacts remain unstaged and excluded.
+
+### Hotfix verification receipt
+
+~~~text
+PowerShell activation Plan modes (Initialize / Install / Test)
+PASS: 3/3 side-effect-free JSON contracts
+
+PowerShell edge Plan modes (Set / Test)
+PASS: 2/2 side-effect-free JSON contracts
+
+targeted activation regression
+PASS: 10 passed
+
+python bin/die_company_brain_check.py
+PASS: identity_count=7, runtime_identity_count=6
+
+python -m pytest bridge/tests -q
+PASS: 135 passed
+
+python -m py_compile
+PASS
+
+git diff --check
+PASS
+~~~
+
+No Install, Installed, Live, Configured, Public, ApplyIngress, or ApplyDns mode
+was invoked for this verification. The already-running Runtime MCP services and
+their edge paths were left untouched.
+
+### Hotfix publication receipt
+
+- implementation commit:
+  `bdd98968b16f6d89a60de75b0f36261df3b6ac61`;
+- branch: `architect/runtime-mcp-live-hotfix-v1`;
+- draft PR: `https://github.com/kopikonkf/income-os/pull/16`;
+- base: PR #15 merge commit
+  `7f5b99af653042b1e1bd85799a1ba60eafd101bc`;
+- initial PR status: `OPEN`, `DRAFT`, `MERGEABLE`;
+- implementation manifest: exactly five repository paths;
+- staged state/projection/organism-test artifacts: `0`.
+
+After repository verification, a read-only service check still showed both
+Runtime MCP services `Running` and `Automatic`, with exactly two loopback
+listeners on ports `8791` and `8792`. This observation confirms non-disruption;
+it is not a second activation action.
+
+### Next controlled action
+
+Complete Plan and repository regression for the two upstream fixes, publish a
+draft hotfix PR, and return control to Founder. After Founder merges and the
+operator confirms the repaired scripts, M-001 ratification may begin as a
+separate controlled mission decision; wake and P2 remain deferred.

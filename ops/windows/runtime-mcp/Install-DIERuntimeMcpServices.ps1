@@ -200,14 +200,24 @@ try {
             $service.principal_id
         )
 
-        & sc.exe create $service.name "binPath= $binaryPath" "start= auto" "DisplayName= $($service.display_name)" | Out-Null
-        if ($LASTEXITCODE -ne 0) {
-            throw "Unable to create Windows service $($service.name)."
-        }
+        $null = New-Service `
+            -Name $service.name `
+            -BinaryPathName $binaryPath `
+            -DisplayName $service.display_name `
+            -Description $service.description `
+            -StartupType Automatic `
+            -ErrorAction Stop
         $created += $service.name
-        & sc.exe description $service.name $service.description | Out-Null
-        if ($LASTEXITCODE -ne 0) {
-            throw "Unable to set Windows service description."
+
+        $createdService = Get-CimInstance `
+            Win32_Service `
+            -Filter "Name='$($service.name)'" `
+            -ErrorAction Stop
+        if (
+            $createdService.StartMode -ne "Auto" -or
+            $createdService.StartName -ne "LocalSystem"
+        ) {
+            throw "Created Runtime MCP service violates the startup/account contract."
         }
         & sc.exe failure $service.name "reset= 86400" "actions= restart/5000/restart/15000/restart/60000" | Out-Null
         if ($LASTEXITCODE -ne 0) {

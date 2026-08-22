@@ -114,10 +114,13 @@ def test_service_installer_uses_repo_native_scm_host_without_secrets() -> None:
     assert 'name = "DIERuntimeMCPDivision01"' in source
     assert "die-windows-service.py" in source
     assert "Invoke-DIERuntimeMcp.ps1" in source
-    assert "sc.exe create" in source
+    assert "New-Service" in source
+    assert "-BinaryPathName $binaryPath" in source
+    assert "-StartupType Automatic" in source
+    assert 'StartName -ne "LocalSystem"' in source
+    assert "sc.exe create" not in source
     assert "sc.exe failure" in source
     assert "sc.exe delete" in source
-    assert '"start= auto"' in source
     assert "Start-Service" not in source
     assert "Register-ScheduledTask" not in source
     assert "DIE_MCP_TOKEN" not in source
@@ -200,6 +203,20 @@ def test_verifier_has_metadata_only_installed_gate_and_bounded_live_probe() -> N
     assert "Start-Service" not in source
     assert "Stop-Service" not in source
     assert FORBIDDEN_WAKE_OR_TUNNEL.search(source) is None
+
+
+def test_verifier_array_wraps_an_empty_strict_mode_pipeline() -> None:
+    source = VERIFY.read_text(encoding="utf-8")
+    pattern = re.compile(
+        r"@\(\s*\$secretChecks\s*\|\s*Where-Object\s*\{.*?\}\s*\)\.Count\s*-eq\s*0",
+        re.DOTALL,
+    )
+    assert pattern.search(source)
+    assert re.search(
+        r"(?<!@)\(\$secretChecks\s*\|\s*Where-Object.*?\)\.Count",
+        source,
+        re.DOTALL,
+    ) is None
 
 
 def test_runbook_preserves_activation_boundaries() -> None:
