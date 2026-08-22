@@ -1368,6 +1368,23 @@ not executed. The implementation manifest is 14 repository paths. Pre-existing
 tracked state/projection changes and three untracked organism-test artifacts
 remain excluded from staging.
 
+### Edge revision publication receipt
+
+- implementation commit:
+  `92fa916b5008f48db4629e00a5444b176ac533a3`;
+- branch: `architect/runtime-mcp-activation-v1`;
+- draft PR: `https://github.com/kopikonkf/income-os/pull/15`;
+- PR status after push: `OPEN`, `DRAFT`, `MERGEABLE`;
+- local implementation head matched the remote branch head exactly;
+- staged path count after push: `0`;
+- installed Runtime MCP service count: `0`;
+- listeners on ports `8791` and `8792`: `0`;
+- GitHub checks reported: none configured for the branch.
+
+The pre-existing state/projection and organism-test worktree artifacts remain
+present, unstaged, and excluded. This receipt is documentation of the push, not
+authorization to merge or activate.
+
 ### Revised gate order
 
 ~~~text
@@ -1385,7 +1402,6 @@ Founder review + merge
 
 ### Next controlled action
 
-Complete regression and review of this repository-only revision, publish it to
-the existing draft PR #15, and return control to Founder. Architect does not
+Founder reviews draft PR #15 and decides whether to merge. Architect does not
 merge, provision, install, start, edit edge production, register a connector,
 or select M-001 by inference.
