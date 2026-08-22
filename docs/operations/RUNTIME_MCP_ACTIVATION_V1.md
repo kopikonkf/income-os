@@ -58,6 +58,12 @@ The design deliberately follows the proven native service pattern already
 used on the Founder VPS and does not depend on NSSM, WinSW, PM2, or Scheduled
 Tasks.
 
+Service creation uses PowerShell 5.1 `New-Service` so the complete nested-quoted
+binary path reaches SCM as one `BinaryPathName` value. `sc.exe` remains limited
+to failure-recovery configuration and rollback deletion. After creation the
+installer reads `Win32_Service` metadata and fails closed unless startup is
+`Auto` and the account is `LocalSystem`.
+
 ## Controlled execution order
 
 Run these only after Founder merge, from an elevated local Windows PowerShell
@@ -124,3 +130,34 @@ request.
 This contract may be committed and published to a draft pull request. Real
 provisioning, service installation, service start, or connector registration
 requires the ordered Founder merge and local authorization gates above.
+
+## Founder-operated E2E activation receipt — 2026-08-22
+
+After PR #15 merged, Founder provisioned eight ACL-restricted secret files,
+installed and started both LocalSystem services, applied the already reviewed
+direct Cloudflared routes, and registered each connector in its assigned
+ChatGPT account. This was an operator action outside the Architect repository
+turn.
+
+| Lane | Account | Cloud-to-loopback proof | Tools | Snapshot | Result |
+| --- | --- | --- | --- | --- | --- |
+| Executive | Plus | `executive-mcp.aethers.web.id` -> `127.0.0.1:8791` | 18/18 | `SNAP-5B3863A47162B024` | PASS |
+| DIVISION-01 | Free | `division01-mcp.aethers.web.id` -> `127.0.0.1:8792` | 6/6 | `SNAP-456CE0AED2BEC70F` | PASS |
+
+Both lanes returned HTTP 401 without authentication and a fresh HMAC-signed
+principal-pinned snapshot with a key ID when authenticated. Cross-lane tokens
+were rejected. No raw filesystem, shell, Git, service, credential, or wake tool
+appeared. The Division result is the first empirical proof in this project that
+the assigned ChatGPT Free account can register and use a custom MCP connector;
+it does not claim a documented universal entitlement.
+
+The live activation exposed two repository defects that were bypassed locally
+by the Founder operator and are corrected upstream by the subsequent hotfix:
+
+1. `sc.exe create` nested quoting was mangled by PowerShell 5.1; the canonical
+   installer now uses `New-Service`.
+2. the Live verifier accessed `.Count` on an empty pipeline under strict mode;
+   the pipeline is now array-wrapped before the count comparison.
+
+Wake remains separate and inactive, P2 remains dormant, Creator/Proxima is
+unchanged, and M-001 remains unselected at the time of this receipt.

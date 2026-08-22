@@ -158,7 +158,13 @@ foreach ($service in $Services) {
         $cim.StartMode -eq "Auto" -and
         $cim.StartName -eq "LocalSystem" -and
         $pathValid -and
-        ($secretChecks | Where-Object { -not $_.exists -or -not $_.length_valid -or -not $_.acl_restricted }).Count -eq 0
+        @(
+            $secretChecks | Where-Object {
+                -not $_.exists -or
+                -not $_.length_valid -or
+                -not $_.acl_restricted
+            }
+        ).Count -eq 0
     )
     if (-not $rowReady) {
         $installedReady = $false
