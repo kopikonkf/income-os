@@ -1,0 +1,9 @@
+# DIE-owned Cloudflared ingress fragment.
+# Insert directly below the existing `ingress:` key and before all broader
+# host routes. The enclosing config must retain one terminal deny-default rule.
+# This fragment contains no tunnel ID, credentials path, token, or Aether route.
+
+  - hostname: executive-mcp.aethers.web.id
+    service: http://localhost:8791
+  - hostname: division01-mcp.aethers.web.id
+    service: http://localhost:8792

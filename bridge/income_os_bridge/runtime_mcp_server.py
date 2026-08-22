@@ -10,24 +10,41 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
-import hmac
+import html
 import json
 import os
 import pathlib
 import re
 import sys
+from http.cookies import SimpleCookie
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from typing import Any, Callable
+from urllib.parse import parse_qs, urlsplit
 
-from . import authority, config, decision_gateway, mcp_server, state_request
+from . import (
+    authority,
+    config,
+    decision_gateway,
+    mcp_server,
+    runtime_mcp_oauth,
+    state_request,
+)
 
 SERVER_NAME = "die-runtime-decision-mcp"
-SERVER_VERSION = "1.0.0"
+SERVER_VERSION = "1.1.0"
 HTTP_PATH = "/mcp"
 LOOPBACK_HOST = "127.0.0.1"
 PRINCIPAL_DEFAULT_PORTS = {
     "chatgpt-plus-executive": 8791,
     "division-head-division01": 8792,
+}
+PRINCIPAL_PUBLIC_BASE_URLS = {
+    "chatgpt-plus-executive": "https://executive-mcp.aethers.web.id",
+    "division-head-division01": "https://division01-mcp.aethers.web.id",
+}
+PRINCIPAL_OAUTH_CLIENT_IDS = {
+    "chatgpt-plus-executive": "chatgpt-executive",
+    "division-head-division01": "chatgpt-division01",
 }
 INFRASTRUCTURE_RESERVED_PORTS = frozenset({8787, 8789, 8790})
 MAX_REQUEST_BYTES = 262_144
@@ -523,6 +540,36 @@ def _runtime_token() -> str:
     return token
 
 
+def _runtime_login_password() -> str:
+    value = os.environ.get("DIE_MCP_LOGIN_PASSWORD")
+    if not value or len(value) < 16:
+        raise RuntimeMcpError(
+            "E_RUNTIME_LOGIN_REQUIRED",
+            "DIE_MCP_LOGIN_PASSWORD must contain at least 16 characters",
+        )
+    return value
+
+
+def runtime_public_base_url(principal_id: str) -> str:
+    default = PRINCIPAL_PUBLIC_BASE_URLS.get(principal_id)
+    if default is None:
+        raise RuntimeMcpError(
+            "E_RUNTIME_BINDING_MISSING",
+            "runtime principal has no registered public MCP origin",
+        )
+    return os.environ.get("DIE_MCP_BASE_URL", default)
+
+
+def runtime_oauth_client_id(principal_id: str) -> str:
+    default = PRINCIPAL_OAUTH_CLIENT_IDS.get(principal_id)
+    if default is None:
+        raise RuntimeMcpError(
+            "E_RUNTIME_BINDING_MISSING",
+            "runtime principal has no registered OAuth client identifier",
+        )
+    return os.environ.get("DIE_MCP_OAUTH_CLIENT_ID", default)
+
+
 def runtime_port(principal_id: str, requested_port: int | None = None) -> int:
     """Resolve one non-colliding loopback binding for a pinned principal."""
 
@@ -554,50 +601,259 @@ def serve_http(
     registry_path: str | pathlib.Path | None = None,
 ) -> int:
     token = _runtime_token()
+    try:
+        oauth = runtime_mcp_oauth.OAuthAuthority(
+            principal_id=principal_id,
+            base_url=runtime_public_base_url(principal_id),
+            bearer_secret=token,
+            login_password=_runtime_login_password(),
+            static_client_id=runtime_oauth_client_id(principal_id),
+            allowed_redirect_hosts=tuple(
+                item.strip()
+                for item in os.environ.get(
+                    "DIE_MCP_OAUTH_REDIRECT_HOSTS",
+                    "chatgpt.com;openai.com",
+                ).split(";")
+                if item.strip()
+            ),
+        )
+    except runtime_mcp_oauth.OAuthError as exc:
+        raise RuntimeMcpError("E_RUNTIME_OAUTH_CONFIG", exc.description) from exc
     limiter = mcp_server.RateLimit()
 
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, format: str, *args: Any) -> None:
             return
 
-        def do_POST(self) -> None:  # noqa: N802
-            if self.path != HTTP_PATH:
-                self.send_error(404)
-                return
-            supplied = self.headers.get("Authorization", "")
-            expected = "Bearer " + token
-            if not hmac.compare_digest(supplied, expected):
-                self.send_error(401)
-                return
-            try:
-                length = int(self.headers.get("Content-Length", "0"))
-            except ValueError:
-                self.send_error(400)
-                return
-            if length <= 0 or length > MAX_REQUEST_BYTES:
-                self.send_error(413)
-                return
-            try:
-                message = json.loads(self.rfile.read(length).decode("utf-8"))
-                response = handle(
-                    message,
-                    principal_id=principal_id,
-                    writer=writer,
-                    registry_path=registry_path,
-                    rate_limit=limiter,
-                )
-            except (UnicodeDecodeError, json.JSONDecodeError):
-                response = {"jsonrpc": "2.0", "id": None, "error": {"code": -32700, "message": "parse error"}}
-            if response is None:
-                self.send_response(204)
-                self.end_headers()
-                return
-            body = json.dumps(response, ensure_ascii=False).encode("utf-8")
-            self.send_response(200)
-            self.send_header("Content-Type", "application/json; charset=utf-8")
+        def _send_bytes(
+            self,
+            status: int,
+            body: bytes,
+            content_type: str,
+            headers: dict[str, str] | None = None,
+        ) -> None:
+            self.send_response(status)
+            self.send_header("Content-Type", content_type)
             self.send_header("Content-Length", str(len(body)))
+            self.send_header("X-Robots-Tag", "noindex")
+            for name, value in (headers or {}).items():
+                self.send_header(name, value)
             self.end_headers()
             self.wfile.write(body)
+
+        def _send_json(self, status: int, payload: Any) -> None:
+            self._send_bytes(
+                status,
+                json.dumps(payload, ensure_ascii=False).encode("utf-8"),
+                "application/json; charset=utf-8",
+            )
+
+        def _send_html(self, status: int, body: str) -> None:
+            self._send_bytes(
+                status,
+                body.encode("utf-8"),
+                "text/html; charset=utf-8",
+            )
+
+        def _redirect(self, location: str, headers: dict[str, str] | None = None) -> None:
+            response_headers = {"Location": location, **(headers or {})}
+            self._send_bytes(302, b"", "text/plain; charset=utf-8", response_headers)
+
+        def _read_body(self) -> bytes:
+            try:
+                length = int(self.headers.get("Content-Length", "0"))
+            except ValueError as exc:
+                raise runtime_mcp_oauth.OAuthError(
+                    "invalid_request", "content length is invalid"
+                ) from exc
+            if length <= 0 or length > MAX_REQUEST_BYTES:
+                raise runtime_mcp_oauth.OAuthError(
+                    "invalid_request", "request body is empty or too large", 413
+                )
+            return self.rfile.read(length)
+
+        def _read_json(self) -> Any:
+            try:
+                return json.loads(self._read_body().decode("utf-8"))
+            except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+                raise runtime_mcp_oauth.OAuthError(
+                    "invalid_request", "JSON body is invalid"
+                ) from exc
+
+        def _read_form(self) -> dict[str, str]:
+            try:
+                decoded = self._read_body().decode("utf-8")
+            except UnicodeDecodeError as exc:
+                raise runtime_mcp_oauth.OAuthError(
+                    "invalid_request", "form body is invalid"
+                ) from exc
+            return {
+                key: values[-1]
+                for key, values in parse_qs(decoded, keep_blank_values=True).items()
+            }
+
+        def _session(self) -> str | None:
+            raw = self.headers.get("Cookie", "")
+            cookie = SimpleCookie()
+            try:
+                cookie.load(raw)
+            except Exception:
+                return None
+            morsel = cookie.get("die_runtime_session")
+            return morsel.value if morsel else None
+
+        def _login_page(self, next_path: str) -> str:
+            return f"""<!doctype html><html><body>
+<h2>DIE Runtime MCP Login</h2>
+<p>Principal: {html.escape(principal_id)}</p>
+<form method="post" action="/oauth/login">
+<input name="password" type="password" autocomplete="current-password" required>
+<input name="next" type="hidden" value="{html.escape(next_path, quote=True)}">
+<button type="submit">Sign in</button>
+</form></body></html>"""
+
+        def _consent_page(self, params: dict[str, str]) -> str:
+            hidden = "".join(
+                f'<input type="hidden" name="{html.escape(key, quote=True)}" '
+                f'value="{html.escape(value, quote=True)}">'
+                for key, value in params.items()
+            )
+            return f"""<!doctype html><html><body>
+<h2>Approve Runtime MCP access?</h2>
+<p>Principal: {html.escape(principal_id)}<br>
+Client: {html.escape(params['client_id'])}<br>
+Scope: {html.escape(params['scope'])}</p>
+<form method="post" action="/oauth/approve">{hidden}<button type="submit">Approve</button></form>
+<form method="post" action="/oauth/deny">{hidden}<button type="submit">Deny</button></form>
+</body></html>"""
+
+        def _oauth_error(self, exc: runtime_mcp_oauth.OAuthError) -> None:
+            self._send_json(
+                exc.status,
+                {"error": exc.error, "error_description": exc.description},
+            )
+
+        def do_GET(self) -> None:  # noqa: N802
+            parsed = urlsplit(self.path)
+            if parsed.path == "/health":
+                self._send_json(
+                    200,
+                    {
+                        "ok": True,
+                        "server": SERVER_NAME,
+                        "version": SERVER_VERSION,
+                        "principal_id": principal_id,
+                        "tools": len(tool_definitions(principal_id, registry_path)),
+                        "oauth": runtime_mcp_oauth.SCHEMA_VERSION,
+                    },
+                )
+                return
+            if parsed.path in {
+                "/.well-known/oauth-authorization-server",
+                "/.well-known/oauth-authorization-server/mcp",
+            }:
+                self._send_json(200, oauth.authorization_metadata())
+                return
+            if parsed.path in {
+                "/.well-known/oauth-protected-resource",
+                "/.well-known/oauth-protected-resource/mcp",
+            }:
+                self._send_json(200, oauth.protected_resource_metadata())
+                return
+            if parsed.path == "/login":
+                self._send_html(200, self._login_page("/health"))
+                return
+            if parsed.path == "/oauth/authorize":
+                try:
+                    params = {
+                        key: values[-1]
+                        for key, values in parse_qs(
+                            parsed.query, keep_blank_values=True
+                        ).items()
+                    }
+                    params = oauth.validate_authorization(params)
+                    if not oauth.verify_session(self._session()):
+                        self._send_html(200, self._login_page(self.path))
+                        return
+                    self._send_html(200, self._consent_page(params))
+                except runtime_mcp_oauth.OAuthError as exc:
+                    self._oauth_error(exc)
+                return
+            self.send_error(404)
+
+        def do_POST(self) -> None:  # noqa: N802
+            parsed = urlsplit(self.path)
+            try:
+                if parsed.path == HTTP_PATH:
+                    supplied = self.headers.get("Authorization", "")
+                    if not oauth.authenticate_bearer(supplied):
+                        self._send_bytes(
+                            401,
+                            b"unauthorized",
+                            "text/plain; charset=utf-8",
+                            {
+                                "WWW-Authenticate": (
+                                    f'Bearer resource_metadata="{oauth.base_url}/'
+                                    '.well-known/oauth-protected-resource/mcp"'
+                                )
+                            },
+                        )
+                        return
+                    message = self._read_json()
+                    response = handle(
+                        message,
+                        principal_id=principal_id,
+                        writer=writer,
+                        registry_path=registry_path,
+                        rate_limit=limiter,
+                    )
+                    if response is None:
+                        self.send_response(204)
+                        self.end_headers()
+                    else:
+                        self._send_json(200, response)
+                    return
+                if parsed.path == "/oauth/register":
+                    self._send_json(201, oauth.register(self._read_json()))
+                    return
+                if parsed.path == "/oauth/token":
+                    self._send_json(200, oauth.exchange(self._read_form()))
+                    return
+                if parsed.path == "/oauth/login":
+                    form = self._read_form()
+                    if not oauth.verify_login(form.get("password", "")):
+                        raise runtime_mcp_oauth.OAuthError(
+                            "access_denied", "login failed", 401
+                        )
+                    next_path = form.get("next", "/health")
+                    if not (
+                        next_path == "/health"
+                        or next_path.startswith("/oauth/authorize?")
+                    ):
+                        next_path = "/health"
+                    cookie = (
+                        "die_runtime_session="
+                        + oauth.session_token()
+                        + "; HttpOnly; Secure; SameSite=Lax; Path=/"
+                    )
+                    self._redirect(next_path, {"Set-Cookie": cookie})
+                    return
+                if parsed.path in {"/oauth/approve", "/oauth/deny"}:
+                    if not oauth.verify_session(self._session()):
+                        raise runtime_mcp_oauth.OAuthError(
+                            "access_denied", "Founder login is required", 401
+                        )
+                    form = self._read_form()
+                    destination = (
+                        oauth.approve(form)
+                        if parsed.path == "/oauth/approve"
+                        else oauth.deny(form)
+                    )
+                    self._redirect(destination)
+                    return
+                self.send_error(404)
+            except runtime_mcp_oauth.OAuthError as exc:
+                self._oauth_error(exc)
 
     _identity(principal_id, registry_path)
     server = HTTPServer((LOOPBACK_HOST, port), Handler)
