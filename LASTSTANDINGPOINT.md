@@ -1154,3 +1154,125 @@ services and secure token provisioning, then prove live `initialize`,
 `tools/list`, and read-only `context_snapshot` for each identity. Wake
 actuators and P2 remain outside that activation. M-001 remains unselected and
 uncommitted.
+
+## Two-principal Runtime MCP activation contract — 2026-08-22
+
+Founder merged PR #14 as
+`bc1d38d37f18fb9678297a1c5ab74abce770a7dd`. VPS `main` was synchronized to
+that exact merge commit without touching live runtime state. Post-merge Company
+Brain validation passed and the full bridge regression remained `118 passed`.
+
+The next foundation gate was implemented on
+`architect/runtime-mcp-activation-v1`. This is an activation contract, not a
+production activation. It creates no secret, Windows service, process, wake,
+tunnel, Decision call, or mission during repository validation.
+
+### Measured supervisor baseline
+
+VPS inspection established:
+
+- NSSM, WinSW, and PM2 are not installed or available;
+- the existing Aether Windows service uses an internal Python SCM host;
+- the service host owns its child process tree through a Windows Job Object;
+- `C:\ProgramData\DIE\RuntimeMCP` did not exist before this contract;
+- ports `8791` and `8792` remained available for the two Runtime MCP instances.
+
+The DIE contract therefore uses a repository-native SCM host rather than adding
+a new third-party supervisor or misusing Scheduled Tasks as services.
+
+### Activation artifacts
+
+- `ops/windows/runtime-mcp/die-windows-service.py` — SCM lifecycle host with
+  Job Object child-tree ownership and no command/secret receipt;
+- `Initialize-DIERuntimeMcpActivation.ps1` — default `Plan`; explicit,
+  interactive `Provision` for fixed directories, restrictive ACLs, and six
+  per-principal secret files;
+- `Install-DIERuntimeMcpServices.ps1` — default `Plan`; explicit `Install` for
+  two Automatic LocalSystem services with rollback and recovery actions;
+- `Invoke-DIERuntimeMcp.ps1` — exact principal/port launcher that loads only
+  its lane's protected token and snapshot signing material;
+- `Test-DIERuntimeMcpActivation.ps1` — `Plan`, metadata-only `Installed`, and
+  bounded authenticated `Live` verification modes;
+- `docs/operations/RUNTIME_MCP_ACTIVATION_V1.md` — ordered Founder/local
+  operator runbook and exclusions;
+- `bridge/tests/test_runtime_mcp_activation_v1.py` — repository safety and
+  contract regression.
+
+Fixed service bindings:
+
+| Service | Principal | Binding | Expected tools |
+| --- | --- | --- | --- |
+| `DIERuntimeMCPExecutive` | `chatgpt-plus-executive` | `127.0.0.1:8791` | 18 |
+| `DIERuntimeMCPDivision01` | `division-head-division01` | `127.0.0.1:8792` | 6 |
+
+`8787`, `8789`, and `8790` remain fail-closed infrastructure-reserved ports.
+Creator remains outside Decision MCP with zero tools.
+
+### Security and execution gates
+
+1. `Plan` is the default for provisioning, installation, and verification and
+   does not access ProgramData or mutate services.
+2. `Provision` requires a directly attached local console plus explicit switch.
+   Values are entered twice with `Read-Host -AsSecureString`; existing roots are
+   never overwritten; a partial provision is rolled back.
+3. Each principal has a separate bearer token, HMAC key, and HMAC key ID under
+   ACLs limited to Local System, Administrators, and the provisioning operator.
+4. `Install` reads secret metadata only, rejects occupied/reserved ports and
+   existing services, embeds no secret in SCM, and does not start services.
+5. `Live` assumes already-running services. It performs only HTTP 401,
+   `initialize`, `tools/list`, and read-only signed `context_snapshot` checks.
+   Token values are read locally for authentication but never returned.
+6. Real provisioning may not be executed through chat or Architect MCP. It is
+   reserved for Founder or an explicitly delegated local VPS operator after
+   merge.
+
+### Verification and publication receipt
+
+~~~text
+PowerShell Initialize Plan
+PASS: side-effect-free JSON contract
+
+PowerShell Install Plan
+PASS: side-effect-free JSON contract
+
+PowerShell Verify Plan
+PASS: side-effect-free JSON contract
+
+targeted activation regression
+PASS: 9 passed
+
+python bin/die_company_brain_check.py
+PASS: identity_count=7, runtime_identity_count=6
+
+python -m pytest bridge/tests -q
+PASS: 127 passed
+
+python -m py_compile
+PASS
+
+git diff --cached --check
+PASS
+~~~
+
+- implementation commit: `51141929201a674d350839b61a5c4e3207fb0dd7`;
+- branch: `architect/runtime-mcp-activation-v1`;
+- draft PR: `https://github.com/kopikonkf/income-os/pull/15`;
+- initial PR state: `OPEN`, `DRAFT`;
+- implementation manifest: exactly 7 activation paths before this canonical
+  handoff update;
+- five tracked state/projection changes and two untracked organism-test
+  artifacts remained unstaged and excluded.
+
+No real token or signing key was requested, read, generated, provisioned, or
+returned. No Windows service was installed or started. BrowserOS and Division
+wake remain design-only; P2 tunnel remains deferred post-PECAH-TELOR; Creator
+and Proxima were unchanged; M-001 remains unselected and uncommitted.
+
+### Next controlled action
+
+Founder reviews draft PR #15. Architect does not merge or provision by
+inference. After Founder merge, synchronize VPS `main`, rerun the full
+regression and all three Plan modes, then obtain explicit local authorization
+for the ordered `Provision -> Install -> Start -> Live` gates. Only a Live PASS
+for both pinned identities establishes the measurable runtime baseline needed
+before any income-stream selection.
