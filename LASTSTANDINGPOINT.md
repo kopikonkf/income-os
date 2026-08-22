@@ -902,7 +902,7 @@ foundation delta, not permission to select, commit, or execute an income stream.
 - working branch: `architect/agency-identities-limited-mcp-v1`;
 - base synchronization in this Architect workspace: complete;
 - VPS `C:\DIE\main` synchronization: not claimed from this environment;
-- publication: authorized after the live Proxima artifact-export gate passed;
+- publication: draft PR #13 open from the feature branch to `main`;
 - P2 tunnel-client remains deferred post-PECAH-TELOR;
 - Executive and Division wake paths remain design-only and were not invoked.
 
@@ -984,7 +984,10 @@ are design-only. A wake actuator may not be smuggled into the Decision MCP.
 python bin/die_company_brain_check.py
 PASS: identity_count=7, runtime_identity_count=6
 
-python -m pytest bridge/tests -q -p no:cacheprovider
+python -m pytest bridge/tests -q
+PASS on Founder VPS: 116 passed
+
+isolated Architect workspace regression
 PASS: 111 passed, 5 skipped
 
 python -m py_compile (authority, projection, runtime_mcp_server)
@@ -1033,10 +1036,26 @@ the acceptance evidence; neither the generated binary nor mutable VPS evidence
 is added to this foundation commit. The closed contract remains mandatory:
 browser-only or transient output is `blocked`, never `done`.
 
+### Git publication receipt
+
+- implementation commit: `26e1ffe87730788ca82cc71c557646df086d52cf`;
+- branch: `architect/agency-identities-limited-mcp-v1`;
+- base: `main` at `2aab4b08330eaed16ff2237c5305fc9371480e9d`;
+- draft PR: `https://github.com/kopikonkf/income-os/pull/13`;
+- PR state at handoff: `OPEN`, `DRAFT`, merge state `CLEAN`;
+- PR manifest: exactly the 10 paths listed above;
+- repository checks: none configured/reported for the feature branch;
+- acceptance evidence: Company Brain PASS, VPS bridge regression 116 passed,
+  `git diff --check` PASS, and live Proxima probe PASS.
+
+Five tracked state/projection changes and two untracked organism-test artifacts
+were preserved on the VPS and remained unstaged. They are not present in either
+the foundation commit or draft PR.
+
 ### Next controlled action
 
-Rerun the 111+ bridge regression, inspect the exact 10-path diff, commit and
-push `architect/agency-identities-limited-mcp-v1`, then open a new draft PR to
-`main`. PR #12 is already merged and must not be reused; GitHub assigns the new
-PR number. M-001 remains unselected and uncommitted until this foundation PR is
-reviewed and merged.
+Founder reviews draft PR #13. If accepted, Founder authorizes merge; Architect
+does not merge by inference. After merge, synchronize VPS `main`, rerun Company
+Brain plus bridge regression, and verify the Runtime MCP baseline before any
+income-stream selection. M-001 remains unselected and uncommitted until this
+foundation PR is reviewed and merged.
