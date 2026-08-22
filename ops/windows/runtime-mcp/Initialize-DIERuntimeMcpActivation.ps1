@@ -24,7 +24,12 @@ $Lanes = @(
     }
 )
 $TopLevelDirectories = @("config", "secrets", "logs", "runtime")
-$SecretNames = @("mcp-token", "snapshot-hmac-key", "snapshot-hmac-key-id")
+$SecretNames = @(
+    "mcp-token",
+    "mcp-login-password",
+    "snapshot-hmac-key",
+    "snapshot-hmac-key-id"
+)
 
 function Get-LaneRoot {
     param(
@@ -51,6 +56,15 @@ foreach ($lane in $Lanes) {
         purpose = "principal-pinned Runtime MCP bearer authentication"
         path = Join-Path $secretRoot "mcp-token"
         minimum_bytes = 32
+        maximum_bytes = 8192
+        format = "opaque-no-whitespace"
+    }
+    $SecretSpecs += [ordered]@{
+        id = "$($lane.id)-mcp-login-password"
+        lane = $lane.id
+        purpose = "Founder login for the principal-pinned OAuth consent flow"
+        path = Join-Path $secretRoot "mcp-login-password"
+        minimum_bytes = 16
         maximum_bytes = 8192
         format = "opaque-no-whitespace"
     }

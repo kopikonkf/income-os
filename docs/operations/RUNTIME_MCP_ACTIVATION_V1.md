@@ -14,8 +14,10 @@ independently supervised, principal-pinned loopback services:
 | `DIERuntimeMCPDivision01` | `division-head-division01` | `127.0.0.1:8792` | 6 DIVISION-01 tools |
 
 Ports `8787`, `8789`, and `8790` remain reserved for Architect DEV and local
-infrastructure. The services bind loopback only. They do not expose a public
-endpoint and they do not create a second control plane or writer.
+infrastructure. The services bind loopback only and do not create a second
+control plane or writer. Public transport, when separately authorized, is the
+direct per-hostname Cloudflared contract in
+`RUNTIME_MCP_EDGE_CONNECTOR_V1.md`; Aether Caddy is not in the Runtime MCP path.
 
 ## Security boundary
 
@@ -23,20 +25,25 @@ Runtime assets live at `C:\ProgramData\DIE\RuntimeMCP`. Every directory and
 secret file disables ACL inheritance and allows FullControl only to Local
 System, built-in Administrators, and the provisioning operator.
 
-Each principal receives a separate bearer token, snapshot HMAC key, and HMAC
-key identifier. Values are entered twice through `Read-Host -AsSecureString` in
-a directly attached local console. Existing roots, files, or services are never
-overwritten. A partial initial provision or service install is rolled back.
+Each principal receives a separate bearer token, Founder OAuth login password,
+snapshot HMAC key, and HMAC key identifier. These four values per principal are
+entered twice through `Read-Host -AsSecureString` in a directly attached local
+console. Existing roots, files, or services are never overwritten. A partial
+initial provision or service install is rolled back.
 
 Architect must never receive or display a real secret value. Do not paste a
-token or signing key into chat, a command sent through Architect MCP, logs,
-Git, a pull request, an evidence receipt, or `LASTSTANDINGPOINT.md`. The Live
-verifier reads the token locally only to make three bounded calls and returns
-metadata, never the token.
+token, login password, or signing key into chat, a command sent through
+Architect MCP, logs, Git, a pull request, an evidence receipt, or
+`LASTSTANDINGPOINT.md`. The Live verifier reads the bearer token locally only
+to make three bounded calls and returns metadata, never the token.
 
 The service command line contains paths and the pinned principal only. Secrets
 are loaded by `Invoke-DIERuntimeMcp.ps1` from protected files into the child
 process environment and are not embedded in Windows Service Control Manager.
+Each pinned Runtime process also owns its OAuth metadata, dynamic registration,
+Founder login/consent, PKCE S256 exchange, refresh flow, and MCP resource. There
+is no shared authentication proxy and an OAuth token minted by one principal
+cannot authenticate to the other.
 
 ## SCM supervision
 
@@ -62,6 +69,8 @@ console at `C:\DIE`.
    powershell -NoProfile -ExecutionPolicy Bypass -File .\ops\windows\runtime-mcp\Initialize-DIERuntimeMcpActivation.ps1 -Mode Plan
    powershell -NoProfile -ExecutionPolicy Bypass -File .\ops\windows\runtime-mcp\Install-DIERuntimeMcpServices.ps1 -Mode Plan
    powershell -NoProfile -ExecutionPolicy Bypass -File .\ops\windows\runtime-mcp\Test-DIERuntimeMcpActivation.ps1 -Mode Plan
+   powershell -NoProfile -ExecutionPolicy Bypass -File .\ops\windows\runtime-mcp\Set-DIERuntimeMcpCloudflareEdge.ps1 -Mode Plan
+   powershell -NoProfile -ExecutionPolicy Bypass -File .\ops\windows\runtime-mcp\Test-DIERuntimeMcpEdge.ps1 -Mode Plan
    ~~~
 
 2. Founder or an explicitly delegated local operator provisions the protected
@@ -105,6 +114,8 @@ request.
 - First Division OAuth/conversation wake remains design-only.
 - P2 tunnel remains deferred post-PECAH-TELOR; no `tunnel-client init`,
   `doctor`, or `run` is allowed here.
+- Aether Caddy remains a separate application component and is not a Runtime
+  MCP transport dependency.
 - Creator/Proxima remains outside Decision MCP and retains zero tools.
 - No mission proposal, decision commit, Hermes delegation, or state mutation is
   part of the Live probe.

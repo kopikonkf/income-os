@@ -146,6 +146,7 @@ function Assert-SecretMetadata {
     $root = Join-Path (Join-Path $InstallRoot "secrets") $ServiceSpec.lane
     $specs = @(
         [ordered]@{ name = "mcp-token"; minimum = 32; maximum = 8192 },
+        [ordered]@{ name = "mcp-login-password"; minimum = 16; maximum = 8192 },
         [ordered]@{ name = "snapshot-hmac-key"; minimum = 32; maximum = 8192 },
         [ordered]@{ name = "snapshot-hmac-key-id"; minimum = 1; maximum = 128 }
     )

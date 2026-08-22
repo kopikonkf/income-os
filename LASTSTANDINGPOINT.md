@@ -1185,8 +1185,8 @@ a new third-party supervisor or misusing Scheduled Tasks as services.
 - `ops/windows/runtime-mcp/die-windows-service.py` — SCM lifecycle host with
   Job Object child-tree ownership and no command/secret receipt;
 - `Initialize-DIERuntimeMcpActivation.ps1` — default `Plan`; explicit,
-  interactive `Provision` for fixed directories, restrictive ACLs, and six
-  per-principal secret files;
+  interactive `Provision` for fixed directories, restrictive ACLs, and four
+  secret files per principal (eight total after the edge/OAuth revision);
 - `Install-DIERuntimeMcpServices.ps1` — default `Plan`; explicit `Install` for
   two Automatic LocalSystem services with rollback and recovery actions;
 - `Invoke-DIERuntimeMcp.ps1` — exact principal/port launcher that loads only
@@ -1276,3 +1276,116 @@ regression and all three Plan modes, then obtain explicit local authorization
 for the ordered `Provision -> Install -> Start -> Live` gates. Only a Live PASS
 for both pinned identities establishes the measurable runtime baseline needed
 before any income-stream selection.
+
+## Founder edge transport lock — 2026-08-22
+
+Founder placed draft PR #15 on merge hold and accepted the per-principal Runtime
+MCP separation while correcting the public transport contract. Runtime MCP must
+reuse the existing zero-cost self-hosted Cloudflare Tunnel under the
+Founder-owned `aethers.web.id` zone. P2 OpenAI `tunnel-client`, OpenAI billing,
+and any control-plane API key remain deferred and out of scope.
+
+Architect inspected the standalone `D:\mcp-architect` implementation and the
+active edge topology without reading its ignored `.env`, token file, temporary
+files, or Cloudflare credential contents. The proven Architect pattern is:
+
+~~~text
+public hostname -> existing Cloudflared tunnel -> standalone MCP process
+                                                 (OAuth/PKCE + MCP resource)
+~~~
+
+It does **not** use Aether Caddy. The Caddy listener at `127.0.0.1:8080`
+belongs to a separate Aether codebase and must not become a DIE dependency.
+Runtime therefore owns two direct, deny-by-default routes:
+
+| Public hostname | Loopback upstream | Pinned principal | Tools |
+| --- | --- | --- | --- |
+| `executive-mcp.aethers.web.id` | `127.0.0.1:8791` | `chatgpt-plus-executive` | 18 |
+| `division01-mcp.aethers.web.id` | `127.0.0.1:8792` | `division-head-division01` | 6 |
+
+One hostname maps to one principal process. There is no shared endpoint, proxy
+token router, cross-lane bearer, or inherited Architect capability. Each
+Runtime process embeds its own OAuth metadata, dynamic client registration,
+Founder login/consent, PKCE S256 authorization-code exchange, refresh flow, and
+`/mcp` protected resource. Its OAuth signing root is derived from that lane's
+separate protected bearer material.
+
+Read-only audit found that the two direct Cloudflared routes and their CNAMEs
+already existed outside this Architect change; full ingress validation passed
+and the config retained a terminal `http_status:404`. Architect did not create,
+alter, reload, or restart any edge component. Ports `8791` and `8792` remained
+without listeners, so the observation is not a public connector activation or
+proof.
+
+Repository revision scope for the held PR now includes:
+
+- embedded, principal-pinned OAuth/PKCE support in the existing Runtime MCP;
+- one additional protected no-echo OAuth login password per principal (eight
+  activation secret files total, with values never entering repository/chat);
+- direct Cloudflared ingress fragment with no tunnel credential or Aether route;
+- plan-first edge mutation and read-only verification scripts;
+- an edge runbook with the explicit Free-account empirical registration gate;
+- regression coverage for PKCE, refresh, one-time codes, cross-principal token
+  rejection, direct routes, zero Caddy/P2 dependency, and side-effect-free Plan
+  receipts.
+
+If DIVISION-01 Free-account connector registration is rejected, the required
+fallback is the already designed wake/OAuth conversation path. No paid upgrade,
+P2 activation, or Executive-scope broadening may be inferred. M-001 remains
+unselected until both runtime lanes have measurable receipts.
+
+No secret was requested, generated, read, or provisioned. No service was
+installed or started; no Cloudflared config, DNS, Caddy route, wake path,
+Proxima flow, state event, or mission was mutated by this revision.
+
+### Edge revision verification receipt
+
+~~~text
+PowerShell activation Plan modes (Initialize / Install / Test)
+PASS: 3/3 side-effect-free JSON contracts
+
+PowerShell edge Plan modes (Set / Test)
+PASS: 2/2 side-effect-free JSON contracts
+
+python bin/die_company_brain_check.py
+PASS: identity_count=7, runtime_identity_count=6
+
+python -m pytest bridge/tests -q
+PASS: 134 passed
+
+python -m py_compile
+PASS
+
+git diff --check
+PASS
+~~~
+
+The regression includes a temporary loopback HTTP subprocess proof for health,
+OAuth metadata, unauthenticated 401, and the 18-tool Executive listing. The
+test process was terminated by the test and did not install or start a Windows
+service. Edge modes `Configured`, `Public`, `ApplyIngress`, and `ApplyDns` were
+not executed. The implementation manifest is 14 repository paths. Pre-existing
+tracked state/projection changes and three untracked organism-test artifacts
+remain excluded from staging.
+
+### Revised gate order
+
+~~~text
+Founder review + merge
+  -> sync C:\DIE\main + full regression + all Plan modes
+  -> interactive local Provision                  [separate authorization]
+  -> SCM Install + Start                           [separate authorization]
+  -> loopback 401/init/tools/signed snapshot proof [separate authorization]
+  -> direct Cloudflared + DNS verification/apply   [separate authorization]
+  -> Executive account connector proof
+  -> DIVISION-01 Free registration experiment
+  -> fallback wake/OAuth if Free registration is blocked
+  -> only then M-001/income-stream selection
+~~~
+
+### Next controlled action
+
+Complete regression and review of this repository-only revision, publish it to
+the existing draft PR #15, and return control to Founder. Architect does not
+merge, provision, install, start, edit edge production, register a connector,
+or select M-001 by inference.

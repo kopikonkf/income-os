@@ -93,12 +93,14 @@ def test_per_principal_secret_and_acl_contract() -> None:
     for lane in ("executive", "division01"):
         assert f'id = "{lane}"' in source
     assert 'id = "$($lane.id)-mcp-token"' in source
+    assert 'id = "$($lane.id)-mcp-login-password"' in source
     assert 'id = "$($lane.id)-snapshot-hmac-key"' in source
     assert 'id = "$($lane.id)-snapshot-hmac-key-id"' in source
     assert '"S-1-5-18", "S-1-5-32-544", $CurrentSid' in source
     assert "/inheritance:r" in source
     assert "(OI)(CI)F" in source
     assert "minimum_bytes = 32" in source
+    assert "minimum_bytes = 16" in source
     assert "opaque-no-whitespace" in source
     assert "ascii-key-id" in source
 
@@ -135,9 +137,14 @@ def test_launcher_pins_identity_port_and_only_required_runtime_environment() -> 
     assert not RESERVED_PORTS & {int(value) for value in re.findall(r"port = (\d+)", source)}
     assert "[ValidateSet(" in source
     assert "DIE_MCP_TOKEN" in source
+    assert "DIE_MCP_LOGIN_PASSWORD" in source
+    assert "DIE_MCP_BASE_URL" in source
+    assert "DIE_MCP_OAUTH_CLIENT_ID" in source
     assert "DIE_SNAPSHOT_HMAC_KEY" in source
     assert "DIE_SNAPSHOT_HMAC_KEY_ID" in source
     assert "income_os_bridge.runtime_mcp_server" in source
+    assert "https://executive-mcp.aethers.web.id" in source
+    assert "https://division01-mcp.aethers.web.id" in source
     assert "--principal-id $PrincipalId" in source
     assert "--port ([int]$binding.port)" in source
     assert FORBIDDEN_DEV.search(source) is None
@@ -205,6 +212,8 @@ def test_runbook_preserves_activation_boundaries() -> None:
     assert "P2 tunnel" in text
     assert "M-001 remains unselected" in text
     assert "Founder merge" in text
+    assert "Aether Caddy is not" in text
+    assert "four values per principal" in text
 
 
 @pytest.mark.skipif(_powershell() is None, reason="Windows PowerShell is unavailable")
@@ -217,7 +226,7 @@ def test_plans_are_machine_readable_and_side_effect_free() -> None:
     assert provision["mode"] == "Plan"
     assert provision["install_root"] == FIXED_ROOT
     assert {row["principal_id"]: row["port"] for row in provision["principals"]} == EXPECTED_BINDINGS
-    assert len(provision["secret_files"]) == 6
+    assert len(provision["secret_files"]) == 8
     assert provision["writes_performed"] is False
     assert provision["secret_values_read"] is False
     assert provision["services_created"] is False
