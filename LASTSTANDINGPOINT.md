@@ -1492,6 +1492,23 @@ No Install, Installed, Live, Configured, Public, ApplyIngress, or ApplyDns mode
 was invoked for this verification. The already-running Runtime MCP services and
 their edge paths were left untouched.
 
+### Hotfix publication receipt
+
+- implementation commit:
+  `bdd98968b16f6d89a60de75b0f36261df3b6ac61`;
+- branch: `architect/runtime-mcp-live-hotfix-v1`;
+- draft PR: `https://github.com/kopikonkf/income-os/pull/16`;
+- base: PR #15 merge commit
+  `7f5b99af653042b1e1bd85799a1ba60eafd101bc`;
+- initial PR status: `OPEN`, `DRAFT`, `MERGEABLE`;
+- implementation manifest: exactly five repository paths;
+- staged state/projection/organism-test artifacts: `0`.
+
+After repository verification, a read-only service check still showed both
+Runtime MCP services `Running` and `Automatic`, with exactly two loopback
+listeners on ports `8791` and `8792`. This observation confirms non-disruption;
+it is not a second activation action.
+
 ### Next controlled action
 
 Complete Plan and repository regression for the two upstream fixes, publish a
