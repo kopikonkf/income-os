@@ -312,3 +312,35 @@ def test_runtime_token_is_required_and_never_derived_from_repository(monkeypatch
         raise AssertionError("runtime token must fail closed")
     monkeypatch.setenv("OPERATOR_TOKEN", "o" * 32)
     assert runtime_mcp_server._runtime_token() == "o" * 32
+
+
+def test_runtime_bindings_are_principal_pinned_and_avoid_infrastructure_ports() -> None:
+    assert runtime_mcp_server.runtime_port("chatgpt-plus-executive") == 8791
+    assert runtime_mcp_server.runtime_port("division-head-division01") == 8792
+    assert len(set(runtime_mcp_server.PRINCIPAL_DEFAULT_PORTS.values())) == 2
+    assert not (
+        set(runtime_mcp_server.PRINCIPAL_DEFAULT_PORTS.values())
+        & runtime_mcp_server.INFRASTRUCTURE_RESERVED_PORTS
+    )
+    assert runtime_mcp_server.runtime_port(
+        "chatgpt-plus-executive",
+        18787,
+    ) == 18787
+
+
+def test_runtime_binding_rejects_creator_invalid_and_reserved_ports() -> None:
+    cases = (
+        ("chatgpt-creator", None, "E_RUNTIME_BINDING_MISSING"),
+        ("chatgpt-plus-executive", 8787, "E_RUNTIME_PORT_RESERVED"),
+        ("division-head-division01", 8789, "E_RUNTIME_PORT_RESERVED"),
+        ("division-head-division01", 8790, "E_RUNTIME_PORT_RESERVED"),
+        ("chatgpt-plus-executive", 80, "E_RUNTIME_PORT_INVALID"),
+        ("division-head-division01", True, "E_RUNTIME_PORT_INVALID"),
+    )
+    for principal_id, port, expected_code in cases:
+        try:
+            runtime_mcp_server.runtime_port(principal_id, port)
+        except runtime_mcp_server.RuntimeMcpError as exc:
+            assert exc.code == expected_code
+        else:
+            raise AssertionError(f"binding must reject {principal_id} on {port}")
