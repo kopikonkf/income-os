@@ -1059,3 +1059,98 @@ does not merge by inference. After merge, synchronize VPS `main`, rerun Company
 Brain plus bridge regression, and verify the Runtime MCP baseline before any
 income-stream selection. M-001 remains unselected and uncommitted until this
 foundation PR is reviewed and merged.
+
+## Post-merge Runtime MCP binding baseline — 2026-08-22
+
+PR #13 was Founder-merged as
+`dba3ffa30a144da0237386423b2fcc347b1e61a3`. VPS `main` was synchronized to
+that exact SHA without stashing, discarding, staging, or rewriting live state.
+
+Post-merge verification on the Founder VPS:
+
+~~~text
+python bin/die_company_brain_check.py
+PASS: identity_count=7, runtime_identity_count=6
+
+python -m pytest bridge/tests -q
+PASS: 116 passed
+
+python -m py_compile (authority, projection, runtime_mcp_server)
+PASS
+
+git diff --check
+PASS
+
+staged paths
+0
+~~~
+
+### Measured transport baseline
+
+Two temporary loopback probes used disposable test tokens and performed no
+Decision/state call:
+
+- Executive: principal `chatgpt-plus-executive`, 18 tools, unauthenticated
+  request `401`, operational control plane and canonical writer correctly
+  advertised;
+- Division: principal `division-head-division01`, 6 tools, unauthenticated
+  request `401`, single-division scope correctly advertised;
+- Creator: 0 Decision MCP tools by contract;
+- both temporary processes stopped cleanly after `initialize` + `tools/list`.
+
+### Port collision discovered
+
+Production binding to `127.0.0.1:8787` is invalid on the live VPS. That port is
+already occupied by the Architect DEV Living MCP. Local infrastructure also
+uses `8789` for OAuth edge and `8790` for the Architect gateway. Reusing any of
+those ports would violate DEV/runtime separation.
+
+Because the Runtime MCP process is server-pinned to one principal, Executive
+and Division require distinct instances. The corrected binding contract is:
+
+- Executive Runtime Decision MCP: `127.0.0.1:8791`;
+- DIVISION-01 Runtime Decision MCP: `127.0.0.1:8792`;
+- `8787`, `8789`, and `8790`: fail-closed infrastructure-reserved ports;
+- explicit alternate ports remain available only for bounded test execution.
+
+Implementation branch: `architect/runtime-mcp-bindings-v1`. This correction
+does not create services, provision/read secrets, invoke a tunnel, implement a
+wake actuator, or activate an income stream.
+
+Binding-correction verification on the Founder VPS:
+
+~~~text
+python -m pytest bridge/tests -q
+PASS: 118 passed
+
+default Executive binding -> 127.0.0.1:8791 -> 18 tools
+PASS
+
+default DIVISION-01 binding -> 127.0.0.1:8792 -> 6 tools
+PASS
+
+Architect DEV listener 127.0.0.1:8787 preserved
+PASS
+
+temporary Runtime MCP processes stopped after probe
+PASS
+~~~
+
+### Binding-correction publication receipt
+
+- implementation commit: `b89702e`;
+- branch: `architect/runtime-mcp-bindings-v1`;
+- draft PR: `https://github.com/kopikonkf/income-os/pull/14`;
+- base: merged `main` at `dba3ffa30a144da0237386423b2fcc347b1e61a3`;
+- manifest: 5 paths;
+- persistent services, production tokens, wake actuators, and tunnels: not
+  created or invoked.
+
+### Next controlled action
+
+Founder reviews draft PR #14; Architect does not merge by inference. After
+merge, create a separate activation contract for two per-principal Runtime MCP
+services and secure token provisioning, then prove live `initialize`,
+`tools/list`, and read-only `context_snapshot` for each identity. Wake
+actuators and P2 remain outside that activation. M-001 remains unselected and
+uncommitted.

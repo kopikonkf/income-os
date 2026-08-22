@@ -25,7 +25,11 @@ SERVER_NAME = "die-runtime-decision-mcp"
 SERVER_VERSION = "1.0.0"
 HTTP_PATH = "/mcp"
 LOOPBACK_HOST = "127.0.0.1"
-DEFAULT_PORT = 8787
+PRINCIPAL_DEFAULT_PORTS = {
+    "chatgpt-plus-executive": 8791,
+    "division-head-division01": 8792,
+}
+INFRASTRUCTURE_RESERVED_PORTS = frozenset({8787, 8789, 8790})
 MAX_REQUEST_BYTES = 262_144
 PROJECT_ROOT = pathlib.Path(r"C:\DIE")
 AETHER_HOME = pathlib.Path(
@@ -519,11 +523,34 @@ def _runtime_token() -> str:
     return token
 
 
+def runtime_port(principal_id: str, requested_port: int | None = None) -> int:
+    """Resolve one non-colliding loopback binding for a pinned principal."""
+
+    default_port = PRINCIPAL_DEFAULT_PORTS.get(principal_id)
+    if default_port is None:
+        raise RuntimeMcpError(
+            "E_RUNTIME_BINDING_MISSING",
+            "runtime principal has no registered Decision MCP binding",
+        )
+    port = default_port if requested_port is None else requested_port
+    if not isinstance(port, int) or isinstance(port, bool) or not 1024 <= port <= 65_535:
+        raise RuntimeMcpError(
+            "E_RUNTIME_PORT_INVALID",
+            "runtime MCP port must be an integer from 1024 through 65535",
+        )
+    if port in INFRASTRUCTURE_RESERVED_PORTS:
+        raise RuntimeMcpError(
+            "E_RUNTIME_PORT_RESERVED",
+            "runtime MCP port is reserved by Architect DEV or local infrastructure",
+        )
+    return port
+
+
 def serve_http(
     *,
     principal_id: str,
     writer: Writer | None,
-    port: int = DEFAULT_PORT,
+    port: int,
     registry_path: str | pathlib.Path | None = None,
 ) -> int:
     token = _runtime_token()
@@ -584,7 +611,7 @@ def serve_http(
 def main() -> int:
     parser = argparse.ArgumentParser(prog=SERVER_NAME)
     parser.add_argument("--principal-id", default=os.environ.get("DIE_RUNTIME_PRINCIPAL_ID"))
-    parser.add_argument("--port", type=int, default=DEFAULT_PORT)
+    parser.add_argument("--port", type=int)
     args = parser.parse_args()
     if not args.principal_id:
         print("E_UNAUTHORIZED_PRINCIPAL: --principal-id is required", file=sys.stderr)
@@ -594,10 +621,11 @@ def main() -> int:
     import die_event  # type: ignore  # noqa: E402
 
     try:
+        port = runtime_port(args.principal_id, args.port)
         return serve_http(
             principal_id=args.principal_id,
             writer=die_event.commit_normalized_decision,
-            port=args.port,
+            port=port,
         )
     except RuntimeMcpError as exc:
         print(f"{exc.code}: {exc.message}", file=sys.stderr)

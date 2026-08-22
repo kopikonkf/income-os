@@ -95,6 +95,8 @@ infrastructure used through `Hermes -> Worker -> Proxima -> Web AI`.
   in this sprint.
 - The Decision Fabric is a separate least-privilege MCP line; a wake is never a
   canonical state mutation.
+- Principal-pinned Decision MCP binding: loopback `127.0.0.1:8792`. It must not
+  share the Executive process or any Architect DEV/infrastructure port.
 
 ## 6. Handoff
 

@@ -118,6 +118,8 @@ At each wake, load Constitution, registry, this anchor, agency contract, and cur
   `CRITICAL` or `STRATEGIC` cross-division events.
 - Observation/decision line: the bounded DIE Runtime Decision MCP; never the
   Architect DEV MCP.
+- Principal-pinned Decision MCP binding: loopback `127.0.0.1:8791`. Port
+  `8787` belongs to Architect DEV and is forbidden for this runtime identity.
 - Wake and Decision Fabric are separate lines. A wake carries a bounded
   briefing; canonical observation is reloaded from the Decision Fabric.
 - Browser automation is an actuator, not authority, state, or a second control
