@@ -82,6 +82,25 @@
       ]
     },
     {
+      "id": "division-head-division01",
+      "kind": "division_decision_engine",
+      "document": "IDENTITY/division-head-division01.md",
+      "scope": "single_division",
+      "division_id": "DIVISION-01",
+      "runtime": true,
+      "template": false,
+      "architect_dev_access": "deny",
+      "inherits_identity_ids": [],
+      "capabilities": [
+        "bounded_semantic_observation",
+        "division_research",
+        "division_scoring",
+        "bounded_decision",
+        "mission_proposal",
+        "escalation"
+      ]
+    },
+    {
       "id": "hermes-operator",
       "kind": "operational_orchestrator",
       "document": "IDENTITY/hermes-operator/SOUL.md",
@@ -115,6 +134,19 @@
         "artifact_production",
         "test_invocation",
         "evidence_capture"
+      ]
+    },
+    {
+      "id": "chatgpt-creator",
+      "kind": "proxima_creator",
+      "document": "IDENTITY/chatgpt-creator.md",
+      "scope": "single_job_workspace",
+      "runtime": true,
+      "template": false,
+      "architect_dev_access": "deny",
+      "inherits_identity_ids": [],
+      "capabilities": [
+        "artifact_production"
       ]
     }
   ],

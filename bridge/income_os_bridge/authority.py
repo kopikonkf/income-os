@@ -13,6 +13,7 @@ ACTION_CAPABILITIES = {
     # division-scoped projection filter and registered instance exist.
     "context.snapshot.read": {
         "semantic_observation",
+        "bounded_semantic_observation",
     },
     "state.decision.submit": {
         "bounded_decision",
@@ -159,7 +160,7 @@ def authorize(
             f"requested scope {scope!r} exceeds registered scope {registered_scope!r}",
         )
 
-    return {
+    grant = {
         "principal_id": principal_id,
         "identity_id": identity["id"],
         "kind": identity.get("kind"),
@@ -168,3 +169,12 @@ def authorize(
         "capability": matched[0],
         "authority_source": "company/identity-registry.json",
     }
+    division_id = identity.get("division_id")
+    if division_id is not None:
+        if not isinstance(division_id, str) or not division_id:
+            raise AuthorizationError(
+                "E_REGISTRY_INVALID",
+                "division identity must declare a non-empty division_id",
+            )
+        grant["division_id"] = division_id
+    return grant

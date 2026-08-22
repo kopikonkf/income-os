@@ -63,8 +63,11 @@ def active_missions(status="active"):
     for e in ev:
         mid = e.get("mission_id")
         if mid:
-            d = m.setdefault(mid, {"mission_id": mid, "goal": mid, "status": "active", "kill_criteria": None,
+            d = m.setdefault(mid, {"mission_id": mid, "division_id": e.get("division_id"),
+                                   "goal": mid, "status": "active", "kill_criteria": None,
                                    "invalid": True, "budget": None, "deadline": None, "cards_open": 0, "last_event_seq": 0})
+            if d.get("division_id") is None and e.get("division_id") is not None:
+                d["division_id"] = e.get("division_id")
             d["last_event_seq"] = max(d["last_event_seq"], e.get("seq", 0))
     if status != "any":
         m = {k: v for k, v in m.items() if v["status"] == status}
@@ -144,10 +147,14 @@ def briefing_get(latest=True):
             "markdown": redact.redact(p.read_text(encoding="utf-8")) if latest and p.exists() else ""}
 
 
-def _decision_evidence_refs(limit=20):
+def _decision_evidence_refs(limit=20, division_id=None):
     rows = []
     decisions = _jlines(config.STATE / "DECISIONS.jsonl")
     for decision in decisions[-limit:]:
+        if division_id is not None:
+            semantic = decision.get("semantic_object")
+            if not isinstance(semantic, dict) or semantic.get("division_id") != division_id:
+                continue
         ref = decision.get("evidence_ref")
         decision_id = decision.get("decision_id")
         observed_at = decision.get("ts")
@@ -164,6 +171,51 @@ def _decision_evidence_refs(limit=20):
     return rows
 
 
+def _division_surface(surface, division_id):
+    """Return a fail-closed copy containing only one registered division."""
+
+    bounded = json.loads(json.dumps(surface, ensure_ascii=False))
+    data = bounded.get("data")
+    if isinstance(data, list):
+        bounded["data"] = [
+            row for row in data
+            if isinstance(row, dict) and row.get("division_id") == division_id
+        ]
+    elif isinstance(data, dict) and isinstance(data.get("events"), list):
+        data["events"] = [
+            row for row in data["events"]
+            if isinstance(row, dict) and row.get("division_id") == division_id
+        ]
+        data["truncated"] = False
+    else:
+        bounded["data"] = {}
+        bounded["completeness"] = "degraded"
+    bounded["notes"] = list(bounded.get("notes", [])) + [
+        f"scoped to registered division {division_id}; untagged rows excluded"
+    ]
+    return bounded
+
+
+def _division_health(surface, division_id):
+    """Expose transport freshness without cross-division alarm detail."""
+
+    bounded = json.loads(json.dumps(surface, ensure_ascii=False))
+    data = bounded.get("data") if isinstance(bounded.get("data"), dict) else {}
+    bounded["data"] = {
+        key: data.get(key)
+        for key in (
+            "gateway_running",
+            "cognitive_lane_stale_min",
+            "bridge_seq_last",
+            "event_backlog",
+        )
+    }
+    bounded["notes"] = list(bounded.get("notes", [])) + [
+        f"division health projection for {division_id}; alarms and cron rows withheld"
+    ]
+    return bounded
+
+
 def context_snapshot(principal_id, scope=None, since_seq=0, limit=config.CONTEXT_EVENT_LIMIT):
     granted = authority.authorize(
         principal_id,
@@ -171,14 +223,36 @@ def context_snapshot(principal_id, scope=None, since_seq=0, limit=config.CONTEXT
         scope,
     )
     bounded_limit = min(max(limit, 1), 50)
-    surfaces = {
-        "system_state": system_state(),
-        "system_health": system_health(),
-        "active_missions": active_missions("any"),
-        "recent_events": recent_events(since_seq, bounded_limit, "INFO"),
-    }
+    evidence_refs = _decision_evidence_refs()
+    if granted.get("kind") == "division_decision_engine":
+        division_id = granted.get("division_id")
+        if not division_id:
+            raise authority.AuthorizationError(
+                "E_REGISTRY_INVALID",
+                "division principal has no registered division_id",
+            )
+        surfaces = {
+            "system_state": system_state(),
+            "system_health": _division_health(system_health(), division_id),
+            "active_missions": _division_surface(
+                active_missions("any"),
+                division_id,
+            ),
+            "recent_events": _division_surface(
+                recent_events(since_seq, bounded_limit, "INFO"),
+                division_id,
+            ),
+        }
+        evidence_refs = _decision_evidence_refs(division_id=division_id)
+    else:
+        surfaces = {
+            "system_state": system_state(),
+            "system_health": system_health(),
+            "active_missions": active_missions("any"),
+            "recent_events": recent_events(since_seq, bounded_limit, "INFO"),
+        }
     return snapshot.build(
         granted,
         surfaces,
-        _decision_evidence_refs(),
+        evidence_refs,
     )

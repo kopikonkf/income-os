@@ -2,13 +2,49 @@
 
 Status: GOVERNED
 Applies to: Founder, Executive, Division, Hermes, Worker, and deterministic authority services
-Authority: `CONSTITUTION.md` > this contract
+Authority: `CONSTITUTION.md` > `company/identity-registry.json` + registered identity anchors > this contract
 
 ## 1. Purpose
 
 This contract turns identity into bounded agency. It defines how a principal receives authority, observes state, authors a decision or job result, requests mutation, and hands work to the next actor without leaking privilege.
 
 Capability is not authority. Access is not ownership. Model confidence is not evidence.
+
+The normative precedence is:
+
+```text
+CONSTITUTION -> REGISTRY / IDENTITY -> AGENCY CONTRACT -> COMMITTED STATE
+```
+
+An Agency Contract may narrow registered authority but never widen it. A lower
+source cannot repair a conflict by inference; unresolved conflict becomes
+`ESCALATE` and defaults to `no-op`.
+
+## 1.1 Runtime invariants
+
+1. **One operational control plane:** `hermes-operator`. Runtime cognition may
+   author proposals or bounded decisions; it does not orchestrate Workers.
+2. **One canonical writer:** `die-state-manager`. Every canonical mutation is a
+   typed request validated and committed by that deterministic boundary.
+3. **No raw access:** runtime cognition receives semantic projections, never
+   filesystem, shell, raw database, service control, credentials, or generic
+   write primitives.
+4. **Silence is not consent:** an expired or unanswered approval is `rejected`.
+5. **Architect DEV privilege is non-inheritable.** Every runtime identity is
+   forbidden from acquiring any of:
+
+   ```text
+   architect_dev
+   repository_write
+   git_write
+   test_execution
+   service_control
+   credential_read
+   ```
+
+6. **Replaceability:** every runtime wake begins from untrusted conversational
+   memory. The actor reloads Constitution, registry, its identity anchor, this
+   contract, and a fresh bounded snapshot before acting.
 
 ## 2. Agency envelope
 
@@ -82,6 +118,21 @@ Actor semantic artifact
 Multiple actors may be semantic authors. Only State Manager performs physical canonical writes. Hermes remains mission owner and may reject an operationally invalid proposal with a recorded reason.
 
 No actor treats an uncommitted chat response as canonical truth.
+
+The cross-role control flow is fixed:
+
+```text
+PROPOSE -> COMMIT -> DELEGATE -> REPORT
+```
+
+- Executive or Division cognition may `PROPOSE` or author a bounded decision.
+- DIE State Manager validates and `COMMIT`s the canonical record.
+- Hermes alone operationally accepts it and `DELEGATE`s bounded jobs.
+- Worker/Creator returns artifact and evidence; Hermes verifies and `REPORT`s.
+
+Chief Executive Architect DEV is not a participant in this runtime flow. It
+builds and repairs the governed system only when invoked by the Founder and may
+not use engineering access to originate or execute a runtime mission.
 
 ## 7. Execution path
 

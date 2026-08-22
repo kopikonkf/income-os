@@ -889,3 +889,173 @@ Do not stage, discard, or rewrite live state/projection/organism artifacts.
 Do not write synthetic decisions to live canonical state.
 Ship executable artifacts, not architecture theater.
 First real money remains the organism fitness signal.
+
+## Agency identities and limited Runtime MCP v1 — 2026-08-22
+
+Founder rejected activation of M-001 until the four-ChatGPT trust boundary is
+measurable. Economic validation remains paused. This is an authorized
+foundation delta, not permission to select, commit, or execute an income stream.
+
+### Repository standing
+
+- remote `main`: `2aab4b08330eaed16ff2237c5305fc9371480e9d` (PR #12 merged);
+- working branch: `architect/agency-identities-limited-mcp-v1`;
+- base synchronization in this Architect workspace: complete;
+- VPS `C:\DIE\main` synchronization: not claimed from this environment;
+- publication: draft PR #13 open from the feature branch to `main`;
+- P2 tunnel-client remains deferred post-PECAH-TELOR;
+- Executive and Division wake paths remain design-only and were not invoked.
+
+### Four-ChatGPT split
+
+1. Chief Executive Architect DEV remains a Founder-invoked development plane,
+   not a runtime identity and not a participant in mission execution.
+2. `chatgpt-plus-executive` is company-portfolio cognition. BrowserOS neo
+   `127.0.0.1:9010` is wake-only; Decision Fabric is a separate bounded line.
+3. `division-head-division01` is a concrete `DIVISION-01` decision identity. No
+   income stream is assigned merely by instantiation.
+4. `chatgpt-creator` is a Proxima production engine for one job workspace. It
+   receives no Decision Fabric tools and has no mission or strategy authority.
+
+The registry now contains 7 identities, not the executor prolog's expected 5:
+Founder, Executive, Division template, Division-01 instance, Hermes, Worker
+template, and Creator. Keeping both templates is required for replaceability;
+removing Worker or a template merely to preserve the number 5 is rejected.
+
+### A — Agency Contract
+
+`PROTOCOLS/agency-contract-v0.md` now explicitly enforces:
+
+~~~text
+CONSTITUTION > REGISTRY / IDENTITY > AGENCY CONTRACT > COMMITTED STATE
+PROPOSE -> COMMIT -> DELEGATE -> REPORT
+~~~
+
+It also pins one operational control plane (`hermes-operator`), one canonical
+writer (`die-state-manager`), no raw access, silence != consent, amnesia-first
+wake behavior, and the exact non-inheritable Architect DEV capability denylist.
+
+### B — Runtime identities
+
+Canonical anchors implemented:
+
+- `IDENTITY/chatgpt-plus-executive.md`;
+- `IDENTITY/division-head-division01.md`;
+- `IDENTITY/chatgpt-creator.md`.
+
+Three separate compressed 9-line CONTEXT artifacts were also produced for
+account upload. They are user-facing context copies, not canonical operational
+state and not substitutes for the VPS/repository anchors.
+
+Creator handoff is now explicit: a production result must contain a
+workspace-relative `artifact_path` and `evidence_ref`. Browser-only,
+conversation-only, or transient Proxima output is `blocked`, never `done`.
+
+### C — Limited Runtime Decision MCP
+
+`bridge/income_os_bridge/runtime_mcp_server.py` is an executable loopback JSON-RPC
+MCP transport on `127.0.0.1:8787` with:
+
+- server-pinned principal and registered scope;
+- `DIE_MCP_TOKEN` or `OPERATOR_TOKEN`, minimum 32 bytes;
+- maximum request size 262144 bytes;
+- an explicit allowlist of 11 bounded P0/P1 projection tools plus signed
+  `context_snapshot` for Executive;
+- only division-filtered `context_snapshot` for Division-01;
+- gated `propose_mission`, `pause_mission`, `resume_mission`, `request_audit`,
+  `challenge`, and `escalate` according to registered capabilities;
+- `buyer_path` and non-empty `kill_criteria` required for mission proposals;
+- 60/hour process-local rate gate;
+- forbidden raw/traversal/executable/credential-shaped input;
+- no filesystem, shell, Git, test, service, credential, Worker-control, or
+  arbitrary state-write tool.
+
+Control calls do not mutate mission state directly. They become signed-snapshot
+DECISION requests, pass P5 normalization and P6 Decision Gateway validation,
+commit through DIE State Manager, then route to Hermes for operational
+acceptance. Creator receives zero tools from this MCP.
+
+`wake_chatgpt` is intentionally absent because the Founder scope says wake paths
+are design-only. A wake actuator may not be smuggled into the Decision MCP.
+
+### Verification completed
+
+~~~text
+python bin/die_company_brain_check.py
+PASS: identity_count=7, runtime_identity_count=6
+
+python -m pytest bridge/tests -q
+PASS on Founder VPS: 116 passed
+
+isolated Architect workspace regression
+PASS: 111 passed, 5 skipped
+
+python -m py_compile (authority, projection, runtime_mcp_server)
+PASS
+
+git diff --check
+PASS
+
+manual bounded mission request -> State Manager stub -> Hermes route
+PASS
+
+loopback HTTP token rejection + Division-01 tools/list
+PASS
+~~~
+
+No live state, projection, organism evidence, credential, token value, OAuth
+profile, conversation, service, tunnel, Worker, or Proxima runtime was mutated.
+
+### Exact repository manifest — 10 paths
+
+- `LASTSTANDINGPOINT.md`
+- `PROTOCOLS/agency-contract-v0.md`
+- `company/identity-registry.json`
+- `IDENTITY/chatgpt-plus-executive.md`
+- `IDENTITY/division-head-division01.md`
+- `IDENTITY/chatgpt-creator.md`
+- `bridge/income_os_bridge/authority.py`
+- `bridge/income_os_bridge/projection.py`
+- `bridge/income_os_bridge/runtime_mcp_server.py`
+- `bridge/tests/test_runtime_identities_limited_mcp_v1.py`
+
+### Live Proxima artifact-export gate — PASS
+
+Founder/OpenCode returned an Executor receipt for `T-PROXIMA-PROBE-001`:
+
+~~~text
+artifact: C:\DIE\workspaces\T-PROXIMA-PROBE-001\output.png
+evidence_ref: evidence/probe.json
+worker_contract_normalized: true
+result: PASS
+~~~
+
+This proves the Creator path can place a real image inside its assigned job
+workspace and hand Worker a normalized artifact/evidence pair. The receipt is
+the acceptance evidence; neither the generated binary nor mutable VPS evidence
+is added to this foundation commit. The closed contract remains mandatory:
+browser-only or transient output is `blocked`, never `done`.
+
+### Git publication receipt
+
+- implementation commit: `26e1ffe87730788ca82cc71c557646df086d52cf`;
+- branch: `architect/agency-identities-limited-mcp-v1`;
+- base: `main` at `2aab4b08330eaed16ff2237c5305fc9371480e9d`;
+- draft PR: `https://github.com/kopikonkf/income-os/pull/13`;
+- PR state at handoff: `OPEN`, `DRAFT`, merge state `CLEAN`;
+- PR manifest: exactly the 10 paths listed above;
+- repository checks: none configured/reported for the feature branch;
+- acceptance evidence: Company Brain PASS, VPS bridge regression 116 passed,
+  `git diff --check` PASS, and live Proxima probe PASS.
+
+Five tracked state/projection changes and two untracked organism-test artifacts
+were preserved on the VPS and remained unstaged. They are not present in either
+the foundation commit or draft PR.
+
+### Next controlled action
+
+Founder reviews draft PR #13. If accepted, Founder authorizes merge; Architect
+does not merge by inference. After merge, synchronize VPS `main`, rerun Company
+Brain plus bridge regression, and verify the Runtime MCP baseline before any
+income-stream selection. M-001 remains unselected and uncommitted until this
+foundation PR is reviewed and merged.
