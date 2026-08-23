@@ -1,0 +1,26 @@
+{
+  "type": "executive_verdict",
+  "date": "2026-08-23",
+  "subject": "Wake path design review (Division-01 wake live E2E + M-001 reconciliation)",
+  "transport": "Hermes income-operator -> wake_executive.py -> BrowserOS neo CDP :9110 -> ChatGPT Executive (Plus)",
+  "conversation_id": "6a8ae272-ed08-83ee-a972-59f54694781a",
+  "conversation_title": "Assess Wake Design",
+  "sent_by": "hermes-income-operator (skill wake-executive, first use)",
+  "verdict": "No portfolio veto. Proceed to canon with mandatory annotations.",
+  "annotations": [
+    "Wake is a control-plane bridge, not MCP runtime capability",
+    "Browser transport is implementation dependency requiring resilience controls (session recovery, health probe, wake failure escalation)",
+    "ChatGPT conversation threads are canonical division memory containers; invariant division_id -> exactly_one_canonical_thread, lifecycle active -> archived -> superseded",
+    "Authentication/session handling requires security ownership: token boundaries documented, no secrets in receipts/logs/artifacts, rotation/revocation procedure",
+    "Scale expansion beyond Division-01 requires wake reliability metrics"
+  ],
+  "acceptances": {
+    "wake_boundary_outbound": "ACCEPT",
+    "thread_persistence_model": "ACCEPT WITH GOVERNANCE",
+    "browser_cdp_transport": "ACCEPT AS CURRENT IMPLEMENTATION",
+    "auth_discovery_control_point": "IMPORTANT CONTROL POINT (pre-canon documentation required)",
+    "executive_wake_policy": "ACCEPT",
+    "m001_reconciliation": "ACCEPT (Gate C concern closed)"
+  },
+  "next_gate": "Observe Division-01 first production cycle -> validate wake reliability, context retention, operator output quality -> then replicate pattern."
+}
