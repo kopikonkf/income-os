@@ -14,8 +14,8 @@ Phase B1 implementation commit: 2e46e43e99a6aff9c4390c3f70e1e5471d9b28b0
 Phase B2A initial implementation commit: ba05dcf8f3e54092f8f92c8de488f3e0702bfce6
 Phase B2B1 implementation commit: ff6f850eb0c35a15fb62f727c69ac45cf05767d5
 Merged PRs: https://github.com/kopikonkf/income-os/pull/8, https://github.com/kopikonkf/income-os/pull/9, https://github.com/kopikonkf/income-os/pull/10, and https://github.com/kopikonkf/income-os/pull/11
-Draft PR: pending publication
-Publication status: IMPLEMENTATION VERIFIED; REMOTE PUBLICATION BLOCKED BY GITHUB APP WRITE SCOPE
+Draft PR: https://github.com/kopikonkf/income-os/pull/18
+Publication status: DRAFT PR #18 OPEN; FOUNDER REVIEW PENDING
 
 ## Verified merge baseline
 
@@ -1587,14 +1587,16 @@ wake schema changes are part of this patch.
 
 ### Versioned artifacts
 
-- `bridge/income_os_bridge/projection.py`
-- `bin/die_event.py`
+- `LASTSTANDINGPOINT.md`
 - `bin/die_cron.py`
-- `bridge/tests/test_mission_reconciliation_v1.py`
+- `bin/die_event.py`
 - `bridge/SCHEMA_NOTES.md`
+- `bridge/income_os_bridge/events.py`
+- `bridge/income_os_bridge/projection.py`
+- `bridge/tests/test_mission_reconciliation_v1.py`
+- `bridge/tests/test_runtime_identities_limited_mcp_v1.py`
 - `docs/architecture/MISSION_STATE_RECONCILIATION_V1.md`
 - `docs/operations/M001_RECONCILIATION_AND_HEALTH_GATE_V1.md`
-- `LASTSTANDINGPOINT.md`
 
 No state JSONL, projection output, service, secret, DNS, wake, P2, Proxima,
 production asset, or marketplace submission is included.
@@ -1617,16 +1619,22 @@ written.
 
 ### Next controlled action
 
-Implementation commit
-`03f2e1dedcfd0ba274d17b4e462c0a497a6500c0` is complete on local branch
-`architect/m001-mission-reconciliation-v1`. HTTPS push had no interactive
-credential and the installed GitHub App returned HTTP 403 `Resource not
-accessible by integration` when asked to create the remote branch. Therefore
-no remote branch or PR is claimed.
+The GitHub App write scope was repaired by Founder. The verified implementation
+tree was published to remote branch
+`architect/m001-mission-reconciliation-v1` as commit
+`e66535d7bfc64598656e8397d31b74cefcf564e4`, then opened as draft PR #18:
 
-Grant the installed GitHub App repository Contents and Pull Requests write
-access, or provide an authorized non-interactive Git transport, then publish
-the existing branch and open a draft PR for Founder review. After merge,
-Hermes may materialize the M-001 mission root through the canonical operational
+https://github.com/kopikonkf/income-os/pull/18
+
+Initial PR receipt: OPEN, DRAFT, base `main` at
+`68f81d1bfc863f7c71448cf5fd63420904ec44f2`, exactly 10 changed paths, 1052
+additions, and 45 deletions. Local implementation commits remain
+`03f2e1dedcfd0ba274d17b4e462c0a497a6500c0` and
+`4c19841ffc039ddbf876a76c400ad8ca0358a759`; GitHub created the equivalent
+remote commit from the verified tree because the local HTTPS checkout had no
+non-interactive credential.
+
+Founder reviews draft PR #18 and decides whether to merge. After merge, Hermes
+may materialize the M-001 mission root through the canonical operational
 interface. Production starts only after both mission materialization and the
 health readiness gate pass under the existing A0 controls.
