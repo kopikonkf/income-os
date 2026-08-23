@@ -106,7 +106,17 @@ A runtime actor starts from zero trusted conversational memory and loads, in ord
 2. `company/identity-registry.json`;
 3. its registered identity document;
 4. `PROTOCOLS/agency-contract-v0.md` and role-specific protocols;
-5. a bounded, versioned semantic snapshot from the DIE State Layer.
+5. for Executive, Division, and Hermes cognition,
+   `docs/pipeline/DIGITAL_INCOME_PIPELINE_CANON.md`;
+6. for Hermes, and for Executive or Division cognition performing opportunity
+   research or M-001 work,
+   `docs/atlas/HUMAN_CENTRIC_ATLAS_CANON.md`;
+7. a bounded, versioned semantic snapshot from the DIE State Layer.
+
+Workers do not load holdings strategy or the Atlas. They receive only the
+bounded job context allowed by the Worker Contract. Canon documents define
+durable scope and decision doctrine; the semantic snapshot remains the source
+for current operational status.
 
 If any required source is absent, invalid, stale beyond policy, or contradictory, the actor lowers scope and escalates. It does not reconstruct authority from memory.
 
