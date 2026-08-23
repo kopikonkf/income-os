@@ -30,7 +30,7 @@ from pathlib import Path
 
 from websocket import create_connection
 
-DEBUG_PORT = 9333
+DEBUG_PORT = 9333  # default: Division-01 Brave instance
 CODE_HOME = Path.home() / ".codex-DIVISION-01"
 WAKE_JSON = CODE_HOME / "wake.json"
 CHATGPT_URL = "https://chatgpt.com/"
@@ -270,8 +270,16 @@ def main():
     ap.add_argument("briefing", nargs="*")
     ap.add_argument("--new", action="store_true")
     ap.add_argument("--list", action="store_true")
+    ap.add_argument("--port", type=int, default=None, help="CDP port (default 9333 Division, 9110 BrowserOS neo)")
+    ap.add_argument("--home", default=None, help="wake.json home dir")
     args = ap.parse_args()
 
+    global DEBUG_PORT, CODE_HOME, WAKE_JSON
+    if args.port:
+        DEBUG_PORT = args.port
+    if args.home:
+        CODE_HOME = Path(args.home)
+        WAKE_JSON = CODE_HOME / "wake.json"
     ws = connect()
     sid = get_chatgpt_session(ws)
 
