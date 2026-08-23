@@ -1,0 +1,20 @@
+﻿{
+  "date": "2026-08-23",
+  "checks": [
+    {
+      "alarm": "E-000002",
+      "summary": "test: provider main 429",
+      "dependency": "hermes income-operator provider main = OpenCode Zen / nemotron-3-ultra-free",
+      "probe": "hermes -z 'Reply with exactly: OK' -> OK",
+      "probed_at": "2026-08-23T09:38Z",
+      "result": "recovered"
+    },
+    {
+      "alarm": "E-000089/E-000093/E-000094",
+      "summary": "die-heartbeat gagal membaca Kanban CLI WinError 2",
+      "dependency": "die-heartbeat cron (eca116a7e664) executable resolution; PR #18 adds DIE_HERMES_EXE support",
+      "probe": "hermes cron list -> last_run 2026-08-23T09:30:09Z ok, next 09:45, schedule */15",
+      "result": "recovered"
+    }
+  ]
+}
