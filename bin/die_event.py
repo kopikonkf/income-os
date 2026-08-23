@@ -60,8 +60,26 @@ def next_seq(path):
         return int(time.time())
 
 
-def emit_event(cls, source, summary, mission_id=None, task_id=None, detail_ref=None):
+def emit_event(
+    cls,
+    source,
+    summary,
+    mission_id=None,
+    task_id=None,
+    detail_ref=None,
+    *,
+    division_id=None,
+    dedupe_key=None,
+    alarm_state=None,
+    resolves_event_id=None,
+):
     assert cls in CLASSES, f"kelas tidak dikenal: {cls}"
+    if alarm_state not in (None, "open", "resolved"):
+        raise ValueError("alarm_state harus open atau resolved")
+    if alarm_state == "open" and cls not in ("WARNING", "CRITICAL"):
+        raise ValueError("alarm open harus WARNING atau CRITICAL")
+    if alarm_state == "resolved" and not (dedupe_key or resolves_event_id):
+        raise ValueError("alarm resolved membutuhkan dedupe_key atau resolves_event_id")
     path = STATE / "EVENTS.jsonl"
     seq = next_seq(path)
     ts = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
@@ -71,12 +89,19 @@ def emit_event(cls, source, summary, mission_id=None, task_id=None, detail_ref=N
         "ts": ts,
         "class": cls,
         "source": source,
+        "division_id": division_id,
         "mission_id": mission_id,
         "task_id": task_id,
         "summary": summary[:140],
         "detail_ref": detail_ref,
         "wake": cls in ("CRITICAL", "STRATEGIC"),
     }
+    if dedupe_key is not None:
+        event["dedupe_key"] = dedupe_key
+    if alarm_state is not None:
+        event["alarm_state"] = alarm_state
+    if resolves_event_id is not None:
+        event["resolves_event_id"] = resolves_event_id
     _append(path, event)
     print(json.dumps(event, ensure_ascii=False))
     return event
@@ -99,6 +124,22 @@ def emit_decision(
     semantic_object=None,
     print_record=True,
 ):
+    if semantic_object is not None and request_id is None:
+        raise ValueError("semantic_object membutuhkan request_id")
+    if klass == "mission_ratification":
+        if request_id is None:
+            raise ValueError("mission_ratification membutuhkan request_id")
+        if not isinstance(semantic_object, dict):
+            raise ValueError("mission_ratification membutuhkan semantic_object")
+        missing = [
+            key for key in ("division_id", "mission_id")
+            if not semantic_object.get(key)
+        ]
+        if missing:
+            raise ValueError(
+                "mission_ratification semantic_object kehilangan "
+                + ", ".join(missing)
+            )
     path = STATE / "DECISIONS.jsonl"
     rows = _json_lines(path)
     number = 0
@@ -187,8 +228,12 @@ def main():
     event_parser.add_argument("--source", required=True)
     event_parser.add_argument("--summary", required=True)
     event_parser.add_argument("--mission-id")
+    event_parser.add_argument("--division-id")
     event_parser.add_argument("--task-id")
     event_parser.add_argument("--detail-ref")
+    event_parser.add_argument("--dedupe-key")
+    event_parser.add_argument("--alarm-state", choices=("open", "resolved"))
+    event_parser.add_argument("--resolves-event-id")
 
     decision_parser = sub.add_parser("decision", help="tulis satu keputusan")
     decision_parser.add_argument("--choice", required=True)
@@ -206,6 +251,10 @@ def main():
             args.mission_id,
             args.task_id,
             args.detail_ref,
+            division_id=args.division_id,
+            dedupe_key=args.dedupe_key,
+            alarm_state=args.alarm_state,
+            resolves_event_id=args.resolves_event_id,
         )
     elif args.cmd == "decision":
         emit_decision(

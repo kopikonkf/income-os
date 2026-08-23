@@ -1,21 +1,21 @@
 # LASTSTANDINGPOINT.md
 
-Date: 2026-08-21
+Date: 2026-08-23
 Project: Digital Income Empire — Company Holdings
 Mode: Chief Executive Architect
-Workflow stage: P3 — CUSTOM MCP P0/P1 CANONICAL / EXECUTIVE MCP P2 OPTIONAL DEFERRED POST-PECAH-TELOR
+Workflow stage: M-001 ACTIVE / MISSION MATERIALIZATION + HEALTH GATE BLOCKED
 Canonical runtime: C:\DIE
 Canonical repository: https://github.com/kopikonkf/income-os
-Working branch: architect/custom-mcp-decision-fabric-v1
+Working branch: architect/m001-mission-reconciliation-v1
 Base branch: main
-Base/merge commit: 5f622d70faa1fa19265fe1d33ff567ac4215f885
+Base/merge commit: 68f81d154964a3ff16cc06b8658419d92b670e38
 Phase A implementation commit: ae2a42aee309b9eee05dbf4376ef86806c967c4d
 Phase B1 implementation commit: 2e46e43e99a6aff9c4390c3f70e1e5471d9b28b0
 Phase B2A initial implementation commit: ba05dcf8f3e54092f8f92c8de488f3e0702bfce6
 Phase B2B1 implementation commit: ff6f850eb0c35a15fb62f727c69ac45cf05767d5
 Merged PRs: https://github.com/kopikonkf/income-os/pull/8, https://github.com/kopikonkf/income-os/pull/9, https://github.com/kopikonkf/income-os/pull/10, and https://github.com/kopikonkf/income-os/pull/11
-Draft PR: https://github.com/kopikonkf/income-os/pull/12
-Publication status: DRAFT PR #12 OPEN; FOUNDER REVIEW PENDING; B2B2/B2C REMAIN DEFERRED
+Draft PR: https://github.com/kopikonkf/income-os/pull/18
+Publication status: DRAFT PR #18 OPEN; FOUNDER REVIEW PENDING
 
 ## Verified merge baseline
 
@@ -1016,6 +1016,7 @@ profile, conversation, service, tunnel, Worker, or Proxima runtime was mutated.
 - `IDENTITY/chatgpt-creator.md`
 - `bridge/income_os_bridge/authority.py`
 - `bridge/income_os_bridge/projection.py`
+- `bridge/income_os_bridge/events.py`
 - `bridge/income_os_bridge/runtime_mcp_server.py`
 - `bridge/tests/test_runtime_identities_limited_mcp_v1.py`
 
@@ -1515,3 +1516,125 @@ Complete Plan and repository regression for the two upstream fixes, publish a
 draft hotfix PR, and return control to Founder. After Founder merges and the
 operator confirms the repaired scripts, M-001 ratification may begin as a
 separate controlled mission decision; wake and P2 remain deferred.
+
+## M-001 ratification, acceptance, and reconciliation standing — 2026-08-23
+
+M-001 is the first ratified and operationally accepted mission:
+
+| Receipt | Canonical meaning | Timestamp |
+| --- | --- | --- |
+| D-0020 | Founder RATIFY M-001 v1 | T0 = 2026-08-22T17:13:25Z |
+| D-0021 | DIVISION-01 `propose_mission`; canonical mutation true | 2026-08-22T18:13:49Z |
+| D-0022 | Hermes operational acceptance | 2026-08-22T18:18:01Z |
+
+Executive snapshot at 2026-08-22T18:20:58Z / bridge seq 452 independently
+verified the ratification and acceptance evidence with no portfolio conflict.
+Day-45 hard falsification deadline is 2026-10-06.
+
+M-001 cohort remains Adobe Stock, Dreamstime, 123RF, Vecteezy,
+MotionElements, plus the Magnific warm lane. The cost envelope is USD 0.
+CPU upscaler gate passed with `realesr-general-x4v3`: p50 32.3 seconds, p95
+33.5 seconds, RAM 2.4% of 56 GB, and 37.7 MP output at 4x. CPU-inline routing is
+allowed; this does not authorize production.
+
+### Canonical mismatch diagnosis
+
+`active_missions: []` was a projection defect, not absence of mission
+acceptance. The decision ledger contains the full lifecycle while the old
+projection seeded missions only from `EVENTS.jsonl`. No M-001 event or linked
+Kanban row existed, so the accepted mission disappeared from the bounded
+surface.
+
+The canonical correction is:
+
+- mission status compiles from the highest valid mission decision;
+- D-0022 makes M-001 `active` even if Kanban materialization is late;
+- Kanban remains Hermes' operational materialization, not a second mission
+  authority;
+- missing mission-linked materialization sets `reconcile_required=true`,
+  `execution_ready=false`, and degraded completeness;
+- only exact CLI `mission_id=M-001` or a canonical `mission_id` + `task_id`
+  event relation clears reconciliation;
+- unrelated open cards never count toward M-001.
+
+The SQLite fallback cannot prove the relation because its verified schema has
+no `mission_id` column. Title matching, assignee matching, and card-order
+matching are forbidden inference.
+
+### Health and writer hardening
+
+Production remains blocked. The known conditions are provider main 429,
+die-heartbeat Kanban CLI `WinError 2`, and `gateway_running=false`.
+
+This patch adds a fail-closed `execution_readiness` surface and an explicit
+append-only alarm lifecycle. WARNING/CRITICAL records remain active until a
+later event resolves their exact event ID or stable dedupe key. The heartbeat
+cron opens and resolves its Kanban-CLI alarm based on actual read failure or
+success and supports an explicit `DIE_HERMES_EXE` executable override.
+
+The State Writer now rejects `mission_ratification` unless request ID,
+division ID, and mission ID are present. It also rejects any semantic object
+that would otherwise be silently discarded for lack of request ID. This is the
+regression guard for D-0019.
+
+### Snapshot relay standing
+
+Two chat relays failed signed snapshot integrity; the byte-exact programmatic
+loopback submission passed. Chat is not an approved transport for large signed
+snapshot JSON. A future one-use opaque `snapshot_ref` contract is specified in
+`docs/architecture/MISSION_STATE_RECONCILIATION_V1.md`, but no Runtime MCP or
+wake schema changes are part of this patch.
+
+### Versioned artifacts
+
+- `LASTSTANDINGPOINT.md`
+- `bin/die_cron.py`
+- `bin/die_event.py`
+- `bridge/SCHEMA_NOTES.md`
+- `bridge/income_os_bridge/events.py`
+- `bridge/income_os_bridge/projection.py`
+- `bridge/tests/test_mission_reconciliation_v1.py`
+- `bridge/tests/test_runtime_identities_limited_mcp_v1.py`
+- `docs/architecture/MISSION_STATE_RECONCILIATION_V1.md`
+- `docs/operations/M001_RECONCILIATION_AND_HEALTH_GATE_V1.md`
+
+No state JSONL, projection output, service, secret, DNS, wake, P2, Proxima,
+production asset, or marketplace submission is included.
+
+### Verification result
+
+```text
+M-001 + division identity targeted regression: 17 passed
+Full bridge regression: 136 passed, 7 skipped
+python -m py_compile: PASS
+python bin/die_company_brain_check.py: PASS
+git diff --check: PASS
+```
+
+The skipped tests are existing platform-specific checks. The first full-suite
+attempt from Linux used the canonical Windows default `C:\DIE` and therefore
+failed to locate the identity registry. Re-running with `DIE_HOME` bound to the
+repository checkout produced the clean result above. No runtime state was
+written.
+
+### Next controlled action
+
+The GitHub App write scope was repaired by Founder. The verified implementation
+tree was published to remote branch
+`architect/m001-mission-reconciliation-v1` as commit
+`e66535d7bfc64598656e8397d31b74cefcf564e4`, then opened as draft PR #18:
+
+https://github.com/kopikonkf/income-os/pull/18
+
+Initial PR receipt: OPEN, DRAFT, base `main` at
+`68f81d1bfc863f7c71448cf5fd63420904ec44f2`, exactly 10 changed paths, 1052
+additions, and 45 deletions. Local implementation commits remain
+`03f2e1dedcfd0ba274d17b4e462c0a497a6500c0` and
+`4c19841ffc039ddbf876a76c400ad8ca0358a759`; GitHub created the equivalent
+remote commit from the verified tree because the local HTTPS checkout had no
+non-interactive credential.
+
+Founder reviews draft PR #18 and decides whether to merge. After merge, Hermes
+may materialize the M-001 mission root through the canonical operational
+interface. Production starts only after both mission materialization and the
+health readiness gate pass under the existing A0 controls.

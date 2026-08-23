@@ -84,7 +84,18 @@ def recent_events(since_seq=0, limit=config.PAGE_DEFAULT, min_class="INFO"):
         cls = r.get("class") or classify(r)
         if config.CLASS_ORDER.get(cls, 0) < config.CLASS_ORDER.get(min_class, 0):
             continue
-        out.append({"event_id": r.get("event_id"), "seq": r.get("seq"), "ts": r.get("ts"), "class": cls, "source": r.get("source"), "summary": redact.redact(r.get("summary", "")), "wake": cls in config.WAKE_CLASSES})
+        out.append({
+            "event_id": r.get("event_id"),
+            "seq": r.get("seq"),
+            "ts": r.get("ts"),
+            "class": cls,
+            "source": r.get("source"),
+            "division_id": r.get("division_id"),
+            "mission_id": r.get("mission_id"),
+            "task_id": r.get("task_id"),
+            "summary": redact.redact(r.get("summary", "")),
+            "wake": cls in config.WAKE_CLASSES,
+        })
     truncated = len(out) > limit
     out = out[:limit]
     next_seq = out[-1]["seq"] if out else since_seq

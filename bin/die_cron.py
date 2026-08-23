@@ -12,6 +12,7 @@ import datetime as dt
 import json
 import os
 import pathlib
+import shutil
 import subprocess
 import sys
 from collections import Counter
@@ -23,11 +24,6 @@ BRIDGE = DIE / "bridge"
 PROJECTION = STATE / "projection"
 ORGANISM = STATE / "organism-test"
 HERMES_AGENT_ROOT = pathlib.Path(r"C:\Users\aethers\AppData\Local\hermes")
-HERMES = pathlib.Path(sys.executable).with_name("hermes.exe")
-if not HERMES.exists():
-    HERMES = HERMES_AGENT_ROOT / "hermes-agent" / "venv" / "Scripts" / "hermes.exe"
-if not HERMES.exists():
-    HERMES = HERMES_AGENT_ROOT / "bin" / "hermes.exe"
 PYTHON = pathlib.Path(sys.executable)
 
 HB_SHORT_MIN = 15
@@ -49,15 +45,54 @@ def run(cmd, cwd=DIE, timeout=30):
                           text=True, encoding="utf-8", errors="replace", timeout=timeout)
 
 
+def resolve_hermes_executable(env=None, python_executable=None, which=None):
+    env = os.environ if env is None else env
+    python_executable = sys.executable if python_executable is None else python_executable
+    which = shutil.which if which is None else which
+    candidates = []
+    if env.get("DIE_HERMES_EXE"):
+        candidates.append(pathlib.Path(env["DIE_HERMES_EXE"]))
+    for name in ("hermes.exe", "hermes"):
+        resolved = which(name)
+        if resolved:
+            candidates.append(pathlib.Path(resolved))
+    candidates.extend([
+        pathlib.Path(python_executable).with_name("hermes.exe"),
+        HERMES_AGENT_ROOT / "hermes-agent" / "venv" / "Scripts" / "hermes.exe",
+        HERMES_AGENT_ROOT / "bin" / "hermes.exe",
+    ])
+    for candidate in candidates:
+        if candidate.is_file():
+            return candidate
+    attempted = ", ".join(str(path) for path in candidates)
+    raise FileNotFoundError(
+        f"Hermes executable tidak ditemukan; set DIE_HERMES_EXE. tried: {attempted}"
+    )
+
+
 def hermes(*args, timeout=30):
-    return run([str(HERMES), *args], timeout=timeout)
+    return run([str(resolve_hermes_executable()), *args], timeout=timeout)
 
 
-def emit(cls, summary, detail=None):
+def emit(
+    cls,
+    summary,
+    detail=None,
+    *,
+    dedupe_key=None,
+    alarm_state=None,
+    resolves_event_id=None,
+):
     cmd = [str(PYTHON), str(BIN / "die_event.py"), "event", "--class", cls,
            "--source", "cron", "--summary", summary[:140]]
     if detail:
         cmd += ["--detail-ref", str(detail)]
+    if dedupe_key:
+        cmd += ["--dedupe-key", dedupe_key]
+    if alarm_state:
+        cmd += ["--alarm-state", alarm_state]
+    if resolves_event_id:
+        cmd += ["--resolves-event-id", resolves_event_id]
     result = run(cmd, timeout=20)
     if result.returncode:
         print(f"die_event failed: {result.stderr.strip()}", file=sys.stderr)
@@ -129,7 +164,12 @@ def heartbeat_run():
     try:
         rows = kanban_rows()
     except Exception as exc:
-        emit("CRITICAL", f"die-heartbeat gagal membaca Kanban CLI: {exc}")
+        emit(
+            "CRITICAL",
+            f"die-heartbeat gagal membaca Kanban CLI: {exc}",
+            dedupe_key="health:die-heartbeat:kanban-cli",
+            alarm_state="open",
+        )
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
     now = dt.datetime.now(dt.timezone.utc)
@@ -156,7 +196,12 @@ def heartbeat_run():
         blocked += 1
         emit("WARNING", f"card {ident} blocked: {reason}")
     summary = f"heartbeat-cron: {sum(1 for r in rows if active(r))} active cards, {blocked} blocked"
-    if not emit("INFO", summary):
+    if not emit(
+        "INFO",
+        summary,
+        dedupe_key="health:die-heartbeat:kanban-cli",
+        alarm_state="resolved",
+    ):
         return 1
     print(summary)
     return 0
