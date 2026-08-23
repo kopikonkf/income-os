@@ -17,6 +17,8 @@ wake_division01.DEBUG_PORT = 9110
 from pathlib import Path
 wake_division01.CODE_HOME = Path.home() / ".codex-EXECUTIVE"
 wake_division01.WAKE_JSON = wake_division01.CODE_HOME / "wake.json"
+wake_division01.PRINCIPAL_ID = "chatgpt-plus-executive"
+wake_division01.DIVISION_ID = None
 
 if __name__ == "__main__":
     wake_division01.main()
