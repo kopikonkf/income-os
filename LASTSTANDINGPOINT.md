@@ -14,8 +14,8 @@ Phase B1 implementation commit: 2e46e43e99a6aff9c4390c3f70e1e5471d9b28b0
 Phase B2A initial implementation commit: ba05dcf8f3e54092f8f92c8de488f3e0702bfce6
 Phase B2B1 implementation commit: ff6f850eb0c35a15fb62f727c69ac45cf05767d5
 Merged PRs: https://github.com/kopikonkf/income-os/pull/8, https://github.com/kopikonkf/income-os/pull/9, https://github.com/kopikonkf/income-os/pull/10, and https://github.com/kopikonkf/income-os/pull/11
-Draft PR: pending publication
-Publication status: VERIFIED / DRAFT PR PENDING
+Draft PR: https://github.com/kopikonkf/income-os/pull/21
+Publication status: VERIFIED / DRAFT PR #21 OPEN
 
 ## Verified merge baseline
 
@@ -1753,9 +1753,21 @@ The skipped checks are pre-existing platform-specific tests. Test dependencies
 were installed only under `/tmp`; no dependency or runtime state was added to
 the repository.
 
-### Next controlled action
+### Publication receipt and next controlled action
 
-Complete repository verification and publish a draft security-canon PR for
-Founder review. Runtime deployment/migration remains a separate authorized
-operator action. Blueprint batch-1 proceeds only to the Founder Worth-Making
-Gate under the existing A0 controls.
+The verified tree was published through the authorized GitHub Connector to
+`architect/wake-security-canon-v1` as remote commit
+`491dc7436da39270b14a48f46da047668d794473`. Draft PR #21 is OPEN:
+
+https://github.com/kopikonkf/income-os/pull/21
+
+Initial receipt: base `main` at
+`acb4109e7977b3deda31f3d428b94fb0e6ee724b`, 9 changed paths, 669 additions,
+26 deletions, draft=true, merged=false. The equivalent verified local commit is
+`46a94cc8e8795d8775312558ed435a68d59d3a16`; both commits point to tree
+`b8b4f6866a90f673d2f0105d77beb0b8e6c72e64` before this receipt-only update.
+
+Founder reviews draft PR #21 and decides merge. Runtime deployment and the
+principal-dedicated profile migration remain separate authorized operator
+actions. Blueprint batch-1 proceeds only to the Founder Worth-Making Gate under
+the existing A0 controls.
