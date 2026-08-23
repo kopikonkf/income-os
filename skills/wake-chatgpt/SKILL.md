@@ -25,10 +25,10 @@ python C:\DIE\bin\wake_division01.py --new "<briefing text>"
 python C:\DIE\bin\wake_division01.py --list
 ```
 
-Prasyarat: Brave profil "plus" running dengan remote debugging port 9333
-(scheduled task "DIE Wake Brave CDP" ONLOGON menjalankan health check
-`C:\DIE\bin\wake_brave_health.ps1`; jalankan manual script tsb kalau error
-"E_CONNREFUSED" / gagal konek :9333).
+Prasyarat: Brave dedicated profile DIVISION-01 running (`C:\ProgramData\DIE\BrowserProfiles\DIVISION-01`, CDP `127.0.0.1:9333` loopback-only)
+(scheduled task "DIE Wake Brave CDP" ONLOGON menjalankan `C:\DIE\bin\wake_brave_health.ps1`; jalankan manual kalau error "E_CONNREFUSED").
+Legacy `Profile 3` di shared User Data = PILOT-DEPRECATED — jangan dipakai untuk Div-02+. Dedicated dir wajib ACL protected (SYSTEM+Administrators+operator).
+Scaling: 1 binary, N dedicated user-data dir (50 division = 50 folder di disk), bounded on-demand pool default concurrency 1 — bukan 50 browser resident.
 
 Output: balasan teks assistant dari Division-01 (stderr berisi metadata
 sanitized). Timeout bisa panjang (balasan LLM), beri slack 5 menit.
