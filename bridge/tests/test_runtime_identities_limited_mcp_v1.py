@@ -157,6 +157,10 @@ def test_division_snapshot_excludes_untagged_and_other_division_rows(monkeypatch
                 "cognitive_lane_stale_min": 0,
                 "bridge_seq_last": 12,
                 "event_backlog": 0,
+                "execution_readiness": {
+                    "ready": False,
+                    "blockers": ["critical_alarm:E-SECRET"],
+                },
                 "active_alarms": [{"secret": "cross-division"}],
                 "cron": [{"name": "private"}],
             },
@@ -204,6 +208,10 @@ def test_division_snapshot_excludes_untagged_and_other_division_rows(monkeypatch
     assert [row["event_id"] for row in result["data"]["recent_events"]["events"]] == ["E-1"]
     assert "active_alarms" not in result["data"]["system_health"]
     assert "cron" not in result["data"]["system_health"]
+    assert result["data"]["system_health"]["execution_readiness"] == {
+        "ready": False,
+        "blocker_count": 1,
+    }
 
 
 def test_division_mission_proposal_commits_through_state_manager_and_routes_hermes(

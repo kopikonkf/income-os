@@ -76,7 +76,10 @@ Sumber kebenaran = `hermes gateway status` (live PID 17556).
 ## 4. Anomali / deviation yang tercatat
 - **`kanban.db` tidak punya `mission_id`/`task_id`/`updated_at`/`kill_criteria`**
   sebagai kolom kartu. Field kanonik tsb diisi `None`/turunan (tidak menebak).
-  Mission linkage ada di EVENTS.jsonl (`mission_id`), dipakai projection.
+  Mission lifecycle dikompilasi dari DECISIONS.jsonl; EVENTS dapat memberi
+  observasi legacy. Materialisasi kartu hanya dianggap tertaut jika reader CLI
+  mengembalikan `mission_id` secara eksplisit atau event kanonik membawa
+  pasangan `mission_id` + `task_id`. DB fallback tidak boleh menebak.
 - Spec menulis `state.db:sessions` di `EXPECTED`; schema_guard memakai nama tabel
   aktual `tasks` & `sessions` (kunci: `kanban.db:tasks`, `state.db:sessions`).
 - `hermes session list --json`/`cron list --json`/`gateway status --json` TIDAK

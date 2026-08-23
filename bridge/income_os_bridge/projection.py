@@ -39,16 +39,193 @@ def _stale(ev):
         return max(0, int((datetime.datetime.now(datetime.timezone.utc) - t).total_seconds() // 60))
     except Exception:
         return None
+
+
+def _active_alarms(ev):
+    """Compile open alarms without erasing legacy fail-closed records.
+
+    New writers can close an alarm by referencing its event id or by emitting a
+    resolved record with the same dedupe key.  Legacy WARNING/CRITICAL rows have
+    no lifecycle metadata, so they remain open until an explicit resolution
+    references them.
+    """
+
+    open_by_id = {}
+    open_by_key = {}
+    for event in ev:
+        state = event.get("alarm_state")
+        event_id = event.get("event_id")
+        dedupe_key = event.get("dedupe_key")
+        resolves_event_id = event.get("resolves_event_id")
+        if state == "resolved":
+            if resolves_event_id:
+                open_by_id.pop(resolves_event_id, None)
+            if dedupe_key:
+                previous = open_by_key.pop(dedupe_key, None)
+                if previous:
+                    open_by_id.pop(previous, None)
+            continue
+        if event.get("class") not in ("WARNING", "CRITICAL"):
+            continue
+        if event_id:
+            open_by_id[event_id] = event
+        if dedupe_key and event_id:
+            previous = open_by_key.get(dedupe_key)
+            if previous:
+                open_by_id.pop(previous, None)
+            open_by_key[dedupe_key] = event_id
+    return list(open_by_id.values())
+
+
+def _linked_cards(kb_rows, ev, mission_id):
+    """Return cards linked explicitly by CLI metadata or a canonical event."""
+
+    task_ids = {
+        str(event.get("task_id"))
+        for event in ev
+        if event.get("mission_id") == mission_id and event.get("task_id")
+    }
+    return [
+        card for card in kb_rows
+        if card.get("mission_id") == mission_id
+        or str(card.get("task_id") or card.get("card_id")) in task_ids
+    ]
+
+
+def _mission_rows(kb_rows, ev, decisions):
+    """Compile mission lifecycle from canonical decisions plus Kanban materialization."""
+
+    missions = {}
+
+    def ensure(mid):
+        return missions.setdefault(mid, {
+            "mission_id": mid,
+            "division_id": None,
+            "goal": mid,
+            "status": "active",
+            "lifecycle_state": "event_observed",
+            "kill_criteria": None,
+            "invalid": True,
+            "reconcile_required": False,
+            "execution_ready": False,
+            "budget": None,
+            "deadline": None,
+            "cards_open": 0,
+            "last_event_seq": 0,
+            "last_decision_id": None,
+        })
+
+    for event in ev:
+        mid = event.get("mission_id")
+        if not mid:
+            continue
+        row = ensure(mid)
+        if row.get("division_id") is None and event.get("division_id") is not None:
+            row["division_id"] = event.get("division_id")
+        row["last_event_seq"] = max(row["last_event_seq"], event.get("seq", 0))
+
+    lifecycle_rank = {
+        "mission_ratification": 1,
+        "propose_mission": 2,
+        "mission_acceptance": 3,
+    }
+    lifecycle = {}
+    for decision in decisions:
+        semantic = decision.get("semantic_object")
+        if not isinstance(semantic, dict):
+            continue
+        mid = semantic.get("mission_id")
+        klass = decision.get("class") or semantic.get("decision_class")
+        if not mid or klass not in lifecycle_rank:
+            continue
+        choice = str(decision.get("choice") or semantic.get("choice") or "").upper()
+        if klass == "mission_ratification" and not choice.startswith("RATIFY"):
+            continue
+        if klass == "mission_acceptance" and not choice.startswith("ACCEPT"):
+            continue
+        row = ensure(mid)
+        if semantic.get("division_id") is not None:
+            row["division_id"] = semantic.get("division_id")
+        if semantic.get("goal"):
+            row["goal"] = semantic.get("goal")
+        if semantic.get("kill_criteria") is not None:
+            row["kill_criteria"] = semantic.get("kill_criteria")
+        if semantic.get("budget") is not None:
+            row["budget"] = semantic.get("budget")
+        if semantic.get("deadline") is not None:
+            row["deadline"] = semantic.get("deadline")
+        if lifecycle_rank[klass] >= lifecycle.get(mid, 0):
+            lifecycle[mid] = lifecycle_rank[klass]
+            row["last_decision_id"] = decision.get("decision_id")
+
+    closed = {"done", "closed", "completed", "cancelled"}
+    for mid, row in missions.items():
+        cards = _linked_cards(kb_rows, ev, mid)
+        card_statuses = {str(card.get("status") or "").lower() for card in cards}
+        row["cards_open"] = sum(
+            1 for card in cards
+            if str(card.get("status") or "").lower() not in closed
+        )
+        rank = lifecycle.get(mid, 0)
+        if rank == 1:
+            row["status"] = "ratified"
+            row["lifecycle_state"] = "ratified"
+        elif rank == 2:
+            row["status"] = "pending_acceptance"
+            row["lifecycle_state"] = "proposed"
+        elif rank == 3 and not cards:
+            row["status"] = "active"
+            row["lifecycle_state"] = "accepted"
+            row["invalid"] = False
+            row["reconcile_required"] = True
+        elif rank == 3:
+            row["lifecycle_state"] = "materialized"
+            row["invalid"] = False
+            if card_statuses and card_statuses <= closed:
+                row["status"] = "completed"
+            elif "active" in card_statuses or "running" in card_statuses or "in_progress" in card_statuses or "open" in card_statuses:
+                row["status"] = "active"
+                row["execution_ready"] = True
+            elif "blocked" in card_statuses:
+                row["status"] = "blocked"
+            elif "paused" in card_statuses:
+                row["status"] = "paused"
+            else:
+                row["status"] = "blocked"
+                row["reconcile_required"] = True
+    return list(missions.values())
+
+
+def _mission_decisions(decisions, mission_id):
+    return [
+        decision for decision in decisions
+        if isinstance(decision.get("semantic_object"), dict)
+        and decision["semantic_object"].get("mission_id") == mission_id
+    ]
+
+
 def system_health():
     gw, cr, ev = reader.get_gateway_status(), reader.get_cron_jobs(), _ev()
     g = gw.rows[0] if gw.rows else {}
     cron = [{"name": c.get("name"), "last_run_at": c.get("last_run_at"), "last_status": c.get("last_status"), "overdue_min": None} for c in cr.rows]
-    alarms = [{"class": e.get("class"), "event_id": e.get("event_id"), "summary": e.get("summary")} for e in ev if e.get("class") in ("WARNING", "CRITICAL")]
+    open_alarms = _active_alarms(ev)
+    alarms = [{"class": e.get("class"), "event_id": e.get("event_id"), "summary": e.get("summary"),
+               "dedupe_key": e.get("dedupe_key")} for e in open_alarms]
+    trust = _worst(gw.trust, cr.trust, _EV)
+    blockers = []
+    if g.get("running") is not True:
+        blockers.append("gateway_not_running")
+    if trust == "DEGRADED":
+        blockers.append("health_source_degraded")
+    blockers.extend(
+        f"critical_alarm:{e.get('event_id')}"
+        for e in open_alarms if e.get("class") == "CRITICAL"
+    )
     data = {"gateway_running": g.get("running"), "uptime_s": g.get("uptime_s"), "cron": cron,
             "active_alarms": alarms, "cognitive_lane_stale_min": _stale(ev),
             "bridge_seq_last": ev[-1]["seq"] if ev else 0,
-            "event_backlog": sum(1 for e in ev if e.get("seq", 0) > events.read_cursor())}
-    trust = _worst(gw.trust, cr.trust, _EV)
+            "event_backlog": sum(1 for e in ev if e.get("seq", 0) > events.read_cursor()),
+            "execution_readiness": {"ready": not blockers, "blockers": blockers}}
     return envelope.build("system_health", _redact(data), ["cli:hermes gateway status", "cli:hermes cron list", "file:state/EVENTS.jsonl"],
                           completeness="degraded" if trust == "DEGRADED" else "complete", source_trust=trust)
 def system_state():
@@ -59,35 +236,31 @@ def system_state():
     return envelope.build("system_state", _redact(data), ["config:DIE"], source_trust="ASSUMED")
 def active_missions(status="active"):
     kb, ev = reader.get_kanban_rows(), _ev()
-    m = {}
-    for e in ev:
-        mid = e.get("mission_id")
-        if mid:
-            d = m.setdefault(mid, {"mission_id": mid, "division_id": e.get("division_id"),
-                                   "goal": mid, "status": "active", "kill_criteria": None,
-                                   "invalid": True, "budget": None, "deadline": None, "cards_open": 0, "last_event_seq": 0})
-            if d.get("division_id") is None and e.get("division_id") is not None:
-                d["division_id"] = e.get("division_id")
-            d["last_event_seq"] = max(d["last_event_seq"], e.get("seq", 0))
+    decisions = _jlines(config.STATE / "DECISIONS.jsonl")
+    rows = _mission_rows(kb.rows, ev, decisions)
     if status != "any":
-        m = {k: v for k, v in m.items() if v["status"] == status}
-    for d in m.values():
-        d["cards_open"] = sum(1 for c in kb.rows if c.get("status") == "open")
+        rows = [row for row in rows if row["status"] == status]
     trust = _worst(kb.trust, _EV)
-    return envelope.build("active_missions", _redact(list(m.values())), ["db:kanban tasks", "file:state/EVENTS.jsonl"],
-                          completeness="degraded" if trust == "DEGRADED" else "complete", source_trust=trust)
+    reconcile = any(row["reconcile_required"] for row in rows)
+    notes = ["accepted mission requires a mission-linked Kanban card before active execution"] if reconcile else None
+    return envelope.build("active_missions", _redact(rows), ["db:kanban tasks", "file:state/EVENTS.jsonl", "file:state/DECISIONS.jsonl"],
+                          completeness="degraded" if trust == "DEGRADED" or reconcile else "complete", source_trust=trust,
+                          notes=notes)
 def mission_get(mission_id):
     kb = reader.get_kanban_rows()
-    mission = next(({"mission_id": e.get("mission_id"), "goal": e.get("mission_id"), "status": "active",
-                     "kill_criteria": None, "last_event_seq": e.get("seq")} for e in _ev() if e.get("mission_id") == mission_id), None)
+    ev = _ev()
+    decisions = _jlines(config.STATE / "DECISIONS.jsonl")
+    mission = next((row for row in _mission_rows(kb.rows, ev, decisions) if row["mission_id"] == mission_id), None)
     if mission is None:
         return None  # -> E_NOT_FOUND
+    scoped_decisions = _mission_decisions(decisions, mission_id)
+    scoped_cards = _linked_cards(kb.rows, ev, mission_id)
     data = {"mission": mission, "cards": [{"card_id": c.get("card_id"), "title": c.get("title"), "status": c.get("status"),
-                                             "assignee": c.get("assignee"), "heartbeat_at": c.get("heartbeat_at")} for c in kb.rows],
-            "evidence_refs": [d.get("evidence_ref") for d in _jlines(config.STATE / "DECISIONS.jsonl") if d.get("evidence_ref")][:20],
-            "cost_lines": _jlines(config.STATE / "ECONOMICS.jsonl"), "decisions": _jlines(config.STATE / "DECISIONS.jsonl", 20)}
+                                             "assignee": c.get("assignee"), "heartbeat_at": c.get("heartbeat_at")} for c in scoped_cards],
+            "evidence_refs": [d.get("evidence_ref") for d in scoped_decisions if d.get("evidence_ref")][:20],
+            "cost_lines": _jlines(config.STATE / "ECONOMICS.jsonl"), "decisions": scoped_decisions[-20:]}
     return envelope.build("mission_get", _redact(data), ["db:kanban tasks", "file:DECISIONS.jsonl", "file:ECONOMICS.jsonl"],
-                          completeness="degraded" if kb.trust == "DEGRADED" else "complete", source_trust=kb.trust,
+                          completeness="degraded" if kb.trust == "DEGRADED" or mission["reconcile_required"] else "complete", source_trust=kb.trust,
                           notes=["evidence_refs = path relatif, bukan isi file"])
 def workers():
     kb = reader.get_kanban_rows()
@@ -201,6 +374,7 @@ def _division_health(surface, division_id):
 
     bounded = json.loads(json.dumps(surface, ensure_ascii=False))
     data = bounded.get("data") if isinstance(bounded.get("data"), dict) else {}
+    readiness = data.get("execution_readiness")
     bounded["data"] = {
         key: data.get(key)
         for key in (
@@ -210,8 +384,14 @@ def _division_health(surface, division_id):
             "event_backlog",
         )
     }
+    if isinstance(readiness, dict):
+        blockers = readiness.get("blockers")
+        bounded["data"]["execution_readiness"] = {
+            "ready": readiness.get("ready") is True,
+            "blocker_count": len(blockers) if isinstance(blockers, list) else None,
+        }
     bounded["notes"] = list(bounded.get("notes", [])) + [
-        f"division health projection for {division_id}; alarms and cron rows withheld"
+        f"division health projection for {division_id}; alarm detail and cron rows withheld"
     ]
     return bounded
 
