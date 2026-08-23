@@ -20,6 +20,7 @@ Usage:
 """
 import argparse
 import base64
+import datetime as dt
 import hashlib
 import json
 import sys
@@ -35,6 +36,8 @@ CODE_HOME = Path.home() / ".codex-DIVISION-01"
 WAKE_JSON = CODE_HOME / "wake.json"
 CHATGPT_URL = "https://chatgpt.com/"
 MAX_ITERATION = 500000
+PRINCIPAL_ID = "division-head-division01"
+DIVISION_ID = "DIVISION-01"
 
 
 def cdp(ws, id_, method, params=None, session=None, timeout=900):
@@ -99,13 +102,16 @@ def inpage_fetch(ws, sid, expr_id, js_body: str, timeout=900):
         raise RuntimeError("in-page returned null")
     status, _, payload = str(val).partition("|")
     if status != "200":
-        raise RuntimeError(f"E_WAKE_{status}: {payload[:400]}")
+        # Response bodies are deliberately excluded: authentication endpoints
+        # may return credential-adjacent diagnostic material.
+        raise RuntimeError(f"E_WAKE_{status}")
     return payload
 
 
 # ---------- step 1: gather session + sentinel challenge (in-page) ----------
 JS_PREPARE = """
 const sess = await (await fetch('/api/auth/session', {credentials: 'include'})).json();
+globalThis.__dieWakeReqToken = null;
 if (!sess.accessToken) {
   __ret = '401|no web session accessToken - login chatgpt.com di Brave profil plus';
 } else {
@@ -119,13 +125,11 @@ if (!sess.accessToken) {
     body: '{}'
   });
   const req = await rr.json();
+  globalThis.__dieWakeReqToken = req.token || null;
   __ret = '200|' + JSON.stringify({
-    accessToken: sess.accessToken,
     deviceId: didVal,
-    reqToken: req.token,
     persona: req.persona,
     pow: req.proofofwork || {},
-    turnstile: req.turnstile || {},
     ua: navigator.userAgent,
     screen: [screen.width, screen.height],
     depth: screen.colorDepth,
@@ -184,7 +188,11 @@ def solve_pow(seed: str, difficulty: str, env: dict) -> str:
 
 # ---------- step 3: conversation POST with proof (in-page) ----------
 JS_WAKE_TMPL = """
-const sessInfo = __PREP_JSON__;
+const prepInfo = __PREP_JSON__;
+const sess = await (await fetch('/api/auth/session', {credentials: 'include'})).json();
+if (!sess.accessToken) {
+  __ret = '401|web session expired';
+} else {
 const body = {
   action: 'next',
   messages: [{id: crypto.randomUUID(), author: {role: 'user'},
@@ -198,21 +206,22 @@ const body = {
 };
 __CONV_LINE__
 const headers = {
-  'Authorization': 'Bearer ' + sessInfo.accessToken,
+  'Authorization': 'Bearer ' + sess.accessToken,
   'Content-Type': 'application/json',
   'Accept': 'text/event-stream',
-  'oai-device-id': sessInfo.deviceId,
+  'oai-device-id': prepInfo.deviceId,
   'oai-language': 'en-US',
 };
-if (sessInfo.reqToken) headers['openai-sentinel-chat-requirements-token'] = sessInfo.reqToken;
+const reqToken = globalThis.__dieWakeReqToken;
+if (reqToken) headers['openai-sentinel-chat-requirements-token'] = reqToken;
 if (__PROOF__) headers['openai-sentinel-proof-token'] = __PROOF__;
 const r = await fetch('/backend-api/conversation', {
   method: 'POST', headers, credentials: 'include',
   body: JSON.stringify(body),
 });
+globalThis.__dieWakeReqToken = null;
 if (!r.ok) {
-  const t = await r.text();
-  __ret = r.status + '|' + t.slice(0, 400);
+  __ret = r.status + '|conversation request failed';
 } else {
   const reader = r.body.getReader();
   const dec = new TextDecoder();
@@ -239,6 +248,7 @@ if (!r.ok) {
   __ret = '200|' + JSON.stringify({conversation_id: convId,
     reply: lastParts ? lastParts[lastParts.length - 1] : null});
 }
+}
 """
 
 
@@ -246,8 +256,7 @@ def build_wake_js(prep: dict, briefing: str, conv_id: str | None, proof: str | N
     conv_line = f"body.conversation_id = {json.dumps(conv_id)};" if conv_id else ""
     js = (JS_WAKE_TMPL
           .replace("__PREP_JSON__", json.dumps(
-              {"accessToken": prep["accessToken"], "deviceId": prep["deviceId"],
-               "reqToken": prep["reqToken"]}))
+              {"deviceId": prep["deviceId"]}))
           .replace("__BRIEFING_JSON__", json.dumps(briefing))
           .replace("__CONV_LINE__", conv_line))
     if proof:
@@ -257,12 +266,38 @@ def build_wake_js(prep: dict, briefing: str, conv_id: str | None, proof: str | N
     return js
 
 
-def save_conv_id(cid: str):
+def load_wake_state() -> dict:
     cfg = json.loads(WAKE_JSON.read_text()) if WAKE_JSON.exists() else {}
-    cfg["conversation_id"] = cid
+    if cfg.get("principal_id") not in (None, PRINCIPAL_ID):
+        raise RuntimeError("E_WAKE_STATE_PRINCIPAL_MISMATCH")
+    if cfg.get("division_id") not in (None, DIVISION_ID):
+        raise RuntimeError("E_WAKE_STATE_DIVISION_MISMATCH")
+    return cfg
+
+
+def save_conv_id(cid: str, previous: str | None = None):
+    cfg = load_wake_state()
+    generation = int(cfg.get("generation", 0)) + 1
+    history = cfg.get("history") if isinstance(cfg.get("history"), list) else []
+    if previous and previous != cid:
+        history.append({
+            "conversation_id": previous,
+            "lifecycle_state": "superseded",
+            "superseded_by": cid,
+            "at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+        })
+    cfg.update({
+        "schema_version": "die.wake.thread.v1",
+        "principal_id": PRINCIPAL_ID,
+        "division_id": DIVISION_ID,
+        "conversation_id": cid,
+        "lifecycle_state": "active",
+        "generation": generation,
+        "history": history[-20:],
+    })
     WAKE_JSON.parent.mkdir(parents=True, exist_ok=True)
     WAKE_JSON.write_text(json.dumps(cfg, indent=2), encoding="utf8")
-    print(f"[wake] pinned conversation_id={cid}", file=sys.stderr)
+    print(f"[wake] canonical thread updated generation={generation}", file=sys.stderr)
 
 
 def main():
@@ -299,14 +334,15 @@ def main():
     if prep.get("pow", {}).get("required"):
         proof = "gAAAAAB" + solve_pow(prep["pow"]["seed"], prep["pow"]["difficulty"], prep)
 
-    cfg = json.loads(WAKE_JSON.read_text()) if WAKE_JSON.exists() else {}
+    cfg = load_wake_state()
+    previous = cfg.get("conversation_id") if args.new else None
     pinned = None if args.new else cfg.get("conversation_id")
     payload = json.loads(inpage_fetch(
         ws, sid, 21, build_wake_js(prep, text, pinned, proof)))
     cid = payload.get("conversation_id")
     if cid and not pinned:
-        save_conv_id(cid)
-    print(f"[wake] conversation_id={cid}", file=sys.stderr)
+        save_conv_id(cid, previous=previous)
+    print(f"[wake] response received thread_bound={bool(cid)}", file=sys.stderr)
     print(payload.get("reply"))
 
 

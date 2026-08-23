@@ -18,7 +18,7 @@ Kirim briefing ke Division-01 (akun ChatGPT div01) di thread percakapan persiste
 # Kirim ke thread pinned (default - konteks terakumulasi)
 python C:\DIE\bin\wake_division01.py "<briefing text>"
 
-# Mulai thread baru + pin (hanya kalau thread lama bengkak / reset topik)
+# Rotasi thread + pin (hanya lewat lifecycle governance)
 python C:\DIE\bin\wake_division01.py --new "<briefing text>"
 
 # Lihat percakapan terbaru
@@ -31,7 +31,18 @@ Prasyarat: Brave profil "plus" running dengan remote debugging port 9333
 "E_CONNREFUSED" / gagal konek :9333).
 
 Output: balasan teks assistant dari Division-01 (stderr berisi metadata
-conversation_id). Timeout bisa panjang (balasan LLM), beri slack 5 menit.
+sanitized). Timeout bisa panjang (balasan LLM), beri slack 5 menit.
 
 Aturan isi briefing: bahasa jelas, satu topik per wake, sertakan konteks misi
 (M-001) bila relevan. Jangan kirim secret/token lewat pesan ini.
+
+## Security dan thread governance
+
+- CDP wajib loopback-only. Browser profile dan CDP adalah credential-equivalent.
+- Web JWT harus tetap di page context; jangan log, return, atau persist nilainya.
+- `--new` hanya setelah thread aktif dicatat sebagai superseded; tepat satu
+  canonical thread boleh aktif untuk DIVISION-01.
+- Thread adalah continuity memory container, bukan Company Truth. Decisions,
+  events, economics, dan evidence kanonik tetap berada di DIE State Layer.
+- Pada 401/403, session mismatch, atau CDP failure: jangan blind retry. Emit
+  alarm sanitized dan eskalasi ke Founder untuk recovery/re-authentication.

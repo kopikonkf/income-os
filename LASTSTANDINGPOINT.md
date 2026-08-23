@@ -3,19 +3,19 @@
 Date: 2026-08-23
 Project: Digital Income Empire — Company Holdings
 Mode: Chief Executive Architect
-Workflow stage: M-001 ACTIVE / MISSION MATERIALIZATION + HEALTH GATE BLOCKED
+Workflow stage: M-001 RECONCILIATION PASS / WAKE LIVE / SECURITY CANON VERIFIED
 Canonical runtime: C:\DIE
 Canonical repository: https://github.com/kopikonkf/income-os
-Working branch: architect/m001-mission-reconciliation-v1
+Working branch: architect/wake-security-canon-v1
 Base branch: main
-Base/merge commit: 68f81d154964a3ff16cc06b8658419d92b670e38
+Base/merge commit: acb4109e7977b3deda31f3d428b94fb0e6ee724b
 Phase A implementation commit: ae2a42aee309b9eee05dbf4376ef86806c967c4d
 Phase B1 implementation commit: 2e46e43e99a6aff9c4390c3f70e1e5471d9b28b0
 Phase B2A initial implementation commit: ba05dcf8f3e54092f8f92c8de488f3e0702bfce6
 Phase B2B1 implementation commit: ff6f850eb0c35a15fb62f727c69ac45cf05767d5
 Merged PRs: https://github.com/kopikonkf/income-os/pull/8, https://github.com/kopikonkf/income-os/pull/9, https://github.com/kopikonkf/income-os/pull/10, and https://github.com/kopikonkf/income-os/pull/11
-Draft PR: https://github.com/kopikonkf/income-os/pull/18
-Publication status: DRAFT PR #18 OPEN; FOUNDER REVIEW PENDING
+Draft PR: https://github.com/kopikonkf/income-os/pull/21
+Publication status: VERIFIED / DRAFT PR #21 OPEN
 
 ## Verified merge baseline
 
@@ -1638,3 +1638,136 @@ Founder reviews draft PR #18 and decides whether to merge. After merge, Hermes
 may materialize the M-001 mission root through the canonical operational
 interface. Production starts only after both mission materialization and the
 health readiness gate pass under the existing A0 controls.
+
+## Wake E2E, Executive verdict, and security canon — 2026-08-23
+
+### Updated operational standing
+
+M-001 reconciliation is PASS:
+
+- `status=active`;
+- `lifecycle_state=materialized`;
+- `reconcile_required=false`;
+- `execution_ready=true`;
+- active CRITICAL alarms: 0;
+- root card `t_3d062e86`, canonical relation event E-000516;
+- batch-1 blueprint task `t_7ded3fac` is RUNNING;
+- Worth-Making Gate remains pending Founder decision.
+
+The Kanban umbrella dependency was removed because it blocked child claiming.
+Mission linkage remains canonical through `mission_id + task_id`; parent-child
+Kanban structure is not mission identity.
+
+Division-01 wake is LIVE E2E through headed Brave in-page fetch over loopback
+CDP :9333. Executive wake is LIVE through BrowserOS neo CDP :9110. Hermes sent
+the first Executive STRATEGIC wake and received: `No portfolio veto. Proceed to
+canon with mandatory annotations.` Evidence is committed at
+`evidence/executive-verdict-wake-design-20260823.json` (E-000535).
+
+Repository receipts:
+
+- PR #18 merged as `362a386f22ad415d49d8ed4c1d365642ce0b3f67`;
+- PR #19 remains the separate M-001 evidence receipt;
+- PR #20 merged as `6cee35071919f1315620c697aa933f4ca1069498`;
+- Executive wake implementation: `c9b6c5c10c2df61fc6a05db3fb9f7626eb6024f0`;
+- Executive verdict receipt: `acb4109e7977b3deda31f3d428b94fb0e6ee724b`.
+
+### Architect verdict
+
+Overall verdict: **APPROVE WITH MANDATORY CONTROLS**.
+
+Ratified decisions:
+
+1. Wake is outbound control-plane transport and remains outside Runtime MCP.
+2. Executive uses the existing principal-dedicated BrowserOS neo web session;
+   no separate Codex OAuth credential is created solely for wake.
+3. Each division has exactly one active persistent continuity thread, with
+   explicit supersession lifecycle. A thread is continuity memory, not Company
+   Truth.
+
+Mandatory auth/session corrections:
+
+- Web JWT remains inside page memory and no longer crosses CDP into Python.
+- Sentinel requirement token remains page-scoped; response/auth bodies are not
+  returned into errors or logs.
+- Browser profile cookies and full CDP are credential-equivalent and require
+  loopback-only binding plus principal-dedicated OS storage.
+- Codex `auth.json` is a separate credential domain, not a wake dependency;
+  OS credential store is preferred, protected file fallback is conditional.
+- `wake.json` remains secret-free but now carries principal/division binding,
+  one active thread, generation, and bounded supersession history.
+- Auth failures stop blind retry and enter sanitized recovery/escalation.
+
+### Multi-division v2.1 correction
+
+The pure-OAuth/raw-HTTPS assumption is retired for the empirically measured web
+wake path. Browser-backed in-page transport is canonical until a supported API
+replaces it.
+
+The proposed `one browser process + many profiles` layout is not accepted as a
+cross-division security boundary because one full-CDP controller can reach the
+process targets. Canon is one browser binary plus principal-dedicated user-data
+directories and a bounded pool of on-demand browser slots, default concurrency
+one. This avoids 15 always-on browser processes without collapsing 15
+credential domains into one shared compromise domain.
+
+Current implementation gap is explicit: the Division-01 startup script still
+selects `Profile 3` inside the ordinary Brave `User Data` root. It remains an
+accepted single-principal pilot only. Before Division-02, an authorized operator
+must migrate it to a principal-dedicated user-data directory and prove the CDP
+process exposes no other principal targets. This branch does not mutate the
+live browser profile or force re-authentication.
+
+Expansion beyond Division-01 remains blocked until the first M-001 production
+cycle and 20 eligible wake attempts provide reliability, recovery, latency,
+thread-binding, and zero-leakage evidence.
+
+### Versioned artifacts
+
+- `bin/wake_division01.py`
+- `bin/wake_executive.py`
+- `bin/wake_brave_health.ps1`
+- `skills/wake-chatgpt/SKILL.md`
+- `skills/wake-executive/SKILL.md`
+- `bridge/tests/test_wake_security_canon_v1.py`
+- `docs/architecture/WAKE_AUTH_SESSION_SECURITY_V1.md`
+- `docs/operations/WAKE_AUTH_SESSION_ROTATION_V1.md`
+- `LASTSTANDINGPOINT.md`
+
+Explicit exclusions: no credential value was requested or read; no browser
+profile/session, task scheduler, service, CDP process, Runtime MCP, DNS,
+Cloudflared, state JSONL, wake execution, M-001 production, or marketplace
+submission was mutated.
+
+### Verification result
+
+```text
+Wake security canon targeted regression: 6 passed
+Full bridge regression: 142 passed, 7 skipped
+python -m py_compile: PASS
+python bin/die_company_brain_check.py: PASS (7 identities / 6 runtime identities)
+git diff --check: PASS
+```
+
+The skipped checks are pre-existing platform-specific tests. Test dependencies
+were installed only under `/tmp`; no dependency or runtime state was added to
+the repository.
+
+### Publication receipt and next controlled action
+
+The verified tree was published through the authorized GitHub Connector to
+`architect/wake-security-canon-v1` as remote commit
+`491dc7436da39270b14a48f46da047668d794473`. Draft PR #21 is OPEN:
+
+https://github.com/kopikonkf/income-os/pull/21
+
+Initial receipt: base `main` at
+`acb4109e7977b3deda31f3d428b94fb0e6ee724b`, 9 changed paths, 669 additions,
+26 deletions, draft=true, merged=false. The equivalent verified local commit is
+`46a94cc8e8795d8775312558ed435a68d59d3a16`; both commits point to tree
+`b8b4f6866a90f673d2f0105d77beb0b8e6c72e64` before this receipt-only update.
+
+Founder reviews draft PR #21 and decides merge. Runtime deployment and the
+principal-dedicated profile migration remain separate authorized operator
+actions. Blueprint batch-1 proceeds only to the Founder Worth-Making Gate under
+the existing A0 controls.

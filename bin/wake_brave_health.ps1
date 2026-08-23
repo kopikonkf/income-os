@@ -24,6 +24,7 @@ $brave = "C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
 $ud = "$env:LOCALAPPDATA\BraveSoftware\Brave-Browser\User Data"
 Start-Process $brave -ArgumentList @(
     "--remote-debugging-port=9333",
+    "--remote-debugging-address=127.0.0.1",
     "--user-data-dir=`"$ud`"",
     '--profile-directory="Profile 3"',
     "--no-first-run",

@@ -21,7 +21,7 @@ company-wide) lewat BrowserOS neo.
 # Kirim ke thread pinned Executive (default)
 python C:\DIE\bin\wake_executive.py "<laporan ringkas>"
 
-# Thread baru + pin (jarang - kalau konteks thread bengkak)
+# Rotasi thread + pin (jarang; hanya lewat lifecycle governance)
 python C:\DIE\bin\wake_executive.py --new "<laporan>"
 
 # Lihat percakapan terbaru (probe tanpa kirim)
@@ -38,3 +38,15 @@ Ringkas, struktur: (1) kabar utama 1-3 poin, (2) keputusan yang butuh
 visibilitas/verdict, (3) artefak/referensi (PR/event id), (4) pertanyaan eksplisit
 bila butuh verdict. Bahasa Indonesia atau English, maksimal ~200 kata.
 Jangan kirim secret/token. Timeout balasan bisa lama (LLM) - beri slack 5 menit.
+
+## Security dan thread governance
+
+- BrowserOS neo session cukup untuk wake Executive; jangan membuat Codex OAuth
+  credential terpisah hanya untuk jalur ini.
+- CDP :9110 wajib loopback-only dan principal-dedicated. Treat browser profile,
+  cookies, dan full CDP as credential-equivalent.
+- Web JWT harus tetap di page context; jangan log, return, atau persist nilainya.
+- `--new` hanya setelah thread aktif dicatat sebagai superseded; tepat satu
+  canonical Executive thread boleh aktif.
+- Thread adalah continuity memory container, bukan Company Truth.
+- Pada auth/CDP failure: jangan blind retry; emit alarm sanitized dan eskalasi.
