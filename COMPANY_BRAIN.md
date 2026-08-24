@@ -98,6 +98,13 @@ Opportunity Signal
 
 Each transition must name an authorized principal, an input version, an output artifact, and evidence or an explicit uncertainty.
 
+Hermes is responsible for discovering the next eligible operational transition;
+Founder and OpenCode are not routine message brokers. In Proactive Operator V0,
+one bounded cognitive tick may assess state, request Division cognition, create
+or follow non-production cards, assemble evidence, and draft an approval
+request. Every tick is auditable, USD 0, and limited by
+`ORCHESTRATOR_CONTRACT.md`. It never creates a second control plane.
+
 ## 8. Actor boot sequence
 
 A runtime actor starts from zero trusted conversational memory and loads, in order:
@@ -126,6 +133,11 @@ A runtime actor starts from zero trusted conversational memory and loads, in ord
 10. for Hermes before any M-001 U1 production materialization,
     `docs/operations/M001_CLOSED_LOOP_RUNNER_V1.md` and the exact executable
     Asset Blueprint named by the State-Manager-committed Founder authorization.
+11. for Hermes before every proactive operational tick,
+    `ORCHESTRATOR_CONTRACT.md` and
+    `docs/operations/PROACTIVE_OPERATOR_V1.md`, hash-pinned in the same verified
+    State Layer canon-context pattern; a session-memory or cron-prompt copy is
+    not assimilation proof.
 
 The M-001 blueprint is governed mission-design canon, not execution authority.
 It does not authorize production, upload, publication, account action, or
@@ -137,6 +149,19 @@ mission compiler validates the committed authority and materializes a durable
 J1-J8 graph; the existing Hermes Gateway Kanban dispatcher performs continuous
 eligible-card dispatch. No runtime actor may substitute a timer prompt, wake
 message, or local approval flag for the committed production authorization.
+
+The Proactive Operator cron is a cognition trigger, not a production trigger.
+It may prepare prerequisites and recognize a matching committed `D-*`; only
+then may it invoke the existing M-001 compiler. It may not construct substitute
+production cards, call Proxima directly, improvise prompts, or promote its own
+authority. Every tick emits a typed receipt plus an event through the canonical
+writer, including `NO_OP`.
+
+Platform outcomes are route-specific evidence. Rejection may trigger a
+Division-01 learning/blueprint-revision request, but changed prompts require a
+new blueprint hash and new Founder production authority. Residual social
+routing is only a proposal while Pillar A is `FUTURE`; no automatic
+`rejection -> public post` transition exists.
 
 Workers do not load holdings strategy or the Atlas. They receive only the
 bounded job context allowed by the Worker Contract. Canon documents define

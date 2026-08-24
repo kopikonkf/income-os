@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.platform.receipt.v1.schema.json",
+  "title": "DIE Platform Outcome Receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "recorded_at",
+    "recorded_by",
+    "mission_id",
+    "batch_id",
+    "blueprint_id",
+    "blueprint_sha256",
+    "asset_id",
+    "platform",
+    "stage",
+    "outcome",
+    "reason_code",
+    "evidence_label",
+    "evidence_ref",
+    "evidence_sha256",
+    "cost_usd",
+    "dedupe_key"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.platform.receipt.v1"
+    },
+    "receipt_id": {
+      "type": "string",
+      "pattern": "^PLATREC-[A-Z0-9_-]{8,100}$"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "recorded_by": {
+      "enum": ["founder", "authorized-ingestor", "simulation-fixture"]
+    },
+    "mission_id": {
+      "const": "M-001"
+    },
+    "batch_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "blueprint_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "blueprint_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "asset_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "enum": [
+        "ADOBE_STOCK",
+        "DREAMSTIME",
+        "123RF",
+        "VECTEEZY",
+        "MOTIONELEMENTS"
+      ]
+    },
+    "stage": {
+      "enum": ["SUBMISSION", "REVIEW", "LICENSE", "PAYOUT"]
+    },
+    "outcome": {
+      "enum": [
+        "SUBMITTED",
+        "PENDING",
+        "APPROVED",
+        "REJECTED",
+        "REMOVED",
+        "LICENSED",
+        "PAYOUT_RECORDED"
+      ]
+    },
+    "reason_code": {
+      "enum": [
+        "NONE",
+        "RIGHTS",
+        "SAFETY",
+        "WATERMARK",
+        "TECHNICAL",
+        "METADATA",
+        "SIMILAR_CONTENT",
+        "AESTHETIC",
+        "COMMERCIAL_USEFULNESS",
+        "AI_POLICY",
+        "OTHER",
+        "UNKNOWN"
+      ]
+    },
+    "reason_text": {
+      "type": ["string", "null"],
+      "maxLength": 2000
+    },
+    "evidence_label": {
+      "enum": ["OBSERVED", "VERIFIED", "SYNTHETIC"]
+    },
+    "evidence_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "external_reference_hash": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "cost_usd": {
+      "type": "number",
+      "minimum": 0
+    },
+    "dedupe_key": {
+      "type": "string",
+      "pattern": "^platform:v1:"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "evidence_label": {
+            "const": "SYNTHETIC"
+          }
+        },
+        "required": ["evidence_label"]
+      },
+      "then": {
+        "properties": {
+          "recorded_by": {
+            "const": "simulation-fixture"
+          },
+          "cost_usd": {
+            "const": 0
+          }
+        }
+      }
+    }
+  ]
+}

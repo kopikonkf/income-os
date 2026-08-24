@@ -1,0 +1,261 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.operator.tick.v1.schema.json",
+  "title": "DIE Proactive Operator Tick v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "tick_id",
+    "mode",
+    "operator_id",
+    "mission_id",
+    "started_at",
+    "completed_at",
+    "source_snapshot",
+    "input_fingerprint",
+    "previous_state",
+    "selected_state",
+    "candidate_actions",
+    "selected_action_id",
+    "result",
+    "mutations",
+    "budget",
+    "non_progress_count",
+    "next_tick_not_before",
+    "event_dedupe_key"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.operator.tick.v1"
+    },
+    "tick_id": {
+      "type": "string",
+      "pattern": "^OPTICK-[A-Z0-9_-]{8,80}$"
+    },
+    "mode": {
+      "enum": ["PROPOSE_ONLY"]
+    },
+    "operator_id": {
+      "const": "hermes-operator"
+    },
+    "mission_id": {
+      "const": "M-001"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source_snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "snapshot_id",
+        "as_of",
+        "repository_sha",
+        "canon_load_status",
+        "events_next_seq"
+      ],
+      "properties": {
+        "snapshot_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "repository_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "canon_load_status": {
+          "const": "VERIFIED"
+        },
+        "events_next_seq": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "input_fingerprint": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "previous_state": {
+      "$ref": "#/$defs/operator_state"
+    },
+    "selected_state": {
+      "$ref": "#/$defs/operator_state"
+    },
+    "candidate_actions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "items": {
+        "$ref": "#/$defs/action"
+      }
+    },
+    "selected_action_id": {
+      "type": ["string", "null"]
+    },
+    "result": {
+      "enum": [
+        "NO_OP",
+        "EXECUTED",
+        "BLOCKED",
+        "AWAITING_FOUNDER",
+        "REPORT_ONLY"
+      ]
+    },
+    "mutations": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "ref", "status", "dedupe_key"],
+        "properties": {
+          "kind": {
+            "enum": [
+              "KANBAN_CARD",
+              "DIVISION_REQUEST",
+              "LEARNING_NOTE",
+              "AUTHORIZATION_DRAFT",
+              "RUNNER_INVOCATION",
+              "TIER2_PROPOSAL",
+              "FOUNDER_NOTIFICATION"
+            ]
+          },
+          "ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": ["CREATED", "UPDATED", "BLOCKED", "DEFERRED", "VERIFIED"]
+          },
+          "dedupe_key": {
+            "type": "string",
+            "pattern": "^operator:v1:"
+          }
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cost_usd", "input_bytes", "output_tokens", "wall_time_seconds"],
+      "properties": {
+        "cost_usd": {
+          "const": 0
+        },
+        "input_bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 24576
+        },
+        "output_tokens": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1800
+        },
+        "wall_time_seconds": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 480
+        }
+      }
+    },
+    "non_progress_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "next_tick_not_before": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "event_dedupe_key": {
+      "type": "string",
+      "pattern": "^operator:v1:"
+    }
+  },
+  "$defs": {
+    "operator_state": {
+      "enum": [
+        "IDLE",
+        "RESEARCH_PENDING",
+        "BLUEPRINT_PENDING",
+        "AWAITING_AUTHORIZATION",
+        "BATCH_RUNNING",
+        "QA_GATE",
+        "FOUNDER_QC",
+        "SUBMISSION_WAIT",
+        "LEARNING_LOOP",
+        "TIER2_ROUTING"
+      ]
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action_id",
+        "action_type",
+        "authority",
+        "rationale",
+        "evidence_refs",
+        "dedupe_key"
+      ],
+      "properties": {
+        "action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action_type": {
+          "enum": [
+            "OBSERVE_STATE",
+            "CREATE_RESEARCH_CARD",
+            "REQUEST_DIVISION01",
+            "CREATE_BLUEPRINT_COMPILE_CARD",
+            "FOLLOW_UP_CARD",
+            "BLOCK_CARD",
+            "WRITE_LEARNING",
+            "DRAFT_U1_REQUEST",
+            "INVOKE_M001_RUNNER",
+            "PROPOSE_TIER2",
+            "NOTIFY_FOUNDER",
+            "NO_OP"
+          ]
+        },
+        "authority": {
+          "enum": [
+            "AUTONOMOUS",
+            "CONDITIONAL_AUTONOMOUS",
+            "AUTONOMOUS_PROPOSAL",
+            "FOUNDER_REQUIRED",
+            "FORBIDDEN"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "dedupe_key": {
+          "type": "string",
+          "pattern": "^operator:v1:"
+        }
+      }
+    }
+  }
+}
