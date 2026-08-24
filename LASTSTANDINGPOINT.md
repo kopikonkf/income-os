@@ -2061,3 +2061,106 @@ ready for Founder merge review.
 5. Operator runs `m001_loop.py plan`; only after review, runs `materialize`.
 6. Observe J2/J3 canary evidence before J4 can become eligible.
 7. Founder keeps first marketplace submission manual and captures U2 receipts.
+
+## Proactive Operator Layer v1 canon — 2026-08-24
+
+### Baseline and verdict
+
+- branch: `architect/proactive-operator-v1`;
+- base: `main` at `0faace960dd4885758d7f0fed8f0c3b2d553de62`;
+- verdict: **CANON DESIGNED / TESTED / NOT DEPLOYED**;
+- runtime owner after merge: OpenCode integrator;
+- mode: `PROPOSE_ONLY`, USD 0.00, committed M-001 scope only.
+
+PR #29 proved autonomous dispatch after a J1-J8 graph exists. This revision
+closes the preceding initiative gap: Hermes receives one bounded cognitive tick
+that asks what can be worked now, selects one eligible transition, calls
+Division-01 or creates/follows non-production cards, records learning, and
+notifies Founder only for authorization, Founder QC, or CRITICAL containment.
+
+### Canon decisions
+
+- one prompt-based `die-proactive-operator-v1` cron is the cognition trigger;
+  it is not a production cron, daemon, state store, or second control plane;
+- V0 schedule is a `*/30 * * * *` observation hypothesis with no overlapping
+  tick, 8-minute wall time, bounded context/output, one transition, maximum
+  three mutations, and USD 0.00;
+- every tick writes a `die.operator.tick.v1` receipt and one event through the
+  existing `die_event.py`, including `NO_OP`;
+- the ten-state machine is `IDLE`, `RESEARCH_PENDING`, `BLUEPRINT_PENDING`,
+  `AWAITING_AUTHORIZATION`, `BATCH_RUNNING`, `QA_GATE`, `FOUNDER_QC`,
+  `SUBMISSION_WAIT`, `LEARNING_LOOP`, and `TIER2_ROUTING`;
+- Division-01 authors the exact prompt/variation plan; a Worker may serialize,
+  validate, or execute the hash-pinned artifact but may not improvise it;
+- ChatGPT image generation through Worker -> Proxima `:3211` remains the only
+  production engine;
+- `m001_loop.py` remains the only J1-J8 materializer and can be invoked only
+  after the exact unexpired Founder `D-*` is committed;
+- platform outcomes use route-specific `die.platform.receipt.v1` receipts;
+  changed prompts require a new blueprint hash and new production authority;
+- all-route rejection blocks scale and creates one Division-01 learning/
+  revision request, not automatic regeneration; and
+- Tier-2 is proposal-only because Pillar A remains `FUTURE`; rights/safety
+  failures never enter social routing.
+
+### Manifest and boundaries
+
+The seven-path canon manifest is:
+
+1. `ORCHESTRATOR_CONTRACT.md`;
+2. `docs/operations/PROACTIVE_OPERATOR_V1.md`;
+3. `company/schemas/die.operator.tick.v1.schema.json`;
+4. `company/schemas/die.platform.receipt.v1.schema.json`;
+5. `COMPANY_BRAIN.md`;
+6. `IDENTITY/hermes-operator/AGENTS.md`; and
+7. `bridge/tests/test_proactive_operator_canon_v1.py`.
+
+The PR does not install/enable a cron, run an LLM, wake a principal, create a
+card, mutate `state/*` or `workspaces/*`, change a profile/service/gateway,
+produce an asset, spend, submit, publish, or create an account. Existing
+deterministic crons and the live Gateway are untouched.
+
+### Verification
+
+```text
+Targeted proactive canon regression: 11 passed
+Full Linux bridge regression: 186 passed, 7 skipped
+Windows bridge regression with PYTHONUTF8 absent: 193 passed
+Company Brain validator: PASS (7 identities / 6 runtime identities)
+Ruff: PASS
+python -m py_compile: PASS
+git diff --check: PASS
+Windows review worktree: clean
+```
+
+Windows receipt was captured in the isolated
+`C:\Users\aethers\AppData\Local\Temp\opencode\pr30` worktree at initial canon
+commit `65afd07a8d45d690816626ba8ace446be2e0fad9`. Runtime-owned modifications in
+`C:\DIE\state` remained preserved and outside the review worktree.
+
+### Publication and next controlled action
+
+Draft PR #30 is open:
+
+https://github.com/kopikonkf/income-os/pull/30
+
+Initial remote canon commit:
+`65afd07a8d45d690816626ba8ace446be2e0fad9`. The PR targets `main` at
+`0faace960dd4885758d7f0fed8f0c3b2d553de62`.
+
+After Founder reviews and merges PR #30, OpenCode:
+
+1. fast-forwards `C:\DIE` while preserving runtime-owned state;
+2. implements a separate runtime PR for the bounded input projector, JSON
+   validation, Division request/response capture, receipt/QC ingestion,
+   prompt-based cron, and deterministic Founder-only pause/resume handler;
+3. proves canon assimilation through principal-pinned `canon_context` rather
+   than session memory or wake text;
+4. runs S1 empty-state, S2 synthetic rejection, and S3 Tier-2 proposal
+   simulations without touching live cards or production;
+5. deploys V0 disabled, verifies the kill switch, then enables one bounded
+   24-hour observation only after Founder authorization; and
+6. captures the 24-hour zero-violation receipt for Founder promotion or repair.
+
+Full mode, production expansion, submission, publication, account action, and
+spend remain unauthorized.
