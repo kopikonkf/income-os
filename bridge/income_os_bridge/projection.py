@@ -1,5 +1,5 @@
 ﻿import json, datetime
-from . import authority, config, envelope, events, redact, snapshot
+from . import authority, canon_context, config, envelope, events, redact, snapshot
 from . import hermes_state_reader as reader
 _ORDER = {"DEGRADED": 0, "ASSUMED": 1, "VERIFIED": 2}
 _LABEL = ["DEGRADED", "ASSUMED", "VERIFIED"]
@@ -412,6 +412,7 @@ def context_snapshot(principal_id, scope=None, since_seq=0, limit=config.CONTEXT
                 "division principal has no registered division_id",
             )
         surfaces = {
+            "canon_context": canon_context.build_surface(granted),
             "system_state": system_state(),
             "system_health": _division_health(system_health(), division_id),
             "active_missions": _division_surface(
@@ -426,6 +427,7 @@ def context_snapshot(principal_id, scope=None, since_seq=0, limit=config.CONTEXT
         evidence_refs = _decision_evidence_refs(division_id=division_id)
     else:
         surfaces = {
+            "canon_context": canon_context.build_surface(granted),
             "system_state": system_state(),
             "system_health": system_health(),
             "active_missions": active_missions("any"),
