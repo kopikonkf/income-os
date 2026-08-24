@@ -1771,3 +1771,77 @@ Founder reviews draft PR #21 and decides merge. Runtime deployment and the
 principal-dedicated profile migration remain separate authorized operator
 actions. Blueprint batch-1 proceeds only to the Founder Worth-Making Gate under
 the existing A0 controls.
+
+---
+
+## 2026-08-24 — Two-Principal Canon Assimilation v1
+
+Repository baseline: `eb8cdecd7ca91c1f0ff3a8a1cce90be8c7fb8bd0`
+
+Working branch: `architect/two-principal-canon-assimilation-v1`
+
+### Standing
+
+- Hermes canon assimilation receipt: `PASS` at the baseline above, as reported
+  by the authorized operator.
+- Executive transport: live on wake `:9010` / BrowserOS CDP `:9110` with
+  principal-pinned Decision MCP `:8791`.
+- Division-01 transport: live on dedicated Brave CDP `:9333` with
+  principal-pinned Decision MCP `:8792`.
+- Executive fresh-context canon assimilation: `NOT YET PROVEN`.
+- Division-01 fresh-context canon assimilation: `NOT YET PROVEN`.
+
+### Canon-load decision
+
+No new port, transport, MCP tool, filesystem access, state writer, or execution
+authority is introduced. The existing wake lanes may deliver bounded canon
+briefings pinned to an exact repository revision; each principal must reload
+current mission truth from its own `context_snapshot`.
+
+For active M-001 cognition:
+
+- Division-01 must load Pipeline Canon, Human-Centric Atlas Canon, and the
+  Founder-ratified Blueprint v2 before research, scoring, Worth-Making Gate,
+  proposal, or reporting.
+- Executive must load Pipeline Canon at boot and load Atlas Canon plus
+  Blueprint v2 before M-001 assessment, challenge, recommendation, or
+  reporting.
+- The dated platform matrix is conditional input for eligibility, packaging,
+  distribution, and contract-risk decisions.
+- The quantity workbook is consumed only through a bounded, versioned
+  formula/result digest and remains a gross-revenue hypothesis model, not
+  observed ERVA or net-profit evidence.
+
+### Verification
+
+```text
+Targeted canon/blueprint/role regression: 12 passed
+Full bridge regression: 154 passed, 7 skipped
+Company Brain validator: PASS (7 identities / 6 runtime identities)
+git diff --check: PASS
+```
+
+The full suite was run on Linux with `DIE_HOME` pinned to the repository root;
+the default runtime path remains `C:\DIE` for the Windows deployment. Test-only
+Python dependencies were installed under `/tmp` and were not added to the
+repository.
+
+### Publication receipt and next controlled action
+
+Draft PR #27 is open:
+
+https://github.com/kopikonkf/income-os/pull/27
+
+Initial remote implementation commit:
+`ade4ffbe630bf319285b45d6291ff00807619703`. The PR targets `main` at
+`eb8cdecd7ca91c1f0ff3a8a1cce90be8c7fb8bd0`; its four implementation paths
+match the verified local tree.
+
+Founder reviews and merges PR #27. After merge, the authorized operator syncs
+`C:\DIE`, wakes Executive and Division-01 in fresh contexts, and captures two
+independent assimilation receipts containing principal ID, merged SHA,
+documents loaded, snapshot ID/as-of, probe results, and `PASS|FAIL`.
+
+Worth-Making Gate execution remains blocked until the Division-01 receipt is
+`PASS`. This docs/test change does not authorize production, submission,
+publication, account action, or spend.
