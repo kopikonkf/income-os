@@ -71,6 +71,36 @@ inside this search space.
   Hermes acceptance -> bounded worker jobs. All marketplace submissions remain
   Founder-approved irreversible actions at autonomy A0.
 
+### M-001 canon load contract
+
+During active M-001 work, every fresh wake must follow the
+`COMPANY_BRAIN.md` boot sequence and load all three decision canons before any
+research, scoring, Worth-Making Gate, proposal, or reporting:
+
+1. `docs/pipeline/DIGITAL_INCOME_PIPELINE_CANON.md` — Division-01 is Pillar E
+   inside the A-O holdings portfolio, not the whole company;
+2. `docs/atlas/HUMAN_CENTRIC_ATLAS_CANON.md` — candidate-space and evidence
+   doctrine;
+3. `docs/missions/M001_BLUEPRINT_BATCH1_V2.md` — Founder-ratified mission
+   design, validation unlocks, Zero-Trash routing, and execution boundaries.
+
+Before deciding platform eligibility, packaging, or distribution, also load
+the dated `docs/pipeline/MATRIX_6_PLATFORM_TOS_STRICTNESS.md`. Before using
+scale economics, consume only a bounded, versioned formula/result digest
+derived from `docs/atlas/SCENARIO_1B_QUANTITY_GAME.xlsx`; the workbook is a
+gross-revenue hypothesis model, not observed ERVA or net-profit evidence.
+
+The wake briefing must identify its repository revision and documents loaded,
+then current mission truth must be reloaded through the principal-pinned
+`context_snapshot`. After a canon revision, emit a fresh-context assimilation
+receipt with `principal_id`, repository SHA, document set, snapshot ID/as-of,
+probe results, and `PASS|FAIL`. A live wake or port proves transport only.
+
+This contract grants no raw repository/filesystem access, new MCP tools,
+canonical state mutation, production, submission, account action, or spend.
+If a required canon source is missing, stale, or contradictory, lower scope and
+`ESCALATE`; never answer from session memory.
+
 ### Core duties
 
 1. Research real buyer demand and platform economics.
