@@ -1845,3 +1845,93 @@ documents loaded, snapshot ID/as-of, probe results, and `PASS|FAIL`.
 Worth-Making Gate execution remains blocked until the Division-01 receipt is
 `PASS`. This docs/test change does not authorize production, submission,
 publication, account action, or spend.
+
+---
+
+## 2026-08-24 — Runtime Canon Context Projection v1
+
+Repository baseline: `4e3cf11e2095453c94562e0dfa1cdd731275784e`
+
+Working branch: `architect/runtime-canon-context-projection-v1`
+
+### Standing
+
+- PR #27 is merged at the baseline above.
+- Independent fresh-context wake receipts for Executive and Division-01 are
+  valid `FAIL` receipts: both principals correctly refused to claim raw canon
+  access, and the earlier semantic snapshot did not contain canon content.
+- Wake transport is therefore proven, but canon assimilation for these two
+  principals remains unproven.
+- Worth-Making remains blocked until Division-01 receives a verified semantic
+  canon projection and its independent fresh-context receipt is `PASS`.
+
+### Implemented decision
+
+The existing principal-pinned `context_snapshot` now includes a
+`canon_context` surface for `chatgpt-plus-executive` and
+`division-head-division01`. No MCP tool, port, writer, wake transport, or
+authority was added.
+
+The surface is built from the strict allowlist in
+`company/runtime-canon-context-v1.json`. It fails closed unless the Pipeline
+Canon, Human-Centric Atlas Canon, Founder-ratified M-001 Blueprint v2, dated
+platform matrix, and quantity workbook match their exact SHA-256 digests. It
+returns only repository-relative identifiers, classifications, bounded
+decision facts, and role-specific digests. It does not return raw documents or
+host paths.
+
+For both principals, canon load is proven only when
+`context_snapshot.data.canon_context.load_status = VERIFIED` and that signed
+snapshot carries the exact repository SHA, manifest hash, required document
+hashes, and correct principal/scope. A wake, port, file name, host path, or
+session-memory statement is insufficient.
+
+The matrix remains a dated supporting input. The quantity workbook remains a
+formula-mechanics-passing gross-revenue `HYPOTHESIS`; it is explicitly not
+observed ERVA, net profit, annualized run-rate, proof of `$1B/3Y` feasibility,
+or execution authority.
+
+### Verification
+
+```text
+Targeted canon/role/snapshot regression: 34 passed
+Full bridge regression: 162 passed, 7 skipped
+Company Brain validator: PASS (7 identities / 6 runtime identities)
+Source SHA-256 pins: PASS (5/5)
+python -m py_compile: PASS
+git diff --check: PASS
+```
+
+The suite was run on Linux with `DIE_HOME` pinned to the repository checkout;
+the governed Windows deployment path remains `C:\DIE`. Test dependencies were
+isolated outside the repository. No `state/*` or `workspaces/*` path is part of
+the implementation manifest.
+
+### Publication receipt and next controlled action
+
+Draft PR #28 is open:
+
+https://github.com/kopikonkf/income-os/pull/28
+
+Initial remote implementation commit:
+`e37d4a6f84ddd357e615008828db9bdbdca0e312`. The PR targets `main` at
+`4e3cf11e2095453c94562e0dfa1cdd731275784e`; its nine implementation paths
+match the verified local tree.
+
+Founder reviews and merges PR #28. After merge, the authorized operator:
+
+1. fast-forwards `C:\DIE` while preserving runtime-owned state;
+2. reloads the Executive and Division-01 Runtime Decision MCP processes so the
+   new projection code is live;
+3. wakes each principal in a fresh context and requires it to pull its own
+   principal-pinned `context_snapshot`;
+4. verifies `canon_context.load_status = VERIFIED`, the merged repository SHA,
+   five document hashes, correct principal/scope, fresh snapshot ID/as-of, and
+   integrity proof;
+5. runs independent role-specific canon probes and captures `PASS|FAIL`
+   receipts under runtime-owned evidence/state.
+
+Production, upload, publication, account action, spend, and canonical state
+mutation remain unauthorized by this change. Worth-Making opens only after the
+Division-01 receipt is independently `PASS` and the existing Founder gate is
+satisfied.
