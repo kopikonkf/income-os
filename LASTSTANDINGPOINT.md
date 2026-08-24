@@ -2021,9 +2021,21 @@ test contract. No `state/*`, `workspaces/*`, Kanban card, service, cron, account
 credential, marketplace, production prompt, spend, upload, or publication was
 mutated by this implementation.
 
+### Publication receipt
+
+Draft PR #29 is open:
+
+https://github.com/kopikonkf/income-os/pull/29
+
+Initial remote implementation commit:
+`0aa764d57edd6d61917634a4ff0a7fcb3590533e`. The PR targets `main` at
+`d2c3e27a4c0d7affc4c9c82d5ef50d5d362446b6`; its nine-path manifest matches
+the verified implementation tree. The PR is intentionally draft pending
+Architect/Founder review and does not deploy or execute the runner.
+
 ### Next controlled action
 
-1. Publish this branch as a draft PR and complete Architect/Founder review.
+1. Complete Architect/Founder review of draft PR #29 and merge when approved.
 2. After merge, fast-forward `C:\DIE` while preserving runtime-owned state and
    rerun the Windows suite.
 3. Division-01 emits the exact executable Asset Blueprint plus Worth-Making
