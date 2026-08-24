@@ -32,12 +32,23 @@ Scope: provenance and exclusions for the docs-only canon synthesis
 
 ## Supporting-Input Boundary
 
-`SCENARIO_1B_QUANTITY_GAME.xlsx` and
-`MATRIX_6_PLATFORM_TOS_STRICTNESS.md` were named by the Founder but were not
-available in the supplied workspace for this synthesis. Their detailed models
-are therefore not claimed as ingested. The explicit Founder North Star decision
-is canonical; platform strictness remains a hypothesis until current contracts
-and real acceptance receipts exist.
+`SCENARIO_1B_QUANTITY_GAME.xlsx` (now at `docs/atlas/`) and
+`MATRIX_6_PLATFORM_TOS_STRICTNESS.md` (now at `docs/pipeline/`) were named by
+the Founder and were not available during the v1 synthesis; they are now
+committed as **supporting inputs**, not canon authority:
+
+- the scenario workbook is a gross-revenue planning proxy with assumed
+  parameters (asset/day, $/asset/day, marketplace count, division count); its
+  outputs are `HYPOTHESIS` until real receipts exist, are not a net-profit or
+  run-rate forecast, and must never be cited as observed ERVA;
+- the platform matrix treats Adobe ~10% versus others ~80% as `HYPOTHESIS`
+  until measured against actual review receipts; its cohort is five independent
+  marketplaces plus Magnific as a non-marketplace recovery lane. Per-platform
+  rules remain governed by dated Platform Contracts.
+
+The explicit Founder North Star decision (`$1B/3Y` = net profit + run-rate)
+remains canonical. Platform strictness remains a hypothesis until current
+contracts and real acceptance receipts exist.
 
 ## Result
 
