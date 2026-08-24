@@ -1935,3 +1935,101 @@ Production, upload, publication, account action, spend, and canonical state
 mutation remain unauthorized by this change. Worth-Making opens only after the
 Division-01 receipt is independently `PASS` and the existing Founder gate is
 satisfied.
+
+## M-001 J1-J8 closed-loop runner v1 — 2026-08-24
+
+### Baseline and verdict
+
+- branch: `architect/m001-closed-loop-runner-v1`;
+- base: `main` at `d2c3e27a4c0d7affc4c9c82d5ef50d5d362446b6`;
+- workflow verdict: **IMPLEMENTED / NOT DEPLOYED / NO PRODUCTION AUTHORITY**;
+- execution pattern: one-shot governed mission compiler plus the existing
+  Hermes Gateway embedded Kanban dispatcher; no production cron and no second
+  control plane.
+
+The live read-only autopsy proved that the income-operator Gateway is running,
+Kanban dispatch is enabled at a 60-second interval, and Proxima's loopback
+model registry exposes enabled `chatgpt`. The stale v1 M-001 root card remains
+unassigned and inert; this implementation does not silently mutate it.
+
+### Implemented contract
+
+`bin/m001_loop.py` now validates a `die.m001.loop-request.v1` against exactly
+one Founder-authored `die.decision.v1` record committed by DIE State Manager.
+The authority binds run ID, exact Asset Blueprint SHA-256, 20-40 batch size,
+five-asset canary, USD 0.00 maximum cost, future expiry, production=true, and
+submission/publication=false. Resolvable `VERIFIED` evidence with SHA-256 is
+mandatory for canon assimilation, Division-01 Worth-Making, platform contract
+matrix, production-engine rights, and Proxima durable artifact export.
+
+After preflight and a live runtime doctor, the compiler creates all eight cards
+as blocked, writes durable `RUN.json`, `JOB.json`, and `PROGRESS.md` artifacts,
+then releases the dependency graph:
+
+```text
+J1 Blueprint lock
+-> J2 five-asset canary
+-> J3 canary QA
+-> J4 remaining five-asset waves
+-> J5 full-batch QA
+-> J6 eligible recovery / NOT_REQUIRED
+-> J7 metadata + manual-submission package
+-> J8 READY_FOR_MANUAL_SUBMISSION
+```
+
+J2/J4/J6 are the only Proxima-eligible stages, always through bounded Worker
+jobs. The single v0 Worker remains sequential. Hermes card retries are disabled
+for networked production/recovery stages; ambiguous export becomes `BLOCKED`.
+J8 cannot claim submission, marketplace approval, license, or ERVA.
+
+`bin/m001_asset_qa.py` is the executable universal-QA boundary. It verifies
+workspace confinement, source SHA-256, structurally valid PNG/JPEG containers,
+dimensions, stable lineage, exact duplicates, and durable rights/safety/
+watermark/lineage/technical/visual-review evidence. It routes hard failures to
+quarantine/recreate states and blocks when visual evidence is absent; it never
+implements generic `FAIL -> social`.
+
+J8 additionally proves the blueprint lock, J2/J4 manifest schemas and counts,
+J3/J5 source-manifest hashes, 20-40 unique asset IDs, one full-batch QA route
+per asset, at least 80 percent universal-QA pass, zero hard-rights failures,
+zero unauthorized cost, and an exact J7 package containing every and only
+`T1_PASS` asset.
+
+### Proxima boundary discovered
+
+Read-only source inspection found that the currently running Proxima v5 REST
+schema exposes `/v1/chat/completions` and the ChatGPT engine currently returns
+text content. Durable binary export is therefore not inferred from API health.
+The earlier `T-PROXIMA-PROBE-001` receipt remains the evidence input, but every
+live asset must independently resolve inside its Worker workspace. Browser-only
+or transient output is `BLOCKED`, never `done`. The five-asset canary is the
+first governed reproducibility test of that export procedure.
+
+### Verification
+
+```text
+Targeted M-001 runner/QA regression: 13 passed
+Full Linux bridge regression: 175 passed, 7 skipped
+Company Brain validator: PASS (7 identities / 6 runtime identities)
+python -m py_compile: PASS
+git diff --check: PASS
+```
+
+The Linux worktree required `DIE_HOME` pinned to the checkout and
+`DIE_REPO_SHA` pinned to its full base SHA, matching the existing canon-context
+test contract. No `state/*`, `workspaces/*`, Kanban card, service, cron, account,
+credential, marketplace, production prompt, spend, upload, or publication was
+mutated by this implementation.
+
+### Next controlled action
+
+1. Publish this branch as a draft PR and complete Architect/Founder review.
+2. After merge, fast-forward `C:\DIE` while preserving runtime-owned state and
+   rerun the Windows suite.
+3. Division-01 emits the exact executable Asset Blueprint plus Worth-Making
+   receipt for the selected P0 family.
+4. Founder reviews the derived plan and commits the bounded, expiring U1
+   production authorization through State Manager.
+5. Operator runs `m001_loop.py plan`; only after review, runs `materialize`.
+6. Observe J2/J3 canary evidence before J4 can become eligible.
+7. Founder keeps first marketplace submission manual and captures U2 receipts.

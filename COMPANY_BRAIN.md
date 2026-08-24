@@ -123,11 +123,20 @@ A runtime actor starts from zero trusted conversational memory and loads, in ord
    scale economics, a bounded, versioned formula/result digest derived from
    `docs/atlas/SCENARIO_1B_QUANTITY_GAME.xlsx`;
 9. a bounded, versioned semantic snapshot from the DIE State Layer.
+10. for Hermes before any M-001 U1 production materialization,
+    `docs/operations/M001_CLOSED_LOOP_RUNNER_V1.md` and the exact executable
+    Asset Blueprint named by the State-Manager-committed Founder authorization.
 
 The M-001 blueprint is governed mission-design canon, not execution authority.
 It does not authorize production, upload, publication, account action, or
 spend; those actions still require the applicable committed decision and
 Founder gate.
+
+M-001 production is event-driven, not production-cron-driven. The one-shot
+mission compiler validates the committed authority and materializes a durable
+J1-J8 graph; the existing Hermes Gateway Kanban dispatcher performs continuous
+eligible-card dispatch. No runtime actor may substitute a timer prompt, wake
+message, or local approval flag for the committed production authorization.
 
 Workers do not load holdings strategy or the Atlas. They receive only the
 bounded job context allowed by the Worker Contract. Canon documents define
