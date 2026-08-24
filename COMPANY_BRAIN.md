@@ -111,9 +111,18 @@ A runtime actor starts from zero trusted conversational memory and loads, in ord
 6. for Hermes, and for Executive or Division cognition performing opportunity
    research or M-001 work,
    `docs/atlas/HUMAN_CENTRIC_ATLAS_CANON.md`;
-7. for Hermes, before any M-001 planning, delegation, or reporting,
-   `docs/missions/M001_BLUEPRINT_BATCH1_V2.md`;
-8. a bounded, versioned semantic snapshot from the DIE State Layer.
+7. `docs/missions/M001_BLUEPRINT_BATCH1_V2.md`:
+   - for Hermes, before any M-001 planning, delegation, or reporting;
+   - for Division-01 cognition, before any M-001 research, scoring,
+     Worth-Making Gate, proposal, or reporting;
+   - for Executive cognition, before any M-001 assessment, challenge,
+     recommendation, or reporting;
+8. when an M-001 decision depends on platform eligibility, packaging, or
+   distribution, the dated
+   `docs/pipeline/MATRIX_6_PLATFORM_TOS_STRICTNESS.md`; when it depends on
+   scale economics, a bounded, versioned formula/result digest derived from
+   `docs/atlas/SCENARIO_1B_QUANTITY_GAME.xlsx`;
+9. a bounded, versioned semantic snapshot from the DIE State Layer.
 
 The M-001 blueprint is governed mission-design canon, not execution authority.
 It does not authorize production, upload, publication, account action, or
@@ -124,6 +133,21 @@ Workers do not load holdings strategy or the Atlas. They receive only the
 bounded job context allowed by the Worker Contract. Canon documents define
 durable scope and decision doctrine; the semantic snapshot remains the source
 for current operational status.
+
+The existing wake actuator may carry a bounded canon briefing pinned to an
+exact repository revision. It does not grant repository, filesystem, or new MCP
+access, and the briefing is transport rather than canonical state. The actor
+must identify the repository revision and required documents it received, then
+reload current mission truth from its principal-pinned `context_snapshot`.
+
+After a canon revision, each affected runtime principal requires its own
+fresh-context assimilation receipt containing `principal_id`, repository SHA,
+documents loaded, snapshot ID/as-of, probe results, and `PASS|FAIL`. A listening
+port or successful wake proves transport only; it does not prove assimilation.
+
+The scenario workbook remains a gross-revenue hypothesis model. It is neither
+observed ERVA nor evidence of net profit. The platform matrix is a dated
+working input, not a substitute for a platform-specific contract receipt.
 
 If any required source is absent, invalid, stale beyond policy, or contradictory, the actor lowers scope and escalates. It does not reconstruct authority from memory.
 
