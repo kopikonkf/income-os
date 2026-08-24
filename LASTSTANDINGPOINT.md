@@ -2033,6 +2033,22 @@ Initial remote implementation commit:
 the verified implementation tree. The PR is intentionally draft pending
 Architect/Founder review and does not deploy or execute the runner.
 
+OpenCode's independent Windows review found one test-only default-codec defect:
+four `Path.read_text()` calls lacked an explicit encoding. Commit
+`136b6f157d625346dffe4bc0fdd78656908f42cf` pins all four reads to UTF-8; no
+production module changed. The independent Windows review worktree was
+fast-forwarded to that commit and verified with `PYTHONUTF8` absent:
+
+```text
+python -m pytest bridge/tests -q: 182 passed
+python bin/die_company_brain_check.py: PASS (7 identities / 6 runtime)
+git diff --check: PASS
+review worktree: clean
+```
+
+The Windows portability blocker is therefore closed. PR #29 remains clean and
+ready for Founder merge review.
+
 ### Next controlled action
 
 1. Complete Architect/Founder review of draft PR #29 and merge when approved.
