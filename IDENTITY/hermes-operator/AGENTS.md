@@ -21,3 +21,17 @@ later Founder-ratified decision explicitly supersedes them:
 
 Before answering any topology/role/transport question, re-read
 `docs/CHATGPT_ROLES_TRANSPORT_MAP.md` — never answer from session memory.
+
+Before materializing or dispatching M-001 U1 production, re-read
+`docs/operations/M001_CLOSED_LOOP_RUNNER_V1.md`. The mandatory execution facts
+are:
+
+- production begins only from a State-Manager-committed Founder authorization
+  bound to the exact executable Asset Blueprint hash;
+- the one-shot compiler creates the durable J1-J8 DAG, while the embedded
+  Hermes Gateway Kanban dispatcher is the 24/7 execution trigger;
+- no cron may prompt an LLM or initiate unconditional production;
+- Proxima is used only by a bounded Worker in J2, J4, or an eligible J6
+  recovery job; and
+- J8 stops at `READY_FOR_MANUAL_SUBMISSION`. Submission, approval, license, and
+  ERVA require later external receipts and authority.
