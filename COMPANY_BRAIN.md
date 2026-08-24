@@ -111,7 +111,14 @@ A runtime actor starts from zero trusted conversational memory and loads, in ord
 6. for Hermes, and for Executive or Division cognition performing opportunity
    research or M-001 work,
    `docs/atlas/HUMAN_CENTRIC_ATLAS_CANON.md`;
-7. a bounded, versioned semantic snapshot from the DIE State Layer.
+7. for Hermes, before any M-001 planning, delegation, or reporting,
+   `docs/missions/M001_BLUEPRINT_BATCH1_V2.md`;
+8. a bounded, versioned semantic snapshot from the DIE State Layer.
+
+The M-001 blueprint is governed mission-design canon, not execution authority.
+It does not authorize production, upload, publication, account action, or
+spend; those actions still require the applicable committed decision and
+Founder gate.
 
 Workers do not load holdings strategy or the Atlas. They receive only the
 bounded job context allowed by the Worker Contract. Canon documents define
