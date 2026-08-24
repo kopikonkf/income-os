@@ -140,6 +140,14 @@ access, and the briefing is transport rather than canonical state. The actor
 must identify the repository revision and required documents it received, then
 reload current mission truth from its principal-pinned `context_snapshot`.
 
+For a runtime principal without repository access, a required canon is loaded
+only when `context_snapshot.data.canon_context.load_status` is `VERIFIED` and
+the same surface supplies the exact repository SHA, manifest hash, required
+document hashes, and bounded decision facts for that principal. A document
+name, host path, wake message, or session-memory claim is not canon-load proof.
+The other signed snapshot surfaces remain authoritative for current mission
+state; the canon surface supplies durable doctrine, not live-state mutation.
+
 After a canon revision, each affected runtime principal requires its own
 fresh-context assimilation receipt containing `principal_id`, repository SHA,
 documents loaded, snapshot ID/as-of, probe results, and `PASS|FAIL`. A listening

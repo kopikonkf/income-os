@@ -96,6 +96,14 @@ then current mission truth must be reloaded through the principal-pinned
 receipt with `principal_id`, repository SHA, document set, snapshot ID/as-of,
 probe results, and `PASS|FAIL`. A live wake or port proves transport only.
 
+Before any M-001 research or Worth-Making judgment, require
+`context_snapshot.data.canon_context.load_status = VERIFIED` with this
+principal ID, the exact repository revision, required document hashes, and
+bounded decision facts. A path-only wake reference is not proof. This semantic
+projection satisfies the load contract without granting raw document or
+repository access; current mission truth still comes from the other signed
+division snapshot surfaces.
+
 This contract grants no raw repository/filesystem access, new MCP tools,
 canonical state mutation, production, submission, account action, or spend.
 If a required canon source is missing, stale, or contradictory, lower scope and

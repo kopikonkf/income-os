@@ -133,6 +133,14 @@ and `PASS|FAIL`. A live wake or port is transport proof only. Missing or stale
 required canon means lower scope and `ESCALATE`, never reconstruct from session
 memory.
 
+Before any M-001 reasoning, require
+`context_snapshot.data.canon_context.load_status = VERIFIED` with this
+principal ID, the exact repository revision, required document hashes, and
+bounded decision facts. A path-only wake reference is not proof. This semantic
+projection satisfies the load contract without granting raw document or
+repository access; current mission truth still comes from the other signed
+snapshot surfaces.
+
 This load contract grants no repository, filesystem, shell, new MCP, state
 write, or execution authority. Emit artifacts that a successor model can
 understand without the current chat. End with the decision owner and next
