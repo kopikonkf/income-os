@@ -183,7 +183,7 @@ def test_materializer_is_idempotent_and_releases_only_after_all_jobs_exist(tmp_p
     assert client.unblocked == [[f"t_j{i}" for i in range(1, 9)]]
     assert client.doctor_calls == 1
     assert all((run_root / f"J{i}" / "JOB.json").is_file() for i in range(1, 9))
-    j2 = json.loads((run_root / "J2" / "JOB.json").read_text())
+    j2 = json.loads((run_root / "J2" / "JOB.json").read_text(encoding="utf-8"))
     assert j2["constraints"]["network"] == "proxima_loopback_only"
     assert "market submission" in j2["constraints"]["forbidden"]
 
@@ -423,9 +423,11 @@ def test_verify_run_stops_at_manual_submission_boundary(tmp_path):
 
 def test_runtime_canon_uses_gateway_dispatch_not_a_production_cron():
     root = pathlib.Path(__file__).resolve().parents[2]
-    operations = (root / "docs/operations/M001_CLOSED_LOOP_RUNNER_V1.md").read_text()
-    company_brain = (root / "COMPANY_BRAIN.md").read_text()
-    hermes = (root / "IDENTITY/hermes-operator/AGENTS.md").read_text()
+    operations = (root / "docs/operations/M001_CLOSED_LOOP_RUNNER_V1.md").read_text(
+        encoding="utf-8"
+    )
+    company_brain = (root / "COMPANY_BRAIN.md").read_text(encoding="utf-8")
+    hermes = (root / "IDENTITY/hermes-operator/AGENTS.md").read_text(encoding="utf-8")
 
     assert "No production cron and no second daemon are added." in operations
     assert "Hermes Gateway Kanban dispatcher" in operations
