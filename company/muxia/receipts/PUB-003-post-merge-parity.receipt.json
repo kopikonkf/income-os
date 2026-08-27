@@ -1,0 +1,77 @@
+{
+  "schema": "die.muxia.pub003-post-merge-parity.v1",
+  "task_id": "PUB-003",
+  "date": "2026-08-27",
+  "status": "PASS",
+  "repository": "kopikonkf/income-os",
+  "canonical_main_at_parity_proof": "4ea59ed2be338a6af0ece602b1a73fb042e584ea",
+  "source_sync": {
+    "windows_staging": {
+      "path": "D:\\mcp-architect\\workspace\\muxia-b06-publish",
+      "branch": "main",
+      "head": "4ea59ed2be338a6af0ece602b1a73fb042e584ea",
+      "clean": true,
+      "sync_method": "fast-forward only"
+    },
+    "linux": {
+      "path": "/srv/die",
+      "branch": "main",
+      "head": "4ea59ed2be338a6af0ece602b1a73fb042e584ea",
+      "clean": true,
+      "sync_method": "fetch + switch main + fast-forward only"
+    }
+  },
+  "post_merge_regression": {
+    "tested_sha": "4ea59ed2be338a6af0ece602b1a73fb042e584ea",
+    "windows": {
+      "core_pass": 49,
+      "parity_pass": 5,
+      "total_pass": 54,
+      "fail": 0
+    },
+    "linux": {
+      "build": "PASS",
+      "core_pass": 49,
+      "parity_pass": 2,
+      "parity_skip_windows_only": 3,
+      "fail": 0,
+      "marker": "PUB001_LINUX_REVALIDATION_PASS"
+    }
+  },
+  "rollback_checkpoint": {
+    "tag": "chapter4-pre-service-migration-20260827",
+    "target": "4ea59ed2be338a6af0ece602b1a73fb042e584ea",
+    "remote_pushed": true,
+    "purpose": "Stable source rollback anchor after B06 publication and before any service migration or cutover."
+  },
+  "windows_live_preservation": {
+    "path": "C:\\DIE",
+    "branch": "main",
+    "head_observed_before_pub003": "04eda313f1e757c0d0f8fd9d90251b92c0dd95a3",
+    "dirty_path_count_observed_before_pub003": 37,
+    "reset_performed": false,
+    "checkout_performed": false,
+    "fast_forward_performed": false,
+    "stash_or_discard_performed": false,
+    "role": "live rollback/reference until later controlled migration gates"
+  },
+  "negative_proof": {
+    "service_migration_started": false,
+    "architect_mcp_linux_deployed": false,
+    "executive_migrated": false,
+    "division01_migrated": false,
+    "hermes_workers_migrated": false,
+    "writer_freeze_started": false,
+    "proxima_cutover_started": false,
+    "windows_die_services_disabled": false
+  },
+  "repair_children": 0,
+  "batch7": {
+    "pub001": "PASS_WITH_ONE_REPAIR_CHILD",
+    "pub002": "PASS_MERGED",
+    "pub003": "PASS",
+    "status": "COMPLETE"
+  },
+  "next_batch": "MUXIA Batch 8 - Windows estate and one-canon mapping",
+  "next_atomic_task": "DIE-100 - read-only Windows estate inventory"
+}

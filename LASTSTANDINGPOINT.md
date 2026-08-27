@@ -2299,3 +2299,21 @@ Durable receipt: `company/muxia/receipts/PUB-002-github-publication-merge.receip
 Publication is complete, but post-merge synchronization is intentionally not part of PUB-002. Linux `/srv/die` remains on the feature-branch checkpoint and live Windows `C:\DIE` remains on the pre-publication main/reference state until `PUB-003` performs controlled post-merge parity. No service migration, writer freeze, or cutover has started.
 
 Next authorized task: `PUB-003 - Post-merge parity`.
+---
+
+## 2026-08-27 - Chapter #4 PUB-003 Post-merge parity
+
+`PUB-003 - Post-merge parity`: DONE / PASS.
+
+Canonical GitHub `main` at parity proof was `4ea59ed2be338a6af0ece602b1a73fb042e584ea`. Clean Windows publication staging and Linux `/srv/die` were synchronized to that exact SHA using fast-forward-only operations. Live Windows `C:\DIE` was intentionally not reset, checked out, stashed, discarded, or fast-forwarded; its pre-PUB-003 observed state remained `main @ 04eda313f1e757c0d0f8fd9d90251b92c0dd95a3` with 37 dirty paths preserved as live rollback/reference state.
+
+Post-merge regression against the exact canonical SHA passed on both hosts: Windows core 49/49 + parity 5/5 = 54/54 PASS; Linux build PASS, core 49/49 PASS, parity 2 PASS + 3 explicit Windows-only SKIP, 0 FAIL, with `PUB001_LINUX_REVALIDATION_PASS` emitted.
+
+Rollback checkpoint tag `chapter4-pre-service-migration-20260827` was created and pushed at `4ea59ed2be338a6af0ece602b1a73fb042e584ea`. This is the stable pre-service-migration source anchor before any Architect MCP, Executive, Division01, Hermes/Worker, compatibility, or production cutover work.
+
+Durable receipt: `company/muxia/receipts/PUB-003-post-merge-parity.receipt.json`.
+
+Batch 7 publication is COMPLETE: PUB-001 PASS_WITH_ONE_REPAIR_CHILD; PUB-002 PASS/MERGED; PUB-003 PASS. No service migration, writer freeze, Proxima cutover, or Windows DIE disablement has started.
+
+Next eligible batch: `MUXIA Batch 8 - Windows estate and one-canon mapping`.
+Next atomic task: `DIE-100 - read-only Windows estate inventory`.
