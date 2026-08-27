@@ -2283,3 +2283,19 @@ Post-repair proof from canonical `/srv/die`:
 Durable receipt: `company/muxia/receipts/PUB-001-b06-revalidation.receipt.json`.
 
 Next authorized task: `PUB-002 — PR and merge`, only after this receipt/handoff commit is pushed and Windows staging, remote feature branch, and Linux source are re-synchronized cleanly.
+
+---
+
+## 2026-08-27 - Chapter #4 PUB-002 GitHub publication merge
+
+`PUB-002 - PR + exact changed-path review + merge if clean/green`: DONE / PASS.
+
+Merge candidate `d6f330efd22bbf0b844be83ac028d8982c009675` was revalidated on both hosts before PR creation: Windows 54/54 PASS; Linux core 49/49 PASS plus parity 2 PASS / 3 explicit Windows-only SKIP / 0 FAIL. Exact changed-path review covered 112 files and found zero forbidden paths, zero `state/*` or `workspaces/*` runtime files, zero browser credential/session database files, and zero high-confidence secret hits. Six profile-named receipts flagged by a conservative filename heuristic were manually inspected and contained only sanitized metadata/synthetic markers, not credential values.
+
+GitHub PR #32 `feat(muxia): publish Linux parity foundation B06` was created non-draft from `architect/muxia-b06-linux-proof` to `main`. GitHub reported `MERGEABLE / CLEAN`; no repository status checks were configured. Under Founder merge authorization, PR #32 was merged at `2026-08-27T18:58:22Z` with merge commit `c91f26cd5682de062c9ebb54b003ac8525ce8366`.
+
+Durable receipt: `company/muxia/receipts/PUB-002-github-publication-merge.receipt.json`.
+
+Publication is complete, but post-merge synchronization is intentionally not part of PUB-002. Linux `/srv/die` remains on the feature-branch checkpoint and live Windows `C:\DIE` remains on the pre-publication main/reference state until `PUB-003` performs controlled post-merge parity. No service migration, writer freeze, or cutover has started.
+
+Next authorized task: `PUB-003 - Post-merge parity`.

@@ -1,0 +1,77 @@
+{
+  "schema": "die.muxia.pub002-github-publication-merge.v1",
+  "task_id": "PUB-002",
+  "date": "2026-08-27",
+  "status": "PASS",
+  "repository": "kopikonkf/income-os",
+  "publication_branch": "architect/muxia-b06-linux-proof",
+  "merge_candidate_head": "d6f330efd22bbf0b844be83ac028d8982c009675",
+  "base_main_before_merge": "04eda313f1e757c0d0f8fd9d90251b92c0dd95a3",
+  "branch_relation_before_merge": {
+    "behind": 0,
+    "ahead": 21
+  },
+  "exact_changed_path_review": {
+    "changed_files": 112,
+    "additions": 10530,
+    "deletions": 0,
+    "forbidden_path_count": 0,
+    "forbidden_runtime_or_browser_credential_file_count": 0,
+    "high_confidence_secret_hits": 0,
+    "git_diff_check": "PASS",
+    "allowed_roots": [
+      "LASTSTANDINGPOINT.md",
+      "company/muxia-task-graph-v1.json",
+      "company/muxia/**",
+      "docs/architecture/MUXIA_*.md",
+      "docs/architecture/DIE_OS_AGNOSTIC_TARGET_V1.md",
+      "docs/operations/MUXIA_*.md"
+    ],
+    "sanitized_receipts_reviewed": [
+      "company/muxia/probes/MX-P01-legacy-profile-metadata.receipt.json",
+      "company/muxia/receipts/MX-040-two-profile-isolation.receipt.json",
+      "company/muxia/receipts/MX-042-two-profile-bounded-concurrency.receipt.json",
+      "company/muxia/receipts/MX-043-four-profile-bounded-concurrency.receipt.json",
+      "company/muxia/receipts/MX-051-linux-single-profile-parity.receipt.json",
+      "company/muxia/receipts/MX-052-linux-four-profile-isolation.receipt.json"
+    ],
+    "credential_values_found_in_reviewed_receipts": false,
+    "synthetic_cookie_markers_only": true
+  },
+  "tested_exact_head": {
+    "sha": "d6f330efd22bbf0b844be83ac028d8982c009675",
+    "windows": {
+      "core_pass": 49,
+      "parity_pass": 5,
+      "total_pass": 54,
+      "fail": 0
+    },
+    "linux": {
+      "core_pass": 49,
+      "parity_pass": 2,
+      "parity_skip_windows_only": 3,
+      "fail": 0,
+      "marker": "PUB001_LINUX_REVALIDATION_PASS"
+    }
+  },
+  "pull_request": {
+    "number": 32,
+    "title": "feat(muxia): publish Linux parity foundation B06",
+    "draft": false,
+    "mergeable_before_merge": "MERGEABLE",
+    "merge_state_before_merge": "CLEAN",
+    "configured_status_checks": 0,
+    "state": "MERGED",
+    "merged_at": "2026-08-27T18:58:22Z",
+    "merge_commit": "c91f26cd5682de062c9ebb54b003ac8525ce8366"
+  },
+  "main_after_publication_merge": "c91f26cd5682de062c9ebb54b003ac8525ce8366",
+  "negative_proof": {
+    "linux_srv_die_fast_forwarded_to_main": false,
+    "windows_live_c_die_fast_forwarded": false,
+    "service_migration_started": false,
+    "writer_freeze_started": false,
+    "cutover_started": false
+  },
+  "next_task": "PUB-003"
+}
