@@ -207,11 +207,23 @@
                       "acceptance":  "Four independent lanes; no contamination; resource envelope captured."
                   },
                   {
+                      "id":  "MX-050-R1",
+                      "phase":  5,
+                      "title":  "Declare reproducible TypeScript compiler",
+                      "depends_on":  [
+                                         "MX-043"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/MX-050-R1-typescript-bootstrap-repair.receipt.json",
+                      "acceptance":  "TypeScript 5.9.3 is exact-pinned; npm ci provides tsc; Windows regression remains 48/48 PASS."
+                  },
+                  {
                       "id":  "MX-050",
                       "phase":  5,
                       "title":  "Linux runtime bootstrap",
                       "depends_on":  [
-                                         "MX-043"
+                                         "MX-043",
+                                         "MX-050-R1"
                                      ],
                       "status":  "READY",
                       "artifact":  "Linux bootstrap/runbook",

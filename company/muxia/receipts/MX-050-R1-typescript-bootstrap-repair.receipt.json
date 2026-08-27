@@ -1,0 +1,35 @@
+{
+  "schema": "die.muxia.task-repair-receipt.v1",
+  "task_id": "MX-050-R1",
+  "repair_of": "MX-050",
+  "status": "PASS",
+  "observed_failure": {
+    "host": "administrator",
+    "platform": "linux",
+    "exit_status": 127,
+    "error": "tsc: not found",
+    "cause": "typescript compiler was available globally on the Windows proof host but was not declared in package.json"
+  },
+  "minimal_repair": {
+    "dependency": "typescript",
+    "version": "5.9.3",
+    "pin": "exact",
+    "files_changed": [
+      "company/muxia/package.json",
+      "company/muxia/package-lock.json"
+    ]
+  },
+  "verification": {
+    "npm_ci": "PASS",
+    "typescript_build": "PASS",
+    "core_tests": "43/43 PASS",
+    "parity_tests": "5/5 PASS",
+    "total": "48/48 PASS"
+  },
+  "scope": {
+    "electron_added": false,
+    "provider_account_action": false,
+    "windows_live_runtime_mutated": false
+  },
+  "created_at": "2026-08-27T16:25:00Z"
+}
