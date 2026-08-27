@@ -1,0 +1,35 @@
+{
+  "schema": "die.muxia.operator-gui-layer.v1",
+  "stage": "MX-050-GUI",
+  "status": "PASS",
+  "completed_at": "2026-08-27T16:51:44Z",
+  "host": "administrator",
+  "desktop": {
+    "environment": "XFCE",
+    "xfce_version": "4.18",
+    "session_version": "4.18.3-1build2"
+  },
+  "rdp": {
+    "xrdp_version": "0.9.24-4",
+    "xorgxrdp_version": "0.9.19-1",
+    "service": "active",
+    "sesman": "active",
+    "listener": "127.0.0.1:3389",
+    "public_listener": false,
+    "required_transport": "SSH local port forwarding"
+  },
+  "operator": {
+    "user": "kopiko",
+    "password_status": "P",
+    "password_changed_by_muxia": false,
+    "desktop_launcher": "/home/kopiko/Desktop/MUXIA-ChatGPT-Login.desktop",
+    "profile_dir": "/var/lib/muxia/profiles/chatgpt-linux-a/browser",
+    "profile_mode": "0700"
+  },
+  "security": {
+    "direct_public_rdp": false,
+    "ssh_key_location": "Windows bootstrap host; not copied to Linux project or receipt",
+    "account_credentials_recorded": false
+  },
+  "next_gate": "Founder opens the SSH tunnel, logs into XFCE as kopiko using the existing VPS password, launches MUXIA ChatGPT Login, authenticates manually, closes Chromium, and replies LOGIN SELESAI."
+}

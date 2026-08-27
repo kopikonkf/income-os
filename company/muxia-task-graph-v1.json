@@ -237,7 +237,7 @@
                       "depends_on":  [
                                          "MX-050"
                                      ],
-                      "status":  "READY",
+                      "status":  "RUNNING",
                       "artifact":  "Linux single-profile parity receipt",
                       "acceptance":  "Text + durable image + restart state satisfy core contracts."
                   },

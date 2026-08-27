@@ -2164,3 +2164,36 @@ After Founder reviews and merges PR #30, OpenCode:
 
 Full mode, production expansion, submission, publication, account action, and
 spend remain unauthorized.
+
+
+---
+
+## 2026-08-27 — MUXIA-B06 Linux checkpoint: MX-050 + GUI PASS
+
+Authorized chain: sealed source preflight -> MX-050 headless -> restricted operator GUI -> MX-051 -> MX-052 -> STOP/evaluate.
+
+Completed:
+
+- sealed MUXIA source publication PASS on branch `architect/muxia-b06-linux-proof`;
+- original source commit `1176c7a86ad369382e1aee23bdb7465a00c5de62`, 86-file manifest verified on Linux;
+- MX-050 Linux runtime bootstrap DONE on Ubuntu 24.04.4;
+- Node `v24.18.1`, Playwright `1.62.1`, Chromium `151.0.7922.34`;
+- root-owned Playwright browser tree plus exact-path AppArmor `userns` profile; no `--no-sandbox`;
+- Linux core regression 43/43 PASS; Linux parity 2 PASS + 3 explicit Windows-only evidence SKIP;
+- Windows regression remains 48/48 PASS;
+- XFCE+xrdp operator layer PASS and bound only to `127.0.0.1:3389`;
+- MX-051 launcher installed at `/home/kopiko/Desktop/MUXIA-ChatGPT-Login.desktop`;
+- dedicated profile `/var/lib/muxia/profiles/chatgpt-linux-a/browser` is mode 0700.
+
+Repair:
+
+- one child `MX-050-R1` absorbed the Linux bootstrap defects: undeclared TypeScript compiler, Ubuntu AppArmor userns restriction, and Windows-only physical parity evidence scope.
+- no Electron dependency, credential read, protection bypass, or false success was introduced.
+
+Current gate:
+
+- `MX-051` is WAITING_FOUNDER_MANUAL_LOGIN.
+- Founder opens the SSH tunnel, logs into XFCE as `kopiko` using the existing VPS password, launches `MUXIA ChatGPT Login`, authenticates manually, closes Chromium, then replies `LOGIN SELESAI`.
+- Architect then resumes sanitized READY detection, text/image operator-controlled parity, restart proof, MX-052 four-profile isolation, and stops for receipt evaluation.
+
+Still excluded: Executive, Division01, OAUTH, Atlas, Hermes production, Proxima, Aether, MCP Linux deployment, Cloudflare, marketplace submission/publication, spend, and cutover.
