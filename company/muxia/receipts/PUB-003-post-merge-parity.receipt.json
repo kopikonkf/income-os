@@ -2,7 +2,7 @@
   "schema": "die.muxia.pub003-post-merge-parity.v1",
   "task_id": "PUB-003",
   "date": "2026-08-27",
-  "status": "PASS",
+  "status": "PASS_WITH_ONE_REPAIR_CHILD",
   "repository": "kopikonkf/income-os",
   "canonical_main_at_parity_proof": "4ea59ed2be338a6af0ece602b1a73fb042e584ea",
   "source_sync": {
@@ -65,11 +65,21 @@
     "proxima_cutover_started": false,
     "windows_die_services_disabled": false
   },
-  "repair_children": 0,
+  "repair_children": 1,
+  "repair_child": {
+    "id": "PUB-003-R1",
+    "scope": "final rollback-tag verification command only",
+    "failure": "PowerShell parsed an unquoted Git ^{} dereference suffix as caret plus script block, causing a read-only verification command failure after source synchronization had already succeeded.",
+    "repair": "Repeat local and remote tag dereference checks using a quoted variable containing the full tag^{} revision spec.",
+    "result": "PASS",
+    "state_mutation": false,
+    "verified_target": "4ea59ed2be338a6af0ece602b1a73fb042e584ea",
+    "documentation_note": "An initial receipt-edit command also produced invalid JSON locally due to literal PowerShell newline escapes; the parser caught it before commit/push. The evidence files were restored from origin/main and rewritten validly within the same repair child."
+  },
   "batch7": {
     "pub001": "PASS_WITH_ONE_REPAIR_CHILD",
     "pub002": "PASS_MERGED",
-    "pub003": "PASS",
+    "pub003": "PASS_WITH_ONE_REPAIR_CHILD",
     "status": "COMPLETE"
   },
   "next_batch": "MUXIA Batch 8 - Windows estate and one-canon mapping",

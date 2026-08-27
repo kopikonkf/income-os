@@ -2303,7 +2303,7 @@ Next authorized task: `PUB-003 - Post-merge parity`.
 
 ## 2026-08-27 - Chapter #4 PUB-003 Post-merge parity
 
-`PUB-003 - Post-merge parity`: DONE / PASS.
+`PUB-003 - Post-merge parity`: DONE / PASS_WITH_ONE_REPAIR_CHILD.
 
 Canonical GitHub `main` at parity proof was `4ea59ed2be338a6af0ece602b1a73fb042e584ea`. Clean Windows publication staging and Linux `/srv/die` were synchronized to that exact SHA using fast-forward-only operations. Live Windows `C:\DIE` was intentionally not reset, checked out, stashed, discarded, or fast-forwarded; its pre-PUB-003 observed state remained `main @ 04eda313f1e757c0d0f8fd9d90251b92c0dd95a3` with 37 dirty paths preserved as live rollback/reference state.
 
@@ -2313,7 +2313,7 @@ Rollback checkpoint tag `chapter4-pre-service-migration-20260827` was created an
 
 Durable receipt: `company/muxia/receipts/PUB-003-post-merge-parity.receipt.json`.
 
-Batch 7 publication is COMPLETE: PUB-001 PASS_WITH_ONE_REPAIR_CHILD; PUB-002 PASS/MERGED; PUB-003 PASS. No service migration, writer freeze, Proxima cutover, or Windows DIE disablement has started.
+Batch 7 publication is COMPLETE: PUB-001 PASS_WITH_ONE_REPAIR_CHILD; PUB-002 PASS/MERGED; PUB-003 PASS_WITH_ONE_REPAIR_CHILD. PUB-003-R1 was limited to final read-only rollback-tag verification and its evidence correction; no repository/runtime state mutation occurred. No service migration, writer freeze, Proxima cutover, or Windows DIE disablement has started.
 
 Next eligible batch: `MUXIA Batch 8 - Windows estate and one-canon mapping`.
 Next atomic task: `DIE-100 - read-only Windows estate inventory`.
