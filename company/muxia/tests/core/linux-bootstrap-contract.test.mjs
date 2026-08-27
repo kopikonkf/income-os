@@ -122,3 +122,19 @@ test('MX-052 Linux proof binds four isolated profiles to unique leases, jobs, ar
   assert.match(proof, /provider_output_extracted: false/);
   assert.doesNotMatch(proof, /chatgpt\.com|--no-sandbox|taskkill\.exe|powershell\.exe/i);
 });
+
+
+test('MX-051 finalizer requires explicit operator attestation and registers only the downloaded raster', () => {
+  const finalize = fs.readFileSync(path.join(repo, 'scripts', 'linux', 'mx051-finalize-operator-canaries.mjs'), 'utf8');
+  assert.match(finalize, /MUXIA_TEXT_CANARY_ATTESTED !== 'true'/);
+  assert.match(finalize, /MX051_OPERATOR_BROWSER_STILL_RUNNING/);
+  assert.match(finalize, /mx051-sanitized-state-restart\.json/);
+  assert.match(finalize, /operator_attested_exact_response: true/);
+  assert.match(finalize, /operator_downloaded_artifact: true/);
+  assert.match(finalize, /registerArtifact/);
+  assert.match(finalize, /credential_values_read: false/);
+  assert.match(finalize, /cookies_or_tokens_read: false/);
+  assert.match(finalize, /prompt_submitted_by_automation: false/);
+  assert.match(finalize, /output_extracted_by_automation: false/);
+  assert.doesNotMatch(finalize, /connectOverCDP|context\.cookies|storageState|chatgpt\.com/i);
+});
