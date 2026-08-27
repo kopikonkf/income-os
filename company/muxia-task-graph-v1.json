@@ -5,6 +5,13 @@
     "doctrine":  "Build \u003e Run \u003e Verify \u003e Refactor \u003e Extend",
     "execution_started":  true,
     "cutover_authority":  "Founder",
+    "migration_overlay":  {
+                              "version":  "chapter4-windows-to-linux-v1",
+                              "disposition_matrix":  "docs/migration/DIE_WINDOWS_ESTATE_DISPOSITION_MATRIX_V1.md",
+                              "architect_mcp_ordering":  "KEEP_WINDOWS_CONTROL_THROUGH_CUT_005; MX-053/MX-054 FINAL_PRE_CUTOVER; CUT-006 FOUNDER_HANDOFF",
+                              "aether_boundary":  "KEEP_EXTERNAL",
+                              "oauth_boundary":  "D:\\OAUTH is a separate Web-AI adapter; NOT Division01"
+                          },
     "states":  [
                    "BLOCKED",
                    "READY",
@@ -257,7 +264,8 @@
                       "phase":  6,
                       "title":  "Sanitized observability",
                       "depends_on":  [
-                                         "MX-052"
+                                         "MX-052",
+                                         "DIE-204"
                                      ],
                       "status":  "BLOCKED",
                       "artifact":  "health/logging surfaces",
@@ -384,6 +392,209 @@
                       "status":  "DONE",
                       "artifact":  "company/muxia/receipts/MX-032-R1-operator-session-bootstrap.receipt.json",
                       "acceptance":  "Headed persistent chatgpt-a profile open in operator RDP session; operator manually authenticates; no bypass/credential extraction."
+                  },
+                  {
+                      "id":  "DIE-100",
+                      "phase":  10,
+                      "title":  "Read-only Windows estate inventory",
+                      "depends_on":  [
+                                         "MX-052"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "docs/migration/DIE_WINDOWS_ESTATE_INVENTORY_V1.md + receipt",
+                      "acceptance":  "Windows source/data/runtime/service/listener estate inventoried without credential reads or runtime mutation."
+                  },
+                  {
+                      "id":  "DIE-101",
+                      "phase":  10,
+                      "title":  "Windows estate disposition matrix",
+                      "depends_on":  [
+                                         "DIE-100"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "docs/migration/DIE_WINDOWS_ESTATE_DISPOSITION_MATRIX_V1.md + receipt",
+                      "acceptance":  "Every inventoried estate has explicit source/data/rebuild/archive/retire/external/exclude disposition; Architect MCP ordering is locked."
+                  },
+                  {
+                      "id":  "DIE-102",
+                      "phase":  10,
+                      "title":  "DIE env/path abstraction",
+                      "depends_on":  [
+                                         "DIE-101"
+                                     ],
+                      "status":  "READY",
+                      "artifact":  "OS-neutral DIE_HOME/DIE_STATE_ROOT/MUXIA_ROOT/DIE_CONFIG_ROOT/DIE_INSTALL_ROOT contract",
+                      "acceptance":  "Linux and Windows path fixtures resolve without hard-coded drive assumptions; secrets/runtime/source roots remain separated."
+                  },
+                  {
+                      "id":  "DIE-103",
+                      "phase":  10,
+                      "title":  "Clean component import",
+                      "depends_on":  [
+                                         "DIE-102"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "selectively imported company canon",
+                      "acceptance":  "Only disposition-approved source/provenance enters /srv/die; no nested .git, caches, profiles, secrets, or mutable runtime state."
+                  },
+                  {
+                      "id":  "DIE-104",
+                      "phase":  10,
+                      "title":  "One-canon validator",
+                      "depends_on":  [
+                                         "DIE-103"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "canon validation script/tests/receipt",
+                      "acceptance":  "Target tree, forbidden paths, source/runtime separation, secrets boundary, and ownership rules validate fail-closed."
+                  },
+                  {
+                      "id":  "DIE-200",
+                      "phase":  11,
+                      "title":  "Executive Linux migration",
+                      "depends_on":  [
+                                         "DIE-104"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Linux Executive source/runtime/receipt",
+                      "acceptance":  "Executive identity and wake/read contract work on Linux with fresh operator-controlled auth and no Windows profile cloning."
+                  },
+                  {
+                      "id":  "DIE-201",
+                      "phase":  11,
+                      "title":  "Division01 Linux migration",
+                      "depends_on":  [
+                                         "DIE-104"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Linux Division01 source/runtime/receipt",
+                      "acceptance":  "Principal ID division-head-division01 is preserved; D:\\OAUTH is not treated as Division01; fresh auth is used."
+                  },
+                  {
+                      "id":  "DIE-202",
+                      "phase":  11,
+                      "title":  "Hermes and Workers Linux migration",
+                      "depends_on":  [
+                                         "DIE-104"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Linux Hermes/Worker source/runtime/receipt",
+                      "acceptance":  "Canonical SOUL/AGENTS/contracts drive fresh Linux runtime; no bulk AppData/profile clone."
+                  },
+                  {
+                      "id":  "DIE-203",
+                      "phase":  11,
+                      "title":  "Atlas and Object Asset Engine Linux migration",
+                      "depends_on":  [
+                                         "DIE-104"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "human/object Atlas source + consistent object-engine data migration receipt",
+                      "acceptance":  "Object-engine source is separated from DB/data; SQLite migration is consistent/quiesce-aware; human-centric canon is materialized."
+                  },
+                  {
+                      "id":  "DIE-204",
+                      "phase":  11,
+                      "title":  "Linux company topology proof",
+                      "depends_on":  [
+                                         "DIE-200",
+                                         "DIE-201",
+                                         "DIE-202",
+                                         "DIE-203",
+                                         "MX-052"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Atlas -> Division cognition -> Hermes -> Worker -> MUXIA -> Artifact Registry proof",
+                      "acceptance":  "End-to-end logical company topology works on Linux with correct principal/data/artifact lineage and no Aether dependency absorption."
+                  },
+                  {
+                      "id":  "CUT-001",
+                      "phase":  14,
+                      "title":  "Freeze Windows DIE writers except Architect MCP",
+                      "depends_on":  [
+                                         "MX-080"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "writer-freeze receipt",
+                      "acceptance":  "Only after Founder PROMOTE verdict: record services/tasks/PIDs/state hashes and freeze migrated Windows DIE writers while keeping Architect MCP available."
+                  },
+                  {
+                      "id":  "CUT-002",
+                      "phase":  14,
+                      "title":  "Final state/data sync",
+                      "depends_on":  [
+                                         "CUT-001"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "final sync receipt",
+                      "acceptance":  "Only disposition-approved state/data is transferred with hashes/counts/cursors; browser/OAuth secrets are recreated, not copied."
+                  },
+                  {
+                      "id":  "CUT-003",
+                      "phase":  14,
+                      "title":  "Restore and replay proof",
+                      "depends_on":  [
+                                         "CUT-002"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "restore/replay receipt",
+                      "acceptance":  "Linux counts/hashes/cursor/last-event/open jobs/artifact lineage match the frozen Windows source of truth."
+                  },
+                  {
+                      "id":  "CUT-004",
+                      "phase":  14,
+                      "title":  "Phased non-Architect endpoint cutover",
+                      "depends_on":  [
+                                         "CUT-003"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "endpoint-by-endpoint E2E and rollback receipts",
+                      "acceptance":  "Executive, Division01, Hermes/Gateway/Workers and MUXIA routes cut over one-by-one; Architect Windows control channel remains unchanged."
+                  },
+                  {
+                      "id":  "CUT-005",
+                      "phase":  14,
+                      "title":  "Disable migrated Windows DIE services except Architect MCP",
+                      "depends_on":  [
+                                         "CUT-004"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Windows retirement checkpoint receipt",
+                      "acceptance":  "Migrated Windows DIE services/tasks are disabled only after Linux E2E PASS; Architect MCP remains active as the last Windows control component."
+                  },
+                  {
+                      "id":  "MX-053",
+                      "phase":  14,
+                      "title":  "Architect MCP Linux build/deploy - final pre-cutover",
+                      "depends_on":  [
+                                         "CUT-005"
+                                     ],
+                      "status":  "DEFERRED",
+                      "artifact":  "/srv/die/company/architect source + /opt/mcp-architect Linux runtime + receipt",
+                      "acceptance":  "Linux Architect MCP is built with loopback/systemd hardening and sanitized logs while Windows Architect MCP remains available.",
+                      "resume_condition":  "All Windows-dependent migration and non-Architect cutover tasks through CUT-005 are complete."
+                  },
+                  {
+                      "id":  "MX-054",
+                      "phase":  14,
+                      "title":  "Architect MCP Linux E2E temporary proof",
+                      "depends_on":  [
+                                         "MX-053"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "temporary Linux Architect MCP E2E receipt",
+                      "acceptance":  "Linux endpoint/tool parity passes without replacing the active Windows Architect control channel."
+                  },
+                  {
+                      "id":  "CUT-006",
+                      "phase":  14,
+                      "title":  "Founder Architect control-channel handoff",
+                      "depends_on":  [
+                                         "MX-054"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Founder-authorized control-channel handoff receipt",
+                      "acceptance":  "Explicit Founder action switches Architect control to Linux only after Linux E2E PASS; no remaining task depends on Windows Architect MCP access."
                   },
                   {
                       "id":  "MX-043-R1",

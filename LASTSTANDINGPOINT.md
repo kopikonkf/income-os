@@ -2338,3 +2338,23 @@ Receipt: `company/muxia/receipts/DIE-100-windows-estate-inventory.receipt.json`.
 `DIE-100-R1` was the single repair child: metadata-only PowerShell queries were rewritten into PowerShell 5.1-compatible array-first form after parser failures that occurred before execution/mutation.
 
 Next atomic task: `DIE-101 - disposition matrix`.
+---
+
+## 2026-08-27 - Chapter #4 DIE-101 Windows estate disposition matrix
+
+`DIE-101 - disposition matrix`: DONE / PASS.
+
+DIE-100 inventory has been converted into an explicit source/data/runtime/provenance/external disposition canon. The allowed vocabulary is `MIGRATE_SOURCE | REBUILD_LINUX | MIGRATE_DATA | ARCHIVE_PROVENANCE | RETIRE_AFTER_CUTOVER | KEEP_EXTERNAL | UNRELATED_EXCLUDE`. A Windows root may have multiple dispositions because clean source, mutable data, runtime installation, credentials, and rollback evidence are separate migration units.
+
+Key decisions are locked: live dirty `C:\DIE` is not a bulk-copy source; state migrates separately to `/var/lib/die`; `D:\object-asset-engine` source belongs under Atlas object-centric while its ~4.1 GiB data/SQLite remains mutable data with a consistent-snapshot requirement; Proxima remains provenance/rollback and is not imported into MUXIA; `D:\OAUTH` is its own Web-AI adapter under `company/next-subprojects`, not Division01; Aether estates are `KEEP_EXTERNAL`; browser profiles/credentials/caches are rebuilt or excluded rather than copied.
+
+The one-canon mapping is now explicit for Architect, Executive, Atlas human/object, MUXIA, Division01, Hermes, Workers, and the Web-AI OAuth adapter. Source lives under `/srv/die`; mutable DIE data under `/var/lib/die`; MUXIA state under `/var/lib/muxia`; secrets/config under `/etc/die`; installed service builds under `/opt/die`.
+
+Founder ordering constraint is now enforced in `company/muxia-task-graph-v1.json`: Windows Architect MCP remains active through `CUT-005`; `MX-053` is `DEFERRED` and depends on `CUT-005`; `MX-054` proves Linux Architect MCP without replacing the Windows control channel; actual Architect control handoff is explicit Founder task `CUT-006`. `MX-060` now also depends on `DIE-204`, so reliability work cannot bypass the one-canon/company topology migration.
+
+Task-graph validation: 52 unique tasks, all dependencies resolve, no DAG cycle, `DIE-102` is the next READY task. No Windows runtime/service/data/profile mutation occurred during DIE-101.
+
+Canonical matrix: `docs/migration/DIE_WINDOWS_ESTATE_DISPOSITION_MATRIX_V1.md`.
+Receipt: `company/muxia/receipts/DIE-101-windows-estate-disposition-matrix.receipt.json`.
+
+Next atomic task: `DIE-102 - env/path abstraction`.
