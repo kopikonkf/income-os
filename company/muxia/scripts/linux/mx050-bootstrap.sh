@@ -8,6 +8,7 @@ fi
 
 ROOT_DIR="${MUXIA_SOURCE_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}"
 export MUXIA_ROOT="${MUXIA_ROOT:-/var/lib/muxia}"
+export PLAYWRIGHT_BROWSERS_PATH="${PLAYWRIGHT_BROWSERS_PATH:-/opt/muxia/playwright-browsers}"
 
 cd "$ROOT_DIR"
 
@@ -21,7 +22,7 @@ if (( NODE_MAJOR != 24 )); then
 fi
 
 npm ci
-npx playwright install --with-deps chromium
+sudo env "PATH=$PATH" "MUXIA_SOURCE_DIR=$ROOT_DIR" "PLAYWRIGHT_BROWSERS_PATH=$PLAYWRIGHT_BROWSERS_PATH" /bin/bash ./scripts/linux/mx050-host-provision.sh
 npm run build
 node ./scripts/linux/mx050-runtime-smoke.mjs
 
