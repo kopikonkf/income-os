@@ -2342,7 +2342,7 @@ Next atomic task: `DIE-101 - disposition matrix`.
 
 ## 2026-08-27 - Chapter #4 DIE-101 Windows estate disposition matrix
 
-`DIE-101 - disposition matrix`: DONE / PASS.
+`DIE-101 - disposition matrix`: DONE / PASS_WITH_ONE_REPAIR_CHILD.
 
 DIE-100 inventory has been converted into an explicit source/data/runtime/provenance/external disposition canon. The allowed vocabulary is `MIGRATE_SOURCE | REBUILD_LINUX | MIGRATE_DATA | ARCHIVE_PROVENANCE | RETIRE_AFTER_CUTOVER | KEEP_EXTERNAL | UNRELATED_EXCLUDE`. A Windows root may have multiple dispositions because clean source, mutable data, runtime installation, credentials, and rollback evidence are separate migration units.
 
@@ -2352,7 +2352,7 @@ The one-canon mapping is now explicit for Architect, Executive, Atlas human/obje
 
 Founder ordering constraint is now enforced in `company/muxia-task-graph-v1.json`: Windows Architect MCP remains active through `CUT-005`; `MX-053` is `DEFERRED` and depends on `CUT-005`; `MX-054` proves Linux Architect MCP without replacing the Windows control channel; actual Architect control handoff is explicit Founder task `CUT-006`. `MX-060` now also depends on `DIE-204`, so reliability work cannot bypass the one-canon/company topology migration.
 
-Task-graph validation: 52 unique tasks, all dependencies resolve, no DAG cycle, `DIE-102` is the next READY task. No Windows runtime/service/data/profile mutation occurred during DIE-101.
+Task-graph validation: 52 unique tasks, all dependencies resolve, no DAG cycle, `DIE-102` is the next READY task. `DIE-101-R1` corrected only the quoting of the final read-only Linux JSON verification after source sync; `python3 -m json.tool` then verified both canonical JSON files on Linux. No Windows runtime/service/data/profile mutation occurred during DIE-101.
 
 Canonical matrix: `docs/migration/DIE_WINDOWS_ESTATE_DISPOSITION_MATRIX_V1.md`.
 Receipt: `company/muxia/receipts/DIE-101-windows-estate-disposition-matrix.receipt.json`.

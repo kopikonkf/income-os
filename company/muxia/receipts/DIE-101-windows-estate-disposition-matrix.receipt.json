@@ -2,7 +2,7 @@
   "schema": "die.muxia.die101-windows-estate-disposition-matrix.v1",
   "task_id": "DIE-101",
   "date": "2026-08-27",
-  "status": "PASS",
+  "status": "PASS_WITH_ONE_REPAIR_CHILD",
   "input_inventory": "docs/migration/DIE_WINDOWS_ESTATE_INVENTORY_V1.md",
   "artifact": "docs/migration/DIE_WINDOWS_ESTATE_DISPOSITION_MATRIX_V1.md",
   "canonical_dispositions": [
@@ -120,6 +120,17 @@
     "browser_profile_contents_migrated": false,
     "aether_modified": false
   },
-  "repair_children": 0,
+  "repair_children": 1,
+  "repair_child": {
+    "id": "DIE-101-R1",
+    "scope": "final Linux post-merge JSON verification command only",
+    "failure": "PowerShell-to-SSH heredoc quoting removed Python string quotes in the first post-merge verification command after Linux source sync had already completed.",
+    "state_mutation_before_failure": false,
+    "repair": "Repeat the same read-only JSON checks using python3 -m json.tool with direct file arguments.",
+    "result": "PASS",
+    "linux_head_verified": "d2504f67029a6fdb2c62659641eabcfc5c89549d",
+    "linux_clean": true,
+    "documentation_note": "A subsequent local receipt edit initially produced CRLF diff-check noise; it was discarded before commit/push and rewritten as an LF-only minimal patch within this same repair child."
+  },
   "next_atomic_task": "DIE-102 - env/path abstraction"
 }
