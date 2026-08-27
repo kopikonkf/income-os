@@ -1,0 +1,48 @@
+{
+  "schema": "die.muxia.parity-contract.v1",
+  "product": "MUXIA",
+  "purpose": "Independent DIE-owned behavioral parity contract for durable raster evidence before MUXIA implementation.",
+  "source_policy": "clean-implementation",
+  "legacy_source_code_reuse": false,
+  "runtime_dependencies": [],
+  "forbidden_runtime_dependencies": ["electron"],
+  "artifact": {
+    "required": true,
+    "max_bytes": 33554432,
+    "accepted_media": {
+      "image/png": "png",
+      "image/jpeg": "jpg",
+      "image/webp": "webp"
+    },
+    "identity": "sha256-lowercase-hex",
+    "durability_rule": "A success claim is invalid unless the artifact exists at verification time and its physical hash, size, and raster container agree with the receipt."
+  },
+  "receipt": {
+    "required": true,
+    "minimum_fields": [
+      "artifact_path",
+      "sha256",
+      "bytes",
+      "mime_type"
+    ],
+    "consistency": [
+      "receipt artifact_path identifies the verified artifact",
+      "receipt sha256 equals physical artifact sha256",
+      "receipt bytes equals physical artifact size",
+      "receipt mime_type equals detected raster container"
+    ]
+  },
+  "job_completion": {
+    "success_states": ["SUCCEEDED", "VERIFIED", "PASS"],
+    "rule": "No success state may be accepted from status text alone. Durable artifact and matching receipt evidence are mandatory."
+  },
+  "security": {
+    "signed_or_ephemeral_urls_are_not_durable_artifacts": true,
+    "browser_session_secrets_are_out_of_scope": true,
+    "credential_values_must_not_be_read_for_parity": true
+  },
+  "portability": {
+    "contract_paths_are_inputs_not_os_constants": true,
+    "windows_and_linux_paths_may_be_verified": true
+  }
+}

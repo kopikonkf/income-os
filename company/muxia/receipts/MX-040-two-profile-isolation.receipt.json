@@ -1,0 +1,95 @@
+{
+    "schema":  "die.muxia.mx040.two-profile-isolation.v1",
+    "task_id":  "MX-040",
+    "status":  "PASS",
+    "root":  "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root",
+    "profiles":  {
+                     "a":  {
+                               "profile_id":  "chatgpt-a",
+                               "profile_root":  "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\profiles\\chatgpt-a",
+                               "browser_root":  "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\profiles\\chatgpt-a\\edge-auth",
+                               "debug_port":  58494
+                           },
+                     "b":  {
+                               "profile_id":  "chatgpt-b",
+                               "profile_root":  "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\profiles\\chatgpt-b",
+                               "browser_root":  "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\profiles\\chatgpt-b\\edge-auth",
+                               "debug_port":  54594,
+                               "existed_before_prepare":  false
+                           },
+                     "distinct_paths":  true,
+                     "legacy_copy_used_for_b":  false
+                 },
+    "ownership":  {
+                      "owner_a":  "mx040-owner-a",
+                      "owner_b":  "mx040-owner-b",
+                      "duplicate_lease_rejected_a":  true,
+                      "duplicate_lease_rejected_b":  true,
+                      "cross_owner_release_rejected":  true
+                  },
+    "synthetic_storage":  {
+                              "origin":  "http://127.0.0.1:62888/",
+                              "credential_values_touched":  false,
+                              "provider_cookies_read":  false,
+                              "marker_cookie_only":  "muxia_mx040_cookie",
+                              "marker_local_storage_only":  "muxia_mx040_marker",
+                              "a_before":  {
+                                               "local":  "A",
+                                               "cookie":  "muxia_mx040_cookie=A"
+                                           },
+                              "b_before_setting_b":  {
+                                                         "local":  null,
+                                                         "cookie":  ""
+                                                     },
+                              "b_after":  {
+                                              "local":  "B",
+                                              "cookie":  "muxia_mx040_cookie=B"
+                                          },
+                              "a_after_b_write":  {
+                                                      "local":  "A",
+                                                      "cookie":  "muxia_mx040_cookie=A"
+                                                  },
+                              "b_did_not_inherit_a":  true,
+                              "a_remained_a_after_b_write":  true,
+                              "b_remained_b":  true
+                          },
+    "artifact_namespaces":  {
+                                "a_dir":  "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\artifacts\\mx040-profile-a",
+                                "b_dir":  "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\artifacts\\mx040-profile-b",
+                                "a_files":  [
+                                                "a.marker"
+                                            ],
+                                "b_files":  [
+                                                "b.marker"
+                                            ],
+                                "no_cross_contamination":  true
+                            },
+    "acceptance":  {
+                       "distinct_ownership":  true,
+                       "no_session_storage_contamination":  true,
+                       "no_artifact_contamination":  true,
+                       "no_log_contamination":  true
+                   },
+    "verdict":  "PASS",
+    "observed_at":  "2026-08-27T11:11:40.199Z",
+    "log_namespaces":  {
+                           "a_dir":  "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\logs\\mx040-profile-a",
+                           "b_dir":  "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\logs\\mx040-profile-b",
+                           "a_files":  [
+                                           "a.log"
+                                       ],
+                           "b_files":  [
+                                           "b.log"
+                                       ],
+                           "no_cross_contamination":  true
+                       },
+    "teardown":  {
+                     "initial_runner_timeout_after_receipt":  true,
+                     "functional_receipt_written_before_timeout":  true,
+                     "profile_b_processes_after_cleanup":  0,
+                     "profile_a_browser_preserved":  true,
+                     "profile_a_lease_released":  true,
+                     "profile_b_lease_released":  true,
+                     "runner_patched_for_deterministic_exit":  true
+                 }
+}

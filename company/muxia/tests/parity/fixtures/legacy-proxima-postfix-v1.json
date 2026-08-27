@@ -1,0 +1,15 @@
+{
+  "schema": "die.muxia.legacy-evidence-fixture.v1",
+  "fixture_id": "legacy-proxima-postfix-9fe55423",
+  "probe_receipt_path": "C:\\DIE\\workspaces\\M001-U1-001\\probe\\PROBE_RECEIPT_POSTFIX-20260825T084836Z.json",
+  "artifact_path": "D:\\proximav2-setup\\artifacts\\9fe55423eaed192b4e5e1d76f8ea74135b52667a622eaf24308b6b08eaa28318.png",
+  "artifact_receipt_path": "D:\\proximav2-setup\\artifacts\\9fe55423eaed192b4e5e1d76f8ea74135b52667a622eaf24308b6b08eaa28318.receipt.json",
+  "expected": {
+    "sha256": "9fe55423eaed192b4e5e1d76f8ea74135b52667a622eaf24308b6b08eaa28318",
+    "bytes": 976345,
+    "mime_type": "image/png",
+    "probe_schema": "die.proxima.export-probe.v1",
+    "probe_status": "VERIFIED",
+    "probe_verdict": "PASS"
+  }
+}

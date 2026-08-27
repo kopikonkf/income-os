@@ -1,0 +1,87 @@
+{
+  "schema": "die.muxia.mx041.crash-recovery.v1",
+  "task_id": "MX-041",
+  "status": "PASS",
+  "profile_id": "chatgpt-b",
+  "owner": "mx041-worker-b",
+  "job_id": "mx041-crash-job-001",
+  "crash_pid": 17568,
+  "pre_crash": {
+    "profile": {
+      "profileId": "chatgpt-b",
+      "providerId": "chatgpt",
+      "profilePath": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\profiles\\chatgpt-b",
+      "state": "RUNNING",
+      "leaseOwner": "mx041-worker-b",
+      "browserPid": 17568,
+      "lastHealthAt": null,
+      "lastSuccessAt": null,
+      "failureCount": 0
+    },
+    "job": {
+      "jobId": "mx041-crash-job-001",
+      "providerId": "chatgpt",
+      "requiredCapability": "synthetic.crash-proof",
+      "profileSelector": "chatgpt-b",
+      "artifactTarget": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\artifacts\\mx041-crash-job-001",
+      "timeoutMs": 60000,
+      "status": "RUNNING",
+      "attempt": 0,
+      "createdAt": "2026-08-27T11:23:06.295Z"
+    },
+    "pid_alive": true
+  },
+  "crash": {
+    "injected": true,
+    "process_alive_after_kill": false
+  },
+  "recovery": {
+    "profileId": "chatgpt-b",
+    "jobId": "mx041-crash-job-001",
+    "action": "RECOVERED_READY",
+    "jobStatus": "FAILED",
+    "profileState": "READY",
+    "reason": "CRASHED_PROCESS_JOB_FAILED_LEASE_RELEASED"
+  },
+  "post_recovery": {
+    "profile": {
+      "profileId": "chatgpt-b",
+      "providerId": "chatgpt",
+      "profilePath": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\profiles\\chatgpt-b",
+      "state": "READY",
+      "leaseOwner": null,
+      "browserPid": null,
+      "lastHealthAt": null,
+      "lastSuccessAt": null,
+      "failureCount": 0
+    },
+    "job": {
+      "jobId": "mx041-crash-job-001",
+      "providerId": "chatgpt",
+      "requiredCapability": "synthetic.crash-proof",
+      "profileSelector": "chatgpt-b",
+      "artifactTarget": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\artifacts\\mx041-crash-job-001",
+      "timeoutMs": 60000,
+      "status": "FAILED",
+      "attempt": 0,
+      "createdAt": "2026-08-27T11:23:06.295Z"
+    },
+    "pid_alive": false,
+    "lease_file_exists": false,
+    "artifact_receipt_exists": false
+  },
+  "false_success": {
+    "rejected": true,
+    "error": "ARTIFACT_RECEIPT_NOT_FOUND"
+  },
+  "acceptance": {
+    "interrupted_job_never_succeeded": true,
+    "crashed_process_dead": true,
+    "lease_recovered": true,
+    "no_artifact_receipt_fabricated": true
+  },
+  "credential_values_read": false,
+  "provider_output_extracted": false,
+  "provider_prompt_submitted": false,
+  "observed_at": "2026-08-27T11:23:07.433Z"
+}

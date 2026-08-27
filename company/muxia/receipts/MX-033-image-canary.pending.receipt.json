@@ -1,0 +1,15 @@
+{
+  "schema": "die.muxia.mx033.image-canary.v1",
+  "task_id": "MX-033",
+  "status": "WAITING_OPERATOR_IMAGE_ACQUISITION",
+  "job_id": "mx033-image-canary-001",
+  "profile_id": "chatgpt-a",
+  "interaction_mode": "OPERATOR_CONTROLLED",
+  "prompt": "Create a simple square image: one cobalt-blue circle perfectly centered on a plain white background, flat vector style, no text, no logo, no watermark.",
+  "artifact_target": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\artifacts\\mx033-image-canary-001",
+  "expected_file": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\artifacts\\mx033-image-canary-001\\mx033-canary.png",
+  "prompt_submitted_by_automation": false,
+  "output_extracted_by_automation": false,
+  "pre_finalize_guard": "PASS: finalize rejected missing artifact",
+  "operator_action_required": "Manually generate the pinned image in the authenticated Edge ChatGPT session, then manually save/download the resulting raster exactly as expected_file without conversion or editing, and report completion."
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "die.muxia.bounded-concurrency.v1",
+  "task_id": "MX-042",
+  "status": "PASS",
+  "concurrency": 2,
+  "participants": [
+    "chatgpt-b",
+    "chatgpt-c"
+  ],
+  "control_profile_a_excluded_from_synthetic_load": true,
+  "synthetic_origin": "http://127.0.0.1:55193/",
+  "timing": {
+    "wall_start_ms": 1787830839220,
+    "wall_end_ms": 1787830842753,
+    "wall_duration_ms": 3533,
+    "overlap_ms": 3531,
+    "all_lanes_overlapped": true,
+    "workloads": [
+      {
+        "profileId": "chatgpt-b",
+        "started": 1787830839220,
+        "ended": 1787830842752,
+        "result": {
+          "local": "chatgpt-b",
+          "cookie": "muxia_mx040_cookie=B; muxia_bounded_lane=chatgpt-b"
+        }
+      },
+      {
+        "profileId": "chatgpt-c",
+        "started": 1787830839221,
+        "ended": 1787830842753,
+        "result": {
+          "local": "chatgpt-c",
+          "cookie": "muxia_bounded_lane=chatgpt-c"
+        }
+      }
+    ]
+  },
+  "ownership": {
+    "duplicate_lease_rejected": {
+      "chatgpt-b": true,
+      "chatgpt-c": true
+    }
+  },
+  "storage": {
+    "before": {
+      "chatgpt-b": {
+        "local": null,
+        "cookie": "muxia_mx040_cookie=B"
+      },
+      "chatgpt-c": {
+        "local": null,
+        "cookie": ""
+      }
+    },
+    "after": {
+      "chatgpt-b": {
+        "local": "chatgpt-b",
+        "cookie": "muxia_mx040_cookie=B; muxia_bounded_lane=chatgpt-b"
+      },
+      "chatgpt-c": {
+        "local": "chatgpt-c",
+        "cookie": "muxia_bounded_lane=chatgpt-c"
+      }
+    },
+    "no_contamination": true
+  },
+  "lineage": {
+    "lanes": {
+      "chatgpt-b": {
+        "job_id": "mx-042-chatgpt-b",
+        "job_profile_selector": "chatgpt-b",
+        "job_status": "SUCCEEDED",
+        "receipt_profile_id": "chatgpt-b",
+        "artifact_path": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\artifacts\\mx-042-chatgpt-b\\chatgpt-b.png",
+        "sha256": "431ced6916a2a21a156e38701afe55bbd7f88969fbbfc56d7fe099d47f265460",
+        "bytes": 68,
+        "mime_type": "image/png",
+        "log_dir": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\logs\\mx-042\\chatgpt-b",
+        "lineage_match": true
+      },
+      "chatgpt-c": {
+        "job_id": "mx-042-chatgpt-c",
+        "job_profile_selector": "chatgpt-c",
+        "job_status": "SUCCEEDED",
+        "receipt_profile_id": "chatgpt-c",
+        "artifact_path": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\artifacts\\mx-042-chatgpt-c\\chatgpt-c.png",
+        "sha256": "431ced6916a2a21a156e38701afe55bbd7f88969fbbfc56d7fe099d47f265460",
+        "bytes": 68,
+        "mime_type": "image/png",
+        "log_dir": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\logs\\mx-042\\chatgpt-c",
+        "lineage_match": true
+      }
+    },
+    "correct": true
+  },
+  "resources": {
+    "host": {
+      "total_visible_memory_kb": 58714876,
+      "free_physical_memory_kb": 31856304
+    },
+    "lanes": {
+      "chatgpt-b": {
+        "process_count": 9,
+        "working_set_bytes": 446959616,
+        "cpu_time_100ns": 22812500
+      },
+      "chatgpt-c": {
+        "process_count": 15,
+        "working_set_bytes": 747896832,
+        "cpu_time_100ns": 36093750
+      }
+    },
+    "aggregate_working_set_bytes": 1194856448,
+    "aggregate_process_count": 24
+  },
+  "isolation": {
+    "no_artifact_or_log_contamination": true
+  },
+  "acceptance": {
+    "correct_lineage": true,
+    "no_duplicate_lease": true,
+    "all_lanes_overlapped": true,
+    "no_storage_contamination": true,
+    "no_artifact_or_log_contamination": true,
+    "resource_metrics_captured": true
+  },
+  "credential_values_read": false,
+  "provider_prompt_submitted": false,
+  "provider_output_extracted": false,
+  "observed_at": "2026-08-27T11:40:42.872Z"
+}

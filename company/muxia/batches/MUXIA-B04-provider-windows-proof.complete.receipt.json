@@ -1,0 +1,55 @@
+{
+  "schema": "die.muxia.batch-completion-receipt.v1",
+  "batch_id": "MUXIA-B04",
+  "title": "Provider/Windows Proof",
+  "completed_at": "2026-08-27",
+  "status": "PASS",
+  "historical_blocked_receipt": "company/muxia/batches/MUXIA-B04-provider-windows-proof.receipt.json",
+  "resume_path": ["MX-032-R1", "MX-032", "MX-033", "MX-034"],
+  "tasks": [
+    {"id": "MX-031", "status": "DONE"},
+    {"id": "MX-031-R1", "status": "DONE"},
+    {"id": "MX-032-R1", "status": "DONE"},
+    {"id": "MX-032", "status": "DONE"},
+    {"id": "MX-033", "status": "DONE"},
+    {"id": "MX-034", "status": "DONE"}
+  ],
+  "proofs": {
+    "provider_state_detection": "PASS",
+    "operator_authenticated_session_bootstrap": "PASS",
+    "text_canary_parity": "PASS",
+    "durable_image_parity": "PASS",
+    "restart_session_persistence": "PASS",
+    "auth_required_fail_closed": "PASS"
+  },
+  "windows_browser": {
+    "provider_profile": "chatgpt-a",
+    "persistent_profile_dir": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\profiles\\chatgpt-a\\edge-auth",
+    "restart_old_pid": 21008,
+    "restart_new_pid": 21400,
+    "post_restart_state": "READY",
+    "post_restart_reason": "COMPOSER_READY"
+  },
+  "image_artifact": {
+    "path": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\artifacts\\mx033-image-canary-001\\mx033-canary.png",
+    "sha256": "975697da4a72390aab206f59da0dd161400fe3e68764f9809a67c677070a6ef6",
+    "bytes": 888599,
+    "mime_type": "image/png"
+  },
+  "final_regression": {
+    "core_pass": 36,
+    "parity_pass": 5,
+    "total_pass": 41,
+    "fail": 0
+  },
+  "policy_boundary": {
+    "credential_values_read": false,
+    "automated_consumer_web_output_extraction": false,
+    "challenge_bypass": false,
+    "stealth": false,
+    "legacy_profile_import": false,
+    "proxima_mutation": false,
+    "spend_usd": 0
+  },
+  "next_ready": ["MX-040"]
+}

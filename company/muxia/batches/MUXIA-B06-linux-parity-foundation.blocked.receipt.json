@@ -1,0 +1,42 @@
+{
+  "schema": "die.muxia.batch-blocked-receipt.v1",
+  "batch_id": "MUXIA-B06",
+  "title": "Linux Parity Foundation",
+  "status": "BLOCKED_AT_MX-050",
+  "date": "2026-08-27",
+  "execution_policy": "STOP_ON_FIRST_FAILURE",
+  "chain": ["MX-050", "MX-051", "MX-052"],
+  "host_inventory": {
+    "wsl_installed": false,
+    "docker_available": false,
+    "podman_available": false,
+    "architect_service_principal_is_admin": true
+  },
+  "mx050_preparation": {
+    "bootstrap_script": "company/muxia/scripts/linux/mx050-bootstrap.sh",
+    "runtime_smoke": "company/muxia/scripts/linux/mx050-runtime-smoke.mjs",
+    "contract_test": "company/muxia/tests/core/linux-bootstrap-contract.test.mjs",
+    "bootstrap_contract_pass": true,
+    "electron_dependency_required": false,
+    "non_linux_false_pass_rejected": true
+  },
+  "blocker": "LINUX_RUNTIME_UNAVAILABLE_ON_HOST",
+  "reason": "MX-050 acceptance requires actual Linux Playwright/Chromium execution. Current host has no WSL/container/Linux runtime. No OS-level WSL installation was performed without explicit Founder approval.",
+  "resume_conditions": [
+    "Founder explicitly authorizes WSL2/Linux installation on current VPS and a usable distro becomes available",
+    "or Founder provides another reachable Linux execution target"
+  ],
+  "downstream_started": {
+    "MX-051": false,
+    "MX-052": false
+  },
+  "full_regression": {
+    "typescript_strict_build": "PASS",
+    "core_pass": 43,
+    "parity_pass": 5,
+    "total_pass": 48,
+    "fail": 0
+  },
+  "false_linux_parity_claimed": false,
+  "spend_usd": 0
+}

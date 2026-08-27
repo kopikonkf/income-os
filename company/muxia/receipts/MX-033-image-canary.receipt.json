@@ -1,0 +1,41 @@
+{
+  "schema": "die.muxia.mx033.image-canary.v1",
+  "task_id": "MX-033",
+  "status": "PASS",
+  "job_id": "mx033-image-canary-001",
+  "profile_id": "chatgpt-a",
+  "interaction_mode": "OPERATOR_CONTROLLED",
+  "prompt": "Create a simple square image: one cobalt-blue circle perfectly centered on a plain white background, flat vector style, no text, no logo, no watermark.",
+  "artifact": {
+    "path": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\artifacts\\mx033-image-canary-001\\mx033-canary.png",
+    "sha256": "975697da4a72390aab206f59da0dd161400fe3e68764f9809a67c677070a6ef6",
+    "bytes": 888599,
+    "mime_type": "image/png",
+    "dimensions": "1254x1254",
+    "magic": "89 50 4E 47 0D 0A 1A 0A",
+    "adapter_version": "chatgpt-operator-image-v1",
+    "durable_receipt": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\state\\receipts\\mx033-image-canary-001.json"
+  },
+  "operator_acquisition": {
+    "downloaded_via_browser": true,
+    "renamed_and_moved_manually": true,
+    "conversion_or_editing_reported": false,
+    "note": "Rename/move only; byte identity validated after placement."
+  },
+  "verification": {
+    "pre_finalize_missing_artifact_rejected": true,
+    "hash_before_equals_hash_after": true,
+    "job_status": "SUCCEEDED",
+    "artifact_receipt_status": "VERIFIED",
+    "full_regression_core_pass": 36,
+    "full_regression_parity_pass": 5,
+    "full_regression_total_pass": 41
+  },
+  "boundaries": {
+    "prompt_submitted_by_automation": false,
+    "output_extracted_by_automation": false,
+    "credential_values_read": false,
+    "proxima_mutated": false
+  },
+  "verdict": "PASS"
+}

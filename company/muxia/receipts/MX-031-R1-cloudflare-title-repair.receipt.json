@@ -1,0 +1,27 @@
+{
+  "schema": "die.muxia.atomic-repair-receipt.v1",
+  "repair_id": "MX-031-R1",
+  "parent_task": "MX-031",
+  "completed_at": "2026-08-27",
+  "result": "PASS",
+  "observed_defect": "Live ChatGPT protection interstitial returned title 'Just a moment...' with no login/composer selectors, causing detector v1 to classify UNKNOWN.",
+  "minimal_repair": "Add bounded page-title observation and classify known protection-interstitial titles as BLOCKED/PROTECTION_CHALLENGE; add current login/composer selector variants without reading or returning page body content.",
+  "detector_version_after": "chatgpt-state-detector-v1.1",
+  "targeted_verification": {"pass": 11, "fail": 0},
+  "live_reprobe": {
+    "state": "BLOCKED",
+    "reason": "PROTECTION_CHALLENGE",
+    "signals": ["protection-title"],
+    "url": "https://chatgpt.com/",
+    "prompt_submitted": false,
+    "output_extracted": false,
+    "credential_values_read": false
+  },
+  "boundaries": {
+    "bypass_attempted": false,
+    "protection_challenge_solved": false,
+    "stealth_added": false,
+    "provider_output_extracted": false,
+    "proxima_mutated": false
+  }
+}

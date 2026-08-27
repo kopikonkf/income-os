@@ -1,0 +1,25 @@
+{
+  "schema": "die.muxia.mx032.text-canary.v1",
+  "task_id": "MX-032",
+  "status": "PASS",
+  "profile_id": "chatgpt-a",
+  "profile_dir": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\profiles\\chatgpt-a\\edge-auth",
+  "session_relaunch_proof": {
+    "browser": "Microsoft Edge Stable",
+    "browser_pid": 21008,
+    "detector_version": "chatgpt-state-detector-v1.1",
+    "state": "READY",
+    "reason": "COMPOSER_READY",
+    "credential_values_read": false
+  },
+  "canary": {
+    "nonce": "MUXIA-MX032-20260827-1035-A7F4C2D1",
+    "prompt_instruction": "Reply exactly with the nonce only.",
+    "interaction_mode": "OPERATOR_CONTROLLED",
+    "prompt_submitted_by_automation": false,
+    "output_extracted_by_automation": false,
+    "operator_confirmed_exact_response": true,
+    "operator_confirmation": "canary pass: MUXIA-MX032-20260827-1035-A7F4C2D1"
+  },
+  "verdict": "PASS"
+}

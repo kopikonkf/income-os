@@ -1,0 +1,27 @@
+{
+    "schema":  "die.muxia.atomic-repair-receipt.v1",
+    "repair_id":  "MX-032-R1",
+    "parent_task":  "MX-032",
+    "started_at":  "2026-08-27",
+    "status":  "WAITING_OPERATOR_CONTINUE",
+    "mode":  "OPERATOR_CONTROLLED_NORMAL_EDGE",
+    "profile_id":  "chatgpt-a",
+    "profile_dir":  "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\profiles\\chatgpt-a\\edge-auth",
+    "browser_pid":  23684,
+    "session_id":  2,
+    "debug_host":  null,
+    "debug_port":  null,
+    "window_title":  "Get started | ChatGPT and 2 more pages - Profile 1 - Microsoft Edge",
+    "detector":  null,
+    "interpretation":  "Auth bootstrap moved to Microsoft Edge Stable with no remote debugging/Playwright attachment/automation flags. Operator login still required.",
+    "operator_action_required":  "Click Continue on the already-open ChatGPT onboarding screen in Microsoft Edge, remain in the logged-in session, and report completion. Architect will then close Edge normally, relaunch the same edge-auth profile with loopback CDP, verify authenticated READY state using sanitized visible signals only, and continue MX-032.",
+    "boundaries":  {
+                       "credential_values_read_by_muxia":  false,
+                       "credential_values_written_by_muxia":  false,
+                       "legacy_profile_imported":  false,
+                       "challenge_bypass_attempted":  false,
+                       "prompt_submitted_by_automation":  false,
+                       "output_extracted_by_automation":  false,
+                       "proxima_mutated":  false
+                   }
+}

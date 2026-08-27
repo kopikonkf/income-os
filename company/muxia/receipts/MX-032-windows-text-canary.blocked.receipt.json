@@ -1,0 +1,40 @@
+{
+  "schema": "die.muxia.atomic-task-receipt.v1",
+  "task_id": "MX-032",
+  "title": "Windows text canary parity",
+  "checked_at": "2026-08-27",
+  "result": "BLOCKED",
+  "blocker": "LIVE_CHATGPT_PROTECTION_CHALLENGE",
+  "profile_id": "chatgpt-a",
+  "profile_root": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\profiles\\chatgpt-a\\browser",
+  "live_probe": {
+    "provider": "https://chatgpt.com/",
+    "detector_version": "chatgpt-state-detector-v1.1",
+    "state": "BLOCKED",
+    "reason": "PROTECTION_CHALLENGE",
+    "signals": ["protection-title"],
+    "page_title_observed": "Just a moment..."
+  },
+  "canary_execution": {
+    "prompt_submitted": false,
+    "output_extracted": false,
+    "text_parity_proven": false
+  },
+  "policy_behavior": "Stopped before prompt/canary because MX-P03 and MX-031 require fail-closed operator action on provider protection states.",
+  "resume_condition": "An authorized operator-controlled MUXIA ChatGPT session must reach detector state READY without bypass/circumvention. Only then may the bounded text canary be performed and manually confirmed under MX-P03.",
+  "boundaries": {
+    "captcha_or_challenge_bypass_attempted": false,
+    "rate_limit_circumvention_attempted": false,
+    "stealth_added": false,
+    "credential_values_read": false,
+    "legacy_proxima_profile_imported": false,
+    "proxima_mutated": false,
+    "production_started": false,
+    "submission_or_publication": false,
+    "spend_usd": 0
+  },
+  "downstream_tasks_started": {
+    "MX-033": false,
+    "MX-034": false
+  }
+}

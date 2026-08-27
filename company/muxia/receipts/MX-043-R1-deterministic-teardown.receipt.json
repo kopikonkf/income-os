@@ -1,0 +1,17 @@
+{
+  "schema": "die.muxia.mx043-r1.teardown.v1",
+  "task_id": "MX-043-R1",
+  "status": "PASS",
+  "reason": "Initial MX-043 runner completed all four functional lanes and wrote a PASS receipt, then timed out during teardown while browser.close/CDP shutdown waited. This repair performed deterministic process-tree termination by owned browser PID and released each matching lease.",
+  "profiles": {
+    "chatgpt-b": {"pre_state":"RUNNING","pre_pid":20452,"post_state":"READY","post_lease_owner":null,"post_browser_pid":null},
+    "chatgpt-c": {"pre_state":"RUNNING","pre_pid":28320,"post_state":"READY","post_lease_owner":null,"post_browser_pid":null},
+    "chatgpt-d": {"pre_state":"RUNNING","pre_pid":28148,"post_state":"READY","post_lease_owner":null,"post_browser_pid":null},
+    "chatgpt-e": {"pre_state":"RUNNING","pre_pid":15880,"post_state":"READY","post_lease_owner":null,"post_browser_pid":null}
+  },
+  "all_leases_released": true,
+  "runner_cleanup_patched": true,
+  "credential_values_read": false,
+  "provider_output_extracted": false,
+  "verdict": "PASS"
+}

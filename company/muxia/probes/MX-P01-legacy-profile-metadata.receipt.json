@@ -1,0 +1,52 @@
+{
+  "schema": "die.muxia.probe-receipt.v1",
+  "probe_id": "MX-P01",
+  "title": "Legacy profile-root metadata probe",
+  "checked_at": "2026-08-27",
+  "result": "PASS",
+  "scope": "metadata-only; no cookie/token/session/localStorage contents read or exported",
+  "legacy_runtime": {
+    "process": "electron.exe",
+    "pid_at_probe": 6892,
+    "source_repo": "D:\\V2 Proxima",
+    "user_data_root": "C:\\Users\\aethers\\AppData\\Roaming\\proxima"
+  },
+  "evidence": {
+    "process_metadata": "Electron child command lines exposed --user-data-dir pointing to the legacy root.",
+    "root_exists": true,
+    "root_last_write_observed": "2026-08-25T09:47:22-local",
+    "partition_directory": "C:\\Users\\aethers\\AppData\\Roaming\\proxima\\Partitions",
+    "provider_partitions_observed": [
+      "chatgpt",
+      "claude",
+      "deepseek",
+      "duck",
+      "gemini",
+      "grok",
+      "mimo",
+      "nemotron",
+      "perplexity",
+      "qwen"
+    ],
+    "sensitive_or_credential_equivalent_top_level_names_observed_but_not_read": [
+      "byok.json",
+      "ipc-token.json",
+      "Local Storage",
+      "Network",
+      "Session Storage",
+      "Local State",
+      "Preferences"
+    ]
+  },
+  "migration_decision": "DO_NOT_IMPORT_OR_COPY_LEGACY_PROFILE_ROOT_BY_DEFAULT",
+  "reason": "Legacy root mixes provider partitions with credential-equivalent browser/session/runtime state. MUXIA requires dedicated per-profile directories and operator-controlled authentication/recovery instead of bulk legacy-profile cloning.",
+  "boundaries": {
+    "cookie_values_read": false,
+    "token_values_read": false,
+    "session_storage_read": false,
+    "local_storage_read": false,
+    "database_contents_read": false,
+    "legacy_files_modified": false,
+    "legacy_profile_copied": false
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "schema": "die.muxia.bounded-concurrency.v1",
+  "task_id": "MX-043",
+  "status": "PASS",
+  "concurrency": 4,
+  "participants": [
+    "chatgpt-b",
+    "chatgpt-c",
+    "chatgpt-d",
+    "chatgpt-e"
+  ],
+  "control_profile_a_excluded_from_synthetic_load": true,
+  "synthetic_origin": "http://127.0.0.1:49516/",
+  "timing": {
+    "wall_start_ms": 1787830966005,
+    "wall_end_ms": 1787830970763,
+    "wall_duration_ms": 4758,
+    "overlap_ms": 4756,
+    "all_lanes_overlapped": true,
+    "workloads": [
+      {
+        "profileId": "chatgpt-b",
+        "started": 1787830966005,
+        "ended": 1787830970762,
+        "result": {
+          "local": "chatgpt-b",
+          "cookie": "muxia_mx040_cookie=B; muxia_bounded_lane=chatgpt-b"
+        }
+      },
+      {
+        "profileId": "chatgpt-c",
+        "started": 1787830966006,
+        "ended": 1787830970763,
+        "result": {
+          "local": "chatgpt-c",
+          "cookie": "muxia_bounded_lane=chatgpt-c"
+        }
+      },
+      {
+        "profileId": "chatgpt-d",
+        "started": 1787830966006,
+        "ended": 1787830970763,
+        "result": {
+          "local": "chatgpt-d",
+          "cookie": "muxia_bounded_lane=chatgpt-d"
+        }
+      },
+      {
+        "profileId": "chatgpt-e",
+        "started": 1787830966006,
+        "ended": 1787830970763,
+        "result": {
+          "local": "chatgpt-e",
+          "cookie": "muxia_bounded_lane=chatgpt-e"
+        }
+      }
+    ]
+  },
+  "ownership": {
+    "duplicate_lease_rejected": {
+      "chatgpt-b": true,
+      "chatgpt-c": true,
+      "chatgpt-d": true,
+      "chatgpt-e": true
+    }
+  },
+  "storage": {
+    "before": {
+      "chatgpt-b": {
+        "local": null,
+        "cookie": "muxia_mx040_cookie=B; muxia_bounded_lane=chatgpt-b"
+      },
+      "chatgpt-c": {
+        "local": null,
+        "cookie": "muxia_bounded_lane=chatgpt-c"
+      },
+      "chatgpt-d": {
+        "local": null,
+        "cookie": ""
+      },
+      "chatgpt-e": {
+        "local": null,
+        "cookie": ""
+      }
+    },
+    "after": {
+      "chatgpt-b": {
+        "local": "chatgpt-b",
+        "cookie": "muxia_mx040_cookie=B; muxia_bounded_lane=chatgpt-b"
+      },
+      "chatgpt-c": {
+        "local": "chatgpt-c",
+        "cookie": "muxia_bounded_lane=chatgpt-c"
+      },
+      "chatgpt-d": {
+        "local": "chatgpt-d",
+        "cookie": "muxia_bounded_lane=chatgpt-d"
+      },
+      "chatgpt-e": {
+        "local": "chatgpt-e",
+        "cookie": "muxia_bounded_lane=chatgpt-e"
+      }
+    },
+    "no_contamination": true
+  },
+  "lineage": {
+    "lanes": {
+      "chatgpt-b": {
+        "job_id": "mx-043-chatgpt-b",
+        "job_profile_selector": "chatgpt-b",
+        "job_status": "SUCCEEDED",
+        "receipt_profile_id": "chatgpt-b",
+        "artifact_path": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\artifacts\\mx-043-chatgpt-b\\chatgpt-b.png",
+        "sha256": "431ced6916a2a21a156e38701afe55bbd7f88969fbbfc56d7fe099d47f265460",
+        "bytes": 68,
+        "mime_type": "image/png",
+        "log_dir": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\logs\\mx-043\\chatgpt-b",
+        "lineage_match": true
+      },
+      "chatgpt-c": {
+        "job_id": "mx-043-chatgpt-c",
+        "job_profile_selector": "chatgpt-c",
+        "job_status": "SUCCEEDED",
+        "receipt_profile_id": "chatgpt-c",
+        "artifact_path": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\artifacts\\mx-043-chatgpt-c\\chatgpt-c.png",
+        "sha256": "431ced6916a2a21a156e38701afe55bbd7f88969fbbfc56d7fe099d47f265460",
+        "bytes": 68,
+        "mime_type": "image/png",
+        "log_dir": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\logs\\mx-043\\chatgpt-c",
+        "lineage_match": true
+      },
+      "chatgpt-d": {
+        "job_id": "mx-043-chatgpt-d",
+        "job_profile_selector": "chatgpt-d",
+        "job_status": "SUCCEEDED",
+        "receipt_profile_id": "chatgpt-d",
+        "artifact_path": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\artifacts\\mx-043-chatgpt-d\\chatgpt-d.png",
+        "sha256": "431ced6916a2a21a156e38701afe55bbd7f88969fbbfc56d7fe099d47f265460",
+        "bytes": 68,
+        "mime_type": "image/png",
+        "log_dir": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\logs\\mx-043\\chatgpt-d",
+        "lineage_match": true
+      },
+      "chatgpt-e": {
+        "job_id": "mx-043-chatgpt-e",
+        "job_profile_selector": "chatgpt-e",
+        "job_status": "SUCCEEDED",
+        "receipt_profile_id": "chatgpt-e",
+        "artifact_path": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\artifacts\\mx-043-chatgpt-e\\chatgpt-e.png",
+        "sha256": "431ced6916a2a21a156e38701afe55bbd7f88969fbbfc56d7fe099d47f265460",
+        "bytes": 68,
+        "mime_type": "image/png",
+        "log_dir": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\logs\\mx-043\\chatgpt-e",
+        "lineage_match": true
+      }
+    },
+    "correct": true
+  },
+  "resources": {
+    "host": {
+      "total_visible_memory_kb": 58714876,
+      "free_physical_memory_kb": 31383100
+    },
+    "lanes": {
+      "chatgpt-b": {
+        "process_count": 9,
+        "working_set_bytes": 426684416,
+        "cpu_time_100ns": 24531250
+      },
+      "chatgpt-c": {
+        "process_count": 9,
+        "working_set_bytes": 449929216,
+        "cpu_time_100ns": 27656250
+      },
+      "chatgpt-d": {
+        "process_count": 17,
+        "working_set_bytes": 802373632,
+        "cpu_time_100ns": 38906250
+      },
+      "chatgpt-e": {
+        "process_count": 20,
+        "working_set_bytes": 902950912,
+        "cpu_time_100ns": 40312500
+      }
+    },
+    "aggregate_working_set_bytes": 2581938176,
+    "aggregate_process_count": 55
+  },
+  "isolation": {
+    "no_artifact_or_log_contamination": true
+  },
+  "acceptance": {
+    "correct_lineage": true,
+    "no_duplicate_lease": true,
+    "all_lanes_overlapped": true,
+    "no_storage_contamination": true,
+    "no_artifact_or_log_contamination": true,
+    "resource_metrics_captured": true
+  },
+  "credential_values_read": false,
+  "provider_prompt_submitted": false,
+  "provider_output_extracted": false,
+  "observed_at": "2026-08-27T11:42:50.963Z"
+}
