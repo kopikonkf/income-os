@@ -1,0 +1,218 @@
+{
+  "schema": "die.muxia.die100-windows-estate-inventory.v1",
+  "task_id": "DIE-100",
+  "date": "2026-08-27",
+  "status": "PASS_WITH_ONE_REPAIR_CHILD",
+  "scope": "read-only Windows estate inventory before one-canon disposition and Linux migration",
+  "safety": {
+    "credential_values_read": false,
+    "cookies_read": false,
+    "tokens_read": false,
+    "credential_database_contents_read": false,
+    "raw_process_arguments_published": false,
+    "services_modified": false,
+    "scheduled_tasks_modified": false,
+    "processes_stopped": false,
+    "firewall_modified": false,
+    "windows_live_c_die_mutated": false
+  },
+  "founder_ordering_constraint": {
+    "architect_mcp_linux_migration": "DEFER_TO_FINAL_PRE_CUTOVER_STAGE",
+    "reason": "Preserve Windows Architect MCP as the active control/bootstrap path to the Windows VPS throughout audit and migration.",
+    "earlier_batch9_order_superseded": true
+  },
+  "host": {
+    "name": "Variable",
+    "os": "Microsoft Windows Server 2025 Datacenter",
+    "build": "26100",
+    "architecture": "x64",
+    "physical_ram_bytes": 60124033024,
+    "disks": {
+      "C": {"size_gb": 63.45, "free_gb": 12.28},
+      "D": {"size_gb": 112.0, "free_gb": 84.17}
+    }
+  },
+  "canonical_source_at_start": {
+    "windows_clean_staging": {
+      "path": "D:\\mcp-architect\\workspace\\muxia-b06-publish",
+      "branch": "main",
+      "head": "3e09d0c984fc7b313f0cab21f01f302016c17be9",
+      "clean": true
+    },
+    "windows_live_die": {
+      "path": "C:\\DIE",
+      "branch": "main",
+      "head": "04eda313f1e757c0d0f8fd9d90251b92c0dd95a3",
+      "origin": "https://github.com/kopikonkf/income-os.git",
+      "dirty_path_count": 37,
+      "preserve_as_live_rollback_reference": true
+    }
+  },
+  "roots": {
+    "C_DIE": {
+      "git": true,
+      "workspaces_mib": 533.5,
+      "company_mib": 20.5,
+      "state_mib": 2.2,
+      "bridge_mib": 1.8
+    },
+    "D_mcp_architect": {
+      "git": true,
+      "head": "f14579639422790179cc7ecf534296764d3a68e9",
+      "origin": "https://github.com/kopikonkf/mcp-architect.git",
+      "dirty_path_count": 19,
+      "dirty_scope": "untracked workspace only",
+      "size_mib": 100.2,
+      "active_listener": 8790
+    },
+    "D_V2_Proxima": {
+      "git": true,
+      "head": "06b9c9bea212122e76ecfadb88f307378dd9bd7d",
+      "origin": "https://github.com/kopikonkf/v2provima.git",
+      "dirty_path_count": 10,
+      "dirty_scope": "electron subtree",
+      "size_gib": 1.365,
+      "node_modules_mib": 835.6,
+      "test_userdata_mib": 424.5,
+      "live_profile_mib": 645.0,
+      "active_ports": [3211, 19223, 8500, 8501]
+    },
+    "D_proximav2_setup": {
+      "git": false,
+      "size_mib": 3.0
+    },
+    "D_OAUTH": {
+      "git": true,
+      "head": "783c1e990c7f77ecdbf5bd2bab8c22be3cae2e49",
+      "origin": null,
+      "dirty_path_count": 2,
+      "size_mib": 45.1,
+      "credential_file_count_metadata_only": 7,
+      "credential_bytes_metadata_only": 12192,
+      "active_listener": 8456,
+      "distinct_from_division01_runtime": true
+    },
+    "D_object_asset_engine": {
+      "git": false,
+      "size_gib": 4.118,
+      "data_mib": 3063.5,
+      "db_mib": 1138.0,
+      "outputs_mib": 14.6,
+      "object_asset_engine_db_mib": 1111.9,
+      "wal_mib": 4.0,
+      "seed_library_db_mib": 22.1,
+      "active_writer_observed": true,
+      "scheduled_keepalive_observed": true
+    },
+    "D_Digital_Income_Empire": {
+      "git": false,
+      "size_mib": 13.6
+    },
+    "D_Backup_VPS": {
+      "git": false,
+      "size_gib": 7.859,
+      "role_observed": "backup/archive estate"
+    },
+    "D_ASSETS": {
+      "master13_directory": true,
+      "trailing_space_alias_entry": true,
+      "duplicate_physical_dataset_proven": false
+    },
+    "C_aether_aether_ai_os": {
+      "git": true,
+      "head": "f84dcc2cee4f33fbfa2f2660e94cf16b721118be",
+      "origin": "https://github.com/kopikonkf/aether-ai-os.git",
+      "clean": true,
+      "external_candidate": true
+    },
+    "D_aether_bridge": {
+      "git": false,
+      "size_mib": 49.2,
+      "protected_external": true,
+      "active_ports": [8700, 8701, 8702]
+    },
+    "D_state_shared": {
+      "git": false,
+      "size_mib": 0.6,
+      "external_shared_state_candidate": true
+    }
+  },
+  "runtime_profile_metadata": {
+    "hermes_local_root_mib": 1215.7,
+    "hermes_income_operator_mib": 86.0,
+    "hermes_income_operator_files": 718,
+    "browserclaw_mib": 1040.3,
+    "brave_user_data_mib": 3269.8,
+    "proxima_profile_mib": 645.0
+  },
+  "live_state_metadata": {
+    "C_DIE_state_EVENTS_jsonl_bytes": 315166,
+    "C_DIE_projection_cursor_bytes": 3,
+    "C_DIE_projection_EVENTS_jsonl_bytes": 70716,
+    "C_DIE_projection_BRIEFING_md_bytes": 8193,
+    "D_state_shared_events_jsonl_bytes": 392569,
+    "D_state_shared_memory_db_bytes": 12288
+  },
+  "services": {
+    "DIERuntimeMCPExecutive": "RUNNING_AUTO_LOCALSYSTEM",
+    "DIERuntimeMCPDivision01": "RUNNING_AUTO_LOCALSYSTEM",
+    "AetherGateway": "RUNNING_AUTO_LOCALSYSTEM_EXTERNAL",
+    "AetherWatchdog": "RUNNING_AUTO_LOCALSYSTEM_EXTERNAL",
+    "AetherCaddy": "RUNNING_AUTO_LOCALSYSTEM_EXTERNAL",
+    "AetherLivingMCP": "STOPPED_AUTO_EXTERNAL",
+    "CloudflaredService": "STOPPED_AUTO_BUT_SEPARATE_PROCESS_ACTIVE"
+  },
+  "scheduled_tasks_observed": [
+    "DIE Wake Brave CDP",
+    "Hermes_Gateway",
+    "Hermes_Gateway_income-operator",
+    "ObjectAssetAuditScale_KeepAlive",
+    "AetherBridgeWatch",
+    "AetherForum",
+    "AetherHerdrStartup"
+  ],
+  "listeners": {
+    "3211": "Proxima Electron loopback",
+    "8456": "Web-AI/OAUTH loopback",
+    "8501": "proxima_agent.web loopback",
+    "8790": "Architect MCP loopback",
+    "8791": "Executive Runtime MCP loopback",
+    "8792": "Division01 Runtime MCP loopback",
+    "9010": "BrowserClaw 0.0.0.0 risk flag",
+    "9011": "BrowserClaw 0.0.0.0 risk flag",
+    "9110": "Executive BrowserClaw CDP loopback",
+    "9333": "Division01 Brave CDP loopback",
+    "8700": "Aether bridge 0.0.0.0 protected external",
+    "8701": "Aether forum 0.0.0.0 protected external",
+    "8702": "Aether forum 0.0.0.0 protected external"
+  },
+  "logical_source_dispersion": {
+    "live_company_dir_level1": ["muxia", "schemas"],
+    "identity_root": "C:\\DIE\\IDENTITY",
+    "hermes_identity": "C:\\DIE\\IDENTITY\\hermes-operator",
+    "wake_operator_entrypoints": "C:\\DIE\\bin",
+    "runtime_bridge_source": "C:\\DIE\\bridge\\income_os_bridge",
+    "windows_ops_source": "C:\\DIE\\ops\\windows",
+    "human_centric_atlas": "C:\\DIE\\docs\\atlas\\HUMAN_CENTRIC_ATLAS_CANON.md",
+    "object_centric_engine": "D:\\object-asset-engine",
+    "one_canon_selective_refactor_required": true
+  },
+  "risk_flags": [
+    "BrowserClaw ports 9010/9011 bind 0.0.0.0",
+    "Aether bridge/forum ports 8700/8701/8702 bind 0.0.0.0 but are protected external",
+    "object asset SQLite WAL is live; later DB migration must be consistent/quiesce-aware",
+    "C drive has only 12.28 GB free",
+    "backup and workspace trees are much larger than clean source and must not be bulk-copied",
+    "target company canon is not yet physically realized in live C:\\DIE"
+  ],
+  "repair_child": {
+    "id": "DIE-100-R1",
+    "count": 1,
+    "root_cause": "Windows PowerShell 5.1 foreach/pipeline parser incompatibility in metadata-only inventory snippets",
+    "state_mutation_before_failure": false,
+    "repair": "array-first PowerShell 5.1-compatible metadata queries",
+    "result": "PASS"
+  },
+  "formal_disposition_deferred_to": "DIE-101",
+  "next_atomic_task": "DIE-101 - disposition matrix"
+}
