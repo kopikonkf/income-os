@@ -68,3 +68,20 @@ test('MX-051 operator bootstrap is manual, profile-dedicated, and automation-fre
   assert.deepEqual(credentialMutations, []);
   assert.match(desktop, /mx051-operator-open\.sh/);
 });
+
+
+test('MX-051 post-login proof is sanitized, restart-persistent, and fail-closed', () => {
+  const proof = fs.readFileSync(path.join(repo, 'scripts', 'linux', 'mx051-sanitized-restart-proof.mjs'), 'utf8');
+  assert.match(proof, /PlaywrightChromiumDriver/);
+  assert.match(proof, /detectChatGptPageState/);
+  assert.match(proof, /state !== 'READY'/);
+  assert.match(proof, /first\.browser_pid === second\.browser_pid/);
+  assert.match(proof, /debugHost === '127\.0\.0\.1'/);
+  assert.match(proof, /credential_values_read: false/);
+  assert.match(proof, /cookies_or_tokens_read: false/);
+  assert.match(proof, /prompt_submitted: false/);
+  assert.match(proof, /output_extracted: false/);
+  assert.match(proof, /bypass_attempted: false/);
+  assert.doesNotMatch(proof, /context\.cookies|storageState|document\.cookie|localStorage/);
+  assert.doesNotMatch(proof, /--no-sandbox/);
+});
