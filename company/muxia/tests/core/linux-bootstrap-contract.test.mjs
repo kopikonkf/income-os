@@ -40,3 +40,16 @@ test('MX-050: runtime smoke refuses to claim Linux when executed on a non-Linux 
   assert.notEqual(out.status, 0);
   assert.match(`${out.stdout}\n${out.stderr}`, /MX050_REQUIRES_LINUX/);
 });
+
+test('MX-050 GUI: XFCE+xrdp is tunnel-only and does not alter operator credentials', () => {
+  const gui = fs.readFileSync(path.join(repo, 'scripts', 'linux', 'mx050-gui-provision.sh'), 'utf8');
+  const xsession = fs.readFileSync(path.join(repo, 'config', 'linux', 'xrdp', 'xsession'), 'utf8');
+  assert.match(gui, /xfce4/);
+  assert.match(gui, /xrdp/);
+  assert.match(gui, /port=tcp:\/\/\.:3389/);
+  assert.match(gui, /127\.0\.0\.1:3389/);
+  assert.match(gui, /XRDP_PUBLIC_BIND_REJECTED/);
+  assert.doesNotMatch(gui, /ubuntu-desktop/);
+  assert.doesNotMatch(gui, /(^|\\n)\\s*(chpasswd|passwd)(\\s|$)/);
+  assert.match(xsession, /exec startxfce4/);
+});
