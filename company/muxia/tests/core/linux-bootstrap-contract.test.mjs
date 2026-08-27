@@ -101,3 +101,24 @@ test('MX-051 canaries remain operator-controlled and download to the operator ho
   assert.match(prepare, /MUXIA-MX051-Canaries\.desktop/);
   assert.match(desktop, /mx051-operator-canary-open\.sh/);
 });
+
+
+test('MX-052 Linux proof binds four isolated profiles to unique leases, jobs, artifacts, and teardown', () => {
+  const proof = fs.readFileSync(path.join(repo, 'scripts', 'linux', 'mx052-four-profile-isolation.mjs'), 'utf8');
+  assert.match(proof, /chatgpt-linux-b/);
+  assert.match(proof, /chatgpt-linux-c/);
+  assert.match(proof, /chatgpt-linux-d/);
+  assert.match(proof, /chatgpt-linux-e/);
+  assert.match(proof, /control_profile_a_excluded/);
+  assert.match(proof, /DUPLICATE_PROFILE_LEASE/);
+  assert.match(proof, /synthetic\.four-profile-isolation/);
+  assert.match(proof, /storage_isolated/);
+  assert.match(proof, /artifact_and_log_lineage_isolated/);
+  assert.match(proof, /deterministic_teardown/);
+  assert.match(proof, /profile_directories_private/);
+  assert.match(proof, /provider_network_used: false/);
+  assert.match(proof, /credential_values_read: false/);
+  assert.match(proof, /provider_prompt_submitted: false/);
+  assert.match(proof, /provider_output_extracted: false/);
+  assert.doesNotMatch(proof, /chatgpt\.com|--no-sandbox|taskkill\.exe|powershell\.exe/i);
+});
