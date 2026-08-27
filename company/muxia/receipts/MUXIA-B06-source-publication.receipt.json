@@ -1,0 +1,38 @@
+{
+  "schema": "die.muxia.source-publication.v1",
+  "batch": "MUXIA-B06",
+  "stage": "SEALED_SOURCE_PREFLIGHT",
+  "status": "PASS",
+  "created_at": "2026-08-27T16:18:11.8581215Z",
+  "baseline": {
+    "repository": "https://github.com/kopikonkf/income-os.git",
+    "branch": "main",
+    "commit": "04eda313f1e757c0d0f8fd9d90251b92c0dd95a3"
+  },
+  "publication": {
+    "branch": "architect/muxia-b06-linux-proof",
+    "source_commit": "1176c7a86ad369382e1aee23bdb7465a00c5de62",
+    "manifest": "company/muxia/receipts/MUXIA-B06-source-files.sha256",
+    "manifest_sha256": "2b52b261ed7c01b79baec37edf0a9d88e3b0397d6410fe2a8f46fd227fcbbecca",
+    "sealed_file_count": 86
+  },
+  "verification": {
+    "windows_regression": "48/48 PASS",
+    "secret_pattern_scan": "PASS",
+    "git_diff_check": "PASS",
+    "node_policy": "24 LTS only",
+    "electron_dependency": false
+  },
+  "exclusions": [
+    "company/muxia/node_modules",
+    "company/muxia/dist",
+    "live state/EVENTS.jsonl",
+    "browser credentials and session values",
+    "unrelated dirty C:/DIE files",
+    "Proxima source and profiles"
+  ],
+  "notes": [
+    "Publication was assembled in a clean staging clone.",
+    "The live C:/DIE working tree and Windows services were not modified."
+  ]
+}
