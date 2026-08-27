@@ -2317,3 +2317,24 @@ Batch 7 publication is COMPLETE: PUB-001 PASS_WITH_ONE_REPAIR_CHILD; PUB-002 PAS
 
 Next eligible batch: `MUXIA Batch 8 - Windows estate and one-canon mapping`.
 Next atomic task: `DIE-100 - read-only Windows estate inventory`.
+
+---
+
+## 2026-08-27 - Chapter #4 DIE-100 Windows estate inventory
+
+`DIE-100 - read-only Windows estate inventory`: DONE / PASS_WITH_ONE_REPAIR_CHILD.
+
+Inventory confirmed the Windows estate is not a single directory mirror. Live `C:\DIE` remains `main @ 04eda313f1e757c0d0f8fd9d90251b92c0dd95a3` with 37 dirty paths preserved and was not reset, checked out, stashed, discarded, or fast-forwarded. Clean publication/canon work continues from GitHub main via the staging clone.
+
+Important estate facts: `C:\DIE\workspaces` is ~533.5 MiB and is not source-canon payload; `D:\object-asset-engine` is ~4.118 GiB dominated by live data/SQLite and has an active audit writer; `D:\V2 Proxima` is ~1.365 GiB dominated by `node_modules` and test userdata plus a separate ~645 MiB live browser profile; Hermes/BrowserClaw/Brave AppData roots are mutable runtime/profile state rather than source; `D:\Backup_VPS` is ~7.859 GiB archive estate; `D:\aether-bridge` remains protected external and unmodified.
+
+Runtime topology was verified metadata-only: Proxima 3211/8501, Web-AI/OAUTH 8456, Architect MCP 8790, Executive/Division Runtime MCP 8791/8792, BrowserClaw 9010/9011/9110, Division01 Brave CDP 9333, plus protected Aether listeners. Executive/Division Runtime MCP Windows services remain running. No credential values, cookies, tokens, credential DB contents, or raw process arguments were read.
+
+Founder ordering constraint is now carried forward: **Architect MCP Linux migration is deferred to the final pre-cutover stage** so the Windows Architect MCP remains the active bootstrap/control channel to the Windows VPS during the rest of the migration. The earlier roadmap ordering that placed Architect MCP Linux migration first is superseded and will be reflected formally in DIE-101/task-graph disposition.
+
+Durable inventory: `docs/migration/DIE_WINDOWS_ESTATE_INVENTORY_V1.md`.
+Receipt: `company/muxia/receipts/DIE-100-windows-estate-inventory.receipt.json`.
+
+`DIE-100-R1` was the single repair child: metadata-only PowerShell queries were rewritten into PowerShell 5.1-compatible array-first form after parser failures that occurred before execution/mutation.
+
+Next atomic task: `DIE-101 - disposition matrix`.
