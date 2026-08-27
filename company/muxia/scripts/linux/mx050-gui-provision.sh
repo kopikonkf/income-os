@@ -40,7 +40,7 @@ systemctl enable xrdp xrdp-sesman >/dev/null
 systemctl restart xrdp-sesman xrdp
 systemctl is-active --quiet xrdp
 systemctl is-active --quiet xrdp-sesman
-LISTENERS="$(ss -H -lnt '( sport = :3389 )' | awk '{print $4}')"
+LISTENERS="$(ss -H -lnt sport = :3389 | awk '{print $4}')"
 printf '%s\n' "$LISTENERS" | grep -Fxq '127.0.0.1:3389'
 if printf '%s\n' "$LISTENERS" | grep -Fvxq '127.0.0.1:3389'; then
   echo "XRDP_PUBLIC_BIND_REJECTED:$LISTENERS" >&2
