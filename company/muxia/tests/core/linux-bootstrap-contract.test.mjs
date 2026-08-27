@@ -85,3 +85,19 @@ test('MX-051 post-login proof is sanitized, restart-persistent, and fail-closed'
   assert.doesNotMatch(proof, /context\.cookies|storageState|document\.cookie|localStorage/);
   assert.doesNotMatch(proof, /--no-sandbox/);
 });
+
+
+test('MX-051 canaries remain operator-controlled and download to the operator home', () => {
+  const canary = fs.readFileSync(path.join(repo, 'scripts', 'linux', 'mx051-operator-canary-open.sh'), 'utf8');
+  const prepare = fs.readFileSync(path.join(repo, 'scripts', 'linux', 'mx051-operator-canary-prepare.sh'), 'utf8');
+  const desktop = fs.readFileSync(path.join(repo, 'config', 'linux', 'xrdp', 'MUXIA-MX051-Canaries.desktop'), 'utf8');
+  assert.match(canary, /interaction_mode.*OPERATOR_CONTROLLED_NORMAL_CHROMIUM/);
+  assert.match(canary, /prompt_submitted_by_automation.*false/);
+  assert.match(canary, /output_extracted_by_automation.*false/);
+  assert.match(canary, /credential_values_read_by_muxia.*false/);
+  assert.match(canary, /MUXIA_LINUX_TEXT_OK_1/);
+  assert.match(canary, /\$HOME\/Downloads/);
+  assert.doesNotMatch(canary, /--remote-debugging|connectOverCDP|--no-sandbox/);
+  assert.match(prepare, /MUXIA-MX051-Canaries\.desktop/);
+  assert.match(desktop, /mx051-operator-canary-open\.sh/);
+});
