@@ -2197,3 +2197,53 @@ Current gate:
 - Architect then resumes sanitized READY detection, text/image operator-controlled parity, restart proof, MX-052 four-profile isolation, and stops for receipt evaluation.
 
 Still excluded: Executive, Division01, OAUTH, Atlas, Hermes production, Proxima, Aether, MCP Linux deployment, Cloudflare, marketplace submission/publication, spend, and cutover.
+
+
+---
+
+## 2026-08-27 — MUXIA-B06 authorized Linux scope complete
+
+Authorized chain: sealed source preflight -> MX-050 headless -> restricted XFCE+xrdp GUI -> MX-051 single-profile parity -> MX-052 four-profile isolation -> STOP/evaluate.
+
+### Canonical standing
+
+- Publication branch: `architect/muxia-b06-linux-proof`.
+- Windows `C:\DIE` remains the live reference and was not mutated by this migration proof.
+- Linux source is `/srv/die/company/muxia`.
+- Linux runtime is `/var/lib/muxia`.
+- Node `v24.18.1`, Playwright `1.62.1`, and Chromium `151.0.7922.34` are verified.
+- Root-owned Chromium plus exact-path AppArmor `userns` keeps the sandbox enabled; `--no-sandbox` was never used.
+- XFCE+xrdp is tunnel-only at `127.0.0.1:3389`; no public RDP listener exists.
+- `MX-050`, GUI layer, `MX-051`, and `MX-052` are `DONE / PASS`.
+- `MX-060` and every later task remain `BLOCKED` pending separate Founder authorization.
+
+### MX-051 receipt standing
+
+- Founder completed manual login in dedicated profile `chatgpt-linux-a`.
+- Sanitized state was `READY / COMPOSER_READY` before and after browser restart.
+- Text canary response `MUXIA_LINUX_TEXT_OK_1` was confirmed by the Founder.
+- Operator-downloaded image was registered as a durable PNG artifact:
+  - bytes: 865,504;
+  - SHA-256: `ae8717b508327af34ff00d7b820cf5764d689c2d2d9e8ee6909188bd8b7dc440`;
+  - job status: `SUCCEEDED`.
+- MUXIA read no credential, cookie, or token values and did not automate prompt submission or consumer-web output extraction.
+- A headless protection challenge failed closed; the proof used the existing headed operator session without bypass.
+
+### MX-052 receipt standing
+
+- Four isolated Linux profiles B–E ran concurrently against a local synthetic origin.
+- Unique ownership, duplicate-lease rejection, storage isolation, artifact/log lineage, and four successful jobs all passed.
+- Captured envelope: 4,754,768 KiB aggregate RSS, 49 Chromium processes, 2,005 ms overlap.
+- Teardown returned all four profiles to `READY`, cleared every lease/browser PID, and left zero residual B–E browser processes.
+- Authenticated control profile A was excluded from the synthetic load.
+
+### Verification and publication boundary
+
+- Windows source regression: 54/54 PASS.
+- Linux source regression: core 49/49 PASS; parity 2 PASS + 3 explicit Windows-only physical-evidence SKIP.
+- Canonical receipts live under `company/muxia/receipts`.
+- No merge to `main`, cutover, Linux MCP deployment, Executive/Division/Atlas/Hermes/Proxima change, Cloudflare action, marketplace action, spend, or production expansion was authorized or performed.
+
+### Next controlled action
+
+STOP and evaluate the MX-050 through MX-052 receipt package. Any work beginning with MX-060 requires a new explicit Founder authorization.

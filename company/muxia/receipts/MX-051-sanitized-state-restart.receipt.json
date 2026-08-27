@@ -1,0 +1,56 @@
+{
+  "schema": "die.muxia.mx051.sanitized-state-restart.v1",
+  "task_id": "MX-051",
+  "status": "PASS",
+  "profile_id": "chatgpt-linux-a",
+  "profile_dir": "/var/lib/muxia/profiles/chatgpt-linux-a/browser",
+  "detector_version": "chatgpt-state-detector-v1.1",
+  "rendering_mode": "HEADED_OPERATOR_SESSION",
+  "first_observation": {
+    "browser_pid": 16380,
+    "debug_host": "127.0.0.1",
+    "debug_port_ephemeral": true,
+    "debug_loopback_only": true,
+    "state": "READY",
+    "reason": "COMPOSER_READY",
+    "signals": [
+      "composer-visible"
+    ],
+    "url": "https://chatgpt.com/",
+    "operator_action_required": false,
+    "observed_at": "2026-08-27T17:15:36.044Z"
+  },
+  "post_restart_observation": {
+    "browser_pid": 16609,
+    "debug_host": "127.0.0.1",
+    "debug_port_ephemeral": true,
+    "debug_loopback_only": true,
+    "state": "READY",
+    "reason": "COMPOSER_READY",
+    "signals": [
+      "composer-visible"
+    ],
+    "url": "https://chatgpt.com/",
+    "operator_action_required": false,
+    "observed_at": "2026-08-27T17:15:39.468Z"
+  },
+  "acceptance": {
+    "first_state_ready": true,
+    "post_restart_state_ready": true,
+    "same_profile_reused": true,
+    "browser_process_identity_changed": true,
+    "debug_loopback_only": true
+  },
+  "credential_values_read": false,
+  "cookies_or_tokens_read": false,
+  "prompt_submitted": false,
+  "output_extracted": false,
+  "bypass_attempted": false,
+  "completed_at": "2026-08-27T17:15:40.688Z",
+  "publication_evidence": {
+    "branch": "architect/muxia-b06-linux-proof",
+    "execution_source_commit": "34f87a7cdc3184e390ebfaeb22634732a0154c1d",
+    "linux_source_root": "/srv/die/company/muxia",
+    "runtime_receipt_path": "/var/lib/muxia/state/mx051-sanitized-state-restart.json"
+  }
+}

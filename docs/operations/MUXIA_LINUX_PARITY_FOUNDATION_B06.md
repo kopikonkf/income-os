@@ -1,6 +1,6 @@
 # MUXIA-B06 — LINUX PARITY FOUNDATION
 
-Status: MX-050 DONE / OPERATOR GUI NEXT / MX-051 READY AFTER GUI
+Status: AUTHORIZED SCOPE COMPLETE / STOP AND EVALUATE
 Date: 2026-08-27
 Execution policy: STOP_ON_FIRST_FAILURE
 Chain: `sealed preflight -> MX-050 -> operator GUI -> MX-051 -> MX-052 -> STOP`
@@ -13,12 +13,12 @@ Chain: `sealed preflight -> MX-050 -> operator GUI -> MX-051 -> MX-052 -> STOP`
 - Runtime: `/var/lib/muxia`
 - Browser binaries: `/opt/muxia/playwright-browsers`
 - Runtime user/group: `kopiko:muxia`
+- Publication branch: `architect/muxia-b06-linux-proof`
 
 ## Sealed source preflight
 
 MUXIA was published from a clean staging clone rather than the dirty live `C:\DIE` worktree.
 
-- branch: `architect/muxia-b06-linux-proof`
 - original source commit: `1176c7a86ad369382e1aee23bdb7465a00c5de62`
 - publication receipt commit: `26398e54a1924ab3583f1a04a095a8437620e7e1`
 - sealed files: 86
@@ -30,44 +30,91 @@ MUXIA was published from a clean staging clone rather than the dirty live `C:\DI
 
 MX-050 completed PASS on the actual Linux VPS.
 
-- Node.js: `v24.18.1`, official archive checksum verified
-- npm: `11.16.0`
-- Playwright: `1.62.1`
-- Chromium: Playwright-managed Chrome for Testing `151.0.7922.34`
-- headless persistent-profile smoke: PASS
-- Electron dependency: absent
-- debug endpoint policy: loopback only
+- Node.js `v24.18.1`, official archive checksum verified
+- npm `11.16.0`
+- TypeScript `5.9.3` exact-pinned
+- Playwright `1.62.1`
+- Chromium `151.0.7922.34`
+- Chromium tree root-owned under `/opt/muxia/playwright-browsers`
+- exact-path AppArmor `userns` profile preserves the browser sandbox
+- `--no-sandbox` absent
+- debug endpoints loopback only
+- Electron dependency absent
 - residual MUXIA Chromium after verification: zero
 
-Canonical receipt:
+One repair child, `MX-050-R1`, absorbed the undeclared TypeScript compiler, Ubuntu AppArmor userns restriction, and Windows-only physical legacy-evidence scope. No second repair child was created.
 
-`company/muxia/receipts/MX-050-linux-bootstrap.receipt.json`
+## Restricted operator GUI
 
-## MX-050-R1 repair
+The GUI layer completed PASS.
 
-The first bootstrap exposed host assumptions hidden by the Windows developer environment:
+- XFCE 4.18
+- xrdp 0.9.24-4 + xorgxrdp 0.9.19-1
+- listener: `127.0.0.1:3389` only
+- access: SSH local port forwarding
+- direct public RDP: false
+- operator password changed by MUXIA: false
+- dedicated profile: `/var/lib/muxia/profiles/chatgpt-linux-a/browser`, mode `0700`
 
-1. `tsc` was global on Windows and absent from declared dependencies;
-2. Ubuntu 24.04 AppArmor blocked user namespaces for developer Chromium;
-3. three physical Proxima evidence tests referenced Windows-only artifacts intentionally excluded from Linux.
+## MX-051 result
 
-One repair child, `MX-050-R1`, handled all defects:
+MX-051 completed PASS.
 
-- TypeScript `5.9.3` exact-pinned;
-- Chromium installed under root-owned `/opt/muxia/playwright-browsers`;
-- an exact-path AppArmor `userns` profile preserves the Chromium sandbox;
-- `--no-sandbox` is forbidden;
-- physical Windows legacy-evidence tests skip explicitly when that evidence is absent.
+- manual ChatGPT authentication: operator-controlled normal Chromium
+- credential/cookie/token values read by MUXIA: false
+- automated prompt submission or consumer-web output extraction: false
+- first sanitized state: `READY / COMPOSER_READY`
+- post-restart sanitized state: `READY / COMPOSER_READY`
+- same profile reused: true
+- browser process identity changed: true
+- debug endpoint: ephemeral loopback only
+- text canary: exact response `MUXIA_LINUX_TEXT_OK_1`, Founder-attested
+- image canary: operator-downloaded PNG, 865,504 bytes
+- image SHA-256: `ae8717b508327af34ff00d7b820cf5764d689c2d2d9e8ee6909188bd8b7dc440`
+- durable artifact lineage: `chatgpt-linux-a`, job `SUCCEEDED`
 
-Verification:
+A headless post-login observation classified `BLOCKED / PROTECTION_CHALLENGE`. The run stopped fail-closed. No bypass was attempted. The proof then used the already authenticated headed XFCE session and passed twice across restart.
 
-- Windows: core 43/43 + parity 5/5 = 48/48 PASS
-- Linux: core 43/43 PASS
-- Linux parity: 2 PASS + 3 explicit Windows-only SKIP
+## MX-052 result
+
+MX-052 completed PASS using a loopback-only synthetic fixture; no provider network or Windows GUI dependency was used.
+
+- participants: `chatgpt-linux-b` through `chatgpt-linux-e`
+- control/authenticated profile A excluded: true
+- four unique logical owners and leases: PASS
+- duplicate lease rejection: 4/4 PASS
+- concurrent workload overlap: 2,005 ms
+- per-profile storage isolation: PASS
+- artifact/log lineage isolation: PASS
+- job completion: 4/4 `SUCCEEDED`
+- debug endpoints: loopback only
+- observed aggregate browser RSS: 4,754,768 KiB across 49 processes
+- deterministic teardown: PASS
+- residual B–E browser processes: 0
+- leases released/browser PIDs cleared: 4/4
+- final profile state: 4/4 `READY`
+- profile directory mode: 4/4 `0700`
+
+## Verification
+
+Final source regression:
+
+- Windows: core 49/49 + parity 5/5 = 54/54 PASS
+- Linux: core 49/49 PASS
+- Linux parity: 2 PASS + 3 explicit Windows-only physical-evidence SKIP
 - false success: zero
 
-## Boundary
+Canonical receipts:
 
-No Executive, Division01, OAUTH, Atlas, Hermes production, Proxima, Aether, Cloudflare, marketplace, publication, spend, or account action was changed by MX-050.
+- `company/muxia/receipts/MX-050-linux-bootstrap.receipt.json`
+- `company/muxia/receipts/MX-050-GUI-operator-layer.receipt.json`
+- `company/muxia/receipts/MX-051-sanitized-state-restart.receipt.json`
+- `company/muxia/receipts/MX-051-image-artifact.receipt.json`
+- `company/muxia/receipts/MX-051-linux-single-profile-parity.receipt.json`
+- `company/muxia/receipts/MX-052-linux-four-profile-isolation.receipt.json`
 
-Next: install the restricted XFCE+xrdp operator layer, then begin MX-051 manual-login parity.
+## Stop boundary
+
+The exact authorized scope is complete. MX-060 and all later tasks remain `BLOCKED` pending separate Founder authorization after receipt evaluation.
+
+Still excluded and untouched: Executive, Division01, OAUTH, Atlas, Hermes production, Proxima, Aether, Linux MCP deployment, Cloudflare, marketplace submission/publication, spend, cutover, and Windows live `C:\DIE`.

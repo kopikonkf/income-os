@@ -1,0 +1,55 @@
+{
+  "schema": "die.muxia.mx051.single-profile-parity.v1",
+  "task_id": "MX-051",
+  "status": "PASS",
+  "profile_id": "chatgpt-linux-a",
+  "interaction_mode": "OPERATOR_CONTROLLED",
+  "sanitized_state_and_restart": {
+    "detector_version": "chatgpt-state-detector-v1.1",
+    "rendering_mode": "HEADED_OPERATOR_SESSION",
+    "first_state": "READY",
+    "post_restart_state": "READY",
+    "same_profile_reused": true,
+    "process_identity_changed": true,
+    "debug_loopback_only": true
+  },
+  "text_canary": {
+    "prompt_sha256": "12f2476791283025eb2241a578d2a67bdce09594dd91d13f6c67054275f2107c",
+    "expected_response": "MUXIA_LINUX_TEXT_OK_1",
+    "operator_attested_exact_response": true,
+    "prompt_submitted_by_automation": false,
+    "output_extracted_by_automation": false
+  },
+  "image_canary": {
+    "prompt_sha256": "f4fe0158dce5fa17dabef906948070bb22ca28267f4469065eb1482c93f18aca",
+    "operator_downloaded_artifact": true,
+    "source_download_basename": "ChatGPT Image Aug 27, 2026, 05_22_31 PM.png",
+    "job_id": "mx051-image-1787851265",
+    "job_status": "SUCCEEDED",
+    "artifact_path": "/var/lib/muxia/artifacts/mx051-image-1787851265/mx051-operator-image.png",
+    "sha256": "ae8717b508327af34ff00d7b820cf5764d689c2d2d9e8ee6909188bd8b7dc440",
+    "bytes": 865504,
+    "mime_type": "image/png",
+    "receipt_path": "/var/lib/muxia/state/receipts/mx051-image-1787851265.json",
+    "prompt_submitted_by_automation": false,
+    "output_extracted_by_automation": false
+  },
+  "acceptance": {
+    "sanitized_state_ready": true,
+    "restart_persistence_ready": true,
+    "operator_text_canary_attested": true,
+    "operator_image_artifact_registered": true,
+    "artifact_lineage_matches_profile": true,
+    "browser_closed_before_finalize": true
+  },
+  "credential_values_read": false,
+  "cookies_or_tokens_read": false,
+  "bypass_attempted": false,
+  "completed_at": "2026-08-27T17:25:20.894Z",
+  "publication_evidence": {
+    "branch": "architect/muxia-b06-linux-proof",
+    "execution_source_commit": "c8af8054a8678fc32b84ee863ad8a759b2c94c07",
+    "linux_source_root": "/srv/die/company/muxia",
+    "runtime_receipt_path": "/var/lib/muxia/state/mx051-single-profile-parity.json"
+  }
+}

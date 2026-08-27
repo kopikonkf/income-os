@@ -237,8 +237,8 @@
                       "depends_on":  [
                                          "MX-050"
                                      ],
-                      "status":  "RUNNING",
-                      "artifact":  "Linux single-profile parity receipt",
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/MX-051-linux-single-profile-parity.receipt.json",
                       "acceptance":  "Text + durable image + restart state satisfy core contracts."
                   },
                   {
@@ -248,8 +248,8 @@
                       "depends_on":  [
                                          "MX-051"
                                      ],
-                      "status":  "BLOCKED",
-                      "artifact":  "Linux four-profile isolation receipt",
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/MX-052-linux-four-profile-isolation.receipt.json",
                       "acceptance":  "Independent ownership, no leakage, documented resources, no Windows GUI dependency."
                   },
                   {
