@@ -15,6 +15,7 @@ const stateDir = path.join(root, 'state');
 const receiptPath = path.join(stateDir, 'mx051-sanitized-state-restart.json');
 const executablePath = process.env.MUXIA_CHROME
   ?? '/opt/muxia/playwright-browsers/chromium-1234/chrome-linux64/chrome';
+const headless = process.env.MUXIA_HEADLESS !== 'false';
 
 if (!fs.existsSync(profileDir)) throw new Error(`MX051_PROFILE_NOT_FOUND:${profileDir}`);
 if (!fs.existsSync(executablePath)) throw new Error(`MX051_CHROMIUM_NOT_FOUND:${executablePath}`);
@@ -79,7 +80,7 @@ async function openAndObserve(driver) {
 
 const driver = new PlaywrightChromiumDriver({
   executablePath,
-  headless: true,
+  headless,
   launchTimeoutMs: 30_000,
   shutdownTimeoutMs: 8_000,
 });
@@ -104,6 +105,7 @@ const receipt = {
   profile_id: profileId,
   profile_dir: profileDir,
   detector_version: CHATGPT_STATE_DETECTOR_VERSION,
+  rendering_mode: headless ? 'HEADLESS' : 'HEADED_OPERATOR_SESSION',
   first_observation: first,
   post_restart_observation: second,
   acceptance: {
