@@ -1,0 +1,81 @@
+{
+  "schema": "die.muxia.pub001-b06-revalidation.v1",
+  "task_id": "PUB-001",
+  "date": "2026-08-27",
+  "status": "PASS_WITH_ONE_REPAIR_CHILD",
+  "execution_policy": "STOP_ON_FIRST_FAILURE",
+  "expected_checkpoint": "b7d18d732974a4dc3e77df67a2afc2cfd8a721f9",
+  "repository": "kopikonkf/income-os",
+  "branch": "architect/muxia-b06-linux-proof",
+  "origin_main_at_revalidation": "04eda313f1e757c0d0f8fd9d90251b92c0dd95a3",
+  "initial_state": {
+    "windows_staging_clean": true,
+    "windows_staging_head": "b7d18d732974a4dc3e77df67a2afc2cfd8a721f9",
+    "linux_source_clean": true,
+    "linux_source_head": "b7d18d732974a4dc3e77df67a2afc2cfd8a721f9",
+    "remote_feature_head": "b7d18d732974a4dc3e77df67a2afc2cfd8a721f9",
+    "feature_commits_ahead_of_main": 19,
+    "existing_pull_request": false,
+    "git_diff_check": "PASS"
+  },
+  "windows_revalidation": {
+    "command": "npm test",
+    "core_pass": 49,
+    "core_fail": 0,
+    "parity_pass": 5,
+    "parity_fail": 0,
+    "result": "PASS_54_OF_54"
+  },
+  "initial_linux_revalidation": {
+    "build": "PASS",
+    "core_pass": 45,
+    "core_fail": 4,
+    "failure": "CHROMIUM_DEBUG_PORT_TIMEOUT:30000",
+    "affected_contracts": [
+      "MX-031 Playwright page integration",
+      "MX-030 launch",
+      "MX-030 restart",
+      "MX-030 duplicate-launch guard"
+    ],
+    "root_cause": "fresh non-bootstrap shell did not inherit PLAYWRIGHT_BROWSERS_PATH=/opt/muxia/playwright-browsers; Playwright therefore did not resolve the B06 pinned Chromium tree",
+    "security_relaxation_used": false
+  },
+  "repair_child": {
+    "task_id": "PUB-001-R1",
+    "scope": "pin the B06 Linux revalidation environment without changing core browser-driver behavior",
+    "path": "company/muxia/scripts/linux/pub001-revalidate.sh",
+    "implementation_commit": "2c7a1699fa1988c02f2c455b8c4e613db212db3e",
+    "file_mode": "100755",
+    "sets_muxia_root_default": "/var/lib/muxia",
+    "sets_playwright_browsers_path_default": "/opt/muxia/playwright-browsers",
+    "changes_core_driver": false,
+    "changes_apparmor_or_sandbox": false,
+    "uses_no_sandbox": false
+  },
+  "final_linux_revalidation": {
+    "source_head_tested": "2c7a1699fa1988c02f2c455b8c4e613db212db3e",
+    "source_clean_before_run": true,
+    "build": "PASS",
+    "core_pass": 49,
+    "core_fail": 0,
+    "parity_pass": 2,
+    "parity_skip_windows_only": 3,
+    "parity_fail": 0,
+    "marker": "PUB001_LINUX_REVALIDATION_PASS",
+    "result": "PASS"
+  },
+  "b06_receipts_present": [
+    "company/muxia/receipts/MX-050-linux-bootstrap.receipt.json",
+    "company/muxia/receipts/MX-050-GUI-operator-layer.receipt.json",
+    "company/muxia/receipts/MX-051-linux-single-profile-parity.receipt.json",
+    "company/muxia/receipts/MX-052-linux-four-profile-isolation.receipt.json"
+  ],
+  "negative_proof": {
+    "live_windows_c_die_reset_or_discarded": false,
+    "windows_services_migrated": false,
+    "cutover_performed": false,
+    "github_main_merged": false,
+    "second_repair_child_created": false
+  },
+  "next_task": "PUB-002"
+}

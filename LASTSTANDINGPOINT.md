@@ -2247,3 +2247,39 @@ Authorized chain: sealed source preflight -> MX-050 headless -> restricted XFCE+
 ### Next controlled action
 
 STOP and evaluate the MX-050 through MX-052 receipt package. Any work beginning with MX-060 requires a new explicit Founder authorization.
+
+---
+
+## 2026-08-27 — Chapter #4 Batch 7 PUB-001 revalidation
+
+Founder authorized continuation from the B06 checkpoint through Linux canon/cutover gates, with Windows retained as rollback reference and `STOP_ON_FIRST_FAILURE` plus one repair child maximum per atomic task.
+
+`PUB-001 — Revalidate B06`: PASS WITH ONE REPAIR CHILD.
+
+Initial checkpoint verification:
+
+- clean Windows publication staging: `b7d18d732974a4dc3e77df67a2afc2cfd8a721f9`;
+- Linux `/srv/die`: same SHA and clean;
+- remote feature branch: same SHA;
+- `origin/main`: `04eda313f1e757c0d0f8fd9d90251b92c0dd95a3`;
+- feature branch was 19 commits ahead of main;
+- no existing PR for `architect/muxia-b06-linux-proof`;
+- B06 MX-050/GUI/MX-051/MX-052 receipts present;
+- Windows regression: 54/54 PASS.
+
+The first fresh-shell Linux revalidation failed 4 browser-launch tests with `CHROMIUM_DEBUG_PORT_TIMEOUT:30000`. Root cause was environment reproducibility, not browser-driver regression: a fresh shell did not inherit the B06-pinned `PLAYWRIGHT_BROWSERS_PATH=/opt/muxia/playwright-browsers`. Exactly one repair child, `PUB-001-R1`, added a Linux revalidation wrapper that pins the already-approved B06 environment without changing core driver or sandbox behavior.
+
+Repair implementation commit: `2c7a1699fa1988c02f2c455b8c4e613db212db3e`.
+
+Post-repair proof from canonical `/srv/die`:
+
+- Linux build: PASS;
+- Linux core: 49/49 PASS;
+- Linux parity: 2 PASS + 3 Windows-only SKIP;
+- `PUB001_LINUX_REVALIDATION_PASS` marker emitted;
+- no second repair child;
+- no merge to main, service migration, writer freeze, or cutover performed.
+
+Durable receipt: `company/muxia/receipts/PUB-001-b06-revalidation.receipt.json`.
+
+Next authorized task: `PUB-002 — PR and merge`, only after this receipt/handoff commit is pushed and Windows staging, remote feature branch, and Linux source are re-synchronized cleanly.

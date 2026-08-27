@@ -118,3 +118,13 @@ Canonical receipts:
 The exact authorized scope is complete. MX-060 and all later tasks remain `BLOCKED` pending separate Founder authorization after receipt evaluation.
 
 Still excluded and untouched: Executive, Division01, OAUTH, Atlas, Hermes production, Proxima, Aether, Linux MCP deployment, Cloudflare, marketplace submission/publication, spend, cutover, and Windows live `C:\DIE`.
+
+## PUB-001 revalidation — 2026-08-27
+
+B06 was revalidated before publication/merge. The initial checkpoint was `b7d18d732974a4dc3e77df67a2afc2cfd8a721f9` on both the clean Windows staging clone and `/srv/die`, with the remote feature branch at the same SHA and `origin/main` at `04eda313f1e757c0d0f8fd9d90251b92c0dd95a3`.
+
+Windows revalidation remained 54/54 PASS. The first fresh-shell Linux core run exposed a reproducibility gap: four browser-launch tests timed out because the shell did not inherit the B06-pinned `PLAYWRIGHT_BROWSERS_PATH=/opt/muxia/playwright-browsers`. This triggered `STOP_ON_FIRST_FAILURE` and exactly one repair child, `PUB-001-R1`.
+
+`PUB-001-R1` adds only `company/muxia/scripts/linux/pub001-revalidate.sh`, which pins the existing B06 runtime/browser-root environment and then runs build, core, and parity regression. It does not change the browser driver, AppArmor policy, sandbox posture, profile state, or provider behavior. Repair implementation commit: `2c7a1699fa1988c02f2c455b8c4e613db212db3e`.
+
+Final canonical Linux run from `/srv/die` at that commit: core 49/49 PASS; parity 2 PASS + 3 explicit Windows-only SKIP; marker `PUB001_LINUX_REVALIDATION_PASS`. Durable receipt: `company/muxia/receipts/PUB-001-b06-revalidation.receipt.json`.
