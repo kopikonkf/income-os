@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=MUXIA ChatGPT Login
+Comment=Open the dedicated MUXIA Linux profile for manual ChatGPT authentication
+Exec=/srv/die/company/muxia/scripts/linux/mx051-operator-open.sh
+Terminal=true
+Icon=web-browser
+Categories=Network;WebBrowser;

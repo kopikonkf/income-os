@@ -1,0 +1,69 @@
+{
+  "schema": "die.muxia.batch-receipt.v1",
+  "batch_id": "MUXIA-B04",
+  "title": "Provider/Windows Proof",
+  "checked_at": "2026-08-27",
+  "execution_policy": "CHAINED_STOP_ON_BLOCKER",
+  "result": "BLOCKED_AT_MX-032",
+  "tasks": [
+    {
+      "id": "MX-031",
+      "status": "DONE_BEFORE_BATCH"
+    },
+    {
+      "id": "MX-031-R1",
+      "status": "DONE",
+      "verification": "11 passed / 0 failed; live reprobe maps protection interstitial to BLOCKED/PROTECTION_CHALLENGE"
+    },
+    {
+      "id": "MX-032",
+      "status": "BLOCKED",
+      "blocker": "LIVE_CHATGPT_PROTECTION_CHALLENGE",
+      "text_canary_executed": false
+    },
+    {
+      "id": "MX-033",
+      "status": "NOT_STARTED_DEPENDENCY_BLOCKED"
+    },
+    {
+      "id": "MX-034",
+      "status": "NOT_STARTED_DEPENDENCY_BLOCKED"
+    }
+  ],
+  "live_windows_probe": {
+    "profile_id": "chatgpt-a",
+    "profile_root": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\profiles\\chatgpt-a\\browser",
+    "provider_url": "https://chatgpt.com/",
+    "page_title": "Just a moment...",
+    "detector_version": "chatgpt-state-detector-v1.1",
+    "state": "BLOCKED",
+    "reason": "PROTECTION_CHALLENGE",
+    "signals": ["protection-title"],
+    "prompt_submitted": false,
+    "output_extracted": false,
+    "credential_values_read": false
+  },
+  "repair": {
+    "id": "MX-031-R1",
+    "reason": "Initial live probe classified the protection interstitial UNKNOWN because detector v1 did not inspect bounded page title.",
+    "fix": "Add bounded title signal and explicit Cloudflare-style protection-title classification; no bypass behavior added."
+  },
+  "full_regression_after_repair": {
+    "typescript_strict_build": "PASS",
+    "core_tests": {"pass": 36, "fail": 0},
+    "parity_tests": {"pass": 5, "fail": 0},
+    "total_tests": {"pass": 41, "fail": 0},
+    "orphan_muxia_test_chromium_processes": 0
+  },
+  "policy_action": "STOPPED_FAIL_CLOSED",
+  "resume_condition": "An authorized operator-controlled MUXIA ChatGPT session reaches READY without bypass/circumvention. Then MX-032 may execute a bounded manually confirmed text canary before MX-033/MX-034 become eligible.",
+  "boundaries": {
+    "challenge_bypass_attempted": false,
+    "stealth_added": false,
+    "legacy_profile_imported": false,
+    "proxima_mutated": false,
+    "production_started": false,
+    "submission_or_publication": false,
+    "spend_usd": 0
+  }
+}

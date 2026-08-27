@@ -1,0 +1,70 @@
+{
+  "schema": "die.muxia.batch-completion-receipt.v1",
+  "batch_id": "MUXIA-B05",
+  "title": "Windows Scaling Proof",
+  "status": "PASS",
+  "completed_at": "2026-08-27",
+  "execution_policy": "STOP_ON_FIRST_FAILURE",
+  "tasks": [
+    {"id":"MX-042","status":"DONE","receipt":"company/muxia/receipts/MX-042-two-profile-bounded-concurrency.receipt.json"},
+    {"id":"MX-043","status":"DONE","receipt":"company/muxia/receipts/MX-043-four-profile-bounded-concurrency.receipt.json"},
+    {"id":"MX-043-R1","status":"DONE","receipt":"company/muxia/receipts/MX-043-R1-deterministic-teardown.receipt.json"}
+  ],
+  "lineage_guard_added": "ARTIFACT_PROFILE_MISMATCH when receipt.profileId != job.profileSelector",
+  "mx042": {
+    "participants": ["chatgpt-b","chatgpt-c"],
+    "concurrency": 2,
+    "overlap_ms": 3531,
+    "aggregate_working_set_bytes": 1194856448,
+    "aggregate_process_count": 24,
+    "correct_lineage": true,
+    "duplicate_lease_rejected": true,
+    "storage_contamination": false,
+    "artifact_or_log_contamination": false,
+    "teardown_clean": true
+  },
+  "mx043": {
+    "participants": ["chatgpt-b","chatgpt-c","chatgpt-d","chatgpt-e"],
+    "concurrency": 4,
+    "overlap_ms": 4756,
+    "aggregate_working_set_bytes": 2581938176,
+    "aggregate_process_count": 55,
+    "correct_lineage": true,
+    "duplicate_lease_rejected": true,
+    "storage_contamination": false,
+    "artifact_or_log_contamination": false,
+    "functional_receipt_written_before_teardown_timeout": true,
+    "repair_child": "MX-043-R1",
+    "teardown_clean_after_repair": true
+  },
+  "resource_comparison": {
+    "working_set_ratio_4_vs_2": 2.1609,
+    "process_count_ratio_4_vs_2": 2.2917,
+    "interpretation": "Synthetic local workload scaling proof only; does not claim provider-side ChatGPT throughput/rate-limit capacity."
+  },
+  "final_regression": {
+    "typescript_strict_build": "PASS",
+    "core_pass": 41,
+    "parity_pass": 5,
+    "total_pass": 46,
+    "fail": 0
+  },
+  "final_runtime": {
+    "temporary_profile_processes_b_to_e": 0,
+    "profiles_b_to_e_state": "READY",
+    "profiles_b_to_e_lease_owner": null,
+    "profile_a_edge_pid": 21400,
+    "profile_a_preserved": true,
+    "proxima_3211_pid": 6892,
+    "proxima_8501_pid": 26508,
+    "proxima_mutated": false
+  },
+  "policy_boundary": {
+    "credential_values_read": false,
+    "provider_prompt_submitted": false,
+    "provider_output_extracted": false,
+    "legacy_profile_imported": false,
+    "spend_usd": 0
+  },
+  "next_ready": ["MX-050"]
+}

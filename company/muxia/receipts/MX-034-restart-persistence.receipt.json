@@ -1,0 +1,57 @@
+{
+  "schema": "die.muxia.mx034.restart-persistence.v1",
+  "task_id": "MX-034",
+  "status": "PASS",
+  "profile_id": "chatgpt-a",
+  "profile_dir": "C:\\DIE\\workspaces\\MUXIA-B04\\muxia-root\\profiles\\chatgpt-a\\edge-auth",
+  "browser": "Microsoft Edge Stable",
+  "pre_restart": {
+    "browser_pid": 21008,
+    "debug_port": 50898,
+    "detector_version": "chatgpt-state-detector-v1.1",
+    "state": "READY",
+    "reason": "COMPOSER_READY",
+    "credential_values_read": false
+  },
+  "restart": {
+    "old_process_stopped": true,
+    "new_browser_pid": 21400,
+    "process_identity_changed": true,
+    "same_profile_dir_reused": true,
+    "debug_host": "127.0.0.1",
+    "debug_port": 58494
+  },
+  "post_restart": {
+    "detector_version": "chatgpt-state-detector-v1.1",
+    "state": "READY",
+    "reason": "COMPOSER_READY",
+    "signals": ["composer-visible"],
+    "operator_action_required": false,
+    "credential_values_read": false,
+    "prompt_submitted": false,
+    "output_extracted": false
+  },
+  "fail_closed_verification": {
+    "auth_url_maps_to_auth_required": true,
+    "targeted_test_pass": 1,
+    "targeted_test_fail": 0
+  },
+  "full_regression": {
+    "typescript_strict_build": "PASS",
+    "core_tests": {"pass": 36, "fail": 0},
+    "parity_tests": {"pass": 5, "fail": 0},
+    "total_tests": {"pass": 41, "fail": 0},
+    "orphan_muxia_test_chromium_processes": 0
+  },
+  "boundaries": {
+    "credential_values_read_by_muxia": false,
+    "credential_values_exported": false,
+    "legacy_profile_imported": false,
+    "challenge_bypass_attempted": false,
+    "stealth_added": false,
+    "prompt_submitted_during_restart_proof": false,
+    "output_extracted_during_restart_proof": false,
+    "proxima_mutated": false
+  },
+  "verdict": "PASS"
+}

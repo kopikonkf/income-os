@@ -1,0 +1,50 @@
+{
+  "schema": "die.muxia.provider-policy-boundary.v1",
+  "provider": "chatgpt-web-consumer",
+  "checked_at": "2026-08-27",
+  "scope": "ChatGPT consumer web product under OpenAI Terms of Use effective 2026-01-01; re-check required if account/product agreement changes.",
+  "sources": [
+    {
+      "name": "OpenAI Terms of Use",
+      "url": "https://openai.com/policies/terms-of-use/",
+      "effective": "2026-01-01",
+      "relevant_sections": ["Registration and access", "Using our Services", "Content", "Termination and suspension"]
+    },
+    {
+      "name": "OpenAI Usage Policies",
+      "url": "https://openai.com/policies/usage-policies/",
+      "effective": "2025-10-29"
+    }
+  ],
+  "decision": "CONSUMER_WEB_AUTONOMOUS_EXTRACTION_BLOCKED",
+  "capabilities": {
+    "launch_or_stop_local_browser_process": "ALLOW_INTERNAL",
+    "maintain_dedicated_local_browser_profile": "ALLOW_INTERNAL_WITH_SECRET_CONTROLS",
+    "operator_manual_login_and_recovery": "ALLOW_INTERNAL",
+    "operator_manual_prompt_and_download": "ALLOW_INTERNAL_SUBJECT_TO_PROVIDER_TERMS",
+    "ingest_operator_saved_output_into_muxia_artifact_registry": "ALLOW_INTERNAL",
+    "automatic_or_programmatic_output_extraction_from_consumer_chatgpt": "BLOCKED_BY_CURRENT_TERMS",
+    "unattended_consumer_web_output_download": "BLOCKED_BY_CURRENT_TERMS",
+    "reverse_engineer_private_chatgpt_backend_or_source_components": "BLOCKED_BY_CURRENT_TERMS",
+    "extract_or_share_account_credentials_session_tokens_or_cookies": "BLOCKED",
+    "rate_limit_or_restriction_circumvention": "BLOCKED_BY_CURRENT_TERMS",
+    "captcha_protective_measure_or_safety_bypass": "BLOCKED_BY_CURRENT_TERMS",
+    "stealth_or_fingerprint_camouflage_for_protection_evasion": "BLOCKED",
+    "unattended_programmatic_prompt_dispatch_via_consumer_web_ui": "HOLD_PENDING_SUPPORTED_INTERFACE_OR_EXPLICIT_POLICY_CLARIFICATION"
+  },
+  "muxia_runtime_rule": {
+    "default_provider_state_on_auth_or_protection": "WAITING_OPERATOR",
+    "output_rule": "Consumer ChatGPT web output may enter the MUXIA artifact pipeline only after an operator-controlled acquisition step unless OpenAI later provides a supported programmatic product/interface whose terms permit the automation.",
+    "no_bypass": true,
+    "no_credential_logging": true,
+    "no_private_backend_reimplementation": true
+  },
+  "recheck_triggers": [
+    "before implementing ChatGPT provider execution adapter",
+    "before enabling unattended browser production",
+    "before MUXIA cutover",
+    "when OpenAI Terms of Use or Usage Policies materially change",
+    "when moving from consumer ChatGPT to a Business/Enterprise/API agreement"
+  ],
+  "review_interval_days": 30
+}

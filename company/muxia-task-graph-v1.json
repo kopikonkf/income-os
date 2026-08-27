@@ -1,0 +1,400 @@
+{
+    "schema":  "die.muxia.task-graph.v1",
+    "product":  "MUXIA",
+    "generated_at":  "2026-08-26",
+    "doctrine":  "Build \u003e Run \u003e Verify \u003e Refactor \u003e Extend",
+    "execution_started":  true,
+    "cutover_authority":  "Founder",
+    "states":  [
+                   "BLOCKED",
+                   "READY",
+                   "RUNNING",
+                   "VERIFYING",
+                   "DONE",
+                   "FAILED",
+                   "DEFERRED"
+               ],
+    "repair_rule":  "On failure create at most one minimal repair child \u003ctask_id\u003e-R\u003cn\u003e; do not restart the roadmap unless an ADR assumption is falsified.",
+    "tasks":  [
+                  {
+                      "id":  "MX-000",
+                      "phase":  0,
+                      "title":  "Canon lock",
+                      "depends_on":  [
+
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "MUXIA ADR/PRD/ROADMAP/ATOMIC graph + LASTSTANDINGPOINT",
+                      "acceptance":  "Docs self-consistent; JSON parses; no runtime mutation."
+                  },
+                  {
+                      "id":  "MX-010",
+                      "phase":  1,
+                      "title":  "Pin live Proxima baseline",
+                      "depends_on":  [
+                                         "MX-000"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "docs/operations/MUXIA_PROXIMA_BASELINE_V1.md",
+                      "acceptance":  "Exact repo/SHA/runtime/proof refs; no secrets read."
+                  },
+                  {
+                      "id":  "MX-011",
+                      "phase":  1,
+                      "title":  "KEEP/EXTRACT/RETIRE autopsy",
+                      "depends_on":  [
+                                         "MX-010"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "docs/architecture/MUXIA_PROXIMA_AUTOPSY_V1.md",
+                      "acceptance":  "Relevant modules classified; Electron dependencies enumerated; unknowns become probes."
+                  },
+                  {
+                      "id":  "MX-012",
+                      "phase":  1,
+                      "title":  "Parity contract tests",
+                      "depends_on":  [
+                                         "MX-011"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "behavior parity test suite",
+                      "acceptance":  "Legacy baseline passes and corrupted artifact/hash cases fail."
+                  },
+                  {
+                      "id":  "MX-020",
+                      "phase":  2,
+                      "title":  "Core domain types",
+                      "depends_on":  [
+                                         "MX-012"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "provider/profile/job/artifact schemas and types",
+                      "acceptance":  "Lifecycle validation compiles; invalid duplicate lease and false success rejected."
+                  },
+                  {
+                      "id":  "MX-021",
+                      "phase":  2,
+                      "title":  "Config/path abstraction",
+                      "depends_on":  [
+                                         "MX-020"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "OS-neutral path/config layer",
+                      "acceptance":  "Windows/Linux fixtures pass; core has no hard-coded host path."
+                  },
+                  {
+                      "id":  "MX-022",
+                      "phase":  2,
+                      "title":  "Profile Registry",
+                      "depends_on":  [
+                                         "MX-021"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "persistent sanitized profile registry",
+                      "acceptance":  "CRUD works; second simultaneous lease rejected; no session secrets stored."
+                  },
+                  {
+                      "id":  "MX-023",
+                      "phase":  2,
+                      "title":  "Job + Artifact Registry",
+                      "depends_on":  [
+                                         "MX-022"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "resumable job and artifact receipt stores",
+                      "acceptance":  "Restart-safe state; SUCCEEDED requires matching durable receipt."
+                  },
+                  {
+                      "id":  "MX-030",
+                      "phase":  3,
+                      "title":  "Playwright Chromium driver",
+                      "depends_on":  [
+                                         "MX-023"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "non-Electron Chromium lifecycle driver",
+                      "acceptance":  "Launch/stop/restart works with dedicated user-data dir and private debug endpoint."
+                  },
+                  {
+                      "id":  "MX-031",
+                      "phase":  3,
+                      "title":  "ChatGPT provider state detector",
+                      "depends_on":  [
+                                         "MX-030"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "versioned ChatGPT adapter state detector",
+                      "acceptance":  "Ready/auth/protection/unknown states fail safely; no bypass behavior."
+                  },
+                  {
+                      "id":  "MX-032",
+                      "phase":  3,
+                      "title":  "Windows text canary parity",
+                      "depends_on":  [
+                                         "MX-031",
+                                         "MX-031-R1",
+                                         "MX-032-R1"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "sanitized text canary receipt",
+                      "acceptance":  "Known ChatGPT text canary is proven through an operator-controlled interaction/confirmation path or a later supported programmatic interface; no automated Output extraction from consumer ChatGPT web."
+                  },
+                  {
+                      "id":  "MX-033",
+                      "phase":  3,
+                      "title":  "Windows durable image parity",
+                      "depends_on":  [
+                                         "MX-032"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "bounded image + artifact receipt",
+                      "acceptance":  "Durable raster path/hash/bytes/container match parity contract after operator-controlled acquisition or a later supported programmatic interface; transient-only result rejected; no automated consumer-web Output extraction."
+                  },
+                  {
+                      "id":  "MX-034",
+                      "phase":  3,
+                      "title":  "Windows restart persistence proof",
+                      "depends_on":  [
+                                         "MX-033"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "restart/session continuity receipt",
+                      "acceptance":  "Same profile retained; auth-required fails closed."
+                  },
+                  {
+                      "id":  "MX-040",
+                      "phase":  4,
+                      "title":  "Two-profile isolation",
+                      "depends_on":  [
+                                         "MX-034"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "two-profile isolation receipt",
+                      "acceptance":  "Distinct ownership; no cookie/session/log/artifact contamination."
+                  },
+                  {
+                      "id":  "MX-041",
+                      "phase":  4,
+                      "title":  "Crash recovery",
+                      "depends_on":  [
+                                         "MX-040"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "crash/recovery receipt",
+                      "acceptance":  "Interrupted job never succeeds; lease recovered or profile quarantined deterministically."
+                  },
+                  {
+                      "id":  "MX-042",
+                      "phase":  4,
+                      "title":  "Two-profile bounded concurrency",
+                      "depends_on":  [
+                                         "MX-041"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "two-concurrent-job receipt",
+                      "acceptance":  "Correct lineage; no duplicate lease; resource metrics captured."
+                  },
+                  {
+                      "id":  "MX-043",
+                      "phase":  4,
+                      "title":  "Four-profile bounded concurrency",
+                      "depends_on":  [
+                                         "MX-042",
+                                         "MX-043-R1"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "four-concurrent-job receipt",
+                      "acceptance":  "Four independent lanes; no contamination; resource envelope captured."
+                  },
+                  {
+                      "id":  "MX-050-R1",
+                      "phase":  5,
+                      "title":  "Declare reproducible TypeScript compiler",
+                      "depends_on":  [
+                                         "MX-043"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/MX-050-R1-typescript-bootstrap-repair.receipt.json",
+                      "acceptance":  "TypeScript 5.9.3 is exact-pinned; npm ci provides tsc; Windows regression remains 48/48 PASS."
+                  },
+                  {
+                      "id":  "MX-050",
+                      "phase":  5,
+                      "title":  "Linux runtime bootstrap",
+                      "depends_on":  [
+                                         "MX-043",
+                                         "MX-050-R1"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/MX-050-linux-bootstrap.receipt.json",
+                      "acceptance":  "Reproducible Playwright/Chromium target; no Electron dependency.",
+                      "resume_condition":  "Founder provided reachable Ubuntu Linux VPS and explicitly authorized MX-050 through MX-052 on 2026-08-27."
+                  },
+                  {
+                      "id":  "MX-051",
+                      "phase":  5,
+                      "title":  "Linux single-profile parity",
+                      "depends_on":  [
+                                         "MX-050"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/MX-051-linux-single-profile-parity.receipt.json",
+                      "acceptance":  "Text + durable image + restart state satisfy core contracts."
+                  },
+                  {
+                      "id":  "MX-052",
+                      "phase":  5,
+                      "title":  "Linux four-profile isolation",
+                      "depends_on":  [
+                                         "MX-051"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/MX-052-linux-four-profile-isolation.receipt.json",
+                      "acceptance":  "Independent ownership, no leakage, documented resources, no Windows GUI dependency."
+                  },
+                  {
+                      "id":  "MX-060",
+                      "phase":  6,
+                      "title":  "Sanitized observability",
+                      "depends_on":  [
+                                         "MX-052"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "health/logging surfaces",
+                      "acceptance":  "Operational diagnosis without cookies/tokens/auth bodies."
+                  },
+                  {
+                      "id":  "MX-061",
+                      "phase":  6,
+                      "title":  "Fault-injection suite",
+                      "depends_on":  [
+                                         "MX-060"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "fault injection tests/receipts",
+                      "acceptance":  "Timeout/crash/contention/disk/auth faults map deterministically; false success=0."
+                  },
+                  {
+                      "id":  "MX-062",
+                      "phase":  6,
+                      "title":  "24-hour soak",
+                      "depends_on":  [
+                                         "MX-061"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "24h soak receipt",
+                      "acceptance":  "Zero profile corruption, credential leakage, duplicate ownership; recovery matches contract."
+                  },
+                  {
+                      "id":  "MX-070",
+                      "phase":  7,
+                      "title":  "Legacy compatibility adapter",
+                      "depends_on":  [
+                                         "MX-062"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Worker/Proxima-to-MUXIA compatibility route",
+                      "acceptance":  "Equivalent bounded artifact contract; no authority expansion; rollback path remains."
+                  },
+                  {
+                      "id":  "MX-071",
+                      "phase":  7,
+                      "title":  "M-001 governed MUXIA canary",
+                      "depends_on":  [
+                                         "MX-070"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "governed canary artifact/QA/metrics receipt",
+                      "acceptance":  "Durable workspace artifact; QA chain passes; no submission/publication/spend expansion."
+                  },
+                  {
+                      "id":  "MX-072",
+                      "phase":  7,
+                      "title":  "Cutover evidence package",
+                      "depends_on":  [
+                                         "MX-071"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Founder cutover decision package",
+                      "acceptance":  "Every ADR criterion maps to evidence; gaps explicit; recommendation recorded."
+                  },
+                  {
+                      "id":  "MX-080",
+                      "phase":  8,
+                      "title":  "Founder cutover decision",
+                      "depends_on":  [
+                                         "MX-072"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Founder decision receipt",
+                      "acceptance":  "Explicit PROMOTE_MUXIA|EXTEND_CANARY|REPAIR_MUXIA|KEEP_PROXIMA; silence never implies cutover."
+                  },
+                  {
+                      "id":  "MX-P01",
+                      "phase":  3,
+                      "title":  "Legacy profile-root metadata probe",
+                      "depends_on":  [
+                                         "MX-023"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "sanitized profile-root metadata receipt",
+                      "acceptance":  "Active profile root identified without reading/exporting cookies/tokens/session values."
+                  },
+                  {
+                      "id":  "MX-P02",
+                      "phase":  9,
+                      "title":  "Legacy support-tree provenance probe",
+                      "depends_on":  [
+                                         "MX-072"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "proximav2-setup provenance inventory",
+                      "acceptance":  "Each legacy item classified artifact|receipt|runtime|copied-source|stale|sensitive-log before cleanup."
+                  },
+                  {
+                      "id":  "MX-P03",
+                      "phase":  3,
+                      "title":  "ChatGPT web execution policy gate",
+                      "depends_on":  [
+                                         "MX-012"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "current provider-policy adapter boundary receipt",
+                      "acceptance":  "Allowed automation/output boundary documented before unattended ChatGPT web adapter implementation."
+                  },
+                  {
+                      "id":  "MX-031-R1",
+                      "phase":  3,
+                      "title":  "Repair ChatGPT protection-title detection",
+                      "depends_on":  [
+                                         "MX-031"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/MX-031-R1-cloudflare-title-repair.receipt.json",
+                      "acceptance":  "Live Cloudflare-style protection title classifies BLOCKED/PROTECTION_CHALLENGE; no bypass added."
+                  },
+                  {
+                      "id":  "MX-032-R1",
+                      "phase":  3,
+                      "title":  "Operator session bootstrap",
+                      "depends_on":  [
+                                         "MX-031",
+                                         "MX-031-R1"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/MX-032-R1-operator-session-bootstrap.receipt.json",
+                      "acceptance":  "Headed persistent chatgpt-a profile open in operator RDP session; operator manually authenticates; no bypass/credential extraction."
+                  },
+                  {
+                      "id":  "MX-043-R1",
+                      "phase":  4,
+                      "title":  "Deterministic four-lane teardown",
+                      "depends_on":  [
+                                         "MX-042"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/MX-043-R1-deterministic-teardown.receipt.json",
+                      "acceptance":  "Profiles B-E return READY with no lease/browserPid, no residual B-E Edge processes, profile A preserved."
+                  }
+              ]
+}

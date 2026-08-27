@@ -1,0 +1,24 @@
+{
+  "schema": "die.muxia.provider-state-detector.v1",
+  "provider": "chatgpt",
+  "detector_version": "chatgpt-state-detector-v1.1",
+  "states": ["READY", "AUTH_REQUIRED", "BLOCKED", "UNKNOWN"],
+  "priority": ["BLOCKED", "AUTH_REQUIRED", "READY", "UNKNOWN"],
+  "ready_rule": "A visible composer signal is required and no higher-priority blocking/auth signal may be present.",
+  "auth_rule": "Authentication URL/login controls/login-only page signals map to AUTH_REQUIRED.",
+  "blocked_rules": {
+    "RATE_LIMIT": "Visible rate-limit/usage-limit signals map to BLOCKED.",
+    "PROTECTION_CHALLENGE": "Visible CAPTCHA/human verification/security challenge signals or protection-interstitial titles such as 'Just a moment...' map to BLOCKED.",
+    "ACCOUNT_BLOCKED": "Visible account disabled/deactivated/suspended signals map to BLOCKED.",
+    "ACCESS_DENIED": "Visible access denied/unsupported-region signals map to BLOCKED."
+  },
+  "unknown_rule": "Any unrecognized or unreadable page fails closed to UNKNOWN and requires operator action.",
+  "security": {
+    "no_bypass_logic": true,
+    "no_cookie_or_token_read": true,
+    "no_output_extraction": true,
+    "observation_does_not_return_page_body": true,
+    "operator_action_required_for": ["AUTH_REQUIRED", "BLOCKED", "UNKNOWN"]
+  },
+  "test_mode": "local fixture pages plus live-state-only proof; no prompt submission or Output extraction"
+}

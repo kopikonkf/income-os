@@ -1,0 +1,22 @@
+{
+  "name": "@die/muxia",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test:core": "node --test tests/core/*.test.mjs",
+    "test:parity": "node --test tests/parity/*.test.mjs",
+    "test": "npm run build && npm run test:core && npm run test:parity"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "playwright": "^1.62.1"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.muxia.core-domain.v1",
+  "title": "MUXIA Core Domain V1",
+  "$defs": {
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["providerId", "adapterVersion", "capabilities", "health"],
+      "properties": {
+        "providerId": {"type": "string", "minLength": 1},
+        "adapterVersion": {"type": "string", "minLength": 1},
+        "capabilities": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "health": {"enum": ["UNKNOWN", "HEALTHY", "DEGRADED", "BLOCKED"]}
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profileId", "providerId", "profilePath", "state", "leaseOwner", "browserPid", "lastHealthAt", "lastSuccessAt", "failureCount"],
+      "properties": {
+        "profileId": {"type": "string", "minLength": 1},
+        "providerId": {"type": "string", "minLength": 1},
+        "profilePath": {"type": "string", "minLength": 1},
+        "state": {"enum": ["UNINITIALIZED", "READY", "LEASED", "RUNNING", "AUTH_REQUIRED", "BLOCKED", "QUARANTINED", "DISABLED"]},
+        "leaseOwner": {"type": ["string", "null"]},
+        "browserPid": {"type": ["integer", "null"], "minimum": 1},
+        "lastHealthAt": {"type": ["string", "null"]},
+        "lastSuccessAt": {"type": ["string", "null"]},
+        "failureCount": {"type": "integer", "minimum": 0}
+      }
+    },
+    "job": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["jobId", "providerId", "requiredCapability", "profileSelector", "artifactTarget", "timeoutMs", "status", "attempt", "createdAt"],
+      "properties": {
+        "jobId": {"type": "string", "minLength": 1},
+        "providerId": {"type": "string", "minLength": 1},
+        "requiredCapability": {"type": "string", "minLength": 1},
+        "profileSelector": {"type": ["string", "null"]},
+        "artifactTarget": {"type": "string", "minLength": 1},
+        "timeoutMs": {"type": "integer", "minimum": 1},
+        "status": {"enum": ["QUEUED", "ASSIGNED", "RUNNING", "VERIFYING", "SUCCEEDED", "WAITING_OPERATOR", "BLOCKED", "FAILED", "CANCELLED", "TIMED_OUT"]},
+        "attempt": {"type": "integer", "minimum": 0},
+        "createdAt": {"type": "string", "minLength": 1}
+      }
+    },
+    "artifactReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["jobId", "profileId", "providerId", "artifactPath", "sha256", "bytes", "mimeType", "createdAt", "adapterVersion", "status"],
+      "properties": {
+        "jobId": {"type": "string", "minLength": 1},
+        "profileId": {"type": "string", "minLength": 1},
+        "providerId": {"type": "string", "minLength": 1},
+        "artifactPath": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "mimeType": {"enum": ["image/png", "image/jpeg", "image/webp"]},
+        "createdAt": {"type": "string", "minLength": 1},
+        "adapterVersion": {"type": "string", "minLength": 1},
+        "status": {"const": "VERIFIED"}
+      }
+    }
+  },
+  "oneOf": [
+    {"$ref": "#/$defs/provider"},
+    {"$ref": "#/$defs/profile"},
+    {"$ref": "#/$defs/job"},
+    {"$ref": "#/$defs/artifactReceipt"}
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "schema": "die.muxia.batch-receipt.v1",
+  "batch_id": "MUXIA-B03",
+  "title": "Browser Foundation",
+  "completed_at": "2026-08-27",
+  "execution_policy": "PARALLEL_INDEPENDENT_LANES_WITH_PER-TASK_CHECKPOINTS",
+  "result": "PASS",
+  "tasks": [
+    {
+      "id": "MX-P01",
+      "status": "DONE",
+      "verification": "metadata-only legacy profile root and provider partitions identified; no credential/session contents read"
+    },
+    {
+      "id": "MX-030",
+      "status": "DONE",
+      "verification": "4 passed / 0 failed"
+    }
+  ],
+  "browser_runtime": {
+    "dependency": "playwright ^1.62.1",
+    "browser": "Chrome for Testing 151.0.7922.34",
+    "playwright_chromium_build": "v1234",
+    "debug_binding": "127.0.0.1 ephemeral port",
+    "profile_model": "dedicated user-data-dir per MUXIA profile",
+    "process_ownership": "MUXIA spawns and supervises Chromium directly; Playwright attaches over CDP"
+  },
+  "repairs": [
+    {
+      "issue": "Windows DevToolsActivePort transient lock race",
+      "fix": "retry ENOENT/EBUSY/EACCES until bounded launch deadline"
+    },
+    {
+      "issue": "test teardown removed profile before browser stop",
+      "fix": "enforce stop-browser then delete-temp-profile order"
+    }
+  ],
+  "full_regression": {
+    "typescript_strict_build": "PASS",
+    "core_tests": {"pass": 25, "fail": 0},
+    "parity_tests": {"pass": 5, "fail": 0},
+    "total_tests": {"pass": 30, "fail": 0},
+    "orphan_muxia_test_chromium_processes_after_suite": 0
+  },
+  "legacy_profile_probe": {
+    "user_data_root": "C:\\Users\\aethers\\AppData\\Roaming\\proxima",
+    "provider_partitions_observed": ["chatgpt", "claude", "deepseek", "duck", "gemini", "grok", "mimo", "nemotron", "perplexity", "qwen"],
+    "default_migration_decision": "DO_NOT_IMPORT_OR_COPY_LEGACY_PROFILE_ROOT_BY_DEFAULT"
+  },
+  "source_hashes": {
+    "company/muxia/src/browser/playwright-driver.ts": "554098B6012712A2D700B0D0B3197D4EBCDDE3DA6C63B3D5F5000D9736FACE6D",
+    "company/muxia/tests/core/playwright-driver.test.mjs": "A2D7ECDA582E15A7A2097E97E79CDF2491A076E9BADFDDC8C2086B7748C5AC8F",
+    "company/muxia/probes/MX-P01-legacy-profile-metadata.receipt.json": "B6244CBC33C5D26362C93EB62A5264DA29117CADB1F8507B42E0B7BA49850810",
+    "docs/operations/MUXIA_BROWSER_FOUNDATION_V1.md": "ACD105660AB1A9DF49DB5379ADBD73C75056DE5066BE2648C17AAF937818B24A"
+  },
+  "boundaries": {
+    "chatgpt_opened": false,
+    "provider_output_extracted": false,
+    "legacy_profile_copied": false,
+    "credential_or_cookie_values_read": false,
+    "proxima_mutated": false,
+    "production_started": false,
+    "submission_or_publication": false,
+    "spend_usd": 0
+  },
+  "next_ready": ["MX-031"]
+}

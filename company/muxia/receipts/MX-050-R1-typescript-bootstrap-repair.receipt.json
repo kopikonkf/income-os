@@ -1,0 +1,37 @@
+{
+  "schema": "die.muxia.task-repair-receipt.v1",
+  "task_id": "MX-050-R1",
+  "repair_of": "MX-050",
+  "status": "PASS",
+  "observed_failures": [
+    {
+      "exit_status": 127,
+      "error": "tsc: not found",
+      "cause": "TypeScript was available globally on the Windows proof host but was not declared in package.json"
+    },
+    {
+      "error": "CHROMIUM_DEBUG_PORT_TIMEOUT:30000",
+      "cause": "Ubuntu 24.04 AppArmor restricted unprivileged user namespaces for the Playwright developer Chromium executable"
+    },
+    {
+      "error": "PROBE_RECEIPT_MISSING",
+      "cause": "three MX-012 tests correctly referenced physical Windows-only legacy evidence that was intentionally excluded from Linux"
+    }
+  ],
+  "minimal_repair": {
+    "typescript": "5.9.3 exact pin",
+    "browser_store": "/opt/muxia/playwright-browsers, root:root and non-writable by runtime user",
+    "sandbox": "exact-path AppArmor userns profile; no --no-sandbox",
+    "test_scope": "Windows physical legacy-evidence tests skip explicitly on hosts where the sealed evidence is absent"
+  },
+  "verification": {
+    "windows_core": "43/43 PASS",
+    "windows_parity": "5/5 PASS",
+    "linux_core": "43/43 PASS",
+    "linux_parity": "2 PASS, 3 explicit Windows-only SKIP",
+    "linux_headless_smoke": "PASS",
+    "electron_added": false,
+    "false_success": 0
+  },
+  "completed_at": "2026-08-27T16:37:15Z"
+}

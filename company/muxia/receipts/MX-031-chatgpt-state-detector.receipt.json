@@ -1,0 +1,51 @@
+{
+  "schema": "die.muxia.atomic-task-receipt.v1",
+  "task_id": "MX-031",
+  "title": "ChatGPT provider state detector",
+  "completed_at": "2026-08-27",
+  "result": "PASS",
+  "detector_version": "chatgpt-state-detector-v1",
+  "states": ["READY", "AUTH_REQUIRED", "BLOCKED", "UNKNOWN"],
+  "priority": ["BLOCKED", "AUTH_REQUIRED", "READY", "UNKNOWN"],
+  "targeted_verification": {"pass": 10, "fail": 0},
+  "full_regression": {
+    "typescript_strict_build": "PASS",
+    "core_tests": {"pass": 35, "fail": 0},
+    "parity_tests": {"pass": 5, "fail": 0},
+    "total_tests": {"pass": 40, "fail": 0},
+    "orphan_muxia_test_chromium_processes_after_suite": 0
+  },
+  "behavior": {
+    "ready_requires_visible_composer": true,
+    "blocking_signals_override_composer": true,
+    "auth_requires_operator_action": true,
+    "blocked_requires_operator_action": true,
+    "unknown_fails_closed": true,
+    "observation_returns_page_body": false,
+    "provider_network_access_required_for_acceptance": false
+  },
+  "blocked_reasons": [
+    "RATE_LIMIT",
+    "PROTECTION_CHALLENGE",
+    "ACCOUNT_BLOCKED",
+    "ACCESS_DENIED"
+  ],
+  "source_hashes": {
+    "company/muxia/src/providers/contract.ts": "4AB7ED13AA0EF5CCB33BFEF55E539465FD755827CEF7EE5FCCC1A52A09AB888D",
+    "company/muxia/src/providers/chatgpt/state-detector.ts": "F40F08EA91F042A640A4F0396EFCE4A22253E41348E5594A5B8F2B847A4D607A",
+    "company/muxia/contracts/chatgpt-state-detector-v1.json": "C0D7FB4E7A7F9D8077DE5CA673746DD73B45264AB79701D29BAB6B1B59D2DBE5",
+    "company/muxia/tests/core/chatgpt-state-detector.test.mjs": "18F169CDBBCF1708E29C36B81AAF976E6849C76F43DDC26EE101D27D5E07E64A"
+  },
+  "boundaries": {
+    "chatgpt_live_opened": false,
+    "prompt_submitted": false,
+    "provider_output_extracted": false,
+    "cookie_or_token_values_read": false,
+    "protection_bypass_implemented": false,
+    "proxima_mutated": false,
+    "production_started": false,
+    "submission_or_publication": false,
+    "spend_usd": 0
+  },
+  "next_ready": ["MX-032"]
+}

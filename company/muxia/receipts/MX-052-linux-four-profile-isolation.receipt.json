@@ -1,0 +1,285 @@
+{
+  "schema": "die.muxia.mx052.four-profile-isolation.v1",
+  "task_id": "MX-052",
+  "status": "PASS",
+  "platform": "linux",
+  "muxia_root": "/var/lib/muxia",
+  "run_token": "1787851287",
+  "local_synthetic_origin": "http://127.0.0.1:39353/",
+  "participants": [
+    "chatgpt-linux-b",
+    "chatgpt-linux-c",
+    "chatgpt-linux-d",
+    "chatgpt-linux-e"
+  ],
+  "control_profile_a_excluded": true,
+  "workload_started_at_ms": 1787851288580,
+  "overlap_ms": 2005,
+  "before": {
+    "chatgpt-linux-b": {
+      "local": null,
+      "cookie": ""
+    },
+    "chatgpt-linux-c": {
+      "local": null,
+      "cookie": ""
+    },
+    "chatgpt-linux-d": {
+      "local": null,
+      "cookie": ""
+    },
+    "chatgpt-linux-e": {
+      "local": null,
+      "cookie": ""
+    }
+  },
+  "after": {
+    "chatgpt-linux-b": {
+      "local": "1787851287:chatgpt-linux-b",
+      "cookie": "muxia_mx052_lane=1787851287%3Achatgpt-linux-b"
+    },
+    "chatgpt-linux-c": {
+      "local": "1787851287:chatgpt-linux-c",
+      "cookie": "muxia_mx052_lane=1787851287%3Achatgpt-linux-c"
+    },
+    "chatgpt-linux-d": {
+      "local": "1787851287:chatgpt-linux-d",
+      "cookie": "muxia_mx052_lane=1787851287%3Achatgpt-linux-d"
+    },
+    "chatgpt-linux-e": {
+      "local": "1787851287:chatgpt-linux-e",
+      "cookie": "muxia_mx052_lane=1787851287%3Achatgpt-linux-e"
+    }
+  },
+  "workloads": [
+    {
+      "profile_id": "chatgpt-linux-b",
+      "marker": "1787851287:chatgpt-linux-b",
+      "started_ms": 1787851288580,
+      "ended_ms": 1787851290586,
+      "state": {
+        "local": "1787851287:chatgpt-linux-b",
+        "cookie": "muxia_mx052_lane=1787851287%3Achatgpt-linux-b"
+      }
+    },
+    {
+      "profile_id": "chatgpt-linux-c",
+      "marker": "1787851287:chatgpt-linux-c",
+      "started_ms": 1787851288580,
+      "ended_ms": 1787851290586,
+      "state": {
+        "local": "1787851287:chatgpt-linux-c",
+        "cookie": "muxia_mx052_lane=1787851287%3Achatgpt-linux-c"
+      }
+    },
+    {
+      "profile_id": "chatgpt-linux-d",
+      "marker": "1787851287:chatgpt-linux-d",
+      "started_ms": 1787851288581,
+      "ended_ms": 1787851290587,
+      "state": {
+        "local": "1787851287:chatgpt-linux-d",
+        "cookie": "muxia_mx052_lane=1787851287%3Achatgpt-linux-d"
+      }
+    },
+    {
+      "profile_id": "chatgpt-linux-e",
+      "marker": "1787851287:chatgpt-linux-e",
+      "started_ms": 1787851288581,
+      "ended_ms": 1787851290588,
+      "state": {
+        "local": "1787851287:chatgpt-linux-e",
+        "cookie": "muxia_mx052_lane=1787851287%3Achatgpt-linux-e"
+      }
+    }
+  ],
+  "duplicate_lease_rejected": {
+    "chatgpt-linux-b": true,
+    "chatgpt-linux-c": true,
+    "chatgpt-linux-d": true,
+    "chatgpt-linux-e": true
+  },
+  "lanes": {
+    "chatgpt-linux-b": {
+      "logical_owner": "mx052-b-1787851287",
+      "browser_pid": 17523,
+      "debug_host": "127.0.0.1",
+      "debug_port_ephemeral": true,
+      "job_id": "mx052-b-1787851287",
+      "job_status": "SUCCEEDED",
+      "receipt_profile_id": "chatgpt-linux-b",
+      "artifact_path": "/var/lib/muxia/artifacts/mx052-b-1787851287/chatgpt-linux-b.png",
+      "artifact_sha256": "872d16539ee3b5b6e2ce19ab45406e3fe7e34a06f7301296536c8fcddf13bd51",
+      "artifact_bytes": 10287,
+      "artifact_mime_type": "image/png",
+      "log_dir": "/var/lib/muxia/logs/mx052/1787851287/chatgpt-linux-b",
+      "lineage_match": true
+    },
+    "chatgpt-linux-c": {
+      "logical_owner": "mx052-c-1787851287",
+      "browser_pid": 17524,
+      "debug_host": "127.0.0.1",
+      "debug_port_ephemeral": true,
+      "job_id": "mx052-c-1787851287",
+      "job_status": "SUCCEEDED",
+      "receipt_profile_id": "chatgpt-linux-c",
+      "artifact_path": "/var/lib/muxia/artifacts/mx052-c-1787851287/chatgpt-linux-c.png",
+      "artifact_sha256": "872d16539ee3b5b6e2ce19ab45406e3fe7e34a06f7301296536c8fcddf13bd51",
+      "artifact_bytes": 10287,
+      "artifact_mime_type": "image/png",
+      "log_dir": "/var/lib/muxia/logs/mx052/1787851287/chatgpt-linux-c",
+      "lineage_match": true
+    },
+    "chatgpt-linux-d": {
+      "logical_owner": "mx052-d-1787851287",
+      "browser_pid": 17525,
+      "debug_host": "127.0.0.1",
+      "debug_port_ephemeral": true,
+      "job_id": "mx052-d-1787851287",
+      "job_status": "SUCCEEDED",
+      "receipt_profile_id": "chatgpt-linux-d",
+      "artifact_path": "/var/lib/muxia/artifacts/mx052-d-1787851287/chatgpt-linux-d.png",
+      "artifact_sha256": "872d16539ee3b5b6e2ce19ab45406e3fe7e34a06f7301296536c8fcddf13bd51",
+      "artifact_bytes": 10287,
+      "artifact_mime_type": "image/png",
+      "log_dir": "/var/lib/muxia/logs/mx052/1787851287/chatgpt-linux-d",
+      "lineage_match": true
+    },
+    "chatgpt-linux-e": {
+      "logical_owner": "mx052-e-1787851287",
+      "browser_pid": 17526,
+      "debug_host": "127.0.0.1",
+      "debug_port_ephemeral": true,
+      "job_id": "mx052-e-1787851287",
+      "job_status": "SUCCEEDED",
+      "receipt_profile_id": "chatgpt-linux-e",
+      "artifact_path": "/var/lib/muxia/artifacts/mx052-e-1787851287/chatgpt-linux-e.png",
+      "artifact_sha256": "872d16539ee3b5b6e2ce19ab45406e3fe7e34a06f7301296536c8fcddf13bd51",
+      "artifact_bytes": 10287,
+      "artifact_mime_type": "image/png",
+      "log_dir": "/var/lib/muxia/logs/mx052/1787851287/chatgpt-linux-e",
+      "lineage_match": true
+    }
+  },
+  "resources": {
+    "host": {
+      "mem_total_kb": 32865488,
+      "mem_available_kb": 30076136,
+      "load_average": [
+        0.71,
+        0.25,
+        0.13
+      ]
+    },
+    "per_lane": {
+      "chatgpt-linux-b": {
+        "process_count": 13,
+        "rss_kb": 1249052
+      },
+      "chatgpt-linux-c": {
+        "process_count": 12,
+        "rss_kb": 1167276
+      },
+      "chatgpt-linux-d": {
+        "process_count": 12,
+        "rss_kb": 1169024
+      },
+      "chatgpt-linux-e": {
+        "process_count": 12,
+        "rss_kb": 1169416
+      }
+    },
+    "aggregate_rss_kb": 4754768,
+    "aggregate_process_count": 49
+  },
+  "preliminary_acceptance": {
+    "exactly_four_profiles": true,
+    "control_profile_a_excluded": true,
+    "unique_logical_owners": true,
+    "duplicate_lease_rejected": true,
+    "all_lanes_overlapped": true,
+    "storage_isolated": true,
+    "prior_storage_owned_or_empty": true,
+    "artifact_and_log_lineage_isolated": true,
+    "resource_metrics_captured": true,
+    "debug_loopback_only": true,
+    "all_jobs_succeeded": true
+  },
+  "final_profiles": {
+    "chatgpt-linux-b": {
+      "state": "READY",
+      "lease_owner": null,
+      "browser_pid": null,
+      "profile_path": "/var/lib/muxia/profiles/chatgpt-linux-b",
+      "mode": "700"
+    },
+    "chatgpt-linux-c": {
+      "state": "READY",
+      "lease_owner": null,
+      "browser_pid": null,
+      "profile_path": "/var/lib/muxia/profiles/chatgpt-linux-c",
+      "mode": "700"
+    },
+    "chatgpt-linux-d": {
+      "state": "READY",
+      "lease_owner": null,
+      "browser_pid": null,
+      "profile_path": "/var/lib/muxia/profiles/chatgpt-linux-d",
+      "mode": "700"
+    },
+    "chatgpt-linux-e": {
+      "state": "READY",
+      "lease_owner": null,
+      "browser_pid": null,
+      "profile_path": "/var/lib/muxia/profiles/chatgpt-linux-e",
+      "mode": "700"
+    }
+  },
+  "residual_processes": {
+    "chatgpt-linux-b": {
+      "process_count": 0,
+      "rss_kb": 0
+    },
+    "chatgpt-linux-c": {
+      "process_count": 0,
+      "rss_kb": 0
+    },
+    "chatgpt-linux-d": {
+      "process_count": 0,
+      "rss_kb": 0
+    },
+    "chatgpt-linux-e": {
+      "process_count": 0,
+      "rss_kb": 0
+    }
+  },
+  "acceptance": {
+    "exactly_four_profiles": true,
+    "control_profile_a_excluded": true,
+    "unique_logical_owners": true,
+    "duplicate_lease_rejected": true,
+    "all_lanes_overlapped": true,
+    "storage_isolated": true,
+    "prior_storage_owned_or_empty": true,
+    "artifact_and_log_lineage_isolated": true,
+    "resource_metrics_captured": true,
+    "debug_loopback_only": true,
+    "all_jobs_succeeded": true,
+    "deterministic_teardown": true,
+    "leases_released": true,
+    "profiles_returned_ready": true,
+    "browser_pids_cleared": true,
+    "profile_directories_private": true
+  },
+  "credential_values_read": false,
+  "provider_prompt_submitted": false,
+  "provider_output_extracted": false,
+  "provider_network_used": false,
+  "completed_at": "2026-08-27T17:21:32.130Z",
+  "publication_evidence": {
+    "branch": "architect/muxia-b06-linux-proof",
+    "execution_source_commit": "922fc9176a59b6a42ed6d93120953ad29ead78a7",
+    "linux_source_root": "/srv/die/company/muxia",
+    "runtime_receipt_path": "/var/lib/muxia/state/mx052-four-profile-isolation.json"
+  }
+}

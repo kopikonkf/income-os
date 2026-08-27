@@ -1,0 +1,56 @@
+{
+  "schema": "die.muxia.batch-receipt.v1",
+  "batch_id": "MUXIA-B02",
+  "title": "Core Persistence Foundation",
+  "completed_at": "2026-08-27",
+  "execution_policy": "STOP_ON_FIRST_FAILURE",
+  "result": "PASS",
+  "tasks": [
+    {
+      "id": "MX-021",
+      "status": "DONE",
+      "verification": "4 passed / 0 failed"
+    },
+    {
+      "id": "MX-022",
+      "status": "DONE",
+      "verification": "4 passed / 0 failed"
+    },
+    {
+      "id": "MX-023",
+      "status": "DONE",
+      "verification": "5 passed / 0 failed"
+    }
+  ],
+  "full_regression": {
+    "typescript_strict_build": "PASS",
+    "core_tests": {"pass": 21, "fail": 0},
+    "parity_tests": {"pass": 5, "fail": 0},
+    "total_tests": {"pass": 26, "fail": 0}
+  },
+  "persistence": {
+    "metadata": "UTF-8 JSON with fsync + atomic rename",
+    "profile_lease": "filesystem create-exclusive lock file",
+    "scope": "single-host/local-filesystem",
+    "runtime_database_dependency": false
+  },
+  "runtime_dependencies": [],
+  "development_dependencies": ["@types/node"],
+  "source_hashes": {
+    "company/muxia/src/core/paths.ts": "367217541D1B85FF2BD9C9ED461EB3B877FE00A7821985CC17CCB2FC2D273F11",
+    "company/muxia/src/core/storage.ts": "1F05016D3A19917828A9AE336D92443B9E1ED3E2FA9919DC3D516C6D6D89BE34",
+    "company/muxia/src/core/profile-registry.ts": "A498EA830577194BBD9CBB06C9C8FE427437FE135A961EB86052C8D920008F4B",
+    "company/muxia/src/core/artifact-registry.ts": "ADFCBE784BDFEC7B93BE053479E219C5CAE4606BB9A84D3940BB9BD9E9E6CD80",
+    "company/muxia/src/core/job-registry.ts": "895483D70CE66A9B0BCE00F4D6BDDF78EE1CDFA40BE371F44E2557F1DE9F8B31"
+  },
+  "boundaries": {
+    "playwright_launched": false,
+    "browser_profile_mutated": false,
+    "provider_called": false,
+    "proxima_mutated": false,
+    "production_started": false,
+    "submission_or_publication": false,
+    "spend_usd": 0
+  },
+  "next_ready": ["MX-030", "MX-P01"]
+}

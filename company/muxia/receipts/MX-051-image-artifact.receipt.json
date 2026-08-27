@@ -1,0 +1,18 @@
+{
+  "jobId": "mx051-image-1787851265",
+  "profileId": "chatgpt-linux-a",
+  "providerId": "chatgpt",
+  "artifactPath": "/var/lib/muxia/artifacts/mx051-image-1787851265/mx051-operator-image.png",
+  "sha256": "ae8717b508327af34ff00d7b820cf5764d689c2d2d9e8ee6909188bd8b7dc440",
+  "bytes": 865504,
+  "mimeType": "image/png",
+  "createdAt": "2026-08-27T17:25:20.872Z",
+  "adapterVersion": "muxia-linux-operator-image-v1",
+  "status": "VERIFIED",
+  "publication_evidence": {
+    "branch": "architect/muxia-b06-linux-proof",
+    "execution_source_commit": "c8af8054a8678fc32b84ee863ad8a759b2c94c07",
+    "linux_source_root": "/srv/die/company/muxia",
+    "runtime_receipt_path": "/var/lib/muxia/state/receipts/mx051-image-1787851265.json"
+  }
+}

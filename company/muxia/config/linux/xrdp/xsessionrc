@@ -1,0 +1,2 @@
+export XDG_CONFIG_DIRS=/etc/xdg/xdg-xfce:/etc/xdg
+export XDG_DATA_DIRS=/usr/share/xfce4:/usr/local/share:/usr/share
