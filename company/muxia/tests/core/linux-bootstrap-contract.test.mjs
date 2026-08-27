@@ -53,3 +53,18 @@ test('MX-050 GUI: XFCE+xrdp is tunnel-only and does not alter operator credentia
   assert.doesNotMatch(gui, /(^|\\n)\\s*(chpasswd|passwd)(\\s|$)/);
   assert.match(xsession, /exec startxfce4/);
 });
+
+test('MX-051 operator bootstrap is manual, profile-dedicated, and automation-free during authentication', () => {
+  const open = fs.readFileSync(path.join(repo, 'scripts', 'linux', 'mx051-operator-open.sh'), 'utf8');
+  const prepare = fs.readFileSync(path.join(repo, 'scripts', 'linux', 'mx051-operator-prepare.sh'), 'utf8');
+  const desktop = fs.readFileSync(path.join(repo, 'config', 'linux', 'xrdp', 'MUXIA-ChatGPT-Login.desktop'), 'utf8');
+  assert.match(open, /chatgpt-linux-a/);
+  assert.match(open, /https:\/\/chatgpt\.com\/auth\/login/);
+  assert.match(open, /remote_debugging_enabled/);
+  assert.match(open, /playwright_attached/);
+  assert.doesNotMatch(open, /--remote-debugging|connectOverCDP|--no-sandbox/);
+  assert.match(prepare, /0700/);
+  const credentialMutations = prepare.split(/\r?\n/).filter((line) => /^\s*(chpasswd|passwd)\b/.test(line) && !/^\s*passwd -S\b/.test(line));
+  assert.deepEqual(credentialMutations, []);
+  assert.match(desktop, /mx051-operator-open\.sh/);
+});
