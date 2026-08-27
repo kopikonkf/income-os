@@ -82,3 +82,13 @@ MUXIA is the first proof that a Windows/Electron-coupled capability can become:
 - controlled by stable logical interfaces rather than desktop placement.
 
 A successful MUXIA migration establishes the template for later Architect, Atlas, Division, Agent, and Worker refactors.
+
+---
+
+## 2026-08-27 — Chapter #4 migration authorization overlay
+
+The original `NO PHYSICAL MIGRATION AUTHORIZED` status and sequence rule above are historical pre-authorization constraints. Founder subsequently authorized the Chapter #4 Windows-to-Linux refactor/migration under explicit rollback, evidence, and cutover gates.
+
+The operative migration decision layer is now `docs/migration/DIE_WINDOWS_ESTATE_DISPOSITION_MATRIX_V1.md` plus `company/muxia-task-graph-v1.json`. This authorization does **not** permit bulk mirroring: source, mutable data, secrets/config, installed runtimes, browser profiles, provenance, and protected external estates remain separated by disposition.
+
+Additional locked ordering: Windows Architect MCP remains the active Windows control/bootstrap channel through all Windows-dependent migration and non-Architect cutover work. Linux Architect MCP is built/proven only after `CUT-005`, and the actual Architect control-channel handoff is `CUT-006` under explicit Founder action.
