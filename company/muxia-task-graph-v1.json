@@ -225,8 +225,8 @@
                                          "MX-043",
                                          "MX-050-R1"
                                      ],
-                      "status":  "READY",
-                      "artifact":  "Linux bootstrap/runbook",
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/MX-050-linux-bootstrap.receipt.json",
                       "acceptance":  "Reproducible Playwright/Chromium target; no Electron dependency.",
                       "resume_condition":  "Founder provided reachable Ubuntu Linux VPS and explicitly authorized MX-050 through MX-052 on 2026-08-27."
                   },
@@ -237,7 +237,7 @@
                       "depends_on":  [
                                          "MX-050"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "Linux single-profile parity receipt",
                       "acceptance":  "Text + durable image + restart state satisfy core contracts."
                   },

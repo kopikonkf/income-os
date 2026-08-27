@@ -1,0 +1,56 @@
+{
+  "schema": "die.muxia.mx050.linux-bootstrap.v1",
+  "task_id": "MX-050",
+  "status": "PASS",
+  "completed_at": "2026-08-27T16:37:15Z",
+  "host": {
+    "hostname": "administrator",
+    "os": "Ubuntu 24.04.4 LTS",
+    "kernel": "6.8.0-138-generic",
+    "arch": "x64"
+  },
+  "source": {
+    "repository": "https://github.com/kopikonkf/income-os.git",
+    "branch": "architect/muxia-b06-linux-proof",
+    "runtime_commit": "95b540a52f16d295cf3889960305d85ceba1f6c3",
+    "source_root": "/srv/die/company/muxia",
+    "bundle_sha256_chain_verified": true
+  },
+  "runtime": {
+    "node": "v24.18.1",
+    "npm": "11.16.0",
+    "playwright": "1.62.1",
+    "chromium": "Chrome for Testing 151.0.7922.34",
+    "chromium_executable": "/opt/muxia/playwright-browsers/chromium-1234/chrome-linux64/chrome",
+    "muxia_root": "/var/lib/muxia",
+    "headless_smoke": "PASS",
+    "electron_dependency_used": false
+  },
+  "security": {
+    "browser_tree_owner": "root:root",
+    "browser_tree_mode": "0755",
+    "apparmor_profile": "muxia-playwright-chrome",
+    "apparmor_userns_allowlist": "exact root-owned Chromium executable",
+    "no_sandbox_flag_used": false,
+    "debug_endpoint_policy": "127.0.0.1 only",
+    "residual_muxia_browser_processes": 0
+  },
+  "filesystem": {
+    "source_owner": "kopiko:muxia",
+    "runtime_owner": "kopiko:muxia",
+    "source_mode": "2775 directories",
+    "runtime_mode": "2770 directories",
+    "root_free_bytes": 116443078656
+  },
+  "verification": {
+    "bootstrap_unit": "muxia-mx050-r1-sandbox.service",
+    "bootstrap_exit_status": 0,
+    "core_tests": "43/43 PASS",
+    "linux_parity_tests": "2 PASS, 3 SKIP",
+    "skip_reason": "three legacy physical-evidence tests are Windows-only and the evidence was intentionally not migrated",
+    "windows_regression": "48/48 PASS",
+    "false_success": 0
+  },
+  "repair_receipt": "company/muxia/receipts/MX-050-R1-typescript-bootstrap-repair.receipt.json",
+  "next_task": "MX-051"
+}

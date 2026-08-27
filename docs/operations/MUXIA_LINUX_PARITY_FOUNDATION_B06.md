@@ -1,78 +1,73 @@
 # MUXIA-B06 — LINUX PARITY FOUNDATION
 
-Status: BLOCKED_AT_MX-050
+Status: MX-050 DONE / OPERATOR GUI NEXT / MX-051 READY AFTER GUI
 Date: 2026-08-27
 Execution policy: STOP_ON_FIRST_FAILURE
-Chain: `MX-050 -> MX-051 -> MX-052`
+Chain: `sealed preflight -> MX-050 -> operator GUI -> MX-051 -> MX-052 -> STOP`
 
-## Current host capability
+## Target
 
-The current Windows VPS has no Linux execution substrate available to MUXIA:
+- Host: `administrator`
+- OS: Ubuntu 24.04.4 LTS, kernel `6.8.0-138-generic`
+- Source: `/srv/die/company/muxia`
+- Runtime: `/var/lib/muxia`
+- Browser binaries: `/opt/muxia/playwright-browsers`
+- Runtime user/group: `kopiko:muxia`
 
-- WSL: not installed;
-- Docker: unavailable;
-- Podman: unavailable.
+## Sealed source preflight
 
-The active ChatGPT Architect service principal is Administrator, but no OS-level installation was performed because enabling/installing WSL can alter Windows features and may require a reboot. Founder approval is required before that mutation.
+MUXIA was published from a clean staging clone rather than the dirty live `C:\DIE` worktree.
 
-## MX-050 preparation completed
+- branch: `architect/muxia-b06-linux-proof`
+- original source commit: `1176c7a86ad369382e1aee23bdb7465a00c5de62`
+- publication receipt commit: `26398e54a1924ab3583f1a04a095a8437620e7e1`
+- sealed files: 86
+- secret-pattern scan: PASS
+- source bundle hash and 86-file manifest: PASS on Linux
+- live Windows state, profiles, services, Proxima, and unrelated dirty files: excluded
 
-Linux bootstrap artifacts were created:
+## MX-050 result
 
-- `company/muxia/scripts/linux/mx050-bootstrap.sh`
-- `company/muxia/scripts/linux/mx050-runtime-smoke.mjs`
-- `company/muxia/tests/core/linux-bootstrap-contract.test.mjs`
+MX-050 completed PASS on the actual Linux VPS.
 
-Bootstrap contract:
+- Node.js: `v24.18.1`, official archive checksum verified
+- npm: `11.16.0`
+- Playwright: `1.62.1`
+- Chromium: Playwright-managed Chrome for Testing `151.0.7922.34`
+- headless persistent-profile smoke: PASS
+- Electron dependency: absent
+- debug endpoint policy: loopback only
+- residual MUXIA Chromium after verification: zero
 
-```text
-Linux host
-  -> Node.js >= 20
-  -> npm ci
-  -> playwright install --with-deps chromium
-  -> TypeScript build
-  -> Linux-only persistent Chromium smoke
-  -> durable runtime smoke receipt
-```
+Canonical receipt:
 
-The Linux smoke explicitly refuses non-Linux hosts with `MX050_REQUIRES_LINUX:<platform>`. This prevents Git Bash/Windows path fixtures from being misreported as Linux runtime parity.
+`company/muxia/receipts/MX-050-linux-bootstrap.receipt.json`
 
-No Electron dependency is required by the bootstrap contract or package dependencies.
+## MX-050-R1 repair
 
-## Verification completed on Windows
+The first bootstrap exposed host assumptions hidden by the Windows developer environment:
 
-Static/contract checks:
+1. `tsc` was global on Windows and absent from declared dependencies;
+2. Ubuntu 24.04 AppArmor blocked user namespaces for developer Chromium;
+3. three physical Proxima evidence tests referenced Windows-only artifacts intentionally excluded from Linux.
 
-- Linux bootstrap contract test: PASS;
-- Chromium-only requirement: PASS;
-- Electron dependency absent: PASS;
-- non-Linux runtime false-PASS rejection: PASS.
+One repair child, `MX-050-R1`, handled all defects:
 
-Full repository regression after MX-050 preparation:
+- TypeScript `5.9.3` exact-pinned;
+- Chromium installed under root-owned `/opt/muxia/playwright-browsers`;
+- an exact-path AppArmor `userns` profile preserves the Chromium sandbox;
+- `--no-sandbox` is forbidden;
+- physical Windows legacy-evidence tests skip explicitly when that evidence is absent.
 
-- TypeScript strict build: PASS;
-- core tests: 43/43 PASS;
-- parity tests: 5/5 PASS;
-- total: 48/48 PASS.
+Verification:
 
-## Blocker
+- Windows: core 43/43 + parity 5/5 = 48/48 PASS
+- Linux: core 43/43 PASS
+- Linux parity: 2 PASS + 3 explicit Windows-only SKIP
+- false success: zero
 
-`LINUX_RUNTIME_UNAVAILABLE_ON_HOST`
+## Boundary
 
-MX-050 acceptance requires an actual Linux Playwright/Chromium execution target. Windows execution, Git Bash, and OS-neutral path fixtures are insufficient evidence.
+No Executive, Division01, OAUTH, Atlas, Hermes production, Proxima, Aether, Cloudflare, marketplace, publication, spend, or account action was changed by MX-050.
 
-## Resume conditions
-
-Any one of the following creates a legitimate execution target:
-
-1. Founder authorizes installation/enablement of WSL2 on this VPS, then a Linux distribution is installed and usable; or
-2. Founder provides another reachable Linux host/runtime for MUXIA proof; or
-3. another zero-cost Linux substrate is installed with explicit Founder authorization.
-
-Recommended simplest path: WSL2 + Ubuntu on the current VPS, then run `company/muxia/scripts/linux/mx050-bootstrap.sh` inside WSL.
-
-## Batch behavior
-
-Because B06 uses `STOP_ON_FIRST_FAILURE`, MX-051 and MX-052 were not started.
-
-No Linux parity claim has been made.
+Next: install the restricted XFCE+xrdp operator layer, then begin MX-051 manual-login parity.
