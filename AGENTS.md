@@ -1,9 +1,9 @@
-# D4 — IDENTITY/hermes-operator/AGENTS.md
+# D4 — company/die-agents/hermes/AGENTS.md
 
 <aside>
 📁
 
-Path repo: `IDENTITY/hermes-operator/AGENTS.md` · Kelas: operating rules (boleh diperbaiki lewat amandemen biasa; tidak boleh melonggarkan batas authority) · Tunduk pada `CONSTITUTION.md` dan `SOUL.md`
+Path repo: `company/die-agents/hermes/AGENTS.md` · Kelas: operating rules (boleh diperbaiki lewat amandemen biasa; tidak boleh melonggarkan batas authority) · Tunduk pada `CONSTITUTION.md` dan `SOUL.md`
 
 </aside>
 

@@ -42,24 +42,34 @@
     },
     "hermes": {
       "logical_root": "company/die-agents/hermes",
-      "status": "OWNERSHIP_BOUNDARY",
+      "status": "LINUX_IMPLEMENTATION_READY",
       "source_refs": [
-        "IDENTITY/hermes-operator/SOUL.md",
-        "IDENTITY/hermes-operator/AGENTS.md",
+        "company/die-agents/hermes/SOUL.md",
+        "company/die-agents/hermes/AGENTS.md",
+        "company/die-agents/hermes/worker_dispatch.py",
+        "company/die-agents/hermes/linux/",
+        "bin/die_operator_tick.py",
+        "bin/die_operator_switch.py",
+        "bin/die_platform_receipt.py",
         "bridge/income_os_bridge/"
       ],
       "migration_task": "DIE-202",
-      "note": "Canonical Hermes identity and shared bridge source are present. Proactive-operator files observed only in dirty live Windows are not yet canonical and must be reconciled explicitly during DIE-202; no AppData/profile copy."
+      "note": "Hermes Linux clean-rebuild implementation and proactive-operator source are canonical. Runtime activation still depends on fresh Linux Hermes configuration/credentials; no Windows AppData/profile copy."
     },
     "workers": {
       "logical_root": "company/workers",
-      "status": "OWNERSHIP_BOUNDARY",
+      "status": "LINUX_IMPLEMENTATION_READY",
       "source_refs": [
-        "IDENTITY/worker-template.md",
-        "PROTOCOLS/worker-contract-v0.md"
+        "company/workers/contract/IDENTITY.md",
+        "company/workers/contract/WORKER_CONTRACT_V0.md",
+        "company/workers/contract/worker-job-envelope.v1.schema.json",
+        "company/workers/contract/worker-result-envelope.v1.schema.json",
+        "company/workers/opencode/"
       ],
       "migration_task": "DIE-202",
-      "note": "Worker contracts remain canonical at their existing repo paths until DIE-202."
+      "note": "Worker is a generic bounded executor role; OpenCode CLI is Worker-001/default general execution worker V1. Synthetic DIE-202 proof forbids model/provider calls.",
+      "default_worker": "opencode",
+      "worker_001": "OpenCode CLI"
     },
     "atlas_human_centric": {
       "logical_root": "company/atlas/human-centric",

@@ -4,7 +4,7 @@ Identity-ID: `worker-template`
 Class: Replaceable Specialist
 Runtime actor: Yes
 Architect DEV access: DENY
-Canonical contract: `PROTOCOLS/worker-contract-v0.md`
+Canonical contract: `company/workers/contract/WORKER_CONTRACT_V0.md`
 
 ## 1. Identity
 

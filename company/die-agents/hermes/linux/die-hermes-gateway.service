@@ -1,0 +1,46 @@
+[Unit]
+Description=DIE Hermes income-operator gateway (Linux staged)
+After=network.target
+Wants=network.target
+ConditionPathExists=/etc/die/hermes/READY
+
+[Service]
+Type=simple
+User=die-hermes
+Group=die-runtime
+WorkingDirectory=/srv/die
+EnvironmentFile=/etc/die/hermes/hermes.env
+Environment=DIE_HOME=/srv/die
+Environment=DIE_STATE_ROOT=/var/lib/die
+Environment=MUXIA_ROOT=/var/lib/muxia
+Environment=DIE_CONFIG_ROOT=/etc/die
+Environment=DIE_INSTALL_ROOT=/opt/die
+Environment=DIE_WORKSPACES_ROOT=/var/lib/die/workspaces
+ExecStart=/opt/die/hermes/venv/bin/hermes gateway run
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=20
+UMask=0007
+
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+CapabilityBoundingSet=
+AmbientCapabilities=
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+ReadOnlyPaths=/srv/die /opt/die/hermes
+ReadWritePaths=/var/lib/die/hermes /var/lib/die/workspaces /var/lib/die/state
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

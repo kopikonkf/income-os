@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.worker-result-envelope.v1",
+  "title": "DIE Worker Result Envelope V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "task_id", "executor", "status", "summary", "artifacts", "evidence", "tests", "errors", "next_action"],
+  "properties": {
+    "schema": {"const": "die.worker-result-envelope.v1"},
+    "task_id": {"type": "string"},
+    "executor": {"const": "opencode"},
+    "status": {"enum": ["done", "partial", "blocked", "failed"]},
+    "summary": {"type": "string"},
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "kind", "description"],
+        "properties": {
+          "path": {"type": "string"},
+          "kind": {"enum": ["file", "dir", "patch"]},
+          "description": {"type": "string"}
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "ref", "claim"],
+        "properties": {
+          "type": {"enum": ["command_output", "file_diff", "log", "screenshot", "receipt"]},
+          "ref": {"type": "string"},
+          "claim": {"type": "string"}
+        }
+      }
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "command", "result", "output_ref"],
+        "properties": {
+          "name": {"type": "string"},
+          "command": {"type": "string"},
+          "result": {"enum": ["pass", "fail"]},
+          "output_ref": {"type": "string"}
+        }
+      }
+    },
+    "errors": {"type": "array", "items": {"type": "object"}},
+    "next_action": {"type": ["string", "null"]}
+  }
+}

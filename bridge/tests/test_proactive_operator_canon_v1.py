@@ -11,7 +11,7 @@ PLATFORM_SCHEMA = (
     ROOT / "company" / "schemas" / "die.platform.receipt.v1.schema.json"
 )
 COMPANY_BRAIN = ROOT / "COMPANY_BRAIN.md"
-HERMES_AGENTS = ROOT / "IDENTITY" / "hermes-operator" / "AGENTS.md"
+HERMES_AGENTS = ROOT / "company" / "die-agents" / "hermes" / "AGENTS.md"
 PIPELINE = ROOT / "docs" / "pipeline" / "DIGITAL_INCOME_PIPELINE_CANON.md"
 EVENT_WRITER = ROOT / "bin" / "die_event.py"
 
