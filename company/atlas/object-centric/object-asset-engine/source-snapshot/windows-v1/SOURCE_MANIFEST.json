@@ -1,0 +1,208 @@
+{
+  "schema": "die.external-source-snapshot.v1",
+  "source_root": "D:\\object-asset-engine",
+  "source_kind": "non-git live Windows source snapshot",
+  "scope": "syntax-valid scripts/prompts source only; no runtime data",
+  "windows_path_literals_present": true,
+  "linux_runnable": false,
+  "files": [
+    {
+      "path": "scripts/audit/gemini_audit_scale.py",
+      "source_sha256": "2c2dd5b51d773ccf35728ac4142666afb9f383232bac00e81c3b9d9ccca15e46",
+      "imported_sha256": "2c2dd5b51d773ccf35728ac4142666afb9f383232bac00e81c3b9d9ccca15e46",
+      "source_bytes": 13982,
+      "imported_bytes": 13982,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/audit/gemini_audit_worker.py",
+      "source_sha256": "a1d69f438cb97b0687d8a4dafe56ca66ec6163de6474ac336dad8d3454b45865",
+      "imported_sha256": "a1d69f438cb97b0687d8a4dafe56ca66ec6163de6474ac336dad8d3454b45865",
+      "source_bytes": 10776,
+      "imported_bytes": 10776,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/concepts/concept_ingest.py",
+      "source_sha256": "4f02edcbc0e9c065614352ac7feaae5a71b1382dbc0fd473d4a4befc8ec55e17",
+      "imported_sha256": "4f02edcbc0e9c065614352ac7feaae5a71b1382dbc0fd473d4a4befc8ec55e17",
+      "source_bytes": 5994,
+      "imported_bytes": 5994,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/concepts/concept_shell_generator.py",
+      "source_sha256": "9eae24b87b052a10f25dc97869922f66cc01c9e2c0ebe9aaff7a03a809af824c",
+      "imported_sha256": "9eae24b87b052a10f25dc97869922f66cc01c9e2c0ebe9aaff7a03a809af824c",
+      "source_bytes": 3645,
+      "imported_bytes": 3645,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/concepts/qc_benchmark.py",
+      "source_sha256": "ce3ca1c068f52907c3dae6c7df75fdc62364a4558b4b408f529aa430121f0e1c",
+      "imported_sha256": "ce3ca1c068f52907c3dae6c7df75fdc62364a4558b4b408f529aa430121f0e1c",
+      "source_bytes": 9044,
+      "imported_bytes": 9044,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/filters/apply_filters.py",
+      "source_sha256": "28b0d9c45d9956b0904162ac7a14c386aa3288e1c904e999c3e49f8d7f2e4179",
+      "imported_sha256": "28b0d9c45d9956b0904162ac7a14c386aa3288e1c904e999c3e49f8d7f2e4179",
+      "source_bytes": 5381,
+      "imported_bytes": 5381,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/filters/audit_eligible.py",
+      "source_sha256": "5305256c83e3c49ed69133662dd94ef631b5ba63f2c086d1edfae50dda1814ec",
+      "imported_sha256": "5305256c83e3c49ed69133662dd94ef631b5ba63f2c086d1edfae50dda1814ec",
+      "source_bytes": 2401,
+      "imported_bytes": 2401,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/filters/audit_goldenmine.py",
+      "source_sha256": "6a02e96444ea369b9f6a00cd4729a2db4dd6a9f1fef6aa05f21219b847b896c9",
+      "imported_sha256": "6a02e96444ea369b9f6a00cd4729a2db4dd6a9f1fef6aa05f21219b847b896c9",
+      "source_bytes": 2121,
+      "imported_bytes": 2121,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/filters/opcode010_diagnostic.py",
+      "source_sha256": "7e7cae1289823f3d9f03204d94fac119b642ad5406ebfe3c1caf145b5f8257f3",
+      "imported_sha256": "7e7cae1289823f3d9f03204d94fac119b642ad5406ebfe3c1caf145b5f8257f3",
+      "source_bytes": 4707,
+      "imported_bytes": 4707,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/filters/wave1_structural_filter.py",
+      "source_sha256": "e88fd025bfcc9ba372325e3daa7faa9f1546a91fa905818787138e6cb9f9d3fa",
+      "imported_sha256": "e88fd025bfcc9ba372325e3daa7faa9f1546a91fa905818787138e6cb9f9d3fa",
+      "source_bytes": 5944,
+      "imported_bytes": 5944,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/filters/wave2_wordnet_scoring.py",
+      "source_sha256": "636beff1d46ca83ed63e15df28ddde93f9175ea36976d32b2b2b4ef104f8dd54",
+      "imported_sha256": "636beff1d46ca83ed63e15df28ddde93f9175ea36976d32b2b2b4ef104f8dd54",
+      "source_bytes": 8565,
+      "imported_bytes": 8565,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/filters/wave3_eligibility.py",
+      "source_sha256": "34468b20a7c48326fe9da6964656943e3b12220dd5bb7a642842cf61db5f71af",
+      "imported_sha256": "34468b20a7c48326fe9da6964656943e3b12220dd5bb7a642842cf61db5f71af",
+      "source_bytes": 9841,
+      "imported_bytes": 9841,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/ingest/init_db.py",
+      "source_sha256": "6d0b199572e7bb44eb759f239046a585748e209651b14d294fe6217fb504715f",
+      "imported_sha256": "6d0b199572e7bb44eb759f239046a585748e209651b14d294fe6217fb504715f",
+      "source_bytes": 3915,
+      "imported_bytes": 3915,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/ingest/kaikki_noun_ingest.py",
+      "source_sha256": "17759f4b09fbe965eae7507b120dab7190bd592f11c9c63199a669b28b5f9d0c",
+      "imported_sha256": "17759f4b09fbe965eae7507b120dab7190bd592f11c9c63199a669b28b5f9d0c",
+      "source_bytes": 3749,
+      "imported_bytes": 3749,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/ingest/migrate_001.py",
+      "source_sha256": "a33c529b2cbfb59e3fdec3c9695a9773fb562ecab3f9e3619d76dbb88b584200",
+      "imported_sha256": "a33c529b2cbfb59e3fdec3c9695a9773fb562ecab3f9e3619d76dbb88b584200",
+      "source_bytes": 1991,
+      "imported_bytes": 1991,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/ingest/migrate_009_raw_nouns.py",
+      "source_sha256": "82c197e50628120ef5077298b6db09612b09658e172a7895f1308b136f09315b",
+      "imported_sha256": "82c197e50628120ef5077298b6db09612b09658e172a7895f1308b136f09315b",
+      "source_bytes": 890,
+      "imported_bytes": 890,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/ingest/repair_categories_json.py",
+      "source_sha256": "944984d55b1c21854588e1bdfc1247a9f095afb1a4d27fefa356a1807edba8e1",
+      "imported_sha256": "944984d55b1c21854588e1bdfc1247a9f095afb1a4d27fefa356a1807edba8e1",
+      "source_bytes": 1191,
+      "imported_bytes": 1191,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/ingest/seed_ingest.py",
+      "source_sha256": "21ae9a5abfec873a582d0f1759014bf2a71964801cdd34ef48e5fd6c4fd8154b",
+      "imported_sha256": "21ae9a5abfec873a582d0f1759014bf2a71964801cdd34ef48e5fd6c4fd8154b",
+      "source_bytes": 3639,
+      "imported_bytes": 3639,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/ingest/seed_master13.py",
+      "source_sha256": "94f42613c134fb9be19051b0e0ec5c71ea5b5e073b784c9408ea7799816669f5",
+      "imported_sha256": "94f42613c134fb9be19051b0e0ec5c71ea5b5e073b784c9408ea7799816669f5",
+      "source_bytes": 2383,
+      "imported_bytes": 2383,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/ingest/wiktionary_miner.py",
+      "source_sha256": "9f07ea3d0323830cce53948293f95a23de8316040e4009651abe41d2ea22bd08",
+      "imported_sha256": "9f07ea3d0323830cce53948293f95a23de8316040e4009651abe41d2ea22bd08",
+      "source_bytes": 5143,
+      "imported_bytes": 5143,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/scoring/demand_score.py",
+      "source_sha256": "9c78712ddb11e5c16951278f378cdeb4eaa007b7effe80fd9e77cfe0da3f93e1",
+      "imported_sha256": "9c78712ddb11e5c16951278f378cdeb4eaa007b7effe80fd9e77cfe0da3f93e1",
+      "source_bytes": 6337,
+      "imported_bytes": 6337,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "scripts/scoring/longtail_expand.py",
+      "source_sha256": "ce6335730e375ad5915007ee7c446e313956f36472ea5810d2882e7655774976",
+      "imported_sha256": "ce6335730e375ad5915007ee7c446e313956f36472ea5810d2882e7655774976",
+      "source_bytes": 7567,
+      "imported_bytes": 7567,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    }
+  ],
+  "excluded": [
+    "config.json",
+    "data/**",
+    "db/**",
+    "outputs/**",
+    "reports/**",
+    "state/**",
+    "scripts/**/__pycache__/**",
+    "scripts/**/*.pyc",
+    "scripts/**/*.bat",
+    "scripts/audit/gemini_audit_parallel.py"
+  ],
+  "excluded_source_defects": [
+    {
+      "path": "scripts/audit/gemini_audit_parallel.py",
+      "source_sha256": "aada714ea529e4b46e66c04c83d9cd68f3683681362c6062a264a556535b369e",
+      "source_bytes": 6278,
+      "reason": "SYNTAX_INVALID: f-string expression part cannot include a backslash at line 126",
+      "repair_policy": "Do not silently repair during DIE-103; reconsider/refactor under DIE-203 only if the lane is still required."
+    }
+  ],
+  "exclusion_reason": "mutable data/state, host-specific runtime config, generated cache, Windows launcher, or invalid source; Linux refactor/config rebuild is DIE-203."
+}

@@ -7,7 +7,7 @@ EXECUTIVE = ROOT / "IDENTITY" / "chatgpt-plus-executive.md"
 DIVISION01 = ROOT / "IDENTITY" / "division-head-division01.md"
 
 PIPELINE = "docs/pipeline/DIGITAL_INCOME_PIPELINE_CANON.md"
-ATLAS = "docs/atlas/HUMAN_CENTRIC_ATLAS_CANON.md"
+ATLAS = "company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md"
 BLUEPRINT = "docs/missions/M001_BLUEPRINT_BATCH1_V2.md"
 MATRIX = "docs/pipeline/MATRIX_6_PLATFORM_TOS_STRICTNESS.md"
 WORKBOOK = "docs/atlas/SCENARIO_1B_QUANTITY_GAME.xlsx"

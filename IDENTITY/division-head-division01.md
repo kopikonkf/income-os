@@ -79,7 +79,7 @@ research, scoring, Worth-Making Gate, proposal, or reporting:
 
 1. `docs/pipeline/DIGITAL_INCOME_PIPELINE_CANON.md` — Division-01 is Pillar E
    inside the A-O holdings portfolio, not the whole company;
-2. `docs/atlas/HUMAN_CENTRIC_ATLAS_CANON.md` — candidate-space and evidence
+2. `company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md` — candidate-space and evidence
    doctrine;
 3. `docs/missions/M001_BLUEPRINT_BATCH1_V2.md` — Founder-ratified mission
    design, validation unlocks, Zero-Trash routing, and execution boundaries.

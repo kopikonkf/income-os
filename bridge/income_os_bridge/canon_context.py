@@ -27,7 +27,7 @@ CLASSIFICATIONS = {"CANON", "SUPPORTING_INPUT"}
 
 ALLOWED_DOCUMENTS = {
     "pipeline": "docs/pipeline/DIGITAL_INCOME_PIPELINE_CANON.md",
-    "atlas": "docs/atlas/HUMAN_CENTRIC_ATLAS_CANON.md",
+    "atlas": "company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md",
     "blueprint": "docs/missions/M001_BLUEPRINT_BATCH1_V2.md",
     "platform_matrix": "docs/pipeline/MATRIX_6_PLATFORM_TOS_STRICTNESS.md",
     "quantity_workbook": "docs/atlas/SCENARIO_1B_QUANTITY_GAME.xlsx",
