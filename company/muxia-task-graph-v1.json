@@ -444,7 +444,7 @@
                       "depends_on":  [
                                          "DIE-103"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "canon validation script/tests/receipt",
                       "acceptance":  "Target tree, forbidden paths, source/runtime separation, secrets boundary, and ownership rules validate fail-closed."
                   },
@@ -455,7 +455,7 @@
                       "depends_on":  [
                                          "DIE-104"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "Linux Executive source/runtime/receipt",
                       "acceptance":  "Executive identity and wake/read contract work on Linux with fresh operator-controlled auth and no Windows profile cloning."
                   },
@@ -466,7 +466,7 @@
                       "depends_on":  [
                                          "DIE-104"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "Linux Division01 source/runtime/receipt",
                       "acceptance":  "Principal ID division-head-division01 is preserved; D:\\OAUTH is not treated as Division01; fresh auth is used."
                   },
@@ -477,7 +477,7 @@
                       "depends_on":  [
                                          "DIE-104"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "Linux Hermes/Worker source/runtime/receipt",
                       "acceptance":  "Canonical SOUL/AGENTS/contracts drive fresh Linux runtime; no bulk AppData/profile clone."
                   },
@@ -488,7 +488,7 @@
                       "depends_on":  [
                                          "DIE-104"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "human/object Atlas source + consistent object-engine data migration receipt",
                       "acceptance":  "Object-engine source is separated from DB/data; SQLite migration is consistent/quiesce-aware; human-centric canon is materialized."
                   },

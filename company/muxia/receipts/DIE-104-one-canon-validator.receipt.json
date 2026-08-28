@@ -1,0 +1,96 @@
+{
+  "schema": "die.muxia.die104-one-canon-validator.v1",
+  "task_id": "DIE-104",
+  "date": "2026-08-28",
+  "status": "PASS_WITH_ONE_REPAIR_CHILD",
+  "implementation_commit": "b4a2349b949555674c6246f8d6cb0661574220d0",
+  "validator": "company/scripts/validate_one_canon.py",
+  "contract": "company/contracts/die.one-canon-validator.v1.json",
+  "architecture_doc": "docs/architecture/DIE_ONE_CANON_VALIDATOR_V1.md",
+  "checks": {
+    "count": 11,
+    "names": [
+      "repo_identity",
+      "canonical_paths",
+      "component_registry",
+      "path_root_separation",
+      "company_forbidden_paths",
+      "legacy_runtime_boundary",
+      "migration_boundaries",
+      "atlas_canon",
+      "object_snapshot",
+      "oauth_snapshot",
+      "company_secret_scan"
+    ]
+  },
+  "legacy_runtime_boundary": {
+    "tracked_state_allowlist_count": 15,
+    "tracked_state_may_expand": false,
+    "tracked_workspaces_allowed": false,
+    "removal_gate": "CUT-002/CUT-003 after final state sync and restore/replay proof"
+  },
+  "negative_tests": {
+    "suite": "bridge/tests/test_one_canon_validator_v1.py",
+    "passed": 6,
+    "failed": 0,
+    "fail_closed_cases": [
+      "tracked company credentials path",
+      "new tracked runtime state outside legacy allowlist",
+      "Architect migration-order drift",
+      "snapshot content tamper"
+    ]
+  },
+  "windows_validation": {
+    "implementation_head": "b4a2349b949555674c6246f8d6cb0661574220d0",
+    "require_clean": true,
+    "validator": "11/11 PASS",
+    "bridge_full_suite": "210/210 PASS",
+    "worktree_clean": true
+  },
+  "linux_validation": {
+    "implementation_head": "b4a2349b949555674c6246f8d6cb0661574220d0",
+    "require_clean": true,
+    "validator": "11/11 PASS",
+    "worktree_clean": true
+  },
+  "repair_children": 1,
+  "repair_child": {
+    "id": "DIE-104-R1",
+    "scope": "validator-driven canon repair and test-harness stabilization",
+    "events": [
+      "First real validator execution detected stale Hermes component-registry references to bin/die_operator_tick.py and bin/die_operator_switch.py, which are absent from clean GitHub main.",
+      "Hermes registry ownership was corrected to reference only canonical SOUL/AGENTS plus shared bridge source; live-only proactive-operator candidates are explicitly deferred to DIE-202 reconciliation.",
+      "The first negative-test collection failed because an importlib-loaded dataclass module was not inserted into sys.modules; the test loader was corrected and the suite then passed 6/6."
+    ],
+    "live_windows_mutation": false,
+    "result": "PASS"
+  },
+  "boundaries_proven": {
+    "architect_source_import_deferred": true,
+    "architect_mx053_depends_on_cut005": true,
+    "oauth_is_division01": false,
+    "division01_principal_id": "division-head-division01",
+    "aether_keep_external": true,
+    "atlas_single_operational_canon": true,
+    "company_forbidden_tracked_paths": 0,
+    "high_confidence_company_secret_hits": 0,
+    "object_snapshot_files": 22,
+    "oauth_snapshot_files": 6
+  },
+  "safety": {
+    "live_windows_c_die_mutated": false,
+    "windows_services_modified": false,
+    "windows_tasks_modified": false,
+    "browser_profiles_copied": false,
+    "credential_values_read_or_copied": false,
+    "aether_modified": false,
+    "proxima_modified": false
+  },
+  "newly_unblocked_tasks": [
+    "DIE-200",
+    "DIE-201",
+    "DIE-202",
+    "DIE-203"
+  ],
+  "recommended_next_atomic_task": "DIE-200 - Executive Linux migration"
+}
