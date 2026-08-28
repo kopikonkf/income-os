@@ -26,11 +26,14 @@ async function classify(page) {
   const url = page.url();
   const title = await page.title().catch(() => '');
   const editableCount = await page.locator('textarea, [contenteditable="true"]').count().catch(() => 0);
+  const loginButtonCount = await page.getByRole('button', { name: /log in/i }).count().catch(() => 0);
+  const loginLinkCount = await page.getByRole('link', { name: /log in/i }).count().catch(() => 0);
+  const loginUiCount = loginButtonCount + loginLinkCount;
   let state = 'UNKNOWN';
-  if (/auth|login|signup/i.test(url)) state = 'AUTH_REQUIRED';
+  if (/auth|login|signup/i.test(url) || loginUiCount > 0) state = 'AUTH_REQUIRED';
   else if (url.startsWith('https://chatgpt.com') && editableCount > 0) state = 'READY';
   else if (url.startsWith('https://chatgpt.com')) state = 'OPERATOR_CHECK_REQUIRED';
-  return { state, url, title, editableCount };
+  return { state, url, title, editableCount, loginUiCount };
 }
 
 const context = await chromium.launchPersistentContext(profileDir, {
