@@ -422,8 +422,8 @@
                       "depends_on":  [
                                          "DIE-101"
                                      ],
-                      "status":  "READY",
-                      "artifact":  "OS-neutral DIE_HOME/DIE_STATE_ROOT/MUXIA_ROOT/DIE_CONFIG_ROOT/DIE_INSTALL_ROOT contract",
+                      "status":  "DONE",
+                      "artifact":  "company/contracts/die.path-roots.v1.json + docs/architecture/DIE_PATH_ROOTS_V1.md + bridge/tests/test_die_path_abstraction_v1.py + receipt",
                       "acceptance":  "Linux and Windows path fixtures resolve without hard-coded drive assumptions; secrets/runtime/source roots remain separated."
                   },
                   {
@@ -433,7 +433,7 @@
                       "depends_on":  [
                                          "DIE-102"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "selectively imported company canon",
                       "acceptance":  "Only disposition-approved source/provenance enters /srv/die; no nested .git, caches, profiles, secrets, or mutable runtime state."
                   },

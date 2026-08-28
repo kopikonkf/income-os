@@ -12,13 +12,13 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "bridge"))
 
-from income_os_bridge import m001_loop
+from income_os_bridge import config, m001_loop
 
 
-def _validated(args: argparse.Namespace, default_home: pathlib.Path) -> dict:
+def _validated(args: argparse.Namespace) -> dict:
     return m001_loop.validate_authorization(
         pathlib.Path(args.request),
-        default_home / "state" / "DECISIONS.jsonl",
+        config.STATE / "DECISIONS.jsonl",
     )
 
 
@@ -26,7 +26,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(prog="m001_loop")
     sub = parser.add_subparsers(dest="command", required=True)
 
-    default_home = pathlib.Path(os.environ.get("DIE_HOME", r"C:\DIE"))
+    default_home = config.DIE_HOME
     for name in ("plan", "materialize"):
         cmd = sub.add_parser(name)
         cmd.add_argument("--request", required=True)
@@ -40,8 +40,8 @@ def main() -> int:
     args = parser.parse_args()
     try:
         if args.command in {"plan", "materialize"}:
-            validated = _validated(args, default_home)
-            root = default_home / "workspaces" / validated["request"]["run_id"]
+            validated = _validated(args)
+            root = config.WORKSPACES / validated["request"]["run_id"]
             if args.command == "plan":
                 result = m001_loop.build_plan(validated, root.resolve())
             else:
