@@ -14,7 +14,8 @@ fi
 
 getent group "$GROUP" >/dev/null || groupadd --system "$GROUP"
 install -d -m 0755 "$(dirname "$INSTALL_ROOT")" "$INSTALL_ROOT"
-install -d -o kopiko -g "$GROUP" -m 2770 "$STATE_ROOT" "$STATE_ROOT/home" "$WORKSPACES_ROOT"
+install -d -o kopiko -g "$GROUP" -m 2770 "$STATE_ROOT" "$STATE_ROOT/home"
+install -d -o root -g "$GROUP" -m 2770 "$WORKSPACES_ROOT"
 
 npm install --global --prefix "$INSTALL_ROOT" "opencode-ai@$PKG_VERSION"
 BIN="$INSTALL_ROOT/bin/opencode"

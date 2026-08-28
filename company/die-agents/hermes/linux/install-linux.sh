@@ -35,7 +35,8 @@ fi
 usermod -a -G "$SERVICE_GROUP" kopiko
 
 install -d -m 0755 "$DIE_INSTALL_ROOT" "$INSTALL_ROOT" "$DIE_CONFIG_ROOT" "$ENV_DIR"
-install -d -o "$SERVICE_USER" -g "$SERVICE_GROUP" -m 2770 "$DIE_STATE_ROOT/hermes" "$HERMES_HOME" "$WORKSPACES_ROOT"
+install -d -o "$SERVICE_USER" -g "$SERVICE_GROUP" -m 2770 "$DIE_STATE_ROOT/hermes" "$HERMES_HOME"
+install -d -o root -g "$SERVICE_GROUP" -m 2770 "$WORKSPACES_ROOT"
 
 if [[ ! -d "$SOURCE_ROOT/.git" ]]; then
   rm -rf "$SOURCE_ROOT"
@@ -66,7 +67,7 @@ DIE_OPENCODE_HOME=$DIE_STATE_ROOT/workers/opencode/home
 DIE_WORKSPACES_ROOT=$WORKSPACES_ROOT
 EOF
 chown root:root "$ENV_FILE"
-chmod 0644 "$ENV_FILE"
+chmod 0600 "$ENV_FILE"
 
 install -m 0644 "$UNIT_SRC" "$UNIT_DST"
 systemctl daemon-reload
