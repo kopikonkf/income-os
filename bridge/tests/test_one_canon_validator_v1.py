@@ -76,7 +76,7 @@ def _fixture(tmp_path: pathlib.Path) -> pathlib.Path:
         "bridge/income_os_bridge/canon_context.py",
         "bridge/tests/test_runtime_canon_load_contract_v1.py",
         "company/runtime-canon-context-v1.json",
-        "IDENTITY/chatgpt-plus-executive.md",
+        "company/executive/IDENTITY.md",
         "IDENTITY/division-head-division01.md",
     ]:
         path = root / rel

@@ -6,10 +6,11 @@ import { pathToFileURL } from 'node:url';
 const dieHome = process.env.DIE_HOME || '/srv/die';
 const profileDir = process.env.DIE_EXECUTIVE_BROWSER_PROFILE || '/var/lib/die/executive/browser-profile';
 const browserRoot = process.env.PLAYWRIGHT_BROWSERS_PATH || '/opt/muxia/playwright-browsers';
+const statusFile = process.env.DIE_EXECUTIVE_BROWSER_STATUS || '/var/lib/die/executive/browser-status.json';
 const playwrightEntry = path.join(dieHome, 'company', 'muxia', 'node_modules', 'playwright', 'index.mjs');
 const command = process.argv[2] || 'probe';
 
-if (!path.isAbsolute(dieHome) || !path.isAbsolute(profileDir) || !path.isAbsolute(browserRoot)) {
+if (!path.isAbsolute(dieHome) || !path.isAbsolute(profileDir) || !path.isAbsolute(browserRoot) || !path.isAbsolute(statusFile)) {
   console.error('E_ABSOLUTE_PATH_REQUIRED');
   process.exit(2);
 }
@@ -47,14 +48,27 @@ if (!page.url().startsWith('https://chatgpt.com')) {
 }
 await page.bringToFront();
 await page.waitForTimeout(3000);
+function statusPayload(status) {
+  return {
+    schema: 'die.executive.operator-browser.v1',
+    principal_id: 'chatgpt-plus-executive',
+    policy: 'operator-controlled-acquisition-only',
+    profile: profileDir,
+    observed_at: new Date().toISOString(),
+    ...status,
+  };
+}
+function writeStatus(status) {
+  const payload = statusPayload(status);
+  fs.mkdirSync(path.dirname(statusFile), { recursive: true, mode: 0o750 });
+  const tmp = `${statusFile}.tmp`;
+  fs.writeFileSync(tmp, JSON.stringify(payload) + '\n', { mode: 0o640 });
+  fs.renameSync(tmp, statusFile);
+  return payload;
+}
+
 const status = await classify(page);
-console.log(JSON.stringify({
-  schema: 'die.executive.operator-browser.v1',
-  principal_id: 'chatgpt-plus-executive',
-  policy: 'operator-controlled-acquisition-only',
-  profile: profileDir,
-  ...status,
-}));
+console.log(JSON.stringify(writeStatus(status)));
 
 if (command === 'probe') {
   await context.close();
@@ -68,10 +82,15 @@ if (command !== 'launch') {
 
 console.error('Executive browser opened. Login/recovery and any prompt submission remain operator-controlled.');
 console.error('No cookies, tokens, private backend calls, prompt submission, or output extraction are performed by this launcher.');
+const timer = setInterval(async () => {
+  const current = await classify(page).catch(() => ({ state: 'UNKNOWN', url: page.url(), title: '', editableCount: 0, loginUiCount: 0 }));
+  writeStatus(current);
+}, 5000);
 await new Promise((resolve) => {
   const done = () => resolve();
   process.once('SIGINT', done);
   process.once('SIGTERM', done);
   context.on('close', done);
 });
+clearInterval(timer);
 await context.close().catch(() => {});

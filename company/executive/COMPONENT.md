@@ -6,7 +6,7 @@ Migration task: `DIE-200`
 No duplicate copy of shared runtime source; current repo paths remain canonical until DIE-200 relocation/rebuild.
 
 Canonical source references:
-- `IDENTITY/chatgpt-plus-executive.md`
+- `company/executive/IDENTITY.md`
 - `bridge/income_os_bridge/runtime_mcp_server.py`
 - `bridge/income_os_bridge/runtime_mcp_oauth.py`
 - `ops/windows/runtime-mcp/`

@@ -47,7 +47,7 @@
     {
       "id": "chatgpt-plus-executive",
       "kind": "executive_strategic_intelligence",
-      "document": "IDENTITY/chatgpt-plus-executive.md",
+      "document": "company/executive/IDENTITY.md",
       "scope": "company_portfolio",
       "runtime": true,
       "template": false,

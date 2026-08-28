@@ -18,7 +18,7 @@
       "logical_root": "company/executive",
       "status": "OWNERSHIP_BOUNDARY",
       "source_refs": [
-        "IDENTITY/chatgpt-plus-executive.md",
+        "company/executive/IDENTITY.md",
         "bridge/income_os_bridge/runtime_mcp_server.py",
         "bridge/income_os_bridge/runtime_mcp_oauth.py",
         "ops/windows/runtime-mcp/"
