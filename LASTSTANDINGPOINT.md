@@ -2450,3 +2450,25 @@ Task graph status: `DIE-200=WAITING_OPERATOR`. Do not start DIE-201 serially unt
 
 Receipt: `company/muxia/receipts/DIE-200-executive-linux.receipt.json`.
 Migration doc: `docs/migration/DIE_EXECUTIVE_LINUX_MIGRATION_V1.md`.
+---
+
+## 2026-08-28 - Chapter #4 DIE-201 Division01 Linux migration — WAITING_OPERATOR_AUTH
+
+`DIE-201 - Division01 Linux migration`: IN PROGRESS / WAITING_OPERATOR_AUTH.
+
+Division01 identity moved through Git history to `company/division/division001/IDENTITY.md`; registry/validator/tests were updated atomically. Linux assets are under `company/division/division001/linux/`.
+
+Linux Decision MCP is active as `die-division01-runtime-mcp.service` on loopback `127.0.0.1:8792`, principal `division-head-division01`, 6 tools. Fresh Linux-only secrets are root-owned mode 0600 under `/etc/die/division01/runtime-mcp.env`. Authenticated initialize/tools/context_snapshot passed; unauthenticated MCP returned 401. Shared `/var/lib/die/state` ownership remained `die-executive:die-runtime` mode 770; DIE-201 did not take ownership or perform final CUT-002 state sync.
+
+`D:\OAUTH` remains explicitly not Division01 and no OAUTH credential/auth/token/PoW/debug/browser state was imported.
+
+The Windows private-backend/Sentinel wake implementation was not ported. Linux uses a fresh headed Playwright profile `/var/lib/die/division01/browser-profile` and non-sensitive heartbeat `/var/lib/die/division01/browser-status.json`, with manual operator login only and no cookie/token extraction, private backend, protection bypass, automated prompt submission, or output extraction.
+
+Current Division01 heartbeat is `AUTH_REQUIRED`, expected for a fresh profile. Windows rollback remains active: `DIERuntimeMCPDivision01` Running/Auto, loopback 8792 and Brave/CDP 9333 listening. Live `C:\DIE` HEAD remains `04eda313f1e757c0d0f8fd9d90251b92c0dd95a3`; dirty count was observed at 38 and is treated as dynamic while Windows writers remain active. No reset/discard/fast-forward/public endpoint cutover occurred.
+
+Validation: targeted Division01 Linux tests 6/6 PASS, full bridge 222/222 PASS, Windows one-canon 11/11 PASS, Linux one-canon 11/11 PASS. `DIE-201-R1` is the single repair child for identity test refs, shared-state ownership guard, browser heartbeat schema, and shell/evidence hygiene.
+
+Task graph status: `DIE-201=WAITING_OPERATOR`. Do not mark DONE until manual Linux login yields heartbeat `READY`.
+
+Receipt: `company/muxia/receipts/DIE-201-division01-linux.receipt.json`.
+Migration doc: `docs/migration/DIE_DIVISION01_LINUX_MIGRATION_V1.md`.

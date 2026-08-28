@@ -1,0 +1,108 @@
+{
+  "schema": "die.muxia.die201-division01-linux.v1",
+  "task_id": "DIE-201",
+  "date": "2026-08-28",
+  "status": "WAITING_OPERATOR_AUTH",
+  "implementation_commit": "301c794c28f8e5605dc6ca9b061cdaa2312431a9",
+  "identity": {
+    "principal_id": "division-head-division01",
+    "old_path": "IDENTITY/division-head-division01.md",
+    "canonical_path": "company/division/division001/IDENTITY.md",
+    "moved_through_git": true
+  },
+  "linux_runtime": {
+    "service": "die-division01-runtime-mcp.service",
+    "service_user": "die-division01",
+    "service_group": "die-runtime",
+    "bind": "127.0.0.1:8792",
+    "source_root": "/srv/die",
+    "state_root": "/var/lib/die",
+    "config_file": "/etc/die/division01/runtime-mcp.env",
+    "install_root": "/opt/die/division01",
+    "service_active": true,
+    "health_principal": "division-head-division01",
+    "health_tools": 6,
+    "unauthenticated_http_status": 401,
+    "authenticated_initialize": "PASS",
+    "authenticated_tools_list": "6 PASS",
+    "authenticated_context_snapshot": "PASS",
+    "env_mode": "0600 root:root"
+  },
+  "shared_state": {
+    "path": "/var/lib/die/state",
+    "observed_mode": "0770",
+    "observed_owner": "die-executive:die-runtime",
+    "ownership_changed_by_die201": false,
+    "shared_group": "die-runtime",
+    "final_state_sync_performed": false
+  },
+  "oauth_boundary": {
+    "source_root": "D:\\OAUTH",
+    "is_division01": false,
+    "credential_store_imported": false,
+    "provider_auth_token_pow_code_imported": false,
+    "debug_network_capture_code_imported": false,
+    "browser_session_imported": false
+  },
+  "browser": {
+    "launcher": "company/division/division001/linux/operator_browser.mjs",
+    "profile": "/var/lib/die/division01/browser-profile",
+    "status_file": "/var/lib/die/division01/browser-status.json",
+    "schema": "die.division01.operator-browser.v1",
+    "profile_created_fresh": true,
+    "headed": true,
+    "policy": "operator-controlled-acquisition-only",
+    "current_state": "AUTH_REQUIRED",
+    "current_url": "https://chatgpt.com/",
+    "login_ui_count": 2,
+    "editable_count": 1,
+    "windows_profile_cloned": false,
+    "cookie_or_token_read": false,
+    "private_backend_used": false,
+    "automated_prompt_submission": false,
+    "output_extraction": false
+  },
+  "windows_rollback": {
+    "service": "DIERuntimeMCPDivision01",
+    "service_state": "Running",
+    "service_start_mode": "Auto",
+    "runtime_listener": "127.0.0.1:8792",
+    "browser_cdp_listener": "127.0.0.1:9333",
+    "live_die_head": "04eda313f1e757c0d0f8fd9d90251b92c0dd95a3",
+    "live_die_dirty_paths_observed": 38,
+    "dirty_path_count_is_dynamic_while_windows_writers_active": true,
+    "service_disabled": false,
+    "public_endpoint_cutover": false
+  },
+  "validation": {
+    "division01_linux_targeted_tests": "6/6 PASS",
+    "windows_bridge_suite": "222/222 PASS",
+    "windows_one_canon": "11/11 PASS",
+    "linux_one_canon": "11/11 PASS",
+    "linux_source_head": "301c794c28f8e5605dc6ca9b061cdaa2312431a9",
+    "linux_worktree_clean": true,
+    "executive_linux_service_still_active": true
+  },
+  "repair_children": 1,
+  "repair_child": {
+    "id": "DIE-201-R1",
+    "scope": "identity relocation, shared-state ownership guard, browser metadata, and evidence transport hygiene",
+    "events": [
+      "Full regression caught two stale runtime-canon test constants after Division01 identity relocation; references were updated and the full suite returned 222/222 PASS.",
+      "Division01 installer was corrected not to take ownership of shared /var/lib/die/state; existing ownership remained die-executive:die-runtime.",
+      "One partial local guard patch stopped after source modification before adding its new test assertion; the source guard was completed and targeted tests returned green.",
+      "Copied browser heartbeat schema was corrected from Executive to die.division01.operator-browser.v1.",
+      "Several SSH/read-only evidence commands hit shell/stat/journal quoting issues; no production mutation resulted."
+    ],
+    "windows_production_mutation": false,
+    "credential_copy": false,
+    "result": "PASS_TO_MANUAL_GATE"
+  },
+  "completion_blocker": {
+    "type": "OPERATOR_AUTH_REQUIRED",
+    "required_action": "Founder/operator signs into the Division01 ChatGPT account in the Linux RDP browser profile.",
+    "acceptance_signal": "browser heartbeat state READY",
+    "automation_forbidden": true
+  },
+  "next_after_completion": "DIE-202 - Hermes/Workers Linux migration"
+}

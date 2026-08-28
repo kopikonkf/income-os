@@ -296,23 +296,29 @@ whether a committed request is operationally acceptable. Worker receives a job,
 not this identity or its strategy. Proxima remains downstream production
 infrastructure used through `Hermes -> Worker -> Proxima -> Web AI`.
 
-## 5. Runtime bindings — design only
+## 5. Runtime bindings
 
-- Browser substrate: Brave profile `plus` for the first reusable Division
-  instance.
-- Wake reference: `D:\OAUTH\docs\raw\chatgpt-oauth-openai-compatible.md`
-  sections 35-44 and `spec custom-mcp-hermes-tweak v2.md` section 42.
-- Proposed actuator: Hermes as OAuth client to
-  `POST chatgpt.com/backend-api/conversation` for the pinned conversation ID,
-  using PKCE S256, client ID `app_EMoamEEZ73f0CkXaXp7hrann`, isolated
-  `CODEX_HOME=.codex-DIVISION-01`, and one allocated `1053x` loopback port.
-- These values describe the future wake actuator only. They do not authorize
-  code execution, OAuth provisioning, conversation mutation, or secret access
-  in this sprint.
-- The Decision Fabric is a separate least-privilege MCP line; a wake is never a
-  canonical state mutation.
-- Principal-pinned Decision MCP binding: loopback `127.0.0.1:8792`. It must not
-  share the Executive process or any Architect DEV/infrastructure port.
+- Observation/decision line: the bounded DIE Runtime Decision MCP; never the
+  Architect DEV MCP. Principal-pinned binding is loopback `127.0.0.1:8792`.
+- Windows production/rollback runtime remains active until the phased endpoint
+  cutover in `CUT-004`; DIE-201 must not replace the public route early.
+- Linux pre-cutover runtime is rebuilt under systemd with source in `/srv/die`,
+  mutable state under `/var/lib/die`, protected config under `/etc/die`, and
+  installed runtime markers under `/opt/die`.
+- `D:\OAUTH` is not Division01. It is a separate next-subproject and no
+  credential/auth/token/provider-specific source from that estate may be
+  imported to satisfy Division01 runtime migration.
+- Consumer ChatGPT wake/read on Linux is operator-controlled: headed browser,
+  dedicated persistent profile, manual login/recovery, and non-sensitive
+  readiness detection only. No cookie/token extraction, private backend calls,
+  protective-measure bypass, automated prompt submission, or output scraping.
+- The Windows legacy private-backend/Sentinel wake implementation is historical
+  rollback/provenance only and is not the Linux wake contract.
+- Wake/browser transport and Decision Fabric are separate lines. Browser
+  availability is transport/auth proof only; canonical observation is reloaded
+  from the Decision MCP.
+- The Decision MCP must not share the Executive process or any Architect DEV or
+  infrastructure port.
 
 ## 6. Handoff
 

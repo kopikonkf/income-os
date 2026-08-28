@@ -84,7 +84,7 @@
     {
       "id": "division-head-division01",
       "kind": "division_decision_engine",
-      "document": "IDENTITY/division-head-division01.md",
+      "document": "company/division/division001/IDENTITY.md",
       "scope": "single_division",
       "division_id": "DIVISION-01",
       "runtime": true,
