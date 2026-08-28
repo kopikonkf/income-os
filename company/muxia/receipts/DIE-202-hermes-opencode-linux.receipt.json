@@ -1,0 +1,98 @@
+{
+  "schema": "die.muxia.die202-hermes-opencode-linux.v1",
+  "task_id": "DIE-202",
+  "date": "2026-08-28",
+  "status": "WAITING_OPERATOR_CREDENTIALS",
+  "final_implementation_commit": "c6e26f7a39babb14c12613c30a6d98dd04db493b",
+  "roles": {
+    "hermes": "orchestrator",
+    "worker": "generic bounded executor",
+    "worker_001": "OpenCode CLI",
+    "muxia": "browser/provider/profile/job/artifact infrastructure",
+    "architect_mcp": "DEV/control plane; not worker"
+  },
+  "proactive_operator": {
+    "selective_live_source_reconciliation": true,
+    "bulk_live_tree_copy": false,
+    "targeted_tests": "11/11 PASS",
+    "high_confidence_secret_hits": 0
+  },
+  "opencode": {
+    "package": "opencode-ai",
+    "package_version": "1.18.23",
+    "functional_version": "1.18.23",
+    "install_root": "/opt/die/workers/opencode",
+    "mutable_home": "/var/lib/die/workers/opencode/home",
+    "provider_credentials_copied": false,
+    "windows_config_copied": false,
+    "model_call_performed": false,
+    "postinstall_extra_approval_performed": false
+  },
+  "hermes": {
+    "upstream": "https://github.com/NousResearch/hermes-agent.git",
+    "source_commit": "a0ca7c19204e514f9590ce3b812e029b315ab9e9",
+    "functional_version": "Hermes Agent v0.20.5 (2026.8.19)",
+    "install_root": "/opt/die/hermes",
+    "home": "/var/lib/die/hermes/income-operator",
+    "windows_profile_copied": false,
+    "windows_auth_copied": false,
+    "windows_state_db_copied": false,
+    "gateway_service": "die-hermes-gateway.service",
+    "gateway_enabled": false,
+    "gateway_active": false,
+    "ready_gate": "/etc/die/hermes/READY",
+    "ready_gate_present": false,
+    "env_file": "/etc/die/hermes/hermes.env",
+    "env_mode": "0600 root:root"
+  },
+  "boundary_proof": {
+    "executed_as": "die-hermes",
+    "worker_acceptance": "done",
+    "muxia_final_status": "SUCCEEDED",
+    "artifact_sha256": "431ced6916a2a21a156e38701afe55bbd7f88969fbbfc56d7fe099d47f265460",
+    "completion_evidence": "artifact/receipt/hash/bytes/mime all PASS",
+    "provider_call_performed": false,
+    "consumer_chatgpt_used": false,
+    "spend_usd": 0
+  },
+  "shared_workspace": {
+    "path": "/var/lib/die/workspaces",
+    "mode": "2770",
+    "owner": "root:die-runtime"
+  },
+  "validation": {
+    "worker_targeted": "8/8 PASS",
+    "proactive_operator": "11/11 PASS",
+    "bridge": "241/241 PASS",
+    "windows_one_canon": "11/11 PASS",
+    "linux_one_canon": "11/11 PASS",
+    "windows_staging_clean": true,
+    "linux_worktree_clean": true
+  },
+  "windows_guards": {
+    "executive_service": "Running/Auto",
+    "division01_service": "Running/Auto",
+    "listeners": [
+      8790,
+      8791,
+      8792,
+      9333
+    ],
+    "live_die_head": "04eda313f1e757c0d0f8fd9d90251b92c0dd95a3",
+    "live_die_dirty_paths_observed": 38,
+    "aether_modified": false
+  },
+  "repair_children": 1,
+  "repair_child": {
+    "id": "DIE-202-R1",
+    "result": "PASS_TO_EXTERNAL_CREDENTIAL_GATE",
+    "windows_production_mutation": false,
+    "credential_copy": false
+  },
+  "completion_blocker": {
+    "type": "OPERATOR_CREDENTIAL_CONFIGURATION_REQUIRED",
+    "required_action": "Configure fresh Linux Hermes provider/channel credentials, create READY gate only after validation, then enable/start gateway.",
+    "automation_forbidden": "Do not satisfy by copying Windows auth/profile state."
+  },
+  "parallel_next": "DIE-203 - Atlas/Object Asset Engine Linux migration"
+}

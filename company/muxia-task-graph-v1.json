@@ -477,7 +477,7 @@
                       "depends_on":  [
                                          "DIE-104"
                                      ],
-                      "status":  "READY",
+                      "status":  "WAITING_OPERATOR_CREDENTIALS",
                       "artifact":  "Linux Hermes/Worker source/runtime/receipt",
                       "acceptance":  "Canonical SOUL/AGENTS/contracts drive fresh Linux runtime; no bulk AppData/profile clone."
                   },

@@ -2472,3 +2472,33 @@ Task graph status: `DIE-201=WAITING_OPERATOR`. Do not mark DONE until manual Lin
 
 Receipt: `company/muxia/receipts/DIE-201-division01-linux.receipt.json`.
 Migration doc: `docs/migration/DIE_DIVISION01_LINUX_MIGRATION_V1.md`.
+---
+
+## 2026-08-28 - Chapter #4 DIE-202 Hermes + OpenCode Worker-001 Linux migration — WAITING_OPERATOR_CREDENTIALS
+
+`DIE-202 - Hermes and Workers Linux migration`: implementation and Linux staging complete; external credential/channel activation remains deferred.
+
+Role lock is canonical: Hermes = orchestrator; Worker = generic bounded executor; OpenCode CLI = Worker-001/default general execution worker V1; MUXIA = browser/provider/profile/job/artifact infrastructure; Architect MCP = DEV/control plane, not worker.
+
+Hermes/Worker identity and contracts were materialized under `company/die-agents/hermes/` and `company/workers/`. Live-only Proactive Operator source (`die_operator_tick.py`, `die_operator_switch.py`, `die_platform_receipt.py`, runtime tests) was selectively reconciled from dirty `C:\DIE`, secret-scanned, refactored to DIE-102 path roots, and validated 11/11. No bulk dirty-tree copy occurred.
+
+Linux OpenCode Worker-001 is installed at `/opt/die/workers/opencode`, package/functional version 1.18.23. Windows OpenCode config/provider credentials were not copied. DIE-202 invokes no model/provider call and no `opencode run`.
+
+Linux Hermes is a clean upstream rebuild at `/opt/die/hermes/source`, exact commit `a0ca7c19204e514f9590ce3b812e029b315ab9e9`, functional version Hermes Agent v0.20.5 (2026.8.19), with fresh `HERMES_HOME=/var/lib/die/hermes/income-operator`. Windows `.env`, `auth.json`, `state.db`, sessions, caches, profile, and dirty Hermes checkout were not copied.
+
+Hermes gateway service `die-hermes-gateway.service` is installed but disabled/inactive. `/etc/die/hermes/READY` is absent. `/etc/die/hermes/hermes.env` is root:root 0600 and contains only path bindings. This is intentional fail-closed behavior until fresh Linux provider/channel credentials are configured after Founder returns.
+
+Actual Linux boundary proof as OS identity `die-hermes`: Hermes worker dispatch -> OpenCode 1.18.23 -> MUXIA JobRegistry/ArtifactRegistry -> `SUCCEEDED`; synthetic raster SHA256 `431ced6916a2a21a156e38701afe55bbd7f88969fbbfc56d7fe099d47f265460`; artifact/receipt/hash/bytes/MIME all PASS; provider call NO; consumer ChatGPT NO; spend USD 0. Shared workspace root `/var/lib/die/workspaces` is `root:die-runtime` mode 2770.
+
+Final exact implementation SHA before publication evidence: `c6e26f7a39babb14c12613c30a6d98dd04db493b`. Final Windows full bridge 241/241 PASS with no staging-state mutation; Windows one-canon 11/11 PASS; Linux one-canon 11/11 PASS; Windows staging and Linux worktree clean.
+
+Windows rollback/control remains intact: Executive and Division01 Runtime MCP services Running/Auto; listeners 8791/8792 and Division01 CDP 9333 active; Architect MCP 8790 active; live `C:\DIE` stays at `04eda313f1e757c0d0f8fd9d90251b92c0dd95a3`, 38 dirty paths observed and untouched; Aether external/unmodified.
+
+`DIE-202-R1` is the single repair child for provenance/tooling/install/test-isolation/ownership hygiene. No credential/profile migration or Windows production cutover occurred.
+
+Task graph: `DIE-202=WAITING_OPERATOR_CREDENTIALS`. `DIE-203` remains READY independently because it depends on DIE-104, not on Hermes credential activation.
+
+Receipt: `company/muxia/receipts/DIE-202-hermes-opencode-linux.receipt.json`.
+Migration doc: `docs/migration/DIE_HERMES_OPENCODE_LINUX_MIGRATION_V1.md`.
+
+NEXT ELIGIBLE: `DIE-203 — Atlas and Object Asset Engine Linux migration`.
