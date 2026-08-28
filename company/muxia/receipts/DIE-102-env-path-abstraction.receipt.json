@@ -97,11 +97,27 @@
       "The first config patch anchor did not match and exited before writing; the patch was repeated with narrower anchors.",
       "The first full-suite invocation incorrectly exported DIE_STATE_ROOT to the staging root, causing one subprocess isolation test to inherit it; the synthetic staging DECISIONS.jsonl write was restored and the suite was rerun with DIE_STATE_ROOT unset.",
       "The implementation commit was initially created on local main because the feature branch had not yet been created; origin/main was unchanged, a feature branch was created at the commit, and the branch was pushed without force/resetting the remote.",
-      "The first Linux proof command failed locally from nested PowerShell/SSH quoting before the remote script executed; proof was repeated through bash -s over stdin."
+      "The first Linux proof command failed locally from nested PowerShell/SSH quoting before the remote script executed; proof was repeated through bash -s over stdin.",
+      "A combined final verification command was blocked by the tool safety layer before execution; verification was split into narrower Windows, Linux, and live-Windows guard calls, all of which passed."
     ],
     "source_or_runtime_defect": false,
     "live_windows_mutation": false,
     "result": "PASS"
   },
-  "next_atomic_task": "DIE-103 - clean component import"
+  "next_atomic_task": "DIE-103 - clean component import",
+  "publication": {
+    "primary_pr": 39,
+    "primary_pr_state": "MERGED",
+    "primary_merge_commit": "1af7c2dab002e552fc9063539173b61f22386268",
+    "merged_at": "2026-08-28T03:27:40Z"
+  },
+  "post_merge_verification": {
+    "windows_bridge_suite": "204/204 PASS",
+    "linux_head": "1af7c2dab002e552fc9063539173b61f22386268",
+    "linux_clean": true,
+    "linux_default_import": "PASS",
+    "windows_live_head": "04eda313f1e757c0d0f8fd9d90251b92c0dd95a3",
+    "windows_live_dirty_path_count": 37,
+    "windows_live_guard": "PASS"
+  }
 }
