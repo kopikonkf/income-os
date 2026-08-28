@@ -1,0 +1,148 @@
+{
+  "schema": "die.muxia.die203-atlas-object-linux.v1",
+  "task_id": "DIE-203",
+  "date": "2026-08-28",
+  "status": "WAITING_OBJECT_FILTER_COMPLETION",
+  "implementation_commit": "f0cb0a90de45ca155f1109ceb15721365a8d7488",
+  "human_atlas": {
+    "normative_canon": "company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md",
+    "foundation_manifest": "company/atlas/human-centric/foundations/qwen-crossjoin-v1/FOUNDATION_MANIFEST.json",
+    "foundation_files": 4,
+    "foundation_normative": false,
+    "promotion_requires_founder_ratification": true,
+    "foundation_hashes": {
+      "Division01_CrossJoin_Algorithm.md": "40615192b79b7e14b0e171e5c5b68abf7891763030d7333c8e7ef210eea361b3",
+      "Division01_World_Atlas_10D_Matrix.md": "6983f2bae707b36609d431c91d516ae4cd037724f1c187c55b0d1d8dd6e72c7e",
+      "Implementation.md": "0a88143a76dc541f09411aff0bcc4410d98e9d83650f8f4ccace5a490972ec41",
+      "MASTER-13 - PECAH TELUR VALIDATION BATCH.md": "97ffd97d5658e7060eea5dfab6bb3942a7eac664acc43eb3614c1f9fbf819e14"
+    }
+  },
+  "object_source": {
+    "linux_manifest": "company/atlas/object-centric/object-asset-engine/source/SOURCE_MANIFEST.json",
+    "python_files": 23,
+    "windows_path_hits": 0,
+    "pyc": 0,
+    "pycache": 0,
+    "excluded_syntax_invalid": "scripts/audit/gemini_audit_parallel.py",
+    "credential_copied": false,
+    "credential_env": "DIE_OBJECT_ENGINE_GEMINI_KEY_FILE"
+  },
+  "point_in_time_snapshot": {
+    "schema": "die.object-engine.point-in-time-snapshot.v1",
+    "status": "CONSISTENT_POINT_IN_TIME_NOT_FINAL",
+    "authoritative_source": "Windows D:\\object-asset-engine until filtering completion and final quiesced sync",
+    "linux_runtime_root": "/var/lib/die/atlas/object-asset-engine",
+    "sqlite_snapshots": {
+      "object_asset_engine.db": {
+        "started_at": "2026-08-28T18:17:09.837159+00:00",
+        "completed_at": "2026-08-28T18:17:20.613294+00:00",
+        "bytes": 1188335616,
+        "sha256": "7a14ff13f4f1d2ea04b10ba84cb7774144313ef50bfa3cda3ec8fd1c8d407a00",
+        "quick_check": "ok",
+        "tables": 12,
+        "candidate_seeds_count": 714268,
+        "audit_queue_count": 744259,
+        "audit_pending_count": 251294,
+        "raw_wal_shm_copied": false
+      },
+      "seed_library.db": {
+        "started_at": "2026-08-28T18:17:25.875560+00:00",
+        "completed_at": "2026-08-28T18:17:26.350108+00:00",
+        "bytes": 43192320,
+        "sha256": "b881e98eb604aad36ccf9eecac74d00a9afdb4b64dcc7f7fa30348451fea3ec2",
+        "quick_check": "ok",
+        "tables": 1,
+        "objects_count": 302134,
+        "raw_wal_shm_copied": false
+      }
+    },
+    "data": {
+      "files": [
+        {
+          "path": "longtails/expansion_queue.json",
+          "bytes": 264,
+          "sha256": "36c6f74412d1bfa9b9a0eaf79f6d76f9df60001cafca606ded6f1055ce0e0500",
+          "mtime_ns": 1787673373296441500
+        },
+        {
+          "path": "processed/demand_scores_v0.json",
+          "bytes": 39519,
+          "sha256": "c7ce1911878d8d231f26bfd087f50894e3ae19c3802428af026770bca445cd9b",
+          "mtime_ns": 1787668395361372600
+        },
+        {
+          "path": "processed/filter_report_TASK002.json",
+          "bytes": 10998,
+          "sha256": "db95cc8730bdddb830aacdb174eec7944a11721f60a6c915648ecd3f04b4c8e9",
+          "mtime_ns": 1787668009389242100
+        },
+        {
+          "path": "processed/longtail_report_PHASE3.json",
+          "bytes": 8772,
+          "sha256": "ea3bd9eedbb4b2b39cf9dcb8d149b35e72ea1db3b8122f3b671818e86a770722",
+          "mtime_ns": 1787669010722583900
+        },
+        {
+          "path": "raw/enwiktionary_dump.jsonl",
+          "bytes": 3212259034,
+          "sha256": "4367576ff96ebbfa2f21bfde6f393dfe7aa699f5ae881fc03f3e92198f14bc58",
+          "mtime_ns": 1787679989832749800
+        },
+        {
+          "path": "raw/qwen_demand20_seeds.json",
+          "bytes": 3893,
+          "sha256": "178c169ad3ffd2357de30cfa9ef06b7531d67205f484cb1b4b26f86092631f3f",
+          "mtime_ns": 1787667232884264600
+        },
+        {
+          "path": "raw/wiktionary_batch.json",
+          "bytes": 18484,
+          "sha256": "7abc4f5432ea055e305f24ed872487698d18bdf78fe4a183a18a74fe58d38a25",
+          "mtime_ns": 1787667504254852900
+        }
+      ],
+      "file_count": 7,
+      "total_bytes": 3212340964
+    },
+    "windows_writer_active_after_snapshot": true,
+    "final_refresh_required": true,
+    "promotion_policy": "Do not mark Linux authoritative until Windows filtering completes, writer is quiesced, final backup/hash/count parity passes."
+  },
+  "linux_runtime": {
+    "root": "/var/lib/die/atlas/object-asset-engine",
+    "ownership": "root:die-runtime",
+    "writer_started": false,
+    "install_check": "PASS",
+    "credential_fail_closed": "PASS",
+    "runtime_verifier": "PASS",
+    "data_hash_parity": "7/7 PASS"
+  },
+  "validation": {
+    "targeted": "8/8 PASS",
+    "full_bridge": "249/249 PASS",
+    "one_canon": "11/11 PASS",
+    "linux_source_compile": "23/23 PASS"
+  },
+  "windows_authority": {
+    "root": "D:\\object-asset-engine",
+    "worker": "gemini_audit_scale.py --run",
+    "worker_active": true,
+    "authoritative": true,
+    "main_db_bytes_latest_observed": 1191800832,
+    "seed_library_bytes_latest_observed": 47919104,
+    "live_die_head": "04eda313f1e757c0d0f8fd9d90251b92c0dd95a3",
+    "live_die_dirty_paths_observed": 38
+  },
+  "repair_children": 1,
+  "repair_child": {
+    "id": "DIE-203-R1",
+    "scope": "manifest bytecode hygiene, bounded transfer retry, provenance/diff hygiene, shell read-only evidence hygiene",
+    "windows_object_worker_mutated": false
+  },
+  "completion_blocker": {
+    "type": "OBJECT_FILTERING_STILL_ACTIVE",
+    "required_signal": "Founder reports Object Atlas filtering complete",
+    "then": "quiesce Windows writer, final SQLite refresh, hash/quick-check/critical-count parity, Linux authority promotion"
+  },
+  "next_independent_work": "DIE-204 remains blocked on DIE-200/201/202/203 completion; auth/credential gates are still deferred."
+}
