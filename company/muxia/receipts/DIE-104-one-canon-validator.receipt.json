@@ -92,5 +92,21 @@
     "DIE-202",
     "DIE-203"
   ],
-  "recommended_next_atomic_task": "DIE-200 - Executive Linux migration"
+  "recommended_next_atomic_task": "DIE-200 - Executive Linux migration",
+  "publication": {
+    "primary_pr": 43,
+    "primary_pr_state": "MERGED",
+    "primary_merge_commit": "66099c2503701018d354c6c1881c224665706ba6",
+    "merged_at": "2026-08-28T04:38:38Z"
+  },
+  "post_merge_verification": {
+    "windows_validator": "11/11 PASS",
+    "windows_bridge_suite": "210/210 PASS",
+    "linux_validator": "11/11 PASS",
+    "linux_head": "66099c2503701018d354c6c1881c224665706ba6",
+    "linux_clean": true,
+    "windows_live_head": "04eda313f1e757c0d0f8fd9d90251b92c0dd95a3",
+    "windows_live_dirty_path_count": 37,
+    "windows_live_guard": "PASS"
+  }
 }

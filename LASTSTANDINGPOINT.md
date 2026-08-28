@@ -2425,3 +2425,4 @@ Architecture doc: `docs/architecture/DIE_ONE_CANON_VALIDATOR_V1.md`.
 Receipt: `company/muxia/receipts/DIE-104-one-canon-validator.receipt.json`.
 
 Next recommended atomic task: `DIE-200 - Executive Linux migration`.
+DIE-104 publication proof: GitHub PR #43 merged at `66099c2503701018d354c6c1881c224665706ba6`. Post-merge Windows validator remained 11/11 PASS and full bridge regression remained 210/210 PASS; Linux `/srv/die` was fast-forwarded cleanly to the same SHA and validator remained 11/11 PASS with `--require-clean`. Live Windows `C:\DIE` remained `04eda313f1e757c0d0f8fd9d90251b92c0dd95a3` with 37 dirty paths preserved.
