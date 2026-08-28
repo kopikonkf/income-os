@@ -2358,3 +2358,25 @@ Canonical matrix: `docs/migration/DIE_WINDOWS_ESTATE_DISPOSITION_MATRIX_V1.md`.
 Receipt: `company/muxia/receipts/DIE-101-windows-estate-disposition-matrix.receipt.json`.
 
 Next atomic task: `DIE-102 - env/path abstraction`.
+---
+
+## 2026-08-28 - Chapter #4 DIE-102 env/path abstraction
+
+`DIE-102 - env/path abstraction`: DONE / PASS_WITH_ONE_REPAIR_CHILD.
+
+DIE now has a canonical OS-neutral path contract at `company/contracts/die.path-roots.v1.json`. The five locked roots are `DIE_HOME`, `DIE_STATE_ROOT`, `MUXIA_ROOT`, `DIE_CONFIG_ROOT`, and `DIE_INSTALL_ROOT`. Windows defaults preserve the current `C:\DIE` deployment; Linux defaults resolve source to `/srv/die`, mutable DIE runtime/data to `/var/lib/die`, MUXIA runtime to `/var/lib/muxia`, protected config to `/etc/die`, and installed services to `/opt/die`.
+
+Runtime-facing Python consumers were refactored so source/identity paths come from `DIE_HOME`, while State Manager, cron state, governed workspaces, Runtime MCP workspace/state boundaries, and M-001 loop state/workspaces resolve from `DIE_STATE_ROOT`. Runtime MCP no longer pins `PROJECT_ROOT = C:\DIE`; wrapper entrypoints no longer pin `C:\DIE\bin`. All configured roots must be absolute and relative roots fail closed.
+
+Windows validation: targeted DIE-102 path tests 11/11 PASS; full bridge suite 204/204 PASS with `DIE_HOME` pointed at the clean staging repo and `DIE_STATE_ROOT` intentionally unset, proving the compatibility rule that Windows state inherits `DIE_HOME` unless explicitly separated.
+
+Linux exact-commit proof used implementation SHA `2efad2d4e4f0e4cf8674352c9df8ea3f388a66d9`. Linux did not have pytest installed, so no package was added; stdlib assertions verified Windows defaults, all Linux defaults, relative-path rejection, and a clean worktree. Result: `LINUX_DIE102_PATH_PROOF=PASS`.
+
+`DIE-102-R1` is the single repair child and covers execution/tooling harness corrections only: missing ripgrep fallback, a no-write patch-anchor mismatch, correction of an initially over-specified test environment and cleanup of its synthetic staging-only decision record, recovery of the implementation commit from local-main to the feature branch without changing origin/main, and SSH quoting replaced by `bash -s`. No live Windows service/state/profile/credential migration occurred.
+
+Task graph now marks `DIE-102 = DONE` and `DIE-103 = READY`.
+
+Architecture doc: `docs/architecture/DIE_PATH_ROOTS_V1.md`.
+Receipt: `company/muxia/receipts/DIE-102-env-path-abstraction.receipt.json`.
+
+Next atomic task: `DIE-103 - clean component import`.

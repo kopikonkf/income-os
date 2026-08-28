@@ -1,0 +1,107 @@
+{
+  "schema": "die.muxia.die102-env-path-abstraction.v1",
+  "task_id": "DIE-102",
+  "date": "2026-08-28",
+  "status": "PASS_WITH_ONE_REPAIR_CHILD",
+  "implementation_commit": "2efad2d4e4f0e4cf8674352c9df8ea3f388a66d9",
+  "contract": "company/contracts/die.path-roots.v1.json",
+  "architecture_doc": "docs/architecture/DIE_PATH_ROOTS_V1.md",
+  "canonical_roots": {
+    "DIE_HOME": {
+      "windows_default": "C:\\DIE",
+      "linux_default": "/srv/die",
+      "role": "source/canon"
+    },
+    "DIE_STATE_ROOT": {
+      "windows_default": "<DIE_HOME>",
+      "linux_default": "/var/lib/die",
+      "role": "mutable non-MUXIA runtime/data root"
+    },
+    "MUXIA_ROOT": {
+      "windows_default": "<DIE_STATE_ROOT>\\muxia",
+      "linux_default": "/var/lib/muxia",
+      "role": "MUXIA mutable runtime root"
+    },
+    "DIE_CONFIG_ROOT": {
+      "windows_default": "C:\\ProgramData\\DIE",
+      "linux_default": "/etc/die",
+      "role": "protected config/secrets"
+    },
+    "DIE_INSTALL_ROOT": {
+      "windows_default": "C:\\Program Files\\DIE",
+      "linux_default": "/opt/die",
+      "role": "installed/regenerable service runtime"
+    }
+  },
+  "derived_paths": {
+    "STATE": "<DIE_STATE_ROOT>/state",
+    "WORKSPACES": "<DIE_STATE_ROOT>/workspaces",
+    "IDENTITY_REGISTRY": "<DIE_HOME>/company/identity-registry.json"
+  },
+  "runtime_source_changes": [
+    "bridge/income_os_bridge/config.py",
+    "bridge/income_os_bridge/runtime_mcp_server.py",
+    "bin/die_event.py",
+    "bin/die_cron.py",
+    "bin/die_audit.py",
+    "bin/die_briefing.py",
+    "bin/die_heartbeat.py",
+    "bin/die_summary.py",
+    "bin/m001_loop.py"
+  ],
+  "tests": {
+    "targeted_windows_path_tests": {
+      "passed": 11,
+      "failed": 0
+    },
+    "windows_bridge_full_suite": {
+      "passed": 204,
+      "failed": 0,
+      "environment": "DIE_HOME=clean staging; DIE_STATE_ROOT unset to verify Windows compatibility inheritance"
+    },
+    "linux_exact_commit_proof": {
+      "head": "2efad2d4e4f0e4cf8674352c9df8ea3f388a66d9",
+      "pytest_available": false,
+      "stdlib_assertions": "PASS",
+      "validated": [
+        "Windows default source/state compatibility",
+        "Linux /srv/die source default",
+        "Linux /var/lib/die state default",
+        "Linux /var/lib/muxia MUXIA default",
+        "Linux /etc/die config default",
+        "Linux /opt/die install default",
+        "relative DIE_HOME rejected",
+        "clean Linux worktree"
+      ]
+    }
+  },
+  "acceptance": {
+    "source_and_mutable_state_separated": true,
+    "windows_backward_compatible": true,
+    "linux_defaults_match_disposition_canon": true,
+    "configured_roots_require_absolute_paths": true,
+    "runtime_mcp_no_operational_C_DIE_project_root": true,
+    "state_manager_uses_DIE_STATE_ROOT": true,
+    "cron_uses_DIE_STATE_ROOT": true,
+    "m001_workspaces_use_DIE_STATE_ROOT": true,
+    "live_windows_state_migrated": false,
+    "services_modified": false,
+    "profiles_or_credentials_migrated": false
+  },
+  "repair_children": 1,
+  "repair_child": {
+    "id": "DIE-102-R1",
+    "scope": "execution/tooling harness stabilization only",
+    "events": [
+      "ripgrep was unavailable on the Windows MCP host; discovery was repeated with PowerShell Select-String/Get-ChildItem.",
+      "The first config patch anchor did not match and exited before writing; the patch was repeated with narrower anchors.",
+      "The first full-suite invocation incorrectly exported DIE_STATE_ROOT to the staging root, causing one subprocess isolation test to inherit it; the synthetic staging DECISIONS.jsonl write was restored and the suite was rerun with DIE_STATE_ROOT unset.",
+      "The implementation commit was initially created on local main because the feature branch had not yet been created; origin/main was unchanged, a feature branch was created at the commit, and the branch was pushed without force/resetting the remote.",
+      "The first Linux proof command failed locally from nested PowerShell/SSH quoting before the remote script executed; proof was repeated through bash -s over stdin."
+    ],
+    "source_or_runtime_defect": false,
+    "live_windows_mutation": false,
+    "result": "PASS"
+  },
+  "next_atomic_task": "DIE-103 - clean component import"
+}
