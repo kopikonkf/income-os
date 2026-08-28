@@ -47,7 +47,8 @@ git -C "$SOURCE_ROOT" checkout --detach --force FETCH_HEAD >/dev/null
 test "$(git -C "$SOURCE_ROOT" rev-parse HEAD)" = "$HERMES_COMMIT"
 test -z "$(git -C "$SOURCE_ROOT" status --porcelain)"
 
-if [[ ! -x "$VENV/bin/python" ]]; then
+if [[ ! -x "$VENV/bin/python" ]] || ! "$VENV/bin/python" -m pip --version >/dev/null 2>&1; then
+  rm -rf "$VENV"
   python3 -m venv "$VENV"
 fi
 "$VENV/bin/python" -m pip install --upgrade pip setuptools wheel >/dev/null

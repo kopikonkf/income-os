@@ -99,6 +99,8 @@ def test_die202_hermes_install_is_clean_rebuild_and_ready_gated() -> None:
     assert "auth.json" not in install
     assert "state.db" not in install
     assert "windows_profile_copied=false" in install
+    assert '! "$VENV/bin/python" -m pip --version' in install
+    assert 'rm -rf "$VENV"' in install
 
 
 def test_die202_opencode_install_pins_package_and_no_windows_config_copy() -> None:
