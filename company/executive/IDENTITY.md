@@ -148,14 +148,20 @@ standing point.
 
 ## 8. Runtime bindings
 
-- Wake actuator: BrowserOS neo on loopback `127.0.0.1:9010`.
-- Wake policy: at most 4 wakes/day, at least 90 minutes apart, and only
-  `CRITICAL` or `STRATEGIC` cross-division events.
 - Observation/decision line: the bounded DIE Runtime Decision MCP; never the
-  Architect DEV MCP.
-- Principal-pinned Decision MCP binding: loopback `127.0.0.1:8791`. Port
-  `8787` belongs to Architect DEV and is forbidden for this runtime identity.
-- Wake and Decision Fabric are separate lines. A wake carries a bounded
-  briefing; canonical observation is reloaded from the Decision Fabric.
-- Browser automation is an actuator, not authority, state, or a second control
-  plane. Wake implementation remains separately gated from this identity.
+  Architect DEV MCP. Principal-pinned binding is loopback `127.0.0.1:8791`.
+- Windows production/rollback runtime remains active until the phased endpoint
+  cutover in `CUT-004`; DIE-200 must not replace the public route early.
+- Linux pre-cutover runtime is rebuilt under systemd with source in `/srv/die`,
+  mutable state under `/var/lib/die`, protected config under `/etc/die`, and
+  installed runtime markers under `/opt/die`.
+- Consumer ChatGPT wake/read on Linux is operator-controlled: headed browser,
+  dedicated persistent profile, manual login/recovery, and non-sensitive
+  readiness detection only. No cookie/token extraction, private backend calls,
+  protective-measure bypass, automated prompt submission, or output scraping.
+- Wake policy remains at most 4 wakes/day, at least 90 minutes apart, and only
+  `CRITICAL` or `STRATEGIC` cross-division events.
+- Wake/browser transport and Decision Fabric are separate lines. Browser
+  availability is transport/auth proof only; canonical observation is reloaded
+  from the Decision MCP.
+- Port `8787` and Architect DEV remain forbidden to this runtime identity.

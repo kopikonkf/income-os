@@ -1,0 +1,99 @@
+{
+  "schema": "die.muxia.die200-executive-linux.v1",
+  "task_id": "DIE-200",
+  "date": "2026-08-28",
+  "status": "WAITING_OPERATOR_AUTH",
+  "runtime_implementation_commit": "26a27c1831710d773e7087eab0dd6de06e740c34",
+  "source_branch": "architect/die200-executive-linux",
+  "identity": {
+    "principal_id": "chatgpt-plus-executive",
+    "old_path": "IDENTITY/chatgpt-plus-executive.md",
+    "canonical_path": "company/executive/IDENTITY.md",
+    "moved_through_git": true
+  },
+  "linux_runtime": {
+    "service": "die-executive-runtime-mcp.service",
+    "service_user": "die-executive",
+    "service_group": "die-runtime",
+    "bind": "127.0.0.1:8791",
+    "source_root": "/srv/die",
+    "state_root": "/var/lib/die",
+    "config_file": "/etc/die/executive/runtime-mcp.env",
+    "install_root": "/opt/die/executive",
+    "service_active": true,
+    "health_principal": "chatgpt-plus-executive",
+    "health_tools": 18,
+    "unauthenticated_http_status": 401,
+    "authenticated_initialize": "PASS",
+    "authenticated_tools_list": "18 PASS",
+    "authenticated_system_health": "PASS",
+    "journal_secret_shape_hits": 0,
+    "env_mode": "0600 root:root"
+  },
+  "state_bootstrap": {
+    "kind": "preliminary clean-Git bootstrap; not final CUT-002 sync",
+    "source": "/srv/die/state",
+    "target": "/var/lib/die/state",
+    "tracked_file_count": 15,
+    "sha256_parity": "15/15 PASS",
+    "live_windows_state_copied": false
+  },
+  "browser": {
+    "launcher": "company/executive/linux/operator_browser.mjs",
+    "profile": "/var/lib/die/executive/browser-profile",
+    "status_file": "/var/lib/die/executive/browser-status.json",
+    "profile_created_fresh": true,
+    "headed": true,
+    "policy": "operator-controlled-acquisition-only",
+    "current_state": "AUTH_REQUIRED",
+    "current_url": "https://chatgpt.com/",
+    "login_ui_count": 2,
+    "editable_count": 1,
+    "windows_profile_cloned": false,
+    "cookie_or_token_read": false,
+    "private_backend_used": false,
+    "automated_prompt_submission": false,
+    "output_extraction": false
+  },
+  "windows_rollback": {
+    "service": "DIERuntimeMCPExecutive",
+    "service_state": "Running",
+    "service_start_mode": "Auto",
+    "listener": "127.0.0.1:8791",
+    "live_die_head": "04eda313f1e757c0d0f8fd9d90251b92c0dd95a3",
+    "live_die_dirty_paths": 37,
+    "service_disabled": false,
+    "public_endpoint_cutover": false
+  },
+  "validation": {
+    "executive_linux_targeted_tests": "6/6 PASS",
+    "windows_bridge_suite": "216/216 PASS",
+    "windows_one_canon": "11/11 PASS",
+    "linux_one_canon": "11/11 PASS",
+    "linux_source_head": "26a27c1831710d773e7087eab0dd6de06e740c34",
+    "linux_worktree_clean": true
+  },
+  "repair_children": 1,
+  "repair_child": {
+    "id": "DIE-200-R1",
+    "scope": "tooling/deployment hygiene and migration canon correction",
+    "events": [
+      "A Linux discovery pipeline hit a shell/CRLF hygiene error after Playwright paths were already detected; subsequent SSH scripts use safer transport.",
+      "Systemd env redirect-host value was quoted for shell-safe verification while preserving systemd semantics.",
+      "Browser authentication classification was hardened so a logged-out composer cannot be mistaken for authenticated READY.",
+      "PowerShell-to-SSH carriage-return and command-substitution issues were eliminated with base64-to-bash transport.",
+      "Executive identity moved to company/executive/IDENTITY.md; stale test/validator/registry references were updated.",
+      "Full bridge regression caught two stale test constants after the identity move; both were corrected and the full suite returned green."
+    ],
+    "windows_production_mutation": false,
+    "credential_copy": false,
+    "result": "PASS_TO_MANUAL_GATE"
+  },
+  "completion_blocker": {
+    "type": "OPERATOR_AUTH_REQUIRED",
+    "required_action": "Founder/operator signs into the Executive ChatGPT account in the already-open Linux RDP browser profile.",
+    "acceptance_signal": "browser heartbeat state READY",
+    "automation_forbidden": true
+  },
+  "next_after_completion": "DIE-201 - Division01 Linux migration"
+}
