@@ -29,16 +29,16 @@
     },
     "division01": {
       "logical_root": "company/division/division001",
-      "status": "OWNERSHIP_BOUNDARY",
+      "status": "LINUX_STAGED_WAITING_OPERATOR_AUTH",
       "principal_id": "division-head-division01",
       "source_refs": [
         "company/division/division001/IDENTITY.md",
-        "bin/wake_division01.py",
         "bridge/income_os_bridge/runtime_mcp_server.py",
-        "ops/windows/runtime-mcp/"
+        "ops/windows/runtime-mcp/",
+        "company/division/division001/linux/"
       ],
       "migration_task": "DIE-201",
-      "note": "D:\\OAUTH is explicitly not Division01."
+      "note": "Linux Decision MCP is staged and healthy pre-cutover. Division01 identity is canonical under company/division/division001. Fresh Linux browser profile requires operator login; D:\\OAUTH remains a separate next-subproject; Windows production/rollback remains active until CUT-004."
     },
     "hermes": {
       "logical_root": "company/die-agents/hermes",

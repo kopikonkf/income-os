@@ -466,7 +466,7 @@
                       "depends_on":  [
                                          "DIE-104"
                                      ],
-                      "status":  "READY",
+                      "status":  "WAITING_OPERATOR",
                       "artifact":  "Linux Division01 source/runtime/receipt",
                       "acceptance":  "Principal ID division-head-division01 is preserved; D:\\OAUTH is not treated as Division01; fresh auth is used."
                   },
