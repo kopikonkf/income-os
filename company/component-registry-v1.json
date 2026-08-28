@@ -45,12 +45,10 @@
       "source_refs": [
         "IDENTITY/hermes-operator/SOUL.md",
         "IDENTITY/hermes-operator/AGENTS.md",
-        "bin/die_operator_tick.py",
-        "bin/die_operator_switch.py",
         "bridge/income_os_bridge/"
       ],
       "migration_task": "DIE-202",
-      "note": "No AppData/profile copy. Current identity/runtime sources remain referenced, not duplicated."
+      "note": "Canonical Hermes identity and shared bridge source are present. Proactive-operator files observed only in dirty live Windows are not yet canonical and must be reconciled explicitly during DIE-202; no AppData/profile copy."
     },
     "workers": {
       "logical_root": "company/workers",
