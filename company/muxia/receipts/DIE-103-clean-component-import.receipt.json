@@ -1,0 +1,115 @@
+{
+  "schema": "die.muxia.die103-clean-component-import.v1",
+  "task_id": "DIE-103",
+  "date": "2026-08-28",
+  "status": "PASS_WITH_ONE_REPAIR_CHILD",
+  "implementation_commit": "0eba02d772a3d19ab1a900d0cfc5c1b9427a2010",
+  "component_registry": "company/component-registry-v1.json",
+  "company_components": {
+    "count": 9,
+    "architect": "DEFERRED_SOURCE_IMPORT",
+    "executive": "OWNERSHIP_BOUNDARY",
+    "division01": "OWNERSHIP_BOUNDARY",
+    "hermes": "OWNERSHIP_BOUNDARY",
+    "workers": "OWNERSHIP_BOUNDARY",
+    "atlas_human_centric": "IMPORTED_CANONICAL",
+    "atlas_object_centric": "IMPORTED_SOURCE_SNAPSHOT",
+    "muxia": "EXISTING_CANON",
+    "web_ai_oauth_adapter": "IMPORTED_PROVIDER_NEUTRAL_CORE_SNAPSHOT"
+  },
+  "atlas_human_centric": {
+    "old_path": "docs/atlas/HUMAN_CENTRIC_ATLAS_CANON.md",
+    "canonical_path": "company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md",
+    "git_move": true,
+    "old_operational_reference_count_after_update": 0
+  },
+  "object_asset_engine": {
+    "source_root": "D:\\object-asset-engine",
+    "snapshot_root": "company/atlas/object-centric/object-asset-engine/source-snapshot/windows-v1",
+    "manifest": "company/atlas/object-centric/object-asset-engine/source-snapshot/windows-v1/SOURCE_MANIFEST.json",
+    "imported_source_files": 22,
+    "source_kind": "non-git live Windows source snapshot",
+    "text_normalization": "UTF-8; CRLF/CR to LF with source/imported SHA256 recorded separately",
+    "linux_runnable": false,
+    "mutable_data_imported": false,
+    "database_imported": false,
+    "runtime_config_imported": false,
+    "excluded_source_defects": [
+      {
+        "path": "scripts/audit/gemini_audit_parallel.py",
+        "reason": "SYNTAX_INVALID at source: f-string expression part cannot include a backslash, line 126",
+        "silently_repaired": false,
+        "deferred_to": "DIE-203 if lane remains required"
+      }
+    ]
+  },
+  "oauth_adapter": {
+    "source_root": "D:\\OAUTH",
+    "source_git_head": "783c1e990c7f77ecdbf5bd2bab8c22be3cae2e49",
+    "snapshot_root": "company/next-subprojects/web-ai-oauth-adapter/source-snapshot/core-v1",
+    "manifest": "company/next-subprojects/web-ai-oauth-adapter/source-snapshot/core-v1/SOURCE_MANIFEST.json",
+    "imported_provider_neutral_files": 6,
+    "credential_files_imported": false,
+    "provider_specific_implementations_imported": false,
+    "auth_token_pow_helpers_imported": false,
+    "debug_network_capture_scripts_imported": false,
+    "server_runtime_imported": false,
+    "untracked_plugins_imported": false,
+    "policy_review_required_before_linux_rebuild": true,
+    "is_division01": false
+  },
+  "architect_mcp": {
+    "logical_ownership_materialized": true,
+    "source_imported": false,
+    "runtime_migrated": false,
+    "windows_control_channel_preserved": true,
+    "physical_import_deferred_to": "CUT-005 -> MX-053"
+  },
+  "validation": {
+    "windows": {
+      "component_registry_json": "PASS",
+      "object_source_provenance": "22/22 PASS",
+      "oauth_git_provenance": "6/6 PASS",
+      "imported_python_syntax": "28/28 PASS",
+      "forbidden_imported_paths": 0,
+      "high_confidence_secret_hits": 0,
+      "old_operational_atlas_path_refs": 0,
+      "state_workspace_mutation": 0,
+      "bridge_suite": "204/204 PASS"
+    },
+    "linux_exact_commit": {
+      "head": "0eba02d772a3d19ab1a900d0cfc5c1b9427a2010",
+      "component_registry": "PASS",
+      "atlas_canon": "PASS",
+      "imported_python_syntax": "28/28 PASS",
+      "forbidden_imported_paths": 0,
+      "worktree_clean": true,
+      "syntax_warnings": 2,
+      "syntax_warning_scope": "Windows-path docstrings in legacy Object Engine snapshot; not SyntaxError and snapshot is explicitly linux_runnable=false"
+    }
+  },
+  "safety": {
+    "live_windows_c_die_mutated": false,
+    "windows_services_modified": false,
+    "windows_tasks_modified": false,
+    "browser_profiles_copied": false,
+    "credential_values_read_or_copied": false,
+    "object_database_copied": false,
+    "aether_modified": false,
+    "proxima_modified": false
+  },
+  "repair_children": 1,
+  "repair_child": {
+    "id": "DIE-103-R1",
+    "scope": "clean-import validation and hygiene repair",
+    "events": [
+      "Metadata-only source-shape scan initially passed a null string into regex for an empty source file; scan was repeated with string coercion.",
+      "One upstream Object Asset Engine source file was syntax-invalid and was excluded with provenance rather than silently repaired.",
+      "Test-created __pycache__ directories under the imported OAUTH snapshot were removed.",
+      "Generated/imported CRLF text initially failed git diff --check; text snapshots and generated docs/manifests were normalized to LF and manifests now record both source and imported SHA256 values."
+    ],
+    "live_windows_mutation": false,
+    "result": "PASS"
+  },
+  "next_atomic_task": "DIE-104 - one-canon validator"
+}

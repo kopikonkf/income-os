@@ -433,7 +433,7 @@
                       "depends_on":  [
                                          "DIE-102"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "selectively imported company canon",
                       "acceptance":  "Only disposition-approved source/provenance enters /srv/die; no nested .git, caches, profiles, secrets, or mutable runtime state."
                   },
@@ -444,7 +444,7 @@
                       "depends_on":  [
                                          "DIE-103"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "canon validation script/tests/receipt",
                       "acceptance":  "Target tree, forbidden paths, source/runtime separation, secrets boundary, and ownership rules validate fail-closed."
                   },
