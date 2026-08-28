@@ -54,7 +54,7 @@ DIE_MCP_TOKEN=$token
 DIE_MCP_LOGIN_PASSWORD=$login
 DIE_MCP_BASE_URL=https://executive-linux-precutover.invalid
 DIE_MCP_OAUTH_CLIENT_ID=chatgpt-executive-linux-precutover
-DIE_MCP_OAUTH_REDIRECT_HOSTS=chatgpt.com;openai.com
+DIE_MCP_OAUTH_REDIRECT_HOSTS="chatgpt.com;openai.com"
 EOF
   unset token login
 fi

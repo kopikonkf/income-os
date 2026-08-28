@@ -41,6 +41,7 @@ def test_die200_installer_generates_fresh_linux_secrets_and_never_copies_windows
     assert "runtime-mcp.env" in text
     assert "chmod 0600" in text
     assert "DIE_MCP_BASE_URL=https://executive-linux-precutover.invalid" in text
+    assert 'DIE_MCP_OAUTH_REDIRECT_HOSTS="chatgpt.com;openai.com"' in text
     assert "AppData" not in text
     assert "C:\\" not in text
     assert "cookie" not in text.lower()
