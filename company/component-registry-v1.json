@@ -1,0 +1,105 @@
+{
+  "schema": "die.component-registry.v1",
+  "status": "CANON",
+  "task": "DIE-103",
+  "generated_at": "2026-08-28",
+  "source_of_truth_rule": "A logical company owner may reference existing canonical repo paths; DIE-103 must not create duplicate active source trees merely to fill company/. External snapshots are immutable import evidence until their dedicated Linux migration task refactors them.",
+  "components": {
+    "architect": {
+      "logical_root": "company/architect",
+      "status": "DEFERRED_SOURCE_IMPORT",
+      "source_refs": [
+        "D:\\mcp-architect"
+      ],
+      "migration_task": "MX-053",
+      "note": "Logical ownership exists now, but Architect MCP source/runtime import remains intentionally deferred until CUT-005 -> MX-053."
+    },
+    "executive": {
+      "logical_root": "company/executive",
+      "status": "OWNERSHIP_BOUNDARY",
+      "source_refs": [
+        "IDENTITY/chatgpt-plus-executive.md",
+        "bridge/income_os_bridge/runtime_mcp_server.py",
+        "bridge/income_os_bridge/runtime_mcp_oauth.py",
+        "ops/windows/runtime-mcp/"
+      ],
+      "migration_task": "DIE-200",
+      "note": "No duplicate copy of shared runtime source; current repo paths remain canonical until DIE-200 relocation/rebuild."
+    },
+    "division01": {
+      "logical_root": "company/division/division001",
+      "status": "OWNERSHIP_BOUNDARY",
+      "principal_id": "division-head-division01",
+      "source_refs": [
+        "IDENTITY/division-head-division01.md",
+        "bin/wake_division01.py",
+        "bridge/income_os_bridge/runtime_mcp_server.py",
+        "ops/windows/runtime-mcp/"
+      ],
+      "migration_task": "DIE-201",
+      "note": "D:\\OAUTH is explicitly not Division01."
+    },
+    "hermes": {
+      "logical_root": "company/die-agents/hermes",
+      "status": "OWNERSHIP_BOUNDARY",
+      "source_refs": [
+        "IDENTITY/hermes-operator/SOUL.md",
+        "IDENTITY/hermes-operator/AGENTS.md",
+        "bin/die_operator_tick.py",
+        "bin/die_operator_switch.py",
+        "bridge/income_os_bridge/"
+      ],
+      "migration_task": "DIE-202",
+      "note": "No AppData/profile copy. Current identity/runtime sources remain referenced, not duplicated."
+    },
+    "workers": {
+      "logical_root": "company/workers",
+      "status": "OWNERSHIP_BOUNDARY",
+      "source_refs": [
+        "IDENTITY/worker-template.md",
+        "PROTOCOLS/worker-contract-v0.md"
+      ],
+      "migration_task": "DIE-202",
+      "note": "Worker contracts remain canonical at their existing repo paths until DIE-202."
+    },
+    "atlas_human_centric": {
+      "logical_root": "company/atlas/human-centric",
+      "status": "IMPORTED_CANONICAL",
+      "source_refs": [
+        "company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md"
+      ],
+      "migration_task": "DIE-203",
+      "note": "Canonical Atlas document moved through Git history during DIE-103."
+    },
+    "atlas_object_centric": {
+      "logical_root": "company/atlas/object-centric/object-asset-engine",
+      "status": "IMPORTED_SOURCE_SNAPSHOT",
+      "source_refs": [
+        "company/atlas/object-centric/object-asset-engine/source-snapshot/windows-v1/SOURCE_MANIFEST.json"
+      ],
+      "external_source_root": "D:\\object-asset-engine",
+      "migration_task": "DIE-203",
+      "note": "22 syntax-valid source files imported; mutable DB/data/state/config excluded; one syntax-invalid Windows source file excluded and recorded."
+    },
+    "muxia": {
+      "logical_root": "company/muxia",
+      "status": "EXISTING_CANON",
+      "source_refs": [
+        "company/muxia/"
+      ],
+      "migration_task": "MX-060",
+      "note": "Existing MUXIA source/runtime contract remains unchanged by DIE-103."
+    },
+    "web_ai_oauth_adapter": {
+      "logical_root": "company/next-subprojects/web-ai-oauth-adapter",
+      "status": "IMPORTED_PROVIDER_NEUTRAL_CORE_SNAPSHOT",
+      "source_refs": [
+        "company/next-subprojects/web-ai-oauth-adapter/source-snapshot/core-v1/SOURCE_MANIFEST.json"
+      ],
+      "external_source_root": "D:\\OAUTH",
+      "external_source_head": "783c1e990c7f77ecdbf5bd2bab8c22be3cae2e49",
+      "migration_task": "UNSCHEDULED_AFTER_DIE-204",
+      "note": "Only tracked provider-neutral adapter core imported. Credentials, provider auth/token/PoW helpers, private-web/debug/network-capture scripts, server, research, staging and untracked plugins excluded pending policy/runtime review."
+    }
+  }
+}

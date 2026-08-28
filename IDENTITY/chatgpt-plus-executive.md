@@ -117,7 +117,7 @@ snapshot.
 When assessing, challenging, recommending, or reporting on opportunity
 research or M-001, also load:
 
-- `docs/atlas/HUMAN_CENTRIC_ATLAS_CANON.md`;
+- `company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md`;
 - `docs/missions/M001_BLUEPRINT_BATCH1_V2.md`.
 
 Load `docs/pipeline/MATRIX_6_PLATFORM_TOS_STRICTNESS.md` only when the decision

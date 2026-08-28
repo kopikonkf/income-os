@@ -2381,3 +2381,26 @@ Receipt: `company/muxia/receipts/DIE-102-env-path-abstraction.receipt.json`.
 
 Next atomic task: `DIE-103 - clean component import`.
 DIE-102 publication proof: GitHub PR #39 merged at `1af7c2dab002e552fc9063539173b61f22386268`. Post-merge Windows bridge regression remained 204/204 PASS; Linux `/srv/die` was fast-forwarded cleanly to the same SHA and imported Linux defaults resolved to `/srv/die`, `/var/lib/die`, `/var/lib/muxia`, `/etc/die`, `/opt/die`. Live Windows `C:\DIE` guard remained `04eda313f1e757c0d0f8fd9d90251b92c0dd95a3` with 37 dirty paths preserved.
+---
+
+## 2026-08-28 - Chapter #4 DIE-103 clean component import
+
+`DIE-103 - clean component import`: DONE / PASS_WITH_ONE_REPAIR_CHILD.
+
+The company topology is now materially represented under `company/` without creating duplicate active source trees. `company/component-registry-v1.json` records nine logical components. Executive, Division01, Hermes, and Workers are ownership boundaries over existing canonical repo paths pending their dedicated Linux migration tasks; MUXIA remains existing canon; Architect ownership is materialized but physical source/runtime import remains explicitly deferred to `CUT-005 -> MX-053`.
+
+Human-centric Atlas moved through Git history to `company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md`; current operational references were updated and old operational-path reference count is zero.
+
+Object Asset Engine was imported as a provenance-hashed Windows source snapshot under `company/atlas/object-centric/object-asset-engine/source-snapshot/windows-v1/`: 22 syntax-valid source files, no DB/data/state/config/cache. One upstream file, `scripts/audit/gemini_audit_parallel.py`, is syntax-invalid at source and is excluded with source hash/bytes recorded; no silent repair was made. Snapshot remains `linux_runnable=false` pending DIE-203 path/config refactor.
+
+`D:\OAUTH` remains a separate next-subproject, not Division01. Only six tracked provider-neutral core files from Git HEAD `783c1e990c7f77ecdbf5bd2bab8c22be3cae2e49` were imported. Credentials, provider implementations, auth/token/PoW helpers, debug/live/network-capture scripts, server runtime, research/staging, logs, `.git`, and untracked plugins were excluded pending separate policy/runtime review.
+
+Validation: Object provenance 22/22 PASS; OAUTH Git provenance 6/6 PASS; imported Python syntax 28/28 PASS; forbidden imported paths 0; high-confidence secret hits 0; full bridge regression 204/204 PASS. Linux exact implementation SHA `0eba02d772a3d19ab1a900d0cfc5c1b9427a2010` also passed component registry, Atlas canon, syntax 28/28, forbidden-path=0, clean worktree. Two non-fatal SyntaxWarnings from Windows-path docstrings confirm the object snapshot remains Windows-coupled until DIE-203.
+
+`DIE-103-R1` is the single repair child covering null-safe scan correction, exclusion/provenance of the one upstream syntax-invalid source file, cleanup of test-created `__pycache__`, and CRLF-to-LF import normalization with separate source/imported SHA256 values. No live Windows service/state/database/profile/credential mutation occurred.
+
+Canonical task doc: `docs/migration/DIE_CLEAN_COMPONENT_IMPORT_V1.md`.
+Receipt: `company/muxia/receipts/DIE-103-clean-component-import.receipt.json`.
+Task graph: `DIE-103=DONE`, `DIE-104=READY`.
+
+Next atomic task: `DIE-104 - one-canon validator`.

@@ -1,0 +1,76 @@
+{
+  "schema": "die.external-source-snapshot.v1",
+  "source_root": "D:\\OAUTH",
+  "source_git_head": "783c1e990c7f77ecdbf5bd2bab8c22be3cae2e49",
+  "scope": "provider-neutral tracked core only",
+  "files": [
+    {
+      "path": "src/__init__.py",
+      "source_sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5",
+      "imported_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 3,
+      "imported_bytes": 0,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "src/core/__init__.py",
+      "source_sha256": "4b54d05fd421df1199e3f4770806101b26ba721d2ffc7d6c2c04404aa6b32b06",
+      "imported_sha256": "4b54d05fd421df1199e3f4770806101b26ba721d2ffc7d6c2c04404aa6b32b06",
+      "source_bytes": 24,
+      "imported_bytes": 24,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "src/core/adapter.py",
+      "source_sha256": "3bceae44218325d72ced112a811050cece9f764ef9b1dcbf15529840402f259c",
+      "imported_sha256": "3bceae44218325d72ced112a811050cece9f764ef9b1dcbf15529840402f259c",
+      "source_bytes": 1874,
+      "imported_bytes": 1874,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "src/core/registry.py",
+      "source_sha256": "8d4a138700927a58853b84d054a7c740542d23b9500411e7388881c0b9d64d5a",
+      "imported_sha256": "8d4a138700927a58853b84d054a7c740542d23b9500411e7388881c0b9d64d5a",
+      "source_bytes": 842,
+      "imported_bytes": 842,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "src/utils/__init__.py",
+      "source_sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5",
+      "imported_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 3,
+      "imported_bytes": 0,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    },
+    {
+      "path": "src/utils/sse.py",
+      "source_sha256": "c261c1e0f3df72bf9fb69c8ed94f2e33c5b5b8232c79ef5f62259f27cbdfb193",
+      "imported_sha256": "c261c1e0f3df72bf9fb69c8ed94f2e33c5b5b8232c79ef5f62259f27cbdfb193",
+      "source_bytes": 816,
+      "imported_bytes": 816,
+      "normalization": "UTF-8 text; CRLF/CR -> LF"
+    }
+  ],
+  "excluded": [
+    "credentials/**",
+    ".git/**",
+    ".freebuff/**",
+    "staging/**",
+    "research/**",
+    "docs/**",
+    "HANDOFF.md",
+    "start_all.bat",
+    "server_test*.log",
+    "src/server.py",
+    "src/providers/**",
+    "src/utils/auth_store.py",
+    "src/utils/*token*.py",
+    "src/utils/*auth*.py",
+    "src/utils/deepseek_pow.py",
+    "scripts/**",
+    "untracked plugins/**"
+  ],
+  "exclusion_reason": "credential/auth/token/private-web/debug/network-capture/provider-specific or non-canonical runtime/provenance material requires separate policy/runtime review before Linux rebuild."
+}
