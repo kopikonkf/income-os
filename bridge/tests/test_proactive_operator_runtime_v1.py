@@ -16,7 +16,7 @@ import sys
 
 import pytest
 
-DIE_REPO = pathlib.Path(r"C:\DIE")
+DIE_REPO = pathlib.Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(DIE_REPO / "bin"))
 
 import die_operator_tick as tick  # noqa: E402
@@ -47,6 +47,12 @@ def die_home(tmp_path, monkeypatch):
     monkeypatch.setattr(tick, "EVENT_PY", DIE_REPO / "bin" / "die_event.py")
     monkeypatch.setattr(
         tick, "CANON_MANIFEST", home / "company" / "manifest-absent.json")
+    monkeypatch.setattr(plat, "DIE", home)
+    monkeypatch.setattr(plat, "RECEIPTS", op / "platform_receipts")
+    monkeypatch.setattr(
+        plat, "SCHEMA",
+        DIE_REPO / "company" / "schemas" / "die.platform.receipt.v1.schema.json")
+    monkeypatch.setattr(plat, "EVENT_PY", DIE_REPO / "bin" / "die_event.py")
     # Deterministic collectors: no git/hermes/network in unit tests.
     monkeypatch.setattr(tick, "collect_repo_sha", lambda: "a" * 40)
     monkeypatch.setattr(
@@ -236,6 +242,8 @@ PLATREC_BASE = {
 
 
 def test_receipt_ingest_valid(tmp_path, monkeypatch):
+    monkeypatch.setenv("DIE_HOME", str(tmp_path))
+    monkeypatch.setenv("DIE_STATE_ROOT", str(tmp_path))
     receipts_dir = tmp_path / "receipts"
     monkeypatch.setattr(plat, "DIE", tmp_path)
     monkeypatch.setattr(plat, "RECEIPTS", receipts_dir)
@@ -253,6 +261,8 @@ def test_receipt_ingest_valid(tmp_path, monkeypatch):
 
 
 def test_receipt_synthetic_requires_fixture_recorder(tmp_path, monkeypatch):
+    monkeypatch.setenv("DIE_HOME", str(tmp_path))
+    monkeypatch.setenv("DIE_STATE_ROOT", str(tmp_path))
     receipts_dir = tmp_path / "receipts"
     monkeypatch.setattr(plat, "DIE", tmp_path)
     monkeypatch.setattr(plat, "RECEIPTS", receipts_dir)
