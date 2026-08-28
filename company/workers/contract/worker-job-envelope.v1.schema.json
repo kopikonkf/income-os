@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.worker-job-envelope.v1",
+  "title": "DIE Worker Job Envelope V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "task_id",
+    "mission_id",
+    "executor",
+    "goal",
+    "context",
+    "workspace",
+    "constraints",
+    "acceptance_criteria",
+    "handoff"
+  ],
+  "properties": {
+    "schema": {"const": "die.worker-job-envelope.v1"},
+    "task_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"},
+    "mission_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"},
+    "executor": {"const": "opencode"},
+    "goal": {"type": "string", "minLength": 1, "maxLength": 1000},
+    "context": {"type": "string", "maxLength": 12000},
+    "workspace": {"type": "string", "minLength": 1},
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["time_budget_min", "allowed_paths", "network", "forbidden"],
+      "properties": {
+        "time_budget_min": {"type": "integer", "minimum": 1, "maximum": 240},
+        "allowed_paths": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "network": {"enum": ["none", "allowlist"]},
+        "forbidden": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "statement", "verify_with"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^AC-[1-9][0-9]*$"},
+          "statement": {"type": "string", "minLength": 1},
+          "verify_with": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "provider_id", "required_capability", "profile_selector", "timeout_ms"],
+      "properties": {
+        "kind": {"const": "muxia_job"},
+        "provider_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"},
+        "required_capability": {"type": "string", "minLength": 1},
+        "profile_selector": {"type": ["string", "null"]},
+        "timeout_ms": {"type": "integer", "minimum": 1000, "maximum": 3600000}
+      }
+    }
+  }
+}

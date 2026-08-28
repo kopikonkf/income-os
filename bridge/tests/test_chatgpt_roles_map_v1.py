@@ -5,7 +5,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 MAP_PATH = ROOT / "docs" / "CHATGPT_ROLES_TRANSPORT_MAP.md"
 REGISTRY_PATH = ROOT / "company" / "identity-registry.json"
-HERMES_AGENTS_PATH = ROOT / "IDENTITY" / "hermes-operator" / "AGENTS.md"
+HERMES_AGENTS_PATH = ROOT / "company" / "die-agents" / "hermes" / "AGENTS.md"
 
 
 def test_map_mentions_all_registry_identities():

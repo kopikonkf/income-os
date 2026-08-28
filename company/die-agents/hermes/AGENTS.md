@@ -1,6 +1,6 @@
 # Hermes Operator — Stable-Facts Queue Canon
 
-Path: `IDENTITY/hermes-operator/AGENTS.md`
+Path: `company/die-agents/hermes/AGENTS.md`
 Class: operating rules; subordinate to `CONSTITUTION.md` and `SOUL.md`.
 
 This file materializes the canonical Hermes path already declared by the legacy

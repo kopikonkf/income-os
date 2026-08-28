@@ -300,7 +300,7 @@ def test_control_rejects_missing_economic_gate_and_raw_access(monkeypatch) -> No
 
 def test_creator_contract_requires_durable_artifact_and_evidence_handoff() -> None:
     creator = (ROOT / "IDENTITY" / "chatgpt-creator.md").read_text(encoding="utf-8")
-    worker = (ROOT / "PROTOCOLS" / "worker-contract-v0.md").read_text(encoding="utf-8")
+    worker = (ROOT / "company" / "workers" / "contract" / "WORKER_CONTRACT_V0.md").read_text(encoding="utf-8")
     creator_words = " ".join(creator.lower().split())
     assert '"artifact_path"' in creator
     assert '"evidence_ref"' in creator

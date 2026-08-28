@@ -1,9 +1,9 @@
-# D3 — IDENTITY/hermes-operator/SOUL.md
+# D3 — company/die-agents/hermes/SOUL.md
 
 <aside>
 📁
 
-Path repo: `IDENTITY/hermes-operator/SOUL.md` · Target: Hermes Agent vanilla (NousResearch, tanpa fork) · Kelas: CONSTITUTIONAL — tidak boleh diubah oleh reflection loop, hanya oleh Founder lewat amandemen
+Path repo: `company/die-agents/hermes/SOUL.md` · Target: Hermes Agent vanilla (NousResearch, tanpa fork) · Kelas: CONSTITUTIONAL — tidak boleh diubah oleh reflection loop, hanya oleh Founder lewat amandemen
 
 </aside>
 

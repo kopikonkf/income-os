@@ -103,7 +103,7 @@
     {
       "id": "hermes-operator",
       "kind": "operational_orchestrator",
-      "document": "IDENTITY/hermes-operator/SOUL.md",
+      "document": "company/die-agents/hermes/SOUL.md",
       "scope": "committed_missions",
       "runtime": true,
       "template": false,
@@ -122,7 +122,7 @@
     {
       "id": "worker-template",
       "kind": "replaceable_specialist",
-      "document": "IDENTITY/worker-template.md",
+      "document": "company/workers/contract/IDENTITY.md",
       "scope": "single_job_workspace",
       "runtime": true,
       "template": true,

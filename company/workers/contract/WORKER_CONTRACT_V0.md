@@ -1,13 +1,15 @@
-# D6 — PROTOCOLS/worker-contract-v0.md
+# D6 — company/workers/contract/WORKER_CONTRACT_V0.md
 
 <aside>
 📁
 
-Path repo: `PROTOCOLS/worker-contract-v0.md` · Ekstrak standalone dari `IDENTITY/hermes-operator/AGENTS.md` §5 (sumber kanonik) · Berlaku untuk semua worker CLI
+Path repo: `company/workers/contract/WORKER_CONTRACT_V0.md` · Ekstrak standalone dari `company/die-agents/hermes/AGENTS.md` §5 (sumber kanonik) · Berlaku untuk semua worker CLI
 
 </aside>
 
-Kontrak antara Hermes (orchestrator) dan Worker (employee terikat kontrak). Worker v0: **opencode CLI**, satu worker aktif.
+Kontrak antara Hermes (orchestrator) dan Worker (employee terikat kontrak). Worker v0: **OpenCode CLI**, satu worker aktif.
+
+DIE-202 implementation lock: `Worker` adalah role/contract generik; `opencode` adalah **Worker-001** dan default general execution worker V1. Hermes tetap orchestrator. MUXIA tetap browser/provider/profile/job/artifact infrastructure. Architect MCP bukan worker.
 
 ## 1. Prinsip
 
@@ -129,3 +131,14 @@ Tanpa fixture ini, kepatuhan kontrak adalah **ASSUMPTION**, bukan properti siste
 - `OPEN-W2` Bentuk sandbox/isolasi workspace di Windows belum diputuskan (lihat Challenge C4).
 - `OPEN-W3` Kebijakan retry otomatis (berapa kali, dengan jeda berapa) belum ditetapkan.
 - `OPEN-W4` Apakah `network: "allowlist"` diperlukan untuk job v0 pertama — belum diketahui sampai job nyata disusun.
+
+## 9. DIE-202 Linux runtime binding
+
+- Contract runtime schema: `company/workers/contract/worker-job-envelope.v1.schema.json`.
+- Result runtime schema: `company/workers/contract/worker-result-envelope.v1.schema.json`.
+- Worker-001 runner: `company/workers/opencode/runner.py`.
+- Hermes dispatch/acceptance gate: `company/die-agents/hermes/worker_dispatch.py`.
+- Default workspace root: `/var/lib/die/workspaces`.
+- OpenCode install root: `/opt/die/workers/opencode`.
+- OpenCode mutable home: `/var/lib/die/workers/opencode/home`.
+- Synthetic DIE-202 proof may invoke `opencode --version` only; it must not call a model/provider. Real model-backed work requires explicit provider/cost/network policy in the job envelope and a later governed proof.

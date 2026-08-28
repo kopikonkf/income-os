@@ -191,9 +191,11 @@ def validate(root: pathlib.Path, *, require_clean: bool = False) -> dict:
         division = components["division01"]
         expected_div = contract["division01_boundary"]
         _assert(division.get("principal_id") == expected_div["principal_id"], "Division01 principal drift")
-        _assert("not Division01" in division.get("note", ""), "OAUTH != Division01 boundary missing")
+        _assert(division.get("logical_root") == "company/division/division001", "Division01 logical-root drift")
         oauth = components["web_ai_oauth_adapter"]
+        _assert(oauth.get("logical_root") == "company/next-subprojects/web-ai-oauth-adapter", "OAUTH logical-root drift")
         _assert(oauth.get("external_source_root") == r"D:\OAUTH", "OAUTH source-root drift")
+        _assert(oauth.get("logical_root") != division.get("logical_root"), "OAUTH must remain separate from Division01")
 
         by = _task_by_id(graph)
         _assert(by["DIE-104"].get("depends_on") == ["DIE-103"], "DIE-104 dependency drift")

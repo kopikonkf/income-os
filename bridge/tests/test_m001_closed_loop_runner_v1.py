@@ -427,7 +427,7 @@ def test_runtime_canon_uses_gateway_dispatch_not_a_production_cron():
         encoding="utf-8"
     )
     company_brain = (root / "COMPANY_BRAIN.md").read_text(encoding="utf-8")
-    hermes = (root / "IDENTITY/hermes-operator/AGENTS.md").read_text(encoding="utf-8")
+    hermes = (root / "company/die-agents/hermes/AGENTS.md").read_text(encoding="utf-8")
 
     assert "No production cron and no second daemon are added." in operations
     assert "Hermes Gateway Kanban dispatcher" in operations
