@@ -2405,3 +2405,23 @@ Task graph: `DIE-103=DONE`, `DIE-104=READY`.
 
 Next atomic task: `DIE-104 - one-canon validator`.
 DIE-103 publication proof: GitHub PR #41 merged at `2eea6f222f30635a77816dde4be089ecd83363d9`. Post-merge Windows bridge regression remained 204/204 PASS; Linux `/srv/die` was fast-forwarded cleanly to the same SHA and component/task/receipt/source-manifest JSON validated. Live Windows `C:\DIE` remained `04eda313f1e757c0d0f8fd9d90251b92c0dd95a3` with 37 dirty paths preserved.
+---
+
+## 2026-08-28 - Chapter #4 DIE-104 one-canon validator
+
+`DIE-104 - one-canon validator`: DONE / PASS_WITH_ONE_REPAIR_CHILD.
+
+A stdlib-only fail-closed validator is now canonical at `company/scripts/validate_one_canon.py`, governed by `company/contracts/die.one-canon-validator.v1.json`. It performs 11 checks covering Git/canonical paths, component ownership, DIE-102 path-root separation, forbidden tracked company material, bounded legacy state, Architect/OAUTH/Aether boundaries, Atlas singular canon, Object/OAUTH snapshot integrity, and high-confidence secret tripwires.
+
+The validator explicitly pins the 15 legacy tracked `state/` files that still exist from the Windows-era layout. That allowlist may not expand, tracked `workspaces/` remain forbidden, and the temporary exception must be removed only after `CUT-002/CUT-003` final state sync plus restore/replay proof.
+
+`DIE-104-R1` is the single repair child. The first real validator run found stale Hermes component-registry refs to `bin/die_operator_tick.py` and `bin/die_operator_switch.py`; those files are absent from clean GitHub main. The registry was corrected to reference canonical SOUL/AGENTS plus shared bridge source, while live-only proactive-operator candidates are explicitly deferred to DIE-202 reconciliation. The same repair child also fixed an isolated negative-test importlib loader issue; no live runtime mutation occurred.
+
+Validation evidence: targeted fail-closed suite 6/6 PASS, including intentional failures for tracked company credentials, new tracked runtime state, Architect ordering drift, and snapshot tamper. Full Windows bridge suite is 210/210 PASS. Exact implementation SHA `b4a2349b949555674c6246f8d6cb0661574220d0` passes the validator 11/11 with `--require-clean` on both Windows staging and Linux `/srv/die`; both worktrees were clean. Live Windows `C:\DIE` remains `04eda313f1e757c0d0f8fd9d90251b92c0dd95a3` with 37 dirty paths preserved.
+
+Task graph now marks `DIE-104=DONE`. `DIE-200`, `DIE-201`, `DIE-202`, and `DIE-203` are all dependency-eligible and marked `READY`; recommended next serial atomic task is `DIE-200 - Executive Linux migration`.
+
+Architecture doc: `docs/architecture/DIE_ONE_CANON_VALIDATOR_V1.md`.
+Receipt: `company/muxia/receipts/DIE-104-one-canon-validator.receipt.json`.
+
+Next recommended atomic task: `DIE-200 - Executive Linux migration`.

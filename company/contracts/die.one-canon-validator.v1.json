@@ -1,0 +1,87 @@
+{
+  "schema": "die.one-canon-validator.v1",
+  "status": "CANON",
+  "task": "DIE-104",
+  "required_components": [
+    "architect",
+    "executive",
+    "division01",
+    "hermes",
+    "workers",
+    "atlas_human_centric",
+    "atlas_object_centric",
+    "muxia",
+    "web_ai_oauth_adapter"
+  ],
+  "canonical_paths": {
+    "component_registry": "company/component-registry-v1.json",
+    "path_roots_contract": "company/contracts/die.path-roots.v1.json",
+    "task_graph": "company/muxia-task-graph-v1.json",
+    "disposition_matrix": "docs/migration/DIE_WINDOWS_ESTATE_DISPOSITION_MATRIX_V1.md",
+    "human_atlas": "company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md",
+    "legacy_human_atlas": "docs/atlas/HUMAN_CENTRIC_ATLAS_CANON.md",
+    "object_snapshot_manifest": "company/atlas/object-centric/object-asset-engine/source-snapshot/windows-v1/SOURCE_MANIFEST.json",
+    "oauth_snapshot_manifest": "company/next-subprojects/web-ai-oauth-adapter/source-snapshot/core-v1/SOURCE_MANIFEST.json"
+  },
+  "linux_roots": {
+    "DIE_HOME": "/srv/die",
+    "DIE_STATE_ROOT": "/var/lib/die",
+    "MUXIA_ROOT": "/var/lib/muxia",
+    "DIE_CONFIG_ROOT": "/etc/die",
+    "DIE_INSTALL_ROOT": "/opt/die"
+  },
+  "company_forbidden_path_components": [
+    ".git",
+    "node_modules",
+    "credentials",
+    "__pycache__",
+    ".pytest_cache",
+    ".test-userdata",
+    "data",
+    "db",
+    "outputs"
+  ],
+  "company_forbidden_suffixes": [
+    ".pyc"
+  ],
+  "legacy_tracked_runtime_allowlist": [
+    "state/DECISIONS.jsonl",
+    "state/ECONOMICS.jsonl",
+    "state/EVENTS.jsonl",
+    "state/organism-test/_template_day.json",
+    "state/organism-test/_template_scoreboard.md",
+    "state/organism-test/conformance-verify.json",
+    "state/organism-test/groundtruth-20260818.txt",
+    "state/organism-test/groundtruth-20260819.txt",
+    "state/organism-test/groundtruth-20260820.txt",
+    "state/projection/.cursor",
+    "state/projection/BRIEFING.md",
+    "state/projection/EVENTS.jsonl",
+    "state/projection/WAKE.flag",
+    "state/projection/conformance-d1.json",
+    "state/projection/conformance-d7.json"
+  ],
+  "legacy_runtime_policy": {
+    "tracked_state_may_not_expand": true,
+    "tracked_workspaces_allowed": false,
+    "removal_gate": "CUT-002/CUT-003 after final state sync and restore/replay proof"
+  },
+  "architect_boundary": {
+    "component_status": "DEFERRED_SOURCE_IMPORT",
+    "migration_task": "MX-053",
+    "mx053_depends_on": [
+      "CUT-005"
+    ],
+    "handoff_task": "CUT-006"
+  },
+  "division01_boundary": {
+    "principal_id": "division-head-division01",
+    "oauth_is_division01": false
+  },
+  "aether_boundary": "KEEP_EXTERNAL",
+  "snapshot_rules": {
+    "schema": "die.external-source-snapshot.v1",
+    "object_linux_runnable": false,
+    "oauth_source_git_head": "783c1e990c7f77ecdbf5bd2bab8c22be3cae2e49"
+  }
+}
