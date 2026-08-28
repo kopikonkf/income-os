@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 COMPANY_BRAIN = ROOT / "COMPANY_BRAIN.md"
 EXECUTIVE = ROOT / "company" / "executive" / "IDENTITY.md"
-DIVISION01 = ROOT / "IDENTITY" / "division-head-division01.md"
+DIVISION01 = ROOT / "company" / "division" / "division001" / "IDENTITY.md"
 
 PIPELINE = "docs/pipeline/DIGITAL_INCOME_PIPELINE_CANON.md"
 ATLAS = "company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md"

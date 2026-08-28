@@ -77,7 +77,7 @@ def _fixture(tmp_path: pathlib.Path) -> pathlib.Path:
         "bridge/tests/test_runtime_canon_load_contract_v1.py",
         "company/runtime-canon-context-v1.json",
         "company/executive/IDENTITY.md",
-        "IDENTITY/division-head-division01.md",
+        "company/division/division001/IDENTITY.md",
     ]:
         path = root / rel
         path.parent.mkdir(parents=True, exist_ok=True)

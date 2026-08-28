@@ -32,7 +32,7 @@
       "status": "OWNERSHIP_BOUNDARY",
       "principal_id": "division-head-division01",
       "source_refs": [
-        "IDENTITY/division-head-division01.md",
+        "company/division/division001/IDENTITY.md",
         "bin/wake_division01.py",
         "bridge/income_os_bridge/runtime_mcp_server.py",
         "ops/windows/runtime-mcp/"

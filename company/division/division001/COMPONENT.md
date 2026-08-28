@@ -6,7 +6,7 @@ Migration task: `DIE-201`
 D:\OAUTH is explicitly not Division01.
 
 Canonical source references:
-- `IDENTITY/division-head-division01.md`
+- `company/division/division001/IDENTITY.md`
 - `bin/wake_division01.py`
 - `bridge/income_os_bridge/runtime_mcp_server.py`
 - `ops/windows/runtime-mcp/`
