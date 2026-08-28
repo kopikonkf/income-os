@@ -50,7 +50,7 @@ await page.bringToFront();
 await page.waitForTimeout(3000);
 function statusPayload(status) {
   return {
-    schema: 'die.executive.operator-browser.v1',
+    schema: 'die.division01.operator-browser.v1',
     principal_id: 'division-head-division01',
     policy: 'operator-controlled-acquisition-only',
     profile: profileDir,
