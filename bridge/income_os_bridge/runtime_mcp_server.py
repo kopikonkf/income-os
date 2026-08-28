@@ -48,14 +48,6 @@ PRINCIPAL_OAUTH_CLIENT_IDS = {
 }
 INFRASTRUCTURE_RESERVED_PORTS = frozenset({8787, 8789, 8790})
 MAX_REQUEST_BYTES = 262_144
-PROJECT_ROOT = config.DIE_HOME
-AETHER_HOME = pathlib.Path(
-    r"C:\Users\aethers\AppData\Local\hermes\profiles\income-operator"
-)
-WORKSPACE_ROOTS = (
-    config.WORKSPACES,
-    config.STATE,
-)
 RUNTIME_FORBIDDEN = re.compile(
     r"(?i)\b(select|union|drop)\b|\b(exec|eval)\b|"
     r"\.\.[\\/]|\bbearer\s+\S+|\bsk-[A-Za-z0-9_-]+"

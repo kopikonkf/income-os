@@ -2426,3 +2426,27 @@ Receipt: `company/muxia/receipts/DIE-104-one-canon-validator.receipt.json`.
 
 Next recommended atomic task: `DIE-200 - Executive Linux migration`.
 DIE-104 publication proof: GitHub PR #43 merged at `66099c2503701018d354c6c1881c224665706ba6`. Post-merge Windows validator remained 11/11 PASS and full bridge regression remained 210/210 PASS; Linux `/srv/die` was fast-forwarded cleanly to the same SHA and validator remained 11/11 PASS with `--require-clean`. Live Windows `C:\DIE` remained `04eda313f1e757c0d0f8fd9d90251b92c0dd95a3` with 37 dirty paths preserved.
+---
+
+## 2026-08-28 - Chapter #4 DIE-200 Executive Linux migration — WAITING_OPERATOR_AUTH
+
+`DIE-200 - Executive Linux migration`: IN PROGRESS / WAITING_OPERATOR_AUTH.
+
+Runtime implementation is staged at source SHA `26a27c1831710d773e7087eab0dd6de06e740c34`. Executive identity moved through Git history to `company/executive/IDENTITY.md`; identity registry, component registry, one-canon validator, and tests were updated atomically. Linux assets live under `company/executive/linux/`.
+
+Linux Decision MCP is active as `die-executive-runtime-mcp.service` on loopback `127.0.0.1:8791`, principal `chatgpt-plus-executive`, 18 tools. Fresh Linux-only secrets are root-owned mode 0600 under `/etc/die/executive/runtime-mcp.env`. Service hardening includes dedicated user/group, `NoNewPrivileges`, `ProtectSystem=strict`, source read-only, state-only writable path, empty capabilities, and localhost-only network policy. Authenticated initialize/tools/system_health passed; unauthenticated MCP returned 401; journal secret-shape scan was zero.
+
+`/var/lib/die/state` was bootstrapped only from clean Git-tracked state for pre-cutover proof, with SHA256 parity 15/15. This is not CUT-002 final state migration and no live dirty Windows state was copied.
+
+The legacy Windows private-backend/Sentinel wake implementation was not ported. Linux consumer ChatGPT uses a fresh headed Playwright profile at `/var/lib/die/executive/browser-profile`, manual operator login only, and a non-sensitive heartbeat `/var/lib/die/executive/browser-status.json`. No cookie/token/profile clone, private backend, PoW/protection bypass, automated prompt submission, or output extraction is used.
+
+Current heartbeat is `AUTH_REQUIRED` at `https://chatgpt.com/` with login UI present. This is expected negative proof that Windows session material was not cloned. The browser is already open in the Linux RDP desktop; DIE-200 cannot become DONE until Founder/operator login makes the heartbeat `READY`.
+
+Windows rollback remains intact: `DIERuntimeMCPExecutive` Running/Auto on loopback 8791; live `C:\DIE` remains `04eda313f1e757c0d0f8fd9d90251b92c0dd95a3` with 37 dirty paths. No public endpoint cutover occurred.
+
+Validation so far: Executive targeted tests 6/6 PASS, full bridge 216/216 PASS, Windows one-canon 11/11 PASS, Linux one-canon 11/11 PASS. `DIE-200-R1` is the single repair child for shell transport/env quoting/readiness classification/identity-ref hygiene; no Windows production or credential mutation.
+
+Task graph status: `DIE-200=WAITING_OPERATOR`. Do not start DIE-201 serially until the Executive auth gate closes.
+
+Receipt: `company/muxia/receipts/DIE-200-executive-linux.receipt.json`.
+Migration doc: `docs/migration/DIE_EXECUTIVE_LINUX_MIGRATION_V1.md`.

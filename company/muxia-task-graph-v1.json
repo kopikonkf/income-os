@@ -455,7 +455,7 @@
                       "depends_on":  [
                                          "DIE-104"
                                      ],
-                      "status":  "READY",
+                      "status":  "WAITING_OPERATOR",
                       "artifact":  "Linux Executive source/runtime/receipt",
                       "acceptance":  "Executive identity and wake/read contract work on Linux with fresh operator-controlled auth and no Windows profile cloning."
                   },

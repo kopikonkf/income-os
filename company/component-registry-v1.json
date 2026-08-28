@@ -16,15 +16,16 @@
     },
     "executive": {
       "logical_root": "company/executive",
-      "status": "OWNERSHIP_BOUNDARY",
+      "status": "LINUX_STAGED_WAITING_OPERATOR_AUTH",
       "source_refs": [
-        "IDENTITY/chatgpt-plus-executive.md",
+        "company/executive/IDENTITY.md",
         "bridge/income_os_bridge/runtime_mcp_server.py",
         "bridge/income_os_bridge/runtime_mcp_oauth.py",
-        "ops/windows/runtime-mcp/"
+        "ops/windows/runtime-mcp/",
+        "company/executive/linux/"
       ],
       "migration_task": "DIE-200",
-      "note": "No duplicate copy of shared runtime source; current repo paths remain canonical until DIE-200 relocation/rebuild."
+      "note": "Linux Decision MCP is staged and healthy pre-cutover. Executive identity is canonical under company/executive. Fresh Linux browser profile requires operator login; Windows production/rollback remains active until CUT-004."
     },
     "division01": {
       "logical_root": "company/division/division001",

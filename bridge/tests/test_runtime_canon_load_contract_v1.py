@@ -3,7 +3,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 COMPANY_BRAIN = ROOT / "COMPANY_BRAIN.md"
-EXECUTIVE = ROOT / "IDENTITY" / "chatgpt-plus-executive.md"
+EXECUTIVE = ROOT / "company" / "executive" / "IDENTITY.md"
 DIVISION01 = ROOT / "IDENTITY" / "division-head-division01.md"
 
 PIPELINE = "docs/pipeline/DIGITAL_INCOME_PIPELINE_CANON.md"
