@@ -1,0 +1,48 @@
+{
+  "schema": "die.human-atlas.foundation-corpus.v1",
+  "source_root": "D:\\Digital_Income_Empire\\Docs\\Qwen 3.8 Max\\The Algorithmic Cross-Join Matrix (Production Scalability)",
+  "import_mode": "byte-exact provenance snapshot",
+  "normative_canon": false,
+  "canon_promotion_requires_founder_ratification": true,
+  "architectural_primitives_worth_preserving": [
+    "10D dimension model",
+    "generative/contextual/commercial dimension classes",
+    "coherence constraint filtering",
+    "weighted sampling instead of exhaustive Cartesian enumeration",
+    "Opportunity Score",
+    "Worth-Making Gate",
+    "blueprint contract",
+    "metadata/QA/platform routing loop",
+    "event-driven scaling"
+  ],
+  "files": [
+    {
+      "path": "Division01_CrossJoin_Algorithm.md",
+      "bytes": 75683,
+      "sha256": "40615192b79b7e14b0e171e5c5b68abf7891763030d7333c8e7ef210eea361b3",
+      "status": "FOUNDATION_REFERENCE_NOT_RATIFIED",
+      "role": "algorithmic cross-join + Worth-Making design; source text says Pending Founder Ratification"
+    },
+    {
+      "path": "Division01_World_Atlas_10D_Matrix.md",
+      "bytes": 97557,
+      "sha256": "6983f2bae707b36609d431c91d516ae4cd037724f1c187c55b0d1d8dd6e72c7e",
+      "status": "FOUNDATION_REFERENCE_BRAINSTORM",
+      "role": "10-dimensional Human-Centric Demand Atlas brainstorming corpus"
+    },
+    {
+      "path": "Implementation.md",
+      "bytes": 12607,
+      "sha256": "0a88143a76dc541f09411aff0bcc4410d98e9d83650f8f4ccace5a490972ec41",
+      "status": "HISTORICAL_EXECUTION_REFERENCE",
+      "role": "early M-001 execution interpretation; not normative architecture"
+    },
+    {
+      "path": "MASTER-13 - PECAH TELUR VALIDATION BATCH.md",
+      "bytes": 52607,
+      "sha256": "97ffd97d5658e7060eea5dfab6bb3942a7eac664acc43eb3614c1f9fbf819e14",
+      "status": "HISTORICAL_VALIDATION_REFERENCE",
+      "role": "three executable validation blueprints and calibration evidence"
+    }
+  ]
+}

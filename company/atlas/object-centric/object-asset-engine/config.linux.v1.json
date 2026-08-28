@@ -1,0 +1,11 @@
+{
+  "schema": "die.object-asset-engine.config.v1",
+  "root_env": "DIE_OBJECT_ENGINE_ROOT",
+  "linux_default_root": "/var/lib/die/atlas/object-asset-engine",
+  "db_path": "db/object_asset_engine.db",
+  "seed_library_path": "db/seed_library.db",
+  "credential_env": "DIE_OBJECT_ENGINE_GEMINI_KEY_FILE",
+  "asset_tier_current": "U1-raster",
+  "canonical_lang": "en-US",
+  "validation_batch_target": 100
+}

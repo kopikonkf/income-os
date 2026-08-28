@@ -1,0 +1,81 @@
+{
+  "schema": "die.object-engine.point-in-time-snapshot.v1",
+  "status": "CONSISTENT_POINT_IN_TIME_NOT_FINAL",
+  "authoritative_source": "Windows D:\\object-asset-engine until filtering completion and final quiesced sync",
+  "linux_runtime_root": "/var/lib/die/atlas/object-asset-engine",
+  "sqlite_snapshots": {
+    "object_asset_engine.db": {
+      "started_at": "2026-08-28T18:17:09.837159+00:00",
+      "completed_at": "2026-08-28T18:17:20.613294+00:00",
+      "bytes": 1188335616,
+      "sha256": "7a14ff13f4f1d2ea04b10ba84cb7774144313ef50bfa3cda3ec8fd1c8d407a00",
+      "quick_check": "ok",
+      "tables": 12,
+      "candidate_seeds_count": 714268,
+      "audit_queue_count": 744259,
+      "audit_pending_count": 251294,
+      "raw_wal_shm_copied": false
+    },
+    "seed_library.db": {
+      "started_at": "2026-08-28T18:17:25.875560+00:00",
+      "completed_at": "2026-08-28T18:17:26.350108+00:00",
+      "bytes": 43192320,
+      "sha256": "b881e98eb604aad36ccf9eecac74d00a9afdb4b64dcc7f7fa30348451fea3ec2",
+      "quick_check": "ok",
+      "tables": 1,
+      "objects_count": 302134,
+      "raw_wal_shm_copied": false
+    }
+  },
+  "data": {
+    "files": [
+      {
+        "path": "longtails/expansion_queue.json",
+        "bytes": 264,
+        "sha256": "36c6f74412d1bfa9b9a0eaf79f6d76f9df60001cafca606ded6f1055ce0e0500",
+        "mtime_ns": 1787673373296441500
+      },
+      {
+        "path": "processed/demand_scores_v0.json",
+        "bytes": 39519,
+        "sha256": "c7ce1911878d8d231f26bfd087f50894e3ae19c3802428af026770bca445cd9b",
+        "mtime_ns": 1787668395361372600
+      },
+      {
+        "path": "processed/filter_report_TASK002.json",
+        "bytes": 10998,
+        "sha256": "db95cc8730bdddb830aacdb174eec7944a11721f60a6c915648ecd3f04b4c8e9",
+        "mtime_ns": 1787668009389242100
+      },
+      {
+        "path": "processed/longtail_report_PHASE3.json",
+        "bytes": 8772,
+        "sha256": "ea3bd9eedbb4b2b39cf9dcb8d149b35e72ea1db3b8122f3b671818e86a770722",
+        "mtime_ns": 1787669010722583900
+      },
+      {
+        "path": "raw/enwiktionary_dump.jsonl",
+        "bytes": 3212259034,
+        "sha256": "4367576ff96ebbfa2f21bfde6f393dfe7aa699f5ae881fc03f3e92198f14bc58",
+        "mtime_ns": 1787679989832749800
+      },
+      {
+        "path": "raw/qwen_demand20_seeds.json",
+        "bytes": 3893,
+        "sha256": "178c169ad3ffd2357de30cfa9ef06b7531d67205f484cb1b4b26f86092631f3f",
+        "mtime_ns": 1787667232884264600
+      },
+      {
+        "path": "raw/wiktionary_batch.json",
+        "bytes": 18484,
+        "sha256": "7abc4f5432ea055e305f24ed872487698d18bdf78fe4a183a18a74fe58d38a25",
+        "mtime_ns": 1787667504254852900
+      }
+    ],
+    "file_count": 7,
+    "total_bytes": 3212340964
+  },
+  "windows_writer_active_after_snapshot": true,
+  "final_refresh_required": true,
+  "promotion_policy": "Do not mark Linux authoritative until Windows filtering completes, writer is quiesced, final backup/hash/count parity passes."
+}
