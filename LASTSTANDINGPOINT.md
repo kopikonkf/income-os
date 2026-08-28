@@ -2502,3 +2502,29 @@ Receipt: `company/muxia/receipts/DIE-202-hermes-opencode-linux.receipt.json`.
 Migration doc: `docs/migration/DIE_HERMES_OPENCODE_LINUX_MIGRATION_V1.md`.
 
 NEXT ELIGIBLE: `DIE-203 — Atlas and Object Asset Engine Linux migration`.
+---
+
+## 2026-08-28 - Chapter #4 DIE-203 Atlas + Object Engine Linux migration — WAITING_OBJECT_FILTER_COMPLETION
+
+`DIE-203 - Atlas and Object Asset Engine Linux migration`: Linux source/runtime/data baseline staged and verified; Windows Object Atlas remains authoritative while the 800k+ noun filtering/audit worker continues.
+
+Human-Centric Atlas remains normative at `company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md`. Four Qwen Cross-Join/10D/validation documents were preserved byte-exact under `company/atlas/human-centric/foundations/qwen-crossjoin-v1/` as a non-normative foundation corpus. Promotion into canon requires Founder ratification. Preserved primitives include the 10D matrix, generative/contextual/commercial dimension classes, coherence constraints, weighted sampling, Opportunity/Worth-Making scoring, executable blueprint contracts, metadata/QA/platform routing, and event-driven scaling.
+
+Object Engine Linux-ready source is canonical under `company/atlas/object-centric/object-asset-engine/source/`: 23 Python files, 0 pyc/pycache, 0 Windows object-engine or Dee_Workspace runtime path literals. `gemini_audit_parallel.py` remains excluded because the Windows source is syntax-invalid. Current `gemini_audit_scale.py` throttle drift (30s -> 5s) was reconciled before Linux path refactor.
+
+Object runtime root: `/var/lib/die/atlas/object-asset-engine`, ownership `root:die-runtime`. Linux writer is NOT started. Gemini audit credential is not copied; Linux uses `DIE_OBJECT_ENGINE_GEMINI_KEY_FILE` and missing credential fails closed.
+
+Consistent point-in-time SQLite baseline created through `sqlite3.Connection.backup` while Windows writer remained active. Main DB SHA256 `7a14ff13f4f1d2ea04b10ba84cb7774144313ef50bfa3cda3ec8fd1c8d407a00`, quick_check ok, candidate_seeds 714268, audit_queue 744259, pending 251294. Seed library SHA256 `b881e98eb604aad36ccf9eecac74d00a9afdb4b64dcc7f7fa30348451fea3ec2`, quick_check ok, objects 302134. Seven data files / 3,212,340,964 bytes passed SHA parity. Raw WAL/SHM were not copied.
+
+Transfer used 27 bounded compressed chunks; 26/27 passed initially and one connection-closed chunk was retried exactly once. All chunk/archive hashes and post-extraction data hashes passed before promotion.
+
+Implementation commit: `f0cb0a90de45ca155f1109ceb15721365a8d7488`. DIE-203 targeted tests 8/8 PASS; SQLite WAL backup fixture PASS; full bridge 249/249 PASS; one-canon 11/11 PASS; Linux source compile 23/23 PASS; credential fail-closed PASS; Linux runtime hash/count verifier PASS.
+
+Windows Object Engine remains authoritative and active. Latest observed Windows DB state has advanced beyond the baseline: `object_asset_engine.db` 1,191,800,832 bytes and `seed_library.db` 47,919,104 bytes while `gemini_audit_scale.py --run` remains active. Live `C:\DIE` remains `04eda313f1e757c0d0f8fd9d90251b92c0dd95a3` with 38 dirty paths observed and untouched.
+
+Task graph: `DIE-203=WAITING_OBJECT_FILTER_COMPLETION`. Completion requires Founder report that filtering is complete, Windows writer quiesce, final SQLite refresh/delta, SHA/quick-check/critical-count parity, then explicit Linux authority promotion. Until then Linux baseline is consistent but stale-by-design.
+
+Receipt: `company/muxia/receipts/DIE-203-atlas-object-linux.receipt.json`.
+Migration doc: `docs/migration/DIE_ATLAS_OBJECT_ENGINE_LINUX_MIGRATION_V1.md`.
+
+DIE-204 remains blocked because DIE-200/201 auth gates, DIE-202 credential gate, and DIE-203 final filter completion are still open.

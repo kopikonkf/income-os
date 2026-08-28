@@ -1,0 +1,204 @@
+{
+  "schema": "die.object-engine-linux-source.v1",
+  "status": "CANONICAL_LINUX_READY",
+  "linux_runnable": true,
+  "runtime_root_env": "DIE_OBJECT_ENGINE_ROOT",
+  "linux_default_runtime_root": "/var/lib/die/atlas/object-asset-engine",
+  "credential_env": "DIE_OBJECT_ENGINE_GEMINI_KEY_FILE",
+  "credential_copied": false,
+  "source_python_files": 23,
+  "files": [
+    {
+      "path": "object_engine_paths.py",
+      "sha256": "cafca7c5fcbdd542f38705b46450e641f016b0ae033d7a63f1c411a508178dee",
+      "bytes": 1262,
+      "kind": "generated_path_contract"
+    },
+    {
+      "path": "scripts/audit/gemini_audit_scale.py",
+      "sha256": "073558ed3f6a6e9e398ef87695a12e70bf4f44ce434741f1539f29f9ddd8754b",
+      "bytes": 14200,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "2c2dd5b51d773ccf35728ac4142666afb9f383232bac00e81c3b9d9ccca15e46",
+      "provenance": "reconciled current Windows source; throttle-only drift 30s->5s before Linux path refactor",
+      "current_windows_source_sha256": "e1a28dc0279c44f3a7d2995d92b549d9d92927e8877dfca9c24634b2a3dbb93e"
+    },
+    {
+      "path": "scripts/audit/gemini_audit_worker.py",
+      "sha256": "bad8d64183113412a49fdc6a91fc9aad43f3c204c891fa94a3898fd1c45d1b23",
+      "bytes": 11026,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "a1d69f438cb97b0687d8a4dafe56ca66ec6163de6474ac336dad8d3454b45865",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/concepts/concept_ingest.py",
+      "sha256": "98912cf5386b8fb942178a67bf6b0b738788bac4fe7a2c36fb59ba80e655536f",
+      "bytes": 6241,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "4f02edcbc0e9c065614352ac7feaae5a71b1382dbc0fd473d4a4befc8ec55e17",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/concepts/concept_shell_generator.py",
+      "sha256": "76462b2d69de5603e72d8aa5f1251d46b54363e5a013b2549d96ae8abf68ce87",
+      "bytes": 3892,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "9eae24b87b052a10f25dc97869922f66cc01c9e2c0ebe9aaff7a03a809af824c",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/concepts/qc_benchmark.py",
+      "sha256": "7fbdcdf64a5da21173ccbb6b13d709cd178faa3afb04d88d15bd4f5934d9fd9d",
+      "bytes": 9320,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "ce3ca1c068f52907c3dae6c7df75fdc62364a4558b4b408f529aa430121f0e1c",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/filters/apply_filters.py",
+      "sha256": "541a751f1edac0632eaa10c2e458fa7fea4540322a7be439cc4e69c218d94785",
+      "bytes": 5628,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "28b0d9c45d9956b0904162ac7a14c386aa3288e1c904e999c3e49f8d7f2e4179",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/filters/audit_eligible.py",
+      "sha256": "938fa283dad7a394fcc2e2faf34cde049c23649bd17618da5a587be94a6f50d0",
+      "bytes": 2682,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "5305256c83e3c49ed69133662dd94ef631b5ba63f2c086d1edfae50dda1814ec",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/filters/audit_goldenmine.py",
+      "sha256": "af004ec15b909f6a5ee21543ec3b941d048fcf6f3a766a077796b751b0cc4a04",
+      "bytes": 2402,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "6a02e96444ea369b9f6a00cd4729a2db4dd6a9f1fef6aa05f21219b847b896c9",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/filters/opcode010_diagnostic.py",
+      "sha256": "06a8947ae1f1af128842057a6670b1e9d37b09267e3aedefd7322407e971cb4a",
+      "bytes": 4969,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "7e7cae1289823f3d9f03204d94fac119b642ad5406ebfe3c1caf145b5f8257f3",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/filters/wave1_structural_filter.py",
+      "sha256": "4e6bc08fe0fb4ceb04eec50cd9f605069f0851471d55648b5be6d88c3b84933f",
+      "bytes": 6206,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "e88fd025bfcc9ba372325e3daa7faa9f1546a91fa905818787138e6cb9f9d3fa",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/filters/wave2_wordnet_scoring.py",
+      "sha256": "44b15b9270de608c19abf9034d9a4ade87015e25c931debc967ba02709c00fd4",
+      "bytes": 8827,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "636beff1d46ca83ed63e15df28ddde93f9175ea36976d32b2b2b4ef104f8dd54",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/filters/wave3_eligibility.py",
+      "sha256": "4e41fed6c8eacf9ce8e9b1aabc91352cbcb2afe52167c7ce8555e34aebb257c2",
+      "bytes": 10103,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "34468b20a7c48326fe9da6964656943e3b12220dd5bb7a642842cf61db5f71af",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/ingest/init_db.py",
+      "sha256": "ee1962ba95c28a33694738fea87db22a695c2b7021febb3d183348b06b5c7ceb",
+      "bytes": 4180,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "6d0b199572e7bb44eb759f239046a585748e209651b14d294fe6217fb504715f",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/ingest/kaikki_noun_ingest.py",
+      "sha256": "ccb9e9b8881a0e757653a852a55e297a3e4c35f975f648ca97dbc735546c4283",
+      "bytes": 3996,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "17759f4b09fbe965eae7507b120dab7190bd592f11c9c63199a669b28b5f9d0c",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/ingest/migrate_001.py",
+      "sha256": "bbd2b075b0bf344ee1456467ef7fad633aace1b5f984eb42635d2cb8a917b1d6",
+      "bytes": 2202,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "a33c529b2cbfb59e3fdec3c9695a9773fb562ecab3f9e3619d76dbb88b584200",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/ingest/migrate_009_raw_nouns.py",
+      "sha256": "99aad03788461341f7d86dfbeca31cdc3a743bee62641e8809b3d309ebadb7f1",
+      "bytes": 1152,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "82c197e50628120ef5077298b6db09612b09658e172a7895f1308b136f09315b",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/ingest/repair_categories_json.py",
+      "sha256": "16203e86ec9c9d0abb2ee7973fe4d782962dc9eaa235c67830bece8e50b7f2d6",
+      "bytes": 1472,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "944984d55b1c21854588e1bdfc1247a9f095afb1a4d27fefa356a1807edba8e1",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/ingest/seed_ingest.py",
+      "sha256": "3bef4a6202b83e172c075d6cd4febf35ec1cd684b84d25c3d87e55af62ebe0a4",
+      "bytes": 3901,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "21ae9a5abfec873a582d0f1759014bf2a71964801cdd34ef48e5fd6c4fd8154b",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/ingest/seed_master13.py",
+      "sha256": "64bfe6fa66c03d88645e3ba30f88113eaf9399efab36f6037746386276656e4a",
+      "bytes": 2645,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "94f42613c134fb9be19051b0e0ec5c71ea5b5e073b784c9408ea7799816669f5",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/ingest/wiktionary_miner.py",
+      "sha256": "bf0a3f86cec70e7f3ec20c74617f51abd6bccab3ffd1c123eb71ed8cf6095434",
+      "bytes": 5390,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "9f07ea3d0323830cce53948293f95a23de8316040e4009651abe41d2ea22bd08",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/scoring/demand_score.py",
+      "sha256": "693701928a9368cae66a7f9c54d1f40439f0e9b60a23fea033dbee05ec7af7a8",
+      "bytes": 6569,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "9c78712ddb11e5c16951278f378cdeb4eaa007b7effe80fd9e77cfe0da3f93e1",
+      "provenance": "DIE-103 snapshot"
+    },
+    {
+      "path": "scripts/scoring/longtail_expand.py",
+      "sha256": "560610901c398156900fd4037c1f88ab7dfabda317653f8c5092001ea4a7c73e",
+      "bytes": 7814,
+      "kind": "refactored_windows_source",
+      "die103_source_sha256": "ce6335730e375ad5915007ee7c446e313956f36472ea5810d2882e7655774976",
+      "provenance": "DIE-103 snapshot"
+    }
+  ],
+  "excluded_windows_source": [
+    {
+      "path": "scripts/audit/gemini_audit_parallel.py",
+      "source_sha256": "aada714ea529e4b46e66c04c83d9cd68f3683681362c6062a264a556535b369e",
+      "reason": "upstream SyntaxError: f-string expression part cannot include a backslash; not required by active scale lane"
+    }
+  ],
+  "windows_path_literal_hits": 0,
+  "generated_bytecode_included": false
+}

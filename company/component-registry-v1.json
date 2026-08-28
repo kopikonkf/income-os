@@ -73,22 +73,26 @@
     },
     "atlas_human_centric": {
       "logical_root": "company/atlas/human-centric",
-      "status": "IMPORTED_CANONICAL",
+      "status": "CANONICAL_WITH_FOUNDATION_CORPUS",
       "source_refs": [
-        "company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md"
+        "company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md",
+        "company/atlas/human-centric/foundations/qwen-crossjoin-v1/FOUNDATION_MANIFEST.json"
       ],
       "migration_task": "DIE-203",
-      "note": "Canonical Atlas document moved through Git history during DIE-103."
+      "note": "Human-Centric Atlas canon remains normative. Four Qwen Cross-Join/10D/validation documents are preserved as provenance foundations; they are explicitly non-normative until Founder ratification."
     },
     "atlas_object_centric": {
       "logical_root": "company/atlas/object-centric/object-asset-engine",
-      "status": "IMPORTED_SOURCE_SNAPSHOT",
+      "status": "LINUX_STAGED_WAITING_OBJECT_FILTER_COMPLETION",
       "source_refs": [
-        "company/atlas/object-centric/object-asset-engine/source-snapshot/windows-v1/SOURCE_MANIFEST.json"
+        "company/atlas/object-centric/object-asset-engine/source/SOURCE_MANIFEST.json",
+        "company/atlas/object-centric/object-asset-engine/source-snapshot/windows-v1/SOURCE_MANIFEST.json",
+        "company/atlas/object-centric/object-asset-engine/migration/POINT_IN_TIME_SNAPSHOT_V1.json",
+        "company/atlas/object-centric/object-asset-engine/install-linux.sh"
       ],
       "external_source_root": "D:\\object-asset-engine",
       "migration_task": "DIE-203",
-      "note": "22 syntax-valid source files imported; mutable DB/data/state/config excluded; one syntax-invalid Windows source file excluded and recorded."
+      "note": "Linux-ready source and consistent point-in-time DB/data baseline are staged. Windows Object Engine remains authoritative while 800k+ noun filtering continues; final quiesced DB refresh/parity is required before Linux authority."
     },
     "muxia": {
       "logical_root": "company/muxia",
