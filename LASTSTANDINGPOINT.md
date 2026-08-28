@@ -2528,3 +2528,5 @@ Receipt: `company/muxia/receipts/DIE-203-atlas-object-linux.receipt.json`.
 Migration doc: `docs/migration/DIE_ATLAS_OBJECT_ENGINE_LINUX_MIGRATION_V1.md`.
 
 DIE-204 remains blocked because DIE-200/201 auth gates, DIE-202 credential gate, and DIE-203 final filter completion are still open.
+
+DIE-203 publication: PR #48 merged at `5c080921158c8af4a4b804b5f2f952956f23d915`. Post-merge Windows bridge 249/249 PASS, Windows one-canon 11/11 PASS, Linux main one-canon 11/11 PASS, Linux Object runtime verifier PASS, and credential fail-closed PASS. Windows Object filtering worker remains authoritative/active; DIE-203 remains `WAITING_OBJECT_FILTER_COMPLETION`.

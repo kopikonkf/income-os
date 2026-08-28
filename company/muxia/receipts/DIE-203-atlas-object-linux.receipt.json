@@ -144,5 +144,11 @@
     "required_signal": "Founder reports Object Atlas filtering complete",
     "then": "quiesce Windows writer, final SQLite refresh, hash/quick-check/critical-count parity, Linux authority promotion"
   },
-  "next_independent_work": "DIE-204 remains blocked on DIE-200/201/202/203 completion; auth/credential gates are still deferred."
+  "next_independent_work": "DIE-204 remains blocked on DIE-200/201/202/203 completion; auth/credential gates are still deferred.",
+  "publication": {
+    "pr": 48,
+    "merged_at": "2026-08-28T23:55:12Z",
+    "merge_commit": "5c080921158c8af4a4b804b5f2f952956f23d915",
+    "published_status": "WAITING_OBJECT_FILTER_COMPLETION"
+  }
 }
