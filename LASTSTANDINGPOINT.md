@@ -2404,3 +2404,4 @@ Receipt: `company/muxia/receipts/DIE-103-clean-component-import.receipt.json`.
 Task graph: `DIE-103=DONE`, `DIE-104=READY`.
 
 Next atomic task: `DIE-104 - one-canon validator`.
+DIE-103 publication proof: GitHub PR #41 merged at `2eea6f222f30635a77816dde4be089ecd83363d9`. Post-merge Windows bridge regression remained 204/204 PASS; Linux `/srv/die` was fast-forwarded cleanly to the same SHA and component/task/receipt/source-manifest JSON validated. Live Windows `C:\DIE` remained `04eda313f1e757c0d0f8fd9d90251b92c0dd95a3` with 37 dirty paths preserved.
