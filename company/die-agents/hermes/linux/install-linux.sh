@@ -52,7 +52,7 @@ if [[ ! -x "$VENV/bin/python" ]] || ! "$VENV/bin/python" -m pip --version >/dev/
   python3 -m venv "$VENV"
 fi
 "$VENV/bin/python" -m pip install --upgrade pip setuptools wheel >/dev/null
-"$VENV/bin/python" -m pip install "$SOURCE_ROOT" >/dev/null
+"$VENV/bin/python" -m pip install -e "$SOURCE_ROOT" >/dev/null
 
 install -o "$SERVICE_USER" -g "$SERVICE_GROUP" -m 0640 "$DIE_HOME/company/die-agents/hermes/SOUL.md" "$HERMES_HOME/SOUL.md"
 install -o "$SERVICE_USER" -g "$SERVICE_GROUP" -m 0640 "$DIE_HOME/company/die-agents/hermes/AGENTS.md" "$HERMES_HOME/AGENTS.md"

@@ -91,6 +91,7 @@ def test_die202_hermes_install_is_clean_rebuild_and_ready_gated() -> None:
     install = HERMES_INSTALL.read_text(encoding="utf-8")
     unit = HERMES_UNIT.read_text(encoding="utf-8")
     assert "a0ca7c19204e514f9590ce3b812e029b315ab9e9" in install
+    assert '-m pip install -e "$SOURCE_ROOT"' in install
     assert "https://github.com/NousResearch/hermes-agent.git" in install
     assert "ConditionPathExists=/etc/die/hermes/READY" in unit
     assert "User=die-hermes" in unit
