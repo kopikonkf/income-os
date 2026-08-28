@@ -32,14 +32,16 @@ fi
 usermod -a -G "$SERVICE_GROUP" kopiko
 
 install -d -m 0755 "$DIE_CONFIG_ROOT" "$ENV_DIR" "$DIE_INSTALL_ROOT" "$INSTALL_DIR"
-install -d -o "$SERVICE_USER" -g "$SERVICE_GROUP" -m 2770 "$STATE_DIR"
+if [[ ! -d "$STATE_DIR" ]]; then
+  install -d -o root -g "$SERVICE_GROUP" -m 2770 "$STATE_DIR"
+fi
 install -d -o kopiko -g "$SERVICE_GROUP" -m 0750 "$DIV_STATE_DIR" "$BROWSER_PROFILE"
 
 # Shared preliminary state bootstrap may already exist from DIE-200.
 # Never overwrite it here; CUT-002/CUT-003 own final state sync/replay.
 if [[ -z "$(find "$STATE_DIR" -mindepth 1 -maxdepth 1 -print -quit 2>/dev/null)" ]]; then
   cp -a "$DIE_HOME/state/." "$STATE_DIR/"
-  chown -R "$SERVICE_USER:$SERVICE_GROUP" "$STATE_DIR"
+  chown -R root:"$SERVICE_GROUP" "$STATE_DIR"
   chmod -R u+rwX,g+rwX,o-rwx "$STATE_DIR"
   git -C "$DIE_HOME" rev-parse HEAD > "$DIV_STATE_DIR/bootstrap-source-sha"
   chown kopiko:"$SERVICE_GROUP" "$DIV_STATE_DIR/bootstrap-source-sha"

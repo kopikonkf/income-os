@@ -44,6 +44,10 @@ def test_die201_installer_uses_fresh_linux_secrets_and_excludes_oauth_estate() -
     assert "DIE_MCP_BASE_URL=https://division01-linux-precutover.invalid" in text
     assert 'DIE_MCP_OAUTH_REDIRECT_HOSTS="chatgpt.com;openai.com"' in text
     assert "D:\\\\OAUTH is not Division01" in text
+    assert 'if [[ ! -d "$STATE_DIR" ]]' in text
+    assert 'install -d -o root -g "$SERVICE_GROUP" -m 2770 "$STATE_DIR"' in text
+    assert 'chown -R root:"$SERVICE_GROUP" "$STATE_DIR"' in text
+    assert 'install -d -o "$SERVICE_USER" -g "$SERVICE_GROUP" -m 2770 "$STATE_DIR"' not in text
     assert "AppData" not in text
     assert "cookie" not in text.lower()
 
