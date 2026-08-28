@@ -9,12 +9,16 @@ import pathlib
 import sys
 import time
 
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "bridge"))
+from income_os_bridge import config as die_config
+
 try:
     import msvcrt
 except ImportError:
     msvcrt = None
 
-STATE = pathlib.Path(os.environ.get("DIE_HOME", r"C:\DIE")) / "state"
+STATE = die_config.STATE
 CLASSES = ("INFO", "NOTICE", "WARNING", "CRITICAL", "STRATEGIC")
 
 

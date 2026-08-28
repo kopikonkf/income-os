@@ -1,0 +1,45 @@
+{
+  "schema": "die.path-roots.v1",
+  "status": "CANON",
+  "environment": {
+    "DIE_HOME": {
+      "role": "Git-tracked DIE source/canon root",
+      "windows_default": "C:\\DIE",
+      "linux_default": "/srv/die"
+    },
+    "DIE_STATE_ROOT": {
+      "role": "Mutable non-MUXIA DIE runtime/data root; canonical state lives under <root>/state",
+      "windows_default": "<DIE_HOME>",
+      "linux_default": "/var/lib/die"
+    },
+    "MUXIA_ROOT": {
+      "role": "Mutable MUXIA profile/job/artifact/state/log root",
+      "windows_default": "<DIE_STATE_ROOT>\\muxia",
+      "linux_default": "/var/lib/muxia"
+    },
+    "DIE_CONFIG_ROOT": {
+      "role": "Protected host configuration/secrets root; never Git source",
+      "windows_default": "C:\\ProgramData\\DIE",
+      "linux_default": "/etc/die"
+    },
+    "DIE_INSTALL_ROOT": {
+      "role": "Installed/regenerable service runtime root",
+      "windows_default": "C:\\Program Files\\DIE",
+      "linux_default": "/opt/die"
+    }
+  },
+  "derived": {
+    "STATE": "<DIE_STATE_ROOT>/state",
+    "WORKSPACES": "<DIE_STATE_ROOT>/workspaces",
+    "IDENTITY_REGISTRY": "<DIE_HOME>/company/identity-registry.json"
+  },
+  "rules": [
+    "All configured roots must be absolute.",
+    "DIE_HOME is source/canon only; mutable state must resolve from DIE_STATE_ROOT.",
+    "MUXIA_ROOT is independent from DIE_STATE_ROOT.",
+    "DIE_CONFIG_ROOT must not be committed or used as an artifact source.",
+    "DIE_INSTALL_ROOT is regenerable from source and must not become canonical state.",
+    "Windows defaults preserve the current C:\\DIE deployment until controlled cutover.",
+    "Linux defaults implement the Chapter #4 source/runtime/config separation."
+  ]
+}

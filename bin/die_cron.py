@@ -17,10 +17,15 @@ import subprocess
 import sys
 from collections import Counter
 
-DIE = pathlib.Path(os.environ.get("DIE_HOME", r"C:\DIE"))
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "bridge"))
+from income_os_bridge import config as die_config
+
+DIE = die_config.DIE_HOME
 BIN = DIE / "bin"
-STATE = DIE / "state"
+STATE = die_config.STATE
 BRIDGE = DIE / "bridge"
+WORKSPACES = die_config.WORKSPACES
 PROJECTION = STATE / "projection"
 ORGANISM = STATE / "organism-test"
 HERMES_AGENT_ROOT = pathlib.Path(r"C:\Users\aethers\AppData\Local\hermes")
@@ -270,7 +275,7 @@ def summary_run():
 
 def audit_run():
     findings = []
-    for path in (DIE / "workspaces").glob("*/RESULT.json"):
+    for path in WORKSPACES.glob("*/RESULT.json"):
         try:
             result = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
