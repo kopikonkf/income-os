@@ -111,5 +111,20 @@
     "live_windows_mutation": false,
     "result": "PASS"
   },
-  "next_atomic_task": "DIE-104 - one-canon validator"
+  "next_atomic_task": "DIE-104 - one-canon validator",
+  "publication": {
+    "primary_pr": 41,
+    "primary_pr_state": "MERGED",
+    "primary_merge_commit": "2eea6f222f30635a77816dde4be089ecd83363d9",
+    "merged_at": "2026-08-28T03:53:04Z"
+  },
+  "post_merge_verification": {
+    "windows_bridge_suite": "204/204 PASS",
+    "linux_head": "2eea6f222f30635a77816dde4be089ecd83363d9",
+    "linux_clean": true,
+    "linux_json_validation": "PASS",
+    "windows_live_head": "04eda313f1e757c0d0f8fd9d90251b92c0dd95a3",
+    "windows_live_dirty_path_count": 37,
+    "windows_live_guard": "PASS"
+  }
 }
