@@ -2380,3 +2380,4 @@ Architecture doc: `docs/architecture/DIE_PATH_ROOTS_V1.md`.
 Receipt: `company/muxia/receipts/DIE-102-env-path-abstraction.receipt.json`.
 
 Next atomic task: `DIE-103 - clean component import`.
+DIE-102 publication proof: GitHub PR #39 merged at `1af7c2dab002e552fc9063539173b61f22386268`. Post-merge Windows bridge regression remained 204/204 PASS; Linux `/srv/die` was fast-forwarded cleanly to the same SHA and imported Linux defaults resolved to `/srv/die`, `/var/lib/die`, `/var/lib/muxia`, `/etc/die`, `/opt/die`. Live Windows `C:\DIE` guard remained `04eda313f1e757c0d0f8fd9d90251b92c0dd95a3` with 37 dirty paths preserved.
