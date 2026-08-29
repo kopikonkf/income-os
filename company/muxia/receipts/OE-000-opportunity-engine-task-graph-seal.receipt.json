@@ -6,7 +6,7 @@
   "base_main": "25fb15decad9c9474ef28ce040ab50557f1656ca",
   "graph": {
     "path": "company/muxia-task-graph-v1.json",
-    "sha256": "d718fcba848466f73919d695439d328340cbba2c628435fc6f44d2667419b2f9",
+    "sha256": "e64f7afea15d58ad9416a904ed9dbac01c3cba5c1610bbd10e8d493a64788d83",
     "total_tasks": 106,
     "oe_tasks": 54,
     "oe_ready": [
@@ -50,5 +50,6 @@
     "full_bridge": "262/262 PASS",
     "one_canon": "11/11 PASS"
   },
-  "next_task": "OE-001A"
+  "next_task": "OE-001A",
+  "publication_diff_hygiene": "existing task-graph formatting preserved in final branch diff; semantic OE DAG unchanged"
 }
