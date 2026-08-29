@@ -153,6 +153,6 @@ All QA/QC/SUB/CL nodes are currently BLOCKED by upstream dependencies.
 
 Current runnable OE work remains:
 
-`OE-003A = READY`
+`OE-003D = READY`
 
 Therefore this roadmap remains dependency-blocked while the Opportunity Intelligence chain advances to OE-003 Longtail.

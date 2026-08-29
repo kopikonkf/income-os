@@ -410,9 +410,9 @@ Schemas, normalized receipt registry, staleness semantics, two source-shaped fix
 
 Consumes OE-001 receipts plus explicit deterministic/canon evidence; uses versioned transforms/weights, conservative UNKNOWN/freshness semantics, pinned calibration, deterministic replay, and COMPLETE-only ranking. Legacy heuristic priors are calibration provenance only.
 
-### OE-003 — Object Longtail v1
+### OE-003 — Object Longtail v1 — FOUNDATION ACTIVE
 
-Use cleaned Object Atlas seeds + Human modifier contexts; preserve dedup guardrails; produce bounded candidate phrases and request phrase-level signals.
+OE-003A/B/C are DONE: typed modifiers/candidate schema, read-only cleaned Object Atlas seed retrieval, and bounded Human Atlas hypothesis-context retrieval. OE-003D–G will generate/dedupe/persist candidates and request phrase-level signals. Child phrases never inherit parent demand.
 
 ### OE-004 — Worth-Making v1
 

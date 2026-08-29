@@ -169,9 +169,11 @@ Founder silence at OE-007E means BLOCKED, never implicit authorization.
 
 `OE-001 = DONE` — Opportunity Signals evidence substrate accepted.
 
-`OE-002 = DONE` — deterministic Demand Score v1, calibration corpus, ranking/replay regression and UNKNOWN/freshness semantics accepted.
+`OE-002 = DONE` — deterministic Demand Score v1 accepted.
 
-`OE-003A = READY` — Longtail modifier ontology and phrase schema is the next runnable atomic task.
+`OE-003A/B/C = DONE` — modifier/candidate contract, read-only Object Atlas cleaned-seed retrieval, and bounded Human Atlas hypothesis-context retrieval are sealed.
+
+`OE-003D = READY` — bounded dynamic Longtail candidate expansion is the next runnable atomic task.
 
 All later OE tasks remain BLOCKED by explicit graph dependencies.
 

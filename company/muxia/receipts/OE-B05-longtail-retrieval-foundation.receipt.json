@@ -1,0 +1,126 @@
+{
+  "schema": "die.oe-batch-receipt.v1",
+  "batch_id": "OE-B05",
+  "date": "2026-08-29",
+  "status": "PASS",
+  "base_main": "6e3d228ef7451d2a799cccf88c6f812ca9552106",
+  "atomic_tasks": [
+    {
+      "id": "OE-003A",
+      "status": "DONE",
+      "result": "14-family modifier ontology + L0-L6 Product Expression axis + strict child phrase candidate schema"
+    },
+    {
+      "id": "OE-003B",
+      "status": "DONE",
+      "result": "read-only approved Object Atlas seed retrieval by bounded ID/name/class/category query; legacy demand_score intentionally omitted"
+    },
+    {
+      "id": "OE-003C",
+      "status": "DONE",
+      "result": "bounded Human Atlas context registry/retrieval with HYPOTHESIS labels and canon provenance; no exhaustive 10D materialization"
+    }
+  ],
+  "ontology": {
+    "path": "company/division/division001/engines/longtail/MODIFIER_ONTOLOGY_V1.json",
+    "sha256": "72ac327e3f818f84763853591977ae3c4b8a612c1c65b0afa8f53228cc45d2fc",
+    "modifier_count": 14,
+    "max_modifiers_per_phrase": 4,
+    "object_limit": 50,
+    "human_context_limit": 25
+  },
+  "human_context_registry": {
+    "path": "company/division/division001/engines/longtail/HUMAN_CONTEXT_REGISTRY_V1.json",
+    "sha256": "95287b4e4201f51e1ef27471859f3b37c169fadbe827b3625187a89404b71a4c",
+    "contexts": 6,
+    "label": "HYPOTHESIS",
+    "market_evidence": false
+  },
+  "key_invariants": {
+    "exhaustive_cartesian_forbidden": true,
+    "object_db_read_only": true,
+    "object_status_approved_only": true,
+    "legacy_parent_demand_score_returned": false,
+    "parent_score_inheritance": false,
+    "child_requires_phrase_level_oe001_oe002": true,
+    "human_context_compatibility_is_market_evidence": false,
+    "product_expression_separate_axis": true
+  },
+  "legacy_v0": {
+    "path": "company/atlas/object-centric/object-asset-engine/source/scripts/scoring/longtail_expand.py",
+    "sha256": "560610901c398156900fd4037c1f88ab7dfabda317653f8c5092001ea4a7c73e",
+    "salvage": [
+      "normalization",
+      "modifier_classification",
+      "near_duplicate_guardrail",
+      "quota",
+      "IP_recheck",
+      "idempotency"
+    ],
+    "hardcoded_expansion_dictionary_core_strategy": false
+  },
+  "validation": {
+    "oe003_retrieval": "12/12 PASS",
+    "oe003_plus_graph": "29/29 PASS",
+    "full_bridge": "341/341 PASS",
+    "one_canon": "11/11 PASS",
+    "bytecode_artifacts": "0"
+  },
+  "runtime_boundary": {
+    "object_db_written": false,
+    "human_atlas_cartesian_materialized": false,
+    "live_market_collection_performed": false,
+    "network_request_performed": false,
+    "platform_login_used": false,
+    "credential_used_or_copied": false,
+    "spend_usd": 0,
+    "windows_live_die_mutated": false,
+    "object_filter_worker_mutated": false
+  },
+  "artifacts": [
+    {
+      "path": "company/division/division001/engines/longtail/CONTRACT_V1.md",
+      "sha256": "dee993313f4bf5f84573f4d7643f6e2dbb72ccb8083e5b1ba1cf20d430525c5d",
+      "bytes": 4629
+    },
+    {
+      "path": "company/division/division001/engines/longtail/MODIFIER_ONTOLOGY_V1.json",
+      "sha256": "72ac327e3f818f84763853591977ae3c4b8a612c1c65b0afa8f53228cc45d2fc",
+      "bytes": 3060
+    },
+    {
+      "path": "company/division/division001/engines/longtail/die.division001.longtail-candidate.v1.schema.json",
+      "sha256": "390540827ebb7fe8a4557a5e9c7312da7cae702334ec2cbec6baec897e3a3af7",
+      "bytes": 5374
+    },
+    {
+      "path": "company/division/division001/engines/longtail/retrieve_object_seeds.py",
+      "sha256": "f548fd3ca9d2901601360b29f5af82b1a4bd089fbd78a666b7711c239f5847ca",
+      "bytes": 6315
+    },
+    {
+      "path": "company/division/division001/engines/longtail/HUMAN_CONTEXT_REGISTRY_V1.json",
+      "sha256": "95287b4e4201f51e1ef27471859f3b37c169fadbe827b3625187a89404b71a4c",
+      "bytes": 6495
+    },
+    {
+      "path": "company/division/division001/engines/longtail/die.human-atlas.context-registry.v1.schema.json",
+      "sha256": "ecdb5d8ab2392cd92d5ccaeef9df1c1f190567734ded9378f1ff32d21488dc87",
+      "bytes": 3572
+    },
+    {
+      "path": "company/division/division001/engines/longtail/retrieve_human_contexts.py",
+      "sha256": "70d3c26347429e5774a24c62159a7814996e25db3d04543055ec53ff74eb5424",
+      "bytes": 5725
+    },
+    {
+      "path": "bridge/tests/test_oe003_longtail_retrieval_v1.py",
+      "sha256": "239a8533964a4bca81cb97394d69807bd2ea1031435a6d08399a53d62f15a7b1",
+      "bytes": 9808
+    }
+  ],
+  "next_ready": [
+    "OE-003D"
+  ],
+  "next_batch": "OE-B06 — bounded dynamic expansion -> dedupe/IP/quota guardrails -> phrase-level OE-001/OE-002 loop -> persistence/ranking -> OE-003 acceptance."
+}
