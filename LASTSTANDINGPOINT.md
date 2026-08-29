@@ -2775,3 +2775,23 @@ Receipts: `company/muxia/receipts/OE-B06-longtail-engine.receipt.json` and `comp
 Task graph: `OE-003A..G = DONE`, `OE-003 = DONE`, `OE-004A = READY`.
 
 NEXT: OE-B07 — OE-004A deterministic Worth-Making precheck/hard vetoes -> OE-004B Division01 author contract -> OE-004C Executive review contract.
+
+---
+
+## 2026-08-29 - OE-B07 Worth-Making author/review contracts
+
+`OE-004A/B/C = DONE`; `OE-004D = READY`; milestone `OE-004` remains BLOCKED pending OE-B08.
+
+OE-004A now executes deterministic prerequisite/hard-veto checks only. It validates full Longtail candidate schema, exact guard candidate ID/hash binding, OE-002 semantic arithmetic/model integrity, score freshness and mandatory demand/supply/commercial-intent evidence, rights/IP, safety/deception, platform/Product Expression eligibility, production-tool rights, spend authorization semantics, and a structured falsifiable Human Atlas buyer/use-case hypothesis seed. Outputs are only PASS/BLOCKED/WAITING_EVIDENCE and `worth_making_semantics_authored=false`.
+
+OE-004B seals principal `division-head-division01` as the sole Worth-Making semantic AUTHOR. Canon factor weights total 100; UNKNOWN factor score is null and never imputed to zero. Complete weighted totals enforce VALIDATE >=75, RESEARCH >=60, below 60 DEFER; conservative recommendations remain allowed. The artifact cannot grant production authority.
+
+OE-004C seals principal `chatgpt-plus-executive` as `READ_ONLY_CHALLENGE` REVIEWER. Every review pins the exact Division artifact hash and must challenge six domains: evidence contradiction, score inflation/double counting, portfolio overlap, strategic opportunity cost, Product Expression fit, and hypotheses remaining. `NO_VETO` forbids material concern/unknown; REVISE/VETO_PENDING_EVIDENCE require explicit actions; Executive cannot edit the Division artifact or grant production authority.
+
+Trust-boundary regression proves tampered OE-002 arithmetic and wrong Longtail candidate hash fail before cognition.
+
+Validation: Worth-Making contracts 20/20 PASS; contracts + OE/PAD graph 37/37 PASS; full bridge 382/382 PASS; one-canon 11/11 PASS; bytecode artifacts 0. No live Division01/Executive cognition session, login, credential use, network acquisition, spend, Windows live DIE mutation, or Object writer mutation occurred in B07.
+
+Receipt: `company/muxia/receipts/OE-B07-worth-making-contracts.receipt.json`.
+
+NEXT: OE-B08 — OE-004D revision/return lineage -> OE-004E receipt principal/hash/freshness validator -> OE-004F governed pass/revise/veto/stale/forged-review suite -> OE-004 acceptance.

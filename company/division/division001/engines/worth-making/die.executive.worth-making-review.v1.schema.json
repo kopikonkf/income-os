@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.executive.worth-making-review.v1.schema.json",
+  "title": "DIE Executive Worth-Making review v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "review_id",
+    "principal",
+    "snapshot",
+    "division_artifact",
+    "precheck",
+    "challenges",
+    "outcome",
+    "required_actions",
+    "escalation_reason",
+    "review_mode",
+    "division_artifact_edited",
+    "production_authority_granted",
+    "reviewed_at",
+    "expires_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.executive.worth-making-review.v1"
+    },
+    "review_id": {
+      "type": "string",
+      "pattern": "^WM-EXEC-[A-Z0-9_-]{8,120}$"
+    },
+    "principal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "principal_id",
+        "role"
+      ],
+      "properties": {
+        "principal_id": {
+          "const": "chatgpt-plus-executive"
+        },
+        "role": {
+          "const": "REVIEWER"
+        }
+      }
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_sha",
+        "snapshot_id",
+        "as_of"
+      ],
+      "properties": {
+        "repository_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "snapshot_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "division_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_id",
+        "sha256",
+        "author_principal_id",
+        "recommendation",
+        "total_score",
+        "confidence"
+      ],
+      "properties": {
+        "artifact_id": {
+          "type": "string",
+          "pattern": "^WM-DIV001-[A-Z0-9_-]{8,120}$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "author_principal_id": {
+          "const": "division-head-division01"
+        },
+        "recommendation": {
+          "enum": [
+            "VALIDATE",
+            "RESEARCH",
+            "DEFER"
+          ]
+        },
+        "total_score": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 100
+        },
+        "confidence": {
+          "enum": [
+            "HIGH",
+            "MEDIUM",
+            "LOW",
+            "NONE"
+          ]
+        }
+      }
+    },
+    "precheck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "precheck_id",
+        "sha256",
+        "status"
+      ],
+      "properties": {
+        "precheck_id": {
+          "type": "string",
+          "pattern": "^WMPRE-[A-Z0-9_-]{8,120}$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "status": {
+          "const": "PASS"
+        }
+      }
+    },
+    "challenges": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "challenge_id",
+          "assessment",
+          "rationale",
+          "evidence_refs"
+        ],
+        "properties": {
+          "challenge_id": {
+            "enum": [
+              "evidence_weakness_contradiction",
+              "score_inflation_double_counting",
+              "portfolio_overlap_cannibalization",
+              "strategic_opportunity_cost",
+              "product_expression_fit",
+              "hypotheses_remaining"
+            ]
+          },
+          "assessment": {
+            "enum": [
+              "PASS",
+              "CONCERN",
+              "MATERIAL_CONCERN",
+              "UNKNOWN"
+            ]
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          },
+          "evidence_refs": {
+            "type": "array",
+            "maxItems": 50,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "ref",
+                "sha256"
+              ],
+              "properties": {
+                "ref": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 2000
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              }
+            },
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "outcome": {
+      "enum": [
+        "NO_VETO",
+        "REVISE",
+        "VETO_PENDING_EVIDENCE",
+        "ESCALATE_FOUNDER"
+      ]
+    },
+    "required_actions": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 1000
+      }
+    },
+    "escalation_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2000
+    },
+    "review_mode": {
+      "const": "READ_ONLY_CHALLENGE"
+    },
+    "division_artifact_edited": {
+      "const": false
+    },
+    "production_authority_granted": {
+      "const": false
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

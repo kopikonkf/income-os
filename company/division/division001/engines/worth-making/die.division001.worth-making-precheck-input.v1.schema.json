@@ -1,0 +1,390 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.division001.worth-making-precheck-input.v1.schema.json",
+  "title": "DIE Division01 Worth-Making deterministic precheck input v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "precheck_id",
+    "evaluated_at",
+    "candidate",
+    "demand_score",
+    "longtail_guard",
+    "hard_gates",
+    "spend",
+    "buyer_hypothesis_seed"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.division001.worth-making-precheck-input.v1"
+    },
+    "precheck_id": {
+      "type": "string",
+      "pattern": "^WMPRE-[A-Z0-9_-]{8,120}$"
+    },
+    "evaluated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "candidate": {
+      "type": "object"
+    },
+    "demand_score": {
+      "type": "object"
+    },
+    "longtail_guard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "receipt_id",
+        "receipt_sha256",
+        "candidate_id",
+        "candidate_sha256"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "ACCEPTED",
+            "REVIEW",
+            "REJECTED"
+          ]
+        },
+        "receipt_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 220
+        },
+        "receipt_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "candidate_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "candidate_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "hard_gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rights_ip",
+        "safety_deception",
+        "platform_expression_eligibility",
+        "production_tool_rights"
+      ],
+      "properties": {
+        "rights_ip": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "evidence_ref",
+            "evidence_sha256",
+            "observed_at",
+            "expires_at",
+            "notes"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "CLEAR",
+                "BLOCKED",
+                "UNKNOWN"
+              ]
+            },
+            "evidence_ref": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 2000
+            },
+            "evidence_sha256": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "observed_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            },
+            "expires_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            },
+            "notes": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 2000
+            }
+          }
+        },
+        "safety_deception": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "evidence_ref",
+            "evidence_sha256",
+            "observed_at",
+            "expires_at",
+            "notes"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "CLEAR",
+                "BLOCKED",
+                "UNKNOWN"
+              ]
+            },
+            "evidence_ref": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 2000
+            },
+            "evidence_sha256": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "observed_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            },
+            "expires_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            },
+            "notes": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 2000
+            }
+          }
+        },
+        "platform_expression_eligibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "evidence_ref",
+            "evidence_sha256",
+            "observed_at",
+            "expires_at",
+            "notes"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "CLEAR",
+                "BLOCKED",
+                "UNKNOWN"
+              ]
+            },
+            "evidence_ref": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 2000
+            },
+            "evidence_sha256": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "observed_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            },
+            "expires_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            },
+            "notes": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 2000
+            }
+          }
+        },
+        "production_tool_rights": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "evidence_ref",
+            "evidence_sha256",
+            "observed_at",
+            "expires_at",
+            "notes"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "CLEAR",
+                "BLOCKED",
+                "UNKNOWN"
+              ]
+            },
+            "evidence_ref": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 2000
+            },
+            "evidence_sha256": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "observed_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            },
+            "expires_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            },
+            "notes": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 2000
+            }
+          }
+        }
+      }
+    },
+    "spend": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "estimated_cost_usd",
+        "authorization_status",
+        "authorization_ref",
+        "authorization_sha256"
+      ],
+      "properties": {
+        "estimated_cost_usd": {
+          "type": "number",
+          "minimum": 0
+        },
+        "authorization_status": {
+          "enum": [
+            "NOT_REQUIRED",
+            "AUTHORIZED",
+            "MISSING",
+            "DENIED"
+          ]
+        },
+        "authorization_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 2000
+        },
+        "authorization_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "buyer_hypothesis_seed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_kind",
+        "source_ref",
+        "source_sha256",
+        "buyer_label",
+        "use_case",
+        "falsification_test"
+      ],
+      "properties": {
+        "source_kind": {
+          "const": "HUMAN_ATLAS_HYPOTHESIS"
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "buyer_label": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 300
+        },
+        "use_case": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 500
+        },
+        "falsification_test": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 1000
+        }
+      }
+    }
+  }
+}

@@ -171,9 +171,11 @@ Founder silence at OE-007E means BLOCKED, never implicit authorization.
 
 `OE-002 = DONE` — deterministic Demand Score v1 accepted.
 
-`OE-003 = DONE` — bounded Object+Human Longtail engine accepted: dynamic hypothesis generation, guardrails, child-specific OE-001/OE-002 scoring, separate persistence and COMPLETE-only ranking.
+`OE-003 = DONE` — bounded Object+Human Longtail engine accepted.
 
-`OE-004A = READY` — deterministic Worth-Making precheck and hard-veto engine is the next runnable atomic task.
+`OE-004A/B/C = DONE` — deterministic Worth-Making precheck, Division01 AUTHOR contract, and Executive read-only REVIEW contract are sealed.
+
+`OE-004D = READY` — immutable Division01↔Executive revision/return lineage is the next runnable atomic task. OE-004 milestone remains incomplete until OE-004D/E/F pass.
 
 All later OE tasks remain BLOCKED by explicit graph dependencies.
 
