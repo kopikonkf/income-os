@@ -2728,3 +2728,26 @@ Receipts: `company/muxia/receipts/OE-B04-demand-score-engine.receipt.json` and `
 Task graph: `OE-002A..F = DONE`, `OE-002 = DONE`, `OE-003A = READY`.
 
 NEXT: OE-B05 — Longtail modifier ontology/phrase schema + Object Atlas cleaned-seed retrieval + Human Atlas demand-context retrieval.
+
+
+---
+
+## 2026-08-29 - OE-B05 Longtail retrieval foundation
+
+`OE-003A/B/C = DONE`. Longtail v1 now has a typed 14-family modifier ontology, separate L0-L6 Product Expression axis, strict child-candidate schema, read-only approved Object Atlas seed retrieval, and bounded Human Atlas hypothesis-context retrieval.
+
+Object retrieval uses SQLite read-only/query-only mode, exposes only bounded ID/name/object-class/category-prefix queries (max 50), does not duplicate the Object Atlas dataset, does not require final dataset immutability, and intentionally omits legacy `demand_score` from returned seed records.
+
+Human Atlas context retrieval uses a small versioned canon-seeded registry (6 initial contexts), all labeled `HYPOTHESIS`; retrieval is compatibility ranking only, max 25, not market evidence, and never materializes the 10D Cartesian product.
+
+Every future Longtail child candidate must state `evidence_state=REQUIRES_PHRASE_LEVEL_OE001_OE002` and `parent_demand.inherited_by_child=false`. Clean parent Object Atlas status or parent Demand Score never transfers demand to a child phrase.
+
+Legacy `longtail_expand.py` guardrails remain salvage provenance (normalization, modifier classification, Jaccard near-dup, quota, IP recheck, idempotency), but its small hard-coded `EXPANSIONS` dictionary is not the v1 generation core.
+
+Validation: OE-003 retrieval suite 12/12 PASS; OE/PAD graph combined 29/29 PASS; full bridge 341/341 PASS; one-canon 11/11 PASS; bytecode artifacts 0.
+
+Receipt: `company/muxia/receipts/OE-B05-longtail-retrieval-foundation.receipt.json`.
+
+Task graph: `OE-003A/B/C = DONE`; `OE-003D = READY`; OE-003E/F/G and OE-003 milestone remain blocked.
+
+NEXT: OE-B06 — bounded dynamic expansion -> dedupe/IP/quota -> phrase-level signals/scoring -> persistence/ranking -> OE-003 acceptance.

@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.division001.longtail-candidate.v1.schema.json",
+  "title": "DIE Division01 Longtail Candidate v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "candidate_id",
+    "phrase",
+    "locale",
+    "parent_seed",
+    "human_context",
+    "modifiers",
+    "product_expression",
+    "generation",
+    "evidence_state",
+    "parent_demand",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.division001.longtail-candidate.v1"
+    },
+    "candidate_id": {
+      "type": "string",
+      "pattern": "^LT-CAND-[A-Z0-9_-]{8,160}$"
+    },
+    "phrase": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 300
+    },
+    "locale": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 30
+    },
+    "parent_seed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "seed_id",
+        "canonical_name",
+        "object_class",
+        "category_path",
+        "source_db_sha256",
+        "retrieval_receipt_id"
+      ],
+      "properties": {
+        "seed_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "canonical_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "object_class": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200
+        },
+        "category_path": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 1000
+        },
+        "source_db_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "retrieval_receipt_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 220
+        }
+      }
+    },
+    "human_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "context_id",
+        "registry_sha256",
+        "retrieval_receipt_id"
+      ],
+      "properties": {
+        "context_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 220
+        },
+        "registry_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "retrieval_receipt_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 220
+        }
+      }
+    },
+    "modifiers": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "value",
+          "source"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "function",
+              "buyer",
+              "audience",
+              "industry",
+              "use_case",
+              "problem",
+              "place",
+              "time",
+              "material",
+              "state",
+              "style",
+              "demographic",
+              "commercial_intent",
+              "product_expression"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "source": {
+            "enum": [
+              "OBJECT_ATLAS",
+              "HUMAN_ATLAS",
+              "PRODUCT_EXPRESSION_POLICY"
+            ]
+          }
+        }
+      }
+    },
+    "product_expression": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "name"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "L0",
+            "L1",
+            "L2",
+            "L3",
+            "L4",
+            "L5",
+            "L6"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        }
+      }
+    },
+    "generation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "generator_id",
+        "generator_version",
+        "bounded_budget",
+        "legacy_expansion_dictionary_used_as_core"
+      ],
+      "properties": {
+        "generator_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "generator_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "bounded_budget": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "legacy_expansion_dictionary_used_as_core": {
+          "const": false
+        }
+      }
+    },
+    "evidence_state": {
+      "const": "REQUIRES_PHRASE_LEVEL_OE001_OE002"
+    },
+    "parent_demand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parent_score_ref",
+        "inherited_by_child"
+      ],
+      "properties": {
+        "parent_score_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 1000
+        },
+        "inherited_by_child": {
+          "const": false
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

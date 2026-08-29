@@ -22,9 +22,15 @@ Canonical source references:
 - `company/division/division001/engines/demand-score/score_demand.py`
 - `company/division/division001/engines/demand-score/rank_demand.py`
 - `company/division/division001/engines/demand-score/CALIBRATION_V1.md`
+- `company/division/division001/engines/longtail/CONTRACT_V1.md`
+- `company/division/division001/engines/longtail/MODIFIER_ONTOLOGY_V1.json`
+- `company/division/division001/engines/longtail/retrieve_object_seeds.py`
+- `company/division/division001/engines/longtail/retrieve_human_contexts.py`
 
 DIE-103 rule: this ownership boundary does not authorize secret/profile/runtime-data copying or premature service cutover.
 
 Opportunity Intelligence: `OE-001 = DONE`. The canonical engine includes source-shaped fixture adapters, strict receipt validation, and registry/dedupe/freshness behavior. No live source collection is implied; live adapters require separately approved acquisition profiles.
 
 Demand Score: `OE-002 = DONE`. Deterministic scorer, versioned transforms/weights, calibration corpus, ranking/replay regression, explicit UNKNOWN/STALE handling, and legacy-prior rejection are canonical. Demand Score alone grants no production authority.
+
+Longtail foundation: `OE-003A/B/C = DONE`. Object seeds are retrieved read-only from approved Object Atlas rows; Human contexts are bounded canon-seeded hypotheses; child phrases must request their own OE-001/OE-002 evidence. `OE-003D = READY`.

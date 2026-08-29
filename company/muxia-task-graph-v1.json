@@ -798,7 +798,7 @@
                       "depends_on":  [
                                          "OE-002"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "modifier ontology + phrase candidate schema",
                       "acceptance":  "Function, buyer/audience, industry, use case, problem, place, time, material, state, style, demographic, intent and Product Expression modifiers are bounded and typed."
                   },
@@ -809,7 +809,7 @@
                       "depends_on":  [
                                          "OE-003A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "Object Atlas retrieval contract",
                       "acceptance":  "Generator retrieves valid cleaned seeds by ID/taxonomy without duplicating Object Atlas or requiring final dataset immutability."
                   },
@@ -820,7 +820,7 @@
                       "depends_on":  [
                                          "OE-003A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "Human Atlas context retrieval contract",
                       "acceptance":  "Generator retrieves bounded compatible Human demand contexts with provenance; no exhaustive 10D materialization."
                   },
@@ -832,7 +832,7 @@
                                          "OE-003B",
                                          "OE-003C"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "dynamic longtail generator",
                       "acceptance":  "Clean seed + compatible Human modifiers produce bounded niche/customer-specific hypotheses; hard-coded small EXPANSIONS dictionary is not the core strategy."
                   },

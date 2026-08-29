@@ -1,0 +1,216 @@
+{
+  "schema": "die.human-atlas.context-registry.v1",
+  "registry_version": "1.0.0",
+  "status": "CANON_SEEDED_HYPOTHESIS_REGISTRY",
+  "doctrine": "bounded retrieval only; entries are context hypotheses and never market-demand evidence",
+  "source_canon": [
+    {
+      "path": "company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md",
+      "sha256": "3e011079b4da3770ee10fd8a7c419bafe4c111e0ff5349890e397bd6e7ffd483"
+    },
+    {
+      "path": "company/atlas/human-centric/CROSSJOIN_OBJECT_ATLAS_COMPLEMENT_V1.md",
+      "sha256": "b2264f146a1090d45dcd86968da89ecf6d7d36800ababb37998370f3da8a9ea3"
+    }
+  ],
+  "contexts": [
+    {
+      "context_id": "HCTX-REMOTE-WORK-CABLE-001",
+      "label": "HYPOTHESIS",
+      "human": "remote worker",
+      "activity": "desk setup and computer work",
+      "place": "home office",
+      "time": "daily work routine",
+      "demographic": "working adult",
+      "emotion": "order and focus",
+      "problem": "cable clutter and desk disorganization",
+      "industry": "remote work and office productivity",
+      "commercial_intent": "explain or advertise organization solutions",
+      "target_buyers": [
+        "office-supply marketer",
+        "productivity-content publisher"
+      ],
+      "buyer_jobs": [
+        "show an organized workspace",
+        "explain cable-management utility"
+      ],
+      "object_hints": [
+        "cable organizer",
+        "cable clip",
+        "cable sleeve",
+        "desk organizer"
+      ],
+      "product_expression_hints": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ]
+    },
+    {
+      "context_id": "HCTX-SENIOR-MEDICATION-001",
+      "label": "HYPOTHESIS",
+      "human": "older adult or caregiver",
+      "activity": "medication organization",
+      "place": "home",
+      "time": "weekly medication routine",
+      "demographic": "senior household",
+      "emotion": "clarity and reassurance",
+      "problem": "dose organization and routine communication",
+      "industry": "health education and caregiving",
+      "commercial_intent": "explain or teach medication organization",
+      "target_buyers": [
+        "health-education publisher",
+        "caregiving-content producer"
+      ],
+      "buyer_jobs": [
+        "illustrate a medication routine",
+        "communicate organization clearly"
+      ],
+      "object_hints": [
+        "pill organizer",
+        "medicine box",
+        "medication organizer"
+      ],
+      "product_expression_hints": [
+        "L0",
+        "L1",
+        "L2",
+        "L4"
+      ]
+    },
+    {
+      "context_id": "HCTX-INDOOR-HERB-GARDEN-001",
+      "label": "HYPOTHESIS",
+      "human": "beginner home gardener",
+      "activity": "monitoring indoor plants",
+      "place": "indoor herb garden",
+      "time": "routine plant care",
+      "demographic": "home hobbyist",
+      "emotion": "confidence and learning",
+      "problem": "uncertainty about soil moisture",
+      "industry": "home gardening and horticulture education",
+      "commercial_intent": "teach or explain plant care",
+      "target_buyers": [
+        "gardening-content publisher",
+        "garden-tool marketer"
+      ],
+      "buyer_jobs": [
+        "explain moisture checking",
+        "show a beginner-friendly plant-care workflow"
+      ],
+      "object_hints": [
+        "soil moisture meter",
+        "plant moisture meter",
+        "watering meter"
+      ],
+      "product_expression_hints": [
+        "L0",
+        "L1",
+        "L2",
+        "L4"
+      ]
+    },
+    {
+      "context_id": "HCTX-SMALL-BUSINESS-PACKAGING-001",
+      "label": "HYPOTHESIS",
+      "human": "small business seller",
+      "activity": "packing customer orders",
+      "place": "small studio or retail workspace",
+      "time": "order fulfillment",
+      "demographic": "small business operator",
+      "emotion": "professionalism and trust",
+      "problem": "presenting products professionally at handoff",
+      "industry": "retail ecommerce and packaging",
+      "commercial_intent": "advertise package or explain fulfillment",
+      "target_buyers": [
+        "packaging supplier",
+        "ecommerce-content publisher"
+      ],
+      "buyer_jobs": [
+        "show professional packaging",
+        "illustrate order fulfillment"
+      ],
+      "object_hints": [
+        "shopping bag",
+        "paper bag",
+        "gift bag",
+        "shipping box",
+        "packaging box"
+      ],
+      "product_expression_hints": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4"
+      ]
+    },
+    {
+      "context_id": "HCTX-ACHIEVEMENT-EDUCATION-001",
+      "label": "HYPOTHESIS",
+      "human": "teacher student or training organizer",
+      "activity": "recognizing achievement",
+      "place": "school classroom or training event",
+      "time": "award or completion occasion",
+      "demographic": "education and training audience",
+      "emotion": "achievement and celebration",
+      "problem": "communicating recognition visually",
+      "industry": "education and training",
+      "commercial_intent": "decorate explain or promote achievement",
+      "target_buyers": [
+        "education publisher",
+        "event-content producer"
+      ],
+      "buyer_jobs": [
+        "represent achievement",
+        "create award-themed communication"
+      ],
+      "object_hints": [
+        "trophy",
+        "award cup",
+        "medal",
+        "certificate"
+      ],
+      "product_expression_hints": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ]
+    },
+    {
+      "context_id": "HCTX-HOME-AMBIENCE-CANDLE-001",
+      "label": "HYPOTHESIS",
+      "human": "home decor shopper or publisher",
+      "activity": "creating home ambience",
+      "place": "living room bedroom or hospitality setting",
+      "time": "evening or seasonal decor",
+      "demographic": "home and hospitality audience",
+      "emotion": "comfort and atmosphere",
+      "problem": "communicating mood and decorative ambience",
+      "industry": "home decor and hospitality",
+      "commercial_intent": "decorate advertise or package lifestyle content",
+      "target_buyers": [
+        "home-decor publisher",
+        "hospitality marketer"
+      ],
+      "buyer_jobs": [
+        "show ambience",
+        "communicate decorative mood"
+      ],
+      "object_hints": [
+        "candle",
+        "scented candle",
+        "pillar candle"
+      ],
+      "product_expression_hints": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L5"
+      ]
+    }
+  ]
+}

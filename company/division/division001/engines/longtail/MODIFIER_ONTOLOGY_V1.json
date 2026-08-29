@@ -1,0 +1,125 @@
+{
+  "schema": "die.division001.longtail-modifier-ontology.v1",
+  "version": "1.0.0",
+  "status": "CANONICAL_CONTRACT",
+  "doctrine": "signal -> retrieve -> constrain -> rank -> expand -> falsify",
+  "max_modifiers_per_phrase": 4,
+  "max_contexts_per_retrieval": 25,
+  "max_objects_per_retrieval": 50,
+  "modifier_types": [
+    {
+      "id": "function",
+      "axis": "OBJECT_OR_HUMAN",
+      "description": "job/function performed by the object or desired by the user"
+    },
+    {
+      "id": "buyer",
+      "axis": "HUMAN",
+      "description": "economic buyer/customer role"
+    },
+    {
+      "id": "audience",
+      "axis": "HUMAN",
+      "description": "intended user/audience role distinct from payer when needed"
+    },
+    {
+      "id": "industry",
+      "axis": "HUMAN",
+      "description": "economic domain or vertical"
+    },
+    {
+      "id": "use_case",
+      "axis": "HUMAN",
+      "description": "bounded activity/job-to-be-done context"
+    },
+    {
+      "id": "problem",
+      "axis": "HUMAN",
+      "description": "pain/risk/friction being addressed"
+    },
+    {
+      "id": "place",
+      "axis": "HUMAN",
+      "description": "physical or operational context"
+    },
+    {
+      "id": "time",
+      "axis": "HUMAN",
+      "description": "occasion/season/daypart/event timing"
+    },
+    {
+      "id": "material",
+      "axis": "OBJECT",
+      "description": "material/composition modifier"
+    },
+    {
+      "id": "state",
+      "axis": "OBJECT",
+      "description": "physical/operational state or condition"
+    },
+    {
+      "id": "style",
+      "axis": "EXPRESSION",
+      "description": "bounded visual/design style; cannot imply demand by itself"
+    },
+    {
+      "id": "demographic",
+      "axis": "HUMAN",
+      "description": "commercially relevant population context; sensitive targeting requires downstream policy review"
+    },
+    {
+      "id": "commercial_intent",
+      "axis": "HUMAN",
+      "description": "paid use: advertise/explain/teach/decorate/package/etc."
+    },
+    {
+      "id": "product_expression",
+      "axis": "EXPRESSION",
+      "description": "separate L0-L6 downstream expression axis, not Object Atlas truth"
+    }
+  ],
+  "product_expression_levels": [
+    {
+      "id": "L0",
+      "name": "primitive_static_asset"
+    },
+    {
+      "id": "L1",
+      "name": "variation"
+    },
+    {
+      "id": "L2",
+      "name": "composition"
+    },
+    {
+      "id": "L3",
+      "name": "family_pack_bundle"
+    },
+    {
+      "id": "L4",
+      "name": "functional_template"
+    },
+    {
+      "id": "L5",
+      "name": "motion_video"
+    },
+    {
+      "id": "L6",
+      "name": "spatial_interactive"
+    }
+  ],
+  "forbidden_inference": [
+    "CLEAN_OBJECT_IMPLIES_DEMAND",
+    "PARENT_SCORE_INHERITANCE",
+    "EXHAUSTIVE_10D_CARTESIAN",
+    "PRODUCT_EXPRESSION_AS_OBJECT_TRUTH"
+  ],
+  "legacy_aliases": {
+    "time_period": "time",
+    "emotion_or_mood": "commercial_intent",
+    "commercial_format": "product_expression",
+    "color": "style",
+    "shape": "state",
+    "fictional_genre": "style"
+  }
+}

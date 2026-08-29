@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.human-atlas.context-registry.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "registry_version",
+    "status",
+    "doctrine",
+    "source_canon",
+    "contexts"
+  ],
+  "properties": {
+    "schema": {
+      "const": "die.human-atlas.context-registry.v1"
+    },
+    "registry_version": {
+      "type": "string"
+    },
+    "status": {
+      "const": "CANON_SEEDED_HYPOTHESIS_REGISTRY"
+    },
+    "doctrine": {
+      "type": "string"
+    },
+    "source_canon": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "contexts": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10000,
+      "items": {
+        "$ref": "#/$defs/context"
+      }
+    }
+  },
+  "$defs": {
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "context_id",
+        "label",
+        "human",
+        "activity",
+        "place",
+        "time",
+        "demographic",
+        "emotion",
+        "problem",
+        "industry",
+        "commercial_intent",
+        "target_buyers",
+        "buyer_jobs",
+        "object_hints",
+        "product_expression_hints"
+      ],
+      "properties": {
+        "context_id": {
+          "type": "string",
+          "pattern": "^HCTX-[A-Z0-9_-]{8,160}$"
+        },
+        "label": {
+          "const": "HYPOTHESIS"
+        },
+        "human": {
+          "type": "string",
+          "minLength": 1
+        },
+        "activity": {
+          "type": "string",
+          "minLength": 1
+        },
+        "place": {
+          "type": "string",
+          "minLength": 1
+        },
+        "time": {
+          "type": "string",
+          "minLength": 1
+        },
+        "demographic": {
+          "type": "string",
+          "minLength": 1
+        },
+        "emotion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "problem": {
+          "type": "string",
+          "minLength": 1
+        },
+        "industry": {
+          "type": "string",
+          "minLength": 1
+        },
+        "commercial_intent": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_buyers": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "buyer_jobs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "object_hints": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "product_expression_hints": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 7,
+          "items": {
+            "enum": [
+              "L0",
+              "L1",
+              "L2",
+              "L3",
+              "L4",
+              "L5",
+              "L6"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
