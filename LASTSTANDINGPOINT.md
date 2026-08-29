@@ -2816,3 +2816,22 @@ Validation: governed-loop 11/11 PASS; OE-004 targeted+graph 48/48 PASS; full bri
 Receipts: `company/muxia/receipts/OE-B08-worth-making-governed-loop.receipt.json` and `company/muxia/receipts/OE-004-worth-making-v1.receipt.json`.
 
 NEXT: OE-B09 — OE-005A Division01 Blueprint authoring schema -> OE-005B Blueprint semantic validator/compiler boundary -> OE-005C Executive Blueprint review contract.
+
+
+---
+
+## 2026-08-29 - OE-B09 Blueprint AUTHOR / compile-boundary / REVIEW contracts
+
+`OE-005A/B/C = DONE`; `OE-005D = READY`; milestone `OE-005` remains BLOCKED pending OE-B10.
+
+OE-005A seals `division-head-division01` as Blueprint semantic AUTHOR. The Blueprint pins current governed Worth-Making, exact Division Worth-Making artifact, Executive Worth-Making review, and Longtail candidate. It preserves the accepted OE-004 candidate/family/commercial-use/differentiation/buyer-JTBD/buyer-utility/Product-Expression semantics while Division01 authors family thesis, visual constraints, exact master prompt, negative constraints, semantic variation plan, platform/metadata direction, QA/falsification, and economics hypotheses.
+
+OE-005B validates semantic drift/completeness and creates a deterministic compile-input boundary only. The boundary re-runs validation itself, copies exact authored semantic fields, hashes every semantic field, fixes `semantic_content_mutated=false`, and permits only SERIALIZE_VALIDATE_HASH behavior. It is not the final compiler; no Founder-gatable compiled Blueprint hash exists yet.
+
+OE-005C seals Executive as `READ_ONLY_CHALLENGE` reviewer of exact Blueprint + compile-boundary + governed Worth-Making hashes. Six required domains: Worth-Making thesis fidelity, family strategy coherence, constraint contradiction integrity, portfolio overlap/differentiation, Product Expression fit, and whether production actually tests the Worth-Making thesis. Executive cannot edit Blueprint semantics or grant production authority.
+
+Validation: Blueprint contracts 14/14 PASS; contracts + OE/PAD graph 31/31 PASS; full bridge 407/407 PASS; one-canon 11/11 PASS; Blueprint bytecode artifacts 0. No live cognition call/login/credential/network/spend/runtime mutation or production authority expansion occurred.
+
+Receipt: `company/muxia/receipts/OE-B09-blueprint-contracts.receipt.json`.
+
+NEXT: OE-B10 — OE-005D final deterministic compiler -> OE-005E provenance/hash lock -> OE-005F failure/determinism suite -> OE-005 acceptance.

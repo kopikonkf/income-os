@@ -418,9 +418,9 @@ Typed modifiers/candidate schema, read-only cleaned Object Atlas retrieval, boun
 
 Accepted governed chain: deterministic precheck/hard veto -> Division01 semantic AUTHOR -> Executive `READ_ONLY_CHALLENGE` REVIEW -> immutable attempt lineage -> current principal/hash/freshness validation. `PROMOTABLE_TO_BLUEPRINT` requires a fresh valid bundle, Division recommendation `VALIDATE`, and Executive `NO_VETO`; it never grants production authority. Legacy Kanban/workflow state is not cognition proof.
 
-### OE-005 — Blueprint v1
+### OE-005 - Blueprint v1 — CONTRACT FOUNDATION ACTIVE
 
-Implement Division authoring contract, Executive review, deterministic compiler/hash lock; no prompt invention by Worker/Hermes.
+OE-005A/B/C are DONE: Division01 Blueprint semantic AUTHOR schema, semantic drift validator + deterministic compile-boundary projection, and Executive `READ_ONLY_CHALLENGE` Blueprint review. Blueprint must preserve governed Worth-Making buyer/JTBD, commercial thesis, differentiation and Product Expression; new production semantics such as family thesis, visual constraints, exact master prompt, negative constraints, variation plan, platform/metadata/QA/falsification directions are Division01-authored. Final compiler/provenance/hash-lock/failure suite remain OE-005D/E/F.
 
 ### OE-006 — Hermes Operator v2
 
