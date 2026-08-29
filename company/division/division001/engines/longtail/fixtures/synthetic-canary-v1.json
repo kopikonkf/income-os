@@ -1,0 +1,111 @@
+{
+  "schema": "die.division001.longtail-synthetic-canary.v1",
+  "created_at": "2026-08-29T12:00:00Z",
+  "evaluated_at": "2026-08-29T12:10:00Z",
+  "budget": 6,
+  "expression_level": "L0",
+  "object_receipt": {
+    "schema": "die.object-atlas.seed-retrieval.v1",
+    "receipt_id": "OBJRET-FIXTURE-CABLE-001",
+    "source_db": {
+      "path_ref": "fixture://object-atlas/object_asset_engine.db",
+      "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mode": "READ_ONLY_POINT_IN_TIME_OR_AUTHORITATIVE_SNAPSHOT"
+    },
+    "query": {
+      "canonical_names": [
+        "cable organizer"
+      ],
+      "limit": 1
+    },
+    "policy": {
+      "approved_only": true,
+      "max_results": 50,
+      "arbitrary_sql": false,
+      "dataset_finality_required": false
+    },
+    "result_count": 1,
+    "results": [
+      {
+        "seed_id": "OBJ-CABLE-001",
+        "canonical_name": "cable organizer",
+        "aliases": [
+          "cable clip organizer"
+        ],
+        "object_class": "office_accessory",
+        "existence_type": "real",
+        "category_path": "office/organization",
+        "visuality_score": 0.91,
+        "risk_score": 0.02,
+        "status": "approved",
+        "updated_at": "2026-08-29T00:00:00Z"
+      }
+    ]
+  },
+  "human_context_query": {
+    "object_name": "cable organizer",
+    "limit": 1
+  },
+  "signal_plans": [
+    {
+      "search_interest_index": 90,
+      "visible_result_count": 300,
+      "buyer_term_presence": true,
+      "observed_at": "2026-08-29T12:00:00Z",
+      "freshness_window_seconds": 86400
+    },
+    {
+      "search_interest_index": 55,
+      "visible_result_count": 8000,
+      "buyer_term_presence": true,
+      "observed_at": "2026-08-29T12:00:00Z",
+      "freshness_window_seconds": 86400
+    },
+    {
+      "search_interest_index": 30,
+      "visible_result_count": 70000,
+      "buyer_term_presence": false,
+      "observed_at": "2026-08-29T12:00:00Z",
+      "freshness_window_seconds": 86400
+    }
+  ],
+  "hard_veto": {
+    "status": "CLEAR",
+    "receipt_ref": "fixture://longtail/hard-veto-clear-v1",
+    "receipt_sha256": "0290dcf28255742fae984926b80889cc4a52786ac0258899e9dd7774fd358e56"
+  },
+  "expected": {
+    "human_context_id": "HCTX-REMOTE-WORK-CABLE-001",
+    "generated_count": 6,
+    "guard_counts": {
+      "ACCEPTED": 6,
+      "REVIEW": 0,
+      "REJECTED": 0
+    },
+    "scored": [
+      {
+        "candidate_id": "LT-CAND-EC30CDE22EC03B10A15B9ABC",
+        "phrase": "cable organizer for desk setup and computer work",
+        "final_score": 0.815511,
+        "confidence": "LOW"
+      },
+      {
+        "candidate_id": "LT-CAND-A1AD686A25828A0054FBE24E",
+        "phrase": "cable organizer for remote worker",
+        "final_score": 0.584106,
+        "confidence": "LOW"
+      },
+      {
+        "candidate_id": "LT-CAND-56CB1CFF5E5C8BC5E1793FE8",
+        "phrase": "cable organizer for home office",
+        "final_score": 0.137423,
+        "confidence": "LOW"
+      }
+    ],
+    "ranking_candidate_ids": [
+      "LT-CAND-EC30CDE22EC03B10A15B9ABC",
+      "LT-CAND-A1AD686A25828A0054FBE24E",
+      "LT-CAND-56CB1CFF5E5C8BC5E1793FE8"
+    ]
+  }
+}

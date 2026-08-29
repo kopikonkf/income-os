@@ -1,0 +1,190 @@
+{
+  "schema": "die.oe-batch-receipt.v1",
+  "batch_id": "OE-B06",
+  "status": "PASS",
+  "date": "2026-08-29",
+  "base_main": "8cd591b89135a09091d33fb1b76c3101432941ca",
+  "engine": {
+    "engine_id": "division001-longtail-v1",
+    "version": "1.0.0",
+    "status": "ACCEPTED_ENGINE_V1"
+  },
+  "upstream_pins": {
+    "oe001_receipt": {
+      "path": "company/muxia/receipts/OE-001-opportunity-signals-v1.receipt.json",
+      "sha256": "9e240bcbce87e84fa8623a3e216c8a73471cbe62d52b4e1fb6446671d77d323f"
+    },
+    "oe002_receipt": {
+      "path": "company/muxia/receipts/OE-002-demand-score-v1.receipt.json",
+      "sha256": "d6c12a939a0bbe16c8051ca936ecba8cbc9d2392ef9157e9a4c498afc427fab5"
+    },
+    "oe_b05_foundation": {
+      "path": "company/muxia/receipts/OE-B05-longtail-retrieval-foundation.receipt.json",
+      "sha256": "bb2c1cd4baa881718f5819a1e0e146cf54329f84e4d908018fc9a26a6cd9ffa9"
+    }
+  },
+  "canary": {
+    "fixture_path": "company/division/division001/engines/longtail/fixtures/synthetic-canary-v1.json",
+    "fixture_sha256": "6fff6ef22279bf5ba3d1fe02d1d0de949b44045005f339e72816f0a7f367466b",
+    "generated_count": 6,
+    "guard_counts": {
+      "ACCEPTED": 6,
+      "REVIEW": 0,
+      "REJECTED": 0
+    },
+    "scores": [
+      {
+        "candidate_id": "LT-CAND-EC30CDE22EC03B10A15B9ABC",
+        "phrase": "cable organizer for desk setup and computer work",
+        "final_score": 0.815511,
+        "confidence": "LOW"
+      },
+      {
+        "candidate_id": "LT-CAND-A1AD686A25828A0054FBE24E",
+        "phrase": "cable organizer for remote worker",
+        "final_score": 0.584106,
+        "confidence": "LOW"
+      },
+      {
+        "candidate_id": "LT-CAND-56CB1CFF5E5C8BC5E1793FE8",
+        "phrase": "cable organizer for home office",
+        "final_score": 0.137423,
+        "confidence": "LOW"
+      }
+    ],
+    "ranking_candidate_ids": [
+      "LT-CAND-EC30CDE22EC03B10A15B9ABC",
+      "LT-CAND-A1AD686A25828A0054FBE24E",
+      "LT-CAND-56CB1CFF5E5C8BC5E1793FE8"
+    ],
+    "replay": "PASS: first run 6 INSERTED/3 ATTACHED; second run 6 DUPLICATE/3 DUPLICATE; ranking identical"
+  },
+  "key_invariants": {
+    "dynamic_generation_bounded": true,
+    "hardcoded_object_expansion_dictionary_core": false,
+    "max_generation_budget": 50,
+    "parent_demand_inheritance": false,
+    "candidate_id_deterministic": true,
+    "parent_redundancy_rejected": true,
+    "exact_duplicate_rejected": true,
+    "near_duplicate_reject_threshold": 0.9,
+    "near_duplicate_review_threshold": 0.75,
+    "per_seed_quota": 50,
+    "ip_terms_route_to_review_not_auto_delete": true,
+    "ip_guardrail_complete_legal_clearance": false,
+    "phrase_receipts_must_match_child_and_parent_ids": true,
+    "oe001_registry_metadata_stripped_before_oe002": true,
+    "missing_or_stale_required_evidence_numeric_score": false,
+    "review_candidate_scoreable": false,
+    "object_atlas_database_written": false,
+    "longtail_registry_separate": true,
+    "registry_idempotent": true,
+    "ranking_requires_guard_accepted_and_oe002_complete": true,
+    "cartesian_10d_materialization": false,
+    "longtail_rank_grants_worth_making_or_production_authority": false
+  },
+  "validation": {
+    "oe003_engine": "21/21 PASS",
+    "oe001_to_oe003_plus_graph": "108/108 PASS",
+    "full_bridge": "362/362 PASS",
+    "one_canon": "11/11 PASS",
+    "bytecode_artifacts": "0"
+  },
+  "runtime_boundary": {
+    "live_market_collection_performed": false,
+    "network_request_performed": false,
+    "platform_login_used": false,
+    "credential_used_or_copied": false,
+    "spend_usd": 0,
+    "windows_live_die_mutated": false,
+    "object_filter_worker_mutated": false,
+    "production_authority_expanded": false
+  },
+  "artifacts": [
+    {
+      "path": "company/division/division001/engines/longtail/CONTRACT_V1.md",
+      "sha256": "e65f75f42350ad0286040ad8367efd062ff48a6fea63a39c0fcba0b162263ce8",
+      "bytes": 5048
+    },
+    {
+      "path": "company/division/division001/engines/longtail/ENGINE_V1.md",
+      "sha256": "7dd30b781b8e3737f0481636a2b6acfd90e029576cdd84ada63c78051324e17d",
+      "bytes": 4098
+    },
+    {
+      "path": "company/division/division001/engines/longtail/generate_longtail.py",
+      "sha256": "3357af3f31977513bf3d7ad8a8bb677fe147babe82b4725cfe08c84ce2996542",
+      "bytes": 5585
+    },
+    {
+      "path": "company/division/division001/engines/longtail/guard_longtail.py",
+      "sha256": "1c73742415a361422a82d8bd7097397de6f36eb316060671793cd07e3f37fe98",
+      "bytes": 5261
+    },
+    {
+      "path": "company/division/division001/engines/longtail/guardrails/IP_GUARDRAIL_V1.json",
+      "sha256": "c935a5f14022d99d8af33855184b1f64867efd0c3541381fe4ed44c675511200",
+      "bytes": 447
+    },
+    {
+      "path": "company/division/division001/engines/longtail/phrase_signal_score.py",
+      "sha256": "0448af37d7e896918bbcf000791fa5362cdfa766b53798d85cb643ae117bee1f",
+      "bytes": 7165
+    },
+    {
+      "path": "company/division/division001/engines/longtail/longtail_registry.py",
+      "sha256": "d26fc37e44c9e5fd6fe89e6fc12b98ce06af4f748cbfa6ee9234035b05464eac",
+      "bytes": 8390
+    },
+    {
+      "path": "company/division/division001/engines/longtail/run_synthetic_canary.py",
+      "sha256": "ba5b7cd073a6f0c62bf78b85989cdf30f9d44d08ff06982382df3bfe6823e1d3",
+      "bytes": 2896
+    },
+    {
+      "path": "company/division/division001/engines/longtail/fixtures/synthetic-canary-v1.json",
+      "sha256": "6fff6ef22279bf5ba3d1fe02d1d0de949b44045005f339e72816f0a7f367466b",
+      "bytes": 3157
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/adapters/buyer_intent_fixture.py",
+      "sha256": "ae4a9b50186bdd7b4b057a2cedc789961695a8579fc34cc883911d2c36071d4e",
+      "bytes": 2942
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/ENGINE_V1.md",
+      "sha256": "7b377804e010c6875905965750157cd301aeb21aa6945ffd529245f5d2f213cb",
+      "bytes": 2156
+    },
+    {
+      "path": "bridge/tests/test_oe003_longtail_engine_v1.py",
+      "sha256": "643c5d2346f76e04c4144f73a91b5e11ba84175d30922e1b7f84dddf70b611e2",
+      "bytes": 20453
+    }
+  ],
+  "atomic_tasks": [
+    {
+      "id": "OE-003D",
+      "status": "DONE",
+      "result": "bounded deterministic Object+Human dynamic candidate generation with typed modifiers and Product Expression"
+    },
+    {
+      "id": "OE-003E",
+      "status": "DONE",
+      "result": "normalization, deterministic candidate identity, parent/exact/near-duplicate controls, per-seed quota and IP review routing"
+    },
+    {
+      "id": "OE-003F",
+      "status": "DONE",
+      "result": "child-specific OE-001 validator/registry integration -> OE-002 Demand Score; synthetic-only no-network canary plus generic receipt path"
+    },
+    {
+      "id": "OE-003G",
+      "status": "DONE",
+      "result": "separate SQLite persistence, idempotency/conflict detection, deferred states and ACCEPTED+COMPLETE-only deterministic ranking"
+    }
+  ],
+  "next_ready": [
+    "OE-004A"
+  ]
+}

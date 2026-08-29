@@ -26,6 +26,11 @@ Canonical source references:
 - `company/division/division001/engines/longtail/MODIFIER_ONTOLOGY_V1.json`
 - `company/division/division001/engines/longtail/retrieve_object_seeds.py`
 - `company/division/division001/engines/longtail/retrieve_human_contexts.py`
+- `company/division/division001/engines/longtail/ENGINE_V1.md`
+- `company/division/division001/engines/longtail/generate_longtail.py`
+- `company/division/division001/engines/longtail/guard_longtail.py`
+- `company/division/division001/engines/longtail/phrase_signal_score.py`
+- `company/division/division001/engines/longtail/longtail_registry.py`
 
 DIE-103 rule: this ownership boundary does not authorize secret/profile/runtime-data copying or premature service cutover.
 
@@ -33,4 +38,4 @@ Opportunity Intelligence: `OE-001 = DONE`. The canonical engine includes source-
 
 Demand Score: `OE-002 = DONE`. Deterministic scorer, versioned transforms/weights, calibration corpus, ranking/replay regression, explicit UNKNOWN/STALE handling, and legacy-prior rejection are canonical. Demand Score alone grants no production authority.
 
-Longtail foundation: `OE-003A/B/C = DONE`. Object seeds are retrieved read-only from approved Object Atlas rows; Human contexts are bounded canon-seeded hypotheses; child phrases must request their own OE-001/OE-002 evidence. `OE-003D = READY`.
+Longtail Engine: `OE-003 = DONE`. Bounded dynamic Object+Human hypotheses pass deterministic guardrails, child-specific OE-001/OE-002 evidence, separate idempotent persistence, and ACCEPTED+COMPLETE-only ranking. Parent demand inheritance and brute-force 10D expansion remain forbidden.

@@ -1,0 +1,20 @@
+{
+  "schema": "die.division001.longtail-ip-guardrail.v1",
+  "version": "1.0.0",
+  "status": "PROTECTIVE_DENYLIST_NOT_COMPLETE",
+  "casefold": true,
+  "terms": [
+    "nike",
+    "apple",
+    "sony",
+    "disney",
+    "pokemon",
+    "lego",
+    "starbucks"
+  ],
+  "symbols": [
+    "®",
+    "™"
+  ],
+  "policy": "High-confidence protective terms only. This list is not exhaustive legal clearance; downstream rights/policy review still applies."
+}

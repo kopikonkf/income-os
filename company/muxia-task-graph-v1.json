@@ -832,7 +832,7 @@
                                          "OE-003B",
                                          "OE-003C"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "dynamic longtail generator",
                       "acceptance":  "Clean seed + compatible Human modifiers produce bounded niche/customer-specific hypotheses; hard-coded small EXPANSIONS dictionary is not the core strategy."
                   },
@@ -843,7 +843,7 @@
                       "depends_on":  [
                                          "OE-003D"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "normalization/dedupe/IP guardrail implementation",
                       "acceptance":  "Preserve exact/parent-child/near-duplicate controls, modifier classification, quotas and IP/trademark recheck; repeated variants cannot flood candidate space."
                   },
@@ -854,7 +854,7 @@
                       "depends_on":  [
                                          "OE-003E"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "phrase signal request + OE-001/OE-002 integration",
                       "acceptance":  "Generated phrases request phrase-level evidence and Demand Score; child phrases never inherit parent demand without evidence."
                   },
@@ -865,7 +865,7 @@
                       "depends_on":  [
                                          "OE-003F"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "ranked phrase registry + OE-003 tests",
                       "acceptance":  "Persistence is idempotent; ranking is evidence-backed; bounded expansion and no-Cartesian-explosion invariants pass."
                   },
@@ -876,7 +876,7 @@
                       "depends_on":  [
                                          "OE-003G"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "OE-003 acceptance receipt",
                       "acceptance":  "Cleaned Object seeds and Human demand contexts produce bounded, deduplicated, niche/customer-specific phrase hypotheses with phrase-level evidence and ranking."
                   },
@@ -887,7 +887,7 @@
                       "depends_on":  [
                                          "OE-003"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "hard-veto precheck engine + schema",
                       "acceptance":  "Freshness, evidence presence, rights/IP, safety, platform/product eligibility, tool rights, spend and falsifiable-buyer gates fail closed before cognitive judgment."
                   },
