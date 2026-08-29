@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.division001.worth-making-attempt.v1.schema.json",
+  "title": "DIE Worth-Making immutable attempt lineage v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "chain_id",
+    "attempt_id",
+    "attempt_number",
+    "previous_attempt",
+    "precheck",
+    "division_artifact",
+    "executive_review",
+    "review_outcome",
+    "state",
+    "next_owner",
+    "required_actions",
+    "created_at",
+    "immutable_refs"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.division001.worth-making-attempt.v1"
+    },
+    "chain_id": {
+      "type": "string",
+      "pattern": "^WMCHAIN-[A-Z0-9_-]{8,120}$"
+    },
+    "attempt_id": {
+      "type": "string",
+      "pattern": "^WMATT-[A-Z0-9_-]{8,120}$"
+    },
+    "attempt_number": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "previous_attempt": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "attempt_id",
+            "sha256",
+            "attempt_number",
+            "review_outcome"
+          ],
+          "properties": {
+            "attempt_id": {
+              "type": "string",
+              "pattern": "^WMATT-[A-Z0-9_-]{8,120}$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "attempt_number": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 99
+            },
+            "review_outcome": {
+              "enum": [
+                "NO_VETO",
+                "REVISE",
+                "VETO_PENDING_EVIDENCE",
+                "ESCALATE_FOUNDER"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "precheck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "sha256"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 220
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "division_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "sha256"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 220
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "executive_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "sha256"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 220
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "review_outcome": {
+      "enum": [
+        "NO_VETO",
+        "REVISE",
+        "VETO_PENDING_EVIDENCE",
+        "ESCALATE_FOUNDER"
+      ]
+    },
+    "state": {
+      "enum": [
+        "CLOSED_NO_VETO",
+        "RETURNED_TO_DIVISION",
+        "WAITING_EVIDENCE",
+        "ESCALATED_FOUNDER"
+      ]
+    },
+    "next_owner": {
+      "enum": [
+        "BLUEPRINT",
+        "DIVISION01",
+        "EVIDENCE_COLLECTION",
+        "FOUNDER"
+      ]
+    },
+    "required_actions": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 1000
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "immutable_refs": {
+      "const": true
+    }
+  }
+}

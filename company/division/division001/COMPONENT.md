@@ -35,6 +35,9 @@ Canonical source references:
 - `company/division/division001/engines/worth-making/precheck_worth_making.py`
 - `company/division/division001/engines/worth-making/die.division001.worth-making.v1.schema.json`
 - `company/division/division001/engines/worth-making/die.executive.worth-making-review.v1.schema.json`
+- `company/division/division001/engines/worth-making/validate_attempt_lineage.py`
+- `company/division/division001/engines/worth-making/validate_governed_bundle.py`
+- `company/division/division001/engines/worth-making/run_governed_canary.py`
 
 DIE-103 rule: this ownership boundary does not authorize secret/profile/runtime-data copying or premature service cutover.
 
@@ -44,4 +47,4 @@ Demand Score: `OE-002 = DONE`. Deterministic scorer, versioned transforms/weight
 
 Longtail Engine: `OE-003 = DONE`. Bounded dynamic Object+Human hypotheses pass deterministic guardrails, child-specific OE-001/OE-002 evidence, separate idempotent persistence, and ACCEPTED+COMPLETE-only ranking. Parent demand inheritance and brute-force 10D expansion remain forbidden.
 
-Worth-Making contracts: `OE-004A/B/C = DONE`. Deterministic precheck may only pass/block/wait; Division01 is the sole semantic AUTHOR; Executive is read-only second-line REVIEWER; neither review nor author artifact grants production authority. `OE-004D = READY`; milestone OE-004 remains pending B08.
+Worth-Making Gate: `OE-004 = DONE`. Deterministic precheck, Division01 semantic AUTHOR, Executive read-only REVIEWER, immutable revision lineage, cross-receipt current freshness/hash/principal validation, and governed failure canaries are accepted. `PROMOTABLE_TO_BLUEPRINT` is not production authority. `OE-005A = READY`.

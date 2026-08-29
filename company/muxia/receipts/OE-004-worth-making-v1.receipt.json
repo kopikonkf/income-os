@@ -1,0 +1,133 @@
+{
+  "schema": "die.oe-milestone-receipt.v1",
+  "task_id": "OE-004",
+  "title": "Worth-Making Gate v1 acceptance",
+  "status": "DONE",
+  "date": "2026-08-29",
+  "base_main": "9f6a25bb4fe7f022a92061c952e1a98ee51c9a4c",
+  "upstream": {
+    "oe_b07_receipt": {
+      "path": "company/muxia/receipts/OE-B07-worth-making-contracts.receipt.json",
+      "sha256": "4f21654cdebce8ba035a6deebf17e08ea1041c288aaa5b7bf2b422a7529313eb"
+    }
+  },
+  "lineage": {
+    "schema": "die.division001.worth-making-attempt.v1",
+    "immutable_refs": true,
+    "next_attempt_requires_previous_outcome": [
+      "REVISE",
+      "VETO_PENDING_EVIDENCE"
+    ],
+    "same_chain_required": true,
+    "sequential_attempt_number_required": true,
+    "new_division_artifact_id_and_hash_required": true
+  },
+  "governed_validation": {
+    "replays_precheck_source_input": true,
+    "checks_current_demand_score_freshness": true,
+    "checks_current_hard_gate_freshness": true,
+    "checks_division_snapshot_freshness": true,
+    "checks_executive_review_freshness": true,
+    "checks_repository_sha": true,
+    "checks_principal_and_artifact_hashes": true,
+    "checks_attempt_lineage": true
+  },
+  "decisions": [
+    "PROMOTABLE_TO_BLUEPRINT",
+    "RETURN_TO_DIVISION",
+    "WAITING_EVIDENCE",
+    "ESCALATE_FOUNDER",
+    "NOT_PROMOTABLE",
+    "INVALID"
+  ],
+  "promotion_rule": "current valid bundle + Division VALIDATE + Executive NO_VETO => PROMOTABLE_TO_BLUEPRINT; never production authority",
+  "canaries": {
+    "PASS": "PASS/PROMOTABLE_TO_BLUEPRINT",
+    "REVISE": "PASS/RETURN_TO_DIVISION",
+    "VETO": "PASS/WAITING_EVIDENCE",
+    "STALE": "FAIL/INVALID",
+    "MISSING_PRINCIPAL": "FAIL/INVALID",
+    "FORGED_REVIEW": "FAIL/INVALID",
+    "KANBAN_ONLY": "FAIL/INVALID",
+    "revision_n_plus_1": "PASS with new Division artifact ID/hash and valid previous-attempt binding"
+  },
+  "validation": {
+    "oe004_governed_loop": "11/11 PASS",
+    "oe004_all_targeted_plus_graph": "48/48 PASS",
+    "full_bridge": "393/393 PASS",
+    "one_canon": "11/11 PASS",
+    "bytecode_artifacts": "0"
+  },
+  "runtime_boundary": {
+    "live_division01_cognition_call_performed": false,
+    "live_executive_review_call_performed": false,
+    "network_request_performed": false,
+    "credential_used_or_copied": false,
+    "spend_usd": 0,
+    "windows_live_die_mutated": false,
+    "object_filter_worker_mutated": false,
+    "production_authority_expanded": false
+  },
+  "artifacts": [
+    {
+      "path": "company/division/division001/engines/worth-making/CONTRACT_V1.md",
+      "sha256": "2c8a0638994f6645d09eaed7a27aac7c9fcee2a6f54b858451aa78e202b096a0",
+      "bytes": 5090
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/die.division001.worth-making-attempt.v1.schema.json",
+      "sha256": "a9d412d633b6a1fdf0e0248d15d0b785dc1cf7e7bf53590807244e57cca21bbb",
+      "bytes": 3862
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/validate_attempt_lineage.py",
+      "sha256": "22dfeee29a23f4a953cba5342cdef9803bc9fd6c6edb1617bcdfb58b24c0fc1a",
+      "bytes": 4276
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/die.division001.worth-making-governed-result.v1.schema.json",
+      "sha256": "9e8f8754e4a80796f52b2ae904f68d64032bf0030c4658ccaeb975f0c08d5e55",
+      "bytes": 2006
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/validate_governed_bundle.py",
+      "sha256": "baa4538cb660092b4758d031cd0b05f3a3fd44046498c953d68c823e7c87cd31",
+      "bytes": 8194
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/run_governed_canary.py",
+      "sha256": "8cccb004786871c9d39dce684abc3bbc67d4af73a1b0bba3299c060369d86ac7",
+      "bytes": 2447
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/fixtures/build_governed_fixture.py",
+      "sha256": "1036f1c3e4bac605eb213585eaf3d0492005a003bdddd45844c09fbe33e8d6b4",
+      "bytes": 10090
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/fixtures/governed-canary-cases-v1.json",
+      "sha256": "750ab1470e15417ddd6747cf6efada2b8d458b1f3cb9cd7ae9584f11e78bcf33",
+      "bytes": 950
+    },
+    {
+      "path": "bridge/tests/test_oe004_governed_loop_v1.py",
+      "sha256": "2ad10aa0c4762390c3b5eccbb1564193e5cea877fcb3d8917deac7d23dc23dd2",
+      "bytes": 5930
+    }
+  ],
+  "acceptance": {
+    "deterministic_precheck": true,
+    "division01_sole_semantic_author": true,
+    "executive_read_only_second_line_review": true,
+    "immutable_revision_lineage": true,
+    "current_cross_receipt_validation": true,
+    "governed_failure_canaries": true,
+    "hermes_is_worth_making_decider": false,
+    "workflow_metadata_is_cognition_proof": false,
+    "production_authority_granted": false
+  },
+  "handoff": {
+    "next_task": "OE-005A",
+    "rule": "Blueprint authoring must pin accepted Worth-Making governed bundle refs and may proceed only from PROMOTABLE_TO_BLUEPRINT; Founder exact-hash production authority remains downstream."
+  }
+}

@@ -920,7 +920,7 @@
                       "depends_on":  [
                                          "OE-004C"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "Division01<->Executive revision state contract",
                       "acceptance":  "REVISE/VETO returns to Division01 without Executive editing the Division artifact; receipts preserve attempt lineage and prevent review laundering."
                   },
@@ -931,7 +931,7 @@
                       "depends_on":  [
                                          "OE-004D"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "receipt/hash/freshness validator",
                       "acceptance":  "Hermes/Workers can verify principal, source hashes, freshness and review outcome but cannot author or mutate commercial semantics."
                   },
@@ -942,7 +942,7 @@
                       "depends_on":  [
                                          "OE-004E"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "OE-004 fixtures/tests + receipt",
                       "acceptance":  "Pass, revise, veto, stale-evidence, missing-principal and forged-review cases behave deterministically; legacy Kanban done is insufficient."
                   },
@@ -953,7 +953,7 @@
                       "depends_on":  [
                                          "OE-004F"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "OE-004 acceptance receipt",
                       "acceptance":  "Production-family promotion requires deterministic precheck + Division01 author receipt + Executive review; Hermes is not the Worth-Making decider."
                   },
@@ -964,7 +964,7 @@
                       "depends_on":  [
                                          "OE-004"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "die.division001.blueprint-authoring.v1 schema",
                       "acceptance":  "Blueprint authoring pins Worth-Making/review refs and contains buyer/use case, family thesis, Product Expression, visual constraints, QA/falsification and source evidence."
                   },

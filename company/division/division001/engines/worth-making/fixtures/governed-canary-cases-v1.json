@@ -1,0 +1,12 @@
+{
+  "schema": "die.division001.worth-making-governed-canary-cases.v1",
+  "cases": [
+    {"id":"PASS","mutation":"NONE","expected_status":"PASS","expected_decision":"PROMOTABLE_TO_BLUEPRINT"},
+    {"id":"REVISE","mutation":"OUTCOME_REVISE","expected_status":"PASS","expected_decision":"RETURN_TO_DIVISION"},
+    {"id":"VETO","mutation":"OUTCOME_VETO_PENDING_EVIDENCE","expected_status":"PASS","expected_decision":"WAITING_EVIDENCE"},
+    {"id":"STALE","mutation":"STALE_DEMAND_SCORE_AT_VALIDATION","expected_status":"FAIL","expected_decision":"INVALID"},
+    {"id":"MISSING_PRINCIPAL","mutation":"REMOVE_DIVISION_PRINCIPAL","expected_status":"FAIL","expected_decision":"INVALID"},
+    {"id":"FORGED_REVIEW","mutation":"FORGE_DIVISION_HASH_IN_REVIEW","expected_status":"FAIL","expected_decision":"INVALID"},
+    {"id":"KANBAN_ONLY","mutation":"DROP_GOVERNED_RECEIPTS_KEEP_WORKFLOW_METADATA","expected_status":"FAIL","expected_decision":"INVALID"}
+  ]
+}

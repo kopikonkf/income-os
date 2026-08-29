@@ -414,9 +414,9 @@ Consumes OE-001 receipts plus explicit deterministic/canon evidence; uses versio
 
 Typed modifiers/candidate schema, read-only cleaned Object Atlas retrieval, bounded Human Atlas hypothesis contexts, dynamic generation, structural/IP/quota guardrails, child-specific OE-001/OE-002 scoring, separate persistence and COMPLETE-only ranking are accepted. Child phrases never inherit parent demand, and no exhaustive 10D Cartesian materialization is allowed.
 
-### OE-004 - Worth-Making v1 — CONTRACT FOUNDATION ACTIVE
+### OE-004 - Worth-Making v1 — DONE
 
-OE-004A/B/C are DONE: deterministic precheck/hard-veto engine, Division01 AUTHOR schema/validator, and Executive read-only REVIEW schema/validator. OE-004D/E/F still must seal revision lineage, cross-receipt freshness/principal/hash validation, governed canaries/failure paths, and final milestone acceptance.
+Accepted governed chain: deterministic precheck/hard veto -> Division01 semantic AUTHOR -> Executive `READ_ONLY_CHALLENGE` REVIEW -> immutable attempt lineage -> current principal/hash/freshness validation. `PROMOTABLE_TO_BLUEPRINT` requires a fresh valid bundle, Division recommendation `VALIDATE`, and Executive `NO_VETO`; it never grants production authority. Legacy Kanban/workflow state is not cognition proof.
 
 ### OE-005 — Blueprint v1
 

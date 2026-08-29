@@ -2795,3 +2795,24 @@ Validation: Worth-Making contracts 20/20 PASS; contracts + OE/PAD graph 37/37 PA
 Receipt: `company/muxia/receipts/OE-B07-worth-making-contracts.receipt.json`.
 
 NEXT: OE-B08 — OE-004D revision/return lineage -> OE-004E receipt principal/hash/freshness validator -> OE-004F governed pass/revise/veto/stale/forged-review suite -> OE-004 acceptance.
+
+
+---
+
+## 2026-08-29 - OE-B08 / OE-004 Worth-Making Gate v1 acceptance
+
+`OE-004D/E/F = DONE`; milestone `OE-004 = DONE`; `OE-005A = READY`.
+
+Immutable attempt lineage prevents review laundering: attempt N+1 may follow only REVISE/VETO_PENDING_EVIDENCE, must remain in the same chain, increment exactly once, pin the previous attempt hash/outcome, and use a new Division01-authored artifact ID/hash.
+
+The governed bundle validator replays deterministic precheck from full source input, revalidates Division01 and Executive semantics, checks current Demand Score/hard-gate/Division/review freshness, repository SHA, principals, artifact hashes, and attempt lineage. Historical validity alone is insufficient.
+
+Governed decisions: PROMOTABLE_TO_BLUEPRINT, RETURN_TO_DIVISION, WAITING_EVIDENCE, ESCALATE_FOUNDER, NOT_PROMOTABLE; invalid bundles fail closed. PROMOTABLE_TO_BLUEPRINT requires Division VALIDATE + Executive NO_VETO + current valid lineage and still grants no production authority.
+
+Canary matrix PASS: PASS→Blueprint; REVISE→Division01; VETO→evidence collection; STALE/MISSING_PRINCIPAL/FORGED_REVIEW/KANBAN_ONLY→INVALID. Immutable revision N→N+1 proof PASS. Legacy Kanban `done` is not cognition proof.
+
+Validation: governed-loop 11/11 PASS; OE-004 targeted+graph 48/48 PASS; full bridge 393/393 PASS; one-canon 11/11 PASS; bytecode 0. No live cognition login/call, network acquisition, credential use, spend, Windows live DIE mutation, Object writer mutation, or production authority expansion occurred.
+
+Receipts: `company/muxia/receipts/OE-B08-worth-making-governed-loop.receipt.json` and `company/muxia/receipts/OE-004-worth-making-v1.receipt.json`.
+
+NEXT: OE-B09 — OE-005A Division01 Blueprint authoring schema -> OE-005B Blueprint semantic validator/compiler boundary -> OE-005C Executive Blueprint review contract.

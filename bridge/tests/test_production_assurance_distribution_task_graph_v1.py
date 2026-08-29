@@ -103,7 +103,7 @@ def test_submission_authority_is_separate_from_qc_authority() -> None:
 
 def test_new_roadmap_does_not_interrupt_current_oe002d_ready_state() -> None:
     tasks = _tasks()
-    assert tasks["OE-004D"]["status"] == "READY"
+    assert tasks["OE-005A"]["status"] == "READY"
     pad_statuses = {row["status"] for task_id, row in tasks.items() if task_id.startswith(("QA-", "QC-", "SUB-", "CL-"))}
     assert pad_statuses == {"BLOCKED"}
-    assert "OE-004D = READY" in TASKDOC.read_text(encoding="utf-8")
+    assert "OE-005A = READY" in TASKDOC.read_text(encoding="utf-8")
