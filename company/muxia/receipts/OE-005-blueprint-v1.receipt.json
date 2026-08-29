@@ -143,5 +143,6 @@
   "handoff": {
     "next_task": "OE-006A",
     "rule": "Operator v2 may observe typed Blueprint author/review/compile/hash-lock receipts, but Founder authorization remains a separate exact-hash prerequisite and legacy Kanban state is never equivalent to these receipts."
-  }
+  },
+  "implementation_commit": "6166388ec7e643c822b09f3967a2d7ca311de083"
 }
