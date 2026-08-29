@@ -1,0 +1,153 @@
+{
+  "schema_version": "die.division001.demand-score-input.v1",
+  "score_id": "DSCORE-CAL-VETOUNKNOWN-0001",
+  "subject": {
+    "kind": "PHRASE",
+    "id": "calibration utility phrase",
+    "parent_seed_id": "utility object",
+    "parent_candidate_id": "CAND-CAL-001"
+  },
+  "evaluated_at": "2026-08-29T12:00:00Z",
+  "hard_veto": {
+    "status": "UNKNOWN",
+    "receipt_ref": null,
+    "receipt_sha256": null
+  },
+  "evidence": [
+    {
+      "evidence_kind": "OPPORTUNITY_SIGNAL",
+      "receipt": {
+        "schema_version": "die.division001.opportunity-signals.v1",
+        "signal_id": "OPSIG-CAL-VUNK-DEMAND",
+        "subject": {
+          "kind": "PHRASE",
+          "id": "calibration utility phrase",
+          "parent_seed_id": "utility object",
+          "parent_candidate_id": "CAND-CAL-001"
+        },
+        "source": {
+          "source_id": "OTHER_APPROVED",
+          "source_name": "OTHER_APPROVED synthetic calibration",
+          "market_locale": "en-US",
+          "language": "en"
+        },
+        "signal_class": "DEMAND",
+        "signal_type": "SEARCH_INTEREST_INDEX",
+        "value": {
+          "kind": "INDEX",
+          "numeric_value": 75,
+          "boolean_value": null,
+          "text_value": null,
+          "unit": "index_0_100"
+        },
+        "observed_at": "2026-08-29T08:00:00Z",
+        "recorded_at": "2026-08-29T08:00:30Z",
+        "expires_at": "2026-09-05T08:00:30Z",
+        "freshness_window_seconds": 604800,
+        "evidence_label": "SYNTHETIC",
+        "confidence": "HIGH",
+        "collector_id": "calibration-fixture:oe002",
+        "acquisition_method": "SYNTHETIC_FIXTURE",
+        "policy": {
+          "profile_id": "synthetic-calibration",
+          "profile_version": "v1",
+          "classification": "SYNTHETIC_ONLY"
+        },
+        "source_ref": "fixture://oe002/vunk_demand",
+        "evidence_sha256": null,
+        "cost_usd": 0,
+        "dedupe_key": "oppsig:v1:cal:vunk_demand"
+      }
+    },
+    {
+      "evidence_kind": "OPPORTUNITY_SIGNAL",
+      "receipt": {
+        "schema_version": "die.division001.opportunity-signals.v1",
+        "signal_id": "OPSIG-CAL-VUNK-SUPPLY",
+        "subject": {
+          "kind": "PHRASE",
+          "id": "calibration utility phrase",
+          "parent_seed_id": "utility object",
+          "parent_candidate_id": "CAND-CAL-001"
+        },
+        "source": {
+          "source_id": "ADOBE_STOCK",
+          "source_name": "ADOBE_STOCK synthetic calibration",
+          "market_locale": "en-US",
+          "language": "en"
+        },
+        "signal_class": "SUPPLY",
+        "signal_type": "SEARCH_RESULTS_COUNT",
+        "value": {
+          "kind": "COUNT",
+          "numeric_value": 1000,
+          "boolean_value": null,
+          "text_value": null,
+          "unit": "count"
+        },
+        "observed_at": "2026-08-29T08:00:00Z",
+        "recorded_at": "2026-08-29T08:00:30Z",
+        "expires_at": "2026-09-05T08:00:30Z",
+        "freshness_window_seconds": 604800,
+        "evidence_label": "SYNTHETIC",
+        "confidence": "HIGH",
+        "collector_id": "calibration-fixture:oe002",
+        "acquisition_method": "SYNTHETIC_FIXTURE",
+        "policy": {
+          "profile_id": "synthetic-calibration",
+          "profile_version": "v1",
+          "classification": "SYNTHETIC_ONLY"
+        },
+        "source_ref": "fixture://oe002/vunk_supply",
+        "evidence_sha256": null,
+        "cost_usd": 0,
+        "dedupe_key": "oppsig:v1:cal:vunk_supply"
+      }
+    },
+    {
+      "evidence_kind": "OPPORTUNITY_SIGNAL",
+      "receipt": {
+        "schema_version": "die.division001.opportunity-signals.v1",
+        "signal_id": "OPSIG-CAL-VUNK-INTENT",
+        "subject": {
+          "kind": "PHRASE",
+          "id": "calibration utility phrase",
+          "parent_seed_id": "utility object",
+          "parent_candidate_id": "CAND-CAL-001"
+        },
+        "source": {
+          "source_id": "DREAMSTIME",
+          "source_name": "DREAMSTIME synthetic calibration",
+          "market_locale": "en-US",
+          "language": "en"
+        },
+        "signal_class": "COMMERCIAL_INTENT",
+        "signal_type": "BUYER_TERM_PRESENCE",
+        "value": {
+          "kind": "BOOLEAN",
+          "numeric_value": null,
+          "boolean_value": true,
+          "text_value": null,
+          "unit": "presence"
+        },
+        "observed_at": "2026-08-29T08:00:00Z",
+        "recorded_at": "2026-08-29T08:00:30Z",
+        "expires_at": "2026-09-05T08:00:30Z",
+        "freshness_window_seconds": 604800,
+        "evidence_label": "SYNTHETIC",
+        "confidence": "HIGH",
+        "collector_id": "calibration-fixture:oe002",
+        "acquisition_method": "SYNTHETIC_FIXTURE",
+        "policy": {
+          "profile_id": "synthetic-calibration",
+          "profile_version": "v1",
+          "classification": "SYNTHETIC_ONLY"
+        },
+        "source_ref": "fixture://oe002/vunk_intent",
+        "evidence_sha256": null,
+        "cost_usd": 0,
+        "dedupe_key": "oppsig:v1:cal:vunk_intent"
+      }
+    }
+  ]
+}

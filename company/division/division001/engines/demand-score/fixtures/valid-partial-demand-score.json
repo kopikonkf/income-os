@@ -9,8 +9,8 @@
   },
   "model": {
     "model_id": "division001-demand-score-v1",
-    "model_version": "1.0.0-contract",
-    "contract_sha256": "f62d2cdfa40ac28702f6f08ec3240bb6709581cc5cc28eeda96c99d4d5987f60"
+    "model_version": "1.0.0",
+    "contract_sha256": "d719c1376d9453724a53ec86caff49dd325337f549b3d90ce28c5b424490d442"
   },
   "evaluated_at": "2026-08-29T12:00:00Z",
   "expires_at": "2026-08-30T05:00:30Z",
@@ -139,5 +139,12 @@
       "normalization_transform_version": null,
       "notes": "No accepted evidence supplied."
     }
-  ]
+  ],
+  "known_weight_ratio": 0.5,
+  "risk_adjustment": {
+    "state": "UNKNOWN",
+    "raw_penalty": null,
+    "multiplier": 0.15,
+    "applied_deduction": 0.0
+  }
 }

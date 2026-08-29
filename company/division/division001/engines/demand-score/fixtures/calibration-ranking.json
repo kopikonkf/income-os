@@ -1,0 +1,123 @@
+{
+  "schema": "die.division001.demand-ranking.v1",
+  "model_id": "division001-demand-score-v1",
+  "model_version": "1.0.0",
+  "model_contract_sha256": "d719c1376d9453724a53ec86caff49dd325337f549b3d90ce28c5b424490d442",
+  "ranked_count": 7,
+  "deferred_count": 5,
+  "ranked": [
+    {
+      "rank": 1,
+      "score_id": "DSCORE-CAL-HIGH-0001",
+      "subject_id": "calibration utility phrase",
+      "final_score": 0.821907,
+      "confidence": "HIGH",
+      "evidence_coverage_ratio": 1.0,
+      "known_weight_ratio": 1.0,
+      "score_sha256": "0ed8b4bb396d945102f047e9c1444137a127464f219fc60489c333301c80ca54"
+    },
+    {
+      "rank": 2,
+      "score_id": "DSCORE-CAL-SATLOW-0001",
+      "subject_id": "calibration utility phrase",
+      "final_score": 0.716357,
+      "confidence": "HIGH",
+      "evidence_coverage_ratio": 1.0,
+      "known_weight_ratio": 1.0,
+      "score_sha256": "34b56353f5893a3d170be9669baf529b527badd99fe7ab0bad7b60e6755aa3ab"
+    },
+    {
+      "rank": 3,
+      "score_id": "DSCORE-CAL-REQUIREDONLY-0001",
+      "subject_id": "calibration utility phrase",
+      "final_score": 0.672728,
+      "confidence": "LOW",
+      "evidence_coverage_ratio": 0.333333,
+      "known_weight_ratio": 0.7,
+      "score_sha256": "72014a43f78648ceb418830f282219f0ecab56986e09924465ac405cbbe76277"
+    },
+    {
+      "rank": 4,
+      "score_id": "DSCORE-CAL-SATHIGH-0001",
+      "subject_id": "calibration utility phrase",
+      "final_score": 0.61733,
+      "confidence": "HIGH",
+      "evidence_coverage_ratio": 1.0,
+      "known_weight_ratio": 1.0,
+      "score_sha256": "f2d947c4ad95267fee0dbc9745d338d425b6280bc66853f2b132472878eb78cc"
+    },
+    {
+      "rank": 5,
+      "score_id": "DSCORE-CAL-MEDIUM-0001",
+      "subject_id": "calibration utility phrase",
+      "final_score": 0.613474,
+      "confidence": "HIGH",
+      "evidence_coverage_ratio": 1.0,
+      "known_weight_ratio": 1.0,
+      "score_sha256": "4689ee11cf055fc15e8af30da4741d2fc5a3d9078144050537dedfb50024e116"
+    },
+    {
+      "rank": 6,
+      "score_id": "DSCORE-CAL-OPTIONALZERO-0001",
+      "subject_id": "calibration utility phrase",
+      "final_score": 0.470909,
+      "confidence": "HIGH",
+      "evidence_coverage_ratio": 1.0,
+      "known_weight_ratio": 1.0,
+      "score_sha256": "16b524b8f8a959eefb56f265b8a53013184a1f38af4e3ee45027b77c0e67493b"
+    },
+    {
+      "rank": 7,
+      "score_id": "DSCORE-CAL-LOW-0001",
+      "subject_id": "calibration utility phrase",
+      "final_score": 0.109096,
+      "confidence": "HIGH",
+      "evidence_coverage_ratio": 1.0,
+      "known_weight_ratio": 1.0,
+      "score_sha256": "8041b8a3a803e7f39ccfacab2af90932ecc49fcb1c2333da9b27c51ec06fd1b1"
+    }
+  ],
+  "deferred": [
+    {
+      "score_id": "DSCORE-CAL-VETO-0001",
+      "subject_id": "calibration utility phrase",
+      "score_status": "HARD_VETO",
+      "required_coverage_ratio": 1.0,
+      "evidence_coverage_ratio": 1.0,
+      "hard_veto_status": "BLOCKED"
+    },
+    {
+      "score_id": "DSCORE-CAL-INSUFFICIENT-0001",
+      "subject_id": "calibration utility phrase",
+      "score_status": "INSUFFICIENT_EVIDENCE",
+      "required_coverage_ratio": 0.0,
+      "evidence_coverage_ratio": 0.0,
+      "hard_veto_status": "CLEAR"
+    },
+    {
+      "score_id": "DSCORE-CAL-MISSING-0001",
+      "subject_id": "calibration utility phrase",
+      "score_status": "PARTIAL",
+      "required_coverage_ratio": 0.333333,
+      "evidence_coverage_ratio": 0.111111,
+      "hard_veto_status": "CLEAR"
+    },
+    {
+      "score_id": "DSCORE-CAL-STALE-0001",
+      "subject_id": "calibration utility phrase",
+      "score_status": "PARTIAL",
+      "required_coverage_ratio": 0.666667,
+      "evidence_coverage_ratio": 0.222222,
+      "hard_veto_status": "CLEAR"
+    },
+    {
+      "score_id": "DSCORE-CAL-VETOUNKNOWN-0001",
+      "subject_id": "calibration utility phrase",
+      "score_status": "PARTIAL",
+      "required_coverage_ratio": 1.0,
+      "evidence_coverage_ratio": 0.333333,
+      "hard_veto_status": "UNKNOWN"
+    }
+  ],
+  "policy": "Only COMPLETE numeric scores are rankable; non-complete scores are deferred without artificial numeric imputation."
+}

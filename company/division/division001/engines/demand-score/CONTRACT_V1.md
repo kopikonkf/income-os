@@ -2,7 +2,7 @@
 
 Status: CANONICAL CONTRACT
 Batch: OE-B03
-Milestone: OE-002 (contracts only; scorer implementation remains OE-B04)
+Milestone: OE-002 — ACCEPTED ENGINE v1
 
 ## Contract layers
 
@@ -39,6 +39,8 @@ A strong market score can never erase rights, safety, deception, forbidden-platf
 
 The historical Object Engine `demand_score.py` is calibration/provenance only. Its static defaults/dictionaries are not production-v1 evidence.
 
-## Handoff
+## Implementation acceptance
 
-OE-B04 (`OE-002D/E/F`) will assign versioned weights/transforms, implement deterministic arithmetic, calibrate fixtures, and prove ranking/regression. Until then this folder defines contracts, not a production scorer.
+OE-B04 completed the deterministic scorer, versioned transforms/weights, pinned calibration corpus, ranking/deferred policy, arithmetic validation and deterministic replay. See `CALIBRATION_V1.md`, `score_demand.py`, `rank_demand.py`, and the OE-002 milestone receipt.
+
+Demand Score remains an evidence-ranking engine only; Worth-Making, Executive review, Founder authority, QA/QC and submission remain downstream gates.

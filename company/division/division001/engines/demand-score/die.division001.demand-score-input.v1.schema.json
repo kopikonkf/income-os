@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.division001.demand-score-input.v1.schema.json",
+  "title": "DIE Division01 Demand Score Input v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "score_id",
+    "subject",
+    "evaluated_at",
+    "hard_veto",
+    "evidence"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.division001.demand-score-input.v1"
+    },
+    "score_id": {
+      "type": "string",
+      "pattern": "^DSCORE-[A-Z0-9_-]{8,120}$"
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "id",
+        "parent_seed_id",
+        "parent_candidate_id"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "SEED_OBJECT",
+            "PHRASE",
+            "CANDIDATE"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "parent_seed_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 300
+        },
+        "parent_candidate_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 300
+        }
+      }
+    },
+    "evaluated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "hard_veto": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "receipt_ref",
+        "receipt_sha256"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "CLEAR",
+            "BLOCKED",
+            "UNKNOWN"
+          ]
+        },
+        "receipt_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 1000
+        },
+        "receipt_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "maxItems": 200,
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/opportunity_signal"
+          },
+          {
+            "$ref": "#/$defs/normalized_evidence"
+          }
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "opportunity_signal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_kind",
+        "receipt"
+      ],
+      "properties": {
+        "evidence_kind": {
+          "const": "OPPORTUNITY_SIGNAL"
+        },
+        "receipt": {
+          "type": "object"
+        }
+      }
+    },
+    "normalized_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_kind",
+        "evidence_id",
+        "component_id",
+        "normalized_value",
+        "confidence",
+        "evidence_sha256",
+        "source_ref",
+        "valid_until"
+      ],
+      "properties": {
+        "evidence_kind": {
+          "enum": [
+            "DETERMINISTIC_EVIDENCE",
+            "CANON_EVIDENCE"
+          ]
+        },
+        "evidence_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "component_id": {
+          "enum": [
+            "platform_fit",
+            "niche_specificity",
+            "production_feasibility",
+            "eligibility",
+            "risk_penalty"
+          ]
+        },
+        "normalized_value": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "confidence": {
+          "enum": [
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ]
+        },
+        "evidence_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "valid_until": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

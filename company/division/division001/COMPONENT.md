@@ -19,9 +19,12 @@ Canonical source references:
 - `company/division/division001/engines/demand-score/CONTRACT_V1.md`
 - `company/division/division001/engines/demand-score/DEMAND_SCORE_MODEL_V1.contract.json`
 - `company/division/division001/engines/demand-score/die.division001.demand-score.v1.schema.json`
+- `company/division/division001/engines/demand-score/score_demand.py`
+- `company/division/division001/engines/demand-score/rank_demand.py`
+- `company/division/division001/engines/demand-score/CALIBRATION_V1.md`
 
 DIE-103 rule: this ownership boundary does not authorize secret/profile/runtime-data copying or premature service cutover.
 
 Opportunity Intelligence: `OE-001 = DONE`. The canonical engine includes source-shaped fixture adapters, strict receipt validation, and registry/dedupe/freshness behavior. No live source collection is implied; live adapters require separately approved acquisition profiles.
 
-Demand Score: `OE-002A/B/C = DONE` contract layer. Missing/stale evidence is explicit and partial outputs have no numeric final score. Production scorer arithmetic/weights remain OE-002D/E/F.
+Demand Score: `OE-002 = DONE`. Deterministic scorer, versioned transforms/weights, calibration corpus, ranking/replay regression, explicit UNKNOWN/STALE handling, and legacy-prior rejection are canonical. Demand Score alone grants no production authority.

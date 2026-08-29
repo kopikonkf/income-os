@@ -1,0 +1,283 @@
+{
+  "schema_version": "die.division001.demand-score-input.v1",
+  "score_id": "DSCORE-CAL-VETO-0001",
+  "subject": {
+    "kind": "PHRASE",
+    "id": "calibration utility phrase",
+    "parent_seed_id": "utility object",
+    "parent_candidate_id": "CAND-CAL-001"
+  },
+  "evaluated_at": "2026-08-29T12:00:00Z",
+  "hard_veto": {
+    "status": "BLOCKED",
+    "receipt_ref": "fixture://hard-veto/blocked",
+    "receipt_sha256": "623b2004ba96274371e43faccdcc726bbe16e158bdf1170fb7b936009671c64a"
+  },
+  "evidence": [
+    {
+      "evidence_kind": "OPPORTUNITY_SIGNAL",
+      "receipt": {
+        "schema_version": "die.division001.opportunity-signals.v1",
+        "signal_id": "OPSIG-CAL-VETO-DEMAND",
+        "subject": {
+          "kind": "PHRASE",
+          "id": "calibration utility phrase",
+          "parent_seed_id": "utility object",
+          "parent_candidate_id": "CAND-CAL-001"
+        },
+        "source": {
+          "source_id": "OTHER_APPROVED",
+          "source_name": "OTHER_APPROVED synthetic calibration",
+          "market_locale": "en-US",
+          "language": "en"
+        },
+        "signal_class": "DEMAND",
+        "signal_type": "SEARCH_INTEREST_INDEX",
+        "value": {
+          "kind": "INDEX",
+          "numeric_value": 90,
+          "boolean_value": null,
+          "text_value": null,
+          "unit": "index_0_100"
+        },
+        "observed_at": "2026-08-29T08:00:00Z",
+        "recorded_at": "2026-08-29T08:00:30Z",
+        "expires_at": "2026-09-05T08:00:30Z",
+        "freshness_window_seconds": 604800,
+        "evidence_label": "SYNTHETIC",
+        "confidence": "HIGH",
+        "collector_id": "calibration-fixture:oe002",
+        "acquisition_method": "SYNTHETIC_FIXTURE",
+        "policy": {
+          "profile_id": "synthetic-calibration",
+          "profile_version": "v1",
+          "classification": "SYNTHETIC_ONLY"
+        },
+        "source_ref": "fixture://oe002/veto_demand",
+        "evidence_sha256": null,
+        "cost_usd": 0,
+        "dedupe_key": "oppsig:v1:cal:veto_demand"
+      }
+    },
+    {
+      "evidence_kind": "OPPORTUNITY_SIGNAL",
+      "receipt": {
+        "schema_version": "die.division001.opportunity-signals.v1",
+        "signal_id": "OPSIG-CAL-VETO-SUPPLY",
+        "subject": {
+          "kind": "PHRASE",
+          "id": "calibration utility phrase",
+          "parent_seed_id": "utility object",
+          "parent_candidate_id": "CAND-CAL-001"
+        },
+        "source": {
+          "source_id": "ADOBE_STOCK",
+          "source_name": "ADOBE_STOCK synthetic calibration",
+          "market_locale": "en-US",
+          "language": "en"
+        },
+        "signal_class": "SUPPLY",
+        "signal_type": "SEARCH_RESULTS_COUNT",
+        "value": {
+          "kind": "COUNT",
+          "numeric_value": 300,
+          "boolean_value": null,
+          "text_value": null,
+          "unit": "count"
+        },
+        "observed_at": "2026-08-29T08:00:00Z",
+        "recorded_at": "2026-08-29T08:00:30Z",
+        "expires_at": "2026-09-05T08:00:30Z",
+        "freshness_window_seconds": 604800,
+        "evidence_label": "SYNTHETIC",
+        "confidence": "HIGH",
+        "collector_id": "calibration-fixture:oe002",
+        "acquisition_method": "SYNTHETIC_FIXTURE",
+        "policy": {
+          "profile_id": "synthetic-calibration",
+          "profile_version": "v1",
+          "classification": "SYNTHETIC_ONLY"
+        },
+        "source_ref": "fixture://oe002/veto_supply",
+        "evidence_sha256": null,
+        "cost_usd": 0,
+        "dedupe_key": "oppsig:v1:cal:veto_supply"
+      }
+    },
+    {
+      "evidence_kind": "OPPORTUNITY_SIGNAL",
+      "receipt": {
+        "schema_version": "die.division001.opportunity-signals.v1",
+        "signal_id": "OPSIG-CAL-VETO-INTENT",
+        "subject": {
+          "kind": "PHRASE",
+          "id": "calibration utility phrase",
+          "parent_seed_id": "utility object",
+          "parent_candidate_id": "CAND-CAL-001"
+        },
+        "source": {
+          "source_id": "DREAMSTIME",
+          "source_name": "DREAMSTIME synthetic calibration",
+          "market_locale": "en-US",
+          "language": "en"
+        },
+        "signal_class": "COMMERCIAL_INTENT",
+        "signal_type": "BUYER_TERM_PRESENCE",
+        "value": {
+          "kind": "BOOLEAN",
+          "numeric_value": null,
+          "boolean_value": true,
+          "text_value": null,
+          "unit": "presence"
+        },
+        "observed_at": "2026-08-29T08:00:00Z",
+        "recorded_at": "2026-08-29T08:00:30Z",
+        "expires_at": "2026-09-05T08:00:30Z",
+        "freshness_window_seconds": 604800,
+        "evidence_label": "SYNTHETIC",
+        "confidence": "HIGH",
+        "collector_id": "calibration-fixture:oe002",
+        "acquisition_method": "SYNTHETIC_FIXTURE",
+        "policy": {
+          "profile_id": "synthetic-calibration",
+          "profile_version": "v1",
+          "classification": "SYNTHETIC_ONLY"
+        },
+        "source_ref": "fixture://oe002/veto_intent",
+        "evidence_sha256": null,
+        "cost_usd": 0,
+        "dedupe_key": "oppsig:v1:cal:veto_intent"
+      }
+    },
+    {
+      "evidence_kind": "OPPORTUNITY_SIGNAL",
+      "receipt": {
+        "schema_version": "die.division001.opportunity-signals.v1",
+        "signal_id": "OPSIG-CAL-VETO-TREND",
+        "subject": {
+          "kind": "PHRASE",
+          "id": "calibration utility phrase",
+          "parent_seed_id": "utility object",
+          "parent_candidate_id": "CAND-CAL-001"
+        },
+        "source": {
+          "source_id": "OTHER_APPROVED",
+          "source_name": "OTHER_APPROVED synthetic calibration",
+          "market_locale": "en-US",
+          "language": "en"
+        },
+        "signal_class": "TREND",
+        "signal_type": "TREND_INDEX",
+        "value": {
+          "kind": "INDEX",
+          "numeric_value": 80,
+          "boolean_value": null,
+          "text_value": null,
+          "unit": "index_0_100"
+        },
+        "observed_at": "2026-08-29T08:00:00Z",
+        "recorded_at": "2026-08-29T08:00:30Z",
+        "expires_at": "2026-09-05T08:00:30Z",
+        "freshness_window_seconds": 604800,
+        "evidence_label": "SYNTHETIC",
+        "confidence": "HIGH",
+        "collector_id": "calibration-fixture:oe002",
+        "acquisition_method": "SYNTHETIC_FIXTURE",
+        "policy": {
+          "profile_id": "synthetic-calibration",
+          "profile_version": "v1",
+          "classification": "SYNTHETIC_ONLY"
+        },
+        "source_ref": "fixture://oe002/veto_trend",
+        "evidence_sha256": null,
+        "cost_usd": 0,
+        "dedupe_key": "oppsig:v1:cal:veto_trend"
+      }
+    },
+    {
+      "evidence_kind": "OPPORTUNITY_SIGNAL",
+      "receipt": {
+        "schema_version": "die.division001.opportunity-signals.v1",
+        "signal_id": "OPSIG-CAL-VETO-PLATFORM",
+        "subject": {
+          "kind": "PHRASE",
+          "id": "calibration utility phrase",
+          "parent_seed_id": "utility object",
+          "parent_candidate_id": "CAND-CAL-001"
+        },
+        "source": {
+          "source_id": "ADOBE_STOCK",
+          "source_name": "ADOBE_STOCK synthetic calibration",
+          "market_locale": "en-US",
+          "language": "en"
+        },
+        "signal_class": "PLATFORM_FIT",
+        "signal_type": "CONTENT_TYPE_SURFACE_PRESENCE",
+        "value": {
+          "kind": "BOOLEAN",
+          "numeric_value": null,
+          "boolean_value": true,
+          "text_value": null,
+          "unit": "presence"
+        },
+        "observed_at": "2026-08-29T08:00:00Z",
+        "recorded_at": "2026-08-29T08:00:30Z",
+        "expires_at": "2026-09-05T08:00:30Z",
+        "freshness_window_seconds": 604800,
+        "evidence_label": "SYNTHETIC",
+        "confidence": "HIGH",
+        "collector_id": "calibration-fixture:oe002",
+        "acquisition_method": "SYNTHETIC_FIXTURE",
+        "policy": {
+          "profile_id": "synthetic-calibration",
+          "profile_version": "v1",
+          "classification": "SYNTHETIC_ONLY"
+        },
+        "source_ref": "fixture://oe002/veto_platform",
+        "evidence_sha256": null,
+        "cost_usd": 0,
+        "dedupe_key": "oppsig:v1:cal:veto_platform"
+      }
+    },
+    {
+      "evidence_kind": "DETERMINISTIC_EVIDENCE",
+      "evidence_id": "DET-CAL-VETO-NICHE",
+      "component_id": "niche_specificity",
+      "normalized_value": 0.9,
+      "confidence": "HIGH",
+      "evidence_sha256": "3d17b34e6281212d515db4c5db35273ffe6b742824b7c818d48bd669f3508b2b",
+      "source_ref": "fixture://oe002/deterministic/veto_niche",
+      "valid_until": null
+    },
+    {
+      "evidence_kind": "DETERMINISTIC_EVIDENCE",
+      "evidence_id": "DET-CAL-VETO-FEAS",
+      "component_id": "production_feasibility",
+      "normalized_value": 0.9,
+      "confidence": "HIGH",
+      "evidence_sha256": "0ac4965401be31884b9cb073288c55a15ee339387e2d1a2afa2fbf48f40f6da4",
+      "source_ref": "fixture://oe002/deterministic/veto_feas",
+      "valid_until": null
+    },
+    {
+      "evidence_kind": "DETERMINISTIC_EVIDENCE",
+      "evidence_id": "DET-CAL-VETO-ELIG",
+      "component_id": "eligibility",
+      "normalized_value": 1.0,
+      "confidence": "HIGH",
+      "evidence_sha256": "2507c628a0df73f2766a4d32a65eda19075db18914863655ad415e2535677c85",
+      "source_ref": "fixture://oe002/deterministic/veto_elig",
+      "valid_until": null
+    },
+    {
+      "evidence_kind": "DETERMINISTIC_EVIDENCE",
+      "evidence_id": "DET-CAL-VETO-RISK",
+      "component_id": "risk_penalty",
+      "normalized_value": 0.0,
+      "confidence": "HIGH",
+      "evidence_sha256": "15937c09a55453afc9ab6e8f610374bb3bd8235e69d68d97a5ffdba6d15e3b51",
+      "source_ref": "fixture://oe002/deterministic/veto_risk",
+      "valid_until": null
+    }
+  ]
+}

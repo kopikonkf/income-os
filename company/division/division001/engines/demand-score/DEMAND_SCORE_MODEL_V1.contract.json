@@ -1,8 +1,8 @@
 {
   "schema": "die.division001.demand-score-model.v1",
   "model_id": "division001-demand-score-v1",
-  "model_version": "1.0.0-contract",
-  "status": "CONTRACT_ONLY",
+  "model_version": "1.0.0",
+  "status": "ACTIVE_SCORING_MODEL",
   "owner_principal": "division-head-division01",
   "review_policy": "Executive review required before material production-threshold/weight promotion",
   "score_range": {
@@ -21,7 +21,9 @@
         "DEMAND"
       ],
       "required_for_complete": true,
-      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+      "weight_status": "ASSIGNED_V1",
+      "weight": 0.3,
+      "polarity": "HIGHER_IS_BETTER"
     },
     {
       "component_id": "supply_competition",
@@ -34,7 +36,9 @@
         "COMPETITION"
       ],
       "required_for_complete": true,
-      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+      "weight_status": "ASSIGNED_V1",
+      "weight": 0.2,
+      "polarity": "HIGHER_IS_BETTER_AFTER_COMPETITION_INVERSION"
     },
     {
       "component_id": "commercial_intent",
@@ -46,7 +50,9 @@
         "COMMERCIAL_INTENT"
       ],
       "required_for_complete": true,
-      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+      "weight_status": "ASSIGNED_V1",
+      "weight": 0.2,
+      "polarity": "HIGHER_IS_BETTER"
     },
     {
       "component_id": "trend_seasonality",
@@ -58,7 +64,9 @@
         "TREND"
       ],
       "required_for_complete": false,
-      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+      "weight_status": "ASSIGNED_V1",
+      "weight": 0.08,
+      "polarity": "HIGHER_IS_BETTER"
     },
     {
       "component_id": "platform_fit",
@@ -71,7 +79,9 @@
         "PLATFORM_FIT"
       ],
       "required_for_complete": false,
-      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+      "weight_status": "ASSIGNED_V1",
+      "weight": 0.07,
+      "polarity": "HIGHER_IS_BETTER"
     },
     {
       "component_id": "niche_specificity",
@@ -82,7 +92,9 @@
       ],
       "allowed_signal_classes": [],
       "required_for_complete": false,
-      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+      "weight_status": "ASSIGNED_V1",
+      "weight": 0.05,
+      "polarity": "HIGHER_IS_BETTER"
     },
     {
       "component_id": "production_feasibility",
@@ -93,7 +105,9 @@
       ],
       "allowed_signal_classes": [],
       "required_for_complete": false,
-      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+      "weight_status": "ASSIGNED_V1",
+      "weight": 0.05,
+      "polarity": "HIGHER_IS_BETTER"
     },
     {
       "component_id": "eligibility",
@@ -107,7 +121,9 @@
         "PLATFORM_FIT"
       ],
       "required_for_complete": false,
-      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+      "weight_status": "ASSIGNED_V1",
+      "weight": 0.05,
+      "polarity": "HIGHER_IS_BETTER"
     },
     {
       "component_id": "risk_penalty",
@@ -118,9 +134,40 @@
       ],
       "allowed_signal_classes": [],
       "required_for_complete": false,
-      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+      "weight_status": "ASSIGNED_V1",
+      "weight": 0.15,
+      "polarity": "HIGHER_IS_WORSE_DEDUCTION"
     }
   ],
   "hard_veto_boundary": "rights/safety/deception/forbidden-platform conditions are separate hard-veto evidence and cannot be neutralized by a high numeric score",
-  "legacy_v0_status": "CALIBRATION_PROVENANCE_ONLY_NOT_PRODUCTION_TRUTH"
+  "legacy_v0_status": "CALIBRATION_PROVENANCE_ONLY_NOT_PRODUCTION_TRUTH",
+  "scoring_policy": {
+    "formula": "weighted_mean_of_known_nonrisk_components_minus_bounded_risk_penalty",
+    "missing_optional": "RENORMALIZE_KNOWN_WEIGHTS_NEVER_IMPUTE_ZERO",
+    "required_missing": "NO_NUMERIC_SCORE",
+    "risk_penalty_multiplier": 0.15,
+    "final_clamp": [
+      0.0,
+      1.0
+    ],
+    "production_gate_authority": "Demand Score alone never authorizes production; Worth-Making + Executive review + downstream authority remain required."
+  },
+  "weight_sum_nonrisk": 1.0,
+  "required_base_weight": 0.7,
+  "transform_registry": {
+    "index_0_100": "value/100",
+    "boolean_presence": "true=1,false=0",
+    "ratio_direct": "value",
+    "rank_reciprocal_10": "max(0,1-(rank-1)/9) for rank 1..10; ranks >10 => 0",
+    "count_competition_log100k": "1-min(1,log10(1+count)/log10(100001))",
+    "delta_minus100_plus100": "(delta+100)/200",
+    "normalized_evidence_identity": "explicit normalized_value 0..1 from deterministic/canon evidence artifact",
+    "count_demand_log10k": "min(1,log10(1+count)/log10(10001))"
+  },
+  "confidence_policy": {
+    "HIGH": "all KNOWN evidence refs HIGH quality and evidence_coverage_ratio >= 0.80",
+    "MEDIUM": "no LOW-quality KNOWN evidence refs and evidence_coverage_ratio >= 0.60",
+    "LOW": "COMPLETE score with lower coverage/quality",
+    "NONE": "non-COMPLETE score status"
+  }
 }

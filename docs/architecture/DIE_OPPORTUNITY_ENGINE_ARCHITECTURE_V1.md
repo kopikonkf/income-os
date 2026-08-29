@@ -144,8 +144,8 @@ Required fields:
 - scoring model/version;
 - each component score;
 - each component evidence refs;
-- missing-signal penalties;
-- staleness penalties;
+- explicit `UNKNOWN` / `STALE` / `REJECTED` component states;
+- no numeric imputation for missing/stale required evidence;
 - confidence interval/band or confidence label;
 - final normalized score;
 - `UNKNOWN` components rather than invented defaults;
@@ -402,13 +402,13 @@ Shared schemas may later be promoted to company-level contracts only after a sec
 
 ## 11. Build roadmap
 
-### OE-001 — Opportunity Signals Contract + fixture collectors
+### OE-001 — Opportunity Signals Contract + fixture collectors — DONE
 
-Deliver schemas, normalized receipt registry, staleness semantics, two low-risk fixture/platform adapters, tests.
+Schemas, normalized receipt registry, staleness semantics, two source-shaped fixture adapters, and tests are accepted. Live-source adapters remain separately policy-gated.
 
-### OE-002 — Demand Score v1
+### OE-002 — Demand Score v1 — DONE
 
-Consume OE-001 receipts; replace invented priors with explicit UNKNOWN/fresh evidence handling; calibrate against known examples.
+Consumes OE-001 receipts plus explicit deterministic/canon evidence; uses versioned transforms/weights, conservative UNKNOWN/freshness semantics, pinned calibration, deterministic replay, and COMPLETE-only ranking. Legacy heuristic priors are calibration provenance only.
 
 ### OE-003 — Object Longtail v1
 
@@ -426,9 +426,9 @@ Implement Division authoring contract, Executive review, deterministic compiler/
 
 Add prerequisite receipt registry, deterministic authority mapping, legacy-card quarantine, canonical OS-neutral prepare wrapper, and regression tests.
 
-### OE-007 — Closed-loop canary
+### OE-007 — Governed production canary
 
-One candidate must pass signals -> score -> longtail/context -> Worth-Making -> Executive -> blueprint -> Founder hash authorization -> Worker/MUXIA synthetic or governed production canary with complete receipts.
+One candidate must pass signals -> score -> longtail/context -> Worth-Making -> Executive -> blueprint -> Founder hash authorization -> Worker/MUXIA -> first-class QA/QC feedback with complete receipts. External marketplace submission/review belongs to `CL-001`.
 
 ## 12. Non-goals
 

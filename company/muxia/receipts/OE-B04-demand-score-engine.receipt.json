@@ -1,0 +1,374 @@
+{
+  "schema": "die.oe-batch-receipt.v1",
+  "batch_id": "OE-B04",
+  "status": "PASS",
+  "date": "2026-08-29",
+  "base_main": "5adadbd9de8f452af5327eddae22f324165184c5",
+  "model": {
+    "model_id": "division001-demand-score-v1",
+    "model_version": "1.0.0",
+    "contract_sha256": "d719c1376d9453724a53ec86caff49dd325337f549b3d90ce28c5b424490d442",
+    "status": "ACTIVE_SCORING_MODEL",
+    "weights": {
+      "external_demand": 0.3,
+      "supply_competition": 0.2,
+      "commercial_intent": 0.2,
+      "trend_seasonality": 0.08,
+      "platform_fit": 0.07,
+      "niche_specificity": 0.05,
+      "production_feasibility": 0.05,
+      "eligibility": 0.05,
+      "risk_penalty": 0.15
+    },
+    "risk_penalty_multiplier": 0.15,
+    "required_base_weight": 0.7
+  },
+  "formula": "weighted mean of KNOWN non-risk components with optional-weight renormalization; subtract bounded known risk penalty; clamp 0..1",
+  "required_complete_components": [
+    "external_demand",
+    "supply_competition",
+    "commercial_intent"
+  ],
+  "calibration": [
+    {
+      "fixture": "high.json",
+      "status": "COMPLETE",
+      "score": 0.821907,
+      "confidence": "HIGH",
+      "coverage": 1.0,
+      "required_coverage": 1.0,
+      "known_weight_ratio": 1.0
+    },
+    {
+      "fixture": "medium.json",
+      "status": "COMPLETE",
+      "score": 0.613474,
+      "confidence": "HIGH",
+      "coverage": 1.0,
+      "required_coverage": 1.0,
+      "known_weight_ratio": 1.0
+    },
+    {
+      "fixture": "low.json",
+      "status": "COMPLETE",
+      "score": 0.109096,
+      "confidence": "HIGH",
+      "coverage": 1.0,
+      "required_coverage": 1.0,
+      "known_weight_ratio": 1.0
+    },
+    {
+      "fixture": "saturation-low-supply.json",
+      "status": "COMPLETE",
+      "score": 0.716357,
+      "confidence": "HIGH",
+      "coverage": 1.0,
+      "required_coverage": 1.0,
+      "known_weight_ratio": 1.0
+    },
+    {
+      "fixture": "saturation-high-supply.json",
+      "status": "COMPLETE",
+      "score": 0.61733,
+      "confidence": "HIGH",
+      "coverage": 1.0,
+      "required_coverage": 1.0,
+      "known_weight_ratio": 1.0
+    },
+    {
+      "fixture": "required-only.json",
+      "status": "COMPLETE",
+      "score": 0.672728,
+      "confidence": "LOW",
+      "coverage": 0.333333,
+      "required_coverage": 1.0,
+      "known_weight_ratio": 0.7
+    },
+    {
+      "fixture": "explicit-optional-zero.json",
+      "status": "COMPLETE",
+      "score": 0.470909,
+      "confidence": "HIGH",
+      "coverage": 1.0,
+      "required_coverage": 1.0,
+      "known_weight_ratio": 1.0
+    },
+    {
+      "fixture": "missing.json",
+      "status": "PARTIAL",
+      "score": null,
+      "confidence": "NONE",
+      "coverage": 0.111111,
+      "required_coverage": 0.333333,
+      "known_weight_ratio": 0.3
+    },
+    {
+      "fixture": "stale.json",
+      "status": "PARTIAL",
+      "score": null,
+      "confidence": "NONE",
+      "coverage": 0.222222,
+      "required_coverage": 0.666667,
+      "known_weight_ratio": 0.5
+    },
+    {
+      "fixture": "insufficient.json",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "score": null,
+      "confidence": "NONE",
+      "coverage": 0.0,
+      "required_coverage": 0.0,
+      "known_weight_ratio": 0.0
+    },
+    {
+      "fixture": "veto-unknown.json",
+      "status": "PARTIAL",
+      "score": null,
+      "confidence": "NONE",
+      "coverage": 0.333333,
+      "required_coverage": 1.0,
+      "known_weight_ratio": 0.7
+    },
+    {
+      "fixture": "hard-veto.json",
+      "status": "HARD_VETO",
+      "score": null,
+      "confidence": "NONE",
+      "coverage": 1.0,
+      "required_coverage": 1.0,
+      "known_weight_ratio": 1.0
+    }
+  ],
+  "ranking": {
+    "schema": "die.division001.demand-ranking.v1",
+    "model_id": "division001-demand-score-v1",
+    "model_version": "1.0.0",
+    "model_contract_sha256": "d719c1376d9453724a53ec86caff49dd325337f549b3d90ce28c5b424490d442",
+    "ranked_count": 7,
+    "deferred_count": 5,
+    "ranked": [
+      {
+        "rank": 1,
+        "score_id": "DSCORE-CAL-HIGH-0001",
+        "subject_id": "calibration utility phrase",
+        "final_score": 0.821907,
+        "confidence": "HIGH",
+        "evidence_coverage_ratio": 1.0,
+        "known_weight_ratio": 1.0,
+        "score_sha256": "0ed8b4bb396d945102f047e9c1444137a127464f219fc60489c333301c80ca54"
+      },
+      {
+        "rank": 2,
+        "score_id": "DSCORE-CAL-SATLOW-0001",
+        "subject_id": "calibration utility phrase",
+        "final_score": 0.716357,
+        "confidence": "HIGH",
+        "evidence_coverage_ratio": 1.0,
+        "known_weight_ratio": 1.0,
+        "score_sha256": "34b56353f5893a3d170be9669baf529b527badd99fe7ab0bad7b60e6755aa3ab"
+      },
+      {
+        "rank": 3,
+        "score_id": "DSCORE-CAL-REQUIREDONLY-0001",
+        "subject_id": "calibration utility phrase",
+        "final_score": 0.672728,
+        "confidence": "LOW",
+        "evidence_coverage_ratio": 0.333333,
+        "known_weight_ratio": 0.7,
+        "score_sha256": "72014a43f78648ceb418830f282219f0ecab56986e09924465ac405cbbe76277"
+      },
+      {
+        "rank": 4,
+        "score_id": "DSCORE-CAL-SATHIGH-0001",
+        "subject_id": "calibration utility phrase",
+        "final_score": 0.61733,
+        "confidence": "HIGH",
+        "evidence_coverage_ratio": 1.0,
+        "known_weight_ratio": 1.0,
+        "score_sha256": "f2d947c4ad95267fee0dbc9745d338d425b6280bc66853f2b132472878eb78cc"
+      },
+      {
+        "rank": 5,
+        "score_id": "DSCORE-CAL-MEDIUM-0001",
+        "subject_id": "calibration utility phrase",
+        "final_score": 0.613474,
+        "confidence": "HIGH",
+        "evidence_coverage_ratio": 1.0,
+        "known_weight_ratio": 1.0,
+        "score_sha256": "4689ee11cf055fc15e8af30da4741d2fc5a3d9078144050537dedfb50024e116"
+      },
+      {
+        "rank": 6,
+        "score_id": "DSCORE-CAL-OPTIONALZERO-0001",
+        "subject_id": "calibration utility phrase",
+        "final_score": 0.470909,
+        "confidence": "HIGH",
+        "evidence_coverage_ratio": 1.0,
+        "known_weight_ratio": 1.0,
+        "score_sha256": "16b524b8f8a959eefb56f265b8a53013184a1f38af4e3ee45027b77c0e67493b"
+      },
+      {
+        "rank": 7,
+        "score_id": "DSCORE-CAL-LOW-0001",
+        "subject_id": "calibration utility phrase",
+        "final_score": 0.109096,
+        "confidence": "HIGH",
+        "evidence_coverage_ratio": 1.0,
+        "known_weight_ratio": 1.0,
+        "score_sha256": "8041b8a3a803e7f39ccfacab2af90932ecc49fcb1c2333da9b27c51ec06fd1b1"
+      }
+    ],
+    "deferred": [
+      {
+        "score_id": "DSCORE-CAL-VETO-0001",
+        "subject_id": "calibration utility phrase",
+        "score_status": "HARD_VETO",
+        "required_coverage_ratio": 1.0,
+        "evidence_coverage_ratio": 1.0,
+        "hard_veto_status": "BLOCKED"
+      },
+      {
+        "score_id": "DSCORE-CAL-INSUFFICIENT-0001",
+        "subject_id": "calibration utility phrase",
+        "score_status": "INSUFFICIENT_EVIDENCE",
+        "required_coverage_ratio": 0.0,
+        "evidence_coverage_ratio": 0.0,
+        "hard_veto_status": "CLEAR"
+      },
+      {
+        "score_id": "DSCORE-CAL-MISSING-0001",
+        "subject_id": "calibration utility phrase",
+        "score_status": "PARTIAL",
+        "required_coverage_ratio": 0.333333,
+        "evidence_coverage_ratio": 0.111111,
+        "hard_veto_status": "CLEAR"
+      },
+      {
+        "score_id": "DSCORE-CAL-STALE-0001",
+        "subject_id": "calibration utility phrase",
+        "score_status": "PARTIAL",
+        "required_coverage_ratio": 0.666667,
+        "evidence_coverage_ratio": 0.222222,
+        "hard_veto_status": "CLEAR"
+      },
+      {
+        "score_id": "DSCORE-CAL-VETOUNKNOWN-0001",
+        "subject_id": "calibration utility phrase",
+        "score_status": "PARTIAL",
+        "required_coverage_ratio": 1.0,
+        "evidence_coverage_ratio": 0.333333,
+        "hard_veto_status": "UNKNOWN"
+      }
+    ],
+    "policy": "Only COMPLETE numeric scores are rankable; non-complete scores are deferred without artificial numeric imputation."
+  },
+  "legacy_v0": {
+    "path": "company/atlas/object-centric/object-asset-engine/source/scripts/scoring/demand_score.py",
+    "sha256": "693701928a9368cae66a7f9c54d1f40439f0e9b60a23fea033dbee05ec7af7a8",
+    "classification": "CALIBRATION_PROVENANCE_ONLY_NOT_PRODUCTION_TRUTH"
+  },
+  "validation": {
+    "oe002_targeted_with_graph_and_distribution": "51/51 PASS",
+    "full_bridge": "329/329 PASS",
+    "one_canon": "11/11 PASS",
+    "bytecode_artifacts": "0"
+  },
+  "runtime_boundary": {
+    "live_market_collection_performed": false,
+    "network_request_performed": false,
+    "platform_login_used": false,
+    "credential_used_or_copied": false,
+    "spend_usd": 0,
+    "windows_live_die_mutated": false,
+    "object_filter_worker_mutated": false,
+    "production_authority_expanded": false
+  },
+  "artifacts": [
+    {
+      "path": "company/division/division001/engines/demand-score/DEMAND_SCORE_MODEL_V1.contract.json",
+      "sha256": "d719c1376d9453724a53ec86caff49dd325337f549b3d90ce28c5b424490d442",
+      "bytes": 5540
+    },
+    {
+      "path": "company/division/division001/engines/demand-score/die.division001.demand-score-input.v1.schema.json",
+      "sha256": "17f7e735eb63984d64563ee045aac98b3d195b3df788e2fd4e047af157c09198",
+      "bytes": 4111
+    },
+    {
+      "path": "company/division/division001/engines/demand-score/die.division001.demand-score.v1.schema.json",
+      "sha256": "ae54324a875fb4cae5b221ae13ea8e1d35bd1b1ceaa8fde8f8c66beea112a61b",
+      "bytes": 8055
+    },
+    {
+      "path": "company/division/division001/engines/demand-score/score_demand.py",
+      "sha256": "1dfd2666930a7cfed80a0b3cbd8288523801a418ab723f2d4ece9361b3912698",
+      "bytes": 18691
+    },
+    {
+      "path": "company/division/division001/engines/demand-score/rank_demand.py",
+      "sha256": "586dbae7516d405880708c7f5e15c02cf74c81abf406dc83db766dae6e168cd1",
+      "bytes": 4226
+    },
+    {
+      "path": "company/division/division001/engines/demand-score/validate_demand_score.py",
+      "sha256": "8b02a15fc3a1eeee75d420ce480394d2c38f51722043cd8baf61b9306cd3519a",
+      "bytes": 10980
+    },
+    {
+      "path": "company/division/division001/engines/demand-score/CALIBRATION_V1.md",
+      "sha256": "1785647c0df419abd35fde5fb8b1218d9026ee163b641e072557ca7d5a3855bb",
+      "bytes": 4097
+    },
+    {
+      "path": "company/division/division001/engines/demand-score/CONTRACT_V1.md",
+      "sha256": "e873d328bcd30c92e07c98e93a7cd2e817e907240e84036b623d0973312fad78",
+      "bytes": 1944
+    },
+    {
+      "path": "company/division/division001/engines/demand-score/fixtures/calibration-expected.json",
+      "sha256": "93cab564b71686f97cc1d3e69cff3d8c62411e84642d10ba96ec1c38bbb540e2",
+      "bytes": 8551
+    },
+    {
+      "path": "company/division/division001/engines/demand-score/fixtures/calibration-ranking.json",
+      "sha256": "9e3a86a87e8a062a674ac2e13eef25563c975600a815ae185ef968729556e0e5",
+      "bytes": 4148
+    },
+    {
+      "path": "bridge/tests/test_oe002_demand_score_contract_v1.py",
+      "sha256": "12be279c026fb34c5a843cef290ec2197c73134e7d118e24f8f2deffc5213f3d",
+      "bytes": 7833
+    },
+    {
+      "path": "bridge/tests/test_oe002_demand_score_engine_v1.py",
+      "sha256": "aa91e8fbcb56d6a6c53e7e39e8c50065df8cd95053f662a73f9c9c0d8001d1b8",
+      "bytes": 11250
+    }
+  ],
+  "atomic_tasks": [
+    {
+      "id": "OE-002D",
+      "status": "DONE",
+      "result": "deterministic scorer + versioned transforms/weights + arithmetic validator"
+    },
+    {
+      "id": "OE-002E",
+      "status": "DONE",
+      "result": "12-case calibration corpus covering high/medium/low, saturation, missing, stale, veto and legacy behavior"
+    },
+    {
+      "id": "OE-002F",
+      "status": "DONE",
+      "result": "COMPLETE-only deterministic ranking, duplicate/conflict controls, replay and tamper regression"
+    }
+  ],
+  "next_ready": [
+    "OE-003A"
+  ],
+  "fixture_storage": {
+    "inputs": "fixtures/calibration/*.json (12)",
+    "expected": "fixtures/calibration-expected.json",
+    "ranking": "fixtures/calibration-ranking.json",
+    "full_output_duplicates_committed": false
+  }
+}

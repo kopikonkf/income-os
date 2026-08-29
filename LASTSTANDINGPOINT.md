@@ -2701,3 +2701,30 @@ Validation: roadmap/task-graph targeted 17/17 PASS; full bridge 311/311 PASS; on
 Receipt: `company/muxia/receipts/PAD-000-production-assurance-distribution-roadmap.receipt.json`.
 
 NEXT remains OE-B04 / OE-002D deterministic scorer.
+
+
+---
+
+## 2026-08-29 - OE-B04 / OE-002 Demand Score Engine v1 acceptance
+
+`OE-002 = DONE`. OE-B04 completed `OE-002D/E/F`: deterministic evidence-driven scoring, explicit versioned transforms/weights, 12-case calibration corpus, COMPLETE-only ranking, arithmetic revalidation, duplicate/conflict protection, same-source median aggregation, and deterministic replay.
+
+Model `division001-demand-score-v1` is now `1.0.0`, contract SHA256 `d719c1376d9453724a53ec86caff49dd325337f549b3d90ce28c5b424490d442`. Non-risk weights sum to 1.0; required market components (`external_demand`, `supply_competition`, `commercial_intent`) carry 0.70 base weight. Known `risk_penalty` is a separate bounded `0.15 * penalty` deduction; hard veto remains outside numeric scoring.
+
+Missing optional evidence is renormalized out of the weighted denominator and remains explicit UNKNOWN; it is never imputed to zero. Missing/stale required evidence, hard veto, or unknown veto clearance yields no numeric final score.
+
+Pinned calibration: HIGH=0.821907, MEDIUM=0.613474, LOW=0.109096; same thesis lower-vs-higher supply=0.716357 vs 0.617330. Required-only evidence produces 0.672728 with LOW confidence and 0.70 known-weight coverage; explicit optional zero produces 0.470909, proving UNKNOWN != zero.
+
+Legacy Object Engine Demand Score v0 remains calibration provenance only. Its missing-signal defaults (e.g. search=0.30, marketplace=0.30) are explicitly not production-v1 evidence.
+
+Ranking only accepts COMPLETE numeric outputs; PARTIAL, INSUFFICIENT_EVIDENCE and HARD_VETO are deferred without artificial bottom scores. Exact duplicate evidence/scores collapse; conflicting identities fail closed; tampered final arithmetic is rejected.
+
+Demand Score does not authorize production and does not replace Worth-Making/Executive/Founder/QA/QC/submission gates.
+
+Validation: OE-002 engine/contracts + OE/PAD graph targeted 51/51 PASS; full bridge 329/329 PASS; one-canon 11/11 PASS; demand-score bytecode artifacts 0.
+
+Receipts: `company/muxia/receipts/OE-B04-demand-score-engine.receipt.json` and `company/muxia/receipts/OE-002-demand-score-v1.receipt.json`.
+
+Task graph: `OE-002A..F = DONE`, `OE-002 = DONE`, `OE-003A = READY`.
+
+NEXT: OE-B05 — Longtail modifier ontology/phrase schema + Object Atlas cleaned-seed retrieval + Human Atlas demand-context retrieval.

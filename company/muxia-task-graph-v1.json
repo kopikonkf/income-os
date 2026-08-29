@@ -754,7 +754,7 @@
                                          "OE-002B",
                                          "OE-002C"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "deterministic scorer + CLI/library",
                       "acceptance":  "Same versioned inputs produce the same component/final score; hard safety/rights vetoes remain outside numeric scoring."
                   },
@@ -765,7 +765,7 @@
                       "depends_on":  [
                                          "OE-002D"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "known-candidate calibration corpus",
                       "acceptance":  "Known historical candidates exercise high/medium/low evidence, saturation and stale/missing-signal cases without treating historical heuristic v0 as truth."
                   },
@@ -776,7 +776,7 @@
                       "depends_on":  [
                                          "OE-002E"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "OE-002 ranking/parity tests + receipt",
                       "acceptance":  "Ranking is reproducible and evidence-explainable; component double counting, stale promotion and hidden fallback priors are detected."
                   },
@@ -787,9 +787,9 @@
                       "depends_on":  [
                                          "OE-002F"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "OE-002 acceptance receipt",
-                      "acceptance":  "Demand ranking consumes OE-001 receipts and exposes component evidence/confidence/freshness; no live score is fabricated from static heuristic priors."
+                      "acceptance":  "Deterministic Demand Score v1 consumes validated OE-001 and explicit deterministic/canon evidence, preserves UNKNOWN/STALE states, uses versioned transforms/weights, rejects hidden legacy priors/double counting, ranks only COMPLETE numeric outputs, and replays deterministically."
                   },
                   {
                       "id":  "OE-003A",
@@ -798,7 +798,7 @@
                       "depends_on":  [
                                          "OE-002"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "modifier ontology + phrase candidate schema",
                       "acceptance":  "Function, buyer/audience, industry, use case, problem, place, time, material, state, style, demographic, intent and Product Expression modifiers are bounded and typed."
                   },

@@ -17,7 +17,9 @@
     "evidence_coverage_ratio",
     "required_coverage_ratio",
     "hard_veto",
-    "components"
+    "components",
+    "known_weight_ratio",
+    "risk_adjustment"
   ],
   "properties": {
     "schema_version": {
@@ -78,10 +80,10 @@
           "const": "division001-demand-score-v1"
         },
         "model_version": {
-          "const": "1.0.0-contract"
+          "const": "1.0.0"
         },
         "contract_sha256": {
-          "const": "f62d2cdfa40ac28702f6f08ec3240bb6709581cc5cc28eeda96c99d4d5987f60"
+          "const": "d719c1376d9453724a53ec86caff49dd325337f549b3d90ce28c5b424490d442"
         }
       }
     },
@@ -165,6 +167,48 @@
       "maxItems": 9,
       "items": {
         "$ref": "#/$defs/component"
+      }
+    },
+    "known_weight_ratio": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "risk_adjustment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "raw_penalty",
+        "multiplier",
+        "applied_deduction"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "APPLIED",
+            "UNKNOWN",
+            "STALE",
+            "REJECTED",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "raw_penalty": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "multiplier": {
+          "const": 0.15
+        },
+        "applied_deduction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.15
+        }
       }
     }
   },
