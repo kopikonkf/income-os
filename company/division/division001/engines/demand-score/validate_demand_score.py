@@ -139,14 +139,49 @@ def validate(payload: dict[str, Any], schema: dict[str, Any], model: dict[str, A
     if abs(payload["required_coverage_ratio"] - expected_req) > 1e-6:
         errors.append("E_COVERAGE:required_coverage_ratio_mismatch")
 
+    known_nonrisk = [c for c in components if c["state"] == "KNOWN" and c["component_id"] != "risk_penalty"]
+    known_weight = sum(float(model_components[c["component_id"]].get("weight", 0.0)) for c in known_nonrisk)
+    denom = float(model.get("weight_sum_nonrisk", 0.0))
+    expected_weight_ratio = 0.0 if denom <= 0 else known_weight / denom
+    if abs(payload["known_weight_ratio"] - expected_weight_ratio) > 1e-6:
+        errors.append("E_WEIGHT_COVERAGE:known_weight_ratio_mismatch")
+
+    risk_comp = next(c for c in components if c["component_id"] == "risk_penalty")
+    risk = payload["risk_adjustment"]
+    multiplier = float(model.get("scoring_policy", {}).get("risk_penalty_multiplier", 0.15))
+    if abs(float(risk["multiplier"]) - multiplier) > 1e-9:
+        errors.append("E_RISK_ADJUSTMENT:multiplier_mismatch")
+    if risk_comp["state"] == "KNOWN":
+        expected_raw = float(risk_comp["normalized_score"])
+        expected_deduction = expected_raw * multiplier
+        if risk["state"] != "APPLIED" or risk["raw_penalty"] is None:
+            errors.append("E_RISK_ADJUSTMENT:known_requires_applied")
+        else:
+            if abs(float(risk["raw_penalty"]) - expected_raw) > 1e-6:
+                errors.append("E_RISK_ADJUSTMENT:raw_penalty_mismatch")
+            if abs(float(risk["applied_deduction"]) - expected_deduction) > 1e-6:
+                errors.append("E_RISK_ADJUSTMENT:deduction_mismatch")
+    else:
+        if risk["state"] != risk_comp["state"] or risk["raw_penalty"] is not None or abs(float(risk["applied_deduction"])) > 1e-9:
+            errors.append("E_RISK_ADJUSTMENT:nonknown_contract")
+
     status = payload["score_status"]
     final_score = payload["final_score"]
     hard_veto = payload["hard_veto"]["status"]
     if status == "COMPLETE":
         if required_known != len(required_ids) or final_score is None or hard_veto != "CLEAR":
             errors.append("E_SCORE_STATUS:COMPLETE_contract")
+        elif known_weight <= 0:
+            errors.append("E_SCORE_ARITHMETIC:no_known_weight")
+        else:
+            weighted = sum(float(model_components[c["component_id"]]["weight"]) * float(c["normalized_score"]) for c in known_nonrisk)
+            base = weighted / known_weight
+            expected_final = max(0.0, min(1.0, base - float(risk["applied_deduction"])))
+            if abs(float(final_score) - expected_final) > 1e-6:
+                errors.append("E_SCORE_ARITHMETIC:final_score_mismatch")
     elif status == "PARTIAL":
-        if not (0 < required_known < len(required_ids)) or final_score is not None or hard_veto == "BLOCKED":
+        partial_reason_ok = (0 < required_known < len(required_ids)) or (required_known == len(required_ids) and hard_veto == "UNKNOWN")
+        if not partial_reason_ok or final_score is not None or hard_veto == "BLOCKED":
             errors.append("E_SCORE_STATUS:PARTIAL_contract")
     elif status == "INSUFFICIENT_EVIDENCE":
         if required_known != 0 or final_score is not None or hard_veto == "BLOCKED":

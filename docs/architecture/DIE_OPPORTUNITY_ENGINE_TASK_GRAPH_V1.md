@@ -165,13 +165,13 @@ Founder silence at OE-007E means BLOCKED, never implicit authorization.
 
 ## 6. Current standing point
 
-`OE-000 = DONE` ? graph/authority/batch seal.
+`OE-000 = DONE` — graph/authority/batch seal.
 
-`OE-001 = DONE` ? Opportunity Signals evidence substrate accepted.
+`OE-001 = DONE` — Opportunity Signals evidence substrate accepted.
 
-`OE-002A/B/C = DONE` ? Demand Score schema/model versioning, evidence normalization, and UNKNOWN/freshness contracts are sealed. No production scoring weights/arithmetic are assigned yet.
+`OE-002 = DONE` — deterministic Demand Score v1, calibration corpus, ranking/replay regression and UNKNOWN/freshness semantics accepted.
 
-`OE-002D = READY` ? deterministic Demand Score implementation is the next runnable atomic task.
+`OE-003A = READY` — Longtail modifier ontology and phrase schema is the next runnable atomic task.
 
 All later OE tasks remain BLOCKED by explicit graph dependencies.
 

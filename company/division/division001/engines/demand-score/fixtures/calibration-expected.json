@@ -1,0 +1,302 @@
+{
+  "explicit-optional-zero.json": {
+    "score_status": "COMPLETE",
+    "final_score": 0.470909,
+    "confidence": "HIGH",
+    "evidence_coverage_ratio": 1.0,
+    "required_coverage_ratio": 1.0,
+    "known_weight_ratio": 1.0,
+    "risk_adjustment": {
+      "state": "APPLIED",
+      "raw_penalty": 0.0,
+      "multiplier": 0.15,
+      "applied_deduction": 0.0
+    },
+    "component_states": {
+      "external_demand": "KNOWN",
+      "supply_competition": "KNOWN",
+      "commercial_intent": "KNOWN",
+      "trend_seasonality": "KNOWN",
+      "platform_fit": "KNOWN",
+      "niche_specificity": "KNOWN",
+      "production_feasibility": "KNOWN",
+      "eligibility": "KNOWN",
+      "risk_penalty": "KNOWN"
+    }
+  },
+  "hard-veto.json": {
+    "score_status": "HARD_VETO",
+    "final_score": null,
+    "confidence": "NONE",
+    "evidence_coverage_ratio": 1.0,
+    "required_coverage_ratio": 1.0,
+    "known_weight_ratio": 1.0,
+    "risk_adjustment": {
+      "state": "APPLIED",
+      "raw_penalty": 0.0,
+      "multiplier": 0.15,
+      "applied_deduction": 0.0
+    },
+    "component_states": {
+      "external_demand": "KNOWN",
+      "supply_competition": "KNOWN",
+      "commercial_intent": "KNOWN",
+      "trend_seasonality": "KNOWN",
+      "platform_fit": "KNOWN",
+      "niche_specificity": "KNOWN",
+      "production_feasibility": "KNOWN",
+      "eligibility": "KNOWN",
+      "risk_penalty": "KNOWN"
+    }
+  },
+  "high.json": {
+    "score_status": "COMPLETE",
+    "final_score": 0.821907,
+    "confidence": "HIGH",
+    "evidence_coverage_ratio": 1.0,
+    "required_coverage_ratio": 1.0,
+    "known_weight_ratio": 1.0,
+    "risk_adjustment": {
+      "state": "APPLIED",
+      "raw_penalty": 0.05,
+      "multiplier": 0.15,
+      "applied_deduction": 0.0075
+    },
+    "component_states": {
+      "external_demand": "KNOWN",
+      "supply_competition": "KNOWN",
+      "commercial_intent": "KNOWN",
+      "trend_seasonality": "KNOWN",
+      "platform_fit": "KNOWN",
+      "niche_specificity": "KNOWN",
+      "production_feasibility": "KNOWN",
+      "eligibility": "KNOWN",
+      "risk_penalty": "KNOWN"
+    }
+  },
+  "insufficient.json": {
+    "score_status": "INSUFFICIENT_EVIDENCE",
+    "final_score": null,
+    "confidence": "NONE",
+    "evidence_coverage_ratio": 0.0,
+    "required_coverage_ratio": 0.0,
+    "known_weight_ratio": 0.0,
+    "risk_adjustment": {
+      "state": "UNKNOWN",
+      "raw_penalty": null,
+      "multiplier": 0.15,
+      "applied_deduction": 0.0
+    },
+    "component_states": {
+      "external_demand": "UNKNOWN",
+      "supply_competition": "UNKNOWN",
+      "commercial_intent": "UNKNOWN",
+      "trend_seasonality": "UNKNOWN",
+      "platform_fit": "UNKNOWN",
+      "niche_specificity": "UNKNOWN",
+      "production_feasibility": "UNKNOWN",
+      "eligibility": "UNKNOWN",
+      "risk_penalty": "UNKNOWN"
+    }
+  },
+  "low.json": {
+    "score_status": "COMPLETE",
+    "final_score": 0.109096,
+    "confidence": "HIGH",
+    "evidence_coverage_ratio": 1.0,
+    "required_coverage_ratio": 1.0,
+    "known_weight_ratio": 1.0,
+    "risk_adjustment": {
+      "state": "APPLIED",
+      "raw_penalty": 0.42,
+      "multiplier": 0.15,
+      "applied_deduction": 0.063
+    },
+    "component_states": {
+      "external_demand": "KNOWN",
+      "supply_competition": "KNOWN",
+      "commercial_intent": "KNOWN",
+      "trend_seasonality": "KNOWN",
+      "platform_fit": "KNOWN",
+      "niche_specificity": "KNOWN",
+      "production_feasibility": "KNOWN",
+      "eligibility": "KNOWN",
+      "risk_penalty": "KNOWN"
+    }
+  },
+  "medium.json": {
+    "score_status": "COMPLETE",
+    "final_score": 0.613474,
+    "confidence": "HIGH",
+    "evidence_coverage_ratio": 1.0,
+    "required_coverage_ratio": 1.0,
+    "known_weight_ratio": 1.0,
+    "risk_adjustment": {
+      "state": "APPLIED",
+      "raw_penalty": 0.18,
+      "multiplier": 0.15,
+      "applied_deduction": 0.027
+    },
+    "component_states": {
+      "external_demand": "KNOWN",
+      "supply_competition": "KNOWN",
+      "commercial_intent": "KNOWN",
+      "trend_seasonality": "KNOWN",
+      "platform_fit": "KNOWN",
+      "niche_specificity": "KNOWN",
+      "production_feasibility": "KNOWN",
+      "eligibility": "KNOWN",
+      "risk_penalty": "KNOWN"
+    }
+  },
+  "missing.json": {
+    "score_status": "PARTIAL",
+    "final_score": null,
+    "confidence": "NONE",
+    "evidence_coverage_ratio": 0.111111,
+    "required_coverage_ratio": 0.333333,
+    "known_weight_ratio": 0.3,
+    "risk_adjustment": {
+      "state": "UNKNOWN",
+      "raw_penalty": null,
+      "multiplier": 0.15,
+      "applied_deduction": 0.0
+    },
+    "component_states": {
+      "external_demand": "KNOWN",
+      "supply_competition": "UNKNOWN",
+      "commercial_intent": "UNKNOWN",
+      "trend_seasonality": "UNKNOWN",
+      "platform_fit": "UNKNOWN",
+      "niche_specificity": "UNKNOWN",
+      "production_feasibility": "UNKNOWN",
+      "eligibility": "UNKNOWN",
+      "risk_penalty": "UNKNOWN"
+    }
+  },
+  "required-only.json": {
+    "score_status": "COMPLETE",
+    "final_score": 0.672728,
+    "confidence": "LOW",
+    "evidence_coverage_ratio": 0.333333,
+    "required_coverage_ratio": 1.0,
+    "known_weight_ratio": 0.7,
+    "risk_adjustment": {
+      "state": "UNKNOWN",
+      "raw_penalty": null,
+      "multiplier": 0.15,
+      "applied_deduction": 0.0
+    },
+    "component_states": {
+      "external_demand": "KNOWN",
+      "supply_competition": "KNOWN",
+      "commercial_intent": "KNOWN",
+      "trend_seasonality": "UNKNOWN",
+      "platform_fit": "UNKNOWN",
+      "niche_specificity": "UNKNOWN",
+      "production_feasibility": "UNKNOWN",
+      "eligibility": "UNKNOWN",
+      "risk_penalty": "UNKNOWN"
+    }
+  },
+  "saturation-high-supply.json": {
+    "score_status": "COMPLETE",
+    "final_score": 0.61733,
+    "confidence": "HIGH",
+    "evidence_coverage_ratio": 1.0,
+    "required_coverage_ratio": 1.0,
+    "known_weight_ratio": 1.0,
+    "risk_adjustment": {
+      "state": "APPLIED",
+      "raw_penalty": 0.1,
+      "multiplier": 0.15,
+      "applied_deduction": 0.015
+    },
+    "component_states": {
+      "external_demand": "KNOWN",
+      "supply_competition": "KNOWN",
+      "commercial_intent": "KNOWN",
+      "trend_seasonality": "KNOWN",
+      "platform_fit": "KNOWN",
+      "niche_specificity": "KNOWN",
+      "production_feasibility": "KNOWN",
+      "eligibility": "KNOWN",
+      "risk_penalty": "KNOWN"
+    }
+  },
+  "saturation-low-supply.json": {
+    "score_status": "COMPLETE",
+    "final_score": 0.716357,
+    "confidence": "HIGH",
+    "evidence_coverage_ratio": 1.0,
+    "required_coverage_ratio": 1.0,
+    "known_weight_ratio": 1.0,
+    "risk_adjustment": {
+      "state": "APPLIED",
+      "raw_penalty": 0.1,
+      "multiplier": 0.15,
+      "applied_deduction": 0.015
+    },
+    "component_states": {
+      "external_demand": "KNOWN",
+      "supply_competition": "KNOWN",
+      "commercial_intent": "KNOWN",
+      "trend_seasonality": "KNOWN",
+      "platform_fit": "KNOWN",
+      "niche_specificity": "KNOWN",
+      "production_feasibility": "KNOWN",
+      "eligibility": "KNOWN",
+      "risk_penalty": "KNOWN"
+    }
+  },
+  "stale.json": {
+    "score_status": "PARTIAL",
+    "final_score": null,
+    "confidence": "NONE",
+    "evidence_coverage_ratio": 0.222222,
+    "required_coverage_ratio": 0.666667,
+    "known_weight_ratio": 0.5,
+    "risk_adjustment": {
+      "state": "UNKNOWN",
+      "raw_penalty": null,
+      "multiplier": 0.15,
+      "applied_deduction": 0.0
+    },
+    "component_states": {
+      "external_demand": "KNOWN",
+      "supply_competition": "STALE",
+      "commercial_intent": "KNOWN",
+      "trend_seasonality": "UNKNOWN",
+      "platform_fit": "UNKNOWN",
+      "niche_specificity": "UNKNOWN",
+      "production_feasibility": "UNKNOWN",
+      "eligibility": "UNKNOWN",
+      "risk_penalty": "UNKNOWN"
+    }
+  },
+  "veto-unknown.json": {
+    "score_status": "PARTIAL",
+    "final_score": null,
+    "confidence": "NONE",
+    "evidence_coverage_ratio": 0.333333,
+    "required_coverage_ratio": 1.0,
+    "known_weight_ratio": 0.7,
+    "risk_adjustment": {
+      "state": "UNKNOWN",
+      "raw_penalty": null,
+      "multiplier": 0.15,
+      "applied_deduction": 0.0
+    },
+    "component_states": {
+      "external_demand": "KNOWN",
+      "supply_competition": "KNOWN",
+      "commercial_intent": "KNOWN",
+      "trend_seasonality": "UNKNOWN",
+      "platform_fit": "UNKNOWN",
+      "niche_specificity": "UNKNOWN",
+      "production_feasibility": "UNKNOWN",
+      "eligibility": "UNKNOWN",
+      "risk_penalty": "UNKNOWN"
+    }
+  }
+}

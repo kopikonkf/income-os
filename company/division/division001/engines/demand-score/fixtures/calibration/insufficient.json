@@ -1,0 +1,17 @@
+{
+  "schema_version": "die.division001.demand-score-input.v1",
+  "score_id": "DSCORE-CAL-INSUFFICIENT-0001",
+  "subject": {
+    "kind": "PHRASE",
+    "id": "calibration utility phrase",
+    "parent_seed_id": "utility object",
+    "parent_candidate_id": "CAND-CAL-001"
+  },
+  "evaluated_at": "2026-08-29T12:00:00Z",
+  "hard_veto": {
+    "status": "CLEAR",
+    "receipt_ref": "fixture://hard-veto/clear",
+    "receipt_sha256": "911e9c0491c4e15510e4b790899c352cf9103ba7f84ce366f574b6b0b3b9697a"
+  },
+  "evidence": []
+}

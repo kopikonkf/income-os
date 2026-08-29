@@ -51,17 +51,20 @@ def test_oe002a_partial_fixture_validates_and_pins_model_contract() -> None:
     payload = _fixture()
     assert _errors(payload) == []
     assert payload["model"]["model_id"] == "division001-demand-score-v1"
-    assert payload["model"]["model_version"] == "1.0.0-contract"
+    assert payload["model"]["model_version"] == "1.0.0"
     assert payload["model"]["contract_sha256"] == V.file_sha256(MODEL_PATH)
     assert payload["score_status"] == "PARTIAL"
     assert payload["final_score"] is None
 
 
-def test_oe002a_model_contract_has_no_production_weights_yet() -> None:
+def test_oe002d_model_contract_has_explicit_versioned_weights_without_authority_expansion() -> None:
     model = _model()
-    assert model["status"] == "CONTRACT_ONLY"
-    assert all(row["weight_status"] == "UNASSIGNED_UNTIL_OE-002D" for row in model["components"])
+    assert model["status"] == "ACTIVE_SCORING_MODEL"
+    assert all(row["weight_status"] == "ASSIGNED_V1" for row in model["components"])
+    assert abs(model["weight_sum_nonrisk"] - 1.0) < 1e-9
+    assert abs(model["required_base_weight"] - 0.70) < 1e-9
     assert model["legacy_v0_status"] == "CALIBRATION_PROVENANCE_ONLY_NOT_PRODUCTION_TRUTH"
+    assert "never authorizes production" in model["scoring_policy"]["production_gate_authority"]
 
 
 def test_oe002b_component_mapping_separates_market_and_structural_evidence() -> None:

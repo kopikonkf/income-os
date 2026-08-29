@@ -1,0 +1,283 @@
+{
+  "schema_version": "die.division001.demand-score-input.v1",
+  "score_id": "DSCORE-CAL-SATHIGH-0001",
+  "subject": {
+    "kind": "PHRASE",
+    "id": "calibration utility phrase",
+    "parent_seed_id": "utility object",
+    "parent_candidate_id": "CAND-CAL-001"
+  },
+  "evaluated_at": "2026-08-29T12:00:00Z",
+  "hard_veto": {
+    "status": "CLEAR",
+    "receipt_ref": "fixture://hard-veto/clear",
+    "receipt_sha256": "911e9c0491c4e15510e4b790899c352cf9103ba7f84ce366f574b6b0b3b9697a"
+  },
+  "evidence": [
+    {
+      "evidence_kind": "OPPORTUNITY_SIGNAL",
+      "receipt": {
+        "schema_version": "die.division001.opportunity-signals.v1",
+        "signal_id": "OPSIG-CAL-SATHIGH-DEMAND",
+        "subject": {
+          "kind": "PHRASE",
+          "id": "calibration utility phrase",
+          "parent_seed_id": "utility object",
+          "parent_candidate_id": "CAND-CAL-001"
+        },
+        "source": {
+          "source_id": "OTHER_APPROVED",
+          "source_name": "OTHER_APPROVED synthetic calibration",
+          "market_locale": "en-US",
+          "language": "en"
+        },
+        "signal_class": "DEMAND",
+        "signal_type": "SEARCH_INTEREST_INDEX",
+        "value": {
+          "kind": "INDEX",
+          "numeric_value": 65,
+          "boolean_value": null,
+          "text_value": null,
+          "unit": "index_0_100"
+        },
+        "observed_at": "2026-08-29T08:00:00Z",
+        "recorded_at": "2026-08-29T08:00:30Z",
+        "expires_at": "2026-09-05T08:00:30Z",
+        "freshness_window_seconds": 604800,
+        "evidence_label": "SYNTHETIC",
+        "confidence": "HIGH",
+        "collector_id": "calibration-fixture:oe002",
+        "acquisition_method": "SYNTHETIC_FIXTURE",
+        "policy": {
+          "profile_id": "synthetic-calibration",
+          "profile_version": "v1",
+          "classification": "SYNTHETIC_ONLY"
+        },
+        "source_ref": "fixture://oe002/sathigh_demand",
+        "evidence_sha256": null,
+        "cost_usd": 0,
+        "dedupe_key": "oppsig:v1:cal:sathigh_demand"
+      }
+    },
+    {
+      "evidence_kind": "OPPORTUNITY_SIGNAL",
+      "receipt": {
+        "schema_version": "die.division001.opportunity-signals.v1",
+        "signal_id": "OPSIG-CAL-SATHIGH-SUPPLY",
+        "subject": {
+          "kind": "PHRASE",
+          "id": "calibration utility phrase",
+          "parent_seed_id": "utility object",
+          "parent_candidate_id": "CAND-CAL-001"
+        },
+        "source": {
+          "source_id": "ADOBE_STOCK",
+          "source_name": "ADOBE_STOCK synthetic calibration",
+          "market_locale": "en-US",
+          "language": "en"
+        },
+        "signal_class": "SUPPLY",
+        "signal_type": "SEARCH_RESULTS_COUNT",
+        "value": {
+          "kind": "COUNT",
+          "numeric_value": 90000,
+          "boolean_value": null,
+          "text_value": null,
+          "unit": "count"
+        },
+        "observed_at": "2026-08-29T08:00:00Z",
+        "recorded_at": "2026-08-29T08:00:30Z",
+        "expires_at": "2026-09-05T08:00:30Z",
+        "freshness_window_seconds": 604800,
+        "evidence_label": "SYNTHETIC",
+        "confidence": "HIGH",
+        "collector_id": "calibration-fixture:oe002",
+        "acquisition_method": "SYNTHETIC_FIXTURE",
+        "policy": {
+          "profile_id": "synthetic-calibration",
+          "profile_version": "v1",
+          "classification": "SYNTHETIC_ONLY"
+        },
+        "source_ref": "fixture://oe002/sathigh_supply",
+        "evidence_sha256": null,
+        "cost_usd": 0,
+        "dedupe_key": "oppsig:v1:cal:sathigh_supply"
+      }
+    },
+    {
+      "evidence_kind": "OPPORTUNITY_SIGNAL",
+      "receipt": {
+        "schema_version": "die.division001.opportunity-signals.v1",
+        "signal_id": "OPSIG-CAL-SATHIGH-INTENT",
+        "subject": {
+          "kind": "PHRASE",
+          "id": "calibration utility phrase",
+          "parent_seed_id": "utility object",
+          "parent_candidate_id": "CAND-CAL-001"
+        },
+        "source": {
+          "source_id": "DREAMSTIME",
+          "source_name": "DREAMSTIME synthetic calibration",
+          "market_locale": "en-US",
+          "language": "en"
+        },
+        "signal_class": "COMMERCIAL_INTENT",
+        "signal_type": "BUYER_TERM_PRESENCE",
+        "value": {
+          "kind": "BOOLEAN",
+          "numeric_value": null,
+          "boolean_value": true,
+          "text_value": null,
+          "unit": "presence"
+        },
+        "observed_at": "2026-08-29T08:00:00Z",
+        "recorded_at": "2026-08-29T08:00:30Z",
+        "expires_at": "2026-09-05T08:00:30Z",
+        "freshness_window_seconds": 604800,
+        "evidence_label": "SYNTHETIC",
+        "confidence": "HIGH",
+        "collector_id": "calibration-fixture:oe002",
+        "acquisition_method": "SYNTHETIC_FIXTURE",
+        "policy": {
+          "profile_id": "synthetic-calibration",
+          "profile_version": "v1",
+          "classification": "SYNTHETIC_ONLY"
+        },
+        "source_ref": "fixture://oe002/sathigh_intent",
+        "evidence_sha256": null,
+        "cost_usd": 0,
+        "dedupe_key": "oppsig:v1:cal:sathigh_intent"
+      }
+    },
+    {
+      "evidence_kind": "OPPORTUNITY_SIGNAL",
+      "receipt": {
+        "schema_version": "die.division001.opportunity-signals.v1",
+        "signal_id": "OPSIG-CAL-SATHIGH-TREND",
+        "subject": {
+          "kind": "PHRASE",
+          "id": "calibration utility phrase",
+          "parent_seed_id": "utility object",
+          "parent_candidate_id": "CAND-CAL-001"
+        },
+        "source": {
+          "source_id": "OTHER_APPROVED",
+          "source_name": "OTHER_APPROVED synthetic calibration",
+          "market_locale": "en-US",
+          "language": "en"
+        },
+        "signal_class": "TREND",
+        "signal_type": "TREND_INDEX",
+        "value": {
+          "kind": "INDEX",
+          "numeric_value": 60,
+          "boolean_value": null,
+          "text_value": null,
+          "unit": "index_0_100"
+        },
+        "observed_at": "2026-08-29T08:00:00Z",
+        "recorded_at": "2026-08-29T08:00:30Z",
+        "expires_at": "2026-09-05T08:00:30Z",
+        "freshness_window_seconds": 604800,
+        "evidence_label": "SYNTHETIC",
+        "confidence": "HIGH",
+        "collector_id": "calibration-fixture:oe002",
+        "acquisition_method": "SYNTHETIC_FIXTURE",
+        "policy": {
+          "profile_id": "synthetic-calibration",
+          "profile_version": "v1",
+          "classification": "SYNTHETIC_ONLY"
+        },
+        "source_ref": "fixture://oe002/sathigh_trend",
+        "evidence_sha256": null,
+        "cost_usd": 0,
+        "dedupe_key": "oppsig:v1:cal:sathigh_trend"
+      }
+    },
+    {
+      "evidence_kind": "OPPORTUNITY_SIGNAL",
+      "receipt": {
+        "schema_version": "die.division001.opportunity-signals.v1",
+        "signal_id": "OPSIG-CAL-SATHIGH-PLATFORM",
+        "subject": {
+          "kind": "PHRASE",
+          "id": "calibration utility phrase",
+          "parent_seed_id": "utility object",
+          "parent_candidate_id": "CAND-CAL-001"
+        },
+        "source": {
+          "source_id": "ADOBE_STOCK",
+          "source_name": "ADOBE_STOCK synthetic calibration",
+          "market_locale": "en-US",
+          "language": "en"
+        },
+        "signal_class": "PLATFORM_FIT",
+        "signal_type": "CONTENT_TYPE_SURFACE_PRESENCE",
+        "value": {
+          "kind": "BOOLEAN",
+          "numeric_value": null,
+          "boolean_value": true,
+          "text_value": null,
+          "unit": "presence"
+        },
+        "observed_at": "2026-08-29T08:00:00Z",
+        "recorded_at": "2026-08-29T08:00:30Z",
+        "expires_at": "2026-09-05T08:00:30Z",
+        "freshness_window_seconds": 604800,
+        "evidence_label": "SYNTHETIC",
+        "confidence": "HIGH",
+        "collector_id": "calibration-fixture:oe002",
+        "acquisition_method": "SYNTHETIC_FIXTURE",
+        "policy": {
+          "profile_id": "synthetic-calibration",
+          "profile_version": "v1",
+          "classification": "SYNTHETIC_ONLY"
+        },
+        "source_ref": "fixture://oe002/sathigh_platform",
+        "evidence_sha256": null,
+        "cost_usd": 0,
+        "dedupe_key": "oppsig:v1:cal:sathigh_platform"
+      }
+    },
+    {
+      "evidence_kind": "DETERMINISTIC_EVIDENCE",
+      "evidence_id": "DET-CAL-SATHIGH-NICHE",
+      "component_id": "niche_specificity",
+      "normalized_value": 0.7,
+      "confidence": "HIGH",
+      "evidence_sha256": "c28fe2f75fe0ab7b14fddc5f5afa618317c7db9bb51ad7f6475e0edf6e155d0e",
+      "source_ref": "fixture://oe002/deterministic/sathigh_niche",
+      "valid_until": null
+    },
+    {
+      "evidence_kind": "DETERMINISTIC_EVIDENCE",
+      "evidence_id": "DET-CAL-SATHIGH-FEAS",
+      "component_id": "production_feasibility",
+      "normalized_value": 0.75,
+      "confidence": "HIGH",
+      "evidence_sha256": "300bd144f17704530177ce29a92de032837d5f012c8e91c505020852a2a2bbfa",
+      "source_ref": "fixture://oe002/deterministic/sathigh_feas",
+      "valid_until": null
+    },
+    {
+      "evidence_kind": "DETERMINISTIC_EVIDENCE",
+      "evidence_id": "DET-CAL-SATHIGH-ELIG",
+      "component_id": "eligibility",
+      "normalized_value": 0.9,
+      "confidence": "HIGH",
+      "evidence_sha256": "f03cf38ec265f49d506272ea77597ba835cba92f5af28e27227f26c3efe7f285",
+      "source_ref": "fixture://oe002/deterministic/sathigh_elig",
+      "valid_until": null
+    },
+    {
+      "evidence_kind": "DETERMINISTIC_EVIDENCE",
+      "evidence_id": "DET-CAL-SATHIGH-RISK",
+      "component_id": "risk_penalty",
+      "normalized_value": 0.1,
+      "confidence": "HIGH",
+      "evidence_sha256": "448c9f421189bf172b9ca8ec378966f8468624d4d9eaeb6104de1dd544c203b2",
+      "source_ref": "fixture://oe002/deterministic/sathigh_risk",
+      "valid_until": null
+    }
+  ]
+}
