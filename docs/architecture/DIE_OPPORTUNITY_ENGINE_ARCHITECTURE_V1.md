@@ -439,3 +439,7 @@ One candidate must pass signals -> score -> longtail/context -> Worth-Making -> 
 - no Worker strategic authority;
 - no scoring model that silently substitutes static guesses for missing evidence;
 - no coupling of Object Atlas nouns to raster-only production.
+
+## 13. Executable task graph
+
+The authoritative atomic execution DAG and conversational batch map are docs/architecture/DIE_OPPORTUNITY_ENGINE_TASK_GRAPH_V1.md and company/muxia-task-graph-v1.json. Architecture text alone is never completion evidence.

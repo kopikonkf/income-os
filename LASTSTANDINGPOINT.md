@@ -2595,3 +2595,23 @@ Human Atlas canon now contains H6 dual-Atlas complement. Runtime canon projectio
 Validation on clean staging: targeted authority/projection/load suite 17/17 PASS; full bridge 254/254 PASS; one-canon 11/11 PASS.
 
 NEXT BUILD RECOMMENDATION: `OE-001` first. Do not build Worth-Making/Blueprint automation on top of heuristic demand and legacy Kanban completion.
+
+---
+
+## 2026-08-29 - OE-000 Opportunity Intelligence atomic task-graph seal
+
+`OE-000 = DONE`. The OE-001..OE-007 architecture is now materialized in `company/muxia-task-graph-v1.json` as 54 OE nodes total: one roadmap/authority seal, seven milestone gates, and their atomic implementation/canary children.
+
+Only `OE-001A - Opportunity signal taxonomy and source classes` is `READY`; every downstream OE task is `BLOCKED` by explicit dependencies.
+
+Execution batching is canonicalized in `docs/architecture/DIE_OPPORTUNITY_ENGINE_TASK_GRAPH_V1.md` as OE-B01..OE-B14. Batches reduce conversational overhead only; atomic acceptance, STOP_ON_FIRST_FAILURE, and one-minimal-repair-child discipline remain.
+
+Critical dependency convergence is locked: OE-001 -> OE-002 -> OE-003 -> OE-004 -> OE-005 -> OE-006 may be built during the Windows overlap; `OE-007A` requires `OE-006 + DIE-204 + MX-070`. `MX-071` now explicitly depends on `OE-007`, so the Chapter #4 cutover path cannot bypass the governed intelligence closed loop.
+
+Authority gates remain: Division01 = Worth-Making/Blueprint semantic AUTHOR; Executive = second-line strategic reviewer; Hermes = receipt-driven orchestrator only; Worker/OpenCode = bounded collector/scorer/compiler/executor; Founder = exact-hash production/spend/account/submission authority.
+
+Validation: OE/task-graph + authority/runtime-context targeted suite 25/25 PASS; full bridge 262/262 PASS; one-canon 11/11 PASS.
+
+Receipt: `company/muxia/receipts/OE-000-opportunity-engine-task-graph-seal.receipt.json`.
+
+NEXT: execute `OE-B01` beginning at `OE-001A`; no additional roadmap design is required before OE-001 implementation.

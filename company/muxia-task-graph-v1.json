@@ -1,611 +1,1215 @@
 {
-    "schema":  "die.muxia.task-graph.v1",
-    "product":  "MUXIA",
-    "generated_at":  "2026-08-26",
-    "doctrine":  "Build \u003e Run \u003e Verify \u003e Refactor \u003e Extend",
-    "execution_started":  true,
-    "cutover_authority":  "Founder",
-    "migration_overlay":  {
-                              "version":  "chapter4-windows-to-linux-v1",
-                              "disposition_matrix":  "docs/migration/DIE_WINDOWS_ESTATE_DISPOSITION_MATRIX_V1.md",
-                              "architect_mcp_ordering":  "KEEP_WINDOWS_CONTROL_THROUGH_CUT_005; MX-053/MX-054 FINAL_PRE_CUTOVER; CUT-006 FOUNDER_HANDOFF",
-                              "aether_boundary":  "KEEP_EXTERNAL",
-                              "oauth_boundary":  "D:\\OAUTH is a separate Web-AI adapter; NOT Division01"
-                          },
-    "states":  [
-                   "BLOCKED",
-                   "READY",
-                   "RUNNING",
-                   "VERIFYING",
-                   "DONE",
-                   "FAILED",
-                   "DEFERRED"
-               ],
-    "repair_rule":  "On failure create at most one minimal repair child \u003ctask_id\u003e-R\u003cn\u003e; do not restart the roadmap unless an ADR assumption is falsified.",
-    "tasks":  [
-                  {
-                      "id":  "MX-000",
-                      "phase":  0,
-                      "title":  "Canon lock",
-                      "depends_on":  [
-
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "MUXIA ADR/PRD/ROADMAP/ATOMIC graph + LASTSTANDINGPOINT",
-                      "acceptance":  "Docs self-consistent; JSON parses; no runtime mutation."
-                  },
-                  {
-                      "id":  "MX-010",
-                      "phase":  1,
-                      "title":  "Pin live Proxima baseline",
-                      "depends_on":  [
-                                         "MX-000"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "docs/operations/MUXIA_PROXIMA_BASELINE_V1.md",
-                      "acceptance":  "Exact repo/SHA/runtime/proof refs; no secrets read."
-                  },
-                  {
-                      "id":  "MX-011",
-                      "phase":  1,
-                      "title":  "KEEP/EXTRACT/RETIRE autopsy",
-                      "depends_on":  [
-                                         "MX-010"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "docs/architecture/MUXIA_PROXIMA_AUTOPSY_V1.md",
-                      "acceptance":  "Relevant modules classified; Electron dependencies enumerated; unknowns become probes."
-                  },
-                  {
-                      "id":  "MX-012",
-                      "phase":  1,
-                      "title":  "Parity contract tests",
-                      "depends_on":  [
-                                         "MX-011"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "behavior parity test suite",
-                      "acceptance":  "Legacy baseline passes and corrupted artifact/hash cases fail."
-                  },
-                  {
-                      "id":  "MX-020",
-                      "phase":  2,
-                      "title":  "Core domain types",
-                      "depends_on":  [
-                                         "MX-012"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "provider/profile/job/artifact schemas and types",
-                      "acceptance":  "Lifecycle validation compiles; invalid duplicate lease and false success rejected."
-                  },
-                  {
-                      "id":  "MX-021",
-                      "phase":  2,
-                      "title":  "Config/path abstraction",
-                      "depends_on":  [
-                                         "MX-020"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "OS-neutral path/config layer",
-                      "acceptance":  "Windows/Linux fixtures pass; core has no hard-coded host path."
-                  },
-                  {
-                      "id":  "MX-022",
-                      "phase":  2,
-                      "title":  "Profile Registry",
-                      "depends_on":  [
-                                         "MX-021"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "persistent sanitized profile registry",
-                      "acceptance":  "CRUD works; second simultaneous lease rejected; no session secrets stored."
-                  },
-                  {
-                      "id":  "MX-023",
-                      "phase":  2,
-                      "title":  "Job + Artifact Registry",
-                      "depends_on":  [
-                                         "MX-022"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "resumable job and artifact receipt stores",
-                      "acceptance":  "Restart-safe state; SUCCEEDED requires matching durable receipt."
-                  },
-                  {
-                      "id":  "MX-030",
-                      "phase":  3,
-                      "title":  "Playwright Chromium driver",
-                      "depends_on":  [
-                                         "MX-023"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "non-Electron Chromium lifecycle driver",
-                      "acceptance":  "Launch/stop/restart works with dedicated user-data dir and private debug endpoint."
-                  },
-                  {
-                      "id":  "MX-031",
-                      "phase":  3,
-                      "title":  "ChatGPT provider state detector",
-                      "depends_on":  [
-                                         "MX-030"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "versioned ChatGPT adapter state detector",
-                      "acceptance":  "Ready/auth/protection/unknown states fail safely; no bypass behavior."
-                  },
-                  {
-                      "id":  "MX-032",
-                      "phase":  3,
-                      "title":  "Windows text canary parity",
-                      "depends_on":  [
-                                         "MX-031",
-                                         "MX-031-R1",
-                                         "MX-032-R1"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "sanitized text canary receipt",
-                      "acceptance":  "Known ChatGPT text canary is proven through an operator-controlled interaction/confirmation path or a later supported programmatic interface; no automated Output extraction from consumer ChatGPT web."
-                  },
-                  {
-                      "id":  "MX-033",
-                      "phase":  3,
-                      "title":  "Windows durable image parity",
-                      "depends_on":  [
-                                         "MX-032"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "bounded image + artifact receipt",
-                      "acceptance":  "Durable raster path/hash/bytes/container match parity contract after operator-controlled acquisition or a later supported programmatic interface; transient-only result rejected; no automated consumer-web Output extraction."
-                  },
-                  {
-                      "id":  "MX-034",
-                      "phase":  3,
-                      "title":  "Windows restart persistence proof",
-                      "depends_on":  [
-                                         "MX-033"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "restart/session continuity receipt",
-                      "acceptance":  "Same profile retained; auth-required fails closed."
-                  },
-                  {
-                      "id":  "MX-040",
-                      "phase":  4,
-                      "title":  "Two-profile isolation",
-                      "depends_on":  [
-                                         "MX-034"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "two-profile isolation receipt",
-                      "acceptance":  "Distinct ownership; no cookie/session/log/artifact contamination."
-                  },
-                  {
-                      "id":  "MX-041",
-                      "phase":  4,
-                      "title":  "Crash recovery",
-                      "depends_on":  [
-                                         "MX-040"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "crash/recovery receipt",
-                      "acceptance":  "Interrupted job never succeeds; lease recovered or profile quarantined deterministically."
-                  },
-                  {
-                      "id":  "MX-042",
-                      "phase":  4,
-                      "title":  "Two-profile bounded concurrency",
-                      "depends_on":  [
-                                         "MX-041"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "two-concurrent-job receipt",
-                      "acceptance":  "Correct lineage; no duplicate lease; resource metrics captured."
-                  },
-                  {
-                      "id":  "MX-043",
-                      "phase":  4,
-                      "title":  "Four-profile bounded concurrency",
-                      "depends_on":  [
-                                         "MX-042",
-                                         "MX-043-R1"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "four-concurrent-job receipt",
-                      "acceptance":  "Four independent lanes; no contamination; resource envelope captured."
-                  },
-                  {
-                      "id":  "MX-050-R1",
-                      "phase":  5,
-                      "title":  "Declare reproducible TypeScript compiler",
-                      "depends_on":  [
-                                         "MX-043"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "company/muxia/receipts/MX-050-R1-typescript-bootstrap-repair.receipt.json",
-                      "acceptance":  "TypeScript 5.9.3 is exact-pinned; npm ci provides tsc; Windows regression remains 48/48 PASS."
-                  },
-                  {
-                      "id":  "MX-050",
-                      "phase":  5,
-                      "title":  "Linux runtime bootstrap",
-                      "depends_on":  [
-                                         "MX-043",
-                                         "MX-050-R1"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "company/muxia/receipts/MX-050-linux-bootstrap.receipt.json",
-                      "acceptance":  "Reproducible Playwright/Chromium target; no Electron dependency.",
-                      "resume_condition":  "Founder provided reachable Ubuntu Linux VPS and explicitly authorized MX-050 through MX-052 on 2026-08-27."
-                  },
-                  {
-                      "id":  "MX-051",
-                      "phase":  5,
-                      "title":  "Linux single-profile parity",
-                      "depends_on":  [
-                                         "MX-050"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "company/muxia/receipts/MX-051-linux-single-profile-parity.receipt.json",
-                      "acceptance":  "Text + durable image + restart state satisfy core contracts."
-                  },
-                  {
-                      "id":  "MX-052",
-                      "phase":  5,
-                      "title":  "Linux four-profile isolation",
-                      "depends_on":  [
-                                         "MX-051"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "company/muxia/receipts/MX-052-linux-four-profile-isolation.receipt.json",
-                      "acceptance":  "Independent ownership, no leakage, documented resources, no Windows GUI dependency."
-                  },
-                  {
-                      "id":  "MX-060",
-                      "phase":  6,
-                      "title":  "Sanitized observability",
-                      "depends_on":  [
-                                         "MX-052",
-                                         "DIE-204"
-                                     ],
-                      "status":  "BLOCKED",
-                      "artifact":  "health/logging surfaces",
-                      "acceptance":  "Operational diagnosis without cookies/tokens/auth bodies."
-                  },
-                  {
-                      "id":  "MX-061",
-                      "phase":  6,
-                      "title":  "Fault-injection suite",
-                      "depends_on":  [
-                                         "MX-060"
-                                     ],
-                      "status":  "BLOCKED",
-                      "artifact":  "fault injection tests/receipts",
-                      "acceptance":  "Timeout/crash/contention/disk/auth faults map deterministically; false success=0."
-                  },
-                  {
-                      "id":  "MX-062",
-                      "phase":  6,
-                      "title":  "24-hour soak",
-                      "depends_on":  [
-                                         "MX-061"
-                                     ],
-                      "status":  "BLOCKED",
-                      "artifact":  "24h soak receipt",
-                      "acceptance":  "Zero profile corruption, credential leakage, duplicate ownership; recovery matches contract."
-                  },
-                  {
-                      "id":  "MX-070",
-                      "phase":  7,
-                      "title":  "Legacy compatibility adapter",
-                      "depends_on":  [
-                                         "MX-062"
-                                     ],
-                      "status":  "BLOCKED",
-                      "artifact":  "Worker/Proxima-to-MUXIA compatibility route",
-                      "acceptance":  "Equivalent bounded artifact contract; no authority expansion; rollback path remains."
-                  },
-                  {
-                      "id":  "MX-071",
-                      "phase":  7,
-                      "title":  "M-001 governed MUXIA canary",
-                      "depends_on":  [
-                                         "MX-070"
-                                     ],
-                      "status":  "BLOCKED",
-                      "artifact":  "governed canary artifact/QA/metrics receipt",
-                      "acceptance":  "Durable workspace artifact; QA chain passes; no submission/publication/spend expansion."
-                  },
-                  {
-                      "id":  "MX-072",
-                      "phase":  7,
-                      "title":  "Cutover evidence package",
-                      "depends_on":  [
-                                         "MX-071"
-                                     ],
-                      "status":  "BLOCKED",
-                      "artifact":  "Founder cutover decision package",
-                      "acceptance":  "Every ADR criterion maps to evidence; gaps explicit; recommendation recorded."
-                  },
-                  {
-                      "id":  "MX-080",
-                      "phase":  8,
-                      "title":  "Founder cutover decision",
-                      "depends_on":  [
-                                         "MX-072"
-                                     ],
-                      "status":  "BLOCKED",
-                      "artifact":  "Founder decision receipt",
-                      "acceptance":  "Explicit PROMOTE_MUXIA|EXTEND_CANARY|REPAIR_MUXIA|KEEP_PROXIMA; silence never implies cutover."
-                  },
-                  {
-                      "id":  "MX-P01",
-                      "phase":  3,
-                      "title":  "Legacy profile-root metadata probe",
-                      "depends_on":  [
-                                         "MX-023"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "sanitized profile-root metadata receipt",
-                      "acceptance":  "Active profile root identified without reading/exporting cookies/tokens/session values."
-                  },
-                  {
-                      "id":  "MX-P02",
-                      "phase":  9,
-                      "title":  "Legacy support-tree provenance probe",
-                      "depends_on":  [
-                                         "MX-072"
-                                     ],
-                      "status":  "BLOCKED",
-                      "artifact":  "proximav2-setup provenance inventory",
-                      "acceptance":  "Each legacy item classified artifact|receipt|runtime|copied-source|stale|sensitive-log before cleanup."
-                  },
-                  {
-                      "id":  "MX-P03",
-                      "phase":  3,
-                      "title":  "ChatGPT web execution policy gate",
-                      "depends_on":  [
-                                         "MX-012"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "current provider-policy adapter boundary receipt",
-                      "acceptance":  "Allowed automation/output boundary documented before unattended ChatGPT web adapter implementation."
-                  },
-                  {
-                      "id":  "MX-031-R1",
-                      "phase":  3,
-                      "title":  "Repair ChatGPT protection-title detection",
-                      "depends_on":  [
-                                         "MX-031"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "company/muxia/receipts/MX-031-R1-cloudflare-title-repair.receipt.json",
-                      "acceptance":  "Live Cloudflare-style protection title classifies BLOCKED/PROTECTION_CHALLENGE; no bypass added."
-                  },
-                  {
-                      "id":  "MX-032-R1",
-                      "phase":  3,
-                      "title":  "Operator session bootstrap",
-                      "depends_on":  [
-                                         "MX-031",
-                                         "MX-031-R1"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "company/muxia/receipts/MX-032-R1-operator-session-bootstrap.receipt.json",
-                      "acceptance":  "Headed persistent chatgpt-a profile open in operator RDP session; operator manually authenticates; no bypass/credential extraction."
-                  },
-                  {
-                      "id":  "DIE-100",
-                      "phase":  10,
-                      "title":  "Read-only Windows estate inventory",
-                      "depends_on":  [
-                                         "MX-052"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "docs/migration/DIE_WINDOWS_ESTATE_INVENTORY_V1.md + receipt",
-                      "acceptance":  "Windows source/data/runtime/service/listener estate inventoried without credential reads or runtime mutation."
-                  },
-                  {
-                      "id":  "DIE-101",
-                      "phase":  10,
-                      "title":  "Windows estate disposition matrix",
-                      "depends_on":  [
-                                         "DIE-100"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "docs/migration/DIE_WINDOWS_ESTATE_DISPOSITION_MATRIX_V1.md + receipt",
-                      "acceptance":  "Every inventoried estate has explicit source/data/rebuild/archive/retire/external/exclude disposition; Architect MCP ordering is locked."
-                  },
-                  {
-                      "id":  "DIE-102",
-                      "phase":  10,
-                      "title":  "DIE env/path abstraction",
-                      "depends_on":  [
-                                         "DIE-101"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "company/contracts/die.path-roots.v1.json + docs/architecture/DIE_PATH_ROOTS_V1.md + bridge/tests/test_die_path_abstraction_v1.py + receipt",
-                      "acceptance":  "Linux and Windows path fixtures resolve without hard-coded drive assumptions; secrets/runtime/source roots remain separated."
-                  },
-                  {
-                      "id":  "DIE-103",
-                      "phase":  10,
-                      "title":  "Clean component import",
-                      "depends_on":  [
-                                         "DIE-102"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "selectively imported company canon",
-                      "acceptance":  "Only disposition-approved source/provenance enters /srv/die; no nested .git, caches, profiles, secrets, or mutable runtime state."
-                  },
-                  {
-                      "id":  "DIE-104",
-                      "phase":  10,
-                      "title":  "One-canon validator",
-                      "depends_on":  [
-                                         "DIE-103"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "canon validation script/tests/receipt",
-                      "acceptance":  "Target tree, forbidden paths, source/runtime separation, secrets boundary, and ownership rules validate fail-closed."
-                  },
-                  {
-                      "id":  "DIE-200",
-                      "phase":  11,
-                      "title":  "Executive Linux migration",
-                      "depends_on":  [
-                                         "DIE-104"
-                                     ],
-                      "status":  "WAITING_OPERATOR",
-                      "artifact":  "Linux Executive source/runtime/receipt",
-                      "acceptance":  "Executive identity and wake/read contract work on Linux with fresh operator-controlled auth and no Windows profile cloning."
-                  },
-                  {
-                      "id":  "DIE-201",
-                      "phase":  11,
-                      "title":  "Division01 Linux migration",
-                      "depends_on":  [
-                                         "DIE-104"
-                                     ],
-                      "status":  "WAITING_OPERATOR",
-                      "artifact":  "Linux Division01 source/runtime/receipt",
-                      "acceptance":  "Principal ID division-head-division01 is preserved; D:\\OAUTH is not treated as Division01; fresh auth is used."
-                  },
-                  {
-                      "id":  "DIE-202",
-                      "phase":  11,
-                      "title":  "Hermes and Workers Linux migration",
-                      "depends_on":  [
-                                         "DIE-104"
-                                     ],
-                      "status":  "WAITING_OPERATOR_CREDENTIALS",
-                      "artifact":  "Linux Hermes/Worker source/runtime/receipt",
-                      "acceptance":  "Canonical SOUL/AGENTS/contracts drive fresh Linux runtime; no bulk AppData/profile clone."
-                  },
-                  {
-                      "id":  "DIE-203",
-                      "phase":  11,
-                      "title":  "Atlas and Object Asset Engine Linux migration",
-                      "depends_on":  [
-                                         "DIE-104"
-                                     ],
-                      "status":  "WAITING_OBJECT_FILTER_COMPLETION",
-                      "artifact":  "human/object Atlas source + consistent object-engine data migration receipt",
-                      "acceptance":  "Object-engine source is separated from DB/data; SQLite migration is consistent/quiesce-aware; human-centric canon is materialized."
-                  },
-                  {
-                      "id":  "DIE-204",
-                      "phase":  11,
-                      "title":  "Linux company topology proof",
-                      "depends_on":  [
-                                         "DIE-200",
-                                         "DIE-201",
-                                         "DIE-202",
-                                         "DIE-203",
-                                         "MX-052"
-                                     ],
-                      "status":  "BLOCKED",
-                      "artifact":  "Atlas -> Division cognition -> Hermes -> Worker -> MUXIA -> Artifact Registry proof",
-                      "acceptance":  "End-to-end logical company topology works on Linux with correct principal/data/artifact lineage and no Aether dependency absorption."
-                  },
-                  {
-                      "id":  "CUT-001",
-                      "phase":  14,
-                      "title":  "Freeze Windows DIE writers except Architect MCP",
-                      "depends_on":  [
-                                         "MX-080"
-                                     ],
-                      "status":  "BLOCKED",
-                      "artifact":  "writer-freeze receipt",
-                      "acceptance":  "Only after Founder PROMOTE verdict: record services/tasks/PIDs/state hashes and freeze migrated Windows DIE writers while keeping Architect MCP available."
-                  },
-                  {
-                      "id":  "CUT-002",
-                      "phase":  14,
-                      "title":  "Final state/data sync",
-                      "depends_on":  [
-                                         "CUT-001"
-                                     ],
-                      "status":  "BLOCKED",
-                      "artifact":  "final sync receipt",
-                      "acceptance":  "Only disposition-approved state/data is transferred with hashes/counts/cursors; browser/OAuth secrets are recreated, not copied."
-                  },
-                  {
-                      "id":  "CUT-003",
-                      "phase":  14,
-                      "title":  "Restore and replay proof",
-                      "depends_on":  [
-                                         "CUT-002"
-                                     ],
-                      "status":  "BLOCKED",
-                      "artifact":  "restore/replay receipt",
-                      "acceptance":  "Linux counts/hashes/cursor/last-event/open jobs/artifact lineage match the frozen Windows source of truth."
-                  },
-                  {
-                      "id":  "CUT-004",
-                      "phase":  14,
-                      "title":  "Phased non-Architect endpoint cutover",
-                      "depends_on":  [
-                                         "CUT-003"
-                                     ],
-                      "status":  "BLOCKED",
-                      "artifact":  "endpoint-by-endpoint E2E and rollback receipts",
-                      "acceptance":  "Executive, Division01, Hermes/Gateway/Workers and MUXIA routes cut over one-by-one; Architect Windows control channel remains unchanged."
-                  },
-                  {
-                      "id":  "CUT-005",
-                      "phase":  14,
-                      "title":  "Disable migrated Windows DIE services except Architect MCP",
-                      "depends_on":  [
-                                         "CUT-004"
-                                     ],
-                      "status":  "BLOCKED",
-                      "artifact":  "Windows retirement checkpoint receipt",
-                      "acceptance":  "Migrated Windows DIE services/tasks are disabled only after Linux E2E PASS; Architect MCP remains active as the last Windows control component."
-                  },
-                  {
-                      "id":  "MX-053",
-                      "phase":  14,
-                      "title":  "Architect MCP Linux build/deploy - final pre-cutover",
-                      "depends_on":  [
-                                         "CUT-005"
-                                     ],
-                      "status":  "DEFERRED",
-                      "artifact":  "/srv/die/company/architect source + /opt/mcp-architect Linux runtime + receipt",
-                      "acceptance":  "Linux Architect MCP is built with loopback/systemd hardening and sanitized logs while Windows Architect MCP remains available.",
-                      "resume_condition":  "All Windows-dependent migration and non-Architect cutover tasks through CUT-005 are complete."
-                  },
-                  {
-                      "id":  "MX-054",
-                      "phase":  14,
-                      "title":  "Architect MCP Linux E2E temporary proof",
-                      "depends_on":  [
-                                         "MX-053"
-                                     ],
-                      "status":  "BLOCKED",
-                      "artifact":  "temporary Linux Architect MCP E2E receipt",
-                      "acceptance":  "Linux endpoint/tool parity passes without replacing the active Windows Architect control channel."
-                  },
-                  {
-                      "id":  "CUT-006",
-                      "phase":  14,
-                      "title":  "Founder Architect control-channel handoff",
-                      "depends_on":  [
-                                         "MX-054"
-                                     ],
-                      "status":  "BLOCKED",
-                      "artifact":  "Founder-authorized control-channel handoff receipt",
-                      "acceptance":  "Explicit Founder action switches Architect control to Linux only after Linux E2E PASS; no remaining task depends on Windows Architect MCP access."
-                  },
-                  {
-                      "id":  "MX-043-R1",
-                      "phase":  4,
-                      "title":  "Deterministic four-lane teardown",
-                      "depends_on":  [
-                                         "MX-042"
-                                     ],
-                      "status":  "DONE",
-                      "artifact":  "company/muxia/receipts/MX-043-R1-deterministic-teardown.receipt.json",
-                      "acceptance":  "Profiles B-E return READY with no lease/browserPid, no residual B-E Edge processes, profile A preserved."
-                  }
-              ]
+  "schema": "die.muxia.task-graph.v1",
+  "product": "MUXIA",
+  "generated_at": "2026-08-29",
+  "doctrine": "Build > Run > Verify > Refactor > Extend",
+  "execution_started": true,
+  "cutover_authority": "Founder",
+  "migration_overlay": {
+    "version": "chapter4-windows-to-linux-v1",
+    "disposition_matrix": "docs/migration/DIE_WINDOWS_ESTATE_DISPOSITION_MATRIX_V1.md",
+    "architect_mcp_ordering": "KEEP_WINDOWS_CONTROL_THROUGH_CUT_005; MX-053/MX-054 FINAL_PRE_CUTOVER; CUT-006 FOUNDER_HANDOFF",
+    "aether_boundary": "KEEP_EXTERNAL",
+    "oauth_boundary": "D:\\OAUTH is a separate Web-AI adapter; NOT Division01"
+  },
+  "states": [
+    "BLOCKED",
+    "READY",
+    "RUNNING",
+    "VERIFYING",
+    "DONE",
+    "FAILED",
+    "DEFERRED",
+    "WAITING_OPERATOR",
+    "WAITING_OPERATOR_CREDENTIALS",
+    "WAITING_OBJECT_FILTER_COMPLETION"
+  ],
+  "repair_rule": "On failure create at most one minimal repair child <task_id>-R<n>; do not restart the roadmap unless an ADR assumption is falsified.",
+  "tasks": [
+    {
+      "id": "MX-000",
+      "phase": 0,
+      "title": "Canon lock",
+      "depends_on": [],
+      "status": "DONE",
+      "artifact": "MUXIA ADR/PRD/ROADMAP/ATOMIC graph + LASTSTANDINGPOINT",
+      "acceptance": "Docs self-consistent; JSON parses; no runtime mutation."
+    },
+    {
+      "id": "MX-010",
+      "phase": 1,
+      "title": "Pin live Proxima baseline",
+      "depends_on": [
+        "MX-000"
+      ],
+      "status": "DONE",
+      "artifact": "docs/operations/MUXIA_PROXIMA_BASELINE_V1.md",
+      "acceptance": "Exact repo/SHA/runtime/proof refs; no secrets read."
+    },
+    {
+      "id": "MX-011",
+      "phase": 1,
+      "title": "KEEP/EXTRACT/RETIRE autopsy",
+      "depends_on": [
+        "MX-010"
+      ],
+      "status": "DONE",
+      "artifact": "docs/architecture/MUXIA_PROXIMA_AUTOPSY_V1.md",
+      "acceptance": "Relevant modules classified; Electron dependencies enumerated; unknowns become probes."
+    },
+    {
+      "id": "MX-012",
+      "phase": 1,
+      "title": "Parity contract tests",
+      "depends_on": [
+        "MX-011"
+      ],
+      "status": "DONE",
+      "artifact": "behavior parity test suite",
+      "acceptance": "Legacy baseline passes and corrupted artifact/hash cases fail."
+    },
+    {
+      "id": "MX-020",
+      "phase": 2,
+      "title": "Core domain types",
+      "depends_on": [
+        "MX-012"
+      ],
+      "status": "DONE",
+      "artifact": "provider/profile/job/artifact schemas and types",
+      "acceptance": "Lifecycle validation compiles; invalid duplicate lease and false success rejected."
+    },
+    {
+      "id": "MX-021",
+      "phase": 2,
+      "title": "Config/path abstraction",
+      "depends_on": [
+        "MX-020"
+      ],
+      "status": "DONE",
+      "artifact": "OS-neutral path/config layer",
+      "acceptance": "Windows/Linux fixtures pass; core has no hard-coded host path."
+    },
+    {
+      "id": "MX-022",
+      "phase": 2,
+      "title": "Profile Registry",
+      "depends_on": [
+        "MX-021"
+      ],
+      "status": "DONE",
+      "artifact": "persistent sanitized profile registry",
+      "acceptance": "CRUD works; second simultaneous lease rejected; no session secrets stored."
+    },
+    {
+      "id": "MX-023",
+      "phase": 2,
+      "title": "Job + Artifact Registry",
+      "depends_on": [
+        "MX-022"
+      ],
+      "status": "DONE",
+      "artifact": "resumable job and artifact receipt stores",
+      "acceptance": "Restart-safe state; SUCCEEDED requires matching durable receipt."
+    },
+    {
+      "id": "MX-030",
+      "phase": 3,
+      "title": "Playwright Chromium driver",
+      "depends_on": [
+        "MX-023"
+      ],
+      "status": "DONE",
+      "artifact": "non-Electron Chromium lifecycle driver",
+      "acceptance": "Launch/stop/restart works with dedicated user-data dir and private debug endpoint."
+    },
+    {
+      "id": "MX-031",
+      "phase": 3,
+      "title": "ChatGPT provider state detector",
+      "depends_on": [
+        "MX-030"
+      ],
+      "status": "DONE",
+      "artifact": "versioned ChatGPT adapter state detector",
+      "acceptance": "Ready/auth/protection/unknown states fail safely; no bypass behavior."
+    },
+    {
+      "id": "MX-032",
+      "phase": 3,
+      "title": "Windows text canary parity",
+      "depends_on": [
+        "MX-031",
+        "MX-031-R1",
+        "MX-032-R1"
+      ],
+      "status": "DONE",
+      "artifact": "sanitized text canary receipt",
+      "acceptance": "Known ChatGPT text canary is proven through an operator-controlled interaction/confirmation path or a later supported programmatic interface; no automated Output extraction from consumer ChatGPT web."
+    },
+    {
+      "id": "MX-033",
+      "phase": 3,
+      "title": "Windows durable image parity",
+      "depends_on": [
+        "MX-032"
+      ],
+      "status": "DONE",
+      "artifact": "bounded image + artifact receipt",
+      "acceptance": "Durable raster path/hash/bytes/container match parity contract after operator-controlled acquisition or a later supported programmatic interface; transient-only result rejected; no automated consumer-web Output extraction."
+    },
+    {
+      "id": "MX-034",
+      "phase": 3,
+      "title": "Windows restart persistence proof",
+      "depends_on": [
+        "MX-033"
+      ],
+      "status": "DONE",
+      "artifact": "restart/session continuity receipt",
+      "acceptance": "Same profile retained; auth-required fails closed."
+    },
+    {
+      "id": "MX-040",
+      "phase": 4,
+      "title": "Two-profile isolation",
+      "depends_on": [
+        "MX-034"
+      ],
+      "status": "DONE",
+      "artifact": "two-profile isolation receipt",
+      "acceptance": "Distinct ownership; no cookie/session/log/artifact contamination."
+    },
+    {
+      "id": "MX-041",
+      "phase": 4,
+      "title": "Crash recovery",
+      "depends_on": [
+        "MX-040"
+      ],
+      "status": "DONE",
+      "artifact": "crash/recovery receipt",
+      "acceptance": "Interrupted job never succeeds; lease recovered or profile quarantined deterministically."
+    },
+    {
+      "id": "MX-042",
+      "phase": 4,
+      "title": "Two-profile bounded concurrency",
+      "depends_on": [
+        "MX-041"
+      ],
+      "status": "DONE",
+      "artifact": "two-concurrent-job receipt",
+      "acceptance": "Correct lineage; no duplicate lease; resource metrics captured."
+    },
+    {
+      "id": "MX-043",
+      "phase": 4,
+      "title": "Four-profile bounded concurrency",
+      "depends_on": [
+        "MX-042",
+        "MX-043-R1"
+      ],
+      "status": "DONE",
+      "artifact": "four-concurrent-job receipt",
+      "acceptance": "Four independent lanes; no contamination; resource envelope captured."
+    },
+    {
+      "id": "MX-050-R1",
+      "phase": 5,
+      "title": "Declare reproducible TypeScript compiler",
+      "depends_on": [
+        "MX-043"
+      ],
+      "status": "DONE",
+      "artifact": "company/muxia/receipts/MX-050-R1-typescript-bootstrap-repair.receipt.json",
+      "acceptance": "TypeScript 5.9.3 is exact-pinned; npm ci provides tsc; Windows regression remains 48/48 PASS."
+    },
+    {
+      "id": "MX-050",
+      "phase": 5,
+      "title": "Linux runtime bootstrap",
+      "depends_on": [
+        "MX-043",
+        "MX-050-R1"
+      ],
+      "status": "DONE",
+      "artifact": "company/muxia/receipts/MX-050-linux-bootstrap.receipt.json",
+      "acceptance": "Reproducible Playwright/Chromium target; no Electron dependency.",
+      "resume_condition": "Founder provided reachable Ubuntu Linux VPS and explicitly authorized MX-050 through MX-052 on 2026-08-27."
+    },
+    {
+      "id": "MX-051",
+      "phase": 5,
+      "title": "Linux single-profile parity",
+      "depends_on": [
+        "MX-050"
+      ],
+      "status": "DONE",
+      "artifact": "company/muxia/receipts/MX-051-linux-single-profile-parity.receipt.json",
+      "acceptance": "Text + durable image + restart state satisfy core contracts."
+    },
+    {
+      "id": "MX-052",
+      "phase": 5,
+      "title": "Linux four-profile isolation",
+      "depends_on": [
+        "MX-051"
+      ],
+      "status": "DONE",
+      "artifact": "company/muxia/receipts/MX-052-linux-four-profile-isolation.receipt.json",
+      "acceptance": "Independent ownership, no leakage, documented resources, no Windows GUI dependency."
+    },
+    {
+      "id": "MX-060",
+      "phase": 6,
+      "title": "Sanitized observability",
+      "depends_on": [
+        "MX-052",
+        "DIE-204"
+      ],
+      "status": "BLOCKED",
+      "artifact": "health/logging surfaces",
+      "acceptance": "Operational diagnosis without cookies/tokens/auth bodies."
+    },
+    {
+      "id": "MX-061",
+      "phase": 6,
+      "title": "Fault-injection suite",
+      "depends_on": [
+        "MX-060"
+      ],
+      "status": "BLOCKED",
+      "artifact": "fault injection tests/receipts",
+      "acceptance": "Timeout/crash/contention/disk/auth faults map deterministically; false success=0."
+    },
+    {
+      "id": "MX-062",
+      "phase": 6,
+      "title": "24-hour soak",
+      "depends_on": [
+        "MX-061"
+      ],
+      "status": "BLOCKED",
+      "artifact": "24h soak receipt",
+      "acceptance": "Zero profile corruption, credential leakage, duplicate ownership; recovery matches contract."
+    },
+    {
+      "id": "MX-070",
+      "phase": 7,
+      "title": "Legacy compatibility adapter",
+      "depends_on": [
+        "MX-062"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Worker/Proxima-to-MUXIA compatibility route",
+      "acceptance": "Equivalent bounded artifact contract; no authority expansion; rollback path remains."
+    },
+    {
+      "id": "MX-071",
+      "phase": 7,
+      "title": "M-001 governed MUXIA canary",
+      "depends_on": [
+        "MX-070",
+        "OE-007"
+      ],
+      "status": "BLOCKED",
+      "artifact": "governed canary artifact/QA/metrics receipt",
+      "acceptance": "Durable workspace artifact; QA chain passes; OE-007 governed intelligence lineage is present; no submission/publication/spend expansion."
+    },
+    {
+      "id": "MX-072",
+      "phase": 7,
+      "title": "Cutover evidence package",
+      "depends_on": [
+        "MX-071"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Founder cutover decision package",
+      "acceptance": "Every ADR criterion maps to evidence; gaps explicit; recommendation recorded."
+    },
+    {
+      "id": "MX-080",
+      "phase": 8,
+      "title": "Founder cutover decision",
+      "depends_on": [
+        "MX-072"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Founder decision receipt",
+      "acceptance": "Explicit PROMOTE_MUXIA|EXTEND_CANARY|REPAIR_MUXIA|KEEP_PROXIMA; silence never implies cutover."
+    },
+    {
+      "id": "MX-P01",
+      "phase": 3,
+      "title": "Legacy profile-root metadata probe",
+      "depends_on": [
+        "MX-023"
+      ],
+      "status": "DONE",
+      "artifact": "sanitized profile-root metadata receipt",
+      "acceptance": "Active profile root identified without reading/exporting cookies/tokens/session values."
+    },
+    {
+      "id": "MX-P02",
+      "phase": 9,
+      "title": "Legacy support-tree provenance probe",
+      "depends_on": [
+        "MX-072"
+      ],
+      "status": "BLOCKED",
+      "artifact": "proximav2-setup provenance inventory",
+      "acceptance": "Each legacy item classified artifact|receipt|runtime|copied-source|stale|sensitive-log before cleanup."
+    },
+    {
+      "id": "MX-P03",
+      "phase": 3,
+      "title": "ChatGPT web execution policy gate",
+      "depends_on": [
+        "MX-012"
+      ],
+      "status": "DONE",
+      "artifact": "current provider-policy adapter boundary receipt",
+      "acceptance": "Allowed automation/output boundary documented before unattended ChatGPT web adapter implementation."
+    },
+    {
+      "id": "MX-031-R1",
+      "phase": 3,
+      "title": "Repair ChatGPT protection-title detection",
+      "depends_on": [
+        "MX-031"
+      ],
+      "status": "DONE",
+      "artifact": "company/muxia/receipts/MX-031-R1-cloudflare-title-repair.receipt.json",
+      "acceptance": "Live Cloudflare-style protection title classifies BLOCKED/PROTECTION_CHALLENGE; no bypass added."
+    },
+    {
+      "id": "MX-032-R1",
+      "phase": 3,
+      "title": "Operator session bootstrap",
+      "depends_on": [
+        "MX-031",
+        "MX-031-R1"
+      ],
+      "status": "DONE",
+      "artifact": "company/muxia/receipts/MX-032-R1-operator-session-bootstrap.receipt.json",
+      "acceptance": "Headed persistent chatgpt-a profile open in operator RDP session; operator manually authenticates; no bypass/credential extraction."
+    },
+    {
+      "id": "DIE-100",
+      "phase": 10,
+      "title": "Read-only Windows estate inventory",
+      "depends_on": [
+        "MX-052"
+      ],
+      "status": "DONE",
+      "artifact": "docs/migration/DIE_WINDOWS_ESTATE_INVENTORY_V1.md + receipt",
+      "acceptance": "Windows source/data/runtime/service/listener estate inventoried without credential reads or runtime mutation."
+    },
+    {
+      "id": "DIE-101",
+      "phase": 10,
+      "title": "Windows estate disposition matrix",
+      "depends_on": [
+        "DIE-100"
+      ],
+      "status": "DONE",
+      "artifact": "docs/migration/DIE_WINDOWS_ESTATE_DISPOSITION_MATRIX_V1.md + receipt",
+      "acceptance": "Every inventoried estate has explicit source/data/rebuild/archive/retire/external/exclude disposition; Architect MCP ordering is locked."
+    },
+    {
+      "id": "DIE-102",
+      "phase": 10,
+      "title": "DIE env/path abstraction",
+      "depends_on": [
+        "DIE-101"
+      ],
+      "status": "DONE",
+      "artifact": "company/contracts/die.path-roots.v1.json + docs/architecture/DIE_PATH_ROOTS_V1.md + bridge/tests/test_die_path_abstraction_v1.py + receipt",
+      "acceptance": "Linux and Windows path fixtures resolve without hard-coded drive assumptions; secrets/runtime/source roots remain separated."
+    },
+    {
+      "id": "DIE-103",
+      "phase": 10,
+      "title": "Clean component import",
+      "depends_on": [
+        "DIE-102"
+      ],
+      "status": "DONE",
+      "artifact": "selectively imported company canon",
+      "acceptance": "Only disposition-approved source/provenance enters /srv/die; no nested .git, caches, profiles, secrets, or mutable runtime state."
+    },
+    {
+      "id": "DIE-104",
+      "phase": 10,
+      "title": "One-canon validator",
+      "depends_on": [
+        "DIE-103"
+      ],
+      "status": "DONE",
+      "artifact": "canon validation script/tests/receipt",
+      "acceptance": "Target tree, forbidden paths, source/runtime separation, secrets boundary, and ownership rules validate fail-closed."
+    },
+    {
+      "id": "DIE-200",
+      "phase": 11,
+      "title": "Executive Linux migration",
+      "depends_on": [
+        "DIE-104"
+      ],
+      "status": "WAITING_OPERATOR",
+      "artifact": "Linux Executive source/runtime/receipt",
+      "acceptance": "Executive identity and wake/read contract work on Linux with fresh operator-controlled auth and no Windows profile cloning."
+    },
+    {
+      "id": "DIE-201",
+      "phase": 11,
+      "title": "Division01 Linux migration",
+      "depends_on": [
+        "DIE-104"
+      ],
+      "status": "WAITING_OPERATOR",
+      "artifact": "Linux Division01 source/runtime/receipt",
+      "acceptance": "Principal ID division-head-division01 is preserved; D:\\OAUTH is not treated as Division01; fresh auth is used."
+    },
+    {
+      "id": "DIE-202",
+      "phase": 11,
+      "title": "Hermes and Workers Linux migration",
+      "depends_on": [
+        "DIE-104"
+      ],
+      "status": "WAITING_OPERATOR_CREDENTIALS",
+      "artifact": "Linux Hermes/Worker source/runtime/receipt",
+      "acceptance": "Canonical SOUL/AGENTS/contracts drive fresh Linux runtime; no bulk AppData/profile clone."
+    },
+    {
+      "id": "DIE-203",
+      "phase": 11,
+      "title": "Atlas and Object Asset Engine Linux migration",
+      "depends_on": [
+        "DIE-104"
+      ],
+      "status": "WAITING_OBJECT_FILTER_COMPLETION",
+      "artifact": "human/object Atlas source + consistent object-engine data migration receipt",
+      "acceptance": "Object-engine source is separated from DB/data; SQLite migration is consistent/quiesce-aware; human-centric canon is materialized."
+    },
+    {
+      "id": "DIE-204",
+      "phase": 11,
+      "title": "Linux company topology proof",
+      "depends_on": [
+        "DIE-200",
+        "DIE-201",
+        "DIE-202",
+        "DIE-203",
+        "MX-052"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Atlas -> Division cognition -> Hermes -> Worker -> MUXIA -> Artifact Registry proof",
+      "acceptance": "End-to-end logical company topology works on Linux with correct principal/data/artifact lineage and no Aether dependency absorption."
+    },
+    {
+      "id": "CUT-001",
+      "phase": 14,
+      "title": "Freeze Windows DIE writers except Architect MCP",
+      "depends_on": [
+        "MX-080"
+      ],
+      "status": "BLOCKED",
+      "artifact": "writer-freeze receipt",
+      "acceptance": "Only after Founder PROMOTE verdict: record services/tasks/PIDs/state hashes and freeze migrated Windows DIE writers while keeping Architect MCP available."
+    },
+    {
+      "id": "CUT-002",
+      "phase": 14,
+      "title": "Final state/data sync",
+      "depends_on": [
+        "CUT-001"
+      ],
+      "status": "BLOCKED",
+      "artifact": "final sync receipt",
+      "acceptance": "Only disposition-approved state/data is transferred with hashes/counts/cursors; browser/OAuth secrets are recreated, not copied."
+    },
+    {
+      "id": "CUT-003",
+      "phase": 14,
+      "title": "Restore and replay proof",
+      "depends_on": [
+        "CUT-002"
+      ],
+      "status": "BLOCKED",
+      "artifact": "restore/replay receipt",
+      "acceptance": "Linux counts/hashes/cursor/last-event/open jobs/artifact lineage match the frozen Windows source of truth."
+    },
+    {
+      "id": "CUT-004",
+      "phase": 14,
+      "title": "Phased non-Architect endpoint cutover",
+      "depends_on": [
+        "CUT-003"
+      ],
+      "status": "BLOCKED",
+      "artifact": "endpoint-by-endpoint E2E and rollback receipts",
+      "acceptance": "Executive, Division01, Hermes/Gateway/Workers and MUXIA routes cut over one-by-one; Architect Windows control channel remains unchanged."
+    },
+    {
+      "id": "CUT-005",
+      "phase": 14,
+      "title": "Disable migrated Windows DIE services except Architect MCP",
+      "depends_on": [
+        "CUT-004"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Windows retirement checkpoint receipt",
+      "acceptance": "Migrated Windows DIE services/tasks are disabled only after Linux E2E PASS; Architect MCP remains active as the last Windows control component."
+    },
+    {
+      "id": "MX-053",
+      "phase": 14,
+      "title": "Architect MCP Linux build/deploy - final pre-cutover",
+      "depends_on": [
+        "CUT-005"
+      ],
+      "status": "DEFERRED",
+      "artifact": "/srv/die/company/architect source + /opt/mcp-architect Linux runtime + receipt",
+      "acceptance": "Linux Architect MCP is built with loopback/systemd hardening and sanitized logs while Windows Architect MCP remains available.",
+      "resume_condition": "All Windows-dependent migration and non-Architect cutover tasks through CUT-005 are complete."
+    },
+    {
+      "id": "MX-054",
+      "phase": 14,
+      "title": "Architect MCP Linux E2E temporary proof",
+      "depends_on": [
+        "MX-053"
+      ],
+      "status": "BLOCKED",
+      "artifact": "temporary Linux Architect MCP E2E receipt",
+      "acceptance": "Linux endpoint/tool parity passes without replacing the active Windows Architect control channel."
+    },
+    {
+      "id": "CUT-006",
+      "phase": 14,
+      "title": "Founder Architect control-channel handoff",
+      "depends_on": [
+        "MX-054"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Founder-authorized control-channel handoff receipt",
+      "acceptance": "Explicit Founder action switches Architect control to Linux only after Linux E2E PASS; no remaining task depends on Windows Architect MCP access."
+    },
+    {
+      "id": "MX-043-R1",
+      "phase": 4,
+      "title": "Deterministic four-lane teardown",
+      "depends_on": [
+        "MX-042"
+      ],
+      "status": "DONE",
+      "artifact": "company/muxia/receipts/MX-043-R1-deterministic-teardown.receipt.json",
+      "acceptance": "Profiles B-E return READY with no lease/browserPid, no residual B-E Edge processes, profile A preserved."
+    },
+    {
+      "id": "OE-000",
+      "phase": 12,
+      "title": "Opportunity intelligence roadmap and authority seal",
+      "depends_on": [
+        "DIE-104"
+      ],
+      "status": "DONE",
+      "artifact": "docs/architecture/DIE_OPPORTUNITY_ENGINE_ARCHITECTURE_V1.md + docs/architecture/DIE_OPPORTUNITY_ENGINE_AUDIT_V1.md + OE task-graph receipt/tests",
+      "acceptance": "OE-001..OE-007 atomic DAG exists; Division01/Executive/Hermes/Worker/Founder authority boundaries are explicit; cutover cannot bypass OE-007."
+    },
+    {
+      "id": "OE-001A",
+      "phase": 12,
+      "title": "Opportunity signal taxonomy and source classes",
+      "depends_on": [
+        "OE-000"
+      ],
+      "status": "READY",
+      "artifact": "signal taxonomy + source-class contract",
+      "acceptance": "Signal classes, platform scope, units, evidence labels, acquisition methods, confidence and staleness semantics are explicit; no collection yet."
+    },
+    {
+      "id": "OE-001B",
+      "phase": 12,
+      "title": "Opportunity signal receipt schema",
+      "depends_on": [
+        "OE-001A"
+      ],
+      "status": "BLOCKED",
+      "artifact": "die.division001.opportunity-signals.v1 schema + fixtures",
+      "acceptance": "Schema validates candidate/phrase/platform identity, timestamp, value/unit, source ref, collector identity, evidence label, confidence, expiry and policy version; malformed/stale fixtures fail."
+    },
+    {
+      "id": "OE-001C",
+      "phase": 12,
+      "title": "Opportunity signal acquisition and ToS boundary",
+      "depends_on": [
+        "OE-001A"
+      ],
+      "status": "BLOCKED",
+      "artifact": "bounded acquisition contract + source policy matrix",
+      "acceptance": "Approved collection methods are explicit; private-token extraction, protective-measure bypass, stealth and prohibited unattended scraping are fail-closed; operator evidence lanes are modeled."
+    },
+    {
+      "id": "OE-001D",
+      "phase": 12,
+      "title": "Opportunity signal fixture adapter A",
+      "depends_on": [
+        "OE-001B",
+        "OE-001C"
+      ],
+      "status": "BLOCKED",
+      "artifact": "bounded fixture/adapter A + receipt tests",
+      "acceptance": "One low-risk source adapter produces normalized receipts deterministically without authority or policy expansion."
+    },
+    {
+      "id": "OE-001E",
+      "phase": 12,
+      "title": "Opportunity signal fixture adapter B",
+      "depends_on": [
+        "OE-001B",
+        "OE-001C"
+      ],
+      "status": "BLOCKED",
+      "artifact": "bounded fixture/adapter B + receipt tests",
+      "acceptance": "A second independent source adapter produces normalized receipts, proving source abstraction rather than source-specific scoring."
+    },
+    {
+      "id": "OE-001F",
+      "phase": 12,
+      "title": "Opportunity signal registry, dedupe and freshness",
+      "depends_on": [
+        "OE-001D",
+        "OE-001E"
+      ],
+      "status": "BLOCKED",
+      "artifact": "signal registry + dedupe/staleness implementation",
+      "acceptance": "Receipts are idempotent, source-scoped, freshness-aware and queryable by candidate/phrase/platform; duplicate observations do not inflate demand."
+    },
+    {
+      "id": "OE-001G",
+      "phase": 12,
+      "title": "Opportunity Signals v1 regression and failure suite",
+      "depends_on": [
+        "OE-001F"
+      ],
+      "status": "BLOCKED",
+      "artifact": "OE-001 regression suite + receipt",
+      "acceptance": "Valid fixtures pass; malformed, forbidden-acquisition, duplicate and stale evidence fail or degrade deterministically."
+    },
+    {
+      "id": "OE-001",
+      "phase": 12,
+      "title": "Opportunity Signals Engine v1 acceptance",
+      "depends_on": [
+        "OE-001G"
+      ],
+      "status": "BLOCKED",
+      "artifact": "OE-001 acceptance receipt",
+      "acceptance": "Normalized, timestamped, policy-bounded external opportunity signals exist as reusable receipts; engine records observations only and does not decide Worth-Making."
+    },
+    {
+      "id": "OE-002A",
+      "phase": 12,
+      "title": "Demand Score v1 schema and model versioning",
+      "depends_on": [
+        "OE-001"
+      ],
+      "status": "BLOCKED",
+      "artifact": "die.division001.demand-score.v1 schema",
+      "acceptance": "Score output pins candidate/phrase, model version, component scores, evidence refs, confidence, timestamp and expiry."
+    },
+    {
+      "id": "OE-002B",
+      "phase": 12,
+      "title": "Demand Score evidence normalization",
+      "depends_on": [
+        "OE-002A"
+      ],
+      "status": "BLOCKED",
+      "artifact": "component-to-signal mapping contract",
+      "acceptance": "External demand, supply/competition, commercial intent, niche specificity, feasibility, eligibility and risk components consume explicit signal refs without hidden priors."
+    },
+    {
+      "id": "OE-002C",
+      "phase": 12,
+      "title": "Demand Score UNKNOWN and freshness policy",
+      "depends_on": [
+        "OE-002A"
+      ],
+      "status": "BLOCKED",
+      "artifact": "unknown/staleness/missing-signal policy",
+      "acceptance": "Missing evidence remains UNKNOWN or penalized explicitly; stale evidence cannot silently score as current; no invented defaults."
+    },
+    {
+      "id": "OE-002D",
+      "phase": 12,
+      "title": "Deterministic Demand Score implementation",
+      "depends_on": [
+        "OE-002B",
+        "OE-002C"
+      ],
+      "status": "BLOCKED",
+      "artifact": "deterministic scorer + CLI/library",
+      "acceptance": "Same versioned inputs produce the same component/final score; hard safety/rights vetoes remain outside numeric scoring."
+    },
+    {
+      "id": "OE-002E",
+      "phase": 12,
+      "title": "Demand Score calibration fixtures",
+      "depends_on": [
+        "OE-002D"
+      ],
+      "status": "BLOCKED",
+      "artifact": "known-candidate calibration corpus",
+      "acceptance": "Known historical candidates exercise high/medium/low evidence, saturation and stale/missing-signal cases without treating historical heuristic v0 as truth."
+    },
+    {
+      "id": "OE-002F",
+      "phase": 12,
+      "title": "Demand Score ranking and regression suite",
+      "depends_on": [
+        "OE-002E"
+      ],
+      "status": "BLOCKED",
+      "artifact": "OE-002 ranking/parity tests + receipt",
+      "acceptance": "Ranking is reproducible and evidence-explainable; component double counting, stale promotion and hidden fallback priors are detected."
+    },
+    {
+      "id": "OE-002",
+      "phase": 12,
+      "title": "Demand Score Engine v1 acceptance",
+      "depends_on": [
+        "OE-002F"
+      ],
+      "status": "BLOCKED",
+      "artifact": "OE-002 acceptance receipt",
+      "acceptance": "Demand ranking consumes OE-001 receipts and exposes component evidence/confidence/freshness; no live score is fabricated from static heuristic priors."
+    },
+    {
+      "id": "OE-003A",
+      "phase": 12,
+      "title": "Longtail modifier ontology and phrase schema",
+      "depends_on": [
+        "OE-002"
+      ],
+      "status": "BLOCKED",
+      "artifact": "modifier ontology + phrase candidate schema",
+      "acceptance": "Function, buyer/audience, industry, use case, problem, place, time, material, state, style, demographic, intent and Product Expression modifiers are bounded and typed."
+    },
+    {
+      "id": "OE-003B",
+      "phase": 12,
+      "title": "Object Atlas cleaned-seed retrieval adapter",
+      "depends_on": [
+        "OE-003A"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Object Atlas retrieval contract",
+      "acceptance": "Generator retrieves valid cleaned seeds by ID/taxonomy without duplicating Object Atlas or requiring final dataset immutability."
+    },
+    {
+      "id": "OE-003C",
+      "phase": 12,
+      "title": "Human Atlas demand-context retrieval adapter",
+      "depends_on": [
+        "OE-003A"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Human Atlas context retrieval contract",
+      "acceptance": "Generator retrieves bounded compatible Human demand contexts with provenance; no exhaustive 10D materialization."
+    },
+    {
+      "id": "OE-003D",
+      "phase": 12,
+      "title": "Bounded longtail candidate expansion",
+      "depends_on": [
+        "OE-003B",
+        "OE-003C"
+      ],
+      "status": "BLOCKED",
+      "artifact": "dynamic longtail generator",
+      "acceptance": "Clean seed + compatible Human modifiers produce bounded niche/customer-specific hypotheses; hard-coded small EXPANSIONS dictionary is not the core strategy."
+    },
+    {
+      "id": "OE-003E",
+      "phase": 12,
+      "title": "Longtail dedupe, IP and redundancy guardrails",
+      "depends_on": [
+        "OE-003D"
+      ],
+      "status": "BLOCKED",
+      "artifact": "normalization/dedupe/IP guardrail implementation",
+      "acceptance": "Preserve exact/parent-child/near-duplicate controls, modifier classification, quotas and IP/trademark recheck; repeated variants cannot flood candidate space."
+    },
+    {
+      "id": "OE-003F",
+      "phase": 12,
+      "title": "Longtail phrase-level signal and scoring loop",
+      "depends_on": [
+        "OE-003E"
+      ],
+      "status": "BLOCKED",
+      "artifact": "phrase signal request + OE-001/OE-002 integration",
+      "acceptance": "Generated phrases request phrase-level evidence and Demand Score; child phrases never inherit parent demand without evidence."
+    },
+    {
+      "id": "OE-003G",
+      "phase": 12,
+      "title": "Longtail persistence, ranking and regression suite",
+      "depends_on": [
+        "OE-003F"
+      ],
+      "status": "BLOCKED",
+      "artifact": "ranked phrase registry + OE-003 tests",
+      "acceptance": "Persistence is idempotent; ranking is evidence-backed; bounded expansion and no-Cartesian-explosion invariants pass."
+    },
+    {
+      "id": "OE-003",
+      "phase": 12,
+      "title": "Object Atlas Longtail Engine v1 acceptance",
+      "depends_on": [
+        "OE-003G"
+      ],
+      "status": "BLOCKED",
+      "artifact": "OE-003 acceptance receipt",
+      "acceptance": "Cleaned Object seeds and Human demand contexts produce bounded, deduplicated, niche/customer-specific phrase hypotheses with phrase-level evidence and ranking."
+    },
+    {
+      "id": "OE-004A",
+      "phase": 12,
+      "title": "Worth-Making deterministic precheck and hard vetoes",
+      "depends_on": [
+        "OE-003"
+      ],
+      "status": "BLOCKED",
+      "artifact": "hard-veto precheck engine + schema",
+      "acceptance": "Freshness, evidence presence, rights/IP, safety, platform/product eligibility, tool rights, spend and falsifiable-buyer gates fail closed before cognitive judgment."
+    },
+    {
+      "id": "OE-004B",
+      "phase": 12,
+      "title": "Division01 Worth-Making author contract",
+      "depends_on": [
+        "OE-004A"
+      ],
+      "status": "BLOCKED",
+      "artifact": "die.division001.worth-making.v1 schema + Runtime Decision contract",
+      "acceptance": "Division01 alone authors buyer/JTBD, commercial thesis, factor judgments, veto resolution, confidence, falsification plan and recommendation from pinned evidence."
+    },
+    {
+      "id": "OE-004C",
+      "phase": 12,
+      "title": "Executive Worth-Making review contract",
+      "depends_on": [
+        "OE-004B"
+      ],
+      "status": "BLOCKED",
+      "artifact": "die.executive.worth-making-review.v1 schema + Runtime Decision contract",
+      "acceptance": "Executive challenges evidence contradiction, score inflation/double counting, portfolio overlap, opportunity cost and Product Expression fit; outputs NO_VETO|REVISE|VETO_PENDING_EVIDENCE|ESCALATE_FOUNDER."
+    },
+    {
+      "id": "OE-004D",
+      "phase": 12,
+      "title": "Worth-Making revision and return loop",
+      "depends_on": [
+        "OE-004C"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Division01<->Executive revision state contract",
+      "acceptance": "REVISE/VETO returns to Division01 without Executive editing the Division artifact; receipts preserve attempt lineage and prevent review laundering."
+    },
+    {
+      "id": "OE-004E",
+      "phase": 12,
+      "title": "Worth-Making receipt validation and freshness",
+      "depends_on": [
+        "OE-004D"
+      ],
+      "status": "BLOCKED",
+      "artifact": "receipt/hash/freshness validator",
+      "acceptance": "Hermes/Workers can verify principal, source hashes, freshness and review outcome but cannot author or mutate commercial semantics."
+    },
+    {
+      "id": "OE-004F",
+      "phase": 12,
+      "title": "Worth-Making canary fixtures and failure suite",
+      "depends_on": [
+        "OE-004E"
+      ],
+      "status": "BLOCKED",
+      "artifact": "OE-004 fixtures/tests + receipt",
+      "acceptance": "Pass, revise, veto, stale-evidence, missing-principal and forged-review cases behave deterministically; legacy Kanban done is insufficient."
+    },
+    {
+      "id": "OE-004",
+      "phase": 12,
+      "title": "Worth-Making Gate v1 acceptance",
+      "depends_on": [
+        "OE-004F"
+      ],
+      "status": "BLOCKED",
+      "artifact": "OE-004 acceptance receipt",
+      "acceptance": "Production-family promotion requires deterministic precheck + Division01 author receipt + Executive review; Hermes is not the Worth-Making decider."
+    },
+    {
+      "id": "OE-005A",
+      "phase": 12,
+      "title": "Division01 Blueprint authoring schema",
+      "depends_on": [
+        "OE-004"
+      ],
+      "status": "BLOCKED",
+      "artifact": "die.division001.blueprint-authoring.v1 schema",
+      "acceptance": "Blueprint authoring pins Worth-Making/review refs and contains buyer/use case, family thesis, Product Expression, visual constraints, QA/falsification and source evidence."
+    },
+    {
+      "id": "OE-005B",
+      "phase": 12,
+      "title": "Master prompt and semantic variation contract",
+      "depends_on": [
+        "OE-005A"
+      ],
+      "status": "BLOCKED",
+      "artifact": "prompt/variation/negative-constraint contract",
+      "acceptance": "Division01 owns exact master prompt, negative constraints and semantic variation plan; fields are structured enough to compile without Worker/Hermes invention."
+    },
+    {
+      "id": "OE-005C",
+      "phase": 12,
+      "title": "Executive Blueprint review contract",
+      "depends_on": [
+        "OE-005B"
+      ],
+      "status": "BLOCKED",
+      "artifact": "die.executive.blueprint-review.v1 schema",
+      "acceptance": "Executive reviews family strategy, contradictions, overlap, differentiation, expression fit and whether proposed production tests the Worth-Making thesis; it does not edit prompts in place."
+    },
+    {
+      "id": "OE-005D",
+      "phase": 12,
+      "title": "Deterministic Blueprint compiler",
+      "depends_on": [
+        "OE-005C"
+      ],
+      "status": "BLOCKED",
+      "artifact": "blueprint compiler/schema normalizer",
+      "acceptance": "Worker/OpenCode serializes exact authored semantics, validates capabilities/contracts and fails if semantic content is missing; no prompt invention."
+    },
+    {
+      "id": "OE-005E",
+      "phase": 12,
+      "title": "Blueprint provenance and hash lock",
+      "depends_on": [
+        "OE-005D"
+      ],
+      "status": "BLOCKED",
+      "artifact": "compiled blueprint hash/provenance receipt",
+      "acceptance": "Compiled artifact pins author/review/upstream evidence and immutable hash suitable for Founder authorization."
+    },
+    {
+      "id": "OE-005F",
+      "phase": 12,
+      "title": "Blueprint failure and determinism suite",
+      "depends_on": [
+        "OE-005E"
+      ],
+      "status": "BLOCKED",
+      "artifact": "OE-005 tests + receipt",
+      "acceptance": "Missing author/review fields, semantic gaps, capability mismatch and hash tampering fail; same authored inputs compile identically."
+    },
+    {
+      "id": "OE-005",
+      "phase": 12,
+      "title": "Blueprint Engine v1 acceptance",
+      "depends_on": [
+        "OE-005F"
+      ],
+      "status": "BLOCKED",
+      "artifact": "OE-005 acceptance receipt",
+      "acceptance": "Division01 authors semantics, Executive reviews, deterministic compiler/hash lock succeeds without Worker/Hermes inventing content, and exact hash is Founder-gatable."
+    },
+    {
+      "id": "OE-006A",
+      "phase": 12,
+      "title": "Operator v2 prerequisite receipt registry",
+      "depends_on": [
+        "OE-005"
+      ],
+      "status": "BLOCKED",
+      "artifact": "typed intelligence prerequisite registry",
+      "acceptance": "Operator observes typed receipts for signals, score, Worth-Making, Executive review, Blueprint authoring/review, compile/hash and Founder authorization; Kanban is workflow metadata only."
+    },
+    {
+      "id": "OE-006B",
+      "phase": 12,
+      "title": "Operator v2 deterministic action authority map",
+      "depends_on": [
+        "OE-006A"
+      ],
+      "status": "BLOCKED",
+      "artifact": "canonical action_type->authority mapping + validator",
+      "acceptance": "Runtime model cannot self-grant authority; every action type is mapped and enforced deterministically, with forbidden/founder-required paths fail-closed."
+    },
+    {
+      "id": "OE-006C",
+      "phase": 12,
+      "title": "Operator v2 intelligence stage projection",
+      "depends_on": [
+        "OE-006A"
+      ],
+      "status": "BLOCKED",
+      "artifact": "next_required_receipt + intelligence_stage projection",
+      "acceptance": "High-level states expose deterministic missing prerequisite such as SIGNALS, DEMAND_SCORE, WORTH_MAKING, EXEC_REVIEW, BLUEPRINT_AUTHORING, BLUEPRINT_REVIEW, COMPILE or AUTHORIZATION."
+    },
+    {
+      "id": "OE-006D",
+      "phase": 12,
+      "title": "Legacy Kanban cognition quarantine",
+      "depends_on": [
+        "OE-006B",
+        "OE-006C"
+      ],
+      "status": "BLOCKED",
+      "artifact": "legacy-card quarantine/migration rule",
+      "acceptance": "Historical T1/T2/T2-R2 done cards cannot satisfy new cognitive gates unless backed by typed principal receipts; no silent grandfathering."
+    },
+    {
+      "id": "OE-006E",
+      "phase": 12,
+      "title": "Canonical OS-neutral operator prepare entrypoint",
+      "depends_on": [
+        "OE-006D"
+      ],
+      "status": "BLOCKED",
+      "artifact": "repo-canonical prepare entrypoint + Linux/Windows path tests",
+      "acceptance": "Profile-local hardcoded C:\\DIE wrapper is replaced by canonical path abstraction; Linux activation does not depend on mutable Windows profile glue."
+    },
+    {
+      "id": "OE-006F",
+      "phase": 12,
+      "title": "Operator v2 anti-macet routing and follow-up",
+      "depends_on": [
+        "OE-006E"
+      ],
+      "status": "BLOCKED",
+      "artifact": "orchestration routing implementation",
+      "acceptance": "Hermes requests the correct principal/worker for the next receipt, follows stalls/dedupes work, drafts Founder requests only when prerequisites pass, and never authors cognition semantics."
+    },
+    {
+      "id": "OE-006G",
+      "phase": 12,
+      "title": "Operator v2 regression, replay and crash suite",
+      "depends_on": [
+        "OE-006F"
+      ],
+      "status": "BLOCKED",
+      "artifact": "OE-006 tests + replay/crash receipt",
+      "acceptance": "Authority spoofing, stale/forged receipts, restart/replay, duplicate work and legacy-card cases fail closed; legitimate progression is deterministic."
+    },
+    {
+      "id": "OE-006",
+      "phase": 12,
+      "title": "Hermes Operator v2 acceptance",
+      "depends_on": [
+        "OE-006G"
+      ],
+      "status": "BLOCKED",
+      "artifact": "OE-006 acceptance receipt",
+      "acceptance": "Hermes is a receipt-driven anti-macet orchestrator with deterministic authority and OS-neutral entrypoint; it cannot substitute runtime-model reasoning for Division01/Executive decisions."
+    },
+    {
+      "id": "OE-007A",
+      "phase": 13,
+      "title": "Governed canary candidate and snapshot pin",
+      "depends_on": [
+        "OE-006",
+        "DIE-204",
+        "MX-070"
+      ],
+      "status": "BLOCKED",
+      "artifact": "one candidate/family + pinned canon/object/market snapshot",
+      "acceptance": "Canary starts only after Operator v2, Linux company topology and compatibility adapter are ready; exact candidate/evidence/canon versions are pinned."
+    },
+    {
+      "id": "OE-007B",
+      "phase": 13,
+      "title": "Governed canary signals-score-longtail chain",
+      "depends_on": [
+        "OE-007A"
+      ],
+      "status": "BLOCKED",
+      "artifact": "OE-001/OE-002/OE-003 canary receipts",
+      "acceptance": "One candidate produces real/approved bounded signal receipts, Demand Score and evidence-backed longtail/context candidates without hidden heuristic fallback."
+    },
+    {
+      "id": "OE-007C",
+      "phase": 13,
+      "title": "Governed canary Worth-Making cognition chain",
+      "depends_on": [
+        "OE-007B"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Division01 Worth-Making + Executive review receipts",
+      "acceptance": "Division01 authors the decision and Executive reviews it from fresh pinned context; only allowed review outcomes advance."
+    },
+    {
+      "id": "OE-007D",
+      "phase": 13,
+      "title": "Governed canary Blueprint cognition and compile chain",
+      "depends_on": [
+        "OE-007C"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Division01 Blueprint + Executive review + compiled hash receipt",
+      "acceptance": "Exact master prompt/variation semantics originate from Division01, Executive review passes, compiler produces immutable hash without invention."
+    },
+    {
+      "id": "OE-007E",
+      "phase": 13,
+      "title": "Governed canary Founder exact-hash authorization gate",
+      "depends_on": [
+        "OE-007D"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Founder authorization receipt or explicit stop",
+      "acceptance": "No production invocation occurs without explicit Founder decision naming exact blueprint hash, canary/batch scope and spend/irreversibility boundary; silence blocks."
+    },
+    {
+      "id": "OE-007F",
+      "phase": 13,
+      "title": "Governed canary Worker-MUXIA artifact execution",
+      "depends_on": [
+        "OE-007E"
+      ],
+      "status": "BLOCKED",
+      "artifact": "bounded Worker/MUXIA artifact + execution receipt",
+      "acceptance": "Authorized exact blueprint is executed through Worker/MUXIA with durable artifact lineage; no submission/publication authority expansion."
+    },
+    {
+      "id": "OE-007G",
+      "phase": 13,
+      "title": "Governed canary QA, feedback and closed-loop receipt",
+      "depends_on": [
+        "OE-007F"
+      ],
+      "status": "BLOCKED",
+      "artifact": "QA/artifact/feedback/ERVA-ready receipt chain",
+      "acceptance": "QA and lineage pass; observed acceptance/rejection/economic placeholders route back as governed learning inputs; false-success=0."
+    },
+    {
+      "id": "OE-007",
+      "phase": 13,
+      "title": "Full governed Opportunity Intelligence closed-loop canary",
+      "depends_on": [
+        "OE-007G"
+      ],
+      "status": "BLOCKED",
+      "artifact": "OE-007 end-to-end receipt",
+      "acceptance": "One candidate traverses signals -> score -> longtail/context -> Division Worth-Making -> Executive review -> Division Blueprint -> Executive review -> Founder exact-hash gate -> Worker/MUXIA -> artifact/QA feedback with complete lineage."
+    }
+  ]
 }

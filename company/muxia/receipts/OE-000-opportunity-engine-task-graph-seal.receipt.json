@@ -1,0 +1,54 @@
+{
+  "schema": "die.oe-roadmap-task-graph-seal.v1",
+  "task_id": "OE-000",
+  "date": "2026-08-29",
+  "status": "DONE",
+  "base_main": "25fb15decad9c9474ef28ce040ab50557f1656ca",
+  "graph": {
+    "path": "company/muxia-task-graph-v1.json",
+    "sha256": "d718fcba848466f73919d695439d328340cbba2c628435fc6f44d2667419b2f9",
+    "total_tasks": 106,
+    "oe_tasks": 54,
+    "oe_ready": [
+      "OE-001A"
+    ],
+    "oe_done": [
+      "OE-000"
+    ],
+    "milestones": [
+      "OE-001",
+      "OE-002",
+      "OE-003",
+      "OE-004",
+      "OE-005",
+      "OE-006",
+      "OE-007"
+    ]
+  },
+  "dependency_gates": {
+    "oe001_start": "OE-001A depends OE-000",
+    "serial_milestones": "OE-001 -> OE-002 -> OE-003 -> OE-004 -> OE-005 -> OE-006",
+    "oe007_start": [
+      "OE-006",
+      "DIE-204",
+      "MX-070"
+    ],
+    "cutover_guard": "MX-071 depends OE-007"
+  },
+  "authority": {
+    "division01": "Worth-Making and Blueprint semantic author",
+    "executive": "second-line strategic reviewer",
+    "hermes": "receipt-driven orchestrator only",
+    "worker_opencode": "bounded collector/scorer/compiler/executor",
+    "founder": "exact-hash production/spend/account/submission authority"
+  },
+  "batch_map": "docs/architecture/DIE_OPPORTUNITY_ENGINE_TASK_GRAPH_V1.md",
+  "architecture": "docs/architecture/DIE_OPPORTUNITY_ENGINE_ARCHITECTURE_V1.md",
+  "audit": "docs/architecture/DIE_OPPORTUNITY_ENGINE_AUDIT_V1.md",
+  "tests": {
+    "targeted": "25/25 PASS",
+    "full_bridge": "262/262 PASS",
+    "one_canon": "11/11 PASS"
+  },
+  "next_task": "OE-001A"
+}
