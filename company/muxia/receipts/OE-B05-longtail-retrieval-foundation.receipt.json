@@ -122,5 +122,6 @@
   "next_ready": [
     "OE-003D"
   ],
-  "next_batch": "OE-B06 — bounded dynamic expansion -> dedupe/IP/quota guardrails -> phrase-level OE-001/OE-002 loop -> persistence/ranking -> OE-003 acceptance."
+  "next_batch": "OE-B06 — bounded dynamic expansion -> dedupe/IP/quota guardrails -> phrase-level OE-001/OE-002 loop -> persistence/ranking -> OE-003 acceptance.",
+  "implementation_commit": "de4159dbe0928ef52023a31fd3ee7ce9c6c87940"
 }
