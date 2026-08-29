@@ -371,5 +371,6 @@
     "expected": "fixtures/calibration-expected.json",
     "ranking": "fixtures/calibration-ranking.json",
     "full_output_duplicates_committed": false
-  }
+  },
+  "implementation_commit": "cf9443962cbe9f934c0ceb9fe9d5d43053dcf862"
 }
