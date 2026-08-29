@@ -77,5 +77,10 @@
     "synthetic_fixture_cannot_masquerade_as_live": true,
     "unknown_not_zero": true
   },
-  "next_batch": "OE-B02 starts with parallel OE-001D/OE-001E fixture adapters, then OE-001F registry/freshness and OE-001G regression."
+  "next_batch": "OE-B02 starts with parallel OE-001D/OE-001E fixture adapters, then OE-001F registry/freshness and OE-001G regression.",
+  "implementation_commit": "9776d8a88cacc78ccf76031ffa0b83aee6167e85",
+  "publication": {
+    "pr": 52,
+    "state": "OPEN_PENDING_MERGE"
+  }
 }
