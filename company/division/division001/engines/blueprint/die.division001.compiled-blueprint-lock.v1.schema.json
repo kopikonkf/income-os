@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.division001.compiled-blueprint-lock.v1.schema.json",
+  "title": "DIE compiled Blueprint immutable provenance/hash lock v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "lock_id",
+    "blueprint_id",
+    "repository_sha",
+    "locked_at",
+    "compiled_artifact",
+    "compiler",
+    "provenance",
+    "semantic_hashes",
+    "capability_plan_sha256",
+    "integrity_status",
+    "founder_gate",
+    "production_authority_granted"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.division001.compiled-blueprint-lock.v1"
+    },
+    "lock_id": {
+      "type": "string",
+      "pattern": "^BPLOCK-[A-F0-9]{20}$"
+    },
+    "blueprint_id": {
+      "type": "string",
+      "pattern": "^BP-DIV001-[A-Z0-9_-]{8,120}$"
+    },
+    "repository_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "locked_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "compiled_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "sha256",
+        "bytes",
+        "canonical_json"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "die.division001.compiled-blueprint.v1"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "canonical_json": {
+          "const": true
+        }
+      }
+    },
+    "compiler": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "compiler_id",
+        "version",
+        "capability_profile_sha256"
+      ],
+      "properties": {
+        "compiler_id": {
+          "const": "division001-blueprint-compiler-v1"
+        },
+        "version": {
+          "const": "1.0.0"
+        },
+        "capability_profile_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "author_artifact_sha256",
+        "executive_review_sha256",
+        "governed_worth_making_sha256",
+        "compile_boundary_sha256"
+      ],
+      "properties": {
+        "author_artifact_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "executive_review_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "governed_worth_making_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "compile_boundary_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "semantic_hashes": {
+      "type": "object",
+      "minProperties": 11,
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "capability_plan_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "integrity_status": {
+      "const": "LOCKED"
+    },
+    "founder_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "eligible_for_exact_hash_authorization",
+        "exact_compiled_blueprint_sha256",
+        "authorization_granted"
+      ],
+      "properties": {
+        "eligible_for_exact_hash_authorization": {
+          "const": true
+        },
+        "exact_compiled_blueprint_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "authorization_granted": {
+          "const": false
+        }
+      }
+    },
+    "production_authority_granted": {
+      "const": false
+    }
+  }
+}

@@ -2835,3 +2835,26 @@ Validation: Blueprint contracts 14/14 PASS; contracts + OE/PAD graph 31/31 PASS;
 Receipt: `company/muxia/receipts/OE-B09-blueprint-contracts.receipt.json`.
 
 NEXT: OE-B10 — OE-005D final deterministic compiler -> OE-005E provenance/hash lock -> OE-005F failure/determinism suite -> OE-005 acceptance.
+
+
+---
+
+## 2026-08-29 - OE-B10 / OE-005 Blueprint Engine v1 acceptance
+
+`OE-005D/E/F = DONE`; milestone `OE-005 = DONE`; `OE-006A = READY`.
+
+The final Blueprint compiler is deterministic and canonical. It re-runs Division01 Blueprint semantic validation, reconstructs the compile boundary, requires an exact fresh Executive Blueprint `NO_VETO`, requires exactly one authored engine selection, validates the versioned MUXIA capability contract, copies exact authored semantics without mutation, and emits canonical JSON bytes.
+
+Compiler capability contract v1 maps `MUXIA_CHATGPT_IMAGE` + `RASTER_IMAGE` to MUXIA provider `chatgpt` with required capability `image.generate`, supported raster MIME outputs, and pinned MUXIA contract evidence. This proves contract compatibility only; runtime login/profile/provider readiness is explicitly not claimed.
+
+The hash-lock engine recompiles from full source lineage before locking, rejects noncanonical or forged compiled files, pins exact artifact bytes/SHA and semantic/capability provenance, and verifies post-lock integrity. `eligible_for_exact_hash_authorization=true` means the hash can be named in a later Founder decision; both `authorization_granted` and `production_authority_granted` remain false.
+
+Synthetic compiler canary (not a live production Blueprint): SHA256 `f8b6de9eabea3a6fa78fe36b1b822b076d6ac13ffa1904fee9614b116a8a6829`, 7750 bytes, lock `BPLOCK-F8B6DE9EABEA3A6FA78F`, provider `chatgpt`, capability `image.generate`. Replay and lock verification PASS.
+
+Failure/determinism regression covers ambiguous/unsupported/capability-mismatched engines, REVISE/stale review, semantic gaps, post-review mutation, noncanonical/forged compiled artifacts, post-lock artifact mutation and receipt hash tamper.
+
+Validation: compiler suite 16/16 PASS; OE-005 contracts/compiler/graph 47/47 PASS; full bridge 423/423 PASS; one-canon 11/11 PASS; Blueprint bytecode artifacts 0. No live cognition, MUXIA provider invocation, runtime-readiness claim, credentials, spend, Windows live DIE mutation, Object writer mutation, or production authority expansion occurred.
+
+Receipts: `company/muxia/receipts/OE-B10-blueprint-compiler.receipt.json` and `company/muxia/receipts/OE-005-blueprint-v1.receipt.json`.
+
+NEXT: OE-B11 — OE-006A Operator v2 typed prerequisite receipt registry -> OE-006B deterministic action authority map -> OE-006C intelligence stage projection.

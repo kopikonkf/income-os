@@ -1,0 +1,48 @@
+{
+  "schema": "die.division001.blueprint-compiler-capability-profile.v1",
+  "version": "1.0.0",
+  "status": "ACTIVE_COMPILER_CONTRACT",
+  "runtime_availability_claimed": false,
+  "engines": {
+    "MUXIA_CHATGPT_IMAGE": {
+      "asset_types": [
+        "RASTER_IMAGE"
+      ],
+      "provider_id": "chatgpt",
+      "required_capability": "image.generate",
+      "artifact_mime_types": [
+        "image/png",
+        "image/jpeg",
+        "image/webp"
+      ],
+      "contract_evidence": [
+        {
+          "path": "company/muxia/src/core/domain.ts",
+          "sha256": "beef951b9f70d3bb157da79739e9ab7cec625eea6a0ba933a76f0f177bf0f0ad",
+          "assertions": [
+            "JobRecord.providerId",
+            "JobRecord.requiredCapability",
+            "ProviderRecord.capabilities"
+          ]
+        },
+        {
+          "path": "company/muxia/tests/core/domain.test.mjs",
+          "sha256": "2c9c04e1b87a772d0b33896874a7f3f920d759e82fb9189375cff6fe68c1531e",
+          "assertions": [
+            "providerId=chatgpt",
+            "requiredCapability=image.generate"
+          ]
+        },
+        {
+          "path": "company/muxia/tests/core/job-artifact-registry.test.mjs",
+          "sha256": "3dd01b5be439e538e8f93ca41f199f8e88e33a9f1c957d92e91ee335514bad52",
+          "assertions": [
+            "providerId=chatgpt",
+            "requiredCapability=image.generate",
+            "image/png artifact receipt"
+          ]
+        }
+      ]
+    }
+  }
+}

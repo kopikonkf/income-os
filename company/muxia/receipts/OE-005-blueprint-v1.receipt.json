@@ -1,0 +1,148 @@
+{
+  "schema": "die.oe-milestone-receipt.v1",
+  "task_id": "OE-005",
+  "title": "Blueprint Engine v1 acceptance",
+  "status": "DONE",
+  "date": "2026-08-29",
+  "base_main": "9f0adc6e14f42a203a2cbae9019e645816bfee6c",
+  "upstream": {
+    "oe_b09_receipt": {
+      "path": "company/muxia/receipts/OE-B09-blueprint-contracts.receipt.json",
+      "sha256": "c6090188dab19d428891358dbc5e4473d228c7d70d5d95d6f876876ac1f1297a"
+    }
+  },
+  "compiler": {
+    "compiler_id": "division001-blueprint-compiler-v1",
+    "version": "1.0.0",
+    "role": "SERIALIZE_VALIDATE_HASH_ONLY",
+    "deterministic_canonical_json": true,
+    "semantic_invention_allowed": false,
+    "ambiguous_engine_selection_allowed": false
+  },
+  "capability_contract": {
+    "profile_path": "company/division/division001/engines/blueprint/BLUEPRINT_COMPILER_CAPABILITY_PROFILE_V1.json",
+    "profile_sha256": "efbff948beacbceceb539340d1163aa455eff43dd06295bb126ce0070efbeecd",
+    "engine_id": "MUXIA_CHATGPT_IMAGE",
+    "asset_type": "RASTER_IMAGE",
+    "provider_id": "chatgpt",
+    "required_capability": "image.generate",
+    "runtime_availability_claimed": false,
+    "pinned_muxia_contract_evidence_verified_on_compile": true
+  },
+  "hash_lock": {
+    "canonical_bytes_required": true,
+    "recompile_before_lock": true,
+    "post_lock_tamper_detected": true,
+    "founder_gate_eligible_field": true,
+    "authorization_granted": false,
+    "production_authority_granted": false
+  },
+  "synthetic_canary": {
+    "classification": "SYNTHETIC_COMPILER_AND_HASH_LOCK_PROOF_NOT_LIVE_PRODUCTION_BLUEPRINT",
+    "compiled_blueprint_sha256": "f8b6de9eabea3a6fa78fe36b1b822b076d6ac13ffa1904fee9614b116a8a6829",
+    "compiled_bytes": 7750,
+    "lock_id": "BPLOCK-F8B6DE9EABEA3A6FA78F",
+    "provider_id": "chatgpt",
+    "required_capability": "image.generate",
+    "deterministic_replay": true,
+    "lock_verify": true,
+    "runtime_availability_claimed": false,
+    "production_authority_granted": false
+  },
+  "failure_proofs": [
+    "AMBIGUOUS_ENGINE_REJECTED",
+    "CAPABILITY_MISMATCH_REJECTED",
+    "UNSUPPORTED_ENGINE_REJECTED",
+    "REVISE_REVIEW_REJECTED",
+    "STALE_REVIEW_REJECTED",
+    "SEMANTIC_GAP_REJECTED",
+    "POST_REVIEW_MUTATION_REJECTED",
+    "NONCANONICAL_COMPILED_REJECTED",
+    "FORGED_COMPILED_REJECTED",
+    "POST_LOCK_MUTATION_DETECTED",
+    "LOCK_RECEIPT_HASH_TAMPER_DETECTED"
+  ],
+  "validation": {
+    "oe005_compiler_suite": "16/16 PASS",
+    "oe005_contracts_compiler_graph": "47/47 PASS",
+    "full_bridge": "423/423 PASS",
+    "one_canon": "11/11 PASS",
+    "bytecode_artifacts": "0"
+  },
+  "runtime_boundary": {
+    "live_division01_blueprint_cognition_call_performed": false,
+    "live_executive_blueprint_review_call_performed": false,
+    "live_muxia_provider_invocation_performed": false,
+    "runtime_provider_ready_claimed": false,
+    "network_request_performed": false,
+    "credential_used_or_copied": false,
+    "spend_usd": 0,
+    "windows_live_die_mutated": false,
+    "object_filter_worker_mutated": false,
+    "production_authority_expanded": false
+  },
+  "artifacts": [
+    {
+      "path": "company/division/division001/engines/blueprint/CONTRACT_V1.md",
+      "sha256": "84fafab3f9a57b6a2306f82f33896c76912260d13f7dfd4bd9d163701df4331e",
+      "bytes": 3117
+    },
+    {
+      "path": "company/division/division001/engines/blueprint/BLUEPRINT_COMPILER_CAPABILITY_PROFILE_V1.json",
+      "sha256": "efbff948beacbceceb539340d1163aa455eff43dd06295bb126ce0070efbeecd",
+      "bytes": 1469
+    },
+    {
+      "path": "company/division/division001/engines/blueprint/die.division001.compiled-blueprint.v1.schema.json",
+      "sha256": "7467f2721e89aa009ab0056fee57a98b9f88711a718a96acdff4bea4ede233a5",
+      "bytes": 4982
+    },
+    {
+      "path": "company/division/division001/engines/blueprint/compile_blueprint.py",
+      "sha256": "16ee9993842d2bbd6f0348c701df5c434ee1fc2a4a38b86ab0f76d28cb951708",
+      "bytes": 11191
+    },
+    {
+      "path": "company/division/division001/engines/blueprint/die.division001.compiled-blueprint-lock.v1.schema.json",
+      "sha256": "cfca0849268955f7b5842be13c588d123e9adc67056713ec6a570dd63f7f52a8",
+      "bytes": 3836
+    },
+    {
+      "path": "company/division/division001/engines/blueprint/lock_compiled_blueprint.py",
+      "sha256": "887e85f1f29d20f39d2e6695b123caf6b1a625bbcda42763619c5d089407b19f",
+      "bytes": 6471
+    },
+    {
+      "path": "company/division/division001/engines/blueprint/run_compiler_canary.py",
+      "sha256": "c651261c0ab805d22acff6660abc15e846fb369bbc26ac22bd76454b7ff9d700",
+      "bytes": 2854
+    },
+    {
+      "path": "company/division/division001/engines/blueprint/fixtures/compiler-canary-expected-v1.json",
+      "sha256": "a7a087ff6ec113cc34150380acd2146918369446e45caff41b3d40e724366f2c",
+      "bytes": 285
+    },
+    {
+      "path": "bridge/tests/test_oe005_blueprint_compiler_v1.py",
+      "sha256": "06bf6332589870a756447bc276323704cf05b60e3a786e3394cfb503d84e85c4",
+      "bytes": 11662
+    }
+  ],
+  "acceptance": {
+    "division01_sole_blueprint_semantic_author": true,
+    "executive_read_only_blueprint_reviewer": true,
+    "deterministic_final_compiler": true,
+    "semantic_content_mutation_by_compiler": false,
+    "versioned_capability_contract": true,
+    "runtime_availability_separate_from_contract_compatibility": true,
+    "immutable_provenance_hash_lock": true,
+    "exact_hash_founder_gatable": true,
+    "founder_authorization_granted_by_oe005": false,
+    "production_authority_granted": false
+  },
+  "handoff": {
+    "next_task": "OE-006A",
+    "rule": "Operator v2 may observe typed Blueprint author/review/compile/hash-lock receipts, but Founder authorization remains a separate exact-hash prerequisite and legacy Kanban state is never equivalent to these receipts."
+  },
+  "implementation_commit": "6166388ec7e643c822b09f3967a2d7ca311de083"
+}
