@@ -2530,3 +2530,68 @@ Migration doc: `docs/migration/DIE_ATLAS_OBJECT_ENGINE_LINUX_MIGRATION_V1.md`.
 DIE-204 remains blocked because DIE-200/201 auth gates, DIE-202 credential gate, and DIE-203 final filter completion are still open.
 
 DIE-203 publication: PR #48 merged at `5c080921158c8af4a4b804b5f2f952956f23d915`. Post-merge Windows bridge 249/249 PASS, Windows one-canon 11/11 PASS, Linux main one-canon 11/11 PASS, Linux Object runtime verifier PASS, and credential fail-closed PASS. Windows Object filtering worker remains authoritative/active; DIE-203 remains `WAITING_OBJECT_FILTER_COMPLETION`.
+
+---
+
+## 2026-08-29 - Atlas Opportunity Intelligence Foundation + Engine Audit v1
+
+Audit scope: GitHub canon/main, live `C:\DIE`, Windows Object Asset Engine, and Hermes `income-operator` runtime/profile.
+
+### Canonical findings
+
+- Opportunity Signals Engine: **ABSENT**. No executable normalized platform/search signal collector exists yet.
+- Demand Score Engine: **PARTIAL / HEURISTIC V0**. Object Engine `demand_score.py` is real code, but uses static priors/Qwen-era signal mapping and explicitly lacks live marketplace signal collection.
+- Worth-Making Gate: **DOC + VALIDATOR ONLY**. Historical scorecards exist and `m001_loop.py` validates supplied score/veto/receipt fields, but no executable Worth-Making decision engine exists.
+- Blueprint Engine: **ARTIFACT + VALIDATOR ONLY**. Historical `ASSET_BLUEPRINT.json` exists and was compiled by OpenCode; `m001_loop.py` validates/hash-locks an existing blueprint but does not author buyer thesis, master prompt, or semantic variation plan.
+- Object Longtail Generator: **PARTIAL / CURATED V0**. `longtail_expand.py` has useful normalization/dedup/modifier/IP guardrails but expands only a small hard-coded seed dictionary; it is not yet a scalable cleaned-noun + Human-context + signal-driven engine.
+- Hermes Proactive Operator: **ACTIVE / REAL**, but current V1 evidence model is not sufficient for the target engine graph. Cron `die-proactive-operator-v1` runs every 30 minutes using a profile-local `die_operator_prepare.py` wrapper that hardcodes `C:\DIE` and delegates to `C:\DIE\bin\die_operator_tick.py prepare`.
+
+### Hermes loop gap
+
+Current Operator V1 can infer cognition completion from legacy Kanban `done` cards and has no first-class receipts for Opportunity Signals, Demand Score, Division-01 Worth-Making, Executive review, Division-01 Blueprint authoring, or Executive Blueprint review. The runtime agent also supplies an `authority` label in each candidate action; finalization does not yet enforce a canonical fixed `action_type -> authority` map. Recent runtime history selected `CREATE_BLUEPRINT_COMPILE_CARD` based on legacy T1/T2/T2-R2 status. A Kanban `done` card is now explicitly non-authoritative for cognition gates.
+
+Live Windows runtime was **not modified** by this foundation work.
+
+### Canonical architecture locked
+
+Human-Centric Atlas = demand generator.
+Object-Centric Atlas = validated media-agnostic semantic primitive generator.
+`OBJECT` in the 10D Human Atlas becomes a bounded queryable projection of cleaned Object Atlas, not a duplicated static mega-list.
+
+Core equation:
+
+`Object Primitive × Human Demand Context × Product Expression = Commercial Asset Hypothesis`
+
+Cross-join is retrieval/constraint/weighted-expansion based; exhaustive Cartesian materialization is forbidden.
+
+Product Expression is downstream and can range from primitive static assets through variants, compositions, packs/bundles, templates, motion/video, and 3D/spatial assets.
+
+### Engine authority lock
+
+- Division-01 = primary semantic AUTHOR of division-scoped Worth-Making and Blueprint semantics/master prompt.
+- Executive = required second-line strategic reviewer for production-family promotion; returns NO_VETO / REVISE / VETO_PENDING_EVIDENCE / escalation, but does not edit the Division blueprint in place.
+- Hermes = orchestrator/anti-macet only; routes requests/receipts, never authors Worth-Making judgment or prompt semantics.
+- Worker/OpenCode = bounded collector/scorer/compiler/executor; may serialize/validate/hash but cannot invent missing commercial or prompt semantics.
+- Founder = sovereign exact-hash production/spend/submission authority.
+
+### Foundation/build targets
+
+`OE-001` Opportunity Signals Contract + bounded collectors
+`OE-002` Demand Score v1 consuming current signal receipts
+`OE-003` Object Longtail v1 using cleaned seeds + Human modifiers + phrase-level signals
+`OE-004` Worth-Making v1: deterministic precheck + Division AUTHOR + Executive review
+`OE-005` Blueprint v1: Division AUTHOR + Executive review + deterministic compiler/hash lock
+`OE-006` Hermes Operator v2: prerequisite receipts, deterministic authority map, canonical OS-neutral prepare wrapper, legacy-card quarantine
+`OE-007` closed-loop canary through Founder exact-hash authorization and Worker/MUXIA
+
+### New canonical documents
+
+- `company/atlas/human-centric/CROSSJOIN_OBJECT_ATLAS_COMPLEMENT_V1.md`
+- `docs/architecture/DIE_OPPORTUNITY_ENGINE_AUDIT_V1.md`
+- `docs/architecture/DIE_OPPORTUNITY_ENGINE_ARCHITECTURE_V1.md`
+
+Human Atlas canon now contains H6 dual-Atlas complement. Runtime canon projection includes the Cross-Join complement as a fourth required M-001 canon document for Division01 and Executive.
+
+Validation on clean staging: targeted authority/projection/load suite 17/17 PASS; full bridge 254/254 PASS; one-canon 11/11 PASS.
+
+NEXT BUILD RECOMMENDATION: `OE-001` first. Do not build Worth-Making/Blueprint automation on top of heuristic demand and legacy Kanban completion.

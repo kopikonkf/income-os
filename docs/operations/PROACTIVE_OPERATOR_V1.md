@@ -260,3 +260,23 @@ After canon merge, OpenCode—not Architect DEV cognition—implements and revie
 It must not replace the Gateway dispatcher, modify J1–J8 semantics, touch live
 cards during test, add a state store, expose Architect MCP to runtime, or enable
 submission/publication.
+
+
+## 11. Engine-receipt alignment amendment
+
+The original V1 state machine predates the explicit Opportunity Signals, Demand Score, Executive review, and governed Blueprint Authoring engine graph. Until Operator v2 is implemented, do not interpret legacy Kanban completion alone as proof that Worth-Making or Blueprint cognition passed.
+
+Target Operator v2 keeps Hermes as anti-macet orchestrator and adds deterministic prerequisite surfaces such as `next_required_receipt` / `intelligence_stage` for:
+
+1. Opportunity Signals;
+2. Demand Score;
+3. Division-01 Worth-Making authoring;
+4. Executive Worth-Making review;
+5. Division-01 Blueprint authoring;
+6. Executive Blueprint review;
+7. deterministic Blueprint compilation/hash lock;
+8. Founder production authorization.
+
+`CREATE_BLUEPRINT_COMPILE_CARD` is eligible only after an authored Division-01 Blueprint artifact and required Executive review exist. A worker compiler may serialize/hash that artifact but may not fill missing prompt or commercial semantics.
+
+The current Windows cron/profile wrapper is historical runtime glue. Linux activation MUST use an OS-neutral canonical entry point rather than the profile-local hardcoded `C:\DIE` wrapper.

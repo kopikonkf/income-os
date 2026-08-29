@@ -12,7 +12,13 @@
     {
       "doc_id": "atlas",
       "path": "company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md",
-      "sha256": "b47fd2bcdec4ae21360a3dcf257abb749010ab4be9b18660194d32d02953ff80",
+      "sha256": "3e011079b4da3770ee10fd8a7c419bafe4c111e0ff5349890e397bd6e7ffd483",
+      "classification": "CANON"
+    },
+    {
+      "doc_id": "atlas_crossjoin_complement",
+      "path": "company/atlas/human-centric/CROSSJOIN_OBJECT_ATLAS_COMPLEMENT_V1.md",
+      "sha256": "b2264f146a1090d45dcd86968da89ecf6d7d36800ababb37998370f3da8a9ea3",
       "classification": "CANON"
     },
     {
@@ -39,79 +45,143 @@
       "fact_id": "HOLDINGS-NORTHSTAR",
       "label": "VERIFIED",
       "statement": "$1B/3Y is a holdings design constraint evaluated with net profit and annualized run-rate reported side by side; gross revenue is diagnostic only.",
-      "source_doc_ids": ["atlas", "blueprint"]
+      "source_doc_ids": [
+        "atlas",
+        "blueprint"
+      ]
     },
     {
       "fact_id": "PIPELINE-SCOPE",
       "label": "VERIFIED",
       "statement": "The holdings pipeline contains fifteen pillars A-O; only Pillar E Digital Assets is active through M-001.",
-      "source_doc_ids": ["pipeline"]
+      "source_doc_ids": [
+        "pipeline"
+      ]
     },
     {
       "fact_id": "ATLAS-EQUATION",
       "label": "VERIFIED",
       "statement": "Candidate space is HUMAN x ACTIVITY x OBJECT x PLACE x TIME x DEMOGRAPHIC x EMOTION x PROBLEM x INDUSTRY x COMMERCIAL_INTENT; no fixed millions/billions count is measured.",
-      "source_doc_ids": ["atlas", "blueprint"]
+      "source_doc_ids": [
+        "atlas",
+        "blueprint"
+      ]
     },
     {
       "fact_id": "WORTH-MAKING",
       "label": "VERIFIED",
       "statement": "Rights, safety, platform eligibility, tool commercial rights, spend authority, and a falsifiable buyer hypothesis are hard vetoes; score 75-100 is only a candidate for bounded validation after Founder gate.",
-      "source_doc_ids": ["atlas", "blueprint"]
+      "source_doc_ids": [
+        "atlas",
+        "blueprint"
+      ]
     },
     {
       "fact_id": "MASTER-REGISTRY",
       "label": "VERIFIED",
       "statement": "The seed registry contains thirteen opportunity lanes; MASTER-13 Boring Utilities/Object Families is P0 evidence-backed, and the registry does not cap the Atlas.",
-      "source_doc_ids": ["blueprint"]
+      "source_doc_ids": [
+        "blueprint"
+      ]
     },
     {
       "fact_id": "VALIDATION-UNLOCK",
       "label": "VERIFIED",
       "statement": "U1 is a controlled 20-40 distinct-asset unlock test with at least 80% universal-QA pass and zero hard-rights failures; it is not a monthly production ceiling.",
-      "source_doc_ids": ["atlas", "blueprint"]
+      "source_doc_ids": [
+        "atlas",
+        "blueprint"
+      ]
     },
     {
       "fact_id": "SCALE-UNLOCK",
       "label": "VERIFIED",
       "statement": "A paid license unlocks up to 50 assets/day for the validated family; positive observed ERVA with sufficient accepted asset-days may unlock up to 100/day and a 1k-5k/month capacity target.",
-      "source_doc_ids": ["atlas", "blueprint"]
+      "source_doc_ids": [
+        "atlas",
+        "blueprint"
+      ]
     },
     {
       "fact_id": "ZERO-TRASH",
       "label": "VERIFIED",
       "statement": "Zero Trash means route evaluation for economically usable assets, not publish everything: universal rights/safety hard fails are quarantined or recreated, and Tier-2 publication requires separate Pillar A authority.",
-      "source_doc_ids": ["pipeline", "atlas", "blueprint", "platform_matrix"]
+      "source_doc_ids": [
+        "pipeline",
+        "atlas",
+        "blueprint",
+        "platform_matrix"
+      ]
     },
     {
       "fact_id": "ROUTE-COHORT",
       "label": "VERIFIED",
       "statement": "The initial revenue cohort is Adobe Stock, Dreamstime, 123RF, Vecteezy, and MotionElements; Magnific is a production/recovery service, not a sixth marketplace, and $0 entitlement is unknown.",
-      "source_doc_ids": ["pipeline", "blueprint", "platform_matrix"]
+      "source_doc_ids": [
+        "pipeline",
+        "blueprint",
+        "platform_matrix"
+      ]
     },
     {
       "fact_id": "ERVA-DEFINITION",
       "label": "VERIFIED",
       "statement": "One valid asset-day is one eligible accepted live asset on one marketplace for one day; observed ERVA equals net royalty revenue divided by valid live asset-days, separate from acceptance yield.",
-      "source_doc_ids": ["pipeline", "blueprint"]
+      "source_doc_ids": [
+        "pipeline",
+        "blueprint"
+      ]
     },
     {
       "fact_id": "LIVE-STATE-BOUNDARY",
       "label": "VERIFIED",
       "statement": "Canon defines doctrine and mission design; current M-001 lifecycle, decisions, deadlines, evidence, and blockers must be read from the other signed semantic snapshot surfaces.",
-      "source_doc_ids": ["pipeline", "atlas", "blueprint"]
+      "source_doc_ids": [
+        "pipeline",
+        "atlas",
+        "blueprint"
+      ]
     },
     {
       "fact_id": "EXECUTION-BOUNDARY",
       "label": "VERIFIED",
       "statement": "Canon assimilation authorizes no production, upload, publication, account action, spend, raw repository access, worker control, or canonical state mutation.",
-      "source_doc_ids": ["pipeline", "atlas", "blueprint", "platform_matrix"]
+      "source_doc_ids": [
+        "pipeline",
+        "atlas",
+        "blueprint",
+        "platform_matrix"
+      ]
+    },
+    {
+      "fact_id": "DUAL-ATLAS-CROSSJOIN",
+      "label": "VERIFIED",
+      "statement": "Human Atlas is the demand generator; Object Atlas supplies cleaned media-agnostic object primitives. The OBJECT dimension is a bounded queryable projection, long-tail/cross-join is retrieval and constraint based rather than exhaustive Cartesian enumeration, and Product Expression is a separate downstream axis.",
+      "source_doc_ids": [
+        "atlas",
+        "atlas_crossjoin_complement"
+      ]
+    },
+    {
+      "fact_id": "INTELLIGENCE-AUTHORITY",
+      "label": "VERIFIED",
+      "statement": "Division-01 is semantic author of division-scoped Worth-Making and Blueprint semantics; Executive is second-line strategic reviewer for production-family promotion; Hermes routes and verifies prerequisite receipts but may not author Worth-Making judgment or master-prompt semantics; Worker may compile/hash but not invent missing semantics; Founder authorizes exact production scope/hash.",
+      "source_doc_ids": [
+        "atlas_crossjoin_complement",
+        "blueprint"
+      ]
     }
   ],
   "matrix_digest": {
     "classification": "SUPPORTING_INPUT",
     "checked_date": "2026-08-24",
-    "marketplaces": ["Adobe Stock", "Dreamstime", "123RF", "Vecteezy", "MotionElements"],
+    "marketplaces": [
+      "Adobe Stock",
+      "Dreamstime",
+      "123RF",
+      "Vecteezy",
+      "MotionElements"
+    ],
     "recovery_service": "Magnific",
     "acceptance_estimate_status": "HYPOTHESIS",
     "contract_rule": "Eligibility, account status, upload capacity, acceptance, and realized economics remain route-specific until dated contract/account receipts exist."
@@ -139,27 +209,51 @@
   "principal_profiles": {
     "chatgpt-plus-executive": {
       "scope": "company_portfolio",
-      "required_doc_ids": ["pipeline", "atlas", "blueprint"],
-      "supporting_doc_ids": ["platform_matrix", "quantity_workbook"],
+      "required_doc_ids": [
+        "pipeline",
+        "atlas",
+        "atlas_crossjoin_complement",
+        "blueprint"
+      ],
+      "supporting_doc_ids": [
+        "platform_matrix",
+        "quantity_workbook"
+      ],
       "role_facts": [
         {
           "fact_id": "EXECUTIVE-ROLE",
           "label": "VERIFIED",
-          "statement": "Executive observes, synthesizes, challenges, recommends, and escalates at portfolio scope; it does not operate M-001 or perform production.",
-          "source_doc_ids": ["pipeline", "blueprint"]
+          "statement": "Executive observes, synthesizes, challenges, recommends, and performs second-line strategic review of Division-01 Worth-Making/Blueprint family proposals; it does not author the Division blueprint in place, operate M-001 execution, command workers, or grant production authority.",
+          "source_doc_ids": [
+            "pipeline",
+            "blueprint",
+            "atlas_crossjoin_complement"
+          ]
         }
       ]
     },
     "division-head-division01": {
       "scope": "single_division",
-      "required_doc_ids": ["pipeline", "atlas", "blueprint"],
-      "supporting_doc_ids": ["platform_matrix", "quantity_workbook"],
+      "required_doc_ids": [
+        "pipeline",
+        "atlas",
+        "atlas_crossjoin_complement",
+        "blueprint"
+      ],
+      "supporting_doc_ids": [
+        "platform_matrix",
+        "quantity_workbook"
+      ],
       "role_facts": [
         {
           "fact_id": "DIVISION01-ROLE",
           "label": "VERIFIED",
-          "statement": "Division-01 owns bounded demand research, opportunity scoring, Worth-Making judgment, and Asset Blueprint specification for Pillar E; Hermes and Workers own governed execution.",
-          "source_doc_ids": ["atlas", "blueprint"]
+          "statement": "Division-01 owns bounded demand research, opportunity interpretation/scoring policy, Worth-Making semantic judgment, and Asset Blueprint/master-prompt specification for Pillar E; Executive provides second-line review for production-family promotion; Hermes and Workers own governed execution/compilation, not commercial semantics.",
+          "source_doc_ids": [
+            "atlas",
+            "blueprint",
+            "atlas_crossjoin_complement"
+          ]
         }
       ]
     }

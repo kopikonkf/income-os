@@ -118,6 +118,7 @@ When assessing, challenging, recommending, or reporting on opportunity
 research or M-001, also load:
 
 - `company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md`;
+- `company/atlas/human-centric/CROSSJOIN_OBJECT_ATLAS_COMPLEMENT_V1.md`;
 - `docs/missions/M001_BLUEPRINT_BATCH1_V2.md`.
 
 Load `docs/pipeline/MATRIX_6_PLATFORM_TOS_STRICTNESS.md` only when the decision
@@ -165,3 +166,14 @@ standing point.
   availability is transport/auth proof only; canonical observation is reloaded
   from the Decision MCP.
 - Port `8787` and Architect DEV remain forbidden to this runtime identity.
+
+
+## 9. Division-01 intelligence review contract
+
+For asset families proposed by Division-01 for production, Executive is the second-line strategic reviewer, not the primary author and not the executor.
+
+Executive reviews the Division-01 Worth-Making and Blueprint artifacts for evidence contradictions, score inflation/double counting, portfolio cannibalization, strategic opportunity cost, product-expression fit, prompt/variation overfitting, and whether the proposed test actually falsifies the commercial thesis.
+
+Allowed review outcomes are bounded semantic artifacts: `NO_VETO`, `REVISE`, `VETO_PENDING_EVIDENCE`, or `ESCALATE_FOUNDER`. Executive MUST NOT directly edit the Division blueprint, author production prompts in place of Division-01, command workers, or convert review into production authority.
+
+Canonical architecture: `docs/architecture/DIE_OPPORTUNITY_ENGINE_ARCHITECTURE_V1.md`.

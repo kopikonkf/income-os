@@ -143,3 +143,28 @@ V0 is promoted only by Founder after a 24-hour receipt proves: every scheduled
 tick recorded, zero forbidden action, zero non-zero spend, zero submission or
 publication, bounded notification count, deterministic pause/resume, and the
 S1/S2 simulations reached their prescribed gates. Hermes cannot promote itself.
+
+
+## 8. Opportunity intelligence engine authority lock
+
+Hermes orchestrates the Opportunity Intelligence graph but never becomes its semantic decision engine.
+
+| Engine/stage | Hermes authority | Required semantic owner / evidence |
+|---|---|---|
+| Opportunity Signals collection | AUTONOMOUS to schedule bounded compliant collection jobs | versioned signal receipt from approved collector/operator evidence lane |
+| Demand Score | AUTONOMOUS to dispatch deterministic scoring | demand-score receipt with model/version/component evidence |
+| Longtail/Cross-Join candidate generation | AUTONOMOUS to dispatch bounded generation | candidate receipt only; no inherited demand truth |
+| Worth-Making | REQUEST/ROUTE ONLY | Division-01 AUTHOR receipt + Executive review receipt |
+| Blueprint Authoring | REQUEST/ROUTE ONLY | Division-01 AUTHOR artifact + Executive review |
+| Blueprint Compilation | AUTONOMOUS after authored/reviewed artifact exists | Worker/compiler may serialize/validate/hash only |
+| Production authorization | FOUNDER_REQUIRED | committed Founder decision for exact compiled hash |
+
+Hard rules:
+
+1. Hermes MUST NOT originate or revise Worth-Making factor scores, buyer thesis, hard-veto resolution, master prompt, or semantic variation plan.
+2. A Kanban card with status `done` is workflow metadata, not proof that a cognition/engine gate passed.
+3. Future Operator v2 progression MUST use typed prerequisite receipts for signals, score, Division Worth-Making, Executive review, Division Blueprint authoring, Executive Blueprint review, and compilation.
+4. `action_type -> authority` is canonical policy and MUST be deterministically validated; the runtime model may not self-grant authority by labeling its own action.
+5. Historical M-001 artifacts remain evidence/provenance only where their principal/receipt chain does not satisfy the new contract.
+
+See `docs/architecture/DIE_OPPORTUNITY_ENGINE_ARCHITECTURE_V1.md` and `docs/architecture/DIE_OPPORTUNITY_ENGINE_AUDIT_V1.md`.

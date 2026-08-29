@@ -27,7 +27,7 @@ The projection supports only `chatgpt-plus-executive` at
 scope. It returns:
 
 - exact repository commit SHA and manifest SHA-256;
-- the three required M-001 canon documents and two supporting inputs, each
+- the four required M-001 canon documents and two supporting inputs, each
   named by repository-relative path, classification, SHA-256, and
   `load_status: VERIFIED`;
 - bounded common and role-specific decision facts with evidence labels;

@@ -8,6 +8,7 @@ DIVISION01 = ROOT / "company" / "division" / "division001" / "IDENTITY.md"
 
 PIPELINE = "docs/pipeline/DIGITAL_INCOME_PIPELINE_CANON.md"
 ATLAS = "company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md"
+COMPLEMENT = "company/atlas/human-centric/CROSSJOIN_OBJECT_ATLAS_COMPLEMENT_V1.md"
 BLUEPRINT = "docs/missions/M001_BLUEPRINT_BATCH1_V2.md"
 MATRIX = "docs/pipeline/MATRIX_6_PLATFORM_TOS_STRICTNESS.md"
 WORKBOOK = "docs/atlas/SCENARIO_1B_QUANTITY_GAME.xlsx"
@@ -28,7 +29,7 @@ def test_company_brain_routes_blueprint_to_both_runtime_cognitive_principals():
 def test_executive_has_conditional_m001_canon_contract_without_new_authority():
     executive = _read(EXECUTIVE)
 
-    for path in (PIPELINE, ATLAS, BLUEPRINT, MATRIX, WORKBOOK):
+    for path in (PIPELINE, ATLAS, COMPLEMENT, BLUEPRINT, MATRIX, WORKBOOK):
         assert path in executive
     assert "gross-revenue hypothesis model" in executive
     assert "grants no repository, filesystem, shell, new MCP" in executive
@@ -37,7 +38,7 @@ def test_executive_has_conditional_m001_canon_contract_without_new_authority():
 def test_division01_loads_full_m001_canon_before_worth_making():
     division = _read(DIVISION01)
 
-    for path in (PIPELINE, ATLAS, BLUEPRINT, MATRIX, WORKBOOK):
+    for path in (PIPELINE, ATLAS, COMPLEMENT, BLUEPRINT, MATRIX, WORKBOOK):
         assert path in division
     assert "before any\nresearch, scoring, Worth-Making Gate" in division
     assert "not observed ERVA or net-profit evidence" in division
