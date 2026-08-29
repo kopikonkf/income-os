@@ -129,6 +129,7 @@ def test_hash_pinned_role_scoped_projection_is_verified(
     assert [row["doc_id"] for row in data["required_documents"]] == [
         "pipeline",
         "atlas",
+        "atlas_crossjoin_complement",
         "blueprint",
     ]
     assert [row["doc_id"] for row in data["supporting_documents"]] == [

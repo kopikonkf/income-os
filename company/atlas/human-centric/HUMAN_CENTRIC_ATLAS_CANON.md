@@ -144,3 +144,18 @@ Research → produce → approve → license → measure ERVA → scale
   transformation and separate Pillar A publication authority.
 - Hermes orchestrates the loop; the Intelligence Director scores and specifies;
   workers execute bounded jobs; DIE State Manager remains the only state writer.
+
+
+## H6 - Dual-Atlas Cross-Join Complement
+
+The Human-Centric Atlas is the demand generator; the Object-Centric Atlas is the validated semantic-primitive generator. The `OBJECT` dimension SHOULD be populated through bounded retrieval from the cleaned Object Atlas rather than a duplicated static mega-list.
+
+A commercial asset hypothesis is modeled as:
+
+`Object Primitive ? Human Demand Context ? Product Expression`
+
+Object primitives are media-agnostic. Product Expression is downstream and may range from primitive static assets through compositions, packs/bundles, templates, motion/video, and 3D/spatial assets.
+
+Operational cross-join is retrieval- and constraint-based, not exhaustive Cartesian enumeration. Use demand-first or supply-first anchors, coherence constraints, bounded long-tail/context expansion, current Opportunity Signals, Demand Score, governed Worth-Making judgment, and only then Blueprint authoring.
+
+Normative complement: `company/atlas/human-centric/CROSSJOIN_OBJECT_ATLAS_COMPLEMENT_V1.md`. The preserved Qwen Cross-Join files remain provenance foundations and do not override current authority contracts.

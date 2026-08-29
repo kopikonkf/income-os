@@ -7,6 +7,7 @@ The normative Human-Centric Demand Atlas remains `HUMAN_CENTRIC_ATLAS_CANON.md`.
 
 Canonical source references:
 - `company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md`
+- `company/atlas/human-centric/CROSSJOIN_OBJECT_ATLAS_COMPLEMENT_V1.md`
 - `company/atlas/human-centric/foundations/qwen-crossjoin-v1/FOUNDATION_MANIFEST.json`
 
 Foundation primitives worth preserving include the 10D model; generative/contextual/commercial dimension classes; coherence constraints; weighted sampling rather than exhaustive Cartesian enumeration; Opportunity/Worth-Making scoring; executable blueprint contracts; metadata/QA/platform routing; and event-driven scaling.

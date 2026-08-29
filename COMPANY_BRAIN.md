@@ -116,8 +116,9 @@ A runtime actor starts from zero trusted conversational memory and loads, in ord
 5. for Executive, Division, and Hermes cognition,
    `docs/pipeline/DIGITAL_INCOME_PIPELINE_CANON.md`;
 6. for Hermes, and for Executive or Division cognition performing opportunity
-   research or M-001 work,
-   `company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md`;
+   research or M-001 work, load both
+   `company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md` and
+   `company/atlas/human-centric/CROSSJOIN_OBJECT_ATLAS_COMPLEMENT_V1.md`;
 7. `docs/missions/M001_BLUEPRINT_BATCH1_V2.md`:
    - for Hermes, before any M-001 planning, delegation, or reporting;
    - for Division-01 cognition, before any M-001 research, scoring,

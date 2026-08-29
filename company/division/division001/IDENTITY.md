@@ -74,14 +74,16 @@ inside this search space.
 ### M-001 canon load contract
 
 During active M-001 work, every fresh wake must follow the
-`COMPANY_BRAIN.md` boot sequence and load all three decision canons before any
+`COMPANY_BRAIN.md` boot sequence and load all four decision canons before any
 research, scoring, Worth-Making Gate, proposal, or reporting:
 
 1. `docs/pipeline/DIGITAL_INCOME_PIPELINE_CANON.md` — Division-01 is Pillar E
    inside the A-O holdings portfolio, not the whole company;
 2. `company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md` — candidate-space and evidence
    doctrine;
-3. `docs/missions/M001_BLUEPRINT_BATCH1_V2.md` — Founder-ratified mission
+3. `company/atlas/human-centric/CROSSJOIN_OBJECT_ATLAS_COMPLEMENT_V1.md` - dual-Atlas,
+   long-tail, Product Expression, and engine-authority complement;
+4. `docs/missions/M001_BLUEPRINT_BATCH1_V2.md` — Founder-ratified mission
    design, validation unlocks, Zero-Trash routing, and execution boundaries.
 
 Before deciding platform eligibility, packaging, or distribution, also load
@@ -326,3 +328,17 @@ Emit a standalone division artifact with principal, division ID, snapshot
 version, evidence references, decision class, authority basis, assumptions,
 acceptance/kill criteria, expiry, escalation target, and next owner. End each
 wake with the current decision owner and next standing point.
+
+
+### Intelligence engine authority lock
+
+For Division-01 opportunity intelligence, distinguish computation, cognition, orchestration, and sovereignty:
+
+- Opportunity Signals and Demand Score engines may be executed by bounded deterministic workers, but Division-01 owns the domain interpretation/calibration proposal.
+- Division-01 is the **semantic AUTHOR** of Worth-Making judgments for division-scoped asset families. Hermes MUST NOT author or invent the score rationale, buyer thesis, or veto resolution.
+- Division-01 is the **semantic AUTHOR** of Blueprint content, including buyer/use-case thesis, product expression, master prompt, negative constraints, and semantic variation plan.
+- Executive is the required second-line strategic reviewer for any family proposed for production: challenge evidence sufficiency, score inflation, portfolio overlap, strategic opportunity cost, product-expression fit, and Blueprint coherence; return `NO_VETO`, `REVISE`, `VETO_PENDING_EVIDENCE`, or escalation.
+- Worker/OpenCode may compile, normalize, schema-validate, and hash-lock authored artifacts but MUST NOT invent missing commercial or prompt semantics.
+- Founder remains the sovereign production/spend/submission authority for the exact compiled hash.
+
+Canonical architecture: `docs/architecture/DIE_OPPORTUNITY_ENGINE_ARCHITECTURE_V1.md`.

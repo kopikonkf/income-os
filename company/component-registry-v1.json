@@ -76,10 +76,11 @@
       "status": "CANONICAL_WITH_FOUNDATION_CORPUS",
       "source_refs": [
         "company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md",
-        "company/atlas/human-centric/foundations/qwen-crossjoin-v1/FOUNDATION_MANIFEST.json"
+        "company/atlas/human-centric/foundations/qwen-crossjoin-v1/FOUNDATION_MANIFEST.json",
+        "company/atlas/human-centric/CROSSJOIN_OBJECT_ATLAS_COMPLEMENT_V1.md"
       ],
       "migration_task": "DIE-203",
-      "note": "Human-Centric Atlas canon remains normative. Four Qwen Cross-Join/10D/validation documents are preserved as provenance foundations; they are explicitly non-normative until Founder ratification."
+      "note": "Human-Centric Atlas remains normative demand-generator canon. Cross-Join/Object complement is canonical; preserved Qwen foundation corpus remains non-normative provenance pending explicit Founder ratification."
     },
     "atlas_object_centric": {
       "logical_root": "company/atlas/object-centric/object-asset-engine",

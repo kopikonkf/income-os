@@ -28,6 +28,7 @@ CLASSIFICATIONS = {"CANON", "SUPPORTING_INPUT"}
 ALLOWED_DOCUMENTS = {
     "pipeline": "docs/pipeline/DIGITAL_INCOME_PIPELINE_CANON.md",
     "atlas": "company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md",
+    "atlas_crossjoin_complement": "company/atlas/human-centric/CROSSJOIN_OBJECT_ATLAS_COMPLEMENT_V1.md",
     "blueprint": "docs/missions/M001_BLUEPRINT_BATCH1_V2.md",
     "platform_matrix": "docs/pipeline/MATRIX_6_PLATFORM_TOS_STRICTNESS.md",
     "quantity_workbook": "docs/atlas/SCENARIO_1B_QUANTITY_GAME.xlsx",
@@ -35,6 +36,7 @@ ALLOWED_DOCUMENTS = {
 DOCUMENT_CLASSIFICATIONS = {
     "pipeline": "CANON",
     "atlas": "CANON",
+    "atlas_crossjoin_complement": "CANON",
     "blueprint": "CANON",
     "platform_matrix": "SUPPORTING_INPUT",
     "quantity_workbook": "SUPPORTING_INPUT",
@@ -275,7 +277,7 @@ def _load_manifest(
         supporting = profile["supporting_doc_ids"]
         if (
             profile["scope"] != expected_scope
-            or required != ["pipeline", "atlas", "blueprint"]
+            or required != ["pipeline", "atlas", "atlas_crossjoin_complement", "blueprint"]
             or supporting != ["platform_matrix", "quantity_workbook"]
         ):
             raise CanonContextError("E_CANON_INVALID", "principal canon routing is invalid")
