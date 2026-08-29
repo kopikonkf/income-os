@@ -280,3 +280,8 @@ Target Operator v2 keeps Hermes as anti-macet orchestrator and adds deterministi
 `CREATE_BLUEPRINT_COMPILE_CARD` is eligible only after an authored Division-01 Blueprint artifact and required Executive review exist. A worker compiler may serialize/hash that artifact but may not fill missing prompt or commercial semantics.
 
 The current Windows cron/profile wrapper is historical runtime glue. Linux activation MUST use an OS-neutral canonical entry point rather than the profile-local hardcoded `C:\DIE` wrapper.
+
+
+## 12. QA/QC/submission receipt continuation
+
+Operator v2 must eventually project typed prerequisites after artifact execution: QA receipt, QC receipt and QC delegation mode, platform QA profile, exact submission package hash, submission authority/delegation receipt, platform submission receipt, and platform review receipt. Kanban state is never sufficient evidence for these gates. `OE-007` stops at governed production QA/QC; `CL-001` is the full external market loop.
