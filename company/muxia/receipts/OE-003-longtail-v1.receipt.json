@@ -180,5 +180,6 @@
   "handoff": {
     "next_task": "OE-004A",
     "rule": "Worth-Making deterministic precheck consumes pinned candidate/score/evidence lineage. Longtail rank is evidence organization only and must not be promoted directly to production or substitute Division01 Worth-Making cognition."
-  }
+  },
+  "implementation_commit": "3358d0a4823e9f90c6466e48ed2c6f83a1b30f9b"
 }
