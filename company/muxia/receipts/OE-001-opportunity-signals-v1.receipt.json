@@ -126,5 +126,6 @@
   "handoff": {
     "next_task": "OE-002A",
     "rule": "OE-002 consumes validated signal receipts; absent evidence remains UNKNOWN and may not be replaced by hidden priors."
-  }
+  },
+  "implementation_commit": "2addb407d340a19b3a631d63229656f3edde1af2"
 }
