@@ -663,7 +663,7 @@
                                          "OE-001B",
                                          "OE-001C"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "bounded fixture/adapter A + receipt tests",
                       "acceptance":  "One low-risk source adapter produces normalized receipts deterministically without authority or policy expansion."
                   },
@@ -675,7 +675,7 @@
                                          "OE-001B",
                                          "OE-001C"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "bounded fixture/adapter B + receipt tests",
                       "acceptance":  "A second independent source adapter produces normalized receipts, proving source abstraction rather than source-specific scoring."
                   },
@@ -687,7 +687,7 @@
                                          "OE-001D",
                                          "OE-001E"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "signal registry + dedupe/staleness implementation",
                       "acceptance":  "Receipts are idempotent, source-scoped, freshness-aware and queryable by candidate/phrase/platform; duplicate observations do not inflate demand."
                   },
@@ -698,7 +698,7 @@
                       "depends_on":  [
                                          "OE-001F"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "OE-001 regression suite + receipt",
                       "acceptance":  "Valid fixtures pass; malformed, forbidden-acquisition, duplicate and stale evidence fail or degrade deterministically."
                   },
@@ -709,9 +709,9 @@
                       "depends_on":  [
                                          "OE-001G"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "OE-001 acceptance receipt",
-                      "acceptance":  "Normalized, timestamped, policy-bounded external opportunity signals exist as reusable receipts; engine records observations only and does not decide Worth-Making."
+                      "acceptance":  "Normalized, timestamped, policy-bounded source-shaped opportunity signal receipts, fixture adapters, registry/dedupe/freshness and failure semantics are reusable; live source collection requires separately approved acquisition profiles; engine records observations only and does not decide Worth-Making."
                   },
                   {
                       "id":  "OE-002A",
@@ -720,7 +720,7 @@
                       "depends_on":  [
                                          "OE-001"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "die.division001.demand-score.v1 schema",
                       "acceptance":  "Score output pins candidate/phrase, model version, component scores, evidence refs, confidence, timestamp and expiry."
                   },

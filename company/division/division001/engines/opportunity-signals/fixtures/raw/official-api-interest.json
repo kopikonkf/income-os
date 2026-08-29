@@ -1,0 +1,13 @@
+{
+  "source_id": "OTHER_APPROVED",
+  "source_name": "Approved Search Interest API simulated fixture",
+  "query": "desk cable organizer for remote work setup",
+  "parent_seed_id": "cable organizer",
+  "parent_candidate_id": "CAND-FIXTURE-001",
+  "market_locale": "en-US",
+  "language": "en",
+  "search_interest_index": 63.5,
+  "observed_at": "2026-08-29T05:02:00Z",
+  "freshness_window_seconds": 172800,
+  "fixture_model": "OFFICIAL_API"
+}

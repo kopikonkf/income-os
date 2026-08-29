@@ -1,0 +1,42 @@
+{
+  "schema_version": "die.division001.opportunity-signals.v1",
+  "signal_id": "OPSIG-API-C789A95F058082EA4187",
+  "subject": {
+    "kind": "PHRASE",
+    "id": "desk cable organizer for remote work setup",
+    "parent_seed_id": "cable organizer",
+    "parent_candidate_id": "CAND-FIXTURE-001"
+  },
+  "source": {
+    "source_id": "OTHER_APPROVED",
+    "source_name": "Approved Search Interest API simulated fixture",
+    "market_locale": "en-US",
+    "language": "en"
+  },
+  "signal_class": "DEMAND",
+  "signal_type": "SEARCH_INTEREST_INDEX",
+  "value": {
+    "kind": "INDEX",
+    "numeric_value": 63.5,
+    "boolean_value": null,
+    "text_value": null,
+    "unit": "index_0_100"
+  },
+  "observed_at": "2026-08-29T05:02:00Z",
+  "recorded_at": "2026-08-29T05:02:15Z",
+  "expires_at": "2026-08-31T05:02:15Z",
+  "freshness_window_seconds": 172800,
+  "evidence_label": "SYNTHETIC",
+  "confidence": "HIGH",
+  "collector_id": "fixture-adapter:official-api:v1",
+  "acquisition_method": "SYNTHETIC_FIXTURE",
+  "policy": {
+    "profile_id": "fixture-official-api",
+    "profile_version": "v1",
+    "classification": "SYNTHETIC_ONLY"
+  },
+  "source_ref": "fixture://official-api/c789a95f058082ea4187d0e967a442b719f8ab31250b105a0aa904036558c16d",
+  "evidence_sha256": "c789a95f058082ea4187d0e967a442b719f8ab31250b105a0aa904036558c16d",
+  "cost_usd": 0,
+  "dedupe_key": "oppsig:v1:90aa18440243d02d631be2780988f863eccd8a937c113b71fdc061f542be7752"
+}

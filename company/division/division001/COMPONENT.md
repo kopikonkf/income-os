@@ -13,7 +13,10 @@ Canonical source references:
 - `company/division/division001/engines/opportunity-signals/SIGNAL_TAXONOMY_V1.md`
 - `company/division/division001/engines/opportunity-signals/ACQUISITION_CONTRACT_V1.md`
 - `company/division/division001/engines/opportunity-signals/die.division001.opportunity-signals.v1.schema.json`
+- `company/division/division001/engines/opportunity-signals/ENGINE_V1.md`
+- `company/division/division001/engines/opportunity-signals/signal_registry.py`
+- `company/division/division001/engines/opportunity-signals/adapters/`
 
 DIE-103 rule: this ownership boundary does not authorize secret/profile/runtime-data copying or premature service cutover.
 
-Opportunity Intelligence: OE-001A/B/C contracts are canonical source-only contracts; they authorize no live collection and do not depend on runtime login. OE-001D/E adapter lanes remain separate implementation tasks.
+Opportunity Intelligence: `OE-001 = DONE`. The canonical engine includes source-shaped fixture adapters, strict receipt validation, and registry/dedupe/freshness behavior. No live source collection is implied; live adapters require separately approved acquisition profiles.

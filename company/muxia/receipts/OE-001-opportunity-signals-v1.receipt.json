@@ -1,0 +1,131 @@
+{
+  "schema": "die.oe-milestone-receipt.v1",
+  "task_id": "OE-001",
+  "title": "Opportunity Signals Engine v1 acceptance",
+  "status": "DONE",
+  "date": "2026-08-29",
+  "base_main": "2641dee3419c08cdebf8fae57ac87e753e3f1a30",
+  "artifacts": [
+    {
+      "path": "company/division/division001/engines/opportunity-signals/ENGINE_V1.md",
+      "sha256": "059607e84eecd3fcd04ae58b5e6f2be4120f9db1eb28be2152e11cbec7f61f38",
+      "bytes": 1985
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/SIGNAL_TAXONOMY_V1.md",
+      "sha256": "96bd582a17be4e316e07d83c1d05d3f07e7417ed051e5571759930f2c882c0b3",
+      "bytes": 4314
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/ACQUISITION_CONTRACT_V1.md",
+      "sha256": "283bf6778c8e71f1c7faf4ef8bb817a110f93e491b921d7ede835d98f2d2eef9",
+      "bytes": 4228
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/die.division001.opportunity-signals.v1.schema.json",
+      "sha256": "cd97a0418cf698072cc3d8c889c387a1d8b3588b5cd7c8ac112da70321f0b047",
+      "bytes": 11337
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/validate_signal_receipt.py",
+      "sha256": "359ab772ee0aa02ddeb07554f80774a013b50cb620f17aae345dcf425d2c052b",
+      "bytes": 5846
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/signal_registry.py",
+      "sha256": "b6980a57708f12b4713ffe4f507c76c37e3ed1150eae4d3411a3aec1eef92b77",
+      "bytes": 7408
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/adapters/common.py",
+      "sha256": "963c5d6e7f0cf56d6b03be2ada4319abe338fe8e14758556d613faf7c15a7fbe",
+      "bytes": 655
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/adapters/public_search_ui_fixture.py",
+      "sha256": "66143d60e063e13f3e188064ce163f86a8d9e909b54ddb7805b301e3f3eb36b1",
+      "bytes": 3175
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/adapters/official_api_fixture.py",
+      "sha256": "345ddba1a0e513f1501fb0c8f88a1170ac408a080d6f1bc8b68a113f7bea9147",
+      "bytes": 3049
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/fixtures/raw/public-search-ui-adobe.json",
+      "sha256": "9833f2d4dddc3f5910db5aac7dae50aac57843e0806e9ababc75194e52635497",
+      "bytes": 430
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/fixtures/raw/official-api-interest.json",
+      "sha256": "51addcd417baea3ba11481c2a33ec44369da1d497cf7545de0fa448ccba48fdf",
+      "bytes": 439
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/fixtures/adapted-public-search-ui.json",
+      "sha256": "d53d23cf5aee9212d9e6892a5d9267b416a2eecf701b5d9c74cb1e3c18f1bc0b",
+      "bytes": 1434
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/fixtures/adapted-official-api.json",
+      "sha256": "6e3d5cf223586e5cfc5172eab52a83d23354c38b96ce5f6b8ad71c88e53c23da",
+      "bytes": 1437
+    },
+    {
+      "path": "bridge/tests/test_oe001_signals_contract_v1.py",
+      "sha256": "e9bbf627030679552b183dca4ab96af229d1c9eee4073dc21acba0a9849a907b",
+      "bytes": 5010
+    },
+    {
+      "path": "bridge/tests/test_oe001_signals_engine_v1.py",
+      "sha256": "625045296124dff364c7901846df7dbe00314950afe2b506074464a2dd560e41",
+      "bytes": 8355
+    }
+  ],
+  "validation": {
+    "oe001_targeted_with_graph": "32/32 PASS",
+    "full_bridge": "286/286 PASS",
+    "one_canon": "11/11 PASS",
+    "bytecode_artifacts": "0"
+  },
+  "registry_proof": {
+    "insert_statuses": [
+      "INSERTED",
+      "INSERTED"
+    ],
+    "duplicate_status": "DUPLICATE",
+    "count_after_duplicate": 2,
+    "initial_fresh_count": 2,
+    "later_states": {
+      "ADOBE_STOCK": "STALE",
+      "OTHER_APPROVED": "FRESH"
+    },
+    "conflict_behavior": "E_DEDUPE_CONFLICT"
+  },
+  "runtime_boundary": {
+    "live_collection_performed": false,
+    "network_request_performed": false,
+    "platform_login_used": false,
+    "credential_used_or_copied": false,
+    "windows_live_die_mutated": false,
+    "object_filter_worker_mutated": false
+  },
+  "acceptance": {
+    "normalized_receipt_contract": true,
+    "source_independent_adapter_abstraction": true,
+    "policy_bounded_validation": true,
+    "synthetic_cannot_masquerade_live": true,
+    "idempotent_dedupe": true,
+    "dedupe_conflict_fail_closed": true,
+    "freshness_filtering": true,
+    "queryable_by_subject_source_type_candidate": true,
+    "live_external_collection_claimed": false,
+    "demand_score_implemented": false,
+    "worth_making_authority_expanded": false
+  },
+  "handoff": {
+    "next_task": "OE-002A",
+    "rule": "OE-002 consumes validated signal receipts; absent evidence remains UNKNOWN and may not be replaced by hidden priors."
+  },
+  "implementation_commit": "2addb407d340a19b3a631d63229656f3edde1af2"
+}

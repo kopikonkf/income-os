@@ -1,0 +1,42 @@
+{
+  "schema_version": "die.division001.opportunity-signals.v1",
+  "signal_id": "OPSIG-PUBUI-384D89DC4CBDF953393F",
+  "subject": {
+    "kind": "PHRASE",
+    "id": "desk cable organizer for remote work setup",
+    "parent_seed_id": "cable organizer",
+    "parent_candidate_id": "CAND-FIXTURE-001"
+  },
+  "source": {
+    "source_id": "ADOBE_STOCK",
+    "source_name": "Adobe Stock simulated public search UI",
+    "market_locale": "en-US",
+    "language": "en"
+  },
+  "signal_class": "SUPPLY",
+  "signal_type": "SEARCH_RESULTS_COUNT",
+  "value": {
+    "kind": "COUNT",
+    "numeric_value": 1842,
+    "boolean_value": null,
+    "text_value": null,
+    "unit": "results"
+  },
+  "observed_at": "2026-08-29T05:00:00Z",
+  "recorded_at": "2026-08-29T05:00:30Z",
+  "expires_at": "2026-08-30T05:00:30Z",
+  "freshness_window_seconds": 86400,
+  "evidence_label": "SYNTHETIC",
+  "confidence": "HIGH",
+  "collector_id": "fixture-adapter:public-search-ui:v1",
+  "acquisition_method": "SYNTHETIC_FIXTURE",
+  "policy": {
+    "profile_id": "fixture-public-search-ui",
+    "profile_version": "v1",
+    "classification": "SYNTHETIC_ONLY"
+  },
+  "source_ref": "fixture://public-search-ui/384d89dc4cbdf953393ff545d46fda38d9201e011419e413b984f9dff6d07c3f",
+  "evidence_sha256": "384d89dc4cbdf953393ff545d46fda38d9201e011419e413b984f9dff6d07c3f",
+  "cost_usd": 0,
+  "dedupe_key": "oppsig:v1:0517e91eef619d04efaae9c3abb38a78ce21578d2b44e619992054280b919b84"
+}
