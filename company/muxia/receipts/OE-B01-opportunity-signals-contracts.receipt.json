@@ -1,0 +1,85 @@
+{
+  "schema": "die.oe-batch-receipt.v1",
+  "batch_id": "OE-B01",
+  "date": "2026-08-29",
+  "status": "PASS",
+  "base_main": "d0d8c7986fe1261631443e87b29e1963eed283b6",
+  "atomic_tasks": [
+    {
+      "id": "OE-001A",
+      "status": "DONE",
+      "acceptance": "signal taxonomy/source classes sealed"
+    },
+    {
+      "id": "OE-001B",
+      "status": "DONE",
+      "acceptance": "strict receipt schema + semantic validator + valid fixture sealed"
+    },
+    {
+      "id": "OE-001C",
+      "status": "DONE",
+      "acceptance": "acquisition/ToS boundary sealed fail-closed"
+    }
+  ],
+  "next_ready": [
+    "OE-001D",
+    "OE-001E"
+  ],
+  "artifacts": [
+    {
+      "path": "company/division/division001/engines/opportunity-signals/SIGNAL_TAXONOMY_V1.md",
+      "sha256": "96bd582a17be4e316e07d83c1d05d3f07e7417ed051e5571759930f2c882c0b3",
+      "bytes": 4314
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/ACQUISITION_CONTRACT_V1.md",
+      "sha256": "283bf6778c8e71f1c7faf4ef8bb817a110f93e491b921d7ede835d98f2d2eef9",
+      "bytes": 4228
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/die.division001.opportunity-signals.v1.schema.json",
+      "sha256": "cd97a0418cf698072cc3d8c889c387a1d8b3588b5cd7c8ac112da70321f0b047",
+      "bytes": 11337
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/validate_signal_receipt.py",
+      "sha256": "a1891bb9a360c3859438ae3b5da41af52eb250fb80a5c44c32bf264df612332e",
+      "bytes": 5882
+    },
+    {
+      "path": "company/division/division001/engines/opportunity-signals/fixtures/valid-search-results-count.json",
+      "sha256": "ef618bb775f157c63bf2aa48a5e2cd04b38553f66e54731b540cbe486d436fa9",
+      "bytes": 1289
+    },
+    {
+      "path": "bridge/tests/test_oe001_signals_contract_v1.py",
+      "sha256": "e9bbf627030679552b183dca4ab96af229d1c9eee4073dc21acba0a9849a907b",
+      "bytes": 5010
+    }
+  ],
+  "validation": {
+    "oe_b01_and_graph": "21/21 PASS",
+    "full_bridge": "275/275 PASS",
+    "one_canon": "11/11 PASS"
+  },
+  "runtime_boundary": {
+    "live_collection_performed": false,
+    "network_request_performed": false,
+    "platform_login_used": false,
+    "credential_used_or_copied": false,
+    "windows_live_die_mutated": false,
+    "object_filter_worker_mutated": false
+  },
+  "contract_facts": {
+    "signal_is_evidence_not_score": true,
+    "unknown_policy_fail_closed": true,
+    "submission_policy_does_not_imply_collection_permission": true,
+    "synthetic_fixture_cannot_masquerade_as_live": true,
+    "unknown_not_zero": true
+  },
+  "next_batch": "OE-B02 starts with parallel OE-001D/OE-001E fixture adapters, then OE-001F registry/freshness and OE-001G regression.",
+  "implementation_commit": "9776d8a88cacc78ccf76031ffa0b83aee6167e85",
+  "publication": {
+    "pr": 52
+  }
+}

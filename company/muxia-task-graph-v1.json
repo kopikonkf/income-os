@@ -629,7 +629,7 @@
                       "depends_on":  [
                                          "OE-000"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "signal taxonomy + source-class contract",
                       "acceptance":  "Signal classes, platform scope, units, evidence labels, acquisition methods, confidence and staleness semantics are explicit; no collection yet."
                   },
@@ -640,7 +640,7 @@
                       "depends_on":  [
                                          "OE-001A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "die.division001.opportunity-signals.v1 schema + fixtures",
                       "acceptance":  "Schema validates candidate/phrase/platform identity, timestamp, value/unit, source ref, collector identity, evidence label, confidence, expiry and policy version; malformed/stale fixtures fail."
                   },
@@ -651,7 +651,7 @@
                       "depends_on":  [
                                          "OE-001A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "bounded acquisition contract + source policy matrix",
                       "acceptance":  "Approved collection methods are explicit; private-token extraction, protective-measure bypass, stealth and prohibited unattended scraping are fail-closed; operator evidence lanes are modeled."
                   },
@@ -663,7 +663,7 @@
                                          "OE-001B",
                                          "OE-001C"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "bounded fixture/adapter A + receipt tests",
                       "acceptance":  "One low-risk source adapter produces normalized receipts deterministically without authority or policy expansion."
                   },
@@ -675,7 +675,7 @@
                                          "OE-001B",
                                          "OE-001C"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "bounded fixture/adapter B + receipt tests",
                       "acceptance":  "A second independent source adapter produces normalized receipts, proving source abstraction rather than source-specific scoring."
                   },
