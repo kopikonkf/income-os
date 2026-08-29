@@ -169,5 +169,6 @@
   "next_ready": [
     "OE-004D"
   ],
-  "next_batch": "OE-B08 — immutable revision/return lineage -> cross-receipt principal/hash/freshness validation -> governed canary/failure suite -> OE-004 acceptance."
+  "next_batch": "OE-B08 — immutable revision/return lineage -> cross-receipt principal/hash/freshness validation -> governed canary/failure suite -> OE-004 acceptance.",
+  "implementation_commit": "1c4b7e34ef4487dd8fab3685707c31c8c393d65b"
 }
