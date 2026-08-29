@@ -964,7 +964,7 @@
                       "depends_on":  [
                                          "OE-004"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "die.division001.blueprint-authoring.v1 schema",
                       "acceptance":  "Blueprint authoring pins Worth-Making/review refs and contains buyer/use case, family thesis, Product Expression, visual constraints, QA/falsification and source evidence."
                   },
@@ -975,7 +975,7 @@
                       "depends_on":  [
                                          "OE-005A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "prompt/variation/negative-constraint contract",
                       "acceptance":  "Division01 owns exact master prompt, negative constraints and semantic variation plan; fields are structured enough to compile without Worker/Hermes invention."
                   },
@@ -986,7 +986,7 @@
                       "depends_on":  [
                                          "OE-005B"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "die.executive.blueprint-review.v1 schema",
                       "acceptance":  "Executive reviews family strategy, contradictions, overlap, differentiation, expression fit and whether proposed production tests the Worth-Making thesis; it does not edit prompts in place."
                   },
@@ -997,7 +997,7 @@
                       "depends_on":  [
                                          "OE-005C"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "blueprint compiler/schema normalizer",
                       "acceptance":  "Worker/OpenCode serializes exact authored semantics, validates capabilities/contracts and fails if semantic content is missing; no prompt invention."
                   },

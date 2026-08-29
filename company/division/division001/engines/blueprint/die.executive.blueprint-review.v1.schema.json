@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.executive.blueprint-review.v1.schema.json",
+  "title": "DIE Executive Blueprint review v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "review_id",
+    "principal",
+    "snapshot",
+    "blueprint_artifact",
+    "compile_boundary",
+    "governed_worth_making",
+    "challenges",
+    "outcome",
+    "required_actions",
+    "escalation_reason",
+    "review_mode",
+    "blueprint_artifact_edited",
+    "semantic_content_authored",
+    "production_authority_granted",
+    "reviewed_at",
+    "expires_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.executive.blueprint-review.v1"
+    },
+    "review_id": {
+      "type": "string",
+      "pattern": "^BP-EXEC-[A-Z0-9_-]{8,120}$"
+    },
+    "principal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "principal_id",
+        "role"
+      ],
+      "properties": {
+        "principal_id": {
+          "const": "chatgpt-plus-executive"
+        },
+        "role": {
+          "const": "REVIEWER"
+        }
+      }
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_sha",
+        "snapshot_id",
+        "as_of"
+      ],
+      "properties": {
+        "repository_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "snapshot_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "blueprint_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blueprint_id",
+        "sha256",
+        "author_principal_id"
+      ],
+      "properties": {
+        "blueprint_id": {
+          "type": "string",
+          "pattern": "^BP-DIV001-[A-Z0-9_-]{8,120}$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "author_principal_id": {
+          "const": "division-head-division01"
+        }
+      }
+    },
+    "compile_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sha256",
+        "semantic_content_mutated"
+      ],
+      "properties": {
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "semantic_content_mutated": {
+          "const": false
+        }
+      }
+    },
+    "governed_worth_making": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bundle_id",
+        "sha256",
+        "decision"
+      ],
+      "properties": {
+        "bundle_id": {
+          "type": "string",
+          "pattern": "^WMBUNDLE-[A-Z0-9_-]{8,120}$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "decision": {
+          "const": "PROMOTABLE_TO_BLUEPRINT"
+        }
+      }
+    },
+    "challenges": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "challenge_id",
+          "assessment",
+          "rationale",
+          "evidence_refs"
+        ],
+        "properties": {
+          "challenge_id": {
+            "enum": [
+              "worth_making_thesis_fidelity",
+              "family_strategy_coherence",
+              "constraint_contradiction_integrity",
+              "portfolio_overlap_differentiation",
+              "product_expression_fit",
+              "production_tests_worth_making_thesis"
+            ]
+          },
+          "assessment": {
+            "enum": [
+              "PASS",
+              "CONCERN",
+              "MATERIAL_CONCERN",
+              "UNKNOWN"
+            ]
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 50,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "ref",
+                "sha256"
+              ],
+              "properties": {
+                "ref": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 2000
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "outcome": {
+      "enum": [
+        "NO_VETO",
+        "REVISE",
+        "VETO_PENDING_EVIDENCE",
+        "ESCALATE_FOUNDER"
+      ]
+    },
+    "required_actions": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 1000
+      }
+    },
+    "escalation_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 2000
+    },
+    "review_mode": {
+      "const": "READ_ONLY_CHALLENGE"
+    },
+    "blueprint_artifact_edited": {
+      "const": false
+    },
+    "semantic_content_authored": {
+      "const": false
+    },
+    "production_authority_granted": {
+      "const": false
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

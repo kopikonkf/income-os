@@ -1,0 +1,170 @@
+{
+  "schema": "die.oe-batch-receipt.v1",
+  "batch_id": "OE-B09",
+  "date": "2026-08-29",
+  "status": "PASS",
+  "base_main": "35e7afd53a7d52ec18d4aedecef60f13fb4bb1fc",
+  "atomic_tasks": [
+    {
+      "id": "OE-005A",
+      "status": "DONE",
+      "result": "Division01 Blueprint semantic AUTHOR schema with governed Worth-Making/review/Longtail lineage, buyer/family/Product Expression, visual/production/platform/metadata/QA/economics semantics"
+    },
+    {
+      "id": "OE-005B",
+      "status": "DONE",
+      "result": "semantic drift/completeness validator plus self-validating deterministic compile-boundary projection; exact prompt/negative/variation semantics are copied and hashed without mutation; final compiler remains OE-005D"
+    },
+    {
+      "id": "OE-005C",
+      "status": "DONE",
+      "result": "Executive read-only Blueprint review contract with exact author/compile-boundary/governed Worth-Making hashes and six mandatory strategic challenge domains"
+    }
+  ],
+  "authority": {
+    "division01": {
+      "principal_id": "division-head-division01",
+      "role": "AUTHOR",
+      "owns_blueprint_semantics": true,
+      "owns_master_prompt": true,
+      "owns_negative_constraints": true,
+      "owns_semantic_variation_plan": true,
+      "may_grant_production_authority": false
+    },
+    "executive": {
+      "principal_id": "chatgpt-plus-executive",
+      "role": "REVIEWER",
+      "review_mode": "READ_ONLY_CHALLENGE",
+      "may_edit_blueprint": false,
+      "may_author_semantics": false,
+      "may_grant_production_authority": false
+    },
+    "worker_hermes": {
+      "may_validate_serialize_hash": true,
+      "may_invent_or_rewrite_semantics": false
+    },
+    "founder": {
+      "exact_hash_production_authority_remains_downstream": true
+    }
+  },
+  "worth_making_drift_boundary": {
+    "candidate": true,
+    "family_id": true,
+    "commercial_use_hypothesis": true,
+    "differentiation_thesis": true,
+    "buyer_job_to_be_done": true,
+    "buyer_utility": true,
+    "product_expression": true,
+    "material_change_requires_new_oe004_governed_attempt": true
+  },
+  "compiler_boundary": {
+    "role": "SERIALIZE_VALIDATE_HASH_ONLY",
+    "self_runs_semantic_validator": true,
+    "semantic_content_mutated": false,
+    "per_field_hashes": true,
+    "final_compiler_task": "OE-005D",
+    "founder_gatable_compiled_hash_exists": false
+  },
+  "executive_review": {
+    "challenge_domains": [
+      "worth_making_thesis_fidelity",
+      "family_strategy_coherence",
+      "constraint_contradiction_integrity",
+      "portfolio_overlap_differentiation",
+      "product_expression_fit",
+      "production_tests_worth_making_thesis"
+    ],
+    "outcomes": [
+      "NO_VETO",
+      "REVISE",
+      "VETO_PENDING_EVIDENCE",
+      "ESCALATE_FOUNDER"
+    ]
+  },
+  "upstream": {
+    "oe004_acceptance_receipt": {
+      "path": "company/muxia/receipts/OE-004-worth-making-v1.receipt.json",
+      "sha256": "3530d6f93b0f3a8fd9936ecfe5ef0846314bf9430c2173f1f1a5b523957100da"
+    }
+  },
+  "validation": {
+    "blueprint_contracts": "14/14 PASS",
+    "blueprint_plus_graph": "31/31 PASS",
+    "full_bridge": "407/407 PASS",
+    "one_canon": "11/11 PASS",
+    "bytecode_artifacts": "0"
+  },
+  "runtime_boundary": {
+    "live_division01_blueprint_cognition_call_performed": false,
+    "live_executive_blueprint_review_call_performed": false,
+    "final_compiler_executed": false,
+    "network_request_performed": false,
+    "credential_used_or_copied": false,
+    "spend_usd": 0,
+    "windows_live_die_mutated": false,
+    "object_filter_worker_mutated": false,
+    "production_authority_expanded": false
+  },
+  "artifacts": [
+    {
+      "path": "company/division/division001/engines/blueprint/CONTRACT_V1.md",
+      "sha256": "65303932a3fbc715087c8a6cec25dce1cf4841d35a00bd185e4ba3c9f730d768",
+      "bytes": 2004
+    },
+    {
+      "path": "company/division/division001/engines/blueprint/DIVISION01_BLUEPRINT_AUTHOR_CONTRACT_V1.md",
+      "sha256": "739b12db7cfcc361dcaac4993d2f6e81f6825f249671c9cb41b9fd830b1898cd",
+      "bytes": 2415
+    },
+    {
+      "path": "company/division/division001/engines/blueprint/die.division001.blueprint-authoring.v1.schema.json",
+      "sha256": "72b85a33dbd478e47ff5b4c9b02a79bb0c644872f8a59b110a8c50478a8792ce",
+      "bytes": 17291
+    },
+    {
+      "path": "company/division/division001/engines/blueprint/validate_blueprint_authoring.py",
+      "sha256": "ac363d865187ecb0d97193e8638e40417eadc1f507365b9e6c71a8abddac1b13",
+      "bytes": 6335
+    },
+    {
+      "path": "company/division/division001/engines/blueprint/BLUEPRINT_COMPILER_BOUNDARY_V1.json",
+      "sha256": "24261be397ad691b9bb8afec53de029a52ed74851ea37fd1d2c582c52b8517b5",
+      "bytes": 795
+    },
+    {
+      "path": "company/division/division001/engines/blueprint/prepare_compile_input.py",
+      "sha256": "79111d0a09510b7d2e331d890e8df06d6b2e5d3a275b44b0081456162fcc3db7",
+      "bytes": 3410
+    },
+    {
+      "path": "company/division/division001/engines/blueprint/EXECUTIVE_BLUEPRINT_REVIEW_CONTRACT_V1.md",
+      "sha256": "8c2e59ab93c81e35b3b893aedcd11dba4a23b6bc55be063fcc3770c695051874",
+      "bytes": 1286
+    },
+    {
+      "path": "company/division/division001/engines/blueprint/die.executive.blueprint-review.v1.schema.json",
+      "sha256": "ba56443c6ea5dd0ad059789759f1d7dc42f69c2c64ea1227ee32718a20677ae4",
+      "bytes": 5649
+    },
+    {
+      "path": "company/division/division001/engines/blueprint/validate_executive_blueprint_review.py",
+      "sha256": "a733915fa4799b15133280ec65d1c5e94e3abc72ef364af3de38fada68a8b2f6",
+      "bytes": 4368
+    },
+    {
+      "path": "company/division/division001/engines/blueprint/fixtures/build_blueprint_fixture.py",
+      "sha256": "f3173e564f4174ecb889eefe0ff3a3d1d287c68a161ac51e48be572c1b52a816",
+      "bytes": 10662
+    },
+    {
+      "path": "bridge/tests/test_oe005_blueprint_contracts_v1.py",
+      "sha256": "732b3dafbe338830bf61851e57aa9d1669815382492c820a4b99f5d2f1585ca1",
+      "bytes": 9316
+    }
+  ],
+  "next_ready": [
+    "OE-005D"
+  ],
+  "next_batch": "OE-B10 — OE-005D deterministic final compiler -> OE-005E immutable provenance/hash lock -> OE-005F determinism/failure suite -> OE-005 acceptance.",
+  "implementation_commit": "3917aa6db9c69d308c305d15e881a795018eb05c"
+}

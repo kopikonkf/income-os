@@ -1,0 +1,25 @@
+{
+  "schema": "die.division001.blueprint-compiler-boundary.v1",
+  "version": "1.0.0",
+  "semantics_owner": "division-head-division01",
+  "compiler_role": "SERIALIZE_VALIDATE_HASH_ONLY",
+  "compiler_may_invent_or_rewrite_semantics": false,
+  "compiler_may_change_master_prompt": false,
+  "compiler_may_change_negative_constraints": false,
+  "compiler_may_change_semantic_variation_plan": false,
+  "compiler_may_change_buyer_or_family_thesis": false,
+  "required_exact_fields": [
+    "family",
+    "buyer",
+    "product_expression",
+    "visual_spec",
+    "production.master_prompt",
+    "production.negative_constraints",
+    "production.semantic_variation_plan",
+    "platform_strategy",
+    "metadata_direction",
+    "qa_falsification",
+    "economics"
+  ],
+  "final_compiler_task": "OE-005D"
+}
