@@ -2657,3 +2657,26 @@ Task graph: `OE-001A..G = DONE`, `OE-001 = DONE`, and `OE-002A = READY`.
 Receipts: `company/muxia/receipts/OE-B02-opportunity-signals-engine.receipt.json` and `company/muxia/receipts/OE-001-opportunity-signals-v1.receipt.json`.
 
 NEXT: OE-B03 ? OE-002A Demand Score schema/model versioning + OE-002B evidence normalization + OE-002C UNKNOWN/freshness policy.
+
+
+---
+
+## 2026-08-29 - OE-B03 Demand Score v1 contracts
+
+`OE-002A/B/C = DONE`. Demand Score v1 now has a strict output schema, model ID/version/hash contract, explicit component-to-evidence mapping, and conservative UNKNOWN/freshness semantics.
+
+Required components for a future `COMPLETE` numeric score are `external_demand`, `supply_competition`, and `commercial_intent`. Missing evidence is not zero. If one or more required components are missing/stale/rejected, v1 returns `PARTIAL` or `INSUFFICIENT_EVIDENCE` with `final_score=null`. A separate hard-veto artifact can force `HARD_VETO`, also with `final_score=null`.
+
+Market observations must come from validated OE-001 Opportunity Signal receipts. Niche specificity, production feasibility, eligibility, and risk may use explicit deterministic/canon evidence but cannot masquerade as market demand. Default evidence reuse across multiple components is forbidden to prevent double counting.
+
+The historical Object Engine `demand_score.py` is pinned only as `CALIBRATION_PROVENANCE_ONLY_NOT_PRODUCTION_TRUTH`; its fallback 0.30 values and static intent/trend/seasonality dictionaries are not production-v1 evidence.
+
+No scoring weights or production arithmetic were assigned in OE-B03. All model components remain `UNASSIGNED_UNTIL_OE-002D`.
+
+Validation: OE-002 contract + graph suite 24/24 PASS; full bridge 302/302 PASS; one-canon 11/11 PASS; bytecode artifacts 0.
+
+Task graph: `OE-002A/B/C = DONE`; `OE-002D = READY`; OE-002E/F and milestone remain blocked.
+
+Receipt: `company/muxia/receipts/OE-B03-demand-score-contracts.receipt.json`.
+
+NEXT: OE-B04 ? implement deterministic scoring transforms/weights, calibration fixtures, ranking/regression, then OE-002 acceptance.

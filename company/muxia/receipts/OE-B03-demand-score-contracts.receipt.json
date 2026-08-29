@@ -1,0 +1,126 @@
+{
+  "schema": "die.oe-batch-receipt.v1",
+  "batch_id": "OE-B03",
+  "date": "2026-08-29",
+  "status": "PASS",
+  "base_main": "af5d058e8a9bba35eb89c72d87014e226d7a2bb1",
+  "atomic_tasks": [
+    {
+      "id": "OE-002A",
+      "status": "DONE",
+      "result": "strict demand-score schema + model ID/version/hash contract"
+    },
+    {
+      "id": "OE-002B",
+      "status": "DONE",
+      "result": "explicit component-to-evidence normalization contract; market observations separated from deterministic/canon evidence"
+    },
+    {
+      "id": "OE-002C",
+      "status": "DONE",
+      "result": "UNKNOWN/STALE/REJECTED/NOT_APPLICABLE semantics + conservative score-status/freshness policy"
+    }
+  ],
+  "model_contract": {
+    "path": "company/division/division001/engines/demand-score/DEMAND_SCORE_MODEL_V1.contract.json",
+    "sha256": "f62d2cdfa40ac28702f6f08ec3240bb6709581cc5cc28eeda96c99d4d5987f60",
+    "model_id": "division001-demand-score-v1",
+    "model_version": "1.0.0-contract",
+    "status": "CONTRACT_ONLY",
+    "weights_assigned": false
+  },
+  "required_complete_components": [
+    "external_demand",
+    "supply_competition",
+    "commercial_intent"
+  ],
+  "score_statuses": [
+    "COMPLETE",
+    "PARTIAL",
+    "INSUFFICIENT_EVIDENCE",
+    "HARD_VETO"
+  ],
+  "component_states": [
+    "KNOWN",
+    "UNKNOWN",
+    "STALE",
+    "REJECTED",
+    "NOT_APPLICABLE"
+  ],
+  "key_invariants": {
+    "no_evidence_is_not_zero": true,
+    "partial_final_score_is_null": true,
+    "insufficient_final_score_is_null": true,
+    "hard_veto_final_score_is_null": true,
+    "legacy_heuristic_not_production_evidence": true,
+    "stale_signal_cannot_support_known_current_component": true,
+    "default_single_evidence_single_component": true,
+    "weights_deferred_to_oe002d": true
+  },
+  "legacy_v0": {
+    "path": "company/atlas/object-centric/object-asset-engine/source/scripts/scoring/demand_score.py",
+    "sha256": "693701928a9368cae66a7f9c54d1f40439f0e9b60a23fea033dbee05ec7af7a8",
+    "classification": "CALIBRATION_PROVENANCE_ONLY_NOT_PRODUCTION_TRUTH"
+  },
+  "artifacts": [
+    {
+      "path": "company/division/division001/engines/demand-score/CONTRACT_V1.md",
+      "sha256": "1d4c100213816f51d0dad8482db30c1f951dfc269622d44d110f41a23d6f8d83",
+      "bytes": 1755
+    },
+    {
+      "path": "company/division/division001/engines/demand-score/DEMAND_SCORE_MODEL_V1.contract.json",
+      "sha256": "f62d2cdfa40ac28702f6f08ec3240bb6709581cc5cc28eeda96c99d4d5987f60",
+      "bytes": 3738
+    },
+    {
+      "path": "company/division/division001/engines/demand-score/die.division001.demand-score.v1.schema.json",
+      "sha256": "f98f56e6e0bb6172bbd82a90bc97ded538ccdbcfdca0cff367f442f54ab52cf0",
+      "bytes": 7158
+    },
+    {
+      "path": "company/division/division001/engines/demand-score/EVIDENCE_NORMALIZATION_V1.md",
+      "sha256": "6ed6bb1da94c2a6a4ad9e130bb3ff3de243929ece5d3ed7695e09c29b6aef184",
+      "bytes": 3424
+    },
+    {
+      "path": "company/division/division001/engines/demand-score/UNKNOWN_FRESHNESS_POLICY_V1.md",
+      "sha256": "3973987b8f11b2ce2b138a5c7fc20cf36f8f8fbe3e078619251da7563c844885",
+      "bytes": 3119
+    },
+    {
+      "path": "company/division/division001/engines/demand-score/validate_demand_score.py",
+      "sha256": "81e3f096481a251f2d5b7ddc86b09cd96611c56d600e3c12162df8b83c4cedf1",
+      "bytes": 8716
+    },
+    {
+      "path": "company/division/division001/engines/demand-score/fixtures/valid-partial-demand-score.json",
+      "sha256": "f42c1fdebd2d4579b27c23bb15fe8491a9275c2915e7d606ccdf5943aa983622",
+      "bytes": 4848
+    },
+    {
+      "path": "bridge/tests/test_oe002_demand_score_contract_v1.py",
+      "sha256": "04c7ec0fd82cd473cfefdd8bd5deb816d093e81d50673350c30e095243143a04",
+      "bytes": 7605
+    }
+  ],
+  "validation": {
+    "oe002_contract_plus_graph": "24/24 PASS",
+    "full_bridge": "302/302 PASS",
+    "one_canon": "11/11 PASS",
+    "bytecode_artifacts": "0"
+  },
+  "runtime_boundary": {
+    "scoring_arithmetic_implemented": false,
+    "weights_assigned": false,
+    "live_market_collection_performed": false,
+    "platform_login_used": false,
+    "credential_used_or_copied": false,
+    "windows_live_die_mutated": false,
+    "object_filter_worker_mutated": false
+  },
+  "next_ready": [
+    "OE-002D"
+  ],
+  "next_batch": "OE-B04 ? deterministic scorer, calibration fixtures, ranking/regression, OE-002 acceptance."
+}

@@ -1,0 +1,339 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.division001.demand-score.v1.schema.json",
+  "title": "DIE Division01 Demand Score v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "score_id",
+    "subject",
+    "model",
+    "evaluated_at",
+    "expires_at",
+    "score_status",
+    "final_score",
+    "confidence",
+    "evidence_coverage_ratio",
+    "required_coverage_ratio",
+    "hard_veto",
+    "components"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.division001.demand-score.v1"
+    },
+    "score_id": {
+      "type": "string",
+      "pattern": "^DSCORE-[A-Z0-9_-]{8,120}$"
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "id",
+        "parent_seed_id",
+        "parent_candidate_id"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "SEED_OBJECT",
+            "PHRASE",
+            "CANDIDATE"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "parent_seed_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 300
+        },
+        "parent_candidate_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 300
+        }
+      }
+    },
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model_id",
+        "model_version",
+        "contract_sha256"
+      ],
+      "properties": {
+        "model_id": {
+          "const": "division001-demand-score-v1"
+        },
+        "model_version": {
+          "const": "1.0.0-contract"
+        },
+        "contract_sha256": {
+          "const": "f62d2cdfa40ac28702f6f08ec3240bb6709581cc5cc28eeda96c99d4d5987f60"
+        }
+      }
+    },
+    "evaluated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "score_status": {
+      "enum": [
+        "COMPLETE",
+        "PARTIAL",
+        "INSUFFICIENT_EVIDENCE",
+        "HARD_VETO"
+      ]
+    },
+    "final_score": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "confidence": {
+      "enum": [
+        "HIGH",
+        "MEDIUM",
+        "LOW",
+        "NONE"
+      ]
+    },
+    "evidence_coverage_ratio": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "required_coverage_ratio": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "hard_veto": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "receipt_ref",
+        "receipt_sha256"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "CLEAR",
+            "BLOCKED",
+            "UNKNOWN"
+          ]
+        },
+        "receipt_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 1000
+        },
+        "receipt_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "components": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": {
+        "$ref": "#/$defs/component"
+      }
+    }
+  },
+  "$defs": {
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "component_id",
+        "state",
+        "normalized_score",
+        "confidence",
+        "evidence_refs",
+        "normalization_transform_id",
+        "normalization_transform_version",
+        "notes"
+      ],
+      "properties": {
+        "component_id": {
+          "enum": [
+            "external_demand",
+            "supply_competition",
+            "commercial_intent",
+            "trend_seasonality",
+            "platform_fit",
+            "niche_specificity",
+            "production_feasibility",
+            "eligibility",
+            "risk_penalty"
+          ]
+        },
+        "state": {
+          "enum": [
+            "KNOWN",
+            "UNKNOWN",
+            "STALE",
+            "REJECTED",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "normalized_score": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "confidence": {
+          "enum": [
+            "HIGH",
+            "MEDIUM",
+            "LOW",
+            "NONE"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "maxItems": 50,
+          "items": {
+            "$ref": "#/$defs/evidence_ref"
+          }
+        },
+        "normalization_transform_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200
+        },
+        "normalization_transform_version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 80
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 2000
+        }
+      }
+    },
+    "evidence_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_kind",
+        "evidence_id",
+        "evidence_sha256",
+        "signal_class",
+        "signal_type",
+        "observed_at",
+        "expires_at",
+        "freshness_state",
+        "source_ref"
+      ],
+      "properties": {
+        "evidence_kind": {
+          "enum": [
+            "OPPORTUNITY_SIGNAL",
+            "DETERMINISTIC_EVIDENCE",
+            "CANON_EVIDENCE",
+            "LEGACY_HEURISTIC"
+          ]
+        },
+        "evidence_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "evidence_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "signal_class": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "DEMAND",
+            "SUPPLY",
+            "COMPETITION",
+            "COMMERCIAL_INTENT",
+            "TREND",
+            "PLATFORM_FIT",
+            null
+          ]
+        },
+        "signal_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 100
+        },
+        "observed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "freshness_state": {
+          "enum": [
+            "FRESH",
+            "STALE",
+            "REJECTED",
+            "VERSION_VALID",
+            "UNKNOWN"
+          ]
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      }
+    }
+  }
+}

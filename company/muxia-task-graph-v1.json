@@ -720,7 +720,7 @@
                       "depends_on":  [
                                          "OE-001"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "die.division001.demand-score.v1 schema",
                       "acceptance":  "Score output pins candidate/phrase, model version, component scores, evidence refs, confidence, timestamp and expiry."
                   },
@@ -731,7 +731,7 @@
                       "depends_on":  [
                                          "OE-002A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "component-to-signal mapping contract",
                       "acceptance":  "External demand, supply/competition, commercial intent, niche specificity, feasibility, eligibility and risk components consume explicit signal refs without hidden priors."
                   },
@@ -742,7 +742,7 @@
                       "depends_on":  [
                                          "OE-002A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "unknown/staleness/missing-signal policy",
                       "acceptance":  "Missing evidence remains UNKNOWN or penalized explicitly; stale evidence cannot silently score as current; no invented defaults."
                   },
@@ -754,7 +754,7 @@
                                          "OE-002B",
                                          "OE-002C"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "deterministic scorer + CLI/library",
                       "acceptance":  "Same versioned inputs produce the same component/final score; hard safety/rights vetoes remain outside numeric scoring."
                   },
