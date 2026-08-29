@@ -1,0 +1,42 @@
+{
+  "schema_version": "die.division001.opportunity-signals.v1",
+  "signal_id": "OPSIG-FIXTURE-COUNT-0001",
+  "subject": {
+    "kind": "PHRASE",
+    "id": "desk cable organizer for remote work setup",
+    "parent_seed_id": "cable organizer",
+    "parent_candidate_id": "CAND-FIXTURE-001"
+  },
+  "source": {
+    "source_id": "SYNTHETIC_FIXTURE",
+    "source_name": "OE-001 schema fixture",
+    "market_locale": "en-US",
+    "language": "en"
+  },
+  "signal_class": "SUPPLY",
+  "signal_type": "SEARCH_RESULTS_COUNT",
+  "value": {
+    "kind": "COUNT",
+    "numeric_value": 1250,
+    "boolean_value": null,
+    "text_value": null,
+    "unit": "results"
+  },
+  "observed_at": "2026-08-29T04:00:00Z",
+  "recorded_at": "2026-08-29T04:01:00Z",
+  "expires_at": "2026-08-30T04:01:00Z",
+  "freshness_window_seconds": 86400,
+  "evidence_label": "SYNTHETIC",
+  "confidence": "HIGH",
+  "collector_id": "simulation-fixture:oe001",
+  "acquisition_method": "SYNTHETIC_FIXTURE",
+  "policy": {
+    "profile_id": "synthetic-fixture-policy",
+    "profile_version": "v1",
+    "classification": "SYNTHETIC_ONLY"
+  },
+  "source_ref": "fixture://oe001/search-results-count",
+  "evidence_sha256": null,
+  "cost_usd": 0,
+  "dedupe_key": "oppsig:v1:fixture:desk-cable-organizer:search-results-count:20260829T040000Z"
+}

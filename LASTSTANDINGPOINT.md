@@ -2615,3 +2615,24 @@ Validation: OE/task-graph + authority/runtime-context targeted suite 25/25 PASS;
 Receipt: `company/muxia/receipts/OE-000-opportunity-engine-task-graph-seal.receipt.json`.
 
 NEXT: execute `OE-B01` beginning at `OE-001A`; no additional roadmap design is required before OE-001 implementation.
+
+
+---
+
+## 2026-08-29 - OE-B01 Opportunity Signals contracts
+
+`OE-001A`, `OE-001B`, and `OE-001C` are complete on the OE-001 branch: signal taxonomy/source classes, strict `die.division001.opportunity-signals.v1` receipt schema + semantic validator, and fail-closed acquisition/ToS boundary.
+
+Opportunity Signal is explicitly evidence input only, not Demand Score, Worth-Making judgment, Blueprint decision, or production authority. Raw signal receipts permit only `OBSERVED`, `VERIFIED`, or `SYNTHETIC`; inference belongs downstream. UNKNOWN is never converted to zero.
+
+Acquisition policy classes are `ALLOWED_BOUNDED`, `OPERATOR_REQUIRED`, `OFFICIAL_API_ONLY`, and `SYNTHETIC_ONLY`. Unknown policy is fail-closed. The contract forbids cookie/token extraction, private backend calls, CAPTCHA/protection/rate-limit bypass, stealth, unauthorized automation, and treating submission eligibility as collection permission.
+
+No live collection, network request, platform login, credential use/copy, live `C:\DIE` mutation, or Object Atlas worker mutation occurred in OE-B01.
+
+Validation: OE-B01 + graph targeted 21/21 PASS; full bridge 275/275 PASS; one-canon 11/11 PASS.
+
+Task graph: `OE-001A/B/C = DONE`; `OE-001D` and `OE-001E = READY` in parallel; downstream remains blocked.
+
+Receipt: `company/muxia/receipts/OE-B01-opportunity-signals-contracts.receipt.json`.
+
+NEXT: OE-B02 ? implement two bounded fixture adapters, then normalized signal registry/dedupe/freshness and OE-001 acceptance regression.

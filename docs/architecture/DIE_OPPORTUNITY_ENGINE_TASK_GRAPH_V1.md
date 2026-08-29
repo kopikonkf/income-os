@@ -167,7 +167,7 @@ Founder silence at OE-007E means BLOCKED, never implicit authorization.
 
 `OE-000 = DONE` — graph/authority/batch seal.
 
-`OE-001A = READY` — this is the only OE atomic task currently runnable.
+`OE-001A/B/C = DONE` — taxonomy, receipt schema, and acquisition/ToS boundary are sealed.`n`n`OE-001D` and `OE-001E = READY` — the two bounded fixture-adapter lanes are now runnable in parallel.
 
 All other OE tasks are BLOCKED by explicit graph dependencies.
 

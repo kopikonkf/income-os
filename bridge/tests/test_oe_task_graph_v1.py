@@ -49,12 +49,17 @@ def test_oe_roadmap_has_all_milestones_and_only_first_atomic_task_ready() -> Non
         assert task_id in tasks
     assert tasks["OE-000"]["status"] == "DONE"
     ready = {task_id for task_id, row in tasks.items() if task_id.startswith("OE-") and row["status"] == "READY"}
-    assert ready == {"OE-001A"}
+    assert ready == {"OE-001D", "OE-001E"}
 
 
 def test_oe_milestone_dependency_chain_is_strict() -> None:
     tasks = _tasks()
     assert tasks["OE-001A"]["depends_on"] == ["OE-000"]
+    assert tasks["OE-001A"]["status"] == "DONE"
+    assert tasks["OE-001B"]["status"] == "DONE"
+    assert tasks["OE-001C"]["status"] == "DONE"
+    assert tasks["OE-001D"]["status"] == "READY"
+    assert tasks["OE-001E"]["status"] == "READY"
     assert tasks["OE-002A"]["depends_on"] == ["OE-001"]
     assert tasks["OE-003A"]["depends_on"] == ["OE-002"]
     assert tasks["OE-004A"]["depends_on"] == ["OE-003"]
