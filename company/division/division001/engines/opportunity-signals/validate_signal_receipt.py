@@ -90,7 +90,7 @@ def validate(payload: dict[str, Any], schema: dict[str, Any], *, as_of: dt.datet
     label = payload["evidence_label"]
     source_id = payload["source"]["source_id"]
     if label == "SYNTHETIC":
-        if method != "SYNTHETIC_FIXTURE" or policy != "SYNTHETIC_ONLY" or source_id != "SYNTHETIC_FIXTURE":
+        if method != "SYNTHETIC_FIXTURE" or policy != "SYNTHETIC_ONLY":
             errors.append("E_SYNTHETIC_BOUNDARY:fixture_mismatch")
         if payload["cost_usd"] != 0:
             errors.append("E_SYNTHETIC_BOUNDARY:fixture_cost_nonzero")

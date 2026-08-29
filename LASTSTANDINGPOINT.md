@@ -2636,3 +2636,24 @@ Task graph: `OE-001A/B/C = DONE`; `OE-001D` and `OE-001E = READY` in parallel; d
 Receipt: `company/muxia/receipts/OE-B01-opportunity-signals-contracts.receipt.json`.
 
 NEXT: OE-B02 ? implement two bounded fixture adapters, then normalized signal registry/dedupe/freshness and OE-001 acceptance regression.
+
+
+---
+
+## 2026-08-29 - OE-B02 / OE-001 Opportunity Signals Engine v1 acceptance
+
+`OE-001 = DONE`. OE-B02 completed `OE-001D/E/F/G`: two deterministic source-shaped fixture adapters, SQLite signal registry with idempotent dedupe/conflict/freshness semantics, and the OE-001 regression/failure suite.
+
+Fixture adapter A models a public-search UI supply observation (`ADOBE_STOCK`, `SEARCH_RESULTS_COUNT`); fixture adapter B models an approved official-API-style demand observation (`SEARCH_INTEREST_INDEX`). Both remain `SYNTHETIC` + `SYNTHETIC_ONLY`; no live source collection is claimed.
+
+Registry proof: two independent receipts INSERTED; exact duplicate returns DUPLICATE and count remains 2; same dedupe identity with altered payload returns `E_DEDUPE_CONFLICT`; at a later evaluation time Adobe fixture is STALE while the longer-window API fixture remains FRESH. Current queries exclude stale evidence by default.
+
+OE-001 acceptance explicitly proves the reusable evidence substrate only. It does not implement Demand Score, Worth-Making, Blueprint, or live-platform acquisition permission. Any live adapter requires a separately reviewed acquisition policy profile.
+
+Validation: OE-001 contracts + engine + graph targeted 32/32 PASS; full bridge 286/286 PASS; one-canon 11/11 PASS; source bytecode artifacts 0.
+
+Task graph: `OE-001A..G = DONE`, `OE-001 = DONE`, and `OE-002A = READY`.
+
+Receipts: `company/muxia/receipts/OE-B02-opportunity-signals-engine.receipt.json` and `company/muxia/receipts/OE-001-opportunity-signals-v1.receipt.json`.
+
+NEXT: OE-B03 ? OE-002A Demand Score schema/model versioning + OE-002B evidence normalization + OE-002C UNKNOWN/freshness policy.

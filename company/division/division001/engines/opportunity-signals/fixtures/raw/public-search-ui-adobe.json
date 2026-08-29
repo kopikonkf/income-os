@@ -1,0 +1,13 @@
+{
+  "source_id": "ADOBE_STOCK",
+  "source_name": "Adobe Stock simulated public search UI",
+  "query": "desk cable organizer for remote work setup",
+  "parent_seed_id": "cable organizer",
+  "parent_candidate_id": "CAND-FIXTURE-001",
+  "market_locale": "en-US",
+  "language": "en",
+  "visible_result_count": 1842,
+  "observed_at": "2026-08-29T05:00:00Z",
+  "freshness_window_seconds": 86400,
+  "fixture_model": "PUBLIC_SEARCH_UI"
+}

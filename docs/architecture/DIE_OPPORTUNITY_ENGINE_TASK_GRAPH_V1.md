@@ -165,11 +165,13 @@ Founder silence at OE-007E means BLOCKED, never implicit authorization.
 
 ## 6. Current standing point
 
-`OE-000 = DONE` — graph/authority/batch seal.
+`OE-000 = DONE` ? graph/authority/batch seal.
 
-`OE-001A/B/C = DONE` — taxonomy, receipt schema, and acquisition/ToS boundary are sealed.`n`n`OE-001D` and `OE-001E = READY` — the two bounded fixture-adapter lanes are now runnable in parallel.
+`OE-001 = DONE` ? OE-B01/B02 sealed the signal taxonomy, schema/validator, acquisition boundary, two source-shaped fixture adapters, registry/dedupe/freshness behavior, and regression/failure suite. This does not claim live source collection.
 
-All other OE tasks are BLOCKED by explicit graph dependencies.
+`OE-002A = READY` ? Demand Score v1 schema/model-versioning is the next runnable atomic task.
+
+All later OE tasks remain BLOCKED by explicit graph dependencies.
 
 ## 7. Migration integration
 
