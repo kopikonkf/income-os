@@ -165,5 +165,6 @@
   "next_ready": [
     "OE-005D"
   ],
-  "next_batch": "OE-B10 — OE-005D deterministic final compiler -> OE-005E immutable provenance/hash lock -> OE-005F determinism/failure suite -> OE-005 acceptance."
+  "next_batch": "OE-B10 — OE-005D deterministic final compiler -> OE-005E immutable provenance/hash lock -> OE-005F determinism/failure suite -> OE-005 acceptance.",
+  "implementation_commit": "3917aa6db9c69d308c305d15e881a795018eb05c"
 }
