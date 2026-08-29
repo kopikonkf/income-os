@@ -31,6 +31,10 @@ Canonical source references:
 - `company/division/division001/engines/longtail/guard_longtail.py`
 - `company/division/division001/engines/longtail/phrase_signal_score.py`
 - `company/division/division001/engines/longtail/longtail_registry.py`
+- `company/division/division001/engines/worth-making/CONTRACT_V1.md`
+- `company/division/division001/engines/worth-making/precheck_worth_making.py`
+- `company/division/division001/engines/worth-making/die.division001.worth-making.v1.schema.json`
+- `company/division/division001/engines/worth-making/die.executive.worth-making-review.v1.schema.json`
 
 DIE-103 rule: this ownership boundary does not authorize secret/profile/runtime-data copying or premature service cutover.
 
@@ -39,3 +43,5 @@ Opportunity Intelligence: `OE-001 = DONE`. The canonical engine includes source-
 Demand Score: `OE-002 = DONE`. Deterministic scorer, versioned transforms/weights, calibration corpus, ranking/replay regression, explicit UNKNOWN/STALE handling, and legacy-prior rejection are canonical. Demand Score alone grants no production authority.
 
 Longtail Engine: `OE-003 = DONE`. Bounded dynamic Object+Human hypotheses pass deterministic guardrails, child-specific OE-001/OE-002 evidence, separate idempotent persistence, and ACCEPTED+COMPLETE-only ranking. Parent demand inheritance and brute-force 10D expansion remain forbidden.
+
+Worth-Making contracts: `OE-004A/B/C = DONE`. Deterministic precheck may only pass/block/wait; Division01 is the sole semantic AUTHOR; Executive is read-only second-line REVIEWER; neither review nor author artifact grants production authority. `OE-004D = READY`; milestone OE-004 remains pending B08.

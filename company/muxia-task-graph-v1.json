@@ -887,7 +887,7 @@
                       "depends_on":  [
                                          "OE-003"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "hard-veto precheck engine + schema",
                       "acceptance":  "Freshness, evidence presence, rights/IP, safety, platform/product eligibility, tool rights, spend and falsifiable-buyer gates fail closed before cognitive judgment."
                   },
@@ -898,7 +898,7 @@
                       "depends_on":  [
                                          "OE-004A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "die.division001.worth-making.v1 schema + Runtime Decision contract",
                       "acceptance":  "Division01 alone authors buyer/JTBD, commercial thesis, factor judgments, veto resolution, confidence, falsification plan and recommendation from pinned evidence."
                   },
@@ -909,7 +909,7 @@
                       "depends_on":  [
                                          "OE-004B"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "die.executive.worth-making-review.v1 schema + Runtime Decision contract",
                       "acceptance":  "Executive challenges evidence contradiction, score inflation/double counting, portfolio overlap, opportunity cost and Product Expression fit; outputs NO_VETO|REVISE|VETO_PENDING_EVIDENCE|ESCALATE_FOUNDER."
                   },
@@ -920,7 +920,7 @@
                       "depends_on":  [
                                          "OE-004C"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "Division01<->Executive revision state contract",
                       "acceptance":  "REVISE/VETO returns to Division01 without Executive editing the Division artifact; receipts preserve attempt lineage and prevent review laundering."
                   },

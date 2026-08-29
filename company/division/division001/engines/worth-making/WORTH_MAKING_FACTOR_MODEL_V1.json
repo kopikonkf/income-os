@@ -1,0 +1,48 @@
+{
+  "schema": "die.division001.worth-making-factor-model.v1",
+  "version": "1.0.0",
+  "factors": [
+    {
+      "factor_id": "demand_evidence",
+      "weight": 20
+    },
+    {
+      "factor_id": "commercial_intent",
+      "weight": 15
+    },
+    {
+      "factor_id": "buyer_utility",
+      "weight": 15
+    },
+    {
+      "factor_id": "competition_gap",
+      "weight": 10
+    },
+    {
+      "factor_id": "differentiation",
+      "weight": 10
+    },
+    {
+      "factor_id": "production_feasibility",
+      "weight": 10
+    },
+    {
+      "factor_id": "eligible_platform_fit",
+      "weight": 10
+    },
+    {
+      "factor_id": "repurposing_potential",
+      "weight": 5
+    },
+    {
+      "factor_id": "speed_to_cheapest_falsification",
+      "weight": 5
+    }
+  ],
+  "total_weight": 100,
+  "thresholds": {
+    "VALIDATE_MIN": 75,
+    "RESEARCH_MIN": 60
+  },
+  "unknown_policy": "UNKNOWN_FACTOR_SCORE_IS_NULL_AND_TOTAL_SCORE_IS_NULL; NEVER_IMPUTE_ZERO"
+}

@@ -1,0 +1,173 @@
+{
+  "schema": "die.oe-batch-receipt.v1",
+  "batch_id": "OE-B07",
+  "date": "2026-08-29",
+  "status": "PASS",
+  "base_main": "6dbf40683fee6c78d5b0a5295c0d24d5a3697e01",
+  "atomic_tasks": [
+    {
+      "id": "OE-004A",
+      "status": "DONE",
+      "result": "deterministic precheck + hard-veto engine with semantic OE-002 validation, exact Longtail candidate binding, freshness/evidence/right/safety/platform/tool/spend/hypothesis gates"
+    },
+    {
+      "id": "OE-004B",
+      "status": "DONE",
+      "result": "Division01 AUTHOR schema/validator + 9-factor model + threshold/UNKNOWN/evidence arithmetic constraints"
+    },
+    {
+      "id": "OE-004C",
+      "status": "DONE",
+      "result": "Executive read-only REVIEW schema/validator with exact Division hash/principal pin and six mandatory challenge domains"
+    }
+  ],
+  "authority": {
+    "division01": {
+      "principal_id": "division-head-division01",
+      "role": "AUTHOR",
+      "may_author_worth_making_semantics": true,
+      "may_grant_production_authority": false
+    },
+    "executive": {
+      "principal_id": "chatgpt-plus-executive",
+      "role": "REVIEWER",
+      "review_mode": "READ_ONLY_CHALLENGE",
+      "may_edit_division_artifact": false,
+      "may_grant_production_authority": false
+    },
+    "hermes_worker": {
+      "may_author_worth_making_semantics": false,
+      "may_convert_precheck_to_cognition": false
+    },
+    "founder": {
+      "production_spend_submission_sovereignty_remains_downstream": true
+    }
+  },
+  "precheck": {
+    "outcomes": [
+      "PASS",
+      "BLOCKED",
+      "WAITING_EVIDENCE"
+    ],
+    "worth_making_semantics_authored": false,
+    "semantic_demand_score_validation": true,
+    "longtail_candidate_hash_binding": true,
+    "hard_gates": [
+      "rights_ip",
+      "safety_deception",
+      "platform_expression_eligibility",
+      "production_tool_rights",
+      "spend"
+    ],
+    "buyer_hypothesis_seed_role": "STRUCTURED_UPSTREAM_HYPOTHESIS_ONLY_NOT_DIVISION_BUYER_THESIS"
+  },
+  "factor_model": {
+    "path": "company/division/division001/engines/worth-making/WORTH_MAKING_FACTOR_MODEL_V1.json",
+    "sha256": "3744f4294bce85afbe063de0695235d1b27bb7e9518fa0a3df6758dcfbe599c6",
+    "weights_sum": 100,
+    "validate_min": 75,
+    "research_min": 60,
+    "unknown_imputed_zero": false
+  },
+  "executive_review": {
+    "outcomes": [
+      "NO_VETO",
+      "REVISE",
+      "VETO_PENDING_EVIDENCE",
+      "ESCALATE_FOUNDER"
+    ],
+    "challenge_domains": 6,
+    "no_veto_allows_material_concern": false,
+    "no_veto_allows_unknown": false,
+    "division_artifact_edited": false,
+    "production_authority_granted": false
+  },
+  "upstream": {
+    "oe003_receipt_path": "company/muxia/receipts/OE-003-longtail-v1.receipt.json",
+    "oe003_receipt_sha256": "09a8a2949ee5cc38061c2603a38d0ad3b3b1d477f2597573de16f1f84e034be8"
+  },
+  "validation": {
+    "worth_making_contracts": "20/20 PASS",
+    "worth_making_plus_graph": "37/37 PASS",
+    "full_bridge": "382/382 PASS",
+    "one_canon": "11/11 PASS",
+    "bytecode_artifacts": "0"
+  },
+  "runtime_boundary": {
+    "live_division01_cognition_call_performed": false,
+    "live_executive_review_call_performed": false,
+    "network_request_performed": false,
+    "platform_login_used": false,
+    "credential_used_or_copied": false,
+    "spend_usd": 0,
+    "windows_live_die_mutated": false,
+    "object_filter_worker_mutated": false,
+    "production_authority_expanded": false
+  },
+  "artifacts": [
+    {
+      "path": "company/division/division001/engines/worth-making/CONTRACT_V1.md",
+      "sha256": "4742ddb266c04f40c20335206ed3aceeaed01cda077c9928f65e093280994004",
+      "bytes": 3893
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/die.division001.worth-making-precheck-input.v1.schema.json",
+      "sha256": "8bc3a14b5d5ae1845f82a55cd46ad6d61b4d7f304da15f345a74f405159a7447",
+      "bytes": 9171
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/die.division001.worth-making-precheck.v1.schema.json",
+      "sha256": "adf6a6875e1b050fe4133320b9afca88ce14236016dfb1cedbffef731c6aa986",
+      "bytes": 2232
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/precheck_worth_making.py",
+      "sha256": "de4a6e1779d4e614b8c1dc646e96adf6d1da3ea650719982d6ff5ac8bc2210e8",
+      "bytes": 9241
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/DIVISION01_AUTHOR_CONTRACT_V1.md",
+      "sha256": "d9f236c3e8e7575e0af79a9a8f94355e9755ac71a016fb75f4c8f61282db21d2",
+      "bytes": 2666
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/WORTH_MAKING_FACTOR_MODEL_V1.json",
+      "sha256": "3744f4294bce85afbe063de0695235d1b27bb7e9518fa0a3df6758dcfbe599c6",
+      "bytes": 955
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/die.division001.worth-making.v1.schema.json",
+      "sha256": "4cb1a9b2e0e72e7842f50b804f1ed19d063e55a79d308164d7d1669354a3adce",
+      "bytes": 10450
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/validate_worth_making.py",
+      "sha256": "7da9f2990c7d91a1fd60f55fb028b5cef5185a5e45bc2e9380ca060e7abf3330",
+      "bytes": 5726
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/EXECUTIVE_REVIEW_CONTRACT_V1.md",
+      "sha256": "b9fc5a47e0db904b036a767a6ff73fda51d84646a1b1a83fcf1df97bd981688e",
+      "bytes": 1746
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/die.executive.worth-making-review.v1.schema.json",
+      "sha256": "3770e2cda2dc65013e4b25299b9ef13c00ddcd1b7c0b012a329fdaa067c3c7f5",
+      "bytes": 5609
+    },
+    {
+      "path": "company/division/division001/engines/worth-making/validate_executive_review.py",
+      "sha256": "9036b9584d55d006b18c0737e80a26c09d472b67afc789b7833037ab11b73edd",
+      "bytes": 6619
+    },
+    {
+      "path": "bridge/tests/test_oe004_worth_making_contracts_v1.py",
+      "sha256": "74ddd6dd700c5661b57ca7b9067940765cb827c332f97edb2e22329b504233b9",
+      "bytes": 22850
+    }
+  ],
+  "next_ready": [
+    "OE-004D"
+  ],
+  "next_batch": "OE-B08 — immutable revision/return lineage -> cross-receipt principal/hash/freshness validation -> governed canary/failure suite -> OE-004 acceptance."
+}

@@ -1,0 +1,458 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.division001.worth-making.v1.schema.json",
+  "title": "DIE Division01 Worth-Making author artifact v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_id",
+    "decision_class",
+    "principal",
+    "snapshot",
+    "upstream",
+    "candidate",
+    "buyer",
+    "commercial_use_hypothesis",
+    "competition_interpretation",
+    "differentiation_thesis",
+    "production_feasibility",
+    "product_expression_recommendation",
+    "factors",
+    "total_score",
+    "confidence",
+    "cheapest_falsification",
+    "assumptions",
+    "recommendation",
+    "precheck_status",
+    "production_authority_granted"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.division001.worth-making.v1"
+    },
+    "artifact_id": {
+      "type": "string",
+      "pattern": "^WM-DIV001-[A-Z0-9_-]{8,120}$"
+    },
+    "decision_class": {
+      "const": "WORTH_MAKING"
+    },
+    "principal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "principal_id",
+        "role",
+        "division_id"
+      ],
+      "properties": {
+        "principal_id": {
+          "const": "division-head-division01"
+        },
+        "role": {
+          "const": "AUTHOR"
+        },
+        "division_id": {
+          "const": "division001"
+        }
+      }
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_sha",
+        "snapshot_id",
+        "as_of",
+        "expires_at"
+      ],
+      "properties": {
+        "repository_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "snapshot_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "upstream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "precheck_id",
+        "precheck_sha256",
+        "demand_score_id",
+        "demand_score_sha256",
+        "longtail_candidate_sha256",
+        "source_signals"
+      ],
+      "properties": {
+        "precheck_id": {
+          "type": "string",
+          "pattern": "^WMPRE-[A-Z0-9_-]{8,120}$"
+        },
+        "precheck_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "demand_score_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "demand_score_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "longtail_candidate_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_signals": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "signal_id",
+              "sha256"
+            ],
+            "properties": {
+              "signal_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            }
+          }
+        }
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "family_id",
+        "phrase"
+      ],
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "family_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200
+        },
+        "phrase": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 300
+        }
+      }
+    },
+    "buyer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "buyer_or_payer",
+        "end_user",
+        "job_to_be_done",
+        "buyer_utility"
+      ],
+      "properties": {
+        "buyer_or_payer": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 500
+        },
+        "end_user": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 500
+        },
+        "job_to_be_done": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 1200
+        },
+        "buyer_utility": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 1200
+        }
+      }
+    },
+    "commercial_use_hypothesis": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000
+    },
+    "competition_interpretation": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 2000
+    },
+    "differentiation_thesis": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 2000
+    },
+    "production_feasibility": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 2000
+    },
+    "product_expression_recommendation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "name",
+        "rationale"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "L0",
+            "L1",
+            "L2",
+            "L3",
+            "L4",
+            "L5",
+            "L6"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 1500
+        }
+      }
+    },
+    "factors": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "factor_id",
+          "weight",
+          "score",
+          "evidence_label",
+          "evidence_refs",
+          "rationale"
+        ],
+        "properties": {
+          "factor_id": {
+            "enum": [
+              "demand_evidence",
+              "commercial_intent",
+              "buyer_utility",
+              "competition_gap",
+              "differentiation",
+              "production_feasibility",
+              "eligible_platform_fit",
+              "repurposing_potential",
+              "speed_to_cheapest_falsification"
+            ]
+          },
+          "weight": {
+            "type": "integer",
+            "minimum": 5,
+            "maximum": 20
+          },
+          "score": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 100
+          },
+          "evidence_label": {
+            "enum": [
+              "OBSERVED",
+              "VERIFIED",
+              "INFERRED",
+              "HYPOTHESIS",
+              "UNKNOWN"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "maxItems": 50,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "ref",
+                "sha256"
+              ],
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "OPPORTUNITY_SIGNAL",
+                    "DEMAND_SCORE",
+                    "LONGTAIL_CANDIDATE",
+                    "PRECHECK",
+                    "CANON_EVIDENCE",
+                    "MARKET_EVIDENCE",
+                    "HYPOTHESIS_SOURCE"
+                  ]
+                },
+                "ref": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 2000
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              }
+            }
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 1500
+          }
+        }
+      }
+    },
+    "total_score": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 100
+    },
+    "confidence": {
+      "enum": [
+        "HIGH",
+        "MEDIUM",
+        "LOW",
+        "NONE"
+      ]
+    },
+    "cheapest_falsification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "test",
+        "success_criterion",
+        "failure_criterion",
+        "estimated_cost_usd",
+        "timebox"
+      ],
+      "properties": {
+        "test": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 1500
+        },
+        "success_criterion": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 1000
+        },
+        "failure_criterion": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 1000
+        },
+        "estimated_cost_usd": {
+          "type": "number",
+          "minimum": 0
+        },
+        "timebox": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 200
+        }
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "claim",
+          "label",
+          "falsification_ref"
+        ],
+        "properties": {
+          "claim": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 1000
+          },
+          "label": {
+            "enum": [
+              "INFERRED",
+              "HYPOTHESIS",
+              "UNKNOWN"
+            ]
+          },
+          "falsification_ref": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 2000
+          }
+        }
+      }
+    },
+    "recommendation": {
+      "enum": [
+        "VALIDATE",
+        "RESEARCH",
+        "DEFER"
+      ]
+    },
+    "precheck_status": {
+      "const": "PASS"
+    },
+    "production_authority_granted": {
+      "const": false
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.division001.worth-making-precheck.v1.schema.json",
+  "title": "DIE Division01 Worth-Making deterministic precheck receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "precheck_id",
+    "evaluated_at",
+    "candidate_id",
+    "candidate_sha256",
+    "demand_score_id",
+    "demand_score_sha256",
+    "status",
+    "hard_veto",
+    "gate_results",
+    "blocking_codes",
+    "unknown_codes",
+    "buyer_hypothesis_seed_sha256",
+    "worth_making_semantics_authored"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.division001.worth-making-precheck.v1"
+    },
+    "precheck_id": {
+      "type": "string",
+      "pattern": "^WMPRE-[A-Z0-9_-]{8,120}$"
+    },
+    "evaluated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "candidate_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "candidate_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "demand_score_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "demand_score_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "BLOCKED",
+        "WAITING_EVIDENCE"
+      ]
+    },
+    "hard_veto": {
+      "enum": [
+        "CLEAR",
+        "BLOCKED",
+        "UNKNOWN"
+      ]
+    },
+    "gate_results": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "CLEAR",
+          "BLOCKED",
+          "UNKNOWN"
+        ]
+      }
+    },
+    "blocking_codes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 120
+      }
+    },
+    "unknown_codes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 120
+      }
+    },
+    "buyer_hypothesis_seed_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "worth_making_semantics_authored": {
+      "const": false
+    }
+  }
+}
