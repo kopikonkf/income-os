@@ -93,3 +93,15 @@ OE-004 is **not** accepted yet. OE-B08 must still implement:
 - final OE-004 milestone acceptance.
 
 No live Division01 or Executive cognition session is claimed by OE-B07; this batch builds and tests the executable contracts that those principals must satisfy once authenticated runtime lines are used.
+
+## 6. OE-B08 governed-loop completion
+
+OE-004D/E/F are complete and milestone OE-004 is accepted.
+
+- `die.division001.worth-making-attempt.v1` preserves immutable attempt lineage. Attempt N+1 may follow only `REVISE` or `VETO_PENDING_EVIDENCE`, must remain in the same chain, increment exactly once, pin the previous attempt hash/outcome, and use a new Division artifact ID/hash.
+- `validate_governed_bundle.py` replays deterministic precheck from its full source input, revalidates Division and Executive semantics, verifies current freshness/repository/hash/principal relationships, and validates attempt lineage.
+- Governed decisions are `PROMOTABLE_TO_BLUEPRINT`, `RETURN_TO_DIVISION`, `WAITING_EVIDENCE`, `ESCALATE_FOUNDER`, or `NOT_PROMOTABLE`; validation failures are `INVALID`.
+- `PROMOTABLE_TO_BLUEPRINT` requires a current valid bundle, Division recommendation `VALIDATE`, and Executive `NO_VETO`. It still grants no production authority.
+- `run_governed_canary.py` covers PASS, REVISE, VETO, STALE, MISSING_PRINCIPAL, FORGED_REVIEW and KANBAN_ONLY. Legacy workflow/Kanban `done` is never cognition proof.
+
+The next intelligence milestone is OE-005 Blueprint authoring/review/compile.

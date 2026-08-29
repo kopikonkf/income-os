@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.division001.worth-making-governed-result.v1.schema.json",
+  "title": "DIE Worth-Making governed bundle validation result v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "bundle_id",
+    "validated_at",
+    "repository_sha",
+    "status",
+    "decision",
+    "precheck_sha256",
+    "division_artifact_sha256",
+    "executive_review_sha256",
+    "attempt_sha256",
+    "errors",
+    "production_authority_granted"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.division001.worth-making-governed-result.v1"
+    },
+    "bundle_id": {
+      "type": "string",
+      "pattern": "^WMBUNDLE-[A-Z0-9_-]{8,120}$"
+    },
+    "validated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "repository_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "decision": {
+      "enum": [
+        "PROMOTABLE_TO_BLUEPRINT",
+        "RETURN_TO_DIVISION",
+        "WAITING_EVIDENCE",
+        "ESCALATE_FOUNDER",
+        "NOT_PROMOTABLE",
+        "INVALID"
+      ]
+    },
+    "precheck_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "division_artifact_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "executive_review_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "attempt_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "errors": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      }
+    },
+    "production_authority_granted": {
+      "const": false
+    }
+  }
+}
