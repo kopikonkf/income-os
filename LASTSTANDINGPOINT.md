@@ -2680,3 +2680,24 @@ Task graph: `OE-002A/B/C = DONE`; `OE-002D = READY`; OE-002E/F and milestone rem
 Receipt: `company/muxia/receipts/OE-B03-demand-score-contracts.receipt.json`.
 
 NEXT: OE-B04 ? implement deterministic scoring transforms/weights, calibration fixtures, ranking/regression, then OE-002 acceptance.
+
+
+---
+
+## 2026-08-29 - Production Assurance / QC Automation / Submission roadmap seal
+
+QA, QC automation, platform submission, and full market-loop work are now first-class roadmap/task-graph families. 49 atomic nodes were added: QA-001, QC-001, common SUB-001, five marketplace adapters (Adobe Stock, Dreamstime, 123RF, Vecteezy, MotionElements), and CL-001 full market closed-loop canary. Magnific is explicitly excluded from marketplace adapters because it is a production/recovery service.
+
+Audit truth: `bridge/income_os_bridge/m001_asset_qa.py` is an existing deterministic Universal QA core and will be promoted/refactored rather than rebuilt. Current M-001 submission still stops at `READY_FOR_MANUAL_SUBMISSION`; platform receipt ingestion exists but no Submission Engine exists yet. Founder remains manual QC authority today.
+
+Founder-free QC is architecturally supported through SHADOW_ONLY -> CALIBRATED_RECOMMENDER -> BOUNDED_AUTO_QC -> SAMPLED_AUDIT. Automated QC cannot self-promote; removing mandatory Founder review from a bounded lane requires an explicit Founder-ratified delegation policy. QC delegation never implies submission delegation.
+
+`OE-007` is now explicitly a governed production canary ending at first-class QA/QC feedback. `CL-001` is the full market closed-loop proof: QA -> QC -> authorized marketplace submission -> review receipt -> learning/ERVA feedback.
+
+All new QA/QC/SUB/CL nodes are BLOCKED by upstream dependencies; current executable priority remains `OE-002D = READY`.
+
+Validation: roadmap/task-graph targeted 17/17 PASS; full bridge 311/311 PASS; one-canon 11/11 PASS.
+
+Receipt: `company/muxia/receipts/PAD-000-production-assurance-distribution-roadmap.receipt.json`.
+
+NEXT remains OE-B04 / OE-002D deterministic scorer.

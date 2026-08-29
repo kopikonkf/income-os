@@ -317,7 +317,7 @@
                                      ],
                       "status":  "BLOCKED",
                       "artifact":  "governed canary artifact/QA/metrics receipt",
-                      "acceptance":  "Durable workspace artifact; QA chain passes; OE-007 governed intelligence lineage is present; no submission/publication/spend expansion."
+                      "acceptance":  "Durable workspace artifact; first-class QA/QC chain passes; OE-007 governed intelligence lineage is present; no submission/publication/spend expansion."
                   },
                   {
                       "id":  "MX-072",
@@ -1194,24 +1194,569 @@
                   {
                       "id":  "OE-007G",
                       "phase":  13,
-                      "title":  "Governed canary QA, feedback and closed-loop receipt",
+                      "title":  "Governed production-canary QA/QC feedback receipt",
                       "depends_on":  [
-                                         "OE-007F"
+                                         "OE-007F",
+                                         "QA-001",
+                                         "QC-001"
                                      ],
                       "status":  "BLOCKED",
-                      "artifact":  "QA/artifact/feedback/ERVA-ready receipt chain",
-                      "acceptance":  "QA and lineage pass; observed acceptance/rejection/economic placeholders route back as governed learning inputs; false-success=0."
+                      "artifact":  "QA/QC/artifact/feedback receipt chain",
+                      "acceptance":  "First-class QA and QC engines evaluate the artifact with complete lineage; unresolved review blocks; feedback routes upstream; no marketplace submission is claimed."
                   },
                   {
                       "id":  "OE-007",
                       "phase":  13,
-                      "title":  "Full governed Opportunity Intelligence closed-loop canary",
+                      "title":  "Governed Opportunity Intelligence production canary",
                       "depends_on":  [
                                          "OE-007G"
                                      ],
                       "status":  "BLOCKED",
                       "artifact":  "OE-007 end-to-end receipt",
-                      "acceptance":  "One candidate traverses signals -> score -> longtail/context -> Division Worth-Making -> Executive review -> Division Blueprint -> Executive review -> Founder exact-hash gate -> Worker/MUXIA -> artifact/QA feedback with complete lineage."
+                      "acceptance":  "One candidate traverses signals -> score -> longtail/context -> Division Worth-Making -> Executive review -> Division Blueprint -> Executive review -> Founder exact-hash gate -> Worker/MUXIA -> first-class QA/QC feedback with complete lineage; external marketplace submission is not claimed."
+                  },
+                  {
+                      "id":  "QA-001A",
+                      "phase":  13,
+                      "title":  "Audit and promote existing M-001 universal QA core",
+                      "depends_on":  [
+                                         "OE-005"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "m001_asset_qa capability/gap audit + promotion contract",
+                      "acceptance":  "Existing executable QA core is mapped exactly; reusable checks are preserved; subjective QC and submission authority remain outside QA."
+                  },
+                  {
+                      "id":  "QA-001B",
+                      "phase":  13,
+                      "title":  "Universal QA receipt schema and defect taxonomy",
+                      "depends_on":  [
+                                         "QA-001A"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "die.asset.qa.v1 schema + defect/route taxonomy",
+                      "acceptance":  "Receipt covers integrity, lineage, technical, rights, safety, watermark, duplicate, metadata/package and review-required states with hard-veto semantics."
+                  },
+                  {
+                      "id":  "QA-001C",
+                      "phase":  13,
+                      "title":  "Refactor universal QA engine to canonical reusable component",
+                      "depends_on":  [
+                                         "QA-001B"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "canonical QA engine + compatibility adapter for M-001",
+                      "acceptance":  "Current deterministic QA behavior is preserved/refactored behind a reusable interface; no aesthetic/commercial PASS is invented when visual evidence is absent."
+                  },
+                  {
+                      "id":  "QA-001D",
+                      "phase":  13,
+                      "title":  "Platform-specific QA profile interface",
+                      "depends_on":  [
+                                         "QA-001B"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "versioned platform QA profile schema/interface",
+                      "acceptance":  "Per-marketplace format/metadata/AI disclosure/similarity/account constraints are versioned and dated; UNKNOWN profile fields fail closed before submission."
+                  },
+                  {
+                      "id":  "QA-001E",
+                      "phase":  13,
+                      "title":  "Metadata and submission-package QA",
+                      "depends_on":  [
+                                         "QA-001D"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "metadata/package validator + receipt",
+                      "acceptance":  "Package metadata, asset lineage, Blueprint/hash refs and platform profile requirements validate before irreversible submission."
+                  },
+                  {
+                      "id":  "QA-001F",
+                      "phase":  13,
+                      "title":  "QA regression, compatibility and failure suite",
+                      "depends_on":  [
+                                         "QA-001C",
+                                         "QA-001D",
+                                         "QA-001E"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "QA regression/compatibility suite + receipt",
+                      "acceptance":  "Legacy M-001 QA parity, hard-veto, review-required, corrupt file, duplicate, metadata/package and platform-profile failure cases pass deterministically."
+                  },
+                  {
+                      "id":  "QA-001",
+                      "phase":  13,
+                      "title":  "Asset QA Engine v1 acceptance",
+                      "depends_on":  [
+                                         "QA-001F"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "QA-001 acceptance receipt",
+                      "acceptance":  "First-class universal + platform-preflight QA engine is executable and receipt-driven; QA does not perform subjective QC or grant submission authority."
+                  },
+                  {
+                      "id":  "QC-001A",
+                      "phase":  13,
+                      "title":  "Automated QC rubric, outcome schema and authority contract",
+                      "depends_on":  [
+                                         "QA-001"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "die.asset.qc.v1 schema + quality rubric",
+                      "acceptance":  "Visual/aesthetic/commercial/Blueprint-adherence factors are explicit; QC cannot override QA hard vetoes or self-grant submission authority."
+                  },
+                  {
+                      "id":  "QC-001B",
+                      "phase":  13,
+                      "title":  "Founder-labeled QC reference corpus contract",
+                      "depends_on":  [
+                                         "QC-001A"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "versioned QC label/corpus schema + sampling contract",
+                      "acceptance":  "Founder/manual labels are captured as ground truth with asset class, defect classes, decision, rationale and immutable artifact refs; no private reasoning required."
+                  },
+                  {
+                      "id":  "QC-001C",
+                      "phase":  13,
+                      "title":  "Automated QC evaluator v1",
+                      "depends_on":  [
+                                         "QC-001B"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "bounded QC evaluator + versioned result receipt",
+                      "acceptance":  "Evaluator produces defect classes, score/recommendation/confidence and evidence refs without changing artifacts or claiming Founder authority."
+                  },
+                  {
+                      "id":  "QC-001D",
+                      "phase":  13,
+                      "title":  "QC calibration and confidence metrics",
+                      "depends_on":  [
+                                         "QC-001C"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "calibration report engine",
+                      "acceptance":  "Agreement, false-pass, false-fail, hard-defect misses, confidence calibration and per-class/per-asset metrics are reproducible across model versions."
+                  },
+                  {
+                      "id":  "QC-001E",
+                      "phase":  13,
+                      "title":  "Founder shadow-mode QC workflow",
+                      "depends_on":  [
+                                         "QC-001D"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "SHADOW_ONLY dual-review workflow + disagreement queue",
+                      "acceptance":  "Automated QC runs beside Founder review; disagreement and low-confidence cases are retained for calibration; engine decision is not yet release authority."
+                  },
+                  {
+                      "id":  "QC-001F",
+                      "phase":  13,
+                      "title":  "Bounded auto-QC delegation policy contract",
+                      "depends_on":  [
+                                         "QC-001E"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "versioned QC delegation policy schema",
+                      "acceptance":  "Defines SHADOW_ONLY, CALIBRATED_RECOMMENDER, BOUNDED_AUTO_QC and SAMPLED_AUDIT modes; exact promotion thresholds and scope require Founder ratification."
+                  },
+                  {
+                      "id":  "QC-001G",
+                      "phase":  13,
+                      "title":  "QC replay, drift, override and audit suite",
+                      "depends_on":  [
+                                         "QC-001F"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "QC replay/drift/audit tests + receipt",
+                      "acceptance":  "Model/version changes replay against pinned corpus; delegation scope, override, drift and false-pass safeguards fail closed; no self-promotion."
+                  },
+                  {
+                      "id":  "QC-001",
+                      "phase":  13,
+                      "title":  "Automated QC Engine v1 acceptance",
+                      "depends_on":  [
+                                         "QC-001G"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "QC-001 acceptance receipt",
+                      "acceptance":  "QC engine is calibrated/shadow-capable and delegation-ready. Founder manual QC may be removed only for an explicitly ratified bounded auto-QC scope; submission authority remains separate."
+                  },
+                  {
+                      "id":  "SUB-001A",
+                      "phase":  13,
+                      "title":  "Common submission package and route-state schema",
+                      "depends_on":  [
+                                         "QC-001"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "die.asset.submission-package.v1 + route state schema",
+                      "acceptance":  "Immutable package pins artifact, QA, QC, Blueprint, metadata and platform profile hashes; route states distinguish prepared, authorized, submitted, review pending, approved/rejected and reconciled."
+                  },
+                  {
+                      "id":  "SUB-001B",
+                      "phase":  13,
+                      "title":  "Submission authority, credential and session boundary",
+                      "depends_on":  [
+                                         "SUB-001A"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "submission authority + credential/session contract",
+                      "acceptance":  "Default irreversible submission requires explicit Founder authority; credentials remain external/recreated; no cookie/token extraction, protection bypass or implicit delegation."
+                  },
+                  {
+                      "id":  "SUB-001C",
+                      "phase":  13,
+                      "title":  "Submission idempotency, retry and reconciliation core",
+                      "depends_on":  [
+                                         "SUB-001A",
+                                         "SUB-001B"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "submission state/idempotency engine",
+                      "acceptance":  "Exact package/route dedupe prevents duplicate submissions; retries reconcile external state before action; uncertain outcomes stop for review rather than repeat blindly."
+                  },
+                  {
+                      "id":  "SUB-001D",
+                      "phase":  13,
+                      "title":  "Submission dry-run package composer",
+                      "depends_on":  [
+                                         "SUB-001C"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "dry-run package composer + fixtures",
+                      "acceptance":  "Produces platform-ready package/metadata/actions without external submission and proves deterministic hash/lineage."
+                  },
+                  {
+                      "id":  "SUB-001E",
+                      "phase":  13,
+                      "title":  "Platform submission adapter contract",
+                      "depends_on":  [
+                                         "SUB-001D"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "adapter interface + execution-mode policy",
+                      "acceptance":  "Adapters declare AUTOMATED_ALLOWED, OPERATOR_REQUIRED, OFFICIAL_API_ONLY or BLOCKED_POLICY_UNKNOWN and expose prepare/submit/reconcile/receipt semantics without weakening platform policy."
+                  },
+                  {
+                      "id":  "SUB-001F",
+                      "phase":  13,
+                      "title":  "Common submission framework regression suite",
+                      "depends_on":  [
+                                         "SUB-001E"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "submission common tests + receipt",
+                      "acceptance":  "Authority absence, duplicate package, retry ambiguity, credential leakage, unknown policy, dry-run and reconciliation cases fail closed."
+                  },
+                  {
+                      "id":  "SUB-001",
+                      "phase":  13,
+                      "title":  "Common Submission Engine v1 acceptance",
+                      "depends_on":  [
+                                         "SUB-001F"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "SUB-001 acceptance receipt",
+                      "acceptance":  "Common package/state/idempotency/authority/reconciliation engine is ready for marketplace adapters; acceptance alone authorizes no external submission."
+                  },
+                  {
+                      "id":  "SUB-ADOBEA",
+                      "phase":  13,
+                      "title":  "Adobe Stock dated submission/account contract capture",
+                      "depends_on":  [
+                                         "SUB-001"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Adobe Stock submission policy/account capability profile",
+                      "acceptance":  "Current official/account-specific submission method, technical/metadata requirements, AI rules, automation mode and unknowns are dated and pinned; supporting matrix alone is insufficient authority."
+                  },
+                  {
+                      "id":  "SUB-ADOBEB",
+                      "phase":  13,
+                      "title":  "Adobe Stock submission adapter dry-run",
+                      "depends_on":  [
+                                         "SUB-ADOBEA"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Adobe Stock adapter + dry-run fixtures",
+                      "acceptance":  "Adapter maps common package to Adobe Stock route deterministically with no external irreversible action; unsupported/unknown UI or policy fails closed."
+                  },
+                  {
+                      "id":  "SUB-ADOBEC",
+                      "phase":  13,
+                      "title":  "Adobe Stock bounded activation and reconciliation proof",
+                      "depends_on":  [
+                                         "SUB-ADOBEB"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Adobe Stock activation/reconciliation receipt",
+                      "acceptance":  "Using the profile-declared execution mode, one bounded authorized canary proves submit-or-operator-handoff, external reference capture and reconciliation; no duplicate action or authority expansion."
+                  },
+                  {
+                      "id":  "SUB-ADOBE",
+                      "phase":  13,
+                      "title":  "Adobe Stock Submission Adapter v1 acceptance",
+                      "depends_on":  [
+                                         "SUB-ADOBEC"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Adobe Stock adapter acceptance receipt",
+                      "acceptance":  "Adobe Stock route is ready in its approved execution mode with dated policy/account provenance, idempotency and platform receipt reconciliation."
+                  },
+                  {
+                      "id":  "SUB-DREAMSTIMEA",
+                      "phase":  13,
+                      "title":  "Dreamstime dated submission/account contract capture",
+                      "depends_on":  [
+                                         "SUB-001"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Dreamstime submission policy/account capability profile",
+                      "acceptance":  "Current official/account-specific submission method, technical/metadata requirements, AI rules, automation mode and unknowns are dated and pinned; supporting matrix alone is insufficient authority."
+                  },
+                  {
+                      "id":  "SUB-DREAMSTIMEB",
+                      "phase":  13,
+                      "title":  "Dreamstime submission adapter dry-run",
+                      "depends_on":  [
+                                         "SUB-DREAMSTIMEA"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Dreamstime adapter + dry-run fixtures",
+                      "acceptance":  "Adapter maps common package to Dreamstime route deterministically with no external irreversible action; unsupported/unknown UI or policy fails closed."
+                  },
+                  {
+                      "id":  "SUB-DREAMSTIMEC",
+                      "phase":  13,
+                      "title":  "Dreamstime bounded activation and reconciliation proof",
+                      "depends_on":  [
+                                         "SUB-DREAMSTIMEB"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Dreamstime activation/reconciliation receipt",
+                      "acceptance":  "Using the profile-declared execution mode, one bounded authorized canary proves submit-or-operator-handoff, external reference capture and reconciliation; no duplicate action or authority expansion."
+                  },
+                  {
+                      "id":  "SUB-DREAMSTIME",
+                      "phase":  13,
+                      "title":  "Dreamstime Submission Adapter v1 acceptance",
+                      "depends_on":  [
+                                         "SUB-DREAMSTIMEC"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Dreamstime adapter acceptance receipt",
+                      "acceptance":  "Dreamstime route is ready in its approved execution mode with dated policy/account provenance, idempotency and platform receipt reconciliation."
+                  },
+                  {
+                      "id":  "SUB-123RFA",
+                      "phase":  13,
+                      "title":  "123RF dated submission/account contract capture",
+                      "depends_on":  [
+                                         "SUB-001"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "123RF submission policy/account capability profile",
+                      "acceptance":  "Current official/account-specific submission method, technical/metadata requirements, AI rules, automation mode and unknowns are dated and pinned; supporting matrix alone is insufficient authority."
+                  },
+                  {
+                      "id":  "SUB-123RFB",
+                      "phase":  13,
+                      "title":  "123RF submission adapter dry-run",
+                      "depends_on":  [
+                                         "SUB-123RFA"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "123RF adapter + dry-run fixtures",
+                      "acceptance":  "Adapter maps common package to 123RF route deterministically with no external irreversible action; unsupported/unknown UI or policy fails closed."
+                  },
+                  {
+                      "id":  "SUB-123RFC",
+                      "phase":  13,
+                      "title":  "123RF bounded activation and reconciliation proof",
+                      "depends_on":  [
+                                         "SUB-123RFB"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "123RF activation/reconciliation receipt",
+                      "acceptance":  "Using the profile-declared execution mode, one bounded authorized canary proves submit-or-operator-handoff, external reference capture and reconciliation; no duplicate action or authority expansion."
+                  },
+                  {
+                      "id":  "SUB-123RF",
+                      "phase":  13,
+                      "title":  "123RF Submission Adapter v1 acceptance",
+                      "depends_on":  [
+                                         "SUB-123RFC"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "123RF adapter acceptance receipt",
+                      "acceptance":  "123RF route is ready in its approved execution mode with dated policy/account provenance, idempotency and platform receipt reconciliation."
+                  },
+                  {
+                      "id":  "SUB-VECTEEZYA",
+                      "phase":  13,
+                      "title":  "Vecteezy dated submission/account contract capture",
+                      "depends_on":  [
+                                         "SUB-001"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Vecteezy submission policy/account capability profile",
+                      "acceptance":  "Current official/account-specific submission method, technical/metadata requirements, AI rules, automation mode and unknowns are dated and pinned; supporting matrix alone is insufficient authority."
+                  },
+                  {
+                      "id":  "SUB-VECTEEZYB",
+                      "phase":  13,
+                      "title":  "Vecteezy submission adapter dry-run",
+                      "depends_on":  [
+                                         "SUB-VECTEEZYA"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Vecteezy adapter + dry-run fixtures",
+                      "acceptance":  "Adapter maps common package to Vecteezy route deterministically with no external irreversible action; unsupported/unknown UI or policy fails closed."
+                  },
+                  {
+                      "id":  "SUB-VECTEEZYC",
+                      "phase":  13,
+                      "title":  "Vecteezy bounded activation and reconciliation proof",
+                      "depends_on":  [
+                                         "SUB-VECTEEZYB"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Vecteezy activation/reconciliation receipt",
+                      "acceptance":  "Using the profile-declared execution mode, one bounded authorized canary proves submit-or-operator-handoff, external reference capture and reconciliation; no duplicate action or authority expansion."
+                  },
+                  {
+                      "id":  "SUB-VECTEEZY",
+                      "phase":  13,
+                      "title":  "Vecteezy Submission Adapter v1 acceptance",
+                      "depends_on":  [
+                                         "SUB-VECTEEZYC"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Vecteezy adapter acceptance receipt",
+                      "acceptance":  "Vecteezy route is ready in its approved execution mode with dated policy/account provenance, idempotency and platform receipt reconciliation."
+                  },
+                  {
+                      "id":  "SUB-MOTIONELEMENTSA",
+                      "phase":  13,
+                      "title":  "MotionElements dated submission/account contract capture",
+                      "depends_on":  [
+                                         "SUB-001"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "MotionElements submission policy/account capability profile",
+                      "acceptance":  "Current official/account-specific submission method, technical/metadata requirements, AI rules, automation mode and unknowns are dated and pinned; supporting matrix alone is insufficient authority."
+                  },
+                  {
+                      "id":  "SUB-MOTIONELEMENTSB",
+                      "phase":  13,
+                      "title":  "MotionElements submission adapter dry-run",
+                      "depends_on":  [
+                                         "SUB-MOTIONELEMENTSA"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "MotionElements adapter + dry-run fixtures",
+                      "acceptance":  "Adapter maps common package to MotionElements route deterministically with no external irreversible action; unsupported/unknown UI or policy fails closed."
+                  },
+                  {
+                      "id":  "SUB-MOTIONELEMENTSC",
+                      "phase":  13,
+                      "title":  "MotionElements bounded activation and reconciliation proof",
+                      "depends_on":  [
+                                         "SUB-MOTIONELEMENTSB"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "MotionElements activation/reconciliation receipt",
+                      "acceptance":  "Using the profile-declared execution mode, one bounded authorized canary proves submit-or-operator-handoff, external reference capture and reconciliation; no duplicate action or authority expansion."
+                  },
+                  {
+                      "id":  "SUB-MOTIONELEMENTS",
+                      "phase":  13,
+                      "title":  "MotionElements Submission Adapter v1 acceptance",
+                      "depends_on":  [
+                                         "SUB-MOTIONELEMENTSC"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "MotionElements adapter acceptance receipt",
+                      "acceptance":  "MotionElements route is ready in its approved execution mode with dated policy/account provenance, idempotency and platform receipt reconciliation."
+                  },
+                  {
+                      "id":  "CL-001A",
+                      "phase":  15,
+                      "title":  "Select eligible marketplace route for market-loop canary",
+                      "depends_on":  [
+                                         "OE-007",
+                                         "SUB-001"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "selected route + adapter-status gate",
+                      "acceptance":  "Selected marketplace adapter milestone must be DONE and policy/account profile current; selection is explicit and no unavailable adapter is treated as eligible."
+                  },
+                  {
+                      "id":  "CL-001B",
+                      "phase":  15,
+                      "title":  "Pin QA/QC-approved exact submission package",
+                      "depends_on":  [
+                                         "CL-001A"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "exact submission package hash + lineage receipt",
+                      "acceptance":  "Artifact has QA PASS, QC PASS under current authority mode, platform QA PASS, exact metadata/package hash and immutable Blueprint lineage."
+                  },
+                  {
+                      "id":  "CL-001C",
+                      "phase":  15,
+                      "title":  "Market-canary submission authority gate",
+                      "depends_on":  [
+                                         "CL-001B"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Founder or explicitly delegated submission authority receipt",
+                      "acceptance":  "No external submission occurs on silence. Authority names marketplace, account scope, package hash, quantity, spend and expiry; QC delegation is not submission delegation."
+                  },
+                  {
+                      "id":  "CL-001D",
+                      "phase":  15,
+                      "title":  "Execute or operator-handoff one marketplace submission",
+                      "depends_on":  [
+                                         "CL-001C"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "platform submission attempt + external reference receipt",
+                      "acceptance":  "Selected adapter follows its approved execution mode; submission/handoff is idempotent and reconciled; SUBMITTED is not treated as APPROVED."
+                  },
+                  {
+                      "id":  "CL-001E",
+                      "phase":  15,
+                      "title":  "Ingest marketplace review outcome",
+                      "depends_on":  [
+                                         "CL-001D"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "platform REVIEW receipt",
+                      "acceptance":  "Approved/rejected/pending result and reason are captured as route-specific evidence; missing review remains PENDING/UNKNOWN and never false-success."
+                  },
+                  {
+                      "id":  "CL-001F",
+                      "phase":  15,
+                      "title":  "Route review feedback into learning and economics",
+                      "depends_on":  [
+                                         "CL-001E"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "QA/QC/Blueprint/Signals feedback + ERVA-ready receipt",
+                      "acceptance":  "Rejection reasons route to the responsible engine/cognition layer; approval contributes asset-days; license/payout remain separate evidence and revenue is never inferred."
+                  },
+                  {
+                      "id":  "CL-001",
+                      "phase":  15,
+                      "title":  "Full governed market closed-loop canary",
+                      "depends_on":  [
+                                         "CL-001F"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "CL-001 end-to-end market-loop receipt",
+                      "acceptance":  "One candidate traverses intelligence -> production -> QA -> QC -> authorized marketplace route -> submission receipt -> review receipt -> learning/ERVA feedback with false-success=0."
                   }
               ]
 }

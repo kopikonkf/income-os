@@ -196,3 +196,7 @@ MX-060 -> MX-061 -> MX-062 -> MX-070 ---------------+
 ```
 
 This permits productive intelligence-engine work during the one-month Windows overlap while preventing final Linux cutover before the closed-loop operating model is proven.
+
+## 8. Production-assurance and market-loop continuation
+
+After OE-005, first-class QA/QC and submission/distribution work continues under docs/architecture/DIE_PRODUCTION_ASSURANCE_DISTRIBUTION_TASK_GRAPH_V1.md. OE-007 is the governed production canary; CL-001 is the full marketplace submission/review feedback closed loop.

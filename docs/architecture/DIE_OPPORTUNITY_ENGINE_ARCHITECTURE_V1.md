@@ -443,3 +443,8 @@ One candidate must pass signals -> score -> longtail/context -> Worth-Making -> 
 ## 13. Executable task graph
 
 The authoritative atomic execution DAG and conversational batch map are docs/architecture/DIE_OPPORTUNITY_ENGINE_TASK_GRAPH_V1.md and company/muxia-task-graph-v1.json. Architecture text alone is never completion evidence.
+
+
+## 14. Production assurance and market-distribution continuation
+
+OE-007 is a governed production canary, not the final marketplace loop. First-class QA, automated QC, submission adapters, and the external review feedback loop are governed by `docs/architecture/DIE_PRODUCTION_ASSURANCE_DISTRIBUTION_ARCHITECTURE_V1.md` and `docs/architecture/DIE_PRODUCTION_ASSURANCE_DISTRIBUTION_TASK_GRAPH_V1.md`. `CL-001` is the full market closed-loop canary.

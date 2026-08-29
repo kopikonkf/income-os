@@ -1,0 +1,109 @@
+{
+  "schema": "die.production-assurance-distribution-roadmap-seal.v1",
+  "date": "2026-08-29",
+  "status": "DONE",
+  "base_main": "6c4f30ae7951c91f7be603cba3de97cbd6d267ab",
+  "task_graph": {
+    "new_nodes": 49,
+    "total_tasks": 155,
+    "families": [
+      "QA-001",
+      "QC-001",
+      "SUB-001",
+      "SUB-ADOBE",
+      "SUB-DREAMSTIME",
+      "SUB-123RF",
+      "SUB-VECTEEZY",
+      "SUB-MOTIONELEMENTS",
+      "CL-001"
+    ],
+    "current_ready": "OE-002D",
+    "new_family_status": "BLOCKED"
+  },
+  "current_truth": {
+    "universal_qa_executable_core": "bridge/income_os_bridge/m001_asset_qa.py",
+    "qc_current": "FOUNDER_MANUAL",
+    "submission_current": "READY_FOR_MANUAL_SUBMISSION",
+    "platform_receipt_ingestion_exists": true
+  },
+  "qc_future": {
+    "founder_free_qc_possible": true,
+    "promotion_modes": [
+      "SHADOW_ONLY",
+      "CALIBRATED_RECOMMENDER",
+      "BOUNDED_AUTO_QC",
+      "SAMPLED_AUDIT"
+    ],
+    "requires_founder_ratified_delegation": true,
+    "submission_authority_separate": true
+  },
+  "marketplaces": [
+    "ADOBE_STOCK",
+    "DREAMSTIME",
+    "123RF",
+    "VECTEEZY",
+    "MOTIONELEMENTS"
+  ],
+  "magnific": {
+    "marketplace": false,
+    "role": "PRODUCTION_RECOVERY_SERVICE",
+    "submission_adapter": false
+  },
+  "closed_loop": {
+    "oe007": "GOVERNED_PRODUCTION_CANARY_PRE_MARKET",
+    "cl001": "FULL_GOVERNED_MARKET_CLOSED_LOOP"
+  },
+  "validation": {
+    "roadmap_plus_graph": "17/17 PASS",
+    "full_bridge": "311/311 PASS",
+    "one_canon": "11/11 PASS"
+  },
+  "artifacts": [
+    {
+      "path": "docs/architecture/DIE_PRODUCTION_ASSURANCE_DISTRIBUTION_ARCHITECTURE_V1.md",
+      "sha256": "d4c14d525cb75835d529adb9b02ab0de267cbc9b8138dc6feeb2f14a0e98d9a9",
+      "bytes": 10840
+    },
+    {
+      "path": "docs/architecture/DIE_PRODUCTION_ASSURANCE_DISTRIBUTION_TASK_GRAPH_V1.md",
+      "sha256": "c630801048b0e63c83e2c37bdf216bc62106fa394417c5d2b897b1ec9f6abcc9",
+      "bytes": 5313
+    },
+    {
+      "path": "ORCHESTRATOR_CONTRACT.md",
+      "sha256": "efbf08ea1fd8ce1aae82e5a56f610a477c2364229029cee580b3080680e10c96",
+      "bytes": 13371
+    },
+    {
+      "path": "docs/operations/PROACTIVE_OPERATOR_V1.md",
+      "sha256": "bd48bb3c9e3a5e486742c24bcaf3c057ab61b5f763738ab8433ac1d2d4d8662a",
+      "bytes": 13794
+    },
+    {
+      "path": "company/muxia-task-graph-v1.json",
+      "sha256": "1a4fbdac8ab1505e71b35216ec4c7965ff632164ae2b6967bbd0bf823b8ce341",
+      "bytes": 100104
+    },
+    {
+      "path": "bridge/tests/test_production_assurance_distribution_task_graph_v1.py",
+      "sha256": "6400b58104fb689039656c0098e016e90a54ff9e5128f419d7e4ea9345fca1ed",
+      "bytes": 4847
+    },
+    {
+      "path": "bridge/income_os_bridge/m001_asset_qa.py",
+      "sha256": "797bd63620d4b29da62d78bbe88892866164ba645072e636d2d881fe399878db",
+      "bytes": 14751
+    },
+    {
+      "path": "bridge/income_os_bridge/m001_loop.py",
+      "sha256": "15cf26e4aa865527b02434f0fb8e7beecb39a11a225d31d76a6d2d16f5829036",
+      "bytes": 36794
+    },
+    {
+      "path": "company/schemas/die.platform.receipt.v1.schema.json",
+      "sha256": "a37b343160221ef8bff61c943af4dd3e951490c9e41218143f9c1c5466ac8787",
+      "bytes": 3049
+    }
+  ],
+  "next_task": "OE-002D"
+}

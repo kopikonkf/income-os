@@ -168,3 +168,17 @@ Hard rules:
 5. Historical M-001 artifacts remain evidence/provenance only where their principal/receipt chain does not satisfy the new contract.
 
 See `docs/architecture/DIE_OPPORTUNITY_ENGINE_ARCHITECTURE_V1.md` and `docs/architecture/DIE_OPPORTUNITY_ENGINE_AUDIT_V1.md`.
+
+
+## 9. QA, QC, and submission authority lock
+
+Hermes orchestrates but does not collapse QA, QC, and external submission into one decision.
+
+- QA receipts are deterministic/contract evidence. Hermes may route failures but cannot override hard vetoes.
+- QC receipts are quality judgments. Until an explicit bounded delegation policy exists, Founder/manual QC remains final release judgment. Hermes cannot self-promote QC to auto-PASS.
+- Submission requires a valid marketplace adapter, exact package hash, current platform/account policy profile, and Founder or explicitly delegated submission authority.
+- A QC delegation does not imply submission delegation.
+- SUBMITTED does not imply APPROVED; APPROVED does not imply LICENSED; LICENSED does not imply PAYOUT.
+- Magnific is production/recovery infrastructure, not a marketplace submission route.
+
+See `docs/architecture/DIE_PRODUCTION_ASSURANCE_DISTRIBUTION_ARCHITECTURE_V1.md`.
