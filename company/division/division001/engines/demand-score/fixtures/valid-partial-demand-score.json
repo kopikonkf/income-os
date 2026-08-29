@@ -1,0 +1,143 @@
+{
+  "schema_version": "die.division001.demand-score.v1",
+  "score_id": "DSCORE-FIXTURE-PARTIAL-001",
+  "subject": {
+    "kind": "PHRASE",
+    "id": "desk cable organizer for remote work setup",
+    "parent_seed_id": "cable organizer",
+    "parent_candidate_id": "CAND-FIXTURE-001"
+  },
+  "model": {
+    "model_id": "division001-demand-score-v1",
+    "model_version": "1.0.0-contract",
+    "contract_sha256": "f62d2cdfa40ac28702f6f08ec3240bb6709581cc5cc28eeda96c99d4d5987f60"
+  },
+  "evaluated_at": "2026-08-29T12:00:00Z",
+  "expires_at": "2026-08-30T05:00:30Z",
+  "score_status": "PARTIAL",
+  "final_score": null,
+  "confidence": "NONE",
+  "evidence_coverage_ratio": 0.222222,
+  "required_coverage_ratio": 0.666667,
+  "hard_veto": {
+    "status": "UNKNOWN",
+    "receipt_ref": null,
+    "receipt_sha256": null
+  },
+  "components": [
+    {
+      "component_id": "external_demand",
+      "state": "KNOWN",
+      "normalized_score": 0.635,
+      "confidence": "HIGH",
+      "evidence_refs": [
+        {
+          "evidence_kind": "OPPORTUNITY_SIGNAL",
+          "evidence_id": "OPSIG-API-C789A95F058082EA4187",
+          "evidence_sha256": "c789a95f058082ea4187d0e967a442b719f8ab31250b105a0aa904036558c16d",
+          "signal_class": "DEMAND",
+          "signal_type": "SEARCH_INTEREST_INDEX",
+          "observed_at": "2026-08-29T05:02:00Z",
+          "expires_at": "2026-08-31T05:02:15Z",
+          "freshness_state": "FRESH",
+          "source_ref": "fixture://official-api/c789a95f058082ea4187d0e967a442b719f8ab31250b105a0aa904036558c16d"
+        }
+      ],
+      "normalization_transform_id": "fixture-normalization-only",
+      "normalization_transform_version": "v0-fixture",
+      "notes": "Schema/contract fixture only; not OE-002D production arithmetic."
+    },
+    {
+      "component_id": "supply_competition",
+      "state": "KNOWN",
+      "normalized_score": 0.42,
+      "confidence": "HIGH",
+      "evidence_refs": [
+        {
+          "evidence_kind": "OPPORTUNITY_SIGNAL",
+          "evidence_id": "OPSIG-PUBUI-384D89DC4CBDF953393F",
+          "evidence_sha256": "384d89dc4cbdf953393ff545d46fda38d9201e011419e413b984f9dff6d07c3f",
+          "signal_class": "SUPPLY",
+          "signal_type": "SEARCH_RESULTS_COUNT",
+          "observed_at": "2026-08-29T05:00:00Z",
+          "expires_at": "2026-08-30T05:00:30Z",
+          "freshness_state": "FRESH",
+          "source_ref": "fixture://public-search-ui/384d89dc4cbdf953393ff545d46fda38d9201e011419e413b984f9dff6d07c3f"
+        }
+      ],
+      "normalization_transform_id": "fixture-normalization-only",
+      "normalization_transform_version": "v0-fixture",
+      "notes": "Schema/contract fixture only; not OE-002D production arithmetic."
+    },
+    {
+      "component_id": "commercial_intent",
+      "state": "UNKNOWN",
+      "normalized_score": null,
+      "confidence": "NONE",
+      "evidence_refs": [],
+      "normalization_transform_id": null,
+      "normalization_transform_version": null,
+      "notes": "No accepted evidence supplied."
+    },
+    {
+      "component_id": "trend_seasonality",
+      "state": "UNKNOWN",
+      "normalized_score": null,
+      "confidence": "NONE",
+      "evidence_refs": [],
+      "normalization_transform_id": null,
+      "normalization_transform_version": null,
+      "notes": "No accepted evidence supplied."
+    },
+    {
+      "component_id": "platform_fit",
+      "state": "UNKNOWN",
+      "normalized_score": null,
+      "confidence": "NONE",
+      "evidence_refs": [],
+      "normalization_transform_id": null,
+      "normalization_transform_version": null,
+      "notes": "No accepted evidence supplied."
+    },
+    {
+      "component_id": "niche_specificity",
+      "state": "UNKNOWN",
+      "normalized_score": null,
+      "confidence": "NONE",
+      "evidence_refs": [],
+      "normalization_transform_id": null,
+      "normalization_transform_version": null,
+      "notes": "No accepted evidence supplied."
+    },
+    {
+      "component_id": "production_feasibility",
+      "state": "UNKNOWN",
+      "normalized_score": null,
+      "confidence": "NONE",
+      "evidence_refs": [],
+      "normalization_transform_id": null,
+      "normalization_transform_version": null,
+      "notes": "No accepted evidence supplied."
+    },
+    {
+      "component_id": "eligibility",
+      "state": "UNKNOWN",
+      "normalized_score": null,
+      "confidence": "NONE",
+      "evidence_refs": [],
+      "normalization_transform_id": null,
+      "normalization_transform_version": null,
+      "notes": "No accepted evidence supplied."
+    },
+    {
+      "component_id": "risk_penalty",
+      "state": "UNKNOWN",
+      "normalized_score": null,
+      "confidence": "NONE",
+      "evidence_refs": [],
+      "normalization_transform_id": null,
+      "normalization_transform_version": null,
+      "notes": "No accepted evidence supplied."
+    }
+  ]
+}

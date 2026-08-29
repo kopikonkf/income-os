@@ -1,0 +1,126 @@
+{
+  "schema": "die.division001.demand-score-model.v1",
+  "model_id": "division001-demand-score-v1",
+  "model_version": "1.0.0-contract",
+  "status": "CONTRACT_ONLY",
+  "owner_principal": "division-head-division01",
+  "review_policy": "Executive review required before material production-threshold/weight promotion",
+  "score_range": {
+    "minimum": 0.0,
+    "maximum": 1.0
+  },
+  "final_score_policy": "final_score MAY be null when evidence is insufficient; numeric output is never mandatory merely for rankability",
+  "components": [
+    {
+      "component_id": "external_demand",
+      "category": "MARKET_EVIDENCE",
+      "allowed_evidence_kinds": [
+        "OPPORTUNITY_SIGNAL"
+      ],
+      "allowed_signal_classes": [
+        "DEMAND"
+      ],
+      "required_for_complete": true,
+      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+    },
+    {
+      "component_id": "supply_competition",
+      "category": "MARKET_EVIDENCE",
+      "allowed_evidence_kinds": [
+        "OPPORTUNITY_SIGNAL"
+      ],
+      "allowed_signal_classes": [
+        "SUPPLY",
+        "COMPETITION"
+      ],
+      "required_for_complete": true,
+      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+    },
+    {
+      "component_id": "commercial_intent",
+      "category": "MARKET_EVIDENCE",
+      "allowed_evidence_kinds": [
+        "OPPORTUNITY_SIGNAL"
+      ],
+      "allowed_signal_classes": [
+        "COMMERCIAL_INTENT"
+      ],
+      "required_for_complete": true,
+      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+    },
+    {
+      "component_id": "trend_seasonality",
+      "category": "MARKET_EVIDENCE",
+      "allowed_evidence_kinds": [
+        "OPPORTUNITY_SIGNAL"
+      ],
+      "allowed_signal_classes": [
+        "TREND"
+      ],
+      "required_for_complete": false,
+      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+    },
+    {
+      "component_id": "platform_fit",
+      "category": "MARKET_EVIDENCE",
+      "allowed_evidence_kinds": [
+        "OPPORTUNITY_SIGNAL",
+        "CANON_EVIDENCE"
+      ],
+      "allowed_signal_classes": [
+        "PLATFORM_FIT"
+      ],
+      "required_for_complete": false,
+      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+    },
+    {
+      "component_id": "niche_specificity",
+      "category": "STRUCTURAL_EVIDENCE",
+      "allowed_evidence_kinds": [
+        "DETERMINISTIC_EVIDENCE",
+        "CANON_EVIDENCE"
+      ],
+      "allowed_signal_classes": [],
+      "required_for_complete": false,
+      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+    },
+    {
+      "component_id": "production_feasibility",
+      "category": "STRUCTURAL_EVIDENCE",
+      "allowed_evidence_kinds": [
+        "DETERMINISTIC_EVIDENCE",
+        "CANON_EVIDENCE"
+      ],
+      "allowed_signal_classes": [],
+      "required_for_complete": false,
+      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+    },
+    {
+      "component_id": "eligibility",
+      "category": "POLICY_EVIDENCE",
+      "allowed_evidence_kinds": [
+        "OPPORTUNITY_SIGNAL",
+        "CANON_EVIDENCE",
+        "DETERMINISTIC_EVIDENCE"
+      ],
+      "allowed_signal_classes": [
+        "PLATFORM_FIT"
+      ],
+      "required_for_complete": false,
+      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+    },
+    {
+      "component_id": "risk_penalty",
+      "category": "POLICY_EVIDENCE",
+      "allowed_evidence_kinds": [
+        "CANON_EVIDENCE",
+        "DETERMINISTIC_EVIDENCE"
+      ],
+      "allowed_signal_classes": [],
+      "required_for_complete": false,
+      "weight_status": "UNASSIGNED_UNTIL_OE-002D"
+    }
+  ],
+  "hard_veto_boundary": "rights/safety/deception/forbidden-platform conditions are separate hard-veto evidence and cannot be neutralized by a high numeric score",
+  "legacy_v0_status": "CALIBRATION_PROVENANCE_ONLY_NOT_PRODUCTION_TRUTH"
+}
