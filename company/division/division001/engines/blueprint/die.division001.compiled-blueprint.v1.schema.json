@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.division001.compiled-blueprint.v1.schema.json",
+  "title": "DIE deterministic compiled Blueprint v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "compiler",
+    "blueprint_id",
+    "repository_sha",
+    "author_artifact",
+    "executive_review",
+    "governed_worth_making",
+    "compile_boundary",
+    "capability_plan",
+    "production_contract",
+    "semantic_hashes",
+    "production_authority_granted"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.division001.compiled-blueprint.v1"
+    },
+    "compiler": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "compiler_id",
+        "version",
+        "role",
+        "capability_profile_sha256"
+      ],
+      "properties": {
+        "compiler_id": {
+          "const": "division001-blueprint-compiler-v1"
+        },
+        "version": {
+          "const": "1.0.0"
+        },
+        "role": {
+          "const": "SERIALIZE_VALIDATE_HASH_ONLY"
+        },
+        "capability_profile_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "blueprint_id": {
+      "type": "string",
+      "pattern": "^BP-DIV001-[A-Z0-9_-]{8,120}$"
+    },
+    "repository_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "author_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_id",
+        "sha256",
+        "principal_id"
+      ],
+      "properties": {
+        "artifact_id": {
+          "type": "string",
+          "pattern": "^BP-DIV001-[A-Z0-9_-]{8,120}$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "principal_id": {
+          "const": "division-head-division01"
+        }
+      }
+    },
+    "executive_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "review_id",
+        "sha256",
+        "principal_id",
+        "outcome"
+      ],
+      "properties": {
+        "review_id": {
+          "type": "string",
+          "pattern": "^BP-EXEC-[A-Z0-9_-]{8,120}$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "principal_id": {
+          "const": "chatgpt-plus-executive"
+        },
+        "outcome": {
+          "const": "NO_VETO"
+        }
+      }
+    },
+    "governed_worth_making": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bundle_id",
+        "sha256",
+        "decision"
+      ],
+      "properties": {
+        "bundle_id": {
+          "type": "string",
+          "pattern": "^WMBUNDLE-[A-Z0-9_-]{8,120}$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "decision": {
+          "const": "PROMOTABLE_TO_BLUEPRINT"
+        }
+      }
+    },
+    "compile_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sha256",
+        "semantic_content_mutated"
+      ],
+      "properties": {
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "semantic_content_mutated": {
+          "const": false
+        }
+      }
+    },
+    "capability_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_type",
+        "engine_id",
+        "provider_id",
+        "required_capability",
+        "artifact_mime_types",
+        "contract_compatible",
+        "runtime_availability_claimed"
+      ],
+      "properties": {
+        "asset_type": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "engine_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "provider_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "required_capability": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "artifact_mime_types": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 100
+          }
+        },
+        "contract_compatible": {
+          "const": true
+        },
+        "runtime_availability_claimed": {
+          "const": false
+        }
+      }
+    },
+    "production_contract": {
+      "type": "object"
+    },
+    "semantic_hashes": {
+      "type": "object",
+      "minProperties": 11,
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "production_authority_granted": {
+      "const": false
+    }
+  }
+}

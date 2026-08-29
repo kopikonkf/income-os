@@ -175,9 +175,9 @@ Founder silence at OE-007E means BLOCKED, never implicit authorization.
 
 `OE-004 = DONE` — governed Worth-Making Gate v1 accepted.
 
-`OE-005A/B/C = DONE` — Division01 Blueprint AUTHOR schema, semantic validator/self-validating compile boundary, and Executive read-only Blueprint REVIEW contract are sealed.
+`OE-005 = DONE` — Blueprint Engine v1 accepted: Division01 AUTHOR, Executive read-only REVIEW, deterministic final compiler, versioned MUXIA capability contract, immutable provenance/hash lock, and determinism/tamper failure suite.
 
-`OE-005D = READY` — deterministic final Blueprint compiler is the next runnable atomic task. OE-005 milestone remains incomplete until OE-005D/E/F pass.
+`OE-006A = READY` — Operator v2 typed intelligence prerequisite registry is the next runnable atomic task.
 
 All later OE tasks remain BLOCKED by explicit graph dependencies.
 

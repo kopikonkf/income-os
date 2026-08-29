@@ -1,0 +1,7 @@
+{
+  "schema": "die.division001.blueprint-compiler-canary-expected.v1",
+  "compiled_blueprint_sha256": "f8b6de9eabea3a6fa78fe36b1b822b076d6ac13ffa1904fee9614b116a8a6829",
+  "lock_id": "BPLOCK-F8B6DE9EABEA3A6FA78F",
+  "provider_id": "chatgpt",
+  "required_capability": "image.generate"
+}

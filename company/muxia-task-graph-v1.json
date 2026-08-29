@@ -997,7 +997,7 @@
                       "depends_on":  [
                                          "OE-005C"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "blueprint compiler/schema normalizer",
                       "acceptance":  "Worker/OpenCode serializes exact authored semantics, validates capabilities/contracts and fails if semantic content is missing; no prompt invention."
                   },
@@ -1008,7 +1008,7 @@
                       "depends_on":  [
                                          "OE-005D"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "compiled blueprint hash/provenance receipt",
                       "acceptance":  "Compiled artifact pins author/review/upstream evidence and immutable hash suitable for Founder authorization."
                   },
@@ -1019,7 +1019,7 @@
                       "depends_on":  [
                                          "OE-005E"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "OE-005 tests + receipt",
                       "acceptance":  "Missing author/review fields, semantic gaps, capability mismatch and hash tampering fail; same authored inputs compile identically."
                   },
@@ -1030,7 +1030,7 @@
                       "depends_on":  [
                                          "OE-005F"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "OE-005 acceptance receipt",
                       "acceptance":  "Division01 authors semantics, Executive reviews, deterministic compiler/hash lock succeeds without Worker/Hermes inventing content, and exact hash is Founder-gatable."
                   },
@@ -1041,7 +1041,7 @@
                       "depends_on":  [
                                          "OE-005"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "typed intelligence prerequisite registry",
                       "acceptance":  "Operator observes typed receipts for signals, score, Worth-Making, Executive review, Blueprint authoring/review, compile/hash and Founder authorization; Kanban is workflow metadata only."
                   },

@@ -418,9 +418,9 @@ Typed modifiers/candidate schema, read-only cleaned Object Atlas retrieval, boun
 
 Accepted governed chain: deterministic precheck/hard veto -> Division01 semantic AUTHOR -> Executive `READ_ONLY_CHALLENGE` REVIEW -> immutable attempt lineage -> current principal/hash/freshness validation. `PROMOTABLE_TO_BLUEPRINT` requires a fresh valid bundle, Division recommendation `VALIDATE`, and Executive `NO_VETO`; it never grants production authority. Legacy Kanban/workflow state is not cognition proof.
 
-### OE-005 - Blueprint v1 — CONTRACT FOUNDATION ACTIVE
+### OE-005 - Blueprint v1 — DONE
 
-OE-005A/B/C are DONE: Division01 Blueprint semantic AUTHOR schema, semantic drift validator + deterministic compile-boundary projection, and Executive `READ_ONLY_CHALLENGE` Blueprint review. Blueprint must preserve governed Worth-Making buyer/JTBD, commercial thesis, differentiation and Product Expression; new production semantics such as family thesis, visual constraints, exact master prompt, negative constraints, variation plan, platform/metadata/QA/falsification directions are Division01-authored. Final compiler/provenance/hash-lock/failure suite remain OE-005D/E/F.
+Accepted governed chain: current `PROMOTABLE_TO_BLUEPRINT` Worth-Making bundle -> Division01 semantic AUTHOR -> semantic drift/completeness validation -> deterministic compile-boundary projection -> Executive `READ_ONLY_CHALLENGE` review -> final deterministic compiler -> immutable provenance/hash lock. Compiler capability plan is contract-level only: `MUXIA_CHATGPT_IMAGE` maps to MUXIA `chatgpt / image.generate` for raster output, while runtime login/readiness remains explicitly unclaimed. Exact compiled artifact bytes are canonical and Founder-gatable by SHA256, but no production authority is granted until a separate Founder exact-hash decision.
 
 ### OE-006 — Hermes Operator v2
 
