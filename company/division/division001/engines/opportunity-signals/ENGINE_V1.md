@@ -11,6 +11,7 @@ Milestone: OE-001
 - `validate_signal_receipt.py` ? semantic/policy/freshness validator.
 - `adapters/public_search_ui_fixture.py` ? deterministic source-shaped public-search fixture adapter.
 - `adapters/official_api_fixture.py` ? deterministic source-shaped official-API fixture adapter.
+- `adapters/buyer_intent_fixture.py` ? deterministic synthetic BUYER_TERM_PRESENCE adapter used by Longtail phrase-level integration tests.
 - `signal_registry.py` ? SQLite receipt registry with idempotent dedupe, conflict detection, freshness filtering and indexed queries.
 
 ## What OE-001 proves
@@ -30,7 +31,7 @@ OE-001 proves the reusable evidence substrate required by OE-002 Demand Score:
 
 OE-001 does **not** claim that Adobe Stock, Freepik, Shutterstock, Dreamstime, Google, Bing or any other external source has been queried live.
 
-The two adapters are fixture-only source-shape proofs. A future live adapter must have a separately reviewed acquisition policy profile and must reuse the exact receipt/registry contract without weakening it.
+The fixture adapters are source-shape proofs only. None performs external collection. A future live adapter must have a separately reviewed acquisition policy profile and must reuse the exact receipt/registry contract without weakening it.
 
 OE-001 also does not calculate Demand Score, Worth-Making, Blueprint semantics or production authorization.
 

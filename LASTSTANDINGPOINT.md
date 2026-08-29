@@ -2751,3 +2751,27 @@ Receipt: `company/muxia/receipts/OE-B05-longtail-retrieval-foundation.receipt.js
 Task graph: `OE-003A/B/C = DONE`; `OE-003D = READY`; OE-003E/F/G and OE-003 milestone remain blocked.
 
 NEXT: OE-B06 — bounded dynamic expansion -> dedupe/IP/quota -> phrase-level signals/scoring -> persistence/ranking -> OE-003 acceptance.
+
+---
+
+## 2026-08-29 - OE-B06 / OE-003 Longtail Engine v1 acceptance
+
+`OE-003 = DONE`. OE-B06 completed `OE-003D/E/F/G`: bounded deterministic Object+Human candidate generation, structural/IP/quota guardrails, child-specific OE-001 -> OE-002 evidence/scoring, separate idempotent Longtail persistence, and ACCEPTED+COMPLETE-only deterministic ranking.
+
+Dynamic expansion no longer uses the legacy object-specific `EXPANSIONS` dictionary as its core strategy. Candidate IDs are deterministic over seed + Human context + normalized phrase + Product Expression. Parent demand inheritance remains forbidden.
+
+Guardrails reject parent redundancy, exact duplicates, severe near-duplicates and quota overflow; moderate near-duplicates and high-confidence IP/trademark terms route to REVIEW rather than silent deletion. The IP list is explicitly protective/not complete legal clearance.
+
+Phrase scoring validates exact child phrase, parent seed and parent candidate IDs through OE-001 validator/registry before OE-002. A cross-engine bug discovered during integration was fixed: OE-001 registry-only `registry_freshness` metadata is removed before passing strict canonical signal receipts to OE-002. Missing/stale required evidence still yields no numeric score; REVIEW candidates cannot be scored.
+
+Longtail persistence uses a caller-supplied separate SQLite registry and never writes to Object Atlas DB. Exact replay is idempotent; conflicting candidate/score identity fails closed. Ranking includes only `guard=ACCEPTED + OE-002=COMPLETE + numeric final_score`; all other states remain deferred.
+
+Synthetic no-network canary: 6 generated / 6 ACCEPTED. Three child phrases scored 0.815511, 0.584106, 0.137423 and rank in that order. First CLI run = 6 INSERTED + 3 ATTACHED; second run = 6 DUPLICATE + 3 DUPLICATE with identical ranking. Canary fixture SHA256 `6fff6ef22279bf5ba3d1fe02d1d0de949b44045005f339e72816f0a7f367466b`.
+
+Validation: OE-003 engine 21/21 PASS; OE-001->OE-003 + OE/PAD graph 108/108 PASS; full bridge 362/362 PASS; one-canon 11/11 PASS; Longtail/Signals bytecode artifacts 0.
+
+Receipts: `company/muxia/receipts/OE-B06-longtail-engine.receipt.json` and `company/muxia/receipts/OE-003-longtail-v1.receipt.json`.
+
+Task graph: `OE-003A..G = DONE`, `OE-003 = DONE`, `OE-004A = READY`.
+
+NEXT: OE-B07 — OE-004A deterministic Worth-Making precheck/hard vetoes -> OE-004B Division01 author contract -> OE-004C Executive review contract.

@@ -171,9 +171,9 @@ Founder silence at OE-007E means BLOCKED, never implicit authorization.
 
 `OE-002 = DONE` — deterministic Demand Score v1 accepted.
 
-`OE-003A/B/C = DONE` — modifier/candidate contract, read-only Object Atlas cleaned-seed retrieval, and bounded Human Atlas hypothesis-context retrieval are sealed.
+`OE-003 = DONE` — bounded Object+Human Longtail engine accepted: dynamic hypothesis generation, guardrails, child-specific OE-001/OE-002 scoring, separate persistence and COMPLETE-only ranking.
 
-`OE-003D = READY` — bounded dynamic Longtail candidate expansion is the next runnable atomic task.
+`OE-004A = READY` — deterministic Worth-Making precheck and hard-veto engine is the next runnable atomic task.
 
 All later OE tasks remain BLOCKED by explicit graph dependencies.
 

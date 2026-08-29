@@ -123,3 +123,7 @@ Its small hard-coded `EXPANSIONS` dictionary is **not** the v1 generation strate
 ## 7. Handoff to OE-B06
 
 OE-003D may only generate candidates from bounded Object retrieval + bounded Human context retrieval + typed modifiers. OE-003E then applies normalization/dedupe/IP/quota guardrails. OE-003F must request phrase-level OE-001 evidence and OE-002 score; parent demand inheritance remains forbidden.
+
+## 8. OE-B06 completion
+
+OE-003D-G are implemented and accepted by ENGINE_V1.md: bounded dynamic generation, structural/IP/quota guardrails, phrase-level OE-001/OE-002 integration, separate idempotent persistence, COMPLETE-only ranking, and deterministic synthetic canary replay. This foundation contract remains the retrieval/ontology layer and is not superseded in authority; it is consumed by the accepted engine.
