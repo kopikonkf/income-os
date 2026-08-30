@@ -1,0 +1,64 @@
+{
+  "schema": "muxia.mx062.runner-readiness.receipt.v1",
+  "date": "2026-08-30",
+  "base_main": "7da7dc2cda93fe48e26720621986cb80d64d0368",
+  "implementation_commit": "5f436c96aa24f1228413de30f09b95a0eb8f2fbe",
+  "task_state": {
+    "MX-062": "READY",
+    "MX-070": "BLOCKED"
+  },
+  "runner_contract": {
+    "minimum_elapsed_ms": 86400000,
+    "sample_interval_ms": 60000,
+    "minimum_coverage": 0.95,
+    "hash_chained_samples": true,
+    "clock_rollback_fails_closed": true,
+    "tamper_fails_closed": true,
+    "duration_shortening_flag_present": false,
+    "restart_safe_service": true,
+    "isolated_state_root": "/var/lib/muxia-soak/mx062-soak-v1",
+    "production_muxia_state_reused": false
+  },
+  "synthetic_probe": {
+    "actual_muxia_registries": true,
+    "duplicate_lease_rejection": true,
+    "dead_process_recovery": true,
+    "durable_artifact_before_success": true,
+    "credential_like_state_scan": true,
+    "provider_invoked": false,
+    "authenticated_profile_read": false
+  },
+  "validation": {
+    "muxia_build_core_parity": "70/70 PASS",
+    "mx062_focused": "6/6 PASS",
+    "full_bridge": "511/511 PASS",
+    "one_canon_pytest": "6/6 PASS",
+    "one_canon_validator": "11/11 PASS",
+    "high_confidence_secret_hits": 0,
+    "bytecode_count": 0,
+    "diff_check": "PASS",
+    "validation_root": "standalone clean clone pinned to implementation commit"
+  },
+  "artifacts": {
+    "company/muxia/src/core/soak-runner.ts": "485fd9c0e1e0ae4d8b0ee7565dd7a23a87ce3f4f550b8c19a76fc94418aa0d26",
+    "company/muxia/scripts/mx062-soak.mjs": "60e0d888c32be8d809bd9de5a88f51a1f725da48580882e5c77ad4f0c86f1613",
+    "company/muxia/scripts/linux/mx062-install-soak.sh": "56ec10691c66d4ffbd475f3db506b7ce8d751c1d8fbd9bca87930613132ba133",
+    "company/muxia/config/linux/systemd/muxia-mx062-soak@.service": "29af4bc78b7b9d3bd63fb7bafe3a44c759e9a8f86ca30d36b7076280909b5643",
+    "company/muxia/tests/core/soak-runner.test.mjs": "dec423385dbe266799ad9bcb33e3f0915a5e459296aabfac1951321541965b3f",
+    "docs/operations/MUXIA_MX062_SOAK_RUNNER_V1.md": "2ae18082fd932eaff1e34176b9e26a0119937776af8ef33f2c44794d4931041c"
+  },
+  "authority_boundary": {
+    "provider_invocation_authorized": false,
+    "credentials_read_authorized": false,
+    "production_profile_read_authorized": false,
+    "submission_authorized": false,
+    "mx062_completion_claimed": false
+  },
+  "next": [
+    "merge runner-readiness",
+    "pull canonical main on Linux /srv/die",
+    "build/install restart-safe isolated soak service",
+    "explicitly start real elapsed 24-hour soak",
+    "only after >=24h, >=95% coverage, zero failures and valid chain: MX-062 DONE and MX-070 READY"
+  ]
+}
