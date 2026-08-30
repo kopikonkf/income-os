@@ -71,6 +71,9 @@ export class JobRegistry {
 
   transition(jobId: string, next: JobState): JobRecord {
     const current = this.get(jobId);
+    if (next === 'SUCCEEDED' && current.status !== 'VERIFYING') {
+      transitionJob(current, next);
+    }
     const evidence = next === 'SUCCEEDED' ? this.artifactRegistry.verifyForJob(current) : undefined;
     let updated = transitionJob(current, next, evidence);
     if (next === 'QUEUED' && current.status !== 'QUEUED') {

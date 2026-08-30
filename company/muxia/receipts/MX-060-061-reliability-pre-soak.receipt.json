@@ -1,0 +1,50 @@
+{
+  "schema": "die.muxia.reliability-pre-soak.v1",
+  "batch_id": "MX-B07",
+  "date": "2026-08-30",
+  "status": "PASS",
+  "base_main": "7be26737a0831e89d5d3d4f197369dc9cd90e823",
+  "implementation_commit": "a499189392dff36fe392407c5be0cb42cfb72fee",
+  "atomic_tasks": [
+    {
+      "id": "MX-060",
+      "status": "DONE",
+      "result": "sanitized deterministic provider/profile/job/artifact health and recursive credential-equivalent log redaction"
+    },
+    {
+      "id": "MX-061",
+      "status": "DONE",
+      "result": "timeout, browser crash, lease contention, disk/artifact failure and auth-required faults map to deterministic fail-closed state and recovery paths"
+    }
+  ],
+  "acceptance": {
+    "health_contains_session_credentials": false,
+    "health_contains_private_runtime_paths_owners_or_pids": false,
+    "credential_equivalent_log_values_redacted": true,
+    "common_failures_diagnosable_by_stable_codes": true,
+    "required_fault_kinds_exercised": 5,
+    "deterministic_fault_state_mapping": true,
+    "false_success_count": 0,
+    "recovery_and_escalation_documented": true
+  },
+  "validation": {
+    "muxia_build_core_parity": "64/64 PASS",
+    "full_bridge": "491/491 PASS",
+    "one_canon_windows": "11/11 PASS",
+    "one_canon_linux": "11/11 PASS (clean exact-source Linux)",
+    "high_confidence_secret_hits": 0
+  },
+  "runtime_boundary": {
+    "live_windows_die_modified": false,
+    "live_linux_muxia_modified": false,
+    "live_provider_invoked": false,
+    "credential_read_or_copied": false,
+    "submission_or_publication_performed": false,
+    "spend_usd": 0,
+    "production_authority_expanded": false
+  },
+  "next_ready": [
+    "MX-062",
+    "QA-001A"
+  ]
+}

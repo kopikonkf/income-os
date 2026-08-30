@@ -3,7 +3,7 @@ import path from 'node:path';
 import type { MuxiaPaths } from './paths.js';
 import { assertSafeId, isPathInside } from './paths.js';
 import type { ProfileRecord } from './domain.js';
-import { acquireProfileLease, releaseProfileLease } from './domain.js';
+import { acquireProfileLease, assertProfileTransition, releaseProfileLease } from './domain.js';
 import { assertNoSecretLikeKeys, ensureMuxiaLayout, listJsonFiles, readJsonFile, writeJsonAtomic } from './storage.js';
 
 const PROFILE_FIELDS = new Set([
@@ -134,6 +134,34 @@ export class ProfileRegistry {
     if (lease.owner !== owner || lease.profileId !== profileId) throw new Error('LEASE_OWNER_MISMATCH');
 
     const next = releaseProfileLease(this.get(profileId), owner);
+    writeJsonAtomic(this.profileFile(profileId), next);
+    fs.rmSync(lock);
+    return this.get(profileId);
+  }
+
+  requireAuthentication(
+    profileId: string,
+    owner: string,
+    now = new Date().toISOString(),
+  ): ProfileRecord {
+    assertSafeId(owner, 'lease_owner');
+    const lock = this.leaseFile(profileId);
+    if (!fs.existsSync(lock)) throw new Error('PROFILE_NOT_LEASED');
+    const lease = readJsonFile<LeaseRecord>(lock);
+    const current = this.get(profileId);
+    if (lease.owner !== owner || lease.profileId !== profileId || current.leaseOwner !== owner) {
+      throw new Error('LEASE_OWNER_MISMATCH');
+    }
+    assertProfileTransition(current.state, 'AUTH_REQUIRED');
+
+    const next: ProfileRecord = {
+      ...current,
+      state: 'AUTH_REQUIRED',
+      leaseOwner: null,
+      browserPid: null,
+      lastHealthAt: now,
+      failureCount: current.failureCount + 1,
+    };
     writeJsonAtomic(this.profileFile(profileId), next);
     fs.rmSync(lock);
     return this.get(profileId);
