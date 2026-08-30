@@ -84,6 +84,8 @@ def test_oe006e_profile_wrapper_is_path_neutral_and_delegates_to_canonical_entry
     assert "/srv/die" not in text
     assert "DIE_HOME" in text and "Path.cwd()" in text
     assert '"bin" / "die_operator_prepare.py"' in text
+    assert '"bin" / "die_operator_tick.py"' in text
+    assert 'module.main(["prepare"])' in text
 
 
 def test_oe006e_canonical_entrypoint_has_compat_and_v2_modes_without_machine_root_literal():

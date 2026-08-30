@@ -23,7 +23,7 @@ Modes:
 
 The v2 prepare path uses the existing DIE path-root abstraction (`resolve_die_path_roots`) and therefore supports Windows/Linux roots through `DIE_HOME`, `DIE_STATE_ROOT`, `MUXIA_ROOT`, `DIE_CONFIG_ROOT`, and `DIE_INSTALL_ROOT` rather than encoding a machine drive. Default v2 state lives below `<DIE_STATE_ROOT>/state/operator-v2/`; explicit fixture/snapshot paths may be supplied for deterministic tests.
 
-The canonical profile delegate template `hermes_profile_prepare_wrapper.py` contains no `C:\DIE` or `/srv/die` literal. It resolves `DIE_HOME`, or falls back to the cron job workdir, and delegates to `bin/die_operator_prepare.py`. Linux activation can call the canonical entrypoint directly and does not depend on mutable Windows profile glue.
+The canonical profile delegate template `hermes_profile_prepare_wrapper.py` contains no `C:\DIE` or `/srv/die` literal. It resolves `DIE_HOME`, or falls back to the cron job workdir, and delegates to `bin/die_operator_prepare.py` when present. During staged Windows migration only, if that new file is not yet present in the protected live root, it falls back to `bin/die_operator_tick.py prepare` from the same resolved root. Linux activation calls the canonical entrypoint directly and does not depend on mutable Windows profile glue.
 
 For safety OE-B12 does not mutate protected live `C:\DIE` or replace the currently scheduled Windows profile wrapper in-place; Windows control-host deployment remains a separate activation operation once canonical source is present at the selected live root.
 
