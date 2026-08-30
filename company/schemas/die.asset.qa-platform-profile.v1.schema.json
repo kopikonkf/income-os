@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.asset.qa-platform-profile.v1.schema.json",
+  "title": "DIE Asset QA Platform Profile v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "profile_id",
+    "platform",
+    "profile_version",
+    "effective_date",
+    "checked_at",
+    "source_document",
+    "requirements"
+  ],
+  "properties": {
+    "schema_version": {"const": "die.asset.qa-platform-profile.v1"},
+    "profile_id": {"type": "string", "pattern": "^QAPROFILE-[A-Z0-9_-]{3,80}-V[0-9]+$"},
+    "platform": {"enum": ["Adobe Stock", "Dreamstime", "123RF", "Vecteezy", "MotionElements"]},
+    "profile_version": {"type": "integer", "minimum": 1},
+    "effective_date": {"type": "string", "format": "date"},
+    "checked_at": {"type": "string", "format": "date"},
+    "source_document": {"const": "docs/pipeline/MATRIX_6_PLATFORM_TOS_STRICTNESS.md"},
+    "requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accepted_formats",
+        "minimum_megapixels",
+        "metadata_constraints",
+        "ai_disclosure",
+        "similarity_distinctness",
+        "account_eligibility",
+        "content_restrictions",
+        "upload_package_constraints"
+      ],
+      "properties": {
+        "accepted_formats": {"$ref": "#/$defs/requirement"},
+        "minimum_megapixels": {"$ref": "#/$defs/requirement"},
+        "metadata_constraints": {"$ref": "#/$defs/requirement"},
+        "ai_disclosure": {"$ref": "#/$defs/requirement"},
+        "similarity_distinctness": {"$ref": "#/$defs/requirement"},
+        "account_eligibility": {"$ref": "#/$defs/requirement"},
+        "content_restrictions": {"$ref": "#/$defs/requirement"},
+        "upload_package_constraints": {"$ref": "#/$defs/requirement"}
+      }
+    }
+  },
+  "$defs": {
+    "requirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "value", "evidence_refs"],
+      "properties": {
+        "status": {"enum": ["KNOWN", "UNKNOWN"]},
+        "value": {},
+        "evidence_refs": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

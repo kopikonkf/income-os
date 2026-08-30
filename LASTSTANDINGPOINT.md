@@ -2988,3 +2988,18 @@ Implementation commit: `62bed28edbc834fe214f542b2884e227344c8266`. Validation: t
 Receipt: `company/muxia/receipts/QA-B01-asset-qa-promotion-contracts.receipt.json`.
 
 Parallel standing point remains: `MX-062 = READY` for the real elapsed 24-hour bounded soak; `MX-070 = BLOCKED` on MX-062. NEXT assurance work: QA-B02, beginning with `QA-001C` reusable engine boundary and `QA-001D` dated platform-profile interface.
+
+
+---
+
+## 2026-08-30 - QA-B02 / QA-001 Asset QA v1 acceptance
+
+`QA-001C = DONE`, `QA-001D = DONE`, `QA-001E = DONE`, `QA-001F = DONE`, and milestone `QA-001 = DONE`; `QC-001A = READY`. The reusable first-class Asset QA v1 boundary preserves deterministic M-001 universal QA behavior and adds dated, strict, fail-closed marketplace preflight profiles for Adobe Stock, Dreamstime, 123RF, Vecteezy and MotionElements. Magnific remains excluded because it is a production/recovery service rather than a licensing marketplace.
+
+Platform requirements are explicitly `KNOWN` or `UNKNOWN`. An `UNKNOWN` requirement produces `PLATFORM_PROFILE_UNKNOWN_REQUIREMENT` as a hard veto and routes the package to `BLOCK_SUBMISSION`; QA never invents missing marketplace rules. Package preflight validates package/mission/batch/Blueprint/asset lineage, hashes, metadata, prepared-not-submitted state and known profile requirements while carrying `submission_authorized=false`. Subjective visual/aesthetic/commercial judgment remains QC scope and QA hard vetoes are not waivable here.
+
+Implementation commit `8463749` was validated from a standalone clean clone before lifecycle transition: targeted QA/graph compatibility 34/34 PASS; MUXIA build/core/parity 64/64 PASS; full bridge 503/503 PASS; one-canon pytest 6/6 PASS; one-canon validator 11/11 PASS; high-confidence secret hits 0; bytecode 0; diff check PASS. Receipt: `company/muxia/receipts/QA-B02-asset-qa-engine-acceptance.receipt.json`.
+
+MX lane remains unchanged: `MX-060/MX-061 = DONE`, `MX-062 = READY` for a real elapsed 24-hour bounded non-production soak, and `MX-070 = BLOCKED` on MX-062. Historical MX-062 runner text was not found in Windows branches, reflogs or dangling commits, so no unverified unpublished runner is treated as canon.
+
+NEXT production-assurance task: `QC-001A` rubric/outcome/authority contract, then `QC-001B` Founder-labeled corpus and `QC-001C` bounded evaluator. `OE-007` remains blocked pending MX-070 and QC-001 convergence.

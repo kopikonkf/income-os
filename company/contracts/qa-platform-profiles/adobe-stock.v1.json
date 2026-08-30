@@ -1,0 +1,69 @@
+{
+  "schema_version": "die.asset.qa-platform-profile.v1",
+  "profile_id": "QAPROFILE-ADOBE-STOCK-V1",
+  "platform": "Adobe Stock",
+  "profile_version": 1,
+  "effective_date": "2026-08-24",
+  "checked_at": "2026-08-24",
+  "source_document": "docs/pipeline/MATRIX_6_PLATFORM_TOS_STRICTNESS.md",
+  "requirements": {
+    "accepted_formats": {
+      "status": "UNKNOWN",
+      "value": null,
+      "evidence_refs": []
+    },
+    "minimum_megapixels": {
+      "status": "UNKNOWN",
+      "value": null,
+      "evidence_refs": []
+    },
+    "metadata_constraints": {
+      "status": "KNOWN",
+      "value": {
+        "policy": "accurate_metadata_and_content_type_required"
+      },
+      "evidence_refs": [
+        "S1"
+      ]
+    },
+    "ai_disclosure": {
+      "status": "KNOWN",
+      "value": {
+        "required": true
+      },
+      "evidence_refs": [
+        "S1"
+      ]
+    },
+    "similarity_distinctness": {
+      "status": "KNOWN",
+      "value": {
+        "review_required": true,
+        "policy": "minor_difference_outputs_may_be_refused"
+      },
+      "evidence_refs": [
+        "S2"
+      ]
+    },
+    "account_eligibility": {
+      "status": "UNKNOWN",
+      "value": null,
+      "evidence_refs": []
+    },
+    "content_restrictions": {
+      "status": "KNOWN",
+      "value": {
+        "review_required": true,
+        "policy": "generative_ai_rights_required"
+      },
+      "evidence_refs": [
+        "S1"
+      ]
+    },
+    "upload_package_constraints": {
+      "status": "UNKNOWN",
+      "value": null,
+      "evidence_refs": []
+    }
+  }
+}

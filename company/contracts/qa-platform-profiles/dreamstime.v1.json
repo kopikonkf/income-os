@@ -1,0 +1,74 @@
+{
+  "schema_version": "die.asset.qa-platform-profile.v1",
+  "profile_id": "QAPROFILE-DREAMSTIME-V1",
+  "platform": "Dreamstime",
+  "profile_version": 1,
+  "effective_date": "2026-08-24",
+  "checked_at": "2026-08-24",
+  "source_document": "docs/pipeline/MATRIX_6_PLATFORM_TOS_STRICTNESS.md",
+  "requirements": {
+    "accepted_formats": {
+      "status": "KNOWN",
+      "value": [
+        "JPEG"
+      ],
+      "evidence_refs": [
+        "S4"
+      ]
+    },
+    "minimum_megapixels": {
+      "status": "KNOWN",
+      "value": 3,
+      "evidence_refs": [
+        "S4"
+      ]
+    },
+    "metadata_constraints": {
+      "status": "KNOWN",
+      "value": {
+        "required_any": [
+          "title",
+          "description"
+        ],
+        "policy": "ai_category_or_title_or_description_disclosure"
+      },
+      "evidence_refs": [
+        "S4"
+      ]
+    },
+    "ai_disclosure": {
+      "status": "KNOWN",
+      "value": {
+        "required": true
+      },
+      "evidence_refs": [
+        "S4"
+      ]
+    },
+    "similarity_distinctness": {
+      "status": "UNKNOWN",
+      "value": null,
+      "evidence_refs": []
+    },
+    "account_eligibility": {
+      "status": "UNKNOWN",
+      "value": null,
+      "evidence_refs": []
+    },
+    "content_restrictions": {
+      "status": "KNOWN",
+      "value": {
+        "review_required": true,
+        "policy": "generated_faces_and_editorial_ai_restricted"
+      },
+      "evidence_refs": [
+        "S4"
+      ]
+    },
+    "upload_package_constraints": {
+      "status": "UNKNOWN",
+      "value": null,
+      "evidence_refs": []
+    }
+  }
+}

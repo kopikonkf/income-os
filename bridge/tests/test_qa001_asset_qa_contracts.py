@@ -94,12 +94,9 @@ def test_taxonomy_declares_hard_veto_and_review_required_semantics() -> None:
     }
 
 
-def test_task_graph_opens_qa_engine_children_after_contract_batch() -> None:
+def test_task_graph_keeps_qa_contract_batch_closed_as_children_advance() -> None:
     tasks = {row["id"]: row for row in _load(GRAPH)["tasks"]}
     assert tasks["QA-001A"]["status"] == "DONE"
     assert tasks["QA-001B"]["status"] == "DONE"
-    assert tasks["QA-001C"]["status"] == "READY"
-    assert tasks["QA-001D"]["status"] == "READY"
-    assert tasks["QA-001E"]["status"] == "BLOCKED"
-    assert tasks["QA-001F"]["status"] == "BLOCKED"
-    assert tasks["QA-001"]["status"] == "BLOCKED"
+    assert tasks["QA-001C"]["status"] in {"READY", "DONE"}
+    assert tasks["QA-001D"]["status"] in {"READY", "DONE"}

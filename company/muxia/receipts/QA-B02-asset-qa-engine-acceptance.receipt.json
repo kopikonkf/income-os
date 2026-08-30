@@ -1,0 +1,67 @@
+{
+  "schema": "die.qa-b02-asset-qa-engine-acceptance.receipt.v1",
+  "date": "2026-08-30",
+  "base_main": "e39e9561cea01d09b4209c958eb9496738219c95",
+  "implementation_commit": "8463749b557a0d4975e21c5113f78ce230bc5387",
+  "tasks": {
+    "QA-001C": "DONE",
+    "QA-001D": "DONE",
+    "QA-001E": "DONE",
+    "QA-001F": "DONE",
+    "QA-001": "DONE",
+    "QC-001A": "READY"
+  },
+  "capabilities": {
+    "universal_qa": "EXECUTABLE",
+    "legacy_m001_compatibility": "PRESERVED",
+    "platform_preflight_profiles": [
+      "Adobe Stock",
+      "Dreamstime",
+      "123RF",
+      "Vecteezy",
+      "MotionElements"
+    ],
+    "unknown_platform_requirement_policy": "HARD_VETO_BLOCK_SUBMISSION",
+    "subjective_qc": "OUT_OF_SCOPE",
+    "submission_authority": false,
+    "publication_authority": false,
+    "spend_authority": false
+  },
+  "validation": {
+    "targeted": "34/34 PASS",
+    "muxia_build_core_parity": "64/64 PASS",
+    "full_bridge": "503/503 PASS",
+    "one_canon_pytest": "6/6 PASS",
+    "one_canon_validator": "11/11 PASS",
+    "high_confidence_secret_hits": 0,
+    "bytecode_count": 0,
+    "diff_check": "PASS",
+    "validation_root": "standalone clean clone pinned to implementation commit"
+  },
+  "artifacts": {
+    "bin/die_asset_qa.py": "a433b2254b68d29d6c85e803d68d28c928153443633e365902eecc2e7169fd02",
+    "bridge/income_os_bridge/asset_qa.py": "0d895e8639bbb15a9c26756954c5566946a4a57c10067edf78f8b7e65c33676f",
+    "bridge/tests/test_qa001_asset_qa_engine.py": "cfe8917497d3275211990b89b77bf9ecc5db282c3cdbee73a874cd8bf1e819de",
+    "company/schemas/die.asset.qa-platform-profile.v1.schema.json": "1014034a1ca1095684cdc4dc7a39aa5f5025af308f7aabcc7bf996eb75f78943",
+    "company/contracts/qa-platform-profiles/123rf.v1.json": "a138cc38968878dacb1d29de555b4451dfd45abd8454b9371a8660bb1bb1f916",
+    "company/contracts/qa-platform-profiles/adobe-stock.v1.json": "fa7a4f6d7592e629135ec7a44a6ade6afc073391d769e41539f3aa6586e52d23",
+    "company/contracts/qa-platform-profiles/dreamstime.v1.json": "c8d0eceee7a2065378fd010ad48fc63fcca57b5f0ec78afb049b093d08ae3adc",
+    "company/contracts/qa-platform-profiles/motionelements.v1.json": "8e94f67927d98d351f74cb1c4e05953458db94798d8a41419dd454be38525338",
+    "company/contracts/qa-platform-profiles/vecteezy.v1.json": "1c6e501199fd2bfd14f5114c60affc2f68b483073ffde96da42a2280d518075e",
+    "docs/operations/ASSET_QA_ENGINE_RUNTIME_V1.md": "50f7ecfff0d9d0fdc7c4061bcd2e28372fed43d21b2ecb49b251ecf07dccde73"
+  },
+  "boundaries": [
+    "No provider invocation.",
+    "No marketplace submission or publication.",
+    "No credential/session acquisition.",
+    "No subjective Founder-QC authority removal.",
+    "UNKNOWN platform requirements fail closed before irreversible submission.",
+    "Magnific is excluded from marketplace QA profiles because it is not a licensing marketplace."
+  ],
+  "next": [
+    "QC-001A",
+    "QC-001B after QC-001A",
+    "QC-001C after QC-001B",
+    "MX-062 real elapsed 24h soak in parallel"
+  ]
+}

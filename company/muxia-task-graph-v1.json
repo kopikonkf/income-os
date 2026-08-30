@@ -1268,7 +1268,7 @@
                       "depends_on":  [
                                          "QA-001B"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "canonical QA engine + compatibility adapter for M-001",
                       "acceptance":  "Current deterministic QA behavior is preserved/refactored behind a reusable interface; no aesthetic/commercial PASS is invented when visual evidence is absent."
                   },
@@ -1279,7 +1279,7 @@
                       "depends_on":  [
                                          "QA-001B"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "versioned platform QA profile schema/interface",
                       "acceptance":  "Per-marketplace format/metadata/AI disclosure/similarity/account constraints are versioned and dated; UNKNOWN profile fields fail closed before submission."
                   },
@@ -1290,7 +1290,7 @@
                       "depends_on":  [
                                          "QA-001D"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "metadata/package validator + receipt",
                       "acceptance":  "Package metadata, asset lineage, Blueprint/hash refs and platform profile requirements validate before irreversible submission."
                   },
@@ -1303,7 +1303,7 @@
                                          "QA-001D",
                                          "QA-001E"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "QA regression/compatibility suite + receipt",
                       "acceptance":  "Legacy M-001 QA parity, hard-veto, review-required, corrupt file, duplicate, metadata/package and platform-profile failure cases pass deterministically."
                   },
@@ -1314,7 +1314,7 @@
                       "depends_on":  [
                                          "QA-001F"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "QA-001 acceptance receipt",
                       "acceptance":  "First-class universal + platform-preflight QA engine is executable and receipt-driven; QA does not perform subjective QC or grant submission authority."
                   },
@@ -1325,7 +1325,7 @@
                       "depends_on":  [
                                          "QA-001"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "die.asset.qc.v1 schema + quality rubric",
                       "acceptance":  "Visual/aesthetic/commercial/Blueprint-adherence factors are explicit; QC cannot override QA hard vetoes or self-grant submission authority."
                   },
