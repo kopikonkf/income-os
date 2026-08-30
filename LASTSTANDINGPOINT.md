@@ -2858,3 +2858,26 @@ Validation: compiler suite 16/16 PASS; OE-005 contracts/compiler/graph 47/47 PAS
 Receipts: `company/muxia/receipts/OE-B10-blueprint-compiler.receipt.json` and `company/muxia/receipts/OE-005-blueprint-v1.receipt.json`.
 
 NEXT: OE-B11 — OE-006A Operator v2 typed prerequisite receipt registry -> OE-006B deterministic action authority map -> OE-006C intelligence stage projection.
+
+
+---
+
+## 2026-08-30 - OE-B11 Operator v2 typed prerequisite/authority/stage foundation
+
+`OE-006A/B/C = DONE`; `OE-006D = READY`; milestone `OE-006` remains BLOCKED pending runtime integration/quarantine/replay tasks.
+
+Operator v2 now has an ordered typed prerequisite chain: Opportunity Signals -> Demand Score -> Division01 Worth-Making AUTHOR -> Executive Worth-Making review -> Division01 Blueprint AUTHOR -> Executive Blueprint review -> deterministic Blueprint compile/hash-lock -> exact Founder production authorization. Every observed receipt pins issuer, artifact schema/ID/SHA, validation proof, freshness and stage claims. Conflicting current receipts fail closed; stale receipts are incomplete; superseded history does not satisfy current progress.
+
+Founder authorization is accepted only when its authorized compiled Blueprint SHA exactly matches the current hash-lock receipt and the decision is committed by `die-state-manager`. Kanban metadata is explicitly never cognition proof.
+
+The canonical action map is default-deny with 26 actions. Authority classification is deterministic and cannot be supplied/overridden by a runtime model. Semantic requests are principal-pinned; Founder-required actions remain Founder-only; forbidden actions remain forbidden; `OP-INVOKE-M001-RUNNER` requires the complete typed chain plus exact Founder authorization.
+
+The stage projector always selects the earliest missing typed receipt and emits `intelligence_stage`, `next_required_receipt`, `next_action_type`, required principal and action authority. Later receipts cannot skip a gap. Invalid chains project `BLOCKED_INVALID_RECEIPTS`; only a complete exact-hash-authorized chain projects `READY_FOR_PRODUCTION`.
+
+Validation: foundation 20/20 PASS; foundation + OE/PAD graph 37/37 PASS; full bridge 443/443 PASS; one-canon 11/11 PASS; bytecode 0. No live `die_operator_tick.py`, Hermes cron, Kanban, cognition, credentials, network, spend or production authority were changed in OE-B11.
+
+Receipt: `company/muxia/receipts/OE-B11-operator-v2-foundation.receipt.json`.
+
+NEXT OE work: OE-B12 — OE-006D legacy Kanban cognition quarantine -> OE-006E canonical OS-neutral operator prepare entrypoint -> OE-006F anti-macet routing/follow-up.
+
+Operational handoff after this batch: process pending Linux authentication/readiness for DIE-200/DIE-201 and audit the actual gates for DIE-203/DIE-204 without copying Windows credentials/profiles.

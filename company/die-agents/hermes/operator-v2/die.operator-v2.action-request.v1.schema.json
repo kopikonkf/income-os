@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.operator-v2.action-request.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "action_type",
+    "actor_id",
+    "projection_stage",
+    "evidence_receipt_types",
+    "target_principal_id"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.operator-v2.action-request.v1"
+    },
+    "action_type": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "actor_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "projection_stage": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "evidence_receipt_types": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 50,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 120
+      }
+    },
+    "target_principal_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 200
+    }
+  }
+}

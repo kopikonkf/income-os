@@ -1041,7 +1041,7 @@
                       "depends_on":  [
                                          "OE-005"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "typed intelligence prerequisite registry",
                       "acceptance":  "Operator observes typed receipts for signals, score, Worth-Making, Executive review, Blueprint authoring/review, compile/hash and Founder authorization; Kanban is workflow metadata only."
                   },
@@ -1052,7 +1052,7 @@
                       "depends_on":  [
                                          "OE-006A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "canonical action_type->authority mapping + validator",
                       "acceptance":  "Runtime model cannot self-grant authority; every action type is mapped and enforced deterministically, with forbidden/founder-required paths fail-closed."
                   },
@@ -1063,7 +1063,7 @@
                       "depends_on":  [
                                          "OE-006A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "next_required_receipt + intelligence_stage projection",
                       "acceptance":  "High-level states expose deterministic missing prerequisite such as SIGNALS, DEMAND_SCORE, WORTH_MAKING, EXEC_REVIEW, BLUEPRINT_AUTHORING, BLUEPRINT_REVIEW, COMPILE or AUTHORIZATION."
                   },
@@ -1075,7 +1075,7 @@
                                          "OE-006B",
                                          "OE-006C"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "legacy-card quarantine/migration rule",
                       "acceptance":  "Historical T1/T2/T2-R2 done cards cannot satisfy new cognitive gates unless backed by typed principal receipts; no silent grandfathering."
                   },

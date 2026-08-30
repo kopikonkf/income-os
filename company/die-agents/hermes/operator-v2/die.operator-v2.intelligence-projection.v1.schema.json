@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.operator-v2.intelligence-projection.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mission_id",
+    "subject_id",
+    "as_of",
+    "registry_status",
+    "intelligence_stage",
+    "next_required_receipt",
+    "next_action_type",
+    "required_principal",
+    "action_authority",
+    "active_receipt_types",
+    "missing_receipt_types",
+    "chain_gap_detected",
+    "out_of_order_receipt_types",
+    "production_authorized",
+    "can_invoke_production_runner",
+    "kanban_cognition_proof_used",
+    "errors",
+    "warnings"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.operator-v2.intelligence-projection.v1"
+    },
+    "mission_id": {
+      "const": "M-001"
+    },
+    "subject_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "registry_status": {
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "intelligence_stage": {
+      "enum": [
+        "BLOCKED_INVALID_RECEIPTS",
+        "SIGNALS",
+        "DEMAND_SCORE",
+        "WORTH_MAKING",
+        "EXEC_WORTH_MAKING_REVIEW",
+        "BLUEPRINT_AUTHORING",
+        "BLUEPRINT_REVIEW",
+        "COMPILE",
+        "AUTHORIZATION",
+        "READY_FOR_PRODUCTION"
+      ]
+    },
+    "next_required_receipt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 120
+    },
+    "next_action_type": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "required_principal": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 200
+    },
+    "action_authority": {
+      "enum": [
+        "AUTONOMOUS",
+        "CONDITIONAL_AUTONOMOUS",
+        "FOUNDER_REQUIRED",
+        "FORBIDDEN"
+      ]
+    },
+    "active_receipt_types": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "missing_receipt_types": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "chain_gap_detected": {
+      "type": "boolean"
+    },
+    "out_of_order_receipt_types": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "production_authorized": {
+      "type": "boolean"
+    },
+    "can_invoke_production_runner": {
+      "type": "boolean"
+    },
+    "kanban_cognition_proof_used": {
+      "const": false
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

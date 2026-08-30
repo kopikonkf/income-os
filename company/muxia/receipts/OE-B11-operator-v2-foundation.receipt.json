@@ -1,0 +1,136 @@
+{
+  "schema": "die.oe-batch-receipt.v1",
+  "batch_id": "OE-B11",
+  "date": "2026-08-30",
+  "status": "PASS",
+  "base_main": "56eb594505598d2ac7341e87c88579aab20b42ab",
+  "atomic_tasks": [
+    {
+      "id": "OE-006A",
+      "status": "DONE",
+      "result": "ordered typed intelligence prerequisite registry with validation-proof pins, freshness/supersession/conflict rules and exact Founder authorization-to-compiled-hash binding"
+    },
+    {
+      "id": "OE-006B",
+      "status": "DONE",
+      "result": "default-deny deterministic action authority map + validator; runtime model cannot override classification; Founder-required and forbidden paths fail closed"
+    },
+    {
+      "id": "OE-006C",
+      "status": "DONE",
+      "result": "deterministic earliest-missing intelligence-stage projection with next receipt/action/principal/authority and explicit chain-gap diagnostics"
+    }
+  ],
+  "prerequisite_chain": [
+    "OPPORTUNITY_SIGNALS",
+    "DEMAND_SCORE",
+    "WORTH_MAKING_AUTHOR",
+    "WORTH_MAKING_EXEC_REVIEW",
+    "BLUEPRINT_AUTHOR",
+    "BLUEPRINT_EXEC_REVIEW",
+    "BLUEPRINT_COMPILE_HASH_LOCK",
+    "FOUNDER_PRODUCTION_AUTHORIZATION"
+  ],
+  "authority": {
+    "actions_total": 26,
+    "default_policy": "DENY",
+    "runtime_model_may_override_authority": false,
+    "capability_is_authority": false,
+    "kanban_is_cognition_proof": false
+  },
+  "invariants": {
+    "earliest_missing_receipt_wins": true,
+    "later_receipts_cannot_skip_gap": true,
+    "stale_receipt_is_incomplete": true,
+    "conflicting_active_receipts_fail_closed": true,
+    "superseded_history_ignored_for_progress": true,
+    "semantic_principals_pinned": true,
+    "founder_authorization_exact_compiled_hash_binding": true,
+    "runner_requires_complete_chain_and_founder_authorization": true
+  },
+  "upstream": {
+    "oe005_acceptance_receipt": {
+      "path": "company/muxia/receipts/OE-005-blueprint-v1.receipt.json",
+      "sha256": "2d6554e1b89c6581378b77216edc06099183bb99b5a96b87dd2685547c4b9076"
+    }
+  },
+  "validation": {
+    "operator_v2_foundation": "20/20 PASS",
+    "operator_v2_plus_graph": "37/37 PASS",
+    "full_bridge": "443/443 PASS",
+    "one_canon": "11/11 PASS",
+    "bytecode_artifacts": "0"
+  },
+  "runtime_boundary": {
+    "live_operator_tick_modified": false,
+    "live_hermes_cron_modified": false,
+    "live_kanban_modified": false,
+    "live_cognition_invoked": false,
+    "network_request_performed": false,
+    "credential_used_or_copied": false,
+    "spend_usd": 0,
+    "production_authority_expanded": false
+  },
+  "artifacts": [
+    {
+      "path": "company/die-agents/hermes/operator-v2/INTELLIGENCE_PREREQUISITE_REGISTRY_V1.json",
+      "sha256": "dd747e9e9f548da2350244a948a998ca2895f04fd130513de6f40b07135851bb",
+      "bytes": 5911
+    },
+    {
+      "path": "company/die-agents/hermes/operator-v2/die.operator-v2.receipt-snapshot.v1.schema.json",
+      "sha256": "120a88a18194a6a80341f6d032a3843ab3b19b5fe38f2d929a1c51e32c56c9c8",
+      "bytes": 4076
+    },
+    {
+      "path": "company/die-agents/hermes/operator-v2/validate_receipt_snapshot.py",
+      "sha256": "047093d3816d77563b1d7da5264b4cbf7ddc8657592507a98de6bf3ff46aa97a",
+      "bytes": 4696
+    },
+    {
+      "path": "company/die-agents/hermes/operator-v2/ACTION_AUTHORITY_MAP_V1.json",
+      "sha256": "d9c97efbab5284afbbe3a7cd87c779006df386d3c6471ad4fe58ea1ed1ac842f",
+      "bytes": 8557
+    },
+    {
+      "path": "company/die-agents/hermes/operator-v2/die.operator-v2.action-request.v1.schema.json",
+      "sha256": "f7ea99fd903c5ffb3e1547b2e78472e368bd6b8938f4bc4f1e3ea7bc162c8d47",
+      "bytes": 1088
+    },
+    {
+      "path": "company/die-agents/hermes/operator-v2/validate_action_authority.py",
+      "sha256": "80890581e59c8f825c9dad1fc10644c90aa5e6e465ad15b106f7f089eed5634b",
+      "bytes": 3454
+    },
+    {
+      "path": "company/die-agents/hermes/operator-v2/die.operator-v2.intelligence-projection.v1.schema.json",
+      "sha256": "4481cb8e597bfff586f9e50934f840356f990730904abe647f85fb2ae2842db5",
+      "bytes": 2821
+    },
+    {
+      "path": "company/die-agents/hermes/operator-v2/project_intelligence_stage.py",
+      "sha256": "32d3802f86da6efa03ae329218331dd5bde396307728c75b23adbfaffff58289",
+      "bytes": 4364
+    },
+    {
+      "path": "company/die-agents/hermes/operator-v2/fixtures/build_operator_v2_fixture.py",
+      "sha256": "38394fd5f1181d8dc6b5f7b4c0eb890eb52ac5e572088fe766c4103bb3c98191",
+      "bytes": 2018
+    },
+    {
+      "path": "bridge/tests/test_oe006_operator_v2_foundation.py",
+      "sha256": "c7a13c12f66601e32d03c086534f24850cdb6b0a38911db9f7931dfaf3c734e1",
+      "bytes": 9584
+    },
+    {
+      "path": "docs/operations/OPERATOR_V2_FOUNDATION_V1.md",
+      "sha256": "513851f768a6e3aa0e7223a94be89077a6c840a2e58a56f85eb95bfa6acd9603",
+      "bytes": 3532
+    }
+  ],
+  "next_ready": [
+    "OE-006D"
+  ],
+  "next_batch": "OE-B12 — OE-006D legacy Kanban cognition quarantine -> OE-006E OS-neutral prepare entrypoint -> OE-006F anti-macet routing/follow-up.",
+  "implementation_commit": "9e7ef8682694ee5beef9fe4f324b17ce60dcee38"
+}
