@@ -1,0 +1,179 @@
+{
+  "schema": "die.operator-v2.intelligence-prerequisite-registry.v1",
+  "version": "1.0.0",
+  "mission_scope": [
+    "M-001"
+  ],
+  "ordered": true,
+  "kanban_is_cognition_proof": false,
+  "unknown_receipt_policy": "IGNORE_FOR_PROGRESS_AND_REPORT",
+  "conflicting_receipt_policy": "FAIL_CLOSED",
+  "stale_receipt_policy": "INCOMPLETE",
+  "stages": [
+    {
+      "order": 1,
+      "stage_id": "SIGNALS",
+      "receipt_type": "OPPORTUNITY_SIGNALS",
+      "issuer_kind": "BOUNDED_COLLECTOR",
+      "allowed_issuer_ids": [
+        "approved-signal-collector",
+        "manual-operator-evidence"
+      ],
+      "artifact_schema": "die.division001.opportunity-signals.v1",
+      "freshness_required": true,
+      "completion_status": "VALID",
+      "next_action_if_missing": "OP-CREATE-RESEARCH-CARD",
+      "required_principal": "approved-signal-collector",
+      "required_claims": {
+        "evidence_class": "OBSERVED_OR_VERIFIED"
+      }
+    },
+    {
+      "order": 2,
+      "stage_id": "DEMAND_SCORE",
+      "receipt_type": "DEMAND_SCORE",
+      "issuer_kind": "DETERMINISTIC_ENGINE",
+      "allowed_issuer_ids": [
+        "division001-demand-score-v1"
+      ],
+      "artifact_schema": "die.division001.demand-score.v1",
+      "freshness_required": true,
+      "completion_status": "VALID",
+      "next_action_if_missing": "OP-DISPATCH-DEMAND-SCORE",
+      "required_principal": "division001-demand-score-v1",
+      "required_claims": {
+        "score_status": "COMPLETE"
+      }
+    },
+    {
+      "order": 3,
+      "stage_id": "WORTH_MAKING",
+      "receipt_type": "WORTH_MAKING_AUTHOR",
+      "issuer_kind": "SEMANTIC_PRINCIPAL",
+      "allowed_issuer_ids": [
+        "division-head-division01"
+      ],
+      "artifact_schema": "die.division001.worth-making.v1",
+      "freshness_required": true,
+      "completion_status": "VALID",
+      "next_action_if_missing": "OP-REQUEST-DIVISION01-WORTH-MAKING",
+      "required_principal": "division-head-division01",
+      "required_claims": {
+        "recommendation": "VALIDATE",
+        "production_authority_granted": false
+      }
+    },
+    {
+      "order": 4,
+      "stage_id": "EXEC_WORTH_MAKING_REVIEW",
+      "receipt_type": "WORTH_MAKING_EXEC_REVIEW",
+      "issuer_kind": "SEMANTIC_PRINCIPAL",
+      "allowed_issuer_ids": [
+        "chatgpt-plus-executive"
+      ],
+      "artifact_schema": "die.executive.worth-making-review.v1",
+      "freshness_required": true,
+      "completion_status": "VALID",
+      "required_claims": {
+        "outcome": "NO_VETO"
+      },
+      "next_action_if_missing": "OP-REQUEST-EXECUTIVE-WORTH-MAKING-REVIEW",
+      "required_principal": "chatgpt-plus-executive"
+    },
+    {
+      "order": 5,
+      "stage_id": "BLUEPRINT_AUTHORING",
+      "receipt_type": "BLUEPRINT_AUTHOR",
+      "issuer_kind": "SEMANTIC_PRINCIPAL",
+      "allowed_issuer_ids": [
+        "division-head-division01"
+      ],
+      "artifact_schema": "die.division001.blueprint-authoring.v1",
+      "freshness_required": true,
+      "completion_status": "VALID",
+      "next_action_if_missing": "OP-REQUEST-DIVISION01-BLUEPRINT",
+      "required_principal": "division-head-division01",
+      "required_claims": {
+        "production_authority_granted": false
+      }
+    },
+    {
+      "order": 6,
+      "stage_id": "BLUEPRINT_REVIEW",
+      "receipt_type": "BLUEPRINT_EXEC_REVIEW",
+      "issuer_kind": "SEMANTIC_PRINCIPAL",
+      "allowed_issuer_ids": [
+        "chatgpt-plus-executive"
+      ],
+      "artifact_schema": "die.executive.blueprint-review.v1",
+      "freshness_required": true,
+      "completion_status": "VALID",
+      "required_claims": {
+        "outcome": "NO_VETO"
+      },
+      "next_action_if_missing": "OP-REQUEST-EXECUTIVE-BLUEPRINT-REVIEW",
+      "required_principal": "chatgpt-plus-executive"
+    },
+    {
+      "order": 7,
+      "stage_id": "COMPILE",
+      "receipt_type": "BLUEPRINT_COMPILE_HASH_LOCK",
+      "issuer_kind": "DETERMINISTIC_ENGINE",
+      "allowed_issuer_ids": [
+        "division001-blueprint-compiler-v1"
+      ],
+      "artifact_schema": "die.division001.compiled-blueprint-lock.v1",
+      "freshness_required": false,
+      "completion_status": "VALID",
+      "required_claims": {
+        "integrity_status": "LOCKED",
+        "authorization_granted": false,
+        "production_authority_granted": false
+      },
+      "next_action_if_missing": "OP-CREATE-BLUEPRINT-COMPILE-CARD",
+      "required_principal": "worker-template",
+      "required_claim_keys": [
+        "exact_compiled_blueprint_sha256"
+      ]
+    },
+    {
+      "order": 8,
+      "stage_id": "AUTHORIZATION",
+      "receipt_type": "FOUNDER_PRODUCTION_AUTHORIZATION",
+      "issuer_kind": "HUMAN_SOVEREIGN",
+      "allowed_issuer_ids": [
+        "founder"
+      ],
+      "artifact_schema": "die.operator-v2.founder-production-authorization-observation.v1",
+      "freshness_required": true,
+      "completion_status": "VALID",
+      "required_claims": {
+        "authorization_status": "AUTHORIZED",
+        "committed_by": "die-state-manager"
+      },
+      "binds_to_receipt_type": "BLUEPRINT_COMPILE_HASH_LOCK",
+      "bind_claim": "authorized_compiled_blueprint_sha256",
+      "target_claim": "exact_compiled_blueprint_sha256",
+      "next_action_if_missing": "OP-DRAFT-U1-REQUEST",
+      "required_principal": "founder",
+      "required_claim_keys": [
+        "authorized_compiled_blueprint_sha256",
+        "decision_id"
+      ]
+    }
+  ],
+  "canon_evidence": [
+    {
+      "path": "ORCHESTRATOR_CONTRACT.md",
+      "sha256": "efbf08ea1fd8ce1aae82e5a56f610a477c2364229029cee580b3080680e10c96"
+    },
+    {
+      "path": "docs/operations/PROACTIVE_OPERATOR_V1.md",
+      "sha256": "bd48bb3c9e3a5e486742c24bcaf3c057ab61b5f763738ab8433ac1d2d4d8662a"
+    },
+    {
+      "path": "company/muxia/receipts/OE-005-blueprint-v1.receipt.json",
+      "sha256": "2d6554e1b89c6581378b77216edc06099183bb99b5a96b87dd2685547c4b9076"
+    }
+  ]
+}

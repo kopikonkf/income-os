@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.operator-v2.receipt-snapshot.v1.schema.json",
+  "title": "DIE Operator v2 typed prerequisite receipt snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mission_id",
+    "subject_id",
+    "as_of",
+    "receipts",
+    "kanban_metadata"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.operator-v2.receipt-snapshot.v1"
+    },
+    "mission_id": {
+      "const": "M-001"
+    },
+    "subject_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "receipts": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "receipt_type",
+          "artifact_id",
+          "artifact_sha256",
+          "issuer_id",
+          "issuer_kind",
+          "artifact_schema",
+          "status",
+          "recorded_at",
+          "expires_at",
+          "source_ref",
+          "validation",
+          "claims"
+        ],
+        "properties": {
+          "receipt_type": {
+            "enum": [
+              "OPPORTUNITY_SIGNALS",
+              "DEMAND_SCORE",
+              "WORTH_MAKING_AUTHOR",
+              "WORTH_MAKING_EXEC_REVIEW",
+              "BLUEPRINT_AUTHOR",
+              "BLUEPRINT_EXEC_REVIEW",
+              "BLUEPRINT_COMPILE_HASH_LOCK",
+              "FOUNDER_PRODUCTION_AUTHORIZATION"
+            ]
+          },
+          "artifact_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "artifact_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "issuer_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "issuer_kind": {
+            "enum": [
+              "BOUNDED_COLLECTOR",
+              "DETERMINISTIC_ENGINE",
+              "SEMANTIC_PRINCIPAL",
+              "HUMAN_SOVEREIGN"
+            ]
+          },
+          "artifact_schema": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "status": {
+            "enum": [
+              "VALID",
+              "INVALID",
+              "SUPERSEDED"
+            ]
+          },
+          "recorded_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expires_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "source_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "validation": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "validator_id",
+              "status",
+              "receipt_ref",
+              "receipt_sha256"
+            ],
+            "properties": {
+              "validator_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240
+              },
+              "status": {
+                "const": "PASS"
+              },
+              "receipt_ref": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000
+              },
+              "receipt_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            }
+          },
+          "claims": {
+            "type": "object",
+            "maxProperties": 50,
+            "additionalProperties": {
+              "type": [
+                "string",
+                "number",
+                "boolean",
+                "null"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "kanban_metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

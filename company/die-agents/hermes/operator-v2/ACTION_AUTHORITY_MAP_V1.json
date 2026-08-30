@@ -1,0 +1,343 @@
+{
+  "schema": "die.operator-v2.action-authority-map.v1",
+  "version": "1.0.0",
+  "default_policy": "DENY",
+  "runtime_model_may_override_authority": false,
+  "capability_is_authority": false,
+  "actions": [
+    {
+      "action_type": "OP-OBSERVE-STATE",
+      "authority": "AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "*"
+      ],
+      "effect": "READ_ONLY",
+      "requires_receipt_types": []
+    },
+    {
+      "action_type": "OP-CREATE-RESEARCH-CARD",
+      "authority": "AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "SIGNALS"
+      ],
+      "effect": "REVERSIBLE_WORKFLOW_METADATA",
+      "requires_receipt_types": []
+    },
+    {
+      "action_type": "OP-DISPATCH-DEMAND-SCORE",
+      "authority": "AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "DEMAND_SCORE"
+      ],
+      "effect": "DETERMINISTIC_JOB_REQUEST",
+      "requires_receipt_types": [
+        "OPPORTUNITY_SIGNALS"
+      ]
+    },
+    {
+      "action_type": "OP-REQUEST-DIVISION01-WORTH-MAKING",
+      "authority": "AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "WORTH_MAKING"
+      ],
+      "effect": "SEMANTIC_REQUEST_ONLY",
+      "requires_receipt_types": [
+        "OPPORTUNITY_SIGNALS",
+        "DEMAND_SCORE"
+      ]
+    },
+    {
+      "action_type": "OP-REQUEST-EXECUTIVE-WORTH-MAKING-REVIEW",
+      "authority": "AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "EXEC_WORTH_MAKING_REVIEW"
+      ],
+      "effect": "SEMANTIC_REVIEW_REQUEST_ONLY",
+      "requires_receipt_types": [
+        "WORTH_MAKING_AUTHOR"
+      ]
+    },
+    {
+      "action_type": "OP-REQUEST-DIVISION01-BLUEPRINT",
+      "authority": "AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "BLUEPRINT_AUTHORING"
+      ],
+      "effect": "SEMANTIC_REQUEST_ONLY",
+      "requires_receipt_types": [
+        "WORTH_MAKING_AUTHOR",
+        "WORTH_MAKING_EXEC_REVIEW"
+      ]
+    },
+    {
+      "action_type": "OP-REQUEST-EXECUTIVE-BLUEPRINT-REVIEW",
+      "authority": "AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "BLUEPRINT_REVIEW"
+      ],
+      "effect": "SEMANTIC_REVIEW_REQUEST_ONLY",
+      "requires_receipt_types": [
+        "BLUEPRINT_AUTHOR"
+      ]
+    },
+    {
+      "action_type": "OP-CREATE-BLUEPRINT-COMPILE-CARD",
+      "authority": "AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "COMPILE"
+      ],
+      "effect": "DETERMINISTIC_WORKER_REQUEST",
+      "requires_receipt_types": [
+        "BLUEPRINT_AUTHOR",
+        "BLUEPRINT_EXEC_REVIEW"
+      ]
+    },
+    {
+      "action_type": "OP-DRAFT-U1-REQUEST",
+      "authority": "AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "AUTHORIZATION"
+      ],
+      "effect": "FOUNDER_REQUEST_DRAFT_ONLY",
+      "requires_receipt_types": [
+        "BLUEPRINT_COMPILE_HASH_LOCK"
+      ]
+    },
+    {
+      "action_type": "OP-INVOKE-M001-RUNNER",
+      "authority": "CONDITIONAL_AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "READY_FOR_PRODUCTION"
+      ],
+      "effect": "AUTHORIZED_PRODUCTION_MATERIALIZATION",
+      "requires_receipt_types": [
+        "BLUEPRINT_COMPILE_HASH_LOCK",
+        "FOUNDER_PRODUCTION_AUTHORIZATION"
+      ]
+    },
+    {
+      "action_type": "OP-FOLLOW-UP-CARD",
+      "authority": "AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "*"
+      ],
+      "effect": "REVERSIBLE_WORKFLOW_METADATA",
+      "requires_receipt_types": []
+    },
+    {
+      "action_type": "OP-BLOCK-CARD",
+      "authority": "AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "*"
+      ],
+      "effect": "FAIL_CLOSED_WORKFLOW_BLOCK",
+      "requires_receipt_types": []
+    },
+    {
+      "action_type": "OP-WRITE-LEARNING",
+      "authority": "AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "*"
+      ],
+      "effect": "OBSERVATION_OR_HYPOTHESIS_ONLY",
+      "requires_receipt_types": []
+    },
+    {
+      "action_type": "OP-NOTIFY-FOUNDER",
+      "authority": "CONDITIONAL_AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "AUTHORIZATION",
+        "READY_FOR_PRODUCTION",
+        "*"
+      ],
+      "effect": "DECISION_COMPLETE_NOTIFICATION_ONLY",
+      "requires_receipt_types": []
+    },
+    {
+      "action_type": "F-PRODUCTION-AUTH",
+      "authority": "FOUNDER_REQUIRED",
+      "allowed_actor_ids": [
+        "founder"
+      ],
+      "allowed_projection_stages": [
+        "AUTHORIZATION"
+      ],
+      "effect": "SOVEREIGN_EXACT_HASH_AUTHORIZATION",
+      "requires_receipt_types": [
+        "BLUEPRINT_COMPILE_HASH_LOCK"
+      ]
+    },
+    {
+      "action_type": "F-SPEND",
+      "authority": "FOUNDER_REQUIRED",
+      "allowed_actor_ids": [
+        "founder"
+      ],
+      "allowed_projection_stages": [
+        "*"
+      ],
+      "effect": "SOVEREIGN_SPEND_AUTHORIZATION",
+      "requires_receipt_types": []
+    },
+    {
+      "action_type": "F-SUBMIT",
+      "authority": "FOUNDER_REQUIRED",
+      "allowed_actor_ids": [
+        "founder"
+      ],
+      "allowed_projection_stages": [
+        "*"
+      ],
+      "effect": "IRREVERSIBLE_EXTERNAL_SUBMISSION",
+      "requires_receipt_types": []
+    },
+    {
+      "action_type": "F-PUBLISH",
+      "authority": "FOUNDER_REQUIRED",
+      "allowed_actor_ids": [
+        "founder"
+      ],
+      "allowed_projection_stages": [
+        "*"
+      ],
+      "effect": "IRREVERSIBLE_EXTERNAL_PUBLICATION",
+      "requires_receipt_types": []
+    },
+    {
+      "action_type": "F-ACCOUNT",
+      "authority": "FOUNDER_REQUIRED",
+      "allowed_actor_ids": [
+        "founder"
+      ],
+      "allowed_projection_stages": [
+        "*"
+      ],
+      "effect": "ACCOUNT_OR_CREDENTIAL_CHANGE",
+      "requires_receipt_types": []
+    },
+    {
+      "action_type": "F-AUTONOMY",
+      "authority": "FOUNDER_REQUIRED",
+      "allowed_actor_ids": [
+        "founder"
+      ],
+      "allowed_projection_stages": [
+        "*"
+      ],
+      "effect": "AUTHORITY_WIDENING",
+      "requires_receipt_types": []
+    },
+    {
+      "action_type": "X-DIRECT-STATE-WRITE",
+      "authority": "FORBIDDEN",
+      "allowed_actor_ids": [],
+      "allowed_projection_stages": [
+        "*"
+      ],
+      "effect": "FORBIDDEN",
+      "requires_receipt_types": []
+    },
+    {
+      "action_type": "X-DIRECT-PROXIMA",
+      "authority": "FORBIDDEN",
+      "allowed_actor_ids": [],
+      "allowed_projection_stages": [
+        "*"
+      ],
+      "effect": "FORBIDDEN",
+      "requires_receipt_types": []
+    },
+    {
+      "action_type": "X-PROMPT-IMPROVISATION",
+      "authority": "FORBIDDEN",
+      "allowed_actor_ids": [],
+      "allowed_projection_stages": [
+        "*"
+      ],
+      "effect": "FORBIDDEN",
+      "requires_receipt_types": []
+    },
+    {
+      "action_type": "X-PRODUCTION-CRON",
+      "authority": "FORBIDDEN",
+      "allowed_actor_ids": [],
+      "allowed_projection_stages": [
+        "*"
+      ],
+      "effect": "FORBIDDEN",
+      "requires_receipt_types": []
+    },
+    {
+      "action_type": "X-AUTO-SOCIAL",
+      "authority": "FORBIDDEN",
+      "allowed_actor_ids": [],
+      "allowed_projection_stages": [
+        "*"
+      ],
+      "effect": "FORBIDDEN",
+      "requires_receipt_types": []
+    },
+    {
+      "action_type": "X-SELF-PROMOTION",
+      "authority": "FORBIDDEN",
+      "allowed_actor_ids": [],
+      "allowed_projection_stages": [
+        "*"
+      ],
+      "effect": "FORBIDDEN",
+      "requires_receipt_types": []
+    }
+  ],
+  "canon_evidence": [
+    {
+      "path": "ORCHESTRATOR_CONTRACT.md",
+      "sha256": "efbf08ea1fd8ce1aae82e5a56f610a477c2364229029cee580b3080680e10c96"
+    },
+    {
+      "path": "company/identity-registry.json",
+      "sha256": "f3bc939e90c6afef37eb9d71961841d5dd662ee371e4d5cd4b4cca652c72ff54"
+    }
+  ]
+}

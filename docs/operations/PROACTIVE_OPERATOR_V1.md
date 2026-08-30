@@ -266,6 +266,8 @@ submission/publication.
 
 The original V1 state machine predates the explicit Opportunity Signals, Demand Score, Executive review, and governed Blueprint Authoring engine graph. Until Operator v2 is implemented, do not interpret legacy Kanban completion alone as proof that Worth-Making or Blueprint cognition passed.
 
+OE-B11 foundation implementation: `company/die-agents/hermes/operator-v2/` now defines the typed prerequisite registry, default-deny action authority map, receipt validator and intelligence-stage projector. This foundation is not yet wired into the live v1 tick/scheduler; OE-006D/E/F/G own that cutover.
+
 Target Operator v2 keeps Hermes as anti-macet orchestrator and adds deterministic prerequisite surfaces such as `next_required_receipt` / `intelligence_stage` for:
 
 1. Opportunity Signals;

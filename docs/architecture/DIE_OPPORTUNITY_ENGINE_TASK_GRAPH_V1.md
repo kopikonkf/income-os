@@ -175,9 +175,11 @@ Founder silence at OE-007E means BLOCKED, never implicit authorization.
 
 `OE-004 = DONE` — governed Worth-Making Gate v1 accepted.
 
-`OE-005 = DONE` — Blueprint Engine v1 accepted: Division01 AUTHOR, Executive read-only REVIEW, deterministic final compiler, versioned MUXIA capability contract, immutable provenance/hash lock, and determinism/tamper failure suite.
+`OE-005 = DONE` — deterministic governed Blueprint Engine v1 accepted.
 
-`OE-006A = READY` — Operator v2 typed intelligence prerequisite registry is the next runnable atomic task.
+`OE-006A/B/C = DONE` — Operator v2 typed prerequisite registry, deterministic action authority map and intelligence-stage projection are sealed.
+
+`OE-006D = READY` — legacy Kanban cognition quarantine is the next runnable atomic task. Live Operator v1 integration remains unchanged until OE-006D/E/F/G.
 
 All later OE tasks remain BLOCKED by explicit graph dependencies.
 

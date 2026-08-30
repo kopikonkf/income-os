@@ -422,9 +422,9 @@ Accepted governed chain: deterministic precheck/hard veto -> Division01 semantic
 
 Accepted governed chain: current `PROMOTABLE_TO_BLUEPRINT` Worth-Making bundle -> Division01 semantic AUTHOR -> semantic drift/completeness validation -> deterministic compile-boundary projection -> Executive `READ_ONLY_CHALLENGE` review -> final deterministic compiler -> immutable provenance/hash lock. Compiler capability plan is contract-level only: `MUXIA_CHATGPT_IMAGE` maps to MUXIA `chatgpt / image.generate` for raster output, while runtime login/readiness remains explicitly unclaimed. Exact compiled artifact bytes are canonical and Founder-gatable by SHA256, but no production authority is granted until a separate Founder exact-hash decision.
 
-### OE-006 — Hermes Operator v2
+### OE-006 - Hermes Operator v2 — FOUNDATION ACTIVE
 
-Add prerequisite receipt registry, deterministic authority mapping, legacy-card quarantine, canonical OS-neutral prepare wrapper, and regression tests.
+OE-006A/B/C are DONE. Operator v2 now has an ordered typed receipt registry from Signals through exact Founder production authorization, a canonical default-deny action authority map, and deterministic `intelligence_stage` / `next_required_receipt` projection. Kanban is workflow metadata only and cannot satisfy cognition. Runtime integration/quarantine/OS-neutral entrypoint/anti-macet routing/replay remain OE-006D/E/F/G.
 
 ### OE-007 — Governed production canary
 
