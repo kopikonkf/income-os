@@ -1246,7 +1246,7 @@
                       "depends_on":  [
                                          "OE-005"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "m001_asset_qa capability/gap audit + promotion contract",
                       "acceptance":  "Existing executable QA core is mapped exactly; reusable checks are preserved; subjective QC and submission authority remain outside QA."
                   },
@@ -1257,7 +1257,7 @@
                       "depends_on":  [
                                          "QA-001A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "die.asset.qa.v1 schema + defect/route taxonomy",
                       "acceptance":  "Receipt covers integrity, lineage, technical, rights, safety, watermark, duplicate, metadata/package and review-required states with hard-veto semantics."
                   },
@@ -1268,7 +1268,7 @@
                       "depends_on":  [
                                          "QA-001B"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "canonical QA engine + compatibility adapter for M-001",
                       "acceptance":  "Current deterministic QA behavior is preserved/refactored behind a reusable interface; no aesthetic/commercial PASS is invented when visual evidence is absent."
                   },
@@ -1279,7 +1279,7 @@
                       "depends_on":  [
                                          "QA-001B"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "versioned platform QA profile schema/interface",
                       "acceptance":  "Per-marketplace format/metadata/AI disclosure/similarity/account constraints are versioned and dated; UNKNOWN profile fields fail closed before submission."
                   },

@@ -152,7 +152,7 @@ An OPERATOR_REQUIRED adapter is still a valid Submission Engine adapter: it prep
 `OE-006 = DONE`. Parallel production-readiness is active:
 
 - MUXIA reliability: `MX-060 = DONE`, `MX-061 = DONE`, `MX-062 = READY`;
-- production assurance: `QA-001A = READY`;
+- production assurance: `QA-001A = DONE`, `QA-001B = DONE`, `QA-001C = READY`, `QA-001D = READY`;
 - later QC, submission, market-loop and `OE-007` nodes remain dependency-blocked.
 
 This standing point authorizes only the declared bounded build/verification work. It does not authorize a production provider invocation, marketplace submission, spend, or removal of Founder QC authority.

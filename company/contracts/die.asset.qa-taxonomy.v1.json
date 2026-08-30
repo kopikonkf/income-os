@@ -1,0 +1,49 @@
+{
+  "schema": "die.asset.qa-taxonomy.v1",
+  "version": 1,
+  "severity": [
+    "HARD_VETO",
+    "FAIL",
+    "REVIEW_REQUIRED"
+  ],
+  "defects": {
+    "INTEGRITY_FILE_MISSING": "HARD_VETO",
+    "INTEGRITY_HASH_MISMATCH": "HARD_VETO",
+    "INTEGRITY_RASTER_CORRUPT": "FAIL",
+    "LINEAGE_MISSING": "HARD_VETO",
+    "LINEAGE_MISMATCH": "HARD_VETO",
+    "TECHNICAL_FORMAT_UNSUPPORTED": "FAIL",
+    "TECHNICAL_DIMENSION_BELOW_MINIMUM": "FAIL",
+    "RIGHTS_UNCLEAR": "HARD_VETO",
+    "RIGHTS_FAILED": "HARD_VETO",
+    "SAFETY_UNCLEAR": "HARD_VETO",
+    "SAFETY_FAILED": "HARD_VETO",
+    "WATERMARK_UNCLEAR": "HARD_VETO",
+    "WATERMARK_PRESENT": "HARD_VETO",
+    "DUPLICATE_ASSET_ID": "FAIL",
+    "DUPLICATE_BINARY": "FAIL",
+    "METADATA_MISSING": "FAIL",
+    "METADATA_INVALID": "FAIL",
+    "PACKAGE_INVALID": "HARD_VETO",
+    "PLATFORM_PROFILE_UNKNOWN_REQUIREMENT": "HARD_VETO",
+    "REVIEW_REQUIRED_VISUAL": "REVIEW_REQUIRED"
+  },
+  "routes": [
+    "PASS",
+    "RECREATE_TECHNICAL",
+    "QUARANTINE_RIGHTS",
+    "QUARANTINE_SAFETY",
+    "ARCHIVE_RESEARCH_ONLY",
+    "REVIEW_REQUIRED",
+    "T1_MARKET_FIT_FAIL",
+    "T1_RECOVERABLE",
+    "BLOCK_SUBMISSION"
+  ],
+  "hard_veto_rule": "Any HARD_VETO defect makes hard_veto=true and prevents PASS/submission eligibility for that receipt. Correction requires a new evaluation receipt; QA cannot waive the veto.",
+  "review_rule": "REVIEW_REQUIRED is never equivalent to PASS.",
+  "authority_boundary": {
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "hard_vetoes_waivable": false
+  }
+}

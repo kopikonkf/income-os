@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.asset.qa.v1.schema.json",
+  "title": "DIE Asset QA Receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "evaluated_at",
+    "mission_id",
+    "batch_id",
+    "source_manifest_sha256",
+    "qa_scope",
+    "batch_state",
+    "hard_veto",
+    "defect_summary",
+    "asset_results",
+    "authority_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "die.asset.qa.v1"},
+    "receipt_id": {"type": "string", "pattern": "^QAREC-[A-Z0-9_-]{8,100}$"},
+    "evaluated_at": {"type": "string", "format": "date-time"},
+    "mission_id": {"type": "string", "minLength": 1},
+    "batch_id": {"type": "string", "minLength": 1},
+    "blueprint_id": {"type": "string", "minLength": 1},
+    "blueprint_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "qa_scope": {"enum": ["UNIVERSAL", "PLATFORM_PREFLIGHT"]},
+    "platform_profile": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["profile_id", "profile_version", "effective_date", "profile_sha256"],
+      "properties": {
+        "profile_id": {"type": "string", "minLength": 1},
+        "profile_version": {"type": "integer", "minimum": 1},
+        "effective_date": {"type": "string", "format": "date"},
+        "profile_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "batch_state": {"enum": ["PASS", "FAIL", "BLOCKED_REVIEW"]},
+    "hard_veto": {"type": "boolean"},
+    "defect_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hard_veto_count", "fail_count", "review_required_count"],
+      "properties": {
+        "hard_veto_count": {"type": "integer", "minimum": 0},
+        "fail_count": {"type": "integer", "minimum": 0},
+        "review_required_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "asset_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["asset_id", "route", "defects"],
+        "properties": {
+          "asset_id": {"type": "string", "minLength": 1},
+          "source_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+          "route": {
+            "enum": [
+              "PASS",
+              "RECREATE_TECHNICAL",
+              "QUARANTINE_RIGHTS",
+              "QUARANTINE_SAFETY",
+              "ARCHIVE_RESEARCH_ONLY",
+              "REVIEW_REQUIRED",
+              "T1_MARKET_FIT_FAIL",
+              "T1_RECOVERABLE",
+              "BLOCK_SUBMISSION"
+            ]
+          },
+          "defects": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["code", "severity", "evidence_refs"],
+              "properties": {
+                "code": {
+                  "enum": [
+                    "INTEGRITY_FILE_MISSING",
+                    "INTEGRITY_HASH_MISMATCH",
+                    "INTEGRITY_RASTER_CORRUPT",
+                    "LINEAGE_MISSING",
+                    "LINEAGE_MISMATCH",
+                    "TECHNICAL_FORMAT_UNSUPPORTED",
+                    "TECHNICAL_DIMENSION_BELOW_MINIMUM",
+                    "RIGHTS_UNCLEAR",
+                    "RIGHTS_FAILED",
+                    "SAFETY_UNCLEAR",
+                    "SAFETY_FAILED",
+                    "WATERMARK_UNCLEAR",
+                    "WATERMARK_PRESENT",
+                    "DUPLICATE_ASSET_ID",
+                    "DUPLICATE_BINARY",
+                    "METADATA_MISSING",
+                    "METADATA_INVALID",
+                    "PACKAGE_INVALID",
+                    "PLATFORM_PROFILE_UNKNOWN_REQUIREMENT",
+                    "REVIEW_REQUIRED_VISUAL"
+                  ]
+                },
+                "severity": {"enum": ["HARD_VETO", "FAIL", "REVIEW_REQUIRED"]},
+                "message": {"type": "string"},
+                "evidence_refs": {
+                  "type": "array",
+                  "items": {"type": "string", "minLength": 1},
+                  "uniqueItems": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "package_result": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["state", "defects"],
+      "properties": {
+        "state": {"enum": ["PASS", "FAIL", "BLOCKED_REVIEW", "NOT_EVALUATED"]},
+        "defects": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["submission_authorized", "publication_authorized", "hard_vetoes_waivable"],
+      "properties": {
+        "submission_authorized": {"const": false},
+        "publication_authorized": {"const": false},
+        "hard_vetoes_waivable": {"const": false}
+      }
+    }
+  }
+}
