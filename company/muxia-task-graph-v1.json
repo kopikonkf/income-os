@@ -1325,7 +1325,7 @@
                       "depends_on":  [
                                          "QA-001"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "die.asset.qc.v1 schema + quality rubric",
                       "acceptance":  "Visual/aesthetic/commercial/Blueprint-adherence factors are explicit; QC cannot override QA hard vetoes or self-grant submission authority."
                   },
@@ -1336,7 +1336,7 @@
                       "depends_on":  [
                                          "QC-001A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "versioned QC label/corpus schema + sampling contract",
                       "acceptance":  "Founder/manual labels are captured as ground truth with asset class, defect classes, decision, rationale and immutable artifact refs; no private reasoning required."
                   },
@@ -1347,7 +1347,7 @@
                       "depends_on":  [
                                          "QC-001B"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "bounded QC evaluator + versioned result receipt",
                       "acceptance":  "Evaluator produces defect classes, score/recommendation/confidence and evidence refs without changing artifacts or claiming Founder authority."
                   },
@@ -1358,7 +1358,7 @@
                       "depends_on":  [
                                          "QC-001C"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "calibration report engine",
                       "acceptance":  "Agreement, false-pass, false-fail, hard-defect misses, confidence calibration and per-class/per-asset metrics are reproducible across model versions."
                   },

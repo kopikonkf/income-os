@@ -1,0 +1,48 @@
+{
+  "schema": "die.qc-b01-foundation-acceptance.receipt.v1",
+  "date": "2026-08-30",
+  "base_main": "e43a80cc645185fea623a846344dc8398146cf66",
+  "implementation_commit": "f5d3862a24be6502f861e009ed18c4d5620aee07",
+  "tasks": {
+    "QC-001A": "DONE",
+    "QC-001B": "DONE",
+    "QC-001C": "DONE",
+    "QC-001D": "READY"
+  },
+  "mode": "SHADOW_ONLY",
+  "validation": {
+    "targeted": "17/17 PASS",
+    "muxia_build_core_parity": "64/64 PASS",
+    "full_bridge": "511/511 PASS",
+    "one_canon_pytest": "6/6 PASS",
+    "one_canon_validator": "11/11 PASS",
+    "high_confidence_secret_hits": 0,
+    "bytecode_count": 0,
+    "diff_check": "PASS"
+  },
+  "authority": {
+    "release_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "qa_hard_veto_waivable": false,
+    "founder_qc_removed": false,
+    "auto_qc_delegation_ratified": false
+  },
+  "artifacts": {
+    "bin/die_asset_qc.py": "a31a92d5e1a54f4e016b84feb163bd0ddb0bc6f2d82bdd39524061f1cd70e9db",
+    "bridge/income_os_bridge/asset_qc.py": "20b4d2afd1d8a4ae02f0014b33fd1bb97902b8bb75d349d75e5d34070c1c9c53",
+    "bridge/tests/test_qc001_asset_qc_foundation.py": "1b20af9a9a10e4f4a50989149c777148ccc2f0d6a071153be61a1bbab1bceb07",
+    "company/contracts/die.asset.qc-rubric.v1.json": "17704e4b0a8a539059fe29eb295193d8745a2c19507469d47278227c1339ca6c",
+    "company/contracts/die.asset.qc-sampling.v1.json": "a7319965dde1b6c7558e7a715d45918887f0fe3c90a4ce35f0aca515bcae2c3b",
+    "company/schemas/die.asset.qc-label.v1.schema.json": "9775c0cfb623913ecdbf81cd95d7f89033afbda442785c5dab44bd72bdca6a23",
+    "company/schemas/die.asset.qc-corpus.v1.schema.json": "cf3b503dc47e56a65e2a1b84314cbb0b9321cf5da7acd3f4bc9aaab21f46e7a5",
+    "company/schemas/die.asset.qc-observation.v1.schema.json": "cf098c0ff6f432f44db3d5c6445ef1f3cf53872eae4670e4582e5677b09ea6c2",
+    "company/schemas/die.asset.qc.v1.schema.json": "87b41a189f6d660f1683b13f38af9d940380a5981c5a67aafc018c39a55c28b5",
+    "docs/operations/ASSET_QC_FOUNDATION_V1.md": "e232e8590e80b7145b954f32e22576dadd9ff967554f05c00f7b2da7499f0684"
+  },
+  "next": [
+    "QC-001D calibration metrics",
+    "QC-001E SHADOW_ONLY dual-review",
+    "QC-001F delegation policy requiring Founder ratification"
+  ]
+}

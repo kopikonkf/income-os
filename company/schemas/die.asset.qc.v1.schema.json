@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.asset.qc.v1.schema.json",
+  "title": "DIE Asset QC Result v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "receipt_id", "evaluated_at", "asset_id", "asset_sha256",
+    "blueprint_id", "blueprint_sha256", "qa_receipt_sha256", "rubric_id",
+    "rubric_version", "reviewer_id", "reviewer_version", "score", "confidence",
+    "recommendation", "defect_classes", "evidence_refs", "mode", "qa_gate", "authority_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "die.asset.qc.v1"},
+    "receipt_id": {"type": "string", "minLength": 1},
+    "evaluated_at": {"type": "string", "minLength": 1},
+    "asset_id": {"type": "string", "minLength": 1},
+    "asset_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "blueprint_id": {"type": "string", "minLength": 1},
+    "blueprint_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "qa_receipt_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "rubric_id": {"type": "string", "minLength": 1},
+    "rubric_version": {"type": "integer", "minimum": 1},
+    "reviewer_id": {"type": "string", "minLength": 1},
+    "reviewer_version": {"type": "string", "minLength": 1},
+    "score": {"type": "number", "minimum": 0, "maximum": 100},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "recommendation": {"enum": ["PASS_RECOMMENDED", "REVIEW_RECOMMENDED", "FAIL_RECOMMENDED", "BLOCKED_BY_QA"]},
+    "defect_classes": {
+      "type": "array", "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "evidence_refs": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "mode": {"const": "SHADOW_ONLY"},
+    "qa_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["passed", "reason"],
+      "properties": {
+        "passed": {"type": "boolean"},
+        "reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["release_authorized", "submission_authorized", "publication_authorized", "qa_hard_veto_waivable", "self_promotion_allowed"],
+      "properties": {
+        "release_authorized": {"const": false},
+        "submission_authorized": {"const": false},
+        "publication_authorized": {"const": false},
+        "qa_hard_veto_waivable": {"const": false},
+        "self_promotion_allowed": {"const": false}
+      }
+    }
+  }
+}

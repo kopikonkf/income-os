@@ -3003,3 +3003,16 @@ Implementation commit `8463749` was validated from a standalone clean clone befo
 MX lane remains unchanged: `MX-060/MX-061 = DONE`, `MX-062 = READY` for a real elapsed 24-hour bounded non-production soak, and `MX-070 = BLOCKED` on MX-062. Historical MX-062 runner text was not found in Windows branches, reflogs or dangling commits, so no unverified unpublished runner is treated as canon.
 
 NEXT production-assurance task: `QC-001A` rubric/outcome/authority contract, then `QC-001B` Founder-labeled corpus and `QC-001C` bounded evaluator. `OE-007` remains blocked pending MX-070 and QC-001 convergence.
+
+
+---
+
+## 2026-08-30 - QC-B01 SHADOW QC foundation
+
+`QC-001A = DONE`, `QC-001B = DONE`, `QC-001C = DONE`; `QC-001D = READY`. Asset QC v1 now has an explicit rubric/result/authority contract, Founder/manual label + corpus schemas, deterministic anti-cherry-pick sampling contract, and bounded SHADOW evaluator/CLI. The evaluator verifies QA/asset hash lineage, computes deterministic normalized score/confidence, returns PASS/REVIEW/FAIL recommendations, and forces `BLOCKED_BY_QA` when QA carries a hard veto or non-PASS route.
+
+Authority remains unchanged: SHADOW recommendation is not Founder approval; release/submission/publication authority are false; QA hard vetoes are not waivable; no auto-QC delegation threshold is ratified. Corpus labels store bounded rationale summaries and immutable evidence/hash refs without requiring private reasoning.
+
+Implementation commit was validated before lifecycle transition: targeted 17/17 PASS; MUXIA 64/64 PASS; full bridge 511/511 PASS; one-canon pytest 6/6 PASS; validator 11/11 PASS; secret scan 0; bytecode 0; diff check PASS. Receipt: `company/muxia/receipts/QC-B01-shadow-qc-foundation.receipt.json`.
+
+NEXT: `QC-001D` calibration metrics -> `QC-001E` SHADOW dual-review/disagreement queue -> `QC-001F` versioned delegation policy (Founder ratification required) -> `QC-001G` replay/drift/audit -> QC-001 acceptance. MX-062 remains a real elapsed 24-hour gate and MX-070 remains blocked until it passes.
