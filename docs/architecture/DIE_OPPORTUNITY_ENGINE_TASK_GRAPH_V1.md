@@ -182,9 +182,9 @@ Founder silence at OE-007E means BLOCKED, never implicit authorization.
 
 `OE-006A/B/C = DONE` — Operator v2 typed prerequisite registry, deterministic action authority map and intelligence-stage projection are sealed.
 
-`OE-006D = READY` — legacy Kanban cognition quarantine is the next runnable atomic task. Live Operator v1 integration remains unchanged until OE-006D/E/F/G.
+`OE-006 = DONE` — Operator v2 typed prerequisites, authority map, cognition quarantine, OS-neutral preparation, anti-macet routing and crash-safe replay are accepted.
 
-All later OE tasks remain BLOCKED by explicit graph dependencies.
+Parallel production-readiness is active. `MX-060/MX-061 = DONE`, `MX-062 = READY`, and `QA-001A = READY`. `OE-007A` remains blocked until `MX-070`; `OE-007G` additionally requires accepted `QA-001` and `QC-001`.
 
 ## 7. Migration integration
 

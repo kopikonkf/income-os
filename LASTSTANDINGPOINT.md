@@ -2959,3 +2959,18 @@ Validation: focused OE-006+graph 69/69 PASS; full bridge 491/491 PASS; one-canon
 Receipts: `company/muxia/receipts/OE-B13-operator-v2-acceptance.receipt.json` and `company/muxia/receipts/OE-006-operator-v2-acceptance.receipt.json`.
 
 NEXT runs in parallel: Lane A `MX-060 -> MX-061 -> MX-062 -> MX-070`; Lane B `QA-001A..F -> QA-001 -> QC-001A..G -> QC-001`. `OE-007` governed real-artifact canary starts after convergence. Windows live `C:\DIE` remains protected/dirty; Windows Architect MCP 8790 remains active through CUT-005; Linux `/srv/die` remains canonical main.
+
+
+---
+
+## 2026-08-30 - MX-B07 reliability pre-soak acceptance
+
+`MX-060 = DONE`, `MX-061 = DONE`, and `MX-062 = READY`. MUXIA now exposes deterministic sanitized provider/profile/job/artifact health without profile/artifact paths, lease owner values, browser PIDs, raw exceptions, provider bodies, or session credentials. Recursive log sanitization redacts credential-equivalent keys and values and reduces errors to bounded diagnostic codes.
+
+Fault injection proves deterministic timeout, dead-browser recovery, lease contention, invalid disk/artifact, and auth-required paths against the persistent registries. Every fault disposition has `successAllowed=false`; false success count is 0. Auth-required handling verifies the current lease owner, atomically persists `AUTH_REQUIRED`, clears PID/owner, increments failure count, and removes the lease; ambiguous owners fail closed without mutation.
+
+Validation before publication: MUXIA TypeScript build/core/parity 64/64 PASS; standalone Windows full bridge 491/491 PASS; Windows one-canon 11/11 PASS; changed-file high-confidence secret hits 0. Linux exact-source one-canon is the remaining publication gate and must pass from the pushed branch before merge.
+
+Receipt: `company/muxia/receipts/MX-060-061-reliability-pre-soak.receipt.json`. Runtime boundaries held: no live `C:\DIE` or `/var/lib/muxia` mutation, provider call, credential read/copy, submission, spend, or production-authority expansion.
+
+NEXT after merge: start the real elapsed 24-hour bounded non-production `MX-062` soak while `QA-001A..F -> QA-001 -> QC-001A..G -> QC-001` advances in parallel. A shortened duration cannot satisfy MX-062.

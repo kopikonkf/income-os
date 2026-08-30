@@ -1,6 +1,6 @@
 # MUXIA ATOMIC TASKS V1
 
-Status: CANON TASK GRAPH / EXECUTION NOT STARTED
+Status: CANON TASK GRAPH / EXECUTION ACTIVE
 Date: 2026-08-26
 Product: MUXIA
 Machine graph: `company/muxia-task-graph-v1.json`
@@ -329,6 +329,8 @@ Acceptance:
 
 ### MX-060 — Sanitized observability
 
+Status: `DONE`
+
 **Goal:** Expose runtime/profile/job/artifact health without session credentials.
 
 Depends on: `MX-052`
@@ -341,6 +343,8 @@ Acceptance:
 
 ### MX-061 — Fault-injection suite
 
+Status: `DONE`
+
 **Goal:** Test timeout, browser crash, lease contention, disk/artifact failure, and auth-required transitions.
 
 Depends on: `MX-060`
@@ -352,6 +356,8 @@ Acceptance:
 - recovery/escalation path documented.
 
 ### MX-062 — 24-hour soak
+
+Status: `READY`
 
 **Goal:** Run bounded non-production soak against approved test canaries/profile health loops.
 

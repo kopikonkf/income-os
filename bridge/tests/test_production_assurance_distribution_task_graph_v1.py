@@ -101,15 +101,19 @@ def test_submission_authority_is_separate_from_qc_authority() -> None:
     assert "A QC delegation does not imply submission delegation" in orch
 
 
-def test_operator_acceptance_opens_parallel_muxia_and_qa_readiness() -> None:
+def test_operator_acceptance_and_reliability_open_parallel_soak_and_qa_readiness() -> None:
     tasks = _tasks()
     assert tasks["OE-006D"]["status"] == "DONE"
     assert tasks["OE-006E"]["status"] == "DONE"
     assert tasks["OE-006F"]["status"] == "DONE"
     assert tasks["OE-006G"]["status"] == "DONE"
     assert tasks["OE-006"]["status"] == "DONE"
-    assert tasks["MX-060"]["status"] == "READY"
+    assert tasks["MX-060"]["status"] == "DONE"
+    assert tasks["MX-061"]["status"] == "DONE"
+    assert tasks["MX-062"]["status"] == "READY"
     assert tasks["QA-001A"]["status"] == "READY"
     pad_statuses = {row["status"] for task_id, row in tasks.items() if task_id.startswith(("QA-", "QC-", "SUB-", "CL-"))}
     assert pad_statuses == {"READY", "BLOCKED"}
-    assert "OE-006D = READY" in TASKDOC.read_text(encoding="utf-8")
+    taskdoc = TASKDOC.read_text(encoding="utf-8")
+    assert "OE-006 = DONE" in taskdoc
+    assert "MX-062 = READY" in taskdoc

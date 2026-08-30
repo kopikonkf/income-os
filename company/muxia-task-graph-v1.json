@@ -271,8 +271,8 @@
                                          "MX-052",
                                          "DIE-204"
                                      ],
-                      "status":  "READY",
-                      "artifact":  "health/logging surfaces",
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/MX-060-061-reliability-pre-soak.receipt.json",
                       "acceptance":  "Operational diagnosis without cookies/tokens/auth bodies."
                   },
                   {
@@ -282,8 +282,8 @@
                       "depends_on":  [
                                          "MX-060"
                                      ],
-                      "status":  "BLOCKED",
-                      "artifact":  "fault injection tests/receipts",
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/MX-060-061-reliability-pre-soak.receipt.json",
                       "acceptance":  "Timeout/crash/contention/disk/auth faults map deterministically; false success=0."
                   },
                   {
@@ -293,7 +293,7 @@
                       "depends_on":  [
                                          "MX-061"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "24h soak receipt",
                       "acceptance":  "Zero profile corruption, credential leakage, duplicate ownership; recovery matches contract."
                   },
