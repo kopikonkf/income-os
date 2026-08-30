@@ -1,0 +1,103 @@
+{
+    "schema":  "die.muxia.die203-final-promotion.v1",
+    "task_id":  "DIE-203",
+    "date":  "2026-08-30",
+    "status":  "PASS",
+    "decision":  {
+                     "seed_library_final_475560_is_die203_final_baseline":  true,
+                     "seed_library_433835_is_historical_checkpoint":  true
+                 },
+    "source_authority_gate":  {
+                                  "windows_root":  "D:/object-asset-engine",
+                                  "gemini_worker_processes":  0,
+                                  "audit_queue":  744259,
+                                  "audit_done":  744259,
+                                  "pending":  0,
+                                  "source_db_not_overwritten":  true
+                              },
+    "linux_authoritative_runtime":  {
+                                        "completed_at":  "2026-08-30T09:34:00Z",
+                                        "promotion_status":  "LINUX_AUTHORITATIVE_VERIFIED",
+                                        "windows_writer_processes_at_gate":  0,
+                                        "windows_source_overwritten":  false,
+                                        "main_db":  {
+                                                        "runtime_path":  "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db",
+                                                        "bytes":  1210871808,
+                                                        "sha256":  "e6e43fbd4bbee712de651c31a159bb66872a91b1b555f809d0177ba856eeb891",
+                                                        "quick_check":  "ok",
+                                                        "candidate_seeds":  714268,
+                                                        "audit_queue":  744259,
+                                                        "audit_done":  744259,
+                                                        "audit_verdict_counts":  {
+                                                                                     "OBJECT":  433750,
+                                                                                     "REJECT":  295676,
+                                                                                     "UNSURE":  14833
+                                                                                 }
+                                                    },
+                                        "seed_library":  {
+                                                             "runtime_path":  "/var/lib/die/atlas/object-asset-engine/db/seed_library.db",
+                                                             "classification":  "FINAL_PRODUCTION_BASELINE",
+                                                             "source_windows":  "D:/object-asset-engine/db/seed_library_final.db",
+                                                             "bytes":  66695168,
+                                                             "sha256":  "3035b179ba435a9cc4983ca567528b15941b1a9f205451d425cd40ce5925ab77",
+                                                             "quick_check":  "ok",
+                                                             "objects":  475560,
+                                                             "distinct_lower_trim_word":  475560,
+                                                             "source_bucket_counts":  {
+                                                                                          "not_in_wordnet":  401121,
+                                                                                          "wave3_eligible":  41725,
+                                                                                          "h4_capital":  32542,
+                                                                                          "eligible_control":  172
+                                                                                      }
+                                                         },
+                                        "checkpoint_seed_library":  {
+                                                                        "classification":  "HISTORICAL_PRE_WAVE3_CHECKPOINT_NOT_PRODUCTION_BASELINE",
+                                                                        "objects":  433835,
+                                                                        "bytes":  61870080,
+                                                                        "sha256":  "05ea44ad30a446ce4fe3ae835791d8a8a80cbf16b84ccfc69a245e08ca3c6d32"
+                                                                    },
+                                        "transport":  {
+                                                          "main_gzip_bytes":  246966615,
+                                                          "main_gzip_decompressed_sha_verified":  true,
+                                                          "final_seed_gzip_bytes":  20437500,
+                                                          "final_seed_decompressed_sha_verified":  true
+                                                      },
+                                        "atomic_promotion":  {
+                                                                 "rollback_directory":  "/var/lib/die/atlas/object-asset-engine/state/pre-die203-final-20260830T0929Z",
+                                                                 "old_runtime_db_moved_not_deleted":  true,
+                                                                 "old_runtime_wal_shm_removed_from_active_runtime":  true,
+                                                                 "runtime_owner":  "root:die-runtime",
+                                                                 "runtime_mode":  "0660"
+                                                             },
+                                        "post_promotion":  {
+                                                               "main_sha_parity":  "PASS",
+                                                               "seed_sha_parity":  "PASS",
+                                                               "quick_check":  "PASS",
+                                                               "critical_count_parity":  "PASS",
+                                                               "linux_writer_started":  false,
+                                                               "windows_writer_restarted":  false
+                                                           }
+                                    },
+    "pre_promotion_receipt":  {
+                                  "path":  "company/muxia/receipts/DIE-203-atlas-object-linux.receipt.json"
+                              },
+    "safety":  {
+                   "credential_copy":  false,
+                   "raw_windows_wal_shm_copied":  false,
+                   "linux_writer_started":  false,
+                   "windows_source_deleted":  false,
+                   "rollback_preserved":  true
+               },
+    "task_graph_result":  {
+                              "DIE-203":  "DONE",
+                              "DIE-204":  "BLOCKED_PENDING_DIE-200_DIE-201_DIE-202"
+                          },
+    "validation":  {
+                       "targeted":  "18/18 PASS",
+                       "full_bridge":  "445/445 PASS",
+                       "one_canon":  "11/11 PASS",
+                       "windows_writer_processes":  "0",
+                       "linux_post_promotion_hash_count_parity":  "PASS"
+                   },
+    "base_main":  "69087dec549c3e1d142fbf8e645b53dd10f9a21d"
+}

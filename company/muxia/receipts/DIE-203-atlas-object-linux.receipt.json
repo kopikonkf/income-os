@@ -1,8 +1,8 @@
 {
   "schema": "die.muxia.die203-atlas-object-linux.v1",
   "task_id": "DIE-203",
-  "date": "2026-08-28",
-  "status": "WAITING_OBJECT_FILTER_COMPLETION",
+  "date": "2026-08-30",
+  "status": "DONE",
   "implementation_commit": "f0cb0a90de45ca155f1109ceb15721365a8d7488",
   "human_atlas": {
     "normative_canon": "company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md",
@@ -126,12 +126,14 @@
   "windows_authority": {
     "root": "D:\\object-asset-engine",
     "worker": "gemini_audit_scale.py --run",
-    "worker_active": true,
-    "authoritative": true,
+    "worker_active": false,
+    "authoritative": false,
     "main_db_bytes_latest_observed": 1191800832,
     "seed_library_bytes_latest_observed": 47919104,
     "live_die_head": "04eda313f1e757c0d0f8fd9d90251b92c0dd95a3",
-    "live_die_dirty_paths_observed": 38
+    "live_die_dirty_paths_observed": 38,
+    "retained_as_rollback_provenance": true,
+    "source_not_overwritten": true
   },
   "repair_children": 1,
   "repair_child": {
@@ -139,16 +141,75 @@
     "scope": "manifest bytecode hygiene, bounded transfer retry, provenance/diff hygiene, shell read-only evidence hygiene",
     "windows_object_worker_mutated": false
   },
-  "completion_blocker": {
-    "type": "OBJECT_FILTERING_STILL_ACTIVE",
-    "required_signal": "Founder reports Object Atlas filtering complete",
-    "then": "quiesce Windows writer, final SQLite refresh, hash/quick-check/critical-count parity, Linux authority promotion"
-  },
-  "next_independent_work": "DIE-204 remains blocked on DIE-200/201/202/203 completion; auth/credential gates are still deferred.",
+  "completion_blocker": null,
+  "next_independent_work": "DIE-204 remains blocked on DIE-200/DIE-201/DIE-202 completion; DIE-203 is complete.",
   "publication": {
     "pr": 48,
     "merged_at": "2026-08-28T23:55:12Z",
     "merge_commit": "5c080921158c8af4a4b804b5f2f952956f23d915",
-    "published_status": "WAITING_OBJECT_FILTER_COMPLETION"
+    "published_status": "FINAL_PROMOTION_PENDING_PUBLICATION"
+  },
+  "final_promotion": {
+    "completed_at": "2026-08-30T09:34:00Z",
+    "promotion_status": "LINUX_AUTHORITATIVE_VERIFIED",
+    "windows_writer_processes_at_gate": 0,
+    "windows_source_overwritten": false,
+    "main_db": {
+      "runtime_path": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db",
+      "bytes": 1210871808,
+      "sha256": "e6e43fbd4bbee712de651c31a159bb66872a91b1b555f809d0177ba856eeb891",
+      "quick_check": "ok",
+      "candidate_seeds": 714268,
+      "audit_queue": 744259,
+      "audit_done": 744259,
+      "audit_verdict_counts": {
+        "OBJECT": 433750,
+        "REJECT": 295676,
+        "UNSURE": 14833
+      }
+    },
+    "seed_library": {
+      "runtime_path": "/var/lib/die/atlas/object-asset-engine/db/seed_library.db",
+      "classification": "FINAL_PRODUCTION_BASELINE",
+      "source_windows": "D:/object-asset-engine/db/seed_library_final.db",
+      "bytes": 66695168,
+      "sha256": "3035b179ba435a9cc4983ca567528b15941b1a9f205451d425cd40ce5925ab77",
+      "quick_check": "ok",
+      "objects": 475560,
+      "distinct_lower_trim_word": 475560,
+      "source_bucket_counts": {
+        "not_in_wordnet": 401121,
+        "wave3_eligible": 41725,
+        "h4_capital": 32542,
+        "eligible_control": 172
+      }
+    },
+    "checkpoint_seed_library": {
+      "classification": "HISTORICAL_PRE_WAVE3_CHECKPOINT_NOT_PRODUCTION_BASELINE",
+      "objects": 433835,
+      "bytes": 61870080,
+      "sha256": "05ea44ad30a446ce4fe3ae835791d8a8a80cbf16b84ccfc69a245e08ca3c6d32"
+    },
+    "transport": {
+      "main_gzip_bytes": 246966615,
+      "main_gzip_decompressed_sha_verified": true,
+      "final_seed_gzip_bytes": 20437500,
+      "final_seed_decompressed_sha_verified": true
+    },
+    "atomic_promotion": {
+      "rollback_directory": "/var/lib/die/atlas/object-asset-engine/state/pre-die203-final-20260830T0929Z",
+      "old_runtime_db_moved_not_deleted": true,
+      "old_runtime_wal_shm_removed_from_active_runtime": true,
+      "runtime_owner": "root:die-runtime",
+      "runtime_mode": "0660"
+    },
+    "post_promotion": {
+      "main_sha_parity": "PASS",
+      "seed_sha_parity": "PASS",
+      "quick_check": "PASS",
+      "critical_count_parity": "PASS",
+      "linux_writer_started": false,
+      "windows_writer_restarted": false
+    }
   }
 }

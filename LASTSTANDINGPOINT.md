@@ -2881,3 +2881,18 @@ Receipt: `company/muxia/receipts/OE-B11-operator-v2-foundation.receipt.json`.
 NEXT OE work: OE-B12 — OE-006D legacy Kanban cognition quarantine -> OE-006E canonical OS-neutral operator prepare entrypoint -> OE-006F anti-macet routing/follow-up.
 
 Operational handoff after this batch: process pending Linux authentication/readiness for DIE-200/DIE-201 and audit the actual gates for DIE-203/DIE-204 without copying Windows credentials/profiles.
+
+
+---
+
+## 2026-08-30 - DIE-203 final Object Engine promotion
+
+`DIE-203 = DONE`. Windows filtering completed naturally: 744,259/744,259 audit rows done; OBJECT 433,750, REJECT 295,676, UNSURE 14,833; worker process count 0.
+
+Final quiesced main DB was verified and promoted to Linux: 1,210,871,808 bytes, SHA256 `e6e43fbd4bbee712de651c31a159bb66872a91b1b555f809d0177ba856eeb891`, quick_check ok, candidate_seeds 714,268, audit_queue/done 744,259/744,259.
+
+Founder-approved `seed_library_final.db` is ratified as the final DIE-203 production baseline, replacing the 433,835-row checkpoint for runtime use. Linux canonical `seed_library.db`: 66,695,168 bytes, SHA256 `3035b179ba435a9cc4983ca567528b15941b1a9f205451d425cd40ce5925ab77`, quick_check ok, 475,560 rows, 475,560 distinct lower-trim words. Buckets: not_in_wordnet 401,121; wave3_eligible 41,725; h4_capital 32,542; eligible_control 172. The 433,835-row snapshot remains historical pre-Wave3 provenance.
+
+Promotion was rollback-safe: old Linux runtime DB/WAL/SHM moved to `/var/lib/die/atlas/object-asset-engine/state/pre-die203-final-20260830T0929Z`; Windows source DBs were not overwritten/deleted; no Linux Object Engine writer was started.
+
+Receipt: `company/muxia/receipts/DIE-203-final-promotion.receipt.json`. DIE-204 remains BLOCKED on DIE-200/DIE-201/DIE-202 completion.

@@ -1,7 +1,7 @@
 # DIE-203 ? Atlas + Object Asset Engine Linux Migration V1
 
 Date: 2026-08-28
-Status: WAITING_OBJECT_FILTER_COMPLETION
+Status: DONE
 Implementation SHA: `f0cb0a90de45ca155f1109ceb15721365a8d7488`
 
 ## Scope and authority
@@ -109,22 +109,30 @@ Linux runtime proof:
 - seed DB SHA/quick-check/table/count parity: PASS.
 - data 7/7 hash parity: PASS.
 
-## Why DIE-203 is not DONE
+## DIE-203 final promotion — 2026-08-30
 
-The Windows worker remained active after the snapshot and DB files continued growing. At the latest observation, `gemini_audit_scale.py --run` was still running; `seed_library.db` had grown to 47,919,104 bytes. Therefore the Linux dataset is deliberately stale-by-design relative to the continuing authoritative filter process.
+The filtering gate is complete. `audit_queue` contains 744,259 rows and all 744,259 are `audit_status=done`; verdicts are OBJECT 433,750, REJECT 295,676 and UNSURE 14,833. The Windows Gemini worker process count was zero at the final gate. Windows source DBs were not overwritten or deleted.
 
-Completion gate after Founder reports filtering complete:
+Final quiesced main database promoted to Linux:
 
-1. record final Windows filtering/audit counts;
-2. quiesce the Windows Object Engine writer;
-3. create a final SQLite online backup/checkpoint;
-4. transfer only changed DB/report state as required;
-5. verify SHA256, `quick_check`, table counts, candidate/audit/object critical counts;
-6. promote final Linux DBs;
-7. run Linux read-only parity;
-8. only then declare Linux Object Engine authoritative and DIE-203 DONE.
+- bytes: 1,210,871,808
+- SHA256: `e6e43fbd4bbee712de651c31a159bb66872a91b1b555f809d0177ba856eeb891`
+- `PRAGMA quick_check`: `ok`
+- candidate_seeds: 714,268
+- audit_queue / done: 744,259 / 744,259
 
-The raw Wiktionary dump and other data files need not be recopied if their pinned hashes remain unchanged.
+The earlier 433,835-object `seed_library.db` snapshot (SHA256 `05ea44ad30a446ce4fe3ae835791d8a8a80cbf16b84ccfc69a245e08ca3c6d32`) is retained as a historical pre-Wave3 checkpoint only. Founder-approved `seed_library_final.db` is the DIE-203 production baseline and is promoted on Linux as canonical runtime `seed_library.db`:
+
+- bytes: 66,695,168
+- SHA256: `3035b179ba435a9cc4983ca567528b15941b1a9f205451d425cd40ce5925ab77`
+- `PRAGMA quick_check`: `ok`
+- objects: 475,560
+- distinct `lower(trim(word))`: 475,560 (zero duplicates)
+- not_in_wordnet 401,121; wave3_eligible 41,725; h4_capital 32,542; eligible_control 172.
+
+Transport was verified by decompressed SHA before promotion. Promotion used same-filesystem rollback-safe rename: prior Linux runtime DB/WAL/SHM files were moved under `/var/lib/die/atlas/object-asset-engine/state/pre-die203-final-20260830T0929Z`; verified files were promoted with `root:die-runtime` ownership and mode `0660`. No Linux Object Engine writer was started. Post-promotion SHA, quick-check and critical-count parity all passed.
+
+Linux is now authoritative for the migrated DIE-203 Object Engine baseline. The Windows estate remains preserved as rollback/provenance until broader cutover retirement.
 
 ## Validation
 
@@ -133,7 +141,7 @@ The raw Wiktionary dump and other data files need not be recopied if their pinne
 - full bridge suite after DIE-203 additions: 249/249 PASS.
 - one-canon: 11/11 PASS.
 - live `C:\DIE` remains at `04eda313f1e757c0d0f8fd9d90251b92c0dd95a3`, 38 dirty paths observed and untouched.
-- Object Engine Windows worker was not stopped, killed, reconfigured, or cut over.
+- Object Engine Windows worker completed naturally and was observed at process count 0 before final promotion. Windows source DBs were not overwritten or deleted.
 
 ## Repair scope
 
