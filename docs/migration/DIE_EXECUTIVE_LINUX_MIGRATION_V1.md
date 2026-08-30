@@ -6,7 +6,7 @@ Runtime implementation SHA: `26a27c1831710d773e7087eab0dd6de06e740c34`
 
 ## Scope
 
-DIE-200 rebuilds the Executive runtime on Linux without replacing the Windows production/rollback endpoint. It migrates the Executive identity canon, stages the least-privilege Runtime Decision MCP on Linux, creates a fresh operator-controlled ChatGPT browser profile, and proves Linux runtime isolation/security. Public endpoint cutover remains deferred to `CUT-004`.
+DIE-200 rebuilds the Executive runtime on Linux without replacing the Windows production/rollback endpoint. It migrates the Executive identity canon, stages the least-privilege Runtime Decision MCP on Linux, creates a fresh operator-controlled ChatGPT browser profile, and proves Linux runtime isolation/security. ChatGPT MCP connector handoff is first-class `CUT-004A`; the current Windows connector remains rollback-active until that cutover and Windows retirement remains deferred to `CUT-005`.
 
 Architect MCP migration is not part of DIE-200 and remains deferred to `CUT-005 -> MX-053`.
 
@@ -63,7 +63,9 @@ The Windows legacy wake implementation is **not** ported to Linux. It uses priva
 
 Linux uses `company/executive/linux/operator_browser.mjs`:
 
-- headed Playwright Chromium;
+- standard Google Chrome Stable for human-authenticated profiles, spawned directly rather than through Playwright launch;
+- Playwright is used only to attach over loopback CDP for non-sensitive readiness observation;
+- browser executable is configurable via `DIE_EXECUTIVE_BROWSER_EXECUTABLE` / `DIE_BROWSER_EXECUTABLE`, default `/usr/bin/google-chrome-stable`;
 - dedicated profile `/var/lib/die/executive/browser-profile`;
 - profile created fresh on Linux;
 - manual operator login/recovery only;
