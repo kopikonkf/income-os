@@ -115,11 +115,15 @@ test('MX-062 Linux service is restart-safe, source-readonly, and isolated from p
   const unit = fs.readFileSync(new URL('../../config/linux/systemd/muxia-mx062-soak@.service', import.meta.url), 'utf8');
   const installer = fs.readFileSync(new URL('../../scripts/linux/mx062-install-soak.sh', import.meta.url), 'utf8');
   assert.match(unit, /Restart=on-failure/);
+  assert.match(unit, /ExecStart=@NODE_PATH@/);
+  assert.doesNotMatch(unit, /ExecStart=\/usr\/bin\/node/);
   assert.match(unit, /ReadOnlyPaths=\/srv\/die/);
   assert.match(unit, /ReadWritePaths=\/var\/lib\/muxia-soak/);
   assert.match(unit, /--root \/var\/lib\/muxia-soak\/mx062-soak-v1/);
   assert.doesNotMatch(unit, /--root \/var\/lib\/muxia(?:\s|$)/);
   assert.match(installer, /MX062_NOT_STARTED:explicit_start_required/);
   assert.match(installer, /NODE_24_LTS_REQUIRED/);
+  assert.match(installer, /NODE_BIN="\$\(command -v node/);
+  assert.match(installer, /sed "s\|@NODE_PATH@\|\$NODE_BIN\|g"/);
   assert.doesNotMatch(installer, /systemctl start/);
 });

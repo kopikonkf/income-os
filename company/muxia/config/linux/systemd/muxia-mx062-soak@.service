@@ -9,7 +9,7 @@ Group=%i
 WorkingDirectory=/srv/die/company/muxia
 Environment=NODE_ENV=production
 Environment=MUXIA_ROOT=/var/lib/muxia
-ExecStart=/usr/bin/node /srv/die/company/muxia/scripts/mx062-soak.mjs --root /var/lib/muxia-soak/mx062-soak-v1 --receipt /var/lib/muxia-soak/mx062-soak-v1.receipt.json
+ExecStart=@NODE_PATH@ /srv/die/company/muxia/scripts/mx062-soak.mjs --root /var/lib/muxia-soak/mx062-soak-v1 --receipt /var/lib/muxia-soak/mx062-soak-v1.receipt.json
 Restart=on-failure
 RestartSec=10
 NoNewPrivileges=true
