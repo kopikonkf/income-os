@@ -1,0 +1,27 @@
+{
+  "schema_version": "die.asset.qc-delegation-policy.v1",
+  "policy_id": "DIE-QC-SHADOW-DEFAULT-V1",
+  "policy_version": 1,
+  "mode": "SHADOW_ONLY",
+  "status": "UNRATIFIED",
+  "scope": {
+    "asset_classes": [],
+    "marketplaces": [],
+    "reviewer_ids": [],
+    "reviewer_versions": [],
+    "valid_from": null,
+    "valid_until": null
+  },
+  "thresholds": null,
+  "ratification": {
+    "ratified_by": null,
+    "ratified_at": null,
+    "policy_sha256": null
+  },
+  "authority_boundary": {
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "qa_hard_veto_waivable": false,
+    "self_promotion_allowed": false
+  }
+}

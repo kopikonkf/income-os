@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.asset.qc-disagreement-queue.v1.schema.json",
+  "title": "DIE Asset QC Disagreement Queue v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "queue_count",
+    "cases",
+    "authority_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.asset.qc-disagreement-queue.v1"
+    },
+    "queue_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "cases": {
+      "type": "array"
+    },
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "release_authorized",
+        "submission_authorized"
+      ],
+      "properties": {
+        "release_authorized": {
+          "const": false
+        },
+        "submission_authorized": {
+          "const": false
+        }
+      }
+    }
+  }
+}

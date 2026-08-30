@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.asset.qc-shadow-case.v1.schema.json",
+  "title": "DIE Asset QC Shadow Case v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "case_id",
+    "asset_id",
+    "asset_sha256",
+    "asset_class",
+    "founder_decision",
+    "engine_decision",
+    "engine_recommendation",
+    "confidence",
+    "agreement",
+    "queue_required",
+    "queue_reasons",
+    "founder_label_sha256",
+    "qc_receipt_sha256",
+    "authority_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.asset.qc-shadow-case.v1"
+    },
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "asset_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "asset_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "asset_class": {
+      "type": "string",
+      "minLength": 1
+    },
+    "founder_decision": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "REVIEW"
+      ]
+    },
+    "engine_decision": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "REVIEW"
+      ]
+    },
+    "engine_recommendation": {
+      "enum": [
+        "PASS_RECOMMENDED",
+        "FAIL_RECOMMENDED",
+        "REVIEW_RECOMMENDED",
+        "BLOCKED_BY_QA"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "agreement": {
+      "type": "boolean"
+    },
+    "queue_required": {
+      "type": "boolean"
+    },
+    "queue_reasons": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "founder_label_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "qc_receipt_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "release_authorized",
+        "submission_authorized",
+        "founder_final"
+      ],
+      "properties": {
+        "release_authorized": {
+          "const": false
+        },
+        "submission_authorized": {
+          "const": false
+        },
+        "founder_final": {
+          "const": true
+        }
+      }
+    }
+  }
+}

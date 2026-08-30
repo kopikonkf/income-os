@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.asset.qc-delegation-policy.v1.schema.json",
+  "title": "DIE Asset QC Delegation Policy v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "policy_id",
+    "policy_version",
+    "mode",
+    "status",
+    "scope",
+    "thresholds",
+    "ratification",
+    "authority_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.asset.qc-delegation-policy.v1"
+    },
+    "policy_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "policy_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "mode": {
+      "enum": [
+        "SHADOW_ONLY",
+        "CALIBRATED_RECOMMENDER",
+        "BOUNDED_AUTO_QC",
+        "SAMPLED_AUDIT"
+      ]
+    },
+    "status": {
+      "enum": [
+        "UNRATIFIED",
+        "FOUNDER_RATIFIED",
+        "REVOKED",
+        "EXPIRED"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_classes",
+        "marketplaces",
+        "reviewer_ids",
+        "reviewer_versions",
+        "valid_from",
+        "valid_until"
+      ],
+      "properties": {
+        "asset_classes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "marketplaces": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "reviewer_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "reviewer_versions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "valid_from": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_until": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "thresholds": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "ratification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ratified_by",
+        "ratified_at",
+        "policy_sha256"
+      ],
+      "properties": {
+        "ratified_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ratified_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "policy_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "submission_authorized",
+        "publication_authorized",
+        "qa_hard_veto_waivable",
+        "self_promotion_allowed"
+      ],
+      "properties": {
+        "submission_authorized": {
+          "const": false
+        },
+        "publication_authorized": {
+          "const": false
+        },
+        "qa_hard_veto_waivable": {
+          "const": false
+        },
+        "self_promotion_allowed": {
+          "const": false
+        }
+      }
+    }
+  }
+}
