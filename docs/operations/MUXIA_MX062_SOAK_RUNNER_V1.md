@@ -67,7 +67,7 @@ Install the restart-safe service template as root, passing the existing Linux ru
 sudo ./scripts/linux/mx062-install-soak.sh <runtime-user>
 ```
 
-The installer deliberately does **not** start the soak. Start is an explicit operator action:
+The installer resolves the actual absolute Node 24 binary with `command -v node` and renders that path into the systemd unit; it does not assume `/usr/bin/node`. The installer deliberately does **not** start the soak. Start is an explicit operator action:
 
 ```text
 sudo systemctl start muxia-mx062-soak@<runtime-user>.service
