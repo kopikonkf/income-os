@@ -131,5 +131,6 @@
   "next_ready": [
     "OE-006D"
   ],
-  "next_batch": "OE-B12 — OE-006D legacy Kanban cognition quarantine -> OE-006E OS-neutral prepare entrypoint -> OE-006F anti-macet routing/follow-up."
+  "next_batch": "OE-B12 — OE-006D legacy Kanban cognition quarantine -> OE-006E OS-neutral prepare entrypoint -> OE-006F anti-macet routing/follow-up.",
+  "implementation_commit": "9e7ef8682694ee5beef9fe4f324b17ce60dcee38"
 }
