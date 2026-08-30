@@ -1,0 +1,99 @@
+{
+  "schema": "die.oe-milestone-receipt.v1",
+  "task_id": "OE-006",
+  "title": "Hermes Operator v2 acceptance",
+  "status": "DONE",
+  "date": "2026-08-30",
+  "base_main": "2d41468d4b5688183d47485c2bd0cb15a2d436e9",
+  "implementation_commit": "185d1fa2fbe34e1c4071c552ef6bb0a254f1e9ef",
+  "upstream": {
+    "oe_b11_receipt": {
+      "path": "company/muxia/receipts/OE-B11-operator-v2-foundation.receipt.json",
+      "sha256": "66485d76a7867a61de7b63b268bf8e2dc6bb62ab5f8104dcfe1fca44d5ce0d0a"
+    },
+    "oe_b12_receipt": {
+      "path": "company/muxia/receipts/OE-B12-operator-v2-routing.receipt.json",
+      "sha256": "4e59976dd995249713ee8caea7341586025b3c3af8af03d3519bd48b9a5f417c"
+    },
+    "oe_b13_receipt": {
+      "path": "company/muxia/receipts/OE-B13-operator-v2-acceptance.receipt.json",
+      "sha256": "52ba38b180adc0624c57ba4a3072e7b4307e41525c602d4b1058c3949f104312"
+    }
+  },
+  "operator_contract": {
+    "role": "RECEIPT_DRIVEN_ANTI_MACET_ORCHESTRATOR",
+    "intelligence_progress_source": "TYPED_PRINCIPAL_RECEIPTS_ONLY",
+    "workflow_metadata_is_cognition_proof": false,
+    "runtime_model_may_override_authority": false,
+    "capability_is_authority": false,
+    "semantic_content_authored_by_hermes": false,
+    "division01_semantics_substitutable": false,
+    "executive_review_substitutable": false,
+    "founder_authority_substitutable": false,
+    "production_authority_granted_by_oe006": false
+  },
+  "accepted_capabilities": {
+    "typed_prerequisite_registry": true,
+    "default_deny_action_authority_map": true,
+    "deterministic_earliest_missing_stage_projection": true,
+    "legacy_kanban_cognition_quarantine": true,
+    "canonical_os_neutral_prepare_entrypoint": true,
+    "deterministic_principal_and_worker_routing": true,
+    "duplicate_and_stall_follow_up_control": true,
+    "hash_chained_write_ahead_dispatch_claims": true,
+    "restart_replay_and_crash_recovery": true,
+    "current_receipt_and_authorization_invalidation": true
+  },
+  "fail_closed_invariants": [
+    "unknown or authority-spoofed action",
+    "stale/conflicting/forged typed receipt",
+    "wrong Division01 or Executive semantic principal",
+    "Founder authorization without exact current compile-hash lock",
+    "replayed runner claim after Founder authorization invalidation",
+    "tampered or structurally invalid dispatch journal",
+    "legacy Kanban completion presented as cognition evidence",
+    "duplicate OPEN dispatch and terminal BLOCKED redispatch"
+  ],
+  "validation": {
+    "oe006_foundation_routing_replay_and_graph": "69/69 PASS",
+    "full_bridge": "491/491 PASS",
+    "one_canon_windows": "11/11 PASS",
+    "one_canon_linux": "11/11 PASS",
+    "linux_native_replay_crash_canary": "11/11 PASS",
+    "high_confidence_secret_hits": 0,
+    "tracked_bytecode_artifacts": 0,
+    "git_diff_check": "PASS"
+  },
+  "runtime_boundary": {
+    "synthetic_acceptance_only": true,
+    "live_cron_or_service_modified": false,
+    "live_cognition_or_provider_invoked": false,
+    "live_kanban_modified": false,
+    "submission_or_publication_performed": false,
+    "credential_read_or_copied": false,
+    "spend_usd": 0,
+    "windows_live_die_mutated": false,
+    "linux_canonical_main_mutated_before_merge": false,
+    "production_authority_expanded": false
+  },
+  "acceptance": {
+    "oe006a_done": true,
+    "oe006b_done": true,
+    "oe006c_done": true,
+    "oe006d_done": true,
+    "oe006e_done": true,
+    "oe006f_done": true,
+    "oe006g_done": true,
+    "oe006_done": true
+  },
+  "handoff": {
+    "parallel_ready": [
+      "MX-060",
+      "QA-001A"
+    ],
+    "muxia_lane": "MX-060 -> MX-061 -> MX-062 -> MX-070",
+    "assurance_lane": "QA-001A..F -> QA-001 -> QC-001A..G -> QC-001",
+    "convergence": "OE-007 governed real-artifact canary after MX-070 and assurance readiness",
+    "windows_control_boundary": "Windows Architect MCP 8790 remains active through CUT-005"
+  }
+}
