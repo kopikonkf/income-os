@@ -184,7 +184,7 @@ Founder silence at OE-007E means BLOCKED, never implicit authorization.
 
 `OE-006 = DONE` — Operator v2 typed prerequisites, authority map, cognition quarantine, OS-neutral preparation, anti-macet routing and crash-safe replay are accepted.
 
-Parallel production-readiness is active. `MX-060/MX-061 = DONE`, `MX-062 = READY`; `QA-001 = DONE` with universal + dated platform-preflight QA accepted, and `QC-001A = READY`. `OE-007A` remains blocked until `MX-070`; `OE-007G` additionally requires accepted `QC-001`.
+Parallel production-readiness is active. `MX-060/MX-061 = DONE`, `MX-062 = READY`; `QA-001 = DONE`; QC foundation `QC-001A/B/C = DONE` and calibration gate `QC-001D = READY`. `OE-007A` remains blocked until `MX-070`; `OE-007G` additionally requires accepted `QC-001`.
 
 ## 7. Migration integration
 
