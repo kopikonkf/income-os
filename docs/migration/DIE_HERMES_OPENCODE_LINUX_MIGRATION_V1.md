@@ -1,7 +1,7 @@
 # DIE-202 ? Hermes + OpenCode Worker-001 Linux Migration V1
 
 Date: 2026-08-28
-Status: WAITING_OPERATOR_CREDENTIALS
+Status: WAITING_OPERATOR_CHANNEL_CANARY
 Final implementation SHA: `c6e26f7a39babb14c12613c30a6d98dd04db493b`
 
 ## Scope
@@ -125,3 +125,9 @@ To mark DIE-202 fully DONE later:
 6. do not copy Windows auth/profile state to satisfy the gate.
 
 DIE-203 may proceed independently because its task-graph dependency is DIE-104, not DIE-202 credential activation.
+
+## 2026-08-30 activation progress
+
+Fresh Linux provider and Telegram configuration are now present. Provider connectivity passes and one minimal Hermes inference canary returned the expected marker. Telegram bot identity and configured home chat are reachable; `hermes send --to telegram` outbound canary passed. The READY gate exists and `die-hermes-gateway.service` is enabled/active. Canonical service drain timeout is 45 seconds. Journal high-confidence secret-shape scan returned zero hits.
+
+DIE-202 no longer waits on credentials. The sole remaining acceptance gate is a Founder-originated inbound Telegram message with marker `DIE202_TELEGRAM_INBOUND_OK`, processed by the running Linux gateway. This message must come from the configured human Telegram account/channel; it is not synthesized with copied credentials.

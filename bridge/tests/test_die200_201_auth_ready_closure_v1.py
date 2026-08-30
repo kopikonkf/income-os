@@ -15,7 +15,7 @@ def test_die200_201_are_done_but_die204_still_waits_on_die202() -> None:
     g=json.loads(GRAPH.read_text(encoding='utf-8')); t={x['id']:x for x in g['tasks']}
     assert t['DIE-200']['status']=='DONE'
     assert t['DIE-201']['status']=='DONE'
-    assert t['DIE-202']['status']=='WAITING_OPERATOR_CREDENTIALS'
+    assert t['DIE-202']['status']=='WAITING_OPERATOR_CHANNEL_CANARY'
     assert t['DIE-203']['status']=='DONE'
     assert t['DIE-204']['status']=='BLOCKED'
 

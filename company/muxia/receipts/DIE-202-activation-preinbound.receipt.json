@@ -1,0 +1,41 @@
+{
+  "schema": "die.muxia.die202-activation-preinbound.v1",
+  "task_id": "DIE-202",
+  "date": "2026-08-30",
+  "status": "PASS_TO_OPERATOR_CHANNEL_CANARY",
+  "base_main": "df69421e60fa5ff86eeb85f56d8f9b4e8331c984",
+  "provider": {
+    "configured": true,
+    "connectivity": "PASS",
+    "minimal_inference": "PASS",
+    "expected_response": "DIE202_PROVIDER_OK"
+  },
+  "telegram": {
+    "configured": true,
+    "get_me": "PASS",
+    "get_chat": "PASS",
+    "outbound_via_hermes_send": "PASS",
+    "inbound_founder_canary": "PENDING"
+  },
+  "gateway": {
+    "ready_gate_present": true,
+    "systemd_enabled": true,
+    "systemd_active": true,
+    "profile_running": true,
+    "timeout_stop_sec": 45
+  },
+  "security": {
+    "windows_profile_copied": false,
+    "windows_auth_copied": false,
+    "windows_state_db_copied": false,
+    "journal_high_confidence_secret_hits": 0,
+    "cloud_or_auth_bypass": false
+  },
+  "known_nonblocking_warnings": {
+    "sqlite_runtime": "3.45.1; Hermes forces journal_mode=DELETE to avoid WAL-reset exposure",
+    "config_schema": "v0 loads successfully; migration to newer schema is deferred",
+    "optional_slack_plugin": "aiohttp absent; Slack is not configured or required for DIE-202"
+  },
+  "completion_blocker": "FOUNDER_ORIGINATED_TELEGRAM_INBOUND_CANARY",
+  "implementation_commit": "fea916a4aa7efa7dc6a543a5009f79c7599a7782"
+}

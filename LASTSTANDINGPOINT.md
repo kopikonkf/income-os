@@ -2910,3 +2910,11 @@ ChatGPT MCP connector endpoint handoff is intentionally separate from migration 
 Windows rollback remains intact: Executive and Division01 Runtime MCP services Running/Automatic with listeners on 8791/8792; live `C:\DIE` remains untouched. DIE-202 remains `WAITING_OPERATOR_CREDENTIALS`; DIE-203 is DONE; therefore DIE-204 remains BLOCKED only by the remaining DIE-202 dependency among DIE-200..203.
 
 Closure receipt: `company/muxia/receipts/DIE-200-201-auth-ready-closure.receipt.json`.
+
+---
+
+## 2026-08-30 - DIE-202 activation pre-inbound gate
+
+DIE-202 credentials are configured and validated. Provider connectivity PASS; minimal Hermes inference canary returned `DIE202_PROVIDER_OK`. Telegram bot identity/home-chat reachability PASS and Hermes outbound Telegram canary PASS. `die-hermes-gateway.service` is enabled/active behind `/etc/die/hermes/READY`; canonical `TimeoutStopSec=45`. Journal high-confidence secret-shape hits: 0.
+
+Task state is now `WAITING_OPERATOR_CHANNEL_CANARY`, not `WAITING_OPERATOR_CREDENTIALS`. The only remaining gate is a Founder-originated Telegram message `DIE202_TELEGRAM_INBOUND_OK` processed by the Linux gateway. No Windows Hermes auth/profile/state was copied or used. DIE-204 remains BLOCKED until that inbound canary closes DIE-202.

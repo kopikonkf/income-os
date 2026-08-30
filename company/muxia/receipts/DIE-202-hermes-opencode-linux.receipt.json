@@ -1,8 +1,8 @@
 {
   "schema": "die.muxia.die202-hermes-opencode-linux.v1",
   "task_id": "DIE-202",
-  "date": "2026-08-28",
-  "status": "WAITING_OPERATOR_CREDENTIALS",
+  "date": "2026-08-30",
+  "status": "WAITING_OPERATOR_CHANNEL_CANARY",
   "final_implementation_commit": "c6e26f7a39babb14c12613c30a6d98dd04db493b",
   "roles": {
     "hermes": "orchestrator",
@@ -38,10 +38,10 @@
     "windows_auth_copied": false,
     "windows_state_db_copied": false,
     "gateway_service": "die-hermes-gateway.service",
-    "gateway_enabled": false,
-    "gateway_active": false,
+    "gateway_enabled": true,
+    "gateway_active": true,
     "ready_gate": "/etc/die/hermes/READY",
-    "ready_gate_present": false,
+    "ready_gate_present": true,
     "env_file": "/etc/die/hermes/hermes.env",
     "env_mode": "0600 root:root"
   },
@@ -90,9 +90,34 @@
     "credential_copy": false
   },
   "completion_blocker": {
-    "type": "OPERATOR_CREDENTIAL_CONFIGURATION_REQUIRED",
-    "required_action": "Configure fresh Linux Hermes provider/channel credentials, create READY gate only after validation, then enable/start gateway.",
-    "automation_forbidden": "Do not satisfy by copying Windows auth/profile state."
+    "type": "OPERATOR_CHANNEL_CANARY_REQUIRED",
+    "required_action": "Founder replies in the configured Telegram home channel with exact marker DIE202_TELEGRAM_INBOUND_OK.",
+    "acceptance_signal": "Linux Hermes gateway processes the inbound Telegram update without secret leakage and remains healthy.",
+    "automation_forbidden": "Do not synthesize a human Telegram inbound message with copied user/session credentials."
   },
-  "parallel_next": "DIE-203 - Atlas/Object Asset Engine Linux migration"
+  "parallel_next": "DIE-203 is already DONE; successful inbound canary makes DIE-202 DONE and unblocks DIE-204.",
+  "activation_preflight": {
+    "provider_configured": true,
+    "provider_connectivity": "PASS",
+    "minimal_inference_canary": "DIE202_PROVIDER_OK",
+    "telegram_configured": true,
+    "telegram_get_me": "PASS",
+    "telegram_get_chat": "PASS",
+    "telegram_home_chat_reachable": true,
+    "telegram_runtime_dependency": "python-telegram-bot[webhooks]==22.8",
+    "hermes_outbound_canary": "PASS",
+    "gateway_default_profile": "RUNNING",
+    "gateway_systemd_enabled": true,
+    "gateway_systemd_active": true,
+    "timeout_stop_sec": 45,
+    "journal_high_confidence_secret_hits": 0,
+    "sqlite_wal_reset_mitigation": "journal_mode=DELETE",
+    "spend_authority_expanded": false
+  },
+  "hardening": {
+    "credential_preflight_commit": "fd00087e2579dbdab119a9337f362399b701dbab",
+    "credential_preflight_merge": "bc271f9200aa73da701e9107afb9f07e1442d2f9",
+    "drain_timeout_commit": "90abbd7d4e8c5c4ca94808913b4cdcc4c7c0d311",
+    "drain_timeout_merge": "df69421e60fa5ff86eeb85f56d8f9b4e8331c984"
+  }
 }
