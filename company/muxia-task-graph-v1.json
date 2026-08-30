@@ -492,7 +492,7 @@
                       "depends_on":  [
                                          "DIE-104"
                                      ],
-                      "status":  "WAITING_OBJECT_FILTER_COMPLETION",
+                      "status":  "DONE",
                       "artifact":  "human/object Atlas source + consistent object-engine data migration receipt",
                       "acceptance":  "Object-engine source is separated from DB/data; SQLite migration is consistent/quiesce-aware; human-centric canon is materialized."
                   },

@@ -149,3 +149,25 @@ def test_die203_crossjoin_foundation_preserves_core_primitives() -> None:
     assert "weighted sampling instead of exhaustive Cartesian enumeration" in primitives
     assert "Worth-Making Gate" in primitives
     assert "event-driven scaling" in primitives
+
+def test_die203_final_promotion_receipt_seals_475560_baseline() -> None:
+    receipt = json.loads((ROOT / "company" / "muxia" / "receipts" / "DIE-203-final-promotion.receipt.json").read_text(encoding="utf-8"))
+    assert receipt["status"] == "PASS"
+    assert receipt["decision"]["seed_library_final_475560_is_die203_final_baseline"] is True
+    runtime = receipt["linux_authoritative_runtime"]
+    assert runtime["promotion_status"] == "LINUX_AUTHORITATIVE_VERIFIED"
+    assert runtime["main_db"]["sha256"] == "e6e43fbd4bbee712de651c31a159bb66872a91b1b555f809d0177ba856eeb891"
+    assert runtime["main_db"]["audit_done"] == 744259
+    assert runtime["seed_library"]["sha256"] == "3035b179ba435a9cc4983ca567528b15941b1a9f205451d425cd40ce5925ab77"
+    assert runtime["seed_library"]["objects"] == 475560
+    assert runtime["seed_library"]["distinct_lower_trim_word"] == 475560
+    assert runtime["checkpoint_seed_library"]["objects"] == 433835
+    assert receipt["safety"]["raw_windows_wal_shm_copied"] is False
+    assert receipt["safety"]["linux_writer_started"] is False
+
+
+def test_die203_task_graph_is_done_after_verified_final_promotion() -> None:
+    graph = json.loads((ROOT / "company" / "muxia-task-graph-v1.json").read_text(encoding="utf-8"))
+    tasks = {row["id"]: row for row in graph["tasks"]}
+    assert tasks["DIE-203"]["status"] == "DONE"
+    assert tasks["DIE-204"]["status"] == "BLOCKED"
