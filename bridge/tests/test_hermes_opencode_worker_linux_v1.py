@@ -99,6 +99,7 @@ def test_die202_hermes_install_is_clean_rebuild_and_ready_gated() -> None:
     assert "ConditionPathExists=/etc/die/hermes/READY" in unit
     assert "User=die-hermes" in unit
     assert "Group=die-runtime" in unit
+    assert "TimeoutStopSec=45" in unit
     assert "AppData" not in install
     assert "auth.json" not in install
     assert "state.db" not in install
