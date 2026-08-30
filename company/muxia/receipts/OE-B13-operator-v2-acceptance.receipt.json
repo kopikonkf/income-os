@@ -1,0 +1,111 @@
+{
+  "schema": "die.oe-batch-receipt.v1",
+  "batch_id": "OE-B13",
+  "date": "2026-08-30",
+  "status": "PASS",
+  "base_main": "2d41468d4b5688183d47485c2bd0cb15a2d436e9",
+  "implementation_commit": "185d1fa2fbe34e1c4071c552ef6bb0a254f1e9ef",
+  "atomic_tasks": [
+    {
+      "id": "OE-006G",
+      "status": "DONE",
+      "result": "hash-chained write-ahead dispatch claims, deterministic journal replay, crash recovery, duplicate suppression, persisted follow-up counters, stale/forged evidence invalidation, legacy-Kanban quarantine replay, and terminal-state persistence"
+    }
+  ],
+  "durability_protocol": {
+    "journal_schema": "die.operator-v2.dispatch-journal.v1",
+    "journal_role": "DURABLE_ROUTING_AUTHORITY",
+    "routing_state_role": "REPLACEABLE_RECOVERABLE_PROJECTION",
+    "record_order": "VALIDATE_RECEIPTS -> REPLAY_JOURNAL -> RECOMPUTE_PLAN -> ATOMIC_DISPATCH_CLAIM -> EXTERNAL_SIDE_EFFECT -> STATE_PROJECTION",
+    "claim_recorded_before_side_effect": true,
+    "planning_has_side_effect": false,
+    "journal_hash_chain": true,
+    "exact_snapshot_sha256_pinned": true,
+    "receipt_chain_sha256_pinned": true,
+    "routing_plan_sha256_pinned": true,
+    "kanban_excluded_from_cognition_fingerprint": true
+  },
+  "oe006g_proofs": {
+    "restart_replay_deterministic": true,
+    "duplicate_dispatch_suppressed": true,
+    "stale_receipt_fails_closed": true,
+    "forged_semantic_principal_or_review_fails_closed": true,
+    "legacy_kanban_replay_metadata_only": true,
+    "routing_state_recovered_from_journal": true,
+    "crash_between_plan_and_record_has_no_durable_dispatch": true,
+    "crash_after_dispatch_record_suppresses_replay_duplicate": true,
+    "follow_up_counter_persists": true,
+    "founder_gate_cannot_be_replay_forged": true,
+    "ready_for_production_revoked_on_invalid_authorization": true,
+    "tampered_journal_fails_closed": true,
+    "blocked_terminal_state_does_not_redispatch": true
+  },
+  "validation": {
+    "oe006_foundation_routing_replay_and_graph": "69/69 PASS",
+    "full_bridge": "491/491 PASS",
+    "one_canon_windows": "11/11 PASS",
+    "one_canon_linux": "11/11 PASS",
+    "linux_native_replay_crash_canary": "11/11 PASS",
+    "high_confidence_secret_hits": 0,
+    "tracked_bytecode_artifacts": 0,
+    "git_diff_check": "PASS"
+  },
+  "validation_environment": {
+    "windows_full_bridge": "standalone clean authenticated staging clone; DIE_HOME pinned to clone; MUXIA dist built from canonical source",
+    "linux_one_canon_and_canary": "/home/kopiko/die-worktrees/oe-b13-operator-v2-acceptance",
+    "linked_worktree_full_suite_excluded": "legacy canon revision reader cannot resolve linked-worktree common refs; standalone clone used without source workaround",
+    "canonical_linux_main_modified": false,
+    "protected_windows_live_die_modified": false
+  },
+  "runtime_boundary": {
+    "live_cron_or_service_modified": false,
+    "live_kanban_modified": false,
+    "live_cognition_invoked": false,
+    "live_provider_invoked": false,
+    "submission_or_publication_performed": false,
+    "network_action_performed_by_operator_v2": false,
+    "credential_read_or_copied": false,
+    "spend_usd": 0,
+    "semantic_content_authored_by_hermes": false,
+    "production_authority_expanded": false
+  },
+  "artifacts": [
+    {
+      "path": "company/die-agents/hermes/operator-v2/replay_recovery.py",
+      "sha256": "16ff0fe2412a42f72d51a9be2c3cbf4a680b5f027f863478812f15849ac7a766",
+      "bytes": 12098
+    },
+    {
+      "path": "company/die-agents/hermes/operator-v2/die.operator-v2.dispatch-journal.v1.schema.json",
+      "sha256": "41943e24b5bd5058d5a1d602c98cd2c303e5e5aa2d250dd703b8d23ba7744aee",
+      "bytes": 2658
+    },
+    {
+      "path": "company/die-agents/hermes/operator-v2/prepare_operator_v2.py",
+      "sha256": "ce82f6bfefb3f256e02c487a7c82c54f3ad0b5f4bc353754f197041a6b19008c",
+      "bytes": 6142
+    },
+    {
+      "path": "company/die-agents/hermes/operator-v2/route_followup.py",
+      "sha256": "01e041cd12dd597379b635f0b9ad785a7208bd24bfe30b4e92f8f32b0b4bd222",
+      "bytes": 7667
+    },
+    {
+      "path": "bridge/tests/test_oe006_operator_v2_replay.py",
+      "sha256": "1cf80bb1d8d61f962efcce63ba0750fdd6f58310e489a38845a045cb1b14f3ad",
+      "bytes": 10909
+    },
+    {
+      "path": "docs/operations/OPERATOR_V2_REPLAY_CRASH_V1.md",
+      "sha256": "6e1f8904c264947335805cb2f54d8e8a32af089718bab714c42607a33a042299",
+      "bytes": 3121
+    }
+  ],
+  "next_ready": [
+    "MX-060",
+    "QA-001A"
+  ],
+  "next_blocked": {
+    "OE-007A": "waits for MX-070 after parallel MX-060->061->062->070 and QA-001->QC-001 readiness"
+  }
+}

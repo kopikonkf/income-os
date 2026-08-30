@@ -19,4 +19,4 @@ Canonical source references:
 
 Linux rebuild uses clean upstream Hermes provenance and a fresh HERMES_HOME. Windows AppData profile, auth.json, .env, sessions, state.db, caches, and dirty Hermes source tree are not copied.
 
-Operator v2 OE-B12: legacy Kanban cognition is quarantined; canonical prepare is OS-neutral; anti-macet routing is deterministic, deduplicated, authority-validated, and semantics-free. OE-006G remains the replay/crash acceptance gate before OE-006 completion.
+Operator v2 `OE-006 = DONE`: legacy Kanban cognition is quarantined; canonical prepare is OS-neutral; anti-macet routing is deterministic, deduplicated, authority-validated, and semantics-free. Hash-chained write-ahead dispatch claims recover routing state after restart/crash, suppress duplicate dispatch, persist follow-up counters, invalidate stale/forged cognition or Founder authority, and never let journal/Kanban metadata manufacture semantic progress.

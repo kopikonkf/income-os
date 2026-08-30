@@ -2942,3 +2942,20 @@ Task graph: DIE-200/DIE-201/DIE-202/DIE-203/DIE-204 all DONE. Validation: target
 Anti-macet routing is deterministic: stable intent dedupe; duplicate OPEN intent before 30m -> observe/no-op; after 30m -> follow-up; after 3 dispatched follow-ups without progress -> block. Semantic requests are routed only to the pinned Division01/Executive principals; Founder production-auth draft is due only after compile-hash lock; runner invocation only after exact Founder authorization. Hermes authors no cognition semantics and gains no production authority.
 
 Validation: focused 17/17 PASS; Operator foundation+routing+graph 45/45 PASS; full bridge 476/476 PASS; one-canon 11/11 PASS; secret scan 0. Windows canonical v2 smoke PASS; Linux canonical v2 smoke PASS from temporary branch worktree, which was removed with temporary state. Receipt: `company/muxia/receipts/OE-B12-operator-v2-routing.receipt.json`. Next: `OE-006G`.
+
+
+---
+
+## 2026-08-30 - OE-B13 / OE-006 Hermes Operator v2 acceptance
+
+`OE-006G = DONE` and milestone `OE-006 = DONE`. Operator v2 is accepted as a receipt-driven anti-macet orchestrator with deterministic authority, OS-neutral prepare, legacy-Kanban cognition quarantine, principal-pinned semantic routing, and crash-safe replay. Hermes still authors no Division01/Executive semantics and gains no production authority.
+
+The durable source of routing recovery is now the hash-chained `die.operator-v2.dispatch-journal.v1`. Every dispatch/follow-up/block claim is recorded atomically before an external side effect and pins the exact snapshot, typed receipt chain, routing plan, stage, action, target, counter and previous record hash. `routing-state.json` is a replaceable projection rebuilt from the journal.
+
+OE-006G proves deterministic restart/replay, duplicate suppression, stale and forged receipt failure, legacy T1/T2/T2-R2 metadata-only replay, routing-state recovery, both plan/record crash windows, persistent follow-up counters, non-forgeable Founder gate, revocation of READY_FOR_PRODUCTION after authorization invalidation, tamper rejection, and terminal-block persistence.
+
+Validation: focused OE-006+graph 69/69 PASS; full bridge 491/491 PASS; one-canon Windows 11/11 PASS; one-canon Linux 11/11 PASS; Linux-native replay/crash canary 11/11 PASS; changed-file high-confidence secret hits 0; tracked bytecode 0; diff check PASS. No live cron/service/Kanban/cognition/provider/submission/credential/spend or production-authority change occurred.
+
+Receipts: `company/muxia/receipts/OE-B13-operator-v2-acceptance.receipt.json` and `company/muxia/receipts/OE-006-operator-v2-acceptance.receipt.json`.
+
+NEXT runs in parallel: Lane A `MX-060 -> MX-061 -> MX-062 -> MX-070`; Lane B `QA-001A..F -> QA-001 -> QC-001A..G -> QC-001`. `OE-007` governed real-artifact canary starts after convergence. Windows live `C:\DIE` remains protected/dirty; Windows Architect MCP 8790 remains active through CUT-005; Linux `/srv/die` remains canonical main.

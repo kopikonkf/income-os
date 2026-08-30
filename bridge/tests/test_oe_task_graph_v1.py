@@ -43,13 +43,16 @@ def test_oe_task_ids_unique_dependencies_resolve_and_dag_is_acyclic() -> None:
         visit(task_id)
 
 
-def test_oe_roadmap_has_all_milestones_and_only_first_atomic_task_ready() -> None:
+def test_oe_roadmap_has_all_milestones_and_operator_acceptance_is_closed() -> None:
     tasks = _tasks()
     for task_id in ["OE-000", "OE-001", "OE-002", "OE-003", "OE-004", "OE-005", "OE-006", "OE-007"]:
         assert task_id in tasks
     assert tasks["OE-000"]["status"] == "DONE"
     ready = {task_id for task_id, row in tasks.items() if task_id.startswith("OE-") and row["status"] == "READY"}
-    assert ready == {"OE-006G"}
+    assert ready == set()
+    assert tasks["OE-006G"]["status"] == "DONE"
+    assert tasks["OE-006"]["status"] == "DONE"
+    assert tasks["OE-007A"]["status"] == "BLOCKED"
 
 
 def test_oe_milestone_dependency_chain_is_strict() -> None:
@@ -98,7 +101,7 @@ def test_oe_milestone_dependency_chain_is_strict() -> None:
     assert tasks["OE-006D"]["status"] == "DONE"
     assert tasks["OE-006E"]["status"] == "DONE"
     assert tasks["OE-006F"]["status"] == "DONE"
-    assert tasks["OE-006G"]["status"] == "READY"
+    assert tasks["OE-006G"]["status"] == "DONE"
     assert tasks["OE-002A"]["depends_on"] == ["OE-001"]
     assert tasks["OE-003A"]["depends_on"] == ["OE-002"]
     assert tasks["OE-004A"]["depends_on"] == ["OE-003"]
