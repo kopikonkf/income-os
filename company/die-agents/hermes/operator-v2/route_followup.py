@@ -86,7 +86,11 @@ def plan(projection: dict[str, Any], state: dict[str, Any] | None = None, *, now
     target = original_target
     stall_age_seconds = 0
     follow_up_count = int(prior.get("follow_up_count", 0)) if isinstance(prior, dict) else 0
-    if prior and prior.get("status") == "OPEN":
+    if prior and prior.get("status") in {"COMPLETED", "BLOCKED"}:
+        decision = "NO_OP_TERMINAL"
+        action = "OP-OBSERVE-STATE"
+        target = None
+    elif prior and prior.get("status") == "OPEN":
         last = _parse_iso(prior["last_action_at"])
         stall_age_seconds = max(0, int((now_dt - last).total_seconds()))
         if stall_age_seconds < FOLLOW_UP_AFTER_SECONDS:

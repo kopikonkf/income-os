@@ -142,10 +142,13 @@ Exit: reusable normalized signal receipts exist.
 - OE-006D legacy Kanban cognition quarantine
 - OE-006E OS-neutral prepare entrypoint
 - OE-006F anti-macet routing/follow-up
-- OE-006G replay/crash regression
+
+### OE-B13 — Operator v2 acceptance
+
+- OE-006G replay/crash/duplicate regression
 - OE-006 acceptance
 
-### OE-B13 — Governed canary cognition chain
+### Post-OE-B13 — Governed canary cognition chain
 
 Starts only after `OE-006 + DIE-204 + MX-070`.
 
