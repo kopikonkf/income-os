@@ -31,7 +31,7 @@
     "muxia_build_core_parity": "64/64 PASS",
     "full_bridge": "491/491 PASS",
     "one_canon_windows": "11/11 PASS",
-    "one_canon_linux": "PENDING_FINAL_VALIDATION",
+    "one_canon_linux": "11/11 PASS (clean exact-source Linux)",
     "high_confidence_secret_hits": 0
   },
   "runtime_boundary": {

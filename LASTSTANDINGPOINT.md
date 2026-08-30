@@ -2969,7 +2969,7 @@ NEXT runs in parallel: Lane A `MX-060 -> MX-061 -> MX-062 -> MX-070`; Lane B `QA
 
 Fault injection proves deterministic timeout, dead-browser recovery, lease contention, invalid disk/artifact, and auth-required paths against the persistent registries. Every fault disposition has `successAllowed=false`; false success count is 0. Auth-required handling verifies the current lease owner, atomically persists `AUTH_REQUIRED`, clears PID/owner, increments failure count, and removes the lease; ambiguous owners fail closed without mutation.
 
-Validation before publication: MUXIA TypeScript build/core/parity 64/64 PASS; standalone Windows full bridge 491/491 PASS; Windows one-canon 11/11 PASS; changed-file high-confidence secret hits 0. Linux exact-source one-canon is the remaining publication gate and must pass from the pushed branch before merge.
+Validation before publication: MUXIA TypeScript build/core/parity 64/64 PASS; standalone Windows full bridge 491/491 PASS; Windows one-canon 11/11 PASS; clean exact-source Linux one-canon 11/11 PASS; changed-file high-confidence secret hits 0.
 
 Receipt: `company/muxia/receipts/MX-060-061-reliability-pre-soak.receipt.json`. Runtime boundaries held: no live `C:\DIE` or `/var/lib/muxia` mutation, provider call, credential read/copy, submission, spend, or production-authority expansion.
 
