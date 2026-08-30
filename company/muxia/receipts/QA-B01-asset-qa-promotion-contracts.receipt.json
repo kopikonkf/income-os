@@ -1,0 +1,76 @@
+{
+  "schema": "die.qa-batch-receipt.v1",
+  "batch_id": "QA-B01",
+  "date": "2026-08-30",
+  "status": "PASS",
+  "base_main": "c75270a2406d2931084aa19dbdf9196bac28024f",
+  "implementation_commit": "62bed28edbc834fe214f542b2884e227344c8266",
+  "atomic_tasks": [
+    {
+      "id": "QA-001A",
+      "status": "DONE",
+      "result": "existing M-001 deterministic QA core audited and promoted by contract; workspace/integrity/raster/lineage/rights/safety/watermark/duplicate/review-required behavior is preserved; subjective QC and submission authority remain outside QA"
+    },
+    {
+      "id": "QA-001B",
+      "status": "DONE",
+      "result": "die.asset.qa.v1 receipt schema and stable defect/route taxonomy cover integrity, lineage, technical, rights, safety, watermark, duplicate, metadata/package and review-required states with explicit hard-veto semantics"
+    }
+  ],
+  "authority_boundary": {
+    "subjective_qc_performed": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "hard_vetoes_waivable": false,
+    "production_provider_invoked": false,
+    "marketplace_action_performed": false,
+    "credentials_read_or_copied": false,
+    "spend_usd": 0
+  },
+  "validation": {
+    "targeted_qa_pad_m001": "26/26 PASS",
+    "full_bridge_clean_standalone_clone": "495/495 PASS",
+    "dedicated_one_canon_tests": "6/6 PASS",
+    "one_canon_validator": "11/11 PASS",
+    "high_confidence_secret_hits": 0,
+    "generated_bytecode_artifacts": 0,
+    "git_diff_check": "PASS"
+  },
+  "validation_environment": {
+    "implementation_worktree": "clean isolated linked worktree based on origin/main c75270a",
+    "full_bridge": "standalone committed validation clone with DIE_HOME pinned to clone and canonical MUXIA dist built from source",
+    "linked_worktree_full_suite_note": "canon revision reader cannot resolve linked-worktree common refs; standalone clone is the canonical full-suite proof",
+    "protected_windows_live_die_modified": false,
+    "linux_runtime_modified": false
+  },
+  "artifacts": [
+    {
+      "path": "docs/operations/ASSET_QA_ENGINE_V1.md",
+      "sha256": "aeafef7494188c3a640dc9ff5fd38dd0ebc8af42b2e531fb485e9385a9eaa975",
+      "bytes": 4836
+    },
+    {
+      "path": "company/contracts/die.asset.qa-taxonomy.v1.json",
+      "sha256": "ecc246d30825cf25858ded863d0f366d68f7a7c5f3d953e70f67e0733a43cc3a",
+      "bytes": 1558
+    },
+    {
+      "path": "company/schemas/die.asset.qa.v1.schema.json",
+      "sha256": "1c194a31ed12cc253a2fcf48e46863fc8b270a5d91fef8496b0bc22550303da7",
+      "bytes": 5054
+    },
+    {
+      "path": "bridge/tests/test_qa001_asset_qa_contracts.py",
+      "sha256": "1cd0ba24cecd893cc5ddd0497a5651a98e0d6dc75febeeb6e9ae628a9ed820b8",
+      "bytes": 3884
+    }
+  ],
+  "next_ready": [
+    "QA-001C",
+    "QA-001D"
+  ],
+  "parallel_gate": {
+    "MX-062": "READY_REAL_ELAPSED_24H_SOAK",
+    "MX-070": "BLOCKED_ON_MX-062"
+  }
+}
