@@ -2896,3 +2896,17 @@ Founder-approved `seed_library_final.db` is ratified as the final DIE-203 produc
 Promotion was rollback-safe: old Linux runtime DB/WAL/SHM moved to `/var/lib/die/atlas/object-asset-engine/state/pre-die203-final-20260830T0929Z`; Windows source DBs were not overwritten/deleted; no Linux Object Engine writer was started.
 
 Receipt: `company/muxia/receipts/DIE-203-final-promotion.receipt.json`. DIE-204 remains BLOCKED on DIE-200/DIE-201/DIE-202 completion.
+
+---
+
+## 2026-08-30 - DIE-200 / DIE-201 authenticated Linux READY closure
+
+`DIE-200 = DONE` and `DIE-201 = DONE`. Founder completed manual authentication in the fresh Linux Executive and Division01 profiles. Canonical Linux operator launchers now direct-spawn standard Google Chrome Stable 152 with dedicated profiles and loopback-only ephemeral CDP observation; Playwright only attaches with `connectOverCDP` for non-sensitive READY classification. No Windows browser profile/session was cloned and no cookie/token/private-backend extraction, prompt submission, output extraction, Cloudflare bypass, UA spoofing or stealth was used.
+
+READY proofs: Executive `chatgpt-plus-executive` at `https://chatgpt.com/`, editableCount 2, loginUiCount 0, Linux Runtime Decision MCP `127.0.0.1:8791` active with 18 tools. Division01 `division-head-division01` at `https://chatgpt.com/`, editableCount 2, loginUiCount 0, Linux Runtime Decision MCP `127.0.0.1:8792` active with 6 tools.
+
+ChatGPT MCP connector endpoint handoff is intentionally separate from migration completion. Founder reports both ChatGPT connectors still target Windows. Roadmap now contains first-class `CUT-004A` Executive connector Windows->Linux and `CUT-004B` Division01 connector Windows->Linux, each requiring cloud E2E and Windows rollback retention until CUT-005. No connector was switched in DIE-200/201.
+
+Windows rollback remains intact: Executive and Division01 Runtime MCP services Running/Automatic with listeners on 8791/8792; live `C:\DIE` remains untouched. DIE-202 remains `WAITING_OPERATOR_CREDENTIALS`; DIE-203 is DONE; therefore DIE-204 remains BLOCKED only by the remaining DIE-202 dependency among DIE-200..203.
+
+Closure receipt: `company/muxia/receipts/DIE-200-201-auth-ready-closure.receipt.json`.

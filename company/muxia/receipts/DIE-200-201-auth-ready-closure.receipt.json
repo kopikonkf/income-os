@@ -1,0 +1,84 @@
+{
+  "schema": "die.muxia.die200-201-auth-ready-closure.v1",
+  "date": "2026-08-30",
+  "status": "PASS",
+  "base_main": "5849521520c4f86474a8ed7f6630db39af759e10",
+  "launcher": {
+    "implementation_commit": "f9619241d0f788ece170623ac6abb5f09b7e9c41",
+    "merge_commit": "5849521520c4f86474a8ed7f6630db39af759e10",
+    "browser": "Google Chrome 152.0.7977.64",
+    "launch_mode": "DIRECT_SPAWN_LOOPBACK_CDP",
+    "playwright_role": "ATTACH_OBSERVE_ONLY",
+    "remote_debugging_host": "127.0.0.1",
+    "remote_debugging_port": "EPHEMERAL",
+    "no_sandbox_flag": false,
+    "automation_stealth_or_ua_spoof": false
+  },
+  "executive": {
+    "task": "DIE-200",
+    "status": "DONE",
+    "principal_id": "chatgpt-plus-executive",
+    "profile": "/var/lib/die/executive/browser-profile",
+    "ready_observed_at": "2026-08-30T10:43:37.542Z",
+    "state": "READY",
+    "url": "https://chatgpt.com/",
+    "editable_count": 2,
+    "login_ui_count": 0,
+    "mcp_bind": "127.0.0.1:8791",
+    "mcp_service_active": true,
+    "mcp_tools": 18,
+    "manual_auth": true,
+    "windows_profile_cloned": false
+  },
+  "division01": {
+    "task": "DIE-201",
+    "status": "DONE",
+    "principal_id": "division-head-division01",
+    "profile": "/var/lib/die/division01/browser-profile",
+    "ready_observed_at": "2026-08-30T10:43:35.816Z",
+    "state": "READY",
+    "url": "https://chatgpt.com/",
+    "editable_count": 2,
+    "login_ui_count": 0,
+    "mcp_bind": "127.0.0.1:8792",
+    "mcp_service_active": true,
+    "mcp_tools": 6,
+    "manual_auth": true,
+    "windows_profile_cloned": false
+  },
+  "consumer_policy": {
+    "cookie_or_token_read": false,
+    "private_backend_used": false,
+    "automated_prompt_submission": false,
+    "output_extraction": false,
+    "cloudflare_or_auth_protection_bypass": false
+  },
+  "windows_rollback": {
+    "live_die_head": "04eda313f1e757c0d0f8fd9d90251b92c0dd95a3",
+    "live_die_dirty_paths_observed": 40,
+    "executive_service": "Running/Automatic",
+    "division01_service": "Running/Automatic",
+    "executive_8791_listener": 1,
+    "division01_8792_listener": 1,
+    "disabled": false
+  },
+  "chatgpt_connector_handoff": {
+    "performed": false,
+    "founder_reported_both_connectors_still_windows": true,
+    "executive_task": "CUT-004A",
+    "division01_task": "CUT-004B",
+    "umbrella_cutover": "CUT-004",
+    "windows_connector_rollback_preserved_until": "CUT-005"
+  },
+  "migration_gate": {
+    "DIE-200": "DONE",
+    "DIE-201": "DONE",
+    "DIE-202": "WAITING_OPERATOR_CREDENTIALS",
+    "DIE-203": "DONE",
+    "DIE-204": "BLOCKED_ON_DIE-202"
+  },
+  "notes": [
+    "Chrome for Testing fresh-auth failure was resolved by standard Chrome Stable human login; runtime launcher now follows direct-spawn dedicated-profile architecture with loopback CDP observation.",
+    "MCP connector endpoint handoff is intentionally separated from Linux runtime migration completion."
+  ]
+}

@@ -16,7 +16,7 @@
     },
     "executive": {
       "logical_root": "company/executive",
-      "status": "LINUX_STAGED_WAITING_OPERATOR_AUTH",
+      "status": "LINUX_READY_PRECUTOVER",
       "source_refs": [
         "company/executive/IDENTITY.md",
         "bridge/income_os_bridge/runtime_mcp_server.py",
@@ -25,11 +25,11 @@
         "company/executive/linux/"
       ],
       "migration_task": "DIE-200",
-      "note": "Linux Decision MCP is staged and healthy pre-cutover. Executive identity is canonical under company/executive. Fresh Linux browser profile requires operator login; Windows production/rollback remains active until CUT-004."
+      "note": "Linux Decision MCP and authenticated Chrome Stable profile are READY on Linux. ChatGPT MCP connector handoff remains first-class CUT-004A; Windows Executive service/endpoint remains rollback-active until CUT-005."
     },
     "division01": {
       "logical_root": "company/division/division001",
-      "status": "LINUX_STAGED_WAITING_OPERATOR_AUTH",
+      "status": "LINUX_READY_PRECUTOVER",
       "principal_id": "division-head-division01",
       "source_refs": [
         "company/division/division001/IDENTITY.md",
@@ -38,7 +38,7 @@
         "company/division/division001/linux/"
       ],
       "migration_task": "DIE-201",
-      "note": "Linux Decision MCP is staged and healthy pre-cutover. Division01 identity is canonical under company/division/division001. Fresh Linux browser profile requires operator login; D:\\OAUTH remains a separate next-subproject; Windows production/rollback remains active until CUT-004."
+      "note": "Linux Decision MCP and authenticated Chrome Stable profile are READY on Linux. D:\\OAUTH remains separate. ChatGPT MCP connector handoff remains first-class CUT-004B; Windows Division01 service/endpoint remains rollback-active until CUT-005."
     },
     "hermes": {
       "logical_root": "company/die-agents/hermes",
@@ -84,7 +84,7 @@
     },
     "atlas_object_centric": {
       "logical_root": "company/atlas/object-centric/object-asset-engine",
-      "status": "LINUX_STAGED_WAITING_OBJECT_FILTER_COMPLETION",
+      "status": "LINUX_AUTHORITATIVE_VERIFIED",
       "source_refs": [
         "company/atlas/object-centric/object-asset-engine/source/SOURCE_MANIFEST.json",
         "company/atlas/object-centric/object-asset-engine/source-snapshot/windows-v1/SOURCE_MANIFEST.json",
@@ -93,7 +93,7 @@
       ],
       "external_source_root": "D:\\object-asset-engine",
       "migration_task": "DIE-203",
-      "note": "Linux-ready source and consistent point-in-time DB/data baseline are staged. Windows Object Engine remains authoritative while 800k+ noun filtering continues; final quiesced DB refresh/parity is required before Linux authority."
+      "note": "DIE-203 final promotion is complete. Linux Object Engine baseline is authoritative and verified; canonical runtime seed_library.db is the 475,560-object final production baseline. Windows estate remains rollback/provenance until cutover retirement."
     },
     "muxia": {
       "logical_root": "company/muxia",

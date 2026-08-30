@@ -1,8 +1,8 @@
 {
   "schema": "die.muxia.die201-division01-linux.v1",
   "task_id": "DIE-201",
-  "date": "2026-08-28",
-  "status": "WAITING_OPERATOR_AUTH",
+  "date": "2026-08-30",
+  "status": "DONE",
   "implementation_commit": "301c794c28f8e5605dc6ca9b061cdaa2312431a9",
   "identity": {
     "principal_id": "division-head-division01",
@@ -52,15 +52,22 @@
     "profile_created_fresh": true,
     "headed": true,
     "policy": "operator-controlled-acquisition-only",
-    "current_state": "AUTH_REQUIRED",
+    "current_state": "READY",
     "current_url": "https://chatgpt.com/",
-    "login_ui_count": 2,
-    "editable_count": 1,
+    "login_ui_count": 0,
+    "editable_count": 2,
     "windows_profile_cloned": false,
     "cookie_or_token_read": false,
     "private_backend_used": false,
     "automated_prompt_submission": false,
-    "output_extraction": false
+    "output_extraction": false,
+    "browser_executable": "/usr/bin/google-chrome-stable",
+    "browser_version": "Google Chrome 152.0.7977.64",
+    "launch_mode": "DIRECT_SPAWN_LOOPBACK_CDP",
+    "debug_host": "127.0.0.1",
+    "debug_port_observed": 43677,
+    "browser_pid_observed": 170655,
+    "ready_observed_at": "2026-08-30T10:43:35.816Z"
   },
   "windows_rollback": {
     "service": "DIERuntimeMCPDivision01",
@@ -98,11 +105,22 @@
     "credential_copy": false,
     "result": "PASS_TO_MANUAL_GATE"
   },
-  "completion_blocker": {
-    "type": "OPERATOR_AUTH_REQUIRED",
-    "required_action": "Founder/operator signs into the Division01 ChatGPT account in the Linux RDP browser profile.",
-    "acceptance_signal": "browser heartbeat state READY",
-    "automation_forbidden": true
+  "completion_blocker": null,
+  "next_after_completion": "DIE-202 - Hermes/Workers Linux migration remains the next blocker before DIE-204.",
+  "connector_cutover": {
+    "performed_by_die201": false,
+    "founder_reported_current_chatgpt_connector_still_windows": true,
+    "roadmap_task": "CUT-004B",
+    "windows_rollback_service_active": true,
+    "rule": "Do not switch ChatGPT connector until formal CUT-004B cloud E2E/rollback gate."
   },
-  "next_after_completion": "DIE-202 - Hermes/Workers Linux migration"
+  "completion": {
+    "result": "PASS",
+    "auth_method": "MANUAL_OPERATOR_LOGIN_IN_FRESH_LINUX_PROFILE",
+    "ready_heartbeat": "PASS",
+    "launcher_refactor_commit": "f9619241d0f788ece170623ac6abb5f09b7e9c41",
+    "launcher_merge_commit": "5849521520c4f86474a8ed7f6630db39af759e10",
+    "mcp_health": "PASS_6_TOOLS",
+    "windows_rollback_preserved": true
+  }
 }

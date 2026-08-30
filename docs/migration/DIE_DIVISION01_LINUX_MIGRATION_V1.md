@@ -94,9 +94,9 @@ Heartbeat:
 
 `/var/lib/die/division01/browser-status.json`
 
-Current state: `AUTH_REQUIRED`.
+Current state: `READY` (2026-08-30).
 
-This is expected negative proof that Windows Brave/CDP session material was not cloned.
+Founder completed manual authentication in the fresh Linux profile using standard Google Chrome Stable. The canonical launcher direct-spawns Chrome Stable and observes readiness through loopback-only CDP. Windows Brave/CDP session material was not cloned.
 
 ## Windows rollback
 
@@ -117,7 +117,7 @@ The live dirty-path count was observed as 38 during DIE-201. This count is not t
 - Linux one-canon: 11/11 PASS;
 - Linux Decision MCP health: PASS;
 - authenticated MCP read flow: PASS;
-- fresh browser profile: AUTH_REQUIRED.
+- fresh browser profile: READY; manual authentication complete; Chrome Stable direct-spawn + loopback CDP.
 
 ## DIE-201-R1
 
@@ -134,3 +134,7 @@ Single repair child:
 DIE-201 remains `WAITING_OPERATOR_AUTH` until the Founder/operator manually signs into the Division01 ChatGPT account in the Linux RDP browser and heartbeat becomes `READY`.
 
 No public endpoint cutover occurs in DIE-201.
+
+## DIE-201 completion
+
+DIE-201 is DONE after READY heartbeat proof on the fresh Linux Division01 profile and healthy 6-tool Runtime Decision MCP on `127.0.0.1:8792`. The ChatGPT MCP connector itself is intentionally not switched in DIE-201; Founder-observed Windows connector handoff is tracked separately as `CUT-004B` with cloud E2E and rollback requirements. `D:\OAUTH` remains separate.
