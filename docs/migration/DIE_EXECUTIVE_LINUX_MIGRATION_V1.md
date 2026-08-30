@@ -80,11 +80,11 @@ A non-sensitive heartbeat is written to `/var/lib/die/executive/browser-status.j
 
 ## Current manual gate
 
-Current browser state:
+Current browser state (2026-08-30):
 
-`AUTH_REQUIRED`
+`READY`
 
-This is expected negative proof for a fresh profile and confirms that Windows session material was not cloned.
+Founder completed manual authentication in the fresh Linux profile using standard Google Chrome Stable. The canonical launcher now direct-spawns Chrome Stable and uses loopback-only CDP observation; no Windows session material was cloned and no cookie/token/private-backend extraction was used.
 
 DIE-200 must remain `WAITING_OPERATOR_AUTH` until the Founder/operator signs into the Executive ChatGPT account in the already-open Linux RDP browser and the heartbeat becomes `READY`.
 
@@ -107,7 +107,7 @@ No Windows service/task was stopped or disabled.
 - one-canon validator: 11/11 PASS
 - Linux exact-source one-canon: 11/11 PASS
 - Linux service health: PASS
-- fresh-profile browser proof: AUTH_REQUIRED (expected pending manual login)
+- fresh-profile browser proof: READY (manual login complete; direct-spawn Chrome Stable + loopback CDP)
 
 ## DIE-200-R1
 
@@ -123,3 +123,7 @@ DIE-200 can become `DONE` only when:
 4. Windows rollback Executive remains active;
 5. no public endpoint cutover has occurred;
 6. final receipt and task graph are updated.
+
+## DIE-200 completion
+
+DIE-200 is DONE after READY heartbeat proof on the fresh Linux Executive profile and healthy 18-tool Runtime Decision MCP on `127.0.0.1:8791`. The ChatGPT MCP connector itself is intentionally not switched in DIE-200; Founder-observed Windows connector handoff is tracked separately as `CUT-004A` with cloud E2E and rollback requirements.

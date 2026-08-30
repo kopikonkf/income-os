@@ -459,7 +459,7 @@
                       "depends_on":  [
                                          "DIE-104"
                                      ],
-                      "status":  "WAITING_OPERATOR",
+                      "status":  "DONE",
                       "artifact":  "Linux Executive source/runtime/receipt",
                       "acceptance":  "Executive identity and wake/read contract work on Linux with fresh operator-controlled auth and no Windows profile cloning."
                   },
@@ -470,7 +470,7 @@
                       "depends_on":  [
                                          "DIE-104"
                                      ],
-                      "status":  "WAITING_OPERATOR",
+                      "status":  "DONE",
                       "artifact":  "Linux Division01 source/runtime/receipt",
                       "acceptance":  "Principal ID division-head-division01 is preserved; D:\\OAUTH is not treated as Division01; fresh auth is used."
                   },
