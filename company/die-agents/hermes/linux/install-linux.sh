@@ -54,6 +54,7 @@ if [[ ! -x "$VENV/bin/python" ]] || ! "$VENV/bin/python" -m pip --version >/dev/
 fi
 "$VENV/bin/python" -m pip install --upgrade pip setuptools wheel >/dev/null
 "$VENV/bin/python" -m pip install -e "$SOURCE_ROOT" >/dev/null
+"$VENV/bin/python" -m pip install 'python-telegram-bot[webhooks]==22.8' >/dev/null
 
 install -o "$SERVICE_USER" -g "$SERVICE_GROUP" -m 0640 "$DIE_HOME/company/die-agents/hermes/SOUL.md" "$HERMES_HOME/SOUL.md"
 install -o "$SERVICE_USER" -g "$SERVICE_GROUP" -m 0640 "$DIE_HOME/company/die-agents/hermes/AGENTS.md" "$HERMES_HOME/AGENTS.md"
@@ -74,7 +75,8 @@ systemctl daemon-reload
 systemctl disable die-hermes-gateway.service >/dev/null 2>&1 || true
 rm -f "$ENV_DIR/READY"
 
-version="$(HERMES_HOME="$HERMES_HOME" "$VENV/bin/hermes" --version | head -n 1 | tr -d '\r')"
+version="$(runuser -u "$SERVICE_USER" -- env HERMES_HOME="$HERMES_HOME" "$VENV/bin/hermes" --version | head -n 1 | tr -d '\r')"
+chown -R "$SERVICE_USER:$SERVICE_GROUP" "$HERMES_HOME"
 cat > "$INSTALL_ROOT/INSTALL_PROVENANCE" <<EOF
 source=$HERMES_UPSTREAM
 commit=$HERMES_COMMIT
