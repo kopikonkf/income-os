@@ -36,5 +36,6 @@
     "config_schema": "v0 loads successfully; migration to newer schema is deferred",
     "optional_slack_plugin": "aiohttp absent; Slack is not configured or required for DIE-202"
   },
-  "completion_blocker": "FOUNDER_ORIGINATED_TELEGRAM_INBOUND_CANARY"
+  "completion_blocker": "FOUNDER_ORIGINATED_TELEGRAM_INBOUND_CANARY",
+  "implementation_commit": "fea916a4aa7efa7dc6a543a5009f79c7599a7782"
 }
