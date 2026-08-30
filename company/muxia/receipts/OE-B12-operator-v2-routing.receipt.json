@@ -1,0 +1,159 @@
+{
+  "schema": "die.oe-batch-receipt.v1",
+  "batch_id": "OE-B12",
+  "date": "2026-08-30",
+  "status": "PASS",
+  "base_main": "82f6b1edac140f30b9ecc796404bea65905e366b",
+  "implementation_commit": "ae0e0f400b80eb39702661f7c3e00e2a30de408e",
+  "compatibility_repair_commit": "6fb5174f51d06d3a4a3a085efab5549f31ff16f6",
+  "atomic_tasks": [
+    {
+      "id": "OE-006D",
+      "status": "DONE",
+      "result": "legacy T1/T2/T2-R2 Kanban cognition quarantine; done cards remain workflow metadata and never become typed cognitive receipts"
+    },
+    {
+      "id": "OE-006E",
+      "status": "DONE",
+      "result": "repo-canonical OS-neutral prepare entrypoint with v1 compatibility mode, v2 receipt-driven mode, Windows/Linux path-root abstraction, and path-neutral Hermes profile delegate"
+    },
+    {
+      "id": "OE-006F",
+      "status": "DONE",
+      "result": "deterministic anti-macet routing with stable dedupe, 30-minute follow-up threshold, max-three follow-ups, authority validation, and semantics-free blocking"
+    }
+  ],
+  "oe006d": {
+    "legacy_card_ids": [
+      "T1",
+      "T2",
+      "T2-R2"
+    ],
+    "kanban_is_cognition_proof": false,
+    "grandfathering_policy": "FORBIDDEN",
+    "cognitive_progress_source": "TYPED_PRINCIPAL_RECEIPTS_ONLY",
+    "historical_corroboration_may_use_receipts": true,
+    "historical_corroboration_changes_stage": false
+  },
+  "oe006e": {
+    "canonical_entrypoint": "bin/die_operator_prepare.py",
+    "modes": [
+      "v1-compat",
+      "v2"
+    ],
+    "v1_compat_default": true,
+    "v2_core": "company/die-agents/hermes/operator-v2/prepare_operator_v2.py",
+    "path_abstraction": "bridge/income_os_bridge/config.py::resolve_die_path_roots",
+    "windows_path_resolution_test": "PASS",
+    "linux_path_resolution_test": "PASS",
+    "windows_canonical_v2_smoke": {
+      "status": "PASS",
+      "stage": "BLUEPRINT_AUTHORING",
+      "action": "OP-REQUEST-DIVISION01-BLUEPRINT",
+      "target": "division-head-division01"
+    },
+    "linux_canonical_v2_smoke": {
+      "status": "PASS",
+      "stage": "BLUEPRINT_REVIEW",
+      "action": "OP-REQUEST-EXECUTIVE-BLUEPRINT-REVIEW",
+      "target": "chatgpt-plus-executive",
+      "temp_worktree_removed": true,
+      "temp_state_removed": true
+    },
+    "live_windows_profile_wrapper": {
+      "path": "C:/Users/aethers/AppData/Local/hermes/profiles/income-operator/scripts/die_operator_prepare.py",
+      "old_sha256": "7222941290a8bfea10ea91f42d7727d139573b709428b687201a5533672e58fe",
+      "installed_sha256": "29bf34cb5a369f7c0e2a0cd5777752276956734a24bd975b2b2f9cee8d59afd6",
+      "hardcoded_c_die": false,
+      "resolved_from_workdir": "C:/DIE",
+      "new_entrypoint_present_in_live_old_head": false,
+      "legacy_fallback_present": true
+    },
+    "live_cron": {
+      "name": "die-proactive-operator-v1",
+      "enabled": true,
+      "state": "scheduled",
+      "schedule": "*/30 * * * *",
+      "script": "die_operator_prepare.py",
+      "workdir": "C:/DIE",
+      "job_definition_modified": false
+    }
+  },
+  "oe006f": {
+    "follow_up_after_seconds": 1800,
+    "max_dispatched_followups": 3,
+    "duplicate_open_intent_before_threshold": "NO_OP_DUPLICATE",
+    "stalled_intent_after_threshold": "FOLLOW_UP",
+    "after_max_followups": "BLOCK_STALLED",
+    "authority_validator": "company/die-agents/hermes/operator-v2/validate_action_authority.py",
+    "runtime_model_may_override_authority": false,
+    "semantic_content_authored": false,
+    "production_authority_granted": false,
+    "founder_request_rule": "OP-DRAFT-U1-REQUEST only at AUTHORIZATION after BLUEPRINT_COMPILE_HASH_LOCK",
+    "runner_rule": "OP-INVOKE-M001-RUNNER only at READY_FOR_PRODUCTION after Founder authorization"
+  },
+  "validation": {
+    "oe_b12_focused": "17/17 PASS",
+    "oe006_foundation_plus_routing_plus_graph": "45/45 PASS",
+    "full_bridge": "476/476 PASS",
+    "one_canon": "11/11 PASS",
+    "high_confidence_secret_hits": 0,
+    "bytecode_artifacts": 0
+  },
+  "runtime_boundary": {
+    "live_c_die_modified": false,
+    "live_cron_job_definition_modified": false,
+    "live_kanban_modified": false,
+    "live_cognition_invoked": false,
+    "network_request_performed": false,
+    "credential_read_or_copied": false,
+    "spend_usd": 0,
+    "production_authority_expanded": false
+  },
+  "artifacts": [
+    {
+      "path": "company/die-agents/hermes/operator-v2/LEGACY_KANBAN_QUARANTINE_RULE_V1.json",
+      "sha256": "8c7ff64e6bfc393399666eae1771a437cca150faf154c904cb761473767a993a",
+      "bytes": 1005
+    },
+    {
+      "path": "company/die-agents/hermes/operator-v2/quarantine_legacy_kanban.py",
+      "sha256": "550fa0a1048bdaa7e4b3d2d6daa6afb6986b6c24740054383f21a70e68688b85",
+      "bytes": 3069
+    },
+    {
+      "path": "company/die-agents/hermes/operator-v2/prepare_operator_v2.py",
+      "sha256": "0101a5cf50f32a24a2937bc08a88c81a07eb7855f0d047319a07d1d844336a4f",
+      "bytes": 4942
+    },
+    {
+      "path": "company/die-agents/hermes/operator-v2/route_followup.py",
+      "sha256": "f29c811617bd4b3aa3f8b97fc3a761b18b55791a3245b203e8882e939148adb7",
+      "bytes": 7504
+    },
+    {
+      "path": "company/die-agents/hermes/operator-v2/hermes_profile_prepare_wrapper.py",
+      "sha256": "29bf34cb5a369f7c0e2a0cd5777752276956734a24bd975b2b2f9cee8d59afd6",
+      "bytes": 1523
+    },
+    {
+      "path": "bin/die_operator_prepare.py",
+      "sha256": "af25e206acee2b748684b30535eab5cc6ef098c19967eb63dca2d1c4fa260c7e",
+      "bytes": 1312
+    },
+    {
+      "path": "bridge/tests/test_oe006_operator_v2_routing.py",
+      "sha256": "e4570d9ded85ed3415c302f0a834c20ebb15f46e847d1037167a905f246e514c",
+      "bytes": 10301
+    },
+    {
+      "path": "docs/operations/OPERATOR_V2_ROUTING_PREPARE_V1.md",
+      "sha256": "1d24f9a90c27329ffa8726fb4cf8185d4ab8303ed9a453251f484245f4f153cb",
+      "bytes": 4061
+    }
+  ],
+  "next_ready": [
+    "OE-006G"
+  ],
+  "next_batch": "OE-B13 - OE-006G replay/restart/crash and duplicate-work regression -> OE-006 acceptance."
+}

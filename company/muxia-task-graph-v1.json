@@ -1099,7 +1099,7 @@
                                          "OE-006B",
                                          "OE-006C"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "legacy-card quarantine/migration rule",
                       "acceptance":  "Historical T1/T2/T2-R2 done cards cannot satisfy new cognitive gates unless backed by typed principal receipts; no silent grandfathering."
                   },
@@ -1110,7 +1110,7 @@
                       "depends_on":  [
                                          "OE-006D"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "repo-canonical prepare entrypoint + Linux/Windows path tests",
                       "acceptance":  "Profile-local hardcoded C:\\DIE wrapper is replaced by canonical path abstraction; Linux activation does not depend on mutable Windows profile glue."
                   },
@@ -1121,7 +1121,7 @@
                       "depends_on":  [
                                          "OE-006E"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "orchestration routing implementation",
                       "acceptance":  "Hermes requests the correct principal/worker for the next receipt, follows stalls/dedupes work, drafts Founder requests only when prerequisites pass, and never authors cognition semantics."
                   },
@@ -1132,7 +1132,7 @@
                       "depends_on":  [
                                          "OE-006F"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "OE-006 tests + replay/crash receipt",
                       "acceptance":  "Authority spoofing, stale/forged receipts, restart/replay, duplicate work and legacy-card cases fail closed; legitimate progression is deterministic."
                   },

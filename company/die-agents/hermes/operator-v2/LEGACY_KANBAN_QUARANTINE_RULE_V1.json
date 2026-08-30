@@ -1,0 +1,18 @@
+{
+  "schema": "die.operator-v2.legacy-kanban-quarantine-rule.v1",
+  "version": "1.0.0",
+  "legacy_card_ids": ["T1", "T2", "T2-R2"],
+  "kanban_is_cognition_proof": false,
+  "grandfathering_policy": "FORBIDDEN",
+  "done_status_semantics": "WORKFLOW_METADATA_ONLY",
+  "typed_receipt_backing_required_for_cognitive_progress": true,
+  "typed_receipt_backing_source": "operator-v2 prerequisite receipt snapshot",
+  "legacy_card_effect": "NONE_ON_INTELLIGENCE_STAGE",
+  "unknown_legacy_card_policy": "METADATA_ONLY",
+  "rules": [
+    "A legacy Kanban card never creates, upgrades, or substitutes a typed prerequisite receipt.",
+    "A legacy done card may be historically corroborated by typed receipts, but progress is computed only from those receipts.",
+    "Historical T1, T2 and T2-R2 cards are explicitly quarantined from cognition authority.",
+    "No silent grandfathering from workflow completion into Worth-Making, Executive review, Blueprint, compile/hash or Founder authorization is permitted."
+  ]
+}

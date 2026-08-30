@@ -2931,3 +2931,14 @@ DIE-204 is DONE. Live Linux topology canary pinned Human Atlas SHA `3e011079...`
 Aether boundary: active lineage text hits 0, protected symlink hits 0, no Aether dependency absorption. `company/architect` remains `DEFERRED_SOURCE_IMPORT`; Windows Architect MCP remains control/bootstrap through CUT-005. Only division001 is materially instantiated; division002..100 remain on-demand logical capacity rather than 99 dummy active source trees, consistent with DIE-103 one-canon materialization.
 
 Task graph: DIE-200/DIE-201/DIE-202/DIE-203/DIE-204 all DONE. Validation: targeted 38/38 PASS; full bridge 459/459 PASS; one-canon 11/11 PASS; secret scan 0. Receipts: `DIE-202-final-activation.receipt.json` and `DIE-204-linux-company-topology.receipt.json`.
+
+
+---
+
+## 2026-08-30 - OE-B12 Operator v2 routing / prepare
+
+`OE-006D = DONE`, `OE-006E = DONE`, `OE-006F = DONE`; `OE-006G = READY`. Legacy T1/T2/T2-R2 Kanban cards are quarantined as workflow metadata only and cannot satisfy cognitive gates. Canonical `bin/die_operator_prepare.py` is OS-neutral with `v1-compat` default and receipt-driven `--mode v2`; Windows and Linux executable smokes pass. Live Windows Hermes profile wrapper was replaced with the path-neutral delegate without modifying `C:\DIE` or the cron job definition; because the protected live old HEAD lacks the new entrypoint, it safely resolves the same workdir and falls back to existing `bin/die_operator_tick.py prepare`.
+
+Anti-macet routing is deterministic: stable intent dedupe; duplicate OPEN intent before 30m -> observe/no-op; after 30m -> follow-up; after 3 dispatched follow-ups without progress -> block. Semantic requests are routed only to the pinned Division01/Executive principals; Founder production-auth draft is due only after compile-hash lock; runner invocation only after exact Founder authorization. Hermes authors no cognition semantics and gains no production authority.
+
+Validation: focused 17/17 PASS; Operator foundation+routing+graph 45/45 PASS; full bridge 476/476 PASS; one-canon 11/11 PASS; secret scan 0. Windows canonical v2 smoke PASS; Linux canonical v2 smoke PASS from temporary branch worktree, which was removed with temporary state. Receipt: `company/muxia/receipts/OE-B12-operator-v2-routing.receipt.json`. Next: `OE-006G`.
