@@ -73,6 +73,14 @@ with launcher:
 
 `company/division/division001/linux/operator_browser.mjs`
 
+Browser runtime architecture:
+
+- standard Google Chrome Stable for human-authenticated profiles, direct-spawned with the dedicated Linux profile;
+- loopback-only ephemeral CDP (`127.0.0.1`, port 0) is used only for readiness observation;
+- Playwright attaches with `connectOverCDP` and does not launch the browser;
+- browser executable is configurable via `DIE_DIVISION01_BROWSER_EXECUTABLE` / `DIE_BROWSER_EXECUTABLE`, default `/usr/bin/google-chrome-stable`;
+- ChatGPT MCP connector handoff is first-class `CUT-004B`; the Windows connector remains rollback-active until that cutover.
+
 Policy:
 
 - manual operator login/recovery;

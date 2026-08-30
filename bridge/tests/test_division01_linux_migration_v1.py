@@ -54,10 +54,18 @@ def test_die201_installer_uses_fresh_linux_secrets_and_excludes_oauth_estate() -
 
 def test_die201_operator_browser_is_consumer_policy_compliant() -> None:
     text = BROWSER.read_text(encoding="utf-8")
-    assert "launchPersistentContext" in text
+    core = (ROOT / "company" / "browser" / "linux" / "operator_browser_core.mjs").read_text(encoding="utf-8")
+    assert "launchPersistentContext" not in text + core
     assert "/var/lib/die/division01/browser-profile" in text
-    assert "headless: false" in text
-    assert "operator-controlled-acquisition-only" in text
+    assert "/usr/bin/google-chrome-stable" in text
+    assert "DIE_DIVISION01_BROWSER_EXECUTABLE" in text
+    assert "DIRECT_SPAWN_LOOPBACK_CDP" in core
+    assert "--remote-debugging-address=127.0.0.1" in core
+    assert "--remote-debugging-port=0" in core
+    assert "connectOverCDP" in core
+    assert "--no-sandbox" not in core
+    assert "--disable-blink-features=AutomationControlled" not in core
+    assert "operator-controlled-acquisition-only" in core
     assert "division-head-division01" in text
     forbidden = [
         "/backend-api/",
@@ -73,7 +81,7 @@ def test_die201_operator_browser_is_consumer_policy_compliant() -> None:
 
 
 def test_die201_operator_browser_never_submits_prompt_or_extracts_output() -> None:
-    text = BROWSER.read_text(encoding="utf-8")
+    text = BROWSER.read_text(encoding="utf-8") + (ROOT / "company" / "browser" / "linux" / "operator_browser_core.mjs").read_text(encoding="utf-8")
     assert ".fill(" not in text
     assert ".press(" not in text
     assert ".click(" not in text

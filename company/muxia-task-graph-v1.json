@@ -545,15 +545,38 @@
                       "acceptance":  "Linux counts/hashes/cursor/last-event/open jobs/artifact lineage match the frozen Windows source of truth."
                   },
                   {
-                      "id":  "CUT-004",
+                      "id":  "CUT-004A",
                       "phase":  14,
-                      "title":  "Phased non-Architect endpoint cutover",
+                      "title":  "Executive ChatGPT MCP connector handoff Windows to Linux",
                       "depends_on":  [
                                          "CUT-003"
                                      ],
                       "status":  "BLOCKED",
+                      "artifact":  "Executive connector endpoint E2E + rollback receipt",
+                      "acceptance":  "Founder updates the Executive ChatGPT MCP connector from the Windows endpoint to the Linux Executive endpoint only after Linux DIE-200 READY/parity proof; principal/tool parity passes from ChatGPT cloud and the Windows endpoint remains available for rollback until CUT-005."
+                  },
+                  {
+                      "id":  "CUT-004B",
+                      "phase":  14,
+                      "title":  "Division01 ChatGPT MCP connector handoff Windows to Linux",
+                      "depends_on":  [
+                                         "CUT-003"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Division01 connector endpoint E2E + rollback receipt",
+                      "acceptance":  "Founder updates the Division01 ChatGPT MCP connector from the Windows endpoint to the Linux Division01 endpoint only after Linux DIE-201 READY/parity proof; principal/tool parity passes from ChatGPT cloud and the Windows endpoint remains available for rollback until CUT-005."
+                  },
+                  {
+                      "id":  "CUT-004",
+                      "phase":  14,
+                      "title":  "Phased non-Architect endpoint cutover",
+                      "depends_on":  [
+                                         "CUT-004A",
+                                         "CUT-004B"
+                                     ],
+                      "status":  "BLOCKED",
                       "artifact":  "endpoint-by-endpoint E2E and rollback receipts",
-                      "acceptance":  "Executive, Division01, Hermes/Gateway/Workers and MUXIA routes cut over one-by-one; Architect Windows control channel remains unchanged."
+                      "acceptance":  "After Executive and Division01 ChatGPT connectors are pinned to Linux and verified, Hermes/Gateway/Workers and MUXIA routes cut over one-by-one; Architect Windows control channel remains unchanged."
                   },
                   {
                       "id":  "CUT-005",
