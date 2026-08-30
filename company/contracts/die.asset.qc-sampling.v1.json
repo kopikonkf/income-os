@@ -1,0 +1,39 @@
+{
+  "schema_version": "die.asset.qc-sampling.v1",
+  "contract_id": "DIE-ASSET-QC-SAMPLING-V1",
+  "contract_version": 1,
+  "purpose": "Reproducible Founder-labeled corpus sampling without cherry-picking or delegation authority.",
+  "sampling_unit": "label_id",
+  "required_strata": [
+    "asset_class",
+    "decision",
+    "defect_class"
+  ],
+  "selection": {
+    "method": "SHA256_ORDERED_WITHIN_STRATUM",
+    "key_material": [
+      "corpus_sha256",
+      "sample_seed",
+      "label_id"
+    ],
+    "ordering": "ascending_sha256",
+    "duplicate_label_ids_forbidden": true,
+    "missing_strata_reported": true
+  },
+  "ground_truth": {
+    "accepted_labelers": [
+      "Founder",
+      "Founder-delegated-manual-reviewer"
+    ],
+    "private_reasoning_required": false,
+    "rationale_summary_required": true,
+    "immutable_asset_sha256_required": true,
+    "immutable_blueprint_sha256_required": true,
+    "immutable_qa_receipt_sha256_required": true
+  },
+  "authority_boundary": {
+    "sampling_grants_qc_release_authority": false,
+    "sampling_grants_submission_authority": false,
+    "self_promotion_allowed": false
+  }
+}

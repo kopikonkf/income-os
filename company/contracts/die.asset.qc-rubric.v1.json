@@ -1,0 +1,64 @@
+{
+  "schema_version": "die.asset.qc-rubric.v1",
+  "rubric_id": "DIE-ASSET-QC-RUBRIC-V1",
+  "rubric_version": 1,
+  "mode": "SHADOW_ONLY",
+  "score_scale": {
+    "minimum": 0,
+    "maximum": 4
+  },
+  "factors": {
+    "blueprint_adherence": {
+      "weight": 0.2,
+      "description": "Artifact visibly follows the pinned Blueprint/product expression and intended subject."
+    },
+    "aesthetic_coherence": {
+      "weight": 0.15,
+      "description": "Composition, visual hierarchy, consistency and overall presentation are coherent."
+    },
+    "commercial_usefulness": {
+      "weight": 0.15,
+      "description": "Artifact is readable/useful for the intended buyer or downstream licensing use case."
+    },
+    "ai_artifact_quality": {
+      "weight": 0.15,
+      "description": "No obvious generative defects materially reduce usable quality."
+    },
+    "use_case_fitness": {
+      "weight": 0.15,
+      "description": "Artifact fits the declared customer/job-to-be-done and intended asset class."
+    },
+    "similarity_distinctness": {
+      "weight": 0.1,
+      "description": "Artifact is sufficiently distinct from sibling outputs for the intended batch."
+    },
+    "readability_composition": {
+      "weight": 0.1,
+      "description": "Important visual/textual elements are legible and compositionally usable."
+    }
+  },
+  "defect_classes": {
+    "BLUEPRINT_MISMATCH": {"critical": true},
+    "AESTHETIC_INCOHERENCE": {"critical": false},
+    "COMMERCIAL_UNCLEAR": {"critical": false},
+    "AI_ARTIFACT_OBVIOUS": {"critical": true},
+    "USE_CASE_UNFIT": {"critical": false},
+    "SIMILARITY_EXCESSIVE": {"critical": false},
+    "READABILITY_DEFECT": {"critical": false},
+    "COMPOSITION_DEFECT": {"critical": false}
+  },
+  "recommendation_policy": {
+    "pass_score_min": 80,
+    "review_score_min": 60,
+    "minimum_confidence_for_pass_recommendation": 0.75,
+    "critical_defect_forces_fail_recommendation": true
+  },
+  "authority_boundary": {
+    "release_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "qa_hard_veto_waivable": false,
+    "self_promotion_allowed": false,
+    "delegation_thresholds_defined_here": false
+  }
+}

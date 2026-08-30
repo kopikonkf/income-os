@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.asset.qc-corpus.v1.schema.json",
+  "title": "DIE Asset QC Labeled Corpus v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "corpus_id",
+    "corpus_version",
+    "created_at",
+    "rubric_id",
+    "rubric_version",
+    "labels"
+  ],
+  "properties": {
+    "schema_version": {"const": "die.asset.qc-corpus.v1"},
+    "corpus_id": {"type": "string", "minLength": 1},
+    "corpus_version": {"type": "integer", "minimum": 1},
+    "created_at": {"type": "string", "minLength": 1},
+    "rubric_id": {"type": "string", "minLength": 1},
+    "rubric_version": {"type": "integer", "minimum": 1},
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label_id", "label_sha256", "asset_class", "decision", "defect_classes"],
+        "properties": {
+          "label_id": {"type": "string", "minLength": 1},
+          "label_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "asset_class": {"type": "string", "minLength": 1},
+          "decision": {"enum": ["PASS", "FAIL", "REVIEW"]},
+          "defect_classes": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    }
+  }
+}
