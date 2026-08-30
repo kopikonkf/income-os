@@ -3016,3 +3016,16 @@ Authority remains unchanged: SHADOW recommendation is not Founder approval; rele
 Implementation commit was validated before lifecycle transition: targeted 17/17 PASS; MUXIA 64/64 PASS; full bridge 511/511 PASS; one-canon pytest 6/6 PASS; validator 11/11 PASS; secret scan 0; bytecode 0; diff check PASS. Receipt: `company/muxia/receipts/QC-B01-shadow-qc-foundation.receipt.json`.
 
 NEXT: `QC-001D` calibration metrics -> `QC-001E` SHADOW dual-review/disagreement queue -> `QC-001F` versioned delegation policy (Founder ratification required) -> `QC-001G` replay/drift/audit -> QC-001 acceptance. MX-062 remains a real elapsed 24-hour gate and MX-070 remains blocked until it passes.
+
+
+---
+
+## 2026-08-30 - MX-062 runner readiness reconstructed
+
+`MX-062 = READY`; `MX-070 = BLOCKED`. The previously non-durable soak-runner work described in the historical session has been reconstructed as a first-class restart-safe Git artifact. This readiness batch does **not** claim MX-062 completion.
+
+The runner hard-codes a minimum real elapsed duration of 86,400,000 ms (24h), fixed 60-second sampling, >=95% expected-sample coverage, SHA-256 sample hash chaining, wall-clock/elapsed rollback rejection, tamper rejection and zero-tolerance failure counters. There is no duration/interval shortening flag. Each sample uses the actual persistent MUXIA Profile/Job/Artifact registries inside an isolated synthetic state root to prove duplicate lease rejection, dead-process recovery, durable artifact evidence before SUCCEEDED and persisted-state integrity. No provider, authenticated production browser profile, submission or spend authority is used.
+
+Standalone validation pinned to implementation commit: MUXIA build/core/parity 70/70 PASS including MX-062 focused 6/6; full bridge 511/511 PASS; one-canon pytest 6/6 PASS; one-canon validator 11/11 PASS; high-confidence secret hits 0; bytecode 0; diff check PASS. Receipt: `company/muxia/receipts/MX-062-runner-readiness.receipt.json`.
+
+NEXT MX lane: merge readiness -> Linux `/srv/die` pull -> build/install isolated `muxia-mx062-soak@<runtime-user>.service` -> explicit start -> real elapsed >=24h. Only a final receipt with >=95% coverage, zero failure counters and a valid chain may transition `MX-062 -> DONE` and `MX-070 -> READY`.
