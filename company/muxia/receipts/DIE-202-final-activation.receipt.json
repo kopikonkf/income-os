@@ -1,0 +1,64 @@
+{
+  "schema": "die.muxia.die202-final-activation.v1",
+  "task_id": "DIE-202",
+  "date": "2026-08-30",
+  "status": "PASS",
+  "base_main": "29b5a97b4680a89c5e8bd9b82465911b8758fe57",
+  "provider": {
+    "configured": true,
+    "connectivity": "PASS",
+    "minimal_inference": "PASS",
+    "expected_response": "DIE202_PROVIDER_OK"
+  },
+  "telegram": {
+    "configured": true,
+    "bot_identity": "PASS",
+    "home_chat": "PASS",
+    "outbound_via_hermes": "PASS",
+    "inbound_user_message": {
+      "source": "telegram",
+      "chat_type": "group",
+      "state_message_id": 69
+    },
+    "assistant_response": {
+      "source": "telegram",
+      "chat_type": "group",
+      "state_message_id": 70,
+      "exact_marker": "DIE202_TELEGRAM_INBOUND_OK"
+    },
+    "e2e_loop": "PASS"
+  },
+  "gateway": {
+    "service": "die-hermes-gateway.service",
+    "enabled": true,
+    "active": true,
+    "ready_gate_present": true,
+    "timeout_stop_sec": 45
+  },
+  "state": {
+    "quick_check": "ok",
+    "messages": 70,
+    "sessions": 2,
+    "journal_mode": "DELETE_SAFE_FALLBACK"
+  },
+  "security": {
+    "windows_bot_credentials_copied": false,
+    "windows_profile_copied": false,
+    "windows_state_db_copied": false,
+    "journal_high_confidence_secret_hits": 0,
+    "cloudflare_or_auth_bypass": false
+  },
+  "boundary": {
+    "linux_bot_and_windows_bot_are_distinct": true,
+    "shared_group_does_not_imply_cross_bot_readability": true,
+    "cross_bot_message_dependency": false
+  },
+  "result": "DIE-202 DONE; Hermes Linux provider/channel/gateway path accepted.",
+  "validation": {
+    "targeted_topology": "38/38 PASS",
+    "full_bridge": "459/459 PASS",
+    "one_canon": "11/11 PASS",
+    "high_confidence_secret_hits": 0
+  },
+  "implementation_commit": "2ae9eddffed91cd947babedc461e22b4d9882a98"
+}

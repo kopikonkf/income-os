@@ -482,7 +482,7 @@
                       "depends_on":  [
                                          "DIE-104"
                                      ],
-                      "status":  "WAITING_OPERATOR_CHANNEL_CANARY",
+                      "status":  "DONE",
                       "artifact":  "Linux Hermes/Worker source/runtime/receipt",
                       "acceptance":  "Canonical SOUL/AGENTS/contracts drive fresh Linux runtime; no bulk AppData/profile clone."
                   },
@@ -508,7 +508,7 @@
                                          "DIE-203",
                                          "MX-052"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "Atlas -> Division cognition -> Hermes -> Worker -> MUXIA -> Artifact Registry proof",
                       "acceptance":  "End-to-end logical company topology works on Linux with correct principal/data/artifact lineage and no Aether dependency absorption."
                   },

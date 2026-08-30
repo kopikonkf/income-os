@@ -170,4 +170,4 @@ def test_die203_task_graph_is_done_after_verified_final_promotion() -> None:
     graph = json.loads((ROOT / "company" / "muxia-task-graph-v1.json").read_text(encoding="utf-8"))
     tasks = {row["id"]: row for row in graph["tasks"]}
     assert tasks["DIE-203"]["status"] == "DONE"
-    assert tasks["DIE-204"]["status"] == "BLOCKED"
+    assert tasks["DIE-204"]["status"] == "DONE"

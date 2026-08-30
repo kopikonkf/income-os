@@ -2918,3 +2918,16 @@ Closure receipt: `company/muxia/receipts/DIE-200-201-auth-ready-closure.receipt.
 DIE-202 credentials are configured and validated. Provider connectivity PASS; minimal Hermes inference canary returned `DIE202_PROVIDER_OK`. Telegram bot identity/home-chat reachability PASS and Hermes outbound Telegram canary PASS. `die-hermes-gateway.service` is enabled/active behind `/etc/die/hermes/READY`; canonical `TimeoutStopSec=45`. Journal high-confidence secret-shape hits: 0.
 
 Task state is now `WAITING_OPERATOR_CHANNEL_CANARY`, not `WAITING_OPERATOR_CREDENTIALS`. The only remaining gate is a Founder-originated Telegram message `DIE202_TELEGRAM_INBOUND_OK` processed by the Linux gateway. No Windows Hermes auth/profile/state was copied or used. DIE-204 remains BLOCKED until that inbound canary closes DIE-202.
+
+
+---
+
+## 2026-08-30 - DIE-202 DONE + DIE-204 Linux company topology PASS
+
+DIE-202 is DONE. Founder-originated Telegram input was persisted as Telegram/group `user` message state id 69 and produced the following Telegram/group `assistant` message state id 70 with exact marker `DIE202_TELEGRAM_INBOUND_OK`. Provider connectivity/inference, Telegram identity/home-chat reachability, Hermes outbound send, inbound routing/model response, active systemd gateway, READY gate, 45-second drain timeout, state quick-check, and zero high-confidence journal secret-shape hits all pass. Linux and Windows Hermes bots remain distinct identities; no cross-bot visibility is required and no Windows bot credential/profile/state was copied.
+
+DIE-204 is DONE. Live Linux topology canary pinned Human Atlas SHA `3e011079...`, Object Atlas final baseline SHA `3035b179...` / 475,560 objects, Division01 live MCP 6 tools, Executive live MCP 18 tools, active Hermes gateway, OpenCode Worker-001 1.18.23, real `/var/lib/muxia` Job/Artifact Registry, and synthetic job `DIE204-topology-muxia`. MUXIA final status `SUCCEEDED`; verified 68-byte PNG artifact SHA `431ced6916a2a21a156e38701afe55bbd7f88969fbbfc56d7fe099d47f265460`; artifact/receipt/hash/bytes/MIME all PASS. No provider image call, production authority, submission, publication or spend occurred.
+
+Aether boundary: active lineage text hits 0, protected symlink hits 0, no Aether dependency absorption. `company/architect` remains `DEFERRED_SOURCE_IMPORT`; Windows Architect MCP remains control/bootstrap through CUT-005. Only division001 is materially instantiated; division002..100 remain on-demand logical capacity rather than 99 dummy active source trees, consistent with DIE-103 one-canon materialization.
+
+Task graph: DIE-200/DIE-201/DIE-202/DIE-203/DIE-204 all DONE. Validation: targeted 38/38 PASS; full bridge 459/459 PASS; one-canon 11/11 PASS; secret scan 0. Receipts: `DIE-202-final-activation.receipt.json` and `DIE-204-linux-company-topology.receipt.json`.

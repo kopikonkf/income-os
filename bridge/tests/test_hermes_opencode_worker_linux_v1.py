@@ -236,5 +236,5 @@ def test_die202_graph_waits_only_for_operator_channel_canary() -> None:
     graph = json.loads((ROOT / "company/muxia-task-graph-v1.json").read_text(encoding="utf-8"))
     tasks = {row["id"]: row for row in graph["tasks"]}
     assert "WAITING_OPERATOR_CHANNEL_CANARY" in graph["states"]
-    assert tasks["DIE-202"]["status"] == "WAITING_OPERATOR_CHANNEL_CANARY"
-    assert tasks["DIE-204"]["status"] == "BLOCKED"
+    assert tasks["DIE-202"]["status"] == "DONE"
+    assert tasks["DIE-204"]["status"] == "DONE"
