@@ -22,6 +22,7 @@
                    "DEFERRED",
                    "WAITING_OPERATOR",
                    "WAITING_OPERATOR_CREDENTIALS",
+                   "WAITING_OPERATOR_CHANNEL_CANARY",
                    "WAITING_OBJECT_FILTER_COMPLETION"
                ],
     "repair_rule":  "On failure create at most one minimal repair child \u003ctask_id\u003e-R\u003cn\u003e; do not restart the roadmap unless an ADR assumption is falsified.",
@@ -481,7 +482,7 @@
                       "depends_on":  [
                                          "DIE-104"
                                      ],
-                      "status":  "WAITING_OPERATOR_CREDENTIALS",
+                      "status":  "WAITING_OPERATOR_CHANNEL_CANARY",
                       "artifact":  "Linux Hermes/Worker source/runtime/receipt",
                       "acceptance":  "Canonical SOUL/AGENTS/contracts drive fresh Linux runtime; no bulk AppData/profile clone."
                   },

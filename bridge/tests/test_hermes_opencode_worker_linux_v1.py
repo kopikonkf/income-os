@@ -215,3 +215,26 @@ def test_die202_hermes_to_worker_to_muxia_synthetic_boundary(tmp_path: Path) -> 
     assert receipt["provider_call_performed"] is False
     assert receipt["consumer_chatgpt_used"] is False
     assert all(receipt["completion_evidence"].values())
+
+
+def test_die202_activation_preinbound_receipt() -> None:
+    receipt = json.loads((ROOT / "company/muxia/receipts/DIE-202-activation-preinbound.receipt.json").read_text(encoding="utf-8"))
+    assert receipt["status"] == "PASS_TO_OPERATOR_CHANNEL_CANARY"
+    assert receipt["provider"]["connectivity"] == "PASS"
+    assert receipt["provider"]["minimal_inference"] == "PASS"
+    assert receipt["telegram"]["get_me"] == "PASS"
+    assert receipt["telegram"]["get_chat"] == "PASS"
+    assert receipt["telegram"]["outbound_via_hermes_send"] == "PASS"
+    assert receipt["telegram"]["inbound_founder_canary"] == "PENDING"
+    assert receipt["gateway"]["systemd_enabled"] is True
+    assert receipt["gateway"]["systemd_active"] is True
+    assert receipt["gateway"]["timeout_stop_sec"] == 45
+    assert receipt["security"]["journal_high_confidence_secret_hits"] == 0
+
+
+def test_die202_graph_waits_only_for_operator_channel_canary() -> None:
+    graph = json.loads((ROOT / "company/muxia-task-graph-v1.json").read_text(encoding="utf-8"))
+    tasks = {row["id"]: row for row in graph["tasks"]}
+    assert "WAITING_OPERATOR_CHANNEL_CANARY" in graph["states"]
+    assert tasks["DIE-202"]["status"] == "WAITING_OPERATOR_CHANNEL_CANARY"
+    assert tasks["DIE-204"]["status"] == "BLOCKED"
