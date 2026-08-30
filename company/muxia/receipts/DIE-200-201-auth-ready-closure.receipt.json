@@ -80,5 +80,6 @@
   "notes": [
     "Chrome for Testing fresh-auth failure was resolved by standard Chrome Stable human login; runtime launcher now follows direct-spawn dedicated-profile architecture with loopback CDP observation.",
     "MCP connector endpoint handoff is intentionally separated from Linux runtime migration completion."
-  ]
+  ],
+  "completion_commit": "eba8d46efd69823ef7d607eee36d17f10966b3f4"
 }
