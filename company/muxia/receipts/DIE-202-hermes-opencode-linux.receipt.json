@@ -2,7 +2,7 @@
   "schema": "die.muxia.die202-hermes-opencode-linux.v1",
   "task_id": "DIE-202",
   "date": "2026-08-30",
-  "status": "WAITING_OPERATOR_CHANNEL_CANARY",
+  "status": "DONE",
   "final_implementation_commit": "c6e26f7a39babb14c12613c30a6d98dd04db493b",
   "roles": {
     "hermes": "orchestrator",
@@ -89,13 +89,8 @@
     "windows_production_mutation": false,
     "credential_copy": false
   },
-  "completion_blocker": {
-    "type": "OPERATOR_CHANNEL_CANARY_REQUIRED",
-    "required_action": "Founder replies in the configured Telegram home channel with exact marker DIE202_TELEGRAM_INBOUND_OK.",
-    "acceptance_signal": "Linux Hermes gateway processes the inbound Telegram update without secret leakage and remains healthy.",
-    "automation_forbidden": "Do not synthesize a human Telegram inbound message with copied user/session credentials."
-  },
-  "parallel_next": "DIE-203 is already DONE; successful inbound canary makes DIE-202 DONE and unblocks DIE-204.",
+  "completion_blocker": null,
+  "parallel_next": "DIE-204 topology proof completed and passed.",
   "activation_preflight": {
     "provider_configured": true,
     "provider_connectivity": "PASS",
@@ -119,5 +114,16 @@
     "credential_preflight_merge": "bc271f9200aa73da701e9107afb9f07e1442d2f9",
     "drain_timeout_commit": "90abbd7d4e8c5c4ca94808913b4cdcc4c7c0d311",
     "drain_timeout_merge": "df69421e60fa5ff86eeb85f56d8f9b4e8331c984"
+  },
+  "final_activation": {
+    "provider_inference": "PASS",
+    "telegram_outbound": "PASS",
+    "telegram_inbound_user_message_state_id": 69,
+    "telegram_assistant_response_state_id": 70,
+    "telegram_e2e": "PASS",
+    "gateway_enabled": true,
+    "gateway_active": true,
+    "timeout_stop_sec": 45,
+    "journal_high_confidence_secret_hits": 0
   }
 }

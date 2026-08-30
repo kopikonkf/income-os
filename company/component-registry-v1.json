@@ -42,7 +42,7 @@
     },
     "hermes": {
       "logical_root": "company/die-agents/hermes",
-      "status": "LINUX_ACTIVE_WAITING_OPERATOR_CHANNEL_CANARY",
+      "status": "LINUX_ACTIVE_VERIFIED",
       "source_refs": [
         "company/die-agents/hermes/SOUL.md",
         "company/die-agents/hermes/AGENTS.md",
@@ -54,11 +54,11 @@
         "bridge/income_os_bridge/"
       ],
       "migration_task": "DIE-202",
-      "note": "Hermes Linux gateway is enabled/active with fresh Linux model and Telegram configuration. Provider connectivity and minimal inference pass; Telegram identity/chat reachability and Hermes outbound send pass. DIE-202 waits only for one Founder-originated inbound Telegram canary before DONE. No Windows auth/profile/state DB copied."
+      "note": "DIE-202 complete. Linux Hermes gateway is enabled/active with fresh provider and Telegram config; provider inference, Telegram outbound and Founder-originated inbound user->assistant E2E canary all pass. No Windows auth/profile/state copied."
     },
     "workers": {
       "logical_root": "company/workers",
-      "status": "LINUX_STAGED",
+      "status": "LINUX_READY_VERIFIED",
       "source_refs": [
         "company/workers/contract/IDENTITY.md",
         "company/workers/contract/WORKER_CONTRACT_V0.md",
@@ -67,7 +67,7 @@
         "company/workers/opencode/"
       ],
       "migration_task": "DIE-202",
-      "note": "OpenCode CLI 1.18.23 is installed as Worker-001/default general execution worker V1. Hermes->OpenCode->MUXIA synthetic artifact proof passed as die-hermes with no provider/model call.",
+      "note": "OpenCode Worker-001 1.18.23 verified on Linux. DIE-204 bounded Worker->MUXIA synthetic topology handoff passed with no provider call, no network, and verified Artifact Registry evidence.",
       "default_worker": "opencode",
       "worker_001": "OpenCode CLI"
     },
@@ -97,12 +97,12 @@
     },
     "muxia": {
       "logical_root": "company/muxia",
-      "status": "EXISTING_CANON",
+      "status": "LINUX_TOPOLOGY_PROVEN",
       "source_refs": [
         "company/muxia/"
       ],
       "migration_task": "MX-060",
-      "note": "Existing MUXIA source/runtime contract remains unchanged by DIE-103."
+      "note": "DIE-204 Linux company topology proof passed against real /var/lib/muxia Job/Artifact Registry with verified synthetic artifact. Existing MUXIA runtime/cutover sequencing remains unchanged."
     },
     "web_ai_oauth_adapter": {
       "logical_root": "company/next-subprojects/web-ai-oauth-adapter",

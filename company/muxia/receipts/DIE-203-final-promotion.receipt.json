@@ -90,7 +90,7 @@
   },
   "task_graph_result": {
     "DIE-203": "DONE",
-    "DIE-204": "BLOCKED_PENDING_DIE-200_DIE-201_DIE-202"
+    "DIE-204": "DONE"
   },
   "validation": {
     "targeted": "18/18 PASS",

@@ -73,9 +73,9 @@
   "migration_gate": {
     "DIE-200": "DONE",
     "DIE-201": "DONE",
-    "DIE-202": "WAITING_OPERATOR_CREDENTIALS",
+    "DIE-202": "DONE",
     "DIE-203": "DONE",
-    "DIE-204": "BLOCKED_ON_DIE-202"
+    "DIE-204": "DONE"
   },
   "notes": [
     "Chrome for Testing fresh-auth failure was resolved by standard Chrome Stable human login; runtime launcher now follows direct-spawn dedicated-profile architecture with loopback CDP observation.",

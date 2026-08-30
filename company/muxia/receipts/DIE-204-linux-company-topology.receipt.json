@@ -1,0 +1,137 @@
+{
+  "schema": "die.muxia.die204-linux-company-topology.v1",
+  "task_id": "DIE-204",
+  "date": "2026-08-30",
+  "status": "PASS",
+  "base_main": "29b5a97b4680a89c5e8bd9b82465911b8758fe57",
+  "dependencies": {
+    "DIE-200": "DONE",
+    "DIE-201": "DONE",
+    "DIE-202": "DONE",
+    "DIE-203": "DONE",
+    "MX-052": "DONE"
+  },
+  "topology_chain": [
+    "ATLAS",
+    "DIVISION01_COGNITION_NODE",
+    "HERMES_ORCHESTRATOR",
+    "WORKER_001_OPENCODE",
+    "MUXIA_JOB_AND_ARTIFACT_REGISTRY",
+    "VERIFIED_ARTIFACT"
+  ],
+  "atlas": {
+    "human": {
+      "path": "company/atlas/human-centric/HUMAN_CENTRIC_ATLAS_CANON.md",
+      "sha256": "3e011079b4da3770ee10fd8a7c419bafe4c111e0ff5349890e397bd6e7ffd483"
+    },
+    "object": {
+      "runtime_path": "/var/lib/die/atlas/object-asset-engine/db/seed_library.db",
+      "sha256": "3035b179ba435a9cc4983ca567528b15941b1a9f205451d425cd40ce5925ab77",
+      "objects": 475560,
+      "classification": "FINAL_PRODUCTION_BASELINE"
+    }
+  },
+  "principals": {
+    "executive": {
+      "principal_id": "chatgpt-plus-executive",
+      "linux_mcp": "127.0.0.1:8791",
+      "tools": 18,
+      "health": "PASS"
+    },
+    "division01": {
+      "principal_id": "division-head-division01",
+      "identity_sha256": "8d73775f1b4f0ccf9a10dff89975026ad65489f4099863c6abd09fc9fdd738df",
+      "linux_mcp": "127.0.0.1:8792",
+      "tools": 6,
+      "health": "PASS",
+      "semantic_invocation_performed": false,
+      "proof_role": "live_routable_cognition_node"
+    },
+    "hermes": {
+      "principal_id": "hermes-operator",
+      "soul_sha256": "6202784340f5d87fd965808ae57a1741ae447285f485e5175fe9e72f4e3c0f42",
+      "gateway_active": true,
+      "telegram_e2e": "PASS"
+    },
+    "worker": {
+      "executor": "opencode",
+      "version": "1.18.23",
+      "contract_sha256": "0c010c316db852d15bc37052781768620d39dc91cbd5abdc0c2fd2d41e1d2aff",
+      "result_status": "done"
+    }
+  },
+  "handoff": {
+    "workspace": "/var/lib/die/workspaces/die204-topology-proof",
+    "network": "none",
+    "provider_call_performed": false,
+    "consumer_chatgpt_used": false,
+    "muxia_root": "/var/lib/muxia",
+    "muxia_job_id": "DIE204-topology-muxia",
+    "required_capability": "image.generate",
+    "final_status": "SUCCEEDED"
+  },
+  "artifact_registry": {
+    "receipt_path": "/var/lib/muxia/state/receipts/DIE204-topology-muxia.json",
+    "artifact_path": "/var/lib/muxia/artifacts/DIE204-topology-muxia/synthetic-fixture.png",
+    "profile_id": "synthetic-profile",
+    "provider_id": "chatgpt",
+    "sha256": "431ced6916a2a21a156e38701afe55bbd7f88969fbbfc56d7fe099d47f265460",
+    "bytes": 68,
+    "mime_type": "image/png",
+    "status": "VERIFIED",
+    "completion_evidence": {
+      "artifactExists": true,
+      "receiptExists": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "mimeMatches": true
+    },
+    "synthetic_fixture": true
+  },
+  "company_topology": {
+    "required_logical_roots": [
+      "company/architect",
+      "company/executive",
+      "company/atlas",
+      "company/muxia",
+      "company/division",
+      "company/die-agents",
+      "company/workers",
+      "company/next-subprojects"
+    ],
+    "atlas_subroots": [
+      "company/atlas/human-centric",
+      "company/atlas/object-centric"
+    ],
+    "active_division_directories": 1,
+    "active_division": "division001",
+    "division002_to_100_materialization": "ON_DEMAND_NO_EMPTY_SOURCE_TREES",
+    "architect_status": "DEFERRED_SOURCE_IMPORT",
+    "architect_windows_control_preserved": true
+  },
+  "aether_boundary": {
+    "active_lineage_text_hits": 0,
+    "protected_symlink_hits": 0,
+    "absorbed": false
+  },
+  "authority": {
+    "production_authority_granted": false,
+    "submission_performed": false,
+    "publication_performed": false,
+    "spend_usd": 0
+  },
+  "acceptance": {
+    "principal_lineage": "PASS",
+    "data_lineage": "PASS",
+    "worker_boundary": "PASS",
+    "muxia_artifact_lineage": "PASS",
+    "no_aether_dependency_absorption": "PASS",
+    "linux_company_topology": "PASS"
+  },
+  "validation": {
+    "targeted_topology": "38/38 PASS",
+    "full_bridge": "459/459 PASS",
+    "one_canon": "11/11 PASS",
+    "high_confidence_secret_hits": 0
+  }
+}
