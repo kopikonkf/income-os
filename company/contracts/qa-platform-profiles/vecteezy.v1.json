@@ -1,0 +1,51 @@
+{
+  "schema_version": "die.asset.qa-platform-profile.v1",
+  "profile_id": "QAPROFILE-VECTEEZY-V1",
+  "platform": "Vecteezy",
+  "profile_version": 1,
+  "effective_date": "2026-08-24",
+  "checked_at": "2026-08-24",
+  "source_document": "docs/pipeline/MATRIX_6_PLATFORM_TOS_STRICTNESS.md",
+  "requirements": {
+    "accepted_formats": {
+      "status": "UNKNOWN",
+      "value": null,
+      "evidence_refs": []
+    },
+    "minimum_megapixels": {
+      "status": "UNKNOWN",
+      "value": null,
+      "evidence_refs": []
+    },
+    "metadata_constraints": {
+      "status": "UNKNOWN",
+      "value": null,
+      "evidence_refs": []
+    },
+    "ai_disclosure": {
+      "status": "UNKNOWN",
+      "value": null,
+      "evidence_refs": []
+    },
+    "similarity_distinctness": {
+      "status": "UNKNOWN",
+      "value": null,
+      "evidence_refs": []
+    },
+    "account_eligibility": {
+      "status": "UNKNOWN",
+      "value": null,
+      "evidence_refs": []
+    },
+    "content_restrictions": {
+      "status": "UNKNOWN",
+      "value": null,
+      "evidence_refs": []
+    },
+    "upload_package_constraints": {
+      "status": "UNKNOWN",
+      "value": null,
+      "evidence_refs": []
+    }
+  }
+}
