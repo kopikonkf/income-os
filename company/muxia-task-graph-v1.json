@@ -625,9 +625,9 @@
                                          "DIE-201",
                                          "IDENTITY-LNX-REKEY-004"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "principal-dedicated Linux wake transport + thread-state receipt",
-                      "acceptance":  "Preserve Windows wake semantics using authenticated principal-dedicated browser profiles, loopback dynamic CDP, in-page fetch, protected one-active-thread state, no JWT persistence, and no inbound MCP authority."
+                      "acceptance":  "Authenticated principal-dedicated Chrome remains READY under loopback dynamic CDP; exactly one active thread per principal is bound with generation/superseded rollover state; no-send canary stages then clears a bounded briefing without prompt submission, output extraction, credential access, private-backend calls, browser termination, or inbound MCP authority."
                   },
                   {
                       "id":  "WAKE-LNX-002",
@@ -637,7 +637,7 @@
                                          "WAKE-LNX-001",
                                          "MCP-LNX-003"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "wake-to-context_snapshot convergence receipt",
                       "acceptance":  "Wake supplies bounded cognition trigger/briefing only; Executive and Division01 reload current authoritative state through their own principal-pinned context_snapshot before governed reasoning or decision output."
                   },

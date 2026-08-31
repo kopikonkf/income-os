@@ -1,0 +1,82 @@
+{
+  "schema": "die.wake-lnx001.safe-transport.acceptance.receipt.v1",
+  "date": "2026-08-31",
+  "task_id": "WAKE-LNX-001",
+  "status": "DONE",
+  "implementation_merge": "89e591061a9175aff16f65220ecd97babdc160f5",
+  "architecture": {
+    "company_instance_id": "DIE-LINUX",
+    "browser": "Google Chrome Stable, principal-dedicated profile",
+    "cdp_binding": "dynamic loopback only",
+    "thread_state_schema": "die.wake.thread.v2",
+    "one_active_thread_per_principal": true,
+    "rollover": "new bind increments generation and retains bounded superseded metadata",
+    "autonomous_prompt_submission": false,
+    "private_backend_transport": false
+  },
+  "live_bind": {
+    "executive": {
+      "principal_id": "die-lnx-executive-001",
+      "generation": 1,
+      "history_count": 0,
+      "lifecycle_state": "active",
+      "browser_pid_before": 242302,
+      "browser_pid_after": 242302
+    },
+    "division01": {
+      "principal_id": "die-lnx-division-001",
+      "generation": 1,
+      "history_count": 0,
+      "lifecycle_state": "active",
+      "browser_pid_before": 243758,
+      "browser_pid_after": 243758
+    }
+  },
+  "no_send_canary": {
+    "executive": {
+      "composer_prefilled": true,
+      "canary_cleared": true,
+      "submitted": false,
+      "output_extracted": false,
+      "credential_material_accessed": false,
+      "private_backend_called": false,
+      "thread_generation": 1
+    },
+    "division01": {
+      "composer_prefilled": true,
+      "canary_cleared": true,
+      "submitted": false,
+      "output_extracted": false,
+      "credential_material_accessed": false,
+      "private_backend_called": false,
+      "thread_generation": 1
+    },
+    "executive_followup_draft_protection": "E_COMPOSER_NOT_EMPTY",
+    "operator_draft_modified_after_protection": false
+  },
+  "browser_postcondition": {
+    "executive": {
+      "state": "READY",
+      "principal_id": "die-lnx-executive-001",
+      "browser_pid": 242302,
+      "debug_host": "127.0.0.1",
+      "login_ui_count": 0
+    },
+    "division01": {
+      "state": "READY",
+      "principal_id": "die-lnx-division-001",
+      "browser_pid": 243758,
+      "debug_host": "127.0.0.1",
+      "login_ui_count": 0
+    }
+  },
+  "isolation": {
+    "mx062_pid": 200975,
+    "production_source_sha": "dfb74d7e09b19f68381e1064899d70c645a61f26",
+    "production_source_mutated": false
+  },
+  "explicit_limit": "WAKE-LNX-001 establishes safe focus/stage transport only. It does not claim unattended ChatGPT prompt submission or model-output collection. WAKE-LNX-002 must preserve this boundary unless a separately supported/ratified actuator is introduced.",
+  "dependency_release": {
+    "WAKE-LNX-002": "READY"
+  }
+}

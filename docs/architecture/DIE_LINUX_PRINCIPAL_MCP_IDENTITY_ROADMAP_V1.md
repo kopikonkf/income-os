@@ -48,8 +48,8 @@ Wake may trigger cognition but never substitutes for `context_snapshot`. Runtime
 | `IDENTITY-LNX-REKEY-003` | DONE | Rebind Linux staging MCP to Linux-specific principals |
 | `IDENTITY-LNX-REKEY-004` | DONE | Founder login of NEW dedicated Linux ChatGPT accounts |
 | `MCP-LNX-003` | DONE | Dedicated-account OAuth/principal/tool/context E2E parity |
-| `WAKE-LNX-001` | READY | Safe dynamic-CDP Linux wake transport foundation |
-| `WAKE-LNX-002` | BLOCKED | Wake cognition -> fresh principal-pinned state convergence |
+| `WAKE-LNX-001` | DONE | Safe dynamic-CDP Linux wake transport foundation live |
+| `WAKE-LNX-002` | READY | Wake cognition -> fresh principal-pinned state convergence |
 | `ID-LNX-001` | DONE | Hermes prompt source pinned to native root -> component AGENTS chain |
 | `ID-LNX-002` | DONE | Hermes deterministic company-instance-aware Operator v2 scheduler live |
 | `ID-LNX-003` | BLOCKED | Executive canonical cognition bootstrap |
