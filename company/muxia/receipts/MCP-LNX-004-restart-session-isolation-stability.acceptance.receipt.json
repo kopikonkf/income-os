@@ -1,0 +1,157 @@
+{
+  "schema": "die.mcp-lnx004.restart-session-isolation-stability.acceptance.receipt.v1",
+  "date": "2026-08-31",
+  "task_id": "MCP-LNX-004",
+  "status": "DONE",
+  "service_restart": {
+    "executive": {
+      "service": "die-executive-runtime-mcp-staging.service",
+      "pre_pid": 248312,
+      "post_restart_pid": 263686,
+      "post_dcr_restart_pid": 264592,
+      "active": true,
+      "enabled": false,
+      "principal_id": "die-lnx-executive-001",
+      "tools": 18,
+      "version": "1.3.0",
+      "control_policy": "staging-read-only"
+    },
+    "division01": {
+      "service": "die-division01-runtime-mcp-staging.service",
+      "pre_pid": 248309,
+      "post_restart_pid": 263705,
+      "post_dcr_restart_pid": 264591,
+      "active": true,
+      "enabled": false,
+      "principal_id": "die-lnx-division-001",
+      "tools": 6,
+      "version": "1.3.0",
+      "control_policy": "staging-read-only"
+    },
+    "tunnel": {
+      "service": "die-runtime-mcp-cloudflared.service",
+      "pre_pid": 230828,
+      "post_pid": 263723,
+      "active": true,
+      "enabled": false
+    }
+  },
+  "browser_restart": {
+    "executive": {
+      "launcher_pre_pid": 242293,
+      "browser_pre_pid": 242302,
+      "launcher_post_pid": 263982,
+      "browser_post_pid": 263992,
+      "state": "READY",
+      "login_ui_count": 0,
+      "debug_host": "127.0.0.1",
+      "debug_port": 41529,
+      "wake_focus": "PASS",
+      "thread_generation_pre": 2,
+      "thread_generation_post": 2
+    },
+    "division01": {
+      "launcher_pre_pid": 243749,
+      "browser_pre_pid": 243758,
+      "launcher_post_pid": 264214,
+      "browser_post_pid": 264224,
+      "state": "READY",
+      "login_ui_count": 0,
+      "debug_host": "127.0.0.1",
+      "debug_port": 38305,
+      "wake_focus": "PASS",
+      "thread_generation_pre": 1,
+      "thread_generation_post": 1
+    },
+    "cross_browser_restart_interference": false
+  },
+  "oauth_restart_stability": {
+    "unauthenticated_post_mcp": {
+      "executive_http": 401,
+      "division01_http": 401
+    },
+    "static_client_authorize_after_restart": {
+      "executive_http": 200,
+      "division01_http": 200
+    },
+    "dcr_client_minted_before_second_service_restart": true,
+    "same_principal_dcr_after_restart": {
+      "executive_http": 200,
+      "division01_http": 200
+    },
+    "cross_principal_dcr_after_restart": {
+      "executive_client_on_division_http": 401,
+      "division_client_on_executive_http": 401
+    },
+    "client_registry_design": "stateless principal-signed client_id; no volatile DCR registry dependency",
+    "transient_edge_origin_reconnect": {
+      "observed": "Executive authorize HTTP 502 immediately after restart",
+      "recovered_on_next_health_probe": true,
+      "persistent_data_loss": false
+    }
+  },
+  "public_endpoints": {
+    "linux_executive": "https://executive-mcp.aethers.biz.id",
+    "linux_division01": "https://division01-mcp.aethers.biz.id",
+    "linux_health_after_restart": "PASS",
+    "oauth_issuer_resource_separation": "PASS",
+    "windows_executive_rollback": {
+      "origin": "https://executive-mcp.aethers.web.id",
+      "principal_id": "chatgpt-plus-executive",
+      "tools": 18,
+      "health": "PASS"
+    },
+    "windows_division01_rollback": {
+      "origin": "https://division01-mcp.aethers.web.id",
+      "principal_id": "division-head-division01",
+      "tools": 6,
+      "health": "PASS"
+    }
+  },
+  "stability_window": {
+    "samples": 6,
+    "spacing_seconds": 5,
+    "all_samples_passed": true,
+    "stable_pids": {
+      "executive_mcp": 264592,
+      "division01_mcp": 264591,
+      "tunnel": 263723,
+      "executive_browser": 263992,
+      "division01_browser": 264224
+    },
+    "checks_per_sample": [
+      "systemd active",
+      "PID unchanged",
+      "local MCP health",
+      "public MCP health",
+      "browser READY",
+      "loginUiCount=0",
+      "principal exact",
+      "loopback CDP",
+      "wake thread active/generation exact"
+    ]
+  },
+  "sanitized_logging": {
+    "executive_high_risk_secret_hits": 0,
+    "division01_high_risk_secret_hits": 0,
+    "cloudflared_high_risk_secret_hits": 0,
+    "patterns_scanned": [
+      "Authorization Bearer",
+      "DIE_MCP_TOKEN assignment",
+      "DIE_MCP_LOGIN_PASSWORD assignment",
+      "access_token JSON",
+      "Cookie header"
+    ]
+  },
+  "isolation_guards": {
+    "production_source_sha": "dfb74d7e09b19f68381e1064899d70c645a61f26",
+    "mx062_pid": 200975,
+    "production_source_mutated": false,
+    "mx062_mutated": false
+  },
+  "prior_cloud_e2e_dependency": "MCP-LNX-003 DONE remains the real ChatGPT-cloud 18/6 tool + context_snapshot acceptance; MCP-LNX-004 proves restart/recovery stability without requiring another connector handoff.",
+  "dependency_release": {
+    "MCP-LNX-005": "READY"
+  },
+  "acceptance": "Staging MCP services, linux-mcp tunnel, dedicated browser sessions and bound wake threads survive controlled restart/recovery; OAuth static/DCR clients remain restart-stable and principal-isolated; logs remain sanitized; Windows endpoints remain healthy rollback targets."
+}

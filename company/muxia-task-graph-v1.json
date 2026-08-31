@@ -707,7 +707,7 @@
                                          "WAKE-LNX-002",
                                          "ID-LNX-005"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "restart/session/isolation/stability receipt",
                       "acceptance":  "Staging tunnel, MCP services and browser sessions survive controlled restart/recovery; OAuth and principal isolation remain correct; logs are sanitized; Windows endpoints remain rollback-capable."
                   },
@@ -718,7 +718,7 @@
                       "depends_on":  [
                                          "MCP-LNX-004"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "non-Architect Linux principal acceptance receipt",
                       "acceptance":  "Executive and Division01 Linux MCP + wake + identity stack is accepted as cutover-ready while Windows remains active; this authorizes readiness only, not the Founder connector handoff itself."
                   },
