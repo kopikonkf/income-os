@@ -1,0 +1,67 @@
+{
+  "schema": "die.mcp-lnx-002.acceptance.receipt.v1",
+  "date": "2026-08-31",
+  "implementation_commit": "66625fb0c18896f63e82402ae252c329c09245c9",
+  "reviewed_pr_head": "8d6ba3d9e86bede353661d865ac094d718c59c1f",
+  "implementation_merge": "e0296bdb417c4f8ca5607af4306d3b4f4cdccc74",
+  "task_state": {
+    "MCP-LNX-002": "DONE",
+    "MCP-LNX-003": "READY"
+  },
+  "tunnel": {
+    "name": "linux-mcp",
+    "id": "32579323-1f96-4c0d-8aee-a03557c4a103",
+    "connector_id": "bad25ad6-ead4-44f1-abb6-3e657e099adc",
+    "linux_origin_ip": "157.20.32.166",
+    "cloudflared_version": "2026.8.2",
+    "service": "die-runtime-mcp-cloudflared.service",
+    "service_active": true,
+    "service_enabled": false,
+    "pid": 230828
+  },
+  "ingress": [
+    {
+      "hostname": "executive-mcp.aethers.biz.id",
+      "origin": "http://127.0.0.1:8891",
+      "public_health_status": 200,
+      "principal": "chatgpt-plus-executive",
+      "tools": 18,
+      "control_policy": "staging-read-only",
+      "public_unauthenticated_mcp_status": 401,
+      "oauth_issuer": "https://executive-mcp.aethers.biz.id"
+    },
+    {
+      "hostname": "division01-mcp.aethers.biz.id",
+      "origin": "http://127.0.0.1:8892",
+      "public_health_status": 200,
+      "principal": "division-head-division01",
+      "tools": 6,
+      "control_policy": "staging-read-only",
+      "public_unauthenticated_mcp_status": 401,
+      "oauth_issuer": "https://division01-mcp.aethers.biz.id"
+    },
+    {
+      "default": "http_status:404"
+    }
+  ],
+  "edge_observation": {
+    "python_urllib_default_user_agent_observed_403": true,
+    "curl_standard_http_client_passed": true,
+    "interpretation": "Client-fingerprint policy observation only; tunnel/origin public proof passed. Final ChatGPT compatibility remains MCP-LNX-003."
+  },
+  "safety": {
+    "windows_tunnel_mutated": false,
+    "architect_route_exposed": false,
+    "cdp_route_exposed": false,
+    "wake_route_exposed": false,
+    "secret_value_in_repo": false,
+    "secret_value_returned": false,
+    "mx062_mutated": false
+  },
+  "mx062": {
+    "service_active": true,
+    "pid": 200975,
+    "production_source_sha": "dfb74d7e09b19f68381e1064899d70c645a61f26"
+  },
+  "acceptance": "Public Cloudflare edge reaches both isolated Linux staging MCP origins with correct principal/tool identity and fail-closed unauthenticated OAuth challenge. ChatGPT authenticated E2E is intentionally deferred to MCP-LNX-003."
+}
