@@ -637,7 +637,7 @@
                                          "WAKE-LNX-001",
                                          "MCP-LNX-003"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "wake-to-context_snapshot convergence receipt",
                       "acceptance":  "Wake supplies bounded cognition trigger/briefing only; Executive and Division01 reload current authoritative state through their own principal-pinned context_snapshot before governed reasoning or decision output."
                   },
@@ -670,7 +670,7 @@
                       "depends_on":  [
                                          "WAKE-LNX-002"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "Executive identity/bootstrap assimilation receipt",
                       "acceptance":  "Executive receives the canonical company-level identity, authority boundary, current engine-review responsibilities and fresh principal-pinned state; account/thread memory cannot manufacture authority."
                   },
@@ -681,7 +681,7 @@
                       "depends_on":  [
                                          "WAKE-LNX-002"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "Division01 identity/engine assimilation receipt",
                       "acceptance":  "Division01 receives canonical domain identity plus OE-001 signals, OE-002 demand score, OE-003 longtail, OE-004 Worth-Making and OE-005 blueprint responsibilities with platform/search evidence doctrine and no execution authority."
                   },
@@ -694,7 +694,7 @@
                                          "ID-LNX-003",
                                          "ID-LNX-004"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "Hermes-Executive-Division01 role/isolation acceptance receipt",
                       "acceptance":  "Hermes orchestrates and routes cognition; Division01 owns bounded domain intelligence; Executive owns company-level challenge/review; State Manager/Hermes/Founder authority boundaries remain fail-closed with no role collapse."
                   },
@@ -707,7 +707,7 @@
                                          "WAKE-LNX-002",
                                          "ID-LNX-005"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "restart/session/isolation/stability receipt",
                       "acceptance":  "Staging tunnel, MCP services and browser sessions survive controlled restart/recovery; OAuth and principal isolation remain correct; logs are sanitized; Windows endpoints remain rollback-capable."
                   },

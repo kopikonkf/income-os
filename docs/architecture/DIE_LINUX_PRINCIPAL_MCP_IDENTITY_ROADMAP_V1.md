@@ -49,13 +49,13 @@ Wake may trigger cognition but never substitutes for `context_snapshot`. Runtime
 | `IDENTITY-LNX-REKEY-004` | DONE | Founder login of NEW dedicated Linux ChatGPT accounts |
 | `MCP-LNX-003` | DONE | Dedicated-account OAuth/principal/tool/context E2E parity |
 | `WAKE-LNX-001` | DONE | Safe dynamic-CDP Linux wake transport foundation live |
-| `WAKE-LNX-002` | READY | Wake cognition -> fresh principal-pinned state convergence |
+| `WAKE-LNX-002` | DONE | Wake cognition -> fresh principal-pinned state convergence |
 | `ID-LNX-001` | DONE | Hermes prompt source pinned to native root -> component AGENTS chain |
 | `ID-LNX-002` | DONE | Hermes deterministic company-instance-aware Operator v2 scheduler live |
-| `ID-LNX-003` | BLOCKED | Executive canonical cognition bootstrap |
-| `ID-LNX-004` | BLOCKED | Division01 identity + OE engine cognition bootstrap |
-| `ID-LNX-005` | BLOCKED | Cross-principal role/authority acceptance |
-| `MCP-LNX-004` | BLOCKED | Restart/session/isolation/stability proof |
+| `ID-LNX-003` | DONE | Executive canonical cognition bootstrap |
+| `ID-LNX-004` | DONE | Division01 identity + OE engine cognition bootstrap |
+| `ID-LNX-005` | DONE | Cross-principal role/authority acceptance |
+| `MCP-LNX-004` | READY | Restart/session/isolation/stability proof |
 | `MCP-LNX-005` | BLOCKED | Executive + Division01 Linux MCP/wake acceptance |
 
 `CUT-004A` and `CUT-004B` additionally depend on `MCP-LNX-005`. Therefore a Linux staging PASS cannot silently become connector cutover. Founder handoff remains a later explicit action.

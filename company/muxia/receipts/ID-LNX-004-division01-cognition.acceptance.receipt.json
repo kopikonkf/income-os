@@ -1,0 +1,37 @@
+{
+  "schema": "die.cognition.assimilation.receipt.v1",
+  "task_id": "ID-LNX-004",
+  "company_instance_id": "DIE-LINUX",
+  "principal_id": "die-lnx-division-001",
+  "scope": "single_division",
+  "authority_capability": "bounded_semantic_observation",
+  "freshness_status": "fresh",
+  "canon_load_status": "VERIFIED",
+  "source_trust": "DEGRADED",
+  "completeness": "degraded",
+  "repo_sha": "7cdace09ba4fa80b55be5c1d74de9bb72977d7df",
+  "bootstrap_status": "PASS",
+  "role_anchor": "company/division/division001/IDENTITY.md",
+  "bootstrap_ref": "company/division/division001/linux/COGNITION_BOOTSTRAP_V1.md",
+  "responsibilities_ack": [
+    "OE-001",
+    "OE-002",
+    "OE-003",
+    "OE-004",
+    "OE-005",
+    "platform_evidence_doctrine"
+  ],
+  "boundaries_ack": [
+    "no_worker_command",
+    "no_execution_authority",
+    "no_direct_state_write",
+    "no_submission"
+  ],
+  "account_memory_used_as_authority": false,
+  "mutation_performed": false,
+  "acknowledgement_basis": {
+    "principal_bootstrap_status": "PASS",
+    "derived_from_canonical_bootstrap_contract": true,
+    "verbatim_responsibility_list_from_principal": false
+  }
+}

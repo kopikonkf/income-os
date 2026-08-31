@@ -3254,3 +3254,10 @@ Added deterministic cognition assimilation validators and Linux-principal receip
 ## 2026-08-31 - Hermes Executive/Division01 review loopback implementation ready
 
 Operator v2 now elevates the existing OE-004/OE-005 Executive review semantics into Hermes routing. `NO_VETO` advances; `REVISE` produces a governed return-to-Division01 action against the exact active review lineage; `VETO_PENDING_EVIDENCE` blocks promotion and requests evidence closure; `ESCALATE_FOUNDER` routes to Founder. Linux routing resolves Division01 to `die-lnx-division-001`. Old author/review receipts must become `SUPERSEDED` before a new revision attempt becomes active. Direct Executive<->Division01 chat may be advisory but has no operational effect unless represented as typed receipts routed by Hermes/State Manager. Targeted 85/85 and full bridge 581/581 pass.
+
+
+---
+
+## 2026-08-31 - Linux cognitive society acceptance complete
+
+Real ChatGPT convergence on shared revision `7cdace09ba4fa80b55be5c1d74de9bb72977d7df` passed for Division01 (`die-lnx-division-001`, `single_division`) and Executive (`die-lnx-executive-001`, `company_portfolio`), both with freshness `fresh`, canon load `VERIFIED`, truthful `source_trust=DEGRADED` / `completeness=degraded`, and `bootstrap_status=PASS`. Executive conversation rollover is live at generation 2 with generation 1 superseded. Cognition assimilation validators pass for both roles. Hermes Operator v2 now governs Executive review loopback: NO_VETO advances, REVISE returns to Division01, VETO_PENDING_EVIDENCE blocks for evidence, and Founder escalation remains explicit. Follow-up outbox recovery fixed the live E_OUTBOX_CONFLICT without deleting journal history; recovered claim sequences 2/3 and Hermes cron run `cb6dc63a8b434b42904c9560081e082d` completed. `WAKE-LNX-002`, `ID-LNX-003`, `ID-LNX-004`, and `ID-LNX-005` are DONE; `MCP-LNX-004` is READY.
