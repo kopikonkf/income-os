@@ -58,7 +58,12 @@
         "BLUEPRINT_REVIEW",
         "COMPILE",
         "AUTHORIZATION",
-        "READY_FOR_PRODUCTION"
+        "READY_FOR_PRODUCTION",
+        "WORTH_MAKING_REVISION",
+        "WORTH_MAKING_EVIDENCE_GAP",
+        "BLUEPRINT_REVISION",
+        "BLUEPRINT_EVIDENCE_GAP",
+        "EXEC_REVIEW_ESCALATION"
       ]
     },
     "next_required_receipt": {
@@ -138,6 +143,49 @@
         "DIE-WINDOWS",
         "DIE-LINUX"
       ]
+    },
+    "review_directive": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "receipt_type",
+        "outcome",
+        "artifact_id",
+        "artifact_sha256",
+        "source_ref"
+      ],
+      "properties": {
+        "receipt_type": {
+          "enum": [
+            "WORTH_MAKING_EXEC_REVIEW",
+            "BLUEPRINT_EXEC_REVIEW"
+          ]
+        },
+        "outcome": {
+          "enum": [
+            "REVISE",
+            "VETO_PENDING_EVIDENCE",
+            "ESCALATE_FOUNDER"
+          ]
+        },
+        "artifact_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "artifact_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      }
     }
   }
 }

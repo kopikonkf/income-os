@@ -1,0 +1,24 @@
+{
+  "schema": "die.id-lnx005.hermes-review-loopback.readiness.receipt.v1",
+  "date": "2026-08-31",
+  "status": "IMPLEMENTATION_READY",
+  "scope": "Hermes governed Executive<->Division01 review middleware",
+  "behaviors": {
+    "NO_VETO": "advance linear prerequisite chain",
+    "REVISE": "return exact reviewed lineage to Division01 for a new artifact/hash",
+    "VETO_PENDING_EVIDENCE": "block promotion and request evidence closure",
+    "ESCALATE_FOUNDER": "route to Founder notification gate",
+    "direct_peer_chat_operational_authority": false,
+    "old_lineage_requires_superseded_before_revision": true
+  },
+  "linux_routing": {
+    "division01_principal": "die-lnx-division-001",
+    "executive_principal": "die-lnx-executive-001",
+    "orchestrator_actor": "hermes-operator"
+  },
+  "validation": {
+    "targeted": "85/85 PASS",
+    "full_bridge": "581/581 PASS"
+  },
+  "production_authority_granted": false
+}
