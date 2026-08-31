@@ -3226,3 +3226,10 @@ Linux Hermes `income-operator` scheduler is refactored to deterministic Operator
 ## 2026-08-31 - ID-LNX-002 Linux Operator v2 scheduler DONE
 
 Hermes Linux `income-operator` now owns one active `die-proactive-operator-v1` cron (`77b8fa44e8e5`, `*/30`, `no-agent`) against `DIE-LINUX`. Controlled tick #1 produced one durable `OP-CREATE-RESEARCH-CARD` claim/outbox with no semantic authorship, production authority or network request; controlled tick #2 suppressed the same fingerprint as `NO_OP_DUPLICATE`. Durable state is exactly one outbox, one journal entry and one routing intent. Hermes scheduler direct run `ac3815d615404ebd9b0bc8ed4c5fe154` completed successfully. Two live deployment defects (state-root ownership and missing `jsonschema` in Hermes venv) failed closed before routing side effects and were canonically fixed. `ID-LNX-002=DONE`.
+
+
+---
+
+## 2026-08-31 - WAKE-LNX-001 safe Linux transport DONE
+
+Executive and Division01 dedicated Chrome sessions are each bound to exactly one active ChatGPT conversation thread using `die.wake.thread.v2`, generation 1. Live no-send canaries staged and then cleared bounded synthetic briefings for both principals; receipts prove `submitted=false`, `output_extracted=false`, `credential_material_accessed=false`, and `private_backend_called=false`. Browser PIDs remained unchanged and both heartbeats remained `READY`. A subsequent Executive canary correctly failed `E_COMPOSER_NOT_EMPTY`, proving operator draft protection rather than overwriting a non-empty composer. `WAKE-LNX-001=DONE`, releasing `WAKE-LNX-002=READY`. Autonomous prompt submission remains explicitly outside this acceptance.

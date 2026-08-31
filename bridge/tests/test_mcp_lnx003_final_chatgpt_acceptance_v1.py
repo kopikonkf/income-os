@@ -12,8 +12,8 @@ REKEY = ROOT / "company" / "muxia" / "receipts" / "IDENTITY-LNX-REKEY-003-accept
 def test_mcp_lnx003_is_done_from_real_chatgpt_cloud_and_preserves_degraded_truth() -> None:
     tasks = {row["id"]: row for row in json.loads(GRAPH.read_text(encoding="utf-8"))["tasks"]}
     assert tasks["MCP-LNX-003"]["status"] == "DONE"
-    assert tasks["WAKE-LNX-001"]["status"] == "READY"
-    assert tasks["WAKE-LNX-002"]["status"] == "BLOCKED"
+    assert tasks["WAKE-LNX-001"]["status"] == "DONE"
+    assert tasks["WAKE-LNX-002"]["status"] == "READY"
     d = json.loads(RECEIPT.read_text(encoding="utf-8"))
     assert d["status"] == "DONE"
     div = d["chatgpt_cloud"]["division01"]
