@@ -26,3 +26,7 @@ Founder (sovereign irreversible authority)
 ## Fail-closed role-collapse examples
 
 `Division01 -> worker command`, `Executive -> production command`, `Worker -> blueprint rewrite`, `MUXIA -> strategy decision`, `Hermes -> self-ratified authority`, or any Linux principal presenting a Windows principal as issuer MUST be rejected.
+
+## Governed Executive <-> Division01 review loop
+
+Executive and Division01 may exchange advisory cognition directly, but no direct peer conversation has operational authority. Governed review consequences are mediated by Hermes and typed receipts. `NO_VETO` permits promotion; `REVISE` returns the exact reviewed artifact lineage to Division01 for a new artifact/hash; `VETO_PENDING_EVIDENCE` blocks promotion and requests the evidence gap; `ESCALATE_FOUNDER` routes to the Founder. Old author/review receipts must be `SUPERSEDED` before a revision attempt can become the new active lineage.

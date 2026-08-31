@@ -36,7 +36,7 @@ def validate(snapshot:dict[str,Any])->dict[str,Any]:
     if errors:
         return {'schema':'die.operator-v2.receipt-registry-validation.v1','status':'FAIL','errors':errors,'warnings':warnings,'active_receipts':{},'missing_receipt_types':[x['receipt_type'] for x in registry['stages']],'kanban_cognition_proof_used':False}
     instance_id=INSTANCE.resolve_instance_id(snapshot)
-    now=parse_time(snapshot['as_of']); by_type={}
+    now=parse_time(snapshot['as_of']); by_type={}; review_directives={}
     known={x['receipt_type']:x for x in registry['stages']}
     for receipt in snapshot['receipts']:
         rtype=receipt['receipt_type']; stage=known[rtype]
@@ -55,8 +55,17 @@ def validate(snapshot:dict[str,Any])->dict[str,Any]:
             if receipt['expires_at'] is None: errors.append('E_FRESHNESS:MISSING_EXPIRY:'+rtype)
             elif now>=parse_time(receipt['expires_at']): warnings.append('W_STALE_RECEIPT:'+rtype+':'+receipt['artifact_id']); continue
         fixed=stage.get('required_claims',{})
-        for key,value in fixed.items():
-            if receipt['claims'].get(key)!=value: errors.append('E_REQUIRED_CLAIM:'+rtype+':'+key)
+        review_outcome = receipt['claims'].get('outcome') if rtype in {'WORTH_MAKING_EXEC_REVIEW','BLUEPRINT_EXEC_REVIEW'} else None
+        if review_outcome in {'REVISE','VETO_PENDING_EVIDENCE','ESCALATE_FOUNDER'}:
+            review_directives[rtype] = {
+                'outcome': review_outcome,
+                'artifact_id': receipt['artifact_id'],
+                'artifact_sha256': receipt['artifact_sha256'],
+                'source_ref': receipt['source_ref'],
+            }
+        else:
+            for key,value in fixed.items():
+                if receipt['claims'].get(key)!=value: errors.append('E_REQUIRED_CLAIM:'+rtype+':'+key)
         for key in stage.get('required_claim_keys',[]):
             if key not in receipt['claims'] or receipt['claims'].get(key) in (None,''): errors.append('E_REQUIRED_CLAIM_KEY:'+rtype+':'+key)
         by_type.setdefault(rtype,[]).append(receipt)
@@ -76,7 +85,7 @@ def validate(snapshot:dict[str,Any])->dict[str,Any]:
         if not isinstance(target,str) or len(target)!=64: errors.append('E_COMPILE_LOCK_EXACT_HASH')
         if authorized!=target: errors.append('E_AUTH_COMPILED_HASH_MISMATCH')
     missing=[x['receipt_type'] for x in registry['stages'] if x['receipt_type'] not in active]
-    return {'schema':'die.operator-v2.receipt-registry-validation.v1','status':'PASS' if not errors else 'FAIL','errors':sorted(set(errors)),'warnings':sorted(set(warnings)),'active_receipts':active,'missing_receipt_types':missing,'snapshot_sha256':sha(snapshot),'kanban_cognition_proof_used':False}
+    return {'schema':'die.operator-v2.receipt-registry-validation.v1','status':'PASS' if not errors else 'FAIL','errors':sorted(set(errors)),'warnings':sorted(set(warnings)),'active_receipts':active,'missing_receipt_types':missing,'review_directives':review_directives,'snapshot_sha256':sha(snapshot),'kanban_cognition_proof_used':False}
 
 def main()->int:
     ap=argparse.ArgumentParser(); ap.add_argument('snapshot'); args=ap.parse_args(); d=json.loads(Path(args.snapshot).read_text(encoding='utf-8')); out=validate(d); print(json.dumps(out,indent=2,ensure_ascii=False)); return 0 if out['status']=='PASS' else 2

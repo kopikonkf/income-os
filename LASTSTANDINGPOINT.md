@@ -3247,3 +3247,10 @@ Implemented principal-pinned wake-to-context convergence envelopes and validator
 ## 2026-08-31 - ID-LNX-003/004/005 acceptance contracts staged
 
 Added deterministic cognition assimilation validators and Linux-principal receipt templates for Executive (`ID-LNX-003`) and Division01 (`ID-LNX-004`), plus society validation against the live `ID-LNX-002` Hermes operator receipt. Acceptance requires exact Linux principal/scope/capability, freshness `fresh`, canon load `VERIFIED`, exact repo SHA, role-specific responsibility acknowledgements, explicit authority boundaries, no account-memory authority and no mutation. Society acceptance additionally rejects principal/scope collapse and requires Linux `income-operator` deterministic no-agent scheduler DONE. Task statuses remain BLOCKED until WAKE-LNX-002 live convergence is accepted.
+
+
+---
+
+## 2026-08-31 - Hermes Executive/Division01 review loopback implementation ready
+
+Operator v2 now elevates the existing OE-004/OE-005 Executive review semantics into Hermes routing. `NO_VETO` advances; `REVISE` produces a governed return-to-Division01 action against the exact active review lineage; `VETO_PENDING_EVIDENCE` blocks promotion and requests evidence closure; `ESCALATE_FOUNDER` routes to Founder. Linux routing resolves Division01 to `die-lnx-division-001`. Old author/review receipts must become `SUPERSEDED` before a new revision attempt becomes active. Direct Executive<->Division01 chat may be advisory but has no operational effect unless represented as typed receipts routed by Hermes/State Manager. Targeted 85/85 and full bridge 581/581 pass.

@@ -34,7 +34,8 @@ def validate(request:dict[str,Any], *, projection:dict[str,Any]) -> dict[str,Any
         if projection.get('intelligence_stage')!='READY_FOR_PRODUCTION': errors.append('E_RUNNER_NOT_READY')
         if projection.get('production_authorized') is not True: errors.append('E_RUNNER_AUTHORIZATION_MISSING')
     if request['action_type']=='OP-DRAFT-U1-REQUEST' and projection.get('next_required_receipt')!='FOUNDER_PRODUCTION_AUTHORIZATION': errors.append('E_U1_NOT_DUE')
-    if request['action_type'].startswith(('OP-REQUEST-DIVISION01','OP-REQUEST-EXECUTIVE')) and request.get('target_principal_id')!=projection.get('required_principal'): errors.append('E_TARGET_PRINCIPAL')
+    if request['action_type'].startswith(('OP-REQUEST-DIVISION01','OP-REQUEST-EXECUTIVE','OP-RETURN-DIVISION01')) and request.get('target_principal_id')!=projection.get('required_principal'): errors.append('E_TARGET_PRINCIPAL')
+    if request['action_type']=='OP-REQUEST-WORTH-MAKING-EVIDENCE' and request.get('target_principal_id')!='approved-signal-collector': errors.append('E_TARGET_PRINCIPAL')
     if authority=='FOUNDER_REQUIRED' and request['actor_id']!='founder': errors.append('E_FOUNDER_REQUIRED')
     return {'schema':'die.operator-v2.action-authority-validation.v1','status':'ALLOW' if not errors else 'DENY','errors':sorted(set(errors)),'authority':authority,'effect':action['effect'],'runtime_model_may_override_authority':False}
 

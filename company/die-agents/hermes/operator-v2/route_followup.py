@@ -49,7 +49,9 @@ def _target_for(projection: dict[str, Any]) -> str | None:
     action = projection.get("next_action_type")
     if action == "OP-CREATE-RESEARCH-CARD": return "approved-signal-collector"
     if action == "OP-DISPATCH-DEMAND-SCORE": return "division001-demand-score-v1"
-    if action in {"OP-REQUEST-DIVISION01-WORTH-MAKING", "OP-REQUEST-DIVISION01-BLUEPRINT", "OP-REQUEST-EXECUTIVE-WORTH-MAKING-REVIEW", "OP-REQUEST-EXECUTIVE-BLUEPRINT-REVIEW"}: return projection.get("required_principal")
+    if action in {"OP-REQUEST-DIVISION01-WORTH-MAKING", "OP-REQUEST-DIVISION01-BLUEPRINT", "OP-REQUEST-EXECUTIVE-WORTH-MAKING-REVIEW", "OP-REQUEST-EXECUTIVE-BLUEPRINT-REVIEW", "OP-RETURN-DIVISION01-WORTH-MAKING", "OP-RETURN-DIVISION01-BLUEPRINT", "OP-RETURN-DIVISION01-BLUEPRINT-EVIDENCE"}: return projection.get("required_principal")
+    if action == "OP-REQUEST-WORTH-MAKING-EVIDENCE": return "approved-signal-collector"
+    if action == "OP-NOTIFY-FOUNDER": return "founder"
     if action == "OP-CREATE-BLUEPRINT-COMPILE-CARD": return "worker-template"
     if action == "OP-DRAFT-U1-REQUEST": return "founder"
     if action == "OP-INVOKE-M001-RUNNER": return "worker-template"

@@ -146,6 +146,66 @@
       ]
     },
     {
+      "action_type": "OP-RETURN-DIVISION01-WORTH-MAKING",
+      "authority": "AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "WORTH_MAKING_REVISION"
+      ],
+      "effect": "SEMANTIC_REVISION_REQUEST_ONLY",
+      "requires_receipt_types": [
+        "WORTH_MAKING_AUTHOR",
+        "WORTH_MAKING_EXEC_REVIEW"
+      ]
+    },
+    {
+      "action_type": "OP-REQUEST-WORTH-MAKING-EVIDENCE",
+      "authority": "AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "WORTH_MAKING_EVIDENCE_GAP"
+      ],
+      "effect": "EVIDENCE_REQUEST_ONLY",
+      "requires_receipt_types": [
+        "WORTH_MAKING_AUTHOR",
+        "WORTH_MAKING_EXEC_REVIEW"
+      ]
+    },
+    {
+      "action_type": "OP-RETURN-DIVISION01-BLUEPRINT",
+      "authority": "AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "BLUEPRINT_REVISION"
+      ],
+      "effect": "SEMANTIC_REVISION_REQUEST_ONLY",
+      "requires_receipt_types": [
+        "BLUEPRINT_AUTHOR",
+        "BLUEPRINT_EXEC_REVIEW"
+      ]
+    },
+    {
+      "action_type": "OP-RETURN-DIVISION01-BLUEPRINT-EVIDENCE",
+      "authority": "AUTONOMOUS",
+      "allowed_actor_ids": [
+        "hermes-operator"
+      ],
+      "allowed_projection_stages": [
+        "BLUEPRINT_EVIDENCE_GAP"
+      ],
+      "effect": "SEMANTIC_EVIDENCE_REQUEST_ONLY",
+      "requires_receipt_types": [
+        "BLUEPRINT_AUTHOR",
+        "BLUEPRINT_EXEC_REVIEW"
+      ]
+    },
+    {
       "action_type": "OP-FOLLOW-UP-CARD",
       "authority": "AUTONOMOUS",
       "allowed_actor_ids": [
