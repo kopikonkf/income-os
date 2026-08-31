@@ -3205,3 +3205,10 @@ Both snapshots report `source_trust=DEGRADED` and `completeness=degraded`; these
 ## 2026-08-31 - ID-LNX-001 Hermes prompt-source convergence implementation staged
 
 Live inspection proved `die-hermes-gateway.service` launches from `/srv/die`; upstream Hermes resolves project context from `TERMINAL_CWD` or launch cwd and natively merges `AGENTS.md` from git root down to the selected component directory. The canonical fix pins `TERMINAL_CWD=/srv/die/company/die-agents/hermes`, preserving `/srv/die` as the process WorkingDirectory while ensuring the effective prompt includes repository-root `AGENTS.md` followed by the more specific Hermes `AGENTS.md`. `SOUL.md` remains sourced independently from `HERMES_HOME`. Installer provenance now records SHA-256 for all three canonical prompt inputs; no second prompt canon is created.
+
+
+---
+
+## 2026-08-31 - ID-LNX-001 Hermes prompt-source convergence DONE
+
+Hermes gateway now runs with `TERMINAL_CWD=/srv/die/company/die-agents/hermes` while retaining process `WorkingDirectory=/srv/die`. Upstream Hermes resolves the effective AGENTS chain as `/srv/die/AGENTS.md` followed by `/srv/die/company/die-agents/hermes/AGENTS.md`; merged prompt SHA-256 is `45742e073c74179f34728b3d0a55f27fc438799b17ef6dd7fcff04b3e2fddc87`. Runtime `SOUL.md` and `AGENTS.md` hashes match canon. No LLM call was required. `ID-LNX-001=DONE`, releasing `ID-LNX-002=READY`. MX-062 and `/srv/die` source revision were unchanged.

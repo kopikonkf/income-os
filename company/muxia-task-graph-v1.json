@@ -648,7 +648,7 @@
                       "depends_on":  [
                                          "ID-LNX-000"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "Hermes SOUL/AGENTS prompt provenance receipt",
                       "acceptance":  "SOUL and operating rules actually injected into Hermes cognition are canonical, hash-pinned and one-canon; no stale CWD/root AGENTS drift may shadow the component contract."
                   },
@@ -659,7 +659,7 @@
                       "depends_on":  [
                                          "ID-LNX-001"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "Hermes Linux 24/7 scheduler/routing receipt",
                       "acceptance":  "Restore proven heartbeat/briefing/audit/proactive cadence using Linux-safe Operator v2, explicit Division/Executive cognition routing, sanitized failure classification and no authority expansion."
                   },

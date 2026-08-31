@@ -1,0 +1,38 @@
+{
+  "schema": "die.id-lnx001.hermes-prompt-convergence.acceptance.receipt.v1",
+  "date": "2026-08-31",
+  "task_id": "ID-LNX-001",
+  "status": "DONE",
+  "implementation_merge": "3ba2fbf366afb41f5da35599e5d29e4a867deaee",
+  "live": {
+    "service": "die-hermes-gateway.service",
+    "active": true,
+    "pid_before": 180741,
+    "pid_after": 250605,
+    "working_directory": "/srv/die",
+    "terminal_cwd": "/srv/die/company/die-agents/hermes",
+    "effective_agents_files": [
+      "/srv/die/AGENTS.md",
+      "/srv/die/company/die-agents/hermes/AGENTS.md"
+    ],
+    "effective_agents_merged_sha256": "45742e073c74179f34728b3d0a55f27fc438799b17ef6dd7fcff04b3e2fddc87",
+    "root_agents_sha256": "8bd2b93eca1eef2f402fe34a6f0fa93bb5a11da0908020dab2ba0fce863e07e6",
+    "hermes_agents_sha256": "554c32444bf6712b49d33eeb89d974e83af0e8a424a8a1207e463b3d90b343b1",
+    "hermes_soul_sha256": "6202784340f5d87fd965808ae57a1741ae447285f485e5175fe9e72f4e3c0f42",
+    "runtime_agents_copy_sha256": "554c32444bf6712b49d33eeb89d974e83af0e8a424a8a1207e463b3d90b343b1",
+    "runtime_soul_copy_sha256": "6202784340f5d87fd965808ae57a1741ae447285f485e5175fe9e72f4e3c0f42",
+    "has_root_contract": true,
+    "has_hermes_specific_contract": true,
+    "llm_call_performed": false
+  },
+  "isolation": {
+    "production_source_sha": "dfb74d7e09b19f68381e1064899d70c645a61f26",
+    "production_source_mutated": false,
+    "mx062_pid_before": 200975,
+    "mx062_pid_after": 200975
+  },
+  "dependency_release": {
+    "ID-LNX-002": "READY"
+  },
+  "acceptance": "Hermes prompt resolution is pinned to the canonical root-to-component AGENTS chain with SOUL sourced from HERMES_HOME; prompt inputs are hash-matched to canon and no stale launch-CWD-only AGENTS source can shadow the component contract."
+}
