@@ -3164,3 +3164,12 @@ Repair scope is Executive only. Canon launcher heartbeat principal is corrected 
 ## 2026-08-31 - Division01 Linux browser principal rebind staged
 
 After successful NEW Linux Executive login and monitored relaunch, the Executive heartbeat is `READY` on principal `die-lnx-executive-001` with direct-spawn Chrome Stable and dynamic loopback CDP. Division01 browser launcher is now being rebound from the Windows principal id to Linux `die-lnx-division-001`; the Windows Runtime MCP/identity bindings remain unchanged.
+
+
+---
+
+## 2026-08-31 - IDENTITY-LNX-REKEY-004 operator login gate closed
+
+Founder completed manual login of both NEW dedicated DIE-LINUX ChatGPT accounts. Executive survives canonical relaunch as `die-lnx-executive-001`, heartbeat `READY`, Chrome PID 242302, dynamic loopback CDP `127.0.0.1:39353`. Division01 survives canonical relaunch as `die-lnx-division-001`, heartbeat `READY`, Chrome PID 243758, dynamic loopback CDP `127.0.0.1:42229`. No credential value was captured in canon and no Windows account/session was reused.
+
+`IDENTITY-LNX-REKEY-004=DONE`. Dependency release: `MCP-LNX-003=READY` and `WAKE-LNX-001=READY`; `WAKE-LNX-002` remains BLOCKED pending both lines. MX-062 remains PID 200975 and production `/srv/die` remains pinned to `dfb74d7e...`.
