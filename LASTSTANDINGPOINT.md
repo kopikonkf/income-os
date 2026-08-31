@@ -3063,3 +3063,16 @@ Cutover safety is now explicit: `CUT-004A/B` must also wait for `MCP-LNX-005`; W
 MX-062 remains separately time-gated and immutable on Linux commit `dfb74d7e09b19f68381e1064899d70c645a61f26`; do not pull/rebuild/restart its source/service for this lane.
 
 NEXT EXECUTION: `MCP-LNX-001` -> staging service validation; then `MCP-LNX-002` isolated tunnel; `MCP-LNX-003` E2E parity. Full graph: `docs/architecture/DIE_LINUX_PRINCIPAL_MCP_IDENTITY_ROADMAP_V1.md`.
+
+
+---
+
+## 2026-08-31 - MCP-LNX-001 implementation ready
+
+`MCP-LNX-001` remains `READY`; implementation is complete but live staging has not yet been started. Implementation commit `55c7291` adds isolated Executive `:8891` and Division01 `:8892` Linux staging units, dedicated staging installers, and a server-pinned `staging-read-only` control policy. Tool discovery remains parity-compatible (Executive 18 / Division01 6), but control calls fail with `E_STAGING_READ_ONLY` before writer/state mutation. Systemd also exposes `/var/lib/die/state` read-only.
+
+Staging source is intentionally separate at `/opt/die/staging/income-os`; active `/srv/die` is not pulled/rebuilt/restarted while MX-062 runs. Installers generate root-only staging OAuth/bearer material, validate `*.aethers.biz.id` origins, install units, and end disabled/stopped; no secret values are printed. Cloudflare remains out of scope until `MCP-LNX-002`.
+
+Validation pinned to implementation: focused 6/6 PASS; bridge 531/531 PASS; one-canon pytest 6/6 PASS; validator 11/11 PASS; secret scan 0; bytecode 0; MUXIA build PASS. Receipt: `company/muxia/receipts/MCP-LNX-001-implementation-readiness.receipt.json`.
+
+NEXT: publish implementation exact head -> isolated Linux source materialization -> install/verify staging units -> explicit local start -> health/401/tool/control-writer suppression checks. Only then may `MCP-LNX-001 = DONE` and `MCP-LNX-002 = READY`.

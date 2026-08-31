@@ -1,0 +1,47 @@
+{
+  "schema": "die.mcp-lnx-001.implementation-readiness.receipt.v1",
+  "date": "2026-08-31",
+  "base_main": "795241fc5be81e5f796a5750704d30b034ffb1d3",
+  "implementation_commit": "55c72910a4d6680af4988d53aeca282bfc0f79d5",
+  "task_state": "READY",
+  "live_staging_started": false,
+  "cloudflare_connector_started": false,
+  "windows_runtime_mutated": false,
+  "mx062_runtime_mutated": false,
+  "bindings": {
+    "executive": {
+      "principal": "chatgpt-plus-executive",
+      "port": 8891,
+      "origin": "https://executive-mcp.aethers.biz.id",
+      "tool_count_expected": 18
+    },
+    "division01": {
+      "principal": "division-head-division01",
+      "port": 8892,
+      "origin": "https://division01-mcp.aethers.biz.id",
+      "tool_count_expected": 6
+    }
+  },
+  "safety": {
+    "control_policy": "staging-read-only",
+    "control_tools_still_listed_for_parity": true,
+    "control_calls_rejected_before_writer": true,
+    "state_path_systemd_read_only": true,
+    "source_checkout": "/opt/die/staging/income-os",
+    "production_source": "/srv/die",
+    "production_source_pull_required": false,
+    "installer_auto_starts_service": false,
+    "secret_values_returned": false
+  },
+  "validation": {
+    "focused_staging": "6/6 PASS",
+    "full_bridge": "531/531 PASS",
+    "one_canon_pytest": "6/6 PASS",
+    "one_canon_validator": "11/11 PASS",
+    "high_confidence_secret_hits": 0,
+    "bytecode_count": 0,
+    "muxia_build": "PASS",
+    "diff_check": "PASS"
+  },
+  "next": "Publish exact head, materialize isolated Linux source checkout, install disabled/stopped staging units, verify locally, explicitly start services, then transition MCP-LNX-001 only on live evidence."
+}
