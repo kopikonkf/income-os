@@ -47,6 +47,9 @@ PRINCIPAL_OAUTH_CLIENT_IDS = {
     "division-head-division01": "chatgpt-division01",
 }
 INFRASTRUCTURE_RESERVED_PORTS = frozenset({8787, 8789, 8790})
+CONTROL_POLICY_ENABLED = "enabled"
+CONTROL_POLICY_STAGING_READ_ONLY = "staging-read-only"
+CONTROL_POLICIES = frozenset({CONTROL_POLICY_ENABLED, CONTROL_POLICY_STAGING_READ_ONLY})
 MAX_REQUEST_BYTES = 262_144
 RUNTIME_FORBIDDEN = re.compile(
     r"(?i)\b(select|union|drop)\b|\b(exec|eval)\b|"
@@ -431,8 +434,10 @@ def call_tool(
     now: dt.datetime | None = None,
     registry_path: str | pathlib.Path | None = None,
     rate_limit: mcp_server.RateLimit | None = None,
+    control_policy: str | None = None,
 ) -> dict[str, Any]:
     try:
+        effective_control_policy = _runtime_control_policy(control_policy)
         identity = _identity(principal_id, registry_path)
         reads = _read_tools(identity)
         controls = _control_tools(identity)
@@ -448,6 +453,11 @@ def call_tool(
                 supplied["scope"] = identity["scope"]
             return mcp_server.call_tool(name, supplied)
         if name in controls:
+            if effective_control_policy != CONTROL_POLICY_ENABLED:
+                return _error(
+                    "E_STAGING_READ_ONLY",
+                    "runtime control calls are disabled by the server-pinned staging policy",
+                )
             limiter = rate_limit or _RUNTIME_RATE
             if not limiter.allow():
                 return _error("E_RATE_LIMIT", "> 60 runtime requests / hour")
@@ -474,6 +484,7 @@ def handle(
     writer: Writer | None,
     registry_path: str | pathlib.Path | None = None,
     rate_limit: mcp_server.RateLimit | None = None,
+    control_policy: str | None = None,
 ) -> dict[str, Any] | None:
     if not isinstance(message, dict):
         return {"jsonrpc": "2.0", "id": None, "error": {"code": -32600, "message": "invalid request"}}
@@ -486,6 +497,7 @@ def handle(
         return None
     if method == "initialize":
         identity = _identity(principal_id, registry_path)
+        effective_control_policy = _runtime_control_policy(control_policy)
         return {
             "jsonrpc": "2.0",
             "id": ident,
@@ -496,7 +508,8 @@ def handle(
                 "instructions": (
                     f"Runtime principal {principal_id} ({identity['scope']}) is server-pinned. "
                     f"Operational control plane: {config.OPERATIONAL_CONTROL_PLANE}; "
-                    f"canonical writer: {config.CANONICAL_WRITER}. No raw or DEV access."
+                    f"canonical writer: {config.CANONICAL_WRITER}. "
+                    f"Control policy: {effective_control_policy}. No raw or DEV access."
                 ),
             },
         }
@@ -517,6 +530,7 @@ def handle(
                 writer=writer,
                 registry_path=registry_path,
                 rate_limit=rate_limit,
+                control_policy=control_policy,
             ),
         }
     return {"jsonrpc": "2.0", "id": ident, "error": {"code": -32601, "message": "method not found"}}
@@ -538,6 +552,22 @@ def _runtime_login_password() -> str:
         raise RuntimeMcpError(
             "E_RUNTIME_LOGIN_REQUIRED",
             "DIE_MCP_LOGIN_PASSWORD must contain at least 16 characters",
+        )
+    return value
+
+
+def _runtime_control_policy(value: str | None = None) -> str:
+    raw = os.environ.get("DIE_MCP_CONTROL_POLICY", CONTROL_POLICY_ENABLED) if value is None else value
+    if not isinstance(raw, str):
+        raise RuntimeMcpError(
+            "E_RUNTIME_CONTROL_POLICY",
+            "DIE_MCP_CONTROL_POLICY must be enabled or staging-read-only",
+        )
+    value = raw.strip().lower()
+    if value not in CONTROL_POLICIES:
+        raise RuntimeMcpError(
+            "E_RUNTIME_CONTROL_POLICY",
+            "DIE_MCP_CONTROL_POLICY must be enabled or staging-read-only",
         )
     return value
 
@@ -593,6 +623,7 @@ def serve_http(
     registry_path: str | pathlib.Path | None = None,
 ) -> int:
     token = _runtime_token()
+    control_policy = _runtime_control_policy()
     try:
         oauth = runtime_mcp_oauth.OAuthAuthority(
             principal_id=principal_id,
@@ -737,6 +768,7 @@ Scope: {html.escape(params['scope'])}</p>
                         "principal_id": principal_id,
                         "tools": len(tool_definitions(principal_id, registry_path)),
                         "oauth": runtime_mcp_oauth.SCHEMA_VERSION,
+                        "control_policy": control_policy,
                     },
                 )
                 return
@@ -798,6 +830,7 @@ Scope: {html.escape(params['scope'])}</p>
                         writer=writer,
                         registry_path=registry_path,
                         rate_limit=limiter,
+                        control_policy=control_policy,
                     )
                     if response is None:
                         self.send_response(204)
