@@ -1,0 +1,6 @@
+ingress:
+  - hostname: executive-mcp.aethers.biz.id
+    service: http://127.0.0.1:8891
+  - hostname: division01-mcp.aethers.biz.id
+    service: http://127.0.0.1:8892
+  - service: http_status:404
