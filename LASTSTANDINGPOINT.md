@@ -3076,3 +3076,16 @@ Staging source is intentionally separate at `/opt/die/staging/income-os`; active
 Validation pinned to implementation: focused 6/6 PASS; bridge 531/531 PASS; one-canon pytest 6/6 PASS; validator 11/11 PASS; secret scan 0; bytecode 0; MUXIA build PASS. Receipt: `company/muxia/receipts/MCP-LNX-001-implementation-readiness.receipt.json`.
 
 NEXT: publish implementation exact head -> isolated Linux source materialization -> install/verify staging units -> explicit local start -> health/401/tool/control-writer suppression checks. Only then may `MCP-LNX-001 = DONE` and `MCP-LNX-002 = READY`.
+
+
+---
+
+## 2026-08-31 - MCP-LNX-001 accepted live
+
+`MCP-LNX-001 = DONE`; `MCP-LNX-002 = READY`. PR #81 implementation is deployed from isolated staging source `/opt/die/staging/income-os` at `f5eb7205b00e1c85da4213e1d6ed645766a9652e`. Active `/srv/die` remains clean/pinned at `dfb74d7e09b19f68381e1064899d70c645a61f26` for MX-062.
+
+Executive staging: `die-executive-runtime-mcp-staging.service`, PID 228478, `127.0.0.1:8891`, 18 tools, `staging-read-only`, unauthenticated MCP = 401. Division01 staging: `die-division01-runtime-mcp-staging.service`, PID 228481, `127.0.0.1:8892`, 6 tools, `staging-read-only`, unauthenticated MCP = 401. Both are intentionally active but disabled (no boot persistence claim yet). Existing Linux 8791/8792 remain active.
+
+No Cloudflare connector was started, no connector handoff occurred, no wake/browser path was exposed, no secret value was returned/read by Architect, and control mutation remains denied. MX-062 remains active with PID 200975. Receipt: `company/muxia/receipts/MCP-LNX-001-acceptance.receipt.json`.
+
+NEXT: `MCP-LNX-002` activate isolated `linux-mcp` connector routing only `executive-mcp.aethers.biz.id -> 8891` and `division01-mcp.aethers.biz.id -> 8892`; never expose CDP/wake. Then `MCP-LNX-003` authenticated OAuth/principal/tool/context E2E.

@@ -40,8 +40,8 @@ Wake may trigger cognition but never substitutes for `context_snapshot`. Runtime
 | Task | State | Purpose |
 | --- | --- | --- |
 | `ID-LNX-000` | DONE | Read-only Windows principal/runtime reference autopsy and receipt |
-| `MCP-LNX-001` | READY | Isolated Executive/Division01 staging MCP services on Linux |
-| `MCP-LNX-002` | BLOCKED | `linux-mcp` Cloudflare connector + two-host ingress |
+| `MCP-LNX-001` | DONE | Isolated Executive/Division01 staging MCP services on Linux |
+| `MCP-LNX-002` | READY | `linux-mcp` Cloudflare connector + two-host ingress |
 | `MCP-LNX-003` | BLOCKED | OAuth/principal/tool/context E2E parity |
 | `WAKE-LNX-001` | BLOCKED | Dynamic-CDP Linux wake transport preserving Windows semantics |
 | `WAKE-LNX-002` | BLOCKED | Wake cognition -> fresh principal-pinned state convergence |
