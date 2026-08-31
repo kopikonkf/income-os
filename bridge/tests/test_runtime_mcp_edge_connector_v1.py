@@ -178,11 +178,11 @@ def test_pkce_code_is_one_time_refreshable_and_principal_bound() -> None:
 
 
 def test_server_public_bindings_are_exact_and_tool_surfaces_unchanged() -> None:
-    assert runtime_mcp_server.SERVER_VERSION == "1.1.0"
-    assert runtime_mcp_server.PRINCIPAL_DEFAULT_PORTS == {
-        "chatgpt-plus-executive": 8791,
-        "division-head-division01": 8792,
-    }
+    assert runtime_mcp_server.SERVER_VERSION == "1.2.0"
+    assert runtime_mcp_server.PRINCIPAL_DEFAULT_PORTS["chatgpt-plus-executive"] == 8791
+    assert runtime_mcp_server.PRINCIPAL_DEFAULT_PORTS["division-head-division01"] == 8792
+    assert runtime_mcp_server.PRINCIPAL_DEFAULT_PORTS["die-lnx-executive-001"] == 8891
+    assert runtime_mcp_server.PRINCIPAL_DEFAULT_PORTS["die-lnx-division-001"] == 8892
     for principal, (hostname, _, expected_tools) in MAPPINGS.items():
         assert runtime_mcp_server.PRINCIPAL_PUBLIC_BASE_URLS[principal] == f"https://{hostname}"
         assert len(runtime_mcp_server.tool_definitions(principal)) == expected_tools

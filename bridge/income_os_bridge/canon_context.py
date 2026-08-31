@@ -44,6 +44,14 @@ DOCUMENT_CLASSIFICATIONS = {
 SUPPORTED_PRINCIPALS = {
     "chatgpt-plus-executive": "company_portfolio",
     "division-head-division01": "single_division",
+    "die-lnx-executive-001": "company_portfolio",
+    "die-lnx-division-001": "single_division",
+}
+PRINCIPAL_PROFILE_BINDINGS = {
+    "chatgpt-plus-executive": "chatgpt-plus-executive",
+    "die-lnx-executive-001": "chatgpt-plus-executive",
+    "division-head-division01": "division-head-division01",
+    "die-lnx-division-001": "division-head-division01",
 }
 
 
@@ -262,9 +270,11 @@ def _load_manifest(
     ]
 
     profiles = manifest["principal_profiles"]
-    if not isinstance(profiles, dict) or set(profiles) != set(SUPPORTED_PRINCIPALS):
+    semantic_profiles = set(PRINCIPAL_PROFILE_BINDINGS.values())
+    if not isinstance(profiles, dict) or set(profiles) != semantic_profiles:
         raise CanonContextError("E_CANON_INVALID", "principal_profiles are invalid")
-    for principal_id, expected_scope in SUPPORTED_PRINCIPALS.items():
+    for principal_id in sorted(semantic_profiles):
+        expected_scope = SUPPORTED_PRINCIPALS[principal_id]
         profile = profiles[principal_id]
         if not isinstance(profile, dict) or set(profile) != {
             "scope",
@@ -391,7 +401,8 @@ def build_surface(
     if resolved_manifest != expected_manifest:
         raise CanonContextError("E_CANON_INVALID", "canon manifest path is not allowlisted")
     manifest, documents, manifest_sha = _load_manifest(repo_root, resolved_manifest)
-    profile = manifest["principal_profiles"][principal_id]
+    role_profile_id = PRINCIPAL_PROFILE_BINDINGS[principal_id]
+    profile = manifest["principal_profiles"][role_profile_id]
 
     def projected(doc_id: str) -> dict[str, Any]:
         row = documents[doc_id]

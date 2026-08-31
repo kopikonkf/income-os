@@ -61,7 +61,30 @@
         "mission_proposal",
         "audit_request",
         "escalation"
-      ]
+      ],
+      "company_instance_id": "DIE-WINDOWS",
+      "role_profile_id": "executive-strategic-intelligence-v1"
+    },
+    {
+      "id": "die-lnx-executive-001",
+      "kind": "executive_strategic_intelligence",
+      "document": "company/executive/IDENTITY.md",
+      "scope": "company_portfolio",
+      "runtime": true,
+      "template": false,
+      "architect_dev_access": "deny",
+      "inherits_identity_ids": [],
+      "capabilities": [
+        "semantic_observation",
+        "portfolio_synthesis",
+        "strategic_challenge",
+        "bounded_decision",
+        "mission_proposal",
+        "audit_request",
+        "escalation"
+      ],
+      "company_instance_id": "DIE-LINUX",
+      "role_profile_id": "executive-strategic-intelligence-v1"
     },
     {
       "id": "division-head-template",
@@ -98,7 +121,30 @@
         "bounded_decision",
         "mission_proposal",
         "escalation"
-      ]
+      ],
+      "company_instance_id": "DIE-WINDOWS",
+      "role_profile_id": "division01-decision-engine-v1"
+    },
+    {
+      "id": "die-lnx-division-001",
+      "kind": "division_decision_engine",
+      "document": "company/division/division001/IDENTITY.md",
+      "scope": "single_division",
+      "division_id": "DIVISION-01",
+      "runtime": true,
+      "template": false,
+      "architect_dev_access": "deny",
+      "inherits_identity_ids": [],
+      "capabilities": [
+        "bounded_semantic_observation",
+        "division_research",
+        "division_scoring",
+        "bounded_decision",
+        "mission_proposal",
+        "escalation"
+      ],
+      "company_instance_id": "DIE-LINUX",
+      "role_profile_id": "division01-decision-engine-v1"
     },
     {
       "id": "hermes-operator",

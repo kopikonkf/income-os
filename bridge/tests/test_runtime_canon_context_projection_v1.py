@@ -103,7 +103,9 @@ def _patch_semantic_surfaces(monkeypatch: pytest.MonkeyPatch) -> None:
     ("principal_id", "scope", "role_fact"),
     [
         ("chatgpt-plus-executive", "company_portfolio", "EXECUTIVE-ROLE"),
+        ("die-lnx-executive-001", "company_portfolio", "EXECUTIVE-ROLE"),
         ("division-head-division01", "single_division", "DIVISION01-ROLE"),
+        ("die-lnx-division-001", "single_division", "DIVISION01-ROLE"),
     ],
 )
 def test_hash_pinned_role_scoped_projection_is_verified(

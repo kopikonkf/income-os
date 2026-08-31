@@ -32,7 +32,7 @@ if [[ ! -f "$ENV_FILE" ]]; then
 DIE_MCP_TOKEN=$token
 DIE_MCP_LOGIN_PASSWORD=$login
 DIE_MCP_BASE_URL=https://division01-mcp.aethers.biz.id
-DIE_MCP_OAUTH_CLIENT_ID=chatgpt-division01-linux-staging
+DIE_MCP_OAUTH_CLIENT_ID=chatgpt-die-lnx-division-001
 DIE_MCP_OAUTH_REDIRECT_HOSTS="chatgpt.com;openai.com"
 DIE_MCP_CONTROL_POLICY=staging-read-only
 EOF
