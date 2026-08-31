@@ -3102,3 +3102,18 @@ Tunnel token is outside repo/config/argv. systemd `LoadCredential=` presents an 
 Validation: focused 4/4 PASS; bridge 535/535 PASS; one-canon pytest 6/6 PASS; validator 11/11 PASS; secret scan 0; pyc 0; MUXIA build PASS. No connector activation or connector handoff claimed.
 
 NEXT: publish exact head -> isolated MCP002 source checkout -> secret-preserving token provisioning -> install/verify stopped unit -> explicit start -> public health routing proof -> only then `MCP-LNX-002 = DONE`, `MCP-LNX-003 = READY`.
+
+
+---
+
+## 2026-08-31 - MCP-LNX-002 public Cloudflare acceptance
+
+`MCP-LNX-002 = DONE`; `MCP-LNX-003 = READY`. Isolated tunnel `linux-mcp` (`32579323-1f96-4c0d-8aee-a03557c4a103`) is connected from Linux `157.20.32.166` through cloudflared 2026.8.2. Service `die-runtime-mcp-cloudflared.service` is active with PID 230828 and intentionally disabled at boot pending later stability/cutover work.
+
+Public Executive proof: `https://executive-mcp.aethers.biz.id/health` = HTTP 200, principal `chatgpt-plus-executive`, 18 tools, `staging-read-only`; unauthenticated `/mcp` = HTTP 401 with principal-origin OAuth protected-resource metadata; OAuth issuer = exact staging domain. Public Division01 proof: `https://division01-mcp.aethers.biz.id/health` = HTTP 200, principal `division-head-division01`, 6 tools, `staging-read-only`; unauthenticated `/mcp` = HTTP 401; OAuth issuer = exact staging domain.
+
+Ingress remains exactly two MCP origins plus terminal 404. No Architect/CDP/browser/wake/Windows `aethers.web.id` route is exposed. Tunnel token is root-only on Linux, never committed or returned. Windows tunnel remains untouched. MX-062 remains active on `/srv/die` SHA `dfb74d7e...`, PID 200975.
+
+One edge nuance: Python `urllib` with its default client fingerprint was observed receiving 403 while curl receives the expected 200/401 behavior. This is not accepted as ChatGPT compatibility proof; `MCP-LNX-003` explicitly requires E2E installation/authentication from the real ChatGPT Executive and Division01 accounts.
+
+NEXT: Founder installs the two staging MCP URLs in their corresponding ChatGPT accounts; prove OAuth login/registration, exact 18/6 tool discovery, principal pinning, `context_snapshot`, cross-principal isolation, and `E_STAGING_READ_ONLY` for control calls. Then `MCP-LNX-003 = DONE` and `WAKE-LNX-002` may advance once `WAKE-LNX-001` is also complete.

@@ -542,7 +542,7 @@
                       "depends_on":  [
                                          "MCP-LNX-001"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "linux-mcp connector/service + two-host ingress receipt",
                       "acceptance":  "Only executive-mcp.aethers.biz.id and division01-mcp.aethers.biz.id route to staging loopback ports; CDP/browser/wake endpoints are never exposed and Windows tunnel aethers remains unchanged."
                   },
@@ -553,7 +553,7 @@
                       "depends_on":  [
                                          "MCP-LNX-002"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "OAuth/principal/tool/read-path parity receipt",
                       "acceptance":  "ChatGPT-cloud or equivalent authenticated E2E proves Executive 18-tool and Division01 6-tool surfaces, context_snapshot integrity, principal pinning, cross-principal denial, and no DEV/raw access before any connector handoff."
                   },
