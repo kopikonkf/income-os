@@ -3180,3 +3180,12 @@ Founder completed manual login of both NEW dedicated DIE-LINUX ChatGPT accounts.
 ## 2026-08-31 - MCP-LNX-003 0-action defect isolated to protocol-era compatibility
 
 Founder proved both Linux connectors can complete OAuth yet ChatGPT developer UI reports 0 actions under both user-defined OAuth client registration and DCR. Registration-mode error is therefore rejected as the primary cause. Current MCP 2026-07-28 removed the initialize handshake and requires modern stateless result framing; Runtime MCP v1.2.0 was still legacy-era only. Runtime MCP v1.3.0 compatibility patch now preserves legacy Windows behavior while adding `server/discover`, 2026-07-28 response discrimination, cache hints on modern `tools/list`, and current legacy 2025-11-25 negotiation. Local HTTP proof exposes Division01=6 and Executive=18; bridge suite 546/546 PASS. `MCP-LNX-003` remains READY until real ChatGPT Scan Tools proves 6/18 after Linux staging deployment.
+
+
+---
+
+## 2026-08-31 - MCP-LNX-003 ChatGPT tool catalog proof PASS
+
+Founder refreshed both real ChatGPT Linux connectors after Runtime MCP v1.3.0 deployment. ChatGPT developer tool scan now reports exactly Division01=6 tools and Executive=18 tools. This closes the discovery/protocol defect and proves OAuth + public MCP tool catalog compatibility from ChatGPT cloud. `MCP-LNX-003` intentionally remains `READY` until one real `context_snapshot` invocation from each dedicated ChatGPT account proves principal-pinned read-path behavior.
+
+Next operator proof: Division01 invokes `context_snapshot` and reports only principal/scope/trust/canon status; Executive repeats the same. Control tools remain `staging-read-only`. In parallel, `WAKE-LNX-001` must not revive the legacy Windows private-backend/Sentinel/PoW dependency; Linux wake transport will be amended to the current safe consumer-browser boundary before implementation.
