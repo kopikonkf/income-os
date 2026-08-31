@@ -1,0 +1,38 @@
+[Unit]
+Description=DIE Linux staging Runtime MCP Cloudflare Tunnel
+After=network-online.target die-executive-runtime-mcp-staging.service die-division01-runtime-mcp-staging.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=die-cloudflared
+Group=die-cloudflared
+LoadCredential=linux-mcp.token:/etc/die/staging/cloudflare/linux-mcp.token
+ExecStart=/usr/local/bin/cloudflared tunnel --config /etc/die/staging/cloudflare/linux-mcp.yml --metrics 127.0.0.1:20290 run --token-file %d/linux-mcp.token
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=20
+UMask=0077
+
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+RestrictSUIDSGID=true
+LockPersonality=true
+CapabilityBoundingSet=
+AmbientCapabilities=
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+ReadOnlyPaths=/etc/die/staging/cloudflare
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

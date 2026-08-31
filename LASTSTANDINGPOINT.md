@@ -3089,3 +3089,16 @@ Executive staging: `die-executive-runtime-mcp-staging.service`, PID 228478, `127
 No Cloudflare connector was started, no connector handoff occurred, no wake/browser path was exposed, no secret value was returned/read by Architect, and control mutation remains denied. MX-062 remains active with PID 200975. Receipt: `company/muxia/receipts/MCP-LNX-001-acceptance.receipt.json`.
 
 NEXT: `MCP-LNX-002` activate isolated `linux-mcp` connector routing only `executive-mcp.aethers.biz.id -> 8891` and `division01-mcp.aethers.biz.id -> 8892`; never expose CDP/wake. Then `MCP-LNX-003` authenticated OAuth/principal/tool/context E2E.
+
+
+---
+
+## 2026-08-31 - MCP-LNX-002 implementation ready
+
+`MCP-LNX-002` remains `READY`; implementation commit `66625fb` defines the isolated `linux-mcp` Cloudflare connector with exact ingress `executive-mcp.aethers.biz.id -> 127.0.0.1:8891`, `division01-mcp.aethers.biz.id -> 127.0.0.1:8892`, then terminal `404`. Architect MCP, CDP, browser/wake and Windows `*.aethers.web.id` routes are explicitly forbidden.
+
+Tunnel token is outside repo/config/argv. systemd `LoadCredential=` presents an ephemeral credential file to unprivileged `die-cloudflared`; persistent token source is root-owned mode 0600. Installer requires the pre-provisioned token, validates exact ingress, installs the unit, and ends stopped/disabled.
+
+Validation: focused 4/4 PASS; bridge 535/535 PASS; one-canon pytest 6/6 PASS; validator 11/11 PASS; secret scan 0; pyc 0; MUXIA build PASS. No connector activation or connector handoff claimed.
+
+NEXT: publish exact head -> isolated MCP002 source checkout -> secret-preserving token provisioning -> install/verify stopped unit -> explicit start -> public health routing proof -> only then `MCP-LNX-002 = DONE`, `MCP-LNX-003 = READY`.

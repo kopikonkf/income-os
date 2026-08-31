@@ -1,0 +1,46 @@
+{
+  "schema": "die.mcp-lnx-002.implementation-readiness.receipt.v1",
+  "date": "2026-08-31",
+  "base_main": "d6453b5ddf76f0d6c2b9525eec3dd2c601f3f8d7",
+  "implementation_commit": "66625fb0c18896f63e82402ae252c329c09245c9",
+  "task_state": "READY",
+  "live_connector_started": false,
+  "tunnel": {
+    "name": "linux-mcp",
+    "id": "32579323-1f96-4c0d-8aee-a03557c4a103",
+    "token_in_repo": false,
+    "token_in_unit_argv": false,
+    "systemd_loadcredential": true
+  },
+  "ingress": [
+    {
+      "hostname": "executive-mcp.aethers.biz.id",
+      "origin": "http://127.0.0.1:8891"
+    },
+    {
+      "hostname": "division01-mcp.aethers.biz.id",
+      "origin": "http://127.0.0.1:8892"
+    },
+    {
+      "default": "http_status:404"
+    }
+  ],
+  "forbidden_routes": [
+    "Architect MCP",
+    "CDP",
+    "browser profile",
+    "wake endpoint",
+    "Windows aethers.web.id"
+  ],
+  "validation": {
+    "focused": "4/4 PASS",
+    "full_bridge": "535/535 PASS",
+    "one_canon_pytest": "6/6 PASS",
+    "one_canon_validator": "11/11 PASS",
+    "high_confidence_secret_hits": 0,
+    "bytecode_count": 0,
+    "muxia_build": "PASS",
+    "diff_check": "PASS"
+  },
+  "authority": "Readiness only; no Cloudflare connector activation or ChatGPT connector handoff claimed."
+}
