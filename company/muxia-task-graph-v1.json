@@ -588,7 +588,7 @@
                                          "IDENTITY-LNX-REKEY-002",
                                          "MCP-LNX-002"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "Linux staging MCP re-key deployment and public health receipt",
                       "acceptance":  "Ports 8891/8892 and aethers.biz.id endpoints expose only die-lnx-executive-001 / die-lnx-division-001; Windows principal endpoints remain unchanged; public health/tool counts and fail-closed unauthenticated OAuth challenge pass."
                   },
@@ -599,7 +599,7 @@
                       "depends_on":  [
                                          "IDENTITY-LNX-REKEY-003"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "WAITING_OPERATOR_CREDENTIALS",
                       "artifact":  "operator login attestation for two dedicated Linux ChatGPT accounts",
                       "acceptance":  "Founder logs NEW dedicated Executive and Division01 accounts into their existing isolated Linux browser profiles; no Windows account/session reuse and no credential value is captured in canon."
                   },

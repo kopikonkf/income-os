@@ -52,7 +52,8 @@
         "executive": "/var/lib/die/executive/browser-profile",
         "division01": "/var/lib/die/division01/browser-profile"
       },
-      "account_binding": "WAITING_OPERATOR_LOGIN_NEW_DEDICATED_ACCOUNTS"
+      "account_binding": "WAITING_OPERATOR_LOGIN_NEW_DEDICATED_ACCOUNTS",
+      "mcp_rekey_status": "SERVER_SIDE_REKEY_ACCEPTED"
     }
   },
   "transitional_boundaries": {
