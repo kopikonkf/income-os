@@ -3212,3 +3212,17 @@ Live inspection proved `die-hermes-gateway.service` launches from `/srv/die`; up
 ## 2026-08-31 - ID-LNX-001 Hermes prompt-source convergence DONE
 
 Hermes gateway now runs with `TERMINAL_CWD=/srv/die/company/die-agents/hermes` while retaining process `WorkingDirectory=/srv/die`. Upstream Hermes resolves the effective AGENTS chain as `/srv/die/AGENTS.md` followed by `/srv/die/company/die-agents/hermes/AGENTS.md`; merged prompt SHA-256 is `45742e073c74179f34728b3d0a55f27fc438799b17ef6dd7fcff04b3e2fddc87`. Runtime `SOUL.md` and `AGENTS.md` hashes match canon. No LLM call was required. `ID-LNX-001=DONE`, releasing `ID-LNX-002=READY`. MX-062 and `/srv/die` source revision were unchanged.
+
+
+---
+
+## 2026-08-31 - ID-LNX-002 Linux Operator v2 implementation ready
+
+Linux Hermes `income-operator` scheduler is refactored to deterministic Operator v2 orchestration: typed receipt projection, company-instance-aware principal routing, default-deny authority validation, durable dispatch journal, deduped outbox and stalled follow-up. The stable logical cron name remains `die-proactive-operator-v1`, but Linux scheduling is `--no-agent`; semantic cognition is delegated to dedicated Linux Division01/Executive principals. `DIE-LINUX` receipts cannot be satisfied by Windows semantic principal IDs. Canonical production naming is now `MUXIA_CHATGPT_IMAGE`, with Proxima :3211 retained only as compatibility history. Implementation tests 57/57 and full bridge 558/558 pass. Live cron activation remains pending merge/deploy proof.
+
+
+---
+
+## 2026-08-31 - ID-LNX-002 Linux Operator v2 scheduler DONE
+
+Hermes Linux `income-operator` now owns one active `die-proactive-operator-v1` cron (`77b8fa44e8e5`, `*/30`, `no-agent`) against `DIE-LINUX`. Controlled tick #1 produced one durable `OP-CREATE-RESEARCH-CARD` claim/outbox with no semantic authorship, production authority or network request; controlled tick #2 suppressed the same fingerprint as `NO_OP_DUPLICATE`. Durable state is exactly one outbox, one journal entry and one routing intent. Hermes scheduler direct run `ac3815d615404ebd9b0bc8ed4c5fe154` completed successfully. Two live deployment defects (state-root ownership and missing `jsonschema` in Hermes venv) failed closed before routing side effects and were canonically fixed. `ID-LNX-002=DONE`.

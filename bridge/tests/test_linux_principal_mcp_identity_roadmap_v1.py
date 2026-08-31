@@ -21,7 +21,7 @@ def test_windows_reference_audit_is_done_and_first_linux_tasks_are_ready() -> No
     assert tasks["MCP-LNX-002"]["status"] == "DONE"
     assert tasks["MCP-LNX-003"]["status"] == "DONE"
     assert tasks["ID-LNX-001"]["status"] == "DONE"
-    assert tasks["ID-LNX-002"]["status"] == "READY"
+    assert tasks["ID-LNX-002"]["status"] == "DONE"
     assert AUDIT.is_file()
     receipt = json.loads(AUDIT.read_text(encoding="utf-8"))
     assert receipt["audit_mode"] == "READ_ONLY"

@@ -16,6 +16,8 @@ Environment=MUXIA_ROOT=/var/lib/muxia
 Environment=DIE_CONFIG_ROOT=/etc/die
 Environment=DIE_INSTALL_ROOT=/opt/die
 Environment=DIE_WORKSPACES_ROOT=/var/lib/die/workspaces
+Environment=DIE_COMPANY_INSTANCE=DIE-LINUX
+Environment=DIE_OPERATOR_V2_SOURCE_ROOT=/opt/die/staging/income-os
 Environment=TERMINAL_CWD=/srv/die/company/die-agents/hermes
 ExecStart=/opt/die/hermes/venv/bin/hermes gateway run
 Restart=on-failure

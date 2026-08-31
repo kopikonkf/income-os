@@ -5,6 +5,7 @@
   "additionalProperties": false,
   "required": [
     "schema_version",
+    "company_instance_id",
     "mission_id",
     "subject_id",
     "as_of",
@@ -131,6 +132,12 @@
       "items": {
         "type": "string"
       }
+    },
+    "company_instance_id": {
+      "enum": [
+        "DIE-WINDOWS",
+        "DIE-LINUX"
+      ]
     }
   }
 }

@@ -46,12 +46,12 @@ Wake may trigger cognition but never substitutes for `context_snapshot`. Runtime
 | `IDENTITY-LNX-REKEY-001` | DONE | Create `die-lnx-executive-001` |
 | `IDENTITY-LNX-REKEY-002` | DONE | Create `die-lnx-division-001` |
 | `IDENTITY-LNX-REKEY-003` | DONE | Rebind Linux staging MCP to Linux-specific principals |
-| `IDENTITY-LNX-REKEY-004` | WAITING_OPERATOR_CREDENTIALS | Founder login of NEW dedicated Linux ChatGPT accounts |
-| `MCP-LNX-003` | BLOCKED | Dedicated-account OAuth/principal/tool/context E2E parity |
-| `WAKE-LNX-001` | BLOCKED | Dynamic-CDP Linux wake transport preserving Windows semantics |
+| `IDENTITY-LNX-REKEY-004` | DONE | Founder login of NEW dedicated Linux ChatGPT accounts |
+| `MCP-LNX-003` | DONE | Dedicated-account OAuth/principal/tool/context E2E parity |
+| `WAKE-LNX-001` | READY | Safe dynamic-CDP Linux wake transport foundation |
 | `WAKE-LNX-002` | BLOCKED | Wake cognition -> fresh principal-pinned state convergence |
 | `ID-LNX-001` | DONE | Hermes prompt source pinned to native root -> component AGENTS chain |
-| `ID-LNX-002` | READY | Hermes proactive scheduler parity using Operator v2 |
+| `ID-LNX-002` | DONE | Hermes deterministic company-instance-aware Operator v2 scheduler live |
 | `ID-LNX-003` | BLOCKED | Executive canonical cognition bootstrap |
 | `ID-LNX-004` | BLOCKED | Division01 identity + OE engine cognition bootstrap |
 | `ID-LNX-005` | BLOCKED | Cross-principal role/authority acceptance |

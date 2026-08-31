@@ -24,6 +24,6 @@ def receipt(stage:dict[str,Any], *, suffix:str='CURRENT')->dict[str,Any]:
 
 def snapshot_prefix(count:int, *, kanban_done:bool=True)->dict[str,Any]:
     stages=registry()['stages']
-    return {'schema_version':'die.operator-v2.receipt-snapshot.v1','mission_id':'M-001','subject_id':'M001-SYNTHETIC-BATCH-0001','as_of':AS_OF,'receipts':[receipt(s) for s in stages[:count]],'kanban_metadata':{'legacy_cards':[{'id':'T1','status':'done'},{'id':'T2','status':'done'}] if kanban_done else []}}
+    return {'schema_version':'die.operator-v2.receipt-snapshot.v1','company_instance_id':'DIE-WINDOWS','mission_id':'M-001','subject_id':'M001-SYNTHETIC-BATCH-0001','as_of':AS_OF,'receipts':[receipt(s) for s in stages[:count]],'kanban_metadata':{'legacy_cards':[{'id':'T1','status':'done'},{'id':'T2','status':'done'}] if kanban_done else []}}
 
 def full_snapshot()->dict[str,Any]: return snapshot_prefix(len(registry()['stages']))

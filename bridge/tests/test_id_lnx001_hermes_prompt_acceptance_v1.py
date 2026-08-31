@@ -11,7 +11,7 @@ RECEIPT = ROOT / "company" / "muxia" / "receipts" / "ID-LNX-001-hermes-prompt-co
 def test_id_lnx001_done_and_scheduler_lane_released() -> None:
     tasks = {x["id"]: x for x in json.loads(GRAPH.read_text(encoding="utf-8"))["tasks"]}
     assert tasks["ID-LNX-001"]["status"] == "DONE"
-    assert tasks["ID-LNX-002"]["status"] == "READY"
+    assert tasks["ID-LNX-002"]["status"] == "DONE"
     d = json.loads(RECEIPT.read_text(encoding="utf-8"))
     assert d["status"] == "DONE"
     assert d["live"]["effective_agents_files"] == [
