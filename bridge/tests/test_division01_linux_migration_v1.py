@@ -66,7 +66,8 @@ def test_die201_operator_browser_is_consumer_policy_compliant() -> None:
     assert "--no-sandbox" not in core
     assert "--disable-blink-features=AutomationControlled" not in core
     assert "operator-controlled-acquisition-only" in core
-    assert "division-head-division01" in text
+    assert "principalId: 'die-lnx-division-001'" in text
+    assert "principalId: 'division-head-division01'" not in text
     forbidden = [
         "/backend-api/",
         "/api/auth/session",

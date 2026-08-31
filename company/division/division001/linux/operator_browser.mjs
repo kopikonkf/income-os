@@ -15,7 +15,7 @@ try {
     browserExecutable,
     browserClass: 'DIE-Division01-Stable',
     schema: 'die.division01.operator-browser.v1',
-    principalId: 'division-head-division01',
+    principalId: 'die-lnx-division-001',
     command,
   });
   process.exit(code);
