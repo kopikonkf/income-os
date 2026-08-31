@@ -11,6 +11,7 @@ REGISTRY=ROOT/'INTELLIGENCE_PREREQUISITE_REGISTRY_V1.json'
 AUTHORITY_MAP=ROOT/'ACTION_AUTHORITY_MAP_V1.json'
 PROJECTION_SCHEMA=ROOT/'die.operator-v2.intelligence-projection.v1.schema.json'
 RECEIPT_VALIDATOR=ROOT/'validate_receipt_snapshot.py'
+INSTANCE_MODULE=ROOT/'company_instance.py'
 
 class ProjectionError(RuntimeError): pass
 
@@ -21,6 +22,13 @@ def _load_receipt_validator():
 
 RECEIPTS=_load_receipt_validator()
 
+def _load_instance_module():
+    spec=importlib.util.spec_from_file_location('operator_v2_projection_instance',INSTANCE_MODULE)
+    if spec is None or spec.loader is None: raise ProjectionError('E_INSTANCE_MODULE_LOAD')
+    m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m); return m
+
+INSTANCE=_load_instance_module()
+
 def _action_authority(action_type:str)->str:
     amap=json.loads(AUTHORITY_MAP.read_text(encoding='utf-8'))
     for row in amap['actions']:
@@ -29,22 +37,23 @@ def _action_authority(action_type:str)->str:
 
 def project(snapshot:dict[str,Any])->dict[str,Any]:
     registry=json.loads(REGISTRY.read_text(encoding='utf-8'))
+    instance_id=INSTANCE.resolve_instance_id(snapshot)
     validation=RECEIPTS.validate(snapshot)
     active=list(validation.get('active_receipts',{}).keys())
     active_set=set(active)
     missing=validation.get('missing_receipt_types',[])
     if validation['status']!='PASS':
-        out={'schema_version':'die.operator-v2.intelligence-projection.v1','mission_id':snapshot.get('mission_id','M-001'),'subject_id':snapshot.get('subject_id','UNKNOWN'),'as_of':snapshot.get('as_of','1970-01-01T00:00:00Z'),'registry_status':'FAIL','intelligence_stage':'BLOCKED_INVALID_RECEIPTS','next_required_receipt':None,'next_action_type':'OP-BLOCK-CARD','required_principal':'hermes-operator','action_authority':_action_authority('OP-BLOCK-CARD'),'active_receipt_types':sorted(active),'missing_receipt_types':missing,'chain_gap_detected':False,'out_of_order_receipt_types':[],'production_authorized':False,'can_invoke_production_runner':False,'kanban_cognition_proof_used':False,'errors':validation['errors'],'warnings':validation['warnings']}
+        out={'schema_version':'die.operator-v2.intelligence-projection.v1','company_instance_id':snapshot.get('company_instance_id'),'mission_id':snapshot.get('mission_id','M-001'),'subject_id':snapshot.get('subject_id','UNKNOWN'),'as_of':snapshot.get('as_of','1970-01-01T00:00:00Z'),'registry_status':'FAIL','intelligence_stage':'BLOCKED_INVALID_RECEIPTS','next_required_receipt':None,'next_action_type':'OP-BLOCK-CARD','required_principal':'hermes-operator','action_authority':_action_authority('OP-BLOCK-CARD'),'active_receipt_types':sorted(active),'missing_receipt_types':missing,'chain_gap_detected':False,'out_of_order_receipt_types':[],'production_authorized':False,'can_invoke_production_runner':False,'kanban_cognition_proof_used':False,'errors':validation['errors'],'warnings':validation['warnings']}
     else:
         ordered=registry['stages']
         first_missing=next((s for s in ordered if s['receipt_type'] not in active_set),None)
         if first_missing is None:
             stage='READY_FOR_PRODUCTION'; next_required=None; next_action='OP-INVOKE-M001-RUNNER'; required_principal='hermes-operator'; production_authorized=True; can_run=True; out_of_order=[]; gap=False
         else:
-            stage=first_missing['stage_id']; next_required=first_missing['receipt_type']; next_action=first_missing['next_action_if_missing']; required_principal=first_missing['required_principal']; production_authorized=False; can_run=False
+            stage=first_missing['stage_id']; next_required=first_missing['receipt_type']; next_action=first_missing['next_action_if_missing']; required_principal=INSTANCE.principal_for(instance_id,first_missing['semantic_role']) if first_missing.get('semantic_role') else first_missing['required_principal']; production_authorized=False; can_run=False
             missing_order=first_missing['order']; out_of_order=[s['receipt_type'] for s in ordered if s['order']>missing_order and s['receipt_type'] in active_set]
             gap=bool(out_of_order)
-        out={'schema_version':'die.operator-v2.intelligence-projection.v1','mission_id':snapshot['mission_id'],'subject_id':snapshot['subject_id'],'as_of':snapshot['as_of'],'registry_status':'PASS','intelligence_stage':stage,'next_required_receipt':next_required,'next_action_type':next_action,'required_principal':required_principal,'action_authority':_action_authority(next_action),'active_receipt_types':sorted(active),'missing_receipt_types':missing,'chain_gap_detected':gap,'out_of_order_receipt_types':out_of_order,'production_authorized':production_authorized,'can_invoke_production_runner':can_run,'kanban_cognition_proof_used':False,'errors':validation['errors'],'warnings':validation['warnings']}
+        out={'schema_version':'die.operator-v2.intelligence-projection.v1','company_instance_id':instance_id,'mission_id':snapshot['mission_id'],'subject_id':snapshot['subject_id'],'as_of':snapshot['as_of'],'registry_status':'PASS','intelligence_stage':stage,'next_required_receipt':next_required,'next_action_type':next_action,'required_principal':required_principal,'action_authority':_action_authority(next_action),'active_receipt_types':sorted(active),'missing_receipt_types':missing,'chain_gap_detected':gap,'out_of_order_receipt_types':out_of_order,'production_authorized':production_authorized,'can_invoke_production_runner':can_run,'kanban_cognition_proof_used':False,'errors':validation['errors'],'warnings':validation['warnings']}
     schema=json.loads(PROJECTION_SCHEMA.read_text(encoding='utf-8'))
     errs=sorted(jsonschema.Draft202012Validator(schema,format_checker=jsonschema.FormatChecker()).iter_errors(out),key=lambda e:list(e.absolute_path))
     if errs: raise ProjectionError('E_PROJECTION_SCHEMA:'+errs[0].message)

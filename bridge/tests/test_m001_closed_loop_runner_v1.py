@@ -435,4 +435,4 @@ def test_runtime_canon_uses_gateway_dispatch_not_a_production_cron():
     assert (
         "M-001 production is event-driven, not production-cron-driven" in company_brain
     )
-    assert "Proxima is used only by a bounded Worker in J2, J4" in hermes
+    assert "MUXIA `MUXIA_CHATGPT_IMAGE` is used only by a bounded Worker in J2, J4" in hermes

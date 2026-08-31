@@ -9,8 +9,17 @@ import jsonschema
 ROOT=Path(__file__).resolve().parent
 REGISTRY=ROOT/'INTELLIGENCE_PREREQUISITE_REGISTRY_V1.json'
 SCHEMA=ROOT/'die.operator-v2.receipt-snapshot.v1.schema.json'
+INSTANCE_MODULE=ROOT/'company_instance.py'
 
 class ReceiptRegistryError(RuntimeError): pass
+
+def _load_instance_module():
+    import importlib.util
+    spec=importlib.util.spec_from_file_location('operator_v2_company_instance',INSTANCE_MODULE)
+    if spec is None or spec.loader is None: raise ReceiptRegistryError('E_INSTANCE_MODULE_LOAD')
+    m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m); return m
+
+INSTANCE=_load_instance_module()
 
 def parse_time(value:str)->dt.datetime:
     x=dt.datetime.fromisoformat(str(value).replace('Z','+00:00'))
@@ -26,6 +35,7 @@ def validate(snapshot:dict[str,Any])->dict[str,Any]:
         errors.append('E_SCHEMA:'+e.message)
     if errors:
         return {'schema':'die.operator-v2.receipt-registry-validation.v1','status':'FAIL','errors':errors,'warnings':warnings,'active_receipts':{},'missing_receipt_types':[x['receipt_type'] for x in registry['stages']],'kanban_cognition_proof_used':False}
+    instance_id=INSTANCE.resolve_instance_id(snapshot)
     now=parse_time(snapshot['as_of']); by_type={}
     known={x['receipt_type']:x for x in registry['stages']}
     for receipt in snapshot['receipts']:
@@ -35,6 +45,8 @@ def validate(snapshot:dict[str,Any])->dict[str,Any]:
             warnings.append('W_INVALID_RECEIPT:'+rtype+':'+receipt['artifact_id']); continue
         if receipt['issuer_kind']!=stage['issuer_kind']: errors.append('E_ISSUER_KIND:'+rtype)
         if receipt['issuer_id'] not in stage['allowed_issuer_ids']: errors.append('E_ISSUER_ID:'+rtype+':'+receipt['issuer_id'])
+        role=stage.get('semantic_role')
+        if role and receipt['issuer_id']!=INSTANCE.principal_for(instance_id,role): errors.append('E_CROSS_INSTANCE_ISSUER:'+rtype+':'+receipt['issuer_id'])
         if receipt['artifact_schema']!=stage['artifact_schema']: errors.append('E_ARTIFACT_SCHEMA:'+rtype)
         if receipt['validation']['status']!='PASS': errors.append('E_VALIDATION_PROOF:'+rtype)
         recorded=parse_time(receipt['recorded_at'])

@@ -43,6 +43,12 @@ The cron triggers cognition; it does not own work. Kanban remains the durable
 operational projection, State Manager remains the canonical writer, and the
 Gateway dispatcher remains the execution trigger.
 
+## 2.1 Linux Operator v2 scheduler amendment (2026-08-31)
+
+The Linux `income-operator` runtime supersedes the V0 prompt-based action selector with a deterministic Operator v2 scheduler. The stable logical job name remains `die-proactive-operator-v1` for pause/resume compatibility, but the scheduled job runs `--no-agent`: typed receipt projection, authority validation, dedupe, stall/follow-up routing, durable dispatch claims and outbox creation are deterministic. Semantic cognition is never authored by this tick; requests targeting Division01 or Executive are delivered by the separately governed wake transport. This removes LLM output/wall-time ambiguity from the scheduler and preserves USD 0.
+
+Every Linux snapshot carries `company_instance_id=DIE-LINUX`. Operator v2 resolves cognitive roles through `company/runtime-instances-v1.json`; Windows and Linux principal IDs must never be cross-routed.
+
 ## 3. V0 cron contract
 
 | Field | V0 value | Status |
@@ -122,7 +128,7 @@ creates a durable request/card and observes the outcome later.
 8. Observe the durable graph. Internal QA failures route to repair/learning.
    J8 success creates `FOUNDER_QC_READY`; the Founder sees only the QC package.
 
-ChatGPT image generation through Proxima `:3211` is the only production engine.
+The canonical production engine is `MUXIA_CHATGPT_IMAGE` (`provider_id=chatgpt`, capability `image.generate`). Legacy Proxima `:3211` remains compatibility history only; Hermes and Workers target the MUXIA engine contract, not a transport port.
 Other webchat/image tools are ineligible until a Founder-ratified commercial-
 rights matrix explicitly adds them.
 

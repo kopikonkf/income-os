@@ -51,7 +51,8 @@
       "receipt_type": "WORTH_MAKING_AUTHOR",
       "issuer_kind": "SEMANTIC_PRINCIPAL",
       "allowed_issuer_ids": [
-        "division-head-division01"
+        "division-head-division01",
+        "die-lnx-division-001"
       ],
       "artifact_schema": "die.division001.worth-making.v1",
       "freshness_required": true,
@@ -61,7 +62,8 @@
       "required_claims": {
         "recommendation": "VALIDATE",
         "production_authority_granted": false
-      }
+      },
+      "semantic_role": "division01"
     },
     {
       "order": 4,
@@ -69,7 +71,8 @@
       "receipt_type": "WORTH_MAKING_EXEC_REVIEW",
       "issuer_kind": "SEMANTIC_PRINCIPAL",
       "allowed_issuer_ids": [
-        "chatgpt-plus-executive"
+        "chatgpt-plus-executive",
+        "die-lnx-executive-001"
       ],
       "artifact_schema": "die.executive.worth-making-review.v1",
       "freshness_required": true,
@@ -78,7 +81,8 @@
         "outcome": "NO_VETO"
       },
       "next_action_if_missing": "OP-REQUEST-EXECUTIVE-WORTH-MAKING-REVIEW",
-      "required_principal": "chatgpt-plus-executive"
+      "required_principal": "chatgpt-plus-executive",
+      "semantic_role": "executive"
     },
     {
       "order": 5,
@@ -86,7 +90,8 @@
       "receipt_type": "BLUEPRINT_AUTHOR",
       "issuer_kind": "SEMANTIC_PRINCIPAL",
       "allowed_issuer_ids": [
-        "division-head-division01"
+        "division-head-division01",
+        "die-lnx-division-001"
       ],
       "artifact_schema": "die.division001.blueprint-authoring.v1",
       "freshness_required": true,
@@ -95,7 +100,8 @@
       "required_principal": "division-head-division01",
       "required_claims": {
         "production_authority_granted": false
-      }
+      },
+      "semantic_role": "division01"
     },
     {
       "order": 6,
@@ -103,7 +109,8 @@
       "receipt_type": "BLUEPRINT_EXEC_REVIEW",
       "issuer_kind": "SEMANTIC_PRINCIPAL",
       "allowed_issuer_ids": [
-        "chatgpt-plus-executive"
+        "chatgpt-plus-executive",
+        "die-lnx-executive-001"
       ],
       "artifact_schema": "die.executive.blueprint-review.v1",
       "freshness_required": true,
@@ -112,7 +119,8 @@
         "outcome": "NO_VETO"
       },
       "next_action_if_missing": "OP-REQUEST-EXECUTIVE-BLUEPRINT-REVIEW",
-      "required_principal": "chatgpt-plus-executive"
+      "required_principal": "chatgpt-plus-executive",
+      "semantic_role": "executive"
     },
     {
       "order": 7,

@@ -208,7 +208,7 @@ def test_company_brain_and_hermes_boot_require_proactive_canon() -> None:
         assert document in hermes
     assert "every proactive operational tick" in brain
     assert "one `die.operator.tick.v1` receipt" in hermes
-    assert "only permitted prompt cron" in flat_hermes
+    assert "permitted proactive cron is the bounded deterministic Operator v2 tick" in flat_hermes
     assert "Pillar A remains FUTURE" in hermes
 
 
