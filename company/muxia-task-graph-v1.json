@@ -531,7 +531,7 @@
                                          "DIE-201",
                                          "ID-LNX-000"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "isolated Linux staging services on loopback ports 8891/8892",
                       "acceptance":  "Separate staging processes use principal-pinned runtime MCP with aethers.biz.id base-URL overrides; existing Linux 8791/8792, Windows 8791/8792, active Windows Cloudflare tunnel, and MX-062 source/runtime remain untouched."
                   },
@@ -542,7 +542,7 @@
                       "depends_on":  [
                                          "MCP-LNX-001"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "linux-mcp connector/service + two-host ingress receipt",
                       "acceptance":  "Only executive-mcp.aethers.biz.id and division01-mcp.aethers.biz.id route to staging loopback ports; CDP/browser/wake endpoints are never exposed and Windows tunnel aethers remains unchanged."
                   },

@@ -1,0 +1,57 @@
+{
+  "schema": "die.mcp-lnx-001.acceptance.receipt.v1",
+  "date": "2026-08-31",
+  "implementation_merge": "f5eb7205b00e1c85da4213e1d6ed645766a9652e",
+  "task_state": {
+    "MCP-LNX-001": "DONE",
+    "MCP-LNX-002": "READY"
+  },
+  "linux": {
+    "staging_source": "/opt/die/staging/income-os",
+    "staging_source_sha": "f5eb7205b00e1c85da4213e1d6ed645766a9652e",
+    "staging_source_clean": true,
+    "production_source": "/srv/die",
+    "production_source_sha": "dfb74d7e09b19f68381e1064899d70c645a61f26",
+    "production_source_mutated": false,
+    "executive": {
+      "service": "die-executive-runtime-mcp-staging.service",
+      "pid": 228478,
+      "active": true,
+      "enabled": false,
+      "listen": "127.0.0.1:8891",
+      "principal": "chatgpt-plus-executive",
+      "tools": 18,
+      "control_policy": "staging-read-only",
+      "unauthenticated_mcp_status": 401
+    },
+    "division01": {
+      "service": "die-division01-runtime-mcp-staging.service",
+      "pid": 228481,
+      "active": true,
+      "enabled": false,
+      "listen": "127.0.0.1:8892",
+      "principal": "division-head-division01",
+      "tools": 6,
+      "control_policy": "staging-read-only",
+      "unauthenticated_mcp_status": 401
+    },
+    "existing_runtime": {
+      "executive_8791_active": true,
+      "division01_8792_active": true
+    },
+    "mx062": {
+      "service_active": true,
+      "pid": 200975,
+      "source_sha": "dfb74d7e09b19f68381e1064899d70c645a61f26"
+    }
+  },
+  "authority": {
+    "cloudflare_connector_started": false,
+    "connector_handoff": false,
+    "wake_activated": false,
+    "control_mutation_allowed": false,
+    "secret_values_read_by_architect": false,
+    "secret_values_returned": false
+  },
+  "acceptance": "Local isolated staging services are live and fail-closed. Public tunnel/OAuth E2E remains MCP-LNX-002/003."
+}
