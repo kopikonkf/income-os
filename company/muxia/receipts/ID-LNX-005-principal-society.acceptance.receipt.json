@@ -1,0 +1,79 @@
+{
+  "schema": "die.id-lnx005.principal-society.acceptance.receipt.v1",
+  "date": "2026-08-31",
+  "task_id": "ID-LNX-005",
+  "status": "DONE",
+  "cognition_convergence_revision": "7cdace09ba4fa80b55be5c1d74de9bb72977d7df",
+  "current_runtime_canon_revision": "27c5b69ca7bc981bee1dbecb3a9137c8984c21df",
+  "principals": {
+    "hermes": {
+      "profile": "income-operator",
+      "company_instance_id": "DIE-LINUX",
+      "role": "orchestrator_scheduler_anti_macet",
+      "semantic_author": false
+    },
+    "executive": {
+      "principal_id": "die-lnx-executive-001",
+      "scope": "company_portfolio",
+      "role": "company_level_challenge_review",
+      "assimilation_receipt": "company/muxia/receipts/ID-LNX-003-executive-cognition.acceptance.receipt.json"
+    },
+    "division01": {
+      "principal_id": "die-lnx-division-001",
+      "scope": "single_division",
+      "role": "bounded_domain_intelligence",
+      "assimilation_receipt": "company/muxia/receipts/ID-LNX-004-division01-cognition.acceptance.receipt.json"
+    },
+    "worker": {
+      "role": "bounded_deterministic_execution"
+    },
+    "muxia": {
+      "role": "engine_provider_boundary",
+      "authority_bearing_actor": false
+    }
+  },
+  "governed_review_middleware": {
+    "implementation_merge": "20047cff28d86ce53b4afb25be08382d99cbac64",
+    "orchestrator_actor": "hermes-operator",
+    "direct_executive_division_chat_operational_authority": false,
+    "NO_VETO": "advance",
+    "REVISE": "return_to_division01_new_artifact_hash",
+    "VETO_PENDING_EVIDENCE": "block_and_request_evidence",
+    "ESCALATE_FOUNDER": "founder_gate",
+    "old_lineage_requires_superseded": true,
+    "linux_division_target": "die-lnx-division-001"
+  },
+  "operator_runtime_health": {
+    "operator_acceptance_ref": "company/muxia/receipts/ID-LNX-002-operator-v2-linux.acceptance.receipt.json",
+    "cron_job_id": "77b8fa44e8e5",
+    "cron_mode": "no-agent",
+    "cron_active_after_recovery": true,
+    "latest_successful_run_id": "cb6dc63a8b434b42904c9560081e082d",
+    "outbox_recovery_merge": "27c5b69ca7bc981bee1dbecb3a9137c8984c21df",
+    "recovered_local_outbox_claim_sequences": [
+      2,
+      3
+    ],
+    "journal_history_deleted": false,
+    "external_side_effect_performed_by_recovery": false
+  },
+  "authority_invariants": {
+    "state_manager_is_canonical_writer": true,
+    "founder_retains_irreversible_authority": true,
+    "executive_commands_workers": false,
+    "division01_commands_workers": false,
+    "hermes_manufactures_semantic_review": false,
+    "worker_rewrites_semantic_blueprint": false,
+    "muxia_makes_strategy_decisions": false,
+    "cross_instance_principal_substitution_allowed": false
+  },
+  "semantic_quality": {
+    "source_trust": "DEGRADED",
+    "completeness": "degraded",
+    "treated_as_transport_failure": false
+  },
+  "dependency_release": {
+    "MCP-LNX-004": "READY"
+  },
+  "acceptance": "Hermes is the governed cognitive/workflow middleware, Division01 owns bounded domain intelligence, Executive owns company-level challenge/review, Workers/MUXIA execute bounded contracts, and State Manager/Founder authority boundaries remain fail-closed without role collapse."
+}

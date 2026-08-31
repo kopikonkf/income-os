@@ -1,0 +1,16 @@
+{
+  "principal_id": "die-lnx-division-001",
+  "scope": "single_division",
+  "authority_capability": "bounded_semantic_observation",
+  "freshness_status": "fresh",
+  "canon_load_status": "VERIFIED",
+  "source_trust": "DEGRADED",
+  "completeness": "degraded",
+  "repo_sha": "7cdace09ba4fa80b55be5c1d74de9bb72977d7df",
+  "bootstrap_status": "PASS",
+  "provenance": {
+    "reported_via": "founder_operator_from_real_chatgpt",
+    "wake_id": "WAKE-LNX002-DIVISION01-7cdace09",
+    "thread_generation": 1
+  }
+}

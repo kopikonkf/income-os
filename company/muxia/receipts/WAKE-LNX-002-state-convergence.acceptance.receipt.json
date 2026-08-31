@@ -1,0 +1,41 @@
+{
+  "schema": "die.wake-lnx002.state-convergence.acceptance.receipt.v1",
+  "date": "2026-08-31",
+  "task_id": "WAKE-LNX-002",
+  "status": "DONE",
+  "convergence_repo_sha": "7cdace09ba4fa80b55be5c1d74de9bb72977d7df",
+  "executive": {
+    "report_ref": "company/muxia/receipts/WAKE-LNX-002-executive-convergence.report.json",
+    "principal_id": "die-lnx-executive-001",
+    "scope": "company_portfolio",
+    "authority_capability": "semantic_observation",
+    "freshness_status": "fresh",
+    "canon_load_status": "VERIFIED",
+    "source_trust": "DEGRADED",
+    "completeness": "degraded",
+    "bootstrap_status": "PASS",
+    "thread_generation": 2,
+    "previous_generation": 1,
+    "previous_generation_lifecycle": "superseded"
+  },
+  "division01": {
+    "report_ref": "company/muxia/receipts/WAKE-LNX-002-division01-convergence.report.json",
+    "principal_id": "die-lnx-division-001",
+    "scope": "single_division",
+    "authority_capability": "bounded_semantic_observation",
+    "freshness_status": "fresh",
+    "canon_load_status": "VERIFIED",
+    "source_trust": "DEGRADED",
+    "completeness": "degraded",
+    "bootstrap_status": "PASS",
+    "thread_generation": 1
+  },
+  "boundary": {
+    "context_snapshot_required_before_reasoning": true,
+    "account_or_thread_memory_authority": false,
+    "wake_transport_submitted_automatically": false,
+    "private_backend_used": false,
+    "mutation_performed": false
+  },
+  "acceptance": "Both Linux cognitive principals consumed an operator-supported bounded wake briefing, reloaded fresh principal-pinned Runtime MCP context_snapshot state, matched exact principal/scope/capability/canon status on one shared revision, and reported degraded semantic quality truthfully."
+}
