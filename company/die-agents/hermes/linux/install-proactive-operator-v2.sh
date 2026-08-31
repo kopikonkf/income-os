@@ -13,7 +13,7 @@ WORKDIR="$DIE_HOME/company/die-agents/hermes"
 [[ ${EUID:-$(id -u)} -eq 0 ]] || { echo E_ROOT_REQUIRED >&2; exit 2; }
 [[ -x "$HERMES_BIN" ]] || { echo E_HERMES_BIN >&2; exit 2; }
 [[ -f "$SOURCE_ROOT/company/die-agents/hermes/operator-v2/linux_scheduler_tick.py" ]] || { echo E_OPERATOR_V2_SOURCE >&2; exit 2; }
-install -d -o die-hermes -g die-runtime -m 2770 "$HERMES_HOME/scripts" "$DIE_STATE_ROOT/state/operator-v2/receipt-inbox" "$DIE_STATE_ROOT/state/operator-v2/outbox"
+install -d -o die-hermes -g die-runtime -m 2770 "$HERMES_HOME/scripts" "$DIE_STATE_ROOT/state/operator-v2" "$DIE_STATE_ROOT/state/operator-v2/receipt-inbox" "$DIE_STATE_ROOT/state/operator-v2/outbox" "$DIE_STATE_ROOT/state/operator-v2/prepared"
 cat > "$HERMES_HOME/scripts/$SCRIPT_NAME" <<'PY'
 #!/usr/bin/env python3
 import os
