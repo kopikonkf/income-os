@@ -1,0 +1,60 @@
+{
+  "schema": "die.id-lnx-000.windows-principal-reference-audit.receipt.v1",
+  "date": "2026-08-31",
+  "audit_mode": "READ_ONLY",
+  "windows_unchanged": true,
+  "windows_reference": {
+    "executive": {
+      "wake_browser": "BrowserOS neo / BrowserClaw",
+      "wake_cdp": "127.0.0.1:9110",
+      "runtime_mcp": "127.0.0.1:8791",
+      "service": "DIERuntimeMCPExecutive",
+      "principal": "chatgpt-plus-executive",
+      "tool_count": 18
+    },
+    "division01": {
+      "wake_browser": "Brave dedicated profile",
+      "wake_profile": "C:/ProgramData/DIE/BrowserProfiles/DIVISION-01",
+      "wake_cdp": "127.0.0.1:9333",
+      "runtime_mcp": "127.0.0.1:8792",
+      "service": "DIERuntimeMCPDivision01",
+      "principal": "division-head-division01",
+      "tool_count": 6
+    },
+    "wake_semantics": {
+      "outbound_browser_backed": true,
+      "in_page_fetch": true,
+      "persistent_conversation_id": true,
+      "single_active_thread": true,
+      "runtime_mcp_separate": true
+    },
+    "hermes": {
+      "profile": "income-operator",
+      "gateway_active": true,
+      "soul_matches_legacy_source": true,
+      "agents_runtime_overlay_present": true,
+      "cron_jobs": 5,
+      "proactive_operator_schedule": "*/30 * * * *",
+      "observed_proactive_provider_state": "DEGRADED_UPSTREAM_404"
+    }
+  },
+  "linux_observed": {
+    "executive_browser": "READY",
+    "division01_browser": "READY",
+    "dynamic_loopback_cdp": true,
+    "cloudflared_version": "2026.8.2",
+    "staging_ports": [
+      8891,
+      8892
+    ],
+    "staging_ports_free": true,
+    "linux_mcp_tunnel_exists": true,
+    "linux_mcp_tunnel_active_connector": false,
+    "staging_dns": [
+      "executive-mcp.aethers.biz.id",
+      "division01-mcp.aethers.biz.id"
+    ]
+  },
+  "architect_ordering": "LAST_AFTER_NON_ARCHITECT_CUTOVER; existing MX-053 -> MX-054 -> CUT-006 remains authoritative",
+  "authority": "Audit and roadmap only; no service/tunnel/connector/browser/credential mutation authorized by this receipt."
+}

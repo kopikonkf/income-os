@@ -513,6 +513,157 @@
                       "acceptance":  "End-to-end logical company topology works on Linux with correct principal/data/artifact lineage and no Aether dependency absorption."
                   },
                   {
+                      "id":  "ID-LNX-000",
+                      "phase":  14,
+                      "title":  "Windows principal/runtime reference autopsy",
+                      "depends_on":  [
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/ID-LNX-000-windows-principal-reference-audit.receipt.json",
+                      "acceptance":  "Windows Executive/Division01 wake and Runtime MCP lines plus Hermes identity/scheduler behavior are empirically mapped read-only; Windows services/config are unchanged."
+                  },
+                  {
+                      "id":  "MCP-LNX-001",
+                      "phase":  14,
+                      "title":  "Executive and Division01 Linux staging MCP services",
+                      "depends_on":  [
+                                         "DIE-200",
+                                         "DIE-201",
+                                         "ID-LNX-000"
+                                     ],
+                      "status":  "READY",
+                      "artifact":  "isolated Linux staging services on loopback ports 8891/8892",
+                      "acceptance":  "Separate staging processes use principal-pinned runtime MCP with aethers.biz.id base-URL overrides; existing Linux 8791/8792, Windows 8791/8792, active Windows Cloudflare tunnel, and MX-062 source/runtime remain untouched."
+                  },
+                  {
+                      "id":  "MCP-LNX-002",
+                      "phase":  14,
+                      "title":  "Isolated linux-mcp Cloudflare connector and ingress",
+                      "depends_on":  [
+                                         "MCP-LNX-001"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "linux-mcp connector/service + two-host ingress receipt",
+                      "acceptance":  "Only executive-mcp.aethers.biz.id and division01-mcp.aethers.biz.id route to staging loopback ports; CDP/browser/wake endpoints are never exposed and Windows tunnel aethers remains unchanged."
+                  },
+                  {
+                      "id":  "MCP-LNX-003",
+                      "phase":  14,
+                      "title":  "Executive and Division01 staging MCP E2E parity",
+                      "depends_on":  [
+                                         "MCP-LNX-002"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "OAuth/principal/tool/read-path parity receipt",
+                      "acceptance":  "ChatGPT-cloud or equivalent authenticated E2E proves Executive 18-tool and Division01 6-tool surfaces, context_snapshot integrity, principal pinning, cross-principal denial, and no DEV/raw access before any connector handoff."
+                  },
+                  {
+                      "id":  "WAKE-LNX-001",
+                      "phase":  14,
+                      "title":  "Linux Executive and Division01 dynamic-CDP wake transport",
+                      "depends_on":  [
+                                         "ID-LNX-000",
+                                         "DIE-200",
+                                         "DIE-201"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "principal-dedicated Linux wake transport + thread-state receipt",
+                      "acceptance":  "Preserve Windows wake semantics using authenticated principal-dedicated browser profiles, loopback dynamic CDP, in-page fetch, protected one-active-thread state, no JWT persistence, and no inbound MCP authority."
+                  },
+                  {
+                      "id":  "WAKE-LNX-002",
+                      "phase":  14,
+                      "title":  "Wake and Runtime MCP state convergence",
+                      "depends_on":  [
+                                         "WAKE-LNX-001",
+                                         "MCP-LNX-003"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "wake-to-context_snapshot convergence receipt",
+                      "acceptance":  "Wake supplies bounded cognition trigger/briefing only; Executive and Division01 reload current authoritative state through their own principal-pinned context_snapshot before governed reasoning or decision output."
+                  },
+                  {
+                      "id":  "ID-LNX-001",
+                      "phase":  14,
+                      "title":  "Hermes prompt-source convergence",
+                      "depends_on":  [
+                                         "ID-LNX-000"
+                                     ],
+                      "status":  "READY",
+                      "artifact":  "Hermes SOUL/AGENTS prompt provenance receipt",
+                      "acceptance":  "SOUL and operating rules actually injected into Hermes cognition are canonical, hash-pinned and one-canon; no stale CWD/root AGENTS drift may shadow the component contract."
+                  },
+                  {
+                      "id":  "ID-LNX-002",
+                      "phase":  14,
+                      "title":  "Hermes proactive scheduler parity and Operator v2 routing",
+                      "depends_on":  [
+                                         "ID-LNX-001"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Hermes Linux 24/7 scheduler/routing receipt",
+                      "acceptance":  "Restore proven heartbeat/briefing/audit/proactive cadence using Linux-safe Operator v2, explicit Division/Executive cognition routing, sanitized failure classification and no authority expansion."
+                  },
+                  {
+                      "id":  "ID-LNX-003",
+                      "phase":  14,
+                      "title":  "Executive cognitive identity bootstrap",
+                      "depends_on":  [
+                                         "WAKE-LNX-002"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Executive identity/bootstrap assimilation receipt",
+                      "acceptance":  "Executive receives the canonical company-level identity, authority boundary, current engine-review responsibilities and fresh principal-pinned state; account/thread memory cannot manufacture authority."
+                  },
+                  {
+                      "id":  "ID-LNX-004",
+                      "phase":  14,
+                      "title":  "Division01 cognitive identity and opportunity-engine bootstrap",
+                      "depends_on":  [
+                                         "WAKE-LNX-002"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Division01 identity/engine assimilation receipt",
+                      "acceptance":  "Division01 receives canonical domain identity plus OE-001 signals, OE-002 demand score, OE-003 longtail, OE-004 Worth-Making and OE-005 blueprint responsibilities with platform/search evidence doctrine and no execution authority."
+                  },
+                  {
+                      "id":  "ID-LNX-005",
+                      "phase":  14,
+                      "title":  "Principal society cognition and authority acceptance",
+                      "depends_on":  [
+                                         "ID-LNX-002",
+                                         "ID-LNX-003",
+                                         "ID-LNX-004"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "Hermes-Executive-Division01 role/isolation acceptance receipt",
+                      "acceptance":  "Hermes orchestrates and routes cognition; Division01 owns bounded domain intelligence; Executive owns company-level challenge/review; State Manager/Hermes/Founder authority boundaries remain fail-closed with no role collapse."
+                  },
+                  {
+                      "id":  "MCP-LNX-004",
+                      "phase":  14,
+                      "title":  "Executive and Division01 Linux restart/stability proof",
+                      "depends_on":  [
+                                         "MCP-LNX-003",
+                                         "WAKE-LNX-002",
+                                         "ID-LNX-005"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "restart/session/isolation/stability receipt",
+                      "acceptance":  "Staging tunnel, MCP services and browser sessions survive controlled restart/recovery; OAuth and principal isolation remain correct; logs are sanitized; Windows endpoints remain rollback-capable."
+                  },
+                  {
+                      "id":  "MCP-LNX-005",
+                      "phase":  14,
+                      "title":  "Executive and Division01 Linux MCP/wake acceptance",
+                      "depends_on":  [
+                                         "MCP-LNX-004"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "non-Architect Linux principal acceptance receipt",
+                      "acceptance":  "Executive and Division01 Linux MCP + wake + identity stack is accepted as cutover-ready while Windows remains active; this authorizes readiness only, not the Founder connector handoff itself."
+                  },
+                  {
                       "id":  "CUT-001",
                       "phase":  14,
                       "title":  "Freeze Windows DIE writers except Architect MCP",
@@ -550,7 +701,8 @@
                       "phase":  14,
                       "title":  "Executive ChatGPT MCP connector handoff Windows to Linux",
                       "depends_on":  [
-                                         "CUT-003"
+                                         "CUT-003",
+                                         "MCP-LNX-005"
                                      ],
                       "status":  "BLOCKED",
                       "artifact":  "Executive connector endpoint E2E + rollback receipt",
@@ -561,7 +713,8 @@
                       "phase":  14,
                       "title":  "Division01 ChatGPT MCP connector handoff Windows to Linux",
                       "depends_on":  [
-                                         "CUT-003"
+                                         "CUT-003",
+                                         "MCP-LNX-005"
                                      ],
                       "status":  "BLOCKED",
                       "artifact":  "Division01 connector endpoint E2E + rollback receipt",

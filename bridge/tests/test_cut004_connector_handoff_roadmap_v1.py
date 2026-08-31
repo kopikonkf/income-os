@@ -15,8 +15,8 @@ def test_cut004_chatgpt_connector_handoffs_are_first_class_atomic_tasks() -> Non
     umbrella = tasks["CUT-004"]
     assert exec_cut["status"] == "BLOCKED"
     assert div_cut["status"] == "BLOCKED"
-    assert exec_cut["depends_on"] == ["CUT-003"]
-    assert div_cut["depends_on"] == ["CUT-003"]
+    assert exec_cut["depends_on"] == ["CUT-003", "MCP-LNX-005"]
+    assert div_cut["depends_on"] == ["CUT-003", "MCP-LNX-005"]
     assert "Executive ChatGPT MCP connector" in exec_cut["title"]
     assert "Division01 ChatGPT MCP connector" in div_cut["title"]
     assert "Windows endpoint" in exec_cut["acceptance"]
