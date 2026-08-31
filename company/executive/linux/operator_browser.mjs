@@ -15,7 +15,7 @@ try {
     browserExecutable,
     browserClass: 'DIE-Executive-Stable',
     schema: 'die.executive.operator-browser.v1',
-    principalId: 'chatgpt-plus-executive',
+    principalId: 'die-lnx-executive-001',
     command,
   });
   process.exit(code);
