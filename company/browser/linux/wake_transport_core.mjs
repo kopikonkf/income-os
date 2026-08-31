@@ -59,7 +59,7 @@ async function connectBrowser({ dieHome, statusFile, principalId }) {
   if (!context) throw new Error('E_BROWSER_CONTEXT');
   const pages = context.pages().filter((page) => page.url().startsWith('https://chatgpt.com'));
   if (!pages.length) throw new Error('E_CHATGPT_PAGE');
-  return { browser, pages };
+  return { browser, context, pages };
 }
 
 async function currentThreadPage(pages) {
@@ -86,11 +86,23 @@ function normalizeComposerText(value) {
 
 function normalizeSafe(url) { try { return normalizeThreadUrl(url).conversationUrl; } catch { return ''; } }
 
+export function selectNewestUnboundThread(urls, currentConversationId) {
+  const candidates = [];
+  for (const url of urls) {
+    try {
+      const thread = normalizeThreadUrl(url);
+      if (thread.conversationId !== currentConversationId) candidates.push(thread);
+    } catch {}
+  }
+  return candidates.length ? candidates[candidates.length - 1] : null;
+}
+
 export async function runWakeTransport(options) {
   const { dieHome, principalId, statusFile, threadStateFile, receiptDir, command, envelopeFile } = options;
+  const pendingRotationFile = options.pendingRotationFile || threadStateFile.replace(/wake-thread\.json$/, 'wake-rotation-pending.json');
   for (const value of [dieHome, statusFile, threadStateFile, receiptDir]) if (!path.isAbsolute(value)) throw new Error('E_ABSOLUTE_PATH_REQUIRED');
-  if (!['bind', 'focus', 'stage', 'canary'].includes(command)) throw new Error('E_WAKE_COMMAND');
-  const { browser, pages } = await connectBrowser({ dieHome, statusFile, principalId });
+  if (!['bind', 'focus', 'stage', 'canary', 'prepare-rotation', 'bind-newest'].includes(command)) throw new Error('E_WAKE_COMMAND');
+  const { browser, context, pages } = await connectBrowser({ dieHome, statusFile, principalId });
   try {
     if (command === 'bind') {
       const { page, conversationUrl, conversationId } = await currentThreadPage(pages);
@@ -100,6 +112,76 @@ export async function runWakeTransport(options) {
       atomicJson(threadStateFile, state);
       return { status: 'PASS', command, principal_id: principalId, conversation_id: conversationId, generation: state.generation };
     }
+    if (command === 'prepare-rotation') {
+      if (!fs.existsSync(threadStateFile)) throw new Error('E_THREAD_STATE_MISSING');
+      const current = JSON.parse(fs.readFileSync(threadStateFile, 'utf8'));
+      if (current.principal_id !== principalId || current.lifecycle_state !== 'active') throw new Error('E_THREAD_STATE');
+      if (!envelopeFile || !path.isAbsolute(envelopeFile)) throw new Error('E_ENVELOPE_PATH');
+      const envelope = validateEnvelope(JSON.parse(fs.readFileSync(envelopeFile, 'utf8')), principalId);
+      const page = await context.newPage();
+      await page.goto('https://chatgpt.com/', { waitUntil: 'domcontentloaded', timeout: 60000 });
+      await page.bringToFront();
+      const box = await composer(page);
+      const existingText = await composerText(box);
+      if (normalizeComposerText(existingText)) throw new Error('E_NEW_THREAD_COMPOSER_NOT_EMPTY');
+      try {
+        await box.fill(envelope.briefing);
+        const stagedText = await composerText(box);
+        if (normalizeComposerText(stagedText) !== normalizeComposerText(envelope.briefing)) throw new Error('E_COMPOSER_STAGE_MISMATCH');
+      } catch (error) {
+        await box.fill('').catch(() => {});
+        await page.close().catch(() => {});
+        throw error;
+      }
+      const pending = {
+        schema: 'die.wake.rotation-pending.v1',
+        company_instance_id: 'DIE-LINUX',
+        principal_id: principalId,
+        from_conversation_id: current.conversation_id,
+        from_generation: current.generation,
+        wake_id: envelope.wake_id,
+        briefing_sha256: sha256(envelope.briefing),
+        lifecycle_state: 'awaiting_operator_send_and_rebind',
+        submitted_by_transport: false,
+        created_at: new Date().toISOString(),
+      };
+      atomicJson(pendingRotationFile, pending);
+      const receipt = {
+        schema: 'die.wake.rotation-stage-receipt.v1',
+        company_instance_id: 'DIE-LINUX',
+        principal_id: principalId,
+        wake_id: envelope.wake_id,
+        from_generation: current.generation,
+        staged_in_new_tab: true,
+        submitted: false,
+        output_extracted: false,
+        credential_material_accessed: false,
+        private_backend_called: false,
+        observed_at: new Date().toISOString(),
+      };
+      fs.mkdirSync(receiptDir, { recursive: true, mode: 0o750 });
+      const receiptRef = path.join(receiptDir, `${envelope.wake_id}-rotation-stage.json`);
+      atomicJson(receiptRef, receipt);
+      return { status: 'PASS', command, principal_id: principalId, wake_id: envelope.wake_id, from_generation: current.generation, submitted: false, receipt_ref: receiptRef };
+    }
+
+    if (command === 'bind-newest') {
+      if (!fs.existsSync(threadStateFile)) throw new Error('E_THREAD_STATE_MISSING');
+      if (!fs.existsSync(pendingRotationFile)) throw new Error('E_ROTATION_PENDING_MISSING');
+      const current = JSON.parse(fs.readFileSync(threadStateFile, 'utf8'));
+      const pending = JSON.parse(fs.readFileSync(pendingRotationFile, 'utf8'));
+      if (current.principal_id !== principalId || pending.principal_id !== principalId) throw new Error('E_ROTATION_PRINCIPAL');
+      const selected = selectNewestUnboundThread(pages.map((page) => page.url()), current.conversation_id);
+      if (!selected) throw new Error('E_NEW_THREAD_NOT_FOUND');
+      const page = [...pages].reverse().find((candidate) => normalizeSafe(candidate.url()) === selected.conversationUrl);
+      if (!page) throw new Error('E_NEW_THREAD_PAGE');
+      await page.bringToFront();
+      const state = updateThreadState(current, { principalId, conversationUrl: selected.conversationUrl, conversationId: selected.conversationId, at: new Date().toISOString() });
+      atomicJson(threadStateFile, state);
+      atomicJson(pendingRotationFile, { ...pending, lifecycle_state: 'bound', to_conversation_id: selected.conversationId, to_generation: state.generation, bound_at: new Date().toISOString() });
+      return { status: 'PASS', command, principal_id: principalId, generation: state.generation, previous_generation: current.generation };
+    }
+
     if (!fs.existsSync(threadStateFile)) throw new Error('E_THREAD_STATE_MISSING');
     const state = JSON.parse(fs.readFileSync(threadStateFile, 'utf8'));
     if (state.principal_id !== principalId || state.lifecycle_state !== 'active') throw new Error('E_THREAD_STATE');

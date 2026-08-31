@@ -19,3 +19,8 @@ It MUST NOT read/export cookies, localStorage, sessionStorage, OAuth tokens, Web
 Each Linux principal has one protected state file with `die.wake.thread.v2`: `principal_id -> exactly_one_active_thread`. Rotation increments `generation`; the previous conversation is retained only as bounded `superseded` metadata. Thread IDs are sensitive operational metadata, not credentials and not Company Truth.
 
 All CDP listeners remain `127.0.0.1` only.
+
+
+## Thread rollover
+
+When the active conversation is too long, unhealthy, or blocked by an operator draft, `prepare-rotation` opens a new ChatGPT tab in the same principal-dedicated profile and stages the bounded wake briefing without Send. The existing active thread and draft remain untouched. After an operator sends the staged message and ChatGPT assigns a new `/c/<conversation>` URL, `bind-newest` promotes that new conversation to generation `N+1` and records generation `N` as `superseded`. Company Truth is reloaded via principal-pinned `context_snapshot`; transcript copying is neither required nor authoritative.
