@@ -3173,3 +3173,10 @@ After successful NEW Linux Executive login and monitored relaunch, the Executive
 Founder completed manual login of both NEW dedicated DIE-LINUX ChatGPT accounts. Executive survives canonical relaunch as `die-lnx-executive-001`, heartbeat `READY`, Chrome PID 242302, dynamic loopback CDP `127.0.0.1:39353`. Division01 survives canonical relaunch as `die-lnx-division-001`, heartbeat `READY`, Chrome PID 243758, dynamic loopback CDP `127.0.0.1:42229`. No credential value was captured in canon and no Windows account/session was reused.
 
 `IDENTITY-LNX-REKEY-004=DONE`. Dependency release: `MCP-LNX-003=READY` and `WAKE-LNX-001=READY`; `WAKE-LNX-002` remains BLOCKED pending both lines. MX-062 remains PID 200975 and production `/srv/die` remains pinned to `dfb74d7e...`.
+
+
+---
+
+## 2026-08-31 - MCP-LNX-003 0-action defect isolated to protocol-era compatibility
+
+Founder proved both Linux connectors can complete OAuth yet ChatGPT developer UI reports 0 actions under both user-defined OAuth client registration and DCR. Registration-mode error is therefore rejected as the primary cause. Current MCP 2026-07-28 removed the initialize handshake and requires modern stateless result framing; Runtime MCP v1.2.0 was still legacy-era only. Runtime MCP v1.3.0 compatibility patch now preserves legacy Windows behavior while adding `server/discover`, 2026-07-28 response discrimination, cache hints on modern `tools/list`, and current legacy 2025-11-25 negotiation. Local HTTP proof exposes Division01=6 and Executive=18; bridge suite 546/546 PASS. `MCP-LNX-003` remains READY until real ChatGPT Scan Tools proves 6/18 after Linux staging deployment.

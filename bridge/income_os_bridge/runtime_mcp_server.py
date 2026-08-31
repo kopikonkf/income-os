@@ -31,9 +31,13 @@ from . import (
 )
 
 SERVER_NAME = "die-runtime-decision-mcp"
-SERVER_VERSION = "1.2.0"
+SERVER_VERSION = "1.3.0"
 HTTP_PATH = "/mcp"
 LOOPBACK_HOST = "127.0.0.1"
+MODERN_PROTOCOL_VERSION = "2026-07-28"
+LEGACY_PROTOCOL_VERSIONS = ("2025-11-25", "2025-06-18", "2025-03-26", "2024-11-05")
+PROTOCOL_VERSION_META_KEY = "io.modelcontextprotocol/protocolVersion"
+SERVER_INFO_META_KEY = "io.modelcontextprotocol/serverInfo"
 PRINCIPAL_DEFAULT_PORTS = {
     "chatgpt-plus-executive": 8791,
     "division-head-division01": 8792,
@@ -500,6 +504,31 @@ def call_tool(
         return _error(exc.code, exc.message)
 
 
+def _request_protocol_version(message: dict[str, Any], explicit: str | None = None) -> str | None:
+    if explicit:
+        return explicit
+    params = message.get("params")
+    if not isinstance(params, dict):
+        return None
+    meta = params.get("_meta")
+    if not isinstance(meta, dict):
+        return None
+    value = meta.get(PROTOCOL_VERSION_META_KEY)
+    return value if isinstance(value, str) else None
+
+
+def _modern_result(payload: dict[str, Any]) -> dict[str, Any]:
+    result = {"resultType": "complete", **payload}
+    meta = result.get("_meta")
+    if not isinstance(meta, dict):
+        meta = {}
+    result["_meta"] = {
+        **meta,
+        SERVER_INFO_META_KEY: {"name": SERVER_NAME, "version": SERVER_VERSION},
+    }
+    return result
+
+
 def handle(
     message: Any,
     *,
@@ -508,6 +537,7 @@ def handle(
     registry_path: str | pathlib.Path | None = None,
     rate_limit: mcp_server.RateLimit | None = None,
     control_policy: str | None = None,
+    protocol_version: str | None = None,
 ) -> dict[str, Any] | None:
     if not isinstance(message, dict):
         return {"jsonrpc": "2.0", "id": None, "error": {"code": -32600, "message": "invalid request"}}
@@ -516,45 +546,72 @@ def handle(
     params = message.get("params") or {}
     if not isinstance(params, dict):
         return {"jsonrpc": "2.0", "id": ident, "error": {"code": -32602, "message": "invalid params"}}
+    request_version = _request_protocol_version(message, protocol_version)
+    modern = request_version == MODERN_PROTOCOL_VERSION or method == "server/discover"
     if method == "notifications/initialized":
         return None
+    identity = _identity(principal_id, registry_path) if method in {"initialize", "server/discover"} else None
+    effective_control_policy = _runtime_control_policy(control_policy) if method in {"initialize", "server/discover"} else None
+    instructions = None
+    if identity is not None:
+        instructions = (
+            f"Runtime principal {principal_id} ({identity['scope']}) is server-pinned. "
+            f"Operational control plane: {config.OPERATIONAL_CONTROL_PLANE}; "
+            f"canonical writer: {config.CANONICAL_WRITER}. "
+            f"Control policy: {effective_control_policy}. No raw or DEV access."
+        )
+    if method == "server/discover":
+        return {
+            "jsonrpc": "2.0",
+            "id": ident,
+            "result": _modern_result(
+                {
+                    "supportedVersions": [MODERN_PROTOCOL_VERSION],
+                    "capabilities": {"tools": {}},
+                    "instructions": instructions,
+                    "ttlMs": 0,
+                    "cacheScope": "private",
+                }
+            ),
+        }
     if method == "initialize":
-        identity = _identity(principal_id, registry_path)
-        effective_control_policy = _runtime_control_policy(control_policy)
+        requested = params.get("protocolVersion")
+        negotiated = requested if requested in LEGACY_PROTOCOL_VERSIONS else LEGACY_PROTOCOL_VERSIONS[0]
         return {
             "jsonrpc": "2.0",
             "id": ident,
             "result": {
-                "protocolVersion": "2024-11-05",
+                "protocolVersion": negotiated,
                 "capabilities": {"tools": {"listChanged": False}},
                 "serverInfo": {"name": SERVER_NAME, "version": SERVER_VERSION},
-                "instructions": (
-                    f"Runtime principal {principal_id} ({identity['scope']}) is server-pinned. "
-                    f"Operational control plane: {config.OPERATIONAL_CONTROL_PLANE}; "
-                    f"canonical writer: {config.CANONICAL_WRITER}. "
-                    f"Control policy: {effective_control_policy}. No raw or DEV access."
-                ),
+                "instructions": instructions,
             },
         }
     if method == "tools/list":
+        result: dict[str, Any] = {"tools": tool_definitions(principal_id, registry_path)}
+        if modern:
+            result = _modern_result({**result, "ttlMs": 0, "cacheScope": "private"})
         return {
             "jsonrpc": "2.0",
             "id": ident,
-            "result": {"tools": tool_definitions(principal_id, registry_path)},
+            "result": result,
         }
     if method == "tools/call":
+        result = call_tool(
+            params.get("name"),
+            params.get("arguments") or {},
+            principal_id=principal_id,
+            writer=writer,
+            registry_path=registry_path,
+            rate_limit=rate_limit,
+            control_policy=control_policy,
+        )
+        if modern:
+            result = _modern_result(result)
         return {
             "jsonrpc": "2.0",
             "id": ident,
-            "result": call_tool(
-                params.get("name"),
-                params.get("arguments") or {},
-                principal_id=principal_id,
-                writer=writer,
-                registry_path=registry_path,
-                rate_limit=rate_limit,
-                control_policy=control_policy,
-            ),
+            "result": result,
         }
     return {"jsonrpc": "2.0", "id": ident, "error": {"code": -32601, "message": "method not found"}}
 
@@ -854,6 +911,7 @@ Scope: {html.escape(params['scope'])}</p>
                         registry_path=registry_path,
                         rate_limit=limiter,
                         control_policy=control_policy,
+                        protocol_version=self.headers.get("MCP-Protocol-Version"),
                     )
                     if response is None:
                         self.send_response(204)

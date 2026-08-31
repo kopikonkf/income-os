@@ -56,6 +56,76 @@ def test_staging_read_only_preserves_tool_parity_but_blocks_control_writer() -> 
     assert writer_calls == []
 
 
+def test_modern_protocol_discovery_and_tool_catalog_are_dual_era_compatible() -> None:
+    discover = runtime_mcp_server.handle(
+        {
+            "jsonrpc": "2.0",
+            "id": "discover-1",
+            "method": "server/discover",
+            "params": {
+                "_meta": {
+                    "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+                    "io.modelcontextprotocol/clientInfo": {"name": "chatgpt", "version": "test"},
+                    "io.modelcontextprotocol/clientCapabilities": {},
+                }
+            },
+        },
+        principal_id="die-lnx-division-001",
+        writer=None,
+        control_policy="staging-read-only",
+        protocol_version="2026-07-28",
+    )
+    assert discover is not None
+    result = discover["result"]
+    assert result["resultType"] == "complete"
+    assert result["supportedVersions"] == ["2026-07-28"]
+    assert result["capabilities"] == {"tools": {}}
+    assert result["ttlMs"] == 0 and result["cacheScope"] == "private"
+    assert result["_meta"]["io.modelcontextprotocol/serverInfo"]["version"] == "1.3.0"
+
+    modern_tools = runtime_mcp_server.handle(
+        {"jsonrpc": "2.0", "id": 2, "method": "tools/list", "params": {}},
+        principal_id="die-lnx-division-001",
+        writer=None,
+        control_policy="staging-read-only",
+        protocol_version="2026-07-28",
+    )
+    assert modern_tools is not None
+    assert modern_tools["result"]["resultType"] == "complete"
+    assert modern_tools["result"]["ttlMs"] == 0
+    assert modern_tools["result"]["cacheScope"] == "private"
+    assert len(modern_tools["result"]["tools"]) == 6
+
+    legacy_tools = runtime_mcp_server.handle(
+        {"jsonrpc": "2.0", "id": 3, "method": "tools/list", "params": {}},
+        principal_id="division-head-division01",
+        writer=None,
+    )
+    assert legacy_tools is not None
+    assert "resultType" not in legacy_tools["result"]
+    assert len(legacy_tools["result"]["tools"]) == 6
+
+
+def test_initialize_negotiates_current_legacy_protocol_when_requested() -> None:
+    response = runtime_mcp_server.handle(
+        {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "initialize",
+            "params": {
+                "protocolVersion": "2025-11-25",
+                "capabilities": {},
+                "clientInfo": {"name": "legacy-client", "version": "1.0"},
+            },
+        },
+        principal_id="die-lnx-executive-001",
+        writer=None,
+        control_policy="staging-read-only",
+    )
+    assert response is not None
+    assert response["result"]["protocolVersion"] == "2025-11-25"
+
+
 def test_initialize_discloses_server_pinned_staging_control_policy() -> None:
     response = runtime_mcp_server.handle(
         {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}},
