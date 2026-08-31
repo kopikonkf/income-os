@@ -3046,3 +3046,20 @@ Implementation commit `f65fccb6f1e3e342ce99da8c8419574893ff1545` was fully valid
 MX convergence remains time-gated. The real Linux MX-062 soak started at `2026-08-30T17:18:02.696Z` from canonical Linux commit `dfb74d7e09b19f68381e1064899d70c645a61f26`; `MX-062 = READY` and `MX-070 = BLOCKED` until the real >=24h receipt proves >=95% coverage, zero failure counters and valid chain. GitHub main may advance with QC acceptance, but Linux `/srv/die` must remain pinned during the active soak.
 
 NEXT convergence: close MX-062 only on real evidence -> `MX-070 = READY`; once MX-070 is accepted, OE-007 governed real-artifact canary may begin because QA/QC convergence is already satisfied. `SUB-001A = READY` is a separate submission-framework lane and carries no implicit marketplace-action authorization.
+
+
+---
+
+## 2026-08-31 - Linux principal MCP/identity roadmap canonized
+
+Windows stable runtime was audited read-only before Linux identity/MCP work. `ID-LNX-000 = DONE`. Empirical baseline: Executive wake = BrowserOS neo/BrowserClaw CDP `:9110`, Runtime MCP `:8791`, 18 tools; Division01 wake = dedicated Brave CDP `:9333`, Runtime MCP `:8792`, 6 tools. Wake is outbound cognition transport with a persistent ChatGPT thread; Runtime MCP is the separate OAuth-protected state/decision line. Windows services/tunnel remain untouched.
+
+Linux improvement doctrine: preserve those behavioral contracts while retaining isolated dynamic-CDP browser profiles, formal Division01 OE-001..OE-005 engine responsibilities, typed Executive review contracts, and Hermes Operator-v2 orchestration. Hermes must route cognition rather than absorb Division01/Executive work.
+
+Immediate READY tasks: `MCP-LNX-001` isolated Executive/Division01 staging services and `ID-LNX-001` Hermes prompt-source convergence. Requested execution priority is MCP first. Staging DNS `executive-mcp.aethers.biz.id` and `division01-mcp.aethers.biz.id` exists; Cloudflare tunnel `linux-mcp` exists with no active connector; staging ports `8891/8892` were free.
+
+Cutover safety is now explicit: `CUT-004A/B` must also wait for `MCP-LNX-005`; Windows remains rollback-capable through CUT-005. Architect remains last under existing `CUT-005 -> MX-053 -> MX-054 -> CUT-006` ordering.
+
+MX-062 remains separately time-gated and immutable on Linux commit `dfb74d7e09b19f68381e1064899d70c645a61f26`; do not pull/rebuild/restart its source/service for this lane.
+
+NEXT EXECUTION: `MCP-LNX-001` -> staging service validation; then `MCP-LNX-002` isolated tunnel; `MCP-LNX-003` E2E parity. Full graph: `docs/architecture/DIE_LINUX_PRINCIPAL_MCP_IDENTITY_ROADMAP_V1.md`.
