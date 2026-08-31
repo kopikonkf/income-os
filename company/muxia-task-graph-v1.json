@@ -599,7 +599,7 @@
                       "depends_on":  [
                                          "IDENTITY-LNX-REKEY-003"
                                      ],
-                      "status":  "WAITING_OPERATOR_CREDENTIALS",
+                      "status":  "DONE",
                       "artifact":  "operator login attestation for two dedicated Linux ChatGPT accounts",
                       "acceptance":  "Founder logs NEW dedicated Executive and Division01 accounts into their existing isolated Linux browser profiles; no Windows account/session reuse and no credential value is captured in canon."
                   },
@@ -611,7 +611,7 @@
                                          "MCP-LNX-002",
                                          "IDENTITY-LNX-REKEY-004"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "OAuth/principal/tool/read-path parity receipt",
                       "acceptance":  "ChatGPT-cloud or equivalent authenticated E2E proves Executive 18-tool and Division01 6-tool surfaces, context_snapshot integrity, principal pinning, cross-principal denial, and no DEV/raw access before any connector handoff."
                   },
@@ -625,7 +625,7 @@
                                          "DIE-201",
                                          "IDENTITY-LNX-REKEY-004"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "principal-dedicated Linux wake transport + thread-state receipt",
                       "acceptance":  "Preserve Windows wake semantics using authenticated principal-dedicated browser profiles, loopback dynamic CDP, in-page fetch, protected one-active-thread state, no JWT persistence, and no inbound MCP authority."
                   },

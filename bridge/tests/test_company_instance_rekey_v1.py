@@ -105,15 +105,16 @@ def test_linux_principals_authorize_same_scoped_semantics_and_share_canon_profil
     assert any(row["fact_id"] == "DIVISION01-ROLE" for row in dctx["data"]["decision_facts"])
 
 
-def test_rekey_tasks_block_real_e2e_and_wake_until_new_account_login() -> None:
+def test_rekey_login_gate_releases_real_e2e_and_wake_after_new_account_login() -> None:
     tasks = {row["id"]: row for row in json.loads(GRAPH.read_text(encoding="utf-8"))["tasks"]}
     assert tasks["COMPANY-INSTANCE-001"]["status"] == "DONE"
     assert tasks["IDENTITY-LNX-REKEY-001"]["status"] == "DONE"
     assert tasks["IDENTITY-LNX-REKEY-002"]["status"] == "DONE"
     assert tasks["IDENTITY-LNX-REKEY-003"]["status"] == "DONE"
-    assert tasks["IDENTITY-LNX-REKEY-004"]["status"] == "WAITING_OPERATOR_CREDENTIALS"
-    assert tasks["MCP-LNX-003"]["status"] == "BLOCKED"
+    assert tasks["IDENTITY-LNX-REKEY-004"]["status"] == "DONE"
+    assert tasks["MCP-LNX-003"]["status"] == "READY"
     assert "IDENTITY-LNX-REKEY-004" in tasks["MCP-LNX-003"]["depends_on"]
+    assert tasks["WAKE-LNX-001"]["status"] == "READY"
     assert "IDENTITY-LNX-REKEY-004" in tasks["WAKE-LNX-001"]["depends_on"]
 
 

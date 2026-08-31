@@ -1,0 +1,45 @@
+{
+  "schema": "die.identity-lnx-rekey.operator-login-acceptance.receipt.v1",
+  "date": "2026-08-31",
+  "task_id": "IDENTITY-LNX-REKEY-004",
+  "status": "DONE",
+  "operator_attestation": {
+    "new_dedicated_linux_executive_account_logged_in": true,
+    "new_dedicated_linux_division01_account_logged_in": true,
+    "credential_values_captured": false,
+    "windows_account_session_reused": false
+  },
+  "executive": {
+    "principal_id": "die-lnx-executive-001",
+    "profile": "/var/lib/die/executive/browser-profile",
+    "state": "READY",
+    "browser_pid": 242302,
+    "debug_host": "127.0.0.1",
+    "debug_port": 39353,
+    "login_ui_count": 0,
+    "launch_mode": "DIRECT_SPAWN_LOOPBACK_CDP"
+  },
+  "division01": {
+    "principal_id": "die-lnx-division-001",
+    "profile": "/var/lib/die/division01/browser-profile",
+    "state": "READY",
+    "browser_pid": 243758,
+    "debug_host": "127.0.0.1",
+    "debug_port": 42229,
+    "login_ui_count": 0,
+    "launch_mode": "DIRECT_SPAWN_LOOPBACK_CDP"
+  },
+  "isolation": {
+    "executive_profile_distinct_from_division01": true,
+    "executive_principal_distinct_from_division01": true,
+    "mx062_pid": 200975,
+    "production_source_sha": "dfb74d7e09b19f68381e1064899d70c645a61f26",
+    "production_mutated": false
+  },
+  "dependency_release": {
+    "MCP-LNX-003": "READY",
+    "WAKE-LNX-001": "READY",
+    "WAKE-LNX-002": "BLOCKED"
+  },
+  "acceptance": "Both NEW dedicated DIE-LINUX ChatGPT accounts are authenticated in isolated Linux browser profiles and survive relaunch under canonical direct-spawn Chrome Stable with loopback dynamic CDP. No credential value is recorded."
+}
