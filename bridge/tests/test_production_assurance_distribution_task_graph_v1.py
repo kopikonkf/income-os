@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 from pathlib import Path
@@ -73,7 +73,7 @@ def test_each_marketplace_has_contract_dryrun_activation_and_acceptance() -> Non
 
 def test_oe007_is_production_canary_and_requires_first_class_qa_qc() -> None:
     tasks = _tasks()
-    assert tasks["OE-007G"]["depends_on"] == ["OE-007F", "QA-001", "QC-001"]
+    assert tasks["OE-007G"]["depends_on"] == ["OE-007F", "UP-001", "META-001", "RIGHTS-001", "QA-001", "QC-001"]
     assert "QA/QC" in tasks["OE-007G"]["title"]
     assert "no marketplace submission is claimed" in tasks["OE-007G"]["acceptance"]
     assert "production canary" in tasks["OE-007"]["title"]
