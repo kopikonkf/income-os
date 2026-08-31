@@ -3275,3 +3275,18 @@ Controlled restart proof passed for Executive/Division01 Linux staging MCP servi
 ## 2026-08-31 - MCP-LNX-005 non-Architect Linux stack cutover-ready
 
 Executive and Division01 Linux MCP/wake/identity stack has all required proof layers: real ChatGPT-cloud 18/6 tool/context acceptance (`MCP-LNX-003`), fresh wake cognition convergence (`WAKE-LNX-002`), governed Hermes/Executive/Division01 society (`ID-LNX-005`), and controlled restart/session/OAuth/isolation stability (`MCP-LNX-004`). A final live snapshot still shows Linux Executive/Division01 public MCP health PASS, dedicated browsers READY, bound wake threads active, and Hermes proactive cron active; Windows `*.aethers.web.id` endpoints remain healthy rollback targets. `MCP-LNX-005=DONE` means cutover-ready only. It does not authorize connector handoff, Windows writer freeze/retirement, or Architect migration. `CUT-004A/B` remain BLOCKED until `CUT-003` is DONE.
+
+
+---
+
+## 2026-08-31 — MX-062 genuine 24-hour soak closure
+
+- `MX-062 = DONE`; `MX-070 = READY`.
+- Real soak: `2026-08-30T17:18:02.696Z` -> `2026-08-31T17:18:04.261Z`.
+- Elapsed: `86,401,565 ms`; samples `1438/1441`; coverage `99.7918%`.
+- Full hash-chain independently reverified: VALID.
+- All failure counters: `0`.
+- systemd terminal result: `success`; restarts: `0`.
+- `/srv/die` remained clean at `dfb74d7e09b19f68381e1064899d70c645a61f26` through closure.
+- No provider invocation, credential read, production-profile read, submission authority, connector handoff, Windows retirement or Architect cutover was implied.
+- Next migration-critical task: `MX-070 — Legacy compatibility adapter`.

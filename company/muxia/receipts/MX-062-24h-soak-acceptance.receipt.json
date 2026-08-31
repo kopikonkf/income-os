@@ -1,0 +1,82 @@
+{
+  "schema": "die.muxia.mx062-24h-soak-acceptance.v1",
+  "task_id": "MX-062",
+  "date": "2026-08-31",
+  "status": "PASS",
+  "canonical_base": "1ea9af59a6f03ee22f8b0651ce07b18262b76bb1",
+  "execution_source_sha": "dfb74d7e09b19f68381e1064899d70c645a61f26",
+  "runtime": {
+    "schema": "muxia.mx062.soak.receipt.v1",
+    "status": "PASS",
+    "startedAt": "2026-08-30T17:18:02.696Z",
+    "endedAt": "2026-08-31T17:18:04.261Z",
+    "elapsedMs": 86401565,
+    "minimumElapsedMs": 86400000,
+    "sampleIntervalMs": 60000,
+    "samples": 1438,
+    "expectedSamples": 1441,
+    "coverage": 0.997918,
+    "minimumCoverage": 0.95,
+    "failures": {
+      "profileCorruption": 0,
+      "credentialLeakage": 0,
+      "duplicateOwnership": 0,
+      "recoveryMismatch": 0,
+      "artifactMismatch": 0,
+      "clockRollback": 0,
+      "chainTamper": 0
+    },
+    "peakRssBytes": 82046976,
+    "finalSampleHash": "327669c8a318f5c2ba134cebdd2b513990f5064341a67db28e5998c36a1f6a0a",
+    "authorityBoundary": {
+      "providerInvoked": false,
+      "credentialsRead": false,
+      "productionProfileRead": false,
+      "submissionAuthorized": false
+    }
+  },
+  "independent_verification": {
+    "ledger_samples": 1438,
+    "expected_samples": 1441,
+    "coverage": 0.9979181124219292,
+    "hash_chain_valid": true,
+    "aggregate_failure_counters_all_zero": true,
+    "runtime_receipt_sha256": "b0e85112898452e81ed01c6ac2f514cc6d97a6e168a577444b9f3d0042d736a1",
+    "ledger_sha256": "afdae4ba481d2e59e417a63ed1a9ee47a4a36b9ac6e10580174e10eef08476f0",
+    "journal_terminal_event": "MX062_SOAK_COMPLETE status=PASS samples=1438 coverage=0.997918",
+    "systemd_result": "success",
+    "systemd_nrestarts": 0,
+    "srv_die_clean": true,
+    "srv_die_head": "dfb74d7e09b19f68381e1064899d70c645a61f26"
+  },
+  "acceptance": {
+    "elapsed_at_least_24h": true,
+    "coverage_at_least_95_percent": true,
+    "zero_failure_counters": true,
+    "valid_hash_chain": true,
+    "complete_resource_failure_receipt": true,
+    "provider_invoked": false,
+    "credentials_read": false,
+    "production_profile_read": false,
+    "submission_authorized": false
+  },
+  "state_transition": {
+    "MX-062": "DONE",
+    "MX-070": "READY"
+  },
+  "authority_boundary": {
+    "windows_retirement_authorized": false,
+    "connector_handoff_authorized": false,
+    "architect_cutover_authorized": false,
+    "provider_or_submission_authority_expanded": false
+  },
+  "validation": {
+    "mx062_runner_tests": "6/6 PASS (Linux)",
+    "closure_graph_and_one_canon_pytest": "23/23 PASS (Linux)",
+    "one_canon_validator": "11/11 PASS (Linux)",
+    "muxia_build": "PASS (Linux)",
+    "muxia_parity": "2 PASS / 3 expected Windows-evidence skips (Linux)",
+    "full_bridge_linux_note": "platform-mixed suite contains Windows-only and environment-bound tests; closure-relevant Linux suites pass",
+    "diff_check": "PASS"
+  }
+}

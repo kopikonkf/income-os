@@ -1,7 +1,7 @@
 # MUXIA Sanitized Observability and Fault Injection v1
 
 Date: 2026-08-30
-Status: `MX-060 DONE / MX-061 DONE / MX-062 READY`
+Status: `MX-060 DONE / MX-061 DONE / MX-062 DONE`
 
 ## Scope
 

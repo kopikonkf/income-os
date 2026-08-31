@@ -94,3 +94,8 @@ Publishing this runner does not complete MX-062. `MX-062` remains `READY` until 
 - post-run canonical validation.
 
 Only then may `MX-062` transition to DONE and open `MX-070`.
+
+
+## 2026-08-31 final acceptance
+
+The genuine Linux run completed at `2026-08-31T17:18:04.261Z` after `86,401,565 ms`. The final receipt reports 1,438 samples, 1,441 expected samples, `0.997918` coverage, zero failure counters and terminal `PASS`. Independent post-run verification confirmed the full ledger hash-chain. `MX-062 = DONE`; `MX-070 = READY`.
