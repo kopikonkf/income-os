@@ -76,6 +76,9 @@ systemctl disable die-hermes-gateway.service >/dev/null 2>&1 || true
 rm -f "$ENV_DIR/READY"
 
 version="$(runuser -u "$SERVICE_USER" -- env HERMES_HOME="$HERMES_HOME" "$VENV/bin/hermes" --version | head -n 1 | tr -d '\r')"
+root_agents_sha256="$(sha256sum "$DIE_HOME/AGENTS.md" | awk '{print $1}')"
+hermes_agents_sha256="$(sha256sum "$DIE_HOME/company/die-agents/hermes/AGENTS.md" | awk '{print $1}')"
+hermes_soul_sha256="$(sha256sum "$DIE_HOME/company/die-agents/hermes/SOUL.md" | awk '{print $1}')"
 chown -R "$SERVICE_USER:$SERVICE_GROUP" "$HERMES_HOME"
 cat > "$INSTALL_ROOT/INSTALL_PROVENANCE" <<EOF
 source=$HERMES_UPSTREAM
@@ -85,6 +88,10 @@ windows_profile_copied=false
 windows_auth_copied=false
 windows_state_db_copied=false
 service_ready_gate=$ENV_DIR/READY
+terminal_cwd=$DIE_HOME/company/die-agents/hermes
+root_agents_sha256=$root_agents_sha256
+hermes_agents_sha256=$hermes_agents_sha256
+hermes_soul_sha256=$hermes_soul_sha256
 EOF
 chmod 0644 "$INSTALL_ROOT/INSTALL_PROVENANCE"
 

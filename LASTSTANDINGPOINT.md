@@ -3198,3 +3198,10 @@ Next operator proof: Division01 invokes `context_snapshot` and reports only prin
 Real ChatGPT Division01 invoked `context_snapshot` and returned principal `die-lnx-division-001`, scope `single_division`, capability `bounded_semantic_observation`, freshness `fresh`; a control invocation failed closed with `E_STAGING_READ_ONLY`. Real ChatGPT Executive returned principal `die-lnx-executive-001`, scope `company_portfolio`, capability `semantic_observation`, freshness `fresh`; its control invocation also failed closed with `E_STAGING_READ_ONLY`. Tool scans remain Division01=6 and Executive=18.
 
 Both snapshots report `source_trust=DEGRADED` and `completeness=degraded`; these are preserved as semantic-source quality signals, not reclassified as MCP transport failures. Prior authenticated cross-principal bearer proof remains `DENIED_401` both directions. `MCP-LNX-003=DONE`; `WAKE-LNX-001=READY`; `WAKE-LNX-002` remains BLOCKED pending wake completion.
+
+
+---
+
+## 2026-08-31 - ID-LNX-001 Hermes prompt-source convergence implementation staged
+
+Live inspection proved `die-hermes-gateway.service` launches from `/srv/die`; upstream Hermes resolves project context from `TERMINAL_CWD` or launch cwd and natively merges `AGENTS.md` from git root down to the selected component directory. The canonical fix pins `TERMINAL_CWD=/srv/die/company/die-agents/hermes`, preserving `/srv/die` as the process WorkingDirectory while ensuring the effective prompt includes repository-root `AGENTS.md` followed by the more specific Hermes `AGENTS.md`. `SOUL.md` remains sourced independently from `HERMES_HOME`. Installer provenance now records SHA-256 for all three canonical prompt inputs; no second prompt canon is created.
