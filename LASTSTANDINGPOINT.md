@@ -3135,3 +3135,16 @@ NEXT: implement/test runtime aliasing + instance-local escalation + staging unit
 Implementation readiness pinned at `294050a9b3569c7f3b2a7a47fd56a12a31a7150d`. Runtime MCP v1.2.0 supports both Windows and Linux instance principals; Linux principals map to the same shared semantic canon role profiles rather than duplicated identity documents. Instance-local escalation is enforced in both tool schema and validation.
 
 Validation: MUXIA 70/70; bridge 544/544; one-canon pytest 6/6; validator 11/11; Company Brain PASS (9 identities / 8 runtime); secret scan 0; pyc 0. `IDENTITY-LNX-REKEY-003` remains READY; live staging still exposes the pre-rekey principal IDs until exact-head deployment. `IDENTITY-LNX-REKEY-004` remains blocked pending new-account login.
+
+
+---
+
+## 2026-08-31 - Linux company cognition principal re-key accepted
+
+`IDENTITY-LNX-REKEY-003 = DONE`; `IDENTITY-LNX-REKEY-004 = WAITING_OPERATOR_CREDENTIALS`; `MCP-LNX-003 = BLOCKED` until the Founder logs NEW dedicated ChatGPT accounts into the existing Linux Executive and Division01 browser profiles.
+
+Linux public MCP now exposes `die-lnx-executive-001` (18 tools, v1.2.0) and `die-lnx-division-001` (6 tools, v1.2.0) on `*.aethers.biz.id`. Windows `*.aethers.web.id` simultaneously remains `chatgpt-plus-executive` / `division-head-division01` (v1.1.0). This is the empirical phase-1 two-company cognitive-principal split.
+
+During re-key the Linux staging bearer/login secrets were rotated, OAuth client IDs were re-keyed, and no secret value was returned. Authenticated local proof: both context snapshots bind to the new principals with canon-context VERIFIED; Division01 escalation targets only `die-lnx-executive-001` or Founder; cross-principal bearer use is denied 401; all control calls remain `E_STAGING_READ_ONLY`.
+
+MX-062 remains active PID 200975 on `/srv/die` SHA `dfb74d7e...`. Cloudflare connector stayed active. Browser profiles were NOT logged out or changed. NEXT OPERATOR ACTION: login new dedicated Executive and Division01 ChatGPT accounts in Linux profiles; then mark REKEY-004 DONE and execute MCP-LNX-003 real ChatGPT E2E.

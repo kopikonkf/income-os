@@ -1,0 +1,95 @@
+{
+  "schema": "die.identity-lnx-rekey.server-acceptance.receipt.v1",
+  "date": "2026-08-31",
+  "implementation_pr": 85,
+  "implementation_merge": "719dd6f97da631e156e9fe6581819c1f16f95aac",
+  "deployed_reviewed_head": "dfa764c2332a74dea5acbcc35f2b66b2379714b4",
+  "task_state": {
+    "COMPANY-INSTANCE-001": "DONE",
+    "IDENTITY-LNX-REKEY-001": "DONE",
+    "IDENTITY-LNX-REKEY-002": "DONE",
+    "IDENTITY-LNX-REKEY-003": "DONE",
+    "IDENTITY-LNX-REKEY-004": "WAITING_OPERATOR_CREDENTIALS",
+    "MCP-LNX-003": "BLOCKED"
+  },
+  "linux": {
+    "source": "/opt/die/staging/income-os",
+    "source_sha": "dfa764c2332a74dea5acbcc35f2b66b2379714b4",
+    "rollback_source": "/opt/die/staging/income-os-pre-rekey-f5eb720",
+    "executive": {
+      "principal": "die-lnx-executive-001",
+      "service": "die-executive-runtime-mcp-staging.service",
+      "pid": 235114,
+      "port": 8891,
+      "tools": 18,
+      "runtime_version": "1.2.0",
+      "control_policy": "staging-read-only",
+      "public_origin": "https://executive-mcp.aethers.biz.id"
+    },
+    "division01": {
+      "principal": "die-lnx-division-001",
+      "service": "die-division01-runtime-mcp-staging.service",
+      "pid": 235115,
+      "port": 8892,
+      "tools": 6,
+      "runtime_version": "1.2.0",
+      "control_policy": "staging-read-only",
+      "public_origin": "https://division01-mcp.aethers.biz.id"
+    },
+    "cloudflare": {
+      "service": "die-runtime-mcp-cloudflared.service",
+      "pid": 230828,
+      "unchanged_during_rekey": true
+    },
+    "secret_rotation": {
+      "mcp_bearer_rotated": true,
+      "login_password_rotated": true,
+      "oauth_client_ids_rekeyed": true,
+      "secret_values_returned": false
+    },
+    "authenticated_proof": {
+      "executive_context_canon": "VERIFIED",
+      "division01_context_canon": "VERIFIED",
+      "linux_division_escalation_targets": [
+        "die-lnx-executive-001",
+        "founder"
+      ],
+      "cross_bearer_exec_to_div": "DENIED_401",
+      "cross_bearer_div_to_exec": "DENIED_401",
+      "control_calls": "E_STAGING_READ_ONLY"
+    }
+  },
+  "public_parallel_instance_proof": {
+    "linux_executive": {
+      "origin": "executive-mcp.aethers.biz.id",
+      "principal": "die-lnx-executive-001",
+      "health": 200
+    },
+    "linux_division01": {
+      "origin": "division01-mcp.aethers.biz.id",
+      "principal": "die-lnx-division-001",
+      "health": 200
+    },
+    "windows_executive": {
+      "origin": "executive-mcp.aethers.web.id",
+      "principal": "chatgpt-plus-executive",
+      "health": 200
+    },
+    "windows_division01": {
+      "origin": "division01-mcp.aethers.web.id",
+      "principal": "division-head-division01",
+      "health": 200
+    },
+    "linux_unauthenticated_mcp": 401,
+    "oauth_issuers_exact_linux_domains": true
+  },
+  "mx062": {
+    "active": true,
+    "pid": 200975,
+    "production_source_sha": "dfb74d7e09b19f68381e1064899d70c645a61f26",
+    "mutated": false
+  },
+  "external_account_login_performed": false,
+  "chatgpt_connector_e2e_performed": false,
+  "acceptance": "Server-side Linux principal split is complete and public. Operator must now login NEW dedicated Linux ChatGPT accounts before MCP-LNX-003."
+}
