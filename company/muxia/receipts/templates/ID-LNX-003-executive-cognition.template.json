@@ -1,0 +1,31 @@
+{
+  "schema": "die.cognition.assimilation.receipt.v1",
+  "task_id": "ID-LNX-003",
+  "company_instance_id": "DIE-LINUX",
+  "principal_id": "die-lnx-executive-001",
+  "scope": "company_portfolio",
+  "authority_capability": "semantic_observation",
+  "freshness_status": "fresh",
+  "canon_load_status": "VERIFIED",
+  "source_trust": "DEGRADED",
+  "completeness": "degraded",
+  "repo_sha": "<EXACT_REPO_SHA>",
+  "role_anchor": "company/executive/IDENTITY.md",
+  "bootstrap_ref": "company/executive/linux/COGNITION_BOOTSTRAP_V1.md",
+  "bootstrap_status": "PASS",
+  "responsibilities_ack": [
+    "portfolio_synthesis",
+    "strategic_challenge",
+    "division01_worth_making_review",
+    "division01_blueprint_review",
+    "bounded_review_outcomes"
+  ],
+  "boundaries_ack": [
+    "no_worker_command",
+    "no_direct_state_write",
+    "no_submission",
+    "no_self_authority"
+  ],
+  "account_memory_used_as_authority": false,
+  "mutation_performed": false
+}

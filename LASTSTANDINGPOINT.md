@@ -3240,3 +3240,10 @@ Executive and Division01 dedicated Chrome sessions are each bound to exactly one
 ## 2026-08-31 - WAKE-LNX-002 / cognition bootstrap implementation staged
 
 Implemented principal-pinned wake-to-context convergence envelopes and validators. Each Linux wake explicitly requires `context_snapshot` before any reasoning and validates Linux principal, scope, authority capability, freshness `fresh`, canon load `VERIFIED`, repository revision, and truthful source-trust/completeness. Added Linux Executive and Division01 cognition bootstrap contracts plus Hermes-Executive-Division01-Worker-MUXIA society/authority matrix. These artifacts preserve shared semantic role anchors while binding Linux-specific principals. Live WAKE-LNX-002 acceptance still requires operator-supported delivery of the staged message followed by real ChatGPT MCP `context_snapshot`; no unattended Send is claimed.
+
+
+---
+
+## 2026-08-31 - ID-LNX-003/004/005 acceptance contracts staged
+
+Added deterministic cognition assimilation validators and Linux-principal receipt templates for Executive (`ID-LNX-003`) and Division01 (`ID-LNX-004`), plus society validation against the live `ID-LNX-002` Hermes operator receipt. Acceptance requires exact Linux principal/scope/capability, freshness `fresh`, canon load `VERIFIED`, exact repo SHA, role-specific responsibility acknowledgements, explicit authority boundaries, no account-memory authority and no mutation. Society acceptance additionally rejects principal/scope collapse and requires Linux `income-operator` deterministic no-agent scheduler DONE. Task statuses remain BLOCKED until WAKE-LNX-002 live convergence is accepted.
