@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.asset.qc-audit.v1.schema.json",
+  "title": "DIE Asset QC Replay/Drift Audit v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "baseline_reviewer",
+    "current_reviewer",
+    "deltas",
+    "blocking_reasons",
+    "review_reasons",
+    "authority_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.asset.qc-audit.v1"
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "REVIEW_REQUIRED",
+        "BLOCKED"
+      ]
+    },
+    "baseline_reviewer": {
+      "type": "object"
+    },
+    "current_reviewer": {
+      "type": "object"
+    },
+    "deltas": {
+      "type": "object"
+    },
+    "blocking_reasons": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "review_reasons": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "release_authorized",
+        "submission_authorized",
+        "self_promotion_allowed"
+      ],
+      "properties": {
+        "release_authorized": {
+          "const": false
+        },
+        "submission_authorized": {
+          "const": false
+        },
+        "self_promotion_allowed": {
+          "const": false
+        }
+      }
+    }
+  }
+}

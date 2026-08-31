@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.asset.qc-calibration.v1.schema.json",
+  "title": "DIE Asset QC Calibration Report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "report_id",
+    "evaluated_at",
+    "rubric_id",
+    "rubric_version",
+    "corpus_sha256",
+    "reviewer_id",
+    "reviewer_version",
+    "case_count",
+    "metrics",
+    "confidence_bands",
+    "per_defect_class",
+    "per_asset_class",
+    "input_refs",
+    "authority_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.asset.qc-calibration.v1"
+    },
+    "report_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evaluated_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rubric_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rubric_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "corpus_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "reviewer_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewer_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "case_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "agreement_rate",
+        "false_pass_rate",
+        "false_fail_rate",
+        "hard_defect_miss_count",
+        "mean_confidence",
+        "confidence_calibration_gap"
+      ],
+      "properties": {
+        "agreement_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "false_pass_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "false_fail_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "hard_defect_miss_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mean_confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "confidence_calibration_gap": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "confidence_bands": {
+      "type": "array"
+    },
+    "per_defect_class": {
+      "type": "object"
+    },
+    "per_asset_class": {
+      "type": "object"
+    },
+    "input_refs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "release_authorized",
+        "submission_authorized",
+        "self_promotion_allowed"
+      ],
+      "properties": {
+        "release_authorized": {
+          "const": false
+        },
+        "submission_authorized": {
+          "const": false
+        },
+        "self_promotion_allowed": {
+          "const": false
+        }
+      }
+    }
+  }
+}

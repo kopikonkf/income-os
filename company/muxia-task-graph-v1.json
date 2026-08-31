@@ -1358,7 +1358,7 @@
                       "depends_on":  [
                                          "QC-001C"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "calibration report engine",
                       "acceptance":  "Agreement, false-pass, false-fail, hard-defect misses, confidence calibration and per-class/per-asset metrics are reproducible across model versions."
                   },
@@ -1369,7 +1369,7 @@
                       "depends_on":  [
                                          "QC-001D"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "SHADOW_ONLY dual-review workflow + disagreement queue",
                       "acceptance":  "Automated QC runs beside Founder review; disagreement and low-confidence cases are retained for calibration; engine decision is not yet release authority."
                   },
@@ -1380,7 +1380,7 @@
                       "depends_on":  [
                                          "QC-001E"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "versioned QC delegation policy schema",
                       "acceptance":  "Defines SHADOW_ONLY, CALIBRATED_RECOMMENDER, BOUNDED_AUTO_QC and SAMPLED_AUDIT modes; exact promotion thresholds and scope require Founder ratification."
                   },
@@ -1391,7 +1391,7 @@
                       "depends_on":  [
                                          "QC-001F"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "QC replay/drift/audit tests + receipt",
                       "acceptance":  "Model/version changes replay against pinned corpus; delegation scope, override, drift and false-pass safeguards fail closed; no self-promotion."
                   },
@@ -1402,7 +1402,7 @@
                       "depends_on":  [
                                          "QC-001G"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "QC-001 acceptance receipt",
                       "acceptance":  "QC engine is calibrated/shadow-capable and delegation-ready. Founder manual QC may be removed only for an explicitly ratified bounded auto-QC scope; submission authority remains separate."
                   },
@@ -1413,7 +1413,7 @@
                       "depends_on":  [
                                          "QC-001"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "die.asset.submission-package.v1 + route state schema",
                       "acceptance":  "Immutable package pins artifact, QA, QC, Blueprint, metadata and platform profile hashes; route states distinguish prepared, authorized, submitted, review pending, approved/rejected and reconciled."
                   },

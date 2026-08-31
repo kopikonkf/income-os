@@ -1,0 +1,70 @@
+{
+  "schema": "die.qc-b02-calibration-delegation-acceptance.receipt.v1",
+  "date": "2026-08-31",
+  "base_main": "dfb74d7e09b19f68381e1064899d70c645a61f26",
+  "implementation_commit": "f65fccb6f1e3e342ce99da8c8419574893ff1545",
+  "tasks": {
+    "QC-001D": "DONE",
+    "QC-001E": "DONE",
+    "QC-001F": "DONE",
+    "QC-001G": "DONE"
+  },
+  "capabilities": {
+    "calibration_metrics": [
+      "agreement_rate",
+      "false_pass_rate",
+      "false_fail_rate",
+      "hard_defect_miss_count",
+      "confidence_calibration_gap",
+      "per_defect_class",
+      "per_asset_class"
+    ],
+    "shadow_dual_review": true,
+    "disagreement_queue": true,
+    "delegation_modes": [
+      "SHADOW_ONLY",
+      "CALIBRATED_RECOMMENDER",
+      "BOUNDED_AUTO_QC",
+      "SAMPLED_AUDIT"
+    ],
+    "founder_ratification_hash_pinned": true,
+    "scope_bounded_delegation": true,
+    "replay_drift_audit": true
+  },
+  "validation": {
+    "focused_qc_assurance": "27/27 PASS",
+    "muxia_build_core_parity": "70/70 PASS",
+    "full_bridge": "521/521 PASS",
+    "one_canon_pytest": "6/6 PASS",
+    "one_canon_validator": "11/11 PASS",
+    "high_confidence_secret_hits": 0,
+    "bytecode_count": 0,
+    "diff_check": "PASS",
+    "validation_root": "standalone clean clone pinned to implementation commit"
+  },
+  "authority_boundary": {
+    "canonical_mode": "SHADOW_ONLY",
+    "canonical_policy_status": "UNRATIFIED",
+    "founder_final_by_default": true,
+    "release_authorized_by_default": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "qa_hard_veto_waivable": false,
+    "self_promotion_allowed": false,
+    "bounded_auto_qc_requires_founder_ratification": true
+  },
+  "artifacts": {
+    "bin/die_asset_qc_assurance.py": "d0a7f94db15e24929ffce0e2f1d766f5e874324b18283bcf561a2d17b068ef16",
+    "bridge/income_os_bridge/asset_qc_assurance.py": "c3971106339ffd61ac61db3343cb680cab4e82895aa9d3fef86075100c8cf920",
+    "bridge/tests/test_qc001_asset_qc_assurance.py": "2a2b5674d20f96fca02cfa43e985c23815acf840175cd33a799c300a714cde3f",
+    "company/contracts/qc/die.asset.qc-audit-policy.v1.json": "4246f225fe065d393ebdb2e3901f474537d9d3998e344ca47744b84c13e05a08",
+    "company/contracts/qc/die.asset.qc-delegation-policy.shadow.v1.json": "720d23d40950b9184ebfcc652813f909cabca84eed1ef2e705114a3a1fdcc801",
+    "company/schemas/die.asset.qc-audit.v1.schema.json": "219e90bc7f98a30842b248f45e741ecc88d1dd69b75ac9b8aa6024b308c33fbe",
+    "company/schemas/die.asset.qc-calibration.v1.schema.json": "7ce8dc7d1c8b198dd064591a99184d64a061fbaab2b6dc97425f3a9294e8b1d9",
+    "company/schemas/die.asset.qc-delegation-evaluation.v1.schema.json": "f76efefa2444ee720f1f365caa8ee2c7131cd67835d52d302e945604aaa3b42c",
+    "company/schemas/die.asset.qc-delegation-policy.v1.schema.json": "af21d20eada487354369c46d74b5631edf21d1311824d537edd39da9f06696aa",
+    "company/schemas/die.asset.qc-disagreement-queue.v1.schema.json": "187511081b4fa0675e9d9fe8d57eaa44cbefc33e732e69f5e1ef0ab7adb29971",
+    "company/schemas/die.asset.qc-shadow-case.v1.schema.json": "0aa5f3865d6fefde22dca6ec6814ded1e8d64c00ccd99a6db27c82cdcff21f91",
+    "docs/operations/ASSET_QC_CALIBRATION_DELEGATION_V1.md": "674f688d066e867d26b083a8bcb5e9d2d4cd8cd104e9ac8cdbb9adf7009b2541"
+  }
+}

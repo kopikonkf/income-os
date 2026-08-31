@@ -1,0 +1,21 @@
+{
+  "schema_version": "die.asset.qc-audit-policy.v1",
+  "policy_id": "DIE-QC-AUDIT-GUARDRAIL-V1",
+  "policy_version": 1,
+  "drift_guardrails": {
+    "max_agreement_drop": 0.05,
+    "max_false_pass_rate_increase": 0.0,
+    "max_hard_defect_miss_increase": 0,
+    "max_confidence_calibration_gap_increase": 0.1
+  },
+  "behavior": {
+    "worse_false_pass_blocks": true,
+    "worse_hard_defect_miss_blocks": true,
+    "scope_mismatch_blocks": true,
+    "policy_self_promotion_blocks": true
+  },
+  "authority_boundary": {
+    "release_authorized": false,
+    "submission_authorized": false
+  }
+}

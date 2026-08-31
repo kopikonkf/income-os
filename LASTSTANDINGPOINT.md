@@ -3029,3 +3029,20 @@ The runner hard-codes a minimum real elapsed duration of 86,400,000 ms (24h), fi
 Standalone validation pinned to implementation commit: MUXIA build/core/parity 70/70 PASS including MX-062 focused 6/6; full bridge 511/511 PASS; one-canon pytest 6/6 PASS; one-canon validator 11/11 PASS; high-confidence secret hits 0; bytecode 0; diff check PASS. Receipt: `company/muxia/receipts/MX-062-runner-readiness.receipt.json`.
 
 NEXT MX lane: merge readiness -> Linux `/srv/die` pull -> build/install isolated `muxia-mx062-soak@<runtime-user>.service` -> explicit start -> real elapsed >=24h. Only a final receipt with >=95% coverage, zero failure counters and a valid chain may transition `MX-062 -> DONE` and `MX-070 -> READY`.
+
+
+---
+
+## 2026-08-31 - QC-B02 / QC-001 acceptance
+
+`QC-001D = DONE`, `QC-001E = DONE`, `QC-001F = DONE`, `QC-001G = DONE`, and milestone `QC-001 = DONE`; `SUB-001A = READY`. Asset QC is now calibrated/shadow-capable and delegation-ready, but milestone completion does **not** remove Founder review. Canonical delegation remains `SHADOW_ONLY` with an unratified policy.
+
+Calibration reports reproducibly measure agreement, false-pass, false-fail, hard-defect misses, confidence calibration, per-defect-class and per-asset-class performance. SHADOW dual review retains disagreements and low-confidence cases. Delegation modes are versioned as `SHADOW_ONLY`, `CALIBRATED_RECOMMENDER`, `BOUNDED_AUTO_QC`, and `SAMPLED_AUDIT`; every non-SHADOW release scope requires exact Founder ratification, policy-body hash, reviewer/model scope, asset-class/marketplace scope, validity window and calibration thresholds. `CALIBRATED_RECOMMENDER` still retains Founder-final authority.
+
+Replay/drift audit is fail-closed: corpus/rubric mismatch, false-pass regression or hard-defect-miss regression blocks; noncritical agreement/confidence drift routes to review. QC never grants marketplace submission/publication authority, cannot waive QA hard vetoes and cannot self-promote its delegation mode.
+
+Implementation commit `f65fccb6f1e3e342ce99da8c8419574893ff1545` was fully validated before lifecycle transition: focused QC assurance 27/27 PASS; MUXIA 70/70 PASS; full bridge 521/521 PASS; one-canon pytest 6/6 PASS; validator 11/11 PASS; secret scan 0; bytecode 0; diff check PASS. Receipts: `company/muxia/receipts/QC-B02-calibration-delegation-acceptance.receipt.json` and `company/muxia/receipts/QC-001-acceptance.receipt.json`.
+
+MX convergence remains time-gated. The real Linux MX-062 soak started at `2026-08-30T17:18:02.696Z` from canonical Linux commit `dfb74d7e09b19f68381e1064899d70c645a61f26`; `MX-062 = READY` and `MX-070 = BLOCKED` until the real >=24h receipt proves >=95% coverage, zero failure counters and valid chain. GitHub main may advance with QC acceptance, but Linux `/srv/die` must remain pinned during the active soak.
+
+NEXT convergence: close MX-062 only on real evidence -> `MX-070 = READY`; once MX-070 is accepted, OE-007 governed real-artifact canary may begin because QA/QC convergence is already satisfied. `SUB-001A = READY` is a separate submission-framework lane and carries no implicit marketplace-action authorization.
