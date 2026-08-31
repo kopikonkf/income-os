@@ -56,7 +56,7 @@ Wake may trigger cognition but never substitutes for `context_snapshot`. Runtime
 | `ID-LNX-004` | DONE | Division01 identity + OE engine cognition bootstrap |
 | `ID-LNX-005` | DONE | Cross-principal role/authority acceptance |
 | `MCP-LNX-004` | DONE | Restart/session/isolation/stability proof |
-| `MCP-LNX-005` | READY | Executive + Division01 Linux MCP/wake acceptance |
+| `MCP-LNX-005` | DONE | Executive + Division01 Linux MCP/wake acceptance; cutover-ready, no connector handoff |
 
 `CUT-004A` and `CUT-004B` additionally depend on `MCP-LNX-005`. Therefore a Linux staging PASS cannot silently become connector cutover. Founder handoff remains a later explicit action.
 

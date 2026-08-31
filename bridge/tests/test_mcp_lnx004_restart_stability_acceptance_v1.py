@@ -9,7 +9,7 @@ RECEIPT=ROOT/'company'/'muxia'/'receipts'/'MCP-LNX-004-restart-session-isolation
 def test_mcp_lnx004_done_and_lnx005_released() -> None:
     tasks={x['id']:x for x in json.loads(GRAPH.read_text(encoding='utf-8'))['tasks']}
     assert tasks['MCP-LNX-004']['status']=='DONE'
-    assert tasks['MCP-LNX-005']['status']=='READY'
+    assert tasks['MCP-LNX-005']['status']=='DONE'
 
 def test_services_tunnel_and_browser_sessions_survive_controlled_restart() -> None:
     d=json.loads(RECEIPT.read_text(encoding='utf-8'))

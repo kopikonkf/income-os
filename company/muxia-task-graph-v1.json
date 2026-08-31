@@ -718,7 +718,7 @@
                       "depends_on":  [
                                          "MCP-LNX-004"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "non-Architect Linux principal acceptance receipt",
                       "acceptance":  "Executive and Division01 Linux MCP + wake + identity stack is accepted as cutover-ready while Windows remains active; this authorizes readiness only, not the Founder connector handoff itself."
                   },
