@@ -3157,3 +3157,10 @@ MX-062 remains active PID 200975 on `/srv/die` SHA `dfb74d7e...`. Cloudflare con
 Founder observed OpenAI login route error `400 Invalid content type: text/html; charset=UTF-8` while attempting the NEW DIE-LINUX Executive account in the existing Executive browser profile. The browser engine is already the corrected direct-spawn Google Chrome Stable path; this recurrence is therefore treated as stale/pre-rekey auth profile state rather than a return to Playwright-launched Chromium.
 
 Repair scope is Executive only. Canon launcher heartbeat principal is corrected from legacy Windows `chatgpt-plus-executive` to Linux `die-lnx-executive-001`. Live repair must stop only the Executive browser launcher, archive the old Executive profile without deleting it, create a fresh `/var/lib/die/executive/browser-profile`, and relaunch direct-spawn Chrome Stable using the Linux principal. Division01 and MX-062 remain untouched.
+
+
+---
+
+## 2026-08-31 - Division01 Linux browser principal rebind staged
+
+After successful NEW Linux Executive login and monitored relaunch, the Executive heartbeat is `READY` on principal `die-lnx-executive-001` with direct-spawn Chrome Stable and dynamic loopback CDP. Division01 browser launcher is now being rebound from the Windows principal id to Linux `die-lnx-division-001`; the Windows Runtime MCP/identity bindings remain unchanged.
