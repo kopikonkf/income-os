@@ -1,0 +1,47 @@
+{
+  "schema": "die.qc-001-acceptance.receipt.v1",
+  "date": "2026-08-31",
+  "implementation_commit": "f65fccb6f1e3e342ce99da8c8419574893ff1545",
+  "task_state": {
+    "QC-001": "DONE",
+    "SUB-001A": "READY"
+  },
+  "accepted_components": [
+    "QC-001A rubric/outcome/authority",
+    "QC-001B Founder/manual corpus",
+    "QC-001C bounded evaluator",
+    "QC-001D calibration",
+    "QC-001E shadow/disagreement",
+    "QC-001F delegation policy",
+    "QC-001G replay/drift/audit"
+  ],
+  "meaning_of_done": "Engine is calibrated/shadow-capable and delegation-ready; Founder review is not removed by milestone completion.",
+  "authority_boundary": {
+    "canonical_mode": "SHADOW_ONLY",
+    "canonical_policy_status": "UNRATIFIED",
+    "founder_final_by_default": true,
+    "release_authorized_by_default": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "qa_hard_veto_waivable": false,
+    "self_promotion_allowed": false,
+    "bounded_auto_qc_requires_founder_ratification": true
+  },
+  "mx_convergence": {
+    "MX-062": "READY_REAL_SOAK_RUNNING",
+    "MX-070": "BLOCKED",
+    "oe007_qa_qc_dependency": "SATISFIED",
+    "oe007_mx070_dependency": "UNSATISFIED"
+  },
+  "validation": {
+    "focused_qc_assurance": "27/27 PASS",
+    "muxia_build_core_parity": "70/70 PASS",
+    "full_bridge": "521/521 PASS",
+    "one_canon_pytest": "6/6 PASS",
+    "one_canon_validator": "11/11 PASS",
+    "high_confidence_secret_hits": 0,
+    "bytecode_count": 0,
+    "diff_check": "PASS",
+    "validation_root": "standalone clean clone pinned to implementation commit"
+  }
+}
