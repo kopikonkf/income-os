@@ -103,6 +103,8 @@ export async function runWakeTransport(options) {
     if (!envelopeFile || !path.isAbsolute(envelopeFile)) throw new Error('E_ENVELOPE_PATH');
     const envelope = validateEnvelope(JSON.parse(fs.readFileSync(envelopeFile, 'utf8')), principalId);
     const box = await composer(page);
+    const existingText = await box.inputValue().catch(async () => await box.textContent() || '');
+    if (existingText.trim()) throw new Error('E_COMPOSER_NOT_EMPTY');
     const marker = command === 'canary' ? `[${envelope.wake_id}] ${envelope.briefing}` : envelope.briefing;
     await box.fill(marker);
     const stagedText = await box.inputValue().catch(async () => await box.textContent() || '');
