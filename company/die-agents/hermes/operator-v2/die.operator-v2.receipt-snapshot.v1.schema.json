@@ -6,6 +6,7 @@
   "additionalProperties": false,
   "required": [
     "schema_version",
+    "company_instance_id",
     "mission_id",
     "subject_id",
     "as_of",
@@ -158,6 +159,12 @@
     "kanban_metadata": {
       "type": "object",
       "additionalProperties": true
+    },
+    "company_instance_id": {
+      "enum": [
+        "DIE-WINDOWS",
+        "DIE-LINUX"
+      ]
     }
   }
 }

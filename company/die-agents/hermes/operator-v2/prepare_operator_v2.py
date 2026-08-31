@@ -78,6 +78,7 @@ def prepare(
         routing = ROUTING.plan(projection, state, now=snapshot["as_of"])
     prepared = {
         "schema": "die.operator-v2.prepared-tick.v1",
+        "company_instance_id": snapshot["company_instance_id"],
         "mission_id": snapshot["mission_id"],
         "subject_id": snapshot["subject_id"],
         "as_of": snapshot["as_of"],
@@ -126,6 +127,7 @@ def main(argv: list[str] | None = None) -> int:
     summary = {
         "schema": "die.operator-v2.prepare-result.v1",
         "status": "PASS",
+        "company_instance_id": out["prepared"]["company_instance_id"],
         "tick_id": out["tick_id"],
         "tick_dir": out["tick_dir"],
         "intelligence_stage": out["prepared"]["projection"]["intelligence_stage"],

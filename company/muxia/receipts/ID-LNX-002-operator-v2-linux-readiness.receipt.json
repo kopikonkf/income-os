@@ -1,0 +1,46 @@
+{
+  "schema": "die.id-lnx002.operator-v2-linux-readiness.receipt.v1",
+  "date": "2026-08-31",
+  "task_id": "ID-LNX-002",
+  "status": "IMPLEMENTATION_READY_LIVE_CRON_PENDING",
+  "design": {
+    "logical_job_name": "die-proactive-operator-v1",
+    "scheduler_mode": "DETERMINISTIC_NO_AGENT",
+    "schedule": "*/30 * * * *",
+    "company_instance_id": "DIE-LINUX",
+    "source_root": "/opt/die/staging/income-os",
+    "profile_home": "/var/lib/die/hermes/income-operator",
+    "semantic_cognition_owner": [
+      "die-lnx-division-001",
+      "die-lnx-executive-001"
+    ],
+    "operator_actor": "hermes-operator"
+  },
+  "authority": {
+    "default_policy": "DENY",
+    "cross_instance_semantic_receipts": "REJECT",
+    "windows_behavior_preserved": true,
+    "semantic_content_authored_by_scheduler": false,
+    "production_authority_granted_by_scheduler": false,
+    "network_request_performed_by_scheduler": false
+  },
+  "runtime_contract": {
+    "typed_receipt_snapshot": true,
+    "durable_dispatch_journal": true,
+    "deduped_outbox": true,
+    "stalled_follow_up": "operator-v2 route_followup",
+    "muxia_engine_id": "MUXIA_CHATGPT_IMAGE"
+  },
+  "validation": {
+    "targeted": "57/57 PASS",
+    "full_bridge": "558/558 PASS"
+  },
+  "remaining_acceptance": [
+    "Merge exact head",
+    "Deploy reviewed staging source",
+    "Install one Linux Hermes cron job",
+    "Run one controlled tick",
+    "Verify durable outbox/dedupe and sanitized failure behavior",
+    "Confirm MX-062 and /srv/die source unchanged"
+  ]
+}

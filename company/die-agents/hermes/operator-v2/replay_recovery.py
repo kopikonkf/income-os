@@ -62,6 +62,7 @@ def receipt_chain_sha256(snapshot: dict[str, Any]) -> str:
     """Bind cognition evidence, never mutable Kanban or observation time."""
     return _sha(
         {
+            "company_instance_id": snapshot.get("company_instance_id"),
             "mission_id": snapshot.get("mission_id"),
             "subject_id": snapshot.get("subject_id"),
             "receipts": snapshot.get("receipts", []),
