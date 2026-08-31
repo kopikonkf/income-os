@@ -1,0 +1,138 @@
+{
+  "schema": "die.mcp-lnx005.non-architect-cutover-readiness.acceptance.receipt.v1",
+  "date": "2026-08-31",
+  "task_id": "MCP-LNX-005",
+  "status": "DONE",
+  "decision": "CUTOVER_READY_NOT_HANDED_OFF",
+  "scope": "Executive + Division01 Linux MCP/wake/identity stack only; Architect remains Windows-last; Founder connector handoff is not authorized by this receipt.",
+  "dependencies": {
+    "MCP-LNX-003": {
+      "status": "DONE",
+      "receipt": "company/muxia/receipts/MCP-LNX-003-final-chatgpt-cloud.acceptance.receipt.json",
+      "proves": [
+        "real ChatGPT cloud tool scan 18/6",
+        "fresh context_snapshot",
+        "principal pinning",
+        "staging-read-only control boundary",
+        "cross-principal bearer denial"
+      ]
+    },
+    "WAKE-LNX-002": {
+      "status": "DONE",
+      "receipt": "company/muxia/receipts/WAKE-LNX-002-state-convergence.acceptance.receipt.json",
+      "proves": [
+        "operator-supported wake convergence",
+        "fresh principal-pinned context",
+        "Executive generation-2 rollover",
+        "Division01 generation-1 continuity"
+      ]
+    },
+    "ID-LNX-005": {
+      "status": "DONE",
+      "receipt": "company/muxia/receipts/ID-LNX-005-principal-society.acceptance.receipt.json",
+      "proves": [
+        "Hermes governed middleware",
+        "Executive/Division role separation",
+        "authority fail-closed",
+        "review loopback semantics"
+      ]
+    },
+    "MCP-LNX-004": {
+      "status": "DONE",
+      "receipt": "company/muxia/receipts/MCP-LNX-004-restart-session-isolation-stability.acceptance.receipt.json",
+      "proves": [
+        "MCP/tunnel restart recovery",
+        "browser session survival",
+        "static + DCR OAuth restart stability",
+        "cross-principal DCR 401",
+        "sanitized logs",
+        "Windows rollback health"
+      ]
+    }
+  },
+  "linux_live_snapshot": {
+    "executive": {
+      "origin": "https://executive-mcp.aethers.biz.id",
+      "principal_id": "die-lnx-executive-001",
+      "tools": 18,
+      "version": "1.3.0",
+      "control_policy": "staging-read-only",
+      "service_active": true,
+      "service_enabled": false,
+      "service_pid": 264592,
+      "browser_pid": 263992,
+      "browser_state": "READY",
+      "login_ui_count": 0,
+      "thread_generation": 2,
+      "thread_state": "active"
+    },
+    "division01": {
+      "origin": "https://division01-mcp.aethers.biz.id",
+      "principal_id": "die-lnx-division-001",
+      "tools": 6,
+      "version": "1.3.0",
+      "control_policy": "staging-read-only",
+      "service_active": true,
+      "service_enabled": false,
+      "service_pid": 264591,
+      "browser_pid": 264224,
+      "browser_state": "READY",
+      "login_ui_count": 0,
+      "thread_generation": 1,
+      "thread_state": "active"
+    },
+    "linux_mcp_tunnel": {
+      "service_active": true,
+      "service_enabled": false,
+      "pid": 263723
+    },
+    "hermes": {
+      "profile": "income-operator",
+      "cron_job_id": "77b8fa44e8e5",
+      "cron_active": true,
+      "mode": "no-agent",
+      "latest_observed_run_status": "completed",
+      "latest_observed_run_id": "cbde232ba077444e8d09e1f3263e0c5c"
+    }
+  },
+  "windows_rollback_snapshot": {
+    "executive": {
+      "origin": "https://executive-mcp.aethers.web.id",
+      "principal_id": "chatgpt-plus-executive",
+      "tools": 18,
+      "health": "PASS"
+    },
+    "division01": {
+      "origin": "https://division01-mcp.aethers.web.id",
+      "principal_id": "division-head-division01",
+      "tools": 6,
+      "health": "PASS"
+    },
+    "must_remain_available_until": "CUT-005"
+  },
+  "authority_and_cutover_boundaries": {
+    "founder_connector_handoff_authorized": false,
+    "windows_writer_freeze_authorized": false,
+    "windows_service_retirement_authorized": false,
+    "architect_linux_handoff_authorized": false,
+    "linux_non_architect_stack_cutover_ready": true,
+    "cut004a_cut004b_still_require_cut003": true,
+    "mx062_or_founder_promote_bypassed": false
+  },
+  "isolation_guards": {
+    "production_source_sha": "dfb74d7e09b19f68381e1064899d70c645a61f26",
+    "mx062_pid": 200975,
+    "production_source_mutated": false,
+    "mx062_mutated": false
+  },
+  "semantic_quality": {
+    "source_trust": "DEGRADED",
+    "completeness": "degraded",
+    "treated_as_transport_or_identity_failure": false
+  },
+  "downstream": {
+    "CUT-004A": "BLOCKED on CUT-003 despite MCP-LNX-005 DONE",
+    "CUT-004B": "BLOCKED on CUT-003 despite MCP-LNX-005 DONE"
+  },
+  "acceptance": "Executive and Division01 Linux MCP + wake + identity stack is accepted as cutover-ready while Windows rollback endpoints remain active. This is a readiness verdict only and grants no Founder connector handoff, writer freeze, Windows retirement, or Architect cutover authority."
+}

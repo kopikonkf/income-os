@@ -3268,3 +3268,10 @@ Real ChatGPT convergence on shared revision `7cdace09ba4fa80b55be5c1d74de9bb7297
 ## 2026-08-31 - MCP-LNX-004 restart/session/isolation/stability DONE
 
 Controlled restart proof passed for Executive/Division01 Linux staging MCP services, the dedicated `linux-mcp` Cloudflare service, and both principal-dedicated Chrome sessions. MCP service/tunnel PIDs rotated and recovered; browser PIDs rotated and returned `READY` with `loginUiCount=0`; `wake focus` restored the bound Executive generation-2 and Division01 generation-1 threads without generation drift. OAuth static clients remained valid; DCR clients minted before a second service restart remained valid at their own issuer and were rejected 401 cross-principal. One immediate Executive edge authorize returned transient 502 during origin reconnect and recovered on the next health probe with no persistence loss. Six repeated stability samples passed, post-restart high-risk secret log scan found zero hits, and Windows `*.aethers.web.id` endpoints remained healthy rollback targets. `/srv/die` stayed `dfb74d7e...` and MX-062 stayed PID 200975. `MCP-LNX-004=DONE`; `MCP-LNX-005=READY`.
+
+
+---
+
+## 2026-08-31 - MCP-LNX-005 non-Architect Linux stack cutover-ready
+
+Executive and Division01 Linux MCP/wake/identity stack has all required proof layers: real ChatGPT-cloud 18/6 tool/context acceptance (`MCP-LNX-003`), fresh wake cognition convergence (`WAKE-LNX-002`), governed Hermes/Executive/Division01 society (`ID-LNX-005`), and controlled restart/session/OAuth/isolation stability (`MCP-LNX-004`). A final live snapshot still shows Linux Executive/Division01 public MCP health PASS, dedicated browsers READY, bound wake threads active, and Hermes proactive cron active; Windows `*.aethers.web.id` endpoints remain healthy rollback targets. `MCP-LNX-005=DONE` means cutover-ready only. It does not authorize connector handoff, Windows writer freeze/retirement, or Architect migration. `CUT-004A/B` remain BLOCKED until `CUT-003` is DONE.

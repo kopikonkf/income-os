@@ -21,7 +21,7 @@ def test_final_identity_chain_is_done_and_stability_lane_released() -> None:
     assert tasks['ID-LNX-004']['status']=='DONE'
     assert tasks['ID-LNX-005']['status']=='DONE'
     assert tasks['MCP-LNX-004']['status']=='DONE'
-    assert tasks['MCP-LNX-005']['status']=='READY'
+    assert tasks['MCP-LNX-005']['status']=='DONE'
 
 def test_real_chatgpt_convergence_and_role_assimilation_validate() -> None:
     m=load_module()
