@@ -178,7 +178,7 @@ def test_pkce_code_is_one_time_refreshable_and_principal_bound() -> None:
 
 
 def test_server_public_bindings_are_exact_and_tool_surfaces_unchanged() -> None:
-    assert runtime_mcp_server.SERVER_VERSION == "1.2.0"
+    assert runtime_mcp_server.SERVER_VERSION == "1.3.0"
     assert runtime_mcp_server.PRINCIPAL_DEFAULT_PORTS["chatgpt-plus-executive"] == 8791
     assert runtime_mcp_server.PRINCIPAL_DEFAULT_PORTS["division-head-division01"] == 8792
     assert runtime_mcp_server.PRINCIPAL_DEFAULT_PORTS["die-lnx-executive-001"] == 8891
@@ -266,6 +266,71 @@ def test_http_transport_exposes_metadata_401_and_pinned_tools() -> None:
         with urllib.request.urlopen(authenticated, timeout=2) as response:
             tool_response = json.load(response)
         assert len(tool_response["result"]["tools"]) == 18
+
+        discover_payload = json.dumps(
+            {
+                "jsonrpc": "2.0",
+                "id": "discover-1",
+                "method": "server/discover",
+                "params": {
+                    "_meta": {
+                        "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+                        "io.modelcontextprotocol/clientInfo": {"name": "test-client", "version": "1.0"},
+                        "io.modelcontextprotocol/clientCapabilities": {},
+                    }
+                },
+            }
+        ).encode("utf-8")
+        discover_request = urllib.request.Request(
+            base + "/mcp",
+            data=discover_payload,
+            method="POST",
+            headers={
+                "Authorization": "Bearer " + "t" * 32,
+                "Content-Type": "application/json",
+                "MCP-Protocol-Version": "2026-07-28",
+                "Mcp-Method": "server/discover",
+            },
+        )
+        with urllib.request.urlopen(discover_request, timeout=2) as response:
+            discover = json.load(response)
+        assert discover["result"]["resultType"] == "complete"
+        assert discover["result"]["supportedVersions"] == ["2026-07-28"]
+        assert discover["result"]["capabilities"] == {"tools": {}}
+        assert discover["result"]["ttlMs"] == 0
+        assert discover["result"]["cacheScope"] == "private"
+
+        modern_tools_payload = json.dumps(
+            {
+                "jsonrpc": "2.0",
+                "id": 2,
+                "method": "tools/list",
+                "params": {
+                    "_meta": {
+                        "io.modelcontextprotocol/protocolVersion": "2026-07-28",
+                        "io.modelcontextprotocol/clientInfo": {"name": "test-client", "version": "1.0"},
+                        "io.modelcontextprotocol/clientCapabilities": {},
+                    }
+                },
+            }
+        ).encode("utf-8")
+        modern_tools_request = urllib.request.Request(
+            base + "/mcp",
+            data=modern_tools_payload,
+            method="POST",
+            headers={
+                "Authorization": "Bearer " + "t" * 32,
+                "Content-Type": "application/json",
+                "MCP-Protocol-Version": "2026-07-28",
+                "Mcp-Method": "tools/list",
+            },
+        )
+        with urllib.request.urlopen(modern_tools_request, timeout=2) as response:
+            modern_tools = json.load(response)
+        assert modern_tools["result"]["resultType"] == "complete"
+        assert modern_tools["result"]["ttlMs"] == 0
+        assert modern_tools["result"]["cacheScope"] == "private"
+        assert len(modern_tools["result"]["tools"]) == 18
     finally:
         process.terminate()
         try:

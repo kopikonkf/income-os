@@ -1,0 +1,35 @@
+{
+  "schema": "die.mcp-lnx.modern-protocol-readiness.receipt.v1",
+  "date": "2026-08-31",
+  "task_id": "MCP-LNX-003",
+  "status": "IMPLEMENTATION_READY_NOT_CHATGPT_ACCEPTED",
+  "defect": "ChatGPT connector OAuth completed but developer UI reported 0 actions for both Division01 and Executive.",
+  "root_cause_hypothesis": {
+    "legacy_server_protocol": "initialize handshake with protocolVersion 2024-11-05",
+    "current_mcp_protocol": "2026-07-28 stateless request/response era",
+    "missing_before_patch": [
+      "server/discover",
+      "2026-07-28 resultType discriminator",
+      "modern tools/list ttlMs/cacheScope",
+      "legacy 2025-11-25 negotiation"
+    ]
+  },
+  "implementation": {
+    "runtime_version": "1.3.0",
+    "modern_protocol": "2026-07-28",
+    "legacy_versions": [
+      "2025-11-25",
+      "2025-06-18",
+      "2025-03-26",
+      "2024-11-05"
+    ],
+    "server_discover": true,
+    "modern_tools_list_cache_hints": true,
+    "legacy_behavior_preserved": true
+  },
+  "validation": {
+    "targeted_http_and_staging_tests": "15/15 PASS",
+    "bridge_suite": "546/546 PASS"
+  },
+  "acceptance_pending": "Real ChatGPT Scan Tools must show Division01=6 and Executive=18 after Linux staging deployment."
+}
