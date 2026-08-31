@@ -71,3 +71,7 @@ excluded from the cognition fingerprint and therefore remain metadata-only.
 
 OE-006 is accepted only when the focused OE-006 suites, the full bridge suite,
 Windows/Linux one-canon validation, secret scan and post-merge smoke are clean.
+
+## Local outbox recovery amendment (2026-08-31)
+
+A `DISPATCH_CLAIM` is the durable at-most-once authority record; it is written before any external side effect. The Linux scheduler materializes a local outbox record keyed by immutable `claim sequence + entry_sha256`, not by the logical intent dedupe key. Multiple follow-up claims for one intent therefore produce distinct local handoff records. On restart, any journal claim lacking its local outbox is reconstructed idempotently from journal-pinned routing metadata before new external dispatch. Local outbox reconstruction is not an external side effect and does not create new authority. Legacy dedupe-key outboxes are recognized only when their action/stage/target exactly match the claim.
