@@ -117,7 +117,9 @@ def test_linux_service_and_cron_installer_pin_instance_and_no_agent() -> None:
     assert "/opt/die/staging/income-os" in install
     assert '"$DIE_STATE_ROOT/state/operator-v2"' in install
     assert '"$DIE_STATE_ROOT/state/operator-v2/prepared"' in install
-    assert "runpy.run_path" in install
+    assert 'python = "/usr/bin/python3"' in install
+    assert "os.execve(python" in install
+    assert "runpy.run_path" not in install
     assert '--workdir "$WORKDIR"' in install
     assert "MUXIA_CHATGPT_IMAGE" in agents
     assert "Proxima :3211 only" not in agents

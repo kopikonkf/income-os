@@ -17,13 +17,15 @@ install -d -o die-hermes -g die-runtime -m 2770 "$HERMES_HOME/scripts" "$DIE_STA
 cat > "$HERMES_HOME/scripts/$SCRIPT_NAME" <<'PY'
 #!/usr/bin/env python3
 import os
-import runpy
 from pathlib import Path
 root = Path(os.environ.get("DIE_OPERATOR_V2_SOURCE_ROOT", "/opt/die/staging/income-os")).resolve()
 target = root / "company" / "die-agents" / "hermes" / "operator-v2" / "linux_scheduler_tick.py"
 if not target.is_file():
     raise SystemExit(f"E_OPERATOR_V2_SOURCE:{target}")
-runpy.run_path(str(target), run_name="__main__")
+python = "/usr/bin/python3"
+if not Path(python).is_file():
+    raise SystemExit("E_OPERATOR_V2_PYTHON")
+os.execve(python, [python, str(target)], os.environ.copy())
 PY
 chown die-hermes:die-runtime "$HERMES_HOME/scripts/$SCRIPT_NAME"
 chmod 0750 "$HERMES_HOME/scripts/$SCRIPT_NAME"
