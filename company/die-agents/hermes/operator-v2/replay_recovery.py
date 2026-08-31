@@ -267,6 +267,8 @@ def claim(
         "decision": plan["decision"],
         "action_type": plan["action_request"]["action_type"],
         "target_principal_id": plan["action_request"].get("target_principal_id"),
+        "evidence_receipt_types": plan["action_request"].get("evidence_receipt_types", []),
+        "next_required_receipt": plan.get("next_required_receipt"),
         "outcome": outcome,
         "follow_up_count": plan["follow_up_count"],
         "authority_status": plan["authority_validation"]["status"],

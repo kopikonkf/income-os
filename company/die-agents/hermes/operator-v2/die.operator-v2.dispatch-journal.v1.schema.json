@@ -3,7 +3,10 @@
   "$id": "https://aethers.my.id/schemas/die.operator-v2.dispatch-journal.v1.schema.json",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema", "entries"],
+  "required": [
+    "schema",
+    "entries"
+  ],
   "properties": {
     "schema": {
       "const": "die.operator-v2.dispatch-journal.v1"
@@ -37,32 +40,113 @@
           "entry_sha256"
         ],
         "properties": {
-          "sequence": {"type": "integer", "minimum": 1},
-          "record_kind": {"const": "DISPATCH_CLAIM"},
-          "recorded_at": {"type": "string", "format": "date-time"},
-          "recorded_before_side_effect": {"const": true},
-          "mission_id": {"const": "M-001"},
-          "subject_id": {"type": "string", "minLength": 1, "maxLength": 300},
-          "snapshot_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-          "receipt_chain_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-          "dedupe_key": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-          "plan_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-          "projection_stage": {"type": "string", "minLength": 1, "maxLength": 120},
-          "decision": {
-            "enum": ["DISPATCH", "FOLLOW_UP", "BLOCK_STALLED"]
+          "sequence": {
+            "type": "integer",
+            "minimum": 1
           },
-          "action_type": {"type": "string", "minLength": 1, "maxLength": 120},
+          "record_kind": {
+            "const": "DISPATCH_CLAIM"
+          },
+          "recorded_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "recorded_before_side_effect": {
+            "const": true
+          },
+          "mission_id": {
+            "const": "M-001"
+          },
+          "subject_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "snapshot_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "receipt_chain_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "dedupe_key": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "plan_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "projection_stage": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "decision": {
+            "enum": [
+              "DISPATCH",
+              "FOLLOW_UP",
+              "BLOCK_STALLED"
+            ]
+          },
+          "action_type": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
           "target_principal_id": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "maxLength": 200
           },
-          "outcome": {"enum": ["DISPATCHED", "BLOCKED"]},
-          "follow_up_count": {"type": "integer", "minimum": 0, "maximum": 3},
-          "authority_status": {"const": "ALLOW"},
-          "semantic_content_authored": {"const": false},
-          "production_authority_granted": {"const": false},
-          "previous_entry_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-          "entry_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+          "outcome": {
+            "enum": [
+              "DISPATCHED",
+              "BLOCKED"
+            ]
+          },
+          "follow_up_count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "authority_status": {
+            "const": "ALLOW"
+          },
+          "semantic_content_authored": {
+            "const": false
+          },
+          "production_authority_granted": {
+            "const": false
+          },
+          "previous_entry_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "entry_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "evidence_receipt_types": {
+            "type": "array",
+            "uniqueItems": true,
+            "maxItems": 50,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "next_required_receipt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 120
+          }
         }
       }
     }
