@@ -23,6 +23,8 @@ def test_wake_transport_has_no_private_backend_or_secret_extraction_surface() ->
     assert "127.0.0.1" in text
     assert "browser.close()" not in text
     assert "E_COMPOSER_NOT_EMPTY" in text
+    assert "normalizeComposerText" in text
+    assert "await box.fill('').catch" in text
 
 
 def test_principal_wrappers_are_linux_instance_pinned() -> None:

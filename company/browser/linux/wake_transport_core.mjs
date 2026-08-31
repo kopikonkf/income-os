@@ -76,6 +76,14 @@ async function composer(page) {
   return fallback;
 }
 
+async function composerText(box) {
+  return await box.inputValue().catch(async () => await box.innerText().catch(async () => await box.textContent() || ''));
+}
+
+function normalizeComposerText(value) {
+  return String(value || '').replace(/\s+/g, ' ').trim();
+}
+
 function normalizeSafe(url) { try { return normalizeThreadUrl(url).conversationUrl; } catch { return ''; } }
 
 export async function runWakeTransport(options) {
@@ -103,12 +111,17 @@ export async function runWakeTransport(options) {
     if (!envelopeFile || !path.isAbsolute(envelopeFile)) throw new Error('E_ENVELOPE_PATH');
     const envelope = validateEnvelope(JSON.parse(fs.readFileSync(envelopeFile, 'utf8')), principalId);
     const box = await composer(page);
-    const existingText = await box.inputValue().catch(async () => await box.textContent() || '');
-    if (existingText.trim()) throw new Error('E_COMPOSER_NOT_EMPTY');
+    const existingText = await composerText(box);
+    if (normalizeComposerText(existingText)) throw new Error('E_COMPOSER_NOT_EMPTY');
     const marker = command === 'canary' ? `[${envelope.wake_id}] ${envelope.briefing}` : envelope.briefing;
-    await box.fill(marker);
-    const stagedText = await box.inputValue().catch(async () => await box.textContent() || '');
-    if (stagedText !== marker) throw new Error('E_COMPOSER_STAGE_MISMATCH');
+    try {
+      await box.fill(marker);
+      const stagedText = await composerText(box);
+      if (normalizeComposerText(stagedText) !== normalizeComposerText(marker)) throw new Error('E_COMPOSER_STAGE_MISMATCH');
+    } catch (error) {
+      await box.fill('').catch(() => {});
+      throw error;
+    }
     if (command === 'canary') await box.fill('');
     const receipt = { schema: 'die.wake.stage-receipt.v1', company_instance_id: 'DIE-LINUX', wake_id: envelope.wake_id, principal_id: principalId, conversation_id: thread.conversationId, thread_generation: state.generation, briefing_sha256: sha256(envelope.briefing), composer_prefilled: true, canary_cleared: command === 'canary', submitted: false, output_extracted: false, credential_material_accessed: false, private_backend_called: false, observed_at: new Date().toISOString() };
     fs.mkdirSync(receiptDir, { recursive: true, mode: 0o750 });
