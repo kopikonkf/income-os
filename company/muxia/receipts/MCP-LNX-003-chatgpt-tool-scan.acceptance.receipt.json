@@ -1,0 +1,35 @@
+{
+  "schema": "die.mcp-lnx.chatgpt-tool-scan-acceptance.receipt.v1",
+  "date": "2026-08-31",
+  "task_id": "MCP-LNX-003",
+  "status": "CHATGPT_TOOL_CATALOG_ACCEPTED_CONTEXT_CALL_PENDING",
+  "chatgpt_cloud_scan": {
+    "division01": {
+      "principal_id": "die-lnx-division-001",
+      "connector_url": "https://division01-mcp.aethers.biz.id/mcp",
+      "observed_tool_count": 6,
+      "expected_tool_count": 6,
+      "result": "PASS"
+    },
+    "executive": {
+      "principal_id": "die-lnx-executive-001",
+      "connector_url": "https://executive-mcp.aethers.biz.id/mcp",
+      "observed_tool_count": 18,
+      "expected_tool_count": 18,
+      "result": "PASS"
+    }
+  },
+  "runtime": {
+    "version": "1.3.0",
+    "source_sha": "e3681c35d98ea873dbf92e0734c8830e00c2f9d8",
+    "division01_control_policy": "staging-read-only",
+    "executive_control_policy": "staging-read-only"
+  },
+  "remaining_acceptance": [
+    "Real ChatGPT-cloud context_snapshot invocation from Division01 proves principal die-lnx-division-001.",
+    "Real ChatGPT-cloud context_snapshot invocation from Executive proves principal die-lnx-executive-001.",
+    "Read-path result contains no DEV/raw filesystem surface.",
+    "Staging control path remains fail-closed with E_STAGING_READ_ONLY."
+  ],
+  "task_status_after_receipt": "READY"
+}
