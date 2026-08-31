@@ -7,4 +7,5 @@ const envelopeFile = process.argv[3] ? path.resolve(process.argv[3]) : null;
 try {
   const out = await runWakeTransport({ dieHome, principalId: 'die-lnx-executive-001', statusFile: process.env.DIE_EXECUTIVE_BROWSER_STATUS || '/var/lib/die/executive/browser-status.json', threadStateFile: process.env.DIE_EXECUTIVE_WAKE_THREAD || '/var/lib/die/executive/wake-thread.json', receiptDir: process.env.DIE_EXECUTIVE_WAKE_RECEIPTS || '/var/lib/die/executive/wake-receipts', command, envelopeFile });
   console.log(JSON.stringify(out));
+  process.exit(0);
 } catch (error) { console.error(error instanceof Error ? error.message : String(error)); process.exit(2); }

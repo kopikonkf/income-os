@@ -113,5 +113,8 @@ export async function runWakeTransport(options) {
     const receiptRef = path.join(receiptDir, `${envelope.wake_id}.json`);
     atomicJson(receiptRef, receipt);
     return { status: 'PASS', command, principal_id: principalId, wake_id: envelope.wake_id, submitted: false, receipt_ref: receiptRef };
-  } finally { await browser.close().catch(() => {}); }
+  } finally {
+    // Never terminate the remote browser: this transport attaches to an operator-owned live Chrome.
+    // The short-lived wrapper exits its own process to drop the CDP socket without terminating Chrome.
+  }
 }

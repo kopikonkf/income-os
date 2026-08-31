@@ -21,11 +21,14 @@ def test_wake_transport_has_no_private_backend_or_secret_extraction_surface() ->
     assert "credential_material_accessed: false" in text
     assert "private_backend_called: false" in text
     assert "127.0.0.1" in text
+    assert "browser.close()" not in text
 
 
 def test_principal_wrappers_are_linux_instance_pinned() -> None:
     assert "die-lnx-executive-001" in EXEC.read_text(encoding="utf-8")
+    assert "process.exit(0)" in EXEC.read_text(encoding="utf-8")
     assert "die-lnx-division-001" in DIV.read_text(encoding="utf-8")
+    assert "process.exit(0)" in DIV.read_text(encoding="utf-8")
     assert "aethers.web.id" not in EXEC.read_text(encoding="utf-8") + DIV.read_text(encoding="utf-8")
 
 
