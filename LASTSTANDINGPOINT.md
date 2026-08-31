@@ -3130,3 +3130,8 @@ Founder direction accepted: DIE-WINDOWS and DIE-LINUX become sibling runtime com
 Phase-1 limitation is explicit: Hermes/worker logical principal namespaces remain transitional/shared identifiers, so full operational active-active company federation is NOT claimed. Shared-canon upgrades, not filesystem duplication, are the Linux-to-Windows convergence mechanism.
 
 NEXT: implement/test runtime aliasing + instance-local escalation + staging unit re-key; deploy exact green head to Linux staging; prove public endpoints expose the new Linux principal IDs; then mark REKEY-003 DONE and REKEY-004 WAITING_OPERATOR_CREDENTIALS for Founder login.
+
+
+Implementation readiness pinned at `294050a9b3569c7f3b2a7a47fd56a12a31a7150d`. Runtime MCP v1.2.0 supports both Windows and Linux instance principals; Linux principals map to the same shared semantic canon role profiles rather than duplicated identity documents. Instance-local escalation is enforced in both tool schema and validation.
+
+Validation: MUXIA 70/70; bridge 544/544; one-canon pytest 6/6; validator 11/11; Company Brain PASS (9 identities / 8 runtime); secret scan 0; pyc 0. `IDENTITY-LNX-REKEY-003` remains READY; live staging still exposes the pre-rekey principal IDs until exact-head deployment. `IDENTITY-LNX-REKEY-004` remains blocked pending new-account login.
