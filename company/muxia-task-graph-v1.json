@@ -611,7 +611,7 @@
                                          "MCP-LNX-002",
                                          "IDENTITY-LNX-REKEY-004"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "OAuth/principal/tool/read-path parity receipt",
                       "acceptance":  "ChatGPT-cloud or equivalent authenticated E2E proves Executive 18-tool and Division01 6-tool surfaces, context_snapshot integrity, principal pinning, cross-principal denial, and no DEV/raw access before any connector handoff."
                   },

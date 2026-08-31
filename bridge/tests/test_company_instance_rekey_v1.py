@@ -112,7 +112,7 @@ def test_rekey_login_gate_releases_real_e2e_and_wake_after_new_account_login() -
     assert tasks["IDENTITY-LNX-REKEY-002"]["status"] == "DONE"
     assert tasks["IDENTITY-LNX-REKEY-003"]["status"] == "DONE"
     assert tasks["IDENTITY-LNX-REKEY-004"]["status"] == "DONE"
-    assert tasks["MCP-LNX-003"]["status"] == "READY"
+    assert tasks["MCP-LNX-003"]["status"] == "DONE"
     assert "IDENTITY-LNX-REKEY-004" in tasks["MCP-LNX-003"]["depends_on"]
     assert tasks["WAKE-LNX-001"]["status"] == "READY"
     assert "IDENTITY-LNX-REKEY-004" in tasks["WAKE-LNX-001"]["depends_on"]

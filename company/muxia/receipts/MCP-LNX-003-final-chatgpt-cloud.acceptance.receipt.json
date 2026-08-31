@@ -1,0 +1,56 @@
+{
+  "schema": "die.mcp-lnx.chatgpt-cloud-final-acceptance.receipt.v1",
+  "date": "2026-08-31",
+  "task_id": "MCP-LNX-003",
+  "status": "DONE",
+  "chatgpt_cloud": {
+    "division01": {
+      "tool_scan": "6/6 PASS",
+      "context_snapshot": {
+        "principal_id": "die-lnx-division-001",
+        "identity_id": "die-lnx-division-001",
+        "scope": "single_division",
+        "authority_capability": "bounded_semantic_observation",
+        "source_trust": "DEGRADED",
+        "completeness": "degraded",
+        "freshness_status": "fresh"
+      },
+      "control_boundary": "E_STAGING_READ_ONLY"
+    },
+    "executive": {
+      "tool_scan": "18/18 PASS",
+      "context_snapshot": {
+        "principal_id": "die-lnx-executive-001",
+        "identity_id": "die-lnx-executive-001",
+        "scope": "company_portfolio",
+        "authority_capability": "semantic_observation",
+        "source_trust": "DEGRADED",
+        "completeness": "degraded",
+        "freshness_status": "fresh"
+      },
+      "control_boundary": "E_STAGING_READ_ONLY"
+    }
+  },
+  "equivalent_authenticated_isolation_proof": {
+    "receipt": "company/muxia/receipts/IDENTITY-LNX-REKEY-003-acceptance.receipt.json",
+    "cross_bearer_exec_to_div": "DENIED_401",
+    "cross_bearer_div_to_exec": "DENIED_401"
+  },
+  "surface_boundary": {
+    "division01_expected_tools": 6,
+    "executive_expected_tools": 18,
+    "dev_or_raw_filesystem_tools_exposed": false,
+    "control_policy": "staging-read-only"
+  },
+  "semantic_quality_note": {
+    "source_trust_degraded_is_mcp_transport_failure": false,
+    "completeness_degraded_is_mcp_transport_failure": false,
+    "meaning": "The snapshot accurately reports current semantic-source quality; it does not invalidate OAuth, principal pinning, tool discovery, freshness, or fail-closed control behavior."
+  },
+  "dependency_state": {
+    "MCP-LNX-003": "DONE",
+    "WAKE-LNX-001": "READY",
+    "WAKE-LNX-002": "BLOCKED until WAKE-LNX-001 is DONE"
+  },
+  "acceptance": "Real ChatGPT-cloud tool scan and context_snapshot invocation prove dedicated Linux principal pinning and bounded semantic read access for Executive and Division01; control mutations fail closed; prior equivalent authenticated cross-principal bearer proof remains DENIED_401 in both directions."
+}
