@@ -1,0 +1,79 @@
+{
+  "schema": "die.id-lnx002.operator-v2-linux.acceptance.receipt.v1",
+  "date": "2026-08-31",
+  "task_id": "ID-LNX-002",
+  "status": "DONE",
+  "implementation_merges": [
+    "e6ab319506400266e14ea1108b2f247e4cfc1786",
+    "3a08b319df6341396f53fda804adb6ee89608c77",
+    "118066cf9f2a1698067b7d86da797525fb4eb2c3"
+  ],
+  "live_runtime": {
+    "profile": "income-operator",
+    "hermes_home": "/var/lib/die/hermes/income-operator",
+    "company_instance_id": "DIE-LINUX",
+    "cron_job_id": "77b8fa44e8e5",
+    "cron_name": "die-proactive-operator-v1",
+    "cron_schedule": "*/30 * * * *",
+    "cron_mode": "no-agent",
+    "cron_status": "active",
+    "workdir": "/srv/die/company/die-agents/hermes",
+    "source_sha": "118066cf9f2a1698067b7d86da797525fb4eb2c3",
+    "state_root": "/var/lib/die/state/operator-v2",
+    "state_owner": "die-hermes:die-runtime",
+    "state_mode": "2770"
+  },
+  "controlled_tick_1": {
+    "status": "PASS",
+    "intelligence_stage": "SIGNALS",
+    "next_required_receipt": "OPPORTUNITY_SIGNALS",
+    "routing_decision": "DISPATCH",
+    "action_type": "OP-CREATE-RESEARCH-CARD",
+    "target_principal_id": "approved-signal-collector",
+    "claim_status": "CLAIMED",
+    "outbox_written": true,
+    "semantic_content_authored": false,
+    "production_authority_granted": false,
+    "network_request_performed": false
+  },
+  "controlled_tick_2": {
+    "status": "PASS",
+    "routing_decision": "NO_OP_DUPLICATE",
+    "action_type": "OP-OBSERVE-STATE",
+    "claim_status": "SUPPRESSED",
+    "outbox_written": false,
+    "semantic_content_authored": false,
+    "production_authority_granted": false,
+    "network_request_performed": false
+  },
+  "durability": {
+    "outbox_count": 1,
+    "journal_entries": 1,
+    "routing_intents": 1
+  },
+  "scheduler_proof": {
+    "run_id": "ac3815d615404ebd9b0bc8ed4c5fe154",
+    "status": "completed",
+    "source": "direct"
+  },
+  "resolved_fail_closed_defects": [
+    {
+      "run_id": null,
+      "defect": "operator-v2 state root ownership",
+      "effect": "no routing side effect before failure",
+      "fix_merge": "3a08b319df6341396f53fda804adb6ee89608c77"
+    },
+    {
+      "run_id": "97edb9b9235b4793a59e8fc965e0a052",
+      "defect": "Hermes venv lacked jsonschema",
+      "effect": "no routing side effect before failure",
+      "fix_merge": "118066cf9f2a1698067b7d86da797525fb4eb2c3"
+    }
+  ],
+  "isolation": {
+    "mx062_pid": 200975,
+    "production_source_sha": "dfb74d7e09b19f68381e1064899d70c645a61f26",
+    "production_source_mutated": false
+  },
+  "acceptance": "Linux Hermes income-operator now runs a deterministic company-instance-aware Operator v2 scheduler with durable claim/outbox, duplicate suppression, fail-closed authority boundaries, zero semantic authorship, zero production authority and zero network side effects in the scheduler tick."
+}
