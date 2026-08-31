@@ -3233,3 +3233,10 @@ Hermes Linux `income-operator` now owns one active `die-proactive-operator-v1` c
 ## 2026-08-31 - WAKE-LNX-001 safe Linux transport DONE
 
 Executive and Division01 dedicated Chrome sessions are each bound to exactly one active ChatGPT conversation thread using `die.wake.thread.v2`, generation 1. Live no-send canaries staged and then cleared bounded synthetic briefings for both principals; receipts prove `submitted=false`, `output_extracted=false`, `credential_material_accessed=false`, and `private_backend_called=false`. Browser PIDs remained unchanged and both heartbeats remained `READY`. A subsequent Executive canary correctly failed `E_COMPOSER_NOT_EMPTY`, proving operator draft protection rather than overwriting a non-empty composer. `WAKE-LNX-001=DONE`, releasing `WAKE-LNX-002=READY`. Autonomous prompt submission remains explicitly outside this acceptance.
+
+
+---
+
+## 2026-08-31 - WAKE-LNX-002 / cognition bootstrap implementation staged
+
+Implemented principal-pinned wake-to-context convergence envelopes and validators. Each Linux wake explicitly requires `context_snapshot` before any reasoning and validates Linux principal, scope, authority capability, freshness `fresh`, canon load `VERIFIED`, repository revision, and truthful source-trust/completeness. Added Linux Executive and Division01 cognition bootstrap contracts plus Hermes-Executive-Division01-Worker-MUXIA society/authority matrix. These artifacts preserve shared semantic role anchors while binding Linux-specific principals. Live WAKE-LNX-002 acceptance still requires operator-supported delivery of the staged message followed by real ChatGPT MCP `context_snapshot`; no unattended Send is claimed.
