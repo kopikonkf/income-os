@@ -110,7 +110,7 @@ def test_operator_acceptance_and_reliability_open_parallel_soak_and_qa_readiness
     assert tasks["OE-006"]["status"] == "DONE"
     assert tasks["MX-060"]["status"] == "DONE"
     assert tasks["MX-061"]["status"] == "DONE"
-    assert tasks["MX-062"]["status"] == "READY"
+    assert tasks["MX-062"]["status"] == "DONE"
     assert tasks["QA-001A"]["status"] == "DONE"
     assert tasks["QA-001B"]["status"] == "DONE"
     assert tasks["QA-001C"]["status"] == "DONE"
@@ -131,4 +131,4 @@ def test_operator_acceptance_and_reliability_open_parallel_soak_and_qa_readiness
     assert pad_statuses == {"DONE", "READY", "BLOCKED"}
     taskdoc = TASKDOC.read_text(encoding="utf-8")
     assert "OE-006 = DONE" in taskdoc
-    assert "MX-062 = READY" in taskdoc
+    assert "MX-062 = DONE" in taskdoc

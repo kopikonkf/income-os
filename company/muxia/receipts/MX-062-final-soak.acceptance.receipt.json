@@ -1,0 +1,74 @@
+{
+  "schema": "muxia.mx062.final-soak.acceptance.receipt.v1",
+  "date": "2026-08-31",
+  "task_id": "MX-062",
+  "status": "DONE",
+  "decision": "PASS_REAL_ELAPSED_24H",
+  "linux_host_evidence": {
+    "source_sha": "dfb74d7e09b19f68381e1064899d70c645a61f26",
+    "service": "muxia-mx062-soak@kopiko.service",
+    "successful_run_pid": 200975,
+    "successful_run_started_at": "2026-08-30T17:18:02.696Z",
+    "successful_run_ended_at": "2026-08-31T17:18:04.261Z",
+    "service_final_state": "inactive/dead",
+    "service_result": "success",
+    "exec_main_status": 0,
+    "successful_run_failed_lines": 0,
+    "successful_run_start_events": 1,
+    "successful_run_complete_pass_events": 1,
+    "successful_deactivation_events": 1,
+    "preflight_note": "Two 203/EXEC attempts at 17:11Z occurred before the accepted ledger began; they produced zero soak samples and were stopped before the successful 17:18:02Z run. The accepted successful-run journal has zero failure/restart lines."
+  },
+  "runner_receipt": {
+    "status": "PASS",
+    "startedAt": "2026-08-30T17:18:02.696Z",
+    "endedAt": "2026-08-31T17:18:04.261Z",
+    "elapsedMs": 86401565,
+    "minimumElapsedMs": 86400000,
+    "sampleIntervalMs": 60000,
+    "samples": 1438,
+    "expectedSamples": 1441,
+    "coverage": 0.997918,
+    "minimumCoverage": 0.95,
+    "failures": {
+      "profileCorruption": 0,
+      "credentialLeakage": 0,
+      "duplicateOwnership": 0,
+      "recoveryMismatch": 0,
+      "artifactMismatch": 0,
+      "clockRollback": 0,
+      "chainTamper": 0
+    },
+    "peakRssBytes": 82046976,
+    "finalSampleHash": "327669c8a318f5c2ba134cebdd2b513990f5064341a67db28e5998c36a1f6a0a",
+    "authorityBoundary": {
+      "providerInvoked": false,
+      "credentialsRead": false,
+      "productionProfileRead": false,
+      "submissionAuthorized": false
+    }
+  },
+  "independent_ledger_verification": {
+    "rows": 1438,
+    "chain_valid": true,
+    "recomputed_receipt_matches_host_receipt": true,
+    "max_observed_gap_ms": 60459,
+    "gaps_over_90_seconds": 0,
+    "clock_or_elapsed_regressions": 0,
+    "ledger_sha256": "afdae4ba481d2e59e417a63ed1a9ee47a4a36b9ac6e10580174e10eef08476f0",
+    "host_receipt_sha256": "b0e85112898452e81ed01c6ac2f514cc6d97a6e168a577444b9f3d0042d736a1"
+  },
+  "acceptance_gates": {
+    "elapsed_ge_24h": true,
+    "coverage_ge_95pct": true,
+    "all_failure_counters_zero": true,
+    "sample_hash_chain_valid": true,
+    "service_runtime_evidence_consistent": true,
+    "authority_boundary_preserved": true
+  },
+  "task_transition": {
+    "MX-062": "DONE",
+    "MX-070": "READY"
+  },
+  "acceptance": "Real Linux elapsed time exceeded 24h; expected-sample coverage exceeded 95%; all MX-062 failure counters remained zero; the complete ledger independently verifies as a valid SHA-256 chain and recomputes the host PASS receipt; successful-run journal/service evidence is consistent; MX-070 may proceed."
+}

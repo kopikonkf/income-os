@@ -3275,3 +3275,10 @@ Controlled restart proof passed for Executive/Division01 Linux staging MCP servi
 ## 2026-08-31 - MCP-LNX-005 non-Architect Linux stack cutover-ready
 
 Executive and Division01 Linux MCP/wake/identity stack has all required proof layers: real ChatGPT-cloud 18/6 tool/context acceptance (`MCP-LNX-003`), fresh wake cognition convergence (`WAKE-LNX-002`), governed Hermes/Executive/Division01 society (`ID-LNX-005`), and controlled restart/session/OAuth/isolation stability (`MCP-LNX-004`). A final live snapshot still shows Linux Executive/Division01 public MCP health PASS, dedicated browsers READY, bound wake threads active, and Hermes proactive cron active; Windows `*.aethers.web.id` endpoints remain healthy rollback targets. `MCP-LNX-005=DONE` means cutover-ready only. It does not authorize connector handoff, Windows writer freeze/retirement, or Architect migration. `CUT-004A/B` remain BLOCKED until `CUT-003` is DONE.
+
+
+---
+
+## 2026-08-31 ? MX-062 real 24-hour soak PASS
+
+`MX-062=DONE`; `MX-070=READY`. Canonical Linux host produced `muxia.mx062.soak.receipt.v1` PASS for 2026-08-30T17:18:02.696Z ? 2026-08-31T17:18:04.261Z: elapsed 86,401,565 ms, 1,438/1,441 samples, coverage 0.997918, all seven failure counters zero, final sample hash `327669c8a318f5c2ba134cebdd2b513990f5064341a67db28e5998c36a1f6a0a`. Independent recomputation over the 1,438-row ledger verified the hash chain, reproduced the PASS receipt exactly, found max observed gap 60,459 ms, zero gaps >90s and zero clock/elapsed regressions. Successful-run journal contains one start, one PASS completion, successful deactivation and zero failure/restart lines. Two earlier 203/EXEC preflight attempts at 17:11Z occurred before the accepted ledger began and are explicitly excluded from the successful run. `/srv/die` remained pinned to `dfb74d7e09b19f68381e1064899d70c645a61f26`. Next released migration task: `MX-070 ? Legacy compatibility adapter`.
