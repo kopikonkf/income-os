@@ -54,6 +54,8 @@ def test_die200_operator_browser_is_consumer_policy_compliant() -> None:
     assert "/var/lib/die/executive/browser-profile" in text
     assert "/usr/bin/google-chrome-stable" in text
     assert "DIE_EXECUTIVE_BROWSER_EXECUTABLE" in text
+    assert "principalId: 'die-lnx-executive-001'" in text
+    assert "principalId: 'chatgpt-plus-executive'" not in text
     assert "DIRECT_SPAWN_LOOPBACK_CDP" in core
     assert "--remote-debugging-address=127.0.0.1" in core
     assert "--remote-debugging-port=0" in core

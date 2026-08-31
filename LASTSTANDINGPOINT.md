@@ -3148,3 +3148,12 @@ Linux public MCP now exposes `die-lnx-executive-001` (18 tools, v1.2.0) and `die
 During re-key the Linux staging bearer/login secrets were rotated, OAuth client IDs were re-keyed, and no secret value was returned. Authenticated local proof: both context snapshots bind to the new principals with canon-context VERIFIED; Division01 escalation targets only `die-lnx-executive-001` or Founder; cross-principal bearer use is denied 401; all control calls remain `E_STAGING_READ_ONLY`.
 
 MX-062 remains active PID 200975 on `/srv/die` SHA `dfb74d7e...`. Cloudflare connector stayed active. Browser profiles were NOT logged out or changed. NEXT OPERATOR ACTION: login new dedicated Executive and Division01 ChatGPT accounts in Linux profiles; then mark REKEY-004 DONE and execute MCP-LNX-003 real ChatGPT E2E.
+
+
+---
+
+## 2026-08-31 - Executive Linux browser auth-profile repair staged
+
+Founder observed OpenAI login route error `400 Invalid content type: text/html; charset=UTF-8` while attempting the NEW DIE-LINUX Executive account in the existing Executive browser profile. The browser engine is already the corrected direct-spawn Google Chrome Stable path; this recurrence is therefore treated as stale/pre-rekey auth profile state rather than a return to Playwright-launched Chromium.
+
+Repair scope is Executive only. Canon launcher heartbeat principal is corrected from legacy Windows `chatgpt-plus-executive` to Linux `die-lnx-executive-001`. Live repair must stop only the Executive browser launcher, archive the old Executive profile without deleting it, create a fresh `/var/lib/die/executive/browser-profile`, and relaunch direct-spawn Chrome Stable using the Linux principal. Division01 and MX-062 remain untouched.
