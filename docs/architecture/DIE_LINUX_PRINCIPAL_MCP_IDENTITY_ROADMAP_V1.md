@@ -50,8 +50,8 @@ Wake may trigger cognition but never substitutes for `context_snapshot`. Runtime
 | `MCP-LNX-003` | BLOCKED | Dedicated-account OAuth/principal/tool/context E2E parity |
 | `WAKE-LNX-001` | BLOCKED | Dynamic-CDP Linux wake transport preserving Windows semantics |
 | `WAKE-LNX-002` | BLOCKED | Wake cognition -> fresh principal-pinned state convergence |
-| `ID-LNX-001` | READY | Hermes actual prompt-source convergence; eliminate AGENTS drift |
-| `ID-LNX-002` | BLOCKED | Hermes proactive scheduler parity using Operator v2 |
+| `ID-LNX-001` | DONE | Hermes prompt source pinned to native root -> component AGENTS chain |
+| `ID-LNX-002` | READY | Hermes proactive scheduler parity using Operator v2 |
 | `ID-LNX-003` | BLOCKED | Executive canonical cognition bootstrap |
 | `ID-LNX-004` | BLOCKED | Division01 identity + OE engine cognition bootstrap |
 | `ID-LNX-005` | BLOCKED | Cross-principal role/authority acceptance |
