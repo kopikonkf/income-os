@@ -293,7 +293,7 @@
                       "depends_on":  [
                                          "MX-061"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "24h soak receipt",
                       "acceptance":  "Zero profile corruption, credential leakage, duplicate ownership; recovery matches contract."
                   },
@@ -304,7 +304,7 @@
                       "depends_on":  [
                                          "MX-062"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "Worker/Proxima-to-MUXIA compatibility route",
                       "acceptance":  "Equivalent bounded artifact contract; no authority expansion; rollback path remains."
                   },
