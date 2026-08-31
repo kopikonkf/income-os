@@ -19,7 +19,7 @@ def test_windows_reference_audit_is_done_and_first_linux_tasks_are_ready() -> No
     assert tasks["ID-LNX-000"]["status"] == "DONE"
     assert tasks["MCP-LNX-001"]["status"] == "DONE"
     assert tasks["MCP-LNX-002"]["status"] == "DONE"
-    assert tasks["MCP-LNX-003"]["status"] == "READY"
+    assert tasks["MCP-LNX-003"]["status"] == "BLOCKED"
     assert tasks["ID-LNX-001"]["status"] == "READY"
     assert AUDIT.is_file()
     receipt = json.loads(AUDIT.read_text(encoding="utf-8"))
@@ -32,7 +32,8 @@ def test_windows_reference_audit_is_done_and_first_linux_tasks_are_ready() -> No
 def test_exec_div_mcp_wake_identity_chain_is_explicit() -> None:
     tasks = _tasks()
     assert tasks["MCP-LNX-002"]["depends_on"] == ["MCP-LNX-001"]
-    assert tasks["MCP-LNX-003"]["depends_on"] == ["MCP-LNX-002"]
+    assert tasks["MCP-LNX-003"]["depends_on"] == ["MCP-LNX-002", "IDENTITY-LNX-REKEY-004"]
+    assert tasks["WAKE-LNX-001"]["depends_on"] == ["ID-LNX-000", "DIE-200", "DIE-201", "IDENTITY-LNX-REKEY-004"]
     assert tasks["WAKE-LNX-002"]["depends_on"] == ["WAKE-LNX-001", "MCP-LNX-003"]
     assert tasks["ID-LNX-003"]["depends_on"] == ["WAKE-LNX-002"]
     assert tasks["ID-LNX-004"]["depends_on"] == ["WAKE-LNX-002"]

@@ -325,7 +325,9 @@ def test_runtime_token_is_required_and_never_derived_from_repository(monkeypatch
 def test_runtime_bindings_are_principal_pinned_and_avoid_infrastructure_ports() -> None:
     assert runtime_mcp_server.runtime_port("chatgpt-plus-executive") == 8791
     assert runtime_mcp_server.runtime_port("division-head-division01") == 8792
-    assert len(set(runtime_mcp_server.PRINCIPAL_DEFAULT_PORTS.values())) == 2
+    assert runtime_mcp_server.runtime_port("die-lnx-executive-001") == 8891
+    assert runtime_mcp_server.runtime_port("die-lnx-division-001") == 8892
+    assert set(runtime_mcp_server.PRINCIPAL_DEFAULT_PORTS.values()) == {8791, 8792, 8891, 8892}
     assert not (
         set(runtime_mcp_server.PRINCIPAL_DEFAULT_PORTS.values())
         & runtime_mcp_server.INFRASTRUCTURE_RESERVED_PORTS

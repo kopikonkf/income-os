@@ -33,3 +33,8 @@ The per-principal staging installers require a clean staging source checkout, ge
 6. Only `MCP-LNX-002` may attach the `linux-mcp` Cloudflare connector.
 
 `MCP-LNX-001` carries no connector handoff, no Cloudflare activation, no browser wake, and no marketplace/production authority.
+
+
+## Company-instance re-key
+
+After `COMPANY-INSTANCE-001`, the Linux staging services are pinned to `die-lnx-executive-001` and `die-lnx-division-001`. The public hostnames and ports remain unchanged. Windows principals remain bound to their existing `*.aethers.web.id` endpoints. New Linux external ChatGPT accounts are required before MCP-LNX-003.

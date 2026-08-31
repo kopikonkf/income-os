@@ -3117,3 +3117,21 @@ Ingress remains exactly two MCP origins plus terminal 404. No Architect/CDP/brow
 One edge nuance: Python `urllib` with its default client fingerprint was observed receiving 403 while curl receives the expected 200/401 behavior. This is not accepted as ChatGPT compatibility proof; `MCP-LNX-003` explicitly requires E2E installation/authentication from the real ChatGPT Executive and Division01 accounts.
 
 NEXT: Founder installs the two staging MCP URLs in their corresponding ChatGPT accounts; prove OAuth login/registration, exact 18/6 tool discovery, principal pinning, `context_snapshot`, cross-principal isolation, and `E_STAGING_READ_ONLY` for control calls. Then `MCP-LNX-003 = DONE` and `WAKE-LNX-002` may advance once `WAKE-LNX-001` is also complete.
+
+
+---
+
+## 2026-08-31 - Two-company-instance re-key plan materialized
+
+Founder direction accepted: DIE-WINDOWS and DIE-LINUX become sibling runtime company instances over one shared reviewed canon. Phase 1 isolates Executive and Division01 external cognition. Windows keeps `chatgpt-plus-executive` / `division-head-division01`; Linux receives `die-lnx-executive-001` / `die-lnx-division-001`. Shared role documents are NOT duplicated.
+
+`COMPANY-INSTANCE-001 = DONE`, `IDENTITY-LNX-REKEY-001 = DONE`, `IDENTITY-LNX-REKEY-002 = DONE`, `IDENTITY-LNX-REKEY-003 = READY`, `IDENTITY-LNX-REKEY-004 = BLOCKED`. `MCP-LNX-003` is now BLOCKED on `IDENTITY-LNX-REKEY-004`; `WAKE-LNX-001` is also gated on the new-account login.
+
+Phase-1 limitation is explicit: Hermes/worker logical principal namespaces remain transitional/shared identifiers, so full operational active-active company federation is NOT claimed. Shared-canon upgrades, not filesystem duplication, are the Linux-to-Windows convergence mechanism.
+
+NEXT: implement/test runtime aliasing + instance-local escalation + staging unit re-key; deploy exact green head to Linux staging; prove public endpoints expose the new Linux principal IDs; then mark REKEY-003 DONE and REKEY-004 WAITING_OPERATOR_CREDENTIALS for Founder login.
+
+
+Implementation readiness pinned at `294050a9b3569c7f3b2a7a47fd56a12a31a7150d`. Runtime MCP v1.2.0 supports both Windows and Linux instance principals; Linux principals map to the same shared semantic canon role profiles rather than duplicated identity documents. Instance-local escalation is enforced in both tool schema and validation.
+
+Validation: MUXIA 70/70; bridge 544/544; one-canon pytest 6/6; validator 11/11; Company Brain PASS (9 identities / 8 runtime); secret scan 0; pyc 0. `IDENTITY-LNX-REKEY-003` remains READY; live staging still exposes the pre-rekey principal IDs until exact-head deployment. `IDENTITY-LNX-REKEY-004` remains blocked pending new-account login.

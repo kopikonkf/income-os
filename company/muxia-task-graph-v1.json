@@ -547,13 +547,71 @@
                       "acceptance":  "Only executive-mcp.aethers.biz.id and division01-mcp.aethers.biz.id route to staging loopback ports; CDP/browser/wake endpoints are never exposed and Windows tunnel aethers remains unchanged."
                   },
                   {
-                      "id":  "MCP-LNX-003",
+                      "id":  "COMPANY-INSTANCE-001",
                       "phase":  14,
-                      "title":  "Executive and Division01 staging MCP E2E parity",
+                      "title":  "Formalize DIE-LINUX and DIE-WINDOWS instance model",
                       "depends_on":  [
                                          "MCP-LNX-002"
                                      ],
+                      "status":  "DONE",
+                      "artifact":  "company/runtime-instances-v1.json + architecture contract",
+                      "acceptance":  "Two sibling OS/runtime company instances share one reviewed canon while external accounts, principal ids, browser sessions, MCP/OAuth credentials and mutable state remain isolated; phase-1 operational-principal limitations are explicit."
+                  },
+                  {
+                      "id":  "IDENTITY-LNX-REKEY-001",
+                      "phase":  14,
+                      "title":  "Create Linux-specific Executive principal",
+                      "depends_on":  [
+                                         "COMPANY-INSTANCE-001"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "die-lnx-executive-001 registry/runtime binding",
+                      "acceptance":  "Linux Executive is a concrete DIE-LINUX runtime principal that reuses the shared Executive role document/capability contract without modifying or aliasing the Windows Executive principal."
+                  },
+                  {
+                      "id":  "IDENTITY-LNX-REKEY-002",
+                      "phase":  14,
+                      "title":  "Create Linux-specific Division01 principal",
+                      "depends_on":  [
+                                         "COMPANY-INSTANCE-001"
+                                     ],
+                      "status":  "DONE",
+                      "artifact":  "die-lnx-division-001 registry/runtime binding",
+                      "acceptance":  "Linux Division01 is a concrete DIE-LINUX runtime principal with DIVISION-01 scope, shared Division01 role document, and instance-local escalation to Linux Executive or Founder only."
+                  },
+                  {
+                      "id":  "IDENTITY-LNX-REKEY-003",
+                      "phase":  14,
+                      "title":  "Rebind Linux staging MCP endpoints to Linux principals",
+                      "depends_on":  [
+                                         "IDENTITY-LNX-REKEY-001",
+                                         "IDENTITY-LNX-REKEY-002",
+                                         "MCP-LNX-002"
+                                     ],
                       "status":  "READY",
+                      "artifact":  "Linux staging MCP re-key deployment and public health receipt",
+                      "acceptance":  "Ports 8891/8892 and aethers.biz.id endpoints expose only die-lnx-executive-001 / die-lnx-division-001; Windows principal endpoints remain unchanged; public health/tool counts and fail-closed unauthenticated OAuth challenge pass."
+                  },
+                  {
+                      "id":  "IDENTITY-LNX-REKEY-004",
+                      "phase":  14,
+                      "title":  "Login new dedicated ChatGPT accounts into Linux profiles",
+                      "depends_on":  [
+                                         "IDENTITY-LNX-REKEY-003"
+                                     ],
+                      "status":  "BLOCKED",
+                      "artifact":  "operator login attestation for two dedicated Linux ChatGPT accounts",
+                      "acceptance":  "Founder logs NEW dedicated Executive and Division01 accounts into their existing isolated Linux browser profiles; no Windows account/session reuse and no credential value is captured in canon."
+                  },
+                  {
+                      "id":  "MCP-LNX-003",
+                      "phase":  14,
+                      "title":  "Dedicated-account Linux Executive and Division01 MCP E2E parity",
+                      "depends_on":  [
+                                         "MCP-LNX-002",
+                                         "IDENTITY-LNX-REKEY-004"
+                                     ],
+                      "status":  "BLOCKED",
                       "artifact":  "OAuth/principal/tool/read-path parity receipt",
                       "acceptance":  "ChatGPT-cloud or equivalent authenticated E2E proves Executive 18-tool and Division01 6-tool surfaces, context_snapshot integrity, principal pinning, cross-principal denial, and no DEV/raw access before any connector handoff."
                   },
@@ -564,7 +622,8 @@
                       "depends_on":  [
                                          "ID-LNX-000",
                                          "DIE-200",
-                                         "DIE-201"
+                                         "DIE-201",
+                                         "IDENTITY-LNX-REKEY-004"
                                      ],
                       "status":  "BLOCKED",
                       "artifact":  "principal-dedicated Linux wake transport + thread-state receipt",

@@ -30,12 +30,14 @@ def test_staging_control_policy_defaults_enabled_and_rejects_unknown(monkeypatch
 def test_staging_read_only_preserves_tool_parity_but_blocks_control_writer() -> None:
     assert len(runtime_mcp_server.tool_definitions("chatgpt-plus-executive")) == 18
     assert len(runtime_mcp_server.tool_definitions("division-head-division01")) == 6
+    assert len(runtime_mcp_server.tool_definitions("die-lnx-executive-001")) == 18
+    assert len(runtime_mcp_server.tool_definitions("die-lnx-division-001")) == 6
     writer_calls: list[dict] = []
 
     result = runtime_mcp_server.call_tool(
         "challenge",
         {},
-        principal_id="chatgpt-plus-executive",
+        principal_id="die-lnx-executive-001",
         writer=lambda row: writer_calls.append(row) or {},
         control_policy="staging-read-only",
     )
@@ -46,7 +48,7 @@ def test_staging_read_only_preserves_tool_parity_but_blocks_control_writer() -> 
     division = runtime_mcp_server.call_tool(
         "propose_mission",
         {},
-        principal_id="division-head-division01",
+        principal_id="die-lnx-division-001",
         writer=lambda row: writer_calls.append(row) or {},
         control_policy="staging-read-only",
     )
@@ -57,21 +59,21 @@ def test_staging_read_only_preserves_tool_parity_but_blocks_control_writer() -> 
 def test_initialize_discloses_server_pinned_staging_control_policy() -> None:
     response = runtime_mcp_server.handle(
         {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}},
-        principal_id="chatgpt-plus-executive",
+        principal_id="die-lnx-executive-001",
         writer=None,
         control_policy="staging-read-only",
     )
     assert response is not None
     instructions = response["result"]["instructions"]
-    assert "chatgpt-plus-executive" in instructions
+    assert "die-lnx-executive-001" in instructions
     assert "Control policy: staging-read-only" in instructions
     assert "No raw or DEV access" in instructions
 
 
 def test_staging_units_are_isolated_read_only_and_do_not_replace_existing_ports() -> None:
     expected = [
-        (EXEC_UNIT, "chatgpt-plus-executive", "8891", "/etc/die/staging/executive/runtime-mcp.env"),
-        (DIV_UNIT, "division-head-division01", "8892", "/etc/die/staging/division01/runtime-mcp.env"),
+        (EXEC_UNIT, "die-lnx-executive-001", "8891", "/etc/die/staging/executive/runtime-mcp.env"),
+        (DIV_UNIT, "die-lnx-division-001", "8892", "/etc/die/staging/division01/runtime-mcp.env"),
     ]
     for path, principal, port, env_file in expected:
         text = path.read_text(encoding="utf-8")
@@ -102,6 +104,7 @@ def test_staging_installers_pin_domains_generate_private_secrets_and_never_start
         assert "chmod 0600 \"$ENV_FILE\"" in text
         assert f"DIE_MCP_BASE_URL={base_url}" in text
         assert "DIE_MCP_CONTROL_POLICY=staging-read-only" in text
+        assert ("chatgpt-die-lnx-executive-001" in text) or ("chatgpt-die-lnx-division-001" in text)
         assert f'systemctl disable "{service}"' in text
         assert f'systemctl stop "{service}"' in text
         assert "systemctl start" not in text

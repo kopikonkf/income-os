@@ -1,0 +1,56 @@
+{
+  "schema": "die.identity-lnx-rekey.implementation-readiness.receipt.v1",
+  "date": "2026-08-31",
+  "base_main": "002cd028b44ff11ba51ac2c23c5740ab069bfed1",
+  "implementation_commit": "294050a9b3569c7f3b2a7a47fd56a12a31a7150d",
+  "runtime_mcp_version": "1.2.0",
+  "task_state": {
+    "COMPANY-INSTANCE-001": "DONE",
+    "IDENTITY-LNX-REKEY-001": "DONE",
+    "IDENTITY-LNX-REKEY-002": "DONE",
+    "IDENTITY-LNX-REKEY-003": "READY",
+    "IDENTITY-LNX-REKEY-004": "BLOCKED",
+    "MCP-LNX-003": "BLOCKED"
+  },
+  "principal_bindings": {
+    "DIE-WINDOWS": {
+      "executive": "chatgpt-plus-executive",
+      "division01": "division-head-division01"
+    },
+    "DIE-LINUX": {
+      "executive": "die-lnx-executive-001",
+      "division01": "die-lnx-division-001"
+    }
+  },
+  "shared_role_documents": {
+    "executive": "company/executive/IDENTITY.md",
+    "division01": "company/division/division001/IDENTITY.md"
+  },
+  "linux_staging": {
+    "executive_port": 8891,
+    "division01_port": 8892,
+    "executive_origin": "https://executive-mcp.aethers.biz.id",
+    "division01_origin": "https://division01-mcp.aethers.biz.id",
+    "control_policy": "staging-read-only"
+  },
+  "isolation": {
+    "linux_division_escalates_to": "die-lnx-executive-001 or founder",
+    "cross_instance_linux_to_windows_executive": "denied",
+    "credential_reuse": "forbidden",
+    "source_fork": "forbidden",
+    "full_operational_federation_claimed": false
+  },
+  "validation": {
+    "muxia": "70/70 PASS",
+    "bridge": "544/544 PASS",
+    "one_canon_pytest": "6/6 PASS",
+    "one_canon_validator": "11/11 PASS",
+    "company_brain": "PASS identity_count=9 runtime_identity_count=8",
+    "high_confidence_secret_hits": 0,
+    "bytecode_count": 0,
+    "diff_check": "PASS"
+  },
+  "live_rebind_performed": false,
+  "new_external_accounts_logged_in": false,
+  "authority": "Implementation readiness only. No Linux staging service re-key, browser logout/login, ChatGPT connector registration, or MCP-LNX-003 E2E is claimed."
+}

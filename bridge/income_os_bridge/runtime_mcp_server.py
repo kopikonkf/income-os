@@ -31,20 +31,30 @@ from . import (
 )
 
 SERVER_NAME = "die-runtime-decision-mcp"
-SERVER_VERSION = "1.1.0"
+SERVER_VERSION = "1.2.0"
 HTTP_PATH = "/mcp"
 LOOPBACK_HOST = "127.0.0.1"
 PRINCIPAL_DEFAULT_PORTS = {
     "chatgpt-plus-executive": 8791,
     "division-head-division01": 8792,
+    "die-lnx-executive-001": 8891,
+    "die-lnx-division-001": 8892,
 }
 PRINCIPAL_PUBLIC_BASE_URLS = {
     "chatgpt-plus-executive": "https://executive-mcp.aethers.web.id",
     "division-head-division01": "https://division01-mcp.aethers.web.id",
+    "die-lnx-executive-001": "https://executive-mcp.aethers.biz.id",
+    "die-lnx-division-001": "https://division01-mcp.aethers.biz.id",
 }
 PRINCIPAL_OAUTH_CLIENT_IDS = {
     "chatgpt-plus-executive": "chatgpt-executive",
     "division-head-division01": "chatgpt-division01",
+    "die-lnx-executive-001": "chatgpt-die-lnx-executive-001",
+    "die-lnx-division-001": "chatgpt-die-lnx-division-001",
+}
+INSTANCE_EXECUTIVE_PRINCIPALS = {
+    "DIE-WINDOWS": "chatgpt-plus-executive",
+    "DIE-LINUX": "die-lnx-executive-001",
 }
 INFRASTRUCTURE_RESERVED_PORTS = frozenset({8787, 8789, 8790})
 CONTROL_POLICY_ENABLED = "enabled"
@@ -190,7 +200,16 @@ def _evidence_schema() -> dict[str, Any]:
     }
 
 
-def _control_schema(name: str) -> dict[str, Any]:
+def _executive_peer_id(identity: dict[str, Any]) -> str:
+    instance_id = identity.get("company_instance_id")
+    peer = INSTANCE_EXECUTIVE_PRINCIPALS.get(instance_id)
+    if peer is None:
+        # Compatibility for legacy registries/tests that predate instance metadata.
+        return "chatgpt-plus-executive"
+    return peer
+
+
+def _control_schema(name: str, identity: dict[str, Any]) -> dict[str, Any]:
     props: dict[str, Any] = {
         "request_id": {"type": "string", "pattern": r"^REQ-[A-Z0-9][A-Z0-9-]{2,63}$"},
         "source_snapshot": {"type": "object"},
@@ -215,7 +234,7 @@ def _control_schema(name: str) -> dict[str, Any]:
         elif field == "escalation_target":
             props[field] = {
                 "type": "string",
-                "enum": ["chatgpt-plus-executive", "founder"],
+                "enum": [_executive_peer_id(identity), "founder"],
             }
         else:
             props[field] = {"type": "string", "minLength": 1, "maxLength": 2000}
@@ -228,7 +247,7 @@ def _control_schema(name: str) -> dict[str, Any]:
     }
 
 
-def _tool_definition(name: str) -> dict[str, Any]:
+def _tool_definition(name: str, identity: dict[str, Any]) -> dict[str, Any]:
     if name == "context_snapshot":
         schema = {
             "type": "object",
@@ -243,7 +262,7 @@ def _tool_definition(name: str) -> dict[str, Any]:
         schema = mcp_server._schema(name)
         read_only = True
     else:
-        schema = _control_schema(name)
+        schema = _control_schema(name, identity)
         read_only = False
     return {
         "name": name,
@@ -269,7 +288,7 @@ def tool_definitions(
 ) -> list[dict[str, Any]]:
     identity = _identity(principal_id, registry_path)
     names = sorted(_read_tools(identity) | _control_tools(identity))
-    return [_tool_definition(name) for name in names]
+    return [_tool_definition(name, identity) for name in names]
 
 
 def _error(code: str, message: str) -> dict[str, Any]:
@@ -301,7 +320,11 @@ def _reject_raw(value: Any) -> None:
             _reject_raw(item)
 
 
-def _validate_control(name: str, arguments: Any) -> dict[str, Any]:
+def _validate_control(
+    name: str,
+    arguments: Any,
+    identity: dict[str, Any],
+) -> dict[str, Any]:
     if not isinstance(arguments, dict):
         raise RuntimeMcpError("E_MCP_INPUT_INVALID", "control arguments must be an object")
     spec = CONTROL_FIELDS[name]
@@ -343,7 +366,7 @@ def _validate_control(name: str, arguments: Any) -> dict[str, Any]:
     ) is not None:
         raise RuntimeMcpError("E_MCP_INPUT_INVALID", "mission_id format is invalid")
     if name == "escalate" and arguments["escalation_target"] not in {
-        "chatgpt-plus-executive",
+        _executive_peer_id(identity),
         "founder",
     }:
         raise RuntimeMcpError("E_MCP_INPUT_INVALID", "escalation_target is invalid")
@@ -374,7 +397,7 @@ def _submit_control(
     now: dt.datetime | None,
     registry_path: str | pathlib.Path | None,
 ) -> dict[str, Any]:
-    args = _validate_control(name, arguments)
+    args = _validate_control(name, arguments, identity)
     capability = CONTROL_CAPABILITIES[name]
     if capability not in set(identity.get("capabilities", [])):
         return decision_gateway.rejected_result(

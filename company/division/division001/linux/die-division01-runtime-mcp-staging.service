@@ -16,7 +16,7 @@ Environment=DIE_CONFIG_ROOT=/etc/die
 Environment=DIE_INSTALL_ROOT=/opt/die
 Environment=PYTHONPATH=/opt/die/staging/income-os/bridge:/opt/die/staging/income-os/bin
 Environment=PYTHONDONTWRITEBYTECODE=1
-ExecStart=/usr/bin/python3 -m income_os_bridge.runtime_mcp_server --principal-id division-head-division01 --port 8892
+ExecStart=/usr/bin/python3 -m income_os_bridge.runtime_mcp_server --principal-id die-lnx-division-001 --port 8892
 Restart=on-failure
 RestartSec=3
 TimeoutStopSec=15

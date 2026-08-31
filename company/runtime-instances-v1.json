@@ -1,0 +1,70 @@
+{
+  "schema": "die.company.runtime-instances.v1",
+  "status": "GOVERNED",
+  "effective_date": "2026-08-31",
+  "doctrine": {
+    "shared_source": "single canonical repository; no OS-specific code fork",
+    "shared_role_documents": true,
+    "independent_mutable_state": true,
+    "independent_external_accounts": true,
+    "credential_reuse_between_instances": "forbidden",
+    "company_truth_federation": "not enabled",
+    "phase": "COGNITIVE_PRINCIPAL_ISOLATION_PHASE_1"
+  },
+  "role_profiles": {
+    "executive-strategic-intelligence-v1": {
+      "document": "company/executive/IDENTITY.md"
+    },
+    "division01-decision-engine-v1": {
+      "document": "company/division/division001/IDENTITY.md"
+    }
+  },
+  "instances": {
+    "DIE-WINDOWS": {
+      "os": "windows",
+      "lifecycle": "STABLE_REFERENCE",
+      "source_policy": "shared-canon-versioned",
+      "state_boundary": "independent",
+      "principals": {
+        "executive": "chatgpt-plus-executive",
+        "division01": "division-head-division01"
+      },
+      "mcp": {
+        "executive": "https://executive-mcp.aethers.web.id/mcp",
+        "division01": "https://division01-mcp.aethers.web.id/mcp"
+      },
+      "account_binding": "existing dedicated accounts remain unchanged"
+    },
+    "DIE-LINUX": {
+      "os": "linux",
+      "lifecycle": "CANDIDATE_PRIMARY",
+      "source_policy": "shared-canon-versioned",
+      "state_boundary": "independent",
+      "principals": {
+        "executive": "die-lnx-executive-001",
+        "division01": "die-lnx-division-001"
+      },
+      "mcp": {
+        "executive": "https://executive-mcp.aethers.biz.id/mcp",
+        "division01": "https://division01-mcp.aethers.biz.id/mcp"
+      },
+      "browser_profiles": {
+        "executive": "/var/lib/die/executive/browser-profile",
+        "division01": "/var/lib/die/division01/browser-profile"
+      },
+      "account_binding": "WAITING_OPERATOR_LOGIN_NEW_DEDICATED_ACCOUNTS"
+    }
+  },
+  "transitional_boundaries": {
+    "hermes_principal": "hermes-operator remains a shared logical id during phase 1",
+    "workers": "worker identity namespace is not yet instance-separated",
+    "claim": "DIE-WINDOWS and DIE-LINUX are cognitively isolated company instances in phase 1; full operational active-active federation is NOT claimed"
+  },
+  "guardrails": [
+    "Windows principal ids must never be rebound to Linux external accounts.",
+    "Linux principal ids must never authenticate against Windows MCP endpoints.",
+    "No shared browser profile, OAuth secret, MCP token, or mutable state directory across instances.",
+    "Linux improvements flow back to Windows only through reviewed shared-canon version upgrades.",
+    "No cross-instance decision routing unless a future governed federation contract explicitly authorizes it."
+  ]
+}
