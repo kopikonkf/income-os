@@ -3189,3 +3189,12 @@ Founder proved both Linux connectors can complete OAuth yet ChatGPT developer UI
 Founder refreshed both real ChatGPT Linux connectors after Runtime MCP v1.3.0 deployment. ChatGPT developer tool scan now reports exactly Division01=6 tools and Executive=18 tools. This closes the discovery/protocol defect and proves OAuth + public MCP tool catalog compatibility from ChatGPT cloud. `MCP-LNX-003` intentionally remains `READY` until one real `context_snapshot` invocation from each dedicated ChatGPT account proves principal-pinned read-path behavior.
 
 Next operator proof: Division01 invokes `context_snapshot` and reports only principal/scope/trust/canon status; Executive repeats the same. Control tools remain `staging-read-only`. In parallel, `WAKE-LNX-001` must not revive the legacy Windows private-backend/Sentinel/PoW dependency; Linux wake transport will be amended to the current safe consumer-browser boundary before implementation.
+
+
+---
+
+## 2026-08-31 - MCP-LNX-003 real ChatGPT-cloud acceptance DONE
+
+Real ChatGPT Division01 invoked `context_snapshot` and returned principal `die-lnx-division-001`, scope `single_division`, capability `bounded_semantic_observation`, freshness `fresh`; a control invocation failed closed with `E_STAGING_READ_ONLY`. Real ChatGPT Executive returned principal `die-lnx-executive-001`, scope `company_portfolio`, capability `semantic_observation`, freshness `fresh`; its control invocation also failed closed with `E_STAGING_READ_ONLY`. Tool scans remain Division01=6 and Executive=18.
+
+Both snapshots report `source_trust=DEGRADED` and `completeness=degraded`; these are preserved as semantic-source quality signals, not reclassified as MCP transport failures. Prior authenticated cross-principal bearer proof remains `DENIED_401` both directions. `MCP-LNX-003=DONE`; `WAKE-LNX-001=READY`; `WAKE-LNX-002` remains BLOCKED pending wake completion.
