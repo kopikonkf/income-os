@@ -1,0 +1,43 @@
+{
+  "schema": "die.worker.wrk001-foundation-acceptance.v1",
+  "task_id": "WRK-001",
+  "date": "2026-09-01",
+  "status": "PARTIAL_PASS",
+  "completed_tasks": [
+    "WRK-001A",
+    "WRK-001B",
+    "WRK-001C"
+  ],
+  "pending_task": "WRK-001D",
+  "runtime": {
+    "opencode_version": "1.18.23",
+    "model": "opencode/muse-spark-1.2-contributor-free",
+    "model_catalog": [
+      "opencode/muse-spark-1.2-contributor-free"
+    ],
+    "config_path": "/var/lib/die/workers/opencode/home/.config/opencode/opencode.jsonc",
+    "config_sha256": "c9285fd05818c3cc70d7f5198154460207f5cf7bbcdaa76bfaceec3d52a9bc58",
+    "config_mode": "600",
+    "model_policy_sha256": "3ef53fd2462ff15bae420ec84292282ab3351391f2eba83af9c5a7b7be905d28",
+    "model_worker_sha256": "adfa3ee66a39d60dc8a69a9a6d9fef9aa6ce1fbd18ba90b9d6611df23c6b3b79"
+  },
+  "policy": {
+    "cost": "ZERO_USD_ONLY",
+    "paid_fallback_allowed": false,
+    "semantic_authority": "BOUNDED_EXECUTION_ONLY",
+    "provider": "opencode"
+  },
+  "proof": {
+    "interactive_default_cli_proven_by_founder": true,
+    "interactive_worker_profile_proven_by_founder": true,
+    "headless_governed_execution_receipt": false,
+    "latest_headless_result": "TIMEOUT_RC_124"
+  },
+  "authority_boundary": {
+    "credential_value_read": false,
+    "paid_fallback_used": false,
+    "semantic_authority_expanded": false,
+    "submission_authorized": false,
+    "spend_authorized": false
+  }
+}

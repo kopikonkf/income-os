@@ -22,7 +22,11 @@ def test_new_postprocessing_tasks_have_unique_ids_and_valid_dependencies():
 
 def test_worker_model_lane_is_zero_cost_and_gates_oe007f():
     tasks = _tasks()
-    assert tasks["WRK-001A"]["status"] == "READY"
+    assert tasks["WRK-001A"]["status"] == "DONE"
+    assert tasks["WRK-001B"]["status"] == "DONE"
+    assert tasks["WRK-001C"]["status"] == "DONE"
+    assert tasks["WRK-001D"]["status"] == "READY"
+    assert tasks["WRK-001"]["status"] == "BLOCKED"
     assert tasks["WRK-001A"]["depends_on"] == ["DIE-202"]
     assert tasks["WRK-001B"]["depends_on"] == ["WRK-001A"]
     assert tasks["WRK-001C"]["depends_on"] == ["WRK-001B"]
@@ -36,7 +40,8 @@ def test_worker_model_lane_is_zero_cost_and_gates_oe007f():
 
 def test_upscale_lane_is_recovery_only_and_gates_final_canary_feedback():
     tasks = _tasks()
-    assert tasks["UP-001A"]["status"] == "READY"
+    assert tasks["UP-001A"]["status"] == "DONE"
+    assert tasks["UP-001"]["status"] == "DONE"
     assert tasks["UP-001A"]["depends_on"] == ["DIE-203"]
     assert tasks["UP-001"]["depends_on"] == ["UP-001D"]
     assert "UP-001" in tasks["OE-007G"]["depends_on"]
@@ -47,7 +52,8 @@ def test_upscale_lane_is_recovery_only_and_gates_final_canary_feedback():
 
 def test_metadata_lane_preserves_division_semantic_authority():
     tasks = _tasks()
-    assert tasks["META-001A"]["status"] == "READY"
+    assert tasks["META-001A"]["status"] == "DONE"
+    assert tasks["META-001"]["status"] == "DONE"
     assert tasks["META-001A"]["depends_on"] == ["OE-005"]
     assert tasks["META-001E"]["depends_on"] == ["META-001D", "QA-001D"]
     assert tasks["META-001"]["depends_on"] == ["META-001E"]
@@ -59,7 +65,8 @@ def test_metadata_lane_preserves_division_semantic_authority():
 
 def test_rights_lane_uses_existing_nonwaivable_qa_vetoes():
     tasks = _tasks()
-    assert tasks["RIGHTS-001A"]["status"] == "READY"
+    assert tasks["RIGHTS-001A"]["status"] == "DONE"
+    assert tasks["RIGHTS-001"]["status"] == "DONE"
     assert tasks["RIGHTS-001A"]["depends_on"] == ["QA-001"]
     assert tasks["RIGHTS-001"]["depends_on"] == ["RIGHTS-001E"]
     assert "RIGHTS-001" in tasks["OE-007G"]["depends_on"]
@@ -79,3 +86,22 @@ def test_oe007g_requires_postprocessed_final_artifact_chain():
         "QA-001",
         "QC-001",
     ]
+
+
+def test_acceptance_receipts_are_pinned_and_passed():
+    receipts = {
+        "UP-001": ROOT / "company/muxia/receipts/UP-001-upscale-engine.acceptance.receipt.json",
+        "META-001": ROOT / "company/muxia/receipts/META-001-asset-metadata.acceptance.receipt.json",
+        "RIGHTS-001": ROOT / "company/muxia/receipts/RIGHTS-001-rights-ip-preflight.acceptance.receipt.json",
+    }
+    for task_id, path in receipts.items():
+        assert path.is_file()
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        assert payload["task_id"] == task_id
+        assert payload["status"] == "PASS"
+    wrk = json.loads(
+        (ROOT / "company/muxia/receipts/WRK-001-foundation.acceptance.receipt.json").read_text(encoding="utf-8")
+    )
+    assert wrk["status"] == "PARTIAL_PASS"
+    assert wrk["completed_tasks"] == ["WRK-001A", "WRK-001B", "WRK-001C"]
+    assert wrk["pending_task"] == "WRK-001D"

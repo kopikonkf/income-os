@@ -1,0 +1,115 @@
+{
+  "schema": "die.asset.rights001-acceptance.v1",
+  "task_id": "RIGHTS-001",
+  "date": "2026-09-01",
+  "status": "PASS",
+  "completed_tasks": [
+    "RIGHTS-001A",
+    "RIGHTS-001B",
+    "RIGHTS-001C",
+    "RIGHTS-001D",
+    "RIGHTS-001E"
+  ],
+  "risk_classes": [
+    "brand_logo_trademark",
+    "copyrighted_character_artwork",
+    "likeness_publicity",
+    "property_release_sensitive",
+    "trade_dress_product_design",
+    "uncertain_missing_evidence",
+    "watermark_attribution_conflict"
+  ],
+  "cases": {
+    "clear": {
+      "schema": "die.asset.rights-preflight.v1",
+      "artifact_sha256": "4a71bed4196eccb2f8cef9a423d892503e5c4236e25da20a735b43d8629ec503",
+      "state": "CLEAR",
+      "qa_review_state": "CLEAR",
+      "findings": [],
+      "hard_veto_expected": false,
+      "legal_clearance_claimed": false,
+      "authority_boundary": {
+        "qa_hard_veto_waivable": false,
+        "submission_authorized": false,
+        "publication_authorized": false
+      }
+    },
+    "known_brand_failure": {
+      "schema": "die.asset.rights-preflight.v1",
+      "artifact_sha256": "4a71bed4196eccb2f8cef9a423d892503e5c4236e25da20a735b43d8629ec503",
+      "state": "FAIL",
+      "qa_review_state": "FAIL",
+      "findings": [
+        {
+          "class": "watermark_attribution_conflict",
+          "signal": "AcmeBrand\u00ae",
+          "decision": "FAIL"
+        },
+        {
+          "class": "brand_logo_trademark",
+          "signal": "acmebrand",
+          "decision": "FAIL"
+        }
+      ],
+      "hard_veto_expected": true,
+      "legal_clearance_claimed": false,
+      "authority_boundary": {
+        "qa_hard_veto_waivable": false,
+        "submission_authorized": false,
+        "publication_authorized": false
+      }
+    },
+    "uncertain_visual": {
+      "schema": "die.asset.rights-preflight.v1",
+      "artifact_sha256": "4a71bed4196eccb2f8cef9a423d892503e5c4236e25da20a735b43d8629ec503",
+      "state": "UNCLEAR",
+      "qa_review_state": "UNKNOWN",
+      "findings": [
+        {
+          "class": "uncertain_missing_evidence",
+          "signal": "visual rights review not clear",
+          "decision": "UNKNOWN"
+        }
+      ],
+      "hard_veto_expected": true,
+      "legal_clearance_claimed": false,
+      "authority_boundary": {
+        "qa_hard_veto_waivable": false,
+        "submission_authorized": false,
+        "publication_authorized": false
+      }
+    },
+    "qa_fail_defects": [
+      {
+        "code": "RIGHTS_FAILED",
+        "severity": "HARD_VETO",
+        "message": "rights review failed",
+        "evidence_refs": []
+      }
+    ],
+    "qa_unclear_defects": [
+      {
+        "code": "RIGHTS_UNCLEAR",
+        "severity": "HARD_VETO",
+        "message": "rights review is not clear",
+        "evidence_refs": []
+      }
+    ]
+  },
+  "source_hashes": {
+    "engine_sha256": "da02ef771b6989e7892cf618be82e76f8758519b63b09f0e86c19f5fdaeab5b6"
+  },
+  "acceptance": {
+    "clear_case_clear": true,
+    "brand_case_fail": true,
+    "uncertain_case_unclear": true,
+    "failed_maps_hard_veto": true,
+    "unclear_maps_hard_veto": true,
+    "legal_clearance_not_claimed": true
+  },
+  "authority_boundary": {
+    "qa_hard_veto_waivable": false,
+    "submission_authorized": false,
+    "publication_authorized": false
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "schema": "die.asset.meta001-acceptance.v1",
+  "task_id": "META-001",
+  "date": "2026-09-01",
+  "status": "PASS",
+  "completed_tasks": [
+    "META-001A",
+    "META-001B",
+    "META-001C",
+    "META-001D",
+    "META-001E"
+  ],
+  "canary": {
+    "blueprint_sha256": "ef1fbfe455f1534118f08e3692ab1f48e42bb7999110704343a13e12d6008e11",
+    "semantic_author": "division-head-division01",
+    "compiled_metadata": {
+      "schema": "die.asset.metadata.v1",
+      "blueprint_id": "BP-META001-ACCEPT",
+      "blueprint_sha256": "ef1fbfe455f1534118f08e3692ab1f48e42bb7999110704343a13e12d6008e11",
+      "semantic_author": "division-head-division01",
+      "title": "Practical Cable Organizer for Remote Work Desk",
+      "description": "A practical cable organizer showing clear desk organization utility for a remote work setup.",
+      "keywords": [
+        "cable organizer",
+        "desk organization",
+        "remote work",
+        "cable management",
+        "home office",
+        "workspace utility"
+      ],
+      "primary_keywords": [
+        "cable organizer",
+        "desk organization",
+        "remote work"
+      ],
+      "secondary_keywords": [
+        "cable management",
+        "home office",
+        "workspace utility"
+      ],
+      "categories": [
+        "business",
+        "technology",
+        "objects"
+      ],
+      "ai_disclosure": "Generative AI content",
+      "title_direction_ref": "Describe practical cable organization and remote-work desk utility without keyword stuffing.",
+      "semantic_content_invented_by_engine": false
+    },
+    "injection_receipt": {
+      "schema": "die.asset.metadata-injection-receipt.v1",
+      "format": "PNG",
+      "input_sha256": "8d447892b6efbc450beab391a7003090694cfcd0014d20766150112cab1675a0",
+      "output_sha256": "4a71bed4196eccb2f8cef9a423d892503e5c4236e25da20a735b43d8629ec503",
+      "sidecar_sha256": "cdf12a7113f7193af8f1b184a7b70164173a4a94b0ebbf7baefc8d85644035a0",
+      "embedded": [
+        "XMP"
+      ],
+      "readback_verified": true,
+      "metadata": {
+        "schema": "die.asset.metadata.v1",
+        "blueprint_id": "BP-META001-ACCEPT",
+        "blueprint_sha256": "ef1fbfe455f1534118f08e3692ab1f48e42bb7999110704343a13e12d6008e11",
+        "semantic_author": "division-head-division01",
+        "title": "Practical Cable Organizer for Remote Work Desk",
+        "description": "A practical cable organizer showing clear desk organization utility for a remote work setup.",
+        "keywords": [
+          "cable organizer",
+          "desk organization",
+          "remote work",
+          "cable management",
+          "home office",
+          "workspace utility"
+        ],
+        "primary_keywords": [
+          "cable organizer",
+          "desk organization",
+          "remote work"
+        ],
+        "secondary_keywords": [
+          "cable management",
+          "home office",
+          "workspace utility"
+        ],
+        "categories": [
+          "business",
+          "technology",
+          "objects"
+        ],
+        "ai_disclosure": "Generative AI content",
+        "title_direction_ref": "Describe practical cable organization and remote-work desk utility without keyword stuffing.",
+        "semantic_content_invented_by_engine": false
+      },
+      "lineage_hash_changed": true,
+      "authority_boundary": {
+        "semantic_author": "division-head-division01",
+        "engine_invented_semantics": false,
+        "submission_authorized": false
+      }
+    },
+    "platform_mapping": {
+      "schema": "die.asset.metadata-platform-map.v1",
+      "platform": "Adobe Stock",
+      "profile_id": "QAPROFILE-ADOBE-STOCK-V1",
+      "status": "PASS",
+      "mapped_fields": {
+        "title": "Practical Cable Organizer for Remote Work Desk",
+        "description": "A practical cable organizer showing clear desk organization utility for a remote work setup.",
+        "keywords": [
+          "cable organizer",
+          "desk organization",
+          "remote work",
+          "cable management",
+          "home office",
+          "workspace utility"
+        ],
+        "categories": [
+          "business",
+          "technology",
+          "objects"
+        ],
+        "ai_disclosure": "Generative AI content"
+      },
+      "failures": [],
+      "unknown_requirements": [],
+      "semantic_content_invented_by_engine": false
+    }
+  },
+  "source_hashes": {
+    "engine_sha256": "7aa9fbffc566374fd80876ed73dd8abf47945384cc12dadca1a930bc832aec51",
+    "authoring_schema_sha256": "c0729365483b9b32f0460d6fe24a0740f346b96d6fb9c253d2d1dfed80c980d3"
+  },
+  "acceptance": {
+    "semantic_authority_preserved": true,
+    "sidecar_emitted": true,
+    "embedded_readback_verified": true,
+    "final_hash_changed": true,
+    "platform_mapping_pass": true
+  },
+  "authority_boundary": {
+    "engine_invented_semantics": false,
+    "submission_authorized": false,
+    "publication_authorized": false
+  }
+}

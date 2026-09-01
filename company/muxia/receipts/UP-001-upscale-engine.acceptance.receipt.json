@@ -1,0 +1,125 @@
+{
+  "schema": "die.asset.up001-acceptance.v1",
+  "task_id": "UP-001",
+  "date": "2026-09-01",
+  "status": "PASS",
+  "completed_tasks": [
+    "UP-001A",
+    "UP-001B",
+    "UP-001C",
+    "UP-001D"
+  ],
+  "reference": {
+    "windows_source": "company/atlas/object-centric/object-asset-engine/source/scripts/concepts/qc_benchmark.py",
+    "engine": "RealESRGANer/SRVGGNetCompact",
+    "scale": 4,
+    "tile": 512,
+    "tile_pad": 10,
+    "pre_pad": 0,
+    "half": false,
+    "gpu_id": null
+  },
+  "linux_runtime": {
+    "venv": "/var/lib/die/postprocess/upscale/venv",
+    "packages": {
+      "torch": "2.13.0+cpu",
+      "torchvision": "0.28.0+cpu",
+      "numpy": "2.5.2",
+      "pillow": "12.3.0",
+      "opencv-python-headless": "4.11.0.86",
+      "basicsr": "1.4.2",
+      "realesrgan": "0.3.0",
+      "scipy": "1.18.1",
+      "scikit-image": "0.26.0"
+    },
+    "cuda_available": false
+  },
+  "model": {
+    "path": "/var/lib/die/models/realesrgan/realesr-general-x4v3.pth",
+    "sha256": "8dc7edb9ac80ccdc30c3a5dca6616509367f05fbc184ad95b731f05bece96292",
+    "bytes": 4885111
+  },
+  "source_hashes": {
+    "backend_sha256": "44abbfba70804562d15fa0ccf18072564eebc32fd989b7d44a88d3cd6539938f",
+    "policy_sha256": "e00902c5b6c4539109acceade7d308d843b1cdb5d9553469664bd325a1e91f84",
+    "engine_sha256": "ac0cd8b2dcfcddef3bdf1cfb15848e0d1aa6083990765ca8f02abd4f3beba1f6",
+    "installer_sha256": "950b26f7da6f6e714f9d63925078d46991e859fac0ecdfe5446bbc86500d6b97"
+  },
+  "real_boundary_receipt": {
+    "schema": "die.asset.upscale.v1",
+    "source": {
+      "path": "/tmp/up001-qc/input.png",
+      "sha256": "6b030c703da5dfb4f6b1c0942646d6d38f22ac5d97bb76e6b18db763d9679974",
+      "width": 64,
+      "height": 64,
+      "format": "PNG"
+    },
+    "technical_requirement": {
+      "min_width": 200,
+      "min_height": 200,
+      "min_megapixels": 0.1
+    },
+    "rights_state": "CLEAR",
+    "safety_state": "CLEAR",
+    "authority_boundary": {
+      "rights_or_safety_recoverable": false,
+      "submission_authorized": false,
+      "publication_authorized": false
+    },
+    "status": "PASS",
+    "action": "UPSCALE_X4",
+    "transformed": true,
+    "output": {
+      "path": "/tmp/up001-engine/output.png",
+      "sha256": "5b40add9282900886cb0ff28ced4ecd3b9776a70e9b0a84320eac8f7ebf9f80a",
+      "width": 256,
+      "height": 256,
+      "format": "PNG"
+    },
+    "model": {
+      "name": "realesr-general-x4v3",
+      "path": "/var/lib/die/models/realesrgan/realesr-general-x4v3.pth",
+      "sha256": "8dc7edb9ac80ccdc30c3a5dca6616509367f05fbc184ad95b731f05bece96292"
+    },
+    "backend": {
+      "argv0": "/var/lib/die/postprocess/upscale/venv/bin/python",
+      "returncode": 0
+    },
+    "checks": {
+      "x4_dimensions": true,
+      "output_nonempty": true,
+      "lineage_hash_changed": true
+    }
+  },
+  "quality_regression": {
+    "edge_cleanliness": {
+      "semi_transparent_edge_ratio": 0.1119,
+      "fringe_px_outside": 1056,
+      "pass": true
+    },
+    "texture": {
+      "laplacian_var_original": 892.9,
+      "laplacian_var_upscaled_norm": 0.824,
+      "pass": true
+    },
+    "silhouette": {
+      "coverage_at_64px": 0.256,
+      "thumbnail_saved": true,
+      "pass": true
+    }
+  },
+  "acceptance": {
+    "real_cpu_x4_pass": true,
+    "model_hash_pinned": true,
+    "edge_cleanliness_pass": true,
+    "texture_pass": true,
+    "silhouette_pass": true,
+    "lineage_hash_changed": true
+  },
+  "authority_boundary": {
+    "rights_or_safety_recoverable": false,
+    "semantic_content_mutated_by_policy": false,
+    "submission_authorized": false,
+    "publication_authorized": false
+  }
+}

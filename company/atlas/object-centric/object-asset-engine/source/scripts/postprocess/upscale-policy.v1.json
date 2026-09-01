@@ -1,0 +1,20 @@
+{
+  "schema": "die.asset.upscale-policy.v1",
+  "engine": "RealESRGANer/SRVGGNetCompact",
+  "model_name": "realesr-general-x4v3",
+  "model_path": "/var/lib/die/models/realesrgan/realesr-general-x4v3.pth",
+  "model_sha256": "8dc7edb9ac80ccdc30c3a5dca6616509367f05fbc184ad95b731f05bece96292",
+  "scale": 4,
+  "tile": 512,
+  "tile_pad": 10,
+  "pre_pad": 0,
+  "half": false,
+  "gpu_id": null,
+  "backend_argv": [
+    "/var/lib/die/postprocess/upscale/venv/bin/python",
+    "/srv/die/company/atlas/object-centric/object-asset-engine/source/scripts/postprocess/realesrgan_backend.py",
+    "--input", "{input}",
+    "--output", "{output}",
+    "--model", "{model}"
+  ]
+}

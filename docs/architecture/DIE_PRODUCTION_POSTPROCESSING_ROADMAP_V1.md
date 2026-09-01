@@ -111,3 +111,11 @@ Recommended first implementation order:
 3. META-001A/B/C/D/E -> META-001;
 4. RIGHTS-001A/B/C/D/E -> RIGHTS-001;
 5. convergence at OE-007F/G after MX-070 and the existing governed canary dependencies are satisfied.
+
+
+## 2026-09-01 implementation standing
+
+- `WRK-001A/B/C = DONE`; exact Muse free model policy, single-model whitelist, zero-USD/no-paid-fallback and bounded Worker envelope are implemented. `WRK-001D = READY`; `WRK-001` remains blocked until the governed headless model receipt passes.
+- `UP-001A/B/C/D = DONE`; Linux CPU RealESRGAN x4 is live with `realesr-general-x4v3` SHA-256 `8dc7edb9ac80ccdc30c3a5dca6616509367f05fbc184ad95b731f05bece96292`, real 64x64 -> 256x256 proof, lineage receipt and Windows-reference edge/texture/silhouette regression PASS. `UP-001 = DONE`.
+- `META-001A/B/C/D/E = DONE`; Division01-pinned metadata compilation, keyword/category authority checks, PNG XMP, JPEG XMP+IPTC-IIM, canonical sidecar, read-back/final hash and QA-platform-profile mapping are executable. `META-001 = DONE`.
+- `RIGHTS-001A/B/C/D/E = DONE`; deterministic rights risk evidence, bounded visual/release evidence contract and fail-closed `RIGHTS_FAILED`/`RIGHTS_UNCLEAR` QA HARD_VETO integration are executable. No legal clearance is claimed. `RIGHTS-001 = DONE`.

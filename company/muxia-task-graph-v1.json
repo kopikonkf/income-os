@@ -1366,7 +1366,7 @@
                       "depends_on":  [
                                          "DIE-202"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "Worker-001 provider/model/cost policy",
                       "acceptance":  "OpenCode Worker-001 declares an explicit OpenCode Zen provider, zero-USD policy, network boundary and fail-closed behavior; no paid fallback or semantic-authority expansion."
                   },
@@ -1377,7 +1377,7 @@
                       "depends_on":  [
                                          "WRK-001A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "pinned Worker-001 model binding",
                       "acceptance":  "Exact model opencode/muse-spark-1.2-contributor-free is pinned as Worker-001 default while it remains listed free; unavailable/non-free state blocks rather than selecting a paid model."
                   },
@@ -1388,7 +1388,7 @@
                       "depends_on":  [
                                          "WRK-001B"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "model-backed Worker envelope policy",
                       "acceptance":  "Real model execution is allowed only inside a governed Worker job envelope; Division01-authored commercial/prompt semantics remain immutable and Worker cannot invent or rewrite them."
                   },
@@ -1399,7 +1399,7 @@
                       "depends_on":  [
                                          "WRK-001C"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "Worker-001 model-backed canary receipt",
                       "acceptance":  "One synthetic bounded job proves exact model selection, zero cost, sanitized output/evidence and no paid fallback, production/provider action or authority expansion."
                   },
@@ -1421,7 +1421,7 @@
                       "depends_on":  [
                                          "DIE-203"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "Windows RealESRGAN parity contract",
                       "acceptance":  "Existing CPU-compatible RealESRGAN x4 behavior, alpha handling, model identity and quality checks are captured as reference behavior without copying mutable/runtime artifacts."
                   },
@@ -1432,7 +1432,7 @@
                       "depends_on":  [
                                          "UP-001A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "isolated Linux RealESRGAN runtime",
                       "acceptance":  "Linux installs an isolated CPU-only upscale runtime; external model weights are checksum-pinned and remain outside Git; absence or hash mismatch fails closed."
                   },
@@ -1443,7 +1443,7 @@
                       "depends_on":  [
                                          "UP-001B"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "die.asset.upscale.v1 receipt",
                       "acceptance":  "Every upscale/no-op recovery pins input/output hashes, dimensions, engine/model hash, reason, cost and authority boundary; rights/safety failures are never recoverable by upscale."
                   },
@@ -1454,7 +1454,7 @@
                       "depends_on":  [
                                          "UP-001C"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "upscale quality/parity suite",
                       "acceptance":  "Dimension, alpha/edge, deterministic lineage, no-op and technical-recovery cases pass; regression cannot silently smear/replace or change semantic content."
                   },
@@ -1465,8 +1465,8 @@
                       "depends_on":  [
                                          "UP-001D"
                                      ],
-                      "status":  "BLOCKED",
-                      "artifact":  "UP-001 acceptance receipt",
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/UP-001-upscale-engine.acceptance.receipt.json",
                       "acceptance":  "Linux can perform or explicitly skip bounded technical upscale recovery with Windows-reference parity, zero authority expansion and durable lineage."
                   },
                   {
@@ -1476,7 +1476,7 @@
                       "depends_on":  [
                                          "OE-005"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "die.asset.metadata.v1 + compiler contract",
                       "acceptance":  "Division01-authored metadata_direction compiles into title, description, ranked keywords, categories and AI disclosure without Worker inventing commercial semantics."
                   },
@@ -1487,7 +1487,7 @@
                       "depends_on":  [
                                          "META-001A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "keyword normalization/ranking engine",
                       "acceptance":  "Primary/secondary keyword semantics remain authored by Division01; deterministic engine normalizes, deduplicates, orders and applies platform limits without keyword stuffing or semantic invention."
                   },
@@ -1498,7 +1498,7 @@
                       "depends_on":  [
                                          "META-001B"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "binary metadata injector + canonical sidecar",
                       "acceptance":  "Supported delivery rasters receive bounded embedded metadata while a canonical sidecar is always emitted; unsupported embedding fails safely without losing submission metadata."
                   },
@@ -1509,7 +1509,7 @@
                       "depends_on":  [
                                          "META-001C"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "metadata read-back/hash receipt",
                       "acceptance":  "Post-injection bytes are rehashed and metadata is read back where supported; final artifact hash, original hash, metadata hash and transformation lineage are durable."
                   },
@@ -1521,7 +1521,7 @@
                                          "META-001D",
                                          "QA-001D"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "platform metadata mapping/preflight receipt",
                       "acceptance":  "Canonical metadata maps deterministically to dated platform profiles; unknown limits/requirements fail closed before submission and QA validates the final package."
                   },
@@ -1532,8 +1532,8 @@
                       "depends_on":  [
                                          "META-001E"
                                      ],
-                      "status":  "BLOCKED",
-                      "artifact":  "META-001 acceptance receipt",
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/META-001-asset-metadata.acceptance.receipt.json",
                       "acceptance":  "Final delivery assets and sidecars carry deterministic Blueprint-derived metadata/keywords with verified lineage and platform-preflight compatibility."
                   },
                   {
@@ -1543,7 +1543,7 @@
                       "depends_on":  [
                                          "QA-001"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "rights/IP preflight taxonomy",
                       "acceptance":  "Brand/logo/trademark, copyrighted character/artwork, likeness/publicity, property/release and uncertain-rights classes are explicit; uncertain evidence is a non-waivable rights veto."
                   },
@@ -1554,7 +1554,7 @@
                       "depends_on":  [
                                          "RIGHTS-001A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "brand/logo/text preflight receipt",
                       "acceptance":  "Deterministic observable checks produce evidence and risk classes without claiming legal clearance; ambiguous detections remain RIGHTS_UNCLEAR."
                   },
@@ -1565,7 +1565,7 @@
                       "depends_on":  [
                                          "RIGHTS-001B"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "copyright/IP review evidence contract",
                       "acceptance":  "Potential copyrighted characters/artwork, trade dress, likeness and release-sensitive content require bounded evidence/review; automated absence is never treated as legal clearance."
                   },
@@ -1576,7 +1576,7 @@
                       "depends_on":  [
                                          "RIGHTS-001C"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "QA rights-evidence adapter",
                       "acceptance":  "Rights preflight evidence maps to existing RIGHTS_FAILED/RIGHTS_UNCLEAR hard vetoes; QA cannot waive, upscale around or publish through unresolved rights/IP risk."
                   },
@@ -1587,7 +1587,7 @@
                       "depends_on":  [
                                          "RIGHTS-001D"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "DONE",
                       "artifact":  "rights/IP regression receipt",
                       "acceptance":  "Known, ambiguous, missing-evidence and false-clearance cases fail closed with deterministic quarantine/review routing and no submission authority."
                   },
@@ -1598,8 +1598,8 @@
                       "depends_on":  [
                                          "RIGHTS-001E"
                                      ],
-                      "status":  "BLOCKED",
-                      "artifact":  "RIGHTS-001 acceptance receipt",
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/RIGHTS-001-rights-ip-preflight.acceptance.receipt.json",
                       "acceptance":  "Brand/copyright/IP risk preflight is executable and evidence-driven, integrated with QA hard vetoes, and explicitly does not claim legal clearance."
                   },
                   {
