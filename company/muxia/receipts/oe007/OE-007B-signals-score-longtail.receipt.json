@@ -1,0 +1,587 @@
+{
+  "schema": "die.oe007b.signals-score-longtail.v1",
+  "task_id": "OE-007B",
+  "status": "PASS",
+  "created_at": "2026-09-01T07:31:37Z",
+  "repo_sha": "c1e18cf67e7ad05f9b0970e08786466f4e5576a3",
+  "candidate": {
+    "schema_version": "die.division001.longtail-candidate.v1",
+    "candidate_id": "LT-CAND-085B5EFA6B30F97C1235ABA9",
+    "phrase": "shopping bag for packing customer orders",
+    "locale": "en-US",
+    "parent_seed": {
+      "seed_id": "SEED-000029",
+      "canonical_name": "shopping bag",
+      "object_class": "commerce",
+      "category_path": "Commerce/Retail",
+      "source_db_sha256": "e6e43fbd4bbee712de651c31a159bb66872a91b1b555f809d0177ba856eeb891",
+      "retrieval_receipt_id": "OBJRET-F9432BAEF2C10F8F3BFD9F66"
+    },
+    "human_context": {
+      "context_id": "HCTX-SMALL-BUSINESS-PACKAGING-001",
+      "registry_sha256": "95287b4e4201f51e1ef27471859f3b37c169fadbe827b3625187a89404b71a4c",
+      "retrieval_receipt_id": "HCTXRET-41E5905804E8915B55B8EE98"
+    },
+    "modifiers": [
+      {
+        "type": "use_case",
+        "value": "packing customer orders",
+        "source": "HUMAN_ATLAS"
+      }
+    ],
+    "product_expression": {
+      "level": "L0",
+      "name": "primitive_static_asset"
+    },
+    "generation": {
+      "generator_id": "division001-longtail-generator-v1",
+      "generator_version": "1.0.0",
+      "bounded_budget": 6,
+      "legacy_expansion_dictionary_used_as_core": false
+    },
+    "evidence_state": "REQUIRES_PHRASE_LEVEL_OE001_OE002",
+    "parent_demand": {
+      "parent_score_ref": null,
+      "inherited_by_child": false
+    },
+    "created_at": "2026-09-01T07:31:37Z"
+  },
+  "candidate_sha256": "e127bee6ba7c1aa91b559eec4d1f8b65960f7742e23c11b147ae3ee7153cb48b",
+  "guard_outcome": {
+    "candidate_id": "LT-CAND-085B5EFA6B30F97C1235ABA9",
+    "seed_id": "SEED-000029",
+    "canonical_phrase": "shopping bag for packing customer orders",
+    "status": "ACCEPTED",
+    "reasons": [
+      "PASS"
+    ],
+    "candidate": {
+      "schema_version": "die.division001.longtail-candidate.v1",
+      "candidate_id": "LT-CAND-085B5EFA6B30F97C1235ABA9",
+      "phrase": "shopping bag for packing customer orders",
+      "locale": "en-US",
+      "parent_seed": {
+        "seed_id": "SEED-000029",
+        "canonical_name": "shopping bag",
+        "object_class": "commerce",
+        "category_path": "Commerce/Retail",
+        "source_db_sha256": "e6e43fbd4bbee712de651c31a159bb66872a91b1b555f809d0177ba856eeb891",
+        "retrieval_receipt_id": "OBJRET-F9432BAEF2C10F8F3BFD9F66"
+      },
+      "human_context": {
+        "context_id": "HCTX-SMALL-BUSINESS-PACKAGING-001",
+        "registry_sha256": "95287b4e4201f51e1ef27471859f3b37c169fadbe827b3625187a89404b71a4c",
+        "retrieval_receipt_id": "HCTXRET-41E5905804E8915B55B8EE98"
+      },
+      "modifiers": [
+        {
+          "type": "use_case",
+          "value": "packing customer orders",
+          "source": "HUMAN_ATLAS"
+        }
+      ],
+      "product_expression": {
+        "level": "L0",
+        "name": "primitive_static_asset"
+      },
+      "generation": {
+        "generator_id": "division001-longtail-generator-v1",
+        "generator_version": "1.0.0",
+        "bounded_budget": 6,
+        "legacy_expansion_dictionary_used_as_core": false
+      },
+      "evidence_state": "REQUIRES_PHRASE_LEVEL_OE001_OE002",
+      "parent_demand": {
+        "parent_score_ref": null,
+        "inherited_by_child": false
+      },
+      "created_at": "2026-09-01T07:31:37Z"
+    }
+  },
+  "guard_receipt_sha256": "345e3defcef9cea42462e15fc704366ade6b0fbd42b99adf19c56e77ab96b462",
+  "opportunity_signals": [
+    {
+      "schema_version": "die.division001.opportunity-signals.v1",
+      "signal_id": "OPSIG-API-9BC7764F6B14D64DA9F5",
+      "subject": {
+        "kind": "PHRASE",
+        "id": "shopping bag for packing customer orders",
+        "parent_seed_id": "SEED-000029",
+        "parent_candidate_id": "LT-CAND-085B5EFA6B30F97C1235ABA9"
+      },
+      "source": {
+        "source_id": "OTHER_APPROVED",
+        "source_name": "Longtail synthetic search-interest fixture",
+        "market_locale": "en-US",
+        "language": "en"
+      },
+      "signal_class": "DEMAND",
+      "signal_type": "SEARCH_INTEREST_INDEX",
+      "value": {
+        "kind": "INDEX",
+        "numeric_value": 72.0,
+        "boolean_value": null,
+        "text_value": null,
+        "unit": "index_0_100"
+      },
+      "observed_at": "2026-09-01T07:29:37Z",
+      "recorded_at": "2026-09-01T07:29:52Z",
+      "expires_at": "2026-09-02T07:29:52Z",
+      "freshness_window_seconds": 86400,
+      "evidence_label": "SYNTHETIC",
+      "confidence": "HIGH",
+      "collector_id": "fixture-adapter:official-api:v1",
+      "acquisition_method": "SYNTHETIC_FIXTURE",
+      "policy": {
+        "profile_id": "fixture-official-api",
+        "profile_version": "v1",
+        "classification": "SYNTHETIC_ONLY"
+      },
+      "source_ref": "fixture://official-api/9bc7764f6b14d64da9f543f0975607327582855d375d017c864f7d8388892109",
+      "evidence_sha256": "9bc7764f6b14d64da9f543f0975607327582855d375d017c864f7d8388892109",
+      "cost_usd": 0,
+      "dedupe_key": "oppsig:v1:14ff983e61a940432560b5b37656a8a420c4b60211e2f927d12e3a6c0c8986a8"
+    },
+    {
+      "schema_version": "die.division001.opportunity-signals.v1",
+      "signal_id": "OPSIG-PUBUI-E729C5056A8181F55B2A",
+      "subject": {
+        "kind": "PHRASE",
+        "id": "shopping bag for packing customer orders",
+        "parent_seed_id": "SEED-000029",
+        "parent_candidate_id": "LT-CAND-085B5EFA6B30F97C1235ABA9"
+      },
+      "source": {
+        "source_id": "ADOBE_STOCK",
+        "source_name": "Longtail synthetic public-search fixture",
+        "market_locale": "en-US",
+        "language": "en"
+      },
+      "signal_class": "SUPPLY",
+      "signal_type": "SEARCH_RESULTS_COUNT",
+      "value": {
+        "kind": "COUNT",
+        "numeric_value": 2400,
+        "boolean_value": null,
+        "text_value": null,
+        "unit": "results"
+      },
+      "observed_at": "2026-09-01T07:29:37Z",
+      "recorded_at": "2026-09-01T07:30:07Z",
+      "expires_at": "2026-09-02T07:30:07Z",
+      "freshness_window_seconds": 86400,
+      "evidence_label": "SYNTHETIC",
+      "confidence": "HIGH",
+      "collector_id": "fixture-adapter:public-search-ui:v1",
+      "acquisition_method": "SYNTHETIC_FIXTURE",
+      "policy": {
+        "profile_id": "fixture-public-search-ui",
+        "profile_version": "v1",
+        "classification": "SYNTHETIC_ONLY"
+      },
+      "source_ref": "fixture://public-search-ui/e729c5056a8181f55b2a4dffb00da9255a11b8789c55f240d9cfecbab6442076",
+      "evidence_sha256": "e729c5056a8181f55b2a4dffb00da9255a11b8789c55f240d9cfecbab6442076",
+      "cost_usd": 0,
+      "dedupe_key": "oppsig:v1:c3292dde3fb2938323544e5402c838f05d0f20ac9b9d4fbcc953605b908b201d"
+    },
+    {
+      "schema_version": "die.division001.opportunity-signals.v1",
+      "signal_id": "OPSIG-BUYER-1F9A728449DE9EECBC24",
+      "subject": {
+        "kind": "PHRASE",
+        "id": "shopping bag for packing customer orders",
+        "parent_seed_id": "SEED-000029",
+        "parent_candidate_id": "LT-CAND-085B5EFA6B30F97C1235ABA9"
+      },
+      "source": {
+        "source_id": "SYNTHETIC_FIXTURE",
+        "source_name": "Longtail synthetic buyer-intent fixture",
+        "market_locale": "en-US",
+        "language": "en"
+      },
+      "signal_class": "COMMERCIAL_INTENT",
+      "signal_type": "BUYER_TERM_PRESENCE",
+      "value": {
+        "kind": "BOOLEAN",
+        "numeric_value": null,
+        "boolean_value": true,
+        "text_value": null,
+        "unit": "presence"
+      },
+      "observed_at": "2026-09-01T07:29:37Z",
+      "recorded_at": "2026-09-01T07:29:57Z",
+      "expires_at": "2026-09-02T07:29:57Z",
+      "freshness_window_seconds": 86400,
+      "evidence_label": "SYNTHETIC",
+      "confidence": "HIGH",
+      "collector_id": "fixture-adapter:buyer-intent:v1",
+      "acquisition_method": "SYNTHETIC_FIXTURE",
+      "policy": {
+        "profile_id": "fixture-buyer-intent",
+        "profile_version": "v1",
+        "classification": "SYNTHETIC_ONLY"
+      },
+      "source_ref": "fixture://buyer-intent/1f9a728449de9eecbc242aa5dabf812a59b9d7d1b4f7c871e96e3133acaa41ed",
+      "evidence_sha256": "1f9a728449de9eecbc242aa5dabf812a59b9d7d1b4f7c871e96e3133acaa41ed",
+      "cost_usd": 0,
+      "dedupe_key": "oppsig:v1:4c539a45dab429c1634da428929f12ea3781b375c05d2eab90adf3899001ca16"
+    }
+  ],
+  "signal_policy_mode": "APPROVED_BOUNDED_SYNTHETIC_ONLY",
+  "live_market_observation_claimed": false,
+  "signal_values_are_fixture_canary_inputs": true,
+  "demand_score": {
+    "schema_version": "die.division001.demand-score.v1",
+    "score_id": "DSCORE-LT-085B5EFA6B30F97C1235ABA9",
+    "subject": {
+      "kind": "PHRASE",
+      "id": "shopping bag for packing customer orders",
+      "parent_seed_id": "SEED-000029",
+      "parent_candidate_id": "LT-CAND-085B5EFA6B30F97C1235ABA9"
+    },
+    "model": {
+      "model_id": "division001-demand-score-v1",
+      "model_version": "1.0.0",
+      "contract_sha256": "d719c1376d9453724a53ec86caff49dd325337f549b3d90ce28c5b424490d442"
+    },
+    "evaluated_at": "2026-09-01T07:31:37Z",
+    "expires_at": "2026-09-02T07:29:52Z",
+    "score_status": "COMPLETE",
+    "final_score": 0.686835,
+    "confidence": "LOW",
+    "evidence_coverage_ratio": 0.333333,
+    "required_coverage_ratio": 1.0,
+    "known_weight_ratio": 0.7,
+    "risk_adjustment": {
+      "state": "UNKNOWN",
+      "raw_penalty": null,
+      "multiplier": 0.15,
+      "applied_deduction": 0.0
+    },
+    "hard_veto": {
+      "status": "CLEAR",
+      "receipt_ref": "canary://oe007/hard-veto/clear",
+      "receipt_sha256": "44b59da119a77e9b9c50d2e48946fb5b88581d5bd9bb641d6e5b0349e2547265"
+    },
+    "components": [
+      {
+        "component_id": "external_demand",
+        "state": "KNOWN",
+        "normalized_score": 0.72,
+        "confidence": "HIGH",
+        "evidence_refs": [
+          {
+            "evidence_kind": "OPPORTUNITY_SIGNAL",
+            "evidence_id": "OPSIG-API-9BC7764F6B14D64DA9F5",
+            "evidence_sha256": "965f29513b4116d3f4691532a166f732d7e74f4f9c8843628e7f70019314ee99",
+            "signal_class": "DEMAND",
+            "signal_type": "SEARCH_INTEREST_INDEX",
+            "observed_at": "2026-09-01T07:29:37Z",
+            "expires_at": "2026-09-02T07:29:52Z",
+            "freshness_state": "FRESH",
+            "source_ref": "fixture://official-api/9bc7764f6b14d64da9f543f0975607327582855d375d017c864f7d8388892109"
+          }
+        ],
+        "normalization_transform_id": "source-median-v1",
+        "normalization_transform_version": "1.0.0",
+        "notes": "Per-signal transforms are versioned in the model; aggregation is median within source then median across sources."
+      },
+      {
+        "component_id": "supply_competition",
+        "state": "KNOWN",
+        "normalized_score": 0.323922,
+        "confidence": "HIGH",
+        "evidence_refs": [
+          {
+            "evidence_kind": "OPPORTUNITY_SIGNAL",
+            "evidence_id": "OPSIG-PUBUI-E729C5056A8181F55B2A",
+            "evidence_sha256": "e79dca1a2085ca1845ca097e35bea198daa20e25a086624e757881d351cc98fc",
+            "signal_class": "SUPPLY",
+            "signal_type": "SEARCH_RESULTS_COUNT",
+            "observed_at": "2026-09-01T07:29:37Z",
+            "expires_at": "2026-09-02T07:30:07Z",
+            "freshness_state": "FRESH",
+            "source_ref": "fixture://public-search-ui/e729c5056a8181f55b2a4dffb00da9255a11b8789c55f240d9cfecbab6442076"
+          }
+        ],
+        "normalization_transform_id": "source-median-v1",
+        "normalization_transform_version": "1.0.0",
+        "notes": "Per-signal transforms are versioned in the model; aggregation is median within source then median across sources."
+      },
+      {
+        "component_id": "commercial_intent",
+        "state": "KNOWN",
+        "normalized_score": 1.0,
+        "confidence": "HIGH",
+        "evidence_refs": [
+          {
+            "evidence_kind": "OPPORTUNITY_SIGNAL",
+            "evidence_id": "OPSIG-BUYER-1F9A728449DE9EECBC24",
+            "evidence_sha256": "564d36d9bdc168adc251b25d4871e8cb6a1d5f8de3f7c679df4521f20000f242",
+            "signal_class": "COMMERCIAL_INTENT",
+            "signal_type": "BUYER_TERM_PRESENCE",
+            "observed_at": "2026-09-01T07:29:37Z",
+            "expires_at": "2026-09-02T07:29:57Z",
+            "freshness_state": "FRESH",
+            "source_ref": "fixture://buyer-intent/1f9a728449de9eecbc242aa5dabf812a59b9d7d1b4f7c871e96e3133acaa41ed"
+          }
+        ],
+        "normalization_transform_id": "source-median-v1",
+        "normalization_transform_version": "1.0.0",
+        "notes": "Per-signal transforms are versioned in the model; aggregation is median within source then median across sources."
+      },
+      {
+        "component_id": "trend_seasonality",
+        "state": "UNKNOWN",
+        "normalized_score": null,
+        "confidence": "NONE",
+        "evidence_refs": [],
+        "normalization_transform_id": null,
+        "normalization_transform_version": null,
+        "notes": "No accepted evidence supplied."
+      },
+      {
+        "component_id": "platform_fit",
+        "state": "UNKNOWN",
+        "normalized_score": null,
+        "confidence": "NONE",
+        "evidence_refs": [],
+        "normalization_transform_id": null,
+        "normalization_transform_version": null,
+        "notes": "No accepted evidence supplied."
+      },
+      {
+        "component_id": "niche_specificity",
+        "state": "UNKNOWN",
+        "normalized_score": null,
+        "confidence": "NONE",
+        "evidence_refs": [],
+        "normalization_transform_id": null,
+        "normalization_transform_version": null,
+        "notes": "No accepted evidence supplied."
+      },
+      {
+        "component_id": "production_feasibility",
+        "state": "UNKNOWN",
+        "normalized_score": null,
+        "confidence": "NONE",
+        "evidence_refs": [],
+        "normalization_transform_id": null,
+        "normalization_transform_version": null,
+        "notes": "No accepted evidence supplied."
+      },
+      {
+        "component_id": "eligibility",
+        "state": "UNKNOWN",
+        "normalized_score": null,
+        "confidence": "NONE",
+        "evidence_refs": [],
+        "normalization_transform_id": null,
+        "normalization_transform_version": null,
+        "notes": "No accepted evidence supplied."
+      },
+      {
+        "component_id": "risk_penalty",
+        "state": "UNKNOWN",
+        "normalized_score": null,
+        "confidence": "NONE",
+        "evidence_refs": [],
+        "normalization_transform_id": null,
+        "normalization_transform_version": null,
+        "notes": "No accepted evidence supplied."
+      }
+    ]
+  },
+  "demand_score_sha256": "1031bc42626f429f84c79499f45f30f35455043717549280070c273a792c637b",
+  "phrase_score": {
+    "schema": "die.division001.longtail-phrase-score.v1",
+    "candidate_id": "LT-CAND-085B5EFA6B30F97C1235ABA9",
+    "phrase": "shopping bag for packing customer orders",
+    "signal_registry_db_ref": "/tmp/oe007-signals.db",
+    "signal_ids": [
+      "OPSIG-API-9BC7764F6B14D64DA9F5",
+      "OPSIG-BUYER-1F9A728449DE9EECBC24",
+      "OPSIG-PUBUI-E729C5056A8181F55B2A"
+    ],
+    "fresh_signal_count": 3,
+    "hard_veto_status": "CLEAR",
+    "demand_score": {
+      "schema_version": "die.division001.demand-score.v1",
+      "score_id": "DSCORE-LT-085B5EFA6B30F97C1235ABA9",
+      "subject": {
+        "kind": "PHRASE",
+        "id": "shopping bag for packing customer orders",
+        "parent_seed_id": "SEED-000029",
+        "parent_candidate_id": "LT-CAND-085B5EFA6B30F97C1235ABA9"
+      },
+      "model": {
+        "model_id": "division001-demand-score-v1",
+        "model_version": "1.0.0",
+        "contract_sha256": "d719c1376d9453724a53ec86caff49dd325337f549b3d90ce28c5b424490d442"
+      },
+      "evaluated_at": "2026-09-01T07:31:37Z",
+      "expires_at": "2026-09-02T07:29:52Z",
+      "score_status": "COMPLETE",
+      "final_score": 0.686835,
+      "confidence": "LOW",
+      "evidence_coverage_ratio": 0.333333,
+      "required_coverage_ratio": 1.0,
+      "known_weight_ratio": 0.7,
+      "risk_adjustment": {
+        "state": "UNKNOWN",
+        "raw_penalty": null,
+        "multiplier": 0.15,
+        "applied_deduction": 0.0
+      },
+      "hard_veto": {
+        "status": "CLEAR",
+        "receipt_ref": "canary://oe007/hard-veto/clear",
+        "receipt_sha256": "44b59da119a77e9b9c50d2e48946fb5b88581d5bd9bb641d6e5b0349e2547265"
+      },
+      "components": [
+        {
+          "component_id": "external_demand",
+          "state": "KNOWN",
+          "normalized_score": 0.72,
+          "confidence": "HIGH",
+          "evidence_refs": [
+            {
+              "evidence_kind": "OPPORTUNITY_SIGNAL",
+              "evidence_id": "OPSIG-API-9BC7764F6B14D64DA9F5",
+              "evidence_sha256": "965f29513b4116d3f4691532a166f732d7e74f4f9c8843628e7f70019314ee99",
+              "signal_class": "DEMAND",
+              "signal_type": "SEARCH_INTEREST_INDEX",
+              "observed_at": "2026-09-01T07:29:37Z",
+              "expires_at": "2026-09-02T07:29:52Z",
+              "freshness_state": "FRESH",
+              "source_ref": "fixture://official-api/9bc7764f6b14d64da9f543f0975607327582855d375d017c864f7d8388892109"
+            }
+          ],
+          "normalization_transform_id": "source-median-v1",
+          "normalization_transform_version": "1.0.0",
+          "notes": "Per-signal transforms are versioned in the model; aggregation is median within source then median across sources."
+        },
+        {
+          "component_id": "supply_competition",
+          "state": "KNOWN",
+          "normalized_score": 0.323922,
+          "confidence": "HIGH",
+          "evidence_refs": [
+            {
+              "evidence_kind": "OPPORTUNITY_SIGNAL",
+              "evidence_id": "OPSIG-PUBUI-E729C5056A8181F55B2A",
+              "evidence_sha256": "e79dca1a2085ca1845ca097e35bea198daa20e25a086624e757881d351cc98fc",
+              "signal_class": "SUPPLY",
+              "signal_type": "SEARCH_RESULTS_COUNT",
+              "observed_at": "2026-09-01T07:29:37Z",
+              "expires_at": "2026-09-02T07:30:07Z",
+              "freshness_state": "FRESH",
+              "source_ref": "fixture://public-search-ui/e729c5056a8181f55b2a4dffb00da9255a11b8789c55f240d9cfecbab6442076"
+            }
+          ],
+          "normalization_transform_id": "source-median-v1",
+          "normalization_transform_version": "1.0.0",
+          "notes": "Per-signal transforms are versioned in the model; aggregation is median within source then median across sources."
+        },
+        {
+          "component_id": "commercial_intent",
+          "state": "KNOWN",
+          "normalized_score": 1.0,
+          "confidence": "HIGH",
+          "evidence_refs": [
+            {
+              "evidence_kind": "OPPORTUNITY_SIGNAL",
+              "evidence_id": "OPSIG-BUYER-1F9A728449DE9EECBC24",
+              "evidence_sha256": "564d36d9bdc168adc251b25d4871e8cb6a1d5f8de3f7c679df4521f20000f242",
+              "signal_class": "COMMERCIAL_INTENT",
+              "signal_type": "BUYER_TERM_PRESENCE",
+              "observed_at": "2026-09-01T07:29:37Z",
+              "expires_at": "2026-09-02T07:29:57Z",
+              "freshness_state": "FRESH",
+              "source_ref": "fixture://buyer-intent/1f9a728449de9eecbc242aa5dabf812a59b9d7d1b4f7c871e96e3133acaa41ed"
+            }
+          ],
+          "normalization_transform_id": "source-median-v1",
+          "normalization_transform_version": "1.0.0",
+          "notes": "Per-signal transforms are versioned in the model; aggregation is median within source then median across sources."
+        },
+        {
+          "component_id": "trend_seasonality",
+          "state": "UNKNOWN",
+          "normalized_score": null,
+          "confidence": "NONE",
+          "evidence_refs": [],
+          "normalization_transform_id": null,
+          "normalization_transform_version": null,
+          "notes": "No accepted evidence supplied."
+        },
+        {
+          "component_id": "platform_fit",
+          "state": "UNKNOWN",
+          "normalized_score": null,
+          "confidence": "NONE",
+          "evidence_refs": [],
+          "normalization_transform_id": null,
+          "normalization_transform_version": null,
+          "notes": "No accepted evidence supplied."
+        },
+        {
+          "component_id": "niche_specificity",
+          "state": "UNKNOWN",
+          "normalized_score": null,
+          "confidence": "NONE",
+          "evidence_refs": [],
+          "normalization_transform_id": null,
+          "normalization_transform_version": null,
+          "notes": "No accepted evidence supplied."
+        },
+        {
+          "component_id": "production_feasibility",
+          "state": "UNKNOWN",
+          "normalized_score": null,
+          "confidence": "NONE",
+          "evidence_refs": [],
+          "normalization_transform_id": null,
+          "normalization_transform_version": null,
+          "notes": "No accepted evidence supplied."
+        },
+        {
+          "component_id": "eligibility",
+          "state": "UNKNOWN",
+          "normalized_score": null,
+          "confidence": "NONE",
+          "evidence_refs": [],
+          "normalization_transform_id": null,
+          "normalization_transform_version": null,
+          "notes": "No accepted evidence supplied."
+        },
+        {
+          "component_id": "risk_penalty",
+          "state": "UNKNOWN",
+          "normalized_score": null,
+          "confidence": "NONE",
+          "evidence_refs": [],
+          "normalization_transform_id": null,
+          "normalization_transform_version": null,
+          "notes": "No accepted evidence supplied."
+        }
+      ]
+    },
+    "parent_score_inherited": false
+  },
+  "acceptance": {
+    "three_fresh_validated_receipts": true,
+    "no_hidden_heuristic_fallback": true,
+    "score_complete": true,
+    "numeric_score_present": true,
+    "longtail_guard_accepted": true,
+    "zero_cost": true
+  },
+  "authority_boundary": {
+    "synthetic_presented_as_live": false,
+    "external_collection_performed": false,
+    "production_invoked": false,
+    "submission_authorized": false,
+    "spend_authorized": false
+  }
+}

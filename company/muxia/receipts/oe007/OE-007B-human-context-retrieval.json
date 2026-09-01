@@ -1,0 +1,65 @@
+{
+  "schema": "die.human-atlas.context-retrieval.v1",
+  "receipt_id": "HCTXRET-41E5905804E8915B55B8EE98",
+  "registry": {
+    "path_ref": "/home/kopiko/die-worktrees/oe007-campaign/company/division/division001/engines/longtail/HUMAN_CONTEXT_REGISTRY_V1.json",
+    "sha256": "95287b4e4201f51e1ef27471859f3b37c169fadbe827b3625187a89404b71a4c",
+    "version": "1.0.0",
+    "status": "CANON_SEEDED_HYPOTHESIS_REGISTRY"
+  },
+  "query": {
+    "object_name": "shopping bag",
+    "limit": 1
+  },
+  "policy": {
+    "max_results": 25,
+    "exhaustive_cartesian": false,
+    "market_evidence": false,
+    "result_label": "HYPOTHESIS_CONTEXT_COMPATIBILITY"
+  },
+  "result_count": 1,
+  "results": [
+    {
+      "context": {
+        "context_id": "HCTX-SMALL-BUSINESS-PACKAGING-001",
+        "label": "HYPOTHESIS",
+        "human": "small business seller",
+        "activity": "packing customer orders",
+        "place": "small studio or retail workspace",
+        "time": "order fulfillment",
+        "demographic": "small business operator",
+        "emotion": "professionalism and trust",
+        "problem": "presenting products professionally at handoff",
+        "industry": "retail ecommerce and packaging",
+        "commercial_intent": "advertise package or explain fulfillment",
+        "target_buyers": [
+          "packaging supplier",
+          "ecommerce-content publisher"
+        ],
+        "buyer_jobs": [
+          "show professional packaging",
+          "illustrate order fulfillment"
+        ],
+        "object_hints": [
+          "shopping bag",
+          "paper bag",
+          "gift bag",
+          "shipping box",
+          "packaging box"
+        ],
+        "product_expression_hints": [
+          "L0",
+          "L1",
+          "L2",
+          "L3",
+          "L4"
+        ]
+      },
+      "compatibility_score": 1.0,
+      "best_anchor_score": 1.0,
+      "anchor_scores": {
+        "object_name": 1.0
+      }
+    }
+  ]
+}

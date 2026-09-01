@@ -1,0 +1,329 @@
+{
+  "schema": "die.division001.longtail-guard.v1",
+  "guard_receipt_id": "LTGUARD-ECB0DDACEFB59EDA239D079D",
+  "policy": {
+    "max_per_seed": 50,
+    "near_duplicate_reject": 0.9,
+    "near_duplicate_review": 0.75,
+    "ip_guardrail_sha256": "c935a5f14022d99d8af33855184b1f64867efd0c3541381fe4ed44c675511200",
+    "ip_terms_are_complete_legal_clearance": false
+  },
+  "counts": {
+    "ACCEPTED": 6,
+    "REVIEW": 0,
+    "REJECTED": 0
+  },
+  "outcomes": [
+    {
+      "candidate_id": "LT-CAND-085B5EFA6B30F97C1235ABA9",
+      "seed_id": "SEED-000029",
+      "canonical_phrase": "shopping bag for packing customer orders",
+      "status": "ACCEPTED",
+      "reasons": [
+        "PASS"
+      ],
+      "candidate": {
+        "schema_version": "die.division001.longtail-candidate.v1",
+        "candidate_id": "LT-CAND-085B5EFA6B30F97C1235ABA9",
+        "phrase": "shopping bag for packing customer orders",
+        "locale": "en-US",
+        "parent_seed": {
+          "seed_id": "SEED-000029",
+          "canonical_name": "shopping bag",
+          "object_class": "commerce",
+          "category_path": "Commerce/Retail",
+          "source_db_sha256": "e6e43fbd4bbee712de651c31a159bb66872a91b1b555f809d0177ba856eeb891",
+          "retrieval_receipt_id": "OBJRET-F9432BAEF2C10F8F3BFD9F66"
+        },
+        "human_context": {
+          "context_id": "HCTX-SMALL-BUSINESS-PACKAGING-001",
+          "registry_sha256": "95287b4e4201f51e1ef27471859f3b37c169fadbe827b3625187a89404b71a4c",
+          "retrieval_receipt_id": "HCTXRET-41E5905804E8915B55B8EE98"
+        },
+        "modifiers": [
+          {
+            "type": "use_case",
+            "value": "packing customer orders",
+            "source": "HUMAN_ATLAS"
+          }
+        ],
+        "product_expression": {
+          "level": "L0",
+          "name": "primitive_static_asset"
+        },
+        "generation": {
+          "generator_id": "division001-longtail-generator-v1",
+          "generator_version": "1.0.0",
+          "bounded_budget": 6,
+          "legacy_expansion_dictionary_used_as_core": false
+        },
+        "evidence_state": "REQUIRES_PHRASE_LEVEL_OE001_OE002",
+        "parent_demand": {
+          "parent_score_ref": null,
+          "inherited_by_child": false
+        },
+        "created_at": "2026-09-01T07:31:37Z"
+      }
+    },
+    {
+      "candidate_id": "LT-CAND-82137AB7FCF3D96923B9C64D",
+      "seed_id": "SEED-000029",
+      "canonical_phrase": "shopping bag for small business seller",
+      "status": "ACCEPTED",
+      "reasons": [
+        "PASS"
+      ],
+      "candidate": {
+        "schema_version": "die.division001.longtail-candidate.v1",
+        "candidate_id": "LT-CAND-82137AB7FCF3D96923B9C64D",
+        "phrase": "shopping bag for small business seller",
+        "locale": "en-US",
+        "parent_seed": {
+          "seed_id": "SEED-000029",
+          "canonical_name": "shopping bag",
+          "object_class": "commerce",
+          "category_path": "Commerce/Retail",
+          "source_db_sha256": "e6e43fbd4bbee712de651c31a159bb66872a91b1b555f809d0177ba856eeb891",
+          "retrieval_receipt_id": "OBJRET-F9432BAEF2C10F8F3BFD9F66"
+        },
+        "human_context": {
+          "context_id": "HCTX-SMALL-BUSINESS-PACKAGING-001",
+          "registry_sha256": "95287b4e4201f51e1ef27471859f3b37c169fadbe827b3625187a89404b71a4c",
+          "retrieval_receipt_id": "HCTXRET-41E5905804E8915B55B8EE98"
+        },
+        "modifiers": [
+          {
+            "type": "audience",
+            "value": "small business seller",
+            "source": "HUMAN_ATLAS"
+          }
+        ],
+        "product_expression": {
+          "level": "L0",
+          "name": "primitive_static_asset"
+        },
+        "generation": {
+          "generator_id": "division001-longtail-generator-v1",
+          "generator_version": "1.0.0",
+          "bounded_budget": 6,
+          "legacy_expansion_dictionary_used_as_core": false
+        },
+        "evidence_state": "REQUIRES_PHRASE_LEVEL_OE001_OE002",
+        "parent_demand": {
+          "parent_score_ref": null,
+          "inherited_by_child": false
+        },
+        "created_at": "2026-09-01T07:31:37Z"
+      }
+    },
+    {
+      "candidate_id": "LT-CAND-2E9D91814364BA1581CF6325",
+      "seed_id": "SEED-000029",
+      "canonical_phrase": "shopping bag for small studio or retail workspace",
+      "status": "ACCEPTED",
+      "reasons": [
+        "PASS"
+      ],
+      "candidate": {
+        "schema_version": "die.division001.longtail-candidate.v1",
+        "candidate_id": "LT-CAND-2E9D91814364BA1581CF6325",
+        "phrase": "shopping bag for small studio or retail workspace",
+        "locale": "en-US",
+        "parent_seed": {
+          "seed_id": "SEED-000029",
+          "canonical_name": "shopping bag",
+          "object_class": "commerce",
+          "category_path": "Commerce/Retail",
+          "source_db_sha256": "e6e43fbd4bbee712de651c31a159bb66872a91b1b555f809d0177ba856eeb891",
+          "retrieval_receipt_id": "OBJRET-F9432BAEF2C10F8F3BFD9F66"
+        },
+        "human_context": {
+          "context_id": "HCTX-SMALL-BUSINESS-PACKAGING-001",
+          "registry_sha256": "95287b4e4201f51e1ef27471859f3b37c169fadbe827b3625187a89404b71a4c",
+          "retrieval_receipt_id": "HCTXRET-41E5905804E8915B55B8EE98"
+        },
+        "modifiers": [
+          {
+            "type": "place",
+            "value": "small studio or retail workspace",
+            "source": "HUMAN_ATLAS"
+          }
+        ],
+        "product_expression": {
+          "level": "L0",
+          "name": "primitive_static_asset"
+        },
+        "generation": {
+          "generator_id": "division001-longtail-generator-v1",
+          "generator_version": "1.0.0",
+          "bounded_budget": 6,
+          "legacy_expansion_dictionary_used_as_core": false
+        },
+        "evidence_state": "REQUIRES_PHRASE_LEVEL_OE001_OE002",
+        "parent_demand": {
+          "parent_score_ref": null,
+          "inherited_by_child": false
+        },
+        "created_at": "2026-09-01T07:31:37Z"
+      }
+    },
+    {
+      "candidate_id": "LT-CAND-5483CDB2B68DFCAF33A4CB23",
+      "seed_id": "SEED-000029",
+      "canonical_phrase": "shopping bag for packing customer orders in small studio or retail workspace",
+      "status": "ACCEPTED",
+      "reasons": [
+        "PASS"
+      ],
+      "candidate": {
+        "schema_version": "die.division001.longtail-candidate.v1",
+        "candidate_id": "LT-CAND-5483CDB2B68DFCAF33A4CB23",
+        "phrase": "shopping bag for packing customer orders in small studio or retail workspace",
+        "locale": "en-US",
+        "parent_seed": {
+          "seed_id": "SEED-000029",
+          "canonical_name": "shopping bag",
+          "object_class": "commerce",
+          "category_path": "Commerce/Retail",
+          "source_db_sha256": "e6e43fbd4bbee712de651c31a159bb66872a91b1b555f809d0177ba856eeb891",
+          "retrieval_receipt_id": "OBJRET-F9432BAEF2C10F8F3BFD9F66"
+        },
+        "human_context": {
+          "context_id": "HCTX-SMALL-BUSINESS-PACKAGING-001",
+          "registry_sha256": "95287b4e4201f51e1ef27471859f3b37c169fadbe827b3625187a89404b71a4c",
+          "retrieval_receipt_id": "HCTXRET-41E5905804E8915B55B8EE98"
+        },
+        "modifiers": [
+          {
+            "type": "use_case",
+            "value": "packing customer orders",
+            "source": "HUMAN_ATLAS"
+          },
+          {
+            "type": "place",
+            "value": "small studio or retail workspace",
+            "source": "HUMAN_ATLAS"
+          }
+        ],
+        "product_expression": {
+          "level": "L0",
+          "name": "primitive_static_asset"
+        },
+        "generation": {
+          "generator_id": "division001-longtail-generator-v1",
+          "generator_version": "1.0.0",
+          "bounded_budget": 6,
+          "legacy_expansion_dictionary_used_as_core": false
+        },
+        "evidence_state": "REQUIRES_PHRASE_LEVEL_OE001_OE002",
+        "parent_demand": {
+          "parent_score_ref": null,
+          "inherited_by_child": false
+        },
+        "created_at": "2026-09-01T07:31:37Z"
+      }
+    },
+    {
+      "candidate_id": "LT-CAND-5129BF3686ADB7F2BC04A3B2",
+      "seed_id": "SEED-000029",
+      "canonical_phrase": "shopping bag for retail ecommerce and packaging",
+      "status": "ACCEPTED",
+      "reasons": [
+        "PASS"
+      ],
+      "candidate": {
+        "schema_version": "die.division001.longtail-candidate.v1",
+        "candidate_id": "LT-CAND-5129BF3686ADB7F2BC04A3B2",
+        "phrase": "shopping bag for retail ecommerce and packaging",
+        "locale": "en-US",
+        "parent_seed": {
+          "seed_id": "SEED-000029",
+          "canonical_name": "shopping bag",
+          "object_class": "commerce",
+          "category_path": "Commerce/Retail",
+          "source_db_sha256": "e6e43fbd4bbee712de651c31a159bb66872a91b1b555f809d0177ba856eeb891",
+          "retrieval_receipt_id": "OBJRET-F9432BAEF2C10F8F3BFD9F66"
+        },
+        "human_context": {
+          "context_id": "HCTX-SMALL-BUSINESS-PACKAGING-001",
+          "registry_sha256": "95287b4e4201f51e1ef27471859f3b37c169fadbe827b3625187a89404b71a4c",
+          "retrieval_receipt_id": "HCTXRET-41E5905804E8915B55B8EE98"
+        },
+        "modifiers": [
+          {
+            "type": "industry",
+            "value": "retail ecommerce and packaging",
+            "source": "HUMAN_ATLAS"
+          }
+        ],
+        "product_expression": {
+          "level": "L0",
+          "name": "primitive_static_asset"
+        },
+        "generation": {
+          "generator_id": "division001-longtail-generator-v1",
+          "generator_version": "1.0.0",
+          "bounded_budget": 6,
+          "legacy_expansion_dictionary_used_as_core": false
+        },
+        "evidence_state": "REQUIRES_PHRASE_LEVEL_OE001_OE002",
+        "parent_demand": {
+          "parent_score_ref": null,
+          "inherited_by_child": false
+        },
+        "created_at": "2026-09-01T07:31:37Z"
+      }
+    },
+    {
+      "candidate_id": "LT-CAND-AC8DA315732F90F7A6AA33EE",
+      "seed_id": "SEED-000029",
+      "canonical_phrase": "shopping bag for presenting products professionally at handoff",
+      "status": "ACCEPTED",
+      "reasons": [
+        "PASS"
+      ],
+      "candidate": {
+        "schema_version": "die.division001.longtail-candidate.v1",
+        "candidate_id": "LT-CAND-AC8DA315732F90F7A6AA33EE",
+        "phrase": "shopping bag for presenting products professionally at handoff",
+        "locale": "en-US",
+        "parent_seed": {
+          "seed_id": "SEED-000029",
+          "canonical_name": "shopping bag",
+          "object_class": "commerce",
+          "category_path": "Commerce/Retail",
+          "source_db_sha256": "e6e43fbd4bbee712de651c31a159bb66872a91b1b555f809d0177ba856eeb891",
+          "retrieval_receipt_id": "OBJRET-F9432BAEF2C10F8F3BFD9F66"
+        },
+        "human_context": {
+          "context_id": "HCTX-SMALL-BUSINESS-PACKAGING-001",
+          "registry_sha256": "95287b4e4201f51e1ef27471859f3b37c169fadbe827b3625187a89404b71a4c",
+          "retrieval_receipt_id": "HCTXRET-41E5905804E8915B55B8EE98"
+        },
+        "modifiers": [
+          {
+            "type": "problem",
+            "value": "presenting products professionally at handoff",
+            "source": "HUMAN_ATLAS"
+          }
+        ],
+        "product_expression": {
+          "level": "L0",
+          "name": "primitive_static_asset"
+        },
+        "generation": {
+          "generator_id": "division001-longtail-generator-v1",
+          "generator_version": "1.0.0",
+          "bounded_budget": 6,
+          "legacy_expansion_dictionary_used_as_core": false
+        },
+        "evidence_state": "REQUIRES_PHRASE_LEVEL_OE001_OE002",
+        "parent_demand": {
+          "parent_score_ref": null,
+          "inherited_by_child": false
+        },
+        "created_at": "2026-09-01T07:31:37Z"
+      }
+    }
+  ]
+}
