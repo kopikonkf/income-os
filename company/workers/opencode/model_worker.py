@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """WRK-001 bounded model-backed OpenCode Worker execution.
 
-Uses the existing Worker job envelope and an explicit zero-cost model policy.
-The runner never falls back to another model/provider and emits a fail-closed
-receipt on timeout, unavailable model, policy mismatch, or missing evidence.
+A job owns an isolated OpenCode runtime HOME/session DB/evidence directory.
+Completion is based on durable OpenCode JSONL evidence (step_finish + optional
+marker), not on the OpenCode process exiting; current OpenCode can keep runtime
+cleanup/network handles alive after the assistant result is already complete.
 """
 from __future__ import annotations
 
@@ -13,6 +14,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import time
 from typing import Any
 
 POLICY_SCHEMA = "die.worker.model-policy.v1"
@@ -85,12 +87,46 @@ def validate_job(job: dict[str, Any], workspace_root: Path) -> Path:
     return workspace
 
 
-def execute(*, job: dict[str, Any], policy: dict[str, Any], workspace_root: Path, expected_marker: str | None = None, timeout_sec: int = 60) -> dict[str, Any]:
+def _completion_from_jsonl(data: bytes, expected_marker: str | None) -> tuple[bool, bool, dict[str, Any] | None]:
+    marker_ok = expected_marker is None
+    finish: dict[str, Any] | None = None
+    for raw in data.splitlines():
+        try:
+            event = json.loads(raw.decode("utf-8", errors="strict"))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            continue
+        if event.get("type") == "text":
+            text = str((event.get("part") or {}).get("text", ""))
+            if expected_marker is not None and expected_marker in text:
+                marker_ok = True
+        if event.get("type") == "step_finish":
+            part = event.get("part") or {}
+            if part.get("reason") == "stop":
+                finish = event
+    return finish is not None and marker_ok, marker_ok, finish
+
+
+def _stop_process(proc: subprocess.Popen[bytes]) -> str:
+    if proc.poll() is not None:
+        return "EXITED_NATURALLY"
+    proc.terminate()
+    try:
+        proc.wait(timeout=5)
+        return "TERMINATED_AFTER_COMPLETION"
+    except subprocess.TimeoutExpired:
+        proc.kill()
+        proc.wait(timeout=5)
+        return "KILLED_AFTER_COMPLETION"
+
+
+def execute(
+    *, job: dict[str, Any], policy: dict[str, Any], workspace_root: Path,
+    expected_marker: str | None = None, timeout_sec: int = 60,
+) -> dict[str, Any]:
     validate_policy(policy)
     workspace = validate_job(job, workspace_root)
     workspace.mkdir(parents=True, exist_ok=True)
     binary = Path(policy["binary"])
-    worker_home = Path(policy["worker_home"])
     config_path = Path(policy["config_path"])
     if not binary.is_file() or not config_path.is_file():
         return {"schema": RECEIPT_SCHEMA, "status": "BLOCKED_RUNTIME", "task_id": job.get("task_id"), "reason": "binary_or_config_missing"}
@@ -98,28 +134,84 @@ def execute(*, job: dict[str, Any], policy: dict[str, Any], workspace_root: Path
 
     prompt = str(job["goal"]).strip()
     prompt_hash = sha256_bytes(prompt.encode("utf-8"))
+    runtime_home = workspace / ".opencode-runtime-home"
+    runtime_home.mkdir(parents=True, exist_ok=True)
+    try:
+        runtime_home.chmod(0o700)
+    except OSError:
+        pass
+    runtime_config = runtime_home / ".config" / "opencode" / "opencode.jsonc"
+    runtime_config.parent.mkdir(parents=True, exist_ok=True)
+    config_bytes = config_path.read_bytes()
+    runtime_config.write_bytes(config_bytes)
+    try:
+        runtime_config.chmod(0o600)
+    except OSError:
+        pass
+    if runtime_config.read_bytes() != config_bytes:
+        raise ModelWorkerError("E_RUNTIME_CONFIG_COPY")
+
     env = os.environ.copy()
     env.update({
-        "HOME": str(worker_home),
-        "XDG_CONFIG_HOME": str(worker_home / ".config"),
-        "XDG_CACHE_HOME": str(worker_home / ".cache"),
-        "OPENCODE_CONFIG": str(config_path),
+        "HOME": str(runtime_home),
+        "XDG_CONFIG_HOME": str(runtime_home / ".config"),
+        "XDG_CACHE_HOME": str(runtime_home / ".cache"),
+        "OPENCODE_CONFIG": str(runtime_config),
         "NO_COLOR": "1",
     })
     argv = [str(binary), "run", "--pure", "--format", "json", "--model", MODEL, prompt]
-    try:
-        completed = subprocess.run(argv, cwd=workspace, env=env, capture_output=True, timeout=timeout_sec, check=False)
-    except subprocess.TimeoutExpired:
+    evidence_dir = workspace / ".worker-evidence"
+    evidence_dir.mkdir(parents=True, exist_ok=True)
+    stdout_path = evidence_dir / "opencode.stdout.jsonl"
+    stderr_path = evidence_dir / "opencode.stderr.log"
+    started = time.monotonic()
+    completion_observed = False
+    marker_ok = expected_marker is None
+    finish_event: dict[str, Any] | None = None
+    cleanup = "NOT_STARTED"
+
+    with stdout_path.open("wb") as stdout_handle, stderr_path.open("wb") as stderr_handle:
+        proc = subprocess.Popen(argv, cwd=workspace, env=env, stdin=subprocess.DEVNULL, stdout=stdout_handle, stderr=stderr_handle)
+        while time.monotonic() - started < timeout_sec:
+            stdout_handle.flush()
+            data = stdout_path.read_bytes() if stdout_path.exists() else b""
+            completion_observed, marker_ok, finish_event = _completion_from_jsonl(data, expected_marker)
+            if completion_observed:
+                cleanup = _stop_process(proc)
+                break
+            if proc.poll() is not None:
+                cleanup = "EXITED_NATURALLY"
+                break
+            time.sleep(0.1)
+        else:
+            cleanup = _stop_process(proc)
+
+    stdout = stdout_path.read_bytes() if stdout_path.exists() else b""
+    stderr = stderr_path.read_bytes() if stderr_path.exists() else b""
+    completion_observed, marker_ok, finish_event = _completion_from_jsonl(stdout, expected_marker)
+    duration_ms = int((time.monotonic() - started) * 1000)
+    returncode = proc.poll()
+
+    if not completion_observed:
         return {
             "schema": RECEIPT_SCHEMA, "status": "BLOCKED_RUNTIME", "task_id": job.get("task_id"),
             "provider_id": "opencode", "model": MODEL, "cost_policy": "ZERO_USD_ONLY",
-            "paid_fallback_used": False, "prompt_sha256": prompt_hash, "reason": "model_call_timeout",
+            "paid_fallback_used": False, "prompt_sha256": prompt_hash,
+            "reason": "model_completion_not_observed",
+            "runtime_home": str(runtime_home), "runtime_config_sha256": sha256_bytes(config_bytes),
+            "stdout_sha256": sha256_bytes(stdout), "stdout_bytes": len(stdout),
+            "stderr_sha256": sha256_bytes(stderr), "stderr_bytes": len(stderr),
+            "returncode_after_cleanup": returncode, "process_cleanup": cleanup, "duration_ms": duration_ms,
+            "completion_event_observed": False, "expected_marker_verified": marker_ok,
+            "evidence_refs": {"stdout": str(stdout_path), "stderr": str(stderr_path)},
             "authority_boundary": {"semantic_authority_expanded": False, "submission_authorized": False, "spend_authorized": False},
         }
-    stdout = completed.stdout or b""
-    stderr = completed.stderr or b""
-    marker_ok = expected_marker is None or expected_marker.encode("utf-8") in stdout
-    status = "PASS" if completed.returncode == 0 and stdout and marker_ok else "FAILED_MODEL_EXECUTION"
+
+    finish_part = (finish_event or {}).get("part") or {}
+    tokens = finish_part.get("tokens") or {}
+    cost = finish_part.get("cost")
+    cost_zero = cost in (0, 0.0, None)
+    status = "PASS" if marker_ok and cost_zero else "FAILED_MODEL_EXECUTION"
     return {
         "schema": RECEIPT_SCHEMA,
         "status": status,
@@ -127,14 +219,23 @@ def execute(*, job: dict[str, Any], policy: dict[str, Any], workspace_root: Path
         "provider_id": "opencode",
         "model": MODEL,
         "cost_policy": "ZERO_USD_ONLY",
+        "observed_cost": cost,
         "paid_fallback_used": False,
         "prompt_sha256": prompt_hash,
         "stdout_sha256": sha256_bytes(stdout),
         "stdout_bytes": len(stdout),
         "stderr_sha256": sha256_bytes(stderr),
         "stderr_bytes": len(stderr),
-        "returncode": completed.returncode,
+        "returncode_after_cleanup": returncode,
         "expected_marker_verified": marker_ok,
+        "completion_event_observed": True,
+        "completion_reason": finish_part.get("reason"),
+        "tokens": tokens,
+        "duration_ms": duration_ms,
+        "process_cleanup": cleanup,
+        "runtime_home": str(runtime_home),
+        "runtime_config_sha256": sha256_bytes(config_bytes),
+        "evidence_refs": {"stdout": str(stdout_path), "stderr": str(stderr_path)},
         "authority_boundary": {"semantic_authority_expanded": False, "submission_authorized": False, "spend_authorized": False},
     }
 
@@ -146,8 +247,13 @@ def main() -> int:
     ap.add_argument("--workspace-root", default="/var/lib/die/workspaces")
     ap.add_argument("--receipt", required=True)
     ap.add_argument("--expected-marker")
+    ap.add_argument("--timeout-sec", type=int, default=60)
     args = ap.parse_args()
-    receipt = execute(job=load_json(Path(args.job)), policy=load_json(Path(args.policy)), workspace_root=Path(args.workspace_root), expected_marker=args.expected_marker)
+    receipt = execute(
+        job=load_json(Path(args.job)), policy=load_json(Path(args.policy)),
+        workspace_root=Path(args.workspace_root), expected_marker=args.expected_marker,
+        timeout_sec=args.timeout_sec,
+    )
     Path(args.receipt).write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"status": receipt["status"], "model": receipt.get("model")}))
     return 0 if receipt["status"] == "PASS" else 2

@@ -119,3 +119,10 @@ Recommended first implementation order:
 - `UP-001A/B/C/D = DONE`; Linux CPU RealESRGAN x4 is live with `realesr-general-x4v3` SHA-256 `8dc7edb9ac80ccdc30c3a5dca6616509367f05fbc184ad95b731f05bece96292`, real 64x64 -> 256x256 proof, lineage receipt and Windows-reference edge/texture/silhouette regression PASS. `UP-001 = DONE`.
 - `META-001A/B/C/D/E = DONE`; Division01-pinned metadata compilation, keyword/category authority checks, PNG XMP, JPEG XMP+IPTC-IIM, canonical sidecar, read-back/final hash and QA-platform-profile mapping are executable. `META-001 = DONE`.
 - `RIGHTS-001A/B/C/D/E = DONE`; deterministic rights risk evidence, bounded visual/release evidence contract and fail-closed `RIGHTS_FAILED`/`RIGHTS_UNCLEAR` QA HARD_VETO integration are executable. No legal clearance is claimed. `RIGHTS-001 = DONE`.
+
+
+## 2026-09-01 WRK-001 governed parallel closure
+
+- `WRK-001D = DONE`; `WRK-001 = DONE`. OpenCode completion is evidence-driven: durable JSONL `step_finish(reason=stop)` + expected marker, not process-exit-driven. Lingering OpenCode background runtime is torn down after completion so the worker slot is released deterministically.
+- Hermes owns bounded parallelism. Worker processes never spawn workers. Four isolated real Muse jobs ran concurrently (`peak_active_workers=4`) with exact model, observed zero cost, unique runtime homes, durable receipts and no paid fallback.
+- Production V1 default and hard ceiling are both four concurrent Worker-001 jobs. Raising the ceiling requires a new capacity proof.

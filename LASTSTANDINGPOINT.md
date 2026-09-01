@@ -3294,3 +3294,15 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - `WRK-001A/B/C = DONE`; `WRK-001D = READY`; `WRK-001 = BLOCKED` pending governed headless OpenCode model receipt.
 - `OE-007G` remains BLOCKED on `OE-007F`; its UP/META/RIGHTS/QA/QC prerequisites are now satisfied.
 - `/srv/die` was not mutated by this branch work.
+
+
+---
+
+## 2026-09-01 — WRK-001 bounded parallel model worker closure
+
+- `WRK-001D = DONE`; `WRK-001 = DONE`.
+- Single governed model execution PASS: exact Muse Spark 1.2 Contributor Free, observed cost `0`, completion marker verified.
+- Root cause repaired: OpenCode may linger after durable `step_finish`; Worker acceptance now follows completion evidence and performs deterministic child teardown.
+- Four-way real parallel canary PASS: `4/4`, peak `4`, unique per-job runtime HOME/session DB/evidence, no paid fallback.
+- Hermes owns concurrency; Worker cannot spawn workers. V1 default/hard ceiling: `4`.
+- Next production convergence: `OE-007F` is eligible once its existing `OE-007E` dependency is satisfied; `MX-070` remains READY in the migration lane.

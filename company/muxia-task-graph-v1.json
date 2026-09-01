@@ -1399,8 +1399,8 @@
                       "depends_on":  [
                                          "WRK-001C"
                                      ],
-                      "status":  "READY",
-                      "artifact":  "Worker-001 model-backed canary receipt",
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/WRK-001D-four-worker-parallel.acceptance.receipt.json",
                       "acceptance":  "One synthetic bounded job proves exact model selection, zero cost, sanitized output/evidence and no paid fallback, production/provider action or authority expansion."
                   },
                   {
@@ -1410,8 +1410,8 @@
                       "depends_on":  [
                                          "WRK-001D"
                                      ],
-                      "status":  "BLOCKED",
-                      "artifact":  "WRK-001 acceptance receipt",
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/WRK-001-model-worker.acceptance.receipt.json",
                       "acceptance":  "OpenCode Worker-001 can execute governed zero-cost model-backed jobs with exact model/cost lineage and immutable authored semantics."
                   },
                   {

@@ -7,7 +7,7 @@ Path repo: `company/workers/contract/WORKER_CONTRACT_V0.md` · Ekstrak standalon
 
 </aside>
 
-Kontrak antara Hermes (orchestrator) dan Worker (employee terikat kontrak). Worker v0: **OpenCode CLI**, satu worker aktif.
+Kontrak antara Hermes (orchestrator) dan Worker (employee terikat kontrak). Worker v0: **OpenCode CLI**. Hermes may dispatch a bounded number of independent Worker-001 job processes in parallel; a Worker process itself may never delegate or spawn another worker.
 
 DIE-202 implementation lock: `Worker` adalah role/contract generik; `opencode` adalah **Worker-001** dan default general execution worker V1. Hermes tetap orchestrator. MUXIA tetap browser/provider/profile/job/artifact infrastructure. Architect MCP bukan worker.
 
@@ -16,9 +16,9 @@ DIE-202 implementation lock: `Worker` adalah role/contract generik; `opencode` a
 1. **Worker punya job, bukan mission.** Worker tidak menerima Northstar, strategi, nama pelanggan, atau konteks pasar.
 2. **"done" tanpa evidence = blocked.** Tanpa pengecualian, tanpa negosiasi.
 3. **Idempotent & resumable.** Child agent tidak durable (VERIFIED §2 brief: restart = batal), jadi job harus bisa dijalankan ulang tanpa merusak dan bisa dilanjutkan dari artifact terakhir.
-4. **Satu job = satu workspace = satu artifact utama.**
+4. **Satu job = satu workspace = satu runtime HOME = satu artifact utama.** Concurrent jobs must not share OpenCode session DB/cache/evidence state.
 5. **Least privilege.** Tanpa kredensial produksi, tanpa akses jaringan kecuali allowlist, tanpa tulis di luar workspace.
-6. **Tidak boleh spawn worker lain.** Hanya Hermes yang mendelegasikan.
+6. **Worker tidak boleh spawn worker lain.** Hanya Hermes yang mendelegasikan. Hermes may run multiple independent Worker-001 jobs concurrently under a bounded pool.
 
 ## 2. Input — Hermes → Worker
 
@@ -125,14 +125,23 @@ Kontrak ini dianggap ditegakkan hanya jika ada berkas uji minimal di repo:
 
 Tanpa fixture ini, kepatuhan kontrak adalah **ASSUMPTION**, bukan properti sistem.
 
-## 8. Open questions
+## 8. Bounded parallelism V1
+
+- Hermes is the sole concurrency owner/delegator.
+- Default pool width is `4`; hard V1 ceiling is `4` concurrent Worker-001 jobs.
+- Each job requires a unique `task_id`, workspace, OpenCode runtime HOME/session database, cache, stdout/stderr evidence files, and execution receipt.
+- Shared read-only/runtime identity is limited to the OpenCode binary, pinned model policy, and validated source config. Mutable session/database/evidence state is never shared.
+- Pool admission fails closed on duplicate task IDs/workspaces or requested parallelism above the hard ceiling.
+- Parallel execution does not expand network, spend, submission, semantic, or worker-delegation authority.
+
+## 9. Open questions
 
 - `OPEN-W1` Ambang heartbeat per jenis job belum ditetapkan.
 - `OPEN-W2` Bentuk sandbox/isolasi workspace di Windows belum diputuskan (lihat Challenge C4).
 - `OPEN-W3` Kebijakan retry otomatis (berapa kali, dengan jeda berapa) belum ditetapkan.
 - `OPEN-W4` Apakah `network: "allowlist"` diperlukan untuk job v0 pertama — belum diketahui sampai job nyata disusun.
 
-## 9. DIE-202 Linux runtime binding
+## 10. DIE-202 Linux runtime binding
 
 - Contract runtime schema: `company/workers/contract/worker-job-envelope.v1.schema.json`.
 - Result runtime schema: `company/workers/contract/worker-result-envelope.v1.schema.json`.
