@@ -151,3 +151,6 @@ Tanpa fixture ini, kepatuhan kontrak adalah **ASSUMPTION**, bukan properti siste
 - OpenCode install root: `/opt/die/workers/opencode`.
 - OpenCode mutable home: `/var/lib/die/workers/opencode/home`.
 - Synthetic DIE-202 proof may invoke `opencode --version` only; it must not call a model/provider. Real model-backed work requires explicit provider/cost/network policy in the job envelope and a later governed proof.
+## Production Chain Playbook
+
+All production Workers MUST follow `company/operations/PRODUCTION_CHAIN_OPERATING_PLAYBOOK_V1.md` for their role boundary. A Worker executes the bounded Hermes job and fixed Blueprint handoff; it does not invent missing semantics, spawn Workers, publish, or change production authority.

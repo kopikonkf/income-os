@@ -38,6 +38,12 @@
       "path": "docs/atlas/SCENARIO_1B_QUANTITY_GAME.xlsx",
       "sha256": "828e2819a7c5a460db1085e6c7841d1cd4bd879870f494cc81e71cd9002affef",
       "classification": "SUPPORTING_INPUT"
+    },
+    {
+      "doc_id": "production_playbook",
+      "path": "company/operations/PRODUCTION_CHAIN_OPERATING_PLAYBOOK_V1.md",
+      "sha256": "fff1fedaff53b46c619940177dcd3ef78b4ffadcb1d95ab50978926f04363809",
+      "classification": "CANON"
     }
   ],
   "common_facts": [
@@ -170,6 +176,46 @@
         "atlas_crossjoin_complement",
         "blueprint"
       ]
+    },
+    {
+      "fact_id": "PRODUCTION-OPS-CADENCE",
+      "label": "VERIFIED",
+      "statement": "Hermes may start at most one new seed production cycle every three hours; active cycle continuation, retries, Worker/provider completion, QA/QC and Telegram reporting continue immediately and do not wait for the next cron tick.",
+      "source_doc_ids": [
+        "production_playbook"
+      ]
+    },
+    {
+      "fact_id": "PRODUCTION-OPS-GRANULARITY",
+      "label": "VERIFIED",
+      "statement": "The atomic production input is an approved Object Atlas seed noun; family is the portfolio, Blueprint-reuse, anti-duplicate and scaling unit. Generate per seed noun and manage/scale per family.",
+      "source_doc_ids": [
+        "production_playbook"
+      ]
+    },
+    {
+      "fact_id": "PRODUCTION-OPS-ROLES",
+      "label": "VERIFIED",
+      "statement": "Hermes orchestrates and owns Kanban/state; Division01 authors or revises fixed Blueprint semantics only when needed; Executive challenges new/material family strategy rather than every image; Worker executes bounded jobs; MUXIA/OAUTH are provider engines; Founder owns final human rights/QC and irreversible publish/spend/account actions.",
+      "source_doc_ids": [
+        "production_playbook"
+      ]
+    },
+    {
+      "fact_id": "PRODUCTION-OPS-TELEGRAM",
+      "label": "VERIFIED",
+      "statement": "During the early operational phase every production cycle/artifact must report Telegram milestones to Founder: PRODUCTION_STARTED, ARTIFACT_CREATED, QA_QC_UPDATE, WAITING_FOUNDER_QC, READY_FOR_MANUAL_PUBLISH, or an explicit failure/blocker message. Silent production failure is forbidden.",
+      "source_doc_ids": [
+        "production_playbook"
+      ]
+    },
+    {
+      "fact_id": "PRODUCTION-OPS-ATOMIC-GRAPH",
+      "label": "VERIFIED",
+      "statement": "company/muxia-task-graph-v1.json remains the long-horizon engineering journey and milestone map, but unfinished unrelated nodes do not block normal production unless their missing capability is an actual prerequisite of the current cycle.",
+      "source_doc_ids": [
+        "production_playbook"
+      ]
     }
   ],
   "matrix_digest": {
@@ -213,7 +259,8 @@
         "pipeline",
         "atlas",
         "atlas_crossjoin_complement",
-        "blueprint"
+        "blueprint",
+        "production_playbook"
       ],
       "supporting_doc_ids": [
         "platform_matrix",
@@ -227,7 +274,8 @@
           "source_doc_ids": [
             "pipeline",
             "blueprint",
-            "atlas_crossjoin_complement"
+            "atlas_crossjoin_complement",
+            "production_playbook"
           ]
         }
       ]
@@ -238,7 +286,8 @@
         "pipeline",
         "atlas",
         "atlas_crossjoin_complement",
-        "blueprint"
+        "blueprint",
+        "production_playbook"
       ],
       "supporting_doc_ids": [
         "platform_matrix",
@@ -252,7 +301,8 @@
           "source_doc_ids": [
             "atlas",
             "blueprint",
-            "atlas_crossjoin_complement"
+            "atlas_crossjoin_complement",
+            "production_playbook"
           ]
         }
       ]

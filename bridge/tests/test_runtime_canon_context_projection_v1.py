@@ -133,6 +133,7 @@ def test_hash_pinned_role_scoped_projection_is_verified(
         "atlas",
         "atlas_crossjoin_complement",
         "blueprint",
+        "production_playbook",
     ]
     assert [row["doc_id"] for row in data["supporting_documents"]] == [
         "platform_matrix",
