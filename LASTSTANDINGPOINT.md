@@ -3282,3 +3282,15 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 ## 2026-08-31 ? MX-062 real 24-hour soak PASS
 
 `MX-062=DONE`; `MX-070=READY`. Canonical Linux host produced `muxia.mx062.soak.receipt.v1` PASS for 2026-08-30T17:18:02.696Z ? 2026-08-31T17:18:04.261Z: elapsed 86,401,565 ms, 1,438/1,441 samples, coverage 0.997918, all seven failure counters zero, final sample hash `327669c8a318f5c2ba134cebdd2b513990f5064341a67db28e5998c36a1f6a0a`. Independent recomputation over the 1,438-row ledger verified the hash chain, reproduced the PASS receipt exactly, found max observed gap 60,459 ms, zero gaps >90s and zero clock/elapsed regressions. Successful-run journal contains one start, one PASS completion, successful deactivation and zero failure/restart lines. Two earlier 203/EXEC preflight attempts at 17:11Z occurred before the accepted ledger began and are explicitly excluded from the successful run. `/srv/die` remained pinned to `dfb74d7e09b19f68381e1064899d70c645a61f26`. Next released migration task: `MX-070 ? Legacy compatibility adapter`.
+
+
+---
+
+## 2026-09-01 — Production post-processing engine acceptance
+
+- `UP-001 = DONE`; acceptance receipt `company/muxia/receipts/UP-001-upscale-engine.acceptance.receipt.json`.
+- `META-001 = DONE`; acceptance receipt `company/muxia/receipts/META-001-asset-metadata.acceptance.receipt.json`.
+- `RIGHTS-001 = DONE`; acceptance receipt `company/muxia/receipts/RIGHTS-001-rights-ip-preflight.acceptance.receipt.json`.
+- `WRK-001A/B/C = DONE`; `WRK-001D = READY`; `WRK-001 = BLOCKED` pending governed headless OpenCode model receipt.
+- `OE-007G` remains BLOCKED on `OE-007F`; its UP/META/RIGHTS/QA/QC prerequisites are now satisfied.
+- `/srv/die` was not mutated by this branch work.

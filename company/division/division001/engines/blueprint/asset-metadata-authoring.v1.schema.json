@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.division001.asset-metadata-authoring.v1",
+  "title": "Division01 Asset Metadata Authoring V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "author_principal_id",
+    "blueprint_id",
+    "blueprint_sha256",
+    "title",
+    "description",
+    "primary_keywords",
+    "secondary_keywords",
+    "categories",
+    "ai_disclosure"
+  ],
+  "properties": {
+    "schema": {"const": "die.division001.asset-metadata-authoring.v1"},
+    "author_principal_id": {"const": "division-head-division01"},
+    "blueprint_id": {"type": "string", "minLength": 1},
+    "blueprint_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "title": {"type": "string", "minLength": 1, "maxLength": 800},
+    "description": {"type": "string", "minLength": 1, "maxLength": 4000},
+    "primary_keywords": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "secondary_keywords": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "categories": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "ai_disclosure": {"type": "string", "minLength": 1}
+  }
+}

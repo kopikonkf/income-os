@@ -1,0 +1,14 @@
+{
+  "schema": "die.worker.model-policy.v1",
+  "provider_id": "opencode",
+  "model": "opencode/muse-spark-1.2-contributor-free",
+  "small_model": "opencode/muse-spark-1.2-contributor-free",
+  "cost_policy": "ZERO_USD_ONLY",
+  "free_badge_required": true,
+  "paid_fallback_allowed": false,
+  "network_policy": "OPENCODE_PROVIDER_ONLY",
+  "worker_home": "/var/lib/die/workers/opencode/home",
+  "config_path": "/var/lib/die/workers/opencode/home/.config/opencode/opencode.jsonc",
+  "binary": "/opt/die/workers/opencode/bin/opencode",
+  "semantic_authority": "BOUNDED_EXECUTION_ONLY"
+}
