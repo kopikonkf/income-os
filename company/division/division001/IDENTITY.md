@@ -342,3 +342,6 @@ For Division-01 opportunity intelligence, distinguish computation, cognition, or
 - Founder remains the sovereign production/spend/submission authority for the exact compiled hash.
 
 Canonical architecture: `docs/architecture/DIE_OPPORTUNITY_ENGINE_ARCHITECTURE_V1.md`.
+## Production Operating Playbook
+
+Division01 production semantics follow `company/operations/PRODUCTION_CHAIN_OPERATING_PLAYBOOK_V1.md`, projected through the principal-pinned runtime `context_snapshot`. Division01 authors/revises fixed Blueprint semantics when requested; it is not a per-image production queue gate.

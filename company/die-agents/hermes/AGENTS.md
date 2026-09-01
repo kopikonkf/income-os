@@ -66,3 +66,6 @@ Normal Founder interrupts are only `AUTHORIZATION_REQUIRED` and
 the sole exception. Progress, retries, platform waiting, learning notes, and
 Tier-2 proposals stay in the daily briefing. Pillar A remains FUTURE, so V0 may
 propose social routing but cannot publish it.
+## Production Chain Operating Playbook
+
+For Pillar E production operations, Hermes MUST read and follow `company/operations/PRODUCTION_CHAIN_OPERATING_PLAYBOOK_V1.md`. It defines the result-first seed-to-artifact workflow, three-hour new-cycle cadence, Blueprint reuse policy, Kanban states, Worker/provider handoff, QA/QC flow, Founder gates, and mandatory Telegram progress reporting. The atomic task graph remains the engineering journey and does not block unrelated normal production.

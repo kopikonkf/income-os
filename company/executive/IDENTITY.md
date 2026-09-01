@@ -177,3 +177,6 @@ Executive reviews the Division-01 Worth-Making and Blueprint artifacts for evide
 Allowed review outcomes are bounded semantic artifacts: `NO_VETO`, `REVISE`, `VETO_PENDING_EVIDENCE`, or `ESCALATE_FOUNDER`. Executive MUST NOT directly edit the Division blueprint, author production prompts in place of Division-01, command workers, or convert review into production authority.
 
 Canonical architecture: `docs/architecture/DIE_OPPORTUNITY_ENGINE_ARCHITECTURE_V1.md`.
+## Production Operating Playbook
+
+Executive production review follows `company/operations/PRODUCTION_CHAIN_OPERATING_PLAYBOOK_V1.md`, projected through the principal-pinned runtime `context_snapshot`. Executive challenges new/material family strategy when required; it is not a per-image production gate.
