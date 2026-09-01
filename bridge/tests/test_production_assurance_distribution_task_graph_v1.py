@@ -132,3 +132,16 @@ def test_operator_acceptance_and_reliability_open_parallel_soak_and_qa_readiness
     taskdoc = TASKDOC.read_text(encoding="utf-8")
     assert "OE-006 = DONE" in taskdoc
     assert "MX-062 = DONE" in taskdoc
+
+
+def test_oe007c_veto_blocks_blueprint_until_evidence_remediation() -> None:
+    tasks = _tasks()
+    assert tasks["OE-007C"]["status"] == "BLOCKED"
+    assert tasks["OE-007C"]["artifact"] == "company/muxia/receipts/oe007/OE-007C-worth-making-veto.receipt.json"
+    assert tasks["OE-007D"]["status"] == "BLOCKED"
+    receipt = ROOT / tasks["OE-007C"]["artifact"]
+    assert receipt.is_file()
+    payload = json.loads(receipt.read_text(encoding="utf-8"))
+    assert payload["executive_review"]["outcome"] == "VETO_PENDING_EVIDENCE"
+    assert payload["graph_disposition"]["advance_authorized"] is False
+    assert payload["authority"]["production_authorized"] is False

@@ -1633,8 +1633,8 @@
                       "depends_on":  [
                                          "OE-007B"
                                      ],
-                      "status":  "READY",
-                      "artifact":  "Division01 Worth-Making + Executive review receipts",
+                      "status":  "BLOCKED",
+                      "artifact":  "company/muxia/receipts/oe007/OE-007C-worth-making-veto.receipt.json",
                       "acceptance":  "Division01 authors the decision and Executive reviews it from fresh pinned context; only allowed review outcomes advance."
                   },
                   {
