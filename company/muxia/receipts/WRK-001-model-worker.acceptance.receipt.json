@@ -1,0 +1,165 @@
+{
+  "schema": "die.worker.wrk001-acceptance.v1",
+  "task_id": "WRK-001",
+  "date": "2026-09-01",
+  "status": "PASS",
+  "completed_tasks": [
+    "WRK-001A",
+    "WRK-001B",
+    "WRK-001C",
+    "WRK-001D"
+  ],
+  "model": "opencode/muse-spark-1.2-contributor-free",
+  "provider_id": "opencode",
+  "cost_policy": "ZERO_USD_ONLY",
+  "single_governed_execution": {
+    "schema": "die.worker.model-execution-receipt.v1",
+    "status": "PASS",
+    "task_id": "WRK-001D",
+    "provider_id": "opencode",
+    "model": "opencode/muse-spark-1.2-contributor-free",
+    "cost_policy": "ZERO_USD_ONLY",
+    "observed_cost": 0,
+    "paid_fallback_used": false,
+    "prompt_sha256": "63fa71d331ef1989a119b227e20a5535126e840691bccb36ffc79e236a3ea146",
+    "stdout_sha256": "91546110a06841780df5903ffd238d3e7ab08265e7f02f4b57adadc6dee55b0b",
+    "stdout_bytes": 1121,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_bytes": 0,
+    "returncode_after_cleanup": -15,
+    "expected_marker_verified": true,
+    "completion_event_observed": true,
+    "completion_reason": "stop",
+    "tokens": {
+      "total": 11639,
+      "input": 11343,
+      "output": 17,
+      "reasoning": 102,
+      "cache": {
+        "write": 0,
+        "read": 177
+      }
+    },
+    "duration_ms": 9296,
+    "process_cleanup": "TERMINATED_AFTER_COMPLETION",
+    "runtime_home": "/tmp/wrk001-v2-single.3KjmtF/workspaces/job/.opencode-runtime-home",
+    "runtime_config_sha256": "c9285fd05818c3cc70d7f5198154460207f5cf7bbcdaa76bfaceec3d52a9bc58",
+    "evidence_refs": {
+      "stdout": "/tmp/wrk001-v2-single.3KjmtF/workspaces/job/.worker-evidence/opencode.stdout.jsonl",
+      "stderr": "/tmp/wrk001-v2-single.3KjmtF/workspaces/job/.worker-evidence/opencode.stderr.log"
+    },
+    "authority_boundary": {
+      "semantic_authority_expanded": false,
+      "submission_authorized": false,
+      "spend_authorized": false
+    }
+  },
+  "parallel_execution": {
+    "schema": "die.hermes.worker-pool-receipt.v1",
+    "batch_id": "WRK-001D-POOL4-SEAL-20260901",
+    "status": "PASS",
+    "manifest_sha256": "ea8e92194b42c97cee322bf836c15f200154c55c3ddfad52ffb253f4bae21236",
+    "model": "opencode/muse-spark-1.2-contributor-free",
+    "provider_id": "opencode",
+    "cost_policy": "ZERO_USD_ONLY",
+    "requested_jobs": 4,
+    "configured_max_workers": 4,
+    "hard_max_workers": 4,
+    "peak_active_workers": 4,
+    "started_at": "2026-09-01T05:33:46.358833Z",
+    "finished_at": "2026-09-01T05:33:58.578946Z",
+    "duration_ms": 12220,
+    "checks": {
+      "all_jobs_passed": true,
+      "unique_runtime_home_per_job": true,
+      "durable_receipt_per_job": true,
+      "no_paid_fallback": true,
+      "expected_markers_verified": true,
+      "actual_parallelism_observed": true
+    },
+    "jobs": [
+      {
+        "task_id": "P1",
+        "status": "PASS",
+        "receipt_path": "/tmp/wrk001-pool4-seal-1788240826/workspaces/P1/.worker-evidence/model-execution-receipt.json",
+        "receipt_sha256": "83a0f1f925a3702005bbc323c00922ff88d4c3a3d510c00298f16ab1efd39b56",
+        "runtime_home": "/tmp/wrk001-pool4-seal-1788240826/workspaces/P1/.opencode-runtime-home",
+        "stdout_sha256": "a3fae840853587dd6df3f35c9477f7af91a146a01841d44158edf2735fe5fa7b",
+        "stdout_bytes": 1127,
+        "paid_fallback_used": false,
+        "expected_marker_verified": true
+      },
+      {
+        "task_id": "P2",
+        "status": "PASS",
+        "receipt_path": "/tmp/wrk001-pool4-seal-1788240826/workspaces/P2/.worker-evidence/model-execution-receipt.json",
+        "receipt_sha256": "a91915dc25b74c7f8d5ccf18116257f3aaa76065a742001cec5c6455219e0cd6",
+        "runtime_home": "/tmp/wrk001-pool4-seal-1788240826/workspaces/P2/.opencode-runtime-home",
+        "stdout_sha256": "9910447da73847172b6ede6bac2e0a232aa79c3dff2cab6f286e1651f3b27aea",
+        "stdout_bytes": 1128,
+        "paid_fallback_used": false,
+        "expected_marker_verified": true
+      },
+      {
+        "task_id": "P3",
+        "status": "PASS",
+        "receipt_path": "/tmp/wrk001-pool4-seal-1788240826/workspaces/P3/.worker-evidence/model-execution-receipt.json",
+        "receipt_sha256": "2fe3fe484789fd3d32d02773a28c94ee0f8251211e506b709c2d7fd6cfaf49a9",
+        "runtime_home": "/tmp/wrk001-pool4-seal-1788240826/workspaces/P3/.opencode-runtime-home",
+        "stdout_sha256": "3c37c1315511f22c76f53cdff28f7f96a4d705e216ad46f307ecab438b04eb15",
+        "stdout_bytes": 1127,
+        "paid_fallback_used": false,
+        "expected_marker_verified": true
+      },
+      {
+        "task_id": "P4",
+        "status": "PASS",
+        "receipt_path": "/tmp/wrk001-pool4-seal-1788240826/workspaces/P4/.worker-evidence/model-execution-receipt.json",
+        "receipt_sha256": "b632d9432580b29deebfca04e095f77900d67d4ae12caa68dad7d0c6fba3eb61",
+        "runtime_home": "/tmp/wrk001-pool4-seal-1788240826/workspaces/P4/.opencode-runtime-home",
+        "stdout_sha256": "254be9edf820164f984128d0b174ae38b70b2cc90fc1edc8e2251e34afcfdf42",
+        "stdout_bytes": 1127,
+        "paid_fallback_used": false,
+        "expected_marker_verified": true
+      }
+    ],
+    "authority_boundary": {
+      "delegator": "hermes-operator",
+      "workers_may_spawn_workers": false,
+      "semantic_authority_expanded": false,
+      "submission_authorized": false,
+      "spend_authorized": false
+    }
+  },
+  "source_hashes": {
+    "model_worker_sha256": "176438b9c0c9c862575b4f95c779b76778ed30014e748a0868f3a0d53ad28a90",
+    "worker_pool_sha256": "2c60fa38b5aaa136e188cc2421a68f58fa0a5780c360a39e2015ae17143b2596",
+    "model_policy_sha256": "3ef53fd2462ff15bae420ec84292282ab3351391f2eba83af9c5a7b7be905d28",
+    "runtime_config_sha256": "c9285fd05818c3cc70d7f5198154460207f5cf7bbcdaa76bfaceec3d52a9bc58",
+    "parallel_receipt_sha256": "3484977385cc815249b3d790f5f2c558fb700234cb91c6637cf728a04a96e563"
+  },
+  "acceptance": {
+    "single_governed_model_execution_pass": true,
+    "exact_model_pinned": true,
+    "zero_cost_observed": true,
+    "no_paid_fallback": true,
+    "durable_completion_event": true,
+    "deterministic_slot_release": true,
+    "four_way_parallel_pass": true,
+    "per_job_runtime_isolation": true,
+    "durable_receipt_per_job": true
+  },
+  "parallelism_policy": {
+    "default_parallel_workers": 4,
+    "hard_v1_ceiling": 4,
+    "higher_parallelism_requires_new_capacity_proof": true
+  },
+  "authority_boundary": {
+    "delegator": "hermes-operator",
+    "workers_may_spawn_workers": false,
+    "semantic_authority_expanded": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false
+  }
+}

@@ -18,3 +18,8 @@ Runtime roots:
 - job workspaces: `/var/lib/die/workspaces`
 
 No Windows OpenCode config/provider credential is copied by DIE-202.
+
+
+## Bounded concurrency
+
+Hermes may dispatch independent Worker-001 jobs through `company/die-agents/hermes/worker_pool.py`. V1 defaults to four concurrent jobs with a hard ceiling of four. Each job has an isolated workspace/runtime HOME/evidence directory; Worker processes cannot spawn workers.

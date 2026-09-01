@@ -25,8 +25,8 @@ def test_worker_model_lane_is_zero_cost_and_gates_oe007f():
     assert tasks["WRK-001A"]["status"] == "DONE"
     assert tasks["WRK-001B"]["status"] == "DONE"
     assert tasks["WRK-001C"]["status"] == "DONE"
-    assert tasks["WRK-001D"]["status"] == "READY"
-    assert tasks["WRK-001"]["status"] == "BLOCKED"
+    assert tasks["WRK-001D"]["status"] == "DONE"
+    assert tasks["WRK-001"]["status"] == "DONE"
     assert tasks["WRK-001A"]["depends_on"] == ["DIE-202"]
     assert tasks["WRK-001B"]["depends_on"] == ["WRK-001A"]
     assert tasks["WRK-001C"]["depends_on"] == ["WRK-001B"]
@@ -103,5 +103,7 @@ def test_acceptance_receipts_are_pinned_and_passed():
         (ROOT / "company/muxia/receipts/WRK-001-foundation.acceptance.receipt.json").read_text(encoding="utf-8")
     )
     assert wrk["status"] == "PARTIAL_PASS"
-    assert wrk["completed_tasks"] == ["WRK-001A", "WRK-001B", "WRK-001C"]
-    assert wrk["pending_task"] == "WRK-001D"
+    accepted = json.loads((ROOT / "company/muxia/receipts/WRK-001-model-worker.acceptance.receipt.json").read_text(encoding="utf-8"))
+    assert accepted["status"] == "PASS"
+    assert accepted["acceptance"]["four_way_parallel_pass"] is True
+    assert accepted["parallelism_policy"]["hard_v1_ceiling"] == 4
