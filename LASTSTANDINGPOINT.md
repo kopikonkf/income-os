@@ -3306,3 +3306,14 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Four-way real parallel canary PASS: `4/4`, peak `4`, unique per-job runtime HOME/session DB/evidence, no paid fallback.
 - Hermes owns concurrency; Worker cannot spawn workers. V1 default/hard ceiling: `4`.
 - Next production convergence: `OE-007F` is eligible once its existing `OE-007E` dependency is satisfied; `MX-070` remains READY in the migration lane.
+
+
+---
+
+## 2026-09-01 — MX-070 compatibility acceptance
+
+- `MX-070 = DONE`; receipt `company/muxia/receipts/MX-070-legacy-compatibility.acceptance.receipt.json`.
+- Legacy Worker/Proxima file contract maps to MUXIA JobRecord and verified artifact export while unchanged `die_accept.py` accepts the legacy projection.
+- Loopback compatibility facade proves `GET /v1/models` and bounded `POST /v1/chat/completions`; exact temporary bind `127.0.0.1:3211` PASS and listener count after canary is zero.
+- No provider, submission, publication, credential or persistent cutover action occurred.
+- `OE-007A = READY`.

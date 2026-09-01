@@ -151,7 +151,7 @@ An OPERATOR_REQUIRED adapter is still a valid Submission Engine adapter: it prep
 
 `OE-006 = DONE`. Parallel production-readiness is active:
 
-- MUXIA reliability: `MX-060 = DONE`, `MX-061 = DONE`, `MX-062 = DONE`, `MX-070 = READY`;
+- MUXIA reliability: `MX-060 = DONE`, `MX-061 = DONE`, `MX-062 = DONE`, `MX-070 = DONE`;
 - production assurance: `QA-001 = DONE` and `QC-001 = DONE`; the QC engine is calibrated/shadow-capable and delegation-ready while canonical delegation remains `SHADOW_ONLY` / unratified;
 - `SUB-001A = READY`; marketplace submission, market-loop and `OE-007` remain separately authority/dependency-gated.
 
