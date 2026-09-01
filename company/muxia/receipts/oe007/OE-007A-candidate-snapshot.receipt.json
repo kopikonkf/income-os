@@ -1,0 +1,146 @@
+{
+  "schema": "die.oe007a.candidate-snapshot.v1",
+  "task_id": "OE-007A",
+  "status": "PASS",
+  "created_at": "2026-09-01T07:31:37Z",
+  "repo_sha": "c1e18cf67e7ad05f9b0970e08786466f4e5576a3",
+  "candidate_family": {
+    "family_id": "FAM-OE007-SMALL-BUSINESS-SHOPPING-BAG",
+    "object": "shopping bag",
+    "human_context_id": "HCTX-SMALL-BUSINESS-PACKAGING-001",
+    "selected_candidate_id": "LT-CAND-085B5EFA6B30F97C1235ABA9",
+    "selected_phrase": "shopping bag for packing customer orders",
+    "product_expression": "L0"
+  },
+  "object_atlas": {
+    "schema": "die.object-atlas.seed-retrieval.v1",
+    "receipt_id": "OBJRET-F9432BAEF2C10F8F3BFD9F66",
+    "source_db": {
+      "path_ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db",
+      "sha256": "e6e43fbd4bbee712de651c31a159bb66872a91b1b555f809d0177ba856eeb891",
+      "mode": "READ_ONLY_POINT_IN_TIME_OR_AUTHORITATIVE_SNAPSHOT"
+    },
+    "query": {
+      "canonical_names": [
+        "shopping bag"
+      ],
+      "limit": 1
+    },
+    "policy": {
+      "approved_only": true,
+      "max_results": 50,
+      "arbitrary_sql": false,
+      "dataset_finality_required": false
+    },
+    "result_count": 1,
+    "results": [
+      {
+        "seed_id": "SEED-000029",
+        "canonical_name": "shopping bag",
+        "aliases": [
+          "shopping bags"
+        ],
+        "object_class": "commerce",
+        "existence_type": "real",
+        "category_path": "Commerce/Retail",
+        "visuality_score": null,
+        "risk_score": null,
+        "status": "approved",
+        "updated_at": "2026-08-25T14:33:15+00:00"
+      }
+    ]
+  },
+  "human_context": {
+    "schema": "die.human-atlas.context-retrieval.v1",
+    "receipt_id": "HCTXRET-41E5905804E8915B55B8EE98",
+    "registry": {
+      "path_ref": "/home/kopiko/die-worktrees/oe007-campaign/company/division/division001/engines/longtail/HUMAN_CONTEXT_REGISTRY_V1.json",
+      "sha256": "95287b4e4201f51e1ef27471859f3b37c169fadbe827b3625187a89404b71a4c",
+      "version": "1.0.0",
+      "status": "CANON_SEEDED_HYPOTHESIS_REGISTRY"
+    },
+    "query": {
+      "object_name": "shopping bag",
+      "limit": 1
+    },
+    "policy": {
+      "max_results": 25,
+      "exhaustive_cartesian": false,
+      "market_evidence": false,
+      "result_label": "HYPOTHESIS_CONTEXT_COMPATIBILITY"
+    },
+    "result_count": 1,
+    "results": [
+      {
+        "context": {
+          "context_id": "HCTX-SMALL-BUSINESS-PACKAGING-001",
+          "label": "HYPOTHESIS",
+          "human": "small business seller",
+          "activity": "packing customer orders",
+          "place": "small studio or retail workspace",
+          "time": "order fulfillment",
+          "demographic": "small business operator",
+          "emotion": "professionalism and trust",
+          "problem": "presenting products professionally at handoff",
+          "industry": "retail ecommerce and packaging",
+          "commercial_intent": "advertise package or explain fulfillment",
+          "target_buyers": [
+            "packaging supplier",
+            "ecommerce-content publisher"
+          ],
+          "buyer_jobs": [
+            "show professional packaging",
+            "illustrate order fulfillment"
+          ],
+          "object_hints": [
+            "shopping bag",
+            "paper bag",
+            "gift bag",
+            "shipping box",
+            "packaging box"
+          ],
+          "product_expression_hints": [
+            "L0",
+            "L1",
+            "L2",
+            "L3",
+            "L4"
+          ]
+        },
+        "compatibility_score": 1.0,
+        "best_anchor_score": 1.0,
+        "anchor_scores": {
+          "object_name": 1.0
+        }
+      }
+    ]
+  },
+  "longtail_generation_sha256": "679dde955c039989c8db2bf2c4175ab45c11471b7babd2b2499ef2b8c6ec17f6",
+  "longtail_guard_sha256": "345e3defcef9cea42462e15fc704366ade6b0fbd42b99adf19c56e77ab96b462",
+  "selected_candidate_sha256": "e127bee6ba7c1aa91b559eec4d1f8b65960f7742e23c11b147ae3ee7153cb48b",
+  "pins": {
+    "task_graph_sha256": "bbe125a771de75b49033a0368ebbd34748666642873ae531680583f8de228800",
+    "human_context_registry_sha256": "95287b4e4201f51e1ef27471859f3b37c169fadbe827b3625187a89404b71a4c",
+    "modifier_ontology_sha256": "72ac327e3f818f84763853591977ae3c4b8a612c1c65b0afa8f53228cc45d2fc",
+    "demand_score_model_sha256": "d719c1376d9453724a53ec86caff49dd325337f549b3d90ce28c5b424490d442",
+    "market_profiles": {
+      "123rf.v1.json": "a138cc38968878dacb1d29de555b4451dfd45abd8454b9371a8660bb1bb1f916",
+      "adobe-stock.v1.json": "fa7a4f6d7592e629135ec7a44a6ade6afc073391d769e41539f3aa6586e52d23",
+      "dreamstime.v1.json": "c8d0eceee7a2065378fd010ad48fc63fcca57b5f0ec78afb049b093d08ae3adc",
+      "motionelements.v1.json": "8e94f67927d98d351f74cb1c4e05953458db94798d8a41419dd454be38525338",
+      "vecteezy.v1.json": "1c6e501199fd2bfd14f5114c60affc2f68b483073ffde96da42a2280d518075e"
+    },
+    "dependency_receipts": {
+      "OE-006": "8e0d8c7d69daf24a9824fa644d03ee5aaf4e4fda25dc2dcb4d68d99b83850c8c",
+      "DIE-204": "d08726afb856c0075f26c1eb4ed953c7a940129ab8835e08b87ee8ca2e92158f",
+      "MX-070": "db019b6aa5953e18b58ca7db64ee9f72356afaf02e2842988e3e7a91fc2bc7b4"
+    }
+  },
+  "authority_boundary": {
+    "external_market_data_claimed": false,
+    "production_invoked": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false
+  }
+}

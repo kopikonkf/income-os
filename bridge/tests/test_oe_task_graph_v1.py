@@ -49,10 +49,10 @@ def test_oe_roadmap_has_all_milestones_and_operator_acceptance_is_closed() -> No
         assert task_id in tasks
     assert tasks["OE-000"]["status"] == "DONE"
     ready = {task_id for task_id, row in tasks.items() if task_id.startswith("OE-") and row["status"] == "READY"}
-    assert ready == {"OE-007A"}
+    assert ready == {"OE-007C"}
     assert tasks["OE-006G"]["status"] == "DONE"
     assert tasks["OE-006"]["status"] == "DONE"
-    assert tasks["OE-007A"]["status"] == "READY"
+    assert tasks["OE-007A"]["status"] == "DONE"
 
 
 def test_oe_milestone_dependency_chain_is_strict() -> None:

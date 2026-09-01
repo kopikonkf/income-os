@@ -1611,8 +1611,8 @@
                                          "DIE-204",
                                          "MX-070"
                                      ],
-                      "status":  "READY",
-                      "artifact":  "one candidate/family + pinned canon/object/market snapshot",
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/oe007/OE-007A-candidate-snapshot.receipt.json",
                       "acceptance":  "Canary starts only after Operator v2, Linux company topology and compatibility adapter are ready; exact candidate/evidence/canon versions are pinned."
                   },
                   {
@@ -1622,8 +1622,8 @@
                       "depends_on":  [
                                          "OE-007A"
                                      ],
-                      "status":  "BLOCKED",
-                      "artifact":  "OE-001/OE-002/OE-003 canary receipts",
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/oe007/OE-007B-signals-score-longtail.receipt.json",
                       "acceptance":  "One candidate produces real/approved bounded signal receipts, Demand Score and evidence-backed longtail/context candidates without hidden heuristic fallback."
                   },
                   {
@@ -1633,7 +1633,7 @@
                       "depends_on":  [
                                          "OE-007B"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "Division01 Worth-Making + Executive review receipts",
                       "acceptance":  "Division01 authors the decision and Executive reviews it from fresh pinned context; only allowed review outcomes advance."
                   },
