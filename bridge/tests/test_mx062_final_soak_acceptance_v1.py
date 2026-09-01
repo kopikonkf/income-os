@@ -8,7 +8,7 @@ RECEIPT=ROOT/'company'/'muxia'/'receipts'/'MX-062-final-soak.acceptance.receipt.
 def test_mx062_done_releases_mx070() -> None:
     tasks={x['id']:x for x in json.loads(GRAPH.read_text(encoding='utf-8'))['tasks']}
     assert tasks['MX-062']['status']=='DONE'
-    assert tasks['MX-070']['status']=='READY'
+    assert tasks['MX-070']['status']=='DONE'
 
 def test_real_soak_acceptance_gates_are_proven() -> None:
     d=json.loads(RECEIPT.read_text(encoding='utf-8'))

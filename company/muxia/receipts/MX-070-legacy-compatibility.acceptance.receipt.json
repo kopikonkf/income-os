@@ -1,0 +1,40 @@
+{
+  "schema": "muxia.mx070.compatibility.acceptance.v1",
+  "task_id": "MX-070",
+  "date": "2026-09-01",
+  "status": "PASS",
+  "canonical_base": "e10ab0ee6df4dfd15bcc8058a18ab5c8e6d0b24f",
+  "source_hashes": {
+    "compatibility_ts": "557e9cd6509a39f8918a27f477a46c76ce6ae47d8216e3f3c1828ab164aef0f8",
+    "loopback_server_ts": "3241f8a4f5caba3130adc08dde704a65d7b16041618d4c3ed5eec700fac494ba",
+    "legacy_m001_loop_py": "15cf26e4aa865527b02434f0fb8e7beecb39a11a225d31d76a6d2d16f5829036",
+    "legacy_die_accept_py": "9110eaaa59f3ecd53e1db130967d5bc3236b632044c342c963c9e6e1c2805eae"
+  },
+  "proofs": {
+    "focused_tests": "7/7 PASS",
+    "legacy_job_to_muxia_job": true,
+    "verified_artifact_hash_equivalence": true,
+    "unchanged_die_accept_accepts_projection": true,
+    "loopback_models_doctor_contract": true,
+    "bounded_post_delegation_contract": true,
+    "exact_historical_bind": "127.0.0.1:3211",
+    "exact_port_models_status": 200,
+    "exact_port_post_status": 200,
+    "chatgpt_enabled": true,
+    "listener_count_after_canary": 0,
+    "legacy_proxima_process_invoked": false,
+    "provider_invoked": false
+  },
+  "authority_boundary": {
+    "max_cost_usd": 0,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "credential_access_authorized": false,
+    "canonical_state_write_authorized": false
+  },
+  "rollback": {
+    "legacy_endpoint_identity_retained": true,
+    "legacy_endpoint": "http://127.0.0.1:3211/v1/chat/completions",
+    "persistent_cutover_performed": false
+  }
+}

@@ -304,8 +304,8 @@
                       "depends_on":  [
                                          "MX-062"
                                      ],
-                      "status":  "READY",
-                      "artifact":  "Worker/Proxima-to-MUXIA compatibility route",
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/MX-070-legacy-compatibility.acceptance.receipt.json",
                       "acceptance":  "Equivalent bounded artifact contract; no authority expansion; rollback path remains."
                   },
                   {
@@ -1611,7 +1611,7 @@
                                          "DIE-204",
                                          "MX-070"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "one candidate/family + pinned canon/object/market snapshot",
                       "acceptance":  "Canary starts only after Operator v2, Linux company topology and compatibility adapter are ready; exact candidate/evidence/canon versions are pinned."
                   },
