@@ -6,7 +6,7 @@ HERMES_HOME="${HERMES_HOME:-$DIE_STATE_ROOT/hermes/income-operator}"
 HERMES_BIN="${HERMES_BIN:-/opt/die/hermes/venv/bin/hermes}"
 JOB_NAME="die-production-cognition-v1"
 SCHEDULE='*/1 * * * *'
-SCRIPT_REL='production-cognition/production_cognition_tick.py'
+SCRIPT_REL='production-cognition/production_cognition_tick.sh'
 SOURCE="$DIE_HOME/company/die-agents/hermes/production-cognition"
 DEST="$HERMES_HOME/scripts/production-cognition"
 WORKDIR="$DIE_HOME/company/die-agents/hermes"
@@ -20,6 +20,17 @@ for f in production_cognition_tick.py validate_production_cognition.py die.produ
   install -o die-hermes -g die-runtime -m 0640 "$SOURCE/$f" "$DEST/$f"
 done
 chmod 0750 "$DEST/production_cognition_tick.py" "$DEST/validate_production_cognition.py"
+cat > "$DEST/production_cognition_tick.sh" <<EOF
+#!/usr/bin/env bash
+set -euo pipefail
+exec /usr/bin/python3 "$DIE_HOME/company/die-agents/hermes/production-cognition/production_cognition_tick.py" "$@"
+EOF
+chown die-hermes:die-runtime "$DEST/production_cognition_tick.sh"
+chmod 0750 "$DEST/production_cognition_tick.sh"
+/usr/bin/python3 - <<'PYDEP'
+import jsonschema
+print('PRODUCTION_COGNITION_PYTHON_DEPENDENCY=PASS')
+PYDEP
 JOB_ID=$(runuser -u die-hermes -- env HERMES_HOME="$HERMES_HOME" python3 - <<'PY'
 import json,os
 p=os.path.join(os.environ['HERMES_HOME'],'cron','jobs.json')
