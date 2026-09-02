@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
+import { enforceTabBudget, MAX_TABS_PER_PRINCIPAL } from './tab_budget.mjs';
 
 const DEVTOOLS_ACTIVE_PORT = 'DevToolsActivePort';
 
@@ -95,6 +96,7 @@ export async function runOperatorBrowser(options) {
     if (!context) throw new Error('E_BROWSER_CONTEXT_MISSING');
     let page = context.pages().find((p) => p.url().startsWith('https://chatgpt.com')) || context.pages()[0];
     if (!page) page = await context.newPage();
+    await enforceTabBudget(context, { preserve: [page], maxTabs: MAX_TABS_PER_PRINCIPAL });
     if (!page.url().startsWith('https://chatgpt.com')) {
       await page.goto(startUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
     }
@@ -145,6 +147,7 @@ export async function runOperatorBrowser(options) {
     console.error('Login/recovery and any prompt submission remain operator-controlled; no cookies, tokens, private backend calls, prompt submission, or output extraction are performed.');
 
     const timer = setInterval(async () => {
+      await enforceTabBudget(context, { preserve: [page], maxTabs: MAX_TABS_PER_PRINCIPAL }).catch(() => {});
       status = await classify().catch(() => ({ state: 'UNKNOWN', url: page.url(), title: '', editableCount: 0, loginUiCount: 0, browserPid: child.pid, debugHost: '127.0.0.1', debugPort }));
       writeStatus(status);
     }, 5000);

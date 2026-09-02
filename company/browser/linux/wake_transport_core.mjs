@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { pathToFileURL } from 'node:url';
+import { enforceTabBudget, MAX_TABS_PER_PRINCIPAL } from './tab_budget.mjs';
 
 const CHATGPT_THREAD = /^https:\/\/chatgpt\.com\/c\/([A-Za-z0-9-]+)(?:[/?#].*)?$/;
 const MAX_BRIEFING_CHARS = 12000;
@@ -118,7 +119,10 @@ export async function runWakeTransport(options) {
       if (current.principal_id !== principalId || current.lifecycle_state !== 'active') throw new Error('E_THREAD_STATE');
       if (!envelopeFile || !path.isAbsolute(envelopeFile)) throw new Error('E_ENVELOPE_PATH');
       const envelope = validateEnvelope(JSON.parse(fs.readFileSync(envelopeFile, 'utf8')), principalId);
+      const currentPage = pages.find((p) => normalizeSafe(p.url()) === current.conversation_url) || pages[0];
+      await enforceTabBudget(context, { preserve: [currentPage], maxTabs: 1 });
       const page = await context.newPage();
+      await enforceTabBudget(context, { preserve: [currentPage, page], maxTabs: MAX_TABS_PER_PRINCIPAL });
       await page.goto('https://chatgpt.com/', { waitUntil: 'domcontentloaded', timeout: 60000 });
       await page.bringToFront();
       const box = await composer(page);
@@ -179,6 +183,7 @@ export async function runWakeTransport(options) {
       const state = updateThreadState(current, { principalId, conversationUrl: selected.conversationUrl, conversationId: selected.conversationId, at: new Date().toISOString() });
       atomicJson(threadStateFile, state);
       atomicJson(pendingRotationFile, { ...pending, lifecycle_state: 'bound', to_conversation_id: selected.conversationId, to_generation: state.generation, bound_at: new Date().toISOString() });
+      await enforceTabBudget(context, { preserve: [page], maxTabs: 1 });
       return { status: 'PASS', command, principal_id: principalId, generation: state.generation, previous_generation: current.generation };
     }
 
