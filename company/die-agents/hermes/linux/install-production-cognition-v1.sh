@@ -43,10 +43,10 @@ for j in items:
 PY
 )
 if [[ -n "$JOB_ID" ]]; then
-  runuser -u die-hermes -- env HERMES_HOME="$HERMES_HOME" "$HERMES_BIN" cron edit "$JOB_ID" --schedule "$SCHEDULE" --script "$SCRIPT_REL" --no-agent --deliver telegram --workdir "$WORKDIR" --no-continuity
+  runuser -u die-hermes -- env HERMES_HOME="$HERMES_HOME" "$HERMES_BIN" cron edit "$JOB_ID" --schedule "$SCHEDULE" --script "$SCRIPT_REL" --no-agent --deliver local --workdir "$WORKDIR" --no-continuity
   ACTION=UPDATED
 else
-  runuser -u die-hermes -- env HERMES_HOME="$HERMES_HOME" "$HERMES_BIN" cron create "$SCHEDULE" --name "$JOB_NAME" --script "$SCRIPT_REL" --no-agent --deliver telegram --workdir "$WORKDIR"
+  runuser -u die-hermes -- env HERMES_HOME="$HERMES_HOME" "$HERMES_BIN" cron create "$SCHEDULE" --name "$JOB_NAME" --script "$SCRIPT_REL" --no-agent --deliver local --workdir "$WORKDIR"
   ACTION=CREATED
 fi
 echo PRODUCTION_COGNITION_INSTALL=PASS
