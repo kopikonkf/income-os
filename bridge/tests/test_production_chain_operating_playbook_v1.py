@@ -115,3 +115,12 @@ def test_production_cron_injects_selector_before_agent_reasoning():
     assert 'Phase-0 seed-selection JSON is injected before this prompt' in installer
     assert 'agent-mode preflight script' in playbook
     assert 'JSON stdout is injected before Hermes reasoning begins' in playbook
+
+
+def test_selector_preflight_cannot_revoke_existing_production_authority():
+    installer = INSTALLER.read_text(encoding='utf-8')
+    playbook = PLAYBOOK.read_text(encoding='utf-8')
+    assert 'selector has no authority effect' in installer
+    assert 'MUST NOT be interpreted as revoking existing zero-spend automated production authority' in installer
+    assert 'selector neither grants nor revokes existing authority' in playbook
+    assert 'Existing zero-spend automated production authority remains governed by this playbook' in playbook

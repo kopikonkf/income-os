@@ -117,12 +117,8 @@ def select_seed(db_path: Path, workspaces_root: Path) -> dict[str, Any]:
             },
             "excluded_used_seed_count": len(used),
             "used_seed_ids": sorted(used),
-            "authority": {
-                "semantic_authoring_authorized": False,
-                "production_provider_authorized": False,
-                "submission_authorized": False,
-                "publication_authorized": False,
-            },
+            "authority_effect": "NONE",
+            "existing_authority_unchanged": True,
         }
 
     return {
@@ -131,12 +127,8 @@ def select_seed(db_path: Path, workspaces_root: Path) -> dict[str, Any]:
         "selection_policy": "APPROVED_U1_DEMAND_RANKED_UNUSED_V1",
         "excluded_used_seed_count": len(used),
         "used_seed_ids": sorted(used),
-        "authority": {
-            "semantic_authoring_authorized": False,
-            "production_provider_authorized": False,
-            "submission_authorized": False,
-            "publication_authorized": False,
-        },
+        "authority_effect": "NONE",
+        "existing_authority_unchanged": True,
     }
 
 

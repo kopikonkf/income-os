@@ -73,7 +73,7 @@ Hermes selects the next eligible seed from the canonical Object Atlas database t
 
 `python3 company/die-agents/hermes/production_seed_selector.py`
 
-The selector ranks approved `U1-raster` seeds by validated demand and excludes seeds already materialized in production workspaces. The production cron attaches this selector as an agent-mode preflight script, so its JSON stdout is injected before Hermes reasoning begins. Hermes MUST consume this injected selection before any ad-hoc repository/database discovery. `SELECTED` chooses the noun only; it does not authorize semantic invention, provider execution, submission or publication.
+The selector ranks approved `U1-raster` seeds by validated demand and excludes seeds already materialized in production workspaces. The production cron attaches this selector as an agent-mode preflight script, so its JSON stdout is injected before Hermes reasoning begins. Hermes MUST consume this injected selection before any ad-hoc repository/database discovery. `SELECTED` chooses the noun only and has **no authority effect**: the selector neither grants nor revokes existing authority. Existing zero-spend automated production authority remains governed by this playbook; Founder gates for publish/spend/account/manual rights-QC remain unchanged.
 
 ### 4.2 Family role
 
