@@ -48,6 +48,8 @@ def test_production_cron_is_three_hour_continuous_agent_job():
     assert 'Start at most one new approved Object Atlas seed noun this tick.' in text
     assert 'PARKED_HUMAN_GATE' in text
     assert 'you MUST start one new eligible seed this tick' in text
+    assert 'production_seed_selector.py' in text
+    assert 'do not rediscover seed-selection mechanics' in text
     assert 'do not let them block an independent eligible seed' in text
     assert 'PRODUCTION_TICK_NO_PROGRESS' in text
     assert '[SILENT] is forbidden for production ticks' in text
@@ -94,3 +96,10 @@ def test_production_cron_does_not_replay_stale_previous_response():
     assert 'CONTINUITY=false' in installer
     assert 'conversational run-to-run continuity is disabled' in playbook
     assert 'Hermes MUST start one new seed in the available cadence slot' in playbook
+
+
+def test_playbook_uses_deterministic_phase0_seed_selector():
+    text = PLAYBOOK.read_text(encoding='utf-8')
+    assert 'python3 company/die-agents/hermes/production_seed_selector.py' in text
+    assert 'ranks approved `U1-raster` seeds by validated demand' in text
+    assert 'MUST use this selector before ad-hoc repository/database discovery' in text
