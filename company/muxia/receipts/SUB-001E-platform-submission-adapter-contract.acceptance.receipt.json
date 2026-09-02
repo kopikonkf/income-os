@@ -1,0 +1,44 @@
+{
+  "schema": "die.asset.sub001e-acceptance.v1",
+  "task_id": "SUB-001E",
+  "date": "2026-09-02",
+  "status": "PASS",
+  "base_sha": "7ac86ffae4bac70e81e69c3cfdc4cf22a8d95537",
+  "artifacts": {
+    "bridge/income_os_bridge/submission_adapter_contract.py": "3869a45708b0ad2a84c8681b15b8e7820ad46ccd86d3dfc69e3a91a7222d0b1d",
+    "company/schemas/die.asset.submission-adapter.v1.schema.json": "315cd8aad1d7cd4343c3abd95c1de2de7d16e6fb2b873107ba7ff30a2f7ef697",
+    "docs/operations/PLATFORM_SUBMISSION_ADAPTER_CONTRACT_V1.md": "190b38f33b78f21486c85577d17979a14bd27b2acd9c8703473e10fab7a71360",
+    "bridge/tests/test_sub001e_submission_adapter_contract.py": "9986e50315444e76d6f6d96844264c0231595caade025c3e3fb8db74fc913dc3"
+  },
+  "execution_modes": [
+    "AUTOMATED_ALLOWED",
+    "OPERATOR_REQUIRED",
+    "OFFICIAL_API_ONLY",
+    "BLOCKED_POLICY_UNKNOWN"
+  ],
+  "interface_semantics": [
+    "prepare",
+    "submit",
+    "reconcile",
+    "receipt"
+  ],
+  "validation": {
+    "focused_submission_graph_one_canon": "48/48 PASS",
+    "one_canon_validator": "11/11 PASS",
+    "high_confidence_secret_hits": 0,
+    "diff_check": "PASS",
+    "full_bridge_observation": "697 PASS / 2 SKIP / 11 unrelated baseline/environment failures after Windows-only fcntl collection file ignored; no SUB-001E focused/dependency test failed"
+  },
+  "authority_boundary": {
+    "marketplace_login_performed": false,
+    "credentials_read": false,
+    "submission_performed": false,
+    "publication_performed": false,
+    "founder_authority_consumed": false,
+    "policy_weakened": false
+  },
+  "graph_transition": {
+    "SUB-001E": "DONE",
+    "SUB-001F": "READY"
+  }
+}

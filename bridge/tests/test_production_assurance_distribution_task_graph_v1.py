@@ -130,7 +130,8 @@ def test_operator_acceptance_and_reliability_open_parallel_soak_and_qa_readiness
     assert tasks["SUB-001B"]["status"] == "DONE"
     assert tasks["SUB-001C"]["status"] == "DONE"
     assert tasks["SUB-001D"]["status"] == "DONE"
-    assert tasks["SUB-001E"]["status"] == "READY"
+    assert tasks["SUB-001E"]["status"] == "DONE"
+    assert tasks["SUB-001F"]["status"] == "READY"
     pad_statuses = {row["status"] for task_id, row in tasks.items() if task_id.startswith(("QA-", "QC-", "SUB-", "CL-"))}
     assert pad_statuses == {"DONE", "READY", "BLOCKED"}
     taskdoc = TASKDOC.read_text(encoding="utf-8")

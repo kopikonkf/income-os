@@ -96,4 +96,4 @@ def test_sub001d_schema_doc_and_graph_keep_dry_run_boundary() -> None:
     tasks = {x["id"]: x for x in json.loads(GRAPH.read_text(encoding="utf-8"))["tasks"]}
     assert tasks["SUB-001C"]["status"] == "DONE"
     assert tasks["SUB-001D"]["status"] in {"READY", "DONE"}
-    assert tasks["SUB-001E"]["status"] in {"BLOCKED", "READY"}
+    assert tasks["SUB-001E"]["status"] in {"BLOCKED", "READY", "DONE"}

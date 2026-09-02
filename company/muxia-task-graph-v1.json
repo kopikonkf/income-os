@@ -1917,7 +1917,7 @@
                       "depends_on":  [
                                          "SUB-001D"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "adapter interface + execution-mode policy",
                       "acceptance":  "Adapters declare AUTOMATED_ALLOWED, OPERATOR_REQUIRED, OFFICIAL_API_ONLY or BLOCKED_POLICY_UNKNOWN and expose prepare/submit/reconcile/receipt semantics without weakening platform policy."
                   },
@@ -1928,7 +1928,7 @@
                       "depends_on":  [
                                          "SUB-001E"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "submission common tests + receipt",
                       "acceptance":  "Authority absence, duplicate package, retry ambiguity, credential leakage, unknown policy, dry-run and reconciliation cases fail closed."
                   },
