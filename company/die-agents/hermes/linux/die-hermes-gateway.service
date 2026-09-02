@@ -40,7 +40,7 @@ CapabilityBoundingSet=
 AmbientCapabilities=
 RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
 ReadOnlyPaths=/srv/die /opt/die/hermes
-ReadWritePaths=/var/lib/die/hermes /var/lib/die/workspaces /var/lib/die/state
+ReadWritePaths=/var/lib/die/hermes /var/lib/die/workspaces /var/lib/die/state /var/lib/die/division01/cognition-receipts /var/lib/die/executive/cognition-receipts
 
 StandardOutput=journal
 StandardError=journal
