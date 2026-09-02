@@ -126,4 +126,4 @@ def test_sub001c_graph_is_pre_acceptance_until_validation_seal() -> None:
     assert tasks["SUB-001A"]["status"] == "DONE"
     assert tasks["SUB-001B"]["status"] == "DONE"
     assert tasks["SUB-001C"]["status"] in {"READY", "DONE"}
-    assert tasks["SUB-001D"]["status"] in {"BLOCKED", "READY"}
+    assert tasks["SUB-001D"]["status"] in {"BLOCKED", "READY", "DONE"}

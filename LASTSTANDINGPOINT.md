@@ -3386,3 +3386,18 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Final validation: focused 49/49 PASS; one-canon pytest 6/6 PASS; validator 11/11 PASS; high-confidence secret hits 0; diff-check PASS; full bridge 694 PASS / 2 SKIP / 2 unrelated pre-existing OE-007 expectation failures reproduced on origin/main baseline.
 - Graph delta: SUB-001C DONE; SUB-001D READY.
 - NEXT READY: SUB-001D Submission dry-run package composer.
+
+---
+
+## 2026-09-02 Scheduled atomic advancement - SUB-001D
+
+- Base canonical main: `f7a601ff79a4779039a8cf0be2ff66a33ab4ef82`.
+- `SUB-001D` Submission dry-run package composer: DONE / PASS.
+- Added deterministic side-effect-free composer, canonical JSON hashing, dry-run schema, reproducible fixture, and contract tests.
+- Composer emits artifact reference, platform-mapped metadata, ordered non-external planned actions and exact lineage hashes, then hard-stops at `STOP_BEFORE_SUBMISSION`.
+- Metadata hash must match the immutable SUB-001A package pin; non-PASS mapping, non-PREPARED package, scope drift, or non-normalized artifact basename fail closed.
+- Authority remains unchanged: no marketplace login, credential access, external submission/publication action, or implicit Founder authorization.
+- Validation: focused submission/graph 36/36 PASS; one-canon pytest 6/6 PASS; one-canon validator 11/11 PASS; secret scan 0; diff-check PASS. Full bridge on Windows: 692 PASS / 2 SKIP / the same 10 unrelated baseline failures reproduced on untouched base (687 PASS / 2 SKIP / same failure set); Linux-only `fcntl` collection test was explicitly ignored.
+- Acceptance receipt: `company/muxia/receipts/SUB-001D-submission-dry-run-composer.acceptance.receipt.json`.
+- Graph delta: `SUB-001D DONE`; `SUB-001E READY`.
+- NEXT READY: `SUB-001E` Platform submission adapter contract.
