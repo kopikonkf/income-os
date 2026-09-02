@@ -43,7 +43,7 @@ def test_production_cron_is_three_hour_continuous_agent_job():
     assert '--deliver telegram' in text
     assert '--no-continuity' in text
     assert '--continuity' not in text
-    assert '--script production_seed_selector.py' in text
+    assert '--script production_tick_preflight.py' in text
     assert 'SELECTOR_SRC=' in text
     assert 'PREFLIGHT_SCRIPT=' in text
     assert '--workdir "$WORKDIR"' in text
@@ -52,7 +52,8 @@ def test_production_cron_is_three_hour_continuous_agent_job():
     assert 'PARKED_HUMAN_GATE' in text
     assert 'you MUST start one new eligible seed this tick' in text
     assert 'production_seed_selector.py' in text
-    assert 'do not rediscover seed-selection mechanics' in text
+    assert 'production_active_card_resolver.py' in text
+    assert 'do not rediscover card/seed mechanics' in text
     assert 'do not let them block an independent eligible seed' in text
     assert 'PRODUCTION_TICK_NO_PROGRESS' in text
     assert '[SILENT] is forbidden for production ticks' in text
@@ -105,22 +106,32 @@ def test_playbook_uses_deterministic_phase0_seed_selector():
     text = PLAYBOOK.read_text(encoding='utf-8')
     assert 'python3 company/die-agents/hermes/production_seed_selector.py' in text
     assert 'ranks approved `U1-raster` seeds by validated demand' in text
-    assert 'MUST consume this injected selection before any ad-hoc repository/database discovery' in text
+    assert 'MUST consume the injected preflight mode before any ad-hoc repository/database discovery' in text
 
 
 def test_production_cron_injects_selector_before_agent_reasoning():
     installer = INSTALLER.read_text(encoding='utf-8')
     playbook = PLAYBOOK.read_text(encoding='utf-8')
-    assert '--script production_seed_selector.py' in installer
-    assert 'Phase-0 seed-selection JSON is injected before this prompt' in installer
-    assert 'agent-mode preflight script' in playbook
+    assert '--script production_tick_preflight.py' in installer
+    assert 'deterministic production tick preflight JSON is injected before this prompt' in installer
+    assert 'single agent-mode preflight script' in playbook
     assert 'JSON stdout is injected before Hermes reasoning begins' in playbook
 
 
 def test_selector_preflight_cannot_revoke_existing_production_authority():
     installer = INSTALLER.read_text(encoding='utf-8')
     playbook = PLAYBOOK.read_text(encoding='utf-8')
-    assert 'selector has no authority effect' in installer
-    assert 'MUST NOT be interpreted as revoking existing zero-spend automated production authority' in installer
-    assert 'selector neither grants nor revokes existing authority' in playbook
+    assert 'preflight and its child resolvers have no authority effect' in installer
+    assert 'MUST NOT be interpreted as granting or revoking existing authority' in installer
+    assert 'neither grant nor revoke existing authority' in playbook
     assert 'Existing zero-spend automated production authority remains governed by this playbook' in playbook
+
+
+def test_active_card_preflight_is_attached_before_llm_reasoning():
+    installer = INSTALLER.read_text(encoding='utf-8')
+    playbook = PLAYBOOK.read_text(encoding='utf-8')
+    assert '--script production_tick_preflight.py --no-continuity' in installer
+    assert 'CONTINUE_ACTIVE_CARD' in installer and 'required_actor' in installer and 'next_action_type' in installer
+    assert 'production_active_card_resolver.py' in installer
+    assert 'Deterministic active-card orientation' in playbook
+    assert 'Unknown explicit production states fail closed' in playbook

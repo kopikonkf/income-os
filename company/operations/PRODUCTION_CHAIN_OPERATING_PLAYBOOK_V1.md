@@ -73,7 +73,7 @@ Hermes selects the next eligible seed from the canonical Object Atlas database t
 
 `python3 company/die-agents/hermes/production_seed_selector.py`
 
-The selector ranks approved `U1-raster` seeds by validated demand and excludes seeds already materialized in production workspaces. The production cron attaches this selector as an agent-mode preflight script, so its JSON stdout is injected before Hermes reasoning begins. Hermes MUST consume this injected selection before any ad-hoc repository/database discovery. `SELECTED` chooses the noun only and has **no authority effect**: the selector neither grants nor revokes existing authority. Existing zero-spend automated production authority remains governed by this playbook; Founder gates for publish/spend/account/manual rights-QC remain unchanged.
+The selector ranks approved `U1-raster` seeds by validated demand and excludes seeds already materialized in production workspaces. It is a child primitive of `production_tick_preflight.py`; the production cron attaches that wrapper as the single agent-mode preflight script, so deterministic active-card orientation is resolved before seed selection and its JSON stdout is injected before Hermes reasoning begins. Hermes MUST consume the injected preflight mode before any ad-hoc repository/database discovery. The wrapper, active-card resolver, and seed selector all have **no authority effect**: they neither grant nor revoke existing authority. Existing zero-spend automated production authority remains governed by this playbook; Founder gates for publish/spend/account/manual rights-QC remain unchanged.
 
 ### 4.2 Family role
 
@@ -425,6 +425,7 @@ The dedicated production cron runs every 3 hours and is separate from Operator-v
 
 On each production tick Hermes:
 
+0. consumes deterministic `die.production-tick-preflight.v1` output before LLM reasoning. `CONTINUE_ACTIVE_CARD` injects the exact durable card, state, required actor and next action; it takes precedence over seed selection. `BLOCKED_ACTIVE_CARD` fails closed for the current card. Only `START_NEW_SEED` opens Phase-0 seed selection. The preflight is authority-neutral and must not be re-derived by repository search;
 1. reads this playbook;
 2. checks whether an **actionable** unfinished production cycle should be continued first; parked human-gated cards (`WAITING_FOUNDER_QC`, `READY_FOR_MANUAL_PUBLISH`) are excluded from this blocking set;
 3. if no actionable unfinished cycle blocks the slot, selects at most one eligible seed noun even when older parked human-gated cards still await Founder action;
@@ -534,3 +535,8 @@ Founder:
 ## 18. North-star behavior
 
 The system is successful when Founder can be away from the VPS and still receive concise Telegram evidence that the production organism is moving from seed to artifact to QA/QC, with intervention required only at meaningful human gates.
+
+
+### 12.2 Deterministic active-card orientation
+
+`production_active_card_resolver.py` classifies durable production workspaces before the production LLM wakes. Explicit state is read from `PROGRESS.md`; the accepted pre-state-field shopping-bag canary is recognized only through its real artifact plus `PENDING_FOUNDER` rights-review evidence and is classified as `PARKED_HUMAN_GATE`. Non-production workspaces without a production state are ignored. Unknown explicit production states fail closed. For an actionable card the resolver emits exact `task_id`, `state`, seed/family context, `required_actor`, `next_action_type`, and a bounded next-action instruction. This orientation neither authors semantics nor grants authority.
