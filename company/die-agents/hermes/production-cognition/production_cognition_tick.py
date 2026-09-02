@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Deterministic production cognition handoff: active card -> Division01 -> Executive -> fixed Blueprint."""
 from __future__ import annotations
-import argparse, datetime as dt, fcntl, hashlib, json, os, re, sqlite3, subprocess, sys
+import argparse, datetime as dt, fcntl, hashlib, json, os, re, shutil, sqlite3, subprocess, sys
 from pathlib import Path
 from typing import Any
 import jsonschema
@@ -196,7 +196,7 @@ def tick(args)->dict[str,Any]:
  raise RuntimeError('E_COGNITION_STAGE:'+stage)
 
 def main():
- ap=argparse.ArgumentParser(); ap.add_argument('--workspaces',default=str(DEFAULT_WORKSPACES)); ap.add_argument('--db',default=str(DEFAULT_DB)); ap.add_argument('--repo',default='/srv/die'); ap.add_argument('--state-root',default=str(DEFAULT_STATE_ROOT)); ap.add_argument('--transport',default='/srv/die/company/browser/linux/cognition_roundtrip.mjs'); ap.add_argument('--node',default='/usr/bin/node'); ap.add_argument('--hermes-bin',default='/opt/die/hermes/venv/bin/hermes'); ap.add_argument('--hermes-home',default='/var/lib/die/hermes/income-operator'); ap.add_argument('--production-job-id',default='6c1d9f5c504e'); ap.add_argument('--no-resume',action='store_true'); a=ap.parse_args()
+ ap=argparse.ArgumentParser(); ap.add_argument('--workspaces',default=str(DEFAULT_WORKSPACES)); ap.add_argument('--db',default=str(DEFAULT_DB)); ap.add_argument('--repo',default='/srv/die'); ap.add_argument('--state-root',default=str(DEFAULT_STATE_ROOT)); ap.add_argument('--transport',default='/srv/die/company/browser/linux/cognition_roundtrip.mjs'); ap.add_argument('--node',default=shutil.which('node') or '/usr/bin/node'); ap.add_argument('--hermes-bin',default='/opt/die/hermes/venv/bin/hermes'); ap.add_argument('--hermes-home',default='/var/lib/die/hermes/income-operator'); ap.add_argument('--production-job-id',default='6c1d9f5c504e'); ap.add_argument('--no-resume',action='store_true'); a=ap.parse_args()
  root=Path(a.state_root); root.mkdir(parents=True,exist_ok=True); lock=open(root/'tick.lock','a+')
  try:
   fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
