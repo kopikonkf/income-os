@@ -1,0 +1,52 @@
+{
+  "schema": "die.asset.sub001a-acceptance.v1",
+  "task_id": "SUB-001A",
+  "date": "2026-09-02",
+  "status": "PASS",
+  "base_sha": "d44b09a5fec01eeb27ee459c4eb014d64ef2df2e",
+  "artifacts": {
+    "package_schema": "company/schemas/die.asset.submission-package.v1.schema.json",
+    "package_schema_sha256": "583c1146bb186bcb7d6154a30d9cc7e387a5919dfc8bc8ee73bc5987b6a1a0bb",
+    "route_state_schema": "company/schemas/die.asset.submission-route-state.v1.schema.json",
+    "route_state_schema_sha256": "5ddb01c49ee3cbddeda1ea898126bda574f9fe35ccbb3e8250d71e89902b03d8",
+    "contract_doc": "docs/operations/COMMON_SUBMISSION_PACKAGE_V1.md",
+    "regression": "bridge/tests/test_sub001_submission_contracts.py"
+  },
+  "package_pins": [
+    "artifact_sha256",
+    "qa_receipt_sha256",
+    "qc_receipt_sha256",
+    "blueprint_sha256",
+    "metadata_sha256",
+    "platform_profile_sha256"
+  ],
+  "route_states": [
+    "PREPARED",
+    "AUTHORIZED",
+    "SUBMITTED",
+    "REVIEW_PENDING",
+    "APPROVED",
+    "REJECTED",
+    "RECONCILED"
+  ],
+  "validation": {
+    "focused_submission_qa_qc": "44/44 PASS",
+    "one_canon_tests": "6/6 PASS",
+    "one_canon_validator": "11/11 PASS",
+    "high_confidence_secret_hits": 0,
+    "diff_check": "PASS",
+    "full_bridge_observation": "644 PASS / 2 SKIP / 5 unrelated baseline-or-worktree-environment failures; no SUB-001A focused or dependency regression failed"
+  },
+  "authority_boundary": {
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "credentials_embedded": false,
+    "package_implies_authority": false,
+    "external_action_performed": false
+  },
+  "graph_transition": {
+    "SUB-001A": "DONE",
+    "SUB-001B": "READY",
+    "SUB-001C": "BLOCKED"
+  }
+}

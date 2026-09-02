@@ -3326,3 +3326,17 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - `OE-007A = DONE`: live approved Object Atlas seed `shopping bag` + Human Atlas `HCTX-SMALL-BUSINESS-PACKAGING-001`; selected longtail `shopping bag for packing customer orders`; exact canon/market/dependency hashes pinned.
 - `OE-007B = DONE`: three fresh validated zero-cost `SYNTHETIC_ONLY` signal receipts, Demand Score `0.686835 COMPLETE`, accepted longtail guard and no parent-score inheritance. Synthetic signals are explicitly not claimed as live market observations.
 - `OE-007C = READY`. Production has not been invoked.
+
+
+## 2026-09-02 Scheduled atomic advancement - SUB-001A
+
+- Base canonical main: `d44b09a5fec01eeb27ee459c4eb014d64ef2df2e`.
+- `SUB-001A` Common submission package and route-state schema: DONE.
+- Added immutable package pins for artifact, QA, QC, Blueprint, metadata, and platform profile SHA-256.
+- Added distinct route lifecycle: PREPARED -> AUTHORIZED -> SUBMITTED -> REVIEW_PENDING -> APPROVED|REJECTED -> RECONCILED.
+- Submission/publication authority remains false; no credentials or marketplace action are included.
+- Focused submission/QA/QC regression: 44/44 PASS.
+- One-canon tests: 6/6 PASS; validator: 11/11 PASS; high-confidence secret hits: 0; diff-check PASS.
+- Full bridge observation had 5 unrelated pre-existing/worktree-environment failures; no SUB-001A focused or dependency regression failed.
+- Graph delta: `SUB-001A DONE`; `SUB-001B READY`; `SUB-001C BLOCKED`.
+- NEXT READY: `SUB-001B` submission authority, credential and session boundary.
