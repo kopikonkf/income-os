@@ -40,7 +40,8 @@ def test_muxia_bridge_exports_verified_artifact_into_die_workspace():
     bridge=(ROOT/'company/muxia/scripts/linux/die-muxia-image-dispatch.py').read_text()
     assert 'def export_verified' in bridge
     assert "export_artifact_path" in bridge
-    assert "os.chown(provider,uid,gid)" in bridge
+    assert "DIE_GROUP='die-runtime'" in bridge
+    assert 'os.chown' not in bridge
     assert "E_EXPORT_HASH" in bridge
     assert "private_artifact_access_by_hermes" in bridge
 
@@ -62,7 +63,8 @@ def test_runtime_uses_queue_not_sudo_for_muxia_privilege_boundary():
 
 def test_muxia_queue_service_preserves_gateway_no_new_privileges():
     unit=(ROOT/'company/muxia/scripts/linux/die-muxia-dispatch.service').read_text()
-    assert 'User=root' in unit
+    assert 'User=kopiko' in unit
+    assert 'Group=die-runtime' in unit
     assert 'NoNewPrivileges=true' in unit
     assert '/var/lib/die/state/muxia-dispatch' in unit
     assert '/var/lib/muxia' in unit
@@ -79,3 +81,14 @@ def test_queue_worker_pins_blueprint_hash_and_validates_dispatch_result():
     assert 'export_artifact_sha256' in worker
     assert "payload.get('sha256')" in worker
     assert 'request_sha256' in worker
+
+
+def test_muxia_dispatch_service_is_fully_unprivileged():
+    unit=(ROOT/'company/muxia/scripts/linux/die-muxia-dispatch.service').read_text()
+    dispatch=(ROOT/'company/muxia/scripts/linux/die-muxia-image-dispatch.py').read_text()
+    assert 'User=kopiko' in unit and 'Group=die-runtime' in unit
+    assert 'NoNewPrivileges=true' in unit
+    assert 'runuser' not in dispatch
+    assert "E_SERVICE_IDENTITY" in dispatch
+    assert "MUXIA_USER='kopiko'" in dispatch
+    assert 'os.chown' not in dispatch
