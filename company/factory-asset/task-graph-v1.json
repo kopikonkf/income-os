@@ -1,0 +1,1324 @@
+{
+  "schema": "die.factory-asset.task-graph.v1",
+  "generated_at": "2026-09-03",
+  "revision": "1.1-dual-lane",
+  "status": "CANONICAL",
+  "project": "Factory Asset Level Up",
+  "target_repository": "github.com/kopikonkf/income-os",
+  "target_path": "company/factory-asset/task-graph-v1.json",
+  "doctrine": "Build > Run > Verify > Refactor > Extend",
+  "execution_policy": {
+    "selection_rule": "Execute exactly one eligible highest-priority READY atomic leaf, or one task explicitly marked acceptance_batch=true, per scheduled run; then STOP.",
+    "ssot_rule": "Read current origin/main, LASTSTANDINGPOINT.md, this graph, relevant receipts, and all active engineering leases before selection.",
+    "lease_rule": "Acquire both factory-asset task lease and global income-os:repo-write lease before repository mutation.",
+    "dirty_tree_rule": "Do not mutate, reset, stash, clean, or repurpose the live dirty C:\\DIE or D:\\OAUTH trees.",
+    "linux_rule": "Use a fresh Linux-native isolated worktree/check-out based on current origin/main for Linux-target implementation and tests; never build in or mutate the live /srv/die checkout.",
+    "production_protection_rule": "The live Linux Production Organism and die-production-cycle-v1 at 0 */3 * * * are observation-only for this program: no deploy, restart, stop, reconfiguration, profile/credential/queue/database write, cron mutation, active-artifact mutation, or cutover.",
+    "windows_rule": "D:\\OAUTH provider work is Founder-directed and interactive on Windows; preserve the working text/chat-completion path, run before/after regression, and never let the autonomous Linux schedule select Windows tasks.",
+    "repair_rule": "On failure create at most one minimal repair child <task_id>-R<n>; do not restart the roadmap unless an ADR assumption is falsified.",
+    "stop_conditions": [
+      "FOUNDER_DECISION_REQUIRED",
+      "CREDENTIAL_OR_LOGIN_REQUIRED",
+      "SPEND_REQUIRED",
+      "ACCOUNT_CREATION_OR_ACCOUNT_ACTION_REQUIRED",
+      "PROVIDER_POLICY_OR_TERMS_UNKNOWN",
+      "CAPTCHA_OR_PROTECTION_CHALLENGE",
+      "MARKETPLACE_SUBMISSION_OR_PUBLICATION_REQUIRED",
+      "IRREVERSIBLE_CUTOVER_REQUIRED",
+      "SCHEDULED_ARCHITECT_MCP_UNAVAILABLE",
+      "ACTIVE_CONFLICTING_ENGINEERING_LEASE"
+    ],
+    "browser_budget": {
+      "max_open_tabs_per_principal": 2,
+      "tab_roles": [
+        "WORK",
+        "AUTH_OR_RECOVERY"
+      ]
+    },
+    "prohibited": [
+      "quota evasion",
+      "account farming",
+      "fake identities",
+      "CAPTCHA or anti-abuse bypass",
+      "credential copying between principals",
+      "counting packaging derivatives as distinct assets",
+      "automatic marketplace publication"
+    ]
+  },
+  "execution_lanes": {
+    "CANON_GOVERNED": {
+      "mode": "COMPLETE",
+      "task_ids": [
+        "FA-000"
+      ],
+      "activation_gate": "FA-000 completed by governed publication. Normal lane selection follows canonical dependencies and execution-lane rules."
+    },
+    "LINUX_HOURLY_BUILD": {
+      "mode": "CHATGPT_SCHEDULED_TASK",
+      "cadence": "HOURLY",
+      "activation_status": "ACTIVE_CHAT_MODE_AT_MINUTE_35_UTC_CANONICAL_NORMAL_SELECTION_ENABLED",
+      "selection": "Select exactly one READY task whose execution_lane is LINUX_HOURLY_BUILD or omitted/defaulted to LINUX_HOURLY_BUILD; execute in a fresh isolated worktree; validate; update receipt/graph/LASTSTANDINGPOINT; then STOP.",
+      "schedule_offset_rule": "Active at minute 35 UTC, separated from the Chapter #4 hourly runner near minute 00 and the production cycle at minute 00 every three hours.",
+      "live_runtime_access": "READ_ONLY_ONLY_WHEN_EXPLICITLY_REQUIRED_BY_TASK",
+      "default_for_unmarked_tasks": true,
+      "scheduled_prompt_contract": "Use current origin/main as SSOT. If revision 1.1-dual-lane is not canonical, execute only FA-000 from the Founder-approved staged pack and STOP. After canonization, read LASTSTANDINGPOINT, Factory task graph, relevant ADR/PRD/receipts and active leases; select exactly one highest-priority READY Linux leaf. If Architect MCP, repository access, required evidence, or both leases are unavailable, make no mutation and report the stop condition. Work only in a fresh isolated Linux worktree. Never mutate /srv/die, its cron, runtime, profiles, credentials, queues, databases or active artifacts. Do not select FA-W* tasks or make provider/account/marketplace actions. Build, test and verify; publish only green governed changes; update the receipt, graph and LASTSTANDINGPOINT; then STOP."
+    },
+    "WINDOWS_OAUTH_LAB": {
+      "mode": "FOUNDER_DIRECTED_INTERACTIVE",
+      "selection": "Execute only explicitly selected FA-W* or OAUTH security/autopsy task on D:\\OAUTH; one provider proof at a time; run text/chat regression before and after.",
+      "autonomous_linux_schedule_eligible": false
+    }
+  },
+  "coordination": {
+    "existing_graph": "company/muxia-task-graph-v1.json",
+    "existing_ready_at_design_time": "SUB-001C",
+    "rule": "Factory Asset work must not silently preempt Chapter #4 work. Activation requires an explicit Factory schedule scope and shared global repo-write lease.",
+    "current_income_os_main_observed": "c32730dade2a7819156fb03d61b84e0c76fb9f00"
+  },
+  "states": [
+    "READY",
+    "RUNNING",
+    "VERIFYING",
+    "DONE",
+    "BLOCKED",
+    "FAILED",
+    "DEFERRED",
+    "WAITING_FOUNDER",
+    "WAITING_OPERATOR"
+  ],
+  "tracks": [
+    "CANON_AND_EVIDENCE",
+    "ASSET_BLUEPRINT",
+    "DERIVATIVE_ENGINE",
+    "NATIVE_PRODUCERS",
+    "FACTORY_CORE",
+    "WINDOWS_OAUTH_PROOFS",
+    "PROVIDER_LANES",
+    "SCALE_UNLOCKS",
+    "GOVERNED_CANARY"
+  ],
+  "tasks": [
+    {
+      "id": "FA-000",
+      "execution_lane": "CANON_GOVERNED",
+      "phase": 0,
+      "track": "CANON_AND_EVIDENCE",
+      "priority": 1,
+      "title": "Canon-lock Factory Asset PRD, ADRs, and task graph",
+      "depends_on": [],
+      "status": "DONE",
+      "artifact": "docs/operations/FACTORY_ASSET_LEVEL_UP_PRD_V1.md; docs/architecture/FACTORY_ASSET_LEVEL_UP_ADR_V1.md; company/factory-asset/task-graph-v1.json",
+      "acceptance": "Documents are internally consistent; JSON parses; status is marked canonical only after governed publication; no runtime, account, credential, provider, or marketplace mutation."
+    },
+    {
+      "id": "FA-001",
+      "phase": 0,
+      "track": "CANON_AND_EVIDENCE",
+      "priority": 10,
+      "title": "Inventory five current Linux production masters",
+      "depends_on": [
+        "FA-000"
+      ],
+      "status": "READY",
+      "artifact": "company/factory-asset/receipts/FA-001-linux-master-inventory.receipt.json",
+      "acceptance": "At least five current masters are recorded with job/blueprint lineage, exact paths, magic/MIME, dimensions, bytes and SHA-256; no file is changed."
+    },
+    {
+      "id": "FA-002",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "CANON_AND_EVIDENCE",
+      "priority": 11,
+      "title": "D:\\OAUTH KEEP/EXTRACT/REWRITE/RETIRE autopsy",
+      "depends_on": [
+        "FA-000"
+      ],
+      "status": "READY",
+      "artifact": "docs/architecture/FACTORY_ASSET_OAUTH_PROVENANCE_AUTOPSY_V1.md",
+      "acceptance": "Qwen/Gemini/ChatGPT/Grok/Manus/Duck.ai image code, tests, captures, paths, transport class and credential boundaries are classified without reading or publishing secret values; working text/chat completion is regression-protected; dirty tree remains untouched."
+    },
+    {
+      "id": "FA-003",
+      "phase": 0,
+      "track": "CANON_AND_EVIDENCE",
+      "priority": 12,
+      "title": "Pin dated marketplace delivery requirements",
+      "depends_on": [
+        "FA-000"
+      ],
+      "status": "READY",
+      "artifact": "company/factory-asset/registries/marketplace-delivery-evidence.v1.json",
+      "acceptance": "Official dated evidence exists for Adobe Stock, Dreamstime, 123RF, Vecteezy and MotionElements; unknown or conflicting requirements are explicit."
+    },
+    {
+      "id": "FA-004",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "CANON_AND_EVIDENCE",
+      "priority": 13,
+      "title": "Design OAUTH credential and Git remote remediation plan",
+      "depends_on": [
+        "FA-002"
+      ],
+      "status": "BLOCKED",
+      "artifact": "docs/operations/FACTORY_ASSET_OAUTH_SECURITY_REMEDIATION_PLAN_V1.md",
+      "acceptance": "Plan removes inline remote authentication, rotates the affected credential, preserves repo access, scans history/worktree output and exposes no secret; planning only."
+    },
+    {
+      "id": "FA-005",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "CANON_AND_EVIDENCE",
+      "priority": 14,
+      "title": "Execute Founder-authorized OAUTH credential remediation",
+      "depends_on": [
+        "FA-004"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_AND_OPERATOR_REQUIRED",
+      "artifact": "company/factory-asset/receipts/FA-005-oauth-credential-remediation.receipt.json",
+      "acceptance": "Remote uses a non-inline credential mechanism, affected credential is rotated, access is verified, secret scan is clean and no credential value appears in receipts or logs."
+    },
+    {
+      "id": "FA-W000",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 15,
+      "title": "Preserve OAUTH text/chat PASS and Qwen image baseline",
+      "depends_on": [
+        "FA-002"
+      ],
+      "status": "BLOCKED",
+      "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W000-oauth-baseline.receipt.json",
+      "acceptance": "Sanitized text/chat regression is green; Qwen HTTP/image/local-save evidence and current output hashes are recorded; no credentials, raw cookies or authenticated captures are published; no source is changed."
+    },
+    {
+      "id": "FA-W001",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 16,
+      "title": "Define common Windows image proof and transport-class contract",
+      "depends_on": [
+        "FA-W000"
+      ],
+      "status": "BLOCKED",
+      "artifact": "D:\\FACTORY_ASSET\\contracts\\windows-image-provider-proof-v1.json",
+      "acceptance": "Contract defines SESSION_API, BROWSER_CDP, HYBRID, OFFICIAL_API, UNSUPPORTED and UNKNOWN; PASS requires prompt, real generation, original bytes, local save, reopen, MIME/magic, dimensions, bytes and SHA-256."
+    },
+    {
+      "id": "FA-W002",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 17,
+      "title": "Harden Qwen SESSION_API reference without breaking text/chat",
+      "depends_on": [
+        "FA-W001"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
+      "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W002-qwen-image-proof.receipt.json",
+      "acceptance": "Qwen prompt produces a real original image saved locally with strict validation, content-addressed dedupe and non-silent failures; text/chat regression remains green."
+    },
+    {
+      "id": "FA-W003",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 18,
+      "title": "Run Proxima versus OAUTH ChatGPT image differential autopsy",
+      "depends_on": [
+        "FA-W001"
+      ],
+      "status": "BLOCKED",
+      "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W003-chatgpt-differential-autopsy.receipt.json",
+      "acceptance": "Working Proxima and failing OAUTH are compared across browser/session ownership, CDP, prompt submission, completion detection, original-byte acquisition and save; exact reusable boundary is identified without importing Electron wholesale."
+    },
+    {
+      "id": "FA-W004",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 19,
+      "title": "Prove ChatGPT Windows prompt-to-original-image local export",
+      "depends_on": [
+        "FA-W003"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
+      "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W004-chatgpt-image-proof.receipt.json",
+      "acceptance": "One bounded authorized ChatGPT request yields a real generated original image automatically saved to D:\\ASSETS\\OAUTH with complete validation; screenshot-only or URL-only output fails."
+    },
+    {
+      "id": "FA-W005",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 20,
+      "title": "Prove Gemini Windows prompt-to-original-image local export",
+      "depends_on": [
+        "FA-W001"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
+      "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W005-gemini-image-proof.receipt.json",
+      "acceptance": "One bounded authorized Gemini request yields durable original bytes and a validated local file through an allowed transport; the current inaccessible URL/403 path cannot pass."
+    },
+    {
+      "id": "FA-W006",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 21,
+      "title": "Prove Grok Windows prompt-to-original-image local export",
+      "depends_on": [
+        "FA-W001"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
+      "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W006-grok-image-proof.receipt.json",
+      "acceptance": "A supported evidenced Grok route produces and saves validated original image bytes; guessed endpoint loops, 404 assumptions and protection bypass cannot pass."
+    },
+    {
+      "id": "FA-W007",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 22,
+      "title": "Prove Manus Windows prompt-to-original-image local export",
+      "depends_on": [
+        "FA-W001"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
+      "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W007-manus-image-proof.receipt.json",
+      "acceptance": "Bounded create/poll/artifact semantics produce and save validated original image bytes; infinite polling and status-without-artifact fail."
+    },
+    {
+      "id": "FA-W008",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 23,
+      "title": "Determine and prove Duck.ai native image export capability",
+      "depends_on": [
+        "FA-W001"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
+      "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W008-duckai-image-proof.receipt.json",
+      "acceptance": "Duck.ai passes only if a supported image-capable route produces and saves validated original bytes; its current gpt-5.4-nano text endpoint is not counted. Otherwise return UNSUPPORTED_CAPABILITY with evidence."
+    },
+    {
+      "id": "FA-W009",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 24,
+      "title": "Six-provider Windows original-image export acceptance",
+      "depends_on": [
+        "FA-W002",
+        "FA-W004",
+        "FA-W005",
+        "FA-W006",
+        "FA-W007",
+        "FA-W008"
+      ],
+      "status": "BLOCKED",
+      "acceptance_batch": true,
+      "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W009-six-provider-windows-acceptance.receipt.json",
+      "acceptance": "Qwen, ChatGPT, Gemini, Grok, Manus and Duck.ai each have a real prompt-to-validated-original-byte local-save PASS; any UNSUPPORTED, UNKNOWN, screenshot-only, URL-only or text-only lane blocks six-provider acceptance and requires Founder disposition."
+    },
+    {
+      "id": "FA-W010",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 25,
+      "title": "Benchmark GenWHITE observable capabilities after provider proofs",
+      "depends_on": [
+        "FA-W009"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_DECISION_REQUIRED_FOR_PURCHASE_OR_ACCOUNT_ACTION",
+      "artifact": "D:\\FACTORY_ASSET\\GENWHITE_CAPABILITY_PARITY_RESEARCH_V1.md",
+      "acceptance": "Observable lawful product capabilities are mapped to Factory requirements without proprietary-code extraction, protection bypass or unverified backend assumptions."
+    },
+    {
+      "id": "FA-010",
+      "phase": 1,
+      "track": "ASSET_BLUEPRINT",
+      "priority": 20,
+      "title": "Define asset type registry schema",
+      "depends_on": [
+        "FA-003"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/schemas/asset-type-registry.schema.json",
+      "acceptance": "Schema covers native representation, producer classes, master/delivery formats, vectorizability, rights, quality, maturity and distinctness invariants; invalid fixtures fail."
+    },
+    {
+      "id": "FA-011",
+      "phase": 1,
+      "track": "ASSET_BLUEPRINT",
+      "priority": 21,
+      "title": "Build marketplace delivery profile registry v1",
+      "depends_on": [
+        "FA-003",
+        "FA-010"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/registries/marketplace-delivery-profiles.v1.json",
+      "acceptance": "Profiles compile from FA-003 evidence, include freshness and UNKNOWN handling, and validate against schema."
+    },
+    {
+      "id": "FA-012",
+      "phase": 1,
+      "track": "ASSET_BLUEPRINT",
+      "priority": 22,
+      "title": "Define Asset Blueprint v2 schema",
+      "depends_on": [
+        "FA-010",
+        "FA-011"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/schemas/asset-blueprint-v2.schema.json",
+      "acceptance": "Blueprint requires semantic identity, asset type, native representation, producer class, master spec, derivatives, distinctness, rights, quality and policy contracts."
+    },
+    {
+      "id": "FA-013",
+      "phase": 1,
+      "track": "ASSET_BLUEPRINT",
+      "priority": 23,
+      "title": "Implement blueprint validator and production compiler",
+      "depends_on": [
+        "FA-012"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Asset Blueprint v2 validator/compiler with tests",
+      "acceptance": "Compiler deterministically selects producer/master/recipes and rejects impossible raster/vector/motion combinations before dispatch."
+    },
+    {
+      "id": "FA-014",
+      "phase": 1,
+      "track": "ASSET_BLUEPRINT",
+      "priority": 24,
+      "title": "Implement semantic-versus-packaging identity invariants",
+      "depends_on": [
+        "FA-012"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/tests/asset-identity-invariants test suite",
+      "acceptance": "Format/resolution/compression/preview changes never mint semantic IDs; distinct commercial use cases require separate blueprints."
+    },
+    {
+      "id": "FA-015",
+      "phase": 1,
+      "track": "ASSET_BLUEPRINT",
+      "priority": 25,
+      "title": "Create shopping-bag six-mode blueprint fixtures",
+      "depends_on": [
+        "FA-013",
+        "FA-014"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/fixtures/shopping-bag-blueprint-v2/",
+      "acceptance": "PHOTO, ISOLATED_OBJECT, ICON, OUTLINE, PATTERN and ANIMATION fixtures compile to the intended native producers and delivery recipes."
+    },
+    {
+      "id": "FA-019",
+      "phase": 1,
+      "track": "ASSET_BLUEPRINT",
+      "priority": 29,
+      "title": "Asset Blueprint v2 acceptance batch",
+      "depends_on": [
+        "FA-015"
+      ],
+      "status": "BLOCKED",
+      "acceptance_batch": true,
+      "artifact": "company/factory-asset/receipts/FA-019-blueprint-v2-acceptance.receipt.json",
+      "acceptance": "All positive fixtures pass, negative cross-family fixtures fail, registry/profile versions are pinned and regression is green."
+    },
+    {
+      "id": "FA-020",
+      "phase": 2,
+      "track": "DERIVATIVE_ENGINE",
+      "priority": 30,
+      "title": "Define derivative recipe and receipt schemas",
+      "depends_on": [
+        "FA-019"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/schemas/derivative-recipe.schema.json; derivative-receipt.schema.json",
+      "acceptance": "Schemas pin input/master hash, recipe/version, marketplace-profile version, output specs, idempotency key, QA and compatibility results."
+    },
+    {
+      "id": "FA-021",
+      "phase": 2,
+      "track": "DERIVATIVE_ENGINE",
+      "priority": 31,
+      "title": "Implement deterministic raster derivative worker",
+      "depends_on": [
+        "FA-020"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Raster worker for PNG to JPEG, WebP and TIFF with tests",
+      "acceptance": "Pinned recipes produce decodable outputs, handle alpha explicitly, never overwrite masters and return typed receipts."
+    },
+    {
+      "id": "FA-022",
+      "phase": 2,
+      "track": "DERIVATIVE_ENGINE",
+      "priority": 32,
+      "title": "Implement PDF and preview packaging",
+      "depends_on": [
+        "FA-021"
+      ],
+      "status": "BLOCKED",
+      "artifact": "PDF/preview recipe worker and tests",
+      "acceptance": "PDF and preview outputs reopen/render correctly, preserve dimensions/aspect policy and have deterministic receipts."
+    },
+    {
+      "id": "FA-023",
+      "phase": 2,
+      "track": "DERIVATIVE_ENGINE",
+      "priority": 33,
+      "title": "Implement color, alpha, DPI and metadata contract",
+      "depends_on": [
+        "FA-021"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Derivative color/metadata policy module and tests",
+      "acceptance": "sRGB/ICC, alpha flattening, DPI and metadata outcomes are explicit, verified after conversion and never silently guessed."
+    },
+    {
+      "id": "FA-024",
+      "phase": 2,
+      "track": "DERIVATIVE_ENGINE",
+      "priority": 34,
+      "title": "Implement derivative QA and compatibility inspector",
+      "depends_on": [
+        "FA-021",
+        "FA-022",
+        "FA-023"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Derivative magic/decode/dimensions/hash/compatibility QA suite",
+      "acceptance": "Corrupt, mislabeled, truncated, wrong-alpha and incompatible outputs fail; zero false success in fixtures."
+    },
+    {
+      "id": "FA-025",
+      "phase": 2,
+      "track": "DERIVATIVE_ENGINE",
+      "priority": 35,
+      "title": "Implement vectorizability gate",
+      "depends_on": [
+        "FA-019"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Vectorizability classifier/gate with deterministic fixtures",
+      "acceptance": "Simple icons/outlines/silhouettes may pass; photorealistic and complex inputs return NOT_VECTORIZABLE with evidence."
+    },
+    {
+      "id": "FA-026",
+      "phase": 2,
+      "track": "DERIVATIVE_ENGINE",
+      "priority": 36,
+      "title": "Implement native SVG normalization and EPS export",
+      "depends_on": [
+        "FA-025"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Native vector export worker with SVG/EPS and preview tests",
+      "acceptance": "Outputs contain real editable paths, render correctly and reject embedded-raster-only, font, bounds and excessive-path failures."
+    },
+    {
+      "id": "FA-027",
+      "phase": 2,
+      "track": "DERIVATIVE_ENGINE",
+      "priority": 37,
+      "title": "Implement gated raster-trace fallback",
+      "depends_on": [
+        "FA-025"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Trace fallback worker with simple-shape fixtures and rejection tests",
+      "acceptance": "Only explicitly eligible inputs trace; output path count/editability/preview pass; photorealistic input is rejected."
+    },
+    {
+      "id": "FA-028",
+      "phase": 2,
+      "track": "DERIVATIVE_ENGINE",
+      "priority": 38,
+      "title": "Implement marketplace dry-run package composer",
+      "depends_on": [
+        "FA-011",
+        "FA-024",
+        "FA-026",
+        "FA-027"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Marketplace package composer and manifest tests",
+      "acceptance": "Packages include exact derivatives, previews, metadata/rights references and compatibility receipts; no upload/publication action exists."
+    },
+    {
+      "id": "FA-029",
+      "phase": 2,
+      "track": "DERIVATIVE_ENGINE",
+      "priority": 39,
+      "title": "Run five-master Asset Derivative Engine canary",
+      "depends_on": [
+        "FA-001",
+        "FA-028"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/receipts/FA-029-five-master-derivative-canary.receipt.json",
+      "acceptance": "Five masters yield idempotent JPEG/WebP/TIFF/PDF packages as eligible; hashes/lineage/QA complete; duplicates suppressed; vector gate outcomes correct."
+    },
+    {
+      "id": "FA-030",
+      "phase": 2,
+      "track": "DERIVATIVE_ENGINE",
+      "priority": 40,
+      "title": "Asset Derivative Engine v0.1 acceptance",
+      "depends_on": [
+        "FA-029"
+      ],
+      "status": "BLOCKED",
+      "acceptance_batch": true,
+      "artifact": "company/factory-asset/receipts/FA-030-derivative-engine-v0.1-acceptance.receipt.json",
+      "acceptance": "Targeted and full regression green, zero master overwrite/false success, 100% receipt lineage and rollback/disable path documented."
+    },
+    {
+      "id": "FA-031",
+      "phase": 2,
+      "track": "NATIVE_PRODUCERS",
+      "priority": 41,
+      "title": "Define native producer contract and dispatch boundary",
+      "depends_on": [
+        "FA-019"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/schemas/native-producer.schema.json and contract tests",
+      "acceptance": "Procedural, motion, layered-template and 3D producer classes share typed inputs, native-master outputs, deterministic receipts, cancellation and failure semantics without pretending conversions are native production."
+    },
+    {
+      "id": "FA-032",
+      "phase": 2,
+      "track": "NATIVE_PRODUCERS",
+      "priority": 42,
+      "title": "Implement procedural pattern native producer",
+      "depends_on": [
+        "FA-031"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Procedural SVG pattern producer with deterministic fixtures",
+      "acceptance": "Seeded recipes generate editable vector tiles as native masters with stable hashes, explicit parameters, preview output and no embedded-raster-only false success."
+    },
+    {
+      "id": "FA-033",
+      "phase": 2,
+      "track": "NATIVE_PRODUCERS",
+      "priority": 43,
+      "title": "Implement pattern seam, tile and editability QA",
+      "depends_on": [
+        "FA-032"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Pattern QA suite and compatibility receipts",
+      "acceptance": "Fixtures prove seamless edges, repeat bounds, editable paths, renderability and preview consistency; broken seams and raster masquerades fail closed."
+    },
+    {
+      "id": "FA-034",
+      "phase": 2,
+      "track": "NATIVE_PRODUCERS",
+      "priority": 44,
+      "title": "Procedural Pattern Engine v0.1 acceptance",
+      "depends_on": [
+        "FA-033"
+      ],
+      "status": "BLOCKED",
+      "acceptance_batch": true,
+      "artifact": "company/factory-asset/receipts/FA-034-pattern-engine-v0.1-acceptance.receipt.json",
+      "acceptance": "Positive and negative fixtures pass, regeneration is deterministic, outputs remain editable and packaging derivatives do not mint new semantic assets."
+    },
+    {
+      "id": "FA-040",
+      "phase": 2,
+      "track": "NATIVE_PRODUCERS",
+      "priority": 45,
+      "title": "Define deterministic motion producer contract",
+      "depends_on": [
+        "FA-031"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Motion composition schema, renderer boundary and fixture plan",
+      "acceptance": "Contract pins composition, duration, dimensions, FPS, codec/container targets, audio policy, seed and renderer version; animation is a semantic blueprint, not a PNG conversion."
+    },
+    {
+      "id": "FA-041",
+      "phase": 2,
+      "track": "NATIVE_PRODUCERS",
+      "priority": 46,
+      "title": "Implement Remotion motion producer fixture",
+      "depends_on": [
+        "FA-040"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Remotion worker fixture with MP4 master and preview",
+      "acceptance": "A pinned composition renders repeatably, preserves frame/duration/dimension contracts, emits typed receipts and cleans temporary resources after success or failure."
+    },
+    {
+      "id": "FA-042",
+      "phase": 2,
+      "track": "NATIVE_PRODUCERS",
+      "priority": 47,
+      "title": "Implement motion codec, container and frame QA",
+      "depends_on": [
+        "FA-041"
+      ],
+      "status": "BLOCKED",
+      "artifact": "MP4/MOV probe, frame sampling and compatibility QA suite",
+      "acceptance": "Outputs reopen, match codec/container/frame/duration specs and pass sampled visual integrity; mislabeled, truncated, blank or frozen renders fail."
+    },
+    {
+      "id": "FA-043",
+      "phase": 2,
+      "track": "NATIVE_PRODUCERS",
+      "priority": 48,
+      "title": "Motion Engine v0.1 acceptance",
+      "depends_on": [
+        "FA-042"
+      ],
+      "status": "BLOCKED",
+      "acceptance_batch": true,
+      "artifact": "company/factory-asset/receipts/FA-043-motion-engine-v0.1-acceptance.receipt.json",
+      "acceptance": "Deterministic render, resource bounds, cancellation, retry, cleanup, preview and compatibility evidence pass with zero false success."
+    },
+    {
+      "id": "FA-050",
+      "phase": 2,
+      "track": "NATIVE_PRODUCERS",
+      "priority": 49,
+      "title": "Select first layered-template native format and producer",
+      "depends_on": [
+        "FA-003",
+        "FA-019",
+        "FA-031"
+      ],
+      "status": "DEFERRED",
+      "authority": "FOUNDER_DECISION_REQUIRED",
+      "resume_condition": "Marketplace delivery evidence supports one commercially relevant editable native format and Founder selects the first bounded target.",
+      "artifact": "docs/architecture/FACTORY_ASSET_LAYERED_TEMPLATE_FORMAT_DECISION_V1.md",
+      "acceptance": "One native editable format, producer toolchain, licensing, compatibility matrix and truthful fallback behavior are selected; flattened preview is never treated as editable master."
+    },
+    {
+      "id": "FA-051",
+      "phase": 2,
+      "track": "NATIVE_PRODUCERS",
+      "priority": 49,
+      "title": "Implement first layered-template native fixture",
+      "depends_on": [
+        "FA-050"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Layered-template producer fixture, native master and preview",
+      "acceptance": "Fixture preserves named editable layers, text/image placeholders, bounds and preview parity in the selected native format."
+    },
+    {
+      "id": "FA-052",
+      "phase": 2,
+      "track": "NATIVE_PRODUCERS",
+      "priority": 49,
+      "title": "Implement layered-template editability and compatibility QA",
+      "depends_on": [
+        "FA-051"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Layer/editability inspector and application compatibility receipts",
+      "acceptance": "Missing layers, flattened masters, substituted fonts, broken links and preview divergence fail; application/version compatibility is explicit."
+    },
+    {
+      "id": "FA-053",
+      "phase": 2,
+      "track": "NATIVE_PRODUCERS",
+      "priority": 49,
+      "title": "Layered Template Engine v0.1 acceptance",
+      "depends_on": [
+        "FA-052"
+      ],
+      "status": "BLOCKED",
+      "acceptance_batch": true,
+      "artifact": "company/factory-asset/receipts/FA-053-layered-template-v0.1-acceptance.receipt.json",
+      "acceptance": "Native editability, preview, compatibility, rights, deterministic receipts and negative fixtures pass for the selected first format."
+    },
+    {
+      "id": "FA-060",
+      "phase": 2,
+      "track": "NATIVE_PRODUCERS",
+      "priority": 49,
+      "title": "Select first 3D native format and producer",
+      "depends_on": [
+        "FA-003",
+        "FA-019",
+        "FA-031"
+      ],
+      "status": "DEFERRED",
+      "authority": "FOUNDER_DECISION_REQUIRED",
+      "resume_condition": "Marketplace evidence and Founder select one bounded 3D opportunity with an approved producer toolchain.",
+      "artifact": "docs/architecture/FACTORY_ASSET_3D_FORMAT_DECISION_V1.md",
+      "acceptance": "Native scene/model format, GLB/GLTF delivery, topology/material/texture rules, preview pipeline, rights and compatibility targets are explicit."
+    },
+    {
+      "id": "FA-061",
+      "phase": 2,
+      "track": "NATIVE_PRODUCERS",
+      "priority": 49,
+      "title": "Implement first bounded 3D native fixture",
+      "depends_on": [
+        "FA-060"
+      ],
+      "status": "BLOCKED",
+      "artifact": "3D producer fixture with native master, GLB/GLTF package and turntable preview",
+      "acceptance": "Fixture preserves geometry, materials, textures, scale, transforms and deterministic lineage; preview is linked but not counted as a separate semantic asset."
+    },
+    {
+      "id": "FA-062",
+      "phase": 2,
+      "track": "NATIVE_PRODUCERS",
+      "priority": 49,
+      "title": "Implement 3D geometry, material and package QA",
+      "depends_on": [
+        "FA-061"
+      ],
+      "status": "BLOCKED",
+      "artifact": "3D validation, render probe and compatibility QA suite",
+      "acceptance": "Invalid geometry, missing textures, broken UVs, excessive bounds, unit mismatch and non-reopening packages fail with typed evidence."
+    },
+    {
+      "id": "FA-063",
+      "phase": 2,
+      "track": "NATIVE_PRODUCERS",
+      "priority": 49,
+      "title": "3D Engine v0.1 acceptance",
+      "depends_on": [
+        "FA-062"
+      ],
+      "status": "BLOCKED",
+      "acceptance_batch": true,
+      "artifact": "company/factory-asset/receipts/FA-063-3d-engine-v0.1-acceptance.receipt.json",
+      "acceptance": "Native scene/model, delivery package, previews, validation, compatibility and rollback evidence pass for the selected first 3D family."
+    },
+    {
+      "id": "FA-100",
+      "phase": 3,
+      "track": "FACTORY_CORE",
+      "priority": 50,
+      "title": "Define provider capability and generation contract",
+      "depends_on": [
+        "FA-019"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/schemas/image-provider.schema.json and interface tests",
+      "acceptance": "Contract normalizes capabilities, generate input/output, health and typed failures without vendor wire fields."
+    },
+    {
+      "id": "FA-101",
+      "phase": 3,
+      "track": "FACTORY_CORE",
+      "priority": 51,
+      "title": "Define provider account profile and lease contract",
+      "depends_on": [
+        "FA-100"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/schemas/provider-profile.schema.json and lease tests",
+      "acceptance": "One principal/profile has at most one active lease; credentials are opaque; duplicate and cross-profile ownership are rejected."
+    },
+    {
+      "id": "FA-102",
+      "phase": 3,
+      "track": "FACTORY_CORE",
+      "priority": 52,
+      "title": "Implement observed-capacity ledger",
+      "depends_on": [
+        "FA-101"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Capacity event/rolling-state module and tests",
+      "acceptance": "Profiles start UNKNOWN; dated success/rate-limit/auth/protection evidence updates state; guessed quotas cannot enter routing."
+    },
+    {
+      "id": "FA-103",
+      "phase": 3,
+      "track": "FACTORY_CORE",
+      "priority": 53,
+      "title": "Implement provider policy and compliance evidence gate",
+      "depends_on": [
+        "FA-100"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Provider policy profile registry and fail-closed tests",
+      "acceptance": "Provider use requires dated evidence and an allowed automation/auth route; stale/unknown/prohibited routes block without bypass."
+    },
+    {
+      "id": "FA-104",
+      "phase": 3,
+      "track": "FACTORY_CORE",
+      "priority": 54,
+      "title": "Implement deterministic provider router",
+      "depends_on": [
+        "FA-100",
+        "FA-102",
+        "FA-103"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Provider router with eligibility/quality/capacity/economics fixtures",
+      "acceptance": "Router selects only eligible available profiles, explains decisions and blocks when no allowed route exists."
+    },
+    {
+      "id": "FA-105",
+      "phase": 3,
+      "track": "FACTORY_CORE",
+      "priority": 55,
+      "title": "Implement queue, retry, resume and reconciliation",
+      "depends_on": [
+        "FA-104"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Factory job queue and fault-injection tests",
+      "acceptance": "Jobs are idempotent/resumable; typed retryable failures retry at most twice; crash recovery never creates false success or duplicate ownership."
+    },
+    {
+      "id": "FA-106",
+      "phase": 3,
+      "track": "FACTORY_CORE",
+      "priority": 56,
+      "title": "Implement content-addressed master ingestion",
+      "depends_on": [
+        "FA-030",
+        "FA-105"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Master ingestion/deduplication proposal and receipt module",
+      "acceptance": "Duplicate bytes reuse canonical content, retain distinct attempt receipts and can only become truth through DIE State Manager."
+    },
+    {
+      "id": "FA-107",
+      "phase": 3,
+      "track": "FACTORY_CORE",
+      "priority": 57,
+      "title": "Implement sanitized Factory observability",
+      "depends_on": [
+        "FA-102",
+        "FA-105"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Factory metrics/logging surfaces and secret-negative tests",
+      "acceptance": "Attempts, unique masters, QA assets, derivatives, packages, failures, resources and economics are separate; credentials/auth bodies absent."
+    },
+    {
+      "id": "FA-109",
+      "phase": 3,
+      "track": "FACTORY_CORE",
+      "priority": 59,
+      "title": "Factory Core synthetic acceptance batch",
+      "depends_on": [
+        "FA-106",
+        "FA-107"
+      ],
+      "status": "BLOCKED",
+      "acceptance_batch": true,
+      "artifact": "company/factory-asset/receipts/FA-109-factory-core-synthetic-acceptance.receipt.json",
+      "acceptance": "Synthetic providers prove routing, capacity, leases, retry, crash, dedupe, ingestion and zero-secret observability with zero false success."
+    },
+    {
+      "id": "FA-110",
+      "phase": 4,
+      "track": "PROVIDER_LANES",
+      "priority": 60,
+      "title": "Build provider feasibility scorecard",
+      "depends_on": [
+        "FA-W002",
+        "FA-W004",
+        "FA-W005",
+        "FA-W006",
+        "FA-W007",
+        "FA-W008",
+        "FA-103"
+      ],
+      "status": "BLOCKED",
+      "artifact": "docs/architecture/FACTORY_ASSET_PROVIDER_FEASIBILITY_V1.md",
+      "acceptance": "Qwen, ChatGPT/MUXIA, Gemini, Grok, Manus and Duck.ai are scored from Windows evidence on transport class, policy, auth, Linux feasibility, image capability, capacity evidence, quality and maintenance risk; UNSUPPORTED and UNKNOWN remain explicit."
+    },
+    {
+      "id": "FA-111",
+      "phase": 4,
+      "track": "PROVIDER_LANES",
+      "priority": 61,
+      "title": "Extract clean Qwen provider adapter",
+      "depends_on": [
+        "FA-005",
+        "FA-109",
+        "FA-110"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Clean Qwen provider package, fixtures and tests",
+      "acceptance": "Only required code is extracted; no credentials/raw captures/hard-coded Windows paths; unit/parser/negative tests pass."
+    },
+    {
+      "id": "FA-112",
+      "phase": 4,
+      "track": "PROVIDER_LANES",
+      "priority": 62,
+      "title": "Run bounded Qwen Linux provider canary",
+      "depends_on": [
+        "FA-111"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
+      "artifact": "company/factory-asset/receipts/FA-112-qwen-linux-canary.receipt.json",
+      "acceptance": "One bounded authorized job produces a durable master with complete lineage; no bypass, secret output, duplicate save or Windows dependency."
+    },
+    {
+      "id": "FA-113",
+      "phase": 4,
+      "track": "PROVIDER_LANES",
+      "priority": 63,
+      "title": "Normalize existing ChatGPT MUXIA provider boundary",
+      "depends_on": [
+        "FA-100",
+        "FA-109"
+      ],
+      "status": "BLOCKED",
+      "artifact": "MUXIA-to-Factory provider compatibility adapter and tests",
+      "acceptance": "Existing MUXIA generation satisfies Factory provider/master contracts without duplicating browser/session ownership or changing MUXIA authority."
+    },
+    {
+      "id": "FA-114",
+      "phase": 4,
+      "track": "PROVIDER_LANES",
+      "priority": 64,
+      "title": "Extract and normalize evidenced Gemini image adapter",
+      "depends_on": [
+        "FA-W005",
+        "FA-109",
+        "FA-110"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
+      "artifact": "company/factory-asset/receipts/FA-114-gemini-capability-probe.receipt.json",
+      "acceptance": "Only the Windows-proven allowed route is normalized; one bounded Linux canary acquires validated durable original bytes, while 403 URL-only or unsupported outcomes fail closed."
+    },
+    {
+      "id": "FA-115",
+      "phase": 4,
+      "track": "PROVIDER_LANES",
+      "priority": 65,
+      "title": "Extract and normalize evidenced Grok image adapter",
+      "depends_on": [
+        "FA-W006",
+        "FA-109",
+        "FA-110"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
+      "artifact": "company/factory-asset/receipts/FA-115-grok-capability-probe.receipt.json",
+      "acceptance": "Only the Windows-proven allowed route is normalized and canaried; guessed endpoint loops, unexplained 404 assumptions and protection bypass are prohibited."
+    },
+    {
+      "id": "FA-116",
+      "phase": 4,
+      "track": "PROVIDER_LANES",
+      "priority": 66,
+      "title": "Extract and normalize evidenced Manus image adapter",
+      "depends_on": [
+        "FA-W007",
+        "FA-109",
+        "FA-110"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
+      "artifact": "company/factory-asset/receipts/FA-116-manus-capability-probe.receipt.json",
+      "acceptance": "Windows-proven create/poll/artifact semantics are normalized with bounded deadline and durable bytes; no infinite polling, status-only success or guessed artifact."
+    },
+    {
+      "id": "FA-117",
+      "phase": 4,
+      "track": "PROVIDER_LANES",
+      "priority": 67,
+      "title": "Two-provider bounded pool acceptance",
+      "depends_on": [
+        "FA-112",
+        "FA-113"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
+      "acceptance_batch": true,
+      "artifact": "company/factory-asset/receipts/FA-117-two-provider-pool-acceptance.receipt.json",
+      "acceptance": "Qwen and ChatGPT/MUXIA execute isolated bounded jobs with correct leases, capacity events, masters, dedupe and resource/tab metrics."
+    },
+    {
+      "id": "FA-118",
+      "phase": 4,
+      "track": "PROVIDER_LANES",
+      "priority": 68,
+      "title": "Extract and normalize evidenced Duck.ai image adapter",
+      "depends_on": [
+        "FA-W008",
+        "FA-109",
+        "FA-110"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
+      "artifact": "Duck.ai Factory adapter or explicit unsupported-lane decision receipt",
+      "acceptance": "A Windows-proven allowed image route is normalized and canaried, or the lane remains UNSUPPORTED with no fabricated image success; its text-only endpoint cannot satisfy this task."
+    },
+    {
+      "id": "FA-119",
+      "phase": 4,
+      "track": "PROVIDER_LANES",
+      "priority": 69,
+      "title": "Six-provider Factory integration acceptance",
+      "depends_on": [
+        "FA-112",
+        "FA-113",
+        "FA-114",
+        "FA-115",
+        "FA-116",
+        "FA-118"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
+      "acceptance_batch": true,
+      "artifact": "company/factory-asset/receipts/FA-119-six-provider-factory-acceptance.receipt.json",
+      "acceptance": "All six lanes produce validated original bytes through isolated contracts with correct leases, capacity events, masters, dedupe and typed failures; any unsupported lane blocks this acceptance rather than lowering truth standards."
+    },
+    {
+      "id": "FA-120",
+      "phase": 5,
+      "track": "SCALE_UNLOCKS",
+      "priority": 70,
+      "title": "Build synthetic throughput and backpressure harness",
+      "depends_on": [
+        "FA-109"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Factory synthetic load/backpressure harness and benchmark receipt",
+      "acceptance": "Thousands of simulated jobs prove bounded queues, fairness, leases, retries, dedupe, restart and disk/backpressure behavior without provider calls."
+    },
+    {
+      "id": "FA-121",
+      "phase": 5,
+      "track": "SCALE_UNLOCKS",
+      "priority": 71,
+      "title": "Run 24-hour bounded provider stability canary",
+      "depends_on": [
+        "FA-117",
+        "FA-120"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_LIVE_LOAD",
+      "artifact": "company/factory-asset/receipts/FA-121-24h-provider-stability.receipt.json",
+      "acceptance": "Authorized safe pace runs 24 hours with zero profile corruption/secret leakage/duplicate ownership; all limits and failures are observed, not inferred."
+    },
+    {
+      "id": "FA-122",
+      "phase": 5,
+      "track": "SCALE_UNLOCKS",
+      "priority": 72,
+      "title": "Validate 20-to-50 unique masters per day",
+      "depends_on": [
+        "FA-121"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_LIVE_LOAD",
+      "artifact": "company/factory-asset/receipts/FA-122-20-50-masters-day.receipt.json",
+      "acceptance": "Unique master count, QA pass rate, provider failures, duplicates, resource use and policy/capacity evidence are complete; file derivatives excluded from master count."
+    },
+    {
+      "id": "FA-123",
+      "phase": 5,
+      "track": "SCALE_UNLOCKS",
+      "priority": 73,
+      "title": "Prove QA, QC and distinctness capacity for 100 masters per day",
+      "depends_on": [
+        "FA-122"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/receipts/FA-123-downstream-capacity.receipt.json",
+      "acceptance": "QA/QC sampling, near-duplicate quarantine, package generation, backlog and Founder-touch requirements are measured at 100-master/day model."
+    },
+    {
+      "id": "FA-124",
+      "phase": 5,
+      "track": "SCALE_UNLOCKS",
+      "priority": 74,
+      "title": "Run authorized 100 unique masters per day canary",
+      "depends_on": [
+        "FA-123"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_LIVE_LOAD",
+      "artifact": "company/factory-asset/receipts/FA-124-100-masters-day.receipt.json",
+      "acceptance": "100 unique masters are attempted under approved bounds; success/QA/distinctness/package/economics and provider-policy results are reported without volume inflation."
+    },
+    {
+      "id": "FA-125",
+      "phase": 5,
+      "track": "SCALE_UNLOCKS",
+      "priority": 75,
+      "title": "Factory scale economics and market-absorption decision",
+      "depends_on": [
+        "FA-124"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_DECISION_REQUIRED",
+      "artifact": "docs/architecture/FACTORY_ASSET_SCALE_ECONOMICS_DECISION_V1.md",
+      "acceptance": "Cost per successful/QA-passed/accepted asset, marketplace acceptance, licensing, backlog and provider capacity support PROMOTE|HOLD|REPAIR|STOP decision."
+    },
+    {
+      "id": "FA-126",
+      "phase": 5,
+      "track": "SCALE_UNLOCKS",
+      "priority": 76,
+      "title": "Design and authorize 500 unique masters per day capacity",
+      "depends_on": [
+        "FA-125"
+      ],
+      "status": "DEFERRED",
+      "authority": "FOUNDER_DECISION_AND_SPEND_IF_ANY_REQUIRED",
+      "resume_condition": "FA-125 recommends PROMOTE and identifies at least two verified provider lanes or approved official/owned capacity with positive bounded economics.",
+      "artifact": "Factory 500/day architecture and authorization receipt",
+      "acceptance": "Capacity, cost, QA, storage, submission and policy envelopes are proven before live load."
+    },
+    {
+      "id": "FA-127",
+      "phase": 5,
+      "track": "SCALE_UNLOCKS",
+      "priority": 77,
+      "title": "Design and authorize 1,000 unique masters per day capacity",
+      "depends_on": [
+        "FA-126"
+      ],
+      "status": "DEFERRED",
+      "authority": "FOUNDER_DECISION_AND_SPEND_IF_ANY_REQUIRED",
+      "resume_condition": "500/day passes without quality, policy, market-absorption or unit-economic regression and acceptance/revenue evidence supports expansion.",
+      "artifact": "Factory 1000/day architecture and authorization receipt",
+      "acceptance": "1K/day is a unique-master claim with end-to-end QA/economic evidence, not a derivative-file count."
+    },
+    {
+      "id": "FA-128",
+      "phase": 5,
+      "track": "SCALE_UNLOCKS",
+      "priority": 78,
+      "title": "Separate 5,000 unique masters per day architecture decision",
+      "depends_on": [
+        "FA-127"
+      ],
+      "status": "DEFERRED",
+      "authority": "FOUNDER_DECISION_AND_SPEND_IF_ANY_REQUIRED",
+      "resume_condition": "1K/day and downstream market loop are stable and economically positive; Founder explicitly opens a 5K/day design mission.",
+      "artifact": "Factory 5000/day ADR/PRD amendment and decision receipt",
+      "acceptance": "Market absorption, provider substrate, storage, QA/QC, submission, rights and economics justify expansion; free-account multiplication is not the strategy."
+    },
+    {
+      "id": "FA-200",
+      "phase": 6,
+      "track": "GOVERNED_CANARY",
+      "priority": 80,
+      "title": "Select one Factory Asset governed canary opportunity",
+      "depends_on": [
+        "FA-030",
+        "FA-109"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/receipts/FA-200-canary-selection.receipt.json",
+      "acceptance": "One evidence-supported opportunity is selected with asset family, marketplace route, rights posture, quality target and no publication authority."
+    },
+    {
+      "id": "FA-201",
+      "phase": 6,
+      "track": "GOVERNED_CANARY",
+      "priority": 81,
+      "title": "Compile governed canary Asset Blueprint v2",
+      "depends_on": [
+        "FA-200"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/receipts/FA-201-canary-blueprint-compile.receipt.json",
+      "acceptance": "Exact blueprint, producer eligibility, master spec, derivative recipes, distinctness and marketplace profile versions compile and hash-pin."
+    },
+    {
+      "id": "FA-202",
+      "phase": 6,
+      "track": "GOVERNED_CANARY",
+      "priority": 82,
+      "title": "Execute one governed master and derivative family",
+      "depends_on": [
+        "FA-117",
+        "FA-201"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
+      "artifact": "company/factory-asset/receipts/FA-202-governed-production.receipt.json",
+      "acceptance": "One provider master and all eligible deterministic derivatives are durable, idempotent and correctly counted as one semantic asset."
+    },
+    {
+      "id": "FA-203",
+      "phase": 6,
+      "track": "GOVERNED_CANARY",
+      "priority": 83,
+      "title": "Complete governed canary registry and QA receipts",
+      "depends_on": [
+        "FA-202"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/receipts/FA-203-canary-registry-qa.receipt.json",
+      "acceptance": "Master, derivatives, package compatibility, duplicate suppression, QA and provider capacity evidence are committed through the canonical writer."
+    },
+    {
+      "id": "FA-204",
+      "phase": 6,
+      "track": "GOVERNED_CANARY",
+      "priority": 84,
+      "title": "Integrate metadata and rights for canary package",
+      "depends_on": [
+        "FA-203"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/receipts/FA-204-canary-metadata-rights.receipt.json",
+      "acceptance": "Metadata/keywords, AI disclosure, source rights and hard vetoes map to exact master/derivative hashes; uncertainty remains blocking."
+    },
+    {
+      "id": "FA-205",
+      "phase": 6,
+      "track": "GOVERNED_CANARY",
+      "priority": 85,
+      "title": "Founder exact-hash QC for Factory Asset canary",
+      "depends_on": [
+        "FA-204"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED",
+      "artifact": "company/factory-asset/receipts/FA-205-founder-qc.receipt.json",
+      "acceptance": "Founder records APPROVE|REJECT|REVISE against exact hashes; silence is not approval and no submission occurs."
+    },
+    {
+      "id": "FA-206",
+      "phase": 6,
+      "track": "GOVERNED_CANARY",
+      "priority": 86,
+      "title": "Factory Asset Level Up v1 acceptance",
+      "depends_on": [
+        "FA-205"
+      ],
+      "status": "BLOCKED",
+      "acceptance_batch": true,
+      "artifact": "company/factory-asset/receipts/FA-206-factory-asset-v1-acceptance.receipt.json",
+      "acceptance": "Blueprint, provider, immutable master, derivatives, registry, QA, metadata/rights, Founder QC and rollback evidence pass; publication remains outside scope."
+    }
+  ]
+}
