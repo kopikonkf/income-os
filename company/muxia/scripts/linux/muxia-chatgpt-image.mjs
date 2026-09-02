@@ -3,6 +3,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { PlaywrightChromiumDriver } from '../../dist/browser/playwright-driver.js';
 import { detectChatGptPageState } from '../../dist/providers/chatgpt/state-detector.js';
+import { enforceTabBudget, MAX_TABS_PER_PRINCIPAL } from '../../../browser/linux/tab_budget.mjs';
 
 function arg(name, fallback = null) {
   const i = process.argv.indexOf(name);
@@ -13,6 +14,34 @@ function sha256(value) { return crypto.createHash('sha256').update(value).digest
 function safeId(value) {
   if (!/^[A-Za-z0-9][A-Za-z0-9._-]{2,120}$/.test(value)) throw new Error('INVALID_JOB_ID');
   return value;
+}
+const COMPOSER_SELECTORS = [
+  '[data-testid="prompt-textarea"]',
+  '#prompt-textarea',
+  'textarea[placeholder*="Message" i]',
+  'textarea[placeholder*="Ask" i]',
+  '[contenteditable="true"][data-lexical-editor="true"]',
+];
+async function acquireAndFillComposer(page, prompt, attempts = 6) {
+  let lastError = 'E_COMPOSER_NOT_FOUND';
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    for (const selector of COMPOSER_SELECTORS) {
+      const box = page.locator(selector).first();
+      if (!await box.isVisible({ timeout: 350 }).catch(() => false)) continue;
+      try {
+        await box.click({ timeout: 1500 });
+        await box.fill(prompt, { timeout: 2500 });
+        return { box, selector, attempt };
+      } catch (error) {
+        lastError = String(error?.message ?? error).slice(0, 240);
+      }
+    }
+    const state = await detectChatGptPageState(page);
+    if (state.state === 'BLOCKED') throw new Error(`CHATGPT_BLOCKED:${state.reason}`);
+    if (state.state === 'AUTH_REQUIRED') throw new Error('CHATGPT_AUTH_REQUIRED');
+    await page.waitForTimeout(350 * attempt);
+  }
+  throw new Error(`CHATGPT_COMPOSER_REACQUIRE_FAILED:${lastError}`);
 }
 function extensionFromBytes(bytes) {
   if (bytes.subarray(0, 8).equals(Buffer.from([0x89,0x50,0x4e,0x47,0x0d,0x0a,0x1a,0x0a]))) return 'png';
@@ -94,7 +123,8 @@ async function main() {
   try {
     const handle = await driver.launch(profileDir);
     const context = handle.browser.contexts()[0];
-    const page = context.pages()[0] ?? await context.newPage();
+    const page = context.pages().find((p) => p.url().startsWith('https://chatgpt.com')) ?? context.pages()[0] ?? await context.newPage();
+    await enforceTabBudget(context, { preserve: [page], maxTabs: MAX_TABS_PER_PRINCIPAL });
     await page.goto('https://chatgpt.com/', { waitUntil: 'domcontentloaded', timeout: 30_000 });
     await page.waitForTimeout(3_000);
     const initial = await detectChatGptPageState(page);
@@ -102,9 +132,10 @@ async function main() {
     if (initial.state !== 'READY') throw new Error(`CHATGPT_NOT_READY:${initial.state}:${initial.reason}`);
 
     const existing = new Set((await inventory(page)).map((x) => x.src));
-    const composer = page.locator('#prompt-textarea').first();
-    await composer.click({ timeout: 5_000 });
-    await composer.fill(prompt);
+    const composerAcquisition = await acquireAndFillComposer(page, prompt);
+    const composer = composerAcquisition.box;
+    receipt.composer_selector = composerAcquisition.selector;
+    receipt.composer_acquisition_attempt = composerAcquisition.attempt;
     await page.waitForTimeout(250);
     let submitted = false;
     for (const selector of ['[data-testid="send-button"]', 'button[aria-label*="Send" i]', 'button[data-testid*="send" i]']) {
