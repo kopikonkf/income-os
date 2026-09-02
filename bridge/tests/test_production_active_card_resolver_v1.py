@@ -11,8 +11,9 @@ def progress(root:Path,task:str,*lines:str)->Path:
 def test_trophy_resolves_exact_actor_and_action(tmp_path:Path):
     progress(tmp_path,'OE008TROPHY001','Seed: SEED-000027 (trophy)','Family: Business/Award (object_class: award)','State: BLUEPRINT_REQUIRED','Started: 2026-09-02T00:00:00Z')
     out=mod.resolve_active_card(tmp_path)
-    assert out['status']=='CONTINUE_ACTIVE_CARD'
-    c=out['active_card']; assert c['task_id']=='OE008TROPHY001'; assert c['state']=='BLUEPRINT_REQUIRED'; assert c['seed_id']=='SEED-000027'; assert c['seed_name']=='trophy'; assert c['required_actor']=='die-lnx-division-001'; assert c['next_action_type']=='OP-REQUEST-DIVISION01-BLUEPRINT'
+    assert out['status']=='BLOCKED_ACTIVE_CARD'
+    assert out['reason']=='E_DIVISION01_AUTONOMOUS_COGNITION_TRANSPORT_UNWIRED'
+    c=out['active_card']; assert c['task_id']=='OE008TROPHY001'; assert c['state']=='BLUEPRINT_REQUIRED'; assert c['seed_id']=='SEED-000027'; assert c['seed_name']=='trophy'; assert c['required_actor']=='die-lnx-division-001'; assert c['next_action_type']=='OP-REQUEST-DIVISION01-BLUEPRINT'; assert c['execution_ready'] is False; assert c['execution_surface']=='GOVERNED_DIVISION01_WAKE'
     assert out['authority_effect']=='NONE' and out['existing_authority_unchanged'] is True
 
 def test_parked_human_gate_does_not_become_active(tmp_path:Path):
@@ -41,3 +42,11 @@ def test_oldest_actionable_card_wins_deterministically(tmp_path:Path):
 def test_blocking_provider_limit_blocks_new_seed_compensation(tmp_path:Path):
     progress(tmp_path,'LIMIT','State: BLOCKED_PROVIDER_LIMIT','Started: 2026-09-02T01:00:00Z')
     out=mod.resolve_active_card(tmp_path); assert out['status']=='BLOCKED_ACTIVE_CARD'; assert out['active_card']['next_action_type']=='PROD-RETRY-PROVIDER-CHAIN'
+
+
+def test_blueprint_ready_remains_autonomously_actionable(tmp_path:Path):
+    progress(tmp_path,'READY','Seed: SEED-000030 (ready)','State: BLUEPRINT_READY','Started: 2026-09-02T00:00:00Z')
+    out=mod.resolve_active_card(tmp_path)
+    assert out['status']=='CONTINUE_ACTIVE_CARD'
+    assert out['active_card']['execution_ready'] is True
+    assert out['active_card']['next_action_type']=='PROD-DISPATCH-WORKER'

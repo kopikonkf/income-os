@@ -26,6 +26,16 @@ ACTIONABLE = {
     "QC_RUNNING": ("hermes-operator", "PROD-CONTINUE-QC", "Continue deterministic QC for the existing artifact."),
     "FAILED_RETRYABLE": ("hermes-operator", "PROD-RETRY-FAILED-STAGE", "Retry only the recorded retryable failed stage after checking durable state."),
 }
+EXECUTION_SURFACES = {
+    "OP-REQUEST-DIVISION01-BLUEPRINT": {
+        "execution_surface": "GOVERNED_DIVISION01_WAKE",
+        "execution_contract_ref": "company/division/division001/linux/wake_transport.mjs",
+        "execution_ready": False,
+        "blocker_code": "E_DIVISION01_AUTONOMOUS_COGNITION_TRANSPORT_UNWIRED",
+        "blocker_reason": "Canonical Linux Division01 wake transport can focus/stage/canary but does not autonomously submit prompts or extract cognition output; no canonical Operator-v2 outbox consumer performs that external handoff.",
+    },
+}
+
 BLOCKING = {
     "BLOCKED_LOGIN": ("founder", "FOUNDER-CREDENTIAL-ACTION-REQUIRED", "Preserve the card; credential/login action is outside autonomous authority."),
     "BLOCKED_PROVIDER_LIMIT": ("hermes-operator", "PROD-RETRY-PROVIDER-CHAIN", "Preserve the card and retry through configured provider/fallback policy; do not start a compensating seed."),
@@ -130,6 +140,12 @@ def _card_payload(card: Card, classification: str, actor: str | None = None, act
         out["required_actor"] = actor
     if action is not None:
         out["next_action_type"] = action
+        surface = EXECUTION_SURFACES.get(action)
+        if surface:
+            out.update(surface)
+        else:
+            out["execution_ready"] = True
+            out["execution_surface"] = "NATIVE_PRODUCTION_RUNTIME"
     if instruction is not None:
         out["next_action_instruction"] = instruction
     return out
@@ -152,10 +168,23 @@ def resolve_active_card(workspaces_root: Path) -> dict[str, Any]:
     if actionable:
         card = sorted(actionable, key=order)[0]
         actor, action, instruction = ACTIONABLE[card.state]
+        payload = _card_payload(card, "ACTIONABLE", actor, action, instruction)
+        if payload.get("execution_ready") is False:
+            payload["classification"] = "EXECUTION_BLOCKED"
+            return {
+                "schema": SCHEMA,
+                "status": "BLOCKED_ACTIVE_CARD",
+                "reason": payload["blocker_code"],
+                "active_card": payload,
+                "parked_card_count": len(parked),
+                "blocking_card_count": len(blocking),
+                "authority_effect": "NONE",
+                "existing_authority_unchanged": True,
+            }
         return {
             "schema": SCHEMA,
             "status": "CONTINUE_ACTIVE_CARD",
-            "active_card": _card_payload(card, "ACTIONABLE", actor, action, instruction),
+            "active_card": payload,
             "parked_card_count": len(parked),
             "blocking_card_count": len(blocking),
             "authority_effect": "NONE",

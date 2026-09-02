@@ -13,7 +13,7 @@ def state(root:Path,task:str,value:str):
 
 def test_active_card_suppresses_seed_selection(tmp_path:Path):
  d=tmp_path/'atlas.db'; db(d); ws=tmp_path/'ws'; state(ws,'OE008TROPHY001','BLUEPRINT_REQUIRED')
- out=mod.preflight(ws,d); assert out['mode']=='CONTINUE_ACTIVE_CARD'; assert out['active_card']['task_id']=='OE008TROPHY001'; assert 'seed_selection' not in out
+ out=mod.preflight(ws,d); assert out['mode']=='BLOCKED_ACTIVE_CARD'; assert out['active_card']['task_id']=='OE008TROPHY001'; assert out['active_card']['blocker_code']=='E_DIVISION01_AUTONOMOUS_COGNITION_TRANSPORT_UNWIRED'; assert 'seed_selection' not in out
 
 def test_no_active_card_starts_ranked_seed(tmp_path:Path):
  d=tmp_path/'atlas.db'; db(d); ws=tmp_path/'ws'; ws.mkdir()
