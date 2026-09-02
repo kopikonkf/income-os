@@ -1872,7 +1872,7 @@
                       "depends_on":  [
                                          "QC-001"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "die.asset.submission-package.v1 + route state schema",
                       "acceptance":  "Immutable package pins artifact, QA, QC, Blueprint, metadata and platform profile hashes; route states distinguish prepared, authorized, submitted, review pending, approved/rejected and reconciled."
                   },
@@ -1883,7 +1883,7 @@
                       "depends_on":  [
                                          "SUB-001A"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "submission authority + credential/session contract",
                       "acceptance":  "Default irreversible submission requires explicit Founder authority; credentials remain external/recreated; no cookie/token extraction, protection bypass or implicit delegation."
                   },

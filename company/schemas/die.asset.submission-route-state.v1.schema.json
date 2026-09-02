@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.asset.submission-route-state.v1.schema.json",
+  "title": "DIE Asset Submission Route State v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "route_id",
+    "package_sha256",
+    "platform_profile_sha256",
+    "state",
+    "updated_at",
+    "attempt",
+    "authority_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "die.asset.submission-route-state.v1"},
+    "route_id": {"type": "string", "pattern": "^ROUTE-[A-Z0-9_-]{6,100}$"},
+    "package_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "platform_profile_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "state": {
+      "enum": [
+        "PREPARED",
+        "AUTHORIZED",
+        "SUBMITTED",
+        "REVIEW_PENDING",
+        "APPROVED",
+        "REJECTED",
+        "RECONCILED"
+      ]
+    },
+    "updated_at": {"type": "string", "format": "date-time"},
+    "attempt": {"type": "integer", "minimum": 0},
+    "authorization_receipt_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "external_submission_ref": {"type": ["string", "null"], "maxLength": 512},
+    "marketplace_result_ref": {"type": ["string", "null"], "maxLength": 512},
+    "reconciliation_note": {"type": ["string", "null"], "maxLength": 2000},
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["submission_action_performed", "publication_action_performed", "credential_material_present"],
+      "properties": {
+        "submission_action_performed": {"const": false},
+        "publication_action_performed": {"const": false},
+        "credential_material_present": {"const": false}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"state": {"const": "PREPARED"}}},
+      "then": {"properties": {"authorization_receipt_sha256": {"type": "null"}, "attempt": {"const": 0}}}
+    },
+    {
+      "if": {"properties": {"state": {"enum": ["AUTHORIZED", "SUBMITTED", "REVIEW_PENDING", "APPROVED", "REJECTED", "RECONCILED"]}}},
+      "then": {"required": ["authorization_receipt_sha256"]}
+    }
+  ]
+}

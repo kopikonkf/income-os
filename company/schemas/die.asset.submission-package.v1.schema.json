@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.asset.submission-package.v1.schema.json",
+  "title": "DIE Asset Submission Package v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "package_id",
+    "created_at",
+    "mission_id",
+    "asset_id",
+    "artifact_sha256",
+    "qa_receipt_sha256",
+    "qc_receipt_sha256",
+    "blueprint_sha256",
+    "metadata_sha256",
+    "platform_profile_sha256",
+    "route_id",
+    "initial_route_state",
+    "authority_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "die.asset.submission-package.v1"},
+    "package_id": {"type": "string", "pattern": "^SUBPKG-[A-Z0-9_-]{8,100}$"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "mission_id": {"type": "string", "minLength": 1},
+    "asset_id": {"type": "string", "minLength": 1},
+    "artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "qa_receipt_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "qc_receipt_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "blueprint_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "metadata_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "platform_profile_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "route_id": {"type": "string", "pattern": "^ROUTE-[A-Z0-9_-]{6,100}$"},
+    "initial_route_state": {"const": "PREPARED"},
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["submission_authorized", "publication_authorized", "credentials_embedded", "mutable_after_seal"],
+      "properties": {
+        "submission_authorized": {"const": false},
+        "publication_authorized": {"const": false},
+        "credentials_embedded": {"const": false},
+        "mutable_after_seal": {"const": false}
+      }
+    }
+  }
+}
