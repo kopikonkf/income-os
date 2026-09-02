@@ -26,3 +26,11 @@ def test_runtime_stops_at_founder_qc_after_upscale():
  s=(ROOT/'company/die-agents/hermes/production-runtime/production_runtime_tick.py').read_text()
  for x in ['ARTIFACT_CREATED','WAITING_FOUNDER_QC','PENDING_HUMAN_REVIEW','PARKED_HUMAN_GATE','select_seed(DB,WORKSPACES)']:assert x in s
  assert 'asset_qc' not in s and 'rights_preflight' not in s
+
+
+def test_gateway_sandbox_allows_only_cognition_receipt_write_paths():
+    unit=(ROOT/'company/die-agents/hermes/linux/die-hermes-gateway.service').read_text()
+    rw=next(line for line in unit.splitlines() if line.startswith('ReadWritePaths='))
+    assert '/var/lib/die/division01/cognition-receipts' in rw
+    assert '/var/lib/die/executive/cognition-receipts' in rw
+    assert '/var/lib/die/division01 ' not in rw and '/var/lib/die/executive ' not in rw
