@@ -15,6 +15,8 @@ def test_playbook_defines_result_first_seed_to_publish_chain():
         'Executive is a second-line reviewer, not a per-image gate.',
         'WAITING_FOUNDER_QC',
         'READY_FOR_MANUAL_PUBLISH',
+        'PARKED_HUMAN_GATE',
+        'Only an **actionable unfinished card** takes precedence over new work.',
         'No silent production failure is allowed.',
         'remains the canonical engineering journey and milestone map',
     ]:
@@ -43,6 +45,10 @@ def test_production_cron_is_three_hour_continuous_agent_job():
     assert '--workdir "$WORKDIR"' in text
     assert '--no-agent' not in text
     assert 'Start at most one new approved Object Atlas seed noun this tick.' in text
+    assert 'PARKED_HUMAN_GATE' in text
+    assert 'do not let them block an independent eligible seed' in text
+    assert 'PRODUCTION_TICK_NO_PROGRESS' in text
+    assert '[SILENT] is forbidden for production ticks' in text
     assert 'Silent failure is forbidden.' in text
 
 
@@ -65,3 +71,15 @@ def test_runtime_canon_projects_playbook_to_cognitive_principals():
     assert {'PRODUCTION-OPS-CADENCE','PRODUCTION-OPS-GRANULARITY','PRODUCTION-OPS-ROLES','PRODUCTION-OPS-TELEGRAM','PRODUCTION-OPS-ATOMIC-GRAPH'} <= facts
     for profile in manifest['principal_profiles'].values():
         assert 'production_playbook' in profile['required_doc_ids']
+
+
+def test_human_gate_does_not_serialize_independent_seed_production():
+    playbook = PLAYBOOK.read_text(encoding='utf-8')
+    installer = INSTALLER.read_text(encoding='utf-8')
+    for gate in ['WAITING_FOUNDER_QC', 'READY_FOR_MANUAL_PUBLISH']:
+        assert gate in playbook
+        assert gate in installer
+    assert 'MUST NOT block selection of an independent eligible seed' in playbook
+    assert 'parked human-gated cards (`WAITING_FOUNDER_QC`, `READY_FOR_MANUAL_PUBLISH`) are excluded from this blocking set' in playbook
+    assert 're-reading an unchanged parked human-gated card is **not** material progress' in playbook
+    assert 're-reading an unchanged parked human gate is not success' in installer

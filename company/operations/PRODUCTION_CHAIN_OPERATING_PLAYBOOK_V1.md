@@ -279,6 +279,20 @@ Minimum state sequence:
 `READY_FOR_MANUAL_PUBLISH`
 `MANUALLY_PUBLISHED`
 
+### 7.1 Human-gated cards are parked, not global blockers
+
+During the current throughput-observation phase, `WAITING_FOUNDER_QC` and `READY_FOR_MANUAL_PUBLISH` are terminal states for Hermes autonomous responsibility for that production cycle. The card remains durable and reviewable, but it is **PARKED_HUMAN_GATE** for production scheduling purposes.
+
+A parked human-gated card:
+
+- does not disappear or lose lineage;
+- remains visible to Founder and the watchdog;
+- may be resumed later when Founder provides an explicit decision;
+- MUST NOT block selection of an independent eligible seed on a later production cadence slot;
+- MUST NOT be repeatedly reported as if Hermes can autonomously advance it.
+
+Only an **actionable unfinished card** takes precedence over new work. An actionable unfinished card is one for which Hermes/Worker/provider can still make progress under existing authority without Founder input.
+
 Failure states:
 
 `BLOCKED_LOGIN`
@@ -408,8 +422,8 @@ The dedicated production cron runs every 3 hours and is separate from Operator-v
 On each production tick Hermes:
 
 1. reads this playbook;
-2. checks whether an unfinished production cycle should be continued first;
-3. if safe to start new work, selects at most one eligible seed noun;
+2. checks whether an **actionable** unfinished production cycle should be continued first; parked human-gated cards (`WAITING_FOUNDER_QC`, `READY_FOR_MANUAL_PUBLISH`) are excluded from this blocking set;
+3. if no actionable unfinished cycle blocks the slot, selects at most one eligible seed noun even when older parked human-gated cards still await Founder action;
 4. sends `PRODUCTION_STARTED` Telegram message;
 5. creates/updates Kanban;
 6. obtains/reuses fixed Blueprint;
@@ -417,7 +431,18 @@ On each production tick Hermes:
 8. runs provider generation;
 9. continues postproduction immediately;
 10. reports all required Telegram milestones;
-11. stops at Founder gates instead of guessing approval.
+11. parks the card at Founder gates instead of guessing approval; future cadence slots may start independent eligible seeds.
+
+### 12.1 Material-progress outcome semantics
+
+A production tick is a business-level success only when at least one observable material outcome occurred:
+
+- a new eligible seed cycle was started;
+- an actionable existing cycle advanced to a later durable state;
+- a real artifact was created; or
+- postproduction advanced an artifact to a new durable gate.
+
+Merely re-reading an unchanged parked human-gated card is **not** material progress and MUST NOT be presented as a successful production cycle. If no material progress is possible, Hermes must emit an explicit `PRODUCTION_TICK_NO_PROGRESS` / `BLOCKED` summary with reason and next action; `[SILENT]` is forbidden for a scheduled production tick.
 
 A provider limit or login issue does not cause another seed to be started as compensation during the same tick.
 
@@ -428,7 +453,9 @@ A provider limit or login issue does not cause another seed to be started as com
 - Do not create multiple duplicate cycles for the same seed due to timeout ambiguity.
 - If provider status is uncertain, inspect artifact/state before retrying.
 - If the same failure repeats, escalate via Telegram and Kanban instead of infinite retry.
-- Hermes follows active cards until terminal state; cards do not disappear because a cron run ends.
+- Hermes follows actionable active cards until an autonomous terminal/human gate; cards do not disappear because a cron run ends.
+- `WAITING_FOUNDER_QC` and `READY_FOR_MANUAL_PUBLISH` are parked human gates and do not serialize unrelated seed production.
+- The watchdog may remind/escalate parked cards separately without consuming the three-hour new-seed production slot.
 
 ## 14. Atomic task graph relationship
 
