@@ -43,6 +43,9 @@ def test_production_cron_is_three_hour_continuous_agent_job():
     assert '--deliver telegram' in text
     assert '--no-continuity' in text
     assert '--continuity' not in text
+    assert '--script production_seed_selector.py' in text
+    assert 'SELECTOR_SRC=' in text
+    assert 'PREFLIGHT_SCRIPT=' in text
     assert '--workdir "$WORKDIR"' in text
     assert '--no-agent' not in text
     assert 'Start at most one new approved Object Atlas seed noun this tick.' in text
@@ -102,4 +105,13 @@ def test_playbook_uses_deterministic_phase0_seed_selector():
     text = PLAYBOOK.read_text(encoding='utf-8')
     assert 'python3 company/die-agents/hermes/production_seed_selector.py' in text
     assert 'ranks approved `U1-raster` seeds by validated demand' in text
-    assert 'MUST use this selector before ad-hoc repository/database discovery' in text
+    assert 'MUST consume this injected selection before any ad-hoc repository/database discovery' in text
+
+
+def test_production_cron_injects_selector_before_agent_reasoning():
+    installer = INSTALLER.read_text(encoding='utf-8')
+    playbook = PLAYBOOK.read_text(encoding='utf-8')
+    assert '--script production_seed_selector.py' in installer
+    assert 'Phase-0 seed-selection JSON is injected before this prompt' in installer
+    assert 'agent-mode preflight script' in playbook
+    assert 'JSON stdout is injected before Hermes reasoning begins' in playbook
