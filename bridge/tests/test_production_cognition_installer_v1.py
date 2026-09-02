@@ -4,7 +4,8 @@ def test_installer_is_no_agent_minute_cognition_line():
  t=(ROOT/'company/die-agents/hermes/linux/install-production-cognition-v1.sh').read_text()
  assert 'die-production-cognition-v1' in t
  assert "SCHEDULE='*/1 * * * *'" in t
- assert '--no-agent' in t and '--deliver telegram' in t
+ assert '--no-agent' in t and '--deliver local' in t
+ assert '--deliver telegram' not in t
  assert 'production-cognition/production_cognition_tick.sh' in t
  assert 'exec /usr/bin/python3' in t
  assert 'import jsonschema' in t
@@ -20,3 +21,10 @@ def test_authority_doc_preserves_irreversible_boundaries():
 def test_installed_wrapper_preserves_runtime_argv_literal():
     t=(ROOT/'company/die-agents/hermes/linux/install-production-cognition-v1.sh').read_text()
     assert '"\\$@"' in t
+
+
+def test_cognition_poller_is_internal_not_telegram_heartbeat():
+ t=(ROOT/'company/die-agents/hermes/linux/install-production-cognition-v1.sh').read_text()
+ assert "SCHEDULE='*/1 * * * *'" in t
+ assert '--deliver local' in t
+ assert '--deliver telegram' not in t

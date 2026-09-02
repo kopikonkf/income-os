@@ -3,6 +3,7 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { enforceTabBudget, MAX_TABS_PER_PRINCIPAL } from './tab_budget.mjs';
 
 export const MAX_PROMPT_CHARS = 12000;
 export const MAX_RESPONSE_CHARS = 40000;
@@ -69,7 +70,17 @@ export async function runRoundtrip({dieHome='/srv/die', requestFile, responseFil
   let submitted=false;
   try {
     const ctx=browser.contexts()[0]; if(!ctx) throw new Error('E_BROWSER_CONTEXT');
-    const page=ctx.pages().find(p=>normalizeThreadUrlSafe(p.url())===expectedUrl); if(!page) throw new Error('E_BOUND_THREAD_PAGE'); await page.bringToFront();
+    let page=ctx.pages().find(p=>normalizeThreadUrlSafe(p.url())===expectedUrl);
+    let rebound=false;
+    if(!page){
+      page=ctx.pages().find(p=>String(p.url()).startsWith('https://chatgpt.com')) || ctx.pages()[0] || await ctx.newPage();
+      await enforceTabBudget(ctx,{preserve:[page],maxTabs:MAX_TABS_PER_PRINCIPAL});
+      await page.goto(expectedUrl,{waitUntil:'domcontentloaded',timeout:60000});
+      await page.waitForTimeout(1200);
+      if(normalizeThreadUrlSafe(page.url())!==expectedUrl) throw new Error('E_BOUND_THREAD_NAVIGATION');
+      rebound=true;
+    }
+    await page.bringToFront();
     let turns=await turnSnapshot(page); let recovered=chooseRecoveredTurn(turns,req.request_id); let assistant=null;
     if(recovered.state==='RESPONDED') assistant=recovered.assistant;
     if(recovered.state==='NOT_SENT') {
@@ -93,7 +104,7 @@ export async function runRoundtrip({dieHome='/srv/die', requestFile, responseFil
     }
     if(!assistant || !assistant.text) throw new Error('E_RESPONSE_TIMEOUT');
     if(assistant.text.length>MAX_RESPONSE_CHARS) throw new Error('E_RESPONSE_OVERSIZE');
-    const receipt={schema:'die.cognition.roundtrip-receipt.v1',company_instance_id:'DIE-LINUX',request_id:req.request_id,task_id:req.task_id,target_principal_id:req.target_principal_id,action_type:req.action_type,thread_generation:thread.generation,conversation_id:thread.conversation_id,submitted_by_transport:submitted,recovered_existing_request:!submitted,response_schema_expected:req.expected_response_schema,assistant_message_id:assistant.id,response_sha256:sha256(assistant.text),response_chars:assistant.text.length,credential_material_accessed:false,private_backend_called:false,observed_at:new Date().toISOString()};
+    const receipt={schema:'die.cognition.roundtrip-receipt.v1',company_instance_id:'DIE-LINUX',request_id:req.request_id,task_id:req.task_id,target_principal_id:req.target_principal_id,action_type:req.action_type,thread_generation:thread.generation,conversation_id:thread.conversation_id,bound_thread_recovered:rebound,submitted_by_transport:submitted,recovered_existing_request:!submitted,response_schema_expected:req.expected_response_schema,assistant_message_id:assistant.id,response_sha256:sha256(assistant.text),response_chars:assistant.text.length,credential_material_accessed:false,private_backend_called:false,observed_at:new Date().toISOString()};
     const recPath=path.join(cfg.receiptDir,`${req.request_id}.json`); atomicJson(recPath,receipt);
     if(responseFile){ if(!path.isAbsolute(responseFile)) throw new Error('E_RESPONSE_PATH'); fs.mkdirSync(path.dirname(responseFile),{recursive:true,mode:0o750}); fs.writeFileSync(responseFile,assistant.text+'\n',{mode:0o640}); }
     return {...receipt,receipt_ref:recPath,response_file:responseFile};
