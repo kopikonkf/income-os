@@ -23,9 +23,19 @@ test('roundtrip recovers missing bound tab by navigating an existing page under 
 test('cognition composer and send controls use bounded reacquisition',()=>{
   const text=fs.readFileSync(new URL('../../company/browser/linux/cognition_roundtrip_core.mjs',import.meta.url),'utf8');
   assert.match(text,/COGNITION_COMPOSER_SELECTORS/);
-  assert.match(text,/acquireComposer\(page/);
+  assert.match(text,/stagePrompt\(page,fullPrompt,marker/);
   assert.match(text,/E_COMPOSER_REACQUIRE/);
   assert.match(text,/acquireSend\(page/);
   assert.match(text,/E_SEND_BUTTON_REACQUIRE/);
   assert.doesNotMatch(text,/page\.locator\('#prompt-textarea'\)\.first\(\)/);
+});
+
+
+test('cognition staging rejects disabled fallback composers and can recover same staged marker',()=>{
+  const text=fs.readFileSync(new URL('../../company/browser/linux/cognition_roundtrip_core.mjs',import.meta.url),'utf8');
+  assert.match(text,/isEditable/);
+  assert.match(text,/stagePrompt\(page,fullPrompt,marker/);
+  assert.match(text,/recoveredStaged:true/);
+  assert.match(text,/existing\.includes\(marker\)/);
+  assert.match(text,/fill\(fullPrompt,\{timeout:2500\}\)/);
 });

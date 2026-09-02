@@ -20,15 +20,29 @@ const COGNITION_SEND_SELECTORS = [
   'button[aria-label="Send prompt"]',
   'button[aria-label*="Send" i]',
 ];
-async function acquireComposer(page, attempts=8){
+async function stagePrompt(page, fullPrompt, marker, attempts=8){
+  let lastError='E_COMPOSER_NOT_EDITABLE';
   for(let attempt=1;attempt<=attempts;attempt++){
     for(const selector of COGNITION_COMPOSER_SELECTORS){
       const box=page.locator(selector).first();
-      if(await box.isVisible({timeout:350}).catch(()=>false)) return {box,selector,attempt};
+      const visible=await box.isVisible({timeout:350}).catch(()=>false);
+      const editable=visible && await box.isEditable({timeout:350}).catch(()=>false);
+      if(!editable) continue;
+      const existing=await composerText(box);
+      if(existing){
+        if(existing.includes(marker)) return {box,selector,attempt,recoveredStaged:true};
+        throw new Error('E_COMPOSER_NOT_EMPTY');
+      }
+      try{
+        await box.fill(fullPrompt,{timeout:2500});
+        const staged=await composerText(box);
+        if(!staged.includes(marker)){ await box.fill('').catch(()=>{}); throw new Error('E_STAGE_MISMATCH'); }
+        return {box,selector,attempt,recoveredStaged:false};
+      }catch(error){ lastError=String(error?.message??error).slice(0,240); }
     }
     await page.waitForTimeout(300*attempt);
   }
-  throw new Error('E_COMPOSER_REACQUIRE');
+  throw new Error(`E_COMPOSER_REACQUIRE:${lastError}`);
 }
 async function acquireSend(page, attempts=8){
   for(let attempt=1;attempt<=attempts;attempt++){
@@ -118,9 +132,8 @@ export async function runRoundtrip({dieHome='/srv/die', requestFile, responseFil
     if(recovered.state==='RESPONDED') assistant=recovered.assistant;
     if(recovered.state==='NOT_SENT') {
       if(Date.now()>=parseTime(req.expires_at)) throw new Error('E_REQUEST_EXPIRED');
-      const composerAcquisition=await acquireComposer(page); const box=composerAcquisition.box; if(await composerText(box)) throw new Error('E_COMPOSER_NOT_EMPTY');
-      const fullPrompt=`${requestMarker(req.request_id)}\n${req.prompt}`; if(fullPrompt.length>MAX_PROMPT_CHARS+220) throw new Error('E_FULL_PROMPT_OVERSIZE');
-      await box.fill(fullPrompt); const staged=await composerText(box); if(!staged.includes(requestMarker(req.request_id))) { await box.fill(''); throw new Error('E_STAGE_MISMATCH'); }
+      const marker=requestMarker(req.request_id); const fullPrompt=`${marker}\n${req.prompt}`; if(fullPrompt.length>MAX_PROMPT_CHARS+220) throw new Error('E_FULL_PROMPT_OVERSIZE');
+      const composerAcquisition=await stagePrompt(page,fullPrompt,marker); const box=composerAcquisition.box;
       const sendAcquisition=await acquireSend(page); const send=sendAcquisition.send;
       await send.click(); submitted=true; recovered={state:'SENT_WAITING'};
     }
