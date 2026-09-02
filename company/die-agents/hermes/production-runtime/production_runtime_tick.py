@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import datetime as dt, fcntl, hashlib, json, os, shutil, subprocess, sys
+import datetime as dt, fcntl, hashlib, json, os, shutil, subprocess, sys, time
 from pathlib import Path
 HERE=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(HERE))
@@ -10,7 +10,7 @@ WORKSPACES=Path('/var/lib/die/workspaces'); DB=Path('/var/lib/die/atlas/object-a
 HERMES='/opt/die/hermes/venv/bin/hermes'; HERMES_HOME='/var/lib/die/hermes/income-operator'
 WORKER_DISPATCH=HERE/'worker_dispatch.py'; WORKER_RUNNER=Path('/srv/die/company/workers/opencode/runner.py')
 UPSCALE=Path('/srv/die/bridge/income_os_bridge/asset_upscale.py'); UPSCALE_POLICY=Path('/srv/die/company/atlas/object-centric/object-asset-engine/source/scripts/postprocess/upscale-policy.v1.json')
-MUXIA_DISPATCH='/opt/die/bin/die-muxia-image-dispatch'
+MUXIA_QUEUE=Path('/var/lib/die/state/muxia-dispatch')
 LOCK=Path('/var/lib/die/state/production-runtime/tick.lock')
 
 def now():return dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds').replace('+00:00','Z')
@@ -52,9 +52,25 @@ def build_worker(w:Path,bp:dict,lock:dict):
 
 def generate(w:Path)->dict:
  bp=json.loads((w/'blueprint.json').read_text());lock=json.loads((w/'blueprint.lock.json').read_text());build_worker(w,bp,lock)
- cp=subprocess.run(['sudo','-n',MUXIA_DISPATCH,w.name],text=True,capture_output=True,timeout=740,check=False)
- if cp.returncode!=0:raise RuntimeError('E_MUXIA:'+(cp.stderr or cp.stdout)[-1200:])
- rec=json.loads(cp.stdout.strip().splitlines()[-1]);src=Path(rec['export_artifact_path'])
+ req={'schema':'die.muxia-dispatch-request.v1','task_id':w.name,'blueprint_sha256':lock['blueprint_sha256']}
+ reqdir=MUXIA_QUEUE/'requests';resdir=MUXIA_QUEUE/'results';reqdir.mkdir(parents=True,exist_ok=True);resdir.mkdir(parents=True,exist_ok=True)
+ reqp=reqdir/f'{w.name}.json';resp=resdir/f'{w.name}.json';expected=csha(req)
+ if resp.is_file():
+  try:
+   old=json.loads(resp.read_text())
+   if old.get('status')!='SUCCEEDED' or old.get('request_sha256')!=expected:resp.unlink()
+  except Exception:resp.unlink()
+ if reqp.is_file():
+  old=json.loads(reqp.read_text())
+  if old!=req:raise RuntimeError('E_MUXIA_QUEUE_REQUEST_DRIFT')
+ else:
+  tmp=reqp.with_name(reqp.name+f'.tmp-{os.getpid()}');tmp.write_text(json.dumps(req,indent=2)+'\n');os.replace(tmp,reqp)
+ deadline=time.time()+740
+ while time.time()<deadline and not resp.is_file():time.sleep(1)
+ if not resp.is_file():raise RuntimeError('E_MUXIA_QUEUE_TIMEOUT')
+ qres=json.loads(resp.read_text())
+ if qres.get('status')!='SUCCEEDED' or qres.get('request_sha256')!=expected:raise RuntimeError('E_MUXIA:'+str(qres.get('error','queue failure'))[:1200])
+ rec=qres['dispatch'];src=Path(rec['export_artifact_path'])
  if rec.get('status')!='SUCCEEDED' or not src.is_file() or sha(src)!=rec.get('export_artifact_sha256') or rec.get('export_artifact_sha256')!=rec.get('sha256'):raise RuntimeError('E_MUXIA_EXPORT_RECEIPT')
  if src.parent.resolve()!=(w/'provider').resolve():raise RuntimeError('E_MUXIA_EXPORT_PATH')
  dst=src
