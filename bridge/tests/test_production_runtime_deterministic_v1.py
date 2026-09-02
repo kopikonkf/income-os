@@ -70,7 +70,8 @@ def test_muxia_queue_service_preserves_gateway_no_new_privileges():
     assert '/var/lib/muxia' in unit
     installer=(ROOT/'company/die-agents/hermes/linux/install-production-cycle-v1.sh').read_text()
     assert 'die-muxia-dispatch.service' in installer
-    assert 'enable --now die-muxia-dispatch.service' in installer
+    assert 'systemctl enable die-muxia-dispatch.service' in installer
+    assert 'systemctl restart die-muxia-dispatch.service' in installer
     assert 'rm -f /etc/sudoers.d/die-hermes-muxia-image' in installer
     assert 'NOPASSWD' not in installer
 
@@ -92,3 +93,13 @@ def test_muxia_dispatch_service_is_fully_unprivileged():
     assert "E_SERVICE_IDENTITY" in dispatch
     assert "MUXIA_USER='kopiko'" in dispatch
     assert 'os.chown' not in dispatch
+
+
+def test_muxia_service_has_private_writable_home_and_installer_restarts_unit():
+    unit=(ROOT/'company/muxia/scripts/linux/die-muxia-dispatch.service').read_text()
+    installer=(ROOT/'company/die-agents/hermes/linux/install-production-cycle-v1.sh').read_text()
+    assert 'Environment=HOME=/var/lib/muxia/service-home' in unit
+    assert 'ProtectHome=true' in unit and 'ProtectSystem=strict' in unit
+    assert 'install -d -o kopiko -g die-runtime -m 0700 "$MUXIA_ROOT/service-home"' in installer
+    assert 'systemctl restart die-muxia-dispatch.service' in installer
+    assert 'enable --now die-muxia-dispatch.service' not in installer
