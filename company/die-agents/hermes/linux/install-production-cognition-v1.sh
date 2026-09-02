@@ -23,7 +23,7 @@ chmod 0750 "$DEST/production_cognition_tick.py" "$DEST/validate_production_cogni
 cat > "$DEST/production_cognition_tick.sh" <<EOF
 #!/usr/bin/env bash
 set -euo pipefail
-exec /usr/bin/python3 "$DIE_HOME/company/die-agents/hermes/production-cognition/production_cognition_tick.py" "$@"
+exec /usr/bin/python3 "$DIE_HOME/company/die-agents/hermes/production-cognition/production_cognition_tick.py" "\$@"
 EOF
 chown die-hermes:die-runtime "$DEST/production_cognition_tick.sh"
 chmod 0750 "$DEST/production_cognition_tick.sh"
