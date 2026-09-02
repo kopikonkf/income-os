@@ -1883,7 +1883,7 @@
                       "depends_on":  [
                                          "SUB-001A"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "submission authority + credential/session contract",
                       "acceptance":  "Default irreversible submission requires explicit Founder authority; credentials remain external/recreated; no cookie/token extraction, protection bypass or implicit delegation."
                   },
@@ -1895,7 +1895,7 @@
                                          "SUB-001A",
                                          "SUB-001B"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "submission state/idempotency engine",
                       "acceptance":  "Exact package/route dedupe prevents duplicate submissions; retries reconcile external state before action; uncertain outcomes stop for review rather than repeat blindly."
                   },

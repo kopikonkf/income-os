@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.asset.submission-authority.v1.schema.json",
+  "title": "DIE Asset Submission Authority v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "authority_receipt_id",
+    "package_sha256",
+    "route_id",
+    "platform_profile_sha256",
+    "decision",
+    "authority_class",
+    "issued_at",
+    "scope",
+    "credential_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "die.asset.submission-authority.v1"},
+    "authority_receipt_id": {"type": "string", "pattern": "^SUBAUTH-[A-Z0-9_-]{8,100}$"},
+    "package_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "route_id": {"type": "string", "pattern": "^ROUTE-[A-Z0-9_-]{6,100}$"},
+    "platform_profile_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "decision": {"enum": ["AUTHORIZE_SUBMISSION", "DENY_SUBMISSION"]},
+    "authority_class": {"const": "FOUNDER_EXPLICIT"},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": ["string", "null"], "format": "date-time"},
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["platform", "package_locked", "route_locked", "single_submission_attempt"],
+      "properties": {
+        "platform": {"type": "string", "minLength": 1, "maxLength": 120},
+        "package_locked": {"const": true},
+        "route_locked": {"const": true},
+        "single_submission_attempt": {"const": true}
+      }
+    },
+    "credential_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "credentials_embedded",
+        "credential_material_logged",
+        "cookie_token_extraction_allowed",
+        "protection_bypass_allowed",
+        "implicit_delegation_allowed"
+      ],
+      "properties": {
+        "credentials_embedded": {"const": false},
+        "credential_material_logged": {"const": false},
+        "cookie_token_extraction_allowed": {"const": false},
+        "protection_bypass_allowed": {"const": false},
+        "implicit_delegation_allowed": {"const": false}
+      }
+    }
+  }
+}
