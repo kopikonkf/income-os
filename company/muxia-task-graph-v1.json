@@ -1895,7 +1895,7 @@
                                          "SUB-001A",
                                          "SUB-001B"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "submission state/idempotency engine",
                       "acceptance":  "Exact package/route dedupe prevents duplicate submissions; retries reconcile external state before action; uncertain outcomes stop for review rather than repeat blindly."
                   },
@@ -1906,7 +1906,7 @@
                       "depends_on":  [
                                          "SUB-001C"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "dry-run package composer + fixtures",
                       "acceptance":  "Produces platform-ready package/metadata/actions without external submission and proves deterministic hash/lineage."
                   },

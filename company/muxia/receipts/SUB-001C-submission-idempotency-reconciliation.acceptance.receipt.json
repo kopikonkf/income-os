@@ -1,0 +1,42 @@
+{
+  "schema": "die.asset.sub001c-acceptance.v1",
+  "task_id": "SUB-001C",
+  "date": "2026-09-02",
+  "status": "PASS",
+  "base_sha": "0f84d8a300a37b5766b5004680a8877dc7f253f9",
+  "artifacts": {
+    "decision_core": "bridge/income_os_bridge/submission_reconciliation.py",
+    "decision_core_sha256": "d3423eebb35b7ac390e44a263c280bff222f17d1e44b322998273f77bb454c76",
+    "reconciliation_schema": "company/schemas/die.asset.submission-reconciliation.v1.schema.json",
+    "reconciliation_schema_sha256": "a0c65115e3960529360d81201fc6e5c3aa53f93ae4172c0e6bc389304362b93b",
+    "contract_doc": "docs/operations/SUBMISSION_IDEMPOTENCY_RETRY_RECONCILIATION_V1.md",
+    "contract_doc_sha256": "80a7922a1f444aabdb86bedd38c9b190bd95101e3109431391bcd8a46e9ac20c",
+    "regression": "bridge/tests/test_sub001c_submission_reconciliation.py"
+  },
+  "acceptance": {
+    "stable_exact_package_route_idempotency_key": true,
+    "duplicate_attempt_noop": true,
+    "retry_requires_external_reconciliation": true,
+    "ambiguous_or_unreachable_stops_for_review": true,
+    "known_external_prior_action_reconciles_without_resubmit": true,
+    "retry_only_mechanically_eligible_after_not_found": true,
+    "submission_action_authorized": false
+  },
+  "validation": {
+    "pre_transition_focused": "49/49 PASS",
+    "diff_check": "PENDING_FINAL",
+    "one_canon": "PENDING_FINAL",
+    "full_bridge": "PENDING_FINAL"
+  },
+  "authority_boundary": {
+    "marketplace_action_performed": false,
+    "submission_authorized_by_core": false,
+    "publication_authorized": false,
+    "credentials_read": false,
+    "session_material_read": false
+  },
+  "graph_transition": {
+    "SUB-001C": "DONE",
+    "SUB-001D": "READY"
+  }
+}
