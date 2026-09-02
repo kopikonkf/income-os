@@ -69,7 +69,11 @@ Example:
 
 `SEED-000029 -> shopping bag`
 
-Hermes selects the next eligible seed from the canonical Object Atlas database.
+Hermes selects the next eligible seed from the canonical Object Atlas database through the deterministic read-only phase-0 selector:
+
+`python3 company/die-agents/hermes/production_seed_selector.py`
+
+The selector ranks approved `U1-raster` seeds by validated demand and excludes seeds already materialized in production workspaces. Hermes MUST use this selector before ad-hoc repository/database discovery. `SELECTED` chooses the noun only; it does not authorize semantic invention, provider execution, submission or publication.
 
 ### 4.2 Family role
 
