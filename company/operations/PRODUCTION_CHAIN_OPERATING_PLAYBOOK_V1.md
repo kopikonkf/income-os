@@ -291,7 +291,7 @@ A parked human-gated card:
 - MUST NOT block selection of an independent eligible seed on a later production cadence slot;
 - MUST NOT be repeatedly reported as if Hermes can autonomously advance it.
 
-Only an **actionable unfinished card** takes precedence over new work. An actionable unfinished card is one for which Hermes/Worker/provider can still make progress under existing authority without Founder input.
+Only an **actionable unfinished card** takes precedence over new work. An actionable unfinished card is one for which Hermes/Worker/provider can still make progress under existing authority without Founder input. If all remaining cards are parked human gates and at least one eligible seed exists, Hermes MUST start one new seed in the available cadence slot.
 
 Failure states:
 
@@ -417,7 +417,7 @@ No silent production failure is allowed.
 
 ## 12. Production cron behavior
 
-The dedicated production cron runs every 3 hours and is separate from Operator-v2 monitoring/watchdog jobs.
+The dedicated production cron runs every 3 hours and is separate from Operator-v2 monitoring/watchdog jobs. Each tick derives continuity from durable Kanban/runtime state, not from the previous cron response; conversational run-to-run continuity is disabled so stale summaries cannot override current scheduling policy.
 
 On each production tick Hermes:
 
