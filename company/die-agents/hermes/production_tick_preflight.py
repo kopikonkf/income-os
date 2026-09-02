@@ -37,7 +37,7 @@ def main(argv: list[str] | None = None) -> int:
     a = ap.parse_args(argv)
     out = preflight(a.workspaces, a.db)
     print(json.dumps(out, sort_keys=True))
-    return 2 if out["mode"] in {"BLOCKED_ACTIVE_CARD", "BLOCKED_PREFLIGHT"} else 0
+    return 2 if out["mode"] == "BLOCKED_PREFLIGHT" else 0
 
 if __name__ == "__main__":
     raise SystemExit(main())

@@ -1,5 +1,5 @@
 from __future__ import annotations
-import importlib.util, sqlite3, sys
+import importlib.util, sqlite3, sys, subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 HERMES=ROOT/'company/die-agents/hermes'; sys.path.insert(0,str(HERMES))
@@ -22,3 +22,10 @@ def test_no_active_card_starts_ranked_seed(tmp_path:Path):
 def test_blocking_card_prevents_new_seed(tmp_path:Path):
  d=tmp_path/'atlas.db'; db(d); ws=tmp_path/'ws'; state(ws,'OE008TROPHY001','BLOCKED_PROVIDER_LIMIT')
  out=mod.preflight(ws,d); assert out['mode']=='BLOCKED_ACTIVE_CARD'; assert 'seed_selection' not in out
+
+
+def test_blocked_active_card_cli_is_valid_script_output_not_script_error(tmp_path:Path):
+    d=tmp_path/'atlas.db'; db(d); ws=tmp_path/'ws'; state(ws,'OE008TROPHY001','BLUEPRINT_REQUIRED')
+    proc=subprocess.run([sys.executable,str(P),'--workspaces',str(ws),'--db',str(d)],text=True,capture_output=True,check=False)
+    assert proc.returncode==0
+    assert 'BLOCKED_ACTIVE_CARD' in proc.stdout
