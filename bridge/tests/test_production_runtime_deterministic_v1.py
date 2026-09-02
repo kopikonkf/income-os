@@ -17,7 +17,7 @@ def test_installer_replaces_llm_cycle_with_no_agent_runtime_and_bounded_sudo():
  s=(ROOT/'company/die-agents/hermes/linux/install-production-cycle-v1.sh').read_text()
  assert '--no-agent' in s and 'production-runtime/production_runtime_tick.sh' in s
  assert 'gemini-3.7-flash' not in s and '--provider' not in s
- assert '/etc/sudoers.d/die-hermes-muxia-image' in s and 'visudo -cf' in s
+ assert 'die-muxia-dispatch.service' in s and 'NOPASSWD' not in s and 'visudo -cf' not in s
 def test_canonical_muxia_runner_and_dispatch_guard_exist():
  runner=(ROOT/'company/muxia/scripts/linux/muxia-chatgpt-image.mjs').read_text();guard=(ROOT/'company/muxia/scripts/linux/die-muxia-image-dispatch.py').read_text()
  assert 'prompt_submitted_by_automation' in runner and 'output_extracted_by_automation' in runner
@@ -51,3 +51,31 @@ def test_runtime_consumes_export_not_private_muxia_artifact_and_preserves_progre
     assert "/var/lib/muxia/artifacts" not in runtime
     assert "prior=progress.read_bytes()" in runtime
     assert "progress.write_bytes(prior)" in runtime
+
+def test_runtime_uses_queue_not_sudo_for_muxia_privilege_boundary():
+    runtime=(ROOT/'company/die-agents/hermes/production-runtime/production_runtime_tick.py').read_text()
+    assert 'die.muxia-dispatch-request.v1' in runtime
+    assert 'MUXIA_QUEUE' in runtime
+    assert 'sudo' not in runtime
+    assert 'blueprint_sha256' in runtime
+
+
+def test_muxia_queue_service_preserves_gateway_no_new_privileges():
+    unit=(ROOT/'company/muxia/scripts/linux/die-muxia-dispatch.service').read_text()
+    assert 'User=root' in unit
+    assert 'NoNewPrivileges=true' in unit
+    assert '/var/lib/die/state/muxia-dispatch' in unit
+    assert '/var/lib/muxia' in unit
+    installer=(ROOT/'company/die-agents/hermes/linux/install-production-cycle-v1.sh').read_text()
+    assert 'die-muxia-dispatch.service' in installer
+    assert 'enable --now die-muxia-dispatch.service' in installer
+    assert 'rm -f /etc/sudoers.d/die-hermes-muxia-image' in installer
+    assert 'NOPASSWD' not in installer
+
+
+def test_queue_worker_pins_blueprint_hash_and_validates_dispatch_result():
+    worker=(ROOT/'company/muxia/scripts/linux/die-muxia-dispatch-worker.py').read_text()
+    assert 'E_BLUEPRINT_LOCK_DRIFT' in worker
+    assert 'export_artifact_sha256' in worker
+    assert "payload.get('sha256')" in worker
+    assert 'request_sha256' in worker

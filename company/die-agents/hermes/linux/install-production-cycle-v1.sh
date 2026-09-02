@@ -5,19 +5,21 @@ HERMES_HOME="${HERMES_HOME:-$DIE_STATE_ROOT/hermes/income-operator}"; HERMES_BIN
 JOB_NAME="die-production-cycle-v1"; SCHEDULE='0 */3 * * *'; SCRIPT_REL='production-runtime/production_runtime_tick.sh'; WORKDIR="$DIE_HOME/company/die-agents/hermes"
 SRC="$DIE_HOME/company/die-agents/hermes/production-runtime"; DEST="$HERMES_HOME/scripts/production-runtime"
 MUXIA_DISPATCH_SRC="$DIE_HOME/company/muxia/scripts/linux/die-muxia-image-dispatch.py"; MUXIA_DISPATCH_DST="$DIE_INSTALL_ROOT/bin/die-muxia-image-dispatch"
+MUXIA_WORKER_SRC="$DIE_HOME/company/muxia/scripts/linux/die-muxia-dispatch-worker.py"; MUXIA_WORKER_DST="$DIE_INSTALL_ROOT/bin/die-muxia-dispatch-worker"
+MUXIA_UNIT_SRC="$DIE_HOME/company/muxia/scripts/linux/die-muxia-dispatch.service"; MUXIA_UNIT_DST="/etc/systemd/system/die-muxia-dispatch.service"
 [[ ${EUID:-$(id -u)} -eq 0 ]] || { echo E_ROOT_REQUIRED >&2; exit 2; }
-[[ -x "$HERMES_BIN" && -f "$SRC/production_runtime_tick.py" && -f "$SRC/production_runtime_tick.sh" && -f "$DIE_HOME/company/muxia/scripts/linux/muxia-chatgpt-image.mjs" && -f "$MUXIA_DISPATCH_SRC" ]] || { echo E_RUNTIME_SOURCE >&2; exit 2; }
+[[ -x "$HERMES_BIN" && -f "$SRC/production_runtime_tick.py" && -f "$SRC/production_runtime_tick.sh" && -f "$DIE_HOME/company/muxia/scripts/linux/muxia-chatgpt-image.mjs" && -f "$MUXIA_DISPATCH_SRC" && -f "$MUXIA_WORKER_SRC" && -f "$MUXIA_UNIT_SRC" ]] || { echo E_RUNTIME_SOURCE >&2; exit 2; }
 install -d -o die-hermes -g die-runtime -m 2770 "$DEST" "$DIE_STATE_ROOT/state/production-runtime"
 install -o die-hermes -g die-runtime -m 0750 "$SRC/production_runtime_tick.py" "$DEST/production_runtime_tick.py"
 install -o die-hermes -g die-runtime -m 0750 "$SRC/production_runtime_tick.sh" "$DEST/production_runtime_tick.sh"
 install -d -o root -g root -m 0755 "$DIE_INSTALL_ROOT/bin"
 install -o root -g root -m 0755 "$MUXIA_DISPATCH_SRC" "$MUXIA_DISPATCH_DST"
-cat > /etc/sudoers.d/die-hermes-muxia-image <<EOF
-# Bounded production bridge. Script accepts exactly one validated DIE task id and fixed chatgpt-linux-a profile.
-die-hermes ALL=(root) NOPASSWD: $MUXIA_DISPATCH_DST *
-EOF
-chmod 0440 /etc/sudoers.d/die-hermes-muxia-image
-visudo -cf /etc/sudoers.d/die-hermes-muxia-image >/dev/null
+install -o root -g root -m 0755 "$MUXIA_WORKER_SRC" "$MUXIA_WORKER_DST"
+install -d -o die-hermes -g die-runtime -m 2770 "$DIE_STATE_ROOT/state/muxia-dispatch" "$DIE_STATE_ROOT/state/muxia-dispatch/requests" "$DIE_STATE_ROOT/state/muxia-dispatch/results"
+install -o root -g root -m 0644 "$MUXIA_UNIT_SRC" "$MUXIA_UNIT_DST"
+rm -f /etc/sudoers.d/die-hermes-muxia-image
+systemctl daemon-reload
+systemctl enable --now die-muxia-dispatch.service
 JOB_ID=$(runuser -u die-hermes -- env HERMES_HOME="$HERMES_HOME" python3 - <<'PY'
 import json,os
 p=os.path.join(os.environ['HERMES_HOME'],'cron','jobs.json');d=json.load(open(p));items=d.get('jobs',[]) if isinstance(d,dict) else d

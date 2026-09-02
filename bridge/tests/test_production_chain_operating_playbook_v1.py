@@ -23,7 +23,7 @@ def test_production_cron_is_three_hour_deterministic_no_agent_job():
  assert '--deliver telegram' in t and '--no-continuity' in t and '--no-agent' in t
  assert "SCRIPT_REL='production-runtime/production_runtime_tick.sh'" in t
  assert '--provider' not in t and 'gemini-3.7-flash' not in t
- assert '/etc/sudoers.d/die-hermes-muxia-image' in t and 'visudo -cf' in t
+ assert 'die-muxia-dispatch.service' in t and 'NOPASSWD' not in t and 'visudo -cf' not in t
 
 def test_human_gate_does_not_serialize_independent_seed_production():
  p=PLAYBOOK.read_text();r=RUNTIME.read_text()

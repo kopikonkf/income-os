@@ -1,0 +1,30 @@
+[Unit]
+Description=DIE bounded MUXIA dispatch queue
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/srv/die
+ExecStart=/usr/bin/python3 /opt/die/bin/die-muxia-dispatch-worker
+Restart=on-failure
+RestartSec=2
+UMask=0007
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+LockPersonality=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+ReadOnlyPaths=/srv/die /opt/die /opt/muxia
+ReadWritePaths=/var/lib/die/state/muxia-dispatch /var/lib/die/workspaces /var/lib/muxia
+
+[Install]
+WantedBy=multi-user.target
