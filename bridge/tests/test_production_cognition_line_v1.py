@@ -47,3 +47,8 @@ def test_synthetic_author_review_no_veto_reaches_blueprint_ready(tmp_path, monke
     assert (w/'blueprint.json').is_file() and (w/'blueprint.lock.json').is_file()
     text=(w/'PROGRESS.md').read_text();assert 'State: BLUEPRINT_READY' in text and 'Dispatch bounded Worker' in text
     receipts=list((w/'cognition/receipts').glob('*.receipt.json'));assert len(receipts)==2
+
+
+def test_repo_sha_command_scopes_safe_directory_to_repo():
+ t=P.read_text()
+ assert "'git','-c',f'safe.directory={args.repo}','-C',args.repo,'rev-parse','HEAD'" in t
