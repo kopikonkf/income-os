@@ -34,3 +34,20 @@ def test_gateway_sandbox_allows_only_cognition_receipt_write_paths():
     assert '/var/lib/die/division01/cognition-receipts' in rw
     assert '/var/lib/die/executive/cognition-receipts' in rw
     assert '/var/lib/die/division01 ' not in rw and '/var/lib/die/executive ' not in rw
+
+
+def test_muxia_bridge_exports_verified_artifact_into_die_workspace():
+    bridge=(ROOT/'company/muxia/scripts/linux/die-muxia-image-dispatch.py').read_text()
+    assert 'def export_verified' in bridge
+    assert "export_artifact_path" in bridge
+    assert "os.chown(provider,uid,gid)" in bridge
+    assert "E_EXPORT_HASH" in bridge
+    assert "private_artifact_access_by_hermes" in bridge
+
+def test_runtime_consumes_export_not_private_muxia_artifact_and_preserves_progress():
+    runtime=(ROOT/'company/die-agents/hermes/production-runtime/production_runtime_tick.py').read_text()
+    assert "rec['export_artifact_path']" in runtime
+    assert "rec.get('export_artifact_sha256')" in runtime
+    assert "/var/lib/muxia/artifacts" not in runtime
+    assert "prior=progress.read_bytes()" in runtime
+    assert "progress.write_bytes(prior)" in runtime
