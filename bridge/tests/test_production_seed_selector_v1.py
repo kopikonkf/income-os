@@ -49,7 +49,9 @@ def test_selector_chooses_highest_ranked_approved_unused_seed(tmp_path: Path):
     assert payload["seed"]["id"] == "SEED-000002"
     assert payload["seed"]["demand_status"] == "validated_high"
     assert payload["used_seed_ids"] == ["SEED-000001"]
-    assert payload["authority"]["semantic_authoring_authorized"] is False
+    assert payload["authority_effect"] == "NONE"
+    assert payload["existing_authority_unchanged"] is True
+    assert "authority" not in payload
 
 
 def test_selector_uses_job_context_as_legacy_used_seed_evidence(tmp_path: Path):
@@ -73,3 +75,13 @@ def test_selector_is_read_only(tmp_path: Path):
     proc = subprocess.run([sys.executable, str(SELECTOR), "--db", str(db), "--workspaces", str(tmp_path / "workspaces")], text=True, capture_output=True, check=False)
     assert proc.returncode == 0
     assert db.read_bytes() == before
+
+
+def test_selector_never_revokes_existing_production_authority(tmp_path: Path):
+    db = tmp_path / "atlas.db"; _db(db)
+    proc = subprocess.run([sys.executable, str(SELECTOR), "--db", str(db), "--workspaces", str(tmp_path / "workspaces")], text=True, capture_output=True, check=False)
+    payload = json.loads(proc.stdout)
+    assert payload["status"] == "SELECTED"
+    assert payload["authority_effect"] == "NONE"
+    assert payload["existing_authority_unchanged"] is True
+    assert "production_provider_authorized" not in json.dumps(payload)
