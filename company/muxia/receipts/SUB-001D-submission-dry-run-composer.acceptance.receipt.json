@@ -1,0 +1,55 @@
+{
+  "schema": "die.asset.sub001d-acceptance.v1",
+  "task_id": "SUB-001D",
+  "date": "2026-09-02",
+  "status": "PASS",
+  "base_sha": "f7a601ff79a4779039a8cf0be2ff66a33ab4ef82",
+  "artifacts": {
+    "composer": {
+      "path": "bridge/income_os_bridge/submission_dry_run.py",
+      "sha256": "4e0770a9cf67d6d7de5935ee6b2e8edb6241ed661902d9269a2fd25215860fb0"
+    },
+    "schema": {
+      "path": "company/schemas/die.asset.submission-dry-run.v1.schema.json",
+      "sha256": "740ed8fd675dc035d1c678caba6316c94d97aeeb6263b9defd52f845d10d14fb"
+    },
+    "fixture": {
+      "path": "company/muxia/fixtures/SUB-001D-dry-run.fixture.json",
+      "sha256": "aa578e7008b5fc513c88608a2f613554d3010c45fbb0701527315460951b31bf"
+    },
+    "doc": {
+      "path": "docs/operations/SUBMISSION_DRY_RUN_COMPOSER_V1.md",
+      "sha256": "f0cbeb6d2dabc5c1ad7ff875ea8c35c09fad790f63a5a637d3d7fbf013abded6"
+    },
+    "tests": {
+      "path": "bridge/tests/test_sub001d_submission_dry_run.py",
+      "sha256": "18e13a63d32a228b24d3458bbdd8a3cad2d661d0e81ddf66f13260eecb854bbd"
+    }
+  },
+  "acceptance": {
+    "platform_ready_package_metadata_actions": true,
+    "deterministic_hash_lineage": true,
+    "external_submission_performed": false,
+    "credential_access_performed": false,
+    "submission_authority_granted": false
+  },
+  "validation": {
+    "focused_submission_graph": "36/36 PASS",
+    "one_canon_pytest": "6/6 PASS",
+    "one_canon_validator": "11/11 PASS",
+    "high_confidence_secret_hits": 0,
+    "diff_check": "PASS",
+    "full_bridge_observation": "692 PASS / 2 SKIP / 10 failures identical in failure set to untouched base (base: 687 PASS / 2 SKIP / same 10 failures); Linux-only fcntl collection test explicitly ignored on Windows"
+  },
+  "graph_transition": {
+    "SUB-001D": "DONE",
+    "SUB-001E": "READY"
+  },
+  "authority_boundary": {
+    "marketplace_login_performed": false,
+    "credentials_read": false,
+    "submission_performed": false,
+    "publication_performed": false,
+    "founder_authority_consumed": false
+  }
+}

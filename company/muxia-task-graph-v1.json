@@ -1906,7 +1906,7 @@
                       "depends_on":  [
                                          "SUB-001C"
                                      ],
-                      "status":  "READY",
+                      "status":  "DONE",
                       "artifact":  "dry-run package composer + fixtures",
                       "acceptance":  "Produces platform-ready package/metadata/actions without external submission and proves deterministic hash/lineage."
                   },
@@ -1917,7 +1917,7 @@
                       "depends_on":  [
                                          "SUB-001D"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "adapter interface + execution-mode policy",
                       "acceptance":  "Adapters declare AUTOMATED_ALLOWED, OPERATOR_REQUIRED, OFFICIAL_API_ONLY or BLOCKED_POLICY_UNKNOWN and expose prepare/submit/reconcile/receipt semantics without weakening platform policy."
                   },

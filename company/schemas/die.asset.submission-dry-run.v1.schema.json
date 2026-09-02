@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.asset.submission-dry-run.v1.schema.json",
+  "title": "DIE Asset Submission Dry Run v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "package_id", "asset_id", "route_id", "artifact", "metadata", "planned_actions", "lineage", "authority_boundary", "composition_sha256"],
+  "properties": {
+    "schema_version": {"const": "die.asset.submission-dry-run.v1"},
+    "package_id": {"type": "string"},
+    "asset_id": {"type": "string"},
+    "route_id": {"type": "string", "pattern": "^ROUTE-[A-Z0-9_-]{6,100}$"},
+    "artifact": {
+      "type": "object", "additionalProperties": false, "required": ["filename", "sha256"],
+      "properties": {"filename": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+    },
+    "metadata": {"type": "object"},
+    "planned_actions": {
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["sequence", "action", "target", "external"],
+        "properties": {"sequence": {"type": "integer", "minimum": 1}, "action": {"type": "string"}, "target": {"type": "string"}, "external": {"const": false}}
+      }
+    },
+    "lineage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["submission_package_sha256", "artifact_sha256", "metadata_sha256", "platform_profile_sha256", "platform_mapping_sha256"],
+      "properties": {
+        "submission_package_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "metadata_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "platform_profile_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "platform_mapping_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "authority_boundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["submission_authorized", "publication_authorized", "credential_access_required", "external_action_performed", "dry_run_only"],
+      "properties": {
+        "submission_authorized": {"const": false}, "publication_authorized": {"const": false},
+        "credential_access_required": {"const": false}, "external_action_performed": {"const": false}, "dry_run_only": {"const": true}
+      }
+    },
+    "composition_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}
