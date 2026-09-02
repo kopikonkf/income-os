@@ -77,4 +77,4 @@ def test_sub001a_graph_opens_only_authority_boundary_next() -> None:
     tasks = {row["id"]: row for row in _load(GRAPH)["tasks"]}
     assert tasks["SUB-001A"]["status"] in {"READY", "DONE"}
     assert tasks["SUB-001B"]["status"] in {"BLOCKED", "READY", "DONE"}
-    assert tasks["SUB-001C"]["status"] in {"BLOCKED", "READY"}
+    assert tasks["SUB-001C"]["status"] in {"BLOCKED", "READY", "DONE"}

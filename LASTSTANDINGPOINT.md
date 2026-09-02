@@ -3372,3 +3372,17 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Acceptance receipt: `company/muxia/receipts/SUB-001B-submission-authority-session-boundary.acceptance.receipt.json`.
 - Graph delta: `SUB-001B DONE`; `SUB-001C READY`; `SUB-001D BLOCKED`.
 - NEXT READY: `SUB-001C` submission idempotency, retry and reconciliation core.
+
+---
+
+## 2026-09-02 Scheduled atomic advancement - SUB-001C
+
+- Base canonical main: 0f84d8a300a37b5766b5004680a8877dc7f253f9.
+- SUB-001C Submission idempotency, retry and reconciliation core: DONE after final validation seal.
+- Exact package SHA + route ID derive one stable idempotency key across retries; replay of a recorded attempt is NOOP_DUPLICATE.
+- Retry is reconciliation-first. NOT_CHECKED, AMBIGUOUS, and UNREACHABLE stop for review; known prior external action reconciles without resubmission; only reconciled NOT_FOUND makes a retry mechanically eligible.
+- Mechanical eligibility never grants submission authority; submission_action_authorized=false and SUB-001B Founder authority remains independently required.
+- No marketplace action, login, credential/session read, submission, or publication occurred.
+- Final validation: focused 49/49 PASS; one-canon pytest 6/6 PASS; validator 11/11 PASS; high-confidence secret hits 0; diff-check PASS; full bridge 694 PASS / 2 SKIP / 2 unrelated pre-existing OE-007 expectation failures reproduced on origin/main baseline.
+- Graph delta: SUB-001C DONE; SUB-001D READY.
+- NEXT READY: SUB-001D Submission dry-run package composer.

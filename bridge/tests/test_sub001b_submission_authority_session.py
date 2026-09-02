@@ -71,4 +71,4 @@ def test_sub001b_graph_is_pre_acceptance_until_validation_seal() -> None:
     tasks = {row["id"]: row for row in _load(GRAPH)["tasks"]}
     assert tasks["SUB-001A"]["status"] == "DONE"
     assert tasks["SUB-001B"]["status"] in {"READY", "DONE"}
-    assert tasks["SUB-001C"]["status"] in {"BLOCKED", "READY"}
+    assert tasks["SUB-001C"]["status"] in {"BLOCKED", "READY", "DONE"}

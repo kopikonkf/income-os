@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.asset.submission-reconciliation.v1.schema.json",
+  "title": "DIE Asset Submission Reconciliation v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "package_sha256",
+    "route_id",
+    "idempotency_key",
+    "current_attempt",
+    "proposed_attempt",
+    "external_observation",
+    "decision",
+    "attempt_eligible",
+    "reconciliation_required",
+    "review_required",
+    "submission_action_authorized"
+  ],
+  "properties": {
+    "schema_version": {"const": "die.asset.submission-reconciliation.v1"},
+    "package_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "route_id": {"type": "string", "pattern": "^ROUTE-[A-Z0-9_-]{6,100}$"},
+    "idempotency_key": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "current_attempt": {"type": "integer", "minimum": 0},
+    "proposed_attempt": {"type": "integer", "minimum": 1},
+    "external_observation": {
+      "enum": [
+        "NOT_CHECKED",
+        "NOT_FOUND",
+        "FOUND_SUBMITTED",
+        "FOUND_REVIEW_PENDING",
+        "FOUND_APPROVED",
+        "FOUND_REJECTED",
+        "AMBIGUOUS",
+        "UNREACHABLE"
+      ]
+    },
+    "decision": {
+      "enum": [
+        "ALLOW_ATTEMPT",
+        "NOOP_DUPLICATE",
+        "RECONCILE_NO_SUBMIT",
+        "STOP_REVIEW",
+        "BLOCK_SCOPE_MISMATCH",
+        "BLOCK_NON_SEQUENTIAL_ATTEMPT",
+        "BLOCK_ROUTE_STATE"
+      ]
+    },
+    "attempt_eligible": {"type": "boolean"},
+    "reconciliation_required": {"type": "boolean"},
+    "review_required": {"type": "boolean"},
+    "submission_action_authorized": {"const": false},
+    "external_submission_ref": {"type": ["string", "null"], "maxLength": 512},
+    "reason": {"type": "string", "minLength": 1, "maxLength": 1000}
+  }
+}
