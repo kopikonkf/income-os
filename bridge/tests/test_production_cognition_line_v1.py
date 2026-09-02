@@ -52,3 +52,8 @@ def test_synthetic_author_review_no_veto_reaches_blueprint_ready(tmp_path, monke
 def test_repo_sha_command_scopes_safe_directory_to_repo():
  t=P.read_text()
  assert "'git','-c',f'safe.directory={args.repo}','-C',args.repo,'rev-parse','HEAD'" in t
+
+
+def test_node_runtime_is_discovered_not_hardcoded():
+ t=P.read_text()
+ assert "shutil.which('node')" in t
