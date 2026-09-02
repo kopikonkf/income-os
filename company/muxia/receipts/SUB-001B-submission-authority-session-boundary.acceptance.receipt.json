@@ -1,0 +1,45 @@
+{
+  "schema": "die.asset.sub001b-acceptance.v1",
+  "task_id": "SUB-001B",
+  "date": "2026-09-02",
+  "status": "PASS",
+  "base_sha": "167438ca9e8a189e52736ae4b57550bca5aae8dc",
+  "artifacts": {
+    "authority_schema": "company/schemas/die.asset.submission-authority.v1.schema.json",
+    "authority_schema_sha256": "0a5999504f9308bbc3347054b39036dc8159fc00574f5b0bf0e471accc4668a9",
+    "session_boundary_schema": "company/schemas/die.asset.submission-session-boundary.v1.schema.json",
+    "session_boundary_schema_sha256": "6066d7bdafbbf0afe00d82bbc06f8577a12f208b84b566a9cd02dfcff28300b7",
+    "contract_doc": "docs/operations/SUBMISSION_AUTHORITY_SESSION_BOUNDARY_V1.md",
+    "contract_doc_sha256": "9c253b157fda0a5a0f0a6ae2196b49c80c286880f5bbc353821618d2ef39f66c",
+    "regression": "bridge/tests/test_sub001b_submission_authority_session.py"
+  },
+  "authority_boundary": {
+    "explicit_founder_authority_required": true,
+    "package_locked": true,
+    "route_locked": true,
+    "single_submission_attempt": true,
+    "credentials_embedded": false,
+    "credential_material_logged": false,
+    "cookie_token_extraction_allowed": false,
+    "protection_bypass_allowed": false,
+    "implicit_delegation_allowed": false,
+    "external_action_performed": false
+  },
+  "session_boundary": {
+    "credential_material_present": false,
+    "credential_material_persisted_by_die": false,
+    "session_recreation_mode": "INTERACTIVE_EXTERNAL",
+    "authenticated_session_implies_authority": false
+  },
+  "validation": {
+    "focused_submission_qc_graph": "37/37 PASS",
+    "one_canon_tests": "6/6 PASS",
+    "diff_check_pre_acceptance": "PASS",
+    "full_bridge_observation": "679 PASS / 2 SKIP / 5 unrelated baseline-or-worktree-environment failures after excluding Linux-only fcntl collection file; no SUB-001A/B or QA/QC dependency regression failed"
+  },
+  "graph_transition": {
+    "SUB-001B": "DONE",
+    "SUB-001C": "READY",
+    "SUB-001D": "BLOCKED"
+  }
+}

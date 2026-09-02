@@ -3354,3 +3354,21 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Controlled final run `718dcf6064bf4632a8344fadb59602be` received the exact B03 preflight and made zero tool calls, but inference failed before the first assistant response because current inference fallbacks were unavailable. This is recorded as an external provider observation, not a B03 logic pass for LLM rendering.
 - Canon merges: PR #125 `9841cffe...`, PR #126 `dd4ad7b6...`, PR #127 `56c418c0...`.
 - `PROD-OPS-B04` is the next production-engine capability gap: governed Operator-v2 outbox -> Division01 cognition submit -> output extraction -> typed Blueprint receipt. Enabling autonomous account prompt submission/output extraction remains a Founder authority boundary.
+
+---
+
+## 2026-09-02 Scheduled atomic advancement — SUB-001B
+
+- Base canonical main: `167438ca9e8a189e52736ae4b57550bca5aae8dc`.
+- `SUB-001B` Submission authority, credential and session boundary: DONE.
+- Added exact Founder authority receipt contract pinned to package, route, platform profile, platform scope, and single submission attempt.
+- Package/session existence never implies authority; submission remains fail-closed without explicit `AUTHORIZE_SUBMISSION` Founder authority.
+- Added non-secret session boundary states and external interactive/profile-session modes.
+- Credentials remain external/recreated; credential logging/persistence, cookie/token extraction, protection bypass, and implicit delegation are forbidden.
+- No marketplace login, submission, publication, credential read, or external side effect was performed.
+- Focused submission/QC/graph regression: 37/37 PASS.
+- One-canon tests: 6/6 PASS; diff-check PASS.
+- Full bridge observation: 679 PASS / 2 SKIP / 5 unrelated baseline/worktree-environment failures after excluding the Linux-only `fcntl` collection file; no SUB-001A/B or QA/QC dependency regression failed.
+- Acceptance receipt: `company/muxia/receipts/SUB-001B-submission-authority-session-boundary.acceptance.receipt.json`.
+- Graph delta: `SUB-001B DONE`; `SUB-001C READY`; `SUB-001D BLOCKED`.
+- NEXT READY: `SUB-001C` submission idempotency, retry and reconciliation core.

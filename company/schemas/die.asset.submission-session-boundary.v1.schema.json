@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.asset.submission-session-boundary.v1.schema.json",
+  "title": "DIE Asset Submission Session Boundary v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "route_id",
+    "platform",
+    "session_state",
+    "session_mode",
+    "observed_at",
+    "credential_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "die.asset.submission-session-boundary.v1"},
+    "route_id": {"type": "string", "pattern": "^ROUTE-[A-Z0-9_-]{6,100}$"},
+    "platform": {"type": "string", "minLength": 1, "maxLength": 120},
+    "session_state": {"enum": ["UNAVAILABLE", "READY", "EXPIRED", "REAUTH_REQUIRED"]},
+    "session_mode": {"enum": ["EXTERNAL_INTERACTIVE", "EXTERNAL_PROFILE_SESSION"]},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "opaque_profile_ref": {"type": ["string", "null"], "maxLength": 256},
+    "credential_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "credential_material_present",
+        "credential_material_persisted_by_die",
+        "cookie_token_extraction_allowed",
+        "protection_bypass_allowed",
+        "session_may_be_recreated_interactively"
+      ],
+      "properties": {
+        "credential_material_present": {"const": false},
+        "credential_material_persisted_by_die": {"const": false},
+        "cookie_token_extraction_allowed": {"const": false},
+        "protection_bypass_allowed": {"const": false},
+        "session_may_be_recreated_interactively": {"const": true}
+      }
+    }
+  }
+}
