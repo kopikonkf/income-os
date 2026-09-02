@@ -19,6 +19,8 @@ def preflight(workspaces: Path, db: Path) -> dict:
     common = {"schema": SCHEMA, "authority_effect": "NONE", "existing_authority_unchanged": True}
     if active["status"] == "CONTINUE_ACTIVE_CARD":
         return {**common, "mode": "CONTINUE_ACTIVE_CARD", "active_card_resolution": active, "active_card": active["active_card"]}
+    if active["status"] == "DELEGATED_ACTIVE_CARD":
+        return {**common, "wakeAgent": False, "mode": "WAITING_COGNITION", "active_card_resolution": active, "active_card": active["active_card"]}
     if active["status"] in {"BLOCKED_ACTIVE_CARD", "BLOCKED"}:
         return {**common, "mode": "BLOCKED_ACTIVE_CARD", "active_card_resolution": active, "active_card": active.get("active_card")}
     try:

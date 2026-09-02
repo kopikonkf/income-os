@@ -137,10 +137,10 @@ def test_active_card_preflight_is_attached_before_llm_reasoning():
     assert 'Unknown explicit production states fail closed' in playbook
 
 
-def test_unwired_division01_execution_surface_fails_closed_without_discovery():
+def test_division01_execution_surface_is_async_delegated_without_llm_turn():
     installer = INSTALLER.read_text(encoding='utf-8')
     playbook = PLAYBOOK.read_text(encoding='utf-8')
-    assert 'execution_ready=false' in installer
-    assert 'do not search the repository, load skills, call `execute_code`' in installer
-    assert 'E_DIVISION01_AUTONOMOUS_COGNITION_TRANSPORT_UNWIRED' in playbook
-    assert 'MUST NOT search for, synthesize or improvise an alternate invocation route' in playbook
+    assert 'WAITING_COGNITION' in installer
+    assert 'wakeAgent=false' in installer
+    assert 'PRODUCTION_COGNITION_LINE_V1' in playbook
+    assert 'Founder authorization on 2026-09-02' in playbook

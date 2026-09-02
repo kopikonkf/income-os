@@ -293,3 +293,9 @@ The current Windows cron/profile wrapper is historical runtime glue. Linux activ
 ## 12. QA/QC/submission receipt continuation
 
 Operator v2 must eventually project typed prerequisites after artifact execution: QA receipt, QC receipt and QC delegation mode, platform QA profile, exact submission package hash, submission authority/delegation receipt, platform submission receipt, and platform review receipt. Kanban state is never sufficient evidence for these gates. `OE-007` stops at governed production QA/QC; `CL-001` is the full external market loop.
+
+## Production cognition line amendment — 2026-09-02
+
+`die-production-cognition-v1` is a deterministic `--no-agent` Hermes cron that advances production cards requiring semantic cognition without spending a Hermes orchestration LLM turn. It reads the exact durable `BLUEPRINT_REQUIRED` card, materializes a workspace-local cognition outbox request, and invokes the principal-pinned Linux cognition round-trip transport. New-family production follows `Division01 AUTHOR -> schema/hash validation -> Executive READ_ONLY_CHALLENGE -> NO_VETO|REVISE|VETO_PENDING_EVIDENCE|ESCALATE_FOUNDER`. Only `NO_VETO` freezes the production Blueprint and moves the card to `BLUEPRINT_READY`; revision is bounded, and evidence/founder escalations fail closed.
+
+The production-specific `die.production.family-blueprint.v1` deliberately does not masquerade as OE-005 evidence-complete market promotion. When the production cycle only has an approved Object Atlas seed, commercial-use statements are explicitly `OBJECT_ATLAS_ONLY_HYPOTHESIS`, external market evidence claims are false, and existing production authority is unchanged. Full OE-005 `die.division001.blueprint-authoring.v1` remains the higher-evidence Opportunity Engine contract when its Longtail/Worth-Making/governed lineage is actually present.
