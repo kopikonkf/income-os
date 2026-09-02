@@ -5,7 +5,9 @@ def test_installer_is_no_agent_minute_cognition_line():
  assert 'die-production-cognition-v1' in t
  assert "SCHEDULE='*/1 * * * *'" in t
  assert '--no-agent' in t and '--deliver telegram' in t
- assert 'production-cognition/production_cognition_tick.py' in t
+ assert 'production-cognition/production_cognition_tick.sh' in t
+ assert 'exec /usr/bin/python3' in t
+ assert 'import jsonschema' in t
  assert 'cognition-receipts' in t
  assert 'die-hermes' in t and 'die-runtime' in t
 def test_authority_doc_preserves_irreversible_boundaries():
