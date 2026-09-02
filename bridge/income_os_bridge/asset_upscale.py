@@ -99,7 +99,11 @@ def process(
         "safety_state": safety_state,
         "authority_boundary": {"rights_or_safety_recoverable": False, "submission_authorized": False, "publication_authorized": False},
     }
-    if rights_state not in {"CLEAR", "PASS"} or safety_state not in {"CLEAR", "PASS"}:
+    review_allowed = {"CLEAR", "PASS", "PENDING_HUMAN_REVIEW", "NOT_REVIEWED", "UNCLEAR"}
+    review_blocked = {"FAIL", "BLOCKED", "BLOCKED_RIGHTS", "BLOCKED_SAFETY"}
+    if rights_state not in review_allowed | review_blocked or safety_state not in review_allowed | review_blocked:
+        raise UpscaleError("E_REVIEW_STATE")
+    if rights_state in review_blocked or safety_state in review_blocked:
         return {**base, "status": "BLOCKED_RIGHTS_SAFETY", "action": "BLOCK", "transformed": False, "output": None, "model": None}
     if not needs_upscale(width, height, min_width, min_height, min_megapixels):
         return {
