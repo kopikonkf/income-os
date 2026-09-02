@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-DIE_HOME="${DIE_HOME:-/srv/die}"; DIE_STATE_ROOT="${DIE_STATE_ROOT:-/var/lib/die}"; DIE_INSTALL_ROOT="${DIE_INSTALL_ROOT:-/opt/die}"
+DIE_HOME="${DIE_HOME:-/srv/die}"; DIE_STATE_ROOT="${DIE_STATE_ROOT:-/var/lib/die}"; DIE_INSTALL_ROOT="${DIE_INSTALL_ROOT:-/opt/die}"; MUXIA_ROOT="${MUXIA_ROOT:-/var/lib/muxia}"
 HERMES_HOME="${HERMES_HOME:-$DIE_STATE_ROOT/hermes/income-operator}"; HERMES_BIN="${HERMES_BIN:-$DIE_INSTALL_ROOT/hermes/venv/bin/hermes}"
 JOB_NAME="die-production-cycle-v1"; SCHEDULE='0 */3 * * *'; SCRIPT_REL='production-runtime/production_runtime_tick.sh'; WORKDIR="$DIE_HOME/company/die-agents/hermes"
 SRC="$DIE_HOME/company/die-agents/hermes/production-runtime"; DEST="$HERMES_HOME/scripts/production-runtime"
@@ -17,9 +17,11 @@ install -o root -g root -m 0755 "$MUXIA_DISPATCH_SRC" "$MUXIA_DISPATCH_DST"
 install -o root -g root -m 0755 "$MUXIA_WORKER_SRC" "$MUXIA_WORKER_DST"
 install -d -o die-hermes -g die-runtime -m 2770 "$DIE_STATE_ROOT/state/muxia-dispatch" "$DIE_STATE_ROOT/state/muxia-dispatch/requests" "$DIE_STATE_ROOT/state/muxia-dispatch/results"
 install -o root -g root -m 0644 "$MUXIA_UNIT_SRC" "$MUXIA_UNIT_DST"
+install -d -o kopiko -g die-runtime -m 0700 "$MUXIA_ROOT/service-home"
 rm -f /etc/sudoers.d/die-hermes-muxia-image
 systemctl daemon-reload
-systemctl enable --now die-muxia-dispatch.service
+systemctl enable die-muxia-dispatch.service
+systemctl restart die-muxia-dispatch.service
 JOB_ID=$(runuser -u die-hermes -- env HERMES_HOME="$HERMES_HOME" python3 - <<'PY'
 import json,os
 p=os.path.join(os.environ['HERMES_HOME'],'cron','jobs.json');d=json.load(open(p));items=d.get('jobs',[]) if isinstance(d,dict) else d

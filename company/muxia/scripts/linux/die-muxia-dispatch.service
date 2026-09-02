@@ -8,6 +8,7 @@ Type=simple
 User=kopiko
 Group=die-runtime
 WorkingDirectory=/srv/die
+Environment=HOME=/var/lib/muxia/service-home
 ExecStart=/usr/bin/python3 /opt/die/bin/die-muxia-dispatch-worker
 Restart=on-failure
 RestartSec=2
