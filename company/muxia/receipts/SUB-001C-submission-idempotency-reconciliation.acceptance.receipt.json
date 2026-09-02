@@ -24,9 +24,9 @@
   },
   "validation": {
     "pre_transition_focused": "49/49 PASS",
-    "diff_check": "PENDING_FINAL",
-    "one_canon": "PENDING_FINAL",
-    "full_bridge": "PENDING_FINAL"
+    "diff_check": "PASS",
+    "one_canon": "pytest 6/6 PASS; validator 11/11 PASS; high_confidence_secret_hits=0",
+    "full_bridge": "694 PASS / 2 SKIP / 2 unrelated pre-existing OE-007 graph expectation failures reproduced on origin/main baseline; Linux-only fcntl collection file excluded on Windows"
   },
   "authority_boundary": {
     "marketplace_action_performed": false,
