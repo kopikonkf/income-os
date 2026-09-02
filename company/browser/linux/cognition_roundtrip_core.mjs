@@ -7,6 +7,39 @@ import { enforceTabBudget, MAX_TABS_PER_PRINCIPAL } from './tab_budget.mjs';
 
 export const MAX_PROMPT_CHARS = 12000;
 export const MAX_RESPONSE_CHARS = 40000;
+
+const COGNITION_COMPOSER_SELECTORS = [
+  '[data-testid="prompt-textarea"]',
+  '#prompt-textarea',
+  'textarea[placeholder*="Message" i]',
+  'textarea[placeholder*="Ask" i]',
+  '[contenteditable="true"][data-lexical-editor="true"]',
+];
+const COGNITION_SEND_SELECTORS = [
+  'button[data-testid="send-button"]',
+  'button[aria-label="Send prompt"]',
+  'button[aria-label*="Send" i]',
+];
+async function acquireComposer(page, attempts=8){
+  for(let attempt=1;attempt<=attempts;attempt++){
+    for(const selector of COGNITION_COMPOSER_SELECTORS){
+      const box=page.locator(selector).first();
+      if(await box.isVisible({timeout:350}).catch(()=>false)) return {box,selector,attempt};
+    }
+    await page.waitForTimeout(300*attempt);
+  }
+  throw new Error('E_COMPOSER_REACQUIRE');
+}
+async function acquireSend(page, attempts=8){
+  for(let attempt=1;attempt<=attempts;attempt++){
+    for(const selector of COGNITION_SEND_SELECTORS){
+      const send=page.locator(selector).first();
+      if(await send.isVisible({timeout:300}).catch(()=>false) && !await send.isDisabled().catch(()=>true)) return {send,selector,attempt};
+    }
+    await page.waitForTimeout(250*attempt);
+  }
+  throw new Error('E_SEND_BUTTON_REACQUIRE');
+}
 export const PRINCIPALS = {
   'die-lnx-division-001': {
     statusFile: '/var/lib/die/division01/browser-status.json',
@@ -85,10 +118,10 @@ export async function runRoundtrip({dieHome='/srv/die', requestFile, responseFil
     if(recovered.state==='RESPONDED') assistant=recovered.assistant;
     if(recovered.state==='NOT_SENT') {
       if(Date.now()>=parseTime(req.expires_at)) throw new Error('E_REQUEST_EXPIRED');
-      const box=page.locator('#prompt-textarea').first(); if(!(await box.count())) throw new Error('E_COMPOSER'); if(await composerText(box)) throw new Error('E_COMPOSER_NOT_EMPTY');
+      const composerAcquisition=await acquireComposer(page); const box=composerAcquisition.box; if(await composerText(box)) throw new Error('E_COMPOSER_NOT_EMPTY');
       const fullPrompt=`${requestMarker(req.request_id)}\n${req.prompt}`; if(fullPrompt.length>MAX_PROMPT_CHARS+220) throw new Error('E_FULL_PROMPT_OVERSIZE');
       await box.fill(fullPrompt); const staged=await composerText(box); if(!staged.includes(requestMarker(req.request_id))) { await box.fill(''); throw new Error('E_STAGE_MISMATCH'); }
-      const send=page.locator('button[data-testid="send-button"], button[aria-label="Send prompt"]').first(); if(!(await send.count()) || await send.isDisabled()) { await box.fill(''); throw new Error('E_SEND_BUTTON'); }
+      const sendAcquisition=await acquireSend(page); const send=sendAcquisition.send;
       await send.click(); submitted=true; recovered={state:'SENT_WAITING'};
     }
     if(recovered.state==='SENT_WAITING') {
