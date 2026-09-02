@@ -1,0 +1,7 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","additionalProperties":false,
+  "required":["schema","kind","task_id","request_id","principal_id","artifact_id","artifact_sha256","transport_receipt_ref","transport_receipt_sha256","validation_ref","validation_sha256","status","authority_effect","recorded_at"],
+  "properties":{
+    "schema":{"const":"die.production.cognition-receipt.v1"},"kind":{"enum":["BLUEPRINT_AUTHOR","BLUEPRINT_EXEC_REVIEW"]},"task_id":{"type":"string"},"request_id":{"type":"string"},"principal_id":{"type":"string"},"artifact_id":{"type":"string"},"artifact_sha256":{"pattern":"^[0-9a-f]{64}$"},"transport_receipt_ref":{"type":"string"},"transport_receipt_sha256":{"pattern":"^[0-9a-f]{64}$"},"validation_ref":{"type":"string"},"validation_sha256":{"pattern":"^[0-9a-f]{64}$"},"status":{"const":"VALID"},"authority_effect":{"const":"NONE"},"recorded_at":{"type":"string","format":"date-time"}
+  }
+}

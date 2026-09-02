@@ -28,11 +28,10 @@ ACTIONABLE = {
 }
 EXECUTION_SURFACES = {
     "OP-REQUEST-DIVISION01-BLUEPRINT": {
-        "execution_surface": "GOVERNED_DIVISION01_WAKE",
-        "execution_contract_ref": "company/division/division001/linux/wake_transport.mjs",
-        "execution_ready": False,
-        "blocker_code": "E_DIVISION01_AUTONOMOUS_COGNITION_TRANSPORT_UNWIRED",
-        "blocker_reason": "Canonical Linux Division01 wake transport can focus/stage/canary but does not autonomously submit prompts or extract cognition output; no canonical Operator-v2 outbox consumer performs that external handoff.",
+        "execution_surface": "PRODUCTION_COGNITION_LINE_V1",
+        "execution_contract_ref": "company/die-agents/hermes/production-cognition/production_cognition_tick.py",
+        "execution_ready": True,
+        "execution_mode": "ASYNC_DELEGATED",
     },
 }
 
@@ -146,6 +145,7 @@ def _card_payload(card: Card, classification: str, actor: str | None = None, act
         else:
             out["execution_ready"] = True
             out["execution_surface"] = "NATIVE_PRODUCTION_RUNTIME"
+            out["execution_mode"] = "INLINE"
     if instruction is not None:
         out["next_action_instruction"] = instruction
     return out
@@ -175,6 +175,17 @@ def resolve_active_card(workspaces_root: Path) -> dict[str, Any]:
                 "schema": SCHEMA,
                 "status": "BLOCKED_ACTIVE_CARD",
                 "reason": payload["blocker_code"],
+                "active_card": payload,
+                "parked_card_count": len(parked),
+                "blocking_card_count": len(blocking),
+                "authority_effect": "NONE",
+                "existing_authority_unchanged": True,
+            }
+        if payload.get("execution_mode") == "ASYNC_DELEGATED":
+            payload["classification"] = "ASYNC_DELEGATED"
+            return {
+                "schema": SCHEMA,
+                "status": "DELEGATED_ACTIVE_CARD",
                 "active_card": payload,
                 "parked_card_count": len(parked),
                 "blocking_card_count": len(blocking),

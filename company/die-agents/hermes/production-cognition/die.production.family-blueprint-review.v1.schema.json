@@ -1,0 +1,10 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","additionalProperties":false,
+  "required":["schema_version","request_id","review_id","task_id","repository_sha","principal","blueprint","outcome","rationale","required_actions","review_mode","semantic_content_authored","authority_effect"],
+  "properties":{
+    "schema_version":{"const":"die.production.family-blueprint-review.v1"},"request_id":{"type":"string","pattern":"^COG-[A-Z0-9_-]{8,160}$"},"review_id":{"type":"string","pattern":"^BP-REVIEW-PROD-[A-Z0-9_-]{8,160}$"},"task_id":{"type":"string","minLength":1,"maxLength":160},"repository_sha":{"type":"string","pattern":"^[0-9a-f]{40}$"},
+    "principal":{"type":"object","additionalProperties":false,"required":["principal_id","role"],"properties":{"principal_id":{"const":"die-lnx-executive-001"},"role":{"const":"REVIEWER"}}},
+    "blueprint":{"type":"object","additionalProperties":false,"required":["blueprint_id","sha256"],"properties":{"blueprint_id":{"type":"string"},"sha256":{"pattern":"^[0-9a-f]{64}$"}}},
+    "outcome":{"enum":["NO_VETO","REVISE","VETO_PENDING_EVIDENCE","ESCALATE_FOUNDER"]},"rationale":{"type":"string","minLength":20,"maxLength":2500},"required_actions":{"type":"array","maxItems":12,"items":{"type":"string","minLength":5,"maxLength":700}},"review_mode":{"const":"READ_ONLY_CHALLENGE"},"semantic_content_authored":{"const":false},"authority_effect":{"const":"NONE"}
+  }
+}

@@ -13,7 +13,7 @@ def state(root:Path,task:str,value:str):
 
 def test_active_card_suppresses_seed_selection(tmp_path:Path):
  d=tmp_path/'atlas.db'; db(d); ws=tmp_path/'ws'; state(ws,'OE008TROPHY001','BLUEPRINT_REQUIRED')
- out=mod.preflight(ws,d); assert out['mode']=='BLOCKED_ACTIVE_CARD'; assert out['active_card']['task_id']=='OE008TROPHY001'; assert out['active_card']['blocker_code']=='E_DIVISION01_AUTONOMOUS_COGNITION_TRANSPORT_UNWIRED'; assert 'seed_selection' not in out
+ out=mod.preflight(ws,d); assert out['mode']=='WAITING_COGNITION'; assert out['wakeAgent'] is False; assert out['active_card']['task_id']=='OE008TROPHY001'; assert out['active_card']['execution_surface']=='PRODUCTION_COGNITION_LINE_V1'; assert 'seed_selection' not in out
 
 def test_no_active_card_starts_ranked_seed(tmp_path:Path):
  d=tmp_path/'atlas.db'; db(d); ws=tmp_path/'ws'; ws.mkdir()
@@ -28,4 +28,4 @@ def test_blocked_active_card_cli_is_valid_script_output_not_script_error(tmp_pat
     d=tmp_path/'atlas.db'; db(d); ws=tmp_path/'ws'; state(ws,'OE008TROPHY001','BLUEPRINT_REQUIRED')
     proc=subprocess.run([sys.executable,str(P),'--workspaces',str(ws),'--db',str(d)],text=True,capture_output=True,check=False)
     assert proc.returncode==0
-    assert 'BLOCKED_ACTIVE_CARD' in proc.stdout
+    assert 'WAITING_COGNITION' in proc.stdout and '"wakeAgent": false' in proc.stdout
