@@ -153,7 +153,7 @@ def tick(args)->dict[str,Any]:
  if not found:return {'schema':'die.production.cognition-tick.v1','status':'IDLE','reason':'NO_BLUEPRINT_REQUIRED_CARD'}
  workspace,fields=found; task=workspace.name; m=SEED_RE.search(fields.get('seed',''))
  if not m:raise RuntimeError('E_SEED_FIELD')
- seed_id=m.group(1); repo_sha=subprocess.check_output(['git','-C',args.repo,'rev-parse','HEAD'],text=True).strip()
+ seed_id=m.group(1); repo_sha=subprocess.check_output(['git','-c',f'safe.directory={args.repo}','-C',args.repo,'rev-parse','HEAD'],text=True).strip()
  cogn=workspace/'cognition'; outbox=cogn/'outbox'; responses=cogn/'responses'; outbox.mkdir(parents=True,exist_ok=True); responses.mkdir(parents=True,exist_ok=True)
  statep=cogn/'state.json'; state=read_json(statep) if statep.exists() else {'schema':'die.production.cognition-state.v1','task_id':task,'stage':'NEED_AUTHOR','author_attempt':0,'revision':0,'history':[]}
  snap_path=cogn/'seed-snapshot.json'
