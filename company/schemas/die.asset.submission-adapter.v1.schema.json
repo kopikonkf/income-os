@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die.asset.submission-adapter.v1.schema.json",
+  "title": "DIE Platform Submission Adapter Contract v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "platform",
+    "adapter_version",
+    "execution_mode",
+    "policy_profile_sha256",
+    "operations",
+    "authority_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.asset.submission-adapter.v1"
+    },
+    "platform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "adapter_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "execution_mode": {
+      "enum": [
+        "AUTOMATED_ALLOWED",
+        "OPERATOR_REQUIRED",
+        "OFFICIAL_API_ONLY",
+        "BLOCKED_POLICY_UNKNOWN"
+      ]
+    },
+    "policy_profile_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "operations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prepare",
+        "submit",
+        "reconcile",
+        "receipt"
+      ],
+      "properties": {
+        "prepare": {
+          "type": "boolean"
+        },
+        "submit": {
+          "type": "boolean"
+        },
+        "reconcile": {
+          "type": "boolean"
+        },
+        "receipt": {
+          "type": "boolean"
+        }
+      }
+    },
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "adapter_grants_submission_authority",
+        "credentials_embedded",
+        "policy_may_be_weakened"
+      ],
+      "properties": {
+        "adapter_grants_submission_authority": {
+          "const": false
+        },
+        "credentials_embedded": {
+          "const": false
+        },
+        "policy_may_be_weakened": {
+          "const": false
+        }
+      }
+    }
+  }
+}

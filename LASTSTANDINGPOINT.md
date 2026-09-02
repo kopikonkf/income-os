@@ -3401,3 +3401,17 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Acceptance receipt: `company/muxia/receipts/SUB-001D-submission-dry-run-composer.acceptance.receipt.json`.
 - Graph delta: `SUB-001D DONE`; `SUB-001E READY`.
 - NEXT READY: `SUB-001E` Platform submission adapter contract.
+
+
+---
+
+## 2026-09-02 Scheduled atomic advancement - SUB-001E
+
+- Base canonical main: `7ac86ffae4bac70e81e69c3cfdc4cf22a8d95537`.
+- `SUB-001E` Platform submission adapter contract: DONE / PASS.
+- Added common adapter schema and executable contract with `prepare`, `submit`, `reconcile`, and `receipt` semantics.
+- Execution modes are exactly `AUTOMATED_ALLOWED`, `OPERATOR_REQUIRED`, `OFFICIAL_API_ONLY`, and `BLOCKED_POLICY_UNKNOWN`; platform policy can only be preserved/tightened, never weakened.
+- Unknown policy and operator-required modes block adapter submission; official-API-only rejects nonofficial execution; even automation-allowed still requires explicit Founder authority and implemented capability.
+- Credentials remain external; no marketplace login, cookie/token extraction, submission, publication, account action, or Founder authority consumption occurred.
+- Graph delta: `SUB-001E DONE`; `SUB-001F READY`.
+- NEXT READY: `SUB-001F` Common submission framework regression suite.
