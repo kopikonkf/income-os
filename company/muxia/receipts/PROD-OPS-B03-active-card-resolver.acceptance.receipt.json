@@ -1,0 +1,61 @@
+{
+  "schema": "die.production-ops.acceptance.v1",
+  "task_id": "PROD-OPS-B03",
+  "title": "Deterministic Active-Card Resolver",
+  "status": "PASS",
+  "accepted_at": "2026-09-02T04:32:00Z",
+  "canonical_merge_shas": [
+    "9841cffefe7f7cb7eb0226bf143ec5f7a275234c",
+    "dd4ad7b640144a726672ab076207565edd9c9c76",
+    "56c418c09856cb63d0c6485dc77e1a145ebdf764"
+  ],
+  "scope": {
+    "active_card_resolution": true,
+    "mutually_exclusive_tick_mode": true,
+    "authority_effect": "NONE",
+    "autonomous_division01_cognition_handoff": false
+  },
+  "live_resolution": {
+    "mode": "BLOCKED_ACTIVE_CARD",
+    "task_id": "OE008TROPHY001",
+    "state": "BLUEPRINT_REQUIRED",
+    "seed_id": "SEED-000027",
+    "seed_name": "trophy",
+    "required_actor": "die-lnx-division-001",
+    "next_action_type": "OP-REQUEST-DIVISION01-BLUEPRINT",
+    "execution_surface": "GOVERNED_DIVISION01_WAKE",
+    "execution_ready": false,
+    "blocker_code": "E_DIVISION01_AUTONOMOUS_COGNITION_TRANSPORT_UNWIRED",
+    "parked_card_count": 1,
+    "seed_selection_emitted": false
+  },
+  "validation": {
+    "focused_regression_b03_initial": "42/42 PASS",
+    "focused_regression_execution_surface": "44/44 PASS",
+    "focused_regression_preflight_exit": "24/24 PASS",
+    "live_preflight_exit_code": 0,
+    "runtime_script_hash_matches_canon": true,
+    "cron_script": "production_tick_preflight.py",
+    "cron_context_from": null,
+    "cron_model_pin": "gemini/gemini-3.7-flash",
+    "next_scheduled_run": "2026-09-02T06:00:00+00:00",
+    "fire_claim_after_controlled_runs": null
+  },
+  "controlled_run_observation": {
+    "execution_id": "718dcf6064bf4632a8344fadb59602be",
+    "session_id": "cron_6c1d9f5c504e_20260902_043108",
+    "injected_preflight_present": true,
+    "session_message_count": 1,
+    "tool_call_count": 0,
+    "llm_blocker_rendering_observed": false,
+    "reason": "Inference failed before first assistant response after Gemini credentials were in cooldown and downstream free fallbacks returned provider errors.",
+    "classification": "EXTERNAL_INFERENCE_OBSERVATION_NOT_B03_LOGIC_FAILURE"
+  },
+  "next_gap": {
+    "task_id": "PROD-OPS-B04",
+    "title": "Governed Division01 cognition handoff",
+    "need": "Wire a canonical Operator-v2 outbox to Division01 wake submit/output/typed-receipt path, or an equivalent governed cognition transport, before BLUEPRINT_REQUIRED can advance autonomously.",
+    "authority_note": "Do not enable autonomous account prompt submission/output extraction without explicit Founder authority for that account action boundary."
+  },
+  "acceptance": "Hermes production ticks now wake with deterministic durable-card orientation before LLM reasoning. The exact current card, state, required actor, next action, execution surface and blocker are injected without repository rediscovery. Parked Founder-gated cards do not block unrelated seed selection. Unknown states fail closed. B03 does not claim or authorize the still-unwired Division01 account cognition handoff."
+}

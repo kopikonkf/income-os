@@ -3340,3 +3340,17 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Full bridge observation had 5 unrelated pre-existing/worktree-environment failures; no SUB-001A focused or dependency regression failed.
 - Graph delta: `SUB-001A DONE`; `SUB-001B READY`; `SUB-001C BLOCKED`.
 - NEXT READY: `SUB-001B` submission authority, credential and session boundary.
+
+---
+
+## 2026-09-02 — PROD-OPS-B03 deterministic active-card resolver DONE
+
+- `PROD-OPS-B03 = DONE` for deterministic production orientation before LLM reasoning.
+- Production cron now attaches `production_tick_preflight.py`, which mutually exclusively returns `CONTINUE_ACTIVE_CARD`, `BLOCKED_ACTIVE_CARD`, `START_NEW_SEED`, `NO_ELIGIBLE_WORK`, or mechanical `BLOCKED_PREFLIGHT`.
+- Live durable resolution is `OE008TROPHY001` / `BLUEPRINT_REQUIRED` / `SEED-000027 trophy` / required actor `die-lnx-division-001` / action `OP-REQUEST-DIVISION01-BLUEPRINT`.
+- Because the canonical Linux Division01 wake path can focus/stage/canary but does not autonomously submit prompts or extract cognition output, the card now fails closed immediately as `E_DIVISION01_AUTONOMOUS_COGNITION_TRANSPORT_UNWIRED`; Hermes is forbidden to search the repo, load skills, call `execute_code`, or invent an alternate route for this blocker.
+- Shopping-bag human gate remains parked and does not serialize independent production; live resolver reports one parked card and emits no new seed while trophy is blocking.
+- Focused regressions: `42/42`, `44/44`, and R2 `24/24` PASS. Runtime preflight exits 0 for expected active-card blockers so JSON is injected as valid `Script Output`, not `Script Error`.
+- Controlled final run `718dcf6064bf4632a8344fadb59602be` received the exact B03 preflight and made zero tool calls, but inference failed before the first assistant response because current inference fallbacks were unavailable. This is recorded as an external provider observation, not a B03 logic pass for LLM rendering.
+- Canon merges: PR #125 `9841cffe...`, PR #126 `dd4ad7b6...`, PR #127 `56c418c0...`.
+- `PROD-OPS-B04` is the next production-engine capability gap: governed Operator-v2 outbox -> Division01 cognition submit -> output extraction -> typed Blueprint receipt. Enabling autonomous account prompt submission/output extraction remains a Founder authority boundary.
