@@ -11,7 +11,7 @@ This playbook defines the default operational workflow that turns an approved Ob
 
 The objective is observable production:
 
-`Object Atlas seed -> Hermes -> Division01/Executive only when needed -> fixed Blueprint -> Kanban -> Worker -> production provider -> real artifact -> upscale/recovery -> metadata -> rights/IP + QA -> QC -> Founder manual QC -> READY_FOR_MANUAL_PUBLISH -> manual publish`
+`Object Atlas seed -> deterministic scheduler -> Division01/Executive only when needed -> fixed Blueprint -> bounded Worker -> MUXIA -> real artifact -> bounded upscale/recovery -> WAITING_FOUNDER_QC (parked) -> Founder QC when available -> optional packaging/manual publish`
 
 The atomic task graph remains the long-horizon journey and milestone map for DIE Linux completion. It is not a reason to pause a normal production cycle unless a graph node represents a real missing runtime prerequisite for that cycle.
 
@@ -323,16 +323,7 @@ Every state transition must be attributable to a real observable event. Kanban i
 
 ## 9. Postproduction
 
-After the real artifact exists:
-
-1. Detect dimensions/format.
-2. If below route requirement and recoverable, upscale/recover.
-3. Preserve original and final artifact lineage.
-4. Compile title/description/keywords/metadata from seed + family + fixed Blueprint.
-5. Run rights/IP preflight.
-6. Run deterministic technical QA.
-7. Run visual/commercial QC.
-8. Package final asset and metadata for Founder manual QC.
+After the real artifact exists, the autonomous production runtime detects dimensions/format, performs bounded technical upscale/recovery when required, preserves source/final lineage, and then parks the card at `WAITING_FOUNDER_QC`. Metadata, rights/IP review, QA/QC scoring and packaging remain available downstream capabilities but are not production-throughput blockers unless Founder explicitly invokes them for a selected asset.
 
 Upscale is conditional. If native output already satisfies route requirements, skip unnecessary upscale.
 
@@ -351,7 +342,7 @@ Automated checks may identify:
 
 Automated systems MUST NOT pretend to be Founder human visual rights clearance.
 
-During the early production phase, a publish-ready artifact reaches:
+During the early production phase, a generated and technically finalized/upscaled artifact reaches:
 
 `WAITING_FOUNDER_QC`
 
@@ -433,10 +424,10 @@ On each production tick Hermes:
 5. creates/updates Kanban;
 6. obtains/reuses fixed Blueprint;
 7. dispatches Worker;
-8. runs provider generation;
-9. continues postproduction immediately;
-10. reports all required Telegram milestones;
-11. parks the card at Founder gates instead of guessing approval; future cadence slots may start independent eligible seeds.
+8. runs provider generation through deterministic MUXIA execution;
+9. performs bounded technical upscale/recovery and then stops autonomous responsibility;
+10. reports `ARTIFACT_CREATED` and `WAITING_FOUNDER_QC`;
+11. parks the card without waiting for Founder availability; future cadence slots may start independent eligible seeds.
 
 ### 12.1 Material-progress outcome semantics
 

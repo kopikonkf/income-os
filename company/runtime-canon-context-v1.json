@@ -42,7 +42,7 @@
     {
       "doc_id": "production_playbook",
       "path": "company/operations/PRODUCTION_CHAIN_OPERATING_PLAYBOOK_V1.md",
-      "sha256": "2ac15af33b9a7acb534c5f425430ea69e0c672b4c7d182157d3d6eeca3273f1e",
+      "sha256": "7bbd0101413162f6a01ffaed7285828642db0f414492e826e0f8311e1e754475",
       "classification": "CANON"
     }
   ],
@@ -180,7 +180,7 @@
     {
       "fact_id": "PRODUCTION-OPS-CADENCE",
       "label": "VERIFIED",
-      "statement": "Hermes may start at most one new seed production cycle every three hours; active cycle continuation, retries, Worker/provider completion, QA/QC and Telegram reporting continue immediately and do not wait for the next cron tick.",
+      "statement": "Production starts at most one new approved Object Atlas seed every 3 hours through deterministic no-agent scheduling; parked Founder-QC cards do not block later cadence slots.",
       "source_doc_ids": [
         "production_playbook"
       ]
@@ -196,7 +196,7 @@
     {
       "fact_id": "PRODUCTION-OPS-ROLES",
       "label": "VERIFIED",
-      "statement": "Hermes orchestrates and owns Kanban/state; Division01 authors or revises fixed Blueprint semantics only when needed; Executive challenges new/material family strategy rather than every image; Worker executes bounded jobs; MUXIA/OAUTH are provider engines; Founder owns final human rights/QC and irreversible publish/spend/account actions.",
+      "statement": "Deterministic scheduler owns phase-0 selection and mechanical execution; Division01/Executive are called only for bounded cognition/review; Worker is bounded; MUXIA is provider; Founder QC is asynchronous and non-blocking for later seeds.",
       "source_doc_ids": [
         "production_playbook"
       ]
