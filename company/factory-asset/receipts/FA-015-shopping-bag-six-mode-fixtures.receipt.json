@@ -1,0 +1,39 @@
+{
+  "schema": "factory-asset.shopping-bag-six-mode-fixtures-receipt.v1",
+  "task_id": "FA-015",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "fixture_root": "company/factory-asset/fixtures/shopping-bag-blueprint-v2/",
+  "modes": [
+    "PHOTO",
+    "ISOLATED_OBJECT",
+    "ICON",
+    "OUTLINE",
+    "PATTERN",
+    "ANIMATION"
+  ],
+  "semantic_asset_count": 6,
+  "packaging_derivative_count": 12,
+  "expected_producers": {
+    "PHOTO": "RASTER_GENERATIVE",
+    "ISOLATED_OBJECT": "RASTER_GENERATIVE",
+    "ICON": "NATIVE_VECTOR",
+    "OUTLINE": "NATIVE_VECTOR",
+    "PATTERN": "PROCEDURAL_VECTOR",
+    "ANIMATION": "MOTION_RENDERER"
+  },
+  "registry_revision": "1.0",
+  "marketplace_profile_revision": "1.0",
+  "validation": {
+    "positive_fixtures_compiled": "6/6 PASS",
+    "distinct_semantic_ids": "6/6 UNIQUE",
+    "distinct_semantic_fingerprints": "6/6 UNIQUE",
+    "packaging_semantic_identity_effect": "12/12 NONE",
+    "deterministic_compile": "6/6 PASS",
+    "factory_asset_tests": "48/48 PASS",
+    "git_diff_check": "PASS"
+  },
+  "provider_dispatch_performed": false,
+  "marketplace_submission_performed": false
+}
