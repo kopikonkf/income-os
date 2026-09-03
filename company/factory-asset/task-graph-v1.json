@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "3.0-fa-c004-console-synthetic-shell",
+  "revision": "3.1-fa-c005-blueprint-editor",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1770,9 +1770,11 @@
         "FA-C004",
         "FA-019"
       ],
-      "status": "READY",
-      "artifact": "Console blueprint editor with compile-preview tests",
-      "acceptance": "PHOTO, ISOLATED_OBJECT, ICON, OUTLINE, PATTERN and ANIMATION selections compile through canonical Blueprint v2; quantity/style/master/delivery controls cannot mint packaging variants as semantic assets."
+      "status": "DONE",
+      "artifact": "company/factory-asset/console-prototype/",
+      "acceptance": "PHOTO, ISOLATED_OBJECT, ICON, OUTLINE, PATTERN and ANIMATION selections compile through canonical Blueprint v2; quantity/style/master/delivery controls cannot mint packaging variants as semantic assets.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: Factory Console Blueprint editor supports all six canonical asset types using FA-015 templates and real loopback compile preview through canonical FA-013 blueprint_compiler.py + FA-014 identity fingerprints. Master/resolution/delivery/style controls do not auto-mint semantic IDs; invalid cross-family edits fail closed. Bounded local batch-intent controls require successful compile, separate semantic asset count from packaging derivative count, and never dispatch provider work. Full Factory regression 107/107 PASS."
     },
     {
       "id": "FA-C006",
