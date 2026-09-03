@@ -1,0 +1,99 @@
+{
+  "schema": "factory-asset.windows-image-provider-proof-receipt.v1",
+  "task_id": "FA-W004",
+  "date": "2026-09-03",
+  "status": "WAITING_OPERATOR",
+  "provider": "chatgpt",
+  "model_or_mode": "ChatGPT consumer web / operator-controlled",
+  "transport_class": "BROWSER_CDP",
+  "implementation": {
+    "status": "COMPLETE_POLICY_COMPLIANT_BOUNDARY",
+    "repository": "github.com/kopikonkf/web-ai-adapter",
+    "pr": 2,
+    "merge_commit": "45f1e9ac0947e53c82ad21dc1c9387078ce0869e",
+    "browser_ownership": {
+      "explicit_profile_id": "factory-asset-chatgpt-primary",
+      "headed_persistent_profile": true,
+      "single_principal_owner_lock": true,
+      "clean_shutdown": true,
+      "cookie_or_token_export": false
+    },
+    "page_states": [
+      "READY",
+      "AUTH_REQUIRED",
+      "BLOCKED",
+      "COMPOSER_UNAVAILABLE",
+      "UNKNOWN"
+    ],
+    "operator_handoff": true,
+    "programmatic_prompt_submission": false,
+    "programmatic_consumer_web_output_extraction": false,
+    "private_backend_production_transport": false,
+    "original_byte_ingest_after_operator_acquisition": true,
+    "content_addressed_atomic_save": true
+  },
+  "policy_gate": {
+    "decision": "CONSUMER_WEB_AUTONOMOUS_EXTRACTION_BLOCKED",
+    "source": "docs/operations/MUXIA_CHATGPT_WEB_POLICY_GATE_V1.md",
+    "effect": "Browser/profile lifecycle, state detection, operator handoff and local artifact validation are allowed; unattended prompt dispatch/output extraction is blocked.",
+    "founder_authorization_overrides_policy": false
+  },
+  "authority": {
+    "founder_continuation_instruction_reused": true,
+    "ordinary_implementation_testing_publication_authorized": true,
+    "bounded_live_acceptance_authorized_subject_to_policy": true,
+    "new_live_chatgpt_calls": 0
+  },
+  "validation": {
+    "deterministic_tests": "18/18 PASS",
+    "negative_cases": {
+      "browser_unavailable": "PASS",
+      "AUTH_REQUIRED": "PASS",
+      "BLOCKED_protection_challenge": "PASS",
+      "composer_unavailable": "PASS",
+      "generation_timeout": "PASS",
+      "download_failure": "PASS",
+      "empty_bytes": "PASS",
+      "invalid_magic": "PASS",
+      "MIME_magic_mismatch": "PASS",
+      "decode_failure": "PASS",
+      "URL_only_response": "PASS"
+    },
+    "adapter_health": "PASS / OPERATOR_CONTROLLED_POLICY_GATE",
+    "oauth_server_root_http": 200,
+    "oauth_server_health_http": 200,
+    "qwen_text_source_modified_by_FA_W004": false,
+    "qwen_image_regression_suite": "PASS"
+  },
+  "live_acceptance": {
+    "status": "NOT_EXECUTED_POLICY_REQUIRES_OPERATOR_CONTROL",
+    "live_chatgpt_calls": 0,
+    "real_generation": false,
+    "original_byte_validation": "PENDING_OPERATOR_ARTIFACT",
+    "local_path": null,
+    "mime": null,
+    "magic": null,
+    "dimensions": null,
+    "bytes": null,
+    "sha256": null,
+    "decode_reopen": null
+  },
+  "resume_condition": {
+    "required_action": "Authorized operator performs exactly one bounded ChatGPT consumer-web image generation in the dedicated headed profile and manually acquires/downloads the provider original to a local file; then FA-W004 ingests that local file through the strict validator.",
+    "not_required": [
+      "new Founder authorization",
+      "cookie export",
+      "session-token export",
+      "private-backend reverse engineering",
+      "CAPTCHA or protection bypass",
+      "rate-limit bypass"
+    ]
+  },
+  "source_safety": {
+    "oauth_head": "c2fb61467138a24156b3d61c991882ebcdd59086",
+    "oauth_dirty_count_after_scoped_deploy": 67,
+    "unrelated_dirty_work_preserved": true,
+    "credentials_or_raw_session_material_published": false
+  },
+  "result": "WAITING_OPERATOR"
+}

@@ -302,11 +302,15 @@
       "depends_on": [
         "FA-W003"
       ],
-      "status": "WAITING_FOUNDER",
-      "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
+      "status": "WAITING_OPERATOR",
+      "authority": "FOUNDER_AUTHORIZATION_REUSED_OPERATOR_ACTION_REQUIRED",
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W004-chatgpt-image-proof.receipt.json",
       "acceptance": "One bounded authorized ChatGPT request yields a real generated original image automatically saved to D:\\ASSETS\\OAUTH with complete validation; screenshot-only or URL-only output fails.",
-      "blocker": "FA-W003 is complete. One bounded live ChatGPT provider call remains Founder-confirmation gated, and current canonical ChatGPT consumer-web policy must be respected before execution."
+      "blocker": "WAITING_OPERATOR: canonical ChatGPT consumer-web policy blocks programmatic prompt dispatch/output extraction. One authorized operator-controlled generation plus manual original-file acquisition is required for final FA-W004 acceptance; no new Founder authorization is required.",
+      "receipt": "company/factory-asset/receipts/FA-W004-chatgpt-image-proof.receipt.json",
+      "implementation_status": "COMPLETE_POLICY_COMPLIANT_BOUNDARY",
+      "live_provider_calls_this_execution": 0,
+      "resume_condition": "Operator performs one bounded ChatGPT consumer-web generation in the dedicated headed profile, manually downloads/acquires the provider original to a local file, then the strict local ingestor validates and content-addresses it."
     },
     {
       "id": "FA-W005",
