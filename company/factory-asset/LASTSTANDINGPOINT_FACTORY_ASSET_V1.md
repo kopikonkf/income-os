@@ -347,3 +347,14 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 ### FA-101 — DONE / PASS — provider profile + lease contract
 - Credentials remain opaque references; duplicate/cross-profile ownership fails closed.
 - Regression 112/112 PASS. `FA-102` is READY.
+
+
+### Factory Core + Console control batch — DONE / PASS
+- `FA-101` provider profile/lease: DONE; opaque credentials and single ownership.
+- `FA-102` observed capacity ledger: DONE; dated evidence only, stale -> UNKNOWN, guessed quota forbidden.
+- `FA-103` provider policy gate: DONE; five current providers allowed by dated route evidence, Grok deferred; unknown/stale blocks.
+- `FA-104` deterministic router: DONE; policy + AVAILABLE capacity + capability hard gates with rationale.
+- `FA-105` queue/retry/resume/reconciliation: DONE; idempotent jobs, max two retries, crash RUNNING -> READY, no false success.
+- `FA-C003` normalized Console/Core API: DONE; vendor/browser/credential wire fields rejected.
+- `FA-C006` governed Queue controls: DONE; START/PAUSE/RESUME/CANCEL/RETRY call FA-105 locally, provider dispatch remains disabled.
+- Final regression before publication: 159/159 PASS. `FA-107` is READY; `FA-C007` still waits for FA-107, and `FA-C008` waits for FA-030 + FA-106.

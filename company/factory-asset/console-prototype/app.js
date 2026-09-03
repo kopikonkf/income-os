@@ -11,7 +11,8 @@
     compilePreview: null,
     compileError: null,
     batchIntent: null,
-    queue: source.queue.map(job => ({ ...job })),
+    queueEvents: [],
+    queueError: null,
     notice: "Compile a Blueprint v2 before creating a batch intent."
   };
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -34,14 +35,20 @@
     if (!response.ok) throw value;
     return value;
   }
+  async function getLocal(path) {
+    const response = await fetch(path, { headers: { "Accept": "application/json" } });
+    const value = await response.json();
+    if (!response.ok) throw value;
+    return value;
+  }
 
   function renderMetrics() {
-    const successful = state.queue.filter(x => x.state === "SUCCEEDED").length;
-    const active = state.queue.filter(x => ["RUNNING","READY","RETRY_WAIT","PAUSED"].includes(x.state)).length;
+    const successful = state.queueEvents.filter(x => x.state === "SUCCEEDED").length;
+    const active = state.queueEvents.filter(x => ["RUNNING","READY","RETRY_WAIT","PAUSED"].includes(x.state)).length;
     const eligible = source.providers.filter(x => x.eligibility === "ELIGIBLE").length;
     $("#global-metrics").innerHTML = `
       <div class="metric"><strong>${state.batchIntent ? state.batchIntent.semantic_asset_count : 0}</strong><span>batch semantic</span></div>
-      <div class="metric"><strong>${active}</strong><span>active synthetic</span></div>
+      <div class="metric"><strong>${active}</strong><span>core queue active</span></div>
       <div class="metric"><strong>${successful}</strong><span>succeeded</span></div>
       <div class="metric"><strong>${eligible}</strong><span>eligible providers</span></div>`;
   }
@@ -134,28 +141,54 @@
     const plan = preview && preview.plan;
     $("#view-batch").innerHTML = `
       <div class="grid two">
-        <article class="card editor-card"><div class="result-head"><h2>Batch Intent</h2><span class="badge warn">NO DISPATCH</span></div>
+        <article class="card editor-card"><div class="result-head"><h2>Batch Intent</h2><span class="badge warn">CORE QUEUE ONLY</span></div>
           <div class="editor-grid"><label class="span-2">Label<input id="batch-label" value="Shopping bag ${esc(state.selectedAssetType.toLowerCase())} batch"></label><label>Quantity<input id="batch-quantity" type="number" min="1" max="1000" value="12"></label><label>Compiled blueprint<input value="${esc(plan ? plan.blueprint_id : 'Compile required')}" disabled></label></div>
-          <div class="button-row"><button class="primary-btn" id="create-batch-intent" ${preview?'':'disabled'}>Create Batch Intent</button><button class="action-btn" disabled>Live Dispatch Locked</button></div>
-          <p class="notice">Batch intent is local and bounded. It separates semantic asset quantity from packaging derivative count and never calls a provider.</p>
+          <div class="button-row"><button class="primary-btn" id="create-batch-intent" ${preview?'':'disabled'}>Create Batch Intent</button><button class="action-btn" id="queue-local-batch" ${state.batchIntent?'':'disabled'}>Queue Local Batch</button><button class="action-btn" disabled>Provider Dispatch Locked</button></div>
+          <p class="notice">Queue Local Batch creates governed FA-105 jobs only. START owns a queue job; it does not call a provider in FA-C006.</p>
         </article>
-        <article class="card"><h2>Intent Preview</h2>${state.batchIntent ? `<dl class="kv"><dt>Batch ID</dt><dd>${esc(state.batchIntent.batch_id)}</dd><dt>Semantic assets</dt><dd>${state.batchIntent.semantic_asset_count}</dd><dt>Packaging derivatives</dt><dd>${state.batchIntent.packaging_derivative_count}</dd><dt>Semantic fingerprint</dt><dd>${esc(state.batchIntent.semantic_fingerprint)}</dd><dt>Packaging fingerprint</dt><dd>${esc(state.batchIntent.packaging_fingerprint)}</dd><dt>Authority</dt><dd>${badge(state.batchIntent.dispatch_authority)}</dd></dl>` : `<p class="muted">${preview ? 'Ready to create a local batch intent.' : 'Compile a Blueprint first.'}</p>`}</article>
+        <article class="card"><h2>Intent Preview</h2>${state.batchIntent ? `<dl class="kv"><dt>Batch ID</dt><dd>${esc(state.batchIntent.batch_id)}</dd><dt>Semantic assets</dt><dd>${state.batchIntent.semantic_asset_count}</dd><dt>Packaging derivatives</dt><dd>${state.batchIntent.packaging_derivative_count}</dd><dt>Semantic fingerprint</dt><dd>${esc(state.batchIntent.semantic_fingerprint)}</dd><dt>Packaging fingerprint</dt><dd>${esc(state.batchIntent.packaging_fingerprint)}</dd><dt>Authority</dt><dd>${badge(state.batchIntent.dispatch_authority)}</dd></dl>` : `<p class="muted">${preview ? 'Ready to create a local batch intent.' : 'Compile a Blueprint first.'}</p>`}<p class="muted">${esc(state.notice)}</p></article>
       </div>`;
     if ($("#create-batch-intent") && preview) $("#create-batch-intent").addEventListener('click', async () => {
       const payload = { compile_preview: preview, quantity: Number($("#batch-quantity").value), label: $("#batch-label").value.trim(), ui_constraints: state.uiConstraints };
-      try { state.batchIntent = await postLocal('/api/batch-intent', payload); state.notice = 'Batch intent created locally. No provider dispatch occurred.'; } catch(error) { state.notice = `${error.code || 'ERROR'}: ${error.message || 'Batch intent rejected'}`; }
+      try { state.batchIntent = await postLocal('/api/batch-intent', payload); state.notice = 'Batch intent created. Queue submission is available; provider dispatch remains locked.'; } catch(error) { state.notice = `${error.code || 'ERROR'}: ${error.message || 'Batch intent rejected'}`; }
       renderBatch(); renderMetrics();
+    });
+    if ($("#queue-local-batch") && state.batchIntent) $("#queue-local-batch").addEventListener('click', async () => {
+      try { const result = await postLocal('/api/queue/submit', { batch_intent: state.batchIntent }); state.notice = `${result.created_or_reused} governed jobs created/reused. Provider dispatch: ${result.provider_dispatch_performed}.`; await refreshQueue(); activateView('queue'); }
+      catch(error) { state.notice = `${error.code || 'ERROR'}: ${error.message || 'Queue submit rejected'}`; renderBatch(); }
     });
   }
 
-  function nextAction(job) { if (job.state === "RUNNING") return ["Pause", "PAUSE"]; if (job.state === "PAUSED") return ["Resume", "RESUME"]; if (job.state === "RETRY_WAIT") return ["Retry", "RETRY"]; return ["—", "NONE"]; }
-  function renderQueue() {
-    $("#view-queue").innerHTML = `<article class="card"><h2>Queue <span class="badge violet">SYNTHETIC</span></h2><table><thead><tr><th>Job</th><th>Provider</th><th>State</th><th>Attempt</th><th>Progress</th><th>Failure</th><th>Action</th></tr></thead><tbody>${state.queue.map((j,i) => { const [label,action]=nextAction(j); return `<tr><td><strong>${esc(j.jobId)}</strong><br><span class="muted">${esc(j.semanticAssetId)}</span></td><td>${esc(j.provider)}</td><td>${badge(j.state)}</td><td>${j.attempt}</td><td><div class="progress"><span style="width:${j.progress}%"></span></div></td><td>${esc(j.failureCode || '—')}</td><td><button class="action-btn" data-queue-index="${i}" data-action="${action}" ${action==='NONE'?'disabled':''}>${label}</button></td></tr>`; }).join("")}</tbody></table></article>`;
-    $$('[data-queue-index]').forEach(button => button.addEventListener('click', () => { const job=state.queue[Number(button.dataset.queueIndex)]; if(button.dataset.action==='PAUSE')job.state='PAUSED'; if(button.dataset.action==='RESUME')job.state='RUNNING'; if(button.dataset.action==='RETRY'){job.state='READY';job.failureCode=null;job.progress=0;job.attempt+=1;} renderQueue();renderMetrics(); }));
+  function actionsFor(job) {
+    if (job.state === "READY") return [["Start","START"],["Cancel","CANCEL"]];
+    if (job.state === "RUNNING") return [["Pause","PAUSE"],["Cancel","CANCEL"]];
+    if (job.state === "PAUSED") return [["Resume","RESUME"],["Cancel","CANCEL"]];
+    if (job.state === "RETRY_WAIT") return [["Retry","RETRY"],["Cancel","CANCEL"]];
+    return [];
   }
+  async function refreshQueue() {
+    try { const value = await getLocal('/api/queue/jobs'); state.queueEvents = value.events; state.queueError = null; }
+    catch(error) { state.queueError = `${error.code || 'ERROR'}: ${error.message || 'Queue unavailable'}`; }
+    renderQueue(); renderMetrics();
+  }
+  async function queueAction(jobId, action) {
+    const command = { schema:'die.factory-asset.console-api.v1', kind:'CONTROL_COMMAND', command_id:`FCCMD-${Date.now()}-${action}`, job_id:jobId, action };
+    try { await postLocal('/api/queue/action', command); state.queueError = null; }
+    catch(error) { state.queueError = `${error.code || 'ERROR'}: ${error.message || 'Control rejected'}`; }
+    await refreshQueue();
+  }
+  function renderQueue() {
+    const rows = state.queueEvents;
+    $("#view-queue").innerHTML = `<article class="card"><div class="result-head"><h2>Factory Core Queue</h2><div><span class="badge good">FA-105 GOVERNED</span> <span class="badge warn">NO PROVIDER DISPATCH</span></div></div>
+      ${state.queueError ? `<p class="notice">${esc(state.queueError)}</p>` : ''}
+      <table><thead><tr><th>Job</th><th>Semantic / Blueprint</th><th>State</th><th>Attempts</th><th>Retries</th><th>Recovery</th><th>Failure</th><th>Controls</th></tr></thead><tbody>${rows.map(j => `<tr><td><strong>${esc(j.job_id)}</strong><br><span class="muted">${esc(j.label)}</span></td><td>${esc(j.semantic_asset_id)}<br><span class="muted">${esc(j.blueprint_id)}</span></td><td>${badge(j.state)}</td><td>${j.attempts}</td><td>${j.retries}/2</td><td>${j.recovery_count}</td><td>${esc(j.failure_code || '—')}</td><td>${actionsFor(j).map(([label,action]) => `<button class="action-btn queue-control" data-job-id="${esc(j.job_id)}" data-core-action="${action}">${label}</button>`).join(' ') || '—'}</td></tr>`).join("")}</tbody></table>
+      <p class="notice" style="margin-top:14px">START acquires local queue ownership only. Provider routing/dispatch is intentionally not invoked by FA-C006.</p></article>`;
+    $$('.queue-control').forEach(button => button.addEventListener('click', () => queueAction(button.dataset.jobId, button.dataset.coreAction)));
+  }
+
   function renderProviders() { $("#view-providers").innerHTML = `<div class="provider-grid">${source.providers.map(p => `<article class="provider-card"><header><h3>${esc(p.id.toUpperCase())}</h3>${badge(p.eligibility)}</header><dl class="kv"><dt>Transport</dt><dd>${esc(p.transport)}</dd><dt>Capacity</dt><dd>${badge(p.capacity)}</dd><dt>Policy</dt><dd>${badge(p.policy)}</dd><dt>Evidence</dt><dd>${esc(p.lastEvidence)}</dd></dl><p>${esc(p.routing)}</p></article>`).join("")}</div>`; }
   function renderOutput() { $("#view-output").innerHTML = `<div class="output-grid">${source.outputs.map(o => `<article class="card"><div class="master-preview"><div class="master-glyph"></div></div><div class="result-head"><div><span class="badge violet">${esc(o.assetType)}</span><h3>${esc(o.subject)}</h3></div><span class="badge good">SEMANTIC COUNT ${o.semanticCount}</span></div><dl class="kv"><dt>Semantic ID</dt><dd>${esc(o.semanticAssetId)}</dd><dt>Master</dt><dd>${esc(o.master.format)} · ${esc(o.master.dimensions)}</dd><dt>QA</dt><dd>${badge(o.qa)}</dd><dt>Compatibility</dt><dd>${badge(o.compatibility)}</dd></dl><div class="derivatives">${o.derivatives.map(d => `<div class="derivative"><span>${esc(d.format)} · ${esc(d.purpose)}</span><span>${esc(d.sha256)}</span></div>`).join("")}</div></article>`).join("")}</div>`; }
-  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); }
+  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); }
   $$('.nav-item').forEach(button=>button.addEventListener('click',()=>activateView(button.dataset.view)));
-  renderMetrics();renderBlueprint();renderBatch();renderQueue();renderProviders();renderOutput();activateView('blueprint');
+  renderMetrics();renderBlueprint();renderBatch();renderQueue();renderProviders();renderOutput();activateView('blueprint');refreshQueue();
 })();

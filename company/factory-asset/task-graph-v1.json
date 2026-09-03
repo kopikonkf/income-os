@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "3.7-fa-c003-console-core-contract",
+  "revision": "3.8-fa-c006-governed-queue-controls",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1799,9 +1799,11 @@
         "FA-C004",
         "FA-105"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Console queue-control UI + event tests",
-      "acceptance": "Controls invoke only Factory Core governed actions; idempotency, retry bounds and reconciliation states remain visible and direct provider/browser commands do not exist."
+      "acceptance": "Controls invoke only Factory Core governed actions; idempotency, retry bounds and reconciliation states remain visible and direct provider/browser commands do not exist.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: Factory Console Queue view is backed by FA-105 FactoryJobQueue through loopback normalized Console API. Compiled local batches enqueue idempotently; START/PAUSE/RESUME/CANCEL/RETRY invoke only governed Core actions; retry x/2 and recovery_count remain visible; direct provider/browser dispatch is absent. Regression 159/159 PASS."
     },
     {
       "id": "FA-C007",
