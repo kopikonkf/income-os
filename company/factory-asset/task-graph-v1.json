@@ -389,10 +389,17 @@
       "depends_on": [
         "FA-W001"
       ],
-      "status": "WAITING_FOUNDER",
-      "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
+      "status": "DONE",
+      "authority": "FOUNDER_OPERATOR_ACTION_COMPLETE",
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W008-duckai-image-proof.receipt.json",
-      "acceptance": "Duck.ai passes only if a supported image-capable route produces and saves validated original bytes; its current gpt-5.4-nano text endpoint is not counted. Otherwise return UNSUPPORTED_CAPABILITY with evidence."
+      "acceptance": "Duck.ai passes only if a supported image-capable route produces real provider-original bytes and a validated durable local file. A prior text-only endpoint is not counted. Current Windows evidence may use BROWSER_OPERATOR; any model label is recorded as operator-observed unless independently verified.",
+      "completed_at": "2026-09-03",
+      "transport_class": "BROWSER_OPERATOR",
+      "operator_reported_model_label": "gpt5.5 luna",
+      "prompt_sha256": "0c93230f694582d9f16c0f90e8437da39c5dc14f6db30e6bebb6e09545a0c1c3",
+      "artifact_sha256": "4086a14f2b8bca067941bd5f377ec675caff1c9ae77b92a40dc221f49d492cf9",
+      "receipt": "company/factory-asset/receipts/FA-W008-duckai-image-proof.receipt.json",
+      "result": "PASS: real Duck.ai provider-original JPEG manually downloaded by Founder/operator and strict local validation/content-addressed persistence passed; prior text-only endpoint was not used for image proof."
     },
     {
       "id": "FA-W009",
@@ -409,10 +416,11 @@
         "FA-W007",
         "FA-W008"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "acceptance_batch": true,
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W009-six-provider-windows-acceptance.receipt.json",
-      "acceptance": "Qwen, ChatGPT, Gemini, Grok, Manus and Duck.ai each have a real prompt-to-validated-original-byte local-save PASS; any UNSUPPORTED, UNKNOWN, screenshot-only, URL-only or text-only lane blocks six-provider acceptance and requires Founder disposition."
+      "acceptance": "Qwen, ChatGPT, Gemini, Grok, Manus and Duck.ai each have a real prompt-to-validated-original-byte local-save PASS; any UNSUPPORTED, UNKNOWN, screenshot-only, URL-only or text-only lane blocks six-provider acceptance and requires Founder disposition.",
+      "unblocked_by": "FA-W008"
     },
     {
       "id": "FA-W010",

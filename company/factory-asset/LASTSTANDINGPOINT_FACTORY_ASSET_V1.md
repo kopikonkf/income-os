@@ -54,6 +54,16 @@
 - Actual proof transport: BROWSER_OPERATOR. The task acceptance is clarified so browser-operator original export proves Windows capability; any future SESSION_API create/poll route must remain bounded and cannot pass on status without artifact.
 - Receipt: company/factory-asset/receipts/FA-W007-manus-image-proof.receipt.json.
 
+### FA-W008 — DONE / PASS
+
+- Founder/operator supplied a real Duck.ai provider-original JPEG using the shared prompt in `prompt.txt`.
+- Founder/operator reports the current Duck.ai UI model label as `gpt5.5 luna`; this label is recorded as operator-observed, not independently verified by Architect transport.
+- Strict validation: JPEG, 1254x1254, 42,740 bytes, decode/reopen PASS, SHA-256 `4086a14f2b8bca067941bd5f377ec675caff1c9ae77b92a40dc221f49d492cf9`.
+- Exact VPS file hash matches the file uploaded by Founder in ChatGPT, eliminating local-vs-chat artifact ambiguity.
+- Content-addressed local save: `D:\ASSETS\OAUTH\sha256\40\duckai_4086a14f2b8bca067941bd5f377ec675caff1c9ae77b92a40dc221f49d492cf9.jpg`.
+- Actual proof transport: `BROWSER_OPERATOR`; the prior text-only endpoint is not counted as image proof.
+- Receipt: `company/factory-asset/receipts/FA-W008-duckai-image-proof.receipt.json`.
+
 ## OAUTH safety
 
 - `D:\OAUTH` HEAD remains `c2fb61467138a24156b3d61c991882ebcdd59086`.
