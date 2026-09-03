@@ -1,0 +1,75 @@
+{
+  "schema": "factory-asset.windows-image-provider-proof-receipt.v1",
+  "task_id": "FA-W008",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "provider": "duck.ai",
+  "model_or_mode": "Duck.ai consumer web / operator-controlled",
+  "operator_reported_model_label": "gpt5.5 luna",
+  "operator_reported_model_label_independently_verified_by_architect": false,
+  "transport_class": "BROWSER_OPERATOR",
+  "authority": {
+    "founder_operator_action_completed": true,
+    "new_live_provider_calls_by_architect": 0
+  },
+  "prompt": {
+    "text": "Generate a simple pink square centered on a isolated white background.",
+    "sha256": "0c93230f694582d9f16c0f90e8437da39c5dc14f6db30e6bebb6e09545a0c1c3",
+    "source": "D:\\ASSETS\\OAUTH\\2026-09-03\\prompt.txt"
+  },
+  "generation": {
+    "real_provider_generation": true,
+    "generation_started_at": "OPERATOR_REPORTED_INTERACTIVE_SESSION; exact provider start not instrumented",
+    "generation_completed_at": "OPERATOR_REPORTED_BEFORE_LOCAL_ACQUISITION; exact provider completion not instrumented",
+    "original_acquired_at": "2026-09-03T06:58:30.584873Z",
+    "original_byte_acquisition_method": "Founder/operator manual provider download from authenticated Duck.ai web session",
+    "prior_text_only_endpoint_used_for_image_proof": false,
+    "screenshot_or_preview_capture_used": false
+  },
+  "artifact": {
+    "source_path": "D:\\ASSETS\\OAUTH\\2026-09-03\\Duck-ai-image-2026-09-03-06-58.jpeg",
+    "local_path": "D:\\ASSETS\\OAUTH\\sha256\\40\\duckai_4086a14f2b8bca067941bd5f377ec675caff1c9ae77b92a40dc221f49d492cf9.jpg",
+    "format": "JPEG",
+    "mime": "image/jpeg",
+    "magic": "ffd8ffe000104a4649460001",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "bytes": 42740,
+    "sha256": "4086a14f2b8bca067941bd5f377ec675caff1c9ae77b92a40dc221f49d492cf9",
+    "decode_reopen": "PASS",
+    "chat_upload_crosscheck": {
+      "same_sha256_as_user_uploaded_file": true,
+      "sha256": "4086a14f2b8bca067941bd5f377ec675caff1c9ae77b92a40dc221f49d492cf9"
+    },
+    "visual_prompt_consistency": {
+      "center_rgb": [
+        252,
+        70,
+        170
+      ],
+      "corner_rgb": [
+        254,
+        254,
+        254
+      ],
+      "pink_fraction": 0.3906,
+      "white_fraction": 0.6094,
+      "result": "PASS_SUPPORTING_EVIDENCE"
+    }
+  },
+  "validation": {
+    "mime_magic_consistency": "PASS",
+    "positive_dimensions": "PASS",
+    "positive_bytes": "PASS",
+    "content_addressed_save": "PASS",
+    "original_byte_validation": "PASS"
+  },
+  "security": {
+    "credentials_or_raw_session_material_published": false,
+    "captcha_or_protection_bypass": false,
+    "quota_evasion": false
+  },
+  "result": "PASS"
+}
