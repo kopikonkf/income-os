@@ -31,5 +31,15 @@
   "accepted_pass": false,
   "historical_interrupted_attempt_counted_as_pass": false,
   "founder_sequencing_override_to_manus": true,
-  "canonical_status": "DEFERRED_PROVIDER_CAPACITY"
+  "latest_preflight": {
+    "route": "https://grok.com/imagine",
+    "observed_at": "2026-09-03T15:40:45.496135Z",
+    "result": "NOT_READY",
+    "failure_code": "SPEND_REQUIRED",
+    "provider_state": "SUPERGROK_UPGRADE_GATE",
+    "detail": "Imagine displayed Upgrade to SuperGrok / Unlock your creativity with Imagine before any provider generation dispatch.",
+    "dispatch_committed": false,
+    "operator_actions_after_dispatch": 0
+  },
+  "canonical_status": "DEFERRED_SPEND_REQUIRED_IMAGINE"
 }

@@ -508,7 +508,8 @@
       "sequencing_gate": "RESOLVED: FA-W013 DONE/PASS. Grok is the next Windows frontier; do not execute in the FA-W013 acceptance run.",
       "receipt": "company/factory-asset/receipts/FA-W014-grok-autonomous-backend.receipt.json",
       "last_attempt_result": "FAILED: PROVIDER_CAPACITY_UNAVAILABLE / HIGH_DEMAND",
-      "resume_condition": "Retry when Grok provider capacity is available; authenticated BROWSER_CDP preflight otherwise remains viable.",
+      "latest_preflight_result": "NOT_READY: SPEND_REQUIRED / SUPERGROK_UPGRADE_GATE on https://grok.com/imagine; no dispatch committed.",
+      "resume_condition": "Resume only if Grok Imagine becomes available under the already-authorized account/plan or Founder explicitly authorizes spend; otherwise use another policy-compliant evidenced Grok route. Do not bypass the upgrade gate.",
       "founder_sequencing_override": "2026-09-03 Founder authorized proceeding to Manus if Grok remained blocked by High Demand after retry."
     },
     {

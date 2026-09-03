@@ -163,3 +163,12 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 ## Current Windows frontier after this continuation
 
 `FA-W015` is DONE/PASS. `FA-W014` is DEFERRED on temporary Grok provider capacity, not auth. `FA-W017` is the active READY frontier for one fresh bounded Duck.ai retry under the remaining default provider-committed attempt budget. No Grok or Duck failure has been relabeled as PASS.
+
+
+### 2026-09-03 FA-W014 Grok Imagine preflight — DEFERRED / SPEND_REQUIRED
+
+- Founder-directed route `https://grok.com/imagine` was opened in the owned authenticated CDP profile.
+- Authentication was valid and the Imagine composer existed, but the route presented `Upgrade to SuperGrok` / `Unlock your creativity with Imagine` before any generation dispatch.
+- No provider generation attempt was committed on this route; `dispatch_committed_at` remained unset and no post-dispatch operator action occurred.
+- This is recorded as `SPEND_REQUIRED / SUPERGROK_UPGRADE_GATE`, not as PASS and not as a provider-capacity failure.
+- The earlier Grok chat-route committed attempt remains terminal `FAILED / PROVIDER_CAPACITY_UNAVAILABLE / HIGH_DEMAND` and is not relabeled.
