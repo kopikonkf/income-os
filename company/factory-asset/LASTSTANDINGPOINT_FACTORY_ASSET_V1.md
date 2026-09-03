@@ -97,6 +97,17 @@ Current Level-2 frontier: `FA-W011` — define the common autonomous provider ba
 - No `D:\OAUTH` source mutation and no live provider call occurred in FA-W011.
 - Receipt: `company/factory-asset/receipts/FA-W011-autonomous-provider-backend-contract.receipt.json`.
 
+### FA-W013 — WAITING_OPERATOR — Gemini dedicated backend authentication
+
+- Gemini Level-2 implementation is merged in `web-ai-adapter` PR #3, merge `65227657a10199da31be093f0a36a8d26447e1a3`, and scoped-deployed to `D:\OAUTH`.
+- Current transport is `BROWSER_CDP` using dedicated profile `D:\OAUTH\browser-profiles\gemini-backend` on loopback `127.0.0.1:9333`; no cookie/session-token export is used.
+- Deterministic + regression suite: **23/23 PASS**; server import PASS; unrelated dirty work fingerprint preserved.
+- The historical `StreamGenerate` SESSION_API bootstrap is stale for current acceptance: `/app` returned 200 and `cfb2h` but no `SNlM0e`; no generation dispatch was committed on that diagnostic.
+- One anonymous BROWSER_CDP attempt was committed before auth-state detection was corrected; Gemini returned text saying image creation was unavailable, with no image/download control. It is terminal FAILED/AUTH_REQUIRED and cannot be relabeled PASS.
+- Preflight is now fail-closed: visible `Sign in` => `AUTH_REQUIRED` before dispatch.
+- **Operator action required now:** sign in to Gemini in the already-open dedicated Gemini backend browser only; do not send a prompt and do not download anything. Leave the browser running and report `done`. No new Founder authorization is required.
+- Receipt: `company/factory-asset/receipts/FA-W013-gemini-autonomous-backend.receipt.json`.
+
 ## OAUTH safety
 
 - `D:\OAUTH` HEAD remains `c2fb61467138a24156b3d61c991882ebcdd59086`.
@@ -107,7 +118,7 @@ Current Level-2 frontier: `FA-W011` — define the common autonomous provider ba
 
 ## Next Windows frontier
 
-`FA-W013` Gemini autonomous backend proof is now the **only READY Windows provider frontier**. Grok is sequenced after Gemini, Manus after Grok, and Duck.ai after Manus. Qwen remains the Level-2 reference PASS; ChatGPT/MUXIA remains non-blocking and deferred.
+`FA-W013` remains the sole Windows frontier at `WAITING_OPERATOR` for **pre-dispatch Gemini login only**. The dedicated browser worker is already running on loopback CDP. After login, Architect must re-preflight and perform the next distinct bounded attempt; Grok remains blocked until FA-W013 reaches a terminal state.
 
 ## Engineering lease
 
