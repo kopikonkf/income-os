@@ -416,11 +416,13 @@
         "FA-W007",
         "FA-W008"
       ],
-      "status": "READY",
+      "status": "DONE",
       "acceptance_batch": true,
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W009-six-provider-windows-acceptance.receipt.json",
       "acceptance": "Qwen, ChatGPT, Gemini, Grok, Manus and Duck.ai each have a real prompt-to-validated-original-byte local-save PASS; any UNSUPPORTED, UNKNOWN, screenshot-only, URL-only or text-only lane blocks six-provider acceptance and requires Founder disposition.",
-      "unblocked_by": "FA-W008"
+      "completed_at": "2026-09-03",
+      "receipt": "company/factory-asset/receipts/FA-W009-six-provider-windows-acceptance.receipt.json",
+      "result": "PASS: six of six Windows providers have canonical real-generation provider-original local-save proofs with strict validation and acceptance-time local hash/reopen recheck. Qwen is SESSION_API; ChatGPT/Gemini/Grok/Manus/Duck.ai are BROWSER_OPERATOR and are not misrepresented as fully autonomous."
     },
     {
       "id": "FA-W010",
@@ -435,7 +437,8 @@
       "status": "BLOCKED",
       "authority": "FOUNDER_DECISION_REQUIRED_FOR_PURCHASE_OR_ACCOUNT_ACTION",
       "artifact": "D:\\FACTORY_ASSET\\GENWHITE_CAPABILITY_PARITY_RESEARCH_V1.md",
-      "acceptance": "Observable lawful product capabilities are mapped to Factory requirements without proprietary-code extraction, protection bypass or unverified backend assumptions."
+      "acceptance": "Observable lawful product capabilities are mapped to Factory requirements without proprietary-code extraction, protection bypass or unverified backend assumptions.",
+      "blocker": "FOUNDER_DECISION_REQUIRED_FOR_PURCHASE_OR_ACCOUNT_ACTION: FA-W009 dependency is now DONE, but GenWHITE benchmarking/purchase/account action requires explicit Founder disposition."
     },
     {
       "id": "FA-010",

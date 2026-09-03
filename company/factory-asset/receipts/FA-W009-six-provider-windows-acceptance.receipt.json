@@ -1,0 +1,163 @@
+{
+  "schema": "factory-asset.six-provider-windows-acceptance-receipt.v1",
+  "task_id": "FA-W009",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "acceptance_scope": "Windows original-image export capability across Qwen, ChatGPT, Gemini, Grok, Manus and Duck.ai",
+  "provider_count": 6,
+  "provider_pass_count": 6,
+  "providers": [
+    {
+      "provider": "qwen",
+      "task_id": "FA-W002",
+      "transport_class": "SESSION_API",
+      "receipt": "company/factory-asset/receipts/FA-W002-qwen-image-proof.receipt.json",
+      "source_path": "D:\\ASSETS\\OAUTH\\2026-09-03\\qwen_032a7cf1.png",
+      "format": "PNG",
+      "mime": "image/png",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "bytes": 3821821,
+      "sha256": "54f54a263a09e3246a0b9414b665f8ab232fa7bf04f51d786ffc008921929105",
+      "receipt_result": "PASS",
+      "local_acceptance_recheck": "PASS",
+      "sha_matches_receipt": true,
+      "decode_reopen": "PASS"
+    },
+    {
+      "provider": "chatgpt",
+      "task_id": "FA-W004",
+      "transport_class": "BROWSER_OPERATOR",
+      "receipt": "company/factory-asset/receipts/FA-W004-chatgpt-image-proof.receipt.json",
+      "source_path": "D:\\ASSETS\\OAUTH\\2026-09-03\\ChatGPT Image Sep 3, 2026, 06_17_24 AM.png",
+      "format": "PNG",
+      "mime": "image/png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "bytes": 776389,
+      "sha256": "05d8135e4e6bebc3f7dc7baca49cd3a70e768e096bafdbb9e0fa96b734fa1e65",
+      "receipt_result": "PASS",
+      "local_acceptance_recheck": "PASS",
+      "sha_matches_receipt": true,
+      "decode_reopen": "PASS"
+    },
+    {
+      "provider": "gemini",
+      "task_id": "FA-W005",
+      "transport_class": "BROWSER_OPERATOR",
+      "receipt": "company/factory-asset/receipts/FA-W005-gemini-image-proof.receipt.json",
+      "source_path": "D:\\ASSETS\\OAUTH\\2026-09-03\\Gemini_Generated_Image_g7zzl4g7zzl4g7zz.jpg",
+      "format": "JPEG",
+      "mime": "image/jpeg",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 359349,
+      "sha256": "cd866318223134624f0852e2ef5ddac421544469145272cb6339c57a62fd1012",
+      "receipt_result": "PASS",
+      "local_acceptance_recheck": "PASS",
+      "sha_matches_receipt": true,
+      "decode_reopen": "PASS"
+    },
+    {
+      "provider": "grok",
+      "task_id": "FA-W006",
+      "transport_class": "BROWSER_OPERATOR",
+      "receipt": "company/factory-asset/receipts/FA-W006-grok-image-proof.receipt.json",
+      "source_path": "D:\\ASSETS\\OAUTH\\2026-09-03\\grok.jpg",
+      "format": "JPEG",
+      "mime": "image/jpeg",
+      "dimensions": [
+        784,
+        1168
+      ],
+      "bytes": 102354,
+      "sha256": "18087c41cf26d783edcb4c6630e9325dc15973f1e1cac9bb0858ce51f0e4ebdd",
+      "receipt_result": "PASS",
+      "local_acceptance_recheck": "PASS",
+      "sha_matches_receipt": true,
+      "decode_reopen": "PASS"
+    },
+    {
+      "provider": "manus",
+      "task_id": "FA-W007",
+      "transport_class": "BROWSER_OPERATOR",
+      "receipt": "company/factory-asset/receipts/FA-W007-manus-image-proof.receipt.json",
+      "source_path": "D:\\ASSETS\\OAUTH\\2026-09-03\\manus_pink_square_white_background.png",
+      "format": "PNG",
+      "mime": "image/png",
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "bytes": 788616,
+      "sha256": "a53768478e5ef09498f5df735f89e71f49bbbcfe39a89ec1f9f24abbf840923a",
+      "receipt_result": "PASS",
+      "local_acceptance_recheck": "PASS",
+      "sha_matches_receipt": true,
+      "decode_reopen": "PASS"
+    },
+    {
+      "provider": "duck.ai",
+      "task_id": "FA-W008",
+      "transport_class": "BROWSER_OPERATOR",
+      "receipt": "company/factory-asset/receipts/FA-W008-duckai-image-proof.receipt.json",
+      "source_path": "D:\\ASSETS\\OAUTH\\2026-09-03\\Duck-ai-image-2026-09-03-06-58.jpeg",
+      "format": "JPEG",
+      "mime": "image/jpeg",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "bytes": 42740,
+      "sha256": "4086a14f2b8bca067941bd5f377ec675caff1c9ae77b92a40dc221f49d492cf9",
+      "operator_reported_model_label": "gpt5.5 luna",
+      "receipt_result": "PASS",
+      "local_acceptance_recheck": "PASS",
+      "sha_matches_receipt": true,
+      "decode_reopen": "PASS"
+    }
+  ],
+  "common_evidence": {
+    "all_dependencies_terminal_done_or_pass": true,
+    "all_real_provider_generation_evidenced": true,
+    "all_original_bytes_durable_local": true,
+    "all_mime_magic_dimensions_positive_bytes_sha256_present": true,
+    "all_decode_reopen_pass": true,
+    "all_exact_local_files_rechecked_on_acceptance": true,
+    "all_local_sha256_match_canonical_receipts": true,
+    "screenshot_only_counted_as_pass": false,
+    "url_only_counted_as_pass": false,
+    "text_only_counted_as_pass": false
+  },
+  "transport_summary": {
+    "SESSION_API": [
+      "qwen"
+    ],
+    "BROWSER_OPERATOR": [
+      "chatgpt",
+      "gemini",
+      "grok",
+      "manus",
+      "duck.ai"
+    ]
+  },
+  "truth_boundary": {
+    "proves_original_image_export_and_local_save": true,
+    "proves_all_six_lanes_fully_autonomous": false,
+    "reason": "Five consumer-web proofs use BROWSER_OPERATOR: real provider generation plus manual provider-original download followed by strict local validation. Only Qwen is accepted here as SESSION_API. This receipt does not mislabel operator-controlled lanes as Proxima-like autonomous prompt-to-download.",
+    "duckai_model_label": "gpt5.5 luna is Founder/operator-reported UI label; not independently verified by Architect transport."
+  },
+  "security": {
+    "credentials_or_raw_session_material_published": false,
+    "captcha_or_protection_bypass": false,
+    "quota_evasion": false
+  },
+  "next_gate": "FA-W010 remains Founder-decision gated for GenWHITE capability benchmarking/purchase/account action; FA-W009 itself is terminal PASS."
+}

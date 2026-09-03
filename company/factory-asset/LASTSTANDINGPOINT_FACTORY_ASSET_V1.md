@@ -64,6 +64,15 @@
 - Actual proof transport: `BROWSER_OPERATOR`; the prior text-only endpoint is not counted as image proof.
 - Receipt: `company/factory-asset/receipts/FA-W008-duckai-image-proof.receipt.json`.
 
+### FA-W009 — DONE / PASS — Six-provider Windows acceptance
+
+- Six of six provider proofs are terminal PASS: Qwen, ChatGPT, Gemini, Grok, Manus and Duck.ai.
+- Acceptance-time local recheck reopened all six exact VPS files and recomputed SHA-256; every hash matches its canonical provider receipt.
+- Qwen transport is `SESSION_API`; ChatGPT, Gemini, Grok, Manus and Duck.ai are `BROWSER_OPERATOR`.
+- PASS means each provider has real-generation provider-original bytes saved durably on the Windows VPS with MIME/magic/dimensions/positive-byte/SHA-256/decode evidence.
+- This does **not** claim that all six are fully autonomous like Proxima: five browser lanes currently use operator generation/manual provider-original download followed by automated strict local ingestion.
+- Receipt: `company/factory-asset/receipts/FA-W009-six-provider-windows-acceptance.receipt.json`.
+
 ## OAUTH safety
 
 - `D:\OAUTH` HEAD remains `c2fb61467138a24156b3d61c991882ebcdd59086`.
