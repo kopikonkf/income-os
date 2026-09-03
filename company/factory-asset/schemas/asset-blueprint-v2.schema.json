@@ -1,0 +1,99 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/factory-asset/asset-blueprint-v2.schema.json",
+  "title": "Factory Asset Blueprint v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema","blueprint_id","semantic_identity","asset_type","native_representation","producer_class","master_spec","derivatives","distinctness","rights","quality","policy"],
+  "properties": {
+    "schema": {"const": "die.factory-asset.asset-blueprint.v2"},
+    "blueprint_id": {"type":"string","pattern":"^FABP-[A-Z0-9][A-Z0-9_-]{5,63}$"},
+    "semantic_identity": {
+      "type":"object","additionalProperties":false,
+      "required":["semantic_asset_id","commercial_use_case","subject","intent"],
+      "properties": {
+        "semantic_asset_id":{"type":"string","pattern":"^FASA-[A-Z0-9][A-Z0-9_-]{5,63}$"},
+        "commercial_use_case":{"type":"string","minLength":8,"maxLength":240},
+        "subject":{"type":"string","minLength":2,"maxLength":160},
+        "intent":{"enum":["COMMERCIAL_STOCK","DESIGN_COMPONENT","DECORATIVE_BACKGROUND","MOTION_ASSET"]}
+      }
+    },
+    "asset_type":{"type":"string","pattern":"^[A-Z][A-Z0-9_]{1,63}$"},
+    "native_representation":{"enum":["RASTER_PIXELS","VECTOR_PATHS","TIMED_FRAMES"]},
+    "producer_class":{"enum":["RASTER_GENERATIVE","NATIVE_VECTOR","PROCEDURAL_VECTOR","MOTION_RENDERER"]},
+    "master_spec": {
+      "type":"object","additionalProperties":false,
+      "required":["format","lineage_sha256_required"],
+      "properties": {
+        "format":{"enum":["PNG","JPEG","TIFF","SVG","EPS","MP4","MOV"]},
+        "width_px":{"type":"integer","minimum":1},
+        "height_px":{"type":"integer","minimum":1},
+        "duration_seconds":{"type":"number","exclusiveMinimum":0},
+        "fps":{"type":"number","exclusiveMinimum":0},
+        "color_space":{"enum":["SRGB","DISPLAY_P3","NOT_APPLICABLE"]},
+        "lineage_sha256_required":{"const":true}
+      }
+    },
+    "derivatives": {
+      "type":"array","uniqueItems":true,
+      "items": {
+        "type":"object","additionalProperties":false,
+        "required":["derivative_id","purpose","format","semantic_identity_effect"],
+        "properties": {
+          "derivative_id":{"type":"string","pattern":"^[A-Z0-9][A-Z0-9_-]{2,63}$"},
+          "purpose":{"enum":["MARKETPLACE_DELIVERY","PREVIEW","THUMBNAIL","COMPATIBILITY_EXPORT"]},
+          "format":{"enum":["PNG","JPEG","WEBP","TIFF","PDF","SVG","EPS","MP4","MOV"]},
+          "semantic_identity_effect":{"const":"NONE"}
+        }
+      }
+    },
+    "distinctness": {
+      "type":"object","additionalProperties":false,
+      "required":["identity_rule","packaging_variants_create_new_semantic_asset","near_duplicate_action"],
+      "properties": {
+        "identity_rule":{"const":"DISTINCT_COMMERCIAL_USE_CASE_AND_BLUEPRINT"},
+        "packaging_variants_create_new_semantic_asset":{"const":false},
+        "near_duplicate_action":{"const":"QUARANTINE"}
+      }
+    },
+    "rights": {
+      "type":"object","additionalProperties":false,
+      "required":["commercial_use_cleared","trademark_free","recognizable_person_or_property","release_state"],
+      "properties": {
+        "commercial_use_cleared":{"const":true},
+        "trademark_free":{"const":true},
+        "recognizable_person_or_property":{"type":"boolean"},
+        "release_state":{"enum":["NOT_REQUIRED","REQUIRED_AND_PRESENT","EDITORIAL_ONLY"]}
+      },
+      "allOf":[
+        {"if":{"properties":{"recognizable_person_or_property":{"const":true}},"required":["recognizable_person_or_property"]},"then":{"properties":{"release_state":{"enum":["REQUIRED_AND_PRESENT","EDITORIAL_ONLY"]}}}}
+      ]
+    },
+    "quality": {
+      "type":"object","additionalProperties":false,
+      "required":["magic_mime_match","decode_reopen","lineage_sha256","family_checks"],
+      "properties": {
+        "magic_mime_match":{"const":true},
+        "decode_reopen":{"const":true},
+        "lineage_sha256":{"const":true},
+        "family_checks":{"type":"array","minItems":1,"uniqueItems":true,"items":{"enum":["RASTER_DIMENSIONS","ALPHA_POLICY","COLOR_SPACE","VECTOR_PATHS_PRESENT","NO_EMBEDDED_RASTER_ONLY","VIEWBOX_BOUNDS","PATH_COMPLEXITY","MOTION_DURATION","MOTION_CODEC","MOTION_FRAME_INTEGRITY"]}}
+      }
+    },
+    "policy": {
+      "type":"object","additionalProperties":false,
+      "required":["compatibility_state","marketplace_profiles","unknown_policy_action","submission_authority"],
+      "properties": {
+        "compatibility_state":{"enum":["COMPATIBLE","COMPATIBILITY_UNKNOWN","INCOMPATIBLE"]},
+        "marketplace_profiles":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string","pattern":"^[A-Z0-9][A-Z0-9_-]{1,63}$"}},
+        "unknown_policy_action":{"const":"BLOCK_SUBMISSION"},
+        "submission_authority":{"const":"FOUNDER_CONTROLLED"}
+      }
+    }
+  },
+  "allOf": [
+    {"if":{"properties":{"native_representation":{"const":"RASTER_PIXELS"}},"required":["native_representation"]},"then":{"properties":{"producer_class":{"const":"RASTER_GENERATIVE"},"master_spec":{"properties":{"format":{"enum":["PNG","JPEG","TIFF"]}},"required":["width_px","height_px"]},"quality":{"properties":{"family_checks":{"contains":{"const":"RASTER_DIMENSIONS"}}}}}}},
+    {"if":{"properties":{"native_representation":{"const":"VECTOR_PATHS"}},"required":["native_representation"]},"then":{"properties":{"producer_class":{"enum":["NATIVE_VECTOR","PROCEDURAL_VECTOR"]},"master_spec":{"properties":{"format":{"enum":["SVG","EPS"]}}},"quality":{"properties":{"family_checks":{"allOf":[{"contains":{"const":"VECTOR_PATHS_PRESENT"}},{"contains":{"const":"NO_EMBEDDED_RASTER_ONLY"}}]}}}}}},
+    {"if":{"properties":{"native_representation":{"const":"TIMED_FRAMES"}},"required":["native_representation"]},"then":{"properties":{"producer_class":{"const":"MOTION_RENDERER"},"master_spec":{"properties":{"format":{"enum":["MP4","MOV"]}},"required":["duration_seconds","fps"]},"quality":{"properties":{"family_checks":{"allOf":[{"contains":{"const":"MOTION_DURATION"}},{"contains":{"const":"MOTION_FRAME_INTEGRITY"}}]}}}}}},
+    {"if":{"properties":{"policy":{"properties":{"compatibility_state":{"const":"COMPATIBILITY_UNKNOWN"}},"required":["compatibility_state"]}}},"then":{"properties":{"policy":{"properties":{"unknown_policy_action":{"const":"BLOCK_SUBMISSION"}}}}}}
+  ]
+}
