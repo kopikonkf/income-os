@@ -398,10 +398,11 @@
       "depends_on": [
         "FA-003"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/schemas/asset-type-registry.schema.json",
       "acceptance": "Schema covers native representation, producer classes, master/delivery formats, vectorizability, rights, quality, maturity and distinctness invariants; invalid fixtures fail.",
-      "unblocked_by": "FA-003"
+      "unblocked_by": "FA-003",
+      "completed_receipt": "company/factory-asset/receipts/FA-010-asset-type-registry-schema.receipt.json"
     },
     {
       "id": "FA-011",
@@ -413,7 +414,7 @@
         "FA-003",
         "FA-010"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/registries/marketplace-delivery-profiles.v1.json",
       "acceptance": "Profiles compile from FA-003 evidence, include freshness and UNKNOWN handling, and validate against schema."
     },
