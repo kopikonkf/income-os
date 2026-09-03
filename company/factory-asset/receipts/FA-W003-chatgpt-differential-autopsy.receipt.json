@@ -1,0 +1,152 @@
+{
+  "schema": "factory-asset.windows-chatgpt-differential-autopsy.v1",
+  "task_id": "FA-W003",
+  "date": "2026-09-03",
+  "status": "PASS",
+  "execution_mode": "READ_ONLY_DIFFERENTIAL_AUTOPSY",
+  "live_provider_generation_performed": false,
+  "source_mutation_performed": false,
+  "scope": "Compare the historically working Proxima ChatGPT image path with the current failing D:\\OAUTH ChatGPT image adapter across browser/session ownership, transport, prompt submission, completion detection, original-byte acquisition and durable local save.",
+  "baselines": {
+    "proxima": {
+      "path": "D:\\V2 Proxima",
+      "head": "06b9c9bea212122e76ecfadb88f307378dd9bd7d",
+      "chatgpt_engine_sha256": "82277898707704aec59fb681cc7ced04d90883258c5d7b55c7ecf5d3850cae80",
+      "artifact_exporter_sha256": "6b0f518f9165257c69d34cafffe4f392d06e36cabc879f490dc59705ce895596",
+      "live_loopback_status": "PASS",
+      "loopback_endpoint": "http://127.0.0.1:3211/api/status",
+      "status_observed": {
+        "server": "Proxima API",
+        "version": "5.0.0",
+        "chatgpt_calls": 3,
+        "chatgpt_errors": 1,
+        "last_call": "2026-08-25T16:11:13.647Z"
+      },
+      "durable_artifact_evidence": {
+        "path": "D:\\proximav2-setup\\artifacts\\56d97e9b39f8e4e15e20ae83cedb35e05ecd089ea2789717e5b73dde2e459fe1.png",
+        "receipt": "D:\\proximav2-setup\\artifacts\\56d97e9b39f8e4e15e20ae83cedb35e05ecd089ea2789717e5b73dde2e459fe1.receipt.json",
+        "magic": "PNG",
+        "dimensions": [1254, 1254],
+        "bytes": 1086836,
+        "sha256": "56d97e9b39f8e4e15e20ae83cedb35e05ecd089ea2789717e5b73dde2e459fe1",
+        "source_origin": "chatgpt-session"
+      }
+    },
+    "oauth": {
+      "path": "D:\\OAUTH",
+      "head": "c2fb61467138a24156b3d61c991882ebcdd59086",
+      "chatgpt_image_worktree_state": "MODIFIED_UNCOMMITTED_PREEXISTING",
+      "chatgpt_image_sha256": "c29f3ab9633f2e6f213dcd293afb00561ffb4d41b9e11e313b8650928741ab9f",
+      "local_server_health": "PASS",
+      "loopback_health_endpoint": "http://127.0.0.1:8456/health",
+      "last_recorded_chatgpt_image_test": {
+        "started_at": "2026-09-01T15:42:11",
+        "result_http": 401,
+        "elapsed_seconds": 2.1,
+        "sanitized_failure": "CDP connect_over_cdp ECONNREFUSED 127.0.0.1:9222"
+      }
+    }
+  },
+  "differential": {
+    "browser_session_ownership": {
+      "proxima": "Owns a dedicated persistent ChatGPT browser partition/session and long-lived BrowserView; the image-ui path runs inside that authenticated page context.",
+      "oauth": "Does not own or launch the required ChatGPT browser/profile. It assumes an external Playwright CDP browser at a hard-coded 127.0.0.1:9222 endpoint, attaches to the first context and opens a temporary page.",
+      "verdict": "ROOT_CAUSE_CONFIRMED",
+      "finding": "The currently evidenced OAUTH failure occurs before generation because the assumed external CDP endpoint is unavailable. Browser/profile ownership is therefore missing from the adapter contract."
+    },
+    "transport_class": {
+      "proxima": "BROWSER_CDP-equivalent browser automation for the proven image-ui lane; legacy private-backend code also exists but is not the reusable target.",
+      "oauth": "HYBRID: raw httpx private-backend attempt first, then external browser-CDP fetch fallback.",
+      "verdict": "OAUTH_TRANSPORT_TOO_COUPLED_TO_UNOWNED_EXTERNAL_STATE"
+    },
+    "prompt_submission": {
+      "proxima": "Proven image-ui lane finds a ready visible composer, fills the prompt and activates the send control in the authenticated page.",
+      "oauth": "Builds a guessed /backend-api/conversation payload and posts it through httpx or in-page fetch; current wire-protocol document itself marks exact payload fields as hypothesis/live-capture pending.",
+      "verdict": "REIMPLEMENT_BROWSER_UI_BOUNDARY",
+      "finding": "For the bounded image proof, UI composer semantics are the evidenced reusable behavior. Guessed private-backend request fields are not required for FA-W004 and should not be the foundation."
+    },
+    "auth_and_requirements_chain": {
+      "proxima": "The proven image-ui lane relies on the already-authenticated browser page rather than reconstructing the private backend auth chain.",
+      "oauth": "HTTP code treats a stored session-token value as a Bearer token; CDP POST path relies on cookies and does not establish the documented /api/auth/session accessToken plus chat-requirements chain before private-backend conversation submission.",
+      "verdict": "STATIC_PROTOCOL_MISMATCH",
+      "finding": "D:\\OAUTH documentation separately records that the web backend Bearer is the accessToken from /api/auth/session and that the private backend requirements chain differs from the adapter's current assumptions. Fixing port 9222 alone therefore does not establish a proven private-backend image path."
+    },
+    "completion_detection": {
+      "proxima": "Image-ui establishes a pre-submit image baseline, watches for a new sufficiently large image in a new turn, waits for a stable candidate and generation-stop disappearance, then fails closed on timeout.",
+      "oauth": "Private-backend path parses SSE for guessed asset pointers/URLs and otherwise waits a fixed 30 seconds before one conversation re-fetch; it does not use the proven UI image lifecycle for the image proof.",
+      "verdict": "PROXIMA_BEHAVIORAL_CONTRACT_STRONGER"
+    },
+    "original_byte_acquisition": {
+      "proxima": "The proven image-ui path fetches the selected generated image from inside the authenticated browser context and passes bounded raster bytes to a durable exporter.",
+      "oauth": "Attempts file-id download via CDP/httpx or direct URL download. When URL download fails it can return URL-only ImageData instead of durable original bytes.",
+      "verdict": "OAUTH_FALSE_SUCCESS_RISK",
+      "finding": "FA-W001 explicitly forbids URL-only success. The FA-W004 implementation must fail closed unless original bytes are actually acquired."
+    },
+    "durable_save_and_validation": {
+      "proxima": "Content-addressed SHA-256 filename, raster magic detection for PNG/JPEG/WebP, bounded size, atomic write, dedupe by content hash and JSON receipt.",
+      "oauth": "Writes random chatgpt_<uuid>.png filenames directly, assumes .png extension, has no atomic content-addressed write, no magic-versus-extension enforcement and no receipt-level dedupe/lineage in ChatGPTImageAdapter._save_asset.",
+      "verdict": "REUSE_CONTRACT_NOT_CODE",
+      "finding": "The durable exporter behavior should be independently reimplemented under the FA-W001 contract rather than copied from Proxima."
+    },
+    "failure_semantics": {
+      "proxima": "Image-ui fails when composer/send/image capture/original-byte materialization fails; durable artifact is required by the autonomy proof.",
+      "oauth": "Has typed AuthError/RateLimitError in parts of the flow but conflates CDP unavailability with authentication at the API boundary and permits URL fallback after failed byte download.",
+      "verdict": "NORMALIZE_TYPED_FAILURES_AND_REMOVE_URL_SUCCESS"
+    }
+  },
+  "exact_reusable_boundary": {
+    "name": "WINDOWS_CHATGPT_BROWSER_IMAGE_PROOF_BOUNDARY_V1",
+    "classification": "INDEPENDENT_REIMPLEMENTATION_REQUIRED",
+    "components": [
+      "Dedicated headed browser/profile owner with explicit one-principal lifecycle and no hard-coded dependency on an unowned CDP process.",
+      "Authenticated page-state detector that returns READY, AUTH_REQUIRED or BLOCKED without reading/exporting cookies or tokens.",
+      "Composer reacquisition plus visible prompt submission through the browser UI for the bounded image proof.",
+      "Pre-submit image inventory plus bounded new-image completion detector with timeout and fail-closed behavior.",
+      "Original-byte fetch through the same authenticated browser context or a browser download event; screenshot, preview and URL-only outputs fail.",
+      "Format/magic detection, positive dimensions/bytes, decode-reopen and SHA-256 validation under FA-W001.",
+      "Atomic content-addressed local persistence plus receipt; packaging or preview files do not mint new semantic assets.",
+      "Typed terminal states for browser unavailable, auth required, blocked/protection challenge, composer unavailable, generation timeout, download failure and invalid bytes."
+    ],
+    "explicitly_not_reused": [
+      "Electron application shell",
+      "Proxima source code or tests",
+      "stealth/fingerprint camouflage",
+      "challenge or proof-of-work bypass logic",
+      "private-backend reverse-engineering as the required image transport",
+      "raw cookie/session-token copying",
+      "URL-only success fallback"
+    ]
+  },
+  "licensing_and_policy_boundary": {
+    "proxima_license": "REFERENCE_ONLY_FOR_COMMERCIAL_DIE_PER_MX-011",
+    "canonical_muxia_policy": "company/muxia/policies/chatgpt-web-boundary-v1.json",
+    "policy_observation": "Current canonical MUXIA policy blocks autonomous consumer-web output extraction and holds unattended programmatic prompt dispatch pending a supported interface or policy clarification. FA-W003 is analysis only and does not itself authorize FA-W004 execution.",
+    "protective_measure_bypass_allowed": false
+  },
+  "recommended_next_engineering_change": {
+    "task": "FA-W004_AFTER_REQUIRED_AUTHORITY_AND_POLICY_GATE",
+    "approach": "Replace the current ChatGPT image proof path with the independently implemented browser-owned UI boundary above. Do not patch only CDP port 9222 and do not promote the current guessed private-backend flow as proven.",
+    "minimum_acceptance": "One bounded authorized prompt produces provider-generated original bytes, durable local save, reopen/decode, MIME/magic, dimensions, bytes and SHA-256 with no URL-only or screenshot-only fallback."
+  },
+  "security": {
+    "credential_values_read_or_published": false,
+    "raw_cookie_published": false,
+    "authenticated_capture_opened": false,
+    "provider_call_performed": false,
+    "captcha_or_protection_bypass_performed": false,
+    "oauth_provider_source_modified": false,
+    "proxima_source_modified": false
+  },
+  "acceptance": {
+    "working_proxima_and_failing_oauth_compared": true,
+    "browser_session_ownership_compared": true,
+    "cdp_transport_compared": true,
+    "prompt_submission_compared": true,
+    "completion_detection_compared": true,
+    "original_byte_acquisition_compared": true,
+    "durable_save_compared": true,
+    "exact_reusable_boundary_identified": true,
+    "electron_wholesale_import_required": false,
+    "result": "PASS"
+  }
+}

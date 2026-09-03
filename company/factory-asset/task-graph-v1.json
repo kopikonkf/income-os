@@ -281,9 +281,11 @@
       "depends_on": [
         "FA-W001"
       ],
-      "status": "READY",
-      "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W003-chatgpt-differential-autopsy.receipt.json",
-      "acceptance": "Working Proxima and failing OAUTH are compared across browser/session ownership, CDP, prompt submission, completion detection, original-byte acquisition and save; exact reusable boundary is identified without importing Electron wholesale."
+      "status": "DONE",
+      "artifact": "company/factory-asset/receipts/FA-W003-chatgpt-differential-autopsy.receipt.json",
+      "acceptance": "Working Proxima and failing OAUTH are compared across browser/session ownership, CDP, prompt submission, completion detection, original-byte acquisition and save; exact reusable boundary is identified without importing Electron wholesale.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: Proxima working browser-owned image-ui path and current failing OAUTH hybrid path compared; exact independent browser-owned reusable boundary identified; no provider call or source mutation."
     },
     {
       "id": "FA-W004",
@@ -295,10 +297,11 @@
       "depends_on": [
         "FA-W003"
       ],
-      "status": "BLOCKED",
+      "status": "WAITING_FOUNDER",
       "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W004-chatgpt-image-proof.receipt.json",
-      "acceptance": "One bounded authorized ChatGPT request yields a real generated original image automatically saved to D:\\ASSETS\\OAUTH with complete validation; screenshot-only or URL-only output fails."
+      "acceptance": "One bounded authorized ChatGPT request yields a real generated original image automatically saved to D:\\ASSETS\\OAUTH with complete validation; screenshot-only or URL-only output fails.",
+      "blocker": "FA-W003 is complete. One bounded live ChatGPT provider call remains Founder-confirmation gated, and current canonical ChatGPT consumer-web policy must be respected before execution."
     },
     {
       "id": "FA-W005",
