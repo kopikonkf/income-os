@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "3.5-fa104-provider-router",
+  "revision": "3.6-fa105-factory-queue",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1259,9 +1259,11 @@
       "depends_on": [
         "FA-104"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Factory job queue and fault-injection tests",
-      "acceptance": "Jobs are idempotent/resumable; typed retryable failures retry at most twice; crash recovery never creates false success or duplicate ownership."
+      "acceptance": "Jobs are idempotent/resumable; typed retryable failures retry at most twice; crash recovery never creates false success or duplicate ownership.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: deterministic Factory job queue enforces idempotent submit, single RUNNING ownership, governed pause/resume/cancel, typed retryable failures with at most two retries, hash-gated success, durable snapshot restore and crash reconciliation to READY without false success or duplicate ownership. Regression 140/140 PASS."
     },
     {
       "id": "FA-106",
@@ -1287,7 +1289,7 @@
         "FA-102",
         "FA-105"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Factory metrics/logging surfaces and secret-negative tests",
       "acceptance": "Attempts, unique masters, QA assets, derivatives, packages, failures, resources and economics are separate; credentials/auth bodies absent."
     },
@@ -1749,7 +1751,7 @@
         "FA-100",
         "FA-105"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/schemas/factory-console-api.schema.json + event contract tests",
       "acceptance": "Console can submit governed job intents and observe normalized queue/provider/output events without vendor wire fields, credentials or direct browser ownership."
     },

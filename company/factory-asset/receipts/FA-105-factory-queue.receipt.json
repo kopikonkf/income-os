@@ -1,0 +1,30 @@
+{
+  "schema": "factory-asset.factory-queue-receipt.v1",
+  "task_id": "FA-105",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "states": [
+    "READY",
+    "RUNNING",
+    "PAUSED",
+    "RETRY_WAIT",
+    "SUCCEEDED",
+    "FAILED",
+    "CANCELLED"
+  ],
+  "max_retries": 2,
+  "guards": [
+    "idempotent submit",
+    "single running owner",
+    "hash-gated success",
+    "typed retryability",
+    "snapshot false-success rejection",
+    "crash RUNNING->READY reconciliation"
+  ],
+  "validation": "140/140 PASS",
+  "unblocked": [
+    "FA-C003",
+    "FA-107"
+  ]
+}
