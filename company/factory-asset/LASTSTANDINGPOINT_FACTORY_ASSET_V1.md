@@ -222,3 +222,12 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - No cookie/token value was read or copied, no provider prompt was sent, and the isolated browser/tunnel were terminated after proof.
 - Canonical MUXIA wrapper: `company/muxia/scripts/linux/muxia-webai-browser-runtime.mjs`.
 - `FA-W021` is now READY for explicit coexistence + rollback-safe continuity proof.
+
+
+### FA-W021 — DONE / PASS — standalone + MUXIA coexistence / rollback continuity
+
+- Canonical MUXIA wrapper from FA-W020 was copied only into an isolated operator-home test tree and launched with a fresh temporary profile; live production profiles, queues and services were untouched.
+- While the isolated MUXIA runtime was alive at remote loopback `127.0.0.1:45235`, standalone Windows `web-ai-adapter` remained `READY` on `127.0.0.1:9333`.
+- Explicit `WEB_AI_BROWSER_RUNTIME=MUXIA` + sanitized status file resolved the MUXIA endpoint and reached provider-level `AUTH_REQUIRED`, proving attachment without credential copy or provider dispatch.
+- Switching back to `STANDALONE` while MUXIA remained alive returned `READY`; after terminating the isolated MUXIA browser and SSH tunnel, standalone preflight remained `READY`.
+- Therefore standalone production/lab operation can continue during MUXIA hardening, and cutover can remain explicit/reversible. No cutover was performed by this task.

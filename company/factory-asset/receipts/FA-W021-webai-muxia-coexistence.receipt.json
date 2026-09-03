@@ -1,0 +1,54 @@
+{
+  "schema": "factory-asset.webai-muxia-coexistence-receipt.v1",
+  "task_id": "FA-W021",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "standalone_runtime": {
+    "runtime_mode": "STANDALONE",
+    "cdp_url": "http://127.0.0.1:9333",
+    "preflight_before_muxia_switch": "READY",
+    "preflight_during_muxia_runtime": "READY",
+    "preflight_after_muxia_teardown": "READY",
+    "provider": "chatgpt"
+  },
+  "muxia_runtime": {
+    "runtime_mode": "MUXIA",
+    "remote_profile": "/home/kopiko/fa-w021-runtime-20260903175158/profile",
+    "status_schema": "die.muxia.webai-browser-runtime.v1",
+    "principal_id": "fa-w021-isolated-muxia-browser",
+    "browser_pid": 528555,
+    "remote_debug_host": "127.0.0.1",
+    "remote_debug_port": 45235,
+    "forwarded_local_cdp": "http://127.0.0.1:45235",
+    "preflight": "AUTH_REQUIRED",
+    "provider_prompt_dispatched": false,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false
+  },
+  "switching": {
+    "selector": "WEB_AI_BROWSER_RUNTIME",
+    "standalone_value": "STANDALONE",
+    "muxia_value": "MUXIA",
+    "muxia_status_selector": "WEB_AI_MUXIA_STATUS_FILE",
+    "sequence": [
+      "STANDALONE READY",
+      "MUXIA AUTH_REQUIRED after successful CDP attachment",
+      "STANDALONE READY while MUXIA runtime still alive",
+      "MUXIA runtime and SSH tunnel terminated",
+      "STANDALONE READY after teardown"
+    ],
+    "explicit": true,
+    "reversible": true
+  },
+  "safety": {
+    "production_profile_modified": false,
+    "production_queue_modified": false,
+    "production_service_restarted": false,
+    "dirty_D_OAUTH_source_mutated": false,
+    "cutover_performed": false
+  },
+  "web_ai_adapter_merge_commit": "cd102e8f3d473718adbc7c304df9a9babc4095e2",
+  "income_os_muxia_runtime_merge_commit": "c31fcf5d57be703082d07b51616ba9daa8d23617",
+  "completed_at": "2026-09-03T17:53:00Z"
+}
