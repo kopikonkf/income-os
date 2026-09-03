@@ -201,11 +201,12 @@
         "FA-004",
         "FA-006"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "FOUNDER_AND_OPERATOR_REQUIRED",
       "artifact": "company/factory-asset/receipts/FA-005-oauth-credential-remediation.receipt.json",
       "acceptance": "Remote uses a non-inline credential mechanism, affected credential is rotated, access is verified, secret scan is clean and no credential value appears in receipts or logs.",
-      "blocker": "Remote sanitization, old PAT revocation, and fresh OS-backed GitHub keyring login are complete. FA-005 remains blocked only on FA-006 because the revoked PAT is still present in tracked HANDOFF.md and reachable Git history."
+      "completed_at": "2026-09-03",
+      "resolution": "FA-006 PASS: revoked credential removed from current tracked content and reachable history while non-inline Git auth and dirty OAUTH work were preserved."
     },
     {
       "id": "FA-006",
@@ -217,10 +218,13 @@
       "depends_on": [
         "FA-004"
       ],
-      "status": "WAITING_FOUNDER",
+      "status": "DONE",
       "authority": "FOUNDER_AND_OPERATOR_REQUIRED",
       "artifact": "company/factory-asset/receipts/FA-006-oauth-history-remediation.receipt.json",
-      "acceptance": "Revoked credential is removed from current tracked tree and reachable Git history through a coordinated history rewrite; fresh-clone redaction-safe scan is clean; remote remains non-inline; no unrelated dirty OAUTH work is lost."
+      "acceptance": "Revoked credential is removed from current tracked tree and reachable Git history through a coordinated history rewrite; fresh-clone redaction-safe scan is clean; remote remains non-inline; no unrelated dirty OAUTH work is lost.",
+      "completed_at": "2026-09-03",
+      "receipt": "company/factory-asset/receipts/FA-006-oauth-history-remediation.receipt.json",
+      "result": "Remote and all reachable local refs sanitized; fresh-clone scan clean; 65-entry dirty OAUTH status preserved exactly."
     },
     {
       "id": "FA-W000",
