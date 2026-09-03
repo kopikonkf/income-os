@@ -283,3 +283,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Full Factory Asset regression: 53/53 PASS.
 - Newly READY frontiers: `FA-020` derivative recipe/receipt schemas, `FA-025` vectorizability gate, `FA-031` native producer contract, and `FA-100` provider capability/generation contract.
 - Factory Console remains staged: `FA-W010` clean-room benchmark is READY; `FA-C001` waits for that benchmark, while later Console binding waits for Factory Core as designed.
+
+
+### FA-W010 — DONE / PASS — GenWHITE clean-room capability benchmark
+- Publicly observable Auto-Pilot, auto-download/save-load, 2K/4K, style/consistency/background controls mapped to Factory-owned requirements.
+- Queue internals, pause/resume semantics, retry/rate-limit telemetry and backend mechanism remain UNKNOWN.
+- No purchase/account action/proprietary-code access. `FA-C001` is now READY.
