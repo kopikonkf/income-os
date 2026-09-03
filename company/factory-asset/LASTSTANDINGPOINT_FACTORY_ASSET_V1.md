@@ -314,3 +314,23 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - PASS requires zero post-dispatch operator actions plus validated provider-original durable bytes; typed failures cannot include fake artifacts.
 - Vendor cookie/session/RPC/endpoint/raw-wire fields are rejected. Current Qwen/ChatGPT/Gemini/Manus/Duck pool fits the same contract.
 - Factory regression 83/83 PASS. `FA-101` and `FA-103` are READY.
+
+
+### FA-C001 — DONE / PASS — Factory Console capability matrix
+- GenWHITE-observable patterns are translated into Factory-owned requirements; unsupported queue/retry/rate-limit/recovery internals remain UNKNOWN.
+- Five primary surfaces are fixed: Blueprint, Batch, Queue, Providers and Output.
+- GUI remains a control plane only. `FA-C002` is READY.
+
+
+### FA-C002 — DONE / PASS — Factory Console PRD / information architecture
+- Founder workflows and five-view IA are explicit, with normalized job/provider/capacity/QA states and synthetic fixture contract.
+- Prototype implementation is a zero-dependency static HTML/CSS/JS shell; live execution remains out of scope.
+- `FA-C004` is READY.
+
+
+### FA-C004 — DONE / PASS — Factory Console synthetic GUI shell
+- Zero-dependency static HTML/CSS/JS shell exposes Blueprint, Batch, Queue, Providers and Output views over deterministic synthetic fixtures.
+- Queue controls are SIMULATED only; live dispatch is locked; current five-provider pool plus optional/deferred Grok are visible.
+- Output gallery keeps semantic count distinct from derivative count.
+- Factory regression 92/92 PASS; JS syntax PASS. Headless browser smoke was unavailable in Architect service context and is not claimed.
+- FA-C005 is READY.

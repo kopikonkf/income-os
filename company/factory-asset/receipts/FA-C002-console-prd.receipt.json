@@ -1,0 +1,34 @@
+{
+  "schema": "factory-asset.console-prd-receipt.v1",
+  "task_id": "FA-C002",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact": "docs/operations/FACTORY_CONSOLE_PRD_V1.md",
+  "primary_views": [
+    "Blueprint",
+    "Batch",
+    "Queue",
+    "Providers",
+    "Output"
+  ],
+  "founder_workflows": [
+    "prepare blueprint",
+    "prepare batch intent",
+    "observe/control queue",
+    "inspect providers/capacity/routing",
+    "inspect output lineage"
+  ],
+  "prototype_mode": "SYNTHETIC_ONLY",
+  "implementation_decision": "zero-dependency static HTML/CSS/JS shell for FA-C004",
+  "red_zone_excluded": [
+    "live provider dispatch",
+    "credentials",
+    "browser/CDP ownership",
+    "marketplace publication",
+    "direct canonical-state mutation"
+  ],
+  "unblocked": [
+    "FA-C004"
+  ]
+}
