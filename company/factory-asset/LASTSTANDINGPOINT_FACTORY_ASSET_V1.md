@@ -254,3 +254,12 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Asset Blueprint v2 has no compression field, therefore compression cannot participate in semantic identity; represented file/format/resolution/preview fields are explicitly packaging-only.
 - Validation: full Factory Asset test set 43/43 PASS.
 - Both FA-013 and FA-014 are DONE; `FA-015` is now READY for six shopping-bag mode fixtures.
+
+
+### Founder decision — Grok removed from Factory critical path / Factory Console ratified
+
+- `FA-W014` Grok Level-2 remains `DEFERRED` and optional. Its current SuperGrok/platform gate is outside Factory control; no spend or bypass is authorized.
+- `FA-W019` is redefined and accepted against the current proven autonomous pool: Qwen, ChatGPT, Gemini, Manus and Duck.ai. Grok is not required for Factory progression.
+- `FA-W010` clean-room GenWHITE observable-capability benchmark is now READY; purchase/account action remains prohibited unless separately Founder-authorized.
+- New `FACTORY_CONSOLE` track `FA-C000..FA-C013` is canonical. Console is a Founder-operated control plane over Factory Core, not a provider/browser/orchestration engine.
+- GUI shell/design can begin early on synthetic data; production queue/provider authority remains gated on Factory Core and later canaries.

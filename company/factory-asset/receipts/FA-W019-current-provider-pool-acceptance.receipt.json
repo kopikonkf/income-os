@@ -1,0 +1,73 @@
+{
+  "schema": "factory-asset.current-autonomous-provider-pool-acceptance.v1",
+  "task_id": "FA-W019",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "decision": "Grok is optional/deferred because its current SuperGrok/platform gate is external policy/plan availability, not a Factory architecture failure. No spend or bypass is authorized. Current proven providers may progress independently.",
+  "accepted_pool": [
+    {
+      "provider": "qwen",
+      "transport": "SESSION_API primary; BROWSER_CDP fallback also proven",
+      "source_tasks": [
+        "FA-W012",
+        "FA-W018"
+      ],
+      "primary_artifact_sha256": "54f54a263a09e3246a0b9414b665f8ab232fa7bf04f51d786ffc008921929105"
+    },
+    {
+      "provider": "chatgpt",
+      "transport": "BROWSER_CDP",
+      "source_tasks": [
+        "FA-W016",
+        "FA-W020",
+        "FA-W021"
+      ],
+      "artifact_sha256": "55da7f72825ebbfe2cfacf75b28660164be5a87b986182d05f74584dda0ffb9a"
+    },
+    {
+      "provider": "gemini",
+      "transport": "BROWSER_CDP",
+      "source_tasks": [
+        "FA-W013"
+      ],
+      "artifact_sha256": "c04c5d7651d2133d338307627b60b2eba09069d90f9fdc8873f2c76a52a0c52d"
+    },
+    {
+      "provider": "manus",
+      "transport": "BROWSER_CDP",
+      "source_tasks": [
+        "FA-W015"
+      ],
+      "artifact_sha256": "39c545d2646502553737e5096d90fd2e5060fa46d71bea02a99b72ed50ee52a2"
+    },
+    {
+      "provider": "duckai",
+      "transport": "BROWSER_CDP",
+      "source_tasks": [
+        "FA-W017"
+      ],
+      "artifact_sha256": "f2b213037b06e9e46d20e51994bff8eb339d20c1f2beffd681cafa296dc917bf"
+    }
+  ],
+  "optional_deferred": [
+    {
+      "provider": "grok",
+      "source_task": "FA-W014",
+      "state": "DEFERRED_PLATFORM_OR_PLAN_GATE",
+      "critical_path": false,
+      "spend_authorized": false
+    }
+  ],
+  "acceptance": {
+    "provider_original_bytes_for_admitted_pool": true,
+    "zero_touch_after_dispatch_or_reference_contract": true,
+    "typed_failures_preserved": true,
+    "content_addressed_or_durable_save": true,
+    "production_cutover_performed": false
+  },
+  "unblocked": [
+    "FA-W010",
+    "FA-C000"
+  ]
+}

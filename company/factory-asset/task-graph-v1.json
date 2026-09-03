@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "1.9-fa014-identity-invariants",
+  "revision": "2.0-factory-console-grok-optional",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -117,7 +117,8 @@
     "WINDOWS_OAUTH_PROOFS",
     "PROVIDER_LANES",
     "SCALE_UNLOCKS",
-    "GOVERNED_CANARY"
+    "GOVERNED_CANARY",
+    "FACTORY_CONSOLE"
   ],
   "tasks": [
     {
@@ -510,7 +511,11 @@
       "last_attempt_result": "FAILED: PROVIDER_CAPACITY_UNAVAILABLE / HIGH_DEMAND",
       "latest_preflight_result": "NOT_READY: SPEND_REQUIRED / SUPERGROK_UPGRADE_GATE on https://grok.com/imagine; no dispatch committed.",
       "resume_condition": "Resume only if Grok Imagine becomes available under the already-authorized account/plan or Founder explicitly authorizes spend; otherwise use another policy-compliant evidenced Grok route. Do not bypass the upgrade gate.",
-      "founder_sequencing_override": "2026-09-03 Founder authorized proceeding to Manus if Grok remained blocked by High Demand after retry."
+      "founder_sequencing_override": "2026-09-03 Founder authorized proceeding to Manus if Grok remained blocked by High Demand after retry.",
+      "critical_path": false,
+      "provider_pool_role": "OPTIONAL_PROVIDER",
+      "blocker_disposition": "PLATFORM_OR_PLAN_GATE_NOT_FACTORY_BLOCKER",
+      "result": "DEFERRED_OPTIONAL: Grok Level-2 remains desirable evidence but SuperGrok/platform availability is outside Factory control; no spend or bypass is authorized and Grok does not block Factory/Console progression."
     },
     {
       "id": "FA-W015",
@@ -607,20 +612,22 @@
       "phase": 0,
       "track": "WINDOWS_OAUTH_PROOFS",
       "priority": 33,
-      "title": "Five-provider autonomous backend candidate acceptance",
+      "title": "Current proven autonomous backend pool acceptance (Grok optional)",
       "depends_on": [
         "FA-W011",
         "FA-W012",
         "FA-W013",
-        "FA-W014",
         "FA-W015",
+        "FA-W016",
         "FA-W017"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "acceptance_batch": true,
-      "artifact": "company/factory-asset/receipts/FA-W019-five-provider-autonomous-backend-acceptance.receipt.json",
-      "acceptance": "Qwen, Gemini, Grok, Manus and Duck.ai each have terminal Level-2 evidence. PASS requires zero operator action after dispatch, bounded completion, validated provider-original bytes, atomic durable local save, typed failures and sanitized receipts for every candidate. ChatGPT/MUXIA is explicitly non-blocking and may be integrated separately through FA-W016.",
-      "result_on_success": "These providers become eligible backend candidates for the later Factory provider contract/router work; this acceptance does not itself deploy or cut over production."
+      "artifact": "company/factory-asset/receipts/FA-W019-current-provider-pool-acceptance.receipt.json",
+      "acceptance": "Qwen, ChatGPT, Gemini, Manus and Duck.ai have terminal Level-2/provider-reference evidence sufficient to form the current eligible backend pool. Grok is optional/deferred and cannot block progression because its current gate is provider/plan policy outside Factory control. PASS still requires zero-touch-after-dispatch evidence, provider-original bytes, durable local save and typed failures for every provider admitted to the pool.",
+      "result_on_success": "These providers become eligible backend candidates for the later Factory provider contract/router work; this acceptance does not itself deploy or cut over production.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: current proven pool accepted as Qwen + ChatGPT + Gemini + Manus + Duck.ai; Grok remains optional/deferred. This accepts backend candidacy only and performs no production cutover."
     },
     {
       "id": "FA-W010",
@@ -632,12 +639,12 @@
       "depends_on": [
         "FA-W019"
       ],
-      "status": "DEFERRED",
-      "authority": "FOUNDER_DECISION_RECORDED_NO_PURCHASE_NO_ACCOUNT_ACTION",
+      "status": "READY",
+      "authority": "FOUNDER_AUTHORIZED_CLEAN_ROOM_NO_SPEND_NO_ACCOUNT_ACTION",
       "artifact": "D:\\FACTORY_ASSET\\GENWHITE_CAPABILITY_PARITY_RESEARCH_V1.md",
       "acceptance": "Clean-room observable capability benchmark maps queue, batching, pause/resume, retry/rate-limit visibility, automatic download, output dashboard and style-control patterns to Factory requirements without proprietary-code extraction, protection bypass, purchase, account action or unverified backend assumptions.",
-      "resume_condition": "FA-W019 is DONE and Founder explicitly chooses to run the no-spend clean-room observable benchmark. Purchase/account action remains separately Founder-gated.",
-      "result": "HOLD: Founder chose to finish autonomous OAUTH/backend-candidate proofs before any GenWHITE benchmark, purchase or account action."
+      "resume_condition": "Current provider pool acceptance FA-W019 is DONE. Execute only clean-room observable-capability research; no purchase, account action, proprietary-code extraction, protection bypass or backend guessing.",
+      "result": "READY: Founder authorized Factory Console / clean-room GenWHITE-like lane based on the current proven provider pool; Grok is not a dependency."
     },
     {
       "id": "FA-W020",
@@ -1663,6 +1670,210 @@
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-206-factory-asset-v1-acceptance.receipt.json",
       "acceptance": "Blueprint, provider, immutable master, derivatives, registry, QA, metadata/rights, Founder QC and rollback evidence pass; publication remains outside scope."
+    },
+    {
+      "id": "FA-C000",
+      "phase": 3,
+      "track": "FACTORY_CONSOLE",
+      "priority": 45,
+      "title": "Ratify Factory Console clean-room control-plane scope",
+      "depends_on": [
+        "FA-W019"
+      ],
+      "status": "DONE",
+      "completed_at": "2026-09-03",
+      "artifact": "docs/architecture/FACTORY_ASSET_CONSOLE_TRACK_V1.md",
+      "acceptance": "Factory Console is a Founder-operated control plane over Factory Core, never a second provider/browser/orchestration engine; clean-room product-pattern study is allowed while proprietary-code extraction, purchase/account action and provider bypass remain prohibited.",
+      "result": "PASS: Factory Console track ratified; Grok explicitly optional and current proven provider pool is sufficient to proceed."
+    },
+    {
+      "id": "FA-C001",
+      "phase": 3,
+      "track": "FACTORY_CONSOLE",
+      "priority": 46,
+      "title": "Translate GenWHITE observable benchmark into Factory Console capability matrix",
+      "depends_on": [
+        "FA-C000",
+        "FA-W010"
+      ],
+      "status": "BLOCKED",
+      "artifact": "docs/architecture/FACTORY_CONSOLE_CAPABILITY_MATRIX_V1.md",
+      "acceptance": "Observable queue, batching, pause/resume, retry/rate-limit visibility, automatic save/download, gallery and style-control patterns are mapped to Factory-owned requirements without copying proprietary implementation."
+    },
+    {
+      "id": "FA-C002",
+      "phase": 3,
+      "track": "FACTORY_CONSOLE",
+      "priority": 47,
+      "title": "Define Factory Console PRD and information architecture",
+      "depends_on": [
+        "FA-C001"
+      ],
+      "status": "BLOCKED",
+      "artifact": "docs/operations/FACTORY_CONSOLE_PRD_V1.md",
+      "acceptance": "PRD defines Founder workflows, blueprint/batch controls, queue, provider/capacity visibility, output gallery, errors, QA/lineage surfaces and explicit authority boundaries."
+    },
+    {
+      "id": "FA-C003",
+      "phase": 3,
+      "track": "FACTORY_CONSOLE",
+      "priority": 48,
+      "title": "Define Console to Factory Core API and event contract",
+      "depends_on": [
+        "FA-C002",
+        "FA-100",
+        "FA-105"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/schemas/factory-console-api.schema.json + event contract tests",
+      "acceptance": "Console can submit governed job intents and observe normalized queue/provider/output events without vendor wire fields, credentials or direct browser ownership."
+    },
+    {
+      "id": "FA-C004",
+      "phase": 3,
+      "track": "FACTORY_CONSOLE",
+      "priority": 49,
+      "title": "Build Factory Console GUI shell on synthetic data",
+      "depends_on": [
+        "FA-C002"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Factory Console web GUI shell + synthetic fixtures",
+      "acceptance": "Founder can navigate Blueprint, Batch, Queue, Providers and Output views using synthetic data; no live provider, production queue or credentials are touched."
+    },
+    {
+      "id": "FA-C005",
+      "phase": 3,
+      "track": "FACTORY_CONSOLE",
+      "priority": 50,
+      "title": "Implement blueprint editor and batch-intent controls",
+      "depends_on": [
+        "FA-C004",
+        "FA-019"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Console blueprint editor with compile-preview tests",
+      "acceptance": "PHOTO, ISOLATED_OBJECT, ICON, OUTLINE, PATTERN and ANIMATION selections compile through canonical Blueprint v2; quantity/style/master/delivery controls cannot mint packaging variants as semantic assets."
+    },
+    {
+      "id": "FA-C006",
+      "phase": 3,
+      "track": "FACTORY_CONSOLE",
+      "priority": 51,
+      "title": "Implement queue start pause resume cancel and retry surfaces",
+      "depends_on": [
+        "FA-C003",
+        "FA-C004",
+        "FA-105"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Console queue-control UI + event tests",
+      "acceptance": "Controls invoke only Factory Core governed actions; idempotency, retry bounds and reconciliation states remain visible and direct provider/browser commands do not exist."
+    },
+    {
+      "id": "FA-C007",
+      "phase": 3,
+      "track": "FACTORY_CONSOLE",
+      "priority": 52,
+      "title": "Implement provider health capacity and routing dashboard",
+      "depends_on": [
+        "FA-C003",
+        "FA-102",
+        "FA-104",
+        "FA-107"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Console provider/capacity dashboard + fixtures",
+      "acceptance": "Founder sees eligible/deferred/blocked providers, observed capacity, routing rationale and typed failures without guessed quota or secret material; optional Grok state does not block healthy providers."
+    },
+    {
+      "id": "FA-C008",
+      "phase": 3,
+      "track": "FACTORY_CONSOLE",
+      "priority": 53,
+      "title": "Implement output gallery lineage derivative and QA views",
+      "depends_on": [
+        "FA-C004",
+        "FA-030",
+        "FA-106"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Console output gallery + lineage/QA fixtures",
+      "acceptance": "Each semantic asset shows immutable master, packaging derivatives, hashes, recipes, QA/compatibility state and duplicate suppression without counting derivatives as additional assets."
+    },
+    {
+      "id": "FA-C009",
+      "phase": 4,
+      "track": "FACTORY_CONSOLE",
+      "priority": 76,
+      "title": "Bind Factory Console to Factory Core synthetic runtime",
+      "depends_on": [
+        "FA-109",
+        "FA-C006",
+        "FA-C007",
+        "FA-C008"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Factory Console synthetic E2E acceptance receipt",
+      "acceptance": "Synthetic jobs prove Console to Factory Core queue/routing/retry/capacity/output flows end to end with zero live-provider calls and zero false success."
+    },
+    {
+      "id": "FA-C010",
+      "phase": 4,
+      "track": "FACTORY_CONSOLE",
+      "priority": 77,
+      "title": "Run bounded real-provider Factory Console canary",
+      "depends_on": [
+        "FA-C009",
+        "FA-117"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
+      "artifact": "company/factory-asset/receipts/FA-C010-console-provider-canary.receipt.json",
+      "acceptance": "One Founder-authorized Console job reaches an accepted provider through Factory Core, produces a durable master and updates Console state without direct GUI provider/browser ownership."
+    },
+    {
+      "id": "FA-C011",
+      "phase": 5,
+      "track": "FACTORY_CONSOLE",
+      "priority": 78,
+      "title": "Prove multi-job Console batch and concurrency behavior",
+      "depends_on": [
+        "FA-C010",
+        "FA-120"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/receipts/FA-C011-console-batch-acceptance.receipt.json",
+      "acceptance": "Bounded batch proves queue progress, provider routing, backpressure, pause/resume and partial failures without duplicate ownership or semantic-count inflation."
+    },
+    {
+      "id": "FA-C012",
+      "phase": 5,
+      "track": "FACTORY_CONSOLE",
+      "priority": 79,
+      "title": "Prove Console restart resume crash and reconciliation continuity",
+      "depends_on": [
+        "FA-C011"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/receipts/FA-C012-console-recovery.receipt.json",
+      "acceptance": "Browser/UI restart and Factory process interruption preserve durable job truth; resumed UI reconciles from Factory Core and never creates false success or duplicate dispatch."
+    },
+    {
+      "id": "FA-C013",
+      "phase": 6,
+      "track": "FACTORY_CONSOLE",
+      "priority": 87,
+      "title": "Factory Console production-grade Founder acceptance",
+      "depends_on": [
+        "FA-C012",
+        "FA-124"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED",
+      "acceptance_batch": true,
+      "artifact": "company/factory-asset/receipts/FA-C013-factory-console-production-acceptance.receipt.json",
+      "acceptance": "Founder validates the GUI against the authorized 100-unique-master/day model: blueprint/batch controls, queue/recovery, provider capacity/routing, output lineage/QA and rollback all pass; marketplace publication remains outside Console authority."
     }
   ],
   "windows_oauth_proof_levels": {
