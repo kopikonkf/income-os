@@ -201,7 +201,7 @@
       "authority": "FOUNDER_AND_OPERATOR_REQUIRED",
       "artifact": "company/factory-asset/receipts/FA-005-oauth-credential-remediation.receipt.json",
       "acceptance": "Remote uses a non-inline credential mechanism, affected credential is rotated, access is verified, secret scan is clean and no credential value appears in receipts or logs.",
-      "blocker": "Founder authorization was consumed for remote sanitization/revocation. Completion now requires FA-006 history remediation plus a fresh OS-backed GitHub login after the revoked PAT invalidated the prior keyring credential."
+      "blocker": "Remote sanitization, old PAT revocation, and fresh OS-backed GitHub keyring login are complete. FA-005 remains blocked only on FA-006 because the revoked PAT is still present in tracked HANDOFF.md and reachable Git history."
     },
     {
       "id": "FA-006",
