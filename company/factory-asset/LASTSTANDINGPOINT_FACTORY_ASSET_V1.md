@@ -283,3 +283,34 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Full Factory Asset regression: 53/53 PASS.
 - Newly READY frontiers: `FA-020` derivative recipe/receipt schemas, `FA-025` vectorizability gate, `FA-031` native producer contract, and `FA-100` provider capability/generation contract.
 - Factory Console remains staged: `FA-W010` clean-room benchmark is READY; `FA-C001` waits for that benchmark, while later Console binding waits for Factory Core as designed.
+
+
+### FA-W010 — DONE / PASS — GenWHITE clean-room capability benchmark
+- Publicly observable Auto-Pilot, auto-download/save-load, 2K/4K, style/consistency/background controls mapped to Factory-owned requirements.
+- Queue internals, pause/resume semantics, retry/rate-limit telemetry and backend mechanism remain UNKNOWN.
+- No purchase/account action/proprietary-code access. `FA-C001` is now READY.
+
+
+### FA-020 — DONE / PASS — derivative recipe and receipt contracts
+- Strict schemas pin master hash, recipe/version, marketplace profile revision, output spec, idempotency, QA and compatibility.
+- PASS cannot hide decode/hash/magic failure or UNKNOWN compatibility; packaging derivatives cannot mint semantic identity.
+- Factory regression 58/58 PASS. `FA-021` and `FA-023` are READY.
+
+
+### FA-025 — DONE / PASS — vectorizability gate
+- Deterministic gate returns NATIVE_VECTOR, TRACE_ELIGIBLE or NOT_VECTORIZABLE with evidence/reason codes.
+- Photorealistic, complex, font-dependent, unauthorized and incomplete raster inputs fail closed.
+- Factory regression 63/63 PASS. `FA-026` and `FA-027` are READY.
+
+
+### FA-031 — DONE / PASS — native producer dispatch contract
+- Shared request/receipt contract covers procedural vector, motion, layered-template and 3D native producers with cancellation/idempotency/failure semantics.
+- PASS requires a native editable producer output; raster conversion cannot masquerade as native master.
+- Factory regression 73/73 PASS. `FA-032` and `FA-040` are READY.
+
+
+### FA-100 — DONE / PASS — provider capability and generation contract
+- Provider-neutral CAPABILITY, GENERATE_REQUEST, GENERATE_RESULT and HEALTH envelopes cover SESSION_API/BROWSER_CDP/HYBRID/OFFICIAL_API.
+- PASS requires zero post-dispatch operator actions plus validated provider-original durable bytes; typed failures cannot include fake artifacts.
+- Vendor cookie/session/RPC/endpoint/raw-wire fields are rejected. Current Qwen/ChatGPT/Gemini/Manus/Duck pool fits the same contract.
+- Factory regression 83/83 PASS. `FA-101` and `FA-103` are READY.

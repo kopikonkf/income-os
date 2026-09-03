@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "2.2-fa019-blueprint-v2-acceptance",
+  "revision": "2.7-fa100-image-provider-contract",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -639,12 +639,13 @@
       "depends_on": [
         "FA-W019"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "FOUNDER_AUTHORIZED_CLEAN_ROOM_NO_SPEND_NO_ACCOUNT_ACTION",
-      "artifact": "D:\\FACTORY_ASSET\\GENWHITE_CAPABILITY_PARITY_RESEARCH_V1.md",
+      "artifact": "docs/research/GENWHITE_CAPABILITY_PARITY_RESEARCH_V1.md",
       "acceptance": "Clean-room observable capability benchmark maps queue, batching, pause/resume, retry/rate-limit visibility, automatic download, output dashboard and style-control patterns to Factory requirements without proprietary-code extraction, protection bypass, purchase, account action or unverified backend assumptions.",
       "resume_condition": "Current provider pool acceptance FA-W019 is DONE. Execute only clean-room observable-capability research; no purchase, account action, proprietary-code extraction, protection bypass or backend guessing.",
-      "result": "READY: Founder authorized Factory Console / clean-room GenWHITE-like lane based on the current proven provider pool; Grok is not a dependency."
+      "result": "PASS: clean-room public benchmark maps observed Auto-Pilot, auto-download/save-load, 2K/4K, presets, consistency and background controls to Factory Console requirements; queue internals, pause/resume semantics, retry/rate-limit telemetry and backend mechanism remain explicitly UNKNOWN.",
+      "completed_at": "2026-09-03"
     },
     {
       "id": "FA-W020",
@@ -805,9 +806,11 @@
       "depends_on": [
         "FA-019"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/schemas/derivative-recipe.schema.json; derivative-receipt.schema.json",
-      "acceptance": "Schemas pin input/master hash, recipe/version, marketplace-profile version, output specs, idempotency key, QA and compatibility results."
+      "acceptance": "Schemas pin input/master hash, recipe/version, marketplace-profile version, output specs, idempotency key, QA and compatibility results.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: strict derivative recipe/receipt schemas pin master hash, semantic ID, recipe/version, marketplace profile revision, output spec, idempotency material, QA and compatibility. PASS receipts require green magic/decode/hash and COMPATIBLE; derivatives cannot mint semantic identity."
     },
     {
       "id": "FA-021",
@@ -818,7 +821,7 @@
       "depends_on": [
         "FA-020"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Raster worker for PNG to JPEG, WebP and TIFF with tests",
       "acceptance": "Pinned recipes produce decodable outputs, handle alpha explicitly, never overwrite masters and return typed receipts."
     },
@@ -844,7 +847,7 @@
       "depends_on": [
         "FA-021"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Derivative color/metadata policy module and tests",
       "acceptance": "sRGB/ICC, alpha flattening, DPI and metadata outcomes are explicit, verified after conversion and never silently guessed."
     },
@@ -872,9 +875,11 @@
       "depends_on": [
         "FA-019"
       ],
-      "status": "READY",
-      "artifact": "Vectorizability classifier/gate with deterministic fixtures",
-      "acceptance": "Simple icons/outlines/silhouettes may pass; photorealistic and complex inputs return NOT_VECTORIZABLE with evidence."
+      "status": "DONE",
+      "artifact": "company/factory-asset/lib/vectorizability.py + company/factory-asset/fixtures/vectorizability/cases.v1.json",
+      "acceptance": "Simple icons/outlines/silhouettes may pass; photorealistic and complex inputs return NOT_VECTORIZABLE with evidence.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: deterministic evidence-based vectorizability gate distinguishes NATIVE_VECTOR, TRACE_ELIGIBLE and NOT_VECTORIZABLE; photorealistic, complex, font-dependent, unauthorized or incomplete raster inputs fail closed with typed reason codes. Factory regression 63/63 PASS."
     },
     {
       "id": "FA-026",
@@ -885,7 +890,7 @@
       "depends_on": [
         "FA-025"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Native vector export worker with SVG/EPS and preview tests",
       "acceptance": "Outputs contain real editable paths, render correctly and reject embedded-raster-only, font, bounds and excessive-path failures."
     },
@@ -898,7 +903,7 @@
       "depends_on": [
         "FA-025"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Trace fallback worker with simple-shape fixtures and rejection tests",
       "acceptance": "Only explicitly eligible inputs trace; output path count/editability/preview pass; photorealistic input is rejected."
     },
@@ -955,9 +960,11 @@
       "depends_on": [
         "FA-019"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/schemas/native-producer.schema.json and contract tests",
-      "acceptance": "Procedural, motion, layered-template and 3D producer classes share typed inputs, native-master outputs, deterministic receipts, cancellation and failure semantics without pretending conversions are native production."
+      "acceptance": "Procedural, motion, layered-template and 3D producer classes share typed inputs, native-master outputs, deterministic receipts, cancellation and failure semantics without pretending conversions are native production.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: one typed native-producer contract covers procedural vector, motion, layered-template and 3D request/receipt envelopes with idempotency, cancellation, deterministic receipt hashes, typed failures and native-editable masters. Raster conversion cannot claim native-master success. Factory regression 73/73 PASS."
     },
     {
       "id": "FA-032",
@@ -968,7 +975,7 @@
       "depends_on": [
         "FA-031"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Procedural SVG pattern producer with deterministic fixtures",
       "acceptance": "Seeded recipes generate editable vector tiles as native masters with stable hashes, explicit parameters, preview output and no embedded-raster-only false success."
     },
@@ -1008,7 +1015,7 @@
       "depends_on": [
         "FA-031"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Motion composition schema, renderer boundary and fixture plan",
       "acceptance": "Contract pins composition, duration, dimensions, FPS, codec/container targets, audio policy, seed and renderer version; animation is a semantic blueprint, not a PNG conversion."
     },
@@ -1175,9 +1182,11 @@
       "depends_on": [
         "FA-019"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/schemas/image-provider.schema.json and interface tests",
-      "acceptance": "Contract normalizes capabilities, generate input/output, health and typed failures without vendor wire fields."
+      "acceptance": "Contract normalizes capabilities, generate input/output, health and typed failures without vendor wire fields.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: provider-neutral image contract normalizes capability, generate request/result and health envelopes across SESSION_API/BROWSER_CDP/HYBRID/OFFICIAL_API. PASS requires zero post-dispatch operator actions and validated provider-original durable bytes; failures are typed; vendor cookie/session/RPC/endpoint fields are rejected. Factory regression 83/83 PASS."
     },
     {
       "id": "FA-101",
@@ -1188,7 +1197,7 @@
       "depends_on": [
         "FA-100"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/schemas/provider-profile.schema.json and lease tests",
       "acceptance": "One principal/profile has at most one active lease; credentials are opaque; duplicate and cross-profile ownership are rejected."
     },
@@ -1214,7 +1223,7 @@
       "depends_on": [
         "FA-100"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Provider policy profile registry and fail-closed tests",
       "acceptance": "Provider use requires dated evidence and an allowed automation/auth route; stale/unknown/prohibited routes block without bypass."
     },
@@ -1700,7 +1709,7 @@
         "FA-C000",
         "FA-W010"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "docs/architecture/FACTORY_CONSOLE_CAPABILITY_MATRIX_V1.md",
       "acceptance": "Observable queue, batching, pause/resume, retry/rate-limit visibility, automatic save/download, gallery and style-control patterns are mapped to Factory-owned requirements without copying proprietary implementation."
     },

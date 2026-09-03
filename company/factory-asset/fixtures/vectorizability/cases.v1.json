@@ -1,0 +1,11 @@
+{
+  "schema": "die.factory-asset.vectorizability-fixtures.v1",
+  "cases": [
+    {"id":"native-icon","expected":"NATIVE_VECTOR","evidence":{"source_representation":"VECTOR_PATHS","declared_mode":"NATIVE_VECTOR","raster_trace_allowed":false,"photorealistic":false,"color_count":4,"edge_complexity":0.08,"estimated_path_count":48,"has_text_or_fonts":false}},
+    {"id":"simple-silhouette","expected":"TRACE_ELIGIBLE","evidence":{"source_representation":"RASTER_PIXELS","declared_mode":"TRACE_ELIGIBLE","raster_trace_allowed":true,"photorealistic":false,"color_count":2,"edge_complexity":0.12,"estimated_path_count":24,"has_text_or_fonts":false}},
+    {"id":"simple-outline","expected":"TRACE_ELIGIBLE","evidence":{"source_representation":"RASTER_PIXELS","declared_mode":"TRACE_ELIGIBLE","raster_trace_allowed":true,"photorealistic":false,"color_count":3,"edge_complexity":0.20,"estimated_path_count":90,"has_text_or_fonts":false}},
+    {"id":"photo","expected":"NOT_VECTORIZABLE","evidence":{"source_representation":"RASTER_PIXELS","declared_mode":"NOT_VECTORIZABLE","raster_trace_allowed":false,"photorealistic":true,"color_count":4096,"edge_complexity":0.91,"estimated_path_count":28000,"has_text_or_fonts":false}},
+    {"id":"complex-illustration","expected":"NOT_VECTORIZABLE","evidence":{"source_representation":"RASTER_PIXELS","declared_mode":"TRACE_ELIGIBLE","raster_trace_allowed":true,"photorealistic":false,"color_count":64,"edge_complexity":0.71,"estimated_path_count":2400,"has_text_or_fonts":false}},
+    {"id":"logo-with-font","expected":"NOT_VECTORIZABLE","evidence":{"source_representation":"RASTER_PIXELS","declared_mode":"TRACE_ELIGIBLE","raster_trace_allowed":true,"photorealistic":false,"color_count":3,"edge_complexity":0.11,"estimated_path_count":60,"has_text_or_fonts":true}}
+  ]
+}

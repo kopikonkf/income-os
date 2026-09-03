@@ -1,0 +1,25 @@
+{
+  "schema": "factory-asset.derivative-contracts-receipt.v1",
+  "task_id": "FA-020",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "artifacts": [
+    "company/factory-asset/schemas/derivative-recipe.schema.json",
+    "company/factory-asset/schemas/derivative-receipt.schema.json"
+  ],
+  "contract_guards": [
+    "master SHA-256 pinned",
+    "recipe id/version pinned",
+    "marketplace profile/revision pinned",
+    "deterministic idempotency material",
+    "semantic_identity_effect=NONE",
+    "QA magic/decode/hash",
+    "compatibility fail-closed"
+  ],
+  "validation": "58/58 Factory Asset tests PASS",
+  "unblocked": [
+    "FA-021",
+    "FA-023"
+  ]
+}

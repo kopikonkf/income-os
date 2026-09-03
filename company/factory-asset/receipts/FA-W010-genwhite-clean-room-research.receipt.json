@@ -1,0 +1,36 @@
+{
+  "schema": "factory-asset.genwhite-clean-room-research.receipt.v1",
+  "task_id": "FA-W010",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "source_url": "https://lynk.id/templatix.id/lxg0j4878yo6",
+  "source_observed_at": "2026-09-03",
+  "observed": [
+    "Auto-Pilot",
+    "auto-download",
+    "auto save/load",
+    "2K/4K",
+    "31 style presets",
+    "consistency controls",
+    "custom backgrounds",
+    "desktop Windows/macOS",
+    "server-side generation product claim"
+  ],
+  "unknown": [
+    "backend mechanism",
+    "queue internals",
+    "pause/resume semantics",
+    "retry/backoff",
+    "rate-limit telemetry",
+    "crash reconciliation",
+    "dedupe/idempotency",
+    "lineage/QA internals"
+  ],
+  "purchase_performed": false,
+  "account_action_performed": false,
+  "proprietary_code_accessed": false,
+  "unblocked": [
+    "FA-C001"
+  ]
+}

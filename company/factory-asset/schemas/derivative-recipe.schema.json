@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/factory-asset/derivative-recipe.v1.schema.json",
+  "title": "Factory Asset Derivative Recipe v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema","recipe_id","recipe_version","input","output","marketplace_profile","idempotency","qa","compatibility"],
+  "properties": {
+    "schema": {"const": "die.factory-asset.derivative-recipe.v1"},
+    "recipe_id": {"type":"string","pattern":"^[a-z0-9][a-z0-9-]{4,95}$"},
+    "recipe_version": {"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "input": {"type":"object","additionalProperties":false,"required":["master_sha256","semantic_asset_id","format"],"properties":{"master_sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},"semantic_asset_id":{"type":"string","pattern":"^FASA-[A-Z0-9][A-Z0-9_-]{5,63}$"},"format":{"enum":["PNG","JPEG","TIFF","SVG","EPS","MP4","MOV"]}}},
+    "output": {"type":"object","additionalProperties":false,"required":["format","purpose","semantic_identity_effect"],"properties":{"format":{"enum":["PNG","JPEG","WEBP","TIFF","PDF","SVG","EPS","MP4","MOV"]},"purpose":{"enum":["MARKETPLACE_DELIVERY","PREVIEW","THUMBNAIL","COMPATIBILITY_EXPORT"]},"width_px":{"type":"integer","minimum":1},"height_px":{"type":"integer","minimum":1},"color_space":{"enum":["SRGB","DISPLAY_P3","NOT_APPLICABLE"]},"alpha_policy":{"enum":["PRESERVE","FLATTEN_WHITE","FORBID","NOT_APPLICABLE"]},"quality":{"type":"integer","minimum":1,"maximum":100},"semantic_identity_effect":{"const":"NONE"}}},
+    "marketplace_profile": {"type":"object","additionalProperties":false,"required":["platform_id","profile_revision"],"properties":{"platform_id":{"type":"string","pattern":"^[A-Z0-9][A-Z0-9_-]{1,63}$"},"profile_revision":{"type":"string","pattern":"^[0-9]+\\.[0-9]+$"}}},
+    "idempotency": {"type":"object","additionalProperties":false,"required":["key_material","output_collision_action"],"properties":{"key_material":{"const":["master_sha256","recipe_id","recipe_version","marketplace_profile.platform_id","marketplace_profile.profile_revision","output"]},"output_collision_action":{"const":"VERIFY_HASH_AND_REUSE_OR_FAIL"}}},
+    "qa": {"type":"object","additionalProperties":false,"required":["magic_mime_match","decode_reopen","sha256","dimensions_if_raster"],"properties":{"magic_mime_match":{"const":true},"decode_reopen":{"const":true},"sha256":{"const":true},"dimensions_if_raster":{"const":true}}},
+    "compatibility": {"type":"object","additionalProperties":false,"required":["unknown_action","require_profile_match"],"properties":{"unknown_action":{"const":"BLOCK_PACKAGE"},"require_profile_match":{"const":true}}}
+  }
+}

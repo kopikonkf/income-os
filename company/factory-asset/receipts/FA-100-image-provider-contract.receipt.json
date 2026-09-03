@@ -1,0 +1,46 @@
+{
+  "schema": "factory-asset.image-provider-contract-receipt.v1",
+  "task_id": "FA-100",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact": "company/factory-asset/schemas/image-provider.schema.json",
+  "envelopes": [
+    "CAPABILITY",
+    "GENERATE_REQUEST",
+    "GENERATE_RESULT",
+    "HEALTH"
+  ],
+  "transport_classes": [
+    "SESSION_API",
+    "BROWSER_CDP",
+    "HYBRID",
+    "OFFICIAL_API"
+  ],
+  "current_pool_contract_examples": [
+    "qwen",
+    "chatgpt",
+    "gemini",
+    "manus",
+    "duckai"
+  ],
+  "pass_guards": [
+    "operator_actions_after_dispatch=0",
+    "provider_original_bytes=true",
+    "durable_local_save=true",
+    "decode_reopen=true",
+    "sha256/dimensions/bytes required"
+  ],
+  "vendor_wire_fields_rejected": [
+    "cookie",
+    "session_token",
+    "rpc_id",
+    "endpoint",
+    "raw_request_body"
+  ],
+  "validation": "83/83 Factory Asset tests PASS",
+  "unblocked": [
+    "FA-101",
+    "FA-103"
+  ]
+}
