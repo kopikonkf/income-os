@@ -1,0 +1,259 @@
+{
+  "schema": "die.factory-asset.marketplace-delivery-profiles.v1",
+  "revision": "1.0",
+  "task_id": "FA-011",
+  "compiled_from": {
+    "artifact": "company/factory-asset/registries/marketplace-delivery-evidence.v1.json",
+    "task_id": "FA-003",
+    "observed_at": "2026-09-03",
+    "freshness_window_days": 180,
+    "freshness_cutoff": "2026-03-07"
+  },
+  "compilation_policy": {
+    "evidence_pinned_rule": "Only FA-003 compatibility_disposition=EVIDENCE_PINNED may compile to profile_state=EVIDENCE_PINNED; this is not marketplace acceptance or submission authorization.",
+    "unknown_rule": "Any stale, undated, missing, ambiguous, or conflicting requirement remains explicit and never compiles to a compatibility PASS.",
+    "delivery_rule": "Delivery families and values are copied exactly from FA-003 evidence; no unsupported format is inferred."
+  },
+  "profiles": [
+    {
+      "platform_id": "ADOBE_STOCK",
+      "name": "Adobe Stock",
+      "profile_state": "EVIDENCE_PINNED",
+      "evidence_status": "VERIFIED_CURRENT",
+      "source_freshness": [
+        {
+          "url": "https://helpx.adobe.com/in/stock/contributor/content-policies-guidelines/content-policies/content-upload-guidelines.html",
+          "official": true,
+          "source_date": "2026-09-02",
+          "observed_at": null,
+          "freshness": "CURRENT_DATED"
+        },
+        {
+          "url": "https://helpx.adobe.com/in/stock/contributor/help/vector-requirements.html",
+          "official": true,
+          "source_date": null,
+          "observed_at": "2026-09-03",
+          "freshness": "UNDATED"
+        }
+      ],
+      "delivery": {
+        "raster": [
+          "JPEG"
+        ],
+        "vector": [
+          "AI",
+          "EPS",
+          "SVG"
+        ],
+        "video": [
+          "MOV",
+          "MP4/H.264"
+        ],
+        "templates": [
+          "AET",
+          "PRPROJ",
+          "MOGRT",
+          "PSDT",
+          "AIT",
+          "INDT"
+        ]
+      },
+      "unknown_or_conflicting": [
+        "Per-account SFTP eligibility is conditional and not assumed.",
+        "Exact moderation acceptance remains content-dependent."
+      ],
+      "ai_policy_notes": [
+        "Generative AI content is supported but must follow Adobe generative-AI submission requirements and upload labeling."
+      ],
+      "evidence_ref": "company/factory-asset/registries/marketplace-delivery-evidence.v1.json"
+    },
+    {
+      "platform_id": "DREAMSTIME",
+      "name": "Dreamstime",
+      "profile_state": "COMPATIBILITY_UNKNOWN",
+      "evidence_status": "VERIFIED_HISTORICAL_PLUS_CURRENT_UNDATED",
+      "source_freshness": [
+        {
+          "url": "https://www.dreamstime.com/blog/how-to-successfully-submit-ai-generated-images-to-dreamstime-74214",
+          "official": true,
+          "source_date": "2024-10-04",
+          "observed_at": null,
+          "freshness": "STALE_DATED"
+        },
+        {
+          "url": "https://www.dreamstime.com/sell-stock-photos-images",
+          "official": true,
+          "source_date": null,
+          "observed_at": "2026-09-03",
+          "freshness": "UNDATED"
+        }
+      ],
+      "delivery": {
+        "raster": [
+          "JPEG"
+        ],
+        "vector_source": [
+          "AI",
+          "EPS",
+          "CDR",
+          "SVG"
+        ],
+        "video": [
+          "QuickTime MOV preferred"
+        ],
+        "audio": [
+          "WAV",
+          "FLAC"
+        ]
+      },
+      "unknown_or_conflicting": [
+        "Official Dreamstime pages expose inconsistent raster-format wording: dated 2024 AI guidance mentions JPEG/PNG/TIFF while current contributor FAQ/sell guidance emphasizes JPG/JPEG for standard image upload. Treat PNG/TIFF direct marketplace delivery as COMPATIBILITY_UNKNOWN until a current dated technical page confirms it.",
+        "Current contributor technical page lacks an explicit revision date; therefore profile cannot be promoted to current deterministic compatibility."
+      ],
+      "ai_policy_notes": [
+        "AI-generated content is accepted with disclosure/category requirements and rights obligations."
+      ],
+      "evidence_ref": "company/factory-asset/registries/marketplace-delivery-evidence.v1.json"
+    },
+    {
+      "platform_id": "123RF",
+      "name": "123RF",
+      "profile_state": "COMPATIBILITY_UNKNOWN",
+      "evidence_status": "VERIFIED_STALE",
+      "source_freshness": [
+        {
+          "url": "https://www.blog.123rf.com/how-to-upload-photos-or-illustrations",
+          "official": true,
+          "source_date": "2022-08-10",
+          "observed_at": null,
+          "freshness": "STALE_DATED"
+        },
+        {
+          "url": "https://www.123rf.com/contributors/",
+          "official": true,
+          "source_date": null,
+          "observed_at": "2026-09-03",
+          "freshness": "UNDATED"
+        }
+      ],
+      "delivery": {
+        "raster": [
+          "JPEG"
+        ],
+        "vector_bundle": [
+          "JPEG preview",
+          "EPS source"
+        ],
+        "upload": [
+          "web",
+          "FTP"
+        ]
+      },
+      "unknown_or_conflicting": [
+        "The detailed official upload specification is dated 2022 and exceeds the 180-day freshness threshold. Exact current pixel/file limits and EPS compatibility version require revalidation before automated packaging PASS.",
+        "No current dated official AI-generated-content delivery policy was pinned in this task; AI submission compatibility remains UNKNOWN."
+      ],
+      "ai_policy_notes": [],
+      "evidence_ref": "company/factory-asset/registries/marketplace-delivery-evidence.v1.json"
+    },
+    {
+      "platform_id": "VECTEEZY",
+      "name": "Vecteezy",
+      "profile_state": "COMPATIBILITY_UNKNOWN",
+      "evidence_status": "VERIFIED_STALE_PLUS_CURRENT_FAMILY",
+      "source_freshness": [
+        {
+          "url": "https://www.vecteezy.com/blog/contributor/contributor-checklist",
+          "official": true,
+          "source_date": "2021-04-28",
+          "observed_at": null,
+          "freshness": "STALE_DATED"
+        },
+        {
+          "url": "https://www.vecteezy.com/contributors",
+          "official": true,
+          "source_date": null,
+          "observed_at": "2026-09-03",
+          "freshness": "UNDATED"
+        }
+      ],
+      "delivery": {
+        "raster_photo": [
+          "JPG",
+          "JPEG"
+        ],
+        "vector": [
+          "EPS"
+        ],
+        "video": [
+          "MP4",
+          "MOV",
+          "R3D",
+          "MOGRT"
+        ]
+      },
+      "unknown_or_conflicting": [
+        "Detailed technical limits are from a 2021 official checklist and are stale by Factory freshness policy; reconfirm before deterministic marketplace packaging.",
+        "Current official contributor page confirms families but does not restate all technical limits.",
+        "AI-generated-content eligibility/labeling was not established from a current dated official source in this task and remains UNKNOWN."
+      ],
+      "ai_policy_notes": [],
+      "evidence_ref": "company/factory-asset/registries/marketplace-delivery-evidence.v1.json"
+    },
+    {
+      "platform_id": "MOTIONELEMENTS",
+      "name": "MotionElements",
+      "profile_state": "EVIDENCE_PINNED",
+      "evidence_status": "VERIFIED_CURRENT",
+      "source_freshness": [
+        {
+          "url": "https://help.motionelements.com/en/contributor/docs/contributors-onboarding-guide",
+          "official": true,
+          "source_date": "2026-08-27",
+          "observed_at": null,
+          "freshness": "CURRENT_DATED"
+        },
+        {
+          "url": "https://help.motionelements.com/en/contributor/docs/how-to-upload-files",
+          "official": true,
+          "source_date": "2025-01-08",
+          "observed_at": null,
+          "freshness": "STALE_DATED"
+        },
+        {
+          "url": "https://help.motionelements.com/en/contributor/docs/policy-on-ai-generated-content-and-contributor-accounts",
+          "official": true,
+          "source_date": "2025-02-15",
+          "observed_at": null,
+          "freshness": "STALE_DATED"
+        },
+        {
+          "url": "https://help.motionelements.com/en/contributor/docs/guide-for-selling-stock-video",
+          "official": true,
+          "source_date": "2025-02-04",
+          "observed_at": null,
+          "freshness": "STALE_DATED"
+        }
+      ],
+      "delivery": {
+        "container": [
+          "ZIP per product"
+        ],
+        "bulk_upload": [
+          "FTP for supported media families"
+        ],
+        "video_resolution": [
+          "1080p through UHD 4K within documented bounds"
+        ]
+      },
+      "unknown_or_conflicting": [
+        "The onboarding page and older bulk-upload page differ on whether 3D Model is FTP-enabled; 3D FTP capability is therefore COMPATIBILITY_UNKNOWN until reconfirmed.",
+        "Exact photo/vector technical source-file formats were not pinned from a current dated dedicated guide in this task and remain UNKNOWN for deterministic packaging."
+      ],
+      "ai_policy_notes": [
+        "AI-generated content requires the separate AI-generated contributor account and explicit AI disclosure."
+      ],
+      "evidence_ref": "company/factory-asset/registries/marketplace-delivery-evidence.v1.json"
+    }
+  ]
+}

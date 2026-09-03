@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.factory-asset.marketplace-delivery-profile.schema.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "revision",
+    "task_id",
+    "compiled_from",
+    "compilation_policy",
+    "profiles"
+  ],
+  "properties": {
+    "schema": {
+      "const": "die.factory-asset.marketplace-delivery-profiles.v1"
+    },
+    "revision": {
+      "const": "1.0"
+    },
+    "task_id": {
+      "const": "FA-011"
+    },
+    "compiled_from": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact",
+        "task_id",
+        "observed_at",
+        "freshness_window_days",
+        "freshness_cutoff"
+      ],
+      "properties": {
+        "artifact": {
+          "const": "company/factory-asset/registries/marketplace-delivery-evidence.v1.json"
+        },
+        "task_id": {
+          "const": "FA-003"
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "freshness_window_days": {
+          "const": 180
+        },
+        "freshness_cutoff": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "compilation_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_pinned_rule",
+        "unknown_rule",
+        "delivery_rule"
+      ],
+      "properties": {
+        "evidence_pinned_rule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unknown_rule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "delivery_rule": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "platform_id",
+          "name",
+          "profile_state",
+          "evidence_status",
+          "source_freshness",
+          "delivery",
+          "unknown_or_conflicting",
+          "ai_policy_notes",
+          "evidence_ref"
+        ],
+        "properties": {
+          "platform_id": {
+            "enum": [
+              "ADOBE_STOCK",
+              "DREAMSTIME",
+              "123RF",
+              "VECTEEZY",
+              "MOTIONELEMENTS"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "profile_state": {
+            "enum": [
+              "EVIDENCE_PINNED",
+              "COMPATIBILITY_UNKNOWN"
+            ]
+          },
+          "evidence_status": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_freshness": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "url",
+                "official",
+                "source_date",
+                "observed_at",
+                "freshness"
+              ],
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "official": {
+                  "const": true
+                },
+                "source_date": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "observed_at": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "freshness": {
+                  "enum": [
+                    "CURRENT_DATED",
+                    "STALE_DATED",
+                    "UNDATED"
+                  ]
+                }
+              }
+            }
+          },
+          "delivery": {
+            "type": "object",
+            "minProperties": 1
+          },
+          "unknown_or_conflicting": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "ai_policy_notes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "evidence_ref": {
+            "const": "company/factory-asset/registries/marketplace-delivery-evidence.v1.json"
+          }
+        }
+      }
+    }
+  }
+}

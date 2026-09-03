@@ -3475,3 +3475,19 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Graph delta: `FA-010 READY -> DONE`; dependency closure `FA-011 BLOCKED -> READY`.
 - Receipt: `company/factory-asset/receipts/FA-010-asset-type-registry-schema.receipt.json`.
 - NEXT READY Linux: `FA-011 — Build marketplace delivery profile registry v1`.
+
+
+---
+
+## 2026-09-03 - Factory Asset hourly FA-011 marketplace delivery profiles
+
+- Base `origin/main`: `29de7fcbc9515a74f84268cf6c3b227c74edebe7`.
+- Selected Linux task: `FA-011 - Build marketplace delivery profile registry v1`.
+- Compiled five marketplace profiles strictly from canonical FA-003 evidence in `company/factory-asset/registries/marketplace-delivery-profiles.v1.json`.
+- Freshness is explicit per source (`CURRENT_DATED`, `STALE_DATED`, `UNDATED`); stale/undated/missing/conflicting requirements remain fail-closed as `COMPATIBILITY_UNKNOWN` and are never inferred as supported.
+- Added `company/factory-asset/schemas/marketplace-delivery-profile.schema.json` plus deterministic regression tests proving exact delivery/unknown propagation, freshness derivation, schema validity and absence of compatibility-PASS claims.
+- Validation: FA-011 targeted pytest 5/5 PASS; FA-010 regression 5/5 PASS; one-canon validator 11/11 PASS; one-canon pytest 6/6 PASS; `git diff --check` PASS; high-confidence secret scan 0.
+- No Linux Production Organism, Windows OAuth lab, credentials, provider/account, marketplace submission/publication or active runtime state was mutated.
+- Graph delta: `FA-011 READY -> DONE`; dependency closure `FA-012 BLOCKED -> READY`.
+- Receipt: `company/factory-asset/receipts/FA-011-marketplace-delivery-profiles.receipt.json`.
+- NEXT READY Linux: `FA-012 - Define Asset Blueprint v2 schema`.
