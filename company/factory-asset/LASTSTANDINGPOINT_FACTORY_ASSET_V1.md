@@ -273,3 +273,13 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Registry and marketplace profile revisions are pinned at `1.0`; Adobe Stock is the evidence-pinned compatibility target in these fixtures.
 - Factory Asset regression: 48/48 PASS.
 - `FA-019` is now READY for positive + negative cross-family Blueprint v2 acceptance.
+
+
+### FA-019 — DONE / PASS — Asset Blueprint v2 acceptance
+
+- Positive: all six shopping-bag semantic modes compile to intended native producers and deterministic delivery recipes with registry/profile revisions pinned at `1.0`.
+- Negative: six cross-family fixtures fail closed with typed errors; raster/vector/motion family boundaries cannot be bypassed by changing extensions or delivery intent.
+- Identity: six semantic assets remain distinct while packaging derivatives retain the parent semantic ID.
+- Full Factory Asset regression: 53/53 PASS.
+- Newly READY frontiers: `FA-020` derivative recipe/receipt schemas, `FA-025` vectorizability gate, `FA-031` native producer contract, and `FA-100` provider capability/generation contract.
+- Factory Console remains staged: `FA-W010` clean-room benchmark is READY; `FA-C001` waits for that benchmark, while later Console binding waits for Factory Core as designed.

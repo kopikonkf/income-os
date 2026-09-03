@@ -1,0 +1,30 @@
+{
+  "schema": "die.factory-asset.blueprint-negative-cross-family-fixtures.v1",
+  "task_id": "FA-019",
+  "fixtures": [
+    {
+      "file": "photo-as-vector.json",
+      "expected_error": "NATIVE_REPRESENTATION_MISMATCH"
+    },
+    {
+      "file": "icon-as-raster.json",
+      "expected_error": "NATIVE_REPRESENTATION_MISMATCH"
+    },
+    {
+      "file": "animation-as-vector.json",
+      "expected_error": "NATIVE_REPRESENTATION_MISMATCH"
+    },
+    {
+      "file": "photo-svg-derivative.json",
+      "expected_error": "DELIVERY_FORMAT_NOT_ALLOWED"
+    },
+    {
+      "file": "pattern-mp4-derivative.json",
+      "expected_error": "DELIVERY_FORMAT_NOT_ALLOWED"
+    },
+    {
+      "file": "animation-jpeg-marketplace.json",
+      "expected_error": "MOTION_STILL_DELIVERY_FORBIDDEN"
+    }
+  ]
+}
