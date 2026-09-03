@@ -160,7 +160,7 @@
       "depends_on": [
         "FA-002"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "docs/operations/FACTORY_ASSET_OAUTH_SECURITY_REMEDIATION_PLAN_V1.md",
       "acceptance": "Plan removes inline remote authentication, rotates the affected credential, preserves repo access, scans history/worktree output and exposes no secret; planning only."
     },
@@ -174,7 +174,7 @@
       "depends_on": [
         "FA-004"
       ],
-      "status": "BLOCKED",
+      "status": "WAITING_FOUNDER",
       "authority": "FOUNDER_AND_OPERATOR_REQUIRED",
       "artifact": "company/factory-asset/receipts/FA-005-oauth-credential-remediation.receipt.json",
       "acceptance": "Remote uses a non-inline credential mechanism, affected credential is rotated, access is verified, secret scan is clean and no credential value appears in receipts or logs."
