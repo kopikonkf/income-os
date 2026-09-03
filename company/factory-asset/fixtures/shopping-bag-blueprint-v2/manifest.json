@@ -1,0 +1,15 @@
+{
+  "schema": "die.factory-asset.shopping-bag-six-mode-fixtures.v1",
+  "task_id": "FA-015",
+  "fixtures": [
+    "photo.json",
+    "isolated-object.json",
+    "icon.json",
+    "outline.json",
+    "pattern.json",
+    "animation.json"
+  ],
+  "semantic_asset_count": 6,
+  "packaging_derivatives_count": 12,
+  "note": "Each fixture represents a distinct commercial use case and semantic_asset_id. Derivatives retain semantic_identity_effect=NONE."
+}

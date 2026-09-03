@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "2.0-factory-console-grok-optional",
+  "revision": "2.1-fa015-six-mode-fixtures",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -774,9 +774,11 @@
         "FA-013",
         "FA-014"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/fixtures/shopping-bag-blueprint-v2/",
-      "acceptance": "PHOTO, ISOLATED_OBJECT, ICON, OUTLINE, PATTERN and ANIMATION fixtures compile to the intended native producers and delivery recipes."
+      "acceptance": "PHOTO, ISOLATED_OBJECT, ICON, OUTLINE, PATTERN and ANIMATION fixtures compile to the intended native producers and delivery recipes.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: six shopping-bag semantic fixtures (PHOTO, ISOLATED_OBJECT, ICON, OUTLINE, PATTERN, ANIMATION) compile deterministically to their intended native producers/master recipes and delivery recipes. Six distinct semantic IDs/fingerprints produce twelve packaging derivatives that retain semantic identity. Factory regression 48/48 PASS."
     },
     {
       "id": "FA-019",
@@ -787,7 +789,7 @@
       "depends_on": [
         "FA-015"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-019-blueprint-v2-acceptance.receipt.json",
       "acceptance": "All positive fixtures pass, negative cross-family fixtures fail, registry/profile versions are pinned and regression is green."

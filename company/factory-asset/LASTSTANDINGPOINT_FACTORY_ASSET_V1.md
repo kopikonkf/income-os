@@ -263,3 +263,13 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - `FA-W010` clean-room GenWHITE observable-capability benchmark is now READY; purchase/account action remains prohibited unless separately Founder-authorized.
 - New `FACTORY_CONSOLE` track `FA-C000..FA-C013` is canonical. Console is a Founder-operated control plane over Factory Core, not a provider/browser/orchestration engine.
 - GUI shell/design can begin early on synthetic data; production queue/provider authority remains gated on Factory Core and later canaries.
+
+
+### FA-015 — DONE / PASS — shopping-bag six-mode Blueprint v2 fixtures
+
+- Added six positive semantic fixtures: PHOTO, ISOLATED_OBJECT, ICON, OUTLINE, PATTERN and ANIMATION.
+- Each compiles deterministically through FA-013 to its intended raster/vector/procedural/motion producer and master/derivative recipes.
+- Identity checks prove six unique semantic IDs/fingerprints while all twelve packaging derivatives retain the parent semantic asset.
+- Registry and marketplace profile revisions are pinned at `1.0`; Adobe Stock is the evidence-pinned compatibility target in these fixtures.
+- Factory Asset regression: 48/48 PASS.
+- `FA-019` is now READY for positive + negative cross-family Blueprint v2 acceptance.
