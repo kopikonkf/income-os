@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "1.6-muxia-shared-browser-runtime",
+  "revision": "1.7-webai-muxia-coexistence",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -674,10 +674,12 @@
       "depends_on": [
         "FA-W020"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/receipts/FA-W021-webai-muxia-coexistence.receipt.json",
       "acceptance": "Standalone web-ai-adapter can remain serving production/lab traffic while MUXIA-backed Browser-CDP is introduced and stabilized; the switch is explicit, reversible and does not require copying dirty D:\\OAUTH or stopping the known-good standalone path before MUXIA acceptance.",
-      "result_on_success": "Production may continue on standalone web-ai-adapter during MUXIA leverage, then cut over only after the MUXIA-backed path is green."
+      "result_on_success": "Production may continue on standalone web-ai-adapter during MUXIA leverage, then cut over only after the MUXIA-backed path is green.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: standalone web-ai-adapter CDP remained READY on 127.0.0.1:9333 while an isolated canonical MUXIA runtime simultaneously exposed loopback CDP 127.0.0.1:45235. Explicit config switch to MUXIA attached and returned provider-level AUTH_REQUIRED; switching back to STANDALONE remained READY, and standalone was still READY after MUXIA/tunnel teardown. No production cutover or production profile mutation occurred."
     },
     {
       "id": "FA-010",
