@@ -1,0 +1,71 @@
+{
+  "schema": "factory-asset.oauth-history-remediation-receipt.v1",
+  "task_id": "FA-006",
+  "date": "2026-09-03",
+  "status": "PASS",
+  "authority": "FOUNDER_AUTHORIZED_COORDINATED_HISTORY_REWRITE_AND_FORCE_PUSH",
+  "repository": {
+    "path": "D:\\OAUTH",
+    "remote": "https://github.com/kopikonkf/web-ai-adapter.git",
+    "remote_head_before": "bc155d4279b9a5eefe98113ed64ca32e221a59dc",
+    "remote_head_after": "c2fb61467138a24156b3d61c991882ebcdd59086",
+    "force_push_mode": "force-with-lease",
+    "expected_remote_head_enforced": true
+  },
+  "credential": {
+    "class": "GitHub fine-grained PAT",
+    "redacted_fingerprint": "600b7ae4ef95",
+    "state": "REVOKED_BEFORE_FA-006",
+    "secret_value_logged": false
+  },
+  "rollback_safety": {
+    "isolated_mirror_created_before_rewrite": true,
+    "bundle_path": "D:\\mcp-architect\\workspace\\fa006-history-20260903\\web-ai-adapter-pre-fa006.bundle",
+    "bundle_sha256": "3d7457ec1d8b8bcebb08efd241737f698b92c81e0ad3493a175c779bcf255812",
+    "live_dirty_tree_used_for_remote_rewrite": false
+  },
+  "remote_history_rewrite": {
+    "isolated_rewrite": true,
+    "commits_processed": 17,
+    "tracked_path_sanitized": "HANDOFF.md",
+    "replacement_marker": "[REVOKED_GITHUB_PAT_REMOVED]",
+    "pre_push_reachable_match_count": 0,
+    "fresh_clone_head": "c2fb61467138a24156b3d61c991882ebcdd59086",
+    "fresh_clone_reachable_match_count": 0,
+    "fresh_clone_github_pat_candidate_count": 0,
+    "result": "PASS"
+  },
+  "live_dirty_checkout_reconciliation": {
+    "head_before": "bc155d4279b9a5eefe98113ed64ca32e221a59dc",
+    "head_after": "c2fb61467138a24156b3d61c991882ebcdd59086",
+    "tracked_handoff_replacements": 1,
+    "cline_checkpoint_refs_rewritten": 15,
+    "reachable_match_count_after": 0,
+    "git_status_entry_count_before": 65,
+    "git_status_entry_count_after": 65,
+    "git_status_sha256_before": "c3babd42348b7eda509a9e96827dca15463479ec382ff5757d7ad295fdb668e4",
+    "git_status_sha256_after": "c3babd42348b7eda509a9e96827dca15463479ec382ff5757d7ad295fdb668e4",
+    "dirty_status_preserved_exactly": true,
+    "reset_used": false,
+    "stash_used": false,
+    "clean_used": false,
+    "provider_source_changed_by_fa006": false,
+    "object_database_gc_forced_on_live_dirty_repo": false
+  },
+  "security": {
+    "remote_inline_auth": false,
+    "reachable_revoked_credential_after": false,
+    "fresh_clone_clean": true,
+    "raw_credential_published": false,
+    "raw_cookie_published": false,
+    "authenticated_capture_published": false
+  },
+  "acceptance": {
+    "revoked_credential_removed_from_current_tracked_content": true,
+    "coordinated_reachable_history_rewrite_complete": true,
+    "fresh_clone_redaction_safe_scan_clean": true,
+    "remote_remains_non_inline": true,
+    "unrelated_dirty_oauth_work_preserved": true,
+    "result": "PASS"
+  }
+}
