@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "2.9-fa-c002-console-prd",
+  "revision": "3.0-fa-c004-console-synthetic-shell",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1754,9 +1754,11 @@
       "depends_on": [
         "FA-C002"
       ],
-      "status": "READY",
-      "artifact": "Factory Console web GUI shell + synthetic fixtures",
-      "acceptance": "Founder can navigate Blueprint, Batch, Queue, Providers and Output views using synthetic data; no live provider, production queue or credentials are touched."
+      "status": "DONE",
+      "artifact": "company/factory-asset/console-prototype/",
+      "acceptance": "Founder can navigate Blueprint, Batch, Queue, Providers and Output views using synthetic data; no live provider, production queue or credentials are touched.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: zero-dependency static Factory Console shell provides Blueprint, Batch, Queue, Providers and Output views from deterministic synthetic fixtures. Controls are simulated only, live dispatch is disabled, and regression is 92/92 PASS."
     },
     {
       "id": "FA-C005",
@@ -1768,7 +1770,7 @@
         "FA-C004",
         "FA-019"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Console blueprint editor with compile-preview tests",
       "acceptance": "PHOTO, ISOLATED_OBJECT, ICON, OUTLINE, PATTERN and ANIMATION selections compile through canonical Blueprint v2; quantity/style/master/delivery controls cannot mint packaging variants as semantic assets."
     },

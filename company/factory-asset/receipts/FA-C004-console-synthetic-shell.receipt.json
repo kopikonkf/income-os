@@ -1,0 +1,21 @@
+{
+  "schema": "factory-asset.console-synthetic-shell-receipt.v1",
+  "task_id": "FA-C004",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact_root": "company/factory-asset/console-prototype/",
+  "implementation": "zero-dependency static HTML/CSS/JS",
+  "environment": "SYNTHETIC",
+  "live_dispatch_enabled": false,
+  "views": ["Blueprint", "Batch", "Queue", "Providers", "Output"],
+  "validation": {
+    "factory_asset_tests": "92/92 PASS",
+    "node_js_syntax": "PASS",
+    "navigation_contract": "PASS",
+    "synthetic_fixture_contract": "PASS",
+    "network_api_negative_test": "PASS",
+    "headless_browser_smoke": "NOT_AVAILABLE_IN_ARCHITECT_SERVICE_CONTEXT_NOT_CLAIMED"
+  },
+  "unblocked": ["FA-C005"]
+}

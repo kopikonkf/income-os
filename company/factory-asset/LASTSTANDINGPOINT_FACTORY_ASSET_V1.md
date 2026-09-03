@@ -326,3 +326,11 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Founder workflows and five-view IA are explicit, with normalized job/provider/capacity/QA states and synthetic fixture contract.
 - Prototype implementation is a zero-dependency static HTML/CSS/JS shell; live execution remains out of scope.
 - `FA-C004` is READY.
+
+
+### FA-C004 — DONE / PASS — Factory Console synthetic GUI shell
+- Zero-dependency static HTML/CSS/JS shell exposes Blueprint, Batch, Queue, Providers and Output views over deterministic synthetic fixtures.
+- Queue controls are SIMULATED only; live dispatch is locked; current five-provider pool plus optional/deferred Grok are visible.
+- Output gallery keeps semantic count distinct from derivative count.
+- Factory regression 92/92 PASS; JS syntax PASS. Headless browser smoke was unavailable in Architect service context and is not claimed.
+- FA-C005 is READY.

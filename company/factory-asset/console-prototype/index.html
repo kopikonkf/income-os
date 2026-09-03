@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Factory Asset Console — Synthetic Prototype</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">FA</div>
+        <div><strong>Factory Console</strong><span>Founder control plane</span></div>
+      </div>
+      <div class="env-chip"><span class="pulse"></span> SYNTHETIC MODE</div>
+      <nav id="primary-nav" aria-label="Primary navigation">
+        <button class="nav-item active" data-view="blueprint">Blueprint</button>
+        <button class="nav-item" data-view="batch">Batch</button>
+        <button class="nav-item" data-view="queue">Queue</button>
+        <button class="nav-item" data-view="providers">Providers</button>
+        <button class="nav-item" data-view="output">Output</button>
+      </nav>
+      <div class="sidebar-note">
+        <strong>No live authority</strong>
+        <p>Provider calls, credentials, browser sessions and marketplace publication are disabled in this prototype.</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">FACTORY ASSET LEVEL UP</p>
+          <h1 id="view-title">Blueprint</h1>
+        </div>
+        <div class="metrics" id="global-metrics"></div>
+      </header>
+
+      <div class="safety-banner">
+        <strong>Synthetic data only.</strong> UI state is demonstrative and never becomes Factory canonical truth.
+      </div>
+
+      <section id="view-blueprint" class="view active" data-view-panel="blueprint"></section>
+      <section id="view-batch" class="view" data-view-panel="batch"></section>
+      <section id="view-queue" class="view" data-view-panel="queue"></section>
+      <section id="view-providers" class="view" data-view-panel="providers"></section>
+      <section id="view-output" class="view" data-view-panel="output"></section>
+    </main>
+  </div>
+  <script src="synthetic-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
