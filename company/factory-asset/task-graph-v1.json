@@ -250,9 +250,11 @@
       "depends_on": [
         "FA-W000"
       ],
-      "status": "READY",
-      "artifact": "D:\\FACTORY_ASSET\\contracts\\windows-image-provider-proof-v1.json",
-      "acceptance": "Contract defines SESSION_API, BROWSER_CDP, HYBRID, OFFICIAL_API, UNSUPPORTED and UNKNOWN; PASS requires prompt, real generation, original bytes, local save, reopen, MIME/magic, dimensions, bytes and SHA-256."
+      "status": "DONE",
+      "artifact": "company/factory-asset/contracts/windows-image-provider-proof-v1.json",
+      "acceptance": "Contract defines SESSION_API, BROWSER_CDP, HYBRID, OFFICIAL_API, UNSUPPORTED and UNKNOWN; PASS requires prompt, real generation, original bytes, local save, reopen, MIME/magic, dimensions, bytes and SHA-256.",
+      "completed_at": "2026-09-03",
+      "result": "Common Windows image proof and transport-class contract validated and canonicalized."
     },
     {
       "id": "FA-W002",
@@ -264,7 +266,7 @@
       "depends_on": [
         "FA-W001"
       ],
-      "status": "BLOCKED",
+      "status": "WAITING_FOUNDER",
       "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W002-qwen-image-proof.receipt.json",
       "acceptance": "Qwen prompt produces a real original image saved locally with strict validation, content-addressed dedupe and non-silent failures; text/chat regression remains green."
@@ -279,7 +281,7 @@
       "depends_on": [
         "FA-W001"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W003-chatgpt-differential-autopsy.receipt.json",
       "acceptance": "Working Proxima and failing OAUTH are compared across browser/session ownership, CDP, prompt submission, completion detection, original-byte acquisition and save; exact reusable boundary is identified without importing Electron wholesale."
     },
@@ -308,7 +310,7 @@
       "depends_on": [
         "FA-W001"
       ],
-      "status": "BLOCKED",
+      "status": "WAITING_FOUNDER",
       "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W005-gemini-image-proof.receipt.json",
       "acceptance": "One bounded authorized Gemini request yields durable original bytes and a validated local file through an allowed transport; the current inaccessible URL/403 path cannot pass."
@@ -323,7 +325,7 @@
       "depends_on": [
         "FA-W001"
       ],
-      "status": "BLOCKED",
+      "status": "WAITING_FOUNDER",
       "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W006-grok-image-proof.receipt.json",
       "acceptance": "A supported evidenced Grok route produces and saves validated original image bytes; guessed endpoint loops, 404 assumptions and protection bypass cannot pass."
@@ -338,7 +340,7 @@
       "depends_on": [
         "FA-W001"
       ],
-      "status": "BLOCKED",
+      "status": "WAITING_FOUNDER",
       "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W007-manus-image-proof.receipt.json",
       "acceptance": "Bounded create/poll/artifact semantics produce and save validated original image bytes; infinite polling and status-without-artifact fail."
@@ -353,7 +355,7 @@
       "depends_on": [
         "FA-W001"
       ],
-      "status": "BLOCKED",
+      "status": "WAITING_FOUNDER",
       "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W008-duckai-image-proof.receipt.json",
       "acceptance": "Duck.ai passes only if a supported image-capable route produces and saves validated original bytes; its current gpt-5.4-nano text endpoint is not counted. Otherwise return UNSUPPORTED_CAPABILITY with evidence."

@@ -1,0 +1,195 @@
+{
+  "schema": "factory-asset.windows-image-provider-proof-contract.v1",
+  "task_id": "FA-W001",
+  "version": "1.0.0",
+  "date": "2026-09-03",
+  "status": "CANONICAL_LOCAL_CONTRACT",
+  "purpose": "Normalize Windows provider image proofs so every lane is judged by the same transport, original-byte, local-save, validation and security criteria.",
+  "transport_classes": {
+    "SESSION_API": {
+      "definition": "An authenticated user session is used to call the provider's observed HTTP/WebSocket application interface directly after session establishment; the browser UI is not required for each generation.",
+      "requirements": [
+        "session belongs to the authorized principal",
+        "route is evidenced rather than guessed",
+        "no CAPTCHA, anti-abuse, quota or protection bypass",
+        "credential material remains opaque and is never copied into receipts"
+      ]
+    },
+    "BROWSER_CDP": {
+      "definition": "A dedicated authorized browser profile owns authentication and generation is driven through browser automation/CDP while original result bytes are acquired from an evidenced browser-accessible source.",
+      "requirements": [
+        "profile ownership is explicit",
+        "browser/session isolation is preserved",
+        "generation completion is evidenced",
+        "screenshots and rendered previews do not count as original bytes"
+      ]
+    },
+    "HYBRID": {
+      "definition": "Browser automation owns authentication, bootstrap or recovery while an evidenced application/API/network route performs part of generation, polling or original-byte acquisition.",
+      "requirements": [
+        "browser and API responsibilities are explicitly separated",
+        "all session material belongs to one authorized principal",
+        "no cross-principal credential copying",
+        "the exact original-byte acquisition boundary is recorded"
+      ]
+    },
+    "OFFICIAL_API": {
+      "definition": "A vendor-documented and allowed API or SDK is used with its documented authentication mechanism.",
+      "requirements": [
+        "official route is identified by dated documentation or account evidence",
+        "authentication uses the provider-supported mechanism",
+        "provider response is not silently reinterpreted as success when image bytes are absent"
+      ]
+    },
+    "UNSUPPORTED": {
+      "definition": "Evidence shows the tested provider/route does not expose the required native image generation plus durable original-byte export capability for this scope.",
+      "terminal_for_provider_proof": true,
+      "counts_as_pass": false
+    },
+    "UNKNOWN": {
+      "definition": "Available evidence is insufficient to classify the transport or prove the required image capability without guessing.",
+      "terminal_for_provider_proof": false,
+      "counts_as_pass": false
+    }
+  },
+  "required_proof": {
+    "prompt": {
+      "required": true,
+      "fields": [
+        "prompt_text_or_redacted_safe_text",
+        "prompt_sha256"
+      ]
+    },
+    "generation": {
+      "required": true,
+      "must_be_real_provider_generation": true,
+      "must_not_be": [
+        "fixture-only",
+        "mock-only",
+        "cached historical artifact presented as new generation",
+        "screenshot-only"
+      ]
+    },
+    "original_bytes": {
+      "required": true,
+      "definition": "The durable provider-produced image payload at the highest evidenced original/export quality available to the tested route, not a screenshot, HTML canvas capture, thumbnail or UI preview unless the provider itself defines that payload as the downloadable original.",
+      "accepted_acquisition_examples": [
+        "response body bytes",
+        "base64 payload decoded to bytes",
+        "authorized downloadable original URL fetched successfully",
+        "browser download event yielding the provider's original file"
+      ],
+      "rejected_acquisition_examples": [
+        "screenshot",
+        "URL without successful byte acquisition",
+        "thumbnail-only capture",
+        "preview-only DOM/canvas rasterization",
+        "text response claiming success"
+      ]
+    },
+    "local_save": {
+      "required": true,
+      "durable_file_required": true,
+      "path_required": true,
+      "reopen_after_save_required": true
+    },
+    "validation": {
+      "mime_required": true,
+      "magic_required": true,
+      "mime_magic_consistency_required": true,
+      "dimensions_required": true,
+      "positive_dimensions_required": true,
+      "byte_count_required": true,
+      "positive_byte_count_required": true,
+      "sha256_required": true,
+      "sha256_format": "64 lowercase-or-uppercase hexadecimal characters",
+      "decode_reopen_required": true
+    }
+  },
+  "pass_rule": {
+    "all_required_proof_fields_present": true,
+    "transport_class_allowed": [
+      "SESSION_API",
+      "BROWSER_CDP",
+      "HYBRID",
+      "OFFICIAL_API"
+    ],
+    "requires_real_generation": true,
+    "requires_original_bytes": true,
+    "requires_local_save": true,
+    "requires_reopen": true,
+    "requires_mime_magic_dimensions_bytes_sha256": true,
+    "fail_closed": true
+  },
+  "typed_failure_outcomes": [
+    "AUTH_REQUIRED",
+    "AUTH_EXPIRED",
+    "RATE_LIMITED",
+    "PROTECTION_CHALLENGE",
+    "POLICY_OR_TERMS_UNKNOWN",
+    "UNSUPPORTED_CAPABILITY",
+    "UNKNOWN_TRANSPORT",
+    "GENERATION_NOT_CONFIRMED",
+    "STATUS_WITHOUT_ARTIFACT",
+    "URL_ONLY",
+    "SCREENSHOT_ONLY",
+    "PREVIEW_ONLY",
+    "DOWNLOAD_FAILED",
+    "INVALID_BYTES",
+    "MIME_MAGIC_MISMATCH",
+    "DECODE_REOPEN_FAILED",
+    "INVALID_DIMENSIONS",
+    "EMPTY_FILE",
+    "HASH_FAILED",
+    "TIMEOUT",
+    "PROVIDER_ERROR"
+  ],
+  "receipt_minimum_fields": [
+    "task_id",
+    "provider",
+    "model_or_mode",
+    "transport_class",
+    "prompt_sha256",
+    "generation_started_at",
+    "generation_completed_at",
+    "original_byte_acquisition_method",
+    "local_path",
+    "mime",
+    "magic",
+    "dimensions",
+    "bytes",
+    "sha256",
+    "decode_reopen",
+    "result"
+  ],
+  "security_contract": {
+    "credential_values_in_receipt": false,
+    "raw_cookies_in_receipt": false,
+    "authorization_headers_in_receipt": false,
+    "authenticated_har_in_receipt": false,
+    "cross_principal_credential_copying": false,
+    "captcha_or_protection_bypass": false,
+    "quota_evasion": false,
+    "account_farming": false
+  },
+  "counting_contract": {
+    "one_successful_generation_with_multiple_packaging_formats_is_one_semantic_asset": true,
+    "screenshots_previews_and_thumbnails_are_not_additional_semantic_assets": true
+  },
+  "acceptance": {
+    "required_transport_classes_defined": [
+      "SESSION_API",
+      "BROWSER_CDP",
+      "HYBRID",
+      "OFFICIAL_API",
+      "UNSUPPORTED",
+      "UNKNOWN"
+    ],
+    "pass_requires_prompt": true,
+    "pass_requires_real_generation": true,
+    "pass_requires_original_bytes": true,
+    "pass_requires_local_save": true,
+    "pass_requires_reopen": true,
+    "pass_requires_mime_magic_dimensions_bytes_sha256": true
+  }
+}
