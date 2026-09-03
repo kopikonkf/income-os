@@ -266,10 +266,15 @@
       "depends_on": [
         "FA-W001"
       ],
-      "status": "WAITING_FOUNDER",
+      "status": "DONE",
       "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W002-qwen-image-proof.receipt.json",
-      "acceptance": "Qwen prompt produces a real original image saved locally with strict validation, content-addressed dedupe and non-silent failures; text/chat regression remains green."
+      "acceptance": "Qwen prompt produces a real original image saved locally with strict validation, content-addressed dedupe and non-silent failures; text/chat regression remains green.",
+      "completed_at": "2026-09-03",
+      "receipt": "company/factory-asset/receipts/FA-W002-qwen-image-proof.receipt.json",
+      "result": "PASS: existing Sep 3 real Qwen evidence reused; adapter hardened for strict content-addressed original-byte persistence; no new live Qwen call required.",
+      "authorization_reused": true,
+      "live_provider_calls_for_reconciliation": 0
     },
     {
       "id": "FA-W003",

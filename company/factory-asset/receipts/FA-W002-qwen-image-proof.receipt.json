@@ -1,0 +1,97 @@
+{
+  "schema": "factory-asset.windows-image-provider-proof-receipt.v1",
+  "task_id": "FA-W002",
+  "date": "2026-09-03",
+  "status": "PASS",
+  "provider": "qwen",
+  "model_or_mode": "qwen3.8-max / t2i SESSION_API",
+  "transport_class": "SESSION_API",
+  "authority": {
+    "founder_authorization_reused": true,
+    "scope": "FA-W002 hardening plus maximum one bounded live Qwen image generation for acceptance",
+    "new_live_qwen_calls": 0,
+    "reason_no_new_call": "Existing 2026-09-03 real-generation evidence satisfies the task-specific acceptance after deterministic hardening replay."
+  },
+  "prompt": {
+    "prompt_text_or_redacted_safe_text": "Founder-verified bounded acceptance prompt requesting geometric-shape outputs: square and circle.",
+    "prompt_sha256": "e0f73c0060bf435ab639bb25c9e823e2f3d6d546dc123dd25778b4969b0a1f8c",
+    "exact_prompt_republished": false
+  },
+  "generation": {
+    "real_provider_generation": true,
+    "fixture_or_mock": false,
+    "existing_evidence_reused": true,
+    "founder_web_session_crosscheck": "PASS",
+    "generation_started_at": "existing bounded 2026-09-03 run; exact start timestamp not republished",
+    "generation_completed_at": "2026-09-03T02:50:11.167Z for primary artifact mtime",
+    "original_byte_acquisition_method": "Qwen SESSION_API image payload decoded/downloaded to durable local bytes"
+  },
+  "implementation": {
+    "repository": "github.com/kopikonkf/web-ai-adapter",
+    "pr": 1,
+    "merge_commit": "a301fd7e9c90931566ae877c976c3fbf0f65bdd1",
+    "hardening": [
+      "strict image magic/MIME/dimensions/decode validation",
+      "SHA-256 content addressing",
+      "atomic durable save",
+      "content-addressed dedupe",
+      "URL-only success prohibited",
+      "download/base64 validation failures are non-silent"
+    ],
+    "deterministic_tests": "4/4 PASS",
+    "offline_real_artifact_replay": "PASS"
+  },
+  "artifacts": [
+    {
+      "local_path": "D:\\ASSETS\\OAUTH\\2026-09-03\\qwen_032a7cf1.png",
+      "mime": "image/png",
+      "magic": "89504e470d0a1a0a",
+      "dimensions": [2048, 2048],
+      "bytes": 3821821,
+      "sha256": "54f54a263a09e3246a0b9414b665f8ab232fa7bf04f51d786ffc008921929105",
+      "decode_reopen": "PASS",
+      "matches_FA_W000_primary_baseline": true,
+      "content_addressed_replay_dedupe": "PASS"
+    },
+    {
+      "local_path": "D:\\ASSETS\\OAUTH\\2026-09-03\\qwen_192aa4c7.png",
+      "mime": "image/png",
+      "magic": "89504e470d0a1a0a",
+      "dimensions": [2048, 2048],
+      "bytes": 3629969,
+      "sha256": "7ff36bf614b399e017e2fea942ac15af2373b341d93d648f250ab0e9923a8901",
+      "decode_reopen": "PASS",
+      "content_addressed_replay_dedupe": "PASS"
+    }
+  ],
+  "text_chat_regression": {
+    "result": "PASS_REUSED",
+    "source_receipt": "D:\\FACTORY_ASSET\\receipts\\FA-W000-oauth-baseline.receipt.json",
+    "live_baseline_http": 200,
+    "expected_content": "BASELINE_OK",
+    "qwen_text_provider_source_modified_by_FA_W002": false,
+    "post_hardening_compile": "PASS"
+  },
+  "source_safety": {
+    "oauth_head": "c2fb61467138a24156b3d61c991882ebcdd59086",
+    "unrelated_dirty_work_preserved": true,
+    "credential_values_logged": false,
+    "raw_cookies_published": false,
+    "authenticated_capture_published": false
+  },
+  "acceptance": {
+    "real_prompt_evidence": true,
+    "real_generation": true,
+    "original_bytes": true,
+    "local_save": true,
+    "reopen_decode": true,
+    "mime_magic": true,
+    "positive_dimensions": true,
+    "positive_bytes": true,
+    "sha256": true,
+    "content_addressed_dedupe": true,
+    "non_silent_failures": true,
+    "text_chat_regression_green": true
+  },
+  "result": "PASS"
+}
