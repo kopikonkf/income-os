@@ -1,0 +1,50 @@
+{
+  "schema": "factory-asset.asset-identity-invariants-receipt.v1",
+  "task_id": "FA-014",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "implementation": {
+    "library": "company/factory-asset/lib/asset_identity.py",
+    "test_suite": "company/factory-asset/tests/asset_identity_invariants/test_identity_invariants.py"
+  },
+  "semantic_identity_material": [
+    "asset_type",
+    "semantic_identity.commercial_use_case",
+    "semantic_identity.subject",
+    "semantic_identity.intent"
+  ],
+  "packaging_identity_material": [
+    "master_spec",
+    "derivatives",
+    "policy.marketplace_profiles",
+    "policy.compatibility_state"
+  ],
+  "invariants": {
+    "format_change_mints_semantic_id": false,
+    "resolution_change_mints_semantic_id": false,
+    "preview_or_derivative_change_mints_semantic_id": false,
+    "marketplace_route_change_mints_semantic_id": false,
+    "packaging_only_new_semantic_id": "REJECT",
+    "distinct_semantic_core_same_semantic_id": "REJECT",
+    "distinct_semantic_core_same_blueprint_id": "REJECT",
+    "distinct_use_case_new_semantic_and_blueprint_ids": "ACCEPT",
+    "derivative_semantic_identity_effect": "NONE"
+  },
+  "normalization": {
+    "subject": "trim + collapse whitespace + casefold",
+    "commercial_use_case": "trim + collapse whitespace + casefold",
+    "derivative_order_affects_packaging_fingerprint": false
+  },
+  "validation": {
+    "factory_asset_tests": "43/43 PASS",
+    "python_compile": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "scope_note": "Asset Blueprint v2 schema has no explicit compression field; compression therefore cannot participate in semantic identity. File/format/resolution/preview/route fields represented in v2 are explicitly packaging-only.",
+  "security_and_authority": {
+    "provider_dispatch_performed": false,
+    "marketplace_submission_performed": false,
+    "production_runtime_mutated": false
+  }
+}
