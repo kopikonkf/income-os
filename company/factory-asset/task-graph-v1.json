@@ -10,7 +10,7 @@
   "execution_policy": {
     "selection_rule": "Execute exactly one eligible highest-priority READY atomic leaf, or one task explicitly marked acceptance_batch=true, per scheduled run; then STOP.",
     "ssot_rule": "Read current origin/main, LASTSTANDINGPOINT.md, this graph, relevant receipts, and all active engineering leases before selection.",
-    "lease_rule": "Acquire both factory-asset task lease and global income-os:repo-write lease before repository mutation.",
+    "lease_rule": "Before any remote repository mutation, acquire both income-os.repo-write and factory-asset.<task_id> through bin/die_engineering_lease.py using the shared Architect MCP coordination root D:\\mcp-architect\\workspace\\.engineering-leases; release both in finally. BUSY, corrupt, or token-mismatch states fail closed.",
     "dirty_tree_rule": "Do not mutate, reset, stash, clean, or repurpose the live dirty C:\\DIE or D:\\OAUTH trees.",
     "linux_rule": "Use a fresh Linux-native isolated worktree/check-out based on current origin/main for Linux-target implementation and tests; never build in or mutate the live /srv/die checkout.",
     "production_protection_rule": "The live Linux Production Organism and die-production-cycle-v1 at 0 */3 * * * are observation-only for this program: no deploy, restart, stop, reconfiguration, profile/credential/queue/database write, cron mutation, active-artifact mutation, or cutover.",
@@ -43,7 +43,28 @@
       "credential copying between principals",
       "counting packaging derivatives as distinct assets",
       "automatic marketplace publication"
-    ]
+    ],
+    "lease_protocol": {
+      "version": "die.engineering-lease.v1",
+      "implementation": "bin/die_engineering_lease.py",
+      "runbook": "docs/operations/DIE_ENGINEERING_LEASE_V1.md",
+      "coordination_root": "D:\\mcp-architect\\workspace\\.engineering-leases",
+      "global_resource": "income-os.repo-write",
+      "factory_resource_template": "factory-asset.{task_id}",
+      "acquire_order": [
+        "income-os.repo-write",
+        "factory-asset.{task_id}"
+      ],
+      "default_ttl_seconds": 5400,
+      "acquire_required_before": [
+        "git push",
+        "PR create/update",
+        "merge",
+        "canonical repository publication"
+      ],
+      "read_only_requires_lease": false,
+      "stale_recovery": "Expired records may be reclaimed only by the canonical helper while holding the kernel guard; corrupt state fails closed."
+    }
   },
   "execution_lanes": {
     "CANON_GOVERNED": {
@@ -61,7 +82,8 @@
       "schedule_offset_rule": "Active at minute 35 UTC, separated from the Chapter #4 hourly runner near minute 00 and the production cycle at minute 00 every three hours.",
       "live_runtime_access": "READ_ONLY_ONLY_WHEN_EXPLICITLY_REQUIRED_BY_TASK",
       "default_for_unmarked_tasks": true,
-      "scheduled_prompt_contract": "Use current origin/main as SSOT. If revision 1.1-dual-lane is not canonical, execute only FA-000 from the Founder-approved staged pack and STOP. After canonization, read LASTSTANDINGPOINT, Factory task graph, relevant ADR/PRD/receipts and active leases; select exactly one highest-priority READY Linux leaf. If Architect MCP, repository access, required evidence, or both leases are unavailable, make no mutation and report the stop condition. Work only in a fresh isolated Linux worktree. Never mutate /srv/die, its cron, runtime, profiles, credentials, queues, databases or active artifacts. Do not select FA-W* tasks or make provider/account/marketplace actions. Build, test and verify; publish only green governed changes; update the receipt, graph and LASTSTANDINGPOINT; then STOP."
+      "scheduled_prompt_contract": "Use current origin/main as SSOT. If revision 1.1-dual-lane is not canonical, execute only FA-000 from the Founder-approved staged pack and STOP. After canonization, read LASTSTANDINGPOINT, Factory task graph, relevant ADR/PRD/receipts and active leases; select exactly one highest-priority READY Linux leaf. If Architect MCP, repository access, required evidence, or both leases are unavailable, make no mutation and report the stop condition. Work only in a fresh isolated Linux worktree. Never mutate /srv/die, its cron, runtime, profiles, credentials, queues, databases or active artifacts. Do not select FA-W* tasks or make provider/account/marketplace actions. Build, test and verify; publish only green governed changes; update the receipt, graph and LASTSTANDINGPOINT; then STOP.",
+      "lease_acquisition": "Use bin/die_engineering_lease.py acquire-pair with the canonical coordination root before the first remote repository mutation; release-pair in finally. The existence of unfinished WINDOWS_OAUTH_LAB work is not lease contention."
     },
     "WINDOWS_OAUTH_LAB": {
       "mode": "FOUNDER_DIRECTED_INTERACTIVE",

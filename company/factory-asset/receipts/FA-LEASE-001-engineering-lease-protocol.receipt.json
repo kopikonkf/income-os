@@ -1,0 +1,48 @@
+{
+  "schema": "die.factory-asset.engineering-lease-repair.receipt.v1",
+  "task": "FA-LEASE-001",
+  "date": "2026-09-03",
+  "status": "PASS",
+  "problem": "LEASE_ACQUISITION_MECHANISM_UNRESOLVED",
+  "resolution": {
+    "protocol": "die.engineering-lease.v1",
+    "implementation": "bin/die_engineering_lease.py",
+    "runbook": "docs/operations/DIE_ENGINEERING_LEASE_V1.md",
+    "coordination_root": "D:\\mcp-architect\\workspace\\.engineering-leases",
+    "resources": [
+      "income-os.repo-write",
+      "factory-asset.<task_id>"
+    ],
+    "acquire_order": [
+      "income-os.repo-write",
+      "factory-asset.<task_id>"
+    ],
+    "default_ttl_seconds": 5400,
+    "release_required": true,
+    "corrupt_state_policy": "FAIL_CLOSED"
+  },
+  "validation": {
+    "focused_tests": "5 passed",
+    "live_coordination_root_initial_state": "FREE",
+    "live_pair_acquire": "PASS",
+    "competing_acquire": "BUSY_AS_EXPECTED",
+    "release_pair": "PASS",
+    "live_coordination_root_final_state": "FREE",
+    "credentials_read": false,
+    "provider_action": false,
+    "windows_oauth_mutated": false,
+    "live_die_mutated": false,
+    "linux_production_mutated": false
+  },
+  "windows_lane_observed": {
+    "FA-002": "DONE",
+    "FA-004": "DONE",
+    "FA-005": "WAITING_FOUNDER"
+  },
+  "linux_frontier_observed": {
+    "FA-001": "READY",
+    "FA-003": "READY"
+  },
+  "authority": "Founder explicitly requested lease blocker repair in interactive Architect session.",
+  "next": "Factory Asset Hourly may acquire the pair through the canonical helper and retry FA-001; unfinished Windows work is not global lease contention."
+}

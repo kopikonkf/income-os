@@ -3415,3 +3415,19 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Credentials remain external; no marketplace login, cookie/token extraction, submission, publication, account action, or Founder authority consumption occurred.
 - Graph delta: `SUB-001E DONE`; `SUB-001F READY`.
 - NEXT READY: `SUB-001F` Common submission framework regression suite.
+
+
+---
+
+## 2026-09-03 — Factory Asset engineering lease protocol repair
+
+- Factory Asset canon revision 1.1-dual-lane remains active.
+- Windows lane observed at repair start: FA-002=DONE, FA-004=DONE, FA-005=WAITING_FOUNDER.
+- Linux lane remains independently eligible at FA-001=READY and FA-003=READY.
+- The scheduled Linux run exposed LEASE_ACQUISITION_MECHANISM_UNRESOLVED: the graph required a Factory task lease plus global income-os:repo-write lease but did not define an executable acquisition primitive.
+- Repair adds canonical in/die_engineering_lease.py plus docs/operations/DIE_ENGINEERING_LEASE_V1.md. Coordination root while Architect MCP remains the Windows control channel is D:\\mcp-architect\\workspace\\.engineering-leases.
+- Repository-mutating Factory runs acquire income-os.repo-write first, then actory-asset.<task_id>, with token-bound release, kernel guard locking, TTL-bounded crash recovery and fail-closed corrupt-state behavior.
+- Live canary: initial global state FREE -> pair ACQUIRED -> competing acquisition BUSY as expected -> pair RELEASED -> final global state FREE. Focused tests: 5/5 PASS.
+- No C:\\DIE, D:\\OAUTH, /srv/die, provider account, credential, production runtime or marketplace state was mutated by the repair canary.
+- Receipt: company/factory-asset/receipts/FA-LEASE-001-engineering-lease-protocol.receipt.json.
+- NEXT Linux: retry FA-001 using the canonical lease helper. Windows work continues independently and is not a global blocker unless an explicit dependency or actual active repo-write lease applies.
