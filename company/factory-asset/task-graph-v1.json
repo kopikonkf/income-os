@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "1.7-webai-muxia-coexistence",
+  "revision": "1.8-fa013-blueprint-compiler",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -736,9 +736,11 @@
       "depends_on": [
         "FA-012"
       ],
-      "status": "READY",
-      "artifact": "Asset Blueprint v2 validator/compiler with tests",
-      "acceptance": "Compiler deterministically selects producer/master/recipes and rejects impossible raster/vector/motion combinations before dispatch."
+      "status": "DONE",
+      "artifact": "company/factory-asset/lib/blueprint_compiler.py + company/factory-asset/bin/compile_asset_blueprint.py + company/factory-asset/registries/asset-types.v1.json",
+      "acceptance": "Compiler deterministically selects producer/master/recipes and rejects impossible raster/vector/motion combinations before dispatch.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: deterministic Asset Blueprint v2 validator/compiler validates against the canonical blueprint schema and concrete six-mode asset registry, selects master/derivative recipes, pins registry/profile revisions, blocks unsupported marketplace compatibility claims, and rejects impossible raster/vector/motion combinations before dispatch. Factory regression 30/30 PASS including CLI smoke."
     },
     {
       "id": "FA-014",

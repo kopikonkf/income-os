@@ -231,3 +231,14 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Explicit `WEB_AI_BROWSER_RUNTIME=MUXIA` + sanitized status file resolved the MUXIA endpoint and reached provider-level `AUTH_REQUIRED`, proving attachment without credential copy or provider dispatch.
 - Switching back to `STANDALONE` while MUXIA remained alive returned `READY`; after terminating the isolated MUXIA browser and SSH tunnel, standalone preflight remained `READY`.
 - Therefore standalone production/lab operation can continue during MUXIA hardening, and cutover can remain explicit/reversible. No cutover was performed by this task.
+
+
+### FA-013 — DONE / PASS — Asset Blueprint v2 validator/compiler
+
+- Added concrete six-mode asset registry `asset-types.v1.json`: PHOTO, ISOLATED_OBJECT, ICON, OUTLINE, PATTERN, ANIMATION, all validated against the FA-010 registry schema.
+- Compiler validates schema + asset family/native representation + producer + master format + family QA before producing a deterministic `die.factory-asset.production-plan.v1`.
+- Deterministic recipes are selected for raster, native/procedural vector and motion masters/derivatives. Raster→SVG/EPS, raster/vector→motion, and unsupported motion derivatives fail before dispatch.
+- Marketplace profile evidence is fail-closed: `COMPATIBLE` cannot be claimed against UNKNOWN/stale profiles, and an evidenced marketplace delivery format must actually be supported by the selected pinned profile.
+- CLI smoke initially exposed a dynamic-import/dataclass bug; it was repaired and added as a permanent subprocess regression.
+- Validation: Factory Asset tests 30/30 PASS, registry schema PASS, Python compile PASS, diff check PASS.
+- `FA-014` remains READY. `FA-015` stays BLOCKED until FA-014 is DONE.
