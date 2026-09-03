@@ -1,0 +1,22 @@
+{
+  "schema": "factory-asset.provider-profile-lease-receipt.v1",
+  "task_id": "FA-101",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "artifacts": [
+    "company/factory-asset/schemas/provider-profile.schema.json",
+    "company/factory-asset/lib/provider_profile.py"
+  ],
+  "guards": [
+    "opaque credential ref only",
+    "one active profile lease",
+    "one profile per principal while leased",
+    "idempotent same-token acquire",
+    "token-guarded release"
+  ],
+  "validation": "112/112 PASS",
+  "unblocked": [
+    "FA-102"
+  ]
+}

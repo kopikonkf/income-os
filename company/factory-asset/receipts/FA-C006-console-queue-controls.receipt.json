@@ -1,0 +1,48 @@
+{
+  "schema": "factory-asset.console-queue-controls-receipt.v1",
+  "task_id": "FA-C006",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact_root": "company/factory-asset/console-prototype/",
+  "core_module": "company/factory-asset/lib/factory_queue.py",
+  "api_contract": "company/factory-asset/schemas/factory-console-api.schema.json",
+  "endpoints": [
+    "GET /api/queue/jobs",
+    "POST /api/queue/submit",
+    "POST /api/queue/action"
+  ],
+  "controls": [
+    "START",
+    "PAUSE",
+    "RESUME",
+    "CANCEL",
+    "RETRY"
+  ],
+  "visible_core_state": [
+    "state",
+    "attempts",
+    "retries/2",
+    "recovery_count",
+    "failure_code",
+    "blueprint_id",
+    "semantic_asset_id"
+  ],
+  "guards": [
+    "batch enqueue idempotent",
+    "retry max 2 inherited from FA-105",
+    "single running ownership inherited from FA-105",
+    "normalized CONTROL_COMMAND only",
+    "no provider/browser fields",
+    "provider_dispatch_performed=false"
+  ],
+  "validation": {
+    "factory_asset_tests": "159/159 PASS",
+    "loopback_http_queue_read": "PASS",
+    "loopback_http_control_roundtrip": "PASS",
+    "batch_enqueue_idempotency": "PASS",
+    "node_syntax": "PASS",
+    "python_compile": "PASS"
+  },
+  "provider_dispatch_performed": false
+}

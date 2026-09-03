@@ -74,7 +74,7 @@ def test_shell_has_no_external_provider_or_browser_automation_api():
         assert marker not in js
     assert "postLocal('/api/compile'" in js
     assert "postLocal('/api/batch-intent'" in js
-    assert 'Live Dispatch Locked' in js
+    assert 'Provider Dispatch Locked' in js
     assert 'SIMULATED_ONLY' in js
 
 

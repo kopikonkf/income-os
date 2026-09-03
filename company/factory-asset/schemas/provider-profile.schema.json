@@ -1,0 +1,16 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aethers.my.id/schemas/factory-asset/provider-profile.v1.schema.json",
+  "title":"Factory Asset Provider Profile v1",
+  "type":"object","additionalProperties":false,
+  "required":["schema","profile_id","principal_id","provider_id","transport_class","credential_ref","enabled"],
+  "properties":{
+    "schema":{"const":"die.factory-asset.provider-profile.v1"},
+    "profile_id":{"type":"string","pattern":"^[a-z][a-z0-9_-]{2,63}$"},
+    "principal_id":{"type":"string","pattern":"^[a-z][a-z0-9_-]{2,63}$"},
+    "provider_id":{"type":"string","pattern":"^[a-z][a-z0-9_-]{1,31}$"},
+    "transport_class":{"enum":["SESSION_API","BROWSER_CDP","HYBRID","OFFICIAL_API"]},
+    "credential_ref":{"type":"object","additionalProperties":false,"required":["opaque_ref"],"properties":{"opaque_ref":{"type":"string","pattern":"^opaque://[A-Za-z0-9._/-]{3,200}$"}}},
+    "enabled":{"type":"boolean"}
+  }
+}

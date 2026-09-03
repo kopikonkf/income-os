@@ -1,0 +1,293 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/factory-asset/factory-console-api.v1.schema.json",
+  "title": "Factory Console to Factory Core API v1",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/job_intent"
+    },
+    {
+      "$ref": "#/$defs/control_command"
+    },
+    {
+      "$ref": "#/$defs/queue_event"
+    },
+    {
+      "$ref": "#/$defs/provider_event"
+    },
+    {
+      "$ref": "#/$defs/output_event"
+    }
+  ],
+  "$defs": {
+    "job_state": {
+      "enum": [
+        "READY",
+        "RUNNING",
+        "PAUSED",
+        "RETRY_WAIT",
+        "SUCCEEDED",
+        "FAILED",
+        "CANCELLED",
+        "BLOCKED"
+      ]
+    },
+    "job_intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "kind",
+        "job_id",
+        "idempotency_key",
+        "blueprint_id",
+        "semantic_asset_id",
+        "label"
+      ],
+      "properties": {
+        "schema": {
+          "const": "die.factory-asset.console-api.v1"
+        },
+        "kind": {
+          "const": "JOB_INTENT"
+        },
+        "job_id": {
+          "type": "string",
+          "minLength": 8
+        },
+        "idempotency_key": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "blueprint_id": {
+          "type": "string",
+          "pattern": "^FABP-[A-Z0-9][A-Z0-9_-]{5,63}$"
+        },
+        "semantic_asset_id": {
+          "type": "string",
+          "pattern": "^FASA-[A-Z0-9][A-Z0-9_-]{5,127}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        }
+      }
+    },
+    "control_command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "kind",
+        "command_id",
+        "job_id",
+        "action"
+      ],
+      "properties": {
+        "schema": {
+          "const": "die.factory-asset.console-api.v1"
+        },
+        "kind": {
+          "const": "CONTROL_COMMAND"
+        },
+        "command_id": {
+          "type": "string",
+          "minLength": 8
+        },
+        "job_id": {
+          "type": "string",
+          "minLength": 8
+        },
+        "action": {
+          "enum": [
+            "START",
+            "PAUSE",
+            "RESUME",
+            "CANCEL",
+            "RETRY"
+          ]
+        }
+      }
+    },
+    "queue_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "kind",
+        "job_id",
+        "state",
+        "attempts",
+        "retries",
+        "recovery_count",
+        "failure_code",
+        "blueprint_id",
+        "semantic_asset_id",
+        "label"
+      ],
+      "properties": {
+        "schema": {
+          "const": "die.factory-asset.console-api.v1"
+        },
+        "kind": {
+          "const": "QUEUE_EVENT"
+        },
+        "job_id": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/$defs/job_state"
+        },
+        "attempts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "retries": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "recovery_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "provider_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "failure_code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "artifact_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(?:[a-f0-9]{64})?$"
+        },
+        "blueprint_id": {
+          "type": "string"
+        },
+        "semantic_asset_id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "provider_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "kind",
+        "provider_id",
+        "profile_id",
+        "eligibility",
+        "capacity",
+        "policy",
+        "routing_reason"
+      ],
+      "properties": {
+        "schema": {
+          "const": "die.factory-asset.console-api.v1"
+        },
+        "kind": {
+          "const": "PROVIDER_EVENT"
+        },
+        "provider_id": {
+          "type": "string"
+        },
+        "profile_id": {
+          "type": "string"
+        },
+        "eligibility": {
+          "enum": [
+            "ELIGIBLE",
+            "DEFERRED_OPTIONAL",
+            "BLOCKED"
+          ]
+        },
+        "capacity": {
+          "enum": [
+            "UNKNOWN",
+            "AVAILABLE",
+            "CONSTRAINED",
+            "UNAVAILABLE"
+          ]
+        },
+        "policy": {
+          "type": "string"
+        },
+        "routing_reason": {
+          "type": "string"
+        }
+      }
+    },
+    "output_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "kind",
+        "semantic_asset_id",
+        "master_sha256",
+        "master_format",
+        "derivative_count",
+        "qa_state",
+        "compatibility_state"
+      ],
+      "properties": {
+        "schema": {
+          "const": "die.factory-asset.console-api.v1"
+        },
+        "kind": {
+          "const": "OUTPUT_EVENT"
+        },
+        "semantic_asset_id": {
+          "type": "string"
+        },
+        "master_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "master_format": {
+          "enum": [
+            "PNG",
+            "JPEG",
+            "TIFF",
+            "SVG",
+            "EPS",
+            "MP4",
+            "MOV"
+          ]
+        },
+        "derivative_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "qa_state": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN"
+          ]
+        },
+        "compatibility_state": {
+          "enum": [
+            "COMPATIBLE",
+            "COMPATIBILITY_UNKNOWN",
+            "INCOMPATIBLE"
+          ]
+        }
+      }
+    }
+  }
+}

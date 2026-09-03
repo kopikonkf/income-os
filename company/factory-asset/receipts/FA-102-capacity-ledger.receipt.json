@@ -1,0 +1,24 @@
+{
+  "schema": "factory-asset.capacity-ledger-receipt.v1",
+  "task_id": "FA-102",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "states": [
+    "UNKNOWN",
+    "AVAILABLE",
+    "CONSTRAINED",
+    "UNAVAILABLE"
+  ],
+  "typed_events": [
+    "SUCCESS",
+    "RATE_LIMITED",
+    "CAPACITY_UNAVAILABLE",
+    "AUTH_REQUIRED",
+    "PROTECTION_CHALLENGE",
+    "PROVIDER_ERROR"
+  ],
+  "stale_to_unknown": true,
+  "guessed_quota_forbidden": true,
+  "validation": "122/122 PASS"
+}
