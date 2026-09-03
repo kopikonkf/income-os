@@ -289,3 +289,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Publicly observable Auto-Pilot, auto-download/save-load, 2K/4K, style/consistency/background controls mapped to Factory-owned requirements.
 - Queue internals, pause/resume semantics, retry/rate-limit telemetry and backend mechanism remain UNKNOWN.
 - No purchase/account action/proprietary-code access. `FA-C001` is now READY.
+
+
+### FA-020 — DONE / PASS — derivative recipe and receipt contracts
+- Strict schemas pin master hash, recipe/version, marketplace profile revision, output spec, idempotency, QA and compatibility.
+- PASS cannot hide decode/hash/magic failure or UNKNOWN compatibility; packaging derivatives cannot mint semantic identity.
+- Factory regression 58/58 PASS. `FA-021` and `FA-023` are READY.

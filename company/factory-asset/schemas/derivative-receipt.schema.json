@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/factory-asset/derivative-receipt.v1.schema.json",
+  "title": "Factory Asset Derivative Receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema","recipe_id","recipe_version","idempotency_key","input","marketplace_profile","output","qa","compatibility","result"],
+  "properties": {
+    "schema":{"const":"die.factory-asset.derivative-receipt.v1"},
+    "recipe_id":{"type":"string","pattern":"^[a-z0-9][a-z0-9-]{4,95}$"},
+    "recipe_version":{"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "idempotency_key":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "input":{"type":"object","additionalProperties":false,"required":["master_sha256","semantic_asset_id"],"properties":{"master_sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},"semantic_asset_id":{"type":"string","pattern":"^FASA-[A-Z0-9][A-Z0-9_-]{5,63}$"}}},
+    "marketplace_profile":{"type":"object","additionalProperties":false,"required":["platform_id","profile_revision"],"properties":{"platform_id":{"type":"string"},"profile_revision":{"type":"string","pattern":"^[0-9]+\\.[0-9]+$"}}},
+    "output":{"type":"object","additionalProperties":false,"required":["format","sha256","bytes","semantic_identity_effect"],"properties":{"format":{"enum":["PNG","JPEG","WEBP","TIFF","PDF","SVG","EPS","MP4","MOV"]},"sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},"bytes":{"type":"integer","minimum":1},"width_px":{"type":"integer","minimum":1},"height_px":{"type":"integer","minimum":1},"semantic_identity_effect":{"const":"NONE"}}},
+    "qa":{"type":"object","additionalProperties":false,"required":["magic_mime_match","decode_reopen","sha256_verified"],"properties":{"magic_mime_match":{"type":"boolean"},"decode_reopen":{"type":"boolean"},"sha256_verified":{"type":"boolean"},"failure_code":{"type":["string","null"]}}},
+    "compatibility":{"type":"object","additionalProperties":false,"required":["state"],"properties":{"state":{"enum":["COMPATIBLE","COMPATIBILITY_UNKNOWN","INCOMPATIBLE"]},"reason":{"type":["string","null"]}}},
+    "result":{"enum":["PASS","FAIL"]}
+  },
+  "allOf":[{"if":{"properties":{"result":{"const":"PASS"}},"required":["result"]},"then":{"properties":{"qa":{"properties":{"magic_mime_match":{"const":true},"decode_reopen":{"const":true},"sha256_verified":{"const":true}}},"compatibility":{"properties":{"state":{"const":"COMPATIBLE"}}}}}}]
+}

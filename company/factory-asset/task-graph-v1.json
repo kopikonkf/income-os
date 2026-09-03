@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "2.3-fa-w010-genwhite-research",
+  "revision": "2.4-fa020-derivative-contracts",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -806,9 +806,11 @@
       "depends_on": [
         "FA-019"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/schemas/derivative-recipe.schema.json; derivative-receipt.schema.json",
-      "acceptance": "Schemas pin input/master hash, recipe/version, marketplace-profile version, output specs, idempotency key, QA and compatibility results."
+      "acceptance": "Schemas pin input/master hash, recipe/version, marketplace-profile version, output specs, idempotency key, QA and compatibility results.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: strict derivative recipe/receipt schemas pin master hash, semantic ID, recipe/version, marketplace profile revision, output spec, idempotency material, QA and compatibility. PASS receipts require green magic/decode/hash and COMPATIBLE; derivatives cannot mint semantic identity."
     },
     {
       "id": "FA-021",
@@ -819,7 +821,7 @@
       "depends_on": [
         "FA-020"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Raster worker for PNG to JPEG, WebP and TIFF with tests",
       "acceptance": "Pinned recipes produce decodable outputs, handle alpha explicitly, never overwrite masters and return typed receipts."
     },
@@ -845,7 +847,7 @@
       "depends_on": [
         "FA-021"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Derivative color/metadata policy module and tests",
       "acceptance": "sRGB/ICC, alpha flattening, DPI and metadata outcomes are explicit, verified after conversion and never silently guessed."
     },
