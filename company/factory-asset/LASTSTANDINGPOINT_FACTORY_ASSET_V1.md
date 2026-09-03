@@ -172,3 +172,14 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - No provider generation attempt was committed on this route; `dispatch_committed_at` remained unset and no post-dispatch operator action occurred.
 - This is recorded as `SPEND_REQUIRED / SUPERGROK_UPGRADE_GATE`, not as PASS and not as a provider-capacity failure.
 - The earlier Grok chat-route committed attempt remains terminal `FAILED / PROVIDER_CAPACITY_UNAVAILABLE / HIGH_DEMAND` and is not relabeled.
+
+
+### FA-W017 — DONE / PASS — Duck.ai autonomous backend original-byte local save
+
+- A fresh bounded Duck.ai `BROWSER_CDP` retry was committed at `2026-09-03T15:42:36.713306Z`; `operator_actions_after_dispatch = 0` through terminal PASS.
+- Provider-original bytes were acquired automatically from the provider-delivered image data URI in the owned browser DOM; no manual click, refresh, completion confirmation, download or file placement occurred after dispatch.
+- Fresh artifact: JPEG, `1254x1254`, `55,152` bytes, SHA-256 `f2b213037b06e9e46d20e51994bff8eb339d20c1f2beffd681cafa296dc917bf`.
+- Atomic content-addressed save: `D:\ASSETS\OAUTH\sha256\f2\duckai_f2b213037b06e9e46d20e51994bff8eb339d20c1f2beffd681cafa296dc917bf.jpg`.
+- Decode/reopen, byte count and post-save SHA-256 verification PASS; an independent second recheck also matched exact bytes/hash/dimensions.
+- Historical Duck hashes `4086a14f...` and `659da1be...` remain historical-only and were not reused as fresh proof.
+- `FA-W019` remains blocked only because `FA-W014` Grok Level-2 is unresolved; ChatGPT/MUXIA `FA-W016` remains explicitly non-blocking.

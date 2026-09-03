@@ -1,4 +1,4 @@
-﻿{
+{
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
   "revision": "1.3-windows-provider-sequencing-override",
@@ -562,15 +562,17 @@
         "FA-W008",
         "FA-W015"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/receipts/FA-W017-duckai-autonomous-backend.receipt.json",
       "acceptance": "Identify an evidenced allowed Duck.ai image-capable transport and prove one bounded job reaches provider-original bytes and atomic validated local save with zero operator action after dispatch. The prior text-only endpoint cannot pass; unsupported/unknown is reported honestly without fabricating image capability.",
       "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF",
       "operator_reported_current_ui_model_label": "gpt5.5 luna",
-      "sequencing_gate": "RESOLVED: FA-W015 Manus DONE/PASS. Duck.ai remains READY for a fresh bounded retry; prior attempts are not PASS.",
+      "sequencing_gate": "RESOLVED: FA-W015 Manus DONE/PASS. Fresh bounded Duck.ai retry completed PASS; historical attempts remain non-PASS evidence.",
       "receipt": "company/factory-asset/receipts/FA-W017-duckai-autonomous-backend.receipt.json",
-      "last_attempt_result": "FAILED: BOUNDED_COMPLETION_TIMEOUT; prior-hash re-render excluded from PASS",
-      "architect_observed_current_ui": "5.6 Luna / GPT Image 2"
+      "last_attempt_result": "PASS: fresh bounded BROWSER_CDP generation acquired new provider data-URI bytes and atomically saved verified content-addressed JPEG with zero operator action after dispatch.",
+      "architect_observed_current_ui": "5.6 Luna / GPT Image 2",
+      "completed_at": "2026-09-03",
+      "result": "PASS: JPEG 1254x1254, 55152 bytes, SHA-256 f2b213037b06e9e46d20e51994bff8eb339d20c1f2beffd681cafa296dc917bf; decode/reopen and post-save hash verification PASS."
     },
     {
       "id": "FA-W019",

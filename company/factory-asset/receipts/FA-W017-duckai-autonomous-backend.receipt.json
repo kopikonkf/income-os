@@ -1,62 +1,57 @@
 {
   "schema": "die.factory-asset.windows-autonomous-provider-backend.receipt.v1",
   "task_id": "FA-W017",
+  "date": "2026-09-03",
+  "status": "DONE",
   "provider": "duckai",
   "proof_level": "LEVEL_2_AUTONOMOUS_BACKEND_CANDIDACY",
   "transport_class": "BROWSER_CDP",
-  "accepted_pass": false,
-  "result": "FAILED",
-  "failure_code": "BOUNDED_COMPLETION_TIMEOUT",
+  "model_or_mode": "Duck.ai New Image / GPT Image 2",
+  "profile_or_principal_id": "gemini-backend-shared-authorized-profile",
   "prompt_sha256": "a450e24f12533528a03e3c3ad14d40bebe26cc6e30c221929806e5256ad166d9",
-  "provider_ui_observed": [
-    "5.6 Luna",
-    "GPT Image 2"
-  ],
-  "provider_committed_attempts_counted": 2,
-  "wrapper_duplicate_backend_invocations_excluded": true,
+  "job_id": "duckai-1299cec651af4f0a82fdc4252fcd555b",
+  "attempt_id": "attempt-59c022c4994e49d4bad1f73bf8b117a9",
+  "idempotency_key": "409691bb05df1824837b99894cde0975deee2ad5b9dd0852e730cb8d22d4eba8",
+  "dispatch_started_at": "2026-09-03T15:42:34.919328Z",
+  "dispatch_committed_at": "2026-09-03T15:42:36.713306Z",
+  "generation_completed_at": "2026-09-03T15:42:47.033965Z",
+  "deadline_at": "2026-09-03T15:46:33.834791Z",
   "operator_actions_after_dispatch": 0,
-  "last_attempt": {
-    "schema": "die.factory-asset.windows-autonomous-provider-backend.receipt.v1",
-    "task_id": "FA-W017",
-    "provider": "duckai",
-    "transport_class": "BROWSER_CDP",
-    "model_or_mode": "Duck.ai New Image / GPT Image 2",
-    "prompt": "Generate a simple pink square centered on an isolated white background. No text.",
-    "prompt_sha256": "a450e24f12533528a03e3c3ad14d40bebe26cc6e30c221929806e5256ad166d9",
-    "job_id": "duckai-e5ff5896d365400eb4ad70c4dc38828c",
-    "attempt_id": "attempt-1402c47004b24b0db261fe79f0506e90",
-    "idempotency_key": "97b7f59af5e94747795bac3ac8d3f4f635eda949f5e58d20bc2632906f03df06",
-    "dispatch_started_at": "2026-09-03T15:10:06.685281Z",
-    "dispatch_committed_at": "2026-09-03T15:10:06.940099Z",
-    "generation_completed_at": null,
-    "operator_actions_after_dispatch": 0,
-    "deadline_at": "2026-09-03T15:14:04.327698Z",
-    "retry_count": 2,
-    "original_byte_acquisition_method": null,
-    "local_path": null,
-    "mime": null,
-    "magic": null,
-    "dimensions": null,
-    "bytes": null,
-    "sha256": null,
-    "decode_reopen": null,
-    "post_save_hash_verification": null,
-    "result": "FAILED",
-    "failure_code": "BOUNDED_COMPLETION_TIMEOUT",
-    "terminal_at": "2026-09-03T15:14:05.129530Z",
-    "provenance_note": "First observed hash matched prior Duck artifact; excluded as re-rendered prior output. Continuing same committed attempt only.",
-    "error": "No new-hash Duck image before existing attempt deadline"
-  },
-  "prior_generated_artifact_observed_but_not_accepted": {
-    "sha256": "659da1be155fea7b043b2c71530e422dd457aadf40fb1c59208cc9119e690552",
-    "mime": "image/jpeg",
-    "dimensions": [
-      1254,
-      1254
+  "retry_count": 0,
+  "original_byte_acquisition_method": "provider_data_uri_dom",
+  "local_path": "D:\\ASSETS\\OAUTH\\sha256\\f2\\duckai_f2b213037b06e9e46d20e51994bff8eb339d20c1f2beffd681cafa296dc917bf.jpg",
+  "mime": "image/jpeg",
+  "magic": "ffd8ffe000104a4649460001",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "bytes": 55152,
+  "sha256": "f2b213037b06e9e46d20e51994bff8eb339d20c1f2beffd681cafa296dc917bf",
+  "decode_reopen": "PASS",
+  "post_save_hash_verification": "PASS",
+  "independent_post_save_recheck": "PASS",
+  "result": "PASS",
+  "failure_code": null,
+  "accepted_pass": true,
+  "terminal_at": "2026-09-03T15:42:47.033965Z",
+  "historical_attempts": {
+    "prior_failed_attempts_not_relabelled": true,
+    "excluded_hashes": [
+      "4086a14f2b8bca067941bd5f377ec675caff1c9ae77b92a40dc221f49d492cf9",
+      "659da1be155fea7b043b2c71530e422dd457aadf40fb1c59208cc9119e690552"
     ],
-    "bytes": 40493,
-    "reason": "Artifact was acquired/saved outside the original attempt deadline; a later re-render of the same hash was excluded as prior output."
+    "fresh_attempt_sha256": "f2b213037b06e9e46d20e51994bff8eb339d20c1f2beffd681cafa296dc917bf",
+    "fresh_hash_required_and_satisfied": true
   },
-  "remaining_default_provider_committed_attempt_budget": 1,
-  "next_action": "Fresh bounded retry may be attempted under the Level-2 contract; do not reuse the prior hash as new-generation proof."
+  "validation": {
+    "positive_byte_count": true,
+    "mime_magic_consistency": true,
+    "positive_dimensions": true,
+    "decode_verify": true,
+    "reopen_load": true,
+    "sha256_verified": true,
+    "atomic_content_addressed_save": true
+  },
+  "canonical_status": "DONE_PASS"
 }
