@@ -347,10 +347,16 @@
       "depends_on": [
         "FA-W001"
       ],
-      "status": "WAITING_FOUNDER",
-      "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
+      "status": "DONE",
+      "authority": "FOUNDER_OPERATOR_ACTION_COMPLETE",
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W006-grok-image-proof.receipt.json",
-      "acceptance": "A supported evidenced Grok route produces and saves validated original image bytes; guessed endpoint loops, 404 assumptions and protection bypass cannot pass."
+      "acceptance": "A supported evidenced Grok route produces and saves validated original image bytes; guessed endpoint loops, 404 assumptions and protection bypass cannot pass.",
+      "completed_at": "2026-09-03",
+      "transport_class": "BROWSER_OPERATOR",
+      "prompt_sha256": "0c93230f694582d9f16c0f90e8437da39c5dc14f6db30e6bebb6e09545a0c1c3",
+      "artifact_sha256": "18087c41cf26d783edcb4c6630e9325dc15973f1e1cac9bb0858ce51f0e4ebdd",
+      "receipt": "company/factory-asset/receipts/FA-W006-grok-image-proof.receipt.json",
+      "result": "PASS: real Grok provider-original JPEG manually downloaded by Founder/operator and strict local validation/content-addressed persistence passed; no guessed endpoint loop or protection bypass was used."
     },
     {
       "id": "FA-W007",
