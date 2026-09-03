@@ -211,3 +211,14 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - The adapter now preserves the signed CDN key while removing the preview transform to fetch provider-original bytes.
 - Fresh accepted run: zero operator actions after dispatch, PNG 1664x928, 1,395,714 bytes, SHA-256 95b2dc3e3e587c729cdf18cf96c93dc7130c015bfba9f6a3597c2dd7444368eb, atomic content-addressed save and independent decode/reopen/hash PASS.
 - FA-W020 is now READY: leverage MUXIA as the shared Browser-CDP runtime while keeping standalone web-ai-adapter available.
+
+
+### FA-W020 — DONE / PASS — MUXIA shared Browser-CDP runtime
+
+- `web-ai-adapter` PR #6 merged as `cd102e8f3d473718adbc7c304df9a9babc4095e2`; browser-backed canonical adapters now support explicit `STANDALONE` or `MUXIA` runtime resolution.
+- MUXIA remains browser lifecycle/profile/CDP owner; `web-ai-adapter` remains provider/OpenAI normalization. No duplicate browser engine was introduced.
+- Physical proof used an isolated Linux MUXIA profile under `/home/kopiko`, not production profiles or queues. MUXIA emitted sanitized `DIRECT_SPAWN_LOOPBACK_CDP` status with browser PID `527610` and `127.0.0.1:33609`.
+- Through an authenticated SSH local tunnel, Windows `web-ai-adapter` consumed the copied sanitized status and `ChatGPTImageAdapter.preflight()` reached provider-level `AUTH_REQUIRED`, proving successful attachment while correctly refusing to dispatch on an unauthenticated fresh profile.
+- No cookie/token value was read or copied, no provider prompt was sent, and the isolated browser/tunnel were terminated after proof.
+- Canonical MUXIA wrapper: `company/muxia/scripts/linux/muxia-webai-browser-runtime.mjs`.
+- `FA-W021` is now READY for explicit coexistence + rollback-safe continuity proof.

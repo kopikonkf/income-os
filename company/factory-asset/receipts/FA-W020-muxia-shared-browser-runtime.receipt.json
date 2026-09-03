@@ -1,0 +1,58 @@
+{
+  "schema": "factory-asset.muxia-shared-browser-runtime-receipt.v1",
+  "task_id": "FA-W020",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "architecture": {
+    "web_ai_adapter_role": "OpenAI-compatible facade + provider normalization",
+    "muxia_role": "Chromium lifecycle/profile/CDP runtime substrate",
+    "cdp_role": "loopback browser control transport",
+    "duplicate_browser_runtime_required": false,
+    "standalone_mode_retained": true,
+    "muxia_mode_explicit": true
+  },
+  "web_ai_adapter": {
+    "repository": "github.com/kopikonkf/web-ai-adapter",
+    "pr": 6,
+    "merge_commit": "cd102e8f3d473718adbc7c304df9a9babc4095e2",
+    "runtime_selector": "WEB_AI_BROWSER_RUNTIME",
+    "muxia_status_env": "WEB_AI_MUXIA_STATUS_FILE",
+    "canonical_browser_adapters_using_resolver": [
+      "chatgpt_image",
+      "gemini_image",
+      "qwen_browser_image"
+    ],
+    "tests": "35/35 PASS"
+  },
+  "muxia_canon": {
+    "runtime_entry": "company/muxia/scripts/linux/muxia-webai-browser-runtime.mjs",
+    "core_reused": "company/browser/linux/operator_browser_core.mjs",
+    "status_schema": "die.muxia.webai-browser-runtime.v1",
+    "launch_mode": "DIRECT_SPAWN_LOOPBACK_CDP"
+  },
+  "physical_acceptance": {
+    "environment": "isolated Linux temp profile under /home/kopiko; production profiles/queues/services untouched",
+    "profile": "/home/kopiko/fa-w020-runtime-20260903174738/profile",
+    "principal_id": "fa-w020-isolated-muxia-browser",
+    "browser_pid": 527610,
+    "debug_host": "127.0.0.1",
+    "debug_port": 33609,
+    "muxia_state": "AUTH_REQUIRED",
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "provider_prompt_dispatched": false,
+    "transport_to_windows_probe": "authenticated SSH local forward only; remote CDP remained loopback-bound",
+    "web_ai_adapter_resolved_cdp": "http://127.0.0.1:33609",
+    "web_ai_adapter_preflight_result": "AUTH_REQUIRED",
+    "meaning": "CDP attachment succeeded through MUXIA-owned runtime and provider layer truthfully detected the fresh profile needed login",
+    "cleanup": "isolated MUXIA browser process and SSH tunnel terminated; no residual browser process for isolated profile"
+  },
+  "security": {
+    "non_loopback_muxia_status_rejected": true,
+    "invalid_launch_mode_rejected": true,
+    "credential_copy": false,
+    "production_mutation": false
+  },
+  "completed_at": "2026-09-03T17:49:54Z"
+}
