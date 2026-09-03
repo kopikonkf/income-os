@@ -194,12 +194,29 @@
       "priority": 14,
       "title": "Execute Founder-authorized OAUTH credential remediation",
       "depends_on": [
+        "FA-004",
+        "FA-006"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_AND_OPERATOR_REQUIRED",
+      "artifact": "company/factory-asset/receipts/FA-005-oauth-credential-remediation.receipt.json",
+      "acceptance": "Remote uses a non-inline credential mechanism, affected credential is rotated, access is verified, secret scan is clean and no credential value appears in receipts or logs.",
+      "blocker": "Founder authorization was consumed for remote sanitization/revocation. Completion now requires FA-006 history remediation plus a fresh OS-backed GitHub login after the revoked PAT invalidated the prior keyring credential."
+    },
+    {
+      "id": "FA-006",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "CANON_AND_EVIDENCE",
+      "priority": 14,
+      "title": "Purge revoked OAUTH Git credential from tracked tree and reachable history",
+      "depends_on": [
         "FA-004"
       ],
       "status": "WAITING_FOUNDER",
       "authority": "FOUNDER_AND_OPERATOR_REQUIRED",
-      "artifact": "company/factory-asset/receipts/FA-005-oauth-credential-remediation.receipt.json",
-      "acceptance": "Remote uses a non-inline credential mechanism, affected credential is rotated, access is verified, secret scan is clean and no credential value appears in receipts or logs."
+      "artifact": "company/factory-asset/receipts/FA-006-oauth-history-remediation.receipt.json",
+      "acceptance": "Revoked credential is removed from current tracked tree and reachable Git history through a coordinated history rewrite; fresh-clone redaction-safe scan is clean; remote remains non-inline; no unrelated dirty OAUTH work is lost."
     },
     {
       "id": "FA-W000",
