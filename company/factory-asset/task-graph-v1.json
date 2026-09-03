@@ -133,7 +133,7 @@
       "depends_on": [
         "FA-000"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "docs/architecture/FACTORY_ASSET_OAUTH_PROVENANCE_AUTOPSY_V1.md",
       "acceptance": "Qwen/Gemini/ChatGPT/Grok/Manus/Duck.ai image code, tests, captures, paths, transport class and credential boundaries are classified without reading or publishing secret values; working text/chat completion is regression-protected; dirty tree remains untouched."
     },
@@ -160,7 +160,7 @@
       "depends_on": [
         "FA-002"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "docs/operations/FACTORY_ASSET_OAUTH_SECURITY_REMEDIATION_PLAN_V1.md",
       "acceptance": "Plan removes inline remote authentication, rotates the affected credential, preserves repo access, scans history/worktree output and exposes no secret; planning only."
     },
@@ -189,7 +189,7 @@
       "depends_on": [
         "FA-002"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W000-oauth-baseline.receipt.json",
       "acceptance": "Sanitized text/chat regression is green; Qwen HTTP/image/local-save evidence and current output hashes are recorded; no credentials, raw cookies or authenticated captures are published; no source is changed."
     },
