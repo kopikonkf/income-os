@@ -301,3 +301,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Deterministic gate returns NATIVE_VECTOR, TRACE_ELIGIBLE or NOT_VECTORIZABLE with evidence/reason codes.
 - Photorealistic, complex, font-dependent, unauthorized and incomplete raster inputs fail closed.
 - Factory regression 63/63 PASS. `FA-026` and `FA-027` are READY.
+
+
+### FA-031 — DONE / PASS — native producer dispatch contract
+- Shared request/receipt contract covers procedural vector, motion, layered-template and 3D native producers with cancellation/idempotency/failure semantics.
+- PASS requires a native editable producer output; raster conversion cannot masquerade as native master.
+- Factory regression 73/73 PASS. `FA-032` and `FA-040` are READY.

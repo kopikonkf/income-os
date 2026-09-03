@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "2.5-fa025-vectorizability-gate",
+  "revision": "2.6-fa031-native-producer-contract",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -960,9 +960,11 @@
       "depends_on": [
         "FA-019"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/schemas/native-producer.schema.json and contract tests",
-      "acceptance": "Procedural, motion, layered-template and 3D producer classes share typed inputs, native-master outputs, deterministic receipts, cancellation and failure semantics without pretending conversions are native production."
+      "acceptance": "Procedural, motion, layered-template and 3D producer classes share typed inputs, native-master outputs, deterministic receipts, cancellation and failure semantics without pretending conversions are native production.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: one typed native-producer contract covers procedural vector, motion, layered-template and 3D request/receipt envelopes with idempotency, cancellation, deterministic receipt hashes, typed failures and native-editable masters. Raster conversion cannot claim native-master success. Factory regression 73/73 PASS."
     },
     {
       "id": "FA-032",
@@ -973,7 +975,7 @@
       "depends_on": [
         "FA-031"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Procedural SVG pattern producer with deterministic fixtures",
       "acceptance": "Seeded recipes generate editable vector tiles as native masters with stable hashes, explicit parameters, preview output and no embedded-raster-only false success."
     },
@@ -1013,7 +1015,7 @@
       "depends_on": [
         "FA-031"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Motion composition schema, renderer boundary and fixture plan",
       "acceptance": "Contract pins composition, duration, dimensions, FPS, codec/container targets, audio policy, seed and renderer version; animation is a semantic blueprint, not a PNG conversion."
     },

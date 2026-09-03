@@ -1,0 +1,29 @@
+{
+  "schema": "factory-asset.native-producer-contract-receipt.v1",
+  "task_id": "FA-031",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact": "company/factory-asset/schemas/native-producer.schema.json",
+  "producer_classes": [
+    "PROCEDURAL_VECTOR",
+    "MOTION_RENDERER",
+    "LAYERED_TEMPLATE",
+    "THREE_D_RENDERER"
+  ],
+  "guards": [
+    "idempotency key",
+    "producer version",
+    "cancellation token",
+    "typed failure codes",
+    "deterministic receipt hash",
+    "native_editable=true",
+    "generated_by_native_producer=true",
+    "conversion_from_raster=false"
+  ],
+  "validation": "73/73 Factory Asset tests PASS",
+  "unblocked": [
+    "FA-032",
+    "FA-040"
+  ]
+}
