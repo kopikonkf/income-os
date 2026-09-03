@@ -1,0 +1,29 @@
+{
+  "schema": "factory-asset.console-core-contract-receipt.v1",
+  "task_id": "FA-C003",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact": "company/factory-asset/schemas/factory-console-api.schema.json",
+  "envelopes": [
+    "JOB_INTENT",
+    "CONTROL_COMMAND",
+    "QUEUE_EVENT",
+    "PROVIDER_EVENT",
+    "OUTPUT_EVENT"
+  ],
+  "vendor_fields_rejected": [
+    "cookie",
+    "session_token",
+    "rpc_id",
+    "endpoint",
+    "browser_profile",
+    "cdp_url",
+    "raw_auth_body"
+  ],
+  "retry_bound_visible": 2,
+  "validation": "151/151 PASS",
+  "unblocked": [
+    "FA-C006"
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "3.6-fa105-factory-queue",
+  "revision": "3.7-fa-c003-console-core-contract",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1751,9 +1751,11 @@
         "FA-100",
         "FA-105"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/schemas/factory-console-api.schema.json + event contract tests",
-      "acceptance": "Console can submit governed job intents and observe normalized queue/provider/output events without vendor wire fields, credentials or direct browser ownership."
+      "acceptance": "Console can submit governed job intents and observe normalized queue/provider/output events without vendor wire fields, credentials or direct browser ownership.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: Factory Console API v1 defines vendor-neutral JOB_INTENT, CONTROL_COMMAND, QUEUE_EVENT, PROVIDER_EVENT and OUTPUT_EVENT envelopes. Queue events expose normalized blueprint/semantic/job/retry/recovery state; credential, vendor wire, endpoint and browser ownership fields are rejected. Regression 151/151 PASS."
     },
     {
       "id": "FA-C004",
@@ -1797,7 +1799,7 @@
         "FA-C004",
         "FA-105"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Console queue-control UI + event tests",
       "acceptance": "Controls invoke only Factory Core governed actions; idempotency, retry bounds and reconciliation states remain visible and direct provider/browser commands do not exist."
     },
