@@ -1,0 +1,62 @@
+{
+  "schema": "factory-asset.windows-autonomous-provider-backend-receipt.v1",
+  "task_id": "FA-W018",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "provider": "qwen",
+  "proof_level": "LEVEL_2_AUTONOMOUS_BACKEND_FALLBACK",
+  "primary_transport_class": "SESSION_API",
+  "fallback_transport_class": "BROWSER_CDP",
+  "implementation": {
+    "repository": "github.com/kopikonkf/web-ai-adapter",
+    "pr": 5,
+    "merge_commit": "99409665122ff6ca5467c38b41d8630b59471f53",
+    "fallback_source": "src/providers/qwen_browser_image.py",
+    "selector_env": "QWEN_IMAGE_TRANSPORT",
+    "default": "SESSION_API",
+    "fallback_value": "BROWSER_CDP",
+    "cdp_url": "http://127.0.0.1:9333",
+    "profile_or_principal_id": "web-ai-shared-browser-profile",
+    "cookie_or_session_token_export": false
+  },
+  "validation": {
+    "tests": "29/29 PASS",
+    "python_compile": "PASS",
+    "git_diff_check": "PASS",
+    "independent_artifact_recheck": "PASS: exact SHA-256, PNG, 1664x928, 1395714 bytes, decode/reopen"
+  },
+  "historical_failed_attempt": {
+    "job_id": "qwen-browser-afd92319024a4a3a90f5e8f009fe018e",
+    "attempt_id": "attempt-82f549338748424fa757c9cc31fa9270",
+    "dispatch_committed_at": "2026-09-03T17:12:37.992354Z",
+    "operator_actions_after_dispatch": 0,
+    "result": "FAILED",
+    "failure_code": "BOUNDED_COMPLETION_TIMEOUT",
+    "disposition": "Terminal failure retained. Root cause was preview CDN transform x-oss-process reducing DOM image dimensions; not relabeled PASS."
+  },
+  "accepted_attempt": {
+    "job_id": "qwen-browser-81226ef793394083b213abaca0c121ea",
+    "attempt_id": "attempt-3cfcfa092fbe4cd78a1ee27337aeb64a",
+    "idempotency_key": "97705ee089642ae006e654e3ec3a54c8c03bc412c0bed01b8fceaad66f51fe57",
+    "prompt_sha256": "0b3bfcc7107eb424658929efd0cfd1577ce860a55b3e8524a3a041171c0e3433",
+    "dispatch_started_at": "2026-09-03T17:40:28.567557Z",
+    "dispatch_committed_at": "2026-09-03T17:40:28.588087Z",
+    "generation_completed_at": "2026-09-03T17:40:40.276722Z",
+    "operator_actions_after_dispatch": 0,
+    "original_byte_acquisition_method": "provider_original_cdn_url_browser_context",
+    "local_path": "D:\\ASSETS\\OAUTH\\sha256\\95\\qwen_95b2dc3e3e587c729cdf18cf96c93dc7130c015bfba9f6a3597c2dd7444368eb.png",
+    "mime": "image/png",
+    "magic": "89504e470d0a1a0a0000000d",
+    "dimensions": [
+      1664,
+      928
+    ],
+    "bytes": 1395714,
+    "sha256": "95b2dc3e3e587c729cdf18cf96c93dc7130c015bfba9f6a3597c2dd7444368eb",
+    "decode_reopen": "PASS",
+    "result": "PASS",
+    "failure_code": null
+  },
+  "result": "PASS",
+  "completed_at": "2026-09-03T17:40:40.276722Z"
+}

@@ -201,3 +201,13 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - `FA-W020 = BLOCKED on FA-W018`: leverage MUXIA as shared Browser-CDP runtime without duplicating provider/OpenAI normalization or browser ownership.
 - `FA-W021 = BLOCKED on FA-W020`: prove standalone `web-ai-adapter` and MUXIA-backed modes can coexist so production can stay on the known-good standalone path during MUXIA hardening and switch only after green acceptance.
 - `FA-W019` remains independently blocked by Grok Level-2 (`FA-W014`); ChatGPT and Qwen fallback do not lower or rewrite that five-provider acceptance boundary.
+
+
+### FA-W018 — DONE / PASS — Qwen BROWSER_CDP fallback
+
+- Qwen SESSION_API remains the default/primary transport. QWEN_IMAGE_TRANSPORT=BROWSER_CDP selects the explicit browser fallback.
+- web-ai-adapter PR #5 merged as 99409665122ff6ca5467c38b41d8630b59471f53.
+- The earlier committed browser attempt timed out because the visible Qwen CDN image was a resized preview using x-oss-process; that attempt remains FAILED.
+- The adapter now preserves the signed CDN key while removing the preview transform to fetch provider-original bytes.
+- Fresh accepted run: zero operator actions after dispatch, PNG 1664x928, 1,395,714 bytes, SHA-256 95b2dc3e3e587c729cdf18cf96c93dc7130c015bfba9f6a3597c2dd7444368eb, atomic content-addressed save and independent decode/reopen/hash PASS.
+- FA-W020 is now READY: leverage MUXIA as the shared Browser-CDP runtime while keeping standalone web-ai-adapter available.
