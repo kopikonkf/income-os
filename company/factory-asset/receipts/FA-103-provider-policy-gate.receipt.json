@@ -1,0 +1,28 @@
+{
+  "schema": "factory-asset.provider-policy-gate-receipt.v1",
+  "task_id": "FA-103",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "registry": "company/factory-asset/registries/provider-policy.v1.json",
+  "allowed_pool": [
+    "qwen",
+    "chatgpt",
+    "gemini",
+    "manus",
+    "duckai"
+  ],
+  "deferred": [
+    "grok"
+  ],
+  "fail_closed": [
+    "stale evidence",
+    "missing evidence",
+    "unknown/prohibited automation route",
+    "unknown/gated auth route"
+  ],
+  "validation": "127/127 PASS",
+  "unblocked": [
+    "FA-104"
+  ]
+}

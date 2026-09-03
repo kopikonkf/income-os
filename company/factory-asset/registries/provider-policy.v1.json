@@ -1,0 +1,12 @@
+{
+  "schema":"die.factory-asset.provider-policy-registry.v1",
+  "revision":"1.0",
+  "profiles":[
+    {"provider_id":"qwen","profile_id":"qwen_a","policy_state":"ALLOWED_EVIDENCED","automation_route":"SESSION_API_OR_BROWSER_CDP","auth_route":"PREAUTHENTICATED_SESSION","evidence_date":"2026-09-03","evidence_ref":"receipt://FA-W012+FA-W018"},
+    {"provider_id":"chatgpt","profile_id":"chatgpt_a","policy_state":"ALLOWED_EVIDENCED","automation_route":"BROWSER_CDP","auth_route":"PREAUTHENTICATED_SESSION","evidence_date":"2026-09-03","evidence_ref":"receipt://FA-W016+FA-W020+FA-W021"},
+    {"provider_id":"gemini","profile_id":"gemini_a","policy_state":"ALLOWED_EVIDENCED","automation_route":"BROWSER_CDP","auth_route":"PREAUTHENTICATED_SESSION","evidence_date":"2026-09-03","evidence_ref":"receipt://FA-W013"},
+    {"provider_id":"manus","profile_id":"manus_a","policy_state":"ALLOWED_EVIDENCED","automation_route":"BROWSER_CDP","auth_route":"PREAUTHENTICATED_SESSION","evidence_date":"2026-09-03","evidence_ref":"receipt://FA-W015"},
+    {"provider_id":"duckai","profile_id":"duckai_a","policy_state":"ALLOWED_EVIDENCED","automation_route":"BROWSER_CDP","auth_route":"NO_ACCOUNT_REQUIRED_OR_EXISTING_SESSION","evidence_date":"2026-09-03","evidence_ref":"receipt://FA-W017"},
+    {"provider_id":"grok","profile_id":"grok_a","policy_state":"DEFERRED_PLATFORM_GATE","automation_route":"UNKNOWN","auth_route":"PLAN_OR_PLATFORM_GATE","evidence_date":"2026-09-03","evidence_ref":"receipt://FA-W014"}
+  ]
+}

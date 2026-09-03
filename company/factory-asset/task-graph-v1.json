@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "3.3-fa102-capacity-ledger",
+  "revision": "3.4-fa103-policy-gate",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1227,9 +1227,11 @@
       "depends_on": [
         "FA-100"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Provider policy profile registry and fail-closed tests",
-      "acceptance": "Provider use requires dated evidence and an allowed automation/auth route; stale/unknown/prohibited routes block without bypass."
+      "acceptance": "Provider use requires dated evidence and an allowed automation/auth route; stale/unknown/prohibited routes block without bypass.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: dated provider policy registry and fail-closed gate require ALLOWED_EVIDENCED policy plus known automation/auth route; stale/missing/unknown/prohibited/deferred routes block without bypass. Current five-provider pool passes; Grok remains DEFERRED_PLATFORM_GATE. Regression 127/127 PASS."
     },
     {
       "id": "FA-104",
@@ -1242,7 +1244,7 @@
         "FA-102",
         "FA-103"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Provider router with eligibility/quality/capacity/economics fixtures",
       "acceptance": "Router selects only eligible available profiles, explains decisions and blocks when no allowed route exists."
     },
