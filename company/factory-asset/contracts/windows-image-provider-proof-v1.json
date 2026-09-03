@@ -1,10 +1,10 @@
 {
   "schema": "factory-asset.windows-image-provider-proof-contract.v1",
   "task_id": "FA-W001",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "date": "2026-09-03",
   "status": "CANONICAL_LOCAL_CONTRACT",
-  "purpose": "Normalize Windows provider image proofs so every lane is judged by the same transport, original-byte, local-save, validation and security criteria.",
+  "purpose": "Normalize Windows provider image proofs so every lane is judged by the same transport, original-byte, local-save, validation and security criteria. v1.1 explicitly recognizes operator-controlled consumer-web generation plus manual provider-original download as a truthful proof transport when automation is policy-gated or intentionally not exercised.",
   "transport_classes": {
     "SESSION_API": {
       "definition": "An authenticated user session is used to call the provider's observed HTTP/WebSocket application interface directly after session establishment; the browser UI is not required for each generation.",
@@ -50,6 +50,17 @@
       "definition": "Available evidence is insufficient to classify the transport or prove the required image capability without guessing.",
       "terminal_for_provider_proof": false,
       "counts_as_pass": false
+    },
+    "BROWSER_OPERATOR": {
+      "definition": "An authorized human operator uses the provider's normal consumer-web UI for generation and manually downloads/acquires the provider's original file; automation is limited to local validation, content addressing, receipts and browser lifecycle/state assistance.",
+      "requirements": [
+        "the operator is the authorized principal or acts under Founder authority",
+        "the provider interaction is ordinary UI use with no CAPTCHA, protection, quota or anti-abuse bypass",
+        "the exact prompt text or safe equivalent and SHA-256 are recorded",
+        "the acquired artifact is the provider-download/original file, not a screenshot, DOM/canvas rasterization or preview-only capture",
+        "local original bytes pass MIME/magic/dimensions/decode/reopen/byte-count/SHA-256 validation",
+        "if generation start/completion timestamps were not instrumented, the receipt records that fact explicitly and uses acquisition timestamps without fabricating provider timing"
+      ]
     }
   },
   "required_proof": {
@@ -112,7 +123,8 @@
       "SESSION_API",
       "BROWSER_CDP",
       "HYBRID",
-      "OFFICIAL_API"
+      "OFFICIAL_API",
+      "BROWSER_OPERATOR"
     ],
     "requires_real_generation": true,
     "requires_original_bytes": true,
@@ -180,6 +192,7 @@
     "required_transport_classes_defined": [
       "SESSION_API",
       "BROWSER_CDP",
+      "BROWSER_OPERATOR",
       "HYBRID",
       "OFFICIAL_API",
       "UNSUPPORTED",

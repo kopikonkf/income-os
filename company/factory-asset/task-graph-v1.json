@@ -302,15 +302,19 @@
       "depends_on": [
         "FA-W003"
       ],
-      "status": "WAITING_OPERATOR",
-      "authority": "FOUNDER_AUTHORIZATION_REUSED_OPERATOR_ACTION_REQUIRED",
+      "status": "DONE",
+      "authority": "FOUNDER_OPERATOR_ACTION_COMPLETE",
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W004-chatgpt-image-proof.receipt.json",
-      "acceptance": "One bounded authorized ChatGPT request yields a real generated original image automatically saved to D:\\ASSETS\\OAUTH with complete validation; screenshot-only or URL-only output fails.",
-      "blocker": "WAITING_OPERATOR: canonical ChatGPT consumer-web policy blocks programmatic prompt dispatch/output extraction. One authorized operator-controlled generation plus manual original-file acquisition is required for final FA-W004 acceptance; no new Founder authorization is required.",
+      "acceptance": "One bounded authorized ChatGPT request yields a real generated provider-original image saved durably to D:\\ASSETS\\OAUTH with complete validation. Under a policy-gated consumer-web route, Founder/operator manual original download followed by strict content-addressed local ingestion is accepted; screenshot-only, preview-only or URL-only output fails.",
       "receipt": "company/factory-asset/receipts/FA-W004-chatgpt-image-proof.receipt.json",
       "implementation_status": "COMPLETE_POLICY_COMPLIANT_BOUNDARY",
       "live_provider_calls_this_execution": 0,
-      "resume_condition": "Operator performs one bounded ChatGPT consumer-web generation in the dedicated headed profile, manually downloads/acquires the provider original to a local file, then the strict local ingestor validates and content-addresses it."
+      "completed_at": "2026-09-03",
+      "result": "PASS: Founder/operator generated one real ChatGPT image in authenticated Brave profile jarvis_aco, manually downloaded the provider original, and strict local validation/content-addressed persistence passed.",
+      "transport_class": "BROWSER_OPERATOR",
+      "prompt_sha256": "0c93230f694582d9f16c0f90e8437da39c5dc14f6db30e6bebb6e09545a0c1c3",
+      "artifact_sha256": "05d8135e4e6bebc3f7dc7baca49cd3a70e768e096bafdbb9e0fa96b734fa1e65",
+      "operator_live_generation_completed": true
     },
     {
       "id": "FA-W005",
@@ -1388,4 +1392,3 @@
     }
   ]
 }
-
