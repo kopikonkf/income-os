@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "2.4-fa020-derivative-contracts",
+  "revision": "2.5-fa025-vectorizability-gate",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -875,9 +875,11 @@
       "depends_on": [
         "FA-019"
       ],
-      "status": "READY",
-      "artifact": "Vectorizability classifier/gate with deterministic fixtures",
-      "acceptance": "Simple icons/outlines/silhouettes may pass; photorealistic and complex inputs return NOT_VECTORIZABLE with evidence."
+      "status": "DONE",
+      "artifact": "company/factory-asset/lib/vectorizability.py + company/factory-asset/fixtures/vectorizability/cases.v1.json",
+      "acceptance": "Simple icons/outlines/silhouettes may pass; photorealistic and complex inputs return NOT_VECTORIZABLE with evidence.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: deterministic evidence-based vectorizability gate distinguishes NATIVE_VECTOR, TRACE_ELIGIBLE and NOT_VECTORIZABLE; photorealistic, complex, font-dependent, unauthorized or incomplete raster inputs fail closed with typed reason codes. Factory regression 63/63 PASS."
     },
     {
       "id": "FA-026",
@@ -888,7 +890,7 @@
       "depends_on": [
         "FA-025"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Native vector export worker with SVG/EPS and preview tests",
       "acceptance": "Outputs contain real editable paths, render correctly and reject embedded-raster-only, font, bounds and excessive-path failures."
     },
@@ -901,7 +903,7 @@
       "depends_on": [
         "FA-025"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Trace fallback worker with simple-shape fixtures and rejection tests",
       "acceptance": "Only explicitly eligible inputs trace; output path count/editability/preview pass; photorealistic input is rejected."
     },

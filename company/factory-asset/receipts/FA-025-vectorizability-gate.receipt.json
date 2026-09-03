@@ -1,0 +1,30 @@
+{
+  "schema": "factory-asset.vectorizability-gate-receipt.v1",
+  "task_id": "FA-025",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "states": [
+    "NATIVE_VECTOR",
+    "TRACE_ELIGIBLE",
+    "NOT_VECTORIZABLE"
+  ],
+  "thresholds": {
+    "max_colors_for_trace": 16,
+    "max_edge_complexity": 0.35,
+    "max_estimated_paths": 512
+  },
+  "hard_rejects": [
+    "photorealistic",
+    "text/font dependency",
+    "trace not authorized",
+    "declared NOT_VECTORIZABLE",
+    "unsupported/incomplete evidence"
+  ],
+  "fixtures": "6/6 expected",
+  "validation": "63/63 Factory Asset tests PASS",
+  "unblocked": [
+    "FA-026",
+    "FA-027"
+  ]
+}

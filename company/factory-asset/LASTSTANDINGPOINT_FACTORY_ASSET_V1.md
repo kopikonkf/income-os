@@ -295,3 +295,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Strict schemas pin master hash, recipe/version, marketplace profile revision, output spec, idempotency, QA and compatibility.
 - PASS cannot hide decode/hash/magic failure or UNKNOWN compatibility; packaging derivatives cannot mint semantic identity.
 - Factory regression 58/58 PASS. `FA-021` and `FA-023` are READY.
+
+
+### FA-025 — DONE / PASS — vectorizability gate
+- Deterministic gate returns NATIVE_VECTOR, TRACE_ELIGIBLE or NOT_VECTORIZABLE with evidence/reason codes.
+- Photorealistic, complex, font-dependent, unauthorized and incomplete raster inputs fail closed.
+- Factory regression 63/63 PASS. `FA-026` and `FA-027` are READY.
