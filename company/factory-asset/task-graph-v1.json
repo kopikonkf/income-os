@@ -477,7 +477,7 @@
         "FA-W011",
         "FA-W005"
       ],
-      "status": "WAITING_OPERATOR",
+      "status": "DONE",
       "artifact": "company/factory-asset/receipts/FA-W013-gemini-autonomous-backend.receipt.json",
       "acceptance": "One bounded Gemini backend job uses an allowed evidenced route and, with zero operator action after dispatch, reaches confirmed generation, acquires provider-original bytes and atomically saves a strictly validated content-addressed local artifact. URL-only/403 fallback, manual download, silent decode failure or guessed success fails.",
       "authority": "FOUNDER_DIRECTION_REUSED_OPERATOR_LOGIN_REQUIRED_PRE_DISPATCH",
@@ -486,8 +486,8 @@
       "implementation_pr": 3,
       "implementation_merge_commit": "65227657a10199da31be093f0a36a8d26447e1a3",
       "receipt": "company/factory-asset/receipts/FA-W013-gemini-autonomous-backend.receipt.json",
-      "blocker": "AUTH_REQUIRED_PRE_DISPATCH: dedicated Gemini backend browser profile is running on loopback CDP but is not signed in. Founder/operator must sign in before the next bounded attempt; no prompt submission or download is required from the operator.",
-      "resume_condition": "Founder/operator signs in to Gemini in the already-open dedicated backend browser window, leaves it running, and reports done. Then re-preflight; if READY, execute one new distinct bounded BROWSER_CDP attempt with zero operator action after dispatch."
+      "completed_at": "2026-09-03",
+      "result": "PASS: authenticated dedicated BROWSER_CDP backend completed one bounded zero-touch-after-dispatch generation and automatically captured provider-original JPEG bytes via provider browser download event, strictly validated and content-addressed locally."
     },
     {
       "id": "FA-W014",
@@ -501,11 +501,11 @@
         "FA-W006",
         "FA-W013"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/receipts/FA-W014-grok-autonomous-backend.receipt.json",
       "acceptance": "One bounded Grok backend job uses only an evidenced allowed route and, with zero operator action after dispatch, reaches confirmed generation, acquires provider-original bytes and atomically saves a strictly validated content-addressed local artifact. Guessed endpoints, protection bypass, URL-only success and manual download fail.",
       "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF",
-      "sequencing_gate": "FA-W013 Gemini terminal result required before Grok live proof."
+      "sequencing_gate": "RESOLVED: FA-W013 DONE/PASS. Grok is the next Windows frontier; do not execute in the FA-W013 acceptance run."
     },
     {
       "id": "FA-W015",

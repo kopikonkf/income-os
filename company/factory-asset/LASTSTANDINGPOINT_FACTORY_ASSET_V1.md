@@ -84,7 +84,7 @@ Founder approved the next Windows/OAUTH phase on 2026-09-03:
 - ChatGPT may use the existing MUXIA/server boundary later and is explicitly non-blocking for the five-provider Level-2 acceptance;
 - GenWHITE purchase/account action is HOLD. GenWHITE remains a future clean-room observable capability benchmark, not a backend assumption or dependency.
 
-Current Level-2 frontier: `FA-W011` — define the common autonomous provider backend contract. After that, execute Gemini -> Grok -> Manus -> Duck.ai in priority order.
+Current Level-2 frontier: `FA-W014` — Grok autonomous backend original-byte local save. FA-W013 Gemini is DONE/PASS; Manus and Duck.ai remain sequenced behind Grok.
 
 ### FA-W011 — DONE / PASS — Level-2 autonomous backend contract
 
@@ -97,15 +97,18 @@ Current Level-2 frontier: `FA-W011` — define the common autonomous provider ba
 - No `D:\OAUTH` source mutation and no live provider call occurred in FA-W011.
 - Receipt: `company/factory-asset/receipts/FA-W011-autonomous-provider-backend-contract.receipt.json`.
 
-### FA-W013 — WAITING_OPERATOR — Gemini dedicated backend authentication
+### FA-W013 — DONE / PASS — Gemini autonomous backend original-byte local save
 
-- Gemini Level-2 implementation is merged in `web-ai-adapter` PR #3, merge `65227657a10199da31be093f0a36a8d26447e1a3`, and scoped-deployed to `D:\OAUTH`.
-- Current transport is `BROWSER_CDP` using dedicated profile `D:\OAUTH\browser-profiles\gemini-backend` on loopback `127.0.0.1:9333`; no cookie/session-token export is used.
-- Deterministic + regression suite: **23/23 PASS**; server import PASS; unrelated dirty work fingerprint preserved.
-- The historical `StreamGenerate` SESSION_API bootstrap is stale for current acceptance: `/app` returned 200 and `cfb2h` but no `SNlM0e`; no generation dispatch was committed on that diagnostic.
-- One anonymous BROWSER_CDP attempt was committed before auth-state detection was corrected; Gemini returned text saying image creation was unavailable, with no image/download control. It is terminal FAILED/AUTH_REQUIRED and cannot be relabeled PASS.
-- Preflight is now fail-closed: visible `Sign in` => `AUTH_REQUIRED` before dispatch.
-- **Operator action required now:** sign in to Gemini in the already-open dedicated Gemini backend browser only; do not send a prompt and do not download anything. Leave the browser running and report `done`. No new Founder authorization is required.
+- Founder/operator completed authentication **before dispatch only** in the dedicated `D:\OAUTH\browser-profiles\gemini-backend` profile; acceptance preflight then returned `READY` on loopback CDP `127.0.0.1:9333`.
+- Exactly one new bounded authenticated acceptance attempt was committed. Backend prompt dispatch, completion detection, original-byte acquisition, validation and durable save completed with **operator_actions_after_dispatch = 0**.
+- Job: `gemini-634d52e07eca4f2aa3fc0d028a9ef6c9`; attempt: `attempt-407aabdebbff461c9aba74e7f934b939`.
+- Prompt SHA-256: `a450e24f12533528a03e3c3ad14d40bebe26cc6e30c221929806e5256ad166d9`; plaintext prompt is not required in the canonical receipt.
+- `dispatch_committed_at`: `2026-09-03T08:49:30.081665Z`; generation completed at `2026-09-03T08:49:54.135837Z`.
+- Original acquisition: **provider browser download event captured automatically by backend**; no manual download, URL copy, browser recovery, screenshot or output-folder move occurred after dispatch.
+- Artifact: `D:\ASSETS\OAUTH\sha256\c0\gemini_c04c5d7651d2133d338307627b60b2eba09069d90f9fdc8873f2c76a52a0c52d.jpg`.
+- Strict + independent recheck: JPEG, 1408x768, 401,525 bytes, magic `ffd8ffe000104a4649460001`, decode/reopen PASS, SHA-256 `c04c5d7651d2133d338307627b60b2eba09069d90f9fdc8873f2c76a52a0c52d`.
+- Post-acceptance canonical regression scope: **23/23 PASS**. A broad unscoped `pytest -q` also exposed pre-existing duplicate staging-package collection errors under `staging/gemini` and `staging/mimo`; these are not part of the canonical FA-W013 23-test regression scope and were not silently described as green.
+- Historical anonymous BROWSER_CDP attempt remains terminal FAILED/AUTH_REQUIRED and was not relabeled.
 - Receipt: `company/factory-asset/receipts/FA-W013-gemini-autonomous-backend.receipt.json`.
 
 ## OAUTH safety
@@ -118,7 +121,7 @@ Current Level-2 frontier: `FA-W011` — define the common autonomous provider ba
 
 ## Next Windows frontier
 
-`FA-W013` remains the sole Windows frontier at `WAITING_OPERATOR` for **pre-dispatch Gemini login only**. The dedicated browser worker is already running on loopback CDP. After login, Architect must re-preflight and perform the next distinct bounded attempt; Grok remains blocked until FA-W013 reaches a terminal state.
+`FA-W014` is now the next Windows frontier at `READY` for **Grok autonomous backend original-byte local save**. FA-W013 Gemini is DONE/PASS. Do not execute Grok in the same FA-W013 acceptance run.
 
 ## Engineering lease
 
