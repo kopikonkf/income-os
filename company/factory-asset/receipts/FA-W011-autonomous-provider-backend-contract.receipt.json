@@ -1,0 +1,34 @@
+{
+  "schema": "factory-asset.windows-autonomous-provider-backend-contract-receipt.v1",
+  "task_id": "FA-W011",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact": "company/factory-asset/contracts/windows-autonomous-provider-backend-v1.json",
+  "version": "1.0.0",
+  "validation": {
+    "json_parse": "PASS",
+    "required_top_level_sections": "PASS",
+    "state_machine_terminal_states": "PASS",
+    "operator_checkpoint_defined": "PASS",
+    "post_dispatch_operator_actions_required_zero": "PASS",
+    "BROWSER_OPERATOR_level_2_disallowed": "PASS",
+    "pass_transports": [
+      "SESSION_API",
+      "BROWSER_CDP",
+      "HYBRID",
+      "OFFICIAL_API"
+    ],
+    "bounded_retry_timeout_cancel": "PASS",
+    "original_byte_and_atomic_save": "PASS",
+    "typed_failure_count": 28,
+    "mandatory_negative_case_count": 12,
+    "sanitized_receipt_contract": "PASS",
+    "qwen_reference_pinned": "PASS"
+  },
+  "source_mutation": {
+    "D_OAUTH_modified": false,
+    "live_provider_call": false
+  },
+  "result_summary": "Level-2 backend candidacy now has an unambiguous zero-touch-after-dispatch truth boundary. Operator auth/recovery may occur only before dispatch_committed_at; any operator action after that checkpoint makes the attempt non-PASS."
+}

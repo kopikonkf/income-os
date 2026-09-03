@@ -86,6 +86,17 @@ Founder approved the next Windows/OAUTH phase on 2026-09-03:
 
 Current Level-2 frontier: `FA-W011` — define the common autonomous provider backend contract. After that, execute Gemini -> Grok -> Manus -> Duck.ai in priority order.
 
+### FA-W011 — DONE / PASS — Level-2 autonomous backend contract
+
+- Canonical contract: `company/factory-asset/contracts/windows-autonomous-provider-backend-v1.json` v1.0.0.
+- Zero-touch checkpoint is `dispatch_committed_at`: operator authentication/recovery is allowed before it; after it, **operator actions must equal zero** until terminal state.
+- Level-2 PASS transports: `SESSION_API`, `BROWSER_CDP`, `HYBRID`, `OFFICIAL_API`. `BROWSER_OPERATOR` is explicitly Level-2 non-PASS.
+- PASS requires bounded real generation/completion, backend-acquired provider-original bytes, MIME/magic/dimensions/decode/SHA-256 validation, atomic content-addressed durable save, post-save hash/reopen, typed receipt and no security/policy bypass.
+- Default retry budget is at most two retries / three total attempts; timeout and cancellation are terminal and cannot be relabeled as success.
+- Twelve mandatory negative acceptance cases cover manual download, URL-only/download failure, status-without-artifact, timeout, invalid bytes, hash mismatch, post-dispatch auth/protection, retry exhaustion and dedupe.
+- No `D:\OAUTH` source mutation and no live provider call occurred in FA-W011.
+- Receipt: `company/factory-asset/receipts/FA-W011-autonomous-provider-backend-contract.receipt.json`.
+
 ## OAUTH safety
 
 - `D:\OAUTH` HEAD remains `c2fb61467138a24156b3d61c991882ebcdd59086`.
@@ -96,7 +107,7 @@ Current Level-2 frontier: `FA-W011` — define the common autonomous provider ba
 
 ## Next Windows frontier
 
-`FA-W011` is READY. It defines the Level-2 zero-touch autonomous backend contract. Qwen is already pinned as the reference evidence (`FA-W012 = DONE`). Gemini, Grok, Manus and Duck.ai remain blocked only on FA-W011 and then become the remaining bounded backend-candidate proofs. `FA-W016` ChatGPT/MUXIA is non-blocking. `FA-W010` GenWHITE is intentionally DEFERRED/HOLD until FA-W019.
+`FA-W013` Gemini autonomous backend proof is now the **only READY Windows provider frontier**. Grok is sequenced after Gemini, Manus after Grok, and Duck.ai after Manus. Qwen remains the Level-2 reference PASS; ChatGPT/MUXIA remains non-blocking and deferred.
 
 ## Engineering lease
 
