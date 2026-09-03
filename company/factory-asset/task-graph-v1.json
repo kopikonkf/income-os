@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "1.4-browser-cdp-unification",
+  "revision": "1.5-qwen-browser-cdp-fallback",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -590,11 +590,16 @@
         "FA-W011",
         "FA-W012"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/receipts/FA-W018-qwen-browser-cdp-fallback.receipt.json",
       "acceptance": "Qwen keeps the proven SESSION_API lane as primary. A separate standalone BROWSER_CDP fallback uses an authenticated reusable Chromium profile and satisfies the same Level-2 zero-touch/original-byte/durable-save contract. Fallback selection is explicit and observable and never silently converts auth, protection, policy or provider failures into success.",
       "authority": "FOUNDER_DECISION_RECORDED_2026-09-03_BROWSER_CDP_FALLBACK",
-      "result_on_success": "Qwen has dual transport resilience: SESSION_API primary plus BROWSER_CDP fallback without changing OpenAI-compatible caller semantics."
+      "result_on_success": "Qwen has dual transport resilience: SESSION_API primary plus BROWSER_CDP fallback without changing OpenAI-compatible caller semantics.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: Qwen keeps SESSION_API as primary and adds explicit BROWSER_CDP fallback. Fresh canonical-source fallback run saved provider-original PNG 1664x928, 1395714 bytes, SHA-256 95b2dc3e3e587c729cdf18cf96c93dc7130c015bfba9f6a3597c2dd7444368eb with zero operator action after dispatch and independent reopen/hash PASS.",
+      "implementation_repository": "github.com/kopikonkf/web-ai-adapter",
+      "implementation_pr": 5,
+      "implementation_merge_commit": "99409665122ff6ca5467c38b41d8630b59471f53"
     },
     {
       "id": "FA-W019",
@@ -648,7 +653,7 @@
         "FA-W015",
         "FA-W017"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/receipts/FA-W020-muxia-shared-browser-runtime.receipt.json",
       "acceptance": "Browser-backed web-ai-adapter providers consume a MUXIA-owned loopback CDP/profile boundary without duplicating Chromium lifecycle, profile ownership, lease or recovery logic. Provider/OpenAI normalization remains in web-ai-adapter and standalone external-CDP mode remains available.",
       "result_on_success": "MUXIA becomes the shared Chromium/profile substrate while web-ai-adapter remains the provider/OpenAI bridge."
