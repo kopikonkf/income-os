@@ -1,0 +1,24 @@
+{
+  "schema": "factory-asset.provider-router-receipt.v1",
+  "task_id": "FA-104",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "hard_gates": [
+    "profile enabled",
+    "policy allowed",
+    "capacity AVAILABLE",
+    "asset capability match"
+  ],
+  "tie_break": [
+    "quality desc",
+    "cost asc",
+    "priority asc",
+    "profile_id asc"
+  ],
+  "explanations": true,
+  "validation": "132/132 PASS",
+  "unblocked": [
+    "FA-105"
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "3.4-fa103-policy-gate",
+  "revision": "3.5-fa104-provider-router",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1244,9 +1244,11 @@
         "FA-102",
         "FA-103"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Provider router with eligibility/quality/capacity/economics fixtures",
-      "acceptance": "Router selects only eligible available profiles, explains decisions and blocks when no allowed route exists."
+      "acceptance": "Router selects only eligible available profiles, explains decisions and blocks when no allowed route exists.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: deterministic router selects only enabled policy-allowed AVAILABLE capability-matching profiles, ranks by quality/cost/priority/profile-id and records rejection rationale. UNKNOWN/CONSTRAINED capacity or policy/capability mismatch never routes. Regression 132/132 PASS."
     },
     {
       "id": "FA-105",
@@ -1257,7 +1259,7 @@
       "depends_on": [
         "FA-104"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Factory job queue and fault-injection tests",
       "acceptance": "Jobs are idempotent/resumable; typed retryable failures retry at most twice; crash recovery never creates false success or duplicate ownership."
     },
