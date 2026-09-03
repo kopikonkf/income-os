@@ -326,10 +326,16 @@
       "depends_on": [
         "FA-W001"
       ],
-      "status": "WAITING_FOUNDER",
-      "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
+      "status": "DONE",
+      "authority": "FOUNDER_OPERATOR_ACTION_COMPLETE",
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W005-gemini-image-proof.receipt.json",
-      "acceptance": "One bounded authorized Gemini request yields durable original bytes and a validated local file through an allowed transport; the current inaccessible URL/403 path cannot pass."
+      "acceptance": "One bounded authorized Gemini request yields durable original bytes and a validated local file through an allowed transport; the current inaccessible URL/403 path cannot pass.",
+      "completed_at": "2026-09-03",
+      "transport_class": "BROWSER_OPERATOR",
+      "prompt_sha256": "0c93230f694582d9f16c0f90e8437da39c5dc14f6db30e6bebb6e09545a0c1c3",
+      "artifact_sha256": "cd866318223134624f0852e2ef5ddac421544469145272cb6339c57a62fd1012",
+      "receipt": "company/factory-asset/receipts/FA-W005-gemini-image-proof.receipt.json",
+      "result": "PASS: real Gemini provider-original JPEG manually downloaded by Founder/operator and strict local validation/content-addressed persistence passed; legacy inaccessible URL/403 fallback was not used."
     },
     {
       "id": "FA-W006",
