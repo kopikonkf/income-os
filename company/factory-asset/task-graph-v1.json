@@ -1,7 +1,7 @@
 ﻿{
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "1.2-autonomous-backend-candidacy",
+  "revision": "1.3-windows-provider-sequencing-override",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -501,11 +501,15 @@
         "FA-W006",
         "FA-W013"
       ],
-      "status": "READY",
+      "status": "DEFERRED",
       "artifact": "company/factory-asset/receipts/FA-W014-grok-autonomous-backend.receipt.json",
       "acceptance": "One bounded Grok backend job uses only an evidenced allowed route and, with zero operator action after dispatch, reaches confirmed generation, acquires provider-original bytes and atomically saves a strictly validated content-addressed local artifact. Guessed endpoints, protection bypass, URL-only success and manual download fail.",
       "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF",
-      "sequencing_gate": "RESOLVED: FA-W013 DONE/PASS. Grok is the next Windows frontier; do not execute in the FA-W013 acceptance run."
+      "sequencing_gate": "RESOLVED: FA-W013 DONE/PASS. Grok is the next Windows frontier; do not execute in the FA-W013 acceptance run.",
+      "receipt": "company/factory-asset/receipts/FA-W014-grok-autonomous-backend.receipt.json",
+      "last_attempt_result": "FAILED: PROVIDER_CAPACITY_UNAVAILABLE / HIGH_DEMAND",
+      "resume_condition": "Retry when Grok provider capacity is available; authenticated BROWSER_CDP preflight otherwise remains viable.",
+      "founder_sequencing_override": "2026-09-03 Founder authorized proceeding to Manus if Grok remained blocked by High Demand after retry."
     },
     {
       "id": "FA-W015",
@@ -516,14 +520,17 @@
       "title": "Prove Manus autonomous backend original-byte local save",
       "depends_on": [
         "FA-W011",
-        "FA-W007",
-        "FA-W014"
+        "FA-W007"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "artifact": "company/factory-asset/receipts/FA-W015-manus-autonomous-backend.receipt.json",
       "acceptance": "One bounded Manus backend job uses an evidenced allowed create/send + bounded completion/artifact route or another evidenced allowed transport and, with zero operator action after dispatch, saves strictly validated provider-original bytes locally. Infinite polling, status-without-artifact, URL-only success and manual download fail.",
       "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF",
-      "sequencing_gate": "FA-W014 Grok terminal result required before Manus live proof."
+      "sequencing_gate": "FA-W014 Grok terminal result required before Manus live proof.",
+      "receipt": "company/factory-asset/receipts/FA-W015-manus-autonomous-backend.receipt.json",
+      "completed_at": "2026-09-03",
+      "result": "PASS: one bounded BROWSER_CDP job completed with zero operator action after dispatch and provider-original 1920x1920 PNG was strictly validated and atomically content-addressed locally.",
+      "founder_sequencing_override": "FA-W014 sequencing dependency waived after terminal provider-capacity failure; Level-2 acceptance boundary was not weakened."
     },
     {
       "id": "FA-W016",
@@ -554,12 +561,15 @@
         "FA-W008",
         "FA-W015"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/receipts/FA-W017-duckai-autonomous-backend.receipt.json",
       "acceptance": "Identify an evidenced allowed Duck.ai image-capable transport and prove one bounded job reaches provider-original bytes and atomic validated local save with zero operator action after dispatch. The prior text-only endpoint cannot pass; unsupported/unknown is reported honestly without fabricating image capability.",
       "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF",
       "operator_reported_current_ui_model_label": "gpt5.5 luna",
-      "sequencing_gate": "FA-W015 Manus terminal result required before Duck.ai transport/live proof."
+      "sequencing_gate": "RESOLVED: FA-W015 Manus DONE/PASS. Duck.ai remains READY for a fresh bounded retry; prior attempts are not PASS.",
+      "receipt": "company/factory-asset/receipts/FA-W017-duckai-autonomous-backend.receipt.json",
+      "last_attempt_result": "FAILED: BOUNDED_COMPLETION_TIMEOUT; prior-hash re-render excluded from PASS",
+      "architect_observed_current_ui": "5.6 Luna / GPT Image 2"
     },
     {
       "id": "FA-W019",

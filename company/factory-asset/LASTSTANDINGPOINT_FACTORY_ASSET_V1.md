@@ -126,3 +126,40 @@ Current Level-2 frontier: `FA-W014` — Grok autonomous backend original-byte lo
 ## Engineering lease
 
 Any income-os publication must acquire `income-os.repo-write` plus the task-specific Factory Asset lease and release both in `finally`. Do not preempt the Linux hourly runner.
+
+## 2026-09-03 Windows Level-2 continuation: Grok -> Manus -> Duck.ai
+
+### FA-W014 — DEFERRED / PROVIDER_CAPACITY_UNAVAILABLE
+
+- Founder age confirmation was already complete before this continuation.
+- Fresh Grok `BROWSER_CDP` preflight was READY: authenticated page, composer available, no sign-in gate, no visible hCaptcha.
+- A fresh bounded retry was committed at `2026-09-03T14:58:21.422782Z` with `operator_actions_after_dispatch = 0`.
+- Provider terminated immediately in `HIGH_DEMAND`: `Grok is under heavy usage right now`.
+- No provider-original bytes were acquired and no artifact was saved; this attempt is **not PASS**.
+- The historical Founder-interrupted generation remains excluded from PASS.
+- Founder explicitly authorized continuing to Manus when this retry remained blocked by provider capacity. This is a sequencing override only; the Level-2 acceptance boundary is unchanged.
+- Receipt: `company/factory-asset/receipts/FA-W014-grok-autonomous-backend.receipt.json`.
+
+### FA-W015 — DONE / PASS — Manus autonomous backend original-byte local save
+
+- Manus `BROWSER_CDP` preflight was READY on the existing authorized browser profile with no visible hCaptcha or login gate.
+- One bounded job was committed at `2026-09-03T14:59:30.840023Z`; `operator_actions_after_dispatch = 0` through terminal state.
+- A first `520x293` `files.manuscdn.com` WebP was detected and correctly rejected as Manus Desktop UI artwork, preventing a false-positive receipt.
+- The backend subsequently acquired the actual provider-generated artifact from `private-us-east-1.manuscdn.com` before deadline.
+- Provider-original artifact: PNG, `1920x1920`, `1,747,032` bytes, SHA-256 `39c545d2646502553737e5096d90fd2e5060fa46d71bea02a99b72ed50ee52a2`.
+- Atomic content-addressed save: `D:\ASSETS\OAUTH\sha256\39\manus_39c545d2646502553737e5096d90fd2e5060fa46d71bea02a99b72ed50ee52a2.png`.
+- Decode/reopen and post-save SHA-256 verification PASS.
+- Receipt: `company/factory-asset/receipts/FA-W015-manus-autonomous-backend.receipt.json`.
+
+### FA-W017 — READY / latest bounded attempts NOT PASS
+
+- Duck.ai current browser UI exposed `5.6 Luna` and the image lane as `GPT Image 2`; the historical text-only `/duckchat/v1/chat` route is still not counted as image proof.
+- The backend did produce a provider-delivered JPEG data URI (`1254x1254`, SHA-256 `659da1be155fea7b043b2c71530e422dd457aadf40fb1c59208cc9119e690552`), but acquisition/save for that attempt did not complete inside its recorded deadline, so it is not Level-2 PASS.
+- A later same-attempt provenance check observed the same hash re-rendered in the DOM; that prior artifact was explicitly excluded rather than mislabeled as a new generation.
+- The subsequent committed retry ended `BOUNDED_COMPLETION_TIMEOUT` without a new-hash provider artifact before deadline; `operator_actions_after_dispatch = 0`.
+- Wrapper-created duplicate backend processes were stopped and are not counted as provider-committed attempts unless the provider UI surfaced a corresponding submitted message.
+- Receipt: `company/factory-asset/receipts/FA-W017-duckai-autonomous-backend.receipt.json`.
+
+## Current Windows frontier after this continuation
+
+`FA-W015` is DONE/PASS. `FA-W014` is DEFERRED on temporary Grok provider capacity, not auth. `FA-W017` is the active READY frontier for one fresh bounded Duck.ai retry under the remaining default provider-committed attempt budget. No Grok or Duck failure has been relabeled as PASS.
