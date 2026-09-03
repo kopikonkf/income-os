@@ -46,6 +46,14 @@
 - Actual proof transport: `BROWSER_OPERATOR`; no guessed endpoint loop or protection bypass was used.
 - Receipt: `company/factory-asset/receipts/FA-W006-grok-image-proof.receipt.json`.
 
+### FA-W007 — DONE / PASS
+
+- Founder/operator supplied a real Manus provider-original PNG from the authenticated consumer web UI using the shared prompt in prompt.txt.
+- Strict validation: PNG, 1920x1920, 788,616 bytes, decode/reopen PASS, SHA-256 53768478e5ef09498f5df735f89e71f49bbbcfe39a89ec1f9f24abbf840923a.
+- Content-addressed local save: D:\\ASSETS\\OAUTH\\sha256\\a5\\manus_a53768478e5ef09498f5df735f89e71f49bbbcfe39a89ec1f9f24abbf840923a.png.
+- Actual proof transport: BROWSER_OPERATOR. The task acceptance is clarified so browser-operator original export proves Windows capability; any future SESSION_API create/poll route must remain bounded and cannot pass on status without artifact.
+- Receipt: company/factory-asset/receipts/FA-W007-manus-image-proof.receipt.json.
+
 ## OAUTH safety
 
 - `D:\OAUTH` HEAD remains `c2fb61467138a24156b3d61c991882ebcdd59086`.
