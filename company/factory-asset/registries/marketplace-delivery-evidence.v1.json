@@ -1,0 +1,306 @@
+{
+  "schema": "die.factory-asset.marketplace-delivery-evidence.v1",
+  "version": "1.0.0",
+  "task_id": "FA-003",
+  "repository_base_sha": "81e8eb38dc26a71e2f17ff72c9380aaf4563c5c1",
+  "observed_at": "2026-09-03",
+  "freshness_policy": {
+    "rule": "Evidence older than 180 days or without an explicit source revision date does not authorize a compatibility PASS. It remains usable as historical evidence only and yields COMPATIBILITY_UNKNOWN until revalidated.",
+    "unknown_rule": "Missing, stale, ambiguous, or conflicting marketplace requirements must be represented explicitly and never inferred."
+  },
+  "platforms": [
+    {
+      "platform_id": "ADOBE_STOCK",
+      "name": "Adobe Stock",
+      "evidence_status": "VERIFIED_CURRENT",
+      "compatibility_disposition": "EVIDENCE_PINNED",
+      "sources": [
+        {
+          "url": "https://helpx.adobe.com/in/stock/contributor/content-policies-guidelines/content-policies/content-upload-guidelines.html",
+          "source_date": "2026-09-02",
+          "official": true,
+          "facts": [
+            "Photos: JPEG, minimum 4MP.",
+            "Illustrations: JPEG, AI, EPS, or SVG.",
+            "Vectors: AI, EPS, or SVG.",
+            "Video: MOV or MP4 with H.264.",
+            "Video/motion templates: AET, PRPROJ, MOGRT.",
+            "Design templates: PSDT, AIT, INDT.",
+            "Upload requires metadata and applicable releases."
+          ]
+        },
+        {
+          "url": "https://helpx.adobe.com/in/stock/contributor/help/vector-requirements.html",
+          "official": true,
+          "facts": [
+            "Vector files must be true editable vectors in AI/EPS/SVG.",
+            "Maximum vector file size 45MB.",
+            "Adobe can auto-generate JPEG preview and transparent PNG derivative for eligible vectors.",
+            "Similar/minimally changed submissions can be treated as spam."
+          ],
+          "observed_at": "2026-09-03"
+        }
+      ],
+      "delivery": {
+        "raster": [
+          "JPEG"
+        ],
+        "vector": [
+          "AI",
+          "EPS",
+          "SVG"
+        ],
+        "video": [
+          "MOV",
+          "MP4/H.264"
+        ],
+        "templates": [
+          "AET",
+          "PRPROJ",
+          "MOGRT",
+          "PSDT",
+          "AIT",
+          "INDT"
+        ]
+      },
+      "ai_policy_notes": [
+        "Generative AI content is supported but must follow Adobe generative-AI submission requirements and upload labeling."
+      ],
+      "unknown_or_conflicting": [
+        "Per-account SFTP eligibility is conditional and not assumed.",
+        "Exact moderation acceptance remains content-dependent."
+      ]
+    },
+    {
+      "platform_id": "DREAMSTIME",
+      "name": "Dreamstime",
+      "evidence_status": "VERIFIED_HISTORICAL_PLUS_CURRENT_UNDATED",
+      "compatibility_disposition": "COMPATIBILITY_UNKNOWN",
+      "sources": [
+        {
+          "url": "https://www.dreamstime.com/blog/how-to-successfully-submit-ai-generated-images-to-dreamstime-74214",
+          "source_date": "2024-10-04",
+          "official": true,
+          "facts": [
+            "Dreamstime accepts AI-generated images subject to contributor requirements.",
+            "The dated AI guidance states JPEG, PNG, or TIFF technical formats for AI-generated images.",
+            "AI submissions require attention to rights, metadata and quality."
+          ]
+        },
+        {
+          "url": "https://www.dreamstime.com/sell-stock-photos-images",
+          "source_date": null,
+          "observed_at": "2026-09-03",
+          "official": true,
+          "facts": [
+            "Current official contributor page lists JPEG/RGB raster images at least 3MP.",
+            "Illustration source formats listed include AI, EPS, CDR and SVG.",
+            "QuickTime MOV is preferred for video; WAV or FLAC is listed for audio."
+          ]
+        }
+      ],
+      "delivery": {
+        "raster": [
+          "JPEG"
+        ],
+        "vector_source": [
+          "AI",
+          "EPS",
+          "CDR",
+          "SVG"
+        ],
+        "video": [
+          "QuickTime MOV preferred"
+        ],
+        "audio": [
+          "WAV",
+          "FLAC"
+        ]
+      },
+      "ai_policy_notes": [
+        "AI-generated content is accepted with disclosure/category requirements and rights obligations."
+      ],
+      "unknown_or_conflicting": [
+        "Official Dreamstime pages expose inconsistent raster-format wording: dated 2024 AI guidance mentions JPEG/PNG/TIFF while current contributor FAQ/sell guidance emphasizes JPG/JPEG for standard image upload. Treat PNG/TIFF direct marketplace delivery as COMPATIBILITY_UNKNOWN until a current dated technical page confirms it.",
+        "Current contributor technical page lacks an explicit revision date; therefore profile cannot be promoted to current deterministic compatibility."
+      ]
+    },
+    {
+      "platform_id": "123RF",
+      "name": "123RF",
+      "evidence_status": "VERIFIED_STALE",
+      "compatibility_disposition": "COMPATIBILITY_UNKNOWN",
+      "sources": [
+        {
+          "url": "https://www.blog.123rf.com/how-to-upload-photos-or-illustrations",
+          "source_date": "2022-08-10",
+          "published_date": "2020-06-26",
+          "official": true,
+          "facts": [
+            "RF photos: JPEG, minimum 6MP, maximum 30MB, minimum 80% quality.",
+            "Vector illustrations require matching JPEG and EPS basenames.",
+            "JPEG preview minimum stated as 1600x1600 or larger.",
+            "EPS should be Illustrator 8 compatible and retain layers.",
+            "Web uploader and FTP are documented upload paths."
+          ]
+        },
+        {
+          "url": "https://www.123rf.com/contributors/",
+          "source_date": null,
+          "observed_at": "2026-09-03",
+          "official": true,
+          "facts": [
+            "Current contributor landing page still advertises Photos, Vectors, Video and Audio as supported content families."
+          ]
+        }
+      ],
+      "delivery": {
+        "raster": [
+          "JPEG"
+        ],
+        "vector_bundle": [
+          "JPEG preview",
+          "EPS source"
+        ],
+        "upload": [
+          "web",
+          "FTP"
+        ]
+      },
+      "ai_policy_notes": [],
+      "unknown_or_conflicting": [
+        "The detailed official upload specification is dated 2022 and exceeds the 180-day freshness threshold. Exact current pixel/file limits and EPS compatibility version require revalidation before automated packaging PASS.",
+        "No current dated official AI-generated-content delivery policy was pinned in this task; AI submission compatibility remains UNKNOWN."
+      ]
+    },
+    {
+      "platform_id": "VECTEEZY",
+      "name": "Vecteezy",
+      "evidence_status": "VERIFIED_STALE_PLUS_CURRENT_FAMILY",
+      "compatibility_disposition": "COMPATIBILITY_UNKNOWN",
+      "sources": [
+        {
+          "url": "https://www.vecteezy.com/blog/contributor/contributor-checklist",
+          "source_date": "2021-04-28",
+          "official": true,
+          "facts": [
+            "Vectors: EPS compatible with Illustrator 10, max 50MB, 4MP-25MP, RGB or CMYK.",
+            "Photos: JPG/JPEG, sRGB, at least 4MP, max 50MB.",
+            "Videos: MP4, MOV, R3D, or MOGRT."
+          ]
+        },
+        {
+          "url": "https://www.vecteezy.com/contributors",
+          "source_date": null,
+          "observed_at": "2026-09-03",
+          "official": true,
+          "facts": [
+            "Current contributor page says Vecteezy is accepting photos, vectors and videos.",
+            "Current page states JPG/JPEG illustrations and logo templates are not accepted as contributor resources."
+          ]
+        }
+      ],
+      "delivery": {
+        "raster_photo": [
+          "JPG",
+          "JPEG"
+        ],
+        "vector": [
+          "EPS"
+        ],
+        "video": [
+          "MP4",
+          "MOV",
+          "R3D",
+          "MOGRT"
+        ]
+      },
+      "ai_policy_notes": [],
+      "unknown_or_conflicting": [
+        "Detailed technical limits are from a 2021 official checklist and are stale by Factory freshness policy; reconfirm before deterministic marketplace packaging.",
+        "Current official contributor page confirms families but does not restate all technical limits.",
+        "AI-generated-content eligibility/labeling was not established from a current dated official source in this task and remains UNKNOWN."
+      ]
+    },
+    {
+      "platform_id": "MOTIONELEMENTS",
+      "name": "MotionElements",
+      "evidence_status": "VERIFIED_CURRENT",
+      "compatibility_disposition": "EVIDENCE_PINNED",
+      "sources": [
+        {
+          "url": "https://help.motionelements.com/en/contributor/docs/contributors-onboarding-guide",
+          "source_date": "2026-08-27",
+          "official": true,
+          "facts": [
+            "Contributor onboarding lists video, music/SFX, photo/vector, 3D, Lottie, presentation, Notion and UI/UX template guides.",
+            "Products are uploaded as separate ZIP files or supported URLs, then metadata is completed and the item is published after contributor review."
+          ]
+        },
+        {
+          "url": "https://help.motionelements.com/en/contributor/docs/how-to-upload-files",
+          "source_date": "2025-01-08",
+          "official": true,
+          "facts": [
+            "Upload page supports up to 10 files or folders at one time.",
+            "Bulk FTP is available for Video, Music, Photo/Vector and 3D Model according to this dated page."
+          ]
+        },
+        {
+          "url": "https://help.motionelements.com/en/contributor/docs/policy-on-ai-generated-content-and-contributor-accounts",
+          "source_date": "2025-02-15",
+          "official": true,
+          "facts": [
+            "Generative AI content is accepted under a separate AI-generated contributor account.",
+            "AI content must be disclosed as AI-generated and contributors must hold required rights.",
+            "AI-generated and traditional content cannot be mixed in the same contributor account under the stated policy."
+          ]
+        },
+        {
+          "url": "https://help.motionelements.com/en/contributor/docs/guide-for-selling-stock-video",
+          "source_date": "2025-02-04",
+          "official": true,
+          "facts": [
+            "Stock video duration 3-120 seconds.",
+            "Horizontal range 1920x1080 through 3840x2160; vertical range 1080x1920 through 2160x3840.",
+            "Accepted frame rates include 24, 25, 29.97, 30, 50, 60 fps or higher.",
+            "Each video product is prepared as a separate ZIP; maximum ZIP size 4GB."
+          ]
+        }
+      ],
+      "delivery": {
+        "container": [
+          "ZIP per product"
+        ],
+        "bulk_upload": [
+          "FTP for supported media families"
+        ],
+        "video_resolution": [
+          "1080p through UHD 4K within documented bounds"
+        ]
+      },
+      "ai_policy_notes": [
+        "AI-generated content requires the separate AI-generated contributor account and explicit AI disclosure."
+      ],
+      "unknown_or_conflicting": [
+        "The onboarding page and older bulk-upload page differ on whether 3D Model is FTP-enabled; 3D FTP capability is therefore COMPATIBILITY_UNKNOWN until reconfirmed.",
+        "Exact photo/vector technical source-file formats were not pinned from a current dated dedicated guide in this task and remain UNKNOWN for deterministic packaging."
+      ]
+    }
+  ],
+  "acceptance_summary": {
+    "required_platforms": [
+      "ADOBE_STOCK",
+      "DREAMSTIME",
+      "123RF",
+      "VECTEEZY",
+      "MOTIONELEMENTS"
+    ],
+    "official_dated_evidence_present_for_all": true,
+    "unknown_or_conflicting_requirements_explicit": true,
+    "marketplace_login_performed": false,
+    "submission_performed": false,
+    "publication_performed": false,
+    "credential_accessed": false
+  }
+}

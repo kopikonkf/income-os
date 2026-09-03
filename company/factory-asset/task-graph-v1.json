@@ -170,9 +170,11 @@
       "depends_on": [
         "FA-000"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/registries/marketplace-delivery-evidence.v1.json",
-      "acceptance": "Official dated evidence exists for Adobe Stock, Dreamstime, 123RF, Vecteezy and MotionElements; unknown or conflicting requirements are explicit."
+      "acceptance": "Official dated evidence exists for Adobe Stock, Dreamstime, 123RF, Vecteezy and MotionElements; unknown or conflicting requirements are explicit.",
+      "completed_at": "2026-09-03",
+      "receipt": "company/factory-asset/receipts/FA-003-marketplace-delivery-evidence.receipt.json"
     },
     {
       "id": "FA-004",
@@ -396,9 +398,10 @@
       "depends_on": [
         "FA-003"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/schemas/asset-type-registry.schema.json",
-      "acceptance": "Schema covers native representation, producer classes, master/delivery formats, vectorizability, rights, quality, maturity and distinctness invariants; invalid fixtures fail."
+      "acceptance": "Schema covers native representation, producer classes, master/delivery formats, vectorizability, rights, quality, maturity and distinctness invariants; invalid fixtures fail.",
+      "unblocked_by": "FA-003"
     },
     {
       "id": "FA-011",

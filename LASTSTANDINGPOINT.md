@@ -3445,3 +3445,18 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - `FA-001` is therefore `WAITING_OPERATOR`, not FAILED. Resume requires an approved bounded read-only Linux evidence path for the scheduled Architect context or an authorized current five-master inventory receipt.
 - Independent Linux work remains allowed: `FA-003` is the next READY Linux task. Windows work did not block this run.
 - Receipt: `company/factory-asset/receipts/FA-001-linux-master-inventory.receipt.json`.
+
+
+---
+
+## 2026-09-03 — Factory Asset hourly FA-003 marketplace delivery evidence
+
+- Base `origin/main`: `81e8eb38dc26a71e2f17ff72c9380aaf4563c5c1`.
+- Selected Linux task: `FA-003 — Pin dated marketplace delivery requirements`.
+- Pinned official dated evidence for Adobe Stock, Dreamstime, 123RF, Vecteezy and MotionElements in `company/factory-asset/registries/marketplace-delivery-evidence.v1.json`.
+- Fresh evidence is distinguished from stale/undated evidence. Missing, stale or conflicting requirements explicitly yield `COMPATIBILITY_UNKNOWN`; they are not inferred as supported.
+- No marketplace login, credential access, submission, publication, provider action or Linux Production Organism mutation occurred.
+- Receipt: `company/factory-asset/receipts/FA-003-marketplace-delivery-evidence.receipt.json`.
+- Graph delta: `FA-003 READY -> DONE`.
+- Dependency closure: `FA-010 BLOCKED -> READY`; no FA-010 implementation was started.
+- NEXT READY Linux: `FA-010 — Define asset type registry schema`.

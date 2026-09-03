@@ -1,0 +1,34 @@
+{
+  "schema": "die.factory-asset.fa003.acceptance-receipt.v1",
+  "task_id": "FA-003",
+  "status": "PASS",
+  "repository_base_sha": "81e8eb38dc26a71e2f17ff72c9380aaf4563c5c1",
+  "artifact": "company/factory-asset/registries/marketplace-delivery-evidence.v1.json",
+  "observed_at": "2026-09-03",
+  "platforms_pinned": [
+    "ADOBE_STOCK",
+    "DREAMSTIME",
+    "123RF",
+    "VECTEEZY",
+    "MOTIONELEMENTS"
+  ],
+  "official_dated_evidence_count": 5,
+  "policy": "Stale, undated-current, missing, and conflicting requirements remain explicit and cannot produce compatibility PASS.",
+  "authority": {
+    "marketplace_login": false,
+    "submission": false,
+    "publication": false,
+    "credential_access": false,
+    "production_runtime_mutation": false
+  },
+  "validation": {
+    "json_parse": "PASS",
+    "platform_set": "PASS_5_OF_5",
+    "dated_official_source_per_platform": "PASS_5_OF_5",
+    "unknowns_explicit": "PASS",
+    "one_canon": "PASS_11_OF_11",
+    "company_secret_scan": "PASS_0_HIGH_CONFIDENCE_HITS",
+    "diff_check": "PASS"
+  },
+  "next_ready_linux_task": "FA-010"
+}
