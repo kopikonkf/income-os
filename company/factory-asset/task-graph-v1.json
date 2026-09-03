@@ -189,7 +189,7 @@
       "depends_on": [
         "FA-002"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W000-oauth-baseline.receipt.json",
       "acceptance": "Sanitized text/chat regression is green; Qwen HTTP/image/local-save evidence and current output hashes are recorded; no credentials, raw cookies or authenticated captures are published; no source is changed."
     },
@@ -203,7 +203,7 @@
       "depends_on": [
         "FA-W000"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "D:\\FACTORY_ASSET\\contracts\\windows-image-provider-proof-v1.json",
       "acceptance": "Contract defines SESSION_API, BROWSER_CDP, HYBRID, OFFICIAL_API, UNSUPPORTED and UNKNOWN; PASS requires prompt, real generation, original bytes, local save, reopen, MIME/magic, dimensions, bytes and SHA-256."
     },
