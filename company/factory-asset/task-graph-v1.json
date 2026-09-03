@@ -1,7 +1,7 @@
 ﻿{
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "1.1-dual-lane",
+  "revision": "1.2-autonomous-backend-candidacy",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -82,7 +82,7 @@
       "schedule_offset_rule": "Active at minute 35 UTC, separated from the Chapter #4 hourly runner near minute 00 and the production cycle at minute 00 every three hours.",
       "live_runtime_access": "READ_ONLY_ONLY_WHEN_EXPLICITLY_REQUIRED_BY_TASK",
       "default_for_unmarked_tasks": true,
-      "scheduled_prompt_contract": "Use current origin/main as SSOT. If revision 1.1-dual-lane is not canonical, execute only FA-000 from the Founder-approved staged pack and STOP. After canonization, read LASTSTANDINGPOINT, Factory task graph, relevant ADR/PRD/receipts and active leases; select exactly one highest-priority READY Linux leaf. If Architect MCP, repository access, required evidence, or both leases are unavailable, make no mutation and report the stop condition. Work only in a fresh isolated Linux worktree. Never mutate /srv/die, its cron, runtime, profiles, credentials, queues, databases or active artifacts. Do not select FA-W* tasks or make provider/account/marketplace actions. Build, test and verify; publish only green governed changes; update the receipt, graph and LASTSTANDINGPOINT; then STOP.",
+      "scheduled_prompt_contract": "Use current origin/main as SSOT. Require the Factory task graph itself to be status CANONICAL and to contain the dual-lane execution policy; do not hard-code an exact graph revision string. Read LASTSTANDINGPOINT, Factory task graph, relevant ADR/PRD/receipts and active leases; select exactly one highest-priority READY Linux leaf. If Architect MCP, repository access, required evidence, or both leases are unavailable, make no mutation and report the stop condition. Work only in a fresh isolated Linux worktree. Never mutate /srv/die, its cron, runtime, profiles, credentials, queues, databases or active artifacts. Do not select FA-W* tasks or make provider/account/marketplace actions. Build, test and verify; publish only green governed changes; update the receipt, graph and LASTSTANDINGPOINT; then STOP.",
       "lease_acquisition": "Use bin/die_engineering_lease.py acquire-pair with the canonical coordination root before the first remote repository mutation; release-pair in finally. The existence of unfinished WINDOWS_OAUTH_LAB work is not lease contention."
     },
     "WINDOWS_OAUTH_LAB": {
@@ -274,7 +274,8 @@
       "receipt": "company/factory-asset/receipts/FA-W002-qwen-image-proof.receipt.json",
       "result": "PASS: existing Sep 3 real Qwen evidence reused; adapter hardened for strict content-addressed original-byte persistence; no new live Qwen call required.",
       "authorization_reused": true,
-      "live_provider_calls_for_reconciliation": 0
+      "live_provider_calls_for_reconciliation": 0,
+      "proof_level": "LEVEL_1_PROVIDER_CAPABILITY"
     },
     {
       "id": "FA-W003",
@@ -314,7 +315,8 @@
       "transport_class": "BROWSER_OPERATOR",
       "prompt_sha256": "0c93230f694582d9f16c0f90e8437da39c5dc14f6db30e6bebb6e09545a0c1c3",
       "artifact_sha256": "05d8135e4e6bebc3f7dc7baca49cd3a70e768e096bafdbb9e0fa96b734fa1e65",
-      "operator_live_generation_completed": true
+      "operator_live_generation_completed": true,
+      "proof_level": "LEVEL_1_PROVIDER_CAPABILITY"
     },
     {
       "id": "FA-W005",
@@ -335,7 +337,8 @@
       "prompt_sha256": "0c93230f694582d9f16c0f90e8437da39c5dc14f6db30e6bebb6e09545a0c1c3",
       "artifact_sha256": "cd866318223134624f0852e2ef5ddac421544469145272cb6339c57a62fd1012",
       "receipt": "company/factory-asset/receipts/FA-W005-gemini-image-proof.receipt.json",
-      "result": "PASS: real Gemini provider-original JPEG manually downloaded by Founder/operator and strict local validation/content-addressed persistence passed; legacy inaccessible URL/403 fallback was not used."
+      "result": "PASS: real Gemini provider-original JPEG manually downloaded by Founder/operator and strict local validation/content-addressed persistence passed; legacy inaccessible URL/403 fallback was not used.",
+      "proof_level": "LEVEL_1_PROVIDER_CAPABILITY"
     },
     {
       "id": "FA-W006",
@@ -356,7 +359,8 @@
       "prompt_sha256": "0c93230f694582d9f16c0f90e8437da39c5dc14f6db30e6bebb6e09545a0c1c3",
       "artifact_sha256": "18087c41cf26d783edcb4c6630e9325dc15973f1e1cac9bb0858ce51f0e4ebdd",
       "receipt": "company/factory-asset/receipts/FA-W006-grok-image-proof.receipt.json",
-      "result": "PASS: real Grok provider-original JPEG manually downloaded by Founder/operator and strict local validation/content-addressed persistence passed; no guessed endpoint loop or protection bypass was used."
+      "result": "PASS: real Grok provider-original JPEG manually downloaded by Founder/operator and strict local validation/content-addressed persistence passed; no guessed endpoint loop or protection bypass was used.",
+      "proof_level": "LEVEL_1_PROVIDER_CAPABILITY"
     },
     {
       "id": "FA-W007",
@@ -377,7 +381,8 @@
       "prompt_sha256": "0c93230f694582d9f16c0f90e8437da39c5dc14f6db30e6bebb6e09545a0c1c3",
       "artifact_sha256": "a53768478e5ef09498f5df735f89e71f49bbbcfe39a89ec1f9f24abbf840923a",
       "receipt": "company/factory-asset/receipts/FA-W007-manus-image-proof.receipt.json",
-      "result": "PASS: real Manus provider-original PNG manually downloaded by Founder/operator and strict local validation/content-addressed persistence passed; no status-only success or infinite polling was accepted."
+      "result": "PASS: real Manus provider-original PNG manually downloaded by Founder/operator and strict local validation/content-addressed persistence passed; no status-only success or infinite polling was accepted.",
+      "proof_level": "LEVEL_1_PROVIDER_CAPABILITY"
     },
     {
       "id": "FA-W008",
@@ -399,7 +404,8 @@
       "prompt_sha256": "0c93230f694582d9f16c0f90e8437da39c5dc14f6db30e6bebb6e09545a0c1c3",
       "artifact_sha256": "4086a14f2b8bca067941bd5f377ec675caff1c9ae77b92a40dc221f49d492cf9",
       "receipt": "company/factory-asset/receipts/FA-W008-duckai-image-proof.receipt.json",
-      "result": "PASS: real Duck.ai provider-original JPEG manually downloaded by Founder/operator and strict local validation/content-addressed persistence passed; prior text-only endpoint was not used for image proof."
+      "result": "PASS: real Duck.ai provider-original JPEG manually downloaded by Founder/operator and strict local validation/content-addressed persistence passed; prior text-only endpoint was not used for image proof.",
+      "proof_level": "LEVEL_1_PROVIDER_CAPABILITY"
     },
     {
       "id": "FA-W009",
@@ -407,7 +413,7 @@
       "phase": 0,
       "track": "WINDOWS_OAUTH_PROOFS",
       "priority": 24,
-      "title": "Six-provider Windows original-image export acceptance",
+      "title": "Six-provider Windows Level-1 original-image export acceptance",
       "depends_on": [
         "FA-W002",
         "FA-W004",
@@ -422,23 +428,160 @@
       "acceptance": "Qwen, ChatGPT, Gemini, Grok, Manus and Duck.ai each have a real prompt-to-validated-original-byte local-save PASS; any UNSUPPORTED, UNKNOWN, screenshot-only, URL-only or text-only lane blocks six-provider acceptance and requires Founder disposition.",
       "completed_at": "2026-09-03",
       "receipt": "company/factory-asset/receipts/FA-W009-six-provider-windows-acceptance.receipt.json",
-      "result": "PASS: six of six Windows providers have canonical real-generation provider-original local-save proofs with strict validation and acceptance-time local hash/reopen recheck. Qwen is SESSION_API; ChatGPT/Gemini/Grok/Manus/Duck.ai are BROWSER_OPERATOR and are not misrepresented as fully autonomous."
+      "result": "PASS: six of six Windows providers have canonical real-generation provider-original local-save proofs with strict validation and acceptance-time local hash/reopen recheck. Qwen is SESSION_API; ChatGPT/Gemini/Grok/Manus/Duck.ai are BROWSER_OPERATOR and are not misrepresented as fully autonomous.",
+      "proof_level": "LEVEL_1_PROVIDER_CAPABILITY"
+    },
+    {
+      "id": "FA-W011",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 25,
+      "title": "Define common autonomous provider backend and zero-touch local-save contract",
+      "depends_on": [
+        "FA-W009"
+      ],
+      "status": "READY",
+      "artifact": "company/factory-asset/contracts/windows-autonomous-provider-backend-v1.json",
+      "acceptance": "Contract requires job/prompt dispatch, allowed evidenced transport, zero operator action after dispatch, bounded completion detection, provider-original byte acquisition, strict MIME/magic/dimensions/positive-bytes/decode/SHA-256 validation, atomic content-addressed local save, typed failures, timeout/cancel semantics and a sanitized receipt. BROWSER_OPERATOR/manual download cannot satisfy Level-2 PASS.",
+      "founder_decision": "APPROVED_2026-09-03: continue OAUTH as backend-candidate lab; GenWHITE purchase/account action held."
+    },
+    {
+      "id": "FA-W012",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 26,
+      "title": "Pin Qwen SESSION_API as autonomous backend reference",
+      "depends_on": [
+        "FA-W002"
+      ],
+      "status": "DONE",
+      "proof_level": "LEVEL_2_AUTONOMOUS_BACKEND_CANDIDACY",
+      "completed_at": "2026-09-03",
+      "artifact": "company/factory-asset/receipts/FA-W002-qwen-image-proof.receipt.json",
+      "acceptance": "Existing Qwen SESSION_API evidence proves provider dispatch through the adapter yields original image bytes automatically saved and strictly validated locally without Founder/operator download action after dispatch; text/chat regression remains green.",
+      "result": "PASS_REFERENCE: Qwen is the proven zero-touch-after-dispatch SESSION_API reference for the Level-2 contract; no new provider call is required merely to recognize this existing evidence."
+    },
+    {
+      "id": "FA-W013",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 27,
+      "title": "Prove Gemini autonomous backend original-byte local save",
+      "depends_on": [
+        "FA-W011",
+        "FA-W005"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/receipts/FA-W013-gemini-autonomous-backend.receipt.json",
+      "acceptance": "One bounded Gemini backend job uses an allowed evidenced route and, with zero operator action after dispatch, reaches confirmed generation, acquires provider-original bytes and atomically saves a strictly validated content-addressed local artifact. URL-only/403 fallback, manual download, silent decode failure or guessed success fails.",
+      "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF"
+    },
+    {
+      "id": "FA-W014",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 28,
+      "title": "Prove Grok autonomous backend original-byte local save",
+      "depends_on": [
+        "FA-W011",
+        "FA-W006"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/receipts/FA-W014-grok-autonomous-backend.receipt.json",
+      "acceptance": "One bounded Grok backend job uses only an evidenced allowed route and, with zero operator action after dispatch, reaches confirmed generation, acquires provider-original bytes and atomically saves a strictly validated content-addressed local artifact. Guessed endpoints, protection bypass, URL-only success and manual download fail.",
+      "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF"
+    },
+    {
+      "id": "FA-W015",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 29,
+      "title": "Prove Manus autonomous backend original-byte local save",
+      "depends_on": [
+        "FA-W011",
+        "FA-W007"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/receipts/FA-W015-manus-autonomous-backend.receipt.json",
+      "acceptance": "One bounded Manus backend job uses an evidenced allowed create/send + bounded completion/artifact route or another evidenced allowed transport and, with zero operator action after dispatch, saves strictly validated provider-original bytes locally. Infinite polling, status-without-artifact, URL-only success and manual download fail.",
+      "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF"
+    },
+    {
+      "id": "FA-W016",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 30,
+      "title": "Normalize ChatGPT through existing MUXIA server/backend boundary",
+      "depends_on": [
+        "FA-W011",
+        "FA-W004"
+      ],
+      "status": "DEFERRED",
+      "artifact": "company/factory-asset/receipts/FA-W016-chatgpt-muxia-backend-compat.receipt.json",
+      "acceptance": "Existing MUXIA/browser-owned generation is normalized as a server/backend candidate only through a policy-compliant boundary that yields provider-original bytes and local durable save without importing prohibited consumer-web private-backend extraction. This task is non-blocking for FA-W019.",
+      "resume_condition": "Run after the four remaining OAUTH candidates or when MUXIA compatibility is needed for pool expansion; do not weaken the current ChatGPT policy gate.",
+      "non_blocking_for": "FA-W019"
+    },
+    {
+      "id": "FA-W017",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 31,
+      "title": "Autopsy and prove Duck.ai autonomous image backend transport",
+      "depends_on": [
+        "FA-W011",
+        "FA-W008"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/receipts/FA-W017-duckai-autonomous-backend.receipt.json",
+      "acceptance": "Identify an evidenced allowed Duck.ai image-capable transport and prove one bounded job reaches provider-original bytes and atomic validated local save with zero operator action after dispatch. The prior text-only endpoint cannot pass; unsupported/unknown is reported honestly without fabricating image capability.",
+      "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF",
+      "operator_reported_current_ui_model_label": "gpt5.5 luna"
+    },
+    {
+      "id": "FA-W019",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 33,
+      "title": "Five-provider autonomous backend candidate acceptance",
+      "depends_on": [
+        "FA-W011",
+        "FA-W012",
+        "FA-W013",
+        "FA-W014",
+        "FA-W015",
+        "FA-W017"
+      ],
+      "status": "BLOCKED",
+      "acceptance_batch": true,
+      "artifact": "company/factory-asset/receipts/FA-W019-five-provider-autonomous-backend-acceptance.receipt.json",
+      "acceptance": "Qwen, Gemini, Grok, Manus and Duck.ai each have terminal Level-2 evidence. PASS requires zero operator action after dispatch, bounded completion, validated provider-original bytes, atomic durable local save, typed failures and sanitized receipts for every candidate. ChatGPT/MUXIA is explicitly non-blocking and may be integrated separately through FA-W016.",
+      "result_on_success": "These providers become eligible backend candidates for the later Factory provider contract/router work; this acceptance does not itself deploy or cut over production."
     },
     {
       "id": "FA-W010",
       "execution_lane": "WINDOWS_OAUTH_LAB",
       "phase": 0,
       "track": "WINDOWS_OAUTH_PROOFS",
-      "priority": 25,
-      "title": "Benchmark GenWHITE observable capabilities after provider proofs",
+      "priority": 34,
+      "title": "Benchmark GenWHITE observable backend patterns after autonomous provider proofs",
       "depends_on": [
-        "FA-W009"
+        "FA-W019"
       ],
-      "status": "BLOCKED",
-      "authority": "FOUNDER_DECISION_REQUIRED_FOR_PURCHASE_OR_ACCOUNT_ACTION",
+      "status": "DEFERRED",
+      "authority": "FOUNDER_DECISION_RECORDED_NO_PURCHASE_NO_ACCOUNT_ACTION",
       "artifact": "D:\\FACTORY_ASSET\\GENWHITE_CAPABILITY_PARITY_RESEARCH_V1.md",
-      "acceptance": "Observable lawful product capabilities are mapped to Factory requirements without proprietary-code extraction, protection bypass or unverified backend assumptions.",
-      "blocker": "FOUNDER_DECISION_REQUIRED_FOR_PURCHASE_OR_ACCOUNT_ACTION: FA-W009 dependency is now DONE, but GenWHITE benchmarking/purchase/account action requires explicit Founder disposition."
+      "acceptance": "Clean-room observable capability benchmark maps queue, batching, pause/resume, retry/rate-limit visibility, automatic download, output dashboard and style-control patterns to Factory requirements without proprietary-code extraction, protection bypass, purchase, account action or unverified backend assumptions.",
+      "resume_condition": "FA-W019 is DONE and Founder explicitly chooses to run the no-spend clean-room observable benchmark. Purchase/account action remains separately Founder-gated.",
+      "result": "HOLD: Founder chose to finish autonomous OAUTH/backend-candidate proofs before any GenWHITE benchmark, purchase or account action."
     },
     {
       "id": "FA-010",
@@ -1419,5 +1562,28 @@
       "artifact": "company/factory-asset/receipts/FA-206-factory-asset-v1-acceptance.receipt.json",
       "acceptance": "Blueprint, provider, immutable master, derivatives, registry, QA, metadata/rights, Founder QC and rollback evidence pass; publication remains outside scope."
     }
-  ]
+  ],
+  "windows_oauth_proof_levels": {
+    "LEVEL_1_PROVIDER_CAPABILITY": {
+      "definition": "Real provider generation plus provider-original bytes durably saved and strictly validated on the Windows VPS. Operator-controlled generation/download is allowed and must be truthfully classified.",
+      "canonical_acceptance_task": "FA-W009",
+      "status": "DONE",
+      "does_not_prove": "Zero-touch backend operation after job dispatch."
+    },
+    "LEVEL_2_AUTONOMOUS_BACKEND_CANDIDACY": {
+      "definition": "A backend job/prompt is dispatched to an allowed provider transport and, with zero operator action after dispatch, completion is detected, provider-original bytes are acquired, strictly validated, content-addressed and durably saved locally with a typed receipt.",
+      "manual_download_after_dispatch_allowed": false,
+      "screenshot_preview_or_url_only_allowed": false,
+      "auth_recovery_before_dispatch_may_be_operator_assisted": true,
+      "reference_provider": "qwen",
+      "gating_candidates": [
+        "qwen",
+        "gemini",
+        "grok",
+        "manus",
+        "duck.ai"
+      ],
+      "non_blocking_optional_candidate": "chatgpt/muxia"
+    }
+  }
 }

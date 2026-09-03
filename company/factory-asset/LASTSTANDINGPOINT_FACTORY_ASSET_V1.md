@@ -73,6 +73,19 @@
 - This does **not** claim that all six are fully autonomous like Proxima: five browser lanes currently use operator generation/manual provider-original download followed by automated strict local ingestion.
 - Receipt: `company/factory-asset/receipts/FA-W009-six-provider-windows-acceptance.receipt.json`.
 
+## Founder decision — Autonomous backend candidacy pivot
+
+Founder approved the next Windows/OAUTH phase on 2026-09-03:
+
+- preserve `FA-W002` through `FA-W009` as Level-1 real-provider/original-byte capability evidence;
+- treat Qwen `SESSION_API` as the already-proven zero-touch-after-dispatch backend reference;
+- require a stricter Level-2 contract before Gemini, Grok, Manus and Duck.ai can become backend candidates;
+- Level-2 PASS requires job/prompt dispatch -> bounded provider completion -> provider-original bytes -> strict validation -> atomic durable local save with **zero operator action after dispatch**;
+- ChatGPT may use the existing MUXIA/server boundary later and is explicitly non-blocking for the five-provider Level-2 acceptance;
+- GenWHITE purchase/account action is HOLD. GenWHITE remains a future clean-room observable capability benchmark, not a backend assumption or dependency.
+
+Current Level-2 frontier: `FA-W011` — define the common autonomous provider backend contract. After that, execute Gemini -> Grok -> Manus -> Duck.ai in priority order.
+
 ## OAUTH safety
 
 - `D:\OAUTH` HEAD remains `c2fb61467138a24156b3d61c991882ebcdd59086`.
@@ -83,7 +96,7 @@
 
 ## Next Windows frontier
 
-`FA-W007` is the next Windows frontier. Founder/operator has already supplied the Manus provider-original artifact for validation; no additional live call is required to evaluate that existing artifact.
+`FA-W011` is READY. It defines the Level-2 zero-touch autonomous backend contract. Qwen is already pinned as the reference evidence (`FA-W012 = DONE`). Gemini, Grok, Manus and Duck.ai remain blocked only on FA-W011 and then become the remaining bounded backend-candidate proofs. `FA-W016` ChatGPT/MUXIA is non-blocking. `FA-W010` GenWHITE is intentionally DEFERRED/HOLD until FA-W019.
 
 ## Engineering lease
 
