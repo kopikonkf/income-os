@@ -2,17 +2,17 @@
   "schema": "factory-asset.windows-image-provider-proof-receipt.v1",
   "task_id": "FA-W004",
   "date": "2026-09-03",
-  "status": "WAITING_OPERATOR",
+  "status": "DONE",
   "provider": "chatgpt",
   "model_or_mode": "ChatGPT consumer web / operator-controlled",
-  "transport_class": "BROWSER_CDP",
+  "transport_class": "BROWSER_OPERATOR",
   "implementation": {
     "status": "COMPLETE_POLICY_COMPLIANT_BOUNDARY",
     "repository": "github.com/kopikonkf/web-ai-adapter",
     "pr": 2,
     "merge_commit": "45f1e9ac0947e53c82ad21dc1c9387078ce0869e",
     "browser_ownership": {
-      "explicit_profile_id": "factory-asset-chatgpt-primary",
+      "explicit_profile_id": "factory-asset-chatgpt-primary (implementation/preflight profile; not the operator generation profile)",
       "headed_persistent_profile": true,
       "single_principal_owner_lock": true,
       "clean_shutdown": true,
@@ -30,7 +30,9 @@
     "programmatic_consumer_web_output_extraction": false,
     "private_backend_production_transport": false,
     "original_byte_ingest_after_operator_acquisition": true,
-    "content_addressed_atomic_save": true
+    "content_addressed_atomic_save": true,
+    "operator_generation_profile": "jarvis_aco",
+    "actual_acceptance_transport": "BROWSER_OPERATOR"
   },
   "policy_gate": {
     "decision": "CONSUMER_WEB_AUTONOMOUS_EXTRACTION_BLOCKED",
@@ -42,7 +44,8 @@
     "founder_continuation_instruction_reused": true,
     "ordinary_implementation_testing_publication_authorized": true,
     "bounded_live_acceptance_authorized_subject_to_policy": true,
-    "new_live_chatgpt_calls": 0
+    "new_live_chatgpt_calls": 0,
+    "operator_action_completed_by_founder": true
   },
   "validation": {
     "deterministic_tests": "18/18 PASS",
@@ -66,22 +69,40 @@
     "qwen_image_regression_suite": "PASS"
   },
   "live_acceptance": {
-    "status": "NOT_EXECUTED_POLICY_REQUIRES_OPERATOR_CONTROL",
-    "live_chatgpt_calls": 0,
-    "real_generation": false,
-    "original_byte_validation": "PENDING_OPERATOR_ARTIFACT",
-    "local_path": null,
-    "mime": null,
-    "magic": null,
-    "dimensions": null,
-    "bytes": null,
-    "sha256": null,
-    "decode_reopen": null
+    "status": "PASS",
+    "live_chatgpt_calls_by_architect": 0,
+    "operator_controlled_real_generation": true,
+    "generation_started_at": "OPERATOR_REPORTED_INTERACTIVE_SESSION; exact provider start not instrumented",
+    "generation_completed_at": "OPERATOR_REPORTED_BEFORE_LOCAL_ACQUISITION; exact provider completion not instrumented",
+    "original_acquired_at": "2026-09-03T06:17:25.8381666Z",
+    "original_byte_acquisition_method": "Founder/operator manual provider download via authenticated Brave profile jarvis_aco",
+    "source_path": "D:\\ASSETS\\OAUTH\\2026-09-03\\ChatGPT Image Sep 3, 2026, 06_17_24 AM.png",
+    "local_path": "D:\\ASSETS\\OAUTH\\sha256\\05\\chatgpt_05d8135e4e6bebc3f7dc7baca49cd3a70e768e096bafdbb9e0fa96b734fa1e65.png",
+    "mime": "image/png",
+    "magic": "89504e470d0a1a0a0000000d",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "bytes": 776389,
+    "sha256": "05d8135e4e6bebc3f7dc7baca49cd3a70e768e096bafdbb9e0fa96b734fa1e65",
+    "decode_reopen": "PASS",
+    "visual_prompt_consistency": {
+      "center_rgb": [
+        253,
+        138,
+        182
+      ],
+      "corners_near_white": true,
+      "result": "PASS_SUPPORTING_EVIDENCE"
+    },
+    "original_byte_validation": "PASS"
   },
   "resume_condition": {
-    "required_action": "Authorized operator performs exactly one bounded ChatGPT consumer-web image generation in the dedicated headed profile and manually acquires/downloads the provider original to a local file; then FA-W004 ingests that local file through the strict validator.",
+    "required_action": null,
     "not_required": [
       "new Founder authorization",
+      "additional ChatGPT generation",
       "cookie export",
       "session-token export",
       "private-backend reverse engineering",
@@ -95,5 +116,10 @@
     "unrelated_dirty_work_preserved": true,
     "credentials_or_raw_session_material_published": false
   },
-  "result": "WAITING_OPERATOR"
+  "result": "PASS",
+  "prompt": {
+    "text": "Generate a simple pink square centered on a isolated white background.",
+    "sha256": "0c93230f694582d9f16c0f90e8437da39c5dc14f6db30e6bebb6e09545a0c1c3",
+    "source": "D:\\ASSETS\\OAUTH\\2026-09-03\\prompt.txt"
+  }
 }

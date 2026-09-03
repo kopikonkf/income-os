@@ -18,31 +18,16 @@
 - Text/chat baseline remains PASS by FA-W000; FA-W002 did not modify the Qwen text adapter.
 - Receipt: `company/factory-asset/receipts/FA-W002-qwen-image-proof.receipt.json`.
 
-### FA-W004 — WAITING_OPERATOR
+### FA-W004 — DONE / PASS
 
-Engineering implementation is complete and merged in `web-ai-adapter` PR #2, merge `45f1e9ac0947e53c82ad21dc1c9387078ce0869e`.
-
-Implemented boundary:
-
-- dedicated headed persistent ChatGPT browser profile;
-- explicit profile ID and single-owner lock;
-- clean browser/profile lifecycle;
-- `READY`, `AUTH_REQUIRED`, `BLOCKED`, `COMPOSER_UNAVAILABLE`, `UNKNOWN` state detector;
-- operator handoff without automated prompt submission;
-- strict local original-file ingest after operator acquisition;
-- magic/MIME/dimensions/bytes/decode/SHA-256 validation;
-- atomic content-addressed save and dedupe;
-- URL-only/screenshot/preview-style false success prohibited.
-
-Deterministic/negative validation: **18/18 PASS**, including browser unavailable, auth required, protection block, composer unavailable, timeout, missing/download failure, empty bytes, invalid magic, MIME/magic mismatch, decode failure and URL-only.
-
-Current canonical policy gate remains:
-
-`CONSUMER_WEB_AUTONOMOUS_EXTRACTION_BLOCKED`
-
-Therefore ChatGPT consumer-web prompt dispatch/output extraction was **not** automated and **live ChatGPT calls = 0** in this execution. Final FA-W004 acceptance requires one authorized operator-controlled generation and manual acquisition/download of the provider original to a local file, followed by the already-built strict ingestor. The Founder authorization already exists; no repeat authorization is required.
-
-Receipt: `company/factory-asset/receipts/FA-W004-chatgpt-image-proof.receipt.json`.
+- Real operator-controlled ChatGPT generation completed in authenticated Brave profile `jarvis_aco`; the implementation/preflight profile `factory-asset-chatgpt-primary` was not falsely claimed as the generation profile.
+- Prompt SHA-256: `0c93230f694582d9f16c0f90e8437da39c5dc14f6db30e6bebb6e09545a0c1c3`.
+- Provider original: `D:\ASSETS\OAUTH\2026-09-03\ChatGPT Image Sep 3, 2026, 06_17_24 AM.png`.
+- Strict validation: PNG, 1254x1254, 776,389 bytes, decode/reopen PASS, SHA-256 `05d8135e4e6bebc3f7dc7baca49cd3a70e768e096bafdbb9e0fa96b734fa1e65`.
+- Content-addressed local save: `D:\ASSETS\OAUTH\sha256\05\chatgpt_05d8135e4e6bebc3f7dc7baca49cd3a70e768e096bafdbb9e0fa96b734fa1e65.png`.
+- Actual acceptance transport is truthfully classified `BROWSER_OPERATOR`: manual consumer-web generation/download plus automated strict local validation. This is not claimed to be Proxima-like autonomous prompt-to-download.
+- Common proof contract v1.1 adds `BROWSER_OPERATOR` so policy-compliant manual original-download evidence is not mislabeled as CDP automation.
+- Receipt: `company/factory-asset/receipts/FA-W004-chatgpt-image-proof.receipt.json`.
 
 ## OAUTH safety
 
@@ -54,7 +39,7 @@ Receipt: `company/factory-asset/receipts/FA-W004-chatgpt-image-proof.receipt.jso
 
 ## Next Windows frontier
 
-`FA-W004` remains the nearest Windows frontier at `WAITING_OPERATOR` for one policy-compliant operator-controlled ChatGPT generation/original-file acquisition. Do not advance to Gemini/Grok/Manus/Duck.ai until FA-W004 reaches a terminal canonical state.
+`FA-W005` is the next Windows frontier. Founder/operator has already supplied Gemini, Grok and Manus provider-original artifacts for sequential validation; no additional live call is required to evaluate those existing artifacts.
 
 ## Engineering lease
 
