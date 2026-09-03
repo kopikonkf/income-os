@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "2.1-fa015-six-mode-fixtures",
+  "revision": "2.2-fa019-blueprint-v2-acceptance",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -789,10 +789,12 @@
       "depends_on": [
         "FA-015"
       ],
-      "status": "READY",
+      "status": "DONE",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-019-blueprint-v2-acceptance.receipt.json",
-      "acceptance": "All positive fixtures pass, negative cross-family fixtures fail, registry/profile versions are pinned and regression is green."
+      "acceptance": "All positive fixtures pass, negative cross-family fixtures fail, registry/profile versions are pinned and regression is green.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: six positive shopping-bag Blueprint v2 fixtures compile to intended producers/recipes with registry/profile revisions 1.0; six negative cross-family fixtures fail with typed errors; semantic IDs remain distinct from packaging derivatives; full Factory Asset regression 53/53 PASS."
     },
     {
       "id": "FA-020",
@@ -803,7 +805,7 @@
       "depends_on": [
         "FA-019"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/schemas/derivative-recipe.schema.json; derivative-receipt.schema.json",
       "acceptance": "Schemas pin input/master hash, recipe/version, marketplace-profile version, output specs, idempotency key, QA and compatibility results."
     },
@@ -870,7 +872,7 @@
       "depends_on": [
         "FA-019"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Vectorizability classifier/gate with deterministic fixtures",
       "acceptance": "Simple icons/outlines/silhouettes may pass; photorealistic and complex inputs return NOT_VECTORIZABLE with evidence."
     },
@@ -953,7 +955,7 @@
       "depends_on": [
         "FA-019"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/schemas/native-producer.schema.json and contract tests",
       "acceptance": "Procedural, motion, layered-template and 3D producer classes share typed inputs, native-master outputs, deterministic receipts, cancellation and failure semantics without pretending conversions are native production."
     },
@@ -1173,7 +1175,7 @@
       "depends_on": [
         "FA-019"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/schemas/image-provider.schema.json and interface tests",
       "acceptance": "Contract normalizes capabilities, generate input/output, health and typed failures without vendor wire fields."
     },
