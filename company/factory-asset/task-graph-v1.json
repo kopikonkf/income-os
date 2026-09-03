@@ -368,10 +368,16 @@
       "depends_on": [
         "FA-W001"
       ],
-      "status": "WAITING_FOUNDER",
-      "authority": "FOUNDER_CONFIRMATION_REQUIRED_BEFORE_LIVE_PROVIDER_CALL",
+      "status": "DONE",
+      "authority": "FOUNDER_OPERATOR_ACTION_COMPLETE",
       "artifact": "D:\\FACTORY_ASSET\\receipts\\FA-W007-manus-image-proof.receipt.json",
-      "acceptance": "Bounded create/poll/artifact semantics produce and save validated original image bytes; infinite polling and status-without-artifact fail."
+      "acceptance": "A supported evidenced Manus route produces real provider-original image bytes and a validated durable local file. BROWSER_OPERATOR may satisfy the Windows proof through manual provider-original download; if SESSION_API create/poll/artifact semantics are exercised, polling must be bounded and status-without-artifact or infinite polling fails.",
+      "completed_at": "2026-09-03",
+      "transport_class": "BROWSER_OPERATOR",
+      "prompt_sha256": "0c93230f694582d9f16c0f90e8437da39c5dc14f6db30e6bebb6e09545a0c1c3",
+      "artifact_sha256": "a53768478e5ef09498f5df735f89e71f49bbbcfe39a89ec1f9f24abbf840923a",
+      "receipt": "company/factory-asset/receipts/FA-W007-manus-image-proof.receipt.json",
+      "result": "PASS: real Manus provider-original PNG manually downloaded by Founder/operator and strict local validation/content-addressed persistence passed; no status-only success or infinite polling was accepted."
     },
     {
       "id": "FA-W008",

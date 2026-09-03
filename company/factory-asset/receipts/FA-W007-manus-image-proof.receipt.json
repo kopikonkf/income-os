@@ -1,0 +1,72 @@
+{
+  "schema": "factory-asset.windows-image-provider-proof-receipt.v1",
+  "task_id": "FA-W007",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "provider": "manus",
+  "model_or_mode": "Manus consumer web / operator-controlled",
+  "transport_class": "BROWSER_OPERATOR",
+  "authority": {
+    "founder_operator_action_completed": true,
+    "new_live_provider_calls_by_architect": 0
+  },
+  "prompt": {
+    "text": "Generate a simple pink square centered on a isolated white background.",
+    "sha256": "0c93230f694582d9f16c0f90e8437da39c5dc14f6db30e6bebb6e09545a0c1c3",
+    "source": "D:\\ASSETS\\OAUTH\\2026-09-03\\prompt.txt"
+  },
+  "generation": {
+    "real_provider_generation": true,
+    "generation_started_at": "OPERATOR_REPORTED_INTERACTIVE_SESSION; exact provider start not instrumented",
+    "generation_completed_at": "OPERATOR_REPORTED_BEFORE_LOCAL_ACQUISITION; exact provider completion not instrumented",
+    "original_acquired_at": "2026-09-03T06:44:29.899962Z",
+    "original_byte_acquisition_method": "Founder/operator manual provider download from authenticated Manus web session",
+    "session_api_create_poll_route_exercised": false,
+    "infinite_polling_used": false,
+    "status_without_artifact_accepted": false,
+    "screenshot_or_preview_capture_used": false
+  },
+  "artifact": {
+    "source_path": "D:\\ASSETS\\OAUTH\\2026-09-03\\manus_pink_square_white_background.png",
+    "local_path": "D:\\ASSETS\\OAUTH\\sha256\\a5\\manus_a53768478e5ef09498f5df735f89e71f49bbbcfe39a89ec1f9f24abbf840923a.png",
+    "format": "PNG",
+    "mime": "image/png",
+    "magic": "89504e470d0a1a0a0000000d",
+    "dimensions": [
+      1920,
+      1920
+    ],
+    "bytes": 788616,
+    "sha256": "a53768478e5ef09498f5df735f89e71f49bbbcfe39a89ec1f9f24abbf840923a",
+    "decode_reopen": "PASS",
+    "visual_prompt_consistency": {
+      "center_rgb": [
+        251,
+        136,
+        182
+      ],
+      "corner_rgb": [
+        253,
+        253,
+        253
+      ],
+      "pink_fraction": 0.3711,
+      "white_fraction": 0.6101,
+      "result": "PASS_SUPPORTING_EVIDENCE"
+    }
+  },
+  "validation": {
+    "mime_magic_consistency": "PASS",
+    "positive_dimensions": "PASS",
+    "positive_bytes": "PASS",
+    "content_addressed_save": "PASS",
+    "original_byte_validation": "PASS"
+  },
+  "security": {
+    "credentials_or_raw_session_material_published": false,
+    "captcha_or_protection_bypass": false,
+    "quota_evasion": false
+  },
+  "acceptance_interpretation": "BROWSER_OPERATOR proves the required native image export/local-save capability. If SESSION_API is later exercised, create/poll/artifact polling must remain bounded and status-without-artifact must fail closed.",
+  "result": "PASS"
+}
