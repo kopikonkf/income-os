@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "3.1-fa-c005-blueprint-editor",
+  "revision": "3.2-fa101-provider-profile-lease",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1197,9 +1197,11 @@
       "depends_on": [
         "FA-100"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/schemas/provider-profile.schema.json and lease tests",
-      "acceptance": "One principal/profile has at most one active lease; credentials are opaque; duplicate and cross-profile ownership are rejected."
+      "acceptance": "One principal/profile has at most one active lease; credentials are opaque; duplicate and cross-profile ownership are rejected.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: provider profile schema exposes only opaque credential references; deterministic lease registry enforces one active lease per profile/principal, idempotent reacquire, token-guarded release and rejects cross-profile principal ownership. Regression 112/112 PASS."
     },
     {
       "id": "FA-102",
@@ -1210,7 +1212,7 @@
       "depends_on": [
         "FA-101"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Capacity event/rolling-state module and tests",
       "acceptance": "Profiles start UNKNOWN; dated success/rate-limit/auth/protection evidence updates state; guessed quotas cannot enter routing."
     },

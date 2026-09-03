@@ -342,3 +342,8 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Master/resolution/delivery/style controls preserve semantic identity unless semantic fields/type change; packaging fingerprint changes independently.
 - `/api/batch-intent` requires a successful compile, bounds quantity to 1..1000, separates semantic count from derivative count, and remains `SIMULATED_ONLY`.
 - Factory regression 107/107 PASS; loopback HTTP compile PASS; no provider dispatch/credential/production-queue/marketplace action.
+
+
+### FA-101 — DONE / PASS — provider profile + lease contract
+- Credentials remain opaque references; duplicate/cross-profile ownership fails closed.
+- Regression 112/112 PASS. `FA-102` is READY.
