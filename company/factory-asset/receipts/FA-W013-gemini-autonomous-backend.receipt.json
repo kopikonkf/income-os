@@ -1,0 +1,70 @@
+{
+  "schema": "factory-asset.windows-autonomous-provider-backend-receipt.v1",
+  "task_id": "FA-W013",
+  "date": "2026-09-03",
+  "status": "WAITING_OPERATOR",
+  "provider": "gemini",
+  "proof_level": "LEVEL_2_AUTONOMOUS_BACKEND_CANDIDACY",
+  "target_transport_class": "BROWSER_CDP",
+  "implementation": {
+    "repository": "github.com/kopikonkf/web-ai-adapter",
+    "pr": 3,
+    "merge_commit": "65227657a10199da31be093f0a36a8d26447e1a3",
+    "dedicated_browser_profile": "D:\\OAUTH\\browser-profiles\\gemini-backend",
+    "cdp_url": "http://127.0.0.1:9333",
+    "cdp_loopback_only": true,
+    "cookie_or_session_token_export": false,
+    "url_only_success_removed": true,
+    "manual_download_success_removed": true,
+    "content_addressed_atomic_save": true,
+    "operator_actions_after_dispatch_required": 0
+  },
+  "validation": {
+    "deterministic_and_regression_tests": "23/23 PASS",
+    "server_import": "PASS",
+    "D_OAUTH_deployed_target_sha256": "af92ee1d3f35cf0428d5b596d98a0ca4a8931417b68569e8d3e439ac6953a435",
+    "unrelated_dirty_status_digest": "40b3e1d8bdb82f48a855ba21819870bbab3896910945185bea0fbfee3c04e47f",
+    "unrelated_dirty_work_preserved": true
+  },
+  "attempts": [
+    {
+      "attempt": "SESSION_API_STALE_BOOTSTRAP_DIAGNOSTIC",
+      "dispatch_committed": false,
+      "result": "FAILED_PRE_DISPATCH",
+      "failure_code": "UNKNOWN_TRANSPORT",
+      "evidence": {
+        "app_http_status": 200,
+        "cfb2h_present": true,
+        "SNlM0e_present": false,
+        "generation_request_sent": false
+      },
+      "disposition": "Do not guess a replacement opaque RPC. SESSION_API route is not used for FA-W013 current acceptance."
+    },
+    {
+      "attempt": "BROWSER_CDP_ANONYMOUS_PRECONDITION_BUG",
+      "dispatch_committed": true,
+      "result": "FAILED",
+      "failure_code": "AUTH_REQUIRED",
+      "operator_actions_after_dispatch": 0,
+      "provider_response_summary": "Anonymous Gemini accepted the text prompt but reported image creation unavailable; no provider image and no download control appeared.",
+      "original_bytes_acquired": false,
+      "local_path": null,
+      "sha256": null,
+      "disposition": "Preflight fixed so a visible Sign in state is now AUTH_REQUIRED before any future dispatch. This failed attempt cannot be relabeled PASS."
+    }
+  ],
+  "current_preflight": {
+    "status": "AUTH_REQUIRED",
+    "transport_class": "BROWSER_CDP",
+    "cdp_url": "http://127.0.0.1:9333",
+    "operator_action_required": true,
+    "browser_worker_running": true
+  },
+  "operator_action": {
+    "required": "Sign in to Gemini in the already-open dedicated Gemini backend Brave window only. Do not submit a prompt and do not download an image.",
+    "after_login": "Leave the dedicated backend browser running and report done; Architect will re-preflight and execute the next distinct bounded attempt with zero operator action after dispatch.",
+    "new_founder_authorization_required": false
+  },
+  "acceptance_remaining": "A new authenticated BROWSER_CDP attempt must automatically submit one bounded prompt, detect provider image completion, acquire provider-original bytes, validate and atomically content-address the local artifact with operator_actions_after_dispatch=0.",
+  "result": "WAITING_OPERATOR"
+}

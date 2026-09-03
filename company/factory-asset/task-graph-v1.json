@@ -477,11 +477,17 @@
         "FA-W011",
         "FA-W005"
       ],
-      "status": "READY",
+      "status": "WAITING_OPERATOR",
       "artifact": "company/factory-asset/receipts/FA-W013-gemini-autonomous-backend.receipt.json",
       "acceptance": "One bounded Gemini backend job uses an allowed evidenced route and, with zero operator action after dispatch, reaches confirmed generation, acquires provider-original bytes and atomically saves a strictly validated content-addressed local artifact. URL-only/403 fallback, manual download, silent decode failure or guessed success fails.",
-      "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF",
-      "unblocked_by": "FA-W011"
+      "authority": "FOUNDER_DIRECTION_REUSED_OPERATOR_LOGIN_REQUIRED_PRE_DISPATCH",
+      "implementation_status": "BROWSER_CDP_BACKEND_IMPLEMENTED_AND_DEPLOYED",
+      "implementation_repository": "github.com/kopikonkf/web-ai-adapter",
+      "implementation_pr": 3,
+      "implementation_merge_commit": "65227657a10199da31be093f0a36a8d26447e1a3",
+      "receipt": "company/factory-asset/receipts/FA-W013-gemini-autonomous-backend.receipt.json",
+      "blocker": "AUTH_REQUIRED_PRE_DISPATCH: dedicated Gemini backend browser profile is running on loopback CDP but is not signed in. Founder/operator must sign in before the next bounded attempt; no prompt submission or download is required from the operator.",
+      "resume_condition": "Founder/operator signs in to Gemini in the already-open dedicated backend browser window, leaves it running, and reports done. Then re-preflight; if READY, execute one new distinct bounded BROWSER_CDP attempt with zero operator action after dispatch."
     },
     {
       "id": "FA-W014",
