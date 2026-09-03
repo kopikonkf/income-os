@@ -320,3 +320,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - GenWHITE-observable patterns are translated into Factory-owned requirements; unsupported queue/retry/rate-limit/recovery internals remain UNKNOWN.
 - Five primary surfaces are fixed: Blueprint, Batch, Queue, Providers and Output.
 - GUI remains a control plane only. `FA-C002` is READY.
+
+
+### FA-C002 — DONE / PASS — Factory Console PRD / information architecture
+- Founder workflows and five-view IA are explicit, with normalized job/provider/capacity/QA states and synthetic fixture contract.
+- Prototype implementation is a zero-dependency static HTML/CSS/JS shell; live execution remains out of scope.
+- `FA-C004` is READY.

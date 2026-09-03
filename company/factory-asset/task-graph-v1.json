@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "2.8-fa-c001-console-capability-matrix",
+  "revision": "2.9-fa-c002-console-prd",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1724,9 +1724,11 @@
       "depends_on": [
         "FA-C001"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "docs/operations/FACTORY_CONSOLE_PRD_V1.md",
-      "acceptance": "PRD defines Founder workflows, blueprint/batch controls, queue, provider/capacity visibility, output gallery, errors, QA/lineage surfaces and explicit authority boundaries."
+      "acceptance": "PRD defines Founder workflows, blueprint/batch controls, queue, provider/capacity visibility, output gallery, errors, QA/lineage surfaces and explicit authority boundaries.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: Factory Console PRD defines Founder workflows, five-view information architecture, normalized job/provider/capacity/QA states, synthetic fixture contract, semantic-vs-packaging count rules and explicit authority/security boundaries. Static zero-dependency GUI shell has no unresolved product decision."
     },
     {
       "id": "FA-C003",
@@ -1752,7 +1754,7 @@
       "depends_on": [
         "FA-C002"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Factory Console web GUI shell + synthetic fixtures",
       "acceptance": "Founder can navigate Blueprint, Batch, Queue, Providers and Output views using synthetic data; no live provider, production queue or credentials are touched."
     },
