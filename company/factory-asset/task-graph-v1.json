@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "2.7-fa100-image-provider-contract",
+  "revision": "2.8-fa-c001-console-capability-matrix",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1709,9 +1709,11 @@
         "FA-C000",
         "FA-W010"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "docs/architecture/FACTORY_CONSOLE_CAPABILITY_MATRIX_V1.md",
-      "acceptance": "Observable queue, batching, pause/resume, retry/rate-limit visibility, automatic save/download, gallery and style-control patterns are mapped to Factory-owned requirements without copying proprietary implementation."
+      "acceptance": "Observable queue, batching, pause/resume, retry/rate-limit visibility, automatic save/download, gallery and style-control patterns are mapped to Factory-owned requirements without copying proprietary implementation.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: clean-room capability matrix maps observable GenWHITE product patterns and explicit UNKNOWN areas to Factory-owned Blueprint, Queue, Provider/Capacity, Output/QA and authority boundaries without copying proprietary implementation."
     },
     {
       "id": "FA-C002",
@@ -1722,7 +1724,7 @@
       "depends_on": [
         "FA-C001"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "docs/operations/FACTORY_CONSOLE_PRD_V1.md",
       "acceptance": "PRD defines Founder workflows, blueprint/batch controls, queue, provider/capacity visibility, output gallery, errors, QA/lineage surfaces and explicit authority boundaries."
     },

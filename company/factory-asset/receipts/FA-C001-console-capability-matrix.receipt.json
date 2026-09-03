@@ -1,0 +1,41 @@
+{
+  "schema": "factory-asset.console-capability-matrix-receipt.v1",
+  "task_id": "FA-C001",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact": "docs/architecture/FACTORY_CONSOLE_CAPABILITY_MATRIX_V1.md",
+  "mapped_capabilities": [
+    "batching",
+    "queue",
+    "pause/resume",
+    "retry",
+    "rate-limit/capacity visibility",
+    "automatic download",
+    "automatic save/load",
+    "output gallery",
+    "2K/4K controls",
+    "style presets",
+    "consistency controls",
+    "background controls"
+  ],
+  "source_unknowns_preserved": [
+    "queue internals",
+    "pause/resume semantics",
+    "retry/backoff",
+    "rate-limit telemetry",
+    "crash reconciliation",
+    "dedupe/idempotency",
+    "lineage/QA internals"
+  ],
+  "authority_guards": [
+    "no provider credentials/session ownership",
+    "no direct vendor wire calls",
+    "no browser automation in GUI",
+    "no marketplace publication",
+    "no independent canonical truth"
+  ],
+  "unblocked": [
+    "FA-C002"
+  ]
+}
