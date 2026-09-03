@@ -3460,3 +3460,18 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Graph delta: `FA-003 READY -> DONE`.
 - Dependency closure: `FA-010 BLOCKED -> READY`; no FA-010 implementation was started.
 - NEXT READY Linux: `FA-010 — Define asset type registry schema`.
+
+
+---
+
+## 2026-09-03 — Factory Asset hourly FA-010 asset type registry schema
+
+- Base `origin/main`: `2be0bbd3fa047dda2ca7cbd6af8f4dcb93e920b3`.
+- Selected Linux task: `FA-010 — Define asset type registry schema`.
+- Added `company/factory-asset/schemas/asset-type-registry.schema.json` with fail-closed invariants covering native representation, producer classes, master/delivery formats, vectorizability, rights, quality, maturity and semantic distinctness.
+- Added negative fixtures proving invalid vector embedded-raster-only quality, packaging-as-semantic-identity, unguarded raster tracing and incomplete motion integrity are rejected.
+- Validation: targeted pytest 5/5 PASS; JSON parse PASS; `git diff --check` PASS; one-canon 11/11 PASS; secret scan 0.
+- No `/srv/die`, `D:\OAUTH`, provider/account, credential, marketplace or production-runtime mutation occurred.
+- Graph delta: `FA-010 READY -> DONE`; dependency closure `FA-011 BLOCKED -> READY`.
+- Receipt: `company/factory-asset/receipts/FA-010-asset-type-registry-schema.receipt.json`.
+- NEXT READY Linux: `FA-011 — Build marketplace delivery profile registry v1`.

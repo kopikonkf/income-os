@@ -1,0 +1,38 @@
+{
+  "schema": "die.factory-asset.task-receipt.v1",
+  "task_id": "FA-010",
+  "status": "DONE",
+  "lane": "LINUX_HOURLY_BUILD",
+  "repository_base_sha": "2be0bbd3fa047dda2ca7cbd6af8f4dcb93e920b3",
+  "artifact": "company/factory-asset/schemas/asset-type-registry.schema.json",
+  "acceptance": {
+    "native_representation": true,
+    "producer_classes": true,
+    "master_and_delivery_formats": true,
+    "vectorizability": true,
+    "rights": true,
+    "quality": true,
+    "maturity": true,
+    "distinctness_invariants": true,
+    "invalid_fixtures_fail": true
+  },
+  "validations": {
+    "targeted_pytest": "5 passed",
+    "schema_json_parse": "PASS",
+    "git_diff_check": "PASS",
+    "one_canon": "11/11 PASS",
+    "high_confidence_secret_hits": 0
+  },
+  "safety": {
+    "linux_production_mutation": false,
+    "windows_oauth_mutation": false,
+    "provider_or_account_action": false,
+    "credential_access": false,
+    "marketplace_action": false
+  },
+  "graph_delta": {
+    "FA-010": "READY -> DONE",
+    "FA-011": "BLOCKED -> READY"
+  },
+  "next_ready_linux_task": "FA-011"
+}

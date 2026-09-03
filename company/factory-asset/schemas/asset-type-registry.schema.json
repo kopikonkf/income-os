@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/factory-asset/asset-type-registry.v1.schema.json",
+  "title": "Factory Asset Type Registry v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "revision", "asset_types"],
+  "properties": {
+    "schema": {"const": "die.factory-asset.asset-type-registry.v1"},
+    "revision": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+$"},
+    "asset_types": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/asset_type"}
+    }
+  },
+  "$defs": {
+    "format": {
+      "type": "string",
+      "enum": ["PNG", "JPEG", "WEBP", "TIFF", "PDF", "SVG", "EPS", "MP4", "MOV"]
+    },
+    "asset_type": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_type", "family", "native_representation", "producer_classes",
+        "master_formats", "delivery_formats", "vectorizability", "rights",
+        "quality", "maturity", "distinctness"
+      ],
+      "properties": {
+        "asset_type": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]{1,63}$"},
+        "family": {"enum": ["RASTER", "VECTOR", "MOTION"]},
+        "native_representation": {"enum": ["RASTER_PIXELS", "VECTOR_PATHS", "TIMED_FRAMES"]},
+        "producer_classes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["RASTER_GENERATIVE", "NATIVE_VECTOR", "PROCEDURAL_VECTOR", "MOTION_RENDERER"]}
+        },
+        "master_formats": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": {"$ref": "#/$defs/format"}
+        },
+        "delivery_formats": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": {"$ref": "#/$defs/format"}
+        },
+        "vectorizability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mode", "raster_trace_allowed"],
+          "properties": {
+            "mode": {"enum": ["NATIVE_VECTOR", "TRACE_ELIGIBLE", "NOT_VECTORIZABLE", "NOT_APPLICABLE"]},
+            "raster_trace_allowed": {"type": "boolean"},
+            "complexity_guard_required": {"type": "boolean", "default": false}
+          }
+        },
+        "rights": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["commercial_use_required", "trademark_free_required", "release_policy"],
+          "properties": {
+            "commercial_use_required": {"const": true},
+            "trademark_free_required": {"const": true},
+            "release_policy": {"enum": ["NONE_EXPECTED", "RELEASE_IF_RECOGNIZABLE_PERSON_OR_PROPERTY", "EDITORIAL_ONLY"]}
+          }
+        },
+        "quality": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["magic_mime_match", "decode_reopen", "lineage_sha256", "family_checks"],
+          "properties": {
+            "magic_mime_match": {"const": true},
+            "decode_reopen": {"const": true},
+            "lineage_sha256": {"const": true},
+            "family_checks": {
+              "type": "array", "minItems": 1, "uniqueItems": true,
+              "items": {"enum": ["RASTER_DIMENSIONS", "ALPHA_POLICY", "COLOR_SPACE", "VECTOR_PATHS_PRESENT", "NO_EMBEDDED_RASTER_ONLY", "VIEWBOX_BOUNDS", "PATH_COMPLEXITY", "MOTION_DURATION", "MOTION_CODEC", "MOTION_FRAME_INTEGRITY"]}
+            }
+          }
+        },
+        "maturity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["state", "evidence_required"],
+          "properties": {
+            "state": {"enum": ["EXPERIMENTAL", "CANARY", "PRODUCTION_READY"]},
+            "evidence_required": {"type": "boolean"}
+          }
+        },
+        "distinctness": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["semantic_identity_rule", "packaging_variants_create_new_semantic_asset", "near_duplicate_action"],
+          "properties": {
+            "semantic_identity_rule": {"const": "DISTINCT_COMMERCIAL_USE_CASE_AND_BLUEPRINT"},
+            "packaging_variants_create_new_semantic_asset": {"const": false},
+            "near_duplicate_action": {"const": "QUARANTINE"}
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"family": {"const": "RASTER"}}, "required": ["family"]},
+          "then": {
+            "properties": {
+              "native_representation": {"const": "RASTER_PIXELS"},
+              "producer_classes": {"contains": {"const": "RASTER_GENERATIVE"}},
+              "master_formats": {"contains": {"const": "PNG"}},
+              "quality": {"properties": {"family_checks": {"contains": {"const": "RASTER_DIMENSIONS"}}}}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"family": {"const": "VECTOR"}}, "required": ["family"]},
+          "then": {
+            "properties": {
+              "native_representation": {"const": "VECTOR_PATHS"},
+              "producer_classes": {"contains": {"enum": ["NATIVE_VECTOR", "PROCEDURAL_VECTOR"]}},
+              "master_formats": {"contains": {"const": "SVG"}},
+              "vectorizability": {"properties": {"mode": {"const": "NATIVE_VECTOR"}, "raster_trace_allowed": {"const": false}}},
+              "quality": {"properties": {"family_checks": {"allOf": [{"contains": {"const": "VECTOR_PATHS_PRESENT"}}, {"contains": {"const": "NO_EMBEDDED_RASTER_ONLY"}}]}}}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"family": {"const": "MOTION"}}, "required": ["family"]},
+          "then": {
+            "properties": {
+              "native_representation": {"const": "TIMED_FRAMES"},
+              "producer_classes": {"contains": {"const": "MOTION_RENDERER"}},
+              "master_formats": {"contains": {"enum": ["MP4", "MOV"]}},
+              "vectorizability": {"properties": {"mode": {"const": "NOT_APPLICABLE"}, "raster_trace_allowed": {"const": false}}},
+              "quality": {"properties": {"family_checks": {"allOf": [{"contains": {"const": "MOTION_DURATION"}}, {"contains": {"const": "MOTION_FRAME_INTEGRITY"}}]}}}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"vectorizability": {"properties": {"mode": {"const": "TRACE_ELIGIBLE"}}, "required": ["mode"]}}},
+          "then": {"properties": {"family": {"const": "RASTER"}, "vectorizability": {"properties": {"raster_trace_allowed": {"const": true}, "complexity_guard_required": {"const": true}}}}}
+        }
+      ]
+    }
+  }
+}
