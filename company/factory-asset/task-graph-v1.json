@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "1.8-fa013-blueprint-compiler",
+  "revision": "1.9-fa014-identity-invariants",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -751,9 +751,11 @@
       "depends_on": [
         "FA-012"
       ],
-      "status": "READY",
-      "artifact": "company/factory-asset/tests/asset-identity-invariants test suite",
-      "acceptance": "Format/resolution/compression/preview changes never mint semantic IDs; distinct commercial use cases require separate blueprints."
+      "status": "DONE",
+      "artifact": "company/factory-asset/lib/asset_identity.py + company/factory-asset/tests/asset_identity_invariants/",
+      "acceptance": "Format/resolution/compression/preview changes never mint semantic IDs; distinct commercial use cases require separate blueprints.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: semantic and packaging fingerprints are separated deterministically. Master format/resolution, preview/derivative formats and marketplace route changes retain semantic identity; packaging-only changes cannot mint a semantic_asset_id. Changed commercial use case/subject/intent/asset_type requires a new semantic_asset_id and separate blueprint_id. Factory regression 43/43 PASS."
     },
     {
       "id": "FA-015",
@@ -765,7 +767,7 @@
         "FA-013",
         "FA-014"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/fixtures/shopping-bag-blueprint-v2/",
       "acceptance": "PHOTO, ISOLATED_OBJECT, ICON, OUTLINE, PATTERN and ANIMATION fixtures compile to the intended native producers and delivery recipes."
     },

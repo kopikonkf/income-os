@@ -242,3 +242,15 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - CLI smoke initially exposed a dynamic-import/dataclass bug; it was repaired and added as a permanent subprocess regression.
 - Validation: Factory Asset tests 30/30 PASS, registry schema PASS, Python compile PASS, diff check PASS.
 - `FA-014` remains READY. `FA-015` stays BLOCKED until FA-014 is DONE.
+
+
+### FA-014 — DONE / PASS — semantic versus packaging identity invariants
+
+- Added deterministic semantic fingerprint over asset type + normalized commercial use case + subject + intent.
+- Added separate packaging fingerprint over master spec, derivatives and marketplace routing state.
+- Format/resolution/preview/derivative/marketplace-route changes remain packaging variants and must retain `semantic_asset_id`.
+- Reusing a semantic ID after changing commercial use case, subject, intent or asset type is rejected; a semantic variant also requires a separate `blueprint_id`.
+- Derivative order is normalized and cannot create artificial packaging identity drift.
+- Asset Blueprint v2 has no compression field, therefore compression cannot participate in semantic identity; represented file/format/resolution/preview fields are explicitly packaging-only.
+- Validation: full Factory Asset test set 43/43 PASS.
+- Both FA-013 and FA-014 are DONE; `FA-015` is now READY for six shopping-bag mode fixtures.
