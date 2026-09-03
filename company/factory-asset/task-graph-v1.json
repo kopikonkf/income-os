@@ -141,9 +141,11 @@
       "depends_on": [
         "FA-000"
       ],
-      "status": "READY",
+      "status": "WAITING_OPERATOR",
       "artifact": "company/factory-asset/receipts/FA-001-linux-master-inventory.receipt.json",
-      "acceptance": "At least five current masters are recorded with job/blueprint lineage, exact paths, magic/MIME, dimensions, bytes and SHA-256; no file is changed."
+      "acceptance": "At least five current masters are recorded with job/blueprint lineage, exact paths, magic/MIME, dimensions, bytes and SHA-256; no file is changed.",
+      "resume_condition": "Provide the Architect MCP scheduled execution context with an approved read-only path to current Linux production evidence (for example a bounded read-only Linux SSH credential/action or canonical exported inventory receipt). Do not copy provider/browser credentials and do not mutate /srv/die.",
+      "blocker": "CREDENTIAL_OR_LOGIN_REQUIRED: Architect MCP service user cannot authenticate read-only to the canonical Linux host, and origin/main does not contain five current production-master manifests."
     },
     {
       "id": "FA-002",
