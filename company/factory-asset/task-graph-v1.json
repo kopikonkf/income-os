@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "1.3-windows-provider-sequencing-override",
+  "revision": "1.4-browser-cdp-unification",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -539,16 +539,21 @@
       "phase": 0,
       "track": "WINDOWS_OAUTH_PROOFS",
       "priority": 30,
-      "title": "Normalize ChatGPT through existing MUXIA server/backend boundary",
+      "title": "Standardize ChatGPT autonomous image backend on shared standalone BROWSER_CDP",
       "depends_on": [
         "FA-W011",
         "FA-W004"
       ],
-      "status": "DEFERRED",
-      "artifact": "company/factory-asset/receipts/FA-W016-chatgpt-muxia-backend-compat.receipt.json",
-      "acceptance": "Existing MUXIA/browser-owned generation is normalized as a server/backend candidate only through a policy-compliant boundary that yields provider-original bytes and local durable save without importing prohibited consumer-web private-backend extraction. This task is non-blocking for FA-W019.",
-      "resume_condition": "Run after the four remaining OAUTH candidates or when MUXIA compatibility is needed for pool expansion; do not weaken the current ChatGPT policy gate.",
-      "non_blocking_for": "FA-W019"
+      "status": "DONE",
+      "artifact": "company/factory-asset/receipts/FA-W016-chatgpt-browser-cdp-backend.receipt.json",
+      "acceptance": "Standalone web-ai-adapter attaches to an already-authenticated reusable Chromium profile over external loopback CDP, dispatches ChatGPT image generation, acquires provider-original bytes automatically, validates and atomically saves them with zero operator action after dispatch. The adapter remains compatible with a later MUXIA-owned CDP endpoint without requiring MUXIA for standalone operation.",
+      "non_blocking_for": "FA-W019",
+      "authority": "FOUNDER_DECISION_RECORDED_2026-09-03_BROWSER_CDP_UNIFICATION",
+      "completed_at": "2026-09-03",
+      "result": "PASS: canonical web-ai-adapter ChatGPT BROWSER_CDP implementation generated and acquired provider-original PNG 1254x1254, 735850 bytes, SHA-256 55da7f72825ebbfe2cfacf75b28660164be5a87b986182d05f74584dda0ffb9a; zero operator action after dispatch; independent hash/decode/reopen PASS.",
+      "implementation_repository": "github.com/kopikonkf/web-ai-adapter",
+      "implementation_pr": 4,
+      "implementation_merge_commit": "c0b0fd803301d0e78c3a108a6a7de164acfa7314"
     },
     {
       "id": "FA-W017",
@@ -573,6 +578,23 @@
       "architect_observed_current_ui": "5.6 Luna / GPT Image 2",
       "completed_at": "2026-09-03",
       "result": "PASS: JPEG 1254x1254, 55152 bytes, SHA-256 f2b213037b06e9e46d20e51994bff8eb339d20c1f2beffd681cafa296dc917bf; decode/reopen and post-save hash verification PASS."
+    },
+    {
+      "id": "FA-W018",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 32,
+      "title": "Add Qwen BROWSER_CDP fallback while preserving SESSION_API primary",
+      "depends_on": [
+        "FA-W011",
+        "FA-W012"
+      ],
+      "status": "READY",
+      "artifact": "company/factory-asset/receipts/FA-W018-qwen-browser-cdp-fallback.receipt.json",
+      "acceptance": "Qwen keeps the proven SESSION_API lane as primary. A separate standalone BROWSER_CDP fallback uses an authenticated reusable Chromium profile and satisfies the same Level-2 zero-touch/original-byte/durable-save contract. Fallback selection is explicit and observable and never silently converts auth, protection, policy or provider failures into success.",
+      "authority": "FOUNDER_DECISION_RECORDED_2026-09-03_BROWSER_CDP_FALLBACK",
+      "result_on_success": "Qwen has dual transport resilience: SESSION_API primary plus BROWSER_CDP fallback without changing OpenAI-compatible caller semantics."
     },
     {
       "id": "FA-W019",
@@ -611,6 +633,40 @@
       "acceptance": "Clean-room observable capability benchmark maps queue, batching, pause/resume, retry/rate-limit visibility, automatic download, output dashboard and style-control patterns to Factory requirements without proprietary-code extraction, protection bypass, purchase, account action or unverified backend assumptions.",
       "resume_condition": "FA-W019 is DONE and Founder explicitly chooses to run the no-spend clean-room observable benchmark. Purchase/account action remains separately Founder-gated.",
       "result": "HOLD: Founder chose to finish autonomous OAUTH/backend-candidate proofs before any GenWHITE benchmark, purchase or account action."
+    },
+    {
+      "id": "FA-W020",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 35,
+      "title": "Leverage MUXIA as shared Browser-CDP runtime for web-ai-adapter",
+      "depends_on": [
+        "FA-W016",
+        "FA-W018",
+        "FA-W013",
+        "FA-W015",
+        "FA-W017"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/receipts/FA-W020-muxia-shared-browser-runtime.receipt.json",
+      "acceptance": "Browser-backed web-ai-adapter providers consume a MUXIA-owned loopback CDP/profile boundary without duplicating Chromium lifecycle, profile ownership, lease or recovery logic. Provider/OpenAI normalization remains in web-ai-adapter and standalone external-CDP mode remains available.",
+      "result_on_success": "MUXIA becomes the shared Chromium/profile substrate while web-ai-adapter remains the provider/OpenAI bridge."
+    },
+    {
+      "id": "FA-W021",
+      "execution_lane": "WINDOWS_OAUTH_LAB",
+      "phase": 0,
+      "track": "WINDOWS_OAUTH_PROOFS",
+      "priority": 36,
+      "title": "Prove standalone web-ai-adapter and MUXIA-backed coexistence / rollback-safe continuity",
+      "depends_on": [
+        "FA-W020"
+      ],
+      "status": "BLOCKED",
+      "artifact": "company/factory-asset/receipts/FA-W021-webai-muxia-coexistence.receipt.json",
+      "acceptance": "Standalone web-ai-adapter can remain serving production/lab traffic while MUXIA-backed Browser-CDP is introduced and stabilized; the switch is explicit, reversible and does not require copying dirty D:\\OAUTH or stopping the known-good standalone path before MUXIA acceptance.",
+      "result_on_success": "Production may continue on standalone web-ai-adapter during MUXIA leverage, then cut over only after the MUXIA-backed path is green."
     },
     {
       "id": "FA-010",

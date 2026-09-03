@@ -1,0 +1,83 @@
+{
+  "schema": "factory-asset.windows-autonomous-provider-backend-receipt.v1",
+  "task_id": "FA-W016",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "provider": "chatgpt",
+  "proof_level": "LEVEL_2_AUTONOMOUS_BACKEND_CANDIDACY",
+  "target_transport_class": "BROWSER_CDP",
+  "architecture_decision": {
+    "standalone_web_ai_adapter_remains_supported": true,
+    "browser_cdp_is_shared_transport_boundary": true,
+    "muxia_role": "future shared Chromium/profile/runtime substrate; not required by this standalone PASS",
+    "provider_normalization_owner": "web-ai-adapter",
+    "qwen_followup": "SESSION_API remains primary; FA-W018 adds explicit BROWSER_CDP fallback"
+  },
+  "implementation": {
+    "repository": "github.com/kopikonkf/web-ai-adapter",
+    "pr": 4,
+    "merge_commit": "c0b0fd803301d0e78c3a108a6a7de164acfa7314",
+    "source": "src/providers/chatgpt_image.py",
+    "architecture_doc": "docs/architecture/WEB_AI_BROWSER_CDP_UNIFICATION_V1.md",
+    "cdp_url": "http://127.0.0.1:9333",
+    "profile_or_principal_id": "web-ai-shared-browser-profile",
+    "external_authenticated_profile": true,
+    "cookie_or_session_token_export": false,
+    "standalone_without_muxia": true,
+    "muxia_endpoint_compatible_by_configuration": true,
+    "content_addressed_atomic_save": true,
+    "operator_actions_after_dispatch_required": 0
+  },
+  "validation": {
+    "tests": "17/17 PASS",
+    "python_compile": "PASS",
+    "git_diff_check": "PASS",
+    "independent_artifact_recheck": "PASS: exact SHA-256, PNG magic, 1254x1254, 735850 bytes, decode/reopen"
+  },
+  "attempts": [
+    {
+      "attempt": "CANONICAL_SOURCE_PRE_REPAIR_TIMEOUT",
+      "job_id": "chatgpt-5297224bb8304144952c943e90486c32",
+      "attempt_id": "attempt-66272aa2eacc4e09abcbee9066cc5ecf",
+      "transport_class": "BROWSER_CDP",
+      "dispatch_started_at": "2026-09-03T16:55:57.140498Z",
+      "dispatch_committed_at": "2026-09-03T16:55:57.241622Z",
+      "operator_actions_after_dispatch": 0,
+      "result": "FAILED",
+      "failure_code": "BOUNDED_COMPLETION_TIMEOUT",
+      "original_bytes_acquired": false,
+      "local_path": null,
+      "sha256": null,
+      "disposition": "Terminal failed attempt preserved. Candidate-source acquisition retry behavior was repaired; this attempt is not relabeled PASS."
+    },
+    {
+      "attempt": "CANONICAL_SOURCE_BROWSER_CDP_ACCEPTANCE",
+      "job_id": "chatgpt-4b84d135103c4aac8205d1976d4a8abe",
+      "attempt_id": "attempt-cfa294cd79a347c4b31371bde8971ec2",
+      "idempotency_key": "017ec234efcfa41735a5944080fa4792c7b1a5082508f9e19e13e2dd68f8c12b",
+      "transport_class": "BROWSER_CDP",
+      "profile_or_principal_id": "web-ai-shared-browser-profile",
+      "prompt_sha256": "ed323d3703906629061872682f18ef12f9ebdb0f40cc6692a61f25b672f4e32d",
+      "dispatch_started_at": "2026-09-03T17:02:39.554959Z",
+      "dispatch_committed_at": "2026-09-03T17:02:39.629718Z",
+      "generation_completed_at": "2026-09-03T17:03:11.908260Z",
+      "operator_actions_after_dispatch": 0,
+      "original_byte_acquisition_method": "provider_image_url_browser_context",
+      "local_path": "D:\\ASSETS\\OAUTH\\sha256\\55\\chatgpt_55da7f72825ebbfe2cfacf75b28660164be5a87b986182d05f74584dda0ffb9a.png",
+      "mime": "image/png",
+      "magic": "89504e470d0a1a0a0000000d",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "bytes": 735850,
+      "sha256": "55da7f72825ebbfe2cfacf75b28660164be5a87b986182d05f74584dda0ffb9a",
+      "decode_reopen": "PASS",
+      "result": "PASS",
+      "failure_code": null,
+      "independent_post_save_recheck": "PASS"
+    }
+  ],
+  "result": "PASS",
+  "completed_at": "2026-09-03T17:03:11.908260Z"
+}
