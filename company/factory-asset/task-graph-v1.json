@@ -441,10 +441,13 @@
       "depends_on": [
         "FA-W009"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/contracts/windows-autonomous-provider-backend-v1.json",
       "acceptance": "Contract requires job/prompt dispatch, allowed evidenced transport, zero operator action after dispatch, bounded completion detection, provider-original byte acquisition, strict MIME/magic/dimensions/positive-bytes/decode/SHA-256 validation, atomic content-addressed local save, typed failures, timeout/cancel semantics and a sanitized receipt. BROWSER_OPERATOR/manual download cannot satisfy Level-2 PASS.",
-      "founder_decision": "APPROVED_2026-09-03: continue OAUTH as backend-candidate lab; GenWHITE purchase/account action held."
+      "founder_decision": "APPROVED_2026-09-03: continue OAUTH as backend-candidate lab; GenWHITE purchase/account action held.",
+      "completed_at": "2026-09-03",
+      "receipt": "company/factory-asset/receipts/FA-W011-autonomous-provider-backend-contract.receipt.json",
+      "result": "PASS: Level-2 zero-touch-after-dispatch backend contract canonicalized with dispatch_committed_at operator boundary, eligible autonomous transports, bounded completion/retry/cancel, provider-original validation, atomic content-addressed local save, typed failures and sanitized receipts."
     },
     {
       "id": "FA-W012",
@@ -474,10 +477,11 @@
         "FA-W011",
         "FA-W005"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/receipts/FA-W013-gemini-autonomous-backend.receipt.json",
       "acceptance": "One bounded Gemini backend job uses an allowed evidenced route and, with zero operator action after dispatch, reaches confirmed generation, acquires provider-original bytes and atomically saves a strictly validated content-addressed local artifact. URL-only/403 fallback, manual download, silent decode failure or guessed success fails.",
-      "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF"
+      "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF",
+      "unblocked_by": "FA-W011"
     },
     {
       "id": "FA-W014",
@@ -488,12 +492,14 @@
       "title": "Prove Grok autonomous backend original-byte local save",
       "depends_on": [
         "FA-W011",
-        "FA-W006"
+        "FA-W006",
+        "FA-W013"
       ],
       "status": "BLOCKED",
       "artifact": "company/factory-asset/receipts/FA-W014-grok-autonomous-backend.receipt.json",
       "acceptance": "One bounded Grok backend job uses only an evidenced allowed route and, with zero operator action after dispatch, reaches confirmed generation, acquires provider-original bytes and atomically saves a strictly validated content-addressed local artifact. Guessed endpoints, protection bypass, URL-only success and manual download fail.",
-      "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF"
+      "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF",
+      "sequencing_gate": "FA-W013 Gemini terminal result required before Grok live proof."
     },
     {
       "id": "FA-W015",
@@ -504,12 +510,14 @@
       "title": "Prove Manus autonomous backend original-byte local save",
       "depends_on": [
         "FA-W011",
-        "FA-W007"
+        "FA-W007",
+        "FA-W014"
       ],
       "status": "BLOCKED",
       "artifact": "company/factory-asset/receipts/FA-W015-manus-autonomous-backend.receipt.json",
       "acceptance": "One bounded Manus backend job uses an evidenced allowed create/send + bounded completion/artifact route or another evidenced allowed transport and, with zero operator action after dispatch, saves strictly validated provider-original bytes locally. Infinite polling, status-without-artifact, URL-only success and manual download fail.",
-      "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF"
+      "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF",
+      "sequencing_gate": "FA-W014 Grok terminal result required before Manus live proof."
     },
     {
       "id": "FA-W016",
@@ -537,13 +545,15 @@
       "title": "Autopsy and prove Duck.ai autonomous image backend transport",
       "depends_on": [
         "FA-W011",
-        "FA-W008"
+        "FA-W008",
+        "FA-W015"
       ],
       "status": "BLOCKED",
       "artifact": "company/factory-asset/receipts/FA-W017-duckai-autonomous-backend.receipt.json",
       "acceptance": "Identify an evidenced allowed Duck.ai image-capable transport and prove one bounded job reaches provider-original bytes and atomic validated local save with zero operator action after dispatch. The prior text-only endpoint cannot pass; unsupported/unknown is reported honestly without fabricating image capability.",
       "authority": "FOUNDER_EXISTING_DIRECTION_REUSED_FOR_BOUNDED_BACKEND_PROOF",
-      "operator_reported_current_ui_model_label": "gpt5.5 luna"
+      "operator_reported_current_ui_model_label": "gpt5.5 luna",
+      "sequencing_gate": "FA-W015 Manus terminal result required before Duck.ai transport/live proof."
     },
     {
       "id": "FA-W019",

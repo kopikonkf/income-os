@@ -1,0 +1,384 @@
+{
+  "schema": "factory-asset.windows-autonomous-provider-backend-contract.v1",
+  "task_id": "FA-W011",
+  "version": "1.0.0",
+  "date": "2026-09-03",
+  "status": "CANONICAL_CANDIDATE",
+  "purpose": "Define the Level-2 backend-candidacy truth boundary for Windows/OAUTH providers: once a backend job is committed, generation, completion detection, provider-original byte acquisition, strict validation and durable content-addressed local save must complete with zero operator action.",
+  "inherits_level_1_contract": "company/factory-asset/contracts/windows-image-provider-proof-v1.json",
+  "proof_level": "LEVEL_2_AUTONOMOUS_BACKEND_CANDIDACY",
+  "reference_provider": {
+    "provider": "qwen",
+    "task_id": "FA-W012",
+    "transport_class": "SESSION_API",
+    "status": "PASS_REFERENCE"
+  },
+  "state_machine": {
+    "states": [
+      "PRE_DISPATCH",
+      "DISPATCHING",
+      "IN_FLIGHT",
+      "ARTIFACT_ACQUIRING",
+      "VALIDATING",
+      "PERSISTING",
+      "PASS",
+      "FAILED",
+      "CANCELLED"
+    ],
+    "terminal_states": [
+      "PASS",
+      "FAILED",
+      "CANCELLED"
+    ],
+    "success_path": [
+      "PRE_DISPATCH",
+      "DISPATCHING",
+      "IN_FLIGHT",
+      "ARTIFACT_ACQUIRING",
+      "VALIDATING",
+      "PERSISTING",
+      "PASS"
+    ],
+    "fail_closed": true,
+    "no_terminal_success_without_durable_artifact": true
+  },
+  "operator_boundary": {
+    "checkpoint": "dispatch_committed_at",
+    "definition": "The instant the backend has accepted ownership of a concrete provider job/attempt and records its immutable attempt_id/idempotency_key. From this point until terminal state, Level-2 PASS permits no human/operator interaction with the provider session, UI, download flow or artifact path.",
+    "before_dispatch_allowed": [
+      "operator login/authentication",
+      "operator account recovery",
+      "operator selection of an already-authorized principal/profile",
+      "operator clearing a non-bypassed provider UI prerequisite"
+    ],
+    "after_dispatch_allowed": [],
+    "after_dispatch_prohibited": [
+      "manual prompt submission",
+      "manual Send/Generate click",
+      "manual completion confirmation",
+      "manual provider download",
+      "manual copy/save of image bytes",
+      "manual URL extraction",
+      "manual browser refresh/recovery to continue the same attempt",
+      "manual CAPTCHA/protection handling",
+      "manual file placement into the watched output path"
+    ],
+    "operator_action_after_dispatch_result": "FAILED / OPERATOR_ACTION_REQUIRED_AFTER_DISPATCH",
+    "reauth_rule": "If authentication expires or operator recovery becomes necessary after dispatch_committed_at, the attempt terminates FAILED. Recovery may occur before a new attempt; the failed attempt cannot later be relabeled PASS."
+  },
+  "transport_eligibility": {
+    "level_2_pass_allowed": [
+      "SESSION_API",
+      "BROWSER_CDP",
+      "HYBRID",
+      "OFFICIAL_API"
+    ],
+    "level_2_pass_disallowed": [
+      "BROWSER_OPERATOR",
+      "UNSUPPORTED",
+      "UNKNOWN"
+    ],
+    "requirements": {
+      "SESSION_API": [
+        "evidenced authenticated application route",
+        "authorized principal session",
+        "backend dispatches request and acquires bytes without browser UI action after dispatch"
+      ],
+      "BROWSER_CDP": [
+        "dedicated authorized browser/profile ownership",
+        "backend automation performs prompt dispatch and completion detection",
+        "backend/browser download event or evidenced original-byte source yields bytes without operator action"
+      ],
+      "HYBRID": [
+        "browser/API responsibilities explicitly separated",
+        "one authorized principal owns all session material",
+        "backend performs all post-dispatch generation/polling/acquisition steps"
+      ],
+      "OFFICIAL_API": [
+        "documented provider route/auth",
+        "backend request/response path",
+        "image absence is never reinterpreted as success"
+      ]
+    },
+    "route_evidence_required": true,
+    "guessed_endpoint_or_private_backend_assumption_allowed": false,
+    "policy_or_terms_unknown_result": "FAILED / POLICY_OR_TERMS_UNKNOWN"
+  },
+  "job_contract": {
+    "required_input_fields": [
+      "job_id",
+      "attempt_id",
+      "provider",
+      "profile_or_principal_id",
+      "prompt_sha256",
+      "transport_class",
+      "idempotency_key",
+      "deadline_at"
+    ],
+    "prompt_plaintext_in_receipt_required": false,
+    "prompt_sha256_required": true,
+    "idempotency_key_required": true,
+    "one_active_owner_per_attempt": true,
+    "dispatch_committed_at_required": true,
+    "deadline_required": true,
+    "unbounded_wait_or_poll_allowed": false
+  },
+  "generation_contract": {
+    "real_provider_generation_required": true,
+    "fixture_mock_or_historical_replay_can_prove_live_acceptance": false,
+    "completion_must_be_evidenced": true,
+    "http_200_alone_is_success": false,
+    "provider_status_without_artifact_is_success": false,
+    "text_claim_of_image_generation_is_success": false
+  },
+  "original_byte_contract": {
+    "required": true,
+    "definition": "The provider-produced original/export payload at the highest evidenced original quality available to the accepted backend route, acquired automatically by the backend after dispatch.",
+    "accepted_acquisition_examples": [
+      "response body bytes",
+      "base64 payload decoded by backend",
+      "authorized original/download URL fetched successfully by backend",
+      "browser download event captured automatically by the owned backend browser",
+      "evidenced provider artifact endpoint fetched automatically by backend"
+    ],
+    "rejected_acquisition_examples": [
+      "manual provider download",
+      "manual file copy into output directory",
+      "screenshot",
+      "HTML canvas/DOM rasterization unless provider explicitly defines that exact payload as original download",
+      "thumbnail-only capture",
+      "preview-only capture",
+      "URL without successful backend byte acquisition",
+      "text/status claiming success without bytes"
+    ],
+    "url_only_result": "FAILED / URL_ONLY",
+    "manual_download_result": "FAILED / OPERATOR_ACTION_REQUIRED_AFTER_DISPATCH"
+  },
+  "validation_contract": {
+    "required_checks": [
+      "positive_byte_count",
+      "recognized_image_magic",
+      "mime_magic_consistency",
+      "positive_dimensions",
+      "decode_verify",
+      "reopen_load",
+      "sha256"
+    ],
+    "sha256_format": "64 hexadecimal characters",
+    "expected_mime_when_known_must_match_magic": true,
+    "unsupported_or_invalid_magic_fails": true,
+    "decode_or_reopen_failure_fails": true,
+    "validation_before_pass": true
+  },
+  "persistence_contract": {
+    "required": true,
+    "base_path": "D:/ASSETS/OAUTH",
+    "content_addressed_layout": "D:/ASSETS/OAUTH/sha256/<sha256-prefix>/<provider>_<sha256>.<validated-ext>",
+    "atomic_save_required": true,
+    "temporary_file_then_atomic_replace_required": true,
+    "flush_and_fsync_before_replace_required": true,
+    "post_save_byte_count_recheck_required": true,
+    "post_save_sha256_recheck_required": true,
+    "post_save_decode_reopen_required": true,
+    "dedupe_same_bytes_reuses_canonical_path": true,
+    "never_overwrite_hash_mismatched_existing_content": true,
+    "pass_before_persistence_complete_allowed": false
+  },
+  "retry_timeout_cancel_contract": {
+    "default_max_retries": 2,
+    "max_total_attempts_per_job": 3,
+    "retry_requires_typed_retryable_failure": true,
+    "retryable_failures": [
+      "RATE_LIMITED",
+      "TRANSIENT_NETWORK_ERROR",
+      "PROVIDER_TRANSIENT_ERROR"
+    ],
+    "non_retryable_without_new_pre_dispatch_recovery": [
+      "AUTH_REQUIRED",
+      "AUTH_EXPIRED",
+      "PROTECTION_CHALLENGE",
+      "POLICY_OR_TERMS_UNKNOWN",
+      "UNSUPPORTED_CAPABILITY",
+      "UNKNOWN_TRANSPORT",
+      "OPERATOR_ACTION_REQUIRED_AFTER_DISPATCH"
+    ],
+    "deadline_exceeded_result": "FAILED / TIMEOUT",
+    "cancel_before_dispatch": "CANCELLED with no provider dispatch",
+    "cancel_after_dispatch": "CANCELLED; stop further provider interaction where safe, clean temporary resources, never relabel as PASS for that attempt",
+    "retry_attempts_have_distinct_attempt_id": true,
+    "job_id_stable_across_retries": true
+  },
+  "typed_failure_outcomes": [
+    "AUTH_REQUIRED",
+    "AUTH_EXPIRED",
+    "RATE_LIMITED",
+    "PROTECTION_CHALLENGE",
+    "POLICY_OR_TERMS_UNKNOWN",
+    "UNSUPPORTED_CAPABILITY",
+    "UNKNOWN_TRANSPORT",
+    "DISPATCH_FAILED",
+    "OPERATOR_ACTION_REQUIRED_AFTER_DISPATCH",
+    "GENERATION_NOT_CONFIRMED",
+    "STATUS_WITHOUT_ARTIFACT",
+    "URL_ONLY",
+    "SCREENSHOT_ONLY",
+    "PREVIEW_ONLY",
+    "DOWNLOAD_FAILED",
+    "EMPTY_FILE",
+    "INVALID_BYTES",
+    "MIME_MAGIC_MISMATCH",
+    "DECODE_REOPEN_FAILED",
+    "INVALID_DIMENSIONS",
+    "HASH_FAILED",
+    "SAVE_FAILED",
+    "TIMEOUT",
+    "CANCELLED",
+    "TRANSIENT_NETWORK_ERROR",
+    "PROVIDER_TRANSIENT_ERROR",
+    "RETRY_EXHAUSTED",
+    "PROVIDER_ERROR"
+  ],
+  "receipt_contract": {
+    "required_fields": [
+      "task_id",
+      "provider",
+      "model_or_mode",
+      "transport_class",
+      "job_id",
+      "attempt_id",
+      "idempotency_key",
+      "profile_or_principal_id",
+      "prompt_sha256",
+      "dispatch_started_at",
+      "dispatch_committed_at",
+      "generation_completed_at",
+      "original_byte_acquisition_method",
+      "operator_actions_after_dispatch",
+      "local_path",
+      "mime",
+      "magic",
+      "dimensions",
+      "bytes",
+      "sha256",
+      "decode_reopen",
+      "retry_count",
+      "result"
+    ],
+    "operator_actions_after_dispatch_must_equal": 0,
+    "result_values": [
+      "PASS",
+      "FAILED",
+      "CANCELLED"
+    ],
+    "failure_requires_failure_code": true,
+    "pass_requires_failure_code_null": true,
+    "sanitized_only": true
+  },
+  "security_contract": {
+    "credential_values_in_receipt": false,
+    "raw_cookies_in_receipt": false,
+    "authorization_headers_in_receipt": false,
+    "authenticated_har_in_receipt": false,
+    "session_token_export": false,
+    "cross_principal_credential_copying": false,
+    "captcha_or_protection_bypass": false,
+    "quota_evasion": false,
+    "account_farming": false,
+    "stealth_or_anti_detection_bypass": false
+  },
+  "pass_rule": {
+    "transport_class_must_be_level_2_allowed": true,
+    "real_generation": true,
+    "operator_actions_after_dispatch": 0,
+    "bounded_completion": true,
+    "original_bytes_acquired_by_backend": true,
+    "strict_validation_complete": true,
+    "atomic_content_addressed_local_save_complete": true,
+    "post_save_hash_and_reopen_complete": true,
+    "typed_receipt_complete": true,
+    "no_policy_security_violation": true,
+    "all_conditions_required": true
+  },
+  "mandatory_negative_acceptance_cases": [
+    {
+      "case": "manual_download_after_dispatch",
+      "expected": "OPERATOR_ACTION_REQUIRED_AFTER_DISPATCH"
+    },
+    {
+      "case": "url_returned_but_backend_fetch_fails",
+      "expected": "URL_ONLY or DOWNLOAD_FAILED"
+    },
+    {
+      "case": "provider_status_complete_without_artifact",
+      "expected": "STATUS_WITHOUT_ARTIFACT"
+    },
+    {
+      "case": "timeout_waiting_for_generation",
+      "expected": "TIMEOUT"
+    },
+    {
+      "case": "empty_payload",
+      "expected": "EMPTY_FILE"
+    },
+    {
+      "case": "mime_magic_mismatch",
+      "expected": "MIME_MAGIC_MISMATCH"
+    },
+    {
+      "case": "decode_or_reopen_failure",
+      "expected": "DECODE_REOPEN_FAILED"
+    },
+    {
+      "case": "persisted_hash_differs_from_source",
+      "expected": "HASH_FAILED"
+    },
+    {
+      "case": "auth_recovery_needed_after_dispatch",
+      "expected": "AUTH_REQUIRED or AUTH_EXPIRED; same attempt cannot PASS"
+    },
+    {
+      "case": "protection_challenge_after_dispatch",
+      "expected": "PROTECTION_CHALLENGE; no bypass"
+    },
+    {
+      "case": "retryable_failure_exceeds_two_retries",
+      "expected": "RETRY_EXHAUSTED"
+    },
+    {
+      "case": "same_bytes_generated_again",
+      "expected": "PASS with canonical path reuse and distinct attempt receipt"
+    }
+  ],
+  "provider_acceptance_sequence": [
+    "qwen-reference",
+    "gemini",
+    "grok",
+    "manus",
+    "duck.ai"
+  ],
+  "chatgpt_muxia_boundary": {
+    "task_id": "FA-W016",
+    "blocking_for_five_provider_acceptance": false,
+    "rule": "May be normalized later through existing MUXIA/server-owned browser boundary; no weakening of ChatGPT consumer-web policy gate."
+  },
+  "genwhite_boundary": {
+    "purchase_or_account_action": "HOLD",
+    "backend_dependency": false,
+    "clean_room_observable_benchmark_task": "FA-W010",
+    "resume_after": "FA-W019 plus explicit Founder choice"
+  },
+  "acceptance": {
+    "json_parse": "PASS_REQUIRED",
+    "level_1_and_level_2_distinguished": true,
+    "zero_touch_checkpoint_defined": true,
+    "eligible_transports_defined": true,
+    "manual_download_excluded": true,
+    "bounded_completion_defined": true,
+    "original_byte_rule_defined": true,
+    "validation_and_persistence_defined": true,
+    "typed_failures_defined": true,
+    "retry_timeout_cancel_defined": true,
+    "sanitized_receipt_defined": true,
+    "negative_cases_defined": true
+  }
+}
