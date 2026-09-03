@@ -67,13 +67,15 @@ def test_synthetic_fixture_contains_no_credential_or_vendor_wire_keys():
     assert not (keys & forbidden)
 
 
-def test_shell_has_no_network_provider_or_browser_automation_api():
+def test_shell_has_no_external_provider_or_browser_automation_api():
     js = (CONSOLE / 'app.js').read_text(encoding='utf-8')
-    forbidden = ['fetch(', 'XMLHttpRequest', 'WebSocket', 'EventSource', 'navigator.sendBeacon', 'axios', 'cdp', 'playwright', 'puppeteer']
+    forbidden = ['XMLHttpRequest', 'WebSocket', 'EventSource', 'navigator.sendBeacon', 'axios', 'cdp', 'playwright', 'puppeteer', 'http://', 'https://']
     for marker in forbidden:
         assert marker not in js
-    assert 'Live dispatch locked' in js
-    assert 'SIMULATED' in js
+    assert "postLocal('/api/compile'" in js
+    assert "postLocal('/api/batch-intent'" in js
+    assert 'Live Dispatch Locked' in js
+    assert 'SIMULATED_ONLY' in js
 
 
 def test_javascript_fixture_matches_json_fixture_exactly():

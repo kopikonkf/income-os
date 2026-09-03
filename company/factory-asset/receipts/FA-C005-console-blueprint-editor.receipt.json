@@ -1,0 +1,62 @@
+{
+  "schema": "factory-asset.console-blueprint-editor-receipt.v1",
+  "task_id": "FA-C005",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact_root": "company/factory-asset/console-prototype/",
+  "compile_bridge": {
+    "bind": "127.0.0.1 only",
+    "endpoint": "/api/compile",
+    "compiler": "company/factory-asset/lib/blueprint_compiler.py",
+    "identity": "company/factory-asset/lib/asset_identity.py",
+    "provider_dispatch": false
+  },
+  "asset_types": [
+    "PHOTO",
+    "ISOLATED_OBJECT",
+    "ICON",
+    "OUTLINE",
+    "PATTERN",
+    "ANIMATION"
+  ],
+  "editor_controls": [
+    "commercial use case",
+    "subject",
+    "asset type",
+    "master format",
+    "raster width/height",
+    "motion duration/fps",
+    "derivative purpose/format",
+    "style preset",
+    "consistency preset",
+    "background"
+  ],
+  "batch_intent": {
+    "endpoint": "/api/batch-intent",
+    "quantity_range": "1..1000",
+    "successful_compile_required": true,
+    "semantic_count_separate_from_derivative_count": true,
+    "dispatch_authority": "SIMULATED_ONLY"
+  },
+  "identity_validation": {
+    "packaging_resolution_delivery_style_changes_do_not_mint_semantic_id": true,
+    "semantic_fingerprint_stable_for_packaging_changes": true,
+    "packaging_fingerprint_changes_for_packaging_changes": true
+  },
+  "validation": {
+    "factory_asset_tests": "107/107 PASS",
+    "node_js_syntax": "PASS",
+    "python_compile": "PASS",
+    "six_mode_compile": "6/6 PASS",
+    "loopback_http_compile": "PASS",
+    "invalid_cross_family_edit": "FAIL_CLOSED BLUEPRINT_SCHEMA_INVALID",
+    "external_provider_network_calls": "NONE"
+  },
+  "authority": {
+    "provider_calls_performed": false,
+    "credentials_accessed": false,
+    "production_queue_mutated": false,
+    "marketplace_action_performed": false
+  }
+}

@@ -334,3 +334,11 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Output gallery keeps semantic count distinct from derivative count.
 - Factory regression 92/92 PASS; JS syntax PASS. Headless browser smoke was unavailable in Architect service context and is not claimed.
 - FA-C005 is READY.
+
+
+### FA-C005 — DONE / PASS — real Blueprint editor + compile preview + batch intent
+- Console now serves loopback-only with a real `/api/compile` bridge to canonical `blueprint_compiler.py` and identity fingerprints.
+- All six canonical asset types compile from editor templates; invalid family/format edits fail closed.
+- Master/resolution/delivery/style controls preserve semantic identity unless semantic fields/type change; packaging fingerprint changes independently.
+- `/api/batch-intent` requires a successful compile, bounds quantity to 1..1000, separates semantic count from derivative count, and remains `SIMULATED_ONLY`.
+- Factory regression 107/107 PASS; loopback HTTP compile PASS; no provider dispatch/credential/production-queue/marketplace action.
