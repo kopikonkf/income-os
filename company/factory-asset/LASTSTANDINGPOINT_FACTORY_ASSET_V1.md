@@ -29,6 +29,14 @@
 - Common proof contract v1.1 adds `BROWSER_OPERATOR` so policy-compliant manual original-download evidence is not mislabeled as CDP automation.
 - Receipt: `company/factory-asset/receipts/FA-W004-chatgpt-image-proof.receipt.json`.
 
+### FA-W005 — DONE / PASS
+
+- Founder/operator supplied a real Gemini provider-original JPEG from the authenticated consumer web UI using the shared prompt in `prompt.txt`.
+- Strict validation: JPEG, 1024x1024, 359,349 bytes, decode/reopen PASS, SHA-256 `cd866318223134624f0852e2ef5ddac421544469145272cb6339c57a62fd1012`.
+- Content-addressed local save: `D:\ASSETS\OAUTH\sha256\cd\gemini_cd866318223134624f0852e2ef5ddac421544469145272cb6339c57a62fd1012.jpg`.
+- Actual proof transport: `BROWSER_OPERATOR`; the legacy inaccessible URL/403 fallback path was not used.
+- Receipt: `company/factory-asset/receipts/FA-W005-gemini-image-proof.receipt.json`.
+
 ## OAUTH safety
 
 - `D:\OAUTH` HEAD remains `c2fb61467138a24156b3d61c991882ebcdd59086`.
@@ -39,7 +47,7 @@
 
 ## Next Windows frontier
 
-`FA-W005` is the next Windows frontier. Founder/operator has already supplied Gemini, Grok and Manus provider-original artifacts for sequential validation; no additional live call is required to evaluate those existing artifacts.
+`FA-W006` is the next Windows frontier. Founder/operator has already supplied Grok and Manus provider-original artifacts for sequential validation; no additional live call is required to evaluate those existing artifacts.
 
 ## Engineering lease
 

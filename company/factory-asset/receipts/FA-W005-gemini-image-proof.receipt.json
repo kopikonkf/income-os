@@ -1,0 +1,69 @@
+{
+  "schema": "factory-asset.windows-image-provider-proof-receipt.v1",
+  "task_id": "FA-W005",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "provider": "gemini",
+  "model_or_mode": "Gemini consumer web / operator-controlled",
+  "transport_class": "BROWSER_OPERATOR",
+  "authority": {
+    "founder_operator_action_completed": true,
+    "new_live_provider_calls_by_architect": 0
+  },
+  "prompt": {
+    "text": "Generate a simple pink square centered on a isolated white background.",
+    "sha256": "0c93230f694582d9f16c0f90e8437da39c5dc14f6db30e6bebb6e09545a0c1c3",
+    "source": "D:\\ASSETS\\OAUTH\\2026-09-03\\prompt.txt"
+  },
+  "generation": {
+    "real_provider_generation": true,
+    "generation_started_at": "OPERATOR_REPORTED_INTERACTIVE_SESSION; exact provider start not instrumented",
+    "generation_completed_at": "OPERATOR_REPORTED_BEFORE_LOCAL_ACQUISITION; exact provider completion not instrumented",
+    "original_acquired_at": "2026-09-03T06:41:40.015403Z",
+    "original_byte_acquisition_method": "Founder/operator manual provider download from authenticated Gemini web session",
+    "legacy_403_url_fallback_used": false,
+    "screenshot_or_preview_capture_used": false
+  },
+  "artifact": {
+    "source_path": "D:\\ASSETS\\OAUTH\\2026-09-03\\Gemini_Generated_Image_g7zzl4g7zzl4g7zz.jpg",
+    "local_path": "D:\\ASSETS\\OAUTH\\sha256\\cd\\gemini_cd866318223134624f0852e2ef5ddac421544469145272cb6339c57a62fd1012.jpg",
+    "format": "JPEG",
+    "mime": "image/jpeg",
+    "magic": "ffd8ffe000104a4649460001",
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "bytes": 359349,
+    "sha256": "cd866318223134624f0852e2ef5ddac421544469145272cb6339c57a62fd1012",
+    "decode_reopen": "PASS",
+    "visual_prompt_consistency": {
+      "center_rgb": [
+        248,
+        112,
+        176
+      ],
+      "corner_rgb": [
+        253,
+        253,
+        251
+      ],
+      "pink_fraction": 0.1914,
+      "white_fraction": 0.8086,
+      "result": "PASS_SUPPORTING_EVIDENCE"
+    }
+  },
+  "validation": {
+    "mime_magic_consistency": "PASS",
+    "positive_dimensions": "PASS",
+    "positive_bytes": "PASS",
+    "content_addressed_save": "PASS",
+    "original_byte_validation": "PASS"
+  },
+  "security": {
+    "credentials_or_raw_session_material_published": false,
+    "captcha_or_protection_bypass": false,
+    "quota_evasion": false
+  },
+  "result": "PASS"
+}
