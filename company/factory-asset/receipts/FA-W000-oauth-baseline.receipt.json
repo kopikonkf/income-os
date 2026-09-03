@@ -1,0 +1,75 @@
+{
+  "schema": "factory-asset.oauth-baseline-receipt.v1",
+  "task_id": "FA-W000",
+  "date": "2026-09-03",
+  "status": "PASS",
+  "source_repository": {
+    "path": "D:\\OAUTH",
+    "head_before": "bc155d4279b9a5eefe98113ed64ca32e221a59dc",
+    "head_after": "bc155d4279b9a5eefe98113ed64ca32e221a59dc",
+    "git_status_entry_count_before": 65,
+    "git_status_entry_count_after": 65,
+    "source_files_changed": false
+  },
+  "server": {
+    "base_url": "http://127.0.0.1:8456",
+    "root_http": 200,
+    "health_status": "ok"
+  },
+  "qwen_credential_representation": {
+    "before": "EditThisCookie array",
+    "item_count": 14,
+    "after": "dict with cookie header string",
+    "normalization_only": true,
+    "secret_values_rotated": false,
+    "secret_values_published": false,
+    "reason": "src/providers/qwen.py expects a cookie dict while src/providers/qwen_image.py accepts the array export; normalization restores text compatibility and remains image-compatible"
+  },
+  "text_chat_regression": {
+    "provider": "qwen",
+    "model": "qwen/qwen3.8-max",
+    "initial_http": 401,
+    "initial_root_cause": "local credential representation mismatch, not provider-session expiry",
+    "final_http": 200,
+    "expected_content": "BASELINE_OK",
+    "exact_match": true,
+    "result": "PASS"
+  },
+  "qwen_image_current": {
+    "provider": "qwen",
+    "model": "qwen",
+    "http": 200,
+    "response_b64_length": 5095764,
+    "url_present": false,
+    "auto_saved_path": "D:\\ASSETS\\OAUTH\\2026-09-03\\qwen_032a7cf1.png",
+    "bytes": 3821821,
+    "sha256": "54F54A263A09E3246A0B9414B665F8AB232FA7BF04F51D786FFC008921929105",
+    "format": "PNG",
+    "magic": "89 50 4E 47 0D 0A 1A 0A",
+    "dimensions": [2048, 2048],
+    "mode": "RGB",
+    "decode_reopen": "PASS",
+    "result": "PASS"
+  },
+  "qwen_image_historical_baseline": {
+    "path": "D:\\ASSETS\\OAUTH\\qwen_live_test.png",
+    "bytes": 4342311,
+    "sha256": "094DE4E6E55C4EC2A04BB41162DE07F4BB8DF51D7F59D25BA57054948D6CE845",
+    "format": "PNG",
+    "dimensions": [2048, 2048],
+    "mode": "RGB",
+    "decode_reopen": "PASS"
+  },
+  "security": {
+    "credential_value_logged": false,
+    "raw_cookie_published": false,
+    "authenticated_capture_published": false,
+    "raw_har_opened": false
+  },
+  "acceptance": {
+    "sanitized_text_chat_regression_green": true,
+    "qwen_http_image_local_save_evidence_recorded": true,
+    "current_output_hash_recorded": true,
+    "no_source_changed": true
+  }
+}
