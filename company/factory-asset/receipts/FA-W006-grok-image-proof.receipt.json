@@ -1,0 +1,73 @@
+{
+  "schema": "factory-asset.windows-image-provider-proof-receipt.v1",
+  "task_id": "FA-W006",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "provider": "grok",
+  "model_or_mode": "Grok consumer web / operator-controlled",
+  "transport_class": "BROWSER_OPERATOR",
+  "authority": {
+    "founder_operator_action_completed": true,
+    "new_live_provider_calls_by_architect": 0
+  },
+  "prompt": {
+    "text": "Generate a simple pink square centered on a isolated white background.",
+    "sha256": "0c93230f694582d9f16c0f90e8437da39c5dc14f6db30e6bebb6e09545a0c1c3",
+    "source": "D:\\ASSETS\\OAUTH\\2026-09-03\\prompt.txt"
+  },
+  "generation": {
+    "real_provider_generation": true,
+    "generation_started_at": "OPERATOR_REPORTED_INTERACTIVE_SESSION; exact provider start not instrumented",
+    "generation_completed_at": "OPERATOR_REPORTED_BEFORE_LOCAL_ACQUISITION; exact provider completion not instrumented",
+    "original_acquired_at": "2026-09-03T06:43:07.194702Z",
+    "original_byte_acquisition_method": "Founder/operator manual provider download from authenticated Grok web session",
+    "guessed_endpoint_loop_used": false,
+    "protection_bypass_used": false,
+    "screenshot_or_preview_capture_used": false
+  },
+  "artifact": {
+    "source_path": "D:\\ASSETS\\OAUTH\\2026-09-03\\grok.jpg",
+    "local_path": "D:\\ASSETS\\OAUTH\\sha256\\18\\grok_18087c41cf26d783edcb4c6630e9325dc15973f1e1cac9bb0858ce51f0e4ebdd.jpg",
+    "format": "JPEG",
+    "mime": "image/jpeg",
+    "magic": "ffd8ffe10868457869660000",
+    "dimensions": [
+      784,
+      1168
+    ],
+    "bytes": 102354,
+    "sha256": "18087c41cf26d783edcb4c6630e9325dc15973f1e1cac9bb0858ce51f0e4ebdd",
+    "decode_reopen": "PASS",
+    "embedded_exif_present": true,
+    "embedded_signature_metadata_handling": "PRESENT_BUT_NOT_COPIED_TO_CANONICAL_RECEIPT",
+    "visual_prompt_consistency": {
+      "center_rgb": [
+        255,
+        70,
+        148
+      ],
+      "corner_rgb": [
+        255,
+        255,
+        253
+      ],
+      "pink_fraction": 0.1641,
+      "white_fraction": 0.8267,
+      "result": "PASS_SUPPORTING_EVIDENCE"
+    }
+  },
+  "validation": {
+    "mime_magic_consistency": "PASS",
+    "positive_dimensions": "PASS",
+    "positive_bytes": "PASS",
+    "content_addressed_save": "PASS",
+    "original_byte_validation": "PASS"
+  },
+  "security": {
+    "credentials_or_raw_session_material_published": false,
+    "provider_signature_blob_published": false,
+    "captcha_or_protection_bypass": false,
+    "quota_evasion": false
+  },
+  "result": "PASS"
+}
