@@ -183,3 +183,21 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Decode/reopen, byte count and post-save SHA-256 verification PASS; an independent second recheck also matched exact bytes/hash/dimensions.
 - Historical Duck hashes `4086a14f...` and `659da1be...` remain historical-only and were not reused as fresh proof.
 - `FA-W019` remains blocked only because `FA-W014` Grok Level-2 is unresolved; ChatGPT/MUXIA `FA-W016` remains explicitly non-blocking.
+
+## 2026-09-03 Browser-CDP unification decision
+
+### FA-W016 — DONE / PASS — ChatGPT standalone shared BROWSER_CDP
+
+- Founder chose a uniform Browser-CDP lane for browser-backed web-chat-AI while keeping `web-ai-adapter` independently runnable.
+- Canonical `web-ai-adapter` PR #4 merged as `c0b0fd803301d0e78c3a108a6a7de164acfa7314`.
+- ChatGPT no longer requires the prior operator-only FA-W004 image boundary for Level-2: the standalone adapter attaches to the reusable authenticated CDP profile, submits automatically, acquires provider-original bytes through the authenticated browser context, validates and atomically saves them.
+- Accepted canonical-source run: `dispatch_committed_at=2026-09-03T17:02:39.629718Z`, `operator_actions_after_dispatch=0`, PNG `1254x1254`, `735850` bytes, SHA-256 `55da7f72825ebbfe2cfacf75b28660164be5a87b986182d05f74584dda0ffb9a`, independent hash/decode/reopen PASS.
+- One earlier committed source-candidate attempt ended `BOUNDED_COMPLETION_TIMEOUT` and remains terminal FAILED; it was not relabeled.
+- `web-ai-adapter` remains the OpenAI-compatible/provider-normalization layer. `BROWSER_CDP` is the shared browser transport boundary. MUXIA is the later shared Chromium/profile runtime substrate, not a competing provider adapter.
+
+### New Windows/OAUTH tasks from the architecture decision
+
+- `FA-W018 = READY`: add Qwen `BROWSER_CDP` fallback while preserving proven `SESSION_API` as primary.
+- `FA-W020 = BLOCKED on FA-W018`: leverage MUXIA as shared Browser-CDP runtime without duplicating provider/OpenAI normalization or browser ownership.
+- `FA-W021 = BLOCKED on FA-W020`: prove standalone `web-ai-adapter` and MUXIA-backed modes can coexist so production can stay on the known-good standalone path during MUXIA hardening and switch only after green acceptance.
+- `FA-W019` remains independently blocked by Grok Level-2 (`FA-W014`); ChatGPT and Qwen fallback do not lower or rewrite that five-provider acceptance boundary.
