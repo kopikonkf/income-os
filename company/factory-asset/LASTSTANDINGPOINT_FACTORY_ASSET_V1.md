@@ -307,3 +307,10 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Shared request/receipt contract covers procedural vector, motion, layered-template and 3D native producers with cancellation/idempotency/failure semantics.
 - PASS requires a native editable producer output; raster conversion cannot masquerade as native master.
 - Factory regression 73/73 PASS. `FA-032` and `FA-040` are READY.
+
+
+### FA-100 — DONE / PASS — provider capability and generation contract
+- Provider-neutral CAPABILITY, GENERATE_REQUEST, GENERATE_RESULT and HEALTH envelopes cover SESSION_API/BROWSER_CDP/HYBRID/OFFICIAL_API.
+- PASS requires zero post-dispatch operator actions plus validated provider-original durable bytes; typed failures cannot include fake artifacts.
+- Vendor cookie/session/RPC/endpoint/raw-wire fields are rejected. Current Qwen/ChatGPT/Gemini/Manus/Duck pool fits the same contract.
+- Factory regression 83/83 PASS. `FA-101` and `FA-103` are READY.

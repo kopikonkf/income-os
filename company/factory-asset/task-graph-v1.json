@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "2.6-fa031-native-producer-contract",
+  "revision": "2.7-fa100-image-provider-contract",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1182,9 +1182,11 @@
       "depends_on": [
         "FA-019"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/schemas/image-provider.schema.json and interface tests",
-      "acceptance": "Contract normalizes capabilities, generate input/output, health and typed failures without vendor wire fields."
+      "acceptance": "Contract normalizes capabilities, generate input/output, health and typed failures without vendor wire fields.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: provider-neutral image contract normalizes capability, generate request/result and health envelopes across SESSION_API/BROWSER_CDP/HYBRID/OFFICIAL_API. PASS requires zero post-dispatch operator actions and validated provider-original durable bytes; failures are typed; vendor cookie/session/RPC/endpoint fields are rejected. Factory regression 83/83 PASS."
     },
     {
       "id": "FA-101",
@@ -1195,7 +1197,7 @@
       "depends_on": [
         "FA-100"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/schemas/provider-profile.schema.json and lease tests",
       "acceptance": "One principal/profile has at most one active lease; credentials are opaque; duplicate and cross-profile ownership are rejected."
     },
@@ -1221,7 +1223,7 @@
       "depends_on": [
         "FA-100"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Provider policy profile registry and fail-closed tests",
       "acceptance": "Provider use requires dated evidence and an allowed automation/auth route; stale/unknown/prohibited routes block without bypass."
     },
