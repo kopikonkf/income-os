@@ -3491,3 +3491,11 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Graph delta: `FA-011 READY -> DONE`; dependency closure `FA-012 BLOCKED -> READY`.
 - Receipt: `company/factory-asset/receipts/FA-011-marketplace-delivery-profiles.receipt.json`.
 - NEXT READY Linux: `FA-012 - Define Asset Blueprint v2 schema`.
+
+## Factory Asset FA-012 - Asset Blueprint v2 schema (2026-09-03T05:37:38Z)
+- FA-012 completed in isolated checkout; no live Production Organism mutation.
+- Canonical artifact: company/factory-asset/schemas/asset-blueprint-v2.schema.json.
+- Schema fail-closes semantic identity, producer/native representation, master/derivative lineage, distinctness, rights, quality, policy compatibility, and Founder-controlled submission authority.
+- Graph delta: FA-012 DONE; FA-013 READY; FA-014 READY.
+- Next highest-priority READY Linux leaf: FA-013.
+
