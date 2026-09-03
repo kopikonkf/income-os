@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "3.2-fa101-provider-profile-lease",
+  "revision": "3.3-fa102-capacity-ledger",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1212,9 +1212,11 @@
       "depends_on": [
         "FA-101"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Capacity event/rolling-state module and tests",
-      "acceptance": "Profiles start UNKNOWN; dated success/rate-limit/auth/protection evidence updates state; guessed quotas cannot enter routing."
+      "acceptance": "Profiles start UNKNOWN; dated success/rate-limit/auth/protection evidence updates state; guessed quotas cannot enter routing.",
+      "completed_at": "2026-09-03",
+      "result": "PASS: observed-capacity ledger starts UNKNOWN, updates only from dated typed evidence, expires stale evidence back to UNKNOWN, preserves event history and rejects guessed quota/remaining-limit fields. Regression 122/122 PASS."
     },
     {
       "id": "FA-103",
