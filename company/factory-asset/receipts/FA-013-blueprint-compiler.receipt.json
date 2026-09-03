@@ -1,0 +1,65 @@
+{
+  "schema": "factory-asset.blueprint-compiler-receipt.v1",
+  "task_id": "FA-013",
+  "date": "2026-09-03",
+  "status": "DONE",
+  "result": "PASS",
+  "implementation": {
+    "compiler": "company/factory-asset/lib/blueprint_compiler.py",
+    "cli": "company/factory-asset/bin/compile_asset_blueprint.py",
+    "asset_type_registry": "company/factory-asset/registries/asset-types.v1.json",
+    "blueprint_schema": "company/factory-asset/schemas/asset-blueprint-v2.schema.json",
+    "asset_type_schema": "company/factory-asset/schemas/asset-type-registry.schema.json",
+    "marketplace_profiles": "company/factory-asset/registries/marketplace-delivery-profiles.v1.json"
+  },
+  "asset_types": [
+    "PHOTO",
+    "ISOLATED_OBJECT",
+    "ICON",
+    "OUTLINE",
+    "PATTERN",
+    "ANIMATION"
+  ],
+  "compiler_contract": {
+    "deterministic": true,
+    "blueprint_schema_validation": true,
+    "asset_registry_validation": true,
+    "asset_type_native_representation_match": true,
+    "producer_class_match": true,
+    "master_format_match": true,
+    "quality_family_checks_required": true,
+    "marketplace_evidence_fail_closed": true,
+    "packaging_derivative_semantic_identity_effect": "NONE",
+    "raster_to_vector_without_gate": "REJECT",
+    "raster_to_motion": "REJECT",
+    "vector_to_motion": "REJECT",
+    "motion_still_marketplace_delivery": "REJECT"
+  },
+  "recipes": {
+    "master": [
+      "raster-generative-master-v1",
+      "native-vector-master-v1",
+      "procedural-vector-master-v1",
+      "motion-render-master-v1"
+    ],
+    "derivative_families": [
+      "raster-*",
+      "vector-*",
+      "motion-*"
+    ]
+  },
+  "validation": {
+    "factory_asset_tests": "30/30 PASS",
+    "asset_registry_schema": "PASS (6/6 entries)",
+    "python_compile": "PASS",
+    "git_diff_check": "PASS",
+    "cli_regression": "PASS"
+  },
+  "repair_note": "CLI smoke exposed a dynamic-import/dataclass module-registration bug; loader now registers the module in sys.modules and a subprocess CLI regression permanently covers it.",
+  "security_and_authority": {
+    "provider_dispatch_performed": false,
+    "marketplace_submission_performed": false,
+    "production_runtime_mutated": false,
+    "submission_authority": "FOUNDER_CONTROLLED"
+  }
+}

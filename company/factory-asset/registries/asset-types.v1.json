@@ -1,0 +1,84 @@
+{
+  "schema": "die.factory-asset.asset-type-registry.v1",
+  "revision": "1.0",
+  "asset_types": [
+    {
+      "asset_type": "PHOTO",
+      "family": "RASTER",
+      "native_representation": "RASTER_PIXELS",
+      "producer_classes": ["RASTER_GENERATIVE"],
+      "master_formats": ["PNG", "JPEG", "TIFF"],
+      "delivery_formats": ["PNG", "JPEG", "WEBP", "TIFF", "PDF"],
+      "vectorizability": {"mode": "NOT_VECTORIZABLE", "raster_trace_allowed": false},
+      "rights": {"commercial_use_required": true, "trademark_free_required": true, "release_policy": "RELEASE_IF_RECOGNIZABLE_PERSON_OR_PROPERTY"},
+      "quality": {"magic_mime_match": true, "decode_reopen": true, "lineage_sha256": true, "family_checks": ["RASTER_DIMENSIONS", "COLOR_SPACE"]},
+      "maturity": {"state": "PRODUCTION_READY", "evidence_required": true},
+      "distinctness": {"semantic_identity_rule": "DISTINCT_COMMERCIAL_USE_CASE_AND_BLUEPRINT", "packaging_variants_create_new_semantic_asset": false, "near_duplicate_action": "QUARANTINE"}
+    },
+    {
+      "asset_type": "ISOLATED_OBJECT",
+      "family": "RASTER",
+      "native_representation": "RASTER_PIXELS",
+      "producer_classes": ["RASTER_GENERATIVE"],
+      "master_formats": ["PNG", "JPEG", "TIFF"],
+      "delivery_formats": ["PNG", "JPEG", "WEBP", "TIFF", "PDF"],
+      "vectorizability": {"mode": "NOT_VECTORIZABLE", "raster_trace_allowed": false},
+      "rights": {"commercial_use_required": true, "trademark_free_required": true, "release_policy": "RELEASE_IF_RECOGNIZABLE_PERSON_OR_PROPERTY"},
+      "quality": {"magic_mime_match": true, "decode_reopen": true, "lineage_sha256": true, "family_checks": ["RASTER_DIMENSIONS", "ALPHA_POLICY", "COLOR_SPACE"]},
+      "maturity": {"state": "PRODUCTION_READY", "evidence_required": true},
+      "distinctness": {"semantic_identity_rule": "DISTINCT_COMMERCIAL_USE_CASE_AND_BLUEPRINT", "packaging_variants_create_new_semantic_asset": false, "near_duplicate_action": "QUARANTINE"}
+    },
+    {
+      "asset_type": "ICON",
+      "family": "VECTOR",
+      "native_representation": "VECTOR_PATHS",
+      "producer_classes": ["NATIVE_VECTOR", "PROCEDURAL_VECTOR"],
+      "master_formats": ["SVG", "EPS"],
+      "delivery_formats": ["SVG", "EPS", "PNG", "JPEG", "WEBP", "PDF"],
+      "vectorizability": {"mode": "NATIVE_VECTOR", "raster_trace_allowed": false},
+      "rights": {"commercial_use_required": true, "trademark_free_required": true, "release_policy": "NONE_EXPECTED"},
+      "quality": {"magic_mime_match": true, "decode_reopen": true, "lineage_sha256": true, "family_checks": ["VECTOR_PATHS_PRESENT", "NO_EMBEDDED_RASTER_ONLY", "VIEWBOX_BOUNDS", "PATH_COMPLEXITY"]},
+      "maturity": {"state": "EXPERIMENTAL", "evidence_required": true},
+      "distinctness": {"semantic_identity_rule": "DISTINCT_COMMERCIAL_USE_CASE_AND_BLUEPRINT", "packaging_variants_create_new_semantic_asset": false, "near_duplicate_action": "QUARANTINE"}
+    },
+    {
+      "asset_type": "OUTLINE",
+      "family": "VECTOR",
+      "native_representation": "VECTOR_PATHS",
+      "producer_classes": ["NATIVE_VECTOR", "PROCEDURAL_VECTOR"],
+      "master_formats": ["SVG", "EPS"],
+      "delivery_formats": ["SVG", "EPS", "PNG", "JPEG", "WEBP", "PDF"],
+      "vectorizability": {"mode": "NATIVE_VECTOR", "raster_trace_allowed": false},
+      "rights": {"commercial_use_required": true, "trademark_free_required": true, "release_policy": "NONE_EXPECTED"},
+      "quality": {"magic_mime_match": true, "decode_reopen": true, "lineage_sha256": true, "family_checks": ["VECTOR_PATHS_PRESENT", "NO_EMBEDDED_RASTER_ONLY", "VIEWBOX_BOUNDS", "PATH_COMPLEXITY"]},
+      "maturity": {"state": "EXPERIMENTAL", "evidence_required": true},
+      "distinctness": {"semantic_identity_rule": "DISTINCT_COMMERCIAL_USE_CASE_AND_BLUEPRINT", "packaging_variants_create_new_semantic_asset": false, "near_duplicate_action": "QUARANTINE"}
+    },
+    {
+      "asset_type": "PATTERN",
+      "family": "VECTOR",
+      "native_representation": "VECTOR_PATHS",
+      "producer_classes": ["PROCEDURAL_VECTOR"],
+      "master_formats": ["SVG", "EPS"],
+      "delivery_formats": ["SVG", "EPS", "PNG", "JPEG", "WEBP", "PDF"],
+      "vectorizability": {"mode": "NATIVE_VECTOR", "raster_trace_allowed": false},
+      "rights": {"commercial_use_required": true, "trademark_free_required": true, "release_policy": "NONE_EXPECTED"},
+      "quality": {"magic_mime_match": true, "decode_reopen": true, "lineage_sha256": true, "family_checks": ["VECTOR_PATHS_PRESENT", "NO_EMBEDDED_RASTER_ONLY", "VIEWBOX_BOUNDS", "PATH_COMPLEXITY"]},
+      "maturity": {"state": "EXPERIMENTAL", "evidence_required": true},
+      "distinctness": {"semantic_identity_rule": "DISTINCT_COMMERCIAL_USE_CASE_AND_BLUEPRINT", "packaging_variants_create_new_semantic_asset": false, "near_duplicate_action": "QUARANTINE"}
+    },
+    {
+      "asset_type": "ANIMATION",
+      "family": "MOTION",
+      "native_representation": "TIMED_FRAMES",
+      "producer_classes": ["MOTION_RENDERER"],
+      "master_formats": ["MP4", "MOV"],
+      "delivery_formats": ["MP4", "MOV", "PNG", "JPEG", "WEBP"],
+      "vectorizability": {"mode": "NOT_APPLICABLE", "raster_trace_allowed": false},
+      "rights": {"commercial_use_required": true, "trademark_free_required": true, "release_policy": "NONE_EXPECTED"},
+      "quality": {"magic_mime_match": true, "decode_reopen": true, "lineage_sha256": true, "family_checks": ["MOTION_DURATION", "MOTION_CODEC", "MOTION_FRAME_INTEGRITY"]},
+      "maturity": {"state": "EXPERIMENTAL", "evidence_required": true},
+      "distinctness": {"semantic_identity_rule": "DISTINCT_COMMERCIAL_USE_CASE_AND_BLUEPRINT", "packaging_variants_create_new_semantic_asset": false, "near_duplicate_action": "QUARANTINE"}
+    }
+  ]
+}
