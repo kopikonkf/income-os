@@ -1,0 +1,39 @@
+{
+  "schema": "die.factory-asset.task-receipt.v1",
+  "task_id": "FA-011",
+  "status": "DONE",
+  "lane": "LINUX_HOURLY_BUILD",
+  "repository_base_sha": "29de7fcbc9515a74f84268cf6c3b227c74edebe7",
+  "artifact": "company/factory-asset/registries/marketplace-delivery-profiles.v1.json",
+  "supporting_artifacts": [
+    "company/factory-asset/schemas/marketplace-delivery-profile.schema.json",
+    "company/factory-asset/tests/test_marketplace_delivery_profiles.py"
+  ],
+  "acceptance": {
+    "compiled_from_fa003_evidence": true,
+    "freshness_explicit": true,
+    "unknown_handling_fail_closed": true,
+    "schema_validation": true,
+    "platform_profiles": 5
+  },
+  "validations": {
+    "targeted_fa011_pytest": "5 passed",
+    "fa010_regression_pytest": "5 passed",
+    "one_canon_validator": "11/11 PASS",
+    "one_canon_pytest": "6 passed",
+    "git_diff_check": "PASS",
+    "high_confidence_secret_hits": 0
+  },
+  "safety": {
+    "linux_production_mutation": false,
+    "windows_oauth_mutation": false,
+    "provider_or_account_action": false,
+    "credential_access": false,
+    "marketplace_action": false
+  },
+  "graph_delta": {
+    "FA-011": "READY -> DONE",
+    "FA-012": "BLOCKED -> READY"
+  },
+  "next_ready_linux_task": "FA-012"
+}

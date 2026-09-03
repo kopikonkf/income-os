@@ -420,9 +420,11 @@
         "FA-003",
         "FA-010"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/registries/marketplace-delivery-profiles.v1.json",
-      "acceptance": "Profiles compile from FA-003 evidence, include freshness and UNKNOWN handling, and validate against schema."
+      "acceptance": "Profiles compile from FA-003 evidence, include freshness and UNKNOWN handling, and validate against schema.",
+      "completed_at": "2026-09-03",
+      "receipt": "company/factory-asset/receipts/FA-011-marketplace-delivery-profiles.receipt.json"
     },
     {
       "id": "FA-012",
@@ -434,7 +436,8 @@
         "FA-010",
         "FA-011"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
+      "unblocked_by": "FA-011",
       "artifact": "company/factory-asset/schemas/asset-blueprint-v2.schema.json",
       "acceptance": "Blueprint requires semantic identity, asset type, native representation, producer class, master spec, derivatives, distinctness, rights, quality and policy contracts."
     },
