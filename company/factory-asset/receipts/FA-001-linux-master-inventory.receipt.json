@@ -1,0 +1,47 @@
+{
+  "schema": "die.factory-asset.linux-master-inventory.receipt.v1",
+  "task_id": "FA-001",
+  "status": "WAITING_OPERATOR",
+  "repository_base_sha": "b45de395bb0b1bc47b2b9aa5f9446e9c665775da",
+  "lane": "LINUX_HOURLY_BUILD",
+  "attempted_at": "2026-09-03T03:42:00Z",
+  "acceptance_met": false,
+  "masters_recorded": 0,
+  "required_master_count": 5,
+  "read_only_probes": [
+    {
+      "target": "kopiko@157.20.32.166",
+      "purpose": "Enumerate current raster masters under the canonical Linux production workspace without mutation.",
+      "result": "AUTHENTICATION_FAILED",
+      "error_class": "SSH_PERMISSION_DENIED_PUBLICKEY_PASSWORD",
+      "host_key_policy": "STRICT_HOST_KEY_CHECKING_ACCEPT_NEW",
+      "production_mutation": false
+    },
+    {
+      "target": "origin/main",
+      "purpose": "Determine whether five current production master manifests are already canonicalized in Git.",
+      "result": "INSUFFICIENT_CURRENT_MASTER_EVIDENCE",
+      "notes": "Repository contains production runtime code/contracts and historical MUXIA artifact receipts, but not five current live production-master manifests satisfying FA-001 lineage/path/magic/MIME/dimensions/bytes/SHA256 acceptance.",
+      "production_mutation": false
+    }
+  ],
+  "blocker": {
+    "code": "CREDENTIAL_OR_LOGIN_REQUIRED",
+    "detail": "The Architect MCP service user has no authenticated read-only Linux access path in this scheduled context. Bypassing SSH host/auth protections or fabricating inventory from historical receipts is prohibited.",
+    "resume_condition": "Provide an approved bounded read-only Linux evidence path to the scheduled Architect context, or publish an equivalent current five-master inventory receipt through an authorized operator. No provider/browser credentials are required or permitted."
+  },
+  "authority": {
+    "provider_action": false,
+    "account_action": false,
+    "credential_read": false,
+    "spend": false,
+    "marketplace_action": false,
+    "production_runtime_mutation": false
+  },
+  "graph_disposition": {
+    "FA-001": "WAITING_OPERATOR",
+    "advance_downstream_from_FA-001": false,
+    "independent_linux_work_may_continue": true,
+    "next_ready_linux_task": "FA-003"
+  }
+}

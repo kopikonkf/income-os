@@ -3431,3 +3431,17 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - No C:\\DIE, D:\\OAUTH, /srv/die, provider account, credential, production runtime or marketplace state was mutated by the repair canary.
 - Receipt: company/factory-asset/receipts/FA-LEASE-001-engineering-lease-protocol.receipt.json.
 - NEXT Linux: retry FA-001 using the canonical lease helper. Windows work continues independently and is not a global blocker unless an explicit dependency or actual active repo-write lease applies.
+
+
+---
+
+## 2026-09-03 — Factory Asset hourly FA-001 evidence gate
+
+- Base `origin/main`: `b45de395bb0b1bc47b2b9aa5f9446e9c665775da`.
+- Selected Linux task: `FA-001 — Inventory five current Linux production masters`.
+- Canonical lease pair `income-os.repo-write` + `factory-asset.FA-001` acquired successfully for the governed repository update.
+- Read-only Linux probe failed closed: Architect MCP service user could not authenticate to `kopiko@157.20.32.166` (`Permission denied (publickey,password)`). No auth bypass, provider credential read, or production mutation was attempted.
+- `origin/main` contains production runtime code/contracts and historical MUXIA artifact receipts, but not five current live production-master manifests sufficient to prove FA-001 path + lineage + magic/MIME + dimensions + bytes + SHA-256 acceptance. Historical artifacts were not misrepresented as current production masters.
+- `FA-001` is therefore `WAITING_OPERATOR`, not FAILED. Resume requires an approved bounded read-only Linux evidence path for the scheduled Architect context or an authorized current five-master inventory receipt.
+- Independent Linux work remains allowed: `FA-003` is the next READY Linux task. Windows work did not block this run.
+- Receipt: `company/factory-asset/receipts/FA-001-linux-master-inventory.receipt.json`.
