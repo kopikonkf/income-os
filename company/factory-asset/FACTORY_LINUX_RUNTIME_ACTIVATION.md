@@ -13,3 +13,7 @@ Unresolved rights evidence is a parked human gate rather than a global throughpu
 ## Cognition browser transport versioning
 
 Browser recovery markers are fingerprinted from stable request context (excluding created/expires timestamps). A stale prior version of the same logical request cannot masquerade as the current request. If the prior version is still generating, only that stale generation is stopped before the new version is submitted. Legacy unversioned markers remain recoverable when their prompt is byte-identical to the active request.
+
+## Sealed context fallback and cron snapshot shim
+
+Routine production cognition attempts Runtime MCP first. Connector/account unavailability alone may fall back to the exact sealed Hermes envelope; observed mismatches still fail closed. Context-convergence retries receive a new logical review request attempt so an already-delivered blocked response remains immutable. The Hermes production cron snapshot is a stable shim into the repository wrapper, preventing stale interpreter/dependency behavior after future fast-forward deployments.
