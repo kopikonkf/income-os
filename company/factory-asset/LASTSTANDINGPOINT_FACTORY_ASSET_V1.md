@@ -456,3 +456,10 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Independent renders are binary-identical for both MP4 and preview. Native FA-031 receipt validates; `conversion_from_raster=false`.
 - Temp cleanup passes after success and injected failure. Scope is local acceptance only / zero spend; production automation licensing is not asserted.
 - `FA-042` is READY for codec/container/frame-integrity and compatibility QA.
+
+
+### FA-042 — DONE / PASS — motion codec/container/frame and visual-integrity QA
+- Real FA-041 MP4: H.264/yuv420p, 1080x1080, 30 FPS, 180 frames, exactly 6.000s, no audio; five sampled frames decode and prove non-blank/non-frozen change.
+- Mislabeled, truncated, technically-valid blank and technically-valid frozen fixtures all fail closed with typed reasons.
+- Adobe Stock pinned MP4/H.264 profile = COMPATIBLE; Dreamstime/Vecteezy/MotionElements remain UNKNOWN where exact current profile evidence is absent.
+- `FA-043` is READY for Motion Engine v0.1 acceptance.
