@@ -480,3 +480,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Receipts: `FA-034-pattern-engine-v0.1-acceptance.receipt.json`, `FA-129-asset-expression-plan.receipt.json`, `FA-131-provider-original-intake.receipt.json`; commands in `FA-034-129-131-linux-validation.json` under `company/factory-asset/receipts`.
 - Dependency reconciliation only: FA-130, FA-132, FA-133, FA-134, FA-135, FA-136 become READY. No downstream implementation started; FA-133 dependencies now all DONE, including Architect-owned FA-043.
 - No production runtime, provider, credential, marketplace or spend action. Intake is STAGED_NOT_CANONICAL; State Manager remains the sole canonical writer.
+
+
+### FA-133 — DONE / PASS — semantic producer dispatch router
+- Frozen FA-129 expression + exact Blueprint hash routes PHOTO/ISOLATED_OBJECT to FA-104 provider routing, PATTERN to Procedural Pattern v0.1 and ANIMATION to Motion Engine v0.1.
+- Generic ICON/OUTLINE native-vector routes remain recognized but blocked until an accepted engine exists.
+- Every route is direct-from-Blueprint; post-hoc static-to-pattern/motion conversion is forbidden.

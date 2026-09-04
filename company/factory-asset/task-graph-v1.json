@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "6.4-fa034-fa129-fa131-linux-acceptance",
+  "revision": "6.4-fa133-semantic-producer-dispatch-router",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1360,7 +1360,7 @@
         "FA-W008",
         "FA-103"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "docs/architecture/FACTORY_ASSET_PROVIDER_FEASIBILITY_V1.md",
       "acceptance": "Qwen, ChatGPT/MUXIA, Gemini, Grok, Manus and Duck.ai are scored from Windows evidence on transport class, policy, auth, Linux feasibility, image capability, capacity evidence, quality and maintenance risk; UNSUPPORTED and UNKNOWN remain explicit."
     },
@@ -1403,7 +1403,7 @@
         "FA-100",
         "FA-109"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "MUXIA-to-Factory provider compatibility adapter and tests",
       "acceptance": "Existing MUXIA generation satisfies Factory provider/master contracts without duplicating browser/session ownership or changing MUXIA authority."
     },
@@ -2025,9 +2025,11 @@
         "FA-109",
         "FA-129"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Registry-driven producer router for provider raster, procedural vector/pattern and motion renderer classes",
-      "acceptance": "Frozen Blueprint expression selects exactly one governed master producer class. PHOTO/ISOLATED_OBJECT raster routes use provider generation, PATTERN/native vector routes use native producers, ANIMATION uses motion producer, unknown modes fail closed, and motion/pattern are never implemented as post-hoc conversion of an unrelated static master."
+      "acceptance": "Frozen Blueprint expression selects exactly one governed master producer class. PHOTO/ISOLATED_OBJECT raster routes use provider generation, PATTERN/native vector routes use native producers, ANIMATION uses motion producer, unknown modes fail closed, and motion/pattern are never implemented as post-hoc conversion of an unrelated static master.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: frozen FA-129 expression + exact Asset Blueprint v2 hash now route deterministically to exactly one governed master producer class. PHOTO/ISOLATED_OBJECT delegate to FA-104 provider routing, PATTERN routes to accepted Procedural Pattern v0.1, ANIMATION routes to accepted Motion Engine v0.1. Blueprint/mode/producer/hash mismatches fail closed; unaccepted generic native-vector ICON/OUTLINE routes remain blocked; post-hoc static->pattern/motion conversion is forbidden. Zero provider/native execution authority in router."
     },
     {
       "id": "FA-134",
