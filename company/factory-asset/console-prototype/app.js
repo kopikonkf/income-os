@@ -15,6 +15,10 @@
     queueError: null,
     providerDashboard: null,
     providerError: null,
+    outputGallery: null,
+    outputError: null,
+    syntheticE2E: null,
+    syntheticE2EError: null,
     notice: "Compile a Blueprint v2 before creating a batch intent."
   };
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -179,13 +183,27 @@
     catch(error) { state.queueError = `${error.code || 'ERROR'}: ${error.message || 'Control rejected'}`; }
     await refreshQueue();
   }
+  async function runSyntheticE2E() {
+    state.syntheticE2EError = null;
+    try { state.syntheticE2E = await postLocal('/api/synthetic/e2e', { schema:'die.factory-asset.console-synthetic-e2e-request.v1' }); }
+    catch(error) { state.syntheticE2E = null; state.syntheticE2EError = `${error.code || 'ERROR'}: ${error.message || 'Synthetic E2E failed'}`; }
+    renderQueue();
+  }
   function renderQueue() {
     const rows = state.queueEvents;
-    $("#view-queue").innerHTML = `<article class="card"><div class="result-head"><h2>Factory Core Queue</h2><div><span class="badge good">FA-105 GOVERNED</span> <span class="badge warn">NO PROVIDER DISPATCH</span></div></div>
+    const e2e=state.syntheticE2E;
+    $("#view-queue").innerHTML = `
+      <article class="card" style="margin-bottom:16px"><div class="result-head"><div><h2>Console → Factory Core Synthetic E2E</h2><p class="muted">Queue · routing/capacity · retry · crash recovery · output ingestion</p></div>${e2e ? badge(e2e.result) : badge('READY')}</div>
+        <div class="button-row"><button class="primary-btn" id="run-synthetic-e2e">Run Synthetic E2E</button><button class="action-btn" disabled>Live Provider Calls Locked</button></div>
+        ${state.syntheticE2EError ? `<p class="notice">${esc(state.syntheticE2EError)}</p>` : ''}
+        ${e2e ? `<dl class="kv" style="margin-top:14px"><dt>Selected route</dt><dd>${esc(e2e.routing.selected_profile_id)} / ${esc(e2e.routing.selected_provider_id)}</dd><dt>Capacity</dt><dd>Qwen ${badge(e2e.routing.qwen_capacity)} · ChatGPT ${badge(e2e.routing.chatgpt_capacity)}</dd><dt>Retry flow</dt><dd>${badge(e2e.queue.retry_state)} → ${badge(e2e.queue.final_state)} · retries ${e2e.queue.retries}</dd><dt>Crash recovery</dt><dd>${badge(e2e.crash_recovery.state_after_restore)} · recovery ${e2e.crash_recovery.recovery_count}</dd><dt>Output SHA</dt><dd>${esc(e2e.output.master_sha256)}</dd><dt>Ingestion</dt><dd>${e2e.output.ingestion_attempt_count} attempts / ${e2e.output.unique_blob_count} blob · canonical=${e2e.output.canonical_truth}</dd><dt>Secret guard</dt><dd>${badge(e2e.secret_observability_blocked ? 'PASS':'FAIL')}</dd><dt>Zero false success</dt><dd>${badge(e2e.zero_false_success ? 'PASS':'FAIL')}</dd><dt>Provider calls</dt><dd>${e2e.provider_calls_performed ? badge('INVALID'):badge('NONE')}</dd></dl>` : `<p class="notice" style="margin-top:14px">This test is fully synthetic and ephemeral. It exercises Factory Core contracts without provider/browser/network generation.</p>`}
+      </article>
+      <article class="card"><div class="result-head"><h2>Factory Core Queue</h2><div><span class="badge good">FA-105 GOVERNED</span> <span class="badge warn">NO PROVIDER DISPATCH</span></div></div>
       ${state.queueError ? `<p class="notice">${esc(state.queueError)}</p>` : ''}
       <table><thead><tr><th>Job</th><th>Semantic / Blueprint</th><th>State</th><th>Attempts</th><th>Retries</th><th>Recovery</th><th>Failure</th><th>Controls</th></tr></thead><tbody>${rows.map(j => `<tr><td><strong>${esc(j.job_id)}</strong><br><span class="muted">${esc(j.label)}</span></td><td>${esc(j.semantic_asset_id)}<br><span class="muted">${esc(j.blueprint_id)}</span></td><td>${badge(j.state)}</td><td>${j.attempts}</td><td>${j.retries}/2</td><td>${j.recovery_count}</td><td>${esc(j.failure_code || '—')}</td><td>${actionsFor(j).map(([label,action]) => `<button class="action-btn queue-control" data-job-id="${esc(j.job_id)}" data-core-action="${action}">${label}</button>`).join(' ') || '—'}</td></tr>`).join("")}</tbody></table>
-      <p class="notice" style="margin-top:14px">START acquires local queue ownership only. Provider routing/dispatch is intentionally not invoked by FA-C006.</p></article>`;
+      <p class="notice" style="margin-top:14px">START acquires local queue ownership only. Provider routing/dispatch is intentionally not invoked by governed queue controls.</p></article>`;
     $$('.queue-control').forEach(button => button.addEventListener('click', () => queueAction(button.dataset.jobId, button.dataset.coreAction)));
+    if ($('#run-synthetic-e2e')) $('#run-synthetic-e2e').addEventListener('click', runSyntheticE2E);
   }
 
   async function refreshProviders() {
@@ -204,8 +222,27 @@
       </article>
       <div class="provider-grid">${rows.map(p => `<article class="provider-card"><header><h3>${esc(p.provider_id.toUpperCase())}</h3>${badge(p.eligibility)}</header><dl class="kv"><dt>Profile</dt><dd>${esc(p.profile_id)}</dd><dt>Health</dt><dd>${badge(p.health)}</dd><dt>Transport</dt><dd>${esc(p.transport)}</dd><dt>Capacity</dt><dd>${badge(p.capacity)}</dd><dt>Policy</dt><dd>${badge(p.policy)}</dd><dt>Evidence</dt><dd>${esc(p.last_evidence || 'UNKNOWN')}</dd><dt>Retry after</dt><dd>${p.retry_after_seconds == null ? '—' : esc(p.retry_after_seconds + 's')}</dd></dl><p>${esc(p.routing_reason)}</p></article>`).join("")}</div>`;
   }
-  function renderOutput() { $("#view-output").innerHTML = `<div class="output-grid">${source.outputs.map(o => `<article class="card"><div class="master-preview"><div class="master-glyph"></div></div><div class="result-head"><div><span class="badge violet">${esc(o.assetType)}</span><h3>${esc(o.subject)}</h3></div><span class="badge good">SEMANTIC COUNT ${o.semanticCount}</span></div><dl class="kv"><dt>Semantic ID</dt><dd>${esc(o.semanticAssetId)}</dd><dt>Master</dt><dd>${esc(o.master.format)} · ${esc(o.master.dimensions)}</dd><dt>QA</dt><dd>${badge(o.qa)}</dd><dt>Compatibility</dt><dd>${badge(o.compatibility)}</dd></dl><div class="derivatives">${o.derivatives.map(d => `<div class="derivative"><span>${esc(d.format)} · ${esc(d.purpose)}</span><span>${esc(d.sha256)}</span></div>`).join("")}</div></article>`).join("")}</div>`; }
-  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); if(view==='providers') refreshProviders(); }
+  async function refreshOutputs() {
+    try { state.outputGallery = await getLocal('/api/outputs'); state.outputError = null; }
+    catch(error) { state.outputError = `${error.code || 'ERROR'}: ${error.message || 'Output gallery unavailable'}`; }
+    renderOutput(); renderMetrics();
+  }
+  function renderOutput() {
+    const d=state.outputGallery;
+    const rows=d ? d.assets : [];
+    $("#view-output").innerHTML = `
+      <article class="card" style="margin-bottom:16px"><div class="result-head"><div><h2>Output / Lineage / QA</h2><p class="muted">Actual FA-029 five-master canary evidence + FA-106 ingestion staging</p></div>${d ? badge(d.evidence_mode) : badge('UNKNOWN')}</div>
+        ${state.outputError ? `<p class="notice">${esc(state.outputError)}</p>` : ''}
+        ${d ? `<div class="count-split"><div class="count-box"><strong>${d.semantic_asset_count}</strong><span>semantic assets</span></div><div class="count-box"><strong>${d.derivative_count}</strong><span>packaging derivatives</span></div></div><p class="notice" style="margin-top:14px">State Manager: ${esc(d.state_manager_status)} · canonical truth=${d.canonical_truth}. Derivatives never increase semantic asset count.</p>` : '<p class="muted">Loading output evidence…</p>'}
+      </article>
+      <div class="output-grid">${rows.map(o => `<article class="card"><div class="master-preview"><div class="master-glyph"></div></div><div class="result-head"><div><span class="badge violet">${esc(o.task_id)}</span><h3>${esc(o.seed_id)}</h3></div><span class="badge good">SEMANTIC COUNT ${o.semantic_count}</span></div>
+        <dl class="kv"><dt>Semantic ID</dt><dd>${esc(o.semantic_asset_id)}</dd><dt>Blueprint</dt><dd>${esc(o.blueprint_id)}</dd><dt>Master</dt><dd>${esc(o.master.format)} · ${esc(o.master.dimensions.join('×'))}</dd><dt>Master SHA</dt><dd>${esc(o.master.sha256)}</dd><dt>Immutable</dt><dd>${badge(o.master.immutable ? 'PASS' : 'FAIL')}</dd><dt>Ingestion</dt><dd>${badge(o.master.ingestion_state)}</dd><dt>Package files</dt><dd>${o.package.unique_file_count}/${o.package.manifest_entry_count}</dd></dl>
+        <div class="derivatives">${o.derivatives.map(x => `<div class="derivative" style="display:block"><div style="display:flex;justify-content:space-between;gap:10px"><span><strong>${esc(x.format)}</strong> · ${esc(x.purpose)}</span><span>${badge(x.qa_state)} ${badge(x.compatibility_state)}</span></div><div class="muted" style="margin-top:4px">${esc(x.recipe_id)} · ${esc(x.dimensions.join('×'))}</div><div class="muted" style="margin-top:3px;overflow-wrap:anywhere">${esc(x.sha256)}</div></div>`).join('')}</div>
+        <details style="margin-top:12px"><summary>Lineage</summary><dl class="kv" style="margin-top:10px"><dt>Linux master</dt><dd>${esc(o.lineage.linux_master_path)}</dd><dt>Inventory</dt><dd>${esc(o.lineage.inventory_receipt)}</dd><dt>Canary</dt><dd>${esc(o.lineage.canary_receipt)}</dd><dt>Ingestion</dt><dd>${esc(o.lineage.ingestion_receipt)}</dd></dl></details>
+      </article>`).join('')}</div>`;
+  }
+
+  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); if(view==='providers') refreshProviders(); if(view==='output') refreshOutputs(); }
   $$('.nav-item').forEach(button=>button.addEventListener('click',()=>activateView(button.dataset.view)));
-  renderMetrics();renderBlueprint();renderBatch();renderQueue();renderProviders();renderOutput();activateView('blueprint');refreshQueue();refreshProviders();
+  renderMetrics();renderBlueprint();renderBatch();renderQueue();renderProviders();renderOutput();activateView('blueprint');refreshQueue();refreshProviders();refreshOutputs();
 })();

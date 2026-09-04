@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "4.7-fa028-package-composer",
+  "revision": "5.4-fa-c009-console-core-synthetic-e2e",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -142,11 +142,11 @@
       "depends_on": [
         "FA-000"
       ],
-      "status": "WAITING_OPERATOR",
+      "status": "DONE",
       "artifact": "company/factory-asset/receipts/FA-001-linux-master-inventory.receipt.json",
       "acceptance": "At least five current masters are recorded with job/blueprint lineage, exact paths, magic/MIME, dimensions, bytes and SHA-256; no file is changed.",
-      "resume_condition": "Provide the Architect MCP scheduled execution context with an approved read-only path to current Linux production evidence (for example a bounded read-only Linux SSH credential/action or canonical exported inventory receipt). Do not copy provider/browser credentials and do not mutate /srv/die.",
-      "blocker": "CREDENTIAL_OR_LOGIN_REQUIRED: Architect MCP service user cannot authenticate read-only to the canonical Linux host, and origin/main does not contain five current production-master manifests."
+      "completed_at": "2026-09-04",
+      "result": "PASS: bounded read-only SSH inventory recorded five current Linux production masters with task/blueprint lineage, exact paths, observed PNG MIME/magic, 6144x4096 dimensions, bytes and SHA-256; manifest/file hashes, bytes and dimensions matched 5/5; no Linux file/service/state mutation performed."
     },
     {
       "id": "FA-002",
@@ -947,9 +947,11 @@
         "FA-001",
         "FA-028"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "artifact": "company/factory-asset/receipts/FA-029-five-master-derivative-canary.receipt.json",
-      "acceptance": "Five masters yield idempotent JPEG/WebP/TIFF/PDF packages as eligible; hashes/lineage/QA complete; duplicates suppressed; vector gate outcomes correct."
+      "acceptance": "Five masters yield idempotent JPEG/WebP/TIFF/PDF packages as eligible; hashes/lineage/QA complete; duplicates suppressed; vector gate outcomes correct.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: five current Linux production masters were copied read-only into an isolated canary workspace and produced JPEG/WebP/TIFF/PDF derivatives at 3072x2048. Copy lineage 5/5, derivative outputs 20/20, rerun idempotency 20/20 hash match, QA 20/20 PASS, package manifests 5/5 PASS, duplicate bytes suppressed to one physical package file, vector gate 5/5 NOT_VECTORIZABLE fail-closed; no Linux mutation/upload/publication."
     },
     {
       "id": "FA-030",
@@ -960,10 +962,12 @@
       "depends_on": [
         "FA-029"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-030-derivative-engine-v0.1-acceptance.receipt.json",
-      "acceptance": "Targeted and full regression green, zero master overwrite/false success, 100% receipt lineage and rollback/disable path documented."
+      "acceptance": "Targeted and full regression green, zero master overwrite/false success, 100% receipt lineage and rollback/disable path documented.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: Asset Derivative Engine v0.1 accepted after 39/39 targeted tests, 226/226 full regression and FA-029 real five-master canary: 20/20 derivative outputs, 20/20 rerun hashes, 20/20 QA, 5/5 packages, duplicate suppression PASS, zero master overwrite/false success and 100% receipt lineage. Non-destructive disable/rollback path documented."
     },
     {
       "id": "FA-031",
@@ -1289,9 +1293,11 @@
         "FA-030",
         "FA-105"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "artifact": "Master ingestion/deduplication proposal and receipt module",
-      "acceptance": "Duplicate bytes reuse canonical content, retain distinct attempt receipts and can only become truth through DIE State Manager."
+      "acceptance": "Duplicate bytes reuse canonical content, retain distinct attempt receipts and can only become truth through DIE State Manager.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: content-addressed staging module verifies source SHA-256, atomically stores blobs by hash, reuses identical bytes, retains distinct attempt receipts, rejects collisions/attempt drift and always remains STAGED_NOT_CANONICAL with DIE_STATE_MANAGER as the required physical writer. Actual five-master run: 6 attempts -> 5 unique blobs with duplicate reuse PASS. Regression 231/231 PASS."
     },
     {
       "id": "FA-107",
@@ -1319,10 +1325,12 @@
         "FA-106",
         "FA-107"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-109-factory-core-synthetic-acceptance.receipt.json",
-      "acceptance": "Synthetic providers prove routing, capacity, leases, retry, crash, dedupe, ingestion and zero-secret observability with zero false success."
+      "acceptance": "Synthetic providers prove routing, capacity, leases, retry, crash, dedupe, ingestion and zero-secret observability with zero false success.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: integrated synthetic Factory Core acceptance proves policy/capacity routing, profile lease release, retry via RETRY_WAIT, crash RUNNING->READY reconciliation, content-addressed duplicate ingestion, sanitized observability, invalid-success rejection and zero live-provider calls. Regression 238/238 PASS."
     },
     {
       "id": "FA-110",
@@ -1850,9 +1858,11 @@
         "FA-030",
         "FA-106"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "artifact": "Console output gallery + lineage/QA fixtures",
-      "acceptance": "Each semantic asset shows immutable master, packaging derivatives, hashes, recipes, QA/compatibility state and duplicate suppression without counting derivatives as additional assets."
+      "acceptance": "Each semantic asset shows immutable master, packaging derivatives, hashes, recipes, QA/compatibility state and duplicate suppression without counting derivatives as additional assets.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: Console Output view now reads ACTUAL_FA029_CANARY + FA-106 staging evidence through /api/outputs: five immutable semantic masters, 20 derivatives with recipe/hash/dimensions, QA/compatibility, lineage and duplicate suppression. State remains visibly STAGED_NOT_CANONICAL; derivatives never increase semantic count. Regression 237/237 PASS."
     },
     {
       "id": "FA-C009",
@@ -1866,9 +1876,11 @@
         "FA-C007",
         "FA-C008"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "artifact": "Factory Console synthetic E2E acceptance receipt",
-      "acceptance": "Synthetic jobs prove Console to Factory Core queue/routing/retry/capacity/output flows end to end with zero live-provider calls and zero false success."
+      "acceptance": "Synthetic jobs prove Console to Factory Core queue/routing/retry/capacity/output flows end to end with zero live-provider calls and zero false success.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: Console POST /api/synthetic/e2e drives Factory Core synthetic runtime end to end across policy/capacity routing, retry, crash reconciliation, output ingestion and sanitized observability. HTTP/UI acceptance passes with zero live-provider calls and zero false success. Regression 243/243 PASS."
     },
     {
       "id": "FA-C010",

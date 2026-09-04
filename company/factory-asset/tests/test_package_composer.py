@@ -22,3 +22,10 @@ def test_duplicate_derivative_id_rejected(tmp_path):
  x=rows(tmp_path);x[1]['derivative_id']=x[0]['derivative_id']
  with pytest.raises(m.PackageComposerError) as e:m.compose_dry_run_package(package_dir=tmp_path/'pkg',semantic_asset_id='FASA-PKG_TEST_001',master_sha256='a'*64,deliverables=x,metadata_ref='m',rights_ref='r',compatibility_receipt_ref='c')
  assert e.value.code=='DUPLICATE_DERIVATIVE_ID'
+
+def test_duplicate_bytes_share_one_physical_package_file(tmp_path):
+ a=file(tmp_path,'same-a.webp',b'samebytes'); b=file(tmp_path,'same-b.webp',b'samebytes')
+ ds=[{'derivative_id':'A','source_path':str(a),'format':'WEBP','purpose':'PREVIEW','recipe_id':'r1','receipt_ref':'receipt://1','compatibility_state':'COMPATIBLE'},{'derivative_id':'B','source_path':str(b),'format':'WEBP','purpose':'THUMBNAIL','recipe_id':'r2','receipt_ref':'receipt://2','compatibility_state':'COMPATIBLE'}]
+ r=m.compose_dry_run_package(package_dir=tmp_path/'pkg',semantic_asset_id='FASA-PKG_TEST_001',master_sha256='a'*64,deliverables=ds,metadata_ref='m',rights_ref='r',compatibility_receipt_ref='c')
+ assert r['manifest_entry_count']==2 and r['unique_file_count']==1 and r['file_count']==1
+ manifest=json.loads((tmp_path/'pkg/manifest.json').read_text()); assert manifest['deliverables'][0]['package_path']==manifest['deliverables'][1]['package_path']

@@ -52,8 +52,17 @@ def render_pdf_derivative(master_path:str|Path,output_path:str|Path,recipe:dict[
     if out.exists():raise PackagingError('OUTPUT_EXISTS_REQUIRES_REUSE_CHECK',str(out))
     with Image.open(master) as img:
         img.load(); width=recipe['output'].get('width_px',img.width); height=recipe['output'].get('height_px',img.height)
-        if (width,height)!=(img.width,img.height): img=img.resize((width,height),Image.Resampling.LANCZOS)
-        payload=_pdf_bytes_from_rgb(img)
+        has_alpha = img.mode in ('RGBA','LA') or (img.mode == 'P' and 'transparency' in img.info)
+        alpha_policy = recipe['output'].get('alpha_policy','NOT_APPLICABLE')
+        working = img.copy()
+        if has_alpha:
+            if alpha_policy != 'FLATTEN_WHITE':
+                raise PackagingError('PDF_ALPHA_POLICY_REQUIRED','alpha input requires FLATTEN_WHITE')
+            rgba=img.convert('RGBA'); bg=Image.new('RGBA',rgba.size,(255,255,255,255)); bg.alpha_composite(rgba); working=bg.convert('RGB')
+        elif alpha_policy == 'FORBID':
+            working=img.convert('RGB')
+        if (width,height)!=(working.width,working.height): working=working.resize((width,height),Image.Resampling.LANCZOS)
+        payload=_pdf_bytes_from_rgb(working)
     out.parent.mkdir(parents=True,exist_ok=True); out.write_bytes(payload)
     decoded=False; dims=(0,0)
     try:

@@ -4,6 +4,7 @@ import importlib.util
 import hashlib
 import json
 import sys
+import tempfile
 from copy import deepcopy
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -51,9 +52,11 @@ policy_gate = _load_module("factory_console_policy_gate", ROOT / "company/factor
 provider_router = _load_module("factory_console_provider_router", ROOT / "company/factory-asset/lib/provider_router.py")
 observability = _load_module("factory_console_observability", ROOT / "company/factory-asset/lib/observability.py")
 provider_dashboard = _load_module("factory_console_provider_dashboard", ROOT / "company/factory-asset/lib/provider_dashboard.py")
+factory_core_synthetic = _load_module("factory_console_core_synthetic", ROOT / "company/factory-asset/lib/factory_core_synthetic_acceptance.py")
 
 PROVIDER_POLICY_REGISTRY = json.loads((ROOT / "company/factory-asset/registries/provider-policy.v1.json").read_text(encoding="utf-8"))
 PROVIDER_DASHBOARD_FIXTURE = json.loads((ROOT / "company/factory-asset/fixtures/provider-dashboard/synthetic-observed.v1.json").read_text(encoding="utf-8"))
+OUTPUT_GALLERY_FIXTURE = json.loads((ROOT / "company/factory-asset/fixtures/output-gallery/fa029-actual-canary.v1.json").read_text(encoding="utf-8"))
 CORE_QUEUE = factory_queue.FactoryJobQueue()
 
 
@@ -154,6 +157,41 @@ def provider_dashboard_state() -> dict[str, Any]:
     )
 
 
+def run_console_synthetic_e2e() -> dict[str, Any]:
+    with tempfile.TemporaryDirectory(prefix="factory-console-c009-") as temp_root:
+        core = factory_core_synthetic.run_synthetic_acceptance(Path(temp_root))
+    if core.get("result") != "PASS" or core.get("provider_calls_performed") is not False or core.get("zero_false_success") is not True:
+        raise ConsoleRequestError("SYNTHETIC_E2E_FAILED", "Factory Core synthetic acceptance did not pass")
+    return {
+        "schema":"die.factory-asset.console-synthetic-e2e.v1",
+        "result":"PASS",
+        "provider_calls_performed":False,
+        "routing":core["routing"],
+        "queue":core["queue"],
+        "crash_recovery":core["crash_recovery"],
+        "output":{
+            "master_sha256":core["queue"]["artifact_sha256"],
+            "ingestion_attempt_count":core["ingestion"]["attempt_count"],
+            "unique_blob_count":core["ingestion"]["unique_blob_count"],
+            "duplicate_blob_reused":core["ingestion"]["duplicate_blob_reused"],
+            "canonical_truth":core["ingestion"]["canonical_truth"],
+            "state_manager_commit_required":core["ingestion"]["state_manager_commit_required"],
+        },
+        "observability":{
+            "attempts":core["observability"]["attempts"],
+            "unique_masters":core["observability"]["unique_masters"],
+            "failures":core["observability"]["failures"],
+            "economics":core["observability"]["economics"],
+        },
+        "secret_observability_blocked":core["secret_observability_blocked"],
+        "zero_false_success":core["zero_false_success"],
+    }
+
+
+def output_gallery_state() -> dict[str, Any]:
+    return json.loads(json.dumps(OUTPUT_GALLERY_FIXTURE))
+
+
 def queue_state() -> dict[str, Any]:
     return {"schema": "die.factory-asset.console-queue-state.v1", "provider_dispatch_performed": False, "events": [console_contract.queue_event(row) for row in CORE_QUEUE.list()]}
 
@@ -216,10 +254,13 @@ class Handler(SimpleHTTPRequestHandler):
         if self.path == "/api/providers":
             self._json(HTTPStatus.OK, provider_dashboard_state())
             return
+        if self.path == "/api/outputs":
+            self._json(HTTPStatus.OK, output_gallery_state())
+            return
         super().do_GET()
 
     def do_POST(self) -> None:
-        if self.path not in {"/api/compile", "/api/batch-intent", "/api/queue/submit", "/api/queue/action"}:
+        if self.path not in {"/api/compile", "/api/batch-intent", "/api/queue/submit", "/api/queue/action", "/api/synthetic/e2e"}:
             self._json(HTTPStatus.NOT_FOUND, {"result": "FAIL", "code": "NOT_FOUND"})
             return
         try:
@@ -232,7 +273,11 @@ class Handler(SimpleHTTPRequestHandler):
             if self.path == "/api/compile": result = compile_blueprint_payload(payload)
             elif self.path == "/api/batch-intent": result = create_batch_intent(payload)
             elif self.path == "/api/queue/submit": result = submit_batch_to_queue(payload)
-            else: result = apply_queue_command(payload)
+            elif self.path == "/api/queue/action": result = apply_queue_command(payload)
+            else:
+                if set(payload) != {"schema"} or payload.get("schema") != "die.factory-asset.console-synthetic-e2e-request.v1":
+                    raise ConsoleRequestError("INVALID_SYNTHETIC_E2E_REQUEST", "synthetic E2E request schema required")
+                result = run_console_synthetic_e2e()
             self._json(HTTPStatus.OK, result)
         except compiler.BlueprintCompileError as exc:
             self._json(HTTPStatus.UNPROCESSABLE_ENTITY, {"result": "FAIL", "code": exc.code, "message": str(exc), "dispatch_performed": False})

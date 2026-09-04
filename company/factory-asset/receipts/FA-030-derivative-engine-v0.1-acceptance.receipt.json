@@ -1,0 +1,52 @@
+{
+  "schema": "factory-asset.derivative-engine-v0.1-acceptance-receipt.v1",
+  "task_id": "FA-030",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "component_receipts": [
+    "FA-020-derivative-contracts.receipt.json",
+    "FA-021-raster-worker.receipt.json",
+    "FA-022-pdf-preview.receipt.json",
+    "FA-023-derivative-policy.receipt.json",
+    "FA-024-derivative-qa.receipt.json",
+    "FA-025-vectorizability-gate.receipt.json",
+    "FA-026-native-vector.receipt.json",
+    "FA-027-trace-fallback.receipt.json",
+    "FA-028-package-composer.receipt.json",
+    "FA-029-five-master-derivative-canary.receipt.json"
+  ],
+  "acceptance_doc": "docs/operations/ASSET_DERIVATIVE_ENGINE_V0_1.md",
+  "actual_canary": {
+    "masters": "5/5",
+    "derivatives": "20/20",
+    "rerun_idempotency": "20/20 hash match",
+    "qa": "20/20 PASS",
+    "packages": "5/5 PASS",
+    "duplicate_suppression": "PASS",
+    "vector_gate": "5/5 fail-closed"
+  },
+  "validation": {
+    "targeted_derivative_tests": "39/39 PASS",
+    "full_factory_asset_tests": "226/226 PASS",
+    "zero_master_overwrite": true,
+    "zero_false_success": true,
+    "receipt_lineage": "100%"
+  },
+  "rollback": {
+    "autonomous_hook_present": false,
+    "disable": "stop caller invocation",
+    "masters_untouched": true,
+    "derivative_roots_disposable_after_receipts": true
+  },
+  "authority": {
+    "provider_generation": false,
+    "marketplace_upload": false,
+    "publication": false,
+    "credential_access": false,
+    "canonical_state_mutation": false
+  },
+  "unblocked": [
+    "FA-106"
+  ]
+}

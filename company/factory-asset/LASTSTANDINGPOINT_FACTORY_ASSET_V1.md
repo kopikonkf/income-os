@@ -376,3 +376,46 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Raster derivative worker, deterministic PDF/preview packaging, color/alpha/DPI/metadata policy, derivative QA, native SVG/EPS exporter, gated trace fallback and dry-run package composer are complete.
 - Full Factory regression: 224/224 PASS.
 - `FA-029` remains BLOCKED because `FA-001` Linux five-master inventory is still WAITING_OPERATOR/read-only evidence gated.
+
+
+### FA-001 — DONE / PASS — five current Linux production masters inventoried read-only
+- Five newest final production manifests were cross-checked against actual files: exact path, PNG magic/MIME, 6144x4096 dimensions, bytes and SHA-256 all match 5/5.
+- Job/blueprint lineage is recorded. No Linux file, service, queue or state was modified.
+- `FA-029` is READY.
+
+
+### FA-029 — DONE / PASS — five-master Asset Derivative Engine canary
+- Five current Linux production masters were copied read-only to isolated Windows canary storage; source hashes match FA-001 inventory 5/5.
+- 20 JPEG/WebP/TIFF/PDF outputs generated; 20/20 second-pass hashes match; 20/20 derivative QA PASS; 5/5 dry-run packages PASS.
+- Duplicate package bytes are suppressed (2 manifest entries -> 1 physical file). Vector gate returns fail-closed NOT_VECTORIZABLE for all five current raster masters because trace was not authorized.
+- No Linux mutation, provider call, upload or publication action occurred. `FA-030` is READY.
+
+
+### FA-030 — DONE / PASS — Asset Derivative Engine v0.1 acceptance
+- 39/39 targeted derivative tests and 226/226 full Factory regression PASS.
+- FA-029 real five-master canary seals 20/20 outputs, rerun idempotency, QA, packages, dedupe and fail-closed vector-gate evidence.
+- Zero master overwrite/false success; receipt lineage 100%; non-destructive disable/rollback documented.
+- `FA-106` is READY.
+
+
+### FA-106 — DONE / PASS — content-addressed master ingestion staging
+- Actual five-master staging: 6 attempts -> 5 unique SHA-addressed blobs; duplicate attempt reuses bytes while keeping a separate receipt.
+- All staged records remain `STAGED_NOT_CANONICAL`; the proposal requires `DIE_STATE_MANAGER` as physical writer. No direct canonical state mutation occurred.
+- Regression 231/231 PASS. `FA-109` and `FA-C008` are READY.
+
+
+### FA-C008 — DONE / PASS — actual output gallery lineage / derivative / QA
+- `/api/outputs` serves five FA-029 semantic masters and 20 derivatives with recipe/hash/dimensions, QA/compatibility, lineage and duplicate suppression.
+- Output evidence remains visibly `STAGED_NOT_CANONICAL` until State Manager commit; derivative count never inflates semantic count.
+- Regression 237/237 PASS.
+
+
+### FA-109 — DONE / PASS — Factory Core synthetic acceptance
+- Integrated synthetic runner proves routing/capacity/policy, lease, retry, crash recovery, dedupe ingestion, sanitized observability and zero false success with zero live-provider calls.
+- Regression 238/238 PASS. `FA-C009` is READY.
+
+
+### FA-C009 — DONE / PASS — Console to Factory Core synthetic E2E
+- Queue UI now exposes an explicit synthetic E2E trigger through `/api/synthetic/e2e`.
+- One request proves policy/capacity routing, retry -> success, crash RUNNING -> READY, content-addressed output ingestion, sanitized observability and zero false success.
+- Live provider calls remain zero. Regression 243/243 PASS.

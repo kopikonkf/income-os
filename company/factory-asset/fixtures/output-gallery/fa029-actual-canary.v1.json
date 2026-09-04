@@ -1,0 +1,485 @@
+{
+  "schema": "die.factory-asset.output-gallery.v1",
+  "evidence_mode": "ACTUAL_FA029_CANARY",
+  "canonical_truth": false,
+  "state_manager_status": "STAGED_NOT_CANONICAL",
+  "semantic_asset_count": 5,
+  "derivative_count": 20,
+  "assets": [
+    {
+      "task_id": "PRODSEED000024",
+      "seed_id": "SEED-000024",
+      "blueprint_id": "BP-PROD-SMARTPHONE-TECH-COMMUNICATION-001",
+      "blueprint_sha256": "912bffbbf493db92c4fe18ff6b017aa5512328059c79be2e6c96ea1927be9df8",
+      "semantic_asset_id": "FASA-SEED000024-MASTER",
+      "semantic_count": 1,
+      "master": {
+        "format": "PNG",
+        "sha256": "9d63a5a08ff5547801bbe885d50eb5bc9cd38b1fa79f0d9cf21ca090e20d6e3d",
+        "bytes": 15578885,
+        "dimensions": [
+          6144,
+          4096
+        ],
+        "immutable": true,
+        "ingestion_state": "STAGED_NOT_CANONICAL",
+        "canonical_truth": false,
+        "blob_reused": true
+      },
+      "derivatives": [
+        {
+          "format": "JPEG",
+          "purpose": "MARKETPLACE_DELIVERY",
+          "recipe_id": "fa029-jpeg-marketplace-delivery-v1",
+          "sha256": "e7fec7289df0138df96c2b2858a0dac5af9b7b1bd2c4c5b355256a20c82ccfa4",
+          "bytes": 474406,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        },
+        {
+          "format": "WEBP",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-webp-preview-v1",
+          "sha256": "e424a45b6993ae3c423d481e56eb078ed064d9ae8b66e1ed532c3894880a57a5",
+          "bytes": 156022,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        },
+        {
+          "format": "TIFF",
+          "purpose": "COMPATIBILITY_EXPORT",
+          "recipe_id": "fa029-tiff-compatibility-export-v1",
+          "sha256": "3aa2e78bf1b7d45178f85517a781256934620f6d5786fa11b4fc60960466eada",
+          "bytes": 11511564,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        },
+        {
+          "format": "PDF",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-pdf-preview-v1",
+          "sha256": "60e2b54711caddf7f77db1308d2fdbabe6be318f65d1e6314edfc888d7921dae",
+          "bytes": 744947,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        }
+      ],
+      "package": {
+        "result": "PASS",
+        "unique_file_count": 4,
+        "manifest_entry_count": 4,
+        "publication_action": "NONE",
+        "upload_action": "NONE"
+      },
+      "lineage": {
+        "linux_master_path": "/var/lib/die/workspaces/PRODSEED000024/final/asset.png",
+        "inventory_receipt": "FA-001-linux-master-inventory.receipt.json",
+        "canary_receipt": "FA-029-five-master-derivative-canary.receipt.json",
+        "ingestion_receipt": "FA-106-content-addressed-master-ingestion.receipt.json"
+      }
+    },
+    {
+      "task_id": "PRODSEED000028",
+      "seed_id": "SEED-000028",
+      "blueprint_id": "BP-PROD-GIFT-BOX-COMMERCE-GIFTING-001",
+      "blueprint_sha256": "0652a3740bdb8df0cc1d68d7ba7775295e738913f28b32aed8482da67f6d958d",
+      "semantic_asset_id": "FASA-SEED000028-MASTER",
+      "semantic_count": 1,
+      "master": {
+        "format": "PNG",
+        "sha256": "571cbf8ff2664e3696e250245162bbcba33e9840c09a59778b7beba1a8e0faf1",
+        "bytes": 18279152,
+        "dimensions": [
+          6144,
+          4096
+        ],
+        "immutable": true,
+        "ingestion_state": "STAGED_NOT_CANONICAL",
+        "canonical_truth": false,
+        "blob_reused": false
+      },
+      "derivatives": [
+        {
+          "format": "JPEG",
+          "purpose": "MARKETPLACE_DELIVERY",
+          "recipe_id": "fa029-jpeg-marketplace-delivery-v1",
+          "sha256": "76832db8ac47eb2de4a66d7e74efc912677424a7f136df206e06e132e26fcd4a",
+          "bytes": 516776,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        },
+        {
+          "format": "WEBP",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-webp-preview-v1",
+          "sha256": "f9ff2463d90bc5d6d42ad2df7b6ea4c30c362bcfb1247786769edc36ca5e67ea",
+          "bytes": 217602,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        },
+        {
+          "format": "TIFF",
+          "purpose": "COMPATIBILITY_EXPORT",
+          "recipe_id": "fa029-tiff-compatibility-export-v1",
+          "sha256": "08ef16299729c0a476b9ac50c6b7e41ac2fa5db87f5d0306f6e1c67da1d5cc90",
+          "bytes": 11045088,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        },
+        {
+          "format": "PDF",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-pdf-preview-v1",
+          "sha256": "989945d0b2f8058c4c2a90e8aa3c83892b07e23264953f671b82c88df8adfd9d",
+          "bytes": 801500,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        }
+      ],
+      "package": {
+        "result": "PASS",
+        "unique_file_count": 4,
+        "manifest_entry_count": 4,
+        "publication_action": "NONE",
+        "upload_action": "NONE"
+      },
+      "lineage": {
+        "linux_master_path": "/var/lib/die/workspaces/PRODSEED000028/final/asset.png",
+        "inventory_receipt": "FA-001-linux-master-inventory.receipt.json",
+        "canary_receipt": "FA-029-five-master-derivative-canary.receipt.json",
+        "ingestion_receipt": "FA-106-content-addressed-master-ingestion.receipt.json"
+      }
+    },
+    {
+      "task_id": "PRODSEED000039",
+      "seed_id": "SEED-000039",
+      "blueprint_id": "BP-PROD-ARROW-SYMBOL-SIGN-001",
+      "blueprint_sha256": "590e6b6cb74641b3e77cfafb30265ec60f592c6a0152b7b28648b3917b32e97c",
+      "semantic_asset_id": "FASA-SEED000039-MASTER",
+      "semantic_count": 1,
+      "master": {
+        "format": "PNG",
+        "sha256": "c22abb9dbdbf822fe799ad7461b514df1fbb2e2fef2017ce71a660b234ad54c2",
+        "bytes": 8124919,
+        "dimensions": [
+          6144,
+          4096
+        ],
+        "immutable": true,
+        "ingestion_state": "STAGED_NOT_CANONICAL",
+        "canonical_truth": false,
+        "blob_reused": false
+      },
+      "derivatives": [
+        {
+          "format": "JPEG",
+          "purpose": "MARKETPLACE_DELIVERY",
+          "recipe_id": "fa029-jpeg-marketplace-delivery-v1",
+          "sha256": "dda4cc53d8dabe477c36cd52aeb9576a8797b4597e8a036b685f49b53a053667",
+          "bytes": 284869,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        },
+        {
+          "format": "WEBP",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-webp-preview-v1",
+          "sha256": "0fc981918a7b6e626ec930ab81408b19d5cafa5d891b3311d9b7f921f2550849",
+          "bytes": 50338,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        },
+        {
+          "format": "TIFF",
+          "purpose": "COMPATIBILITY_EXPORT",
+          "recipe_id": "fa029-tiff-compatibility-export-v1",
+          "sha256": "6eebd4f4c6f0d03f2343a19eaccc9b26048d77c539557962be791b92c0ff9939",
+          "bytes": 5724260,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        },
+        {
+          "format": "PDF",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-pdf-preview-v1",
+          "sha256": "08da21d857984625f0c4cfe5086265cf3c1e4a0b061961565da3491b970e359b",
+          "bytes": 414079,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        }
+      ],
+      "package": {
+        "result": "PASS",
+        "unique_file_count": 4,
+        "manifest_entry_count": 4,
+        "publication_action": "NONE",
+        "upload_action": "NONE"
+      },
+      "lineage": {
+        "linux_master_path": "/var/lib/die/workspaces/PRODSEED000039/final/asset.png",
+        "inventory_receipt": "FA-001-linux-master-inventory.receipt.json",
+        "canary_receipt": "FA-029-five-master-derivative-canary.receipt.json",
+        "ingestion_receipt": "FA-106-content-addressed-master-ingestion.receipt.json"
+      }
+    },
+    {
+      "task_id": "PRODSEED000040",
+      "seed_id": "SEED-000040",
+      "blueprint_id": "BP-PROD-CAMERA-TECH-PHOTO-001",
+      "blueprint_sha256": "fdf9f5867bf8a6f500628635d3948eea74fe24ce13a24e9790c4718cfa187e97",
+      "semantic_asset_id": "FASA-SEED000040-MASTER",
+      "semantic_count": 1,
+      "master": {
+        "format": "PNG",
+        "sha256": "3c565beb3cae6c5128e82659d72e365ec44393a2a623634a5cc32104178317b7",
+        "bytes": 17646396,
+        "dimensions": [
+          6144,
+          4096
+        ],
+        "immutable": true,
+        "ingestion_state": "STAGED_NOT_CANONICAL",
+        "canonical_truth": false,
+        "blob_reused": false
+      },
+      "derivatives": [
+        {
+          "format": "JPEG",
+          "purpose": "MARKETPLACE_DELIVERY",
+          "recipe_id": "fa029-jpeg-marketplace-delivery-v1",
+          "sha256": "13efd7a6c99ae24cd7ee90d4a60187db70fbe0424a8d2ea3b1ad8342d00b1334",
+          "bytes": 607429,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        },
+        {
+          "format": "WEBP",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-webp-preview-v1",
+          "sha256": "fd21762e452201e9f5183046381260fd8f7e248020d6ee7e9999610169c0e07c",
+          "bytes": 239726,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        },
+        {
+          "format": "TIFF",
+          "purpose": "COMPATIBILITY_EXPORT",
+          "recipe_id": "fa029-tiff-compatibility-export-v1",
+          "sha256": "d3d50df2d48b7abea4d639924a515534e84dc4c20f93851dd8c169c613b6e244",
+          "bytes": 13028030,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        },
+        {
+          "format": "PDF",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-pdf-preview-v1",
+          "sha256": "d10c1bb827618553900e503c8ed94e3f91e21d81b1bfebe31179ab90596fd1c8",
+          "bytes": 923290,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        }
+      ],
+      "package": {
+        "result": "PASS",
+        "unique_file_count": 4,
+        "manifest_entry_count": 4,
+        "publication_action": "NONE",
+        "upload_action": "NONE"
+      },
+      "lineage": {
+        "linux_master_path": "/var/lib/die/workspaces/PRODSEED000040/final/asset.png",
+        "inventory_receipt": "FA-001-linux-master-inventory.receipt.json",
+        "canary_receipt": "FA-029-five-master-derivative-canary.receipt.json",
+        "ingestion_receipt": "FA-106-content-addressed-master-ingestion.receipt.json"
+      }
+    },
+    {
+      "task_id": "PRODSEED000037",
+      "seed_id": "SEED-000037",
+      "blueprint_id": "BP-PROD-DRAGON-FICTIONAL-CREATURE-001",
+      "blueprint_sha256": "38b34b4ba05c336af256f629f5300d0644f5fdd89886f33e8ffb3b1282c63671",
+      "semantic_asset_id": "FASA-SEED000037-MASTER",
+      "semantic_count": 1,
+      "master": {
+        "format": "PNG",
+        "sha256": "3bef44414de3f55d9c5667b9f2bf3e49585d2affd5e0008f784b27479b59e727",
+        "bytes": 23132843,
+        "dimensions": [
+          6144,
+          4096
+        ],
+        "immutable": true,
+        "ingestion_state": "STAGED_NOT_CANONICAL",
+        "canonical_truth": false,
+        "blob_reused": false
+      },
+      "derivatives": [
+        {
+          "format": "JPEG",
+          "purpose": "MARKETPLACE_DELIVERY",
+          "recipe_id": "fa029-jpeg-marketplace-delivery-v1",
+          "sha256": "356d6fc8c38e32dbf28dcad2a0d2ad4d9a3acda3645766b8395210fb6e069e30",
+          "bytes": 968989,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        },
+        {
+          "format": "WEBP",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-webp-preview-v1",
+          "sha256": "6b0f25dcb4b25973ea29f86834e446f5a2884f838ce0fbc7915f7573647cc165",
+          "bytes": 477742,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        },
+        {
+          "format": "TIFF",
+          "purpose": "COMPATIBILITY_EXPORT",
+          "recipe_id": "fa029-tiff-compatibility-export-v1",
+          "sha256": "13d63faf366d6ef43da3401bd775813af474fcd5eeed885f9ca08e05c244d765",
+          "bytes": 15587794,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        },
+        {
+          "format": "PDF",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-pdf-preview-v1",
+          "sha256": "181e1bc04a41857ba4e69c1aa5e5214b699573199424fffacde8656bea69a39f",
+          "bytes": 1445675,
+          "qa_state": "PASS",
+          "compatibility_state": "COMPATIBLE",
+          "dimensions": [
+            3072,
+            2048
+          ],
+          "semantic_identity_effect": "NONE"
+        }
+      ],
+      "package": {
+        "result": "PASS",
+        "unique_file_count": 4,
+        "manifest_entry_count": 4,
+        "publication_action": "NONE",
+        "upload_action": "NONE"
+      },
+      "lineage": {
+        "linux_master_path": "/var/lib/die/workspaces/PRODSEED000037/final/asset.png",
+        "inventory_receipt": "FA-001-linux-master-inventory.receipt.json",
+        "canary_receipt": "FA-029-five-master-derivative-canary.receipt.json",
+        "ingestion_receipt": "FA-106-content-addressed-master-ingestion.receipt.json"
+      }
+    }
+  ],
+  "duplicate_suppression_probe": {
+    "schema": "die.factory-asset.marketplace-dry-run-package-receipt.v1",
+    "result": "PASS",
+    "manifest_sha256": "71c484c92b7f2dbdb0ee30c8bd2a4f6f9d407e5d234435a81c57a6b3a422dba1",
+    "manifest_path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\duplicate-suppression-probe\\manifest.json",
+    "file_count": 1,
+    "unique_file_count": 1,
+    "manifest_entry_count": 2,
+    "semantic_asset_count": 1,
+    "derivative_count": 2,
+    "publication_action": "NONE",
+    "upload_action": "NONE"
+  },
+  "publication_action": "NONE",
+  "upload_action": "NONE"
+}

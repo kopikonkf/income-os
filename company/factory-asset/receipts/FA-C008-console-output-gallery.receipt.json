@@ -1,0 +1,35 @@
+{
+  "schema": "factory-asset.console-output-gallery-receipt.v1",
+  "task_id": "FA-C008",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "endpoint": "GET /api/outputs",
+  "evidence_mode": "ACTUAL_FA029_CANARY",
+  "source_receipts": [
+    "FA-001-linux-master-inventory.receipt.json",
+    "FA-029-five-master-derivative-canary.receipt.json",
+    "FA-106-content-addressed-master-ingestion.receipt.json"
+  ],
+  "semantic_asset_count": 5,
+  "derivative_count": 20,
+  "views": [
+    "immutable master",
+    "derivative recipe/hash/dimensions",
+    "QA",
+    "compatibility",
+    "lineage",
+    "duplicate suppression",
+    "State Manager staging status"
+  ],
+  "identity_guard": "derivatives semantic_identity_effect=NONE and never increment semantic_asset_count",
+  "state_manager_status": "STAGED_NOT_CANONICAL",
+  "validation": {
+    "factory_asset_tests": "237/237 PASS",
+    "output_endpoint": "PASS",
+    "dynamic_http_roundtrip": "PASS",
+    "old_synthetic_output_cards_removed": true
+  },
+  "publication_action": "NONE",
+  "upload_action": "NONE"
+}
