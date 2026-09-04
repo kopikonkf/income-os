@@ -12,6 +12,7 @@ const REMOTION_PACKAGE_VERSION = '4.0.520';
 const CONTRACT = JSON.parse(readFileSync(join(ROOT, 'src', 'composition-contract.json'), 'utf8'));
 const PRODUCER_VERSION = CONTRACT.renderer.renderer_version;
 const JOB_ID = 'FA041-REMOTION-001';
+const RESOURCE_BOUNDS = Object.freeze({maxWidth:3840,maxHeight:2160,maxFrameCount:3600,maxDurationSeconds:60,maxFps:60,concurrency:1,commandTimeoutMs:300000});
 
 const stable = (value) => {
   if (Array.isArray(value)) return `[${value.map(stable).join(',')}]`;
@@ -26,8 +27,21 @@ const COMPOSITION_SHA256 = sha256Buffer(Buffer.from(stable(CONTRACT), 'utf8'));
 const IDEMPOTENCY_KEY = sha256Buffer(Buffer.from(stable({composition_sha256: COMPOSITION_SHA256, renderer: CONTRACT.renderer, video: CONTRACT.video, audio: CONTRACT.audio}), 'utf8'));
 const sha256File = (path) => sha256Buffer(readFileSync(path));
 
+const assertResourceBounds = () => {
+  const checks = [
+    [CONTRACT.canvas.width <= RESOURCE_BOUNDS.maxWidth, 'WIDTH_BOUND_EXCEEDED'],
+    [CONTRACT.canvas.height <= RESOURCE_BOUNDS.maxHeight, 'HEIGHT_BOUND_EXCEEDED'],
+    [CONTRACT.frame_count <= RESOURCE_BOUNDS.maxFrameCount, 'FRAME_BOUND_EXCEEDED'],
+    [CONTRACT.duration_seconds <= RESOURCE_BOUNDS.maxDurationSeconds, 'DURATION_BOUND_EXCEEDED'],
+    [CONTRACT.fps <= RESOURCE_BOUNDS.maxFps, 'FPS_BOUND_EXCEEDED'],
+  ];
+  const failed = checks.find(([ok]) => !ok);
+  if (failed) throw new Error(failed[1]);
+  return true;
+};
+
 const runCli = (args) => {
-  const child = spawnSync(process.execPath, [CLI, ...args], {cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe']});
+  const child = spawnSync(process.execPath, [CLI, ...args], {cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: RESOURCE_BOUNDS.commandTimeoutMs, maxBuffer: 16 * 1024 * 1024});
   if (child.status !== 0) {
     throw new Error(`REMOTION_COMMAND_FAILED ${args.join(' ')}\n${child.stdout || ''}\n${child.stderr || ''}`);
   }
@@ -41,7 +55,8 @@ const assertMagic = (mp4, png) => {
   if (!preview.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10]))) throw new Error('PNG_MAGIC_INVALID');
 };
 
-const render = ({outputDir, injectFailure = false}) => {
+const render = ({outputDir, injectFailure = false, cancelBeforeRender = false}) => {
+  assertResourceBounds();
   const finalDir = resolve(outputDir);
   const parent = dirname(finalDir);
   mkdirSync(parent, {recursive: true});
@@ -50,11 +65,16 @@ const render = ({outputDir, injectFailure = false}) => {
   let finalized = false;
   try {
     writeFileSync(join(temp, 'temp-marker.txt'), 'FA-041 temporary render workspace\n');
+    if (cancelBeforeRender) {
+      const cancelled = {schema:'die.factory-asset.native-producer.v1',kind:'RECEIPT',job_id:JOB_ID,idempotency_key:IDEMPOTENCY_KEY,producer_class:'MOTION_RENDERER',producer_version:PRODUCER_VERSION,result:'CANCELLED',failure:{code:'CANCELLED',retryable:false,message:'cancelled before renderer dispatch'}};
+      cancelled.deterministic_receipt_sha256 = sha256Buffer(Buffer.from(stable(cancelled), 'utf8'));
+      return {cancelled:true,native_receipt:cancelled,final_output_created:false};
+    }
     if (injectFailure) throw new Error('INJECTED_FAILURE_BEFORE_RENDER');
     runCli(['browser', 'ensure']);
     const mp4 = join(temp, 'master.mp4');
     const png = join(temp, 'preview.png');
-    runCli(['render', ENTRY, COMPOSITION, mp4, '--codec=h264', '--pixel-format=yuv420p', '--image-format=png', '--muted', '--concurrency=1', '--log=warn']);
+    runCli(['render', ENTRY, COMPOSITION, mp4, '--codec=h264', '--pixel-format=yuv420p', '--image-format=png', '--muted', `--concurrency=${RESOURCE_BOUNDS.concurrency}`, '--log=warn']);
     runCli(['still', ENTRY, COMPOSITION, png, '--frame=90', '--log=warn']);
     assertMagic(mp4, png);
     rmSync(join(temp, 'temp-marker.txt'), {force: true});
@@ -80,7 +100,8 @@ const render = ({outputDir, injectFailure = false}) => {
       result: 'PASS',
       composition_id: COMPOSITION,
       renderer_package: `remotion@${REMOTION_PACKAGE_VERSION}`,
-      render_flags: ['--codec=h264','--pixel-format=yuv420p','--image-format=png','--muted','--concurrency=1'],
+      render_flags: ['--codec=h264','--pixel-format=yuv420p','--image-format=png','--muted',`--concurrency=${RESOURCE_BOUNDS.concurrency}`],
+      resource_bounds: RESOURCE_BOUNDS,
       expected_contract: {duration_seconds: CONTRACT.duration_seconds, fps: CONTRACT.fps, frame_count: CONTRACT.frame_count, width: CONTRACT.canvas.width, height: CONTRACT.canvas.height, container: CONTRACT.video.container, codec: CONTRACT.video.codec, pixel_format: CONTRACT.video.pixel_format, audio_policy: CONTRACT.audio.policy, seed: CONTRACT.seed, renderer: CONTRACT.renderer},
       master_path: 'master.mp4', preview_path: 'preview.png', preview_frame: 90,
       master_sha256: master.sha256, master_bytes: master.bytes,
@@ -112,9 +133,41 @@ const selfTestCleanup = () => {
   return {schema: 'die.factory-asset.remotion-cleanup-self-test.v1', result: 'PASS', injected_failure_observed: true, temporary_entries_after_failure: 0, partial_final_output: false};
 };
 
+
+const selfTestCancel = () => {
+  const base = mkdtempSync(join(tmpdir(), 'fa043-cancel-test-'));
+  const target = join(base, 'final');
+  const result = render({outputDir: target, cancelBeforeRender: true});
+  const leftovers = existsSync(base) ? readdirSync(base) : [];
+  const partial = existsSync(target);
+  rmSync(base, {recursive: true, force: true});
+  if (!result.cancelled || result.native_receipt.result !== 'CANCELLED' || leftovers.length !== 0 || partial) throw new Error('CANCEL_SELF_TEST_FAILED');
+  return {schema:'die.factory-asset.remotion-cancel-self-test.v1',result:'PASS',typed_receipt:'CANCELLED',temporary_entries_after_cancel:0,partial_final_output:false,native_receipt:result.native_receipt};
+};
+
+const selfTestRetry = ({outputDir}) => {
+  const finalDir = resolve(outputDir);
+  const parent = dirname(finalDir);
+  mkdirSync(parent, {recursive:true});
+  if (existsSync(finalDir)) rmSync(finalDir,{recursive:true,force:true});
+  let firstFailed = false;
+  try { render({outputDir: finalDir, injectFailure:true}); } catch (error) { firstFailed = String(error).includes('INJECTED_FAILURE_BEFORE_RENDER'); }
+  const tempAfterFailure = readdirSync(parent).filter((name) => name.startsWith('.fa041-tmp-')).length;
+  if (!firstFailed || existsSync(finalDir) || tempAfterFailure !== 0) throw new Error('RETRY_FIRST_ATTEMPT_NOT_CLEAN');
+  const second = render({outputDir: finalDir});
+  if (second.result !== 'PASS' || !existsSync(join(finalDir,'master.mp4')) || !existsSync(join(finalDir,'preview.png'))) throw new Error('RETRY_SECOND_ATTEMPT_FAILED');
+  return {schema:'die.factory-asset.remotion-retry-self-test.v1',result:'PASS',first_attempt:'INJECTED_FAILURE',first_attempt_partial_output:false,temporary_entries_after_failure:0,second_attempt:'PASS',master_sha256:second.master_sha256,preview_sha256:second.preview_sha256};
+};
+
 const args = process.argv.slice(2);
 if (args.includes('--self-test-cleanup')) {
   console.log(JSON.stringify(selfTestCleanup()));
+} else if (args.includes('--self-test-cancel')) {
+  console.log(JSON.stringify(selfTestCancel()));
+} else if (args.includes('--self-test-retry')) {
+  const idx = args.indexOf('--output-dir');
+  if (idx < 0 || !args[idx + 1]) throw new Error('--output-dir is required for retry self-test');
+  console.log(JSON.stringify(selfTestRetry({outputDir: args[idx + 1]})));
 } else {
   const idx = args.indexOf('--output-dir');
   if (idx < 0 || !args[idx + 1]) throw new Error('--output-dir is required');

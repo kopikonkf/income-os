@@ -463,3 +463,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Mislabeled, truncated, technically-valid blank and technically-valid frozen fixtures all fail closed with typed reasons.
 - Adobe Stock pinned MP4/H.264 profile = COMPATIBLE; Dreamstime/Vecteezy/MotionElements remain UNKNOWN where exact current profile evidence is absent.
 - `FA-043` is READY for Motion Engine v0.1 acceptance.
+
+
+### FA-043 — DONE / PASS — Motion Engine v0.1 acceptance
+- FA-040 contract + FA-041 real renderer + FA-042 adversarial QA are sealed with explicit resource bounds, typed cancellation, retry and cleanup hardening.
+- Retry first attempt leaves zero partial state; second attempt reproduces accepted master/preview hashes and re-passes motion QA.
+- Marketplace compatibility remains evidence-bounded; no provider/upload/publication authority.
