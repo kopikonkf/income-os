@@ -515,3 +515,10 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Native-sufficient master = NOOP; dimension shortfall = UPSCALE_REQUIRED; classified technical defect = RECOVERY_REQUIRED.
 - Rights/safety/lineage/integrity uncertainty never recoverable. Source immutable, rerun idempotent, failure leaves no partial output.
 - Production model SHA pin required; RealESRGAN Linux production not yet certified by this task.
+
+
+### FA-138 — DONE / PASS — mandatory postproduction readiness state machine
+- Durable atomic exact-order state machine reaches WAITING_FOUNDER_QC only after package readiness.
+- Source/active master plus derivative/metadata/package hashes are lineage-bound; upscale active-master transition is explicit.
+- State skipping, stale revision, event collision, unresolved rights review and invalid failure resume all fail closed.
+- Final status is PARKED_HUMAN_GATE, not Founder QC completion.
