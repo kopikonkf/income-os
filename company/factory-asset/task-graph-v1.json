@@ -2158,7 +2158,7 @@
       "id": "FA-141",
       "phase": 4,
       "track": "FACTORY_ORCHESTRATION",
-      "priority": 70,
+      "priority": 71,
       "title": "Implement binary IPTC/XMP metadata injector and read-back verifier",
       "depends_on": [
         "FA-137",
@@ -2167,6 +2167,19 @@
       "status": "READY",
       "artifact": "Hash-safe metadata injector/read-back engine for supported marketplace delivery formats",
       "acceptance": "For supported delivery formats, title/description/keywords/AI-disclosure are embedded only into packaging derivatives, never immutable masters; output hash is re-pinned, metadata is read back and compared byte-for-byte/field-for-field to the canonical metadata bundle, unsupported formats remain sidecar-only, semantic asset count stays one, and any injection/read-back mismatch blocks package."
+    },
+    {
+      "id": "FA-140A",
+      "phase": 4,
+      "track": "FACTORY_ORCHESTRATION",
+      "priority": 69,
+      "title": "Activate Factory v2 Linux runtime and recover cognition drift",
+      "depends_on": [
+        "FA-140"
+      ],
+      "status": "READY",
+      "artifact": "Pinned Factory runtime venv, safe cognition request supersession/reuse, non-blocking rights-review parking and live PRODSEED000025 recovery receipt",
+      "acceptance": "Dedicated Linux Factory Python imports pinned runtime dependencies; delivered cognition requests remain immutable/reusable while unsent stale requests are atomically archived and superseded; PRODSEED000025 escapes E_REQUEST_IMMUTABLE_DRIFT without losing accepted author lineage; unresolved rights review parks without blocking future seed cadence; exact-hash complete rights observation resumes the same card; no provider/publication false success."
     }
   ],
   "windows_oauth_proof_levels": {

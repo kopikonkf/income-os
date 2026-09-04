@@ -13,6 +13,7 @@ install -d -o die-hermes -g die-runtime -m 2770 "$DEST" "$DIE_STATE_ROOT/state/p
 install -o die-hermes -g die-runtime -m 0750 "$SRC/production_runtime_tick.py" "$DEST/production_runtime_tick.py"
 install -o die-hermes -g die-runtime -m 0750 "$SRC/production_runtime_tick.sh" "$DEST/production_runtime_tick.sh"
 install -o die-hermes -g die-runtime -m 0640 "$SRC/factory_orchestration_v2.py" "$DEST/factory_orchestration_v2.py"
+/usr/bin/python3 "$DIE_HOME/company/factory-asset/bin/prepare_runtime_venv.py" --venv "$DIE_INSTALL_ROOT/factory-asset/venv" --requirements "$DIE_HOME/company/factory-asset/requirements-runtime.txt"
 install -d -o root -g root -m 0755 "$DIE_INSTALL_ROOT/bin"
 install -o root -g root -m 0755 "$MUXIA_DISPATCH_SRC" "$MUXIA_DISPATCH_DST"
 install -o root -g root -m 0755 "$MUXIA_WORKER_SRC" "$MUXIA_WORKER_DST"

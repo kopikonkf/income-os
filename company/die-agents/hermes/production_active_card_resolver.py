@@ -12,7 +12,7 @@ from typing import Any
 SCHEMA = "die.production-active-card-resolution.v1"
 DEFAULT_WORKSPACES = Path("/var/lib/die/workspaces")
 
-PARKED_STATES = {"WAITING_FOUNDER_QC", "READY_FOR_MANUAL_PUBLISH", "MANUALLY_PUBLISHED"}
+PARKED_STATES = {"WAITING_FOUNDER_QC", "WAITING_FOUNDER_RIGHTS_REVIEW", "READY_FOR_MANUAL_PUBLISH", "MANUALLY_PUBLISHED"}
 ACTIONABLE = {
     "SELECTED": ("hermes-operator", "PROD-RESOLVE-BLUEPRINT", "Resolve reusable-vs-new Blueprint path for the selected seed."),
     "BLUEPRINT_REQUIRED": ("die-lnx-division-001", "OP-REQUEST-DIVISION01-BLUEPRINT", "Request Division01 Blueprint authoring for the exact active family/seed."),
@@ -75,6 +75,17 @@ def _fields(progress: Path) -> dict[str, str]:
     return out
 
 
+def _rights_observation_ready(workspace: Path) -> bool:
+    obs=workspace/'rights-observation.json'; state=workspace/'factory-v2'/'postproduction-state.json'
+    if not obs.is_file() or not state.is_file():return False
+    try:
+        o=json.loads(obs.read_text(encoding='utf-8')); st=json.loads(state.read_text(encoding='utf-8'))
+    except (OSError,json.JSONDecodeError):return False
+    if o.get('schema')!='die.factory-asset.rights-observation.v1' or o.get('master_sha256')!=st.get('active_master_sha256'):return False
+    detectors=o.get('detectors')
+    if not isinstance(detectors,dict):return False
+    return set(detectors)=={'text','logo','watermark','safety'} and all(isinstance(detectors[k],dict) and detectors[k].get('state')=='COMPLETE' for k in detectors)
+
 def _legacy_parked_state(workspace: Path) -> str | None:
     """Recognize the accepted pre-state-field canary without treating arbitrary workspaces as production."""
     asset = workspace / "qa" / "asset.png"
@@ -105,6 +116,9 @@ def discover_cards(workspaces_root: Path) -> tuple[list[Card], list[dict[str, st
         explicit = fields.get("state", "").strip().upper()
         state_source = "PROGRESS_STATE"
         state = explicit
+        if state == "WAITING_FOUNDER_RIGHTS_REVIEW" and _rights_observation_ready(workspace):
+            state = "RIGHTS_SIGNAL_PASS_OR_REVIEW"
+            state_source = "RIGHTS_OBSERVATION_RESUME"
         if not state:
             inferred = _legacy_parked_state(workspace)
             if not inferred:
