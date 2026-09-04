@@ -1,0 +1,43 @@
+{
+  "schema": "factory-asset.fa140b-live-acceptance.v1",
+  "task_id": "FA-140B",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "task": "PRODSEED000035",
+  "seed_id": "SEED-000035",
+  "seed": "tree",
+  "failure": {
+    "state": "NEED_REVIEW",
+    "author_artifact_missing": true,
+    "blocked_request": "COG-PROD_BP_AUTHOR_PRODSEED000035_R00",
+    "reason": "E_CONTEXT_CONVERGENCE",
+    "failure_streak_observed": 89
+  },
+  "repair": {
+    "event": "CONTEXT_RECOVERY_STAGE_REPAIRED",
+    "target": "NEED_AUTHOR",
+    "author_attempt": 1,
+    "request": "COG-PROD_BP_AUTHOR_PRODSEED000035_R01",
+    "author_result": "VALID",
+    "author_artifact_sha256": "77e85e70e066d6d55a298941190f3e76f1bf5ce16c4456ed119c786b098efe9b",
+    "review_request": "COG-PROD_BP_REVIEW_PRODSEED000035_R00",
+    "review_outcome": "NO_VETO",
+    "final_cognition_stage": "READY",
+    "external_state": "BLUEPRINT_READY"
+  },
+  "acceptance": {
+    "author_block_retried_as_author": "PASS",
+    "false_review_transition_repaired": "PASS",
+    "blueprint_author_artifact_created": "PASS",
+    "executive_review_no_veto": "PASS",
+    "lineage_preserved": "PASS",
+    "no_synthetic_artifact_fabricated": "PASS",
+    "zero_false_success": true
+  },
+  "authority": {
+    "marketplace_upload": false,
+    "publication": false,
+    "spend_usd": 0
+  }
+}

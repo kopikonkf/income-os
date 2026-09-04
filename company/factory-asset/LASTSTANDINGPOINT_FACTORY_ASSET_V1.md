@@ -559,3 +559,12 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Success-path Telegram is reduced to PRODUCTION_STARTED / ARTIFACT_CREATED / WAITING_FOUNDER_QC plus cron STARTED response. Backend rights/package state remains durable; failure alerts remain enabled.
 
 - FA-141 Linux live canary also PASS under `die-hermes` using Factory venv on a copy of PRODSEED000025 JPEG: XMP/IPTC exact read-back, technical QA PASS, output SHA `211f28375a4c...`, production workspace untouched.
+
+
+### FA-140B — DONE / PASS — author-stage cognition recovery
+- Live PRODSEED000035 tree repaired false NEED_REVIEW-without-author state back to NEED_AUTHOR, AUTHOR R01 validated, Executive R00 returned NO_VETO, and card reached BLUEPRINT_READY.
+
+### FA-140C — DONE / PASS — MUXIA shared-workspace export recovery
+- Live tree workspace/provider repaired to `2770 die-runtime`; MUXIA exported `source-original.png` SHA `33847b68...` on the same card.
+- Tree reached WAITING_FOUNDER_QC with 6144x4096 active master, human listing `tree-photo__531ef32b.jpg`, FA-141 XMP/IPTC PASS, rights review preserved fail-closed.
+- Telegram success milestones are exactly PRODUCTION_STARTED / ARTIFACT_CREATED / WAITING_FOUNDER_QC; resolver reports NO_ACTIVE_CARD and production cron remains `0 */3 * * *`.

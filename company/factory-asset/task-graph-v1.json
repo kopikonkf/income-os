@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "7.5.1-fa141-linux-live-canary",
+  "revision": "7.6-fa140bc-live-production-recovery",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2194,9 +2194,11 @@
       "depends_on": [
         "FA-140A"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Author/revision-specific E_CONTEXT_CONVERGENCE retry and legacy state repair for production cognition",
-      "acceptance": "A delivered blocked Division01 AUTHOR/REVISION request retries with a fresh author request ID and never enters NEED_REVIEW unless blueprint.author.json exists; already-corrupted NEED_REVIEW state is repaired from durable history; Executive review retry remains separate; live PRODSEED000035 tree escapes the failure streak and advances without synthetic artifacts or lineage loss."
+      "acceptance": "A delivered blocked Division01 AUTHOR/REVISION request retries with a fresh author request ID and never enters NEED_REVIEW unless blueprint.author.json exists; already-corrupted NEED_REVIEW state is repaired from durable history; Executive review retry remains separate; live PRODSEED000035 tree escapes the failure streak and advances without synthetic artifacts or lineage loss.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: live PRODSEED000035 tree repaired a corrupted NEED_REVIEW state caused by Division01 AUTHOR E_CONTEXT_CONVERGENCE. Durable history restored NEED_AUTHOR, fresh AUTHOR R01 produced valid blueprint SHA 77e85e70..., Executive review R00 returned NO_VETO, cognition reached READY and external state BLUEPRINT_READY without fabricated artifacts or lineage loss."
     },
     {
       "id": "FA-140C",
@@ -2207,9 +2209,11 @@
       "depends_on": [
         "FA-140B"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Self-healing die-runtime workspace/provider permission contract before MUXIA export",
-      "acceptance": "Every new production workspace and provider handoff directory is die-runtime-group writable/setgid (2770); existing active cards are repaired before MUXIA dispatch; wrong group fails closed; a failed E_EXPORT card reuses verified private MUXIA artifact and reaches ARTIFACT_CREATED without compensating seed or duplicate semantic asset."
+      "acceptance": "Every new production workspace and provider handoff directory is die-runtime-group writable/setgid (2770); existing active cards are repaired before MUXIA dispatch; wrong group fails closed; a failed E_EXPORT card reuses verified private MUXIA artifact and reaches ARTIFACT_CREATED without compensating seed or duplicate semantic asset.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: live PRODSEED000035 E_EXPORT PermissionError recovered by self-healing shared workspace/provider 2770 die-runtime boundary. Verified tree provider original 1536x1024 SHA 33847b68... exported on the same card, postprocessed to 6144x4096 master SHA 531ef32b..., FA-141 XMP/IPTC JPEG SHA 66583df7... PASS, Telegram success surface exactly PRODUCTION_STARTED/ARTIFACT_CREATED/WAITING_FOUNDER_QC, resolver NO_ACTIVE_CARD, and 3-hour cron remains active."
     }
   ],
   "windows_oauth_proof_levels": {

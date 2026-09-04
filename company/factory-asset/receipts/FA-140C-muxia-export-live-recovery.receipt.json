@@ -1,0 +1,89 @@
+{
+  "schema": "factory-asset.fa140c-live-acceptance.v1",
+  "task_id": "FA-140C",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "task": "PRODSEED000035",
+  "seed_id": "SEED-000035",
+  "seed": "tree",
+  "pre_failure": {
+    "runtime_error": "E_MUXIA:E_EXPORT:PermissionError",
+    "path": "/var/lib/die/workspaces/PRODSEED000035/provider",
+    "workspace_mode": "2755",
+    "workspace_owner": "die-hermes",
+    "workspace_group": "die-runtime",
+    "muxia_service_principal": "kopiko:die-runtime"
+  },
+  "repair": {
+    "workspace_mode": "2770",
+    "provider_mode": "2770",
+    "workspace_group": "die-runtime",
+    "provider_group": "die-runtime",
+    "self_healing_before_dispatch": true,
+    "privilege_escalation_added": false
+  },
+  "provider_original": {
+    "path": "/var/lib/die/workspaces/PRODSEED000035/provider/source-original.png",
+    "sha256": "33847b6823bb9ce9fe64e7f3ec8209208ee698a18d0ecc93918aaa5eab3b4ed1",
+    "bytes": 3038116,
+    "dimensions": [
+      1536,
+      1024
+    ]
+  },
+  "postproduction": {
+    "state": "WAITING_FOUNDER_QC",
+    "active_master_sha256": "531ef32beaf5429bebd6dc948c84e456d09dd801c0d2d15edf502ffb33da5c32",
+    "active_master_dimensions": [
+      6144,
+      4096
+    ],
+    "listing": "qc/tree-photo__531ef32b.jpg",
+    "metadata_sha256": "4ed64eea1e343de92d2a047839d8008f7fddaeec862abe6f2088840dc5c568f7",
+    "binary_metadata_injected": true,
+    "marketplace_jpeg_sha256": "66583df741d444cd356898f7272aae6c8598d2efc3a6d4a93d97138bd4dd2078",
+    "xmp_readback": "PASS",
+    "iptc_readback": "PASS",
+    "rights": "REVIEW_REQUIRED",
+    "package": "PACKAGE_BLOCKED",
+    "submission_eligible": false
+  },
+  "telegram": {
+    "kinds": [
+      "PRODUCTION_STARTED",
+      "ARTIFACT_CREATED",
+      "WAITING_FOUNDER_QC"
+    ],
+    "qa_qc_update_emitted": false,
+    "failure_alerts_preserved": true
+  },
+  "scheduler": {
+    "resolver_status": "NO_ACTIVE_CARD",
+    "tree_classification": "PARKED_HUMAN_GATE",
+    "cron_schedule": "0 */3 * * *",
+    "last_run_status": "ok",
+    "last_run_execution": "929ef5e4d0014e7b8ec3340ca072ac5e",
+    "next_run_utc": "2026-09-04T18:00:00+00:00"
+  },
+  "acceptance": {
+    "existing_card_recovered": "PASS",
+    "shared_workspace_contract": "PASS",
+    "muxia_export": "PASS",
+    "artifact_created": "PASS",
+    "postproduction_to_founder_qc": "PASS",
+    "notification_contract": "PASS",
+    "fa141_binary_metadata_live": "PASS",
+    "parked_card_not_active_blocker": "PASS",
+    "no_compensating_seed": true,
+    "semantic_asset_count_increment": 1,
+    "zero_false_success": true
+  },
+  "authority": {
+    "marketplace_upload": false,
+    "publication": false,
+    "founder_qc_completed": false,
+    "human_rights_clearance": false,
+    "spend_usd": 0
+  }
+}
