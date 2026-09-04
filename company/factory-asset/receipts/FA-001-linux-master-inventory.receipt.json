@@ -1,47 +1,104 @@
 {
-  "schema": "die.factory-asset.linux-master-inventory.receipt.v1",
+  "schema": "factory-asset.linux-master-inventory-receipt.v1",
   "task_id": "FA-001",
-  "status": "WAITING_OPERATOR",
-  "repository_base_sha": "b45de395bb0b1bc47b2b9aa5f9446e9c665775da",
-  "lane": "LINUX_HOURLY_BUILD",
-  "attempted_at": "2026-09-03T03:42:00Z",
-  "acceptance_met": false,
-  "masters_recorded": 0,
-  "required_master_count": 5,
-  "read_only_probes": [
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "mode": "BOUNDED_READ_ONLY_SSH",
+  "selection": "five most recent final-artifact manifests at observation time",
+  "masters": [
     {
-      "target": "kopiko@157.20.32.166",
-      "purpose": "Enumerate current raster masters under the canonical Linux production workspace without mutation.",
-      "result": "AUTHENTICATION_FAILED",
-      "error_class": "SSH_PERMISSION_DENIED_PUBLICKEY_PASSWORD",
-      "host_key_policy": "STRICT_HOST_KEY_CHECKING_ACCEPT_NEW",
-      "production_mutation": false
+      "task_id": "PRODSEED000024",
+      "seed_id": "SEED-000024",
+      "blueprint_id": "BP-PROD-SMARTPHONE-TECH-COMMUNICATION-001",
+      "blueprint_sha256": "912bffbbf493db92c4fe18ff6b017aa5512328059c79be2e6c96ea1927be9df8",
+      "manifest_path": "/var/lib/die/workspaces/PRODSEED000024/final/final-artifact.json",
+      "final_path": "/var/lib/die/workspaces/PRODSEED000024/final/asset.png",
+      "mime": "image/png",
+      "magic": "PNG image data, 6144 x 4096, 8-bit/color RGBA, non-interlaced",
+      "dimensions": [
+        6144,
+        4096
+      ],
+      "bytes": 15578885,
+      "sha256": "9d63a5a08ff5547801bbe885d50eb5bc9cd38b1fa79f0d9cf21ca090e20d6e3d"
     },
     {
-      "target": "origin/main",
-      "purpose": "Determine whether five current production master manifests are already canonicalized in Git.",
-      "result": "INSUFFICIENT_CURRENT_MASTER_EVIDENCE",
-      "notes": "Repository contains production runtime code/contracts and historical MUXIA artifact receipts, but not five current live production-master manifests satisfying FA-001 lineage/path/magic/MIME/dimensions/bytes/SHA256 acceptance.",
-      "production_mutation": false
+      "task_id": "PRODSEED000028",
+      "seed_id": "SEED-000028",
+      "blueprint_id": "BP-PROD-GIFT-BOX-COMMERCE-GIFTING-001",
+      "blueprint_sha256": "0652a3740bdb8df0cc1d68d7ba7775295e738913f28b32aed8482da67f6d958d",
+      "manifest_path": "/var/lib/die/workspaces/PRODSEED000028/final/final-artifact.json",
+      "final_path": "/var/lib/die/workspaces/PRODSEED000028/final/asset.png",
+      "mime": "image/png",
+      "magic": "PNG image data, 6144 x 4096, 8-bit/color RGBA, non-interlaced",
+      "dimensions": [
+        6144,
+        4096
+      ],
+      "bytes": 18279152,
+      "sha256": "571cbf8ff2664e3696e250245162bbcba33e9840c09a59778b7beba1a8e0faf1"
+    },
+    {
+      "task_id": "PRODSEED000039",
+      "seed_id": "SEED-000039",
+      "blueprint_id": "BP-PROD-ARROW-SYMBOL-SIGN-001",
+      "blueprint_sha256": "590e6b6cb74641b3e77cfafb30265ec60f592c6a0152b7b28648b3917b32e97c",
+      "manifest_path": "/var/lib/die/workspaces/PRODSEED000039/final/final-artifact.json",
+      "final_path": "/var/lib/die/workspaces/PRODSEED000039/final/asset.png",
+      "mime": "image/png",
+      "magic": "PNG image data, 6144 x 4096, 8-bit/color RGBA, non-interlaced",
+      "dimensions": [
+        6144,
+        4096
+      ],
+      "bytes": 8124919,
+      "sha256": "c22abb9dbdbf822fe799ad7461b514df1fbb2e2fef2017ce71a660b234ad54c2"
+    },
+    {
+      "task_id": "PRODSEED000040",
+      "seed_id": "SEED-000040",
+      "blueprint_id": "BP-PROD-CAMERA-TECH-PHOTO-001",
+      "blueprint_sha256": "fdf9f5867bf8a6f500628635d3948eea74fe24ce13a24e9790c4718cfa187e97",
+      "manifest_path": "/var/lib/die/workspaces/PRODSEED000040/final/final-artifact.json",
+      "final_path": "/var/lib/die/workspaces/PRODSEED000040/final/asset.png",
+      "mime": "image/png",
+      "magic": "PNG image data, 6144 x 4096, 8-bit/color RGBA, non-interlaced",
+      "dimensions": [
+        6144,
+        4096
+      ],
+      "bytes": 17646396,
+      "sha256": "3c565beb3cae6c5128e82659d72e365ec44393a2a623634a5cc32104178317b7"
+    },
+    {
+      "task_id": "PRODSEED000037",
+      "seed_id": "SEED-000037",
+      "blueprint_id": "BP-PROD-DRAGON-FICTIONAL-CREATURE-001",
+      "blueprint_sha256": "38b34b4ba05c336af256f629f5300d0644f5fdd89886f33e8ffb3b1282c63671",
+      "manifest_path": "/var/lib/die/workspaces/PRODSEED000037/final/final-artifact.json",
+      "final_path": "/var/lib/die/workspaces/PRODSEED000037/final/asset.png",
+      "mime": "image/png",
+      "magic": "PNG image data, 6144 x 4096, 8-bit/color RGBA, non-interlaced",
+      "dimensions": [
+        6144,
+        4096
+      ],
+      "bytes": 23132843,
+      "sha256": "3bef44414de3f55d9c5667b9f2bf3e49585d2affd5e0008f784b27479b59e727"
     }
   ],
-  "blocker": {
-    "code": "CREDENTIAL_OR_LOGIN_REQUIRED",
-    "detail": "The Architect MCP service user has no authenticated read-only Linux access path in this scheduled context. Bypassing SSH host/auth protections or fabricating inventory from historical receipts is prohibited.",
-    "resume_condition": "Provide an approved bounded read-only Linux evidence path to the scheduled Architect context, or publish an equivalent current five-master inventory receipt through an authorized operator. No provider/browser credentials are required or permitted."
+  "cross_checks": {
+    "file_exists": true,
+    "manifest_vs_observed_sha256": "5/5 MATCH",
+    "manifest_vs_observed_bytes": "5/5 MATCH",
+    "manifest_vs_observed_dimensions": "5/5 MATCH",
+    "mime_magic": "5/5 PNG image/png",
+    "files_modified": false
   },
   "authority": {
-    "provider_action": false,
-    "account_action": false,
-    "credential_read": false,
-    "spend": false,
-    "marketplace_action": false,
-    "production_runtime_mutation": false
-  },
-  "graph_disposition": {
-    "FA-001": "WAITING_OPERATOR",
-    "advance_downstream_from_FA-001": false,
-    "independent_linux_work_may_continue": true,
-    "next_ready_linux_task": "FA-003"
+    "linux_mutation_performed": false,
+    "service_action_performed": false,
+    "credential_copy_performed": false
   }
 }

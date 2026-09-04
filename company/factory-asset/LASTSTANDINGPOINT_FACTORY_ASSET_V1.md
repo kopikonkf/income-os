@@ -376,3 +376,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Raster derivative worker, deterministic PDF/preview packaging, color/alpha/DPI/metadata policy, derivative QA, native SVG/EPS exporter, gated trace fallback and dry-run package composer are complete.
 - Full Factory regression: 224/224 PASS.
 - `FA-029` remains BLOCKED because `FA-001` Linux five-master inventory is still WAITING_OPERATOR/read-only evidence gated.
+
+
+### FA-001 — DONE / PASS — five current Linux production masters inventoried read-only
+- Five newest final production manifests were cross-checked against actual files: exact path, PNG magic/MIME, 6144x4096 dimensions, bytes and SHA-256 all match 5/5.
+- Job/blueprint lineage is recorded. No Linux file, service, queue or state was modified.
+- `FA-029` is READY.

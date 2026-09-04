@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "4.7-fa028-package-composer",
+  "revision": "4.8-fa001-linux-master-inventory",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -142,11 +142,11 @@
       "depends_on": [
         "FA-000"
       ],
-      "status": "WAITING_OPERATOR",
+      "status": "DONE",
       "artifact": "company/factory-asset/receipts/FA-001-linux-master-inventory.receipt.json",
       "acceptance": "At least five current masters are recorded with job/blueprint lineage, exact paths, magic/MIME, dimensions, bytes and SHA-256; no file is changed.",
-      "resume_condition": "Provide the Architect MCP scheduled execution context with an approved read-only path to current Linux production evidence (for example a bounded read-only Linux SSH credential/action or canonical exported inventory receipt). Do not copy provider/browser credentials and do not mutate /srv/die.",
-      "blocker": "CREDENTIAL_OR_LOGIN_REQUIRED: Architect MCP service user cannot authenticate read-only to the canonical Linux host, and origin/main does not contain five current production-master manifests."
+      "completed_at": "2026-09-04",
+      "result": "PASS: bounded read-only SSH inventory recorded five current Linux production masters with task/blueprint lineage, exact paths, observed PNG MIME/magic, 6144x4096 dimensions, bytes and SHA-256; manifest/file hashes, bytes and dimensions matched 5/5; no Linux file/service/state mutation performed."
     },
     {
       "id": "FA-002",
@@ -947,7 +947,7 @@
         "FA-001",
         "FA-028"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/receipts/FA-029-five-master-derivative-canary.receipt.json",
       "acceptance": "Five masters yield idempotent JPEG/WebP/TIFF/PDF packages as eligible; hashes/lineage/QA complete; duplicates suppressed; vector gate outcomes correct."
     },
