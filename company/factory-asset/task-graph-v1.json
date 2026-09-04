@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "6.2-fa042-motion-codec-container-frame-qa",
+  "revision": "6.3-fa043-motion-engine-v0.1-acceptance",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1082,10 +1082,12 @@
       "depends_on": [
         "FA-042"
       ],
-      "status": "READY",
+      "status": "DONE",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-043-motion-engine-v0.1-acceptance.receipt.json",
-      "acceptance": "Deterministic render, resource bounds, cancellation, retry, cleanup, preview and compatibility evidence pass with zero false success."
+      "acceptance": "Deterministic render, resource bounds, cancellation, retry, cleanup, preview and compatibility evidence pass with zero false success.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: Motion Engine v0.1 accepted across FA-040/041/042 plus explicit bounded runtime, typed cancellation, retry, cleanup and zero-false-success hardening. Retry first attempt fails cleanly and second attempt reproduces the accepted MP4/preview hashes; retry output re-passes motion QA. Resource bounds pin 3840x2160 max, 3600 frames, 60s, 60 FPS, concurrency=1, 300s command timeout. Marketplace compatibility stays evidence-bounded."
     },
     {
       "id": "FA-050",

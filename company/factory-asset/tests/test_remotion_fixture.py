@@ -22,7 +22,7 @@ def test_remotion_runtime_versions_are_exact_and_install_script_allowlist_is_nar
 
 def test_worker_pins_contract_render_flags_and_atomic_cleanup_boundary():
     src=(FIX/'render-worker.mjs').read_text()
-    for marker in ('--codec=h264','--pixel-format=yuv420p','--image-format=png','--muted','--concurrency=1','browser', 'ensure', 'renameSync(temp, finalDir)', 'rmSync(temp, {recursive: true, force: true})'):
+    for marker in ('--codec=h264','--pixel-format=yuv420p','--image-format=png','--muted','--concurrency=','concurrency:1','browser', 'ensure', 'renameSync(temp, finalDir)', 'rmSync(temp, {recursive: true, force: true})'):
         assert marker in src
     assert 'OUTPUT_DIR_EXISTS' in src and 'INJECTED_FAILURE_BEFORE_RENDER' in src
 

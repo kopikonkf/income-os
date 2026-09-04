@@ -1,0 +1,204 @@
+{
+  "schema": "factory-asset.motion-engine-v0.1-acceptance-receipt.v1",
+  "task_id": "FA-043",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "component_receipts": [
+    "FA-040-motion-producer-contract.receipt.json",
+    "FA-041-remotion-motion-producer-fixture.receipt.json",
+    "FA-042-motion-codec-container-frame-qa.receipt.json"
+  ],
+  "engine": "REMOTION_MOTION_ENGINE_V0_1",
+  "producer_class": "MOTION_RENDERER",
+  "semantic_mode": "ANIMATION",
+  "native_representation": "TIMED_FRAMES",
+  "conversion_from_raster": false,
+  "reference_master": {
+    "sha256": "f37c9c41f6e7421ca1f09493061113ddc6f70b74628aef423999df2290e941ba",
+    "bytes": 104049,
+    "preview_sha256": "b11e110ef691918c1a6dd6ca93b9966bd5b8c6e89ecd9caa547e9f01734ef02a",
+    "preview_bytes": 31846
+  },
+  "determinism": {
+    "fa041_independent_binary_repeatability": "PASS",
+    "retry_success_master_sha_match": true,
+    "retry_success_preview_sha_match": true
+  },
+  "resource_bounds": {
+    "maxWidth": 3840,
+    "maxHeight": 2160,
+    "maxFrameCount": 3600,
+    "maxDurationSeconds": 60,
+    "maxFps": 60,
+    "concurrency": 1,
+    "commandTimeoutMs": 300000
+  },
+  "cancellation": {
+    "schema": "die.factory-asset.remotion-cancel-self-test.v1",
+    "result": "PASS",
+    "typed_receipt": "CANCELLED",
+    "temporary_entries_after_cancel": 0,
+    "partial_final_output": false,
+    "native_receipt": {
+      "schema": "die.factory-asset.native-producer.v1",
+      "kind": "RECEIPT",
+      "job_id": "FA041-REMOTION-001",
+      "idempotency_key": "b242892287755ca71e33420a77143e68a5f586aa18f35cf22939a41824e5c22d",
+      "producer_class": "MOTION_RENDERER",
+      "producer_version": "1.0.0",
+      "result": "CANCELLED",
+      "failure": {
+        "code": "CANCELLED",
+        "retryable": false,
+        "message": "cancelled before renderer dispatch"
+      },
+      "deterministic_receipt_sha256": "a9a64786aa8fad000753aee18deaaa492f3a24a71466d098266ff9f265d85d97"
+    }
+  },
+  "retry": {
+    "schema": "die.factory-asset.remotion-retry-self-test.v1",
+    "result": "PASS",
+    "first_attempt": "INJECTED_FAILURE",
+    "first_attempt_partial_output": false,
+    "temporary_entries_after_failure": 0,
+    "second_attempt": "PASS",
+    "master_sha256": "f37c9c41f6e7421ca1f09493061113ddc6f70b74628aef423999df2290e941ba",
+    "preview_sha256": "b11e110ef691918c1a6dd6ca93b9966bd5b8c6e89ecd9caa547e9f01734ef02a"
+  },
+  "cleanup": {
+    "schema": "die.factory-asset.remotion-cleanup-self-test.v1",
+    "result": "PASS",
+    "injected_failure_observed": true,
+    "temporary_entries_after_failure": 0,
+    "partial_final_output": false
+  },
+  "retry_output_motion_qa": {
+    "schema": "die.factory-asset.motion-qa.v1",
+    "result": "PASS",
+    "failures": [],
+    "technical": {
+      "container_magic_mp4": true,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 1080,
+      "height": 1080,
+      "fps": 30.0,
+      "frame_count": 180,
+      "duration_seconds": 6.0,
+      "video_stream_count": 1,
+      "audio_stream_count": 0,
+      "sha256": "f37c9c41f6e7421ca1f09493061113ddc6f70b74628aef423999df2290e941ba",
+      "bytes": 104049
+    },
+    "visual": {
+      "sample_indices": [
+        0,
+        45,
+        90,
+        135,
+        179
+      ],
+      "sample_count": 5,
+      "samples": [
+        {
+          "frame": 0,
+          "timestamp_seconds": 0.0,
+          "stddev": 22.907488,
+          "mean": 249.799728,
+          "perceptual_sha256": "2a086e26819becc571e2be69434a42f8d1dbfb6ec8b588d9db2093fddee5e108"
+        },
+        {
+          "frame": 45,
+          "timestamp_seconds": 1.5,
+          "stddev": 22.896132,
+          "mean": 249.807053,
+          "perceptual_sha256": "592cb6891e6f07db4f2224b406dd4503d5394909689aba313d66961ffa9aec30"
+        },
+        {
+          "frame": 90,
+          "timestamp_seconds": 3.0,
+          "stddev": 23.044878,
+          "mean": 249.797119,
+          "perceptual_sha256": "43bcbd45aec597e296d4066932e88ba5090c6875f2ce9636dae71b83c692cfb6"
+        },
+        {
+          "frame": 135,
+          "timestamp_seconds": 4.5,
+          "stddev": 22.945923,
+          "mean": 249.805496,
+          "perceptual_sha256": "5a6a1f5395ae49f1b6a22af6effdf46b63582f370b26ec990904bfc95e3cbc80"
+        },
+        {
+          "frame": 179,
+          "timestamp_seconds": 5.966666667,
+          "stddev": 22.880388,
+          "mean": 249.804367,
+          "perceptual_sha256": "8cde6395ca8dd10f05a9b295e79fa36e8882da61054f0816ccea4326988bacc3"
+        }
+      ],
+      "blank_sample_count": 0,
+      "all_samples_blank": false,
+      "distinct_perceptual_samples": 5,
+      "max_pairwise_mae": 7.527506,
+      "frozen": false
+    }
+  },
+  "compatibility": {
+    "ADOBE_STOCK": {
+      "state": "COMPATIBLE",
+      "reason": "PINNED_PROFILE_MATCH"
+    },
+    "DREAMSTIME": {
+      "state": "UNKNOWN",
+      "reason": "PROFILE_STATE_COMPATIBILITY_UNKNOWN"
+    },
+    "VECTEEZY": {
+      "state": "UNKNOWN",
+      "reason": "PROFILE_STATE_COMPATIBILITY_UNKNOWN"
+    },
+    "MOTIONELEMENTS": {
+      "state": "UNKNOWN",
+      "reason": "NO_EXACT_PINNED_VIDEO_MATCH"
+    }
+  },
+  "adversarial_qa": {
+    "positive_contract_match": "PASS",
+    "positive_sampled_visual_integrity": "PASS",
+    "mislabeled_rejected": "PASS",
+    "truncated_rejected": "PASS",
+    "blank_rejected": "PASS",
+    "frozen_rejected": "PASS",
+    "adobe_stock_pinned_mp4_h264_profile": "COMPATIBLE",
+    "unknown_profiles_not_promoted": true,
+    "false_success_count": 0
+  },
+  "zero_false_success": true,
+  "authority": {
+    "provider_generation": false,
+    "credential_access": false,
+    "browser_profile_ownership": false,
+    "marketplace_upload": false,
+    "publication": false,
+    "spend_usd": 0
+  },
+  "licensing_scope": {
+    "use": "LOCAL_ACCEPTANCE_ENGINE_V0_1",
+    "production_automation_license_asserted": false
+  },
+  "acceptance": {
+    "deterministic_render": "PASS",
+    "resource_bounds": "PASS",
+    "cancellation": "PASS",
+    "retry": "PASS",
+    "cleanup": "PASS",
+    "preview": "PASS",
+    "codec_container_frame_duration": "PASS",
+    "sampled_visual_integrity": "PASS",
+    "marketplace_compatibility_evidence": "PASS_FAIL_CLOSED",
+    "zero_false_success": "PASS"
+  },
+  "unblocked": [
+    "FA-133"
+  ]
+}
