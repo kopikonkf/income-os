@@ -9,6 +9,7 @@ MUXIA_WORKER_SRC="$DIE_HOME/company/muxia/scripts/linux/die-muxia-dispatch-worke
 MUXIA_UNIT_SRC="$DIE_HOME/company/muxia/scripts/linux/die-muxia-dispatch.service"; MUXIA_UNIT_DST="/etc/systemd/system/die-muxia-dispatch.service"
 [[ ${EUID:-$(id -u)} -eq 0 ]] || { echo E_ROOT_REQUIRED >&2; exit 2; }
 [[ -x "$HERMES_BIN" && -f "$SRC/production_runtime_tick.py" && -f "$SRC/production_runtime_tick.sh" && -f "$SRC/factory_orchestration_v2.py" && -f "$DIE_HOME/company/muxia/scripts/linux/muxia-chatgpt-image.mjs" && -f "$MUXIA_DISPATCH_SRC" && -f "$MUXIA_WORKER_SRC" && -f "$MUXIA_UNIT_SRC" ]] || { echo E_RUNTIME_SOURCE >&2; exit 2; }
+install -d -o root -g die-runtime -m 2770 "$DIE_STATE_ROOT/workspaces"
 install -d -o die-hermes -g die-runtime -m 2770 "$DEST" "$DIE_STATE_ROOT/state/production-runtime"
 install -o die-hermes -g die-runtime -m 0750 "$SRC/production_runtime_tick.py" "$DEST/production_runtime_tick.py"
 install -o die-hermes -g die-runtime -m 0640 "$SRC/factory_orchestration_v2.py" "$DEST/factory_orchestration_v2.py"

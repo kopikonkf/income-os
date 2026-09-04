@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import datetime as dt, fcntl, hashlib, json, os, shutil, subprocess, sys, time
+import datetime as dt, fcntl, grp, hashlib, json, os, shutil, subprocess, sys, time
 from pathlib import Path
 HERE=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(HERE))
@@ -13,6 +13,18 @@ WORKER_DISPATCH=HERE/'worker_dispatch.py'; WORKER_RUNNER=Path('/srv/die/company/
 UPSCALE=Path('/srv/die/bridge/income_os_bridge/asset_upscale.py'); UPSCALE_POLICY=Path('/srv/die/company/atlas/object-centric/object-asset-engine/source/scripts/postprocess/upscale-policy.v1.json')
 MUXIA_QUEUE=Path('/var/lib/die/state/muxia-dispatch')
 LOCK=Path('/var/lib/die/state/production-runtime/tick.lock')
+DIE_GROUP='die-runtime'
+
+def ensure_shared_workspace(w:Path)->Path:
+ gid=grp.getgrnam(DIE_GROUP).gr_gid
+ st=w.stat()
+ if st.st_gid!=gid:raise RuntimeError(f'E_WORKSPACE_GROUP:{w}:{st.st_gid}!={gid}')
+ os.chmod(w,0o2770)
+ provider=w/'provider';provider.mkdir(mode=0o2770,parents=False,exist_ok=True)
+ pst=provider.stat()
+ if pst.st_gid!=gid:raise RuntimeError(f'E_PROVIDER_GROUP:{provider}:{pst.st_gid}!={gid}')
+ os.chmod(provider,0o2770)
+ return provider
 
 def now():return dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds').replace('+00:00','Z')
 def csha(v):return hashlib.sha256(json.dumps(v,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
@@ -30,7 +42,7 @@ def start_seed()->dict:
  s=select_seed(DB,WORKSPACES)
  if s['status']!='SELECTED':return {'status':'IDLE','reason':s['status']}
  seed=s['seed'];task='PROD'+seed['id'].replace('-','')
- w=WORKSPACES/task;w.mkdir(parents=True,exist_ok=False)
+ w=WORKSPACES/task;w.mkdir(mode=0o2770,parents=True,exist_ok=False);ensure_shared_workspace(w)
  fam=f"{seed['category_path']} (object_class: {seed['object_class']})"
  write_progress(w,[f"Seed: {seed['id']} ({seed['canonical_name']})",f"Family: {fam}",'State: BLUEPRINT_REQUIRED','Blueprint status: REQUIRED','Intended provider: MUXIA (chatgpt-linux-a)',f'Started: {now()}','Next action: Production cognition line authors/reviews fixed Blueprint.'])
  factory_v2.telegram_event(w,'PRODUCTION_STARTED',{'seed':seed['canonical_name'],'seed_id':seed['id'],'family':fam,'blueprint':'REQUIRED','provider':'MUXIA/chatgpt-linux-a'},send)
@@ -52,6 +64,7 @@ def build_worker(w:Path,bp:dict,lock:dict):
  if rec.get('accepted_status')!='done':raise RuntimeError('E_WORKER_ACCEPTANCE')
 
 def generate(w:Path)->dict:
+ ensure_shared_workspace(w)
  bp=json.loads((w/'blueprint.json').read_text());lock=json.loads((w/'blueprint.lock.json').read_text());build_worker(w,bp,lock)
  req={'schema':'die.muxia-dispatch-request.v1','task_id':w.name,'blueprint_sha256':lock['blueprint_sha256']}
  reqdir=MUXIA_QUEUE/'requests';resdir=MUXIA_QUEUE/'results';reqdir.mkdir(parents=True,exist_ok=True);resdir.mkdir(parents=True,exist_ok=True)

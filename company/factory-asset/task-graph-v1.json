@@ -2197,6 +2197,19 @@
       "status": "READY",
       "artifact": "Author/revision-specific E_CONTEXT_CONVERGENCE retry and legacy state repair for production cognition",
       "acceptance": "A delivered blocked Division01 AUTHOR/REVISION request retries with a fresh author request ID and never enters NEED_REVIEW unless blueprint.author.json exists; already-corrupted NEED_REVIEW state is repaired from durable history; Executive review retry remains separate; live PRODSEED000035 tree escapes the failure streak and advances without synthetic artifacts or lineage loss."
+    },
+    {
+      "id": "FA-140C",
+      "phase": 4,
+      "track": "FACTORY_ORCHESTRATION",
+      "priority": 69,
+      "title": "Repair shared workspace permissions for MUXIA export handoff",
+      "depends_on": [
+        "FA-140B"
+      ],
+      "status": "READY",
+      "artifact": "Self-healing die-runtime workspace/provider permission contract before MUXIA export",
+      "acceptance": "Every new production workspace and provider handoff directory is die-runtime-group writable/setgid (2770); existing active cards are repaired before MUXIA dispatch; wrong group fails closed; a failed E_EXPORT card reuses verified private MUXIA artifact and reaches ARTIFACT_CREATED without compensating seed or duplicate semantic asset."
     }
   ],
   "windows_oauth_proof_levels": {
