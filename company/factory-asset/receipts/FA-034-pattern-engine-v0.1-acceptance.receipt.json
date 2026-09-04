@@ -1,0 +1,306 @@
+{
+  "schema": "die.factory-asset.fa-034-acceptance.v1",
+  "task_id": "FA-034",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-04T09:00:33.567108+00:00",
+  "execution": {
+    "lane": "CODEX_LINUX",
+    "transport": "DIRECT_CODEX_SSH",
+    "worktree": "/home/kopiko/die-worktrees/fa034-129-131-20260904",
+    "branch": "codex/fa034-129-131-20260904",
+    "python": "3.12.3",
+    "initial_base_sha": "21cb61d203ec53fc78c6e5e968983777d2004fd0",
+    "integrated_base_sha": "40fbba425f9c051cdee664dd5e17766847de7a3e"
+  },
+  "validation": {
+    "targeted": "56 passed in 1.82s",
+    "factory_regression": "416 passed, 1 warning in 10.70s",
+    "one_canon_tests": "6 passed in 1.45s",
+    "one_canon_validator": "11/11 PASS",
+    "command_evidence": "company/factory-asset/receipts/FA-034-129-131-linux-validation.json"
+  },
+  "acceptance": {
+    "fixtures": [
+      {
+        "fixture": "shopping-bag-neutral-diamonds",
+        "acceptance": {
+          "schema": "die.factory-asset.pattern-engine-fixture-acceptance.v1",
+          "result": "PASS",
+          "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+          "native_receipt": {
+            "schema": "die.factory-asset.native-producer.v1",
+            "kind": "RECEIPT",
+            "job_id": "FA032-PATTERN-001",
+            "idempotency_key": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "producer_class": "PROCEDURAL_VECTOR",
+            "producer_version": "1.0.0",
+            "result": "PASS",
+            "master": {
+              "format": "SVG",
+              "sha256": "31f460f0424eea26d3ff85ce9e1e41520f986f9699b74d8d328623c679310c9b",
+              "bytes": 739,
+              "native_editable": true,
+              "generated_by_native_producer": true,
+              "conversion_from_raster": false,
+              "lineage_sha256_required": true
+            },
+            "deterministic_receipt_sha256": "e51c4861310ac3315169cfa90bc66533426a4f50395c5ed5c5a96ff117ef7d6a"
+          },
+          "qa": {
+            "schema": "die.factory-asset.pattern-qa.v1",
+            "result": "PASS",
+            "checks": {
+              "lineage": "PASS",
+              "editable_paths": "PASS",
+              "tile_bounds": "PASS",
+              "seams": "PASS",
+              "renderability": "PASS",
+              "preview_consistency": "PASS"
+            },
+            "failures": [],
+            "compatibility": {
+              "scope": "FA032_PATTERN_TILE",
+              "state": "COMPATIBLE"
+            },
+            "marketplace_compatibility": "COMPATIBILITY_UNKNOWN",
+            "semantic_identity_effect": "NONE",
+            "input": {
+              "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+              "job_id": "FA032-PATTERN-001",
+              "master_sha256": "31f460f0424eea26d3ff85ce9e1e41520f986f9699b74d8d328623c679310c9b",
+              "preview_sha256": "d0056ec0a82fda62084b2aebe5b2517c6b4b823e934d585cd4ebc8ad8de6554c"
+            }
+          },
+          "regeneration": "BYTE_IDENTICAL",
+          "sources_unchanged": true,
+          "master_sha256": "31f460f0424eea26d3ff85ce9e1e41520f986f9699b74d8d328623c679310c9b",
+          "preview_sha256": "d0056ec0a82fda62084b2aebe5b2517c6b4b823e934d585cd4ebc8ad8de6554c",
+          "identity_transition": {
+            "schema": "die.factory-asset.asset-identity-transition.v1",
+            "transition": "PACKAGING_VARIANT",
+            "before": {
+              "blueprint_id": "FABP-SHOPPING_BAG_PATTERN",
+              "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+              "semantic_fingerprint": "a5b59aee17f23224aa3eeca8fca95ed92521bb6083548949c6d5146852a9a69b",
+              "packaging_fingerprint": "55cd19f27bd7fc205e250f89aef18c6ef2554a3527de0406f60b85c9bbea04e6"
+            },
+            "after": {
+              "blueprint_id": "FABP-SHOPPING_BAG_PATTERN",
+              "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+              "semantic_fingerprint": "a5b59aee17f23224aa3eeca8fca95ed92521bb6083548949c6d5146852a9a69b",
+              "packaging_fingerprint": "9601f6008d9ee8a7edd69a4117fa13110c3721f0f74b8b8978ad7418925910b3"
+            },
+            "packaging_variants_create_new_semantic_asset": false
+          },
+          "package_manifest": {
+            "compatibility_receipt_ref": "../compatibility.json",
+            "deliverables": [
+              {
+                "bytes": 739,
+                "compatibility_state": "COMPATIBLE",
+                "derivative_id": "SVG_DELIVERY",
+                "format": "SVG",
+                "package_path": "files/31f460f0424eea26d3ff85ce9e1e41520f986f9699b74d8d328623c679310c9b.svg",
+                "purpose": "MARKETPLACE_DELIVERY",
+                "receipt_ref": "../compatibility.json",
+                "recipe_id": "FA034_INTERNAL_ACCEPTANCE",
+                "sha256": "31f460f0424eea26d3ff85ce9e1e41520f986f9699b74d8d328623c679310c9b"
+              },
+              {
+                "bytes": 4089,
+                "compatibility_state": "COMPATIBLE",
+                "derivative_id": "TILED_PREVIEW",
+                "format": "PNG",
+                "package_path": "files/d0056ec0a82fda62084b2aebe5b2517c6b4b823e934d585cd4ebc8ad8de6554c.png",
+                "purpose": "PREVIEW",
+                "receipt_ref": "../compatibility.json",
+                "recipe_id": "FA034_INTERNAL_ACCEPTANCE",
+                "sha256": "d0056ec0a82fda62084b2aebe5b2517c6b4b823e934d585cd4ebc8ad8de6554c"
+              }
+            ],
+            "master_sha256": "31f460f0424eea26d3ff85ce9e1e41520f986f9699b74d8d328623c679310c9b",
+            "metadata_ref": "../metadata.json",
+            "publication_action": "NONE",
+            "rights_ref": "../rights.json",
+            "schema": "die.factory-asset.marketplace-dry-run-package.v1",
+            "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+            "upload_action": "NONE"
+          },
+          "package": {
+            "schema": "die.factory-asset.marketplace-dry-run-package-receipt.v1",
+            "result": "PASS",
+            "manifest_sha256": "11ceba6ecc2455cb67878a66876710afff1ed46ff28d600b9d212f48fc9f771c",
+            "file_count": 2,
+            "unique_file_count": 2,
+            "manifest_entry_count": 2,
+            "semantic_asset_count": 1,
+            "derivative_count": 2,
+            "publication_action": "NONE",
+            "upload_action": "NONE"
+          },
+          "compatibility_scope": "FA034_INTERNAL_PACKAGE",
+          "marketplace_compatibility": "COMPATIBILITY_UNKNOWN"
+        }
+      },
+      {
+        "fixture": "retail-blue-diamonds",
+        "acceptance": {
+          "schema": "die.factory-asset.pattern-engine-fixture-acceptance.v1",
+          "result": "PASS",
+          "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+          "native_receipt": {
+            "schema": "die.factory-asset.native-producer.v1",
+            "kind": "RECEIPT",
+            "job_id": "FA032-PATTERN-002",
+            "idempotency_key": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "producer_class": "PROCEDURAL_VECTOR",
+            "producer_version": "1.0.0",
+            "result": "PASS",
+            "master": {
+              "format": "SVG",
+              "sha256": "e6801cf9904703004c79165e8cb8e6f3edc12408cc09ab64cfe8283255a23eac",
+              "bytes": 560,
+              "native_editable": true,
+              "generated_by_native_producer": true,
+              "conversion_from_raster": false,
+              "lineage_sha256_required": true
+            },
+            "deterministic_receipt_sha256": "d184b33c944a398f6ec4b158f14aa238b8bce0fe32d5d13857bc6cf16ea44dbb"
+          },
+          "qa": {
+            "schema": "die.factory-asset.pattern-qa.v1",
+            "result": "PASS",
+            "checks": {
+              "lineage": "PASS",
+              "editable_paths": "PASS",
+              "tile_bounds": "PASS",
+              "seams": "PASS",
+              "renderability": "PASS",
+              "preview_consistency": "PASS"
+            },
+            "failures": [],
+            "compatibility": {
+              "scope": "FA032_PATTERN_TILE",
+              "state": "COMPATIBLE"
+            },
+            "marketplace_compatibility": "COMPATIBILITY_UNKNOWN",
+            "semantic_identity_effect": "NONE",
+            "input": {
+              "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+              "job_id": "FA032-PATTERN-002",
+              "master_sha256": "e6801cf9904703004c79165e8cb8e6f3edc12408cc09ab64cfe8283255a23eac",
+              "preview_sha256": "c7579c3a68d1fc84c455889c7e7293ee08d8c67f5cb52787a54607ddfabd04f6"
+            }
+          },
+          "regeneration": "BYTE_IDENTICAL",
+          "sources_unchanged": true,
+          "master_sha256": "e6801cf9904703004c79165e8cb8e6f3edc12408cc09ab64cfe8283255a23eac",
+          "preview_sha256": "c7579c3a68d1fc84c455889c7e7293ee08d8c67f5cb52787a54607ddfabd04f6",
+          "identity_transition": {
+            "schema": "die.factory-asset.asset-identity-transition.v1",
+            "transition": "PACKAGING_VARIANT",
+            "before": {
+              "blueprint_id": "FABP-SHOPPING_BAG_PATTERN",
+              "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+              "semantic_fingerprint": "a5b59aee17f23224aa3eeca8fca95ed92521bb6083548949c6d5146852a9a69b",
+              "packaging_fingerprint": "55cd19f27bd7fc205e250f89aef18c6ef2554a3527de0406f60b85c9bbea04e6"
+            },
+            "after": {
+              "blueprint_id": "FABP-SHOPPING_BAG_PATTERN",
+              "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+              "semantic_fingerprint": "a5b59aee17f23224aa3eeca8fca95ed92521bb6083548949c6d5146852a9a69b",
+              "packaging_fingerprint": "9601f6008d9ee8a7edd69a4117fa13110c3721f0f74b8b8978ad7418925910b3"
+            },
+            "packaging_variants_create_new_semantic_asset": false
+          },
+          "package_manifest": {
+            "compatibility_receipt_ref": "../compatibility.json",
+            "deliverables": [
+              {
+                "bytes": 560,
+                "compatibility_state": "COMPATIBLE",
+                "derivative_id": "SVG_DELIVERY",
+                "format": "SVG",
+                "package_path": "files/e6801cf9904703004c79165e8cb8e6f3edc12408cc09ab64cfe8283255a23eac.svg",
+                "purpose": "MARKETPLACE_DELIVERY",
+                "receipt_ref": "../compatibility.json",
+                "recipe_id": "FA034_INTERNAL_ACCEPTANCE",
+                "sha256": "e6801cf9904703004c79165e8cb8e6f3edc12408cc09ab64cfe8283255a23eac"
+              },
+              {
+                "bytes": 3947,
+                "compatibility_state": "COMPATIBLE",
+                "derivative_id": "TILED_PREVIEW",
+                "format": "PNG",
+                "package_path": "files/c7579c3a68d1fc84c455889c7e7293ee08d8c67f5cb52787a54607ddfabd04f6.png",
+                "purpose": "PREVIEW",
+                "receipt_ref": "../compatibility.json",
+                "recipe_id": "FA034_INTERNAL_ACCEPTANCE",
+                "sha256": "c7579c3a68d1fc84c455889c7e7293ee08d8c67f5cb52787a54607ddfabd04f6"
+              }
+            ],
+            "master_sha256": "e6801cf9904703004c79165e8cb8e6f3edc12408cc09ab64cfe8283255a23eac",
+            "metadata_ref": "../metadata.json",
+            "publication_action": "NONE",
+            "rights_ref": "../rights.json",
+            "schema": "die.factory-asset.marketplace-dry-run-package.v1",
+            "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+            "upload_action": "NONE"
+          },
+          "package": {
+            "schema": "die.factory-asset.marketplace-dry-run-package-receipt.v1",
+            "result": "PASS",
+            "manifest_sha256": "5479b8d9682835f945ae95235cc8714e87af78025ba5030441466d63e19f7ce3",
+            "file_count": 2,
+            "unique_file_count": 2,
+            "manifest_entry_count": 2,
+            "semantic_asset_count": 1,
+            "derivative_count": 2,
+            "publication_action": "NONE",
+            "upload_action": "NONE"
+          },
+          "compatibility_scope": "FA034_INTERNAL_PACKAGE",
+          "marketplace_compatibility": "COMPATIBILITY_UNKNOWN"
+        }
+      }
+    ],
+    "compatibility_scope": "FA034_INTERNAL_PACKAGE",
+    "marketplace_compatibility": "COMPATIBILITY_UNKNOWN",
+    "derivative_formats": [
+      "SVG",
+      "PNG"
+    ],
+    "known_exclusion": "Existing EPS exporter loses fill colors; EPS is not certified by this acceptance.",
+    "semantic_asset_count_across_seed_color_fixtures": 1
+  },
+  "artifacts": [
+    {
+      "path": "company/factory-asset/lib/pattern_engine_acceptance.py",
+      "sha256": "460ce95529fc2d028110bfe05c96660f0490366518aed73335743dc46ca21f2b"
+    },
+    {
+      "path": "company/factory-asset/bin/run_pattern_engine_acceptance.py",
+      "sha256": "93ae464cdda6105b498ae28ab515155443e73aafdc7cf3cfa3faa17624745d22"
+    },
+    {
+      "path": "company/factory-asset/tests/test_pattern_engine_acceptance.py",
+      "sha256": "f7e330be7b6eb23555360e08d2fbffb53e6ef78cb2d681d5dd9470da12a76b4a"
+    },
+    {
+      "path": "company/factory-asset/PROCEDURAL_PATTERN_ENGINE_V0_1.md",
+      "sha256": "03bfc9b323071162abd19ad5b19fa06dfea423cad013838fefa07c33e91dec06"
+    }
+  ],
+  "authority": {
+    "production_mutation": false,
+    "provider_call": false,
+    "credential_access": false,
+    "marketplace_publication": false,
+    "spend_usd": 0
+  },
+  "graph_delta": {
+    "FA-034": "READY -> DONE"
+  }
+}

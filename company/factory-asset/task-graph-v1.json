@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "6.3-fa043-motion-engine-v0.1-acceptance",
+  "revision": "6.4-fa034-fa129-fa131-linux-acceptance",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1023,10 +1023,11 @@
       "depends_on": [
         "FA-033"
       ],
-      "status": "READY",
+      "status": "DONE",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-034-pattern-engine-v0.1-acceptance.receipt.json",
-      "acceptance": "Positive and negative fixtures pass, regeneration is deterministic, outputs remain editable and packaging derivatives do not mint new semantic assets."
+      "acceptance": "Positive and negative fixtures pass, regeneration is deterministic, outputs remain editable and packaging derivatives do not mint new semantic assets.",
+      "completion_receipt": "company/factory-asset/receipts/FA-034-pattern-engine-v0.1-acceptance.receipt.json"
     },
     {
       "id": "FA-040",
@@ -1963,9 +1964,10 @@
       "depends_on": [
         "FA-019"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/schemas/asset-expression-plan.schema.json and decision fixtures",
-      "acceptance": "A seed noun may yield zero, one or multiple evidence-supported semantic asset expressions. The contract separates semantic expansion from packaging derivatives, pins buyer/use-case/product expression, semantic mode, producer class and candidate marketplace route, and forbids forced one-seed-to-all-modes expansion."
+      "acceptance": "A seed noun may yield zero, one or multiple evidence-supported semantic asset expressions. The contract separates semantic expansion from packaging derivatives, pins buyer/use-case/product expression, semantic mode, producer class and candidate marketplace route, and forbids forced one-seed-to-all-modes expansion.",
+      "completion_receipt": "company/factory-asset/receipts/FA-129-asset-expression-plan.receipt.json"
     },
     {
       "id": "FA-130",
@@ -1977,7 +1979,7 @@
         "FA-129",
         "FA-040"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Motion eligibility scorer/gate with temporal-verb and buyer-utility fixtures",
       "acceptance": "Motion eligibility is evaluated from noun x product expression x temporal verb x buyer utility, not noun alone. Gate emits STATIC_ONLY|MOTION_ELIGIBLE|RESEARCH|REJECT, requires meaningful visual change over time, and prevents automatic animation of every static asset."
     },
@@ -1991,9 +1993,10 @@
         "FA-100",
         "FA-106"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Provider-original intake module and JPEG/PNG/WebP/TIFF fixtures",
-      "acceptance": "Exact provider-original bytes are immutable and hash-pinned. Intake derives actual magic/MIME, dimensions, alpha and byte size without assuming a provider always returns PNG or JPEG, rejects extension/content mismatch, and creates normalized master-intake evidence without relabeling or lossy overwrite."
+      "acceptance": "Exact provider-original bytes are immutable and hash-pinned. Intake derives actual magic/MIME, dimensions, alpha and byte size without assuming a provider always returns PNG or JPEG, rejects extension/content mismatch, and creates normalized master-intake evidence without relabeling or lossy overwrite.",
+      "completion_receipt": "company/factory-asset/receipts/FA-131-provider-original-intake.receipt.json"
     },
     {
       "id": "FA-132",
@@ -2006,7 +2009,7 @@
         "FA-030",
         "FA-131"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Derivative planning engine using master properties plus marketplace delivery profiles",
       "acceptance": "Planner selects only required JPEG/PNG/WebP/TIFF/PDF/vector derivatives for each marketplace/package route, preserves provider original lineage, requires explicit alpha flattening for JPEG, distinguishes opaque PNG from real transparent PNG, never inflates semantic asset count and suppresses duplicate delivery variants."
     },
@@ -2022,7 +2025,7 @@
         "FA-109",
         "FA-129"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Registry-driven producer router for provider raster, procedural vector/pattern and motion renderer classes",
       "acceptance": "Frozen Blueprint expression selects exactly one governed master producer class. PHOTO/ISOLATED_OBJECT raster routes use provider generation, PATTERN/native vector routes use native producers, ANIMATION uses motion producer, unknown modes fail closed, and motion/pattern are never implemented as post-hoc conversion of an unrelated static master."
     },
@@ -2036,7 +2039,7 @@
         "FA-019",
         "FA-129"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Cognition-routing policy and fixtures for blueprint reuse, authoring, challenge and revision",
       "acceptance": "Hermes reuses a compatible fixed Blueprint without repeated cognition; Division01 is invoked only for missing/stale/materially revised semantics; Executive is invoked only for new family promotion, material strategic challenge or escalation. Neither actor becomes a per-image gate or gains worker/provider authority."
     },
@@ -2049,7 +2052,7 @@
       "depends_on": [
         "FA-131"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "OS-neutral upscale/recovery decision and adapter contract with lineage receipts",
       "acceptance": "Upscale/recovery is invoked only when master dimensions/quality fail the selected route requirement; native-sufficient outputs skip it. Original bytes remain immutable, source/final hashes and dimensions are preserved, reruns are idempotent and failures never replace a valid master with partial output."
     },
@@ -2063,7 +2066,7 @@
         "FA-019",
         "FA-131"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Automated rights-risk signal gate with logo/trademark/text/watermark fixtures and typed review outcomes",
       "acceptance": "Automated checks emit PASS|REVIEW_REQUIRED|BLOCK for observable brand/logo/trademark/text/watermark/safety signals against exact master hashes. Uncertainty never becomes human rights clearance; Founder retains final visual/IP decision at QC."
     },

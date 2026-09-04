@@ -1,0 +1,257 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "attempt_id",
+    "semantic_asset_id",
+    "blueprint_id",
+    "source_path",
+    "source_sha256",
+    "source_bytes",
+    "staged_blob_path",
+    "blob_reused",
+    "provider_original",
+    "ingestion_state",
+    "canonical_truth",
+    "state_manager_commit_required",
+    "state_manager_proposal"
+  ],
+  "properties": {
+    "schema": {
+      "const": "die.factory-asset.master-ingestion-attempt.v1"
+    },
+    "attempt_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$"
+    },
+    "semantic_asset_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "blueprint_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "source_bytes": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "staged_blob_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "blob_reused": {
+      "type": "boolean"
+    },
+    "provider_original": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "provider_id",
+        "source_filename",
+        "declared_mime_type",
+        "declared_mime_matches",
+        "sha256",
+        "media",
+        "byte_preservation",
+        "transformation",
+        "semantic_identity_effect"
+      ],
+      "properties": {
+        "schema": {
+          "const": "die.factory-asset.provider-original.v1"
+        },
+        "provider_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_filename": {
+          "type": "string",
+          "minLength": 1
+        },
+        "declared_mime_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "declared_mime_matches": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "media": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "format",
+            "mime_type",
+            "magic_hex",
+            "bytes",
+            "width_px",
+            "height_px",
+            "mode",
+            "frame_count",
+            "has_alpha_channel",
+            "has_transparency_metadata",
+            "has_transparency",
+            "alpha_min",
+            "alpha_max",
+            "extension",
+            "extension_content_match",
+            "decode_verified"
+          ],
+          "properties": {
+            "format": {
+              "enum": [
+                "JPEG",
+                "PNG",
+                "WEBP",
+                "TIFF"
+              ]
+            },
+            "mime_type": {
+              "enum": [
+                "image/jpeg",
+                "image/png",
+                "image/webp",
+                "image/tiff"
+              ]
+            },
+            "magic_hex": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{24}$"
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "width_px": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "height_px": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "mode": {
+              "type": "string",
+              "minLength": 1
+            },
+            "frame_count": {
+              "const": 1
+            },
+            "has_alpha_channel": {
+              "type": "boolean"
+            },
+            "has_transparency_metadata": {
+              "type": "boolean"
+            },
+            "has_transparency": {
+              "type": "boolean"
+            },
+            "alpha_min": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 255
+            },
+            "alpha_max": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 255
+            },
+            "extension": {
+              "type": "string"
+            },
+            "extension_content_match": {
+              "const": true
+            },
+            "decode_verified": {
+              "const": true
+            }
+          }
+        },
+        "byte_preservation": {
+          "const": "EXACT_COPY"
+        },
+        "transformation": {
+          "const": "NONE"
+        },
+        "semantic_identity_effect": {
+          "const": "NONE"
+        }
+      }
+    },
+    "ingestion_state": {
+      "const": "STAGED_NOT_CANONICAL"
+    },
+    "canonical_truth": {
+      "const": false
+    },
+    "state_manager_commit_required": {
+      "const": true
+    },
+    "state_manager_proposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "action",
+        "semantic_asset_id",
+        "blueprint_id",
+        "master_sha256",
+        "staged_blob_path",
+        "attempt_receipt_path",
+        "physical_writer_required"
+      ],
+      "properties": {
+        "schema": {
+          "const": "die.factory-asset.master-ingestion-proposal.v1"
+        },
+        "action": {
+          "const": "FACTORY_MASTER_INGEST"
+        },
+        "semantic_asset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blueprint_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "master_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "staged_blob_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attempt_receipt_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "physical_writer_required": {
+          "const": "DIE_STATE_MANAGER"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FA-131 provider-original master intake evidence"
+}

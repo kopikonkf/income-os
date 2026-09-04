@@ -1,0 +1,122 @@
+{
+  "schema": "die.factory-asset.asset-expression-plan.v1",
+  "plan_id": "FAEP-SHOPPING_BAG_MULTIPLE",
+  "seed": {
+    "seed_id": "shopping-bag-seed",
+    "noun": "shopping bag"
+  },
+  "decision": "SELECT",
+  "decision_rationale": "Three separate synthetic briefs support three distinct commercial products; no evidence supports icon, outline or isolated-object expansion.",
+  "policy": {
+    "expansion_rule": "EVIDENCE_SUPPORTED_ONLY",
+    "force_all_modes": false,
+    "packaging_variants_create_new_semantic_asset": false,
+    "derivative_planning_stage": "AFTER_VALIDATED_MASTER",
+    "submission_authority": "FOUNDER_CONTROLLED"
+  },
+  "evidence": [
+    {
+      "evidence_id": "fixture-photo",
+      "kind": "SYNTHETIC_FIXTURE",
+      "source_ref": "company/factory-asset/fixtures/asset-expression-plan/synthetic-evidence.json#photo",
+      "source_sha256": "fa0040053c8cb89bc8b6fd0637d258dbbccaef6c8aede27e06070010f6667de7",
+      "support": {
+        "seed_noun": "shopping bag",
+        "buyer": "Retail campaign designer",
+        "commercial_use_case": "Illustrate a reusable shopping promotion",
+        "product_expression": "Unbranded shopping bag lifestyle photograph",
+        "semantic_mode": "PHOTO",
+        "platform_id": "ADOBE_STOCK"
+      },
+      "rationale": "A retail campaign designer needs an unbranded shopping bag lifestyle photograph to illustrate a reusable shopping promotion in an Adobe Stock image search."
+    },
+    {
+      "evidence_id": "fixture-pattern",
+      "kind": "SYNTHETIC_FIXTURE",
+      "source_ref": "company/factory-asset/fixtures/asset-expression-plan/synthetic-evidence.json#pattern",
+      "source_sha256": "fa0040053c8cb89bc8b6fd0637d258dbbccaef6c8aede27e06070010f6667de7",
+      "support": {
+        "seed_noun": "shopping bag",
+        "buyer": "Gift-wrap designer",
+        "commercial_use_case": "Print reusable shopping motifs on retail wrapping paper",
+        "product_expression": "Seamless editable shopping bag motif pattern",
+        "semantic_mode": "PATTERN",
+        "platform_id": "ADOBE_STOCK"
+      },
+      "rationale": "A gift-wrap designer needs a seamless repeating shopping bag motif as editable artwork for retail wrapping paper, discoverable as an Adobe Stock vector."
+    },
+    {
+      "evidence_id": "fixture-animation",
+      "kind": "SYNTHETIC_FIXTURE",
+      "source_ref": "company/factory-asset/fixtures/asset-expression-plan/synthetic-evidence.json#animation",
+      "source_sha256": "fa0040053c8cb89bc8b6fd0637d258dbbccaef6c8aede27e06070010f6667de7",
+      "support": {
+        "seed_noun": "shopping bag",
+        "buyer": "Checkout experience designer",
+        "commercial_use_case": "Communicate successful order completion in checkout",
+        "product_expression": "Shopping bag filling and settling completion loop",
+        "semantic_mode": "ANIMATION",
+        "platform_id": "ADOBE_STOCK"
+      },
+      "rationale": "A checkout experience designer needs a shopping bag filling with purchases and settling to communicate successful order completion, discoverable as an Adobe Stock motion clip."
+    }
+  ],
+  "expressions": [
+    {
+      "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+      "buyer": "Retail campaign designer",
+      "commercial_use_case": "Illustrate a reusable shopping promotion",
+      "product_expression": "Unbranded shopping bag lifestyle photograph",
+      "semantic_mode": "PHOTO",
+      "producer_class": "RASTER_GENERATIVE",
+      "candidate_marketplace_route": {
+        "platform_id": "ADOBE_STOCK",
+        "listing_use": "Unbranded shopping bag lifestyle photograph",
+        "state": "CANDIDATE_REQUIRES_POLICY_CHECK"
+      },
+      "evidence_refs": [
+        "fixture-photo"
+      ],
+      "selection_rationale": "A retail campaign designer needs an unbranded shopping bag lifestyle photograph to illustrate a reusable shopping promotion in an Adobe Stock image search."
+    },
+    {
+      "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+      "buyer": "Gift-wrap designer",
+      "commercial_use_case": "Print reusable shopping motifs on retail wrapping paper",
+      "product_expression": "Seamless editable shopping bag motif pattern",
+      "semantic_mode": "PATTERN",
+      "producer_class": "PROCEDURAL_VECTOR",
+      "candidate_marketplace_route": {
+        "platform_id": "ADOBE_STOCK",
+        "listing_use": "Seamless editable shopping bag motif pattern",
+        "state": "CANDIDATE_REQUIRES_POLICY_CHECK"
+      },
+      "evidence_refs": [
+        "fixture-pattern"
+      ],
+      "selection_rationale": "A gift-wrap designer needs a seamless repeating shopping bag motif as editable artwork for retail wrapping paper, discoverable as an Adobe Stock vector."
+    },
+    {
+      "semantic_asset_id": "FASA-SHOPPING_BAG_ANIMATION",
+      "buyer": "Checkout experience designer",
+      "commercial_use_case": "Communicate successful order completion in checkout",
+      "product_expression": "Shopping bag filling and settling completion loop",
+      "semantic_mode": "ANIMATION",
+      "producer_class": "MOTION_RENDERER",
+      "candidate_marketplace_route": {
+        "platform_id": "ADOBE_STOCK",
+        "listing_use": "Shopping bag filling and settling completion loop",
+        "state": "CANDIDATE_REQUIRES_POLICY_CHECK"
+      },
+      "evidence_refs": [
+        "fixture-animation"
+      ],
+      "selection_rationale": "A checkout experience designer needs a shopping bag filling with purchases and settling to communicate successful order completion, discoverable as an Adobe Stock motion clip.",
+      "temporal_value": {
+        "temporal_verb": "fill and settle",
+        "visual_change": "Purchases enter the empty bag, then the filled bag settles.",
+        "buyer_utility": "The transition from empty to filled communicates a completed purchase."
+      }
+    }
+  ]
+}

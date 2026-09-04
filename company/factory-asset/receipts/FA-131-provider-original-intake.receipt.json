@@ -1,0 +1,557 @@
+{
+  "schema": "die.factory-asset.fa-131-acceptance.v1",
+  "task_id": "FA-131",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-04T09:00:33.567108+00:00",
+  "execution": {
+    "lane": "CODEX_LINUX",
+    "transport": "DIRECT_CODEX_SSH",
+    "worktree": "/home/kopiko/die-worktrees/fa034-129-131-20260904",
+    "branch": "codex/fa034-129-131-20260904",
+    "python": "3.12.3",
+    "initial_base_sha": "21cb61d203ec53fc78c6e5e968983777d2004fd0",
+    "integrated_base_sha": "40fbba425f9c051cdee664dd5e17766847de7a3e"
+  },
+  "validation": {
+    "targeted": "64 passed in 1.39s",
+    "factory_regression": "416 passed, 1 warning in 10.70s",
+    "one_canon_tests": "6 passed in 1.45s",
+    "one_canon_validator": "11/11 PASS",
+    "command_evidence": "company/factory-asset/receipts/FA-034-129-131-linux-validation.json"
+  },
+  "acceptance": {
+    "fixtures": [
+      {
+        "fixture": "opaque.jpg",
+        "receipt": {
+          "schema": "die.factory-asset.master-ingestion-attempt.v1",
+          "attempt_id": "fa131-0",
+          "semantic_asset_id": "FASA-SYNTHETIC_ORIGINAL",
+          "blueprint_id": "FABP-SYNTHETIC_ORIGINAL",
+          "source_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/company/factory-asset/fixtures/provider-original-v1/opaque.jpg",
+          "source_sha256": "382ce68622054511f1ce0e63a888b1fc4988bcc38fbccdcaa81b85fd1202db47",
+          "source_bytes": 633,
+          "staged_blob_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/blobs/sha256/38/382ce68622054511f1ce0e63a888b1fc4988bcc38fbccdcaa81b85fd1202db47",
+          "blob_reused": false,
+          "provider_original": {
+            "schema": "die.factory-asset.provider-original.v1",
+            "provider_id": "synthetic-fixture-provider",
+            "source_filename": "opaque.jpg",
+            "declared_mime_type": null,
+            "declared_mime_matches": null,
+            "sha256": "382ce68622054511f1ce0e63a888b1fc4988bcc38fbccdcaa81b85fd1202db47",
+            "media": {
+              "format": "JPEG",
+              "mime_type": "image/jpeg",
+              "magic_hex": "ffd8ffe000104a4649460001",
+              "bytes": 633,
+              "width_px": 12,
+              "height_px": 8,
+              "mode": "RGB",
+              "frame_count": 1,
+              "has_alpha_channel": false,
+              "has_transparency_metadata": false,
+              "has_transparency": false,
+              "alpha_min": 255,
+              "alpha_max": 255,
+              "extension": ".jpg",
+              "extension_content_match": true,
+              "decode_verified": true
+            },
+            "byte_preservation": "EXACT_COPY",
+            "transformation": "NONE",
+            "semantic_identity_effect": "NONE"
+          },
+          "ingestion_state": "STAGED_NOT_CANONICAL",
+          "canonical_truth": false,
+          "state_manager_commit_required": true,
+          "state_manager_proposal": {
+            "schema": "die.factory-asset.master-ingestion-proposal.v1",
+            "action": "FACTORY_MASTER_INGEST",
+            "semantic_asset_id": "FASA-SYNTHETIC_ORIGINAL",
+            "blueprint_id": "FABP-SYNTHETIC_ORIGINAL",
+            "master_sha256": "382ce68622054511f1ce0e63a888b1fc4988bcc38fbccdcaa81b85fd1202db47",
+            "staged_blob_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/blobs/sha256/38/382ce68622054511f1ce0e63a888b1fc4988bcc38fbccdcaa81b85fd1202db47",
+            "attempt_receipt_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/attempt-receipts/fa131-0.json",
+            "physical_writer_required": "DIE_STATE_MANAGER"
+          }
+        }
+      },
+      {
+        "fixture": "opaque.png",
+        "receipt": {
+          "schema": "die.factory-asset.master-ingestion-attempt.v1",
+          "attempt_id": "fa131-1",
+          "semantic_asset_id": "FASA-SYNTHETIC_ORIGINAL",
+          "blueprint_id": "FABP-SYNTHETIC_ORIGINAL",
+          "source_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/company/factory-asset/fixtures/provider-original-v1/opaque.png",
+          "source_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+          "source_bytes": 77,
+          "staged_blob_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/blobs/sha256/49/49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+          "blob_reused": false,
+          "provider_original": {
+            "schema": "die.factory-asset.provider-original.v1",
+            "provider_id": "synthetic-fixture-provider",
+            "source_filename": "opaque.png",
+            "declared_mime_type": null,
+            "declared_mime_matches": null,
+            "sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+            "media": {
+              "format": "PNG",
+              "mime_type": "image/png",
+              "magic_hex": "89504e470d0a1a0a0000000d",
+              "bytes": 77,
+              "width_px": 12,
+              "height_px": 8,
+              "mode": "RGB",
+              "frame_count": 1,
+              "has_alpha_channel": false,
+              "has_transparency_metadata": false,
+              "has_transparency": false,
+              "alpha_min": 255,
+              "alpha_max": 255,
+              "extension": ".png",
+              "extension_content_match": true,
+              "decode_verified": true
+            },
+            "byte_preservation": "EXACT_COPY",
+            "transformation": "NONE",
+            "semantic_identity_effect": "NONE"
+          },
+          "ingestion_state": "STAGED_NOT_CANONICAL",
+          "canonical_truth": false,
+          "state_manager_commit_required": true,
+          "state_manager_proposal": {
+            "schema": "die.factory-asset.master-ingestion-proposal.v1",
+            "action": "FACTORY_MASTER_INGEST",
+            "semantic_asset_id": "FASA-SYNTHETIC_ORIGINAL",
+            "blueprint_id": "FABP-SYNTHETIC_ORIGINAL",
+            "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+            "staged_blob_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/blobs/sha256/49/49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+            "attempt_receipt_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/attempt-receipts/fa131-1.json",
+            "physical_writer_required": "DIE_STATE_MANAGER"
+          }
+        }
+      },
+      {
+        "fixture": "opaque-rgba.png",
+        "receipt": {
+          "schema": "die.factory-asset.master-ingestion-attempt.v1",
+          "attempt_id": "fa131-2",
+          "semantic_asset_id": "FASA-SYNTHETIC_ORIGINAL",
+          "blueprint_id": "FABP-SYNTHETIC_ORIGINAL",
+          "source_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/company/factory-asset/fixtures/provider-original-v1/opaque-rgba.png",
+          "source_sha256": "05a7dc697e85f4c1a02ccc8510cddab503ec7f930d07f0dc0d0e08b510fa6a9f",
+          "source_bytes": 80,
+          "staged_blob_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/blobs/sha256/05/05a7dc697e85f4c1a02ccc8510cddab503ec7f930d07f0dc0d0e08b510fa6a9f",
+          "blob_reused": false,
+          "provider_original": {
+            "schema": "die.factory-asset.provider-original.v1",
+            "provider_id": "synthetic-fixture-provider",
+            "source_filename": "opaque-rgba.png",
+            "declared_mime_type": null,
+            "declared_mime_matches": null,
+            "sha256": "05a7dc697e85f4c1a02ccc8510cddab503ec7f930d07f0dc0d0e08b510fa6a9f",
+            "media": {
+              "format": "PNG",
+              "mime_type": "image/png",
+              "magic_hex": "89504e470d0a1a0a0000000d",
+              "bytes": 80,
+              "width_px": 12,
+              "height_px": 8,
+              "mode": "RGBA",
+              "frame_count": 1,
+              "has_alpha_channel": true,
+              "has_transparency_metadata": false,
+              "has_transparency": false,
+              "alpha_min": 255,
+              "alpha_max": 255,
+              "extension": ".png",
+              "extension_content_match": true,
+              "decode_verified": true
+            },
+            "byte_preservation": "EXACT_COPY",
+            "transformation": "NONE",
+            "semantic_identity_effect": "NONE"
+          },
+          "ingestion_state": "STAGED_NOT_CANONICAL",
+          "canonical_truth": false,
+          "state_manager_commit_required": true,
+          "state_manager_proposal": {
+            "schema": "die.factory-asset.master-ingestion-proposal.v1",
+            "action": "FACTORY_MASTER_INGEST",
+            "semantic_asset_id": "FASA-SYNTHETIC_ORIGINAL",
+            "blueprint_id": "FABP-SYNTHETIC_ORIGINAL",
+            "master_sha256": "05a7dc697e85f4c1a02ccc8510cddab503ec7f930d07f0dc0d0e08b510fa6a9f",
+            "staged_blob_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/blobs/sha256/05/05a7dc697e85f4c1a02ccc8510cddab503ec7f930d07f0dc0d0e08b510fa6a9f",
+            "attempt_receipt_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/attempt-receipts/fa131-2.json",
+            "physical_writer_required": "DIE_STATE_MANAGER"
+          }
+        }
+      },
+      {
+        "fixture": "alpha.png",
+        "receipt": {
+          "schema": "die.factory-asset.master-ingestion-attempt.v1",
+          "attempt_id": "fa131-3",
+          "semantic_asset_id": "FASA-SYNTHETIC_ORIGINAL",
+          "blueprint_id": "FABP-SYNTHETIC_ORIGINAL",
+          "source_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/company/factory-asset/fixtures/provider-original-v1/alpha.png",
+          "source_sha256": "f2dacb524aed21d0a6200e05518f5d5e74d1b4c56a1d713dcbee2c9c3a695a2d",
+          "source_bytes": 96,
+          "staged_blob_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/blobs/sha256/f2/f2dacb524aed21d0a6200e05518f5d5e74d1b4c56a1d713dcbee2c9c3a695a2d",
+          "blob_reused": false,
+          "provider_original": {
+            "schema": "die.factory-asset.provider-original.v1",
+            "provider_id": "synthetic-fixture-provider",
+            "source_filename": "alpha.png",
+            "declared_mime_type": null,
+            "declared_mime_matches": null,
+            "sha256": "f2dacb524aed21d0a6200e05518f5d5e74d1b4c56a1d713dcbee2c9c3a695a2d",
+            "media": {
+              "format": "PNG",
+              "mime_type": "image/png",
+              "magic_hex": "89504e470d0a1a0a0000000d",
+              "bytes": 96,
+              "width_px": 12,
+              "height_px": 8,
+              "mode": "RGBA",
+              "frame_count": 1,
+              "has_alpha_channel": true,
+              "has_transparency_metadata": false,
+              "has_transparency": true,
+              "alpha_min": 0,
+              "alpha_max": 255,
+              "extension": ".png",
+              "extension_content_match": true,
+              "decode_verified": true
+            },
+            "byte_preservation": "EXACT_COPY",
+            "transformation": "NONE",
+            "semantic_identity_effect": "NONE"
+          },
+          "ingestion_state": "STAGED_NOT_CANONICAL",
+          "canonical_truth": false,
+          "state_manager_commit_required": true,
+          "state_manager_proposal": {
+            "schema": "die.factory-asset.master-ingestion-proposal.v1",
+            "action": "FACTORY_MASTER_INGEST",
+            "semantic_asset_id": "FASA-SYNTHETIC_ORIGINAL",
+            "blueprint_id": "FABP-SYNTHETIC_ORIGINAL",
+            "master_sha256": "f2dacb524aed21d0a6200e05518f5d5e74d1b4c56a1d713dcbee2c9c3a695a2d",
+            "staged_blob_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/blobs/sha256/f2/f2dacb524aed21d0a6200e05518f5d5e74d1b4c56a1d713dcbee2c9c3a695a2d",
+            "attempt_receipt_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/attempt-receipts/fa131-3.json",
+            "physical_writer_required": "DIE_STATE_MANAGER"
+          }
+        }
+      },
+      {
+        "fixture": "alpha.webp",
+        "receipt": {
+          "schema": "die.factory-asset.master-ingestion-attempt.v1",
+          "attempt_id": "fa131-4",
+          "semantic_asset_id": "FASA-SYNTHETIC_ORIGINAL",
+          "blueprint_id": "FABP-SYNTHETIC_ORIGINAL",
+          "source_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/company/factory-asset/fixtures/provider-original-v1/alpha.webp",
+          "source_sha256": "e86aee5aabf1a2fd242db0a26e15f9e0b0eb1cf63e6d18c5e3c5ed75bde4a0eb",
+          "source_bytes": 48,
+          "staged_blob_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/blobs/sha256/e8/e86aee5aabf1a2fd242db0a26e15f9e0b0eb1cf63e6d18c5e3c5ed75bde4a0eb",
+          "blob_reused": false,
+          "provider_original": {
+            "schema": "die.factory-asset.provider-original.v1",
+            "provider_id": "synthetic-fixture-provider",
+            "source_filename": "alpha.webp",
+            "declared_mime_type": null,
+            "declared_mime_matches": null,
+            "sha256": "e86aee5aabf1a2fd242db0a26e15f9e0b0eb1cf63e6d18c5e3c5ed75bde4a0eb",
+            "media": {
+              "format": "WEBP",
+              "mime_type": "image/webp",
+              "magic_hex": "524946462800000057454250",
+              "bytes": 48,
+              "width_px": 12,
+              "height_px": 8,
+              "mode": "RGBA",
+              "frame_count": 1,
+              "has_alpha_channel": true,
+              "has_transparency_metadata": false,
+              "has_transparency": true,
+              "alpha_min": 0,
+              "alpha_max": 255,
+              "extension": ".webp",
+              "extension_content_match": true,
+              "decode_verified": true
+            },
+            "byte_preservation": "EXACT_COPY",
+            "transformation": "NONE",
+            "semantic_identity_effect": "NONE"
+          },
+          "ingestion_state": "STAGED_NOT_CANONICAL",
+          "canonical_truth": false,
+          "state_manager_commit_required": true,
+          "state_manager_proposal": {
+            "schema": "die.factory-asset.master-ingestion-proposal.v1",
+            "action": "FACTORY_MASTER_INGEST",
+            "semantic_asset_id": "FASA-SYNTHETIC_ORIGINAL",
+            "blueprint_id": "FABP-SYNTHETIC_ORIGINAL",
+            "master_sha256": "e86aee5aabf1a2fd242db0a26e15f9e0b0eb1cf63e6d18c5e3c5ed75bde4a0eb",
+            "staged_blob_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/blobs/sha256/e8/e86aee5aabf1a2fd242db0a26e15f9e0b0eb1cf63e6d18c5e3c5ed75bde4a0eb",
+            "attempt_receipt_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/attempt-receipts/fa131-4.json",
+            "physical_writer_required": "DIE_STATE_MANAGER"
+          }
+        }
+      },
+      {
+        "fixture": "alpha.tiff",
+        "receipt": {
+          "schema": "die.factory-asset.master-ingestion-attempt.v1",
+          "attempt_id": "fa131-5",
+          "semantic_asset_id": "FASA-SYNTHETIC_ORIGINAL",
+          "blueprint_id": "FABP-SYNTHETIC_ORIGINAL",
+          "source_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/company/factory-asset/fixtures/provider-original-v1/alpha.tiff",
+          "source_sha256": "3e0cdeea2677f5496730854e03db8613758c9b394135f021f8ba0637daa0ba4b",
+          "source_bytes": 538,
+          "staged_blob_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/blobs/sha256/3e/3e0cdeea2677f5496730854e03db8613758c9b394135f021f8ba0637daa0ba4b",
+          "blob_reused": false,
+          "provider_original": {
+            "schema": "die.factory-asset.provider-original.v1",
+            "provider_id": "synthetic-fixture-provider",
+            "source_filename": "alpha.tiff",
+            "declared_mime_type": null,
+            "declared_mime_matches": null,
+            "sha256": "3e0cdeea2677f5496730854e03db8613758c9b394135f021f8ba0637daa0ba4b",
+            "media": {
+              "format": "TIFF",
+              "mime_type": "image/tiff",
+              "magic_hex": "49492a00080000000b000001",
+              "bytes": 538,
+              "width_px": 12,
+              "height_px": 8,
+              "mode": "RGBA",
+              "frame_count": 1,
+              "has_alpha_channel": true,
+              "has_transparency_metadata": false,
+              "has_transparency": true,
+              "alpha_min": 0,
+              "alpha_max": 255,
+              "extension": ".tiff",
+              "extension_content_match": true,
+              "decode_verified": true
+            },
+            "byte_preservation": "EXACT_COPY",
+            "transformation": "NONE",
+            "semantic_identity_effect": "NONE"
+          },
+          "ingestion_state": "STAGED_NOT_CANONICAL",
+          "canonical_truth": false,
+          "state_manager_commit_required": true,
+          "state_manager_proposal": {
+            "schema": "die.factory-asset.master-ingestion-proposal.v1",
+            "action": "FACTORY_MASTER_INGEST",
+            "semantic_asset_id": "FASA-SYNTHETIC_ORIGINAL",
+            "blueprint_id": "FABP-SYNTHETIC_ORIGINAL",
+            "master_sha256": "3e0cdeea2677f5496730854e03db8613758c9b394135f021f8ba0637daa0ba4b",
+            "staged_blob_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/blobs/sha256/3e/3e0cdeea2677f5496730854e03db8613758c9b394135f021f8ba0637daa0ba4b",
+            "attempt_receipt_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/attempt-receipts/fa131-5.json",
+            "physical_writer_required": "DIE_STATE_MANAGER"
+          }
+        }
+      },
+      {
+        "fixture": "palette.png",
+        "receipt": {
+          "schema": "die.factory-asset.master-ingestion-attempt.v1",
+          "attempt_id": "fa131-6",
+          "semantic_asset_id": "FASA-SYNTHETIC_ORIGINAL",
+          "blueprint_id": "FABP-SYNTHETIC_ORIGINAL",
+          "source_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/company/factory-asset/fixtures/provider-original-v1/palette.png",
+          "source_sha256": "0b5e182c8fe1524715fcc8fc95f375fbc50bcc04e9f84ea23f8890ca63cb19c3",
+          "source_bytes": 866,
+          "staged_blob_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/blobs/sha256/0b/0b5e182c8fe1524715fcc8fc95f375fbc50bcc04e9f84ea23f8890ca63cb19c3",
+          "blob_reused": false,
+          "provider_original": {
+            "schema": "die.factory-asset.provider-original.v1",
+            "provider_id": "synthetic-fixture-provider",
+            "source_filename": "palette.png",
+            "declared_mime_type": null,
+            "declared_mime_matches": null,
+            "sha256": "0b5e182c8fe1524715fcc8fc95f375fbc50bcc04e9f84ea23f8890ca63cb19c3",
+            "media": {
+              "format": "PNG",
+              "mime_type": "image/png",
+              "magic_hex": "89504e470d0a1a0a0000000d",
+              "bytes": 866,
+              "width_px": 12,
+              "height_px": 8,
+              "mode": "P",
+              "frame_count": 1,
+              "has_alpha_channel": false,
+              "has_transparency_metadata": true,
+              "has_transparency": true,
+              "alpha_min": 0,
+              "alpha_max": 255,
+              "extension": ".png",
+              "extension_content_match": true,
+              "decode_verified": true
+            },
+            "byte_preservation": "EXACT_COPY",
+            "transformation": "NONE",
+            "semantic_identity_effect": "NONE"
+          },
+          "ingestion_state": "STAGED_NOT_CANONICAL",
+          "canonical_truth": false,
+          "state_manager_commit_required": true,
+          "state_manager_proposal": {
+            "schema": "die.factory-asset.master-ingestion-proposal.v1",
+            "action": "FACTORY_MASTER_INGEST",
+            "semantic_asset_id": "FASA-SYNTHETIC_ORIGINAL",
+            "blueprint_id": "FABP-SYNTHETIC_ORIGINAL",
+            "master_sha256": "0b5e182c8fe1524715fcc8fc95f375fbc50bcc04e9f84ea23f8890ca63cb19c3",
+            "staged_blob_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/blobs/sha256/0b/0b5e182c8fe1524715fcc8fc95f375fbc50bcc04e9f84ea23f8890ca63cb19c3",
+            "attempt_receipt_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/attempt-receipts/fa131-6.json",
+            "physical_writer_required": "DIE_STATE_MANAGER"
+          }
+        }
+      },
+      {
+        "fixture": "rgb-key.png",
+        "receipt": {
+          "schema": "die.factory-asset.master-ingestion-attempt.v1",
+          "attempt_id": "fa131-7",
+          "semantic_asset_id": "FASA-SYNTHETIC_ORIGINAL",
+          "blueprint_id": "FABP-SYNTHETIC_ORIGINAL",
+          "source_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/company/factory-asset/fixtures/provider-original-v1/rgb-key.png",
+          "source_sha256": "bd45c64cf2a854f71b320cfb7cb2b05f899840feb416f268b01ba7978fa2e46a",
+          "source_bytes": 95,
+          "staged_blob_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/blobs/sha256/bd/bd45c64cf2a854f71b320cfb7cb2b05f899840feb416f268b01ba7978fa2e46a",
+          "blob_reused": false,
+          "provider_original": {
+            "schema": "die.factory-asset.provider-original.v1",
+            "provider_id": "synthetic-fixture-provider",
+            "source_filename": "rgb-key.png",
+            "declared_mime_type": null,
+            "declared_mime_matches": null,
+            "sha256": "bd45c64cf2a854f71b320cfb7cb2b05f899840feb416f268b01ba7978fa2e46a",
+            "media": {
+              "format": "PNG",
+              "mime_type": "image/png",
+              "magic_hex": "89504e470d0a1a0a0000000d",
+              "bytes": 95,
+              "width_px": 12,
+              "height_px": 8,
+              "mode": "RGB",
+              "frame_count": 1,
+              "has_alpha_channel": false,
+              "has_transparency_metadata": true,
+              "has_transparency": true,
+              "alpha_min": 0,
+              "alpha_max": 0,
+              "extension": ".png",
+              "extension_content_match": true,
+              "decode_verified": true
+            },
+            "byte_preservation": "EXACT_COPY",
+            "transformation": "NONE",
+            "semantic_identity_effect": "NONE"
+          },
+          "ingestion_state": "STAGED_NOT_CANONICAL",
+          "canonical_truth": false,
+          "state_manager_commit_required": true,
+          "state_manager_proposal": {
+            "schema": "die.factory-asset.master-ingestion-proposal.v1",
+            "action": "FACTORY_MASTER_INGEST",
+            "semantic_asset_id": "FASA-SYNTHETIC_ORIGINAL",
+            "blueprint_id": "FABP-SYNTHETIC_ORIGINAL",
+            "master_sha256": "bd45c64cf2a854f71b320cfb7cb2b05f899840feb416f268b01ba7978fa2e46a",
+            "staged_blob_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/blobs/sha256/bd/bd45c64cf2a854f71b320cfb7cb2b05f899840feb416f268b01ba7978fa2e46a",
+            "attempt_receipt_path": "/home/kopiko/die-worktrees/fa034-129-131-20260904/.acceptance-fa131-final/attempt-receipts/fa131-7.json",
+            "physical_writer_required": "DIE_STATE_MANAGER"
+          }
+        }
+      }
+    ],
+    "provider_generation": false,
+    "source_kind": "SYNTHETIC_FIXTURE",
+    "formats": [
+      "JPEG",
+      "PNG",
+      "WEBP",
+      "TIFF"
+    ],
+    "canonical_state": "STAGED_NOT_CANONICAL"
+  },
+  "artifacts": [
+    {
+      "path": "company/factory-asset/lib/provider_original.py",
+      "sha256": "cdf7625bbf601e7adf2c029c7af7f1da29a78a58b8aebd90712c534008e72900"
+    },
+    {
+      "path": "company/factory-asset/lib/master_ingestion.py",
+      "sha256": "eca3da0b565835d287cfd8be3a6c9553ad01b631db798bdb4eeccabae7775221"
+    },
+    {
+      "path": "company/factory-asset/schemas/provider-original-intake.schema.json",
+      "sha256": "1da945584ec8221654b7f4dfcc248d3b84ac39e4efc738f5e0f012512ce98355"
+    },
+    {
+      "path": "company/factory-asset/tests/test_provider_original.py",
+      "sha256": "8e8a0ca5d74c0b3216d1b4a90a09f58d647c0d8c9e56fff4ef10e2c144121bf4"
+    },
+    {
+      "path": "company/factory-asset/PROVIDER_ORIGINAL_INTAKE_V1.md",
+      "sha256": "47dc26b59b6118473dccf71c617061742a4eb932b8ee2614631d4743f06df15f"
+    },
+    {
+      "path": "company/factory-asset/fixtures/provider-original-v1/alpha.png",
+      "sha256": "f2dacb524aed21d0a6200e05518f5d5e74d1b4c56a1d713dcbee2c9c3a695a2d"
+    },
+    {
+      "path": "company/factory-asset/fixtures/provider-original-v1/alpha.tiff",
+      "sha256": "3e0cdeea2677f5496730854e03db8613758c9b394135f021f8ba0637daa0ba4b"
+    },
+    {
+      "path": "company/factory-asset/fixtures/provider-original-v1/alpha.webp",
+      "sha256": "e86aee5aabf1a2fd242db0a26e15f9e0b0eb1cf63e6d18c5e3c5ed75bde4a0eb"
+    },
+    {
+      "path": "company/factory-asset/fixtures/provider-original-v1/build_assets.py",
+      "sha256": "4abf5733b820b111d5336f580a94060ea00efa257e4006a4883d93ab26ebac7a"
+    },
+    {
+      "path": "company/factory-asset/fixtures/provider-original-v1/manifest.json",
+      "sha256": "104aed47b9bce5dc5754b51623df0472c5b995d50333f84a342fb871b2ce889b"
+    },
+    {
+      "path": "company/factory-asset/fixtures/provider-original-v1/opaque-rgba.png",
+      "sha256": "05a7dc697e85f4c1a02ccc8510cddab503ec7f930d07f0dc0d0e08b510fa6a9f"
+    },
+    {
+      "path": "company/factory-asset/fixtures/provider-original-v1/opaque.jpg",
+      "sha256": "382ce68622054511f1ce0e63a888b1fc4988bcc38fbccdcaa81b85fd1202db47"
+    },
+    {
+      "path": "company/factory-asset/fixtures/provider-original-v1/opaque.png",
+      "sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76"
+    },
+    {
+      "path": "company/factory-asset/fixtures/provider-original-v1/palette.png",
+      "sha256": "0b5e182c8fe1524715fcc8fc95f375fbc50bcc04e9f84ea23f8890ca63cb19c3"
+    },
+    {
+      "path": "company/factory-asset/fixtures/provider-original-v1/rgb-key.png",
+      "sha256": "bd45c64cf2a854f71b320cfb7cb2b05f899840feb416f268b01ba7978fa2e46a"
+    }
+  ],
+  "authority": {
+    "production_mutation": false,
+    "provider_call": false,
+    "credential_access": false,
+    "marketplace_publication": false,
+    "spend_usd": 0
+  },
+  "graph_delta": {
+    "FA-131": "READY -> DONE"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "schema": "die.factory-asset.fa-129-acceptance.v1",
+  "task_id": "FA-129",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-04T09:00:33.567108+00:00",
+  "execution": {
+    "lane": "CODEX_LINUX",
+    "transport": "DIRECT_CODEX_SSH",
+    "worktree": "/home/kopiko/die-worktrees/fa034-129-131-20260904",
+    "branch": "codex/fa034-129-131-20260904",
+    "python": "3.12.3",
+    "initial_base_sha": "21cb61d203ec53fc78c6e5e968983777d2004fd0",
+    "integrated_base_sha": "40fbba425f9c051cdee664dd5e17766847de7a3e"
+  },
+  "validation": {
+    "targeted": "40 passed in 0.68s",
+    "factory_regression": "416 passed, 1 warning in 10.70s",
+    "one_canon_tests": "6 passed in 1.45s",
+    "one_canon_validator": "11/11 PASS",
+    "command_evidence": "company/factory-asset/receipts/FA-034-129-131-linux-validation.json"
+  },
+  "acceptance": {
+    "fixtures": [
+      {
+        "fixture": "zero",
+        "decision": "RESEARCH",
+        "expression_count": 0,
+        "sha256": "08f88e220d1b1a42201c590cd476d328a140f157a2bb520bba07d9b273be9d7c",
+        "result": "PASS"
+      },
+      {
+        "fixture": "one",
+        "decision": "SELECT",
+        "expression_count": 1,
+        "sha256": "c562c5a35706bd727ac9679c42217f12d0dae2ffadcea5e676273be5fc9cd89c",
+        "result": "PASS"
+      },
+      {
+        "fixture": "multiple",
+        "decision": "SELECT",
+        "expression_count": 3,
+        "sha256": "a56bd05d45e90045722bf160ea1ae7323d70807b92af6625382332e3c656e57c",
+        "result": "PASS"
+      }
+    ],
+    "evidence_kind": "SYNTHETIC_FIXTURE",
+    "contract_scope": "STRUCTURAL_AND_REFERENTIAL",
+    "production_or_market_claim": false
+  },
+  "artifacts": [
+    {
+      "path": "company/factory-asset/lib/asset_expression_plan.py",
+      "sha256": "bfb0a53c4d6f31809dc17b0819b16fa04201edcb894797a0c16637108411245b"
+    },
+    {
+      "path": "company/factory-asset/schemas/asset-expression-plan.schema.json",
+      "sha256": "6988c5346c416ef1d155d1b7bbc388008f4446135a70228ad8f9a32fc846d5cc"
+    },
+    {
+      "path": "company/factory-asset/tests/test_asset_expression_plan.py",
+      "sha256": "c3b2c60d284e7f357a5458d0ab2c47a67cc8a085455c55061535693bc0fdc065"
+    },
+    {
+      "path": "company/factory-asset/ASSET_EXPRESSION_PLAN_V1.md",
+      "sha256": "857730819039d5ffe2d0d7a33be39a43366e55a322ee7b1f94bdf1b3dc06bf9c"
+    },
+    {
+      "path": "company/factory-asset/fixtures/asset-expression-plan/multiple.json",
+      "sha256": "a56bd05d45e90045722bf160ea1ae7323d70807b92af6625382332e3c656e57c"
+    },
+    {
+      "path": "company/factory-asset/fixtures/asset-expression-plan/one.json",
+      "sha256": "c562c5a35706bd727ac9679c42217f12d0dae2ffadcea5e676273be5fc9cd89c"
+    },
+    {
+      "path": "company/factory-asset/fixtures/asset-expression-plan/synthetic-evidence.json",
+      "sha256": "fa0040053c8cb89bc8b6fd0637d258dbbccaef6c8aede27e06070010f6667de7"
+    },
+    {
+      "path": "company/factory-asset/fixtures/asset-expression-plan/zero.json",
+      "sha256": "08f88e220d1b1a42201c590cd476d328a140f157a2bb520bba07d9b273be9d7c"
+    }
+  ],
+  "authority": {
+    "production_mutation": false,
+    "provider_call": false,
+    "credential_access": false,
+    "marketplace_publication": false,
+    "spend_usd": 0
+  },
+  "graph_delta": {
+    "FA-129": "READY -> DONE"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "die.factory-asset.asset-expression-plan.v1",
+  "plan_id": "FAEP-SHOPPING_BAG_ONE",
+  "seed": {
+    "seed_id": "shopping-bag-seed",
+    "noun": "shopping bag"
+  },
+  "decision": "SELECT",
+  "decision_rationale": "Only a campaign photograph has supporting buyer evidence; no other mode is selected.",
+  "policy": {
+    "expansion_rule": "EVIDENCE_SUPPORTED_ONLY",
+    "force_all_modes": false,
+    "packaging_variants_create_new_semantic_asset": false,
+    "derivative_planning_stage": "AFTER_VALIDATED_MASTER",
+    "submission_authority": "FOUNDER_CONTROLLED"
+  },
+  "evidence": [
+    {
+      "evidence_id": "fixture-photo",
+      "kind": "SYNTHETIC_FIXTURE",
+      "source_ref": "company/factory-asset/fixtures/asset-expression-plan/synthetic-evidence.json#photo",
+      "source_sha256": "fa0040053c8cb89bc8b6fd0637d258dbbccaef6c8aede27e06070010f6667de7",
+      "support": {
+        "seed_noun": "shopping bag",
+        "buyer": "Retail campaign designer",
+        "commercial_use_case": "Illustrate a reusable shopping promotion",
+        "product_expression": "Unbranded shopping bag lifestyle photograph",
+        "semantic_mode": "PHOTO",
+        "platform_id": "ADOBE_STOCK"
+      },
+      "rationale": "A retail campaign designer needs an unbranded shopping bag lifestyle photograph to illustrate a reusable shopping promotion in an Adobe Stock image search."
+    }
+  ],
+  "expressions": [
+    {
+      "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+      "buyer": "Retail campaign designer",
+      "commercial_use_case": "Illustrate a reusable shopping promotion",
+      "product_expression": "Unbranded shopping bag lifestyle photograph",
+      "semantic_mode": "PHOTO",
+      "producer_class": "RASTER_GENERATIVE",
+      "candidate_marketplace_route": {
+        "platform_id": "ADOBE_STOCK",
+        "listing_use": "Unbranded shopping bag lifestyle photograph",
+        "state": "CANDIDATE_REQUIRES_POLICY_CHECK"
+      },
+      "evidence_refs": [
+        "fixture-photo"
+      ],
+      "selection_rationale": "A retail campaign designer needs an unbranded shopping bag lifestyle photograph to illustrate a reusable shopping promotion in an Adobe Stock image search."
+    }
+  ]
+}
