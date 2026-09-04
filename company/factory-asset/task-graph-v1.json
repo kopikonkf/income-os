@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "6.7-fa136-rights-signal-gate",
+  "revision": "6.8-fa137-metadata-package-readiness",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2089,9 +2089,11 @@
         "FA-132",
         "FA-136"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Metadata/keyword readiness receipts and exact-hash marketplace package plan",
-      "acceptance": "Blueprint semantics plus verified technical facts produce deterministic title/description/keywords/AI-disclosure/package metadata bound to exact master and derivative hashes. Rights uncertainty, missing required metadata or incompatible derivatives blocks PACKAGE_READY."
+      "acceptance": "Blueprint semantics plus verified technical facts produce deterministic title/description/keywords/AI-disclosure/package metadata bound to exact master and derivative hashes. Rights uncertainty, missing required metadata or incompatible derivatives blocks PACKAGE_READY.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: deterministic metadata/package-readiness binds Blueprint semantics, explicit AI disclosure, exact master SHA and QA-observed derivative SHA values. Actual FA-131 master produced JPEG/WebP derivatives and FA-028 dry-run package; PACKAGE_READY only when FA-132 plan is compatible, every derivative is present/QA PASS/hash-matched and FA-136 rights signal PASS. Rights review, missing/tampered derivative, unknown marketplace or missing AI disclosure all block package."
     },
     {
       "id": "FA-138",

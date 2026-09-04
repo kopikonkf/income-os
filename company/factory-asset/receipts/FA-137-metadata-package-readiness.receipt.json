@@ -1,0 +1,402 @@
+{
+  "schema": "factory-asset.metadata-package-readiness-acceptance.v1",
+  "task_id": "FA-137",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "master": {
+    "path": "D:\\FACTORY_ASSET\\canaries\\FA-137\\master.png",
+    "sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+    "format": "PNG",
+    "width_px": 12,
+    "height_px": 8
+  },
+  "derivative_plan": {
+    "schema": "die.factory-asset.derivative-delivery-plan.v1",
+    "result": "PLANNED",
+    "blueprint_id": "FABP-SHOPPING_BAG_PHOTO",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+    "semantic_asset_count": 1,
+    "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+    "master_format": "PNG",
+    "source_kind": "PROVIDER_ORIGINAL",
+    "provider_original_lineage": {
+      "source_filename": "opaque.png",
+      "byte_preservation": "EXACT_COPY",
+      "transformation": "NONE"
+    },
+    "derivative_count": 2,
+    "entries": [
+      {
+        "derivative_id": "ADOBE_JPEG",
+        "aliases": [],
+        "purpose": "MARKETPLACE_DELIVERY",
+        "format": "JPEG",
+        "action": "RASTER_DERIVATIVE",
+        "alpha_policy": "NOT_APPLICABLE",
+        "transparent_output_claim": false,
+        "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+        "semantic_identity_effect": "NONE",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "master_format": "PNG",
+        "source_kind": "PROVIDER_ORIGINAL",
+        "provider_id": "synthetic-fixture-provider",
+        "marketplace_profiles": [
+          "ADOBE_STOCK"
+        ],
+        "compatibility_state": "COMPATIBLE",
+        "compatibility_reasons": [
+          "ADOBE_STOCK:PINNED_FORMAT_MATCH:JPEG"
+        ],
+        "package_blocked": false,
+        "plan_key": "ee5974b240faa1fd91bf73e78874fa21c79d89213eb3a854d5606f3c7701c5b7"
+      },
+      {
+        "derivative_id": "WEB_PREVIEW",
+        "aliases": [],
+        "purpose": "PREVIEW",
+        "format": "WEBP",
+        "action": "RASTER_DERIVATIVE",
+        "alpha_policy": "NOT_APPLICABLE",
+        "transparent_output_claim": false,
+        "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+        "semantic_identity_effect": "NONE",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "master_format": "PNG",
+        "source_kind": "PROVIDER_ORIGINAL",
+        "provider_id": "synthetic-fixture-provider",
+        "marketplace_profiles": [],
+        "compatibility_state": "INTERNAL",
+        "compatibility_reasons": [],
+        "package_blocked": false,
+        "plan_key": "b01fb06288c0d0b09cbe4f7c3c0e87a7db3603f77b1dd0939b4f2f50ea1d70ba"
+      }
+    ],
+    "package_blocked": false,
+    "submission_authority": "FOUNDER_CONTROLLED",
+    "provider_original_bytes_mutated": false,
+    "packaging_variants_create_new_semantic_asset": false,
+    "plan_sha256": "f19a8029c52a31f8299c581cbe1a3b86cbfddca1a51053d05ec6ac860dad86e7"
+  },
+  "derivatives": [
+    {
+      "derivative_id": "ADOBE_JPEG",
+      "format": "JPEG",
+      "purpose": "MARKETPLACE_DELIVERY",
+      "sha256": "6be3f68b32fcc2b8d03f85b4b36a1993086e94049a6c7df172e60b1f192443af",
+      "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+      "qa_result": "PASS",
+      "qa_sha256": "6be3f68b32fcc2b8d03f85b4b36a1993086e94049a6c7df172e60b1f192443af",
+      "sha256_verified": true,
+      "path": "D:\\FACTORY_ASSET\\canaries\\FA-137\\adobe_jpeg.jpg",
+      "recipe_id": "fa137-adobe-jpeg-v1",
+      "receipt": {
+        "schema": "die.factory-asset.derivative-receipt.v1",
+        "recipe_id": "fa137-adobe-jpeg-v1",
+        "recipe_version": "1.0.0",
+        "idempotency_key": "57cc04e7f1040026f4d8dacefc1eb59bc7506d2d7b846ecf65a0fa80332e1ebf",
+        "input": {
+          "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+          "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO"
+        },
+        "marketplace_profile": {
+          "platform_id": "ADOBE_STOCK",
+          "profile_revision": "1.0"
+        },
+        "output": {
+          "format": "JPEG",
+          "sha256": "6be3f68b32fcc2b8d03f85b4b36a1993086e94049a6c7df172e60b1f192443af",
+          "bytes": 633,
+          "width_px": 12,
+          "height_px": 8,
+          "semantic_identity_effect": "NONE"
+        },
+        "qa": {
+          "magic_mime_match": true,
+          "decode_reopen": true,
+          "sha256_verified": true,
+          "failure_code": null
+        },
+        "compatibility": {
+          "state": "COMPATIBLE",
+          "reason": null
+        },
+        "result": "PASS"
+      },
+      "qa": {
+        "schema": "die.factory-asset.derivative-qa.v1",
+        "result": "PASS",
+        "failures": [],
+        "format": "JPEG",
+        "magic_mime_match": true,
+        "decode_reopen": true,
+        "dimensions": [
+          12,
+          8
+        ],
+        "alpha_state": "ABSENT",
+        "sha256": "6be3f68b32fcc2b8d03f85b4b36a1993086e94049a6c7df172e60b1f192443af",
+        "bytes": 633,
+        "compatibility": "COMPATIBLE"
+      }
+    },
+    {
+      "derivative_id": "WEB_PREVIEW",
+      "format": "WEBP",
+      "purpose": "PREVIEW",
+      "sha256": "05b3be249d5f8db611d9f95d9efc048c10dc6c37e4075a2bd2d48d9ec147eeb5",
+      "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+      "qa_result": "PASS",
+      "qa_sha256": "05b3be249d5f8db611d9f95d9efc048c10dc6c37e4075a2bd2d48d9ec147eeb5",
+      "sha256_verified": true,
+      "path": "D:\\FACTORY_ASSET\\canaries\\FA-137\\web_preview.webp",
+      "recipe_id": "fa137-web-preview-v1",
+      "receipt": {
+        "schema": "die.factory-asset.derivative-receipt.v1",
+        "recipe_id": "fa137-web-preview-v1",
+        "recipe_version": "1.0.0",
+        "idempotency_key": "3b66fbb999190c28b4a198199c0592f4c7443106e776b337aeda383490a110dd",
+        "input": {
+          "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+          "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO"
+        },
+        "marketplace_profile": {
+          "platform_id": "ADOBE_STOCK",
+          "profile_revision": "1.0"
+        },
+        "output": {
+          "format": "WEBP",
+          "sha256": "05b3be249d5f8db611d9f95d9efc048c10dc6c37e4075a2bd2d48d9ec147eeb5",
+          "bytes": 62,
+          "width_px": 12,
+          "height_px": 8,
+          "semantic_identity_effect": "NONE"
+        },
+        "qa": {
+          "magic_mime_match": true,
+          "decode_reopen": true,
+          "sha256_verified": true,
+          "failure_code": null
+        },
+        "compatibility": {
+          "state": "COMPATIBLE",
+          "reason": null
+        },
+        "result": "PASS"
+      },
+      "qa": {
+        "schema": "die.factory-asset.derivative-qa.v1",
+        "result": "PASS",
+        "failures": [],
+        "format": "WEBP",
+        "magic_mime_match": true,
+        "decode_reopen": true,
+        "dimensions": [
+          12,
+          8
+        ],
+        "alpha_state": "ABSENT",
+        "sha256": "05b3be249d5f8db611d9f95d9efc048c10dc6c37e4075a2bd2d48d9ec147eeb5",
+        "bytes": 62,
+        "compatibility": "COMPATIBLE"
+      }
+    }
+  ],
+  "rights_signal": {
+    "schema": "die.factory-asset.rights-signal-gate.v1",
+    "result": "PASS",
+    "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+    "master_path": "D:\\FACTORY_ASSET\\canaries\\FA-137\\master.png",
+    "detector_states": {
+      "text": "COMPLETE",
+      "logo": "COMPLETE",
+      "watermark": "COMPLETE",
+      "safety": "COMPLETE"
+    },
+    "blocking_signals": [],
+    "review_signals": [],
+    "qa_defects": [],
+    "human_rights_clearance": false,
+    "founder_qc_required": true,
+    "submission_eligible": false,
+    "submission_authority": "FOUNDER_CONTROLLED",
+    "signal_gate_pass": true
+  },
+  "metadata": {
+    "schema": "die.factory-asset.metadata-bundle.v1",
+    "blueprint_id": "FABP-SHOPPING_BAG_PHOTO",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+    "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+    "title": "Shopping Bag \u00e2\u20ac\u201d Photo",
+    "description": "Shopping bag created for photorealistic reusable shopping bag stock photo for retail and fulfillment marketing.",
+    "keywords": [
+      "shopping",
+      "bag",
+      "photorealistic",
+      "reusable",
+      "stock",
+      "photo",
+      "retail",
+      "fulfillment",
+      "marketing"
+    ],
+    "ai_generated": true,
+    "ai_disclosure": "GENERATIVE_AI",
+    "source_class": "GENERATIVE_AI",
+    "derivative_hashes": [
+      {
+        "derivative_id": "ADOBE_JPEG",
+        "format": "JPEG",
+        "purpose": "MARKETPLACE_DELIVERY",
+        "sha256": "6be3f68b32fcc2b8d03f85b4b36a1993086e94049a6c7df172e60b1f192443af"
+      },
+      {
+        "derivative_id": "WEB_PREVIEW",
+        "format": "WEBP",
+        "purpose": "PREVIEW",
+        "sha256": "05b3be249d5f8db611d9f95d9efc048c10dc6c37e4075a2bd2d48d9ec147eeb5"
+      }
+    ],
+    "submission_authority": "FOUNDER_CONTROLLED",
+    "metadata_sha256": "af4f08e32e1d54eb6b35b12499026b768c3310e0995333ef344c7ac0a552fc75"
+  },
+  "readiness": {
+    "schema": "die.factory-asset.package-readiness.v1",
+    "result": "PACKAGE_READY",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+    "blueprint_id": "FABP-SHOPPING_BAG_PHOTO",
+    "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+    "metadata": {
+      "schema": "die.factory-asset.metadata-bundle.v1",
+      "blueprint_id": "FABP-SHOPPING_BAG_PHOTO",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+      "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+      "title": "Shopping Bag \u00e2\u20ac\u201d Photo",
+      "description": "Shopping bag created for photorealistic reusable shopping bag stock photo for retail and fulfillment marketing.",
+      "keywords": [
+        "shopping",
+        "bag",
+        "photorealistic",
+        "reusable",
+        "stock",
+        "photo",
+        "retail",
+        "fulfillment",
+        "marketing"
+      ],
+      "ai_generated": true,
+      "ai_disclosure": "GENERATIVE_AI",
+      "source_class": "GENERATIVE_AI",
+      "derivative_hashes": [
+        {
+          "derivative_id": "ADOBE_JPEG",
+          "format": "JPEG",
+          "purpose": "MARKETPLACE_DELIVERY",
+          "sha256": "6be3f68b32fcc2b8d03f85b4b36a1993086e94049a6c7df172e60b1f192443af"
+        },
+        {
+          "derivative_id": "WEB_PREVIEW",
+          "format": "WEBP",
+          "purpose": "PREVIEW",
+          "sha256": "05b3be249d5f8db611d9f95d9efc048c10dc6c37e4075a2bd2d48d9ec147eeb5"
+        }
+      ],
+      "submission_authority": "FOUNDER_CONTROLLED",
+      "metadata_sha256": "af4f08e32e1d54eb6b35b12499026b768c3310e0995333ef344c7ac0a552fc75"
+    },
+    "package_plan": {
+      "schema": "die.factory-asset.hash-bound-package-plan.v1",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+      "blueprint_id": "FABP-SHOPPING_BAG_PHOTO",
+      "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+      "metadata_sha256": "af4f08e32e1d54eb6b35b12499026b768c3310e0995333ef344c7ac0a552fc75",
+      "rights_signal_result": "PASS",
+      "deliverables": [
+        {
+          "derivative_id": "ADOBE_JPEG",
+          "format": "JPEG",
+          "purpose": "MARKETPLACE_DELIVERY",
+          "sha256": "6be3f68b32fcc2b8d03f85b4b36a1993086e94049a6c7df172e60b1f192443af"
+        },
+        {
+          "derivative_id": "WEB_PREVIEW",
+          "format": "WEBP",
+          "purpose": "PREVIEW",
+          "sha256": "05b3be249d5f8db611d9f95d9efc048c10dc6c37e4075a2bd2d48d9ec147eeb5"
+        }
+      ],
+      "publication_action": "NONE",
+      "upload_action": "NONE",
+      "submission_authority": "FOUNDER_CONTROLLED",
+      "package_plan_sha256": "c53839d2832a626995d38fe51adfebcc9b00e811d650e7694fe53df7747d245a"
+    },
+    "blockers": [],
+    "founder_qc_required": true,
+    "human_rights_clearance": false,
+    "submission_authority": "FOUNDER_CONTROLLED"
+  },
+  "dry_run_package": {
+    "schema": "die.factory-asset.marketplace-dry-run-package-receipt.v1",
+    "result": "PASS",
+    "manifest_sha256": "8fbe84ba8f83f16834cabe93ab85febab15849d0b8266f930bf992a8b53e50cb",
+    "manifest_path": "D:\\FACTORY_ASSET\\canaries\\FA-137\\package\\manifest.json",
+    "file_count": 2,
+    "unique_file_count": 2,
+    "manifest_entry_count": 2,
+    "semantic_asset_count": 1,
+    "derivative_count": 2,
+    "publication_action": "NONE",
+    "upload_action": "NONE"
+  },
+  "negative_controls": {
+    "rights_review": {
+      "result": "PACKAGE_BLOCKED",
+      "blockers": [
+        "RIGHTS_REVIEW_REQUIRED"
+      ]
+    },
+    "missing_derivative": {
+      "result": "PACKAGE_BLOCKED",
+      "blockers": [
+        "DERIVATIVE_MISSING:WEB_PREVIEW"
+      ]
+    },
+    "derivative_hash_mismatch": {
+      "result": "PACKAGE_BLOCKED",
+      "blockers": [
+        "DERIVATIVE_QA_HASH_MISMATCH:ADOBE_JPEG"
+      ]
+    },
+    "unknown_marketplace": {
+      "result": "PACKAGE_BLOCKED",
+      "blockers": [
+        "DERIVATIVE_INCOMPATIBLE:ADOBE_JPEG",
+        "DERIVATIVE_PLAN_BLOCKED"
+      ]
+    },
+    "missing_ai_disclosure": {
+      "result": "PACKAGE_BLOCKED",
+      "blockers": [
+        "AI_DISCLOSURE_REQUIRED"
+      ]
+    }
+  },
+  "acceptance": {
+    "deterministic_metadata_hash_binding": "PASS",
+    "exact_master_hash_binding": "PASS",
+    "exact_derivative_hash_binding": "PASS",
+    "ai_disclosure_required": "PASS",
+    "rights_review_blocks": "PASS",
+    "missing_derivative_blocks": "PASS",
+    "unknown_marketplace_blocks": "PASS",
+    "package_composer_pass": "PASS",
+    "semantic_asset_count_remains_one": "PASS",
+    "human_rights_clearance_granted": false
+  },
+  "authority": {
+    "marketplace_upload": false,
+    "publication": false,
+    "submission_authority": "FOUNDER_CONTROLLED",
+    "spend_usd": 0
+  }
+}
