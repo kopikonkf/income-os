@@ -89,13 +89,33 @@ export function validateRequest(v, nowMs=Date.now(), allowExpired=false) {
   return v;
 }
 
-export function requestMarker(requestId){ return `[DIE-COGNITION-REQUEST:${requestId}]`; }
-export function chooseRecoveredTurn(turns, requestId) {
-  const marker=requestMarker(requestId); let userIndex=-1;
-  for(let i=0;i<turns.length;i++) if(turns[i].role==='user' && String(turns[i].text||'').includes(marker)) userIndex=i;
+export function requestFingerprint(req){
+  const stable=[req.schema,req.company_instance_id,req.request_id,req.task_id,req.action_type,req.target_principal_id,req.thread_generation,req.prompt,req.expected_response_schema,req.repository_sha??null,req.evidence_refs??[]];
+  return sha256(JSON.stringify(stable));
+}
+export function requestMarker(requestId,fingerprint=null){ return fingerprint ? `[DIE-COGNITION-REQUEST:${requestId}:${String(fingerprint).slice(0,12)}]` : `[DIE-COGNITION-REQUEST:${requestId}]`; }
+function matchingUserTurn(text,requestId,fingerprint,prompt){
+  const value=String(text||''); const exact=requestMarker(requestId,fingerprint);
+  if(value.includes(exact)) return true;
+  if(fingerprint && typeof prompt==='string') return value===`${requestMarker(requestId)}\n${prompt}`;
+  return false;
+}
+export function chooseRecoveredTurn(turns, requestId, fingerprint=null, prompt=null) {
+  let userIndex=-1;
+  for(let i=0;i<turns.length;i++) if(turns[i].role==='user' && matchingUserTurn(turns[i].text,requestId,fingerprint,prompt)) userIndex=i;
   if(userIndex<0) return {state:'NOT_SENT'};
   for(let i=userIndex+1;i<turns.length;i++) if(turns[i].role==='assistant' && String(turns[i].text||'').trim()) return {state:'RESPONDED', userIndex, assistant:turns[i]};
   return {state:'SENT_WAITING', userIndex};
+}
+export function choosePriorRequestVersion(turns,requestId,fingerprint,prompt){
+  const prefix=`[DIE-COGNITION-REQUEST:${requestId}`; let userIndex=-1;
+  for(let i=0;i<turns.length;i++){
+    if(turns[i].role!=='user') continue; const text=String(turns[i].text||'');
+    if(text.includes(prefix) && !matchingUserTurn(text,requestId,fingerprint,prompt)) userIndex=i;
+  }
+  if(userIndex<0)return {state:'NONE'};
+  for(let i=userIndex+1;i<turns.length;i++) if(turns[i].role==='assistant' && String(turns[i].text||'').trim()) return {state:'RESPONDED',userIndex,assistant:turns[i]};
+  return {state:'SENT_WAITING',userIndex};
 }
 
 async function turnSnapshot(page){
@@ -128,11 +148,20 @@ export async function runRoundtrip({dieHome='/srv/die', requestFile, responseFil
       rebound=true;
     }
     await page.bringToFront();
-    let turns=await turnSnapshot(page); let recovered=chooseRecoveredTurn(turns,req.request_id); let assistant=null;
+    const fingerprint=requestFingerprint(req); const marker=requestMarker(req.request_id,fingerprint); let stalePriorVersionStopped=false;
+    let turns=await turnSnapshot(page); let recovered=chooseRecoveredTurn(turns,req.request_id,fingerprint,req.prompt); let assistant=null;
     if(recovered.state==='RESPONDED') assistant=recovered.assistant;
     if(recovered.state==='NOT_SENT') {
+      const prior=choosePriorRequestVersion(turns,req.request_id,fingerprint,req.prompt);
+      if(prior.state==='SENT_WAITING'){
+        const stop=page.locator('button[data-testid="stop-button"], button[aria-label*="Stop"]').first();
+        if((await stop.count())>0 && await stop.isVisible().catch(()=>false)){
+          await stop.click({timeout:2500}); stalePriorVersionStopped=true;
+          await stop.waitFor({state:'hidden',timeout:15000}).catch(()=>{}); await page.waitForTimeout(500);
+        }
+      }
       if(Date.now()>=parseTime(req.expires_at)) throw new Error('E_REQUEST_EXPIRED');
-      const marker=requestMarker(req.request_id); const fullPrompt=`${marker}\n${req.prompt}`; if(fullPrompt.length>MAX_PROMPT_CHARS+220) throw new Error('E_FULL_PROMPT_OVERSIZE');
+      const fullPrompt=`${marker}\n${req.prompt}`; if(fullPrompt.length>MAX_PROMPT_CHARS+220) throw new Error('E_FULL_PROMPT_OVERSIZE');
       const composerAcquisition=await stagePrompt(page,fullPrompt,marker); const box=composerAcquisition.box;
       const sendAcquisition=await acquireSend(page); const send=sendAcquisition.send;
       await send.click(); submitted=true; recovered={state:'SENT_WAITING'};
@@ -140,7 +169,7 @@ export async function runRoundtrip({dieHome='/srv/die', requestFile, responseFil
     if(recovered.state==='SENT_WAITING') {
       const deadline=Date.now()+timeoutMs; let stable=0,last='';
       while(Date.now()<deadline){
-        await page.waitForTimeout(1000); turns=await turnSnapshot(page); recovered=chooseRecoveredTurn(turns,req.request_id);
+        await page.waitForTimeout(1000); turns=await turnSnapshot(page); recovered=chooseRecoveredTurn(turns,req.request_id,fingerprint,req.prompt);
         if(recovered.state==='RESPONDED'){
           assistant=recovered.assistant; const text=assistant.text||''; if(text===last && text.length>0) stable++; else {last=text;stable=0;}
           const stop=page.locator('button[data-testid="stop-button"], button[aria-label*="Stop"]').first(); const generating=(await stop.count())>0 && await stop.isVisible().catch(()=>false);
@@ -150,7 +179,7 @@ export async function runRoundtrip({dieHome='/srv/die', requestFile, responseFil
     }
     if(!assistant || !assistant.text) throw new Error('E_RESPONSE_TIMEOUT');
     if(assistant.text.length>MAX_RESPONSE_CHARS) throw new Error('E_RESPONSE_OVERSIZE');
-    const receipt={schema:'die.cognition.roundtrip-receipt.v1',company_instance_id:'DIE-LINUX',request_id:req.request_id,task_id:req.task_id,target_principal_id:req.target_principal_id,action_type:req.action_type,thread_generation:thread.generation,conversation_id:thread.conversation_id,bound_thread_recovered:rebound,submitted_by_transport:submitted,recovered_existing_request:!submitted,response_schema_expected:req.expected_response_schema,assistant_message_id:assistant.id,response_sha256:sha256(assistant.text),response_chars:assistant.text.length,credential_material_accessed:false,private_backend_called:false,observed_at:new Date().toISOString()};
+    const receipt={schema:'die.cognition.roundtrip-receipt.v1',company_instance_id:'DIE-LINUX',request_id:req.request_id,request_fingerprint:fingerprint,task_id:req.task_id,target_principal_id:req.target_principal_id,action_type:req.action_type,thread_generation:thread.generation,conversation_id:thread.conversation_id,bound_thread_recovered:rebound,submitted_by_transport:submitted,recovered_existing_request:!submitted,stale_prior_version_stopped:stalePriorVersionStopped,response_schema_expected:req.expected_response_schema,assistant_message_id:assistant.id,response_sha256:sha256(assistant.text),response_chars:assistant.text.length,credential_material_accessed:false,private_backend_called:false,observed_at:new Date().toISOString()};
     const recPath=path.join(cfg.receiptDir,`${req.request_id}.json`); atomicJson(recPath,receipt);
     if(responseFile){ if(!path.isAbsolute(responseFile)) throw new Error('E_RESPONSE_PATH'); fs.mkdirSync(path.dirname(responseFile),{recursive:true,mode:0o750}); fs.writeFileSync(responseFile,assistant.text+'\n',{mode:0o640}); }
     return {...receipt,receipt_ref:recPath,response_file:responseFile};
