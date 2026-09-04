@@ -1,0 +1,175 @@
+{
+  "schema": "factory-asset.content-addressed-master-ingestion-receipt.v1",
+  "task_id": "FA-106",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "operational_staging_root": "D:\\FACTORY_ASSET\\canaries\\FA-106",
+  "source_inventory": "company/factory-asset/receipts/FA-001-linux-master-inventory.receipt.json",
+  "attempts": [
+    {
+      "schema": "die.factory-asset.master-ingestion-attempt.v1",
+      "attempt_id": "fa106-prodseed000024-attempt-1",
+      "semantic_asset_id": "FASA-SEED000024-MASTER",
+      "blueprint_id": "BP-PROD-SMARTPHONE-TECH-COMMUNICATION-001",
+      "source_path": "D:\\mcp-architect\\workspace\\fa029-five-masters\\PRODSEED000024.png",
+      "source_sha256": "9d63a5a08ff5547801bbe885d50eb5bc9cd38b1fa79f0d9cf21ca090e20d6e3d",
+      "source_bytes": 15578885,
+      "staged_blob_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\blobs\\sha256\\9d\\9d63a5a08ff5547801bbe885d50eb5bc9cd38b1fa79f0d9cf21ca090e20d6e3d.png",
+      "blob_reused": false,
+      "ingestion_state": "STAGED_NOT_CANONICAL",
+      "canonical_truth": false,
+      "state_manager_commit_required": true,
+      "state_manager_proposal": {
+        "schema": "die.factory-asset.master-ingestion-proposal.v1",
+        "action": "FACTORY_MASTER_INGEST",
+        "semantic_asset_id": "FASA-SEED000024-MASTER",
+        "blueprint_id": "BP-PROD-SMARTPHONE-TECH-COMMUNICATION-001",
+        "master_sha256": "9d63a5a08ff5547801bbe885d50eb5bc9cd38b1fa79f0d9cf21ca090e20d6e3d",
+        "staged_blob_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\blobs\\sha256\\9d\\9d63a5a08ff5547801bbe885d50eb5bc9cd38b1fa79f0d9cf21ca090e20d6e3d.png",
+        "attempt_receipt_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\attempt-receipts\\fa106-prodseed000024-attempt-1.json",
+        "physical_writer_required": "DIE_STATE_MANAGER"
+      }
+    },
+    {
+      "schema": "die.factory-asset.master-ingestion-attempt.v1",
+      "attempt_id": "fa106-prodseed000028-attempt-1",
+      "semantic_asset_id": "FASA-SEED000028-MASTER",
+      "blueprint_id": "BP-PROD-GIFT-BOX-COMMERCE-GIFTING-001",
+      "source_path": "D:\\mcp-architect\\workspace\\fa029-five-masters\\PRODSEED000028.png",
+      "source_sha256": "571cbf8ff2664e3696e250245162bbcba33e9840c09a59778b7beba1a8e0faf1",
+      "source_bytes": 18279152,
+      "staged_blob_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\blobs\\sha256\\57\\571cbf8ff2664e3696e250245162bbcba33e9840c09a59778b7beba1a8e0faf1.png",
+      "blob_reused": false,
+      "ingestion_state": "STAGED_NOT_CANONICAL",
+      "canonical_truth": false,
+      "state_manager_commit_required": true,
+      "state_manager_proposal": {
+        "schema": "die.factory-asset.master-ingestion-proposal.v1",
+        "action": "FACTORY_MASTER_INGEST",
+        "semantic_asset_id": "FASA-SEED000028-MASTER",
+        "blueprint_id": "BP-PROD-GIFT-BOX-COMMERCE-GIFTING-001",
+        "master_sha256": "571cbf8ff2664e3696e250245162bbcba33e9840c09a59778b7beba1a8e0faf1",
+        "staged_blob_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\blobs\\sha256\\57\\571cbf8ff2664e3696e250245162bbcba33e9840c09a59778b7beba1a8e0faf1.png",
+        "attempt_receipt_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\attempt-receipts\\fa106-prodseed000028-attempt-1.json",
+        "physical_writer_required": "DIE_STATE_MANAGER"
+      }
+    },
+    {
+      "schema": "die.factory-asset.master-ingestion-attempt.v1",
+      "attempt_id": "fa106-prodseed000039-attempt-1",
+      "semantic_asset_id": "FASA-SEED000039-MASTER",
+      "blueprint_id": "BP-PROD-ARROW-SYMBOL-SIGN-001",
+      "source_path": "D:\\mcp-architect\\workspace\\fa029-five-masters\\PRODSEED000039.png",
+      "source_sha256": "c22abb9dbdbf822fe799ad7461b514df1fbb2e2fef2017ce71a660b234ad54c2",
+      "source_bytes": 8124919,
+      "staged_blob_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\blobs\\sha256\\c2\\c22abb9dbdbf822fe799ad7461b514df1fbb2e2fef2017ce71a660b234ad54c2.png",
+      "blob_reused": false,
+      "ingestion_state": "STAGED_NOT_CANONICAL",
+      "canonical_truth": false,
+      "state_manager_commit_required": true,
+      "state_manager_proposal": {
+        "schema": "die.factory-asset.master-ingestion-proposal.v1",
+        "action": "FACTORY_MASTER_INGEST",
+        "semantic_asset_id": "FASA-SEED000039-MASTER",
+        "blueprint_id": "BP-PROD-ARROW-SYMBOL-SIGN-001",
+        "master_sha256": "c22abb9dbdbf822fe799ad7461b514df1fbb2e2fef2017ce71a660b234ad54c2",
+        "staged_blob_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\blobs\\sha256\\c2\\c22abb9dbdbf822fe799ad7461b514df1fbb2e2fef2017ce71a660b234ad54c2.png",
+        "attempt_receipt_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\attempt-receipts\\fa106-prodseed000039-attempt-1.json",
+        "physical_writer_required": "DIE_STATE_MANAGER"
+      }
+    },
+    {
+      "schema": "die.factory-asset.master-ingestion-attempt.v1",
+      "attempt_id": "fa106-prodseed000040-attempt-1",
+      "semantic_asset_id": "FASA-SEED000040-MASTER",
+      "blueprint_id": "BP-PROD-CAMERA-TECH-PHOTO-001",
+      "source_path": "D:\\mcp-architect\\workspace\\fa029-five-masters\\PRODSEED000040.png",
+      "source_sha256": "3c565beb3cae6c5128e82659d72e365ec44393a2a623634a5cc32104178317b7",
+      "source_bytes": 17646396,
+      "staged_blob_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\blobs\\sha256\\3c\\3c565beb3cae6c5128e82659d72e365ec44393a2a623634a5cc32104178317b7.png",
+      "blob_reused": false,
+      "ingestion_state": "STAGED_NOT_CANONICAL",
+      "canonical_truth": false,
+      "state_manager_commit_required": true,
+      "state_manager_proposal": {
+        "schema": "die.factory-asset.master-ingestion-proposal.v1",
+        "action": "FACTORY_MASTER_INGEST",
+        "semantic_asset_id": "FASA-SEED000040-MASTER",
+        "blueprint_id": "BP-PROD-CAMERA-TECH-PHOTO-001",
+        "master_sha256": "3c565beb3cae6c5128e82659d72e365ec44393a2a623634a5cc32104178317b7",
+        "staged_blob_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\blobs\\sha256\\3c\\3c565beb3cae6c5128e82659d72e365ec44393a2a623634a5cc32104178317b7.png",
+        "attempt_receipt_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\attempt-receipts\\fa106-prodseed000040-attempt-1.json",
+        "physical_writer_required": "DIE_STATE_MANAGER"
+      }
+    },
+    {
+      "schema": "die.factory-asset.master-ingestion-attempt.v1",
+      "attempt_id": "fa106-prodseed000037-attempt-1",
+      "semantic_asset_id": "FASA-SEED000037-MASTER",
+      "blueprint_id": "BP-PROD-DRAGON-FICTIONAL-CREATURE-001",
+      "source_path": "D:\\mcp-architect\\workspace\\fa029-five-masters\\PRODSEED000037.png",
+      "source_sha256": "3bef44414de3f55d9c5667b9f2bf3e49585d2affd5e0008f784b27479b59e727",
+      "source_bytes": 23132843,
+      "staged_blob_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\blobs\\sha256\\3b\\3bef44414de3f55d9c5667b9f2bf3e49585d2affd5e0008f784b27479b59e727.png",
+      "blob_reused": false,
+      "ingestion_state": "STAGED_NOT_CANONICAL",
+      "canonical_truth": false,
+      "state_manager_commit_required": true,
+      "state_manager_proposal": {
+        "schema": "die.factory-asset.master-ingestion-proposal.v1",
+        "action": "FACTORY_MASTER_INGEST",
+        "semantic_asset_id": "FASA-SEED000037-MASTER",
+        "blueprint_id": "BP-PROD-DRAGON-FICTIONAL-CREATURE-001",
+        "master_sha256": "3bef44414de3f55d9c5667b9f2bf3e49585d2affd5e0008f784b27479b59e727",
+        "staged_blob_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\blobs\\sha256\\3b\\3bef44414de3f55d9c5667b9f2bf3e49585d2affd5e0008f784b27479b59e727.png",
+        "attempt_receipt_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\attempt-receipts\\fa106-prodseed000037-attempt-1.json",
+        "physical_writer_required": "DIE_STATE_MANAGER"
+      }
+    },
+    {
+      "schema": "die.factory-asset.master-ingestion-attempt.v1",
+      "attempt_id": "fa106-prodseed000024-attempt-2-duplicate",
+      "semantic_asset_id": "FASA-SEED000024-MASTER",
+      "blueprint_id": "BP-PROD-SMARTPHONE-TECH-COMMUNICATION-001",
+      "source_path": "D:\\mcp-architect\\workspace\\fa029-five-masters\\PRODSEED000024.png",
+      "source_sha256": "9d63a5a08ff5547801bbe885d50eb5bc9cd38b1fa79f0d9cf21ca090e20d6e3d",
+      "source_bytes": 15578885,
+      "staged_blob_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\blobs\\sha256\\9d\\9d63a5a08ff5547801bbe885d50eb5bc9cd38b1fa79f0d9cf21ca090e20d6e3d.png",
+      "blob_reused": true,
+      "ingestion_state": "STAGED_NOT_CANONICAL",
+      "canonical_truth": false,
+      "state_manager_commit_required": true,
+      "state_manager_proposal": {
+        "schema": "die.factory-asset.master-ingestion-proposal.v1",
+        "action": "FACTORY_MASTER_INGEST",
+        "semantic_asset_id": "FASA-SEED000024-MASTER",
+        "blueprint_id": "BP-PROD-SMARTPHONE-TECH-COMMUNICATION-001",
+        "master_sha256": "9d63a5a08ff5547801bbe885d50eb5bc9cd38b1fa79f0d9cf21ca090e20d6e3d",
+        "staged_blob_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\blobs\\sha256\\9d\\9d63a5a08ff5547801bbe885d50eb5bc9cd38b1fa79f0d9cf21ca090e20d6e3d.png",
+        "attempt_receipt_path": "D:\\FACTORY_ASSET\\canaries\\FA-106\\attempt-receipts\\fa106-prodseed000024-attempt-2-duplicate.json",
+        "physical_writer_required": "DIE_STATE_MANAGER"
+      }
+    }
+  ],
+  "index_summary": {
+    "attempt_count": 6,
+    "unique_blob_count": 5,
+    "duplicate_attempts": 1
+  },
+  "truth_boundary": {
+    "ingestion_state": "STAGED_NOT_CANONICAL",
+    "canonical_truth": false,
+    "state_manager_commit_required": true,
+    "physical_writer_required": "DIE_STATE_MANAGER"
+  },
+  "validation": {
+    "five_unique_master_hashes": "5/5",
+    "attempt_receipts": "6/6",
+    "unique_content_blobs": "5",
+    "duplicate_byte_reuse": "PASS",
+    "distinct_duplicate_attempt_receipt": "PASS",
+    "source_hash_verification": "6/6",
+    "direct_canonical_mutation": false
+  }
+}

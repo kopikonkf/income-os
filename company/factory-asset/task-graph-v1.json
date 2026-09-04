@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "5.0-fa030-derivative-engine-v0.1",
+  "revision": "5.1-fa106-content-addressed-ingestion",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1293,9 +1293,11 @@
         "FA-030",
         "FA-105"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Master ingestion/deduplication proposal and receipt module",
-      "acceptance": "Duplicate bytes reuse canonical content, retain distinct attempt receipts and can only become truth through DIE State Manager."
+      "acceptance": "Duplicate bytes reuse canonical content, retain distinct attempt receipts and can only become truth through DIE State Manager.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: content-addressed staging module verifies source SHA-256, atomically stores blobs by hash, reuses identical bytes, retains distinct attempt receipts, rejects collisions/attempt drift and always remains STAGED_NOT_CANONICAL with DIE_STATE_MANAGER as the required physical writer. Actual five-master run: 6 attempts -> 5 unique blobs with duplicate reuse PASS. Regression 231/231 PASS."
     },
     {
       "id": "FA-107",
@@ -1323,7 +1325,7 @@
         "FA-106",
         "FA-107"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-109-factory-core-synthetic-acceptance.receipt.json",
       "acceptance": "Synthetic providers prove routing, capacity, leases, retry, crash, dedupe, ingestion and zero-secret observability with zero false success."
@@ -1854,7 +1856,7 @@
         "FA-030",
         "FA-106"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Console output gallery + lineage/QA fixtures",
       "acceptance": "Each semantic asset shows immutable master, packaging derivatives, hashes, recipes, QA/compatibility state and duplicate suppression without counting derivatives as additional assets."
     },

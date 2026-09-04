@@ -396,3 +396,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - FA-029 real five-master canary seals 20/20 outputs, rerun idempotency, QA, packages, dedupe and fail-closed vector-gate evidence.
 - Zero master overwrite/false success; receipt lineage 100%; non-destructive disable/rollback documented.
 - `FA-106` is READY.
+
+
+### FA-106 — DONE / PASS — content-addressed master ingestion staging
+- Actual five-master staging: 6 attempts -> 5 unique SHA-addressed blobs; duplicate attempt reuses bytes while keeping a separate receipt.
+- All staged records remain `STAGED_NOT_CANONICAL`; the proposal requires `DIE_STATE_MANAGER` as physical writer. No direct canonical state mutation occurred.
+- Regression 231/231 PASS. `FA-109` and `FA-C008` are READY.
