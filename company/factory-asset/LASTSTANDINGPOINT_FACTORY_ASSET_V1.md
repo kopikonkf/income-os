@@ -503,3 +503,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 ### FA-136 — DONE / PASS — automated rights/brand/watermark/text signal gate
 - Exact master hash binds detector observations. Confirmed watermark/trademark/brand/safety signals BLOCK; unresolved or incomplete detector evidence requires REVIEW_REQUIRED.
 - Automated PASS never grants human rights clearance; Founder QC remains mandatory.
+
+
+### FA-137 — DONE / PASS — metadata and package readiness
+- Actual provider-original fixture -> deterministic JPEG/WebP -> exact hash-bound metadata -> FA-028 dry-run package = PACKAGE_READY.
+- Rights review, missing/tampered derivative, unknown marketplace or missing AI disclosure all fail closed.
+- No rights clearance/upload/publication authority.
