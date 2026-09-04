@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "3.8-fa-c006-governed-queue-controls",
+  "revision": "3.9-fa107-sanitized-observability",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1289,9 +1289,11 @@
         "FA-102",
         "FA-105"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Factory metrics/logging surfaces and secret-negative tests",
-      "acceptance": "Attempts, unique masters, QA assets, derivatives, packages, failures, resources and economics are separate; credentials/auth bodies absent."
+      "acceptance": "Attempts, unique masters, QA assets, derivatives, packages, failures, resources and economics are separate; credentials/auth bodies absent.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: sanitized Factory observability keeps attempts, unique masters, QA assets, derivatives, packages, failures, resources and economics as distinct metrics; secret/auth/browser fields and unknown raw payloads are rejected recursively. Regression 174/174 PASS."
     },
     {
       "id": "FA-109",
@@ -1817,7 +1819,7 @@
         "FA-104",
         "FA-107"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Console provider/capacity dashboard + fixtures",
       "acceptance": "Founder sees eligible/deferred/blocked providers, observed capacity, routing rationale and typed failures without guessed quota or secret material; optional Grok state does not block healthy providers."
     },

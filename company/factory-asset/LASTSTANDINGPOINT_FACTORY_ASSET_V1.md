@@ -358,3 +358,8 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - `FA-C003` normalized Console/Core API: DONE; vendor/browser/credential wire fields rejected.
 - `FA-C006` governed Queue controls: DONE; START/PAUSE/RESUME/CANCEL/RETRY call FA-105 locally, provider dispatch remains disabled.
 - Final regression before publication: 159/159 PASS. `FA-107` is READY; `FA-C007` still waits for FA-107, and `FA-C008` waits for FA-030 + FA-106.
+
+
+### FA-107 — DONE / PASS — sanitized Factory observability
+- Attempts, unique masters, QA assets, derivatives, packages, failures, resources and economics remain distinct.
+- Secret/auth/browser fields are recursively rejected. Regression 174/174 PASS. `FA-C007` is READY.
