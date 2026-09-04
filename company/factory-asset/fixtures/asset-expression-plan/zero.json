@@ -1,0 +1,19 @@
+{
+  "schema": "die.factory-asset.asset-expression-plan.v1",
+  "plan_id": "FAEP-SHOPPING_BAG_ZERO",
+  "seed": {
+    "seed_id": "shopping-bag-seed",
+    "noun": "shopping bag"
+  },
+  "decision": "RESEARCH",
+  "decision_rationale": "A noun alone gives no buyer or product evidence; research is required before selecting an expression.",
+  "policy": {
+    "expansion_rule": "EVIDENCE_SUPPORTED_ONLY",
+    "force_all_modes": false,
+    "packaging_variants_create_new_semantic_asset": false,
+    "derivative_planning_stage": "AFTER_VALIDATED_MASTER",
+    "submission_authority": "FOUNDER_CONTROLLED"
+  },
+  "evidence": [],
+  "expressions": []
+}

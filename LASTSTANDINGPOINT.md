@@ -3513,3 +3513,14 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Graph delta is FA-033 READY -> DONE only. No dependent node unlocked or advanced.
 - Any other graph node started: No.
 - Next existing READY eligible task: FA-041, information only; STOP.
+
+
+### FA-034 / FA-129 / FA-131 — DONE / PASS — Codex Linux lane (2026-09-04)
+- Explicit Founder-directed batch in isolated Linux checkout `/home/kopiko/die-worktrees/fa034-129-131-20260904`; integrated Architect FA-043 from `origin/main` before final verification.
+- FA-034: both native SVG pattern fixtures regenerate byte-identically, pass seam/editability/preview QA and produce exact SVG/PNG internal packages retaining one semantic asset. EPS remains uncertified because its existing exporter loses fill colors.
+- FA-129: schema, evidence-scoped validator and same-seed zero/one/multiple fixtures separate semantic expansion from delivery; forced expansion and duplicate semantic IDs fail closed.
+- FA-131: actual-byte JPEG/PNG/WebP/TIFF intake records MIME/magic/dimensions/alpha/size/hash, immutable snapshots and normalized staged evidence; corrupt/mislabeled/conflicting artifacts fail closed.
+- Linux targeted: FA-034 56 passed in 1.82s; FA-129 40 passed in 0.68s; FA-131 64 passed in 1.39s. Factory regression: 416 passed, 1 warning in 10.70s. One-canon: 6 passed in 1.45s; validator 11/11 PASS.
+- Receipts: `FA-034-pattern-engine-v0.1-acceptance.receipt.json`, `FA-129-asset-expression-plan.receipt.json`, `FA-131-provider-original-intake.receipt.json`; commands in `FA-034-129-131-linux-validation.json` under `company/factory-asset/receipts`.
+- Dependency reconciliation only: FA-130, FA-132, FA-133, FA-134, FA-135, FA-136 become READY. No downstream implementation started; FA-133 dependencies now all DONE, including Architect-owned FA-043.
+- No production runtime, provider, credential, marketplace or spend action. Intake is STAGED_NOT_CANONICAL; State Manager remains the sole canonical writer.
