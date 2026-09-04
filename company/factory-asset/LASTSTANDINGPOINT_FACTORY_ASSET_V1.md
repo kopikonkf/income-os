@@ -509,3 +509,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Actual provider-original fixture -> deterministic JPEG/WebP -> exact hash-bound metadata -> FA-028 dry-run package = PACKAGE_READY.
 - Rights review, missing/tampered derivative, unknown marketplace or missing AI disclosure all fail closed.
 - No rights clearance/upload/publication authority.
+
+
+### FA-135 — DONE / PASS — conditional upscale/recovery adapter
+- Native-sufficient master = NOOP; dimension shortfall = UPSCALE_REQUIRED; classified technical defect = RECOVERY_REQUIRED.
+- Rights/safety/lineage/integrity uncertainty never recoverable. Source immutable, rerun idempotent, failure leaves no partial output.
+- Production model SHA pin required; RealESRGAN Linux production not yet certified by this task.

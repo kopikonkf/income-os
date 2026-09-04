@@ -1,0 +1,216 @@
+{
+  "schema": "factory-asset.upscale-recovery-acceptance.v1",
+  "task_id": "FA-135",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "source": {
+    "path": "D:\\FACTORY_ASSET\\canaries\\FA-135\\master.png",
+    "sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+    "dimensions": [
+      12,
+      8
+    ],
+    "provider_original_byte_preservation": "EXACT_COPY"
+  },
+  "decisions": {
+    "noop": {
+      "schema": "die.factory-asset.upscale-recovery-decision.v1",
+      "state": "NOOP_SUFFICIENT",
+      "reasons": [
+        "ROUTE_REQUIREMENTS_ALREADY_SATISFIED"
+      ],
+      "source_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+      "source_dimensions": [
+        12,
+        8
+      ],
+      "target_dimensions": [
+        12,
+        8
+      ],
+      "recovery_allowed": false,
+      "upscale_required": false
+    },
+    "upscale": {
+      "schema": "die.factory-asset.upscale-recovery-decision.v1",
+      "state": "UPSCALE_REQUIRED",
+      "reasons": [
+        "DIMENSIONS_BELOW_ROUTE_MINIMUM",
+        "RECOVERABLE:TECHNICAL_DIMENSION_BELOW_MINIMUM"
+      ],
+      "source_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+      "source_dimensions": [
+        12,
+        8
+      ],
+      "target_dimensions": [
+        24,
+        16
+      ],
+      "recovery_allowed": true,
+      "upscale_required": true
+    },
+    "recovery": {
+      "schema": "die.factory-asset.upscale-recovery-decision.v1",
+      "state": "RECOVERY_REQUIRED",
+      "reasons": [
+        "RECOVERABLE:DETAIL_SOFTNESS"
+      ],
+      "source_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+      "source_dimensions": [
+        12,
+        8
+      ],
+      "target_dimensions": [
+        12,
+        8
+      ],
+      "recovery_allowed": true,
+      "upscale_required": false
+    },
+    "rights_block": {
+      "schema": "die.factory-asset.upscale-recovery-decision.v1",
+      "state": "BLOCK_NONRECOVERABLE",
+      "reasons": [
+        "RIGHTS_STATE_REVIEW_REQUIRED"
+      ],
+      "source_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+      "source_dimensions": [
+        12,
+        8
+      ],
+      "target_dimensions": null,
+      "recovery_allowed": false,
+      "upscale_required": false
+    }
+  },
+  "receipts": {
+    "noop": {
+      "schema": "die.factory-asset.upscale-recovery-receipt.v1",
+      "result": "NOOP",
+      "decision_state": "NOOP_SUFFICIENT",
+      "source_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+      "source_dimensions": [
+        12,
+        8
+      ],
+      "final_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+      "final_dimensions": [
+        12,
+        8
+      ],
+      "output_path": "D:\\FACTORY_ASSET\\canaries\\FA-135\\master.png",
+      "source_unchanged": true,
+      "idempotent_reuse": true,
+      "engine": null,
+      "partial_output": false
+    },
+    "upscale_first": {
+      "schema": "die.factory-asset.upscale-recovery-receipt.v1",
+      "result": "PASS",
+      "decision_state": "UPSCALE_REQUIRED",
+      "source_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+      "source_dimensions": [
+        12,
+        8
+      ],
+      "final_sha256": "6815abe426ae76f2cdf942dd2f6b1684608be0c85fb9856b4bf2ca698aa38313",
+      "final_dimensions": [
+        24,
+        16
+      ],
+      "output_path": "D:\\FACTORY_ASSET\\canaries\\FA-135\\upscaled.png",
+      "source_unchanged": true,
+      "idempotency_key": "f095d9dcdcb9dd4cebad97108871291e6f53259e29c0f8a65f9769731321d845",
+      "idempotent_reuse": false,
+      "engine": {
+        "engine_id": "PILLOW_LANCZOS_REFERENCE",
+        "engine_version": "1.0",
+        "model_sha256": null,
+        "production_engine": false
+      },
+      "partial_output": false
+    },
+    "upscale_rerun": {
+      "decision_state": "UPSCALE_REQUIRED",
+      "engine": {
+        "engine_id": "PILLOW_LANCZOS_REFERENCE",
+        "engine_version": "1.0",
+        "model_sha256": null,
+        "production_engine": false
+      },
+      "final_dimensions": [
+        24,
+        16
+      ],
+      "final_sha256": "6815abe426ae76f2cdf942dd2f6b1684608be0c85fb9856b4bf2ca698aa38313",
+      "idempotency_key": "f095d9dcdcb9dd4cebad97108871291e6f53259e29c0f8a65f9769731321d845",
+      "idempotent_reuse": true,
+      "output_path": "D:\\FACTORY_ASSET\\canaries\\FA-135\\upscaled.png",
+      "partial_output": false,
+      "result": "PASS",
+      "schema": "die.factory-asset.upscale-recovery-receipt.v1",
+      "source_dimensions": [
+        12,
+        8
+      ],
+      "source_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+      "source_unchanged": true
+    },
+    "recovery": {
+      "schema": "die.factory-asset.upscale-recovery-receipt.v1",
+      "result": "PASS",
+      "decision_state": "RECOVERY_REQUIRED",
+      "source_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+      "source_dimensions": [
+        12,
+        8
+      ],
+      "final_sha256": "7533d743f6ad3a2b3c1e64dfe648dc42726edea48ecedafaa8b102c64f6f9069",
+      "final_dimensions": [
+        12,
+        8
+      ],
+      "output_path": "D:\\FACTORY_ASSET\\canaries\\FA-135\\recovered.png",
+      "source_unchanged": true,
+      "idempotency_key": "fc79357f769381750ef0ae2594938d9b51729a2196e6d0aa46341183631d80bf",
+      "idempotent_reuse": false,
+      "engine": {
+        "engine_id": "PILLOW_LANCZOS_REFERENCE",
+        "engine_version": "1.0",
+        "model_sha256": null,
+        "production_engine": false
+      },
+      "partial_output": false
+    }
+  },
+  "failure_injection": {
+    "result": "PASS",
+    "final_output_exists": false,
+    "source_sha256_after": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+    "source_unchanged": true
+  },
+  "production_engine_guard": {
+    "result": "PASS",
+    "unpinned_model_rejected": "PRODUCTION_MODEL_SHA256_REQUIRED",
+    "realesrgan_production_certified": false
+  },
+  "acceptance": {
+    "native_sufficient_skips_upscale": "PASS",
+    "dimension_shortfall_triggers_upscale": "PASS",
+    "recoverable_quality_triggers_recovery": "PASS",
+    "rights_review_not_recoverable": "PASS",
+    "source_master_immutable": "PASS",
+    "source_final_hashes_and_dimensions_preserved": "PASS",
+    "rerun_idempotent": "PASS",
+    "failure_never_replaces_master": "PASS",
+    "production_model_hash_pin_required": "PASS"
+  },
+  "authority": {
+    "provider_generation": false,
+    "marketplace_upload": false,
+    "publication": false,
+    "spend_usd": 0
+  }
+}

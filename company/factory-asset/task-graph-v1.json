@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "6.8-fa137-metadata-package-readiness",
+  "revision": "6.9-fa135-upscale-recovery",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2058,9 +2058,11 @@
       "depends_on": [
         "FA-131"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "OS-neutral upscale/recovery decision and adapter contract with lineage receipts",
-      "acceptance": "Upscale/recovery is invoked only when master dimensions/quality fail the selected route requirement; native-sufficient outputs skip it. Original bytes remain immutable, source/final hashes and dimensions are preserved, reruns are idempotent and failures never replace a valid master with partial output."
+      "acceptance": "Upscale/recovery is invoked only when master dimensions/quality fail the selected route requirement; native-sufficient outputs skip it. Original bytes remain immutable, source/final hashes and dimensions are preserved, reruns are idempotent and failures never replace a valid master with partial output.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: OS-neutral conditional upscale/recovery decision + atomic adapter accepted. Native-sufficient masters NOOP with byte-identical source/final hash; dimension shortfall upscales only when needed; classified recoverable quality defects route recovery; rights/safety/lineage/integrity uncertainty is nonrecoverable. Source master stays immutable, source/final hashes+dimensions are receipted, reruns reuse idempotently, injected failures leave no partial final output, and production engines require pinned model SHA. RealESRGAN production runtime not falsely certified."
     },
     {
       "id": "FA-136",
@@ -2109,7 +2111,7 @@
         "FA-136",
         "FA-137"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Durable postproduction state machine from ARTIFACT_CREATED to WAITING_FOUNDER_QC",
       "acceptance": "Autonomous order is ARTIFACT_CREATED -> MASTER_VALIDATED -> UPSCALE_DECIDED -> DERIVATIVES_READY -> TECHNICAL_QA_PASS -> RIGHTS_SIGNAL_PASS_OR_REVIEW -> METADATA_READY -> PACKAGE_READY -> WAITING_FOUNDER_QC. WAITING_FOUNDER_QC cannot be reached early; every failure is typed and lineage-preserving."
     },
