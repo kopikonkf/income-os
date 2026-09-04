@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "4.1-fa021-raster-worker",
+  "revision": "4.2-fa022-pdf-preview",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -836,9 +836,11 @@
       "depends_on": [
         "FA-021"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "PDF/preview recipe worker and tests",
-      "acceptance": "PDF and preview outputs reopen/render correctly, preserve dimensions/aspect policy and have deterministic receipts."
+      "acceptance": "PDF and preview outputs reopen/render correctly, preserve dimensions/aspect policy and have deterministic receipts.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: deterministic PDF derivative writer embeds a validated JPEG XObject, reopens through PyPDF2 with preserved page dimensions/aspect, and returns derivative receipts; preview PNG/JPEG packaging is deterministic, bounded and aspect-preserving. Regression 198/198 PASS."
     },
     {
       "id": "FA-023",
