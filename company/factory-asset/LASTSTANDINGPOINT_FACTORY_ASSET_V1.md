@@ -449,3 +449,10 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Two-router invariant: semantic asset-expression routing happens before Blueprint/producer; packaging derivative routing happens after master. Motion/pattern are semantic products, not post-hoc raster conversions.
 - FA-120 scale harness and FA-200 governed canary now depend on FA-140 so scale/acceptance cannot bypass orchestration v2.
 - FA-034 was reconciled to READY because Codex already completed FA-033.
+
+
+### FA-041 — DONE / PASS — real Remotion motion producer fixture
+- Remotion 4.0.520 + managed Chrome renders the exact FA-040 composition to MP4 H.264 yuv420p: 1080x1080, 30 FPS, 180 frames, exactly 6.000s, no audio stream; frame-90 PNG preview is emitted.
+- Independent renders are binary-identical for both MP4 and preview. Native FA-031 receipt validates; `conversion_from_raster=false`.
+- Temp cleanup passes after success and injected failure. Scope is local acceptance only / zero spend; production automation licensing is not asserted.
+- `FA-042` is READY for codec/container/frame-integrity and compatibility QA.

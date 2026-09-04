@@ -1,0 +1,99 @@
+{
+  "schema": "factory-asset.remotion-motion-producer-fixture-receipt.v1",
+  "task_id": "FA-041",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact_root": "company/factory-asset/native-producers/remotion-fixture",
+  "operational_output_root": "D:\\FACTORY_ASSET\\canaries\\FA-041\\run-c",
+  "contract_source": "company/factory-asset/fixtures/motion-composition/fixture-plan.v1.json#shopping-bag-bounce-mp4",
+  "contract_copy": "company/factory-asset/native-producers/remotion-fixture/src/composition-contract.json",
+  "contract_exact_match": true,
+  "runtime": {
+    "remotion": "4.0.520",
+    "react": "19.2.8",
+    "react_dom": "19.2.8",
+    "browser": "Google Chrome for Testing 149.0.7790.0",
+    "managed_browser": true,
+    "global_ffmpeg_required": false,
+    "global_ffprobe_required": false
+  },
+  "render": {
+    "composition_id": "ShoppingBagBounce",
+    "master_format": "MP4",
+    "codec": "h264",
+    "pixel_format": "yuv420p",
+    "width": 1080,
+    "height": 1080,
+    "fps": 30,
+    "frame_count": 180,
+    "duration_seconds": 6.0,
+    "audio_stream_count": 0,
+    "audio_policy": "NONE",
+    "preview_format": "PNG",
+    "preview_frame": 90,
+    "preview_dimensions": [
+      1080,
+      1080
+    ]
+  },
+  "repeatability": {
+    "master_sha256": "f37c9c41f6e7421ca1f09493061113ddc6f70b74628aef423999df2290e941ba",
+    "master_bytes": 104049,
+    "independent_render_master_sha_match": true,
+    "preview_sha256": "b11e110ef691918c1a6dd6ca93b9966bd5b8c6e89ecd9caa547e9f01734ef02a",
+    "preview_bytes": 31846,
+    "independent_render_preview_sha_match": true,
+    "binary_repeatability": "PASS"
+  },
+  "native_receipt": {
+    "schema": "die.factory-asset.native-producer.v1",
+    "kind": "RECEIPT",
+    "job_id": "FA041-REMOTION-001",
+    "idempotency_key": "b242892287755ca71e33420a77143e68a5f586aa18f35cf22939a41824e5c22d",
+    "producer_class": "MOTION_RENDERER",
+    "producer_version": "1.0.0",
+    "result": "PASS",
+    "master": {
+      "format": "MP4",
+      "sha256": "f37c9c41f6e7421ca1f09493061113ddc6f70b74628aef423999df2290e941ba",
+      "bytes": 104049,
+      "native_editable": true,
+      "generated_by_native_producer": true,
+      "conversion_from_raster": false,
+      "lineage_sha256_required": true
+    },
+    "deterministic_receipt_sha256": "9f5f8fada5d2b70b83d765b62833fc541d8f44b4719aca66744aa67286552ab1"
+  },
+  "native_receipt_schema_validation": "PASS",
+  "native_receipt_hash_recalculation": "PASS",
+  "cleanup": {
+    "success_temp_leftovers": 0,
+    "failure_self_test": {
+      "schema": "die.factory-asset.remotion-cleanup-self-test.v1",
+      "result": "PASS",
+      "injected_failure_observed": true,
+      "temporary_entries_after_failure": 0,
+      "partial_final_output": false
+    },
+    "partial_final_output_after_failure": false
+  },
+  "authority": {
+    "provider_generation": false,
+    "browser_profile_ownership": false,
+    "credential_access": false,
+    "marketplace_upload": false,
+    "publication": false,
+    "spend_usd": 0
+  },
+  "licensing_scope": {
+    "use": "LOCAL_ACCEPTANCE_FIXTURE_ONLY",
+    "production_automation_license_asserted": false,
+    "production_scale_gate": "NOT_EVALUATED_BY_FA-041"
+  },
+  "marketplace_compatibility": "UNKNOWN_PENDING_FA-042",
+  "renderer_execution_performed": true,
+  "unblocked": [
+    "FA-042"
+  ]
+}
