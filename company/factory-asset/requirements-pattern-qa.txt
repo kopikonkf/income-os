@@ -1,0 +1,8 @@
+# Focused FA-033 QA dependencies
+Pillow==11.3.0
+pytest==8.4.2
+jsonschema==4.25.1
+# Existing Factory-wide regression dependencies
+PyPDF2==3.0.1
+opencv-python-headless==4.12.0.88
+numpy==2.2.6

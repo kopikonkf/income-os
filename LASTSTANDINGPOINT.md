@@ -3499,3 +3499,17 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Graph delta: FA-012 DONE; FA-013 READY; FA-014 READY.
 - Next highest-priority READY Linux leaf: FA-013.
 
+
+
+### FA-033 — DONE / PASS — pattern seam, tile and editability QA (2026-09-04)
+
+- Base origin/main: `010478eda06c29bdbaae5349ee8b9418db694236`.
+- Direct Codex -> SSH -> Linux checkout `/home/kopiko/die-worktrees/fa033-pattern-qa-20260904`, branch `codex/fa-033-pattern-qa-20260904`.
+- Read-only QA validates actual SVG/PNG lineage, editable diamond paths, exact tile bounds, continuous seams, independent geometry rendering and every preview repeat.
+- Both canonical FA-032 fixtures pass. Broken seams, raster/font/script masquerades, malformed paths and resealed preview pixel drift fail closed; master/preview bytes and timestamps remain unchanged.
+- Compatibility is scoped to FA032_PATTERN_TILE; marketplace compatibility stays UNKNOWN and no semantic identity is minted.
+- Linux acceptance: 32 targeted tests; 290 Factory tests; 6 one-canon tests; validator 11/11; high-confidence secret hits 0; diff-check PASS.
+- Receipt: `company/factory-asset/receipts/FA-033-pattern-qa.receipt.json`; exact commands: `FA-033-linux-validation.json`.
+- Graph delta is FA-033 READY -> DONE only. No dependent node unlocked or advanced.
+- Any other graph node started: No.
+- Next existing READY eligible task: FA-041, information only; STOP.

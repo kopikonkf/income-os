@@ -1008,9 +1008,11 @@
       "depends_on": [
         "FA-032"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Pattern QA suite and compatibility receipts",
-      "acceptance": "Fixtures prove seamless edges, repeat bounds, editable paths, renderability and preview consistency; broken seams and raster masquerades fail closed."
+      "acceptance": "Fixtures prove seamless edges, repeat bounds, editable paths, renderability and preview consistency; broken seams and raster masquerades fail closed.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: read-only FA-032 pattern QA verifies actual SVG paths, continuous tile seams, bounds, independent rendering, every preview repeat and receipt lineage. Raster masquerades, broken seams and resealed preview drift fail closed. Linux targeted 32/32, Factory 290/290, one-canon 6/6 and validator 11/11 PASS; marketplace compatibility remains UNKNOWN."
     },
     {
       "id": "FA-034",

@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FA-033 Pattern Tile QA Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "result",
+    "checks",
+    "failures",
+    "compatibility",
+    "marketplace_compatibility",
+    "semantic_identity_effect"
+  ],
+  "properties": {
+    "schema": {
+      "const": "die.factory-asset.pattern-qa.v1"
+    },
+    "result": {
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "semantic_asset_id",
+        "job_id",
+        "master_sha256",
+        "preview_sha256"
+      ],
+      "properties": {
+        "semantic_asset_id": {
+          "type": "string"
+        },
+        "job_id": {
+          "type": "string"
+        },
+        "master_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "preview_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lineage",
+        "editable_paths",
+        "tile_bounds",
+        "seams",
+        "renderability",
+        "preview_consistency"
+      ],
+      "properties": {
+        "lineage": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_RUN"
+          ]
+        },
+        "editable_paths": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_RUN"
+          ]
+        },
+        "tile_bounds": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_RUN"
+          ]
+        },
+        "seams": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_RUN"
+          ]
+        },
+        "renderability": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_RUN"
+          ]
+        },
+        "preview_consistency": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_RUN"
+          ]
+        }
+      }
+    },
+    "failures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "stage"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "stage": {
+            "enum": [
+              "lineage",
+              "editable_paths",
+              "tile_bounds",
+              "seams",
+              "renderability",
+              "preview_consistency"
+            ]
+          }
+        }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "state"
+      ],
+      "properties": {
+        "scope": {
+          "const": "FA032_PATTERN_TILE"
+        },
+        "state": {
+          "enum": [
+            "COMPATIBLE",
+            "INCOMPATIBLE"
+          ]
+        }
+      }
+    },
+    "marketplace_compatibility": {
+      "const": "COMPATIBILITY_UNKNOWN"
+    },
+    "semantic_identity_effect": {
+      "const": "NONE"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "result": {
+            "const": "PASS"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "input"
+        ],
+        "properties": {
+          "failures": {
+            "maxItems": 0
+          },
+          "checks": {
+            "properties": {
+              "lineage": {
+                "const": "PASS"
+              },
+              "editable_paths": {
+                "const": "PASS"
+              },
+              "tile_bounds": {
+                "const": "PASS"
+              },
+              "seams": {
+                "const": "PASS"
+              },
+              "renderability": {
+                "const": "PASS"
+              },
+              "preview_consistency": {
+                "const": "PASS"
+              }
+            }
+          },
+          "compatibility": {
+            "properties": {
+              "state": {
+                "const": "COMPATIBLE"
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "failures": {
+            "minItems": 1
+          },
+          "compatibility": {
+            "properties": {
+              "state": {
+                "const": "INCOMPATIBLE"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

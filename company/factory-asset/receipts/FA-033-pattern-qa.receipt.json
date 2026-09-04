@@ -1,0 +1,138 @@
+{
+  "schema": "die.factory-asset.pattern-qa-acceptance.v1",
+  "task_id": "FA-033",
+  "status": "DONE",
+  "result": "PASS",
+  "date": "2026-09-04",
+  "base_sha": "010478eda06c29bdbaae5349ee8b9418db694236",
+  "eligibility": {
+    "priority": 43,
+    "status_at_selection": "READY",
+    "dependency": "FA-032 DONE",
+    "dependency_receipt": "company/factory-asset/receipts/FA-032-procedural-pattern-producer.receipt.json"
+  },
+  "execution": {
+    "host": "administrator / 157.20.32.166",
+    "user": "kopiko",
+    "ssh_port": 25013,
+    "worktree": "/home/kopiko/die-worktrees/fa033-pattern-qa-20260904",
+    "branch": "codex/fa-033-pattern-qa-20260904",
+    "transport": "DIRECT_CODEX_SSH",
+    "python": "3.12.3",
+    "pillow": "11.3.0"
+  },
+  "acceptance": {
+    "targeted": "32 passed",
+    "factory_regression": "290 passed",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "high_confidence_secret_hits": 0,
+    "diff_check": "PASS",
+    "command_evidence": "company/factory-asset/receipts/FA-033-linux-validation.json"
+  },
+  "criteria": {
+    "seams": "Actual geometry and rendered continuous tile boundaries agree on uninterrupted background; broken edge-crossing fixture fails closed.",
+    "repeat_bounds": "Exact viewBox, background extent, motif bounds, preview dimensions and every repeat are verified.",
+    "editability": "Actual flat closed diamond paths required; image/text/script/use, external/style/transform, degenerate and unsupported path fixtures rejected.",
+    "renderability_and_preview": "Independent reconstruction from parsed SVG matches every actual preview tile; resealed pixel drift and wrong repeated tile fail.",
+    "lineage": "Actual master/preview hashes, sizes and native receipt pins validated; source artifacts remain unchanged.",
+    "compatibility": "PASS applies only to FA032_PATTERN_TILE; marketplace compatibility remains COMPATIBILITY_UNKNOWN."
+  },
+  "fixture_receipts": [
+    {
+      "fixture": "shopping-bag-neutral-diamonds",
+      "qa_receipt": {
+        "schema": "die.factory-asset.pattern-qa.v1",
+        "result": "PASS",
+        "checks": {
+          "lineage": "PASS",
+          "editable_paths": "PASS",
+          "tile_bounds": "PASS",
+          "seams": "PASS",
+          "renderability": "PASS",
+          "preview_consistency": "PASS"
+        },
+        "failures": [],
+        "compatibility": {
+          "scope": "FA032_PATTERN_TILE",
+          "state": "COMPATIBLE"
+        },
+        "marketplace_compatibility": "COMPATIBILITY_UNKNOWN",
+        "semantic_identity_effect": "NONE",
+        "input": {
+          "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+          "job_id": "FA032-PATTERN-001",
+          "master_sha256": "31f460f0424eea26d3ff85ce9e1e41520f986f9699b74d8d328623c679310c9b",
+          "preview_sha256": "d0056ec0a82fda62084b2aebe5b2517c6b4b823e934d585cd4ebc8ad8de6554c"
+        }
+      }
+    },
+    {
+      "fixture": "retail-blue-diamonds",
+      "qa_receipt": {
+        "schema": "die.factory-asset.pattern-qa.v1",
+        "result": "PASS",
+        "checks": {
+          "lineage": "PASS",
+          "editable_paths": "PASS",
+          "tile_bounds": "PASS",
+          "seams": "PASS",
+          "renderability": "PASS",
+          "preview_consistency": "PASS"
+        },
+        "failures": [],
+        "compatibility": {
+          "scope": "FA032_PATTERN_TILE",
+          "state": "COMPATIBLE"
+        },
+        "marketplace_compatibility": "COMPATIBILITY_UNKNOWN",
+        "semantic_identity_effect": "NONE",
+        "input": {
+          "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+          "job_id": "FA032-PATTERN-002",
+          "master_sha256": "e6801cf9904703004c79165e8cb8e6f3edc12408cc09ab64cfe8283255a23eac",
+          "preview_sha256": "c7579c3a68d1fc84c455889c7e7293ee08d8c67f5cb52787a54607ddfabd04f6"
+        }
+      }
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "company/factory-asset/lib/pattern_qa.py",
+      "sha256": "72f98cee6b74d8bd1b19a4cedcc28a6d8f075fe625a34ca8d5ff72e55b8d119a"
+    },
+    {
+      "path": "company/factory-asset/schemas/pattern-qa.schema.json",
+      "sha256": "86792bb1bc20c6925c866970717fb0b5c23844b220c35c447720fc0fd8ba6d80"
+    },
+    {
+      "path": "company/factory-asset/tests/test_pattern_qa.py",
+      "sha256": "9fff6269bbb978cb617584d096e54161e59af42dfdf5fe149c2032809bb3523e"
+    },
+    {
+      "path": "company/factory-asset/requirements-pattern-qa.txt",
+      "sha256": "fc11b05383fc962b2da4997fb2c98d3a2ef774f25c1354d0007c91a0c914b5be"
+    },
+    {
+      "path": "company/factory-asset/PATTERN_QA_V1.md",
+      "sha256": "2b6948b3979a83e355af8ec68af52125622fa6ccc0116315a444a58388d664bd"
+    },
+    {
+      "path": "company/factory-asset/receipts/FA-033-linux-validation.json",
+      "sha256": "ea59be707bcfe7ac1978e5159c7fdd7bb72a35edcd27ba27401df131cbb4b6f0"
+    }
+  ],
+  "graph_delta": {
+    "FA-033": "READY -> DONE"
+  },
+  "other_graph_nodes_changed": [],
+  "any_other_graph_node_started": false,
+  "next_eligible_node_information_only": "FA-041",
+  "authority": {
+    "production_mutation": false,
+    "provider_call": false,
+    "account_action": false,
+    "marketplace_publication": false,
+    "system_dependency_installation": false
+  }
+}
