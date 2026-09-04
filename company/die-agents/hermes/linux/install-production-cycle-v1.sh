@@ -11,8 +11,15 @@ MUXIA_UNIT_SRC="$DIE_HOME/company/muxia/scripts/linux/die-muxia-dispatch.service
 [[ -x "$HERMES_BIN" && -f "$SRC/production_runtime_tick.py" && -f "$SRC/production_runtime_tick.sh" && -f "$SRC/factory_orchestration_v2.py" && -f "$DIE_HOME/company/muxia/scripts/linux/muxia-chatgpt-image.mjs" && -f "$MUXIA_DISPATCH_SRC" && -f "$MUXIA_WORKER_SRC" && -f "$MUXIA_UNIT_SRC" ]] || { echo E_RUNTIME_SOURCE >&2; exit 2; }
 install -d -o die-hermes -g die-runtime -m 2770 "$DEST" "$DIE_STATE_ROOT/state/production-runtime"
 install -o die-hermes -g die-runtime -m 0750 "$SRC/production_runtime_tick.py" "$DEST/production_runtime_tick.py"
-install -o die-hermes -g die-runtime -m 0750 "$SRC/production_runtime_tick.sh" "$DEST/production_runtime_tick.sh"
 install -o die-hermes -g die-runtime -m 0640 "$SRC/factory_orchestration_v2.py" "$DEST/factory_orchestration_v2.py"
+cat > "$DEST/production_runtime_tick.sh" <<EOF
+#!/usr/bin/env bash
+set -euo pipefail
+exec "$DIE_HOME/company/die-agents/hermes/production-runtime/production_runtime_tick.sh" "\$@"
+EOF
+chown die-hermes:die-runtime "$DEST/production_runtime_tick.sh"
+chmod 0750 "$DEST/production_runtime_tick.sh"
+grep -Fq 'production-runtime/production_runtime_tick.sh' "$DEST/production_runtime_tick.sh" || { echo E_RUNTIME_CRON_SHIM >&2; exit 2; }
 /usr/bin/python3 "$DIE_HOME/company/factory-asset/bin/prepare_runtime_venv.py" --venv "$DIE_INSTALL_ROOT/factory-asset/venv" --requirements "$DIE_HOME/company/factory-asset/requirements-runtime.txt"
 install -d -o root -g root -m 0755 "$DIE_INSTALL_ROOT/bin"
 install -o root -g root -m 0755 "$MUXIA_DISPATCH_SRC" "$MUXIA_DISPATCH_DST"
