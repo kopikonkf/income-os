@@ -440,7 +440,8 @@
             "BUYER_BRIEF",
             "MARKET_OBSERVATION",
             "APPROVED_RESEARCH",
-            "SYNTHETIC_FIXTURE"
+            "SYNTHETIC_FIXTURE",
+            "OBJECT_ATLAS_SEED"
           ]
         },
         "source_ref": {

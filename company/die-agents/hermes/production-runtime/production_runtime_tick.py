@@ -6,6 +6,7 @@ HERE=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(HERE))
 from production_active_card_resolver import resolve_active_card
 from production_seed_selector import select_seed
+import factory_orchestration_v2 as factory_v2
 WORKSPACES=Path('/var/lib/die/workspaces'); DB=Path('/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db')
 HERMES='/opt/die/hermes/venv/bin/hermes'; HERMES_HOME='/var/lib/die/hermes/income-operator'
 WORKER_DISPATCH=HERE/'worker_dispatch.py'; WORKER_RUNNER=Path('/srv/die/company/workers/opencode/runner.py')
@@ -32,7 +33,7 @@ def start_seed()->dict:
  w=WORKSPACES/task;w.mkdir(parents=True,exist_ok=False)
  fam=f"{seed['category_path']} (object_class: {seed['object_class']})"
  write_progress(w,[f"Seed: {seed['id']} ({seed['canonical_name']})",f"Family: {fam}",'State: BLUEPRINT_REQUIRED','Blueprint status: REQUIRED','Intended provider: MUXIA (chatgpt-linux-a)',f'Started: {now()}','Next action: Production cognition line authors/reviews fixed Blueprint.'])
- send(f"PRODUCTION_STARTED | {task} | seed={seed['canonical_name']} | seed_id={seed['id']} | family={fam} | blueprint=REQUIRED | provider=MUXIA/chatgpt-linux-a")
+ factory_v2.telegram_event(w,'PRODUCTION_STARTED',{'seed':seed['canonical_name'],'seed_id':seed['id'],'family':fam,'blueprint':'REQUIRED','provider':'MUXIA/chatgpt-linux-a'},send)
  return {'status':'STARTED','task_id':task,'seed':seed['canonical_name']}
 
 def build_worker(w:Path,bp:dict,lock:dict):
@@ -76,29 +77,40 @@ def generate(w:Path)->dict:
  dst=src
  seed=bp['seed'];fam=f"{seed['category_path']} (object_class: {seed['object_class']})"
  write_progress(w,[f"Seed: {seed['id']} ({seed['canonical_name']})",f"Family: {fam}",'State: ARTIFACT_CREATED',f"Blueprint status: FIXED {bp['blueprint_id']} sha256={lock['blueprint_sha256']}",'Worker status: ACCEPTED done; dispatch-receipt.json','Provider: MUXIA (chatgpt-linux-a)',f'Provider artifact: provider/{dst.name}',f'Artifact sha256: {sha(dst)}',f'Artifact bytes: {dst.stat().st_size}',f"Artifact dimensions: {rec['generated_image_observed']['width']}x{rec['generated_image_observed']['height']}",'Next action: Run bounded technical upscale/recovery, then park for Founder QC.'])
- send(f"ARTIFACT_CREATED | {w.name} | seed={seed['canonical_name']} | provider=MUXIA/chatgpt-linux-a | file={dst.name} | {rec['generated_image_observed']['width']}x{rec['generated_image_observed']['height']} | bytes={dst.stat().st_size} | sha256={sha(dst)[:12]}... | next=upscale")
+ factory_v2.telegram_event(w,'ARTIFACT_CREATED',{'seed':seed['canonical_name'],'provider':'MUXIA/chatgpt-linux-a','file':dst.name,'dimensions':f"{rec['generated_image_observed']['width']}x{rec['generated_image_observed']['height']}",'bytes':dst.stat().st_size,'sha256':sha(dst)[:12]+'...','next':'factory-v2-postproduction'},send)
  return upscale_and_park(w)
 
 def source_for(w:Path)->Path:
  rows=list((w/'provider').glob('source-original.*'))
  if len(rows)!=1:raise RuntimeError('E_PROVIDER_SOURCE_COUNT')
  return rows[0]
-def upscale_and_park(w:Path)->dict:
- src=source_for(w);final=w/'final';final.mkdir(exist_ok=True);out=final/'asset.png';receipt=final/'upscale.receipt.json'
+def _legacy_upscale_adapter(src:Path,out:Path)->dict:
+ receipt=out.parent/'legacy-upscale.receipt.json';out.parent.mkdir(parents=True,exist_ok=True)
  cp=subprocess.run(['/usr/bin/python3',str(UPSCALE),'--source',str(src),'--output',str(out),'--policy',str(UPSCALE_POLICY),'--receipt',str(receipt),'--min-width','2000','--min-height','2000','--min-megapixels','4','--rights-state','PENDING_HUMAN_REVIEW','--safety-state','PENDING_HUMAN_REVIEW'],text=True,capture_output=True,timeout=1200,check=False)
  if cp.returncode!=0:raise RuntimeError('E_UPSCALE:'+(cp.stderr or cp.stdout)[-1000:])
  ur=json.loads(receipt.read_text())
- if ur.get('status')!='PASS':raise RuntimeError('E_UPSCALE_STATUS')
- if ur.get('action')=='NO_OP':
-  dst=final/('asset'+src.suffix.lower());shutil.copy2(src,dst)
- else:dst=Path(ur['output']['path'])
- if not dst.is_file():raise RuntimeError('E_FINAL_ASSET')
- ow=ur['output']['width'];oh=ur['output']['height'];bp=json.loads((w/'blueprint.json').read_text());lock=json.loads((w/'blueprint.lock.json').read_text());seed=bp['seed'];fam=f"{seed['category_path']} (object_class: {seed['object_class']})"
- manifest={'schema':'die.production.final-artifact.v1','task_id':w.name,'seed_id':seed['id'],'blueprint_id':bp['blueprint_id'],'blueprint_sha256':lock['blueprint_sha256'],'source_path':str(src),'source_sha256':sha(src),'upscale_action':ur['action'],'final_path':str(dst),'final_sha256':sha(dst),'final_bytes':dst.stat().st_size,'final_dimensions':[ow,oh],'founder_qc':'PENDING','submission_authorized':False,'publication_authorized':False}
- (final/'final-artifact.json').write_text(json.dumps(manifest,indent=2)+'\n')
- write_progress(w,[f"Seed: {seed['id']} ({seed['canonical_name']})",f"Family: {fam}",'State: WAITING_FOUNDER_QC',f"Blueprint status: FIXED {bp['blueprint_id']} sha256={lock['blueprint_sha256']}",'Provider: MUXIA (chatgpt-linux-a)',f'Final artifact: {dst.relative_to(w)}',f'Final sha256: {sha(dst)}',f'Final bytes: {dst.stat().st_size}',f'Final dimensions: {ow}x{oh}',f"Upscale: {ur['action']}",'Founder QC: PENDING (non-blocking for future production cadence)','Next action: Park this card. Founder may QC later; no upload/publish authority granted.'])
- send(f"WAITING_FOUNDER_QC | {w.name} | seed={seed['canonical_name']} | final={dst.name} | {ow}x{oh} | upscale={ur['action']} | sha256={sha(dst)[:12]}... | card=PARKED_HUMAN_GATE | production may continue independently")
- return {'status':'WAITING_FOUNDER_QC','task_id':w.name,'final':str(dst),'upscale':ur['action']}
+ if ur.get('status')!='PASS':raise RuntimeError('E_UPSCALE_STATUS:'+str(ur.get('status')))
+ return ur
+
+def _progress_from_v2(w:Path,result:dict)->None:
+ bp=json.loads((w/'blueprint.json').read_text());lock=json.loads((w/'blueprint.lock.json').read_text());seed=bp['seed'];fam=f"{seed['category_path']} (object_class: {seed['object_class']})"
+ state_name=result.get('status','POSTPROCESSING')
+ if state_name=='RIGHTS_REVIEW_REQUIRED': progress_state='RIGHTS_SIGNAL_PASS_OR_REVIEW';next_action='Provide exact-master rights observation or Founder-reviewed resolution; package remains blocked.'
+ elif state_name=='PACKAGE_BLOCKED': progress_state='METADATA_READY';next_action='Resolve typed package blocker; do not park at Founder QC yet.'
+ elif state_name=='WAITING_FOUNDER_QC': progress_state='WAITING_FOUNDER_QC';next_action='Park this card. Founder may QC later; no upload/publish authority granted.'
+ else: progress_state='POSTPROCESSING';next_action='Continue durable Factory v2 postproduction.'
+ rows=[f"Seed: {seed['id']} ({seed['canonical_name']})",f"Family: {fam}",f'State: {progress_state}',f"Blueprint status: FIXED {bp['blueprint_id']} sha256={lock['blueprint_sha256']}",'Provider: MUXIA (chatgpt-linux-a)',f"Factory v2 result: {state_name}"]
+ if result.get('listing_path'):rows.append(f"Listing artifact: {Path(result['listing_path']).relative_to(w)}")
+ if result.get('metadata'):rows.append(f"Metadata: {Path(result['metadata']).relative_to(w)}")
+ if result.get('submission_fields'):rows.append(f"Submission fields: {Path(result['submission_fields']).relative_to(w)}")
+ rows+=['Founder QC: PENDING',f'Next action: {next_action}'];write_progress(w,rows)
+
+def upscale_and_park(w:Path)->dict:
+ src=source_for(w)
+ result=factory_v2.postprocess_raster_workspace(workspace=w,source_path=src,provider_id='chatgpt-linux-a',expected_source_sha256=sha(src),upscale_fn=_legacy_upscale_adapter,send_fn=send)
+ _progress_from_v2(w,result)
+ return result
+
 
 def tick()->dict:
  a=resolve_active_card(WORKSPACES)
@@ -108,7 +120,7 @@ def tick()->dict:
  c=a['active_card'];w=Path(c['workspace']);state=c['state']
  if state=='BLUEPRINT_REQUIRED':return {'status':'IDLE','reason':'WAITING_COGNITION'}
  if state=='BLUEPRINT_READY':return generate(w)
- if state=='ARTIFACT_CREATED':return upscale_and_park(w)
+ if state in {'ARTIFACT_CREATED','MASTER_VALIDATED','UPSCALE_DECIDED','DERIVATIVES_READY','TECHNICAL_QA_PASS','RIGHTS_SIGNAL_PASS_OR_REVIEW','METADATA_READY','PACKAGE_READY','POSTPROCESSING'}:return upscale_and_park(w)
  return {'status':'IDLE','reason':'UNHANDLED_STATE','state':state}
 
 def main()->int:

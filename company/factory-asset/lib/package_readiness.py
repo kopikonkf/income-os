@@ -25,6 +25,17 @@ def _keywords(blueprint:dict[str,Any])->list[str]:
             if token not in seen: seen.add(token);words.append(token)
     return words[:49]
 
+
+def _slug(text:str)->str:
+    value=re.sub(r'[^a-z0-9]+','-',str(text).casefold()).strip('-')
+    return value[:72] or 'asset'
+
+def _listing_filename(blueprint:dict[str,Any],master_sha256:str,bindings:list[dict[str,Any]])->str:
+    delivery=next((x for x in bindings if x['purpose']=='MARKETPLACE_DELIVERY'),bindings[0])
+    ext={'JPEG':'jpg','PNG':'png','WEBP':'webp','TIFF':'tiff','PDF':'pdf','SVG':'svg','EPS':'eps','MP4':'mp4','MOV':'mov'}.get(delivery['format'],delivery['format'].lower())
+    subject=_slug(blueprint['semantic_identity']['subject']); mode=_slug(blueprint['asset_type'])
+    return f'{subject}-{mode}__{master_sha256[:8]}.{ext}'
+
 def build_metadata(*,blueprint:dict[str,Any],master_sha256:str,derivative_hashes:list[dict[str,Any]],provenance:dict[str,Any])->dict[str,Any]:
     if len(master_sha256)!=64 or any(c not in '0123456789abcdef' for c in master_sha256): raise PackageReadinessError('MASTER_SHA256_INVALID',master_sha256)
     if not derivative_hashes: raise PackageReadinessError('DERIVATIVE_HASHES_REQUIRED','empty')
@@ -40,12 +51,13 @@ def build_metadata(*,blueprint:dict[str,Any],master_sha256:str,derivative_hashes
         if disclosure!='GENERATIVE_AI': raise PackageReadinessError('AI_DISCLOSURE_REQUIRED',str(disclosure))
     elif disclosure!='NOT_AI_GENERATED': raise PackageReadinessError('AI_DISCLOSURE_REQUIRED',str(disclosure))
     sem=blueprint['semantic_identity'];subject=_clean(sem['subject']);use=_clean(sem['commercial_use_case'])
-    title=_clean(provenance.get('title_override') or f"{subject.title()} â€” {blueprint['asset_type'].replace('_',' ').title()}")
+    title=_clean(provenance.get('title_override') or f"{subject.title()} - {blueprint['asset_type'].replace('_',' ').title()}")
     description=_clean(provenance.get('description_override') or f"{subject.capitalize()} created for {use}.")
     keywords=_keywords(blueprint)
     if not title or not description or len(keywords)<3: raise PackageReadinessError('METADATA_INCOMPLETE','title/description/keywords')
     bindings=sorted([{'derivative_id':str(x['derivative_id']),'format':str(x['format']),'purpose':str(x['purpose']),'sha256':str(x['sha256'])} for x in derivative_hashes],key=lambda x:x['derivative_id'])
-    payload={'schema':'die.factory-asset.metadata-bundle.v1','blueprint_id':blueprint['blueprint_id'],'semantic_asset_id':sem['semantic_asset_id'],'master_sha256':master_sha256,'title':title,'description':description,'keywords':keywords,'ai_generated':ai_generated,'ai_disclosure':disclosure,'source_class':source_class,'derivative_hashes':bindings,'submission_authority':'FOUNDER_CONTROLLED'}
+    listing_filename=_listing_filename(blueprint,master_sha256,bindings)
+    payload={'schema':'die.factory-asset.metadata-bundle.v1','blueprint_id':blueprint['blueprint_id'],'semantic_asset_id':sem['semantic_asset_id'],'master_sha256':master_sha256,'title':title,'description':description,'keywords':keywords,'ai_generated':ai_generated,'ai_disclosure':disclosure,'source_class':source_class,'derivative_hashes':bindings,'listing_filename':listing_filename,'submission_fields':{'title':title,'description':description,'keywords':keywords,'ai_disclosure':disclosure,'filename':listing_filename},'binary_metadata_injected':False,'metadata_delivery':'SIDECAR_AND_SUBMISSION_FIELDS','submission_authority':'FOUNDER_CONTROLLED'}
     payload['metadata_sha256']=_sha(payload)
     return payload
 
