@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "4.9-fa029-five-master-canary",
+  "revision": "5.0-fa030-derivative-engine-v0.1",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -962,10 +962,12 @@
       "depends_on": [
         "FA-029"
       ],
-      "status": "READY",
+      "status": "DONE",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-030-derivative-engine-v0.1-acceptance.receipt.json",
-      "acceptance": "Targeted and full regression green, zero master overwrite/false success, 100% receipt lineage and rollback/disable path documented."
+      "acceptance": "Targeted and full regression green, zero master overwrite/false success, 100% receipt lineage and rollback/disable path documented.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: Asset Derivative Engine v0.1 accepted after 39/39 targeted tests, 226/226 full regression and FA-029 real five-master canary: 20/20 derivative outputs, 20/20 rerun hashes, 20/20 QA, 5/5 packages, duplicate suppression PASS, zero master overwrite/false success and 100% receipt lineage. Non-destructive disable/rollback path documented."
     },
     {
       "id": "FA-031",
@@ -1291,7 +1293,7 @@
         "FA-030",
         "FA-105"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Master ingestion/deduplication proposal and receipt module",
       "acceptance": "Duplicate bytes reuse canonical content, retain distinct attempt receipts and can only become truth through DIE State Manager."
     },

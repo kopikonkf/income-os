@@ -389,3 +389,10 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - 20 JPEG/WebP/TIFF/PDF outputs generated; 20/20 second-pass hashes match; 20/20 derivative QA PASS; 5/5 dry-run packages PASS.
 - Duplicate package bytes are suppressed (2 manifest entries -> 1 physical file). Vector gate returns fail-closed NOT_VECTORIZABLE for all five current raster masters because trace was not authorized.
 - No Linux mutation, provider call, upload or publication action occurred. `FA-030` is READY.
+
+
+### FA-030 — DONE / PASS — Asset Derivative Engine v0.1 acceptance
+- 39/39 targeted derivative tests and 226/226 full Factory regression PASS.
+- FA-029 real five-master canary seals 20/20 outputs, rerun idempotency, QA, packages, dedupe and fail-closed vector-gate evidence.
+- Zero master overwrite/false success; receipt lineage 100%; non-destructive disable/rollback documented.
+- `FA-106` is READY.
