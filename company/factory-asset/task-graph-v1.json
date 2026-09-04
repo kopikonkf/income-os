@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "5.5-fa032-procedural-pattern-native-producer",
+  "revision": "5.6-fa040-deterministic-motion-contract",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1035,9 +1035,11 @@
       "depends_on": [
         "FA-031"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Motion composition schema, renderer boundary and fixture plan",
-      "acceptance": "Contract pins composition, duration, dimensions, FPS, codec/container targets, audio policy, seed and renderer version; animation is a semantic blueprint, not a PNG conversion."
+      "acceptance": "Contract pins composition, duration, dimensions, FPS, codec/container targets, audio policy, seed and renderer version; animation is a semantic blueprint, not a PNG conversion.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: deterministic motion composition schema and renderer boundary pin semantic ANIMATION/TIMED_FRAMES, seed, duration, FPS, exact frame count, dimensions, renderer id/version, container/codec/pixel format and audio policy. Temporal change is required; raster/PNG conversion masquerade, static timelines, frame drift and invalid target combinations fail closed. No renderer execution claimed. Regression 258/258 PASS."
     },
     {
       "id": "FA-041",
@@ -1048,7 +1050,7 @@
       "depends_on": [
         "FA-040"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Remotion worker fixture with MP4 master and preview",
       "acceptance": "A pinned composition renders repeatably, preserves frame/duration/dimension contracts, emits typed receipts and cleans temporary resources after success or failure."
     },

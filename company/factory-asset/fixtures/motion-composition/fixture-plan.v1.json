@@ -1,0 +1,31 @@
+{
+  "schema":"die.factory-asset.motion-composition-fixture-plan.v1",
+  "renderer_implementation_task":"FA-041",
+  "fixtures":[
+    {
+      "name":"shopping-bag-bounce-mp4",
+      "expected":"PASS",
+      "composition":{
+        "schema":"die.factory-asset.motion-composition.v1","composition_id":"FAMC-SHOPPING_BAG_BOUNCE","blueprint_id":"FABP-SHOPPING_BAG_ANIMATION","semantic_asset_id":"FASA-SHOPPING_BAG_ANIMATION","semantic_mode":"ANIMATION","native_representation":"TIMED_FRAMES","conversion_from_raster":false,"seed":40001,"duration_seconds":6,"fps":30,"frame_count":180,
+        "canvas":{"width":1080,"height":1080,"color_space":"SRGB","background_color":"#FFFFFF"},
+        "renderer":{"renderer_id":"REMOTION","renderer_version":"1.0.0"},
+        "video":{"container":"MP4","codec":"H264","pixel_format":"YUV420P"},
+        "audio":{"policy":"NONE"},
+        "layers":[{"layer_id":"bag-shape","layer_type":"VECTOR_SHAPE","start_frame":0,"end_frame":179,"keyframes":[{"frame":0,"property":"Y","value":640},{"frame":90,"property":"Y","value":440},{"frame":179,"property":"Y","value":640},{"frame":0,"property":"ROTATION","value":-4},{"frame":179,"property":"ROTATION","value":4}]}]
+      }
+    },
+    {
+      "name":"shopping-bag-slide-mov",
+      "expected":"PASS",
+      "composition":{
+        "schema":"die.factory-asset.motion-composition.v1","composition_id":"FAMC-SHOPPING_BAG_SLIDE","blueprint_id":"FABP-SHOPPING_BAG_ANIMATION","semantic_asset_id":"FASA-SHOPPING_BAG_ANIMATION","semantic_mode":"ANIMATION","native_representation":"TIMED_FRAMES","conversion_from_raster":false,"seed":40002,"duration_seconds":4,"fps":24,"frame_count":96,
+        "canvas":{"width":1920,"height":1080,"color_space":"SRGB","background_color":"#F8FAFC"},
+        "renderer":{"renderer_id":"REMOTION","renderer_version":"1.0.0"},
+        "video":{"container":"MOV","codec":"PRORES_422","pixel_format":"YUV422P10LE"},
+        "audio":{"policy":"SILENT_TRACK"},
+        "layers":[{"layer_id":"bag-shape","layer_type":"VECTOR_SHAPE","start_frame":0,"end_frame":95,"keyframes":[{"frame":0,"property":"X","value":-300},{"frame":48,"property":"X","value":960},{"frame":95,"property":"X","value":2200},{"frame":0,"property":"OPACITY","value":0},{"frame":24,"property":"OPACITY","value":1}]}]
+      }
+    }
+  ],
+  "negative_plan":["frame_count mismatch","non-integral duration x fps","PNG/raster conversion masquerade","unsupported codec/container/pixel format","no temporal change","duplicate layer id","out-of-range keyframe"]
+}

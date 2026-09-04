@@ -1,0 +1,26 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aethers.my.id/schemas/factory-asset/motion-composition.v1.schema.json",
+  "title":"Factory Asset Motion Composition Contract v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","composition_id","blueprint_id","semantic_asset_id","semantic_mode","native_representation","conversion_from_raster","seed","duration_seconds","fps","frame_count","canvas","renderer","video","audio","layers"],
+  "properties":{
+    "schema":{"const":"die.factory-asset.motion-composition.v1"},
+    "composition_id":{"type":"string","pattern":"^FAMC-[A-Z0-9][A-Z0-9_-]{5,63}$"},
+    "blueprint_id":{"type":"string","pattern":"^FABP-[A-Z0-9][A-Z0-9_-]{5,63}$"},
+    "semantic_asset_id":{"type":"string","pattern":"^FASA-[A-Z0-9][A-Z0-9_-]{5,63}$"},
+    "semantic_mode":{"const":"ANIMATION"},
+    "native_representation":{"const":"TIMED_FRAMES"},
+    "conversion_from_raster":{"const":false},
+    "seed":{"type":"integer","minimum":0,"maximum":2147483647},
+    "duration_seconds":{"type":"number","exclusiveMinimum":0,"maximum":120},
+    "fps":{"type":"integer","minimum":1,"maximum":120},
+    "frame_count":{"type":"integer","minimum":1,"maximum":14400},
+    "canvas":{"type":"object","additionalProperties":false,"required":["width","height","color_space","background_color"],"properties":{"width":{"type":"integer","minimum":64,"maximum":8192},"height":{"type":"integer","minimum":64,"maximum":8192},"color_space":{"const":"SRGB"},"background_color":{"type":"string","pattern":"^#[0-9A-Fa-f]{6}$"}}},
+    "renderer":{"type":"object","additionalProperties":false,"required":["renderer_id","renderer_version"],"properties":{"renderer_id":{"type":"string","pattern":"^[A-Z][A-Z0-9_-]{2,31}$"},"renderer_version":{"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"}}},
+    "video":{"type":"object","additionalProperties":false,"required":["container","codec","pixel_format"],"properties":{"container":{"enum":["MP4","MOV"]},"codec":{"enum":["H264","H265","PRORES_422"]},"pixel_format":{"enum":["YUV420P","YUV422P10LE"]}}},
+    "audio":{"type":"object","additionalProperties":false,"required":["policy"],"properties":{"policy":{"enum":["NONE","SILENT_TRACK","EMBEDDED_ASSET"]},"asset_sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"}},"allOf":[{"if":{"properties":{"policy":{"const":"EMBEDDED_ASSET"}},"required":["policy"]},"then":{"required":["asset_sha256"]}},{"if":{"properties":{"policy":{"enum":["NONE","SILENT_TRACK"]}},"required":["policy"]},"then":{"not":{"required":["asset_sha256"]}}}]},
+    "layers":{"type":"array","minItems":1,"maxItems":128,"items":{"type":"object","additionalProperties":false,"required":["layer_id","layer_type","start_frame","end_frame","keyframes"],"properties":{"layer_id":{"type":"string","pattern":"^[A-Za-z0-9][A-Za-z0-9_-]{1,63}$"},"layer_type":{"enum":["VECTOR_SHAPE","SOLID"]},"start_frame":{"type":"integer","minimum":0},"end_frame":{"type":"integer","minimum":0},"keyframes":{"type":"array","minItems":1,"maxItems":256,"items":{"type":"object","additionalProperties":false,"required":["frame","property","value"],"properties":{"frame":{"type":"integer","minimum":0},"property":{"enum":["X","Y","SCALE","ROTATION","OPACITY"]},"value":{"oneOf":[{"type":"number"},{"type":"array","minItems":2,"maxItems":4,"items":{"type":"number"}}]}}}}}}}
+  }
+}

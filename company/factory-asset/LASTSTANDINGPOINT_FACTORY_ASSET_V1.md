@@ -424,3 +424,8 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 ### FA-032 — DONE / PASS — procedural pattern native producer
 - Seeded recipes generate editable SVG native tiles and deterministic tiled PNG previews; same request is byte-identical across reruns.
 - Raster masquerade/unknown parameters fail closed; cancellation yields typed FA-031 receipt. Regression 249/249 PASS. `FA-033` is READY.
+
+
+### FA-040 — DONE / PASS — deterministic motion producer contract
+- Motion contract pins semantic ANIMATION/TIMED_FRAMES, seed, duration/FPS/frame count, dimensions, renderer version, video target and audio policy.
+- Raster conversion masquerade/static motion/frame drift/invalid targets fail closed. No renderer execution is claimed in FA-040. Regression 258/258 PASS. `FA-041` is READY.
