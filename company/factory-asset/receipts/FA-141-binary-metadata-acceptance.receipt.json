@@ -1,0 +1,77 @@
+{
+  "schema": "factory-asset.fa141-binary-metadata-acceptance.v1",
+  "task_id": "FA-141",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "engine": {
+    "module": "company/factory-asset/lib/binary_metadata.py",
+    "cli": "company/factory-asset/bin/run_binary_metadata_canary.py",
+    "supported_v1": [
+      "JPEG"
+    ],
+    "unsupported_action": "SIDECAR_ONLY"
+  },
+  "embedded_fields": [
+    "title",
+    "description",
+    "keywords",
+    "ai_disclosure"
+  ],
+  "containers": {
+    "XMP": "JPEG APP1 / Adobe XMP namespace",
+    "IPTC": "JPEG APP13 / Photoshop IRB / IPTC-IIM"
+  },
+  "hash_boundary": {
+    "immutable_master_mutated": false,
+    "marketplace_derivative_copy_only": true,
+    "post_injection_rehash_required": true,
+    "post_injection_derivative_qa_required": true,
+    "package_uses_post_injection_sha": true
+  },
+  "real_canary": {
+    "source_task": "PRODSEED000025",
+    "source_seed": "headphones",
+    "source_sha256": "2cf8eee59f9c823d6e38ee8ab5378b7fe4365986a11779270ce6cdd2323b5d6f",
+    "output_sha256": "211f28375a4c7c7fc3ff04f822dc90090c12a49738ca9d697bf7c9c21c45234e",
+    "dimensions": [
+      6144,
+      4096
+    ],
+    "xmp_readback": "PASS",
+    "iptc_readback": "PASS",
+    "technical_qa": "PASS",
+    "source_immutable": true
+  },
+  "negative_controls": {
+    "same_file_overwrite": "BLOCK",
+    "corrupt_jpeg": "BLOCK",
+    "existing_managed_xmp_or_iptc": "BLOCK",
+    "tampered_readback": "DETECTABLE",
+    "unsupported_format": "SIDECAR_ONLY"
+  },
+  "notification_contract": {
+    "success_path_telegram": [
+      "PRODUCTION_STARTED",
+      "ARTIFACT_CREATED",
+      "WAITING_FOUNDER_QC"
+    ],
+    "cron_start_response": "STARTED",
+    "backend_qa_qc_update_exposed": false,
+    "rights_review_backend_preserved": true,
+    "rights_review_external_state": "WAITING_FOUNDER_QC",
+    "submission_eligible_when_rights_review_required": false,
+    "failure_alert_preserved": true
+  },
+  "regression": {
+    "factory_asset": "545 PASS / 2 Linux-only skipped",
+    "cognition_transport": "13/13 PASS"
+  },
+  "authority": {
+    "marketplace_upload": false,
+    "publication": false,
+    "founder_qc_completed": false,
+    "human_rights_clearance": false,
+    "spend_usd": 0
+  }
+}

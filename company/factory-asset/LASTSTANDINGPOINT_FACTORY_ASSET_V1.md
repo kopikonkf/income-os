@@ -550,3 +550,10 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - PRODSEED000025 recovered from immutable drift, frozen cognition transport and Runtime MCP outage; Executive revision converged NO_VETO.
 - Live headphones artifact -> RealESRGAN 6144x4096 -> JPEG/WebP derivative QA -> metadata succeeded. Rights detectors unavailable correctly park at WAITING_FOUNDER_RIGHTS_REVIEW.
 - Next direct production tick started PRODSEED000035 tree, proving human rights-review parking no longer blocks cadence.
+
+
+### FA-141 — DONE / PASS — binary IPTC/XMP metadata + Founder notification surface
+- JPEG marketplace derivative copies receive XMP APP1 + IPTC-IIM APP13 title/description/keywords/AI disclosure; immutable masters stay unchanged.
+- Post-injection SHA is re-pinned, read-back must exactly match, derivative QA reruns, and package evidence uses the new hash. Unsupported formats stay sidecar-only.
+- Real PRODSEED000025 headphones JPEG 6144x4096 canary passed exact XMP/IPTC read-back and QA.
+- Success-path Telegram is reduced to PRODUCTION_STARTED / ARTIFACT_CREATED / WAITING_FOUNDER_QC plus cron STARTED response. Backend rights/package state remains durable; failure alerts remain enabled.

@@ -57,7 +57,9 @@ def build_metadata(*,blueprint:dict[str,Any],master_sha256:str,derivative_hashes
     if not title or not description or len(keywords)<3: raise PackageReadinessError('METADATA_INCOMPLETE','title/description/keywords')
     bindings=sorted([{'derivative_id':str(x['derivative_id']),'format':str(x['format']),'purpose':str(x['purpose']),'sha256':str(x['sha256'])} for x in derivative_hashes],key=lambda x:x['derivative_id'])
     listing_filename=_listing_filename(blueprint,master_sha256,bindings)
-    payload={'schema':'die.factory-asset.metadata-bundle.v1','blueprint_id':blueprint['blueprint_id'],'semantic_asset_id':sem['semantic_asset_id'],'master_sha256':master_sha256,'title':title,'description':description,'keywords':keywords,'ai_generated':ai_generated,'ai_disclosure':disclosure,'source_class':source_class,'derivative_hashes':bindings,'listing_filename':listing_filename,'submission_fields':{'title':title,'description':description,'keywords':keywords,'ai_disclosure':disclosure,'filename':listing_filename},'binary_metadata_injected':False,'metadata_delivery':'SIDECAR_AND_SUBMISSION_FIELDS','submission_authority':'FOUNDER_CONTROLLED'}
+    binary_injected=provenance.get('binary_metadata_injected',False)
+    if type(binary_injected) is not bool: raise PackageReadinessError('BINARY_METADATA_FLAG_INVALID',str(binary_injected))
+    payload={'schema':'die.factory-asset.metadata-bundle.v1','blueprint_id':blueprint['blueprint_id'],'semantic_asset_id':sem['semantic_asset_id'],'master_sha256':master_sha256,'title':title,'description':description,'keywords':keywords,'ai_generated':ai_generated,'ai_disclosure':disclosure,'source_class':source_class,'derivative_hashes':bindings,'listing_filename':listing_filename,'submission_fields':{'title':title,'description':description,'keywords':keywords,'ai_disclosure':disclosure,'filename':listing_filename},'binary_metadata_injected':binary_injected,'metadata_delivery':'BINARY_IPTC_XMP_AND_SIDECAR_AND_SUBMISSION_FIELDS' if binary_injected else 'SIDECAR_AND_SUBMISSION_FIELDS','submission_authority':'FOUNDER_CONTROLLED'}
     payload['metadata_sha256']=_sha(payload)
     return payload
 
