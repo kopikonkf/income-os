@@ -24,7 +24,8 @@ def test_canonical_muxia_runner_and_dispatch_guard_exist():
  assert "len(sys.argv)!=2" in guard and "chatgpt-linux-a" in guard and "existing(task)" in guard
 def test_runtime_stops_at_founder_qc_after_upscale():
  s=(ROOT/'company/die-agents/hermes/production-runtime/production_runtime_tick.py').read_text()
- for x in ['ARTIFACT_CREATED','WAITING_FOUNDER_QC','PENDING_HUMAN_REVIEW','PARKED_HUMAN_GATE','select_seed(DB,WORKSPACES)']:assert x in s
+ for x in ['ARTIFACT_CREATED','WAITING_FOUNDER_QC','PENDING_HUMAN_REVIEW','select_seed(DB,WORKSPACES)']:assert x in s
+ orchestration=(ROOT/'company/die-agents/hermes/production-runtime/factory_orchestration_v2.py').read_text();assert 'PARKED_HUMAN_GATE' in orchestration
  assert 'asset_qc' not in s and 'rights_preflight' not in s
 
 
@@ -103,3 +104,18 @@ def test_muxia_service_has_private_writable_home_and_installer_restarts_unit():
     assert 'install -d -o kopiko -g die-runtime -m 0700 "$MUXIA_ROOT/service-home"' in installer
     assert 'systemctl restart die-muxia-dispatch.service' in installer
     assert 'enable --now die-muxia-dispatch.service' not in installer
+
+
+def test_runtime_repairs_shared_workspace_and_provider_permissions_before_muxia():
+    runtime=(ROOT/'company/die-agents/hermes/production-runtime/production_runtime_tick.py').read_text()
+    assert "def ensure_shared_workspace" in runtime
+    assert "DIE_GROUP='die-runtime'" in runtime
+    assert "os.chmod(w,0o2770)" in runtime
+    assert "provider.mkdir(mode=0o2770" in runtime
+    assert "os.chmod(provider,0o2770)" in runtime
+    assert "def generate(w:Path)->dict:\n ensure_shared_workspace(w)" in runtime
+    assert "w.mkdir(mode=0o2770" in runtime
+
+def test_installer_pins_workspace_root_shared_group_contract():
+    installer=(ROOT/'company/die-agents/hermes/linux/install-production-cycle-v1.sh').read_text()
+    assert 'install -d -o root -g die-runtime -m 2770 "$DIE_STATE_ROOT/workspaces"' in installer
