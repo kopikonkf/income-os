@@ -486,3 +486,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Frozen FA-129 expression + exact Blueprint hash routes PHOTO/ISOLATED_OBJECT to FA-104 provider routing, PATTERN to Procedural Pattern v0.1 and ANIMATION to Motion Engine v0.1.
 - Generic ICON/OUTLINE native-vector routes remain recognized but blocked until an accepted engine exists.
 - Every route is direct-from-Blueprint; post-hoc static-to-pattern/motion conversion is forbidden.
+
+
+### FA-134 — DONE / PASS — Blueprint reuse and cognition router
+- Compatible fixed Blueprint -> Hermes reuse with zero Division01/Executive calls.
+- Division01 AUTHOR/REVISE only for missing/stale/incompatible/material semantic work; Executive CHALLENGE only for new-family/material strategy/cannibalization/escalation.
+- Neither actor is a per-image gate or gains Worker/provider authority.

@@ -1,0 +1,17 @@
+{
+  "schema":"die.factory-asset.cognition-routing-policy.v1",
+  "revision":"1.0",
+  "blueprint_reuse_checks":["family_match","product_expression_match","provider_capability_valid","rights_assumptions_current","quality_requirements_match","marketplace_route_active"],
+  "division01_triggers":["blueprint_missing","blueprint_not_fixed","blueprint_stale","blueprint_incompatible","qa_semantic_defect","family_overlap_requires_differentiation","bounded_semantic_question"],
+  "executive_triggers":["new_family_promotion","material_product_expression_change","repeated_outcome_strategy_challenge","portfolio_cannibalization_material","explicit_executive_escalation"],
+  "invariants":{
+    "reuse_first":true,
+    "division01_per_image_gate":false,
+    "executive_per_image_gate":false,
+    "executive_authors_blueprint":false,
+    "division01_worker_authority":false,
+    "executive_worker_authority":false,
+    "provider_authority_granted":false,
+    "submission_authority":"FOUNDER_CONTROLLED"
+  }
+}
