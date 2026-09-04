@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "4.2-fa022-pdf-preview",
+  "revision": "4.3-fa023-derivative-policy",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -851,9 +851,11 @@
       "depends_on": [
         "FA-021"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Derivative color/metadata policy module and tests",
-      "acceptance": "sRGB/ICC, alpha flattening, DPI and metadata outcomes are explicit, verified after conversion and never silently guessed."
+      "acceptance": "sRGB/ICC, alpha flattening, DPI and metadata outcomes are explicit, verified after conversion and never silently guessed.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: explicit derivative policy validates sRGB/ICC action, alpha handling, DPI and metadata policy; outputs are reopened and verified, source ICC is never guessed, and structural JPEG metadata is distinguished from user/application metadata. Regression 203/203 PASS."
     },
     {
       "id": "FA-024",
@@ -866,7 +868,7 @@
         "FA-022",
         "FA-023"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Derivative magic/decode/dimensions/hash/compatibility QA suite",
       "acceptance": "Corrupt, mislabeled, truncated, wrong-alpha and incompatible outputs fail; zero false success in fixtures."
     },

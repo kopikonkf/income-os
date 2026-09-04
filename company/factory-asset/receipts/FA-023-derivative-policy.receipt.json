@@ -1,0 +1,22 @@
+{
+  "schema": "factory-asset.derivative-policy-receipt.v1",
+  "task_id": "FA-023",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact": "company/factory-asset/lib/derivative_policy.py",
+  "verified": [
+    "sRGB ICC policy",
+    "alpha policy",
+    "DPI",
+    "metadata policy"
+  ],
+  "no_silent_guess": [
+    "missing source ICC",
+    "incomplete policy"
+  ],
+  "validation": "203/203 PASS",
+  "unblocked": [
+    "FA-024"
+  ]
+}
