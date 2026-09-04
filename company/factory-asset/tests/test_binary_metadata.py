@@ -1,4 +1,4 @@
-﻿import importlib.util,sys
+import importlib.util,sys
 from pathlib import Path
 import pytest
 R=Path(__file__).resolve().parents[3]
