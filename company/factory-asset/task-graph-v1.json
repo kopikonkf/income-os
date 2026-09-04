@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "6.5-fa134-cognition-router",
+  "revision": "6.6-fa132-derivative-delivery-planner",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2009,9 +2009,11 @@
         "FA-030",
         "FA-131"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Derivative planning engine using master properties plus marketplace delivery profiles",
-      "acceptance": "Planner selects only required JPEG/PNG/WebP/TIFF/PDF/vector derivatives for each marketplace/package route, preserves provider original lineage, requires explicit alpha flattening for JPEG, distinguishes opaque PNG from real transparent PNG, never inflates semantic asset count and suppresses duplicate delivery variants."
+      "acceptance": "Planner selects only required JPEG/PNG/WebP/TIFF/PDF/vector derivatives for each marketplace/package route, preserves provider original lineage, requires explicit alpha flattening for JPEG, distinguishes opaque PNG from real transparent PNG, never inflates semantic asset count and suppresses duplicate delivery variants.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: marketplace-aware derivative planner consumes actual FA-131 master facts plus Blueprint intent. Exact matching provider-original formats are reused; PNG/JPEG/WebP/TIFF/PDF/native-vector actions are planned deterministically; alpha-bearing raster to JPEG requires FLATTEN_WHITE; JPEG->PNG never invents transparency; UNKNOWN marketplace profiles block package; equivalent variants dedupe; derivatives never increase semantic asset count."
     },
     {
       "id": "FA-133",

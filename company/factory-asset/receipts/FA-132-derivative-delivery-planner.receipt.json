@@ -1,0 +1,436 @@
+{
+  "schema": "factory-asset.derivative-delivery-planner-receipt.v1",
+  "task_id": "FA-132",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "planner": "company/factory-asset/lib/derivative_delivery_planner.py",
+  "provider_original_cases": {
+    "opaque.jpg": {
+      "schema": "die.factory-asset.derivative-delivery-plan.v1",
+      "result": "PLANNED",
+      "blueprint_id": "FABP-SHOPPING_BAG_PHOTO",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+      "semantic_asset_count": 1,
+      "master_sha256": "382ce68622054511f1ce0e63a888b1fc4988bcc38fbccdcaa81b85fd1202db47",
+      "master_format": "JPEG",
+      "source_kind": "PROVIDER_ORIGINAL",
+      "provider_original_lineage": {
+        "source_filename": "opaque.jpg",
+        "byte_preservation": "EXACT_COPY",
+        "transformation": "NONE"
+      },
+      "derivative_count": 2,
+      "entries": [
+        {
+          "derivative_id": "ADOBE_JPEG",
+          "aliases": [],
+          "purpose": "MARKETPLACE_DELIVERY",
+          "format": "JPEG",
+          "action": "REUSE_MASTER_BYTES",
+          "alpha_policy": "NOT_APPLICABLE",
+          "transparent_output_claim": false,
+          "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+          "semantic_identity_effect": "NONE",
+          "master_sha256": "382ce68622054511f1ce0e63a888b1fc4988bcc38fbccdcaa81b85fd1202db47",
+          "master_format": "JPEG",
+          "source_kind": "PROVIDER_ORIGINAL",
+          "provider_id": "synthetic-fixture-provider",
+          "marketplace_profiles": [
+            "ADOBE_STOCK"
+          ],
+          "compatibility_state": "COMPATIBLE",
+          "compatibility_reasons": [
+            "ADOBE_STOCK:PINNED_FORMAT_MATCH:JPEG"
+          ],
+          "package_blocked": false,
+          "plan_key": "c2bd696714dd53e744f32b59b7130acfe56823c07d80228a67941966b049e9f9"
+        },
+        {
+          "derivative_id": "WEB_PREVIEW",
+          "aliases": [],
+          "purpose": "PREVIEW",
+          "format": "WEBP",
+          "action": "RASTER_DERIVATIVE",
+          "alpha_policy": "NOT_APPLICABLE",
+          "transparent_output_claim": false,
+          "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+          "semantic_identity_effect": "NONE",
+          "master_sha256": "382ce68622054511f1ce0e63a888b1fc4988bcc38fbccdcaa81b85fd1202db47",
+          "master_format": "JPEG",
+          "source_kind": "PROVIDER_ORIGINAL",
+          "provider_id": "synthetic-fixture-provider",
+          "marketplace_profiles": [],
+          "compatibility_state": "INTERNAL",
+          "compatibility_reasons": [],
+          "package_blocked": false,
+          "plan_key": "4118578ef82e68b1ddd79ab0a2e406724c485ea513f4af2c92c86623695bdd93"
+        }
+      ],
+      "package_blocked": false,
+      "submission_authority": "FOUNDER_CONTROLLED",
+      "provider_original_bytes_mutated": false,
+      "packaging_variants_create_new_semantic_asset": false,
+      "plan_sha256": "4a485aa2d3a6d498dd68de20df8b300891e493088255a7f33ce758e9e577612c"
+    },
+    "opaque.png": {
+      "schema": "die.factory-asset.derivative-delivery-plan.v1",
+      "result": "PLANNED",
+      "blueprint_id": "FABP-SHOPPING_BAG_PHOTO",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+      "semantic_asset_count": 1,
+      "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+      "master_format": "PNG",
+      "source_kind": "PROVIDER_ORIGINAL",
+      "provider_original_lineage": {
+        "source_filename": "opaque.png",
+        "byte_preservation": "EXACT_COPY",
+        "transformation": "NONE"
+      },
+      "derivative_count": 2,
+      "entries": [
+        {
+          "derivative_id": "ADOBE_JPEG",
+          "aliases": [],
+          "purpose": "MARKETPLACE_DELIVERY",
+          "format": "JPEG",
+          "action": "RASTER_DERIVATIVE",
+          "alpha_policy": "NOT_APPLICABLE",
+          "transparent_output_claim": false,
+          "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+          "semantic_identity_effect": "NONE",
+          "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+          "master_format": "PNG",
+          "source_kind": "PROVIDER_ORIGINAL",
+          "provider_id": "synthetic-fixture-provider",
+          "marketplace_profiles": [
+            "ADOBE_STOCK"
+          ],
+          "compatibility_state": "COMPATIBLE",
+          "compatibility_reasons": [
+            "ADOBE_STOCK:PINNED_FORMAT_MATCH:JPEG"
+          ],
+          "package_blocked": false,
+          "plan_key": "ee5974b240faa1fd91bf73e78874fa21c79d89213eb3a854d5606f3c7701c5b7"
+        },
+        {
+          "derivative_id": "WEB_PREVIEW",
+          "aliases": [],
+          "purpose": "PREVIEW",
+          "format": "WEBP",
+          "action": "RASTER_DERIVATIVE",
+          "alpha_policy": "NOT_APPLICABLE",
+          "transparent_output_claim": false,
+          "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+          "semantic_identity_effect": "NONE",
+          "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+          "master_format": "PNG",
+          "source_kind": "PROVIDER_ORIGINAL",
+          "provider_id": "synthetic-fixture-provider",
+          "marketplace_profiles": [],
+          "compatibility_state": "INTERNAL",
+          "compatibility_reasons": [],
+          "package_blocked": false,
+          "plan_key": "b01fb06288c0d0b09cbe4f7c3c0e87a7db3603f77b1dd0939b4f2f50ea1d70ba"
+        }
+      ],
+      "package_blocked": false,
+      "submission_authority": "FOUNDER_CONTROLLED",
+      "provider_original_bytes_mutated": false,
+      "packaging_variants_create_new_semantic_asset": false,
+      "plan_sha256": "f19a8029c52a31f8299c581cbe1a3b86cbfddca1a51053d05ec6ac860dad86e7"
+    },
+    "opaque-rgba.png": {
+      "schema": "die.factory-asset.derivative-delivery-plan.v1",
+      "result": "PLANNED",
+      "blueprint_id": "FABP-SHOPPING_BAG_PHOTO",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+      "semantic_asset_count": 1,
+      "master_sha256": "05a7dc697e85f4c1a02ccc8510cddab503ec7f930d07f0dc0d0e08b510fa6a9f",
+      "master_format": "PNG",
+      "source_kind": "PROVIDER_ORIGINAL",
+      "provider_original_lineage": {
+        "source_filename": "opaque-rgba.png",
+        "byte_preservation": "EXACT_COPY",
+        "transformation": "NONE"
+      },
+      "derivative_count": 2,
+      "entries": [
+        {
+          "derivative_id": "ADOBE_JPEG",
+          "aliases": [],
+          "purpose": "MARKETPLACE_DELIVERY",
+          "format": "JPEG",
+          "action": "RASTER_DERIVATIVE",
+          "alpha_policy": "FLATTEN_WHITE",
+          "transparent_output_claim": false,
+          "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+          "semantic_identity_effect": "NONE",
+          "master_sha256": "05a7dc697e85f4c1a02ccc8510cddab503ec7f930d07f0dc0d0e08b510fa6a9f",
+          "master_format": "PNG",
+          "source_kind": "PROVIDER_ORIGINAL",
+          "provider_id": "synthetic-fixture-provider",
+          "marketplace_profiles": [
+            "ADOBE_STOCK"
+          ],
+          "compatibility_state": "COMPATIBLE",
+          "compatibility_reasons": [
+            "ADOBE_STOCK:PINNED_FORMAT_MATCH:JPEG"
+          ],
+          "package_blocked": false,
+          "plan_key": "91ceb406ae62dadc83df95590eb7b738abdb1bfaf48bcc3f02a5dea77c6770e8"
+        },
+        {
+          "derivative_id": "WEB_PREVIEW",
+          "aliases": [],
+          "purpose": "PREVIEW",
+          "format": "WEBP",
+          "action": "RASTER_DERIVATIVE",
+          "alpha_policy": "PRESERVE",
+          "transparent_output_claim": false,
+          "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+          "semantic_identity_effect": "NONE",
+          "master_sha256": "05a7dc697e85f4c1a02ccc8510cddab503ec7f930d07f0dc0d0e08b510fa6a9f",
+          "master_format": "PNG",
+          "source_kind": "PROVIDER_ORIGINAL",
+          "provider_id": "synthetic-fixture-provider",
+          "marketplace_profiles": [],
+          "compatibility_state": "INTERNAL",
+          "compatibility_reasons": [],
+          "package_blocked": false,
+          "plan_key": "f0ab3fea96a72bb859b05cd893edd4719d44e0a7ec576a077223b5a13516109a"
+        }
+      ],
+      "package_blocked": false,
+      "submission_authority": "FOUNDER_CONTROLLED",
+      "provider_original_bytes_mutated": false,
+      "packaging_variants_create_new_semantic_asset": false,
+      "plan_sha256": "b0bc0d24dada583a3ab5952c6fcfb8f22ffd08b6a1e213bf50dc87a458a74dcb"
+    },
+    "alpha.png": {
+      "schema": "die.factory-asset.derivative-delivery-plan.v1",
+      "result": "PLANNED",
+      "blueprint_id": "FABP-SHOPPING_BAG_PHOTO",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+      "semantic_asset_count": 1,
+      "master_sha256": "f2dacb524aed21d0a6200e05518f5d5e74d1b4c56a1d713dcbee2c9c3a695a2d",
+      "master_format": "PNG",
+      "source_kind": "PROVIDER_ORIGINAL",
+      "provider_original_lineage": {
+        "source_filename": "alpha.png",
+        "byte_preservation": "EXACT_COPY",
+        "transformation": "NONE"
+      },
+      "derivative_count": 2,
+      "entries": [
+        {
+          "derivative_id": "ADOBE_JPEG",
+          "aliases": [],
+          "purpose": "MARKETPLACE_DELIVERY",
+          "format": "JPEG",
+          "action": "RASTER_DERIVATIVE",
+          "alpha_policy": "FLATTEN_WHITE",
+          "transparent_output_claim": false,
+          "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+          "semantic_identity_effect": "NONE",
+          "master_sha256": "f2dacb524aed21d0a6200e05518f5d5e74d1b4c56a1d713dcbee2c9c3a695a2d",
+          "master_format": "PNG",
+          "source_kind": "PROVIDER_ORIGINAL",
+          "provider_id": "synthetic-fixture-provider",
+          "marketplace_profiles": [
+            "ADOBE_STOCK"
+          ],
+          "compatibility_state": "COMPATIBLE",
+          "compatibility_reasons": [
+            "ADOBE_STOCK:PINNED_FORMAT_MATCH:JPEG"
+          ],
+          "package_blocked": false,
+          "plan_key": "24f271ab7c92498e8be1b8d9e027bf0f838a35a00cb50605364e5f7ef39ebd30"
+        },
+        {
+          "derivative_id": "WEB_PREVIEW",
+          "aliases": [],
+          "purpose": "PREVIEW",
+          "format": "WEBP",
+          "action": "RASTER_DERIVATIVE",
+          "alpha_policy": "PRESERVE",
+          "transparent_output_claim": true,
+          "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+          "semantic_identity_effect": "NONE",
+          "master_sha256": "f2dacb524aed21d0a6200e05518f5d5e74d1b4c56a1d713dcbee2c9c3a695a2d",
+          "master_format": "PNG",
+          "source_kind": "PROVIDER_ORIGINAL",
+          "provider_id": "synthetic-fixture-provider",
+          "marketplace_profiles": [],
+          "compatibility_state": "INTERNAL",
+          "compatibility_reasons": [],
+          "package_blocked": false,
+          "plan_key": "665a1db70b98d8c81439148e90634111b3ca886f6083bc82ff5fdaeadd707ef0"
+        }
+      ],
+      "package_blocked": false,
+      "submission_authority": "FOUNDER_CONTROLLED",
+      "provider_original_bytes_mutated": false,
+      "packaging_variants_create_new_semantic_asset": false,
+      "plan_sha256": "8a15d1a8b8342c0d1739d543e92f85232caa1abef4000e5050c6052a11621f1b"
+    }
+  },
+  "unknown_profile_case": {
+    "schema": "die.factory-asset.derivative-delivery-plan.v1",
+    "result": "PLANNED",
+    "blueprint_id": "FABP-SHOPPING_BAG_PHOTO",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+    "semantic_asset_count": 1,
+    "master_sha256": "382ce68622054511f1ce0e63a888b1fc4988bcc38fbccdcaa81b85fd1202db47",
+    "master_format": "JPEG",
+    "source_kind": "PROVIDER_ORIGINAL",
+    "provider_original_lineage": {
+      "source_filename": "opaque.jpg",
+      "byte_preservation": "EXACT_COPY",
+      "transformation": "NONE"
+    },
+    "derivative_count": 2,
+    "entries": [
+      {
+        "derivative_id": "ADOBE_JPEG",
+        "aliases": [],
+        "purpose": "MARKETPLACE_DELIVERY",
+        "format": "JPEG",
+        "action": "REUSE_MASTER_BYTES",
+        "alpha_policy": "NOT_APPLICABLE",
+        "transparent_output_claim": false,
+        "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+        "semantic_identity_effect": "NONE",
+        "master_sha256": "382ce68622054511f1ce0e63a888b1fc4988bcc38fbccdcaa81b85fd1202db47",
+        "master_format": "JPEG",
+        "source_kind": "PROVIDER_ORIGINAL",
+        "provider_id": "synthetic-fixture-provider",
+        "marketplace_profiles": [
+          "DREAMSTIME"
+        ],
+        "compatibility_state": "COMPATIBILITY_UNKNOWN",
+        "compatibility_reasons": [
+          "DREAMSTIME:PROFILE_COMPATIBILITY_UNKNOWN"
+        ],
+        "package_blocked": true,
+        "plan_key": "ef5843c08af1d36c8d232d24a5ae5fbb05cfba6e3aeca2146a475211ed3f5bd9"
+      },
+      {
+        "derivative_id": "WEB_PREVIEW",
+        "aliases": [],
+        "purpose": "PREVIEW",
+        "format": "WEBP",
+        "action": "RASTER_DERIVATIVE",
+        "alpha_policy": "NOT_APPLICABLE",
+        "transparent_output_claim": false,
+        "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+        "semantic_identity_effect": "NONE",
+        "master_sha256": "382ce68622054511f1ce0e63a888b1fc4988bcc38fbccdcaa81b85fd1202db47",
+        "master_format": "JPEG",
+        "source_kind": "PROVIDER_ORIGINAL",
+        "provider_id": "synthetic-fixture-provider",
+        "marketplace_profiles": [],
+        "compatibility_state": "INTERNAL",
+        "compatibility_reasons": [],
+        "package_blocked": false,
+        "plan_key": "4118578ef82e68b1ddd79ab0a2e406724c485ea513f4af2c92c86623695bdd93"
+      }
+    ],
+    "package_blocked": true,
+    "submission_authority": "FOUNDER_CONTROLLED",
+    "provider_original_bytes_mutated": false,
+    "packaging_variants_create_new_semantic_asset": false,
+    "plan_sha256": "737187a4f02217b15e19d1ccc8adbcfa9a17dd3b9f336270c6a3a436c6fd94e8"
+  },
+  "native_vector_case": {
+    "schema": "die.factory-asset.derivative-delivery-plan.v1",
+    "result": "PLANNED",
+    "blueprint_id": "FABP-SHOPPING_BAG_PATTERN",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+    "semantic_asset_count": 1,
+    "master_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "master_format": "SVG",
+    "source_kind": "NATIVE_MASTER",
+    "provider_original_lineage": null,
+    "derivative_count": 2,
+    "entries": [
+      {
+        "derivative_id": "ADOBE_EPS",
+        "aliases": [],
+        "purpose": "MARKETPLACE_DELIVERY",
+        "format": "EPS",
+        "action": "NATIVE_VECTOR_EXPORT",
+        "alpha_policy": "NOT_APPLICABLE",
+        "transparent_output_claim": false,
+        "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+        "semantic_identity_effect": "NONE",
+        "master_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "master_format": "SVG",
+        "source_kind": "NATIVE_MASTER",
+        "provider_id": null,
+        "marketplace_profiles": [
+          "ADOBE_STOCK"
+        ],
+        "compatibility_state": "COMPATIBLE",
+        "compatibility_reasons": [
+          "ADOBE_STOCK:PINNED_FORMAT_MATCH:EPS"
+        ],
+        "package_blocked": false,
+        "plan_key": "0818929a74343c9cbe39e1fd4435a5c1ddbffc4a1d84f516dd90e4f3e1954b70"
+      },
+      {
+        "derivative_id": "JPEG_PREVIEW",
+        "aliases": [],
+        "purpose": "PREVIEW",
+        "format": "JPEG",
+        "action": "VECTOR_PREVIEW_RENDER",
+        "alpha_policy": "NOT_APPLICABLE",
+        "transparent_output_claim": false,
+        "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+        "semantic_identity_effect": "NONE",
+        "master_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "master_format": "SVG",
+        "source_kind": "NATIVE_MASTER",
+        "provider_id": null,
+        "marketplace_profiles": [],
+        "compatibility_state": "INTERNAL",
+        "compatibility_reasons": [],
+        "package_blocked": false,
+        "plan_key": "857a66a24f6538e098c18e52fd486e1149cface47a881e82d5ab99d89faee776"
+      }
+    ],
+    "package_blocked": false,
+    "submission_authority": "FOUNDER_CONTROLLED",
+    "provider_original_bytes_mutated": false,
+    "packaging_variants_create_new_semantic_asset": false,
+    "plan_sha256": "7d49c6a6ced8c955004bb1e0d50477dbe564f7a902c5b2a6e2cc331454ed35a5"
+  },
+  "acceptance": {
+    "jpeg_provider_original_reuse_exact_master": "PASS",
+    "opaque_png_to_jpeg_conversion": "PASS",
+    "transparent_png_jpeg_flatten_white": "PASS",
+    "opaque_rgba_explicit_alpha_handling": "PASS",
+    "jpeg_to_png_never_claims_transparency": "PASS",
+    "unknown_marketplace_blocks_package": "PASS",
+    "duplicate_delivery_variants_suppressed": "PASS",
+    "native_vector_derivatives_use_native_route": "PASS",
+    "semantic_asset_count_remains_one": "PASS",
+    "provider_original_bytes_mutated": false
+  },
+  "validation": {
+    "factory_asset_tests": "454 PASS / 2 Linux-only skipped",
+    "python_compile": "PASS",
+    "zero_false_success": true
+  },
+  "authority": {
+    "derivative_execution_performed": false,
+    "provider_dispatch_performed": false,
+    "marketplace_upload": false,
+    "publication": false,
+    "spend_usd": 0
+  },
+  "unblocked_when_dependencies_complete": [
+    "FA-137",
+    "FA-138"
+  ]
+}

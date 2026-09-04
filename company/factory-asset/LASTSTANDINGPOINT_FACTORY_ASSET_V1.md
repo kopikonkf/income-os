@@ -492,3 +492,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Compatible fixed Blueprint -> Hermes reuse with zero Division01/Executive calls.
 - Division01 AUTHOR/REVISE only for missing/stale/incompatible/material semantic work; Executive CHALLENGE only for new-family/material strategy/cannibalization/escalation.
 - Neither actor is a per-image gate or gains Worker/provider authority.
+
+
+### FA-132 — DONE / PASS — marketplace-aware derivative delivery planner
+- Provider-original JPEG can be reused for JPEG delivery; PNG/alpha formats are converted only as required by Blueprint/marketplace profile.
+- Alpha-bearing input -> JPEG requires FLATTEN_WHITE; JPEG->PNG does not invent transparency. UNKNOWN marketplace profiles block package.
+- Duplicate delivery variants collapse and semantic asset count remains one.
