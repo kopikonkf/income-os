@@ -1,0 +1,187 @@
+{
+  "schema": "factory-asset.semantic-producer-dispatch-router-receipt.v1",
+  "task_id": "FA-133",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "registry": "company/factory-asset/registries/producer-dispatch.v1.json",
+  "router": "company/factory-asset/lib/semantic_producer_router.py",
+  "positive_routes": {
+    "photo": {
+      "schema": "die.factory-asset.semantic-producer-dispatch.v1",
+      "result": "DISPATCH_READY",
+      "plan_id": "FAEP-SHOPPING_BAG_MULTIPLE",
+      "seed_id": "shopping-bag-seed",
+      "seed_noun": "shopping bag",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+      "semantic_mode": "PHOTO",
+      "producer_class": "RASTER_GENERATIVE",
+      "blueprint_id": "FABP-SHOPPING_BAG_PHOTO",
+      "frozen_blueprint_sha256": "02e6813cafc2bde7054f1028a6dc9b3f6e5cd43bad1c87e8978a7fe11ece3972",
+      "native_representation": "RASTER_PIXELS",
+      "master_spec": {
+        "format": "PNG",
+        "width_px": 4096,
+        "height_px": 4096,
+        "color_space": "SRGB",
+        "lineage_sha256_required": true
+      },
+      "marketplace_route": "ADOBE_STOCK",
+      "route_kind": "PROVIDER_ROUTER",
+      "dispatch_adapter": "FA104_PROVIDER_ROUTER",
+      "engine_state": "ACCEPTED",
+      "evidence_refs": [
+        "receipt://FA-W019",
+        "receipt://FA-109"
+      ],
+      "master_generation_mode": "DIRECT_FROM_BLUEPRINT",
+      "post_hoc_conversion_allowed": false,
+      "derivative_planning_stage": "AFTER_VALIDATED_MASTER",
+      "provider_selection_delegated": true,
+      "submission_authority": "FOUNDER_CONTROLLED",
+      "dispatch_key": "91a6bc2a796aa4d835f8d9421b5d77e16d0067dfa010bb29522d9f8c12aab7ee"
+    },
+    "pattern": {
+      "schema": "die.factory-asset.semantic-producer-dispatch.v1",
+      "result": "DISPATCH_READY",
+      "plan_id": "FAEP-SHOPPING_BAG_MULTIPLE",
+      "seed_id": "shopping-bag-seed",
+      "seed_noun": "shopping bag",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_PATTERN",
+      "semantic_mode": "PATTERN",
+      "producer_class": "PROCEDURAL_VECTOR",
+      "blueprint_id": "FABP-SHOPPING_BAG_PATTERN",
+      "frozen_blueprint_sha256": "4edea842478513303b638964bd4a4ea412fac62fe1f8becfa48d78c25dc789e7",
+      "native_representation": "VECTOR_PATHS",
+      "master_spec": {
+        "format": "SVG",
+        "color_space": "SRGB",
+        "lineage_sha256_required": true
+      },
+      "marketplace_route": "ADOBE_STOCK",
+      "route_kind": "NATIVE_PRODUCER",
+      "dispatch_adapter": "PROCEDURAL_PATTERN_V0_1",
+      "engine_state": "ACCEPTED",
+      "evidence_refs": [
+        "receipt://FA-034"
+      ],
+      "master_generation_mode": "DIRECT_FROM_BLUEPRINT",
+      "post_hoc_conversion_allowed": false,
+      "derivative_planning_stage": "AFTER_VALIDATED_MASTER",
+      "provider_selection_delegated": false,
+      "submission_authority": "FOUNDER_CONTROLLED",
+      "dispatch_key": "12df1abe263618ff0e8e55b2f106dd7c14492485c2f6372d2a652f4f315c399c"
+    },
+    "animation": {
+      "schema": "die.factory-asset.semantic-producer-dispatch.v1",
+      "result": "DISPATCH_READY",
+      "plan_id": "FAEP-SHOPPING_BAG_MULTIPLE",
+      "seed_id": "shopping-bag-seed",
+      "seed_noun": "shopping bag",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_ANIMATION",
+      "semantic_mode": "ANIMATION",
+      "producer_class": "MOTION_RENDERER",
+      "blueprint_id": "FABP-SHOPPING_BAG_ANIMATION",
+      "frozen_blueprint_sha256": "8b28cc1b4462cdc38032a4e99ba5104a589e663ed7dd7ba7448ca353f49462bc",
+      "native_representation": "TIMED_FRAMES",
+      "master_spec": {
+        "format": "MP4",
+        "duration_seconds": 6,
+        "fps": 30,
+        "color_space": "SRGB",
+        "lineage_sha256_required": true
+      },
+      "marketplace_route": "ADOBE_STOCK",
+      "route_kind": "NATIVE_PRODUCER",
+      "dispatch_adapter": "MOTION_ENGINE_V0_1",
+      "engine_state": "ACCEPTED",
+      "evidence_refs": [
+        "receipt://FA-043"
+      ],
+      "master_generation_mode": "DIRECT_FROM_BLUEPRINT",
+      "post_hoc_conversion_allowed": false,
+      "derivative_planning_stage": "AFTER_VALIDATED_MASTER",
+      "provider_selection_delegated": false,
+      "submission_authority": "FOUNDER_CONTROLLED",
+      "dispatch_key": "18e3c10d4bda41f2a47c9974d727a2cda7003857fb3aefbf9da74e8ea733fd3c"
+    },
+    "isolated_object": {
+      "schema": "die.factory-asset.semantic-producer-dispatch.v1",
+      "result": "DISPATCH_READY",
+      "plan_id": "FAEP-SHOPPING_BAG_MULTIPLE",
+      "seed_id": "shopping-bag-seed",
+      "seed_noun": "shopping bag",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_ISOLATED",
+      "semantic_mode": "ISOLATED_OBJECT",
+      "producer_class": "RASTER_GENERATIVE",
+      "blueprint_id": "FABP-SHOPPING_BAG_ISOLATED",
+      "frozen_blueprint_sha256": "8db31bea3811892e62acee50dee135c767a0d57713c06726a0233d57692aee8a",
+      "native_representation": "RASTER_PIXELS",
+      "master_spec": {
+        "format": "PNG",
+        "width_px": 4096,
+        "height_px": 4096,
+        "color_space": "SRGB",
+        "lineage_sha256_required": true
+      },
+      "marketplace_route": "ADOBE_STOCK",
+      "route_kind": "PROVIDER_ROUTER",
+      "dispatch_adapter": "FA104_PROVIDER_ROUTER",
+      "engine_state": "ACCEPTED",
+      "evidence_refs": [
+        "receipt://FA-W019",
+        "receipt://FA-109"
+      ],
+      "master_generation_mode": "DIRECT_FROM_BLUEPRINT",
+      "post_hoc_conversion_allowed": false,
+      "derivative_planning_stage": "AFTER_VALIDATED_MASTER",
+      "provider_selection_delegated": true,
+      "submission_authority": "FOUNDER_CONTROLLED",
+      "dispatch_key": "4985285d1adba48da9cb285f36093ae92a43ee1e98f232fc59a10a048a7d0cdd"
+    }
+  },
+  "negative_controls": {
+    "frozen_hash_mismatch": {
+      "result": "BLOCKED",
+      "code": "FROZEN_BLUEPRINT_HASH_MISMATCH",
+      "message": "FROZEN_BLUEPRINT_HASH_MISMATCH: 02e6813cafc2bde7054f1028a6dc9b3f6e5cd43bad1c87e8978a7fe11ece3972"
+    },
+    "producer_mismatch": {
+      "result": "BLOCKED",
+      "code": "BLUEPRINT_PRODUCER_MISMATCH",
+      "message": "BLUEPRINT_PRODUCER_MISMATCH: NATIVE_VECTOR!=PROCEDURAL_VECTOR"
+    },
+    "native_vector_unaccepted": {
+      "result": "BLOCKED",
+      "code": "PRODUCER_ENGINE_UNAVAILABLE",
+      "message": "PRODUCER_ENGINE_UNAVAILABLE: NATIVE_VECTOR_ENGINE:UNAVAILABLE_NOT_ACCEPTED"
+    }
+  },
+  "invariants": {
+    "frozen_blueprint_hash_required": true,
+    "exactly_one_route_required": true,
+    "provider_selection_delegated_to_FA104": true,
+    "pattern_direct_native_generation": true,
+    "motion_direct_native_generation": true,
+    "post_hoc_conversion_allowed": false,
+    "derivative_planning_stage": "AFTER_VALIDATED_MASTER",
+    "submission_authority": "FOUNDER_CONTROLLED",
+    "unaccepted_native_vector_fails_closed": true
+  },
+  "validation": {
+    "factory_asset_tests": "423 PASS / 2 Linux-only skipped",
+    "python_compile": "PASS",
+    "zero_false_success": true
+  },
+  "authority": {
+    "provider_dispatch_performed": false,
+    "native_render_performed": false,
+    "credential_access": false,
+    "marketplace_upload": false,
+    "publication": false,
+    "spend_usd": 0
+  },
+  "unblocked_when_dependencies_complete": [
+    "FA-139"
+  ]
+}
