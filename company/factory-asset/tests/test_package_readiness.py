@@ -14,3 +14,10 @@ def test_missing_ai_disclosure_blocks():
  x=args();x['provenance']['ai_disclosure']=None;r=m.evaluate_package_readiness(**x);assert r['result']=='PACKAGE_BLOCKED' and 'AI_DISCLOSURE_REQUIRED' in r['blockers']
 def test_tampered_derivative_hash_blocks_against_qa_hash():
  x=args();x['derivative_evidence']=json.loads(json.dumps(x['derivative_evidence']));x['derivative_evidence'][0]['sha256']='0'*64;r=m.evaluate_package_readiness(**x);assert r['result']=='PACKAGE_BLOCKED' and any(v.startswith('DERIVATIVE_QA_HASH_MISMATCH:') for v in r['blockers'])
+
+def test_metadata_binary_injection_flag_is_explicit_and_hash_bound():
+ bp=BP
+ md=m.build_metadata(blueprint=bp,master_sha256=REC['master']['sha256'],derivative_hashes=REC['derivatives'],provenance={'source_class':'GENERATIVE_AI','ai_generated':True,'ai_disclosure':'GENERATIVE_AI','binary_metadata_injected':True})
+ assert md['binary_metadata_injected'] is True
+ assert md['metadata_delivery']=='BINARY_IPTC_XMP_AND_SIDECAR_AND_SUBMISSION_FIELDS'
+ assert len(md['metadata_sha256'])==64

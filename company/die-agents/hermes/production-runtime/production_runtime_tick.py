@@ -95,9 +95,8 @@ def _legacy_upscale_adapter(src:Path,out:Path)->dict:
 def _progress_from_v2(w:Path,result:dict)->None:
  bp=json.loads((w/'blueprint.json').read_text());lock=json.loads((w/'blueprint.lock.json').read_text());seed=bp['seed'];fam=f"{seed['category_path']} (object_class: {seed['object_class']})"
  state_name=result.get('status','POSTPROCESSING')
- if state_name=='RIGHTS_REVIEW_REQUIRED': progress_state='WAITING_FOUNDER_RIGHTS_REVIEW';next_action='Park for Founder rights review. Add exact-master complete rights-observation.json to resume this card; independent seed cadence may continue.'
- elif state_name=='PACKAGE_BLOCKED': progress_state='METADATA_READY';next_action='Resolve typed package blocker; do not park at Founder QC yet.'
- elif state_name=='WAITING_FOUNDER_QC': progress_state='WAITING_FOUNDER_QC';next_action='Park this card. Founder may QC later; no upload/publish authority granted.'
+ if state_name=='WAITING_FOUNDER_QC': progress_state='WAITING_FOUNDER_QC';next_action='Park this card for Founder QC. Backend rights/package eligibility remains governed separately; no upload/publish authority granted.'
+ elif state_name=='PACKAGE_BLOCKED': progress_state='WAITING_FOUNDER_QC';next_action='Park this card for Founder QC with backend package blocker preserved; independent production may continue.'
  else: progress_state='POSTPROCESSING';next_action='Continue durable Factory v2 postproduction.'
  rows=[f"Seed: {seed['id']} ({seed['canonical_name']})",f"Family: {fam}",f'State: {progress_state}',f"Blueprint status: FIXED {bp['blueprint_id']} sha256={lock['blueprint_sha256']}",'Provider: MUXIA (chatgpt-linux-a)',f"Factory v2 result: {state_name}"]
  if result.get('listing_path'):rows.append(f"Listing artifact: {Path(result['listing_path']).relative_to(w)}")

@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "7.4-fa140a-linux-runtime-live",
+  "revision": "7.5-fa141-binary-metadata-founder-notifications",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2164,9 +2164,11 @@
         "FA-137",
         "FA-140"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Hash-safe metadata injector/read-back engine for supported marketplace delivery formats",
-      "acceptance": "For supported delivery formats, title/description/keywords/AI-disclosure are embedded only into packaging derivatives, never immutable masters; output hash is re-pinned, metadata is read back and compared byte-for-byte/field-for-field to the canonical metadata bundle, unsupported formats remain sidecar-only, semantic asset count stays one, and any injection/read-back mismatch blocks package."
+      "acceptance": "For supported delivery formats, title/description/keywords/AI-disclosure are embedded only into packaging derivatives, never immutable masters; output hash is re-pinned, metadata is read back and compared byte-for-byte/field-for-field to the canonical metadata bundle, unsupported formats remain sidecar-only, semantic asset count stays one, and any injection/read-back mismatch blocks package.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: JPEG marketplace derivative metadata injector embeds deterministic title/description/keywords/AI disclosure into XMP APP1 and IPTC-IIM APP13 on a copy only; immutable source/master preserved; post-injection SHA is re-pinned, XMP/IPTC read back exactly, derivative QA reruns, package evidence uses the new hash, unsupported formats remain SIDECAR_ONLY. Real PRODSEED000025 headphones JPEG canary 6144x4096 passed. Success-path Telegram simplified to PRODUCTION_STARTED, ARTIFACT_CREATED and WAITING_FOUNDER_QC plus cron STARTED response; backend rights/package states remain governed and failure alerts remain enabled."
     },
     {
       "id": "FA-140A",

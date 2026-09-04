@@ -22,6 +22,7 @@ derivqa=_load('fa139_dqa','derivative_qa.py')
 rights=_load('fa139_rights','rights_signal_gate.py')
 ready=_load('fa139_ready','package_readiness.py')
 state=_load('fa139_state','postproduction_state.py')
+bmeta=_load('fa141_binary_metadata','binary_metadata.py')
 
 class FactoryOrchestrationError(RuntimeError):
     def __init__(self,code:str,message:str):super().__init__(f'{code}: {message}');self.code=code
@@ -68,7 +69,7 @@ def write_bridge_artifacts(workspace:Path,legacy_blueprint:dict[str,Any],lock:di
     return {'root':root,'plan':plan,'blueprint':bp,'route':route,'cognition':cognition}
 
 def telegram_event(workspace:Path,kind:str,payload:dict[str,Any],send_fn:Callable[[str],None]|None=None)->dict[str,Any]:
-    allowed={'PRODUCTION_STARTED','ARTIFACT_CREATED','QA_QC_UPDATE','WAITING_FOUNDER_QC'}
+    allowed={'PRODUCTION_STARTED','ARTIFACT_CREATED','WAITING_FOUNDER_QC'}
     if kind not in allowed:raise FactoryOrchestrationError('TELEGRAM_KIND_INVALID',kind)
     event={'schema':'die.factory-asset.telegram-milestone.v1','task_id':workspace.name,'kind':kind,'payload':payload}
     event['event_id']=csha(event)
@@ -120,6 +121,21 @@ def postprocess_raster_workspace(*,workspace:Path,source_path:Path,provider_id:s
         q=derivqa.inspect_derivative(out,expected_format=row['format'],expected_dimensions=(facts['width_px'],facts['height_px']),expected_alpha='ABSENT' if row['format']=='JPEG' else 'ANY',expected_sha256=rec['output']['sha256'])
         if q['result']!='PASS':raise FactoryOrchestrationError('DERIVATIVE_QA_FAILED',row['derivative_id'])
         evidence.append({'derivative_id':row['derivative_id'],'format':row['format'],'purpose':row['purpose'],'sha256':q['sha256'],'qa_sha256':q['sha256'],'sha256_verified':True,'master_sha256':facts['sha256'],'qa_result':'PASS','path':str(out),'qa':q})
+    provenance={'source_class':'GENERATIVE_AI','ai_generated':True,'ai_disclosure':'GENERATIVE_AI'}
+    provisional_meta=ready.build_metadata(blueprint=bp,master_sha256=facts['sha256'],derivative_hashes=evidence,provenance=provenance)
+    binary_receipts=[]
+    for ev in evidence:
+        if ev['purpose']!='MARKETPLACE_DELIVERY':continue
+        src=Path(ev['path']);target=src.with_name(src.stem+'.metadata'+src.suffix)
+        br=bmeta.inject_or_sidecar(source_path=src,output_path=target,format=ev['format'],metadata=provisional_meta);binary_receipts.append(br)
+        if br['result']=='PASS':
+            q=derivqa.inspect_derivative(target,expected_format=ev['format'],expected_dimensions=(facts['width_px'],facts['height_px']),expected_alpha='ABSENT' if ev['format']=='JPEG' else 'ANY',expected_sha256=br['output_sha256'])
+            if q['result']!='PASS':raise FactoryOrchestrationError('BINARY_METADATA_DERIVATIVE_QA_FAILED',ev['derivative_id'])
+            ev.update({'sha256':q['sha256'],'qa_sha256':q['sha256'],'sha256_verified':True,'qa_result':'PASS','path':str(target),'qa':q,'binary_metadata_injected':True,'binary_metadata_readback':'PASS'})
+        else:
+            ev.update({'binary_metadata_injected':False,'binary_metadata_readback':'SIDECAR_ONLY'})
+    atomic_json(root/'binary-metadata-receipts.json',{'schema':'die.factory-asset.binary-metadata-receipts.v1','receipts':binary_receipts})
+    binary_injected=any(x.get('binary_metadata_injected') is True for x in evidence)
     d=state.advance(sm_path,target_state='DERIVATIVES_READY',evidence={'master_sha256':facts['sha256'],'derivatives':evidence},event_id='DERIV-'+csha([(x['derivative_id'],x['sha256']) for x in evidence])[:16],expected_revision=d['revision'])
     d=state.advance(sm_path,target_state='TECHNICAL_QA_PASS',evidence={'result':'PASS','derivatives':[{'derivative_id':x['derivative_id'],'sha256':x['sha256'],'result':'PASS'} for x in evidence]},event_id='QA-'+csha(evidence)[:16],expected_revision=d['revision'])
     obs_path=workspace/'rights-observation.json';obs=json.loads(obs_path.read_text()) if obs_path.is_file() else _default_rights_observation(facts['sha256']);rs=rights.evaluate_rights_signals(master_path=active,expected_sha256=facts['sha256'],observation=obs);atomic_json(root/'rights-signal.json',rs)
@@ -130,16 +146,24 @@ def postprocess_raster_workspace(*,workspace:Path,source_path:Path,provider_id:s
         d=state.resolve_rights_review(sm_path,evidence=rs,event_id='RIGHTS-RESOLVE-'+csha(rs)[:16],expected_revision=current['revision'])
     else:
         d=current
-    meta=ready.build_metadata(blueprint=bp,master_sha256=facts['sha256'],derivative_hashes=evidence,provenance={'source_class':'GENERATIVE_AI','ai_generated':True,'ai_disclosure':'GENERATIVE_AI'});atomic_json(root/'metadata.json',meta);atomic_json(root/'submission-fields.json',meta['submission_fields'])
+    meta=ready.build_metadata(blueprint=bp,master_sha256=facts['sha256'],derivative_hashes=evidence,provenance={**provenance,'binary_metadata_injected':binary_injected});atomic_json(root/'metadata.json',meta);atomic_json(root/'submission-fields.json',meta['submission_fields'])
     d=state.advance(sm_path,target_state='METADATA_READY',evidence={'master_sha256':facts['sha256'],'metadata_sha256':meta['metadata_sha256'],'derivative_hashes':meta['derivative_hashes']},event_id='META-'+meta['metadata_sha256'][:16],expected_revision=d['revision'])
-    pkg=ready.evaluate_package_readiness(blueprint=bp,derivative_plan=plan,rights_signal=rs,derivative_evidence=evidence,provenance={'source_class':'GENERATIVE_AI','ai_generated':True,'ai_disclosure':'GENERATIVE_AI'},master_technical_qa={'result':'PASS','master_sha256':facts['sha256']});atomic_json(root/'package-readiness.json',pkg)
-    telegram_event(workspace,'QA_QC_UPDATE',{'postproduction_state':d['state'],'rights':rs['result'],'package':pkg['result']},send_fn)
-    if pkg['result']!='PACKAGE_READY':return {'status':'RIGHTS_REVIEW_REQUIRED' if rs['result']=='REVIEW_REQUIRED' else 'PACKAGE_BLOCKED','task_id':workspace.name,'state':d['state'],'rights':rs['result'],'metadata':str(root/'metadata.json'),'submission_fields':str(root/'submission-fields.json')}
+    pkg=ready.evaluate_package_readiness(blueprint=bp,derivative_plan=plan,rights_signal=rs,derivative_evidence=evidence,provenance={**provenance,'binary_metadata_injected':binary_injected},master_technical_qa={'result':'PASS','master_sha256':facts['sha256']});atomic_json(root/'package-readiness.json',pkg)
+    if pkg['result']!='PACKAGE_READY':
+        delivery=next((x for x in evidence if x['purpose']=='MARKETPLACE_DELIVERY'),None)
+        qcdir=workspace/'qc';qcdir.mkdir(exist_ok=True)
+        qc_alias=None
+        if delivery is not None:
+            qc_alias=qcdir/meta['listing_filename']
+            if qc_alias.exists() and sha(qc_alias)!=delivery['sha256']:raise FactoryOrchestrationError('QC_ALIAS_CONFLICT',str(qc_alias))
+            if not qc_alias.exists():shutil.copy2(Path(delivery['path']),qc_alias)
+        telegram_event(workspace,'WAITING_FOUNDER_QC',{'seed':bp['semantic_identity']['subject'],'artifact':str(qc_alias.relative_to(workspace)) if qc_alias else None,'rights':rs['result'],'package':pkg['result'],'card':'PARKED_HUMAN_GATE'},send_fn)
+        return {'status':'WAITING_FOUNDER_QC','task_id':workspace.name,'state':d['state'],'backend_gate':'RIGHTS_REVIEW_REQUIRED' if rs['result']=='REVIEW_REQUIRED' else 'PACKAGE_BLOCKED','rights':rs['result'],'package':pkg['result'],'listing_path':str(qc_alias) if qc_alias else None,'metadata':str(root/'metadata.json'),'submission_fields':str(root/'submission-fields.json'),'submission_eligible':False,'publication_authorized':False}
     d=state.advance(sm_path,target_state='PACKAGE_READY',evidence=pkg,event_id='PACKAGE-'+pkg['package_plan']['package_plan_sha256'][:16],expected_revision=d['revision'])
     delivery=next(x for x in evidence if x['purpose']=='MARKETPLACE_DELIVERY');final=workspace/'final';final.mkdir(exist_ok=True);alias=final/meta['listing_filename']
     if alias.exists() and sha(alias)!=delivery['sha256']:raise FactoryOrchestrationError('LISTING_ALIAS_CONFLICT',str(alias))
     if not alias.exists():shutil.copy2(Path(delivery['path']),alias)
-    final_manifest={'schema':'die.production.final-artifact.v2','task_id':workspace.name,'seed_noun':bp['semantic_identity']['subject'],'semantic_asset_id':sid,'blueprint_id':bp['blueprint_id'],'source_master_sha256':d['source_master_sha256'],'active_master_sha256':d['active_master_sha256'],'listing_filename':alias.name,'listing_path':str(alias),'listing_sha256':sha(alias),'metadata_ref':str(root/'metadata.json'),'submission_fields_ref':str(root/'submission-fields.json'),'binary_metadata_injected':False,'package_plan_sha256':pkg['package_plan']['package_plan_sha256'],'founder_qc':'PENDING','submission_authorized':False,'publication_authorized':False}
+    final_manifest={'schema':'die.production.final-artifact.v2','task_id':workspace.name,'seed_noun':bp['semantic_identity']['subject'],'semantic_asset_id':sid,'blueprint_id':bp['blueprint_id'],'source_master_sha256':d['source_master_sha256'],'active_master_sha256':d['active_master_sha256'],'listing_filename':alias.name,'listing_path':str(alias),'listing_sha256':sha(alias),'metadata_ref':str(root/'metadata.json'),'submission_fields_ref':str(root/'submission-fields.json'),'binary_metadata_injected':meta['binary_metadata_injected'],'package_plan_sha256':pkg['package_plan']['package_plan_sha256'],'founder_qc':'PENDING','submission_authorized':False,'publication_authorized':False}
     atomic_json(final/'final-artifact.json',final_manifest)
     d=state.advance(sm_path,target_state='WAITING_FOUNDER_QC',evidence={'founder_qc_required':True,'human_rights_clearance':False,'package_plan_sha256':pkg['package_plan']['package_plan_sha256']},event_id='FOUNDER-'+pkg['package_plan']['package_plan_sha256'][:16],expected_revision=d['revision'])
     telegram_event(workspace,'WAITING_FOUNDER_QC',{'seed':bp['semantic_identity']['subject'],'filename':alias.name,'sha256':sha(alias)[:12]+'...','state':d['state']},send_fn)

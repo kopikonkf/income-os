@@ -1,0 +1,71 @@
+{
+  "schema": "factory-asset.fa141-real-headphones-canary.v1",
+  "result": "PASS",
+  "task_id": "FA-141",
+  "source": {
+    "task_id": "PRODSEED000025",
+    "path": "factory-v2/derivatives/adobe_jpeg.jpg",
+    "sha256": "2cf8eee59f9c823d6e38ee8ab5378b7fe4365986a11779270ce6cdd2323b5d6f",
+    "bytes": 2106787,
+    "dimensions": [
+      6144,
+      4096
+    ]
+  },
+  "output": {
+    "path": "canary/headphones-photo__991259fb.jpg",
+    "sha256": "211f28375a4c7c7fc3ff04f822dc90090c12a49738ca9d697bf7c9c21c45234e",
+    "bytes": 2107986,
+    "dimensions": [
+      6144,
+      4096
+    ]
+  },
+  "readback": {
+    "xmp": {
+      "title": "Headphones - Photo",
+      "description": "Headphones created for audio technology concepts.",
+      "keywords": [
+        "headphones",
+        "audio",
+        "technology",
+        "concepts",
+        "photo"
+      ],
+      "ai_disclosure": "GENERATIVE_AI"
+    },
+    "iptc": {
+      "title": "Headphones - Photo",
+      "description": "Headphones created for audio technology concepts.",
+      "keywords": [
+        "headphones",
+        "audio",
+        "technology",
+        "concepts",
+        "photo"
+      ],
+      "ai_disclosure": "GENERATIVE_AI"
+    },
+    "exact_match": true
+  },
+  "technical_qa": {
+    "schema": "die.factory-asset.derivative-qa.v1",
+    "result": "PASS",
+    "failures": [],
+    "format": "JPEG",
+    "magic_mime_match": true,
+    "decode_reopen": true,
+    "dimensions": [
+      6144,
+      4096
+    ],
+    "alpha_state": "ABSENT",
+    "sha256": "211f28375a4c7c7fc3ff04f822dc90090c12a49738ca9d697bf7c9c21c45234e",
+    "bytes": 2107986,
+    "compatibility": "COMPATIBLE"
+  },
+  "source_immutable": true,
+  "semantic_identity_effect": "NONE",
+  "production_workspace_mutated": false,
+  "platform_form_ai_disclosure_still_required": true
+}
