@@ -1,0 +1,10 @@
+{
+  "schema":"die.factory-asset.motion-capability-fixtures.v1",
+  "cases":[
+    {"name":"shopping-bag-checkout-completion","candidate":{"seed_noun":"shopping bag","product_expression":"Shopping bag filling and settling completion loop","buyer_utility":"Communicate successful order completion in checkout","evidence_state":"COMPLETE","meaningful_visual_change":true,"motion_value_kind":"STATE_CHANGE","temporal_verbs":["fill","settle","complete"],"static_equivalent_sufficient":false},"expected":"MOTION_ELIGIBLE"},
+    {"name":"shopping-bag-photo-static","candidate":{"seed_noun":"shopping bag","product_expression":"Unbranded shopping bag lifestyle photograph","buyer_utility":"Illustrate a reusable shopping promotion","evidence_state":"COMPLETE","meaningful_visual_change":false,"motion_value_kind":"NONE","temporal_verbs":[],"static_equivalent_sufficient":true},"expected":"STATIC_ONLY"},
+    {"name":"motion-idea-without-evidence","candidate":{"seed_noun":"shopping bag","product_expression":"Shopping bag transition concept","buyer_utility":"","evidence_state":"PARTIAL","meaningful_visual_change":null,"motion_value_kind":"STATE_CHANGE","temporal_verbs":["transition"],"static_equivalent_sufficient":null},"expected":"RESEARCH"},
+    {"name":"decorative-wiggle-adds-no-value","candidate":{"seed_noun":"shopping bag","product_expression":"Shopping bag decorative wiggle","buyer_utility":"Decorative still image already communicates the same message","evidence_state":"COMPLETE","meaningful_visual_change":true,"motion_value_kind":"DECORATIVE_ONLY","temporal_verbs":["move"],"static_equivalent_sufficient":true},"expected":"STATIC_ONLY"},
+    {"name":"commercially-rejected-motion","candidate":{"seed_noun":"shopping bag","product_expression":"Irrelevant forced animation","buyer_utility":"none","evidence_state":"COMPLETE","meaningful_visual_change":true,"motion_value_kind":"STATE_CHANGE","temporal_verbs":["move"],"static_equivalent_sufficient":false,"commercial_relevance":"REJECTED"},"expected":"REJECT"}
+  ]
+}

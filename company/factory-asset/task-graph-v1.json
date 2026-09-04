@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "7.0-fa138-postproduction-state-machine",
+  "revision": "7.1-fa130-motion-capability-gate",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1979,9 +1979,11 @@
         "FA-129",
         "FA-040"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Motion eligibility scorer/gate with temporal-verb and buyer-utility fixtures",
-      "acceptance": "Motion eligibility is evaluated from noun x product expression x temporal verb x buyer utility, not noun alone. Gate emits STATIC_ONLY|MOTION_ELIGIBLE|RESEARCH|REJECT, requires meaningful visual change over time, and prevents automatic animation of every static asset."
+      "acceptance": "Motion eligibility is evaluated from noun x product expression x temporal verb x buyer utility, not noun alone. Gate emits STATIC_ONLY|MOTION_ELIGIBLE|RESEARCH|REJECT, requires meaningful visual change over time, and prevents automatic animation of every static asset.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: deterministic motion-capability gate evaluates seed noun x product expression x temporal verbs x buyer utility. Meaningful visual change plus evidence-supported temporal buyer value is required for MOTION_ELIGIBLE; static-equivalent/decorative motion becomes STATIC_ONLY, incomplete/unmodeled evidence becomes RESEARCH, rejected commercial relevance becomes REJECT. Noun alone never authorizes motion and static masters are never auto-animated."
     },
     {
       "id": "FA-131",
@@ -2130,7 +2132,7 @@
         "FA-134",
         "FA-138"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Hermes orchestration v2 runtime wiring, durable Kanban transitions and Telegram milestone receipts",
       "acceptance": "Hermes consumes deterministic seed preflight, obtains/reuses/challenges Blueprint as policy requires, spawns bounded Worker, routes the frozen expression to the correct producer, ingests the real artifact, drives mandatory postproduction and sends PRODUCTION_STARTED, ARTIFACT_CREATED, QA_QC_UPDATE and WAITING_FOUNDER_QC Telegram milestones. Parked Founder gates never block independent future seed cadence."
     },
