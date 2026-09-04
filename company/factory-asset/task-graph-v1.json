@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "6.0-factory-orchestration-v2-plan",
+  "revision": "6.1-fa041-real-remotion-motion-fixture",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1052,9 +1052,11 @@
       "depends_on": [
         "FA-040"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Remotion worker fixture with MP4 master and preview",
-      "acceptance": "A pinned composition renders repeatably, preserves frame/duration/dimension contracts, emits typed receipts and cleans temporary resources after success or failure."
+      "acceptance": "A pinned composition renders repeatably, preserves frame/duration/dimension contracts, emits typed receipts and cleans temporary resources after success or failure.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: real local Remotion 4.0.520 worker renders the canonical FA-040 shopping-bag motion contract to binary-repeatable MP4 + PNG preview. Final output probes as one H.264 yuv420p 1080x1080 video stream, 30 FPS, 180 frames, exactly 6.000s, no audio stream; independent renders have identical master/preview SHA-256. FA-031 native receipt validates and conversion_from_raster=false. Temp workspace cleanup passes on success and injected failure. Local fixture only, zero spend/provider/upload/publication; marketplace compatibility remains UNKNOWN pending FA-042."
     },
     {
       "id": "FA-042",
@@ -1065,7 +1067,7 @@
       "depends_on": [
         "FA-041"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "MP4/MOV probe, frame sampling and compatibility QA suite",
       "acceptance": "Outputs reopen, match codec/container/frame/duration specs and pass sampled visual integrity; mislabeled, truncated, blank or frozen renders fail."
     },
