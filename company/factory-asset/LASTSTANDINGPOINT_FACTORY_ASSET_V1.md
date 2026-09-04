@@ -363,3 +363,10 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 ### FA-107 — DONE / PASS — sanitized Factory observability
 - Attempts, unique masters, QA assets, derivatives, packages, failures, resources and economics remain distinct.
 - Secret/auth/browser fields are recursively rejected. Regression 174/174 PASS. `FA-C007` is READY.
+
+
+### FA-C006 mirror runtime hotfix + FA-107 -> FA-C007 — DONE / PASS
+- Standalone Console mirror no longer assumes repo-depth `parents[3]`; runtime root resolves by marker and mirror sync now includes lib/schemas/registries/fixtures.
+- `FA-107` sanitized observability is DONE: attempts, masters, QA, derivatives, packages, failures, resources and economics stay separate; secrets are rejected recursively.
+- `FA-C007` Providers dashboard is DONE: policy/capacity/router truth is served through `/api/providers`; evidence is explicitly SYNTHETIC_OBSERVED_FIXTURE, guessed quotas are absent, and Grok remains optional/deferred.
+- Final regression: 184/184 PASS.

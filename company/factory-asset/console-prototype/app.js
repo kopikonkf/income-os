@@ -13,6 +13,8 @@
     batchIntent: null,
     queueEvents: [],
     queueError: null,
+    providerDashboard: null,
+    providerError: null,
     notice: "Compile a Blueprint v2 before creating a batch intent."
   };
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -45,7 +47,7 @@
   function renderMetrics() {
     const successful = state.queueEvents.filter(x => x.state === "SUCCEEDED").length;
     const active = state.queueEvents.filter(x => ["RUNNING","READY","RETRY_WAIT","PAUSED"].includes(x.state)).length;
-    const eligible = source.providers.filter(x => x.eligibility === "ELIGIBLE").length;
+    const eligible = state.providerDashboard ? state.providerDashboard.providers.filter(x => x.eligibility === "ELIGIBLE").length : 0;
     $("#global-metrics").innerHTML = `
       <div class="metric"><strong>${state.batchIntent ? state.batchIntent.semantic_asset_count : 0}</strong><span>batch semantic</span></div>
       <div class="metric"><strong>${active}</strong><span>core queue active</span></div>
@@ -186,9 +188,24 @@
     $$('.queue-control').forEach(button => button.addEventListener('click', () => queueAction(button.dataset.jobId, button.dataset.coreAction)));
   }
 
-  function renderProviders() { $("#view-providers").innerHTML = `<div class="provider-grid">${source.providers.map(p => `<article class="provider-card"><header><h3>${esc(p.id.toUpperCase())}</h3>${badge(p.eligibility)}</header><dl class="kv"><dt>Transport</dt><dd>${esc(p.transport)}</dd><dt>Capacity</dt><dd>${badge(p.capacity)}</dd><dt>Policy</dt><dd>${badge(p.policy)}</dd><dt>Evidence</dt><dd>${esc(p.lastEvidence)}</dd></dl><p>${esc(p.routing)}</p></article>`).join("")}</div>`; }
+  async function refreshProviders() {
+    try { state.providerDashboard = await getLocal('/api/providers'); state.providerError = null; }
+    catch(error) { state.providerError = `${error.code || 'ERROR'}: ${error.message || 'Provider dashboard unavailable'}`; }
+    renderProviders(); renderMetrics();
+  }
+  function renderProviders() {
+    const d = state.providerDashboard;
+    const rows = d ? d.providers : [];
+    $("#view-providers").innerHTML = `
+      <article class="card" style="margin-bottom:16px"><div class="result-head"><div><h2>Provider Health / Capacity / Routing</h2><p class="muted">Core policy + capacity ledger + deterministic router</p></div>${d ? badge(d.evidence_mode) : badge('UNKNOWN')}</div>
+        ${state.providerError ? `<p class="notice">${esc(state.providerError)}</p>` : ''}
+        ${d ? `<dl class="kv"><dt>Evidence mode</dt><dd>${esc(d.evidence_mode)}</dd><dt>Observed at</dt><dd>${esc(d.observed_at)}</dd><dt>Route sample</dt><dd>${esc(d.route_asset_type)}</dd><dt>Selected profile</dt><dd>${esc(d.selected_profile_id || 'NONE')}</dd><dt>Guessed quota</dt><dd>${d.guessed_quota_present ? badge('INVALID') : badge('NONE')}</dd><dt>Provider dispatch</dt><dd>${d.provider_dispatch_performed ? badge('INVALID') : badge('LOCKED')}</dd></dl>` : '<p class="muted">Loading normalized provider state…</p>'}
+        <p class="notice">Capacity shown here is deterministic observed fixture evidence, not live quota polling. Optional/deferred Grok cannot block healthy eligible routes.</p>
+      </article>
+      <div class="provider-grid">${rows.map(p => `<article class="provider-card"><header><h3>${esc(p.provider_id.toUpperCase())}</h3>${badge(p.eligibility)}</header><dl class="kv"><dt>Profile</dt><dd>${esc(p.profile_id)}</dd><dt>Health</dt><dd>${badge(p.health)}</dd><dt>Transport</dt><dd>${esc(p.transport)}</dd><dt>Capacity</dt><dd>${badge(p.capacity)}</dd><dt>Policy</dt><dd>${badge(p.policy)}</dd><dt>Evidence</dt><dd>${esc(p.last_evidence || 'UNKNOWN')}</dd><dt>Retry after</dt><dd>${p.retry_after_seconds == null ? '—' : esc(p.retry_after_seconds + 's')}</dd></dl><p>${esc(p.routing_reason)}</p></article>`).join("")}</div>`;
+  }
   function renderOutput() { $("#view-output").innerHTML = `<div class="output-grid">${source.outputs.map(o => `<article class="card"><div class="master-preview"><div class="master-glyph"></div></div><div class="result-head"><div><span class="badge violet">${esc(o.assetType)}</span><h3>${esc(o.subject)}</h3></div><span class="badge good">SEMANTIC COUNT ${o.semanticCount}</span></div><dl class="kv"><dt>Semantic ID</dt><dd>${esc(o.semanticAssetId)}</dd><dt>Master</dt><dd>${esc(o.master.format)} · ${esc(o.master.dimensions)}</dd><dt>QA</dt><dd>${badge(o.qa)}</dd><dt>Compatibility</dt><dd>${badge(o.compatibility)}</dd></dl><div class="derivatives">${o.derivatives.map(d => `<div class="derivative"><span>${esc(d.format)} · ${esc(d.purpose)}</span><span>${esc(d.sha256)}</span></div>`).join("")}</div></article>`).join("")}</div>`; }
-  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); }
+  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); if(view==='providers') refreshProviders(); }
   $$('.nav-item').forEach(button=>button.addEventListener('click',()=>activateView(button.dataset.view)));
-  renderMetrics();renderBlueprint();renderBatch();renderQueue();renderProviders();renderOutput();activateView('blueprint');refreshQueue();
+  renderMetrics();renderBlueprint();renderBatch();renderQueue();renderProviders();renderOutput();activateView('blueprint');refreshQueue();refreshProviders();
 })();

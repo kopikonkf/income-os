@@ -17,7 +17,7 @@ def sync_console_mirror(dest: Path) -> None:
         shutil.rmtree(console_dst)
     shutil.copytree(console_src, console_dst)
     support_root = dest / "company/factory-asset"
-    for name in ("lib", "schemas", "registries"):
+    for name in ("lib", "schemas", "registries", "fixtures"):
         src = FACTORY_ROOT / name
         dst = support_root / name
         if dst.exists():

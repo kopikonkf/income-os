@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "3.9-fa107-sanitized-observability",
+  "revision": "4.0-fa-c007-provider-dashboard",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1819,9 +1819,11 @@
         "FA-104",
         "FA-107"
       ],
-      "status": "READY",
-      "artifact": "Console provider/capacity dashboard + fixtures",
-      "acceptance": "Founder sees eligible/deferred/blocked providers, observed capacity, routing rationale and typed failures without guessed quota or secret material; optional Grok state does not block healthy providers."
+      "status": "DONE",
+      "artifact": "company/factory-asset/console-prototype/ + company/factory-asset/lib/provider_dashboard.py",
+      "acceptance": "Founder sees eligible/deferred/blocked providers, observed capacity, routing rationale and typed failures without guessed quota or secret material; optional Grok state does not block healthy providers.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: Providers view now reads normalized Factory Core-backed dashboard state from policy gate, observed-capacity ledger, deterministic router and sanitized observability. Evidence is explicitly SYNTHETIC_OBSERVED_FIXTURE (not live quota polling); current five providers remain policy-eligible, Gemini fixture is constrained/degraded, Grok is DEFERRED_OPTIONAL and cannot block healthy routes. No guessed quota, secret material or provider dispatch. Regression 184/184 PASS."
     },
     {
       "id": "FA-C008",
