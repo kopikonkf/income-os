@@ -163,6 +163,29 @@ def run_or_reuse_transport(node:str,transport:Path,reqp:Path,resp:Path,req:dict[
  if resp.is_file() and trp.is_file():return {'status':'REUSED','receipt_ref':str(trp)}
  return run_transport(node,transport,reqp,resp)
 
+def repair_context_recovery_state(state:dict[str,Any],*,author_artifact_exists:bool)->bool:
+ hist=state.get('history') if isinstance(state.get('history'),list) else []
+ blocked=None
+ for row in reversed(hist):
+  if isinstance(row,dict) and row.get('event')=='PRINCIPAL_BLOCKED' and row.get('reason')=='E_CONTEXT_CONVERGENCE':
+   blocked=row;break
+ if blocked is None:return False
+ rid=str(blocked.get('request_id') or '')
+ stage=str(state.get('stage') or '')
+ if '_BP_AUTHOR_' in rid or '_BP_REVISION_' in rid:
+  if stage=='WAITING_FOUNDER' or (stage=='NEED_REVIEW' and not author_artifact_exists):
+   target='NEED_REVISION' if '_BP_REVISION_' in rid else 'NEED_AUTHOR'
+   state['author_attempt']=max(1,int(state.get('author_attempt',0)))
+   state['review_attempt']=0;state['stage']=target
+   state['history'].append({'at':now(),'event':'CONTEXT_RECOVERY_STAGE_REPAIRED','blocked_request_id':rid,'to':target,'author_attempt':state['author_attempt']})
+   return True
+  return False
+ if '_BP_REVIEW_' in rid and stage=='WAITING_FOUNDER':
+  n=max(1,int(state.get('review_attempt',0)))
+  if n<=MAX_CONTEXT_RETRIES:
+   state['review_attempt']=n;state['stage']='NEED_REVIEW';state['history'].append({'at':now(),'event':'CONTEXT_RETRY_RECOVERED','review_attempt':n,'blocked_request_id':rid});return True
+ return False
+
 def fixed_lock(workspace:Path,bp:dict,review:dict,author_receipt:Path,review_receipt:Path)->Path:
  p=workspace/'blueprint.lock.json'; v={'schema':'die.production.fixed-blueprint-lock.v1','task_id':workspace.name,'blueprint_id':bp['blueprint_id'],'blueprint_sha256':csha(bp),'executive_review_id':review['review_id'],'executive_review_sha256':csha(review),'author_receipt_sha256':sha_bytes(author_receipt.read_bytes()),'review_receipt_sha256':sha_bytes(review_receipt.read_bytes()),'locked_at':now(),'authority_effect':'NONE'}; atomic_json(p,v); return p
 
@@ -184,10 +207,8 @@ def tick(args)->dict[str,Any]:
  if not snap_path.exists():atomic_json(snap_path,seed_snapshot(Path(args.db),seed_id,repo_sha))
  snap=read_json(snap_path)
  stage=state['stage']; revision=int(state.get('revision',0)); attempt=int(state.get('author_attempt',0)); review_attempt=int(state.get('review_attempt',0))
- if stage=='WAITING_FOUNDER' and state.get('history'):
-  last=state['history'][-1]
-  if last.get('event')=='PRINCIPAL_BLOCKED' and last.get('reason')=='E_CONTEXT_CONVERGENCE' and review_attempt<MAX_CONTEXT_RETRIES:
-   review_attempt=max(1,review_attempt); state['review_attempt']=review_attempt; state['stage']='NEED_REVIEW'; state['history'].append({'at':now(),'event':'CONTEXT_RETRY_RECOVERED','review_attempt':review_attempt}); atomic_json(statep,state); stage='NEED_REVIEW'
+ if repair_context_recovery_state(state,author_artifact_exists=(cogn/'blueprint.author.json').is_file()):
+  atomic_json(statep,state);stage=state['stage'];attempt=int(state.get('author_attempt',0));review_attempt=int(state.get('review_attempt',0))
  if stage in {'BLOCKED_EVIDENCE','WAITING_FOUNDER','READY'}:return {'schema':'die.production.cognition-tick.v1','status':'IDLE','task_id':task,'stage':stage}
  if stage in {'NEED_AUTHOR','NEED_REVISION'}:
   if attempt>=MAX_SEMANTIC_ATTEMPTS: state['stage']='WAITING_FOUNDER'; state['history'].append({'at':now(),'event':'AUTHOR_ATTEMPTS_EXHAUSTED'}); atomic_json(statep,state); return {'schema':'die.production.cognition-tick.v1','status':'BLOCKED','task_id':task,'reason':'E_AUTHOR_ATTEMPTS_EXHAUSTED'}
@@ -198,7 +219,10 @@ def tick(args)->dict[str,Any]:
   if parsed.get('schema')=='die.cognition.blocked.v1':
    be=validate_blocked_response(parsed,req)
    if be: raise RuntimeError('E_BLOCKED_RESPONSE_BINDING:'+','.join(be))
-   state['stage']='WAITING_FOUNDER'; state['history'].append({'at':now(),'event':'PRINCIPAL_BLOCKED','request_id':rid,'reason':parsed.get('reason_code')}); atomic_json(statep,state); return {'schema':'die.production.cognition-tick.v1','status':'BLOCKED','task_id':task,'reason':parsed.get('reason_code')}
+   reason=parsed.get('reason_code')
+   if reason=='E_CONTEXT_CONVERGENCE' and attempt+1<MAX_SEMANTIC_ATTEMPTS:
+    attempt+=1;state['author_attempt']=attempt;state['stage']=stage;state['history'].append({'at':now(),'event':'PRINCIPAL_BLOCKED','request_id':rid,'reason':reason,'retryable':True,'next_author_attempt':attempt});atomic_json(statep,state);return {'schema':'die.production.cognition-tick.v1','status':'RETRY','task_id':task,'reason':reason,'author_attempt':attempt}
+   state['stage']='WAITING_FOUNDER'; state['history'].append({'at':now(),'event':'PRINCIPAL_BLOCKED','request_id':rid,'reason':reason,'retryable':False}); atomic_json(statep,state); return {'schema':'die.production.cognition-tick.v1','status':'BLOCKED','task_id':task,'reason':reason}
   art=cogn/'blueprint.author.json'; atomic_json(art,parsed); val=validation('blueprint',art,reqp,seed=snap_path)
   if val['status']!='PASS': attempt+=1; state['author_attempt']=attempt; state['stage']='NEED_REVISION' if stage=='NEED_REVISION' else 'NEED_AUTHOR'; state['history'].append({'at':now(),'event':'AUTHOR_INVALID','request_id':rid,'errors':val['errors'][:10]}); atomic_json(statep,state); return {'schema':'die.production.cognition-tick.v1','status':'RETRY','task_id':task,'stage':state['stage'],'errors':val['errors'][:10]}
   rec=write_receipt(workspace,'BLUEPRINT_AUTHOR',req,parsed,tr,val); state['stage']='NEED_REVIEW'; state['author_attempt']=0; state['review_attempt']=0; state['latest_author_receipt']=str(rec); state['history'].append({'at':now(),'event':'AUTHOR_VALID','request_id':rid,'artifact_sha256':csha(parsed),'receipt':str(rec)}); atomic_json(statep,state); return {'schema':'die.production.cognition-tick.v1','status':'ADVANCED','task_id':task,'from':stage,'to':'NEED_REVIEW','request_id':rid}
