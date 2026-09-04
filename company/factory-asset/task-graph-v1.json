@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "5.1-fa106-content-addressed-ingestion",
+  "revision": "5.2-fa-c008-output-gallery",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1856,9 +1856,11 @@
         "FA-030",
         "FA-106"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Console output gallery + lineage/QA fixtures",
-      "acceptance": "Each semantic asset shows immutable master, packaging derivatives, hashes, recipes, QA/compatibility state and duplicate suppression without counting derivatives as additional assets."
+      "acceptance": "Each semantic asset shows immutable master, packaging derivatives, hashes, recipes, QA/compatibility state and duplicate suppression without counting derivatives as additional assets.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: Console Output view now reads ACTUAL_FA029_CANARY + FA-106 staging evidence through /api/outputs: five immutable semantic masters, 20 derivatives with recipe/hash/dimensions, QA/compatibility, lineage and duplicate suppression. State remains visibly STAGED_NOT_CANONICAL; derivatives never increase semantic count. Regression 237/237 PASS."
     },
     {
       "id": "FA-C009",

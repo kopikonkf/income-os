@@ -54,6 +54,7 @@ provider_dashboard = _load_module("factory_console_provider_dashboard", ROOT / "
 
 PROVIDER_POLICY_REGISTRY = json.loads((ROOT / "company/factory-asset/registries/provider-policy.v1.json").read_text(encoding="utf-8"))
 PROVIDER_DASHBOARD_FIXTURE = json.loads((ROOT / "company/factory-asset/fixtures/provider-dashboard/synthetic-observed.v1.json").read_text(encoding="utf-8"))
+OUTPUT_GALLERY_FIXTURE = json.loads((ROOT / "company/factory-asset/fixtures/output-gallery/fa029-actual-canary.v1.json").read_text(encoding="utf-8"))
 CORE_QUEUE = factory_queue.FactoryJobQueue()
 
 
@@ -154,6 +155,10 @@ def provider_dashboard_state() -> dict[str, Any]:
     )
 
 
+def output_gallery_state() -> dict[str, Any]:
+    return json.loads(json.dumps(OUTPUT_GALLERY_FIXTURE))
+
+
 def queue_state() -> dict[str, Any]:
     return {"schema": "die.factory-asset.console-queue-state.v1", "provider_dispatch_performed": False, "events": [console_contract.queue_event(row) for row in CORE_QUEUE.list()]}
 
@@ -215,6 +220,9 @@ class Handler(SimpleHTTPRequestHandler):
             return
         if self.path == "/api/providers":
             self._json(HTTPStatus.OK, provider_dashboard_state())
+            return
+        if self.path == "/api/outputs":
+            self._json(HTTPStatus.OK, output_gallery_state())
             return
         super().do_GET()
 

@@ -15,6 +15,8 @@
     queueError: null,
     providerDashboard: null,
     providerError: null,
+    outputGallery: null,
+    outputError: null,
     notice: "Compile a Blueprint v2 before creating a batch intent."
   };
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -204,8 +206,27 @@
       </article>
       <div class="provider-grid">${rows.map(p => `<article class="provider-card"><header><h3>${esc(p.provider_id.toUpperCase())}</h3>${badge(p.eligibility)}</header><dl class="kv"><dt>Profile</dt><dd>${esc(p.profile_id)}</dd><dt>Health</dt><dd>${badge(p.health)}</dd><dt>Transport</dt><dd>${esc(p.transport)}</dd><dt>Capacity</dt><dd>${badge(p.capacity)}</dd><dt>Policy</dt><dd>${badge(p.policy)}</dd><dt>Evidence</dt><dd>${esc(p.last_evidence || 'UNKNOWN')}</dd><dt>Retry after</dt><dd>${p.retry_after_seconds == null ? '—' : esc(p.retry_after_seconds + 's')}</dd></dl><p>${esc(p.routing_reason)}</p></article>`).join("")}</div>`;
   }
-  function renderOutput() { $("#view-output").innerHTML = `<div class="output-grid">${source.outputs.map(o => `<article class="card"><div class="master-preview"><div class="master-glyph"></div></div><div class="result-head"><div><span class="badge violet">${esc(o.assetType)}</span><h3>${esc(o.subject)}</h3></div><span class="badge good">SEMANTIC COUNT ${o.semanticCount}</span></div><dl class="kv"><dt>Semantic ID</dt><dd>${esc(o.semanticAssetId)}</dd><dt>Master</dt><dd>${esc(o.master.format)} · ${esc(o.master.dimensions)}</dd><dt>QA</dt><dd>${badge(o.qa)}</dd><dt>Compatibility</dt><dd>${badge(o.compatibility)}</dd></dl><div class="derivatives">${o.derivatives.map(d => `<div class="derivative"><span>${esc(d.format)} · ${esc(d.purpose)}</span><span>${esc(d.sha256)}</span></div>`).join("")}</div></article>`).join("")}</div>`; }
-  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); if(view==='providers') refreshProviders(); }
+  async function refreshOutputs() {
+    try { state.outputGallery = await getLocal('/api/outputs'); state.outputError = null; }
+    catch(error) { state.outputError = `${error.code || 'ERROR'}: ${error.message || 'Output gallery unavailable'}`; }
+    renderOutput(); renderMetrics();
+  }
+  function renderOutput() {
+    const d=state.outputGallery;
+    const rows=d ? d.assets : [];
+    $("#view-output").innerHTML = `
+      <article class="card" style="margin-bottom:16px"><div class="result-head"><div><h2>Output / Lineage / QA</h2><p class="muted">Actual FA-029 five-master canary evidence + FA-106 ingestion staging</p></div>${d ? badge(d.evidence_mode) : badge('UNKNOWN')}</div>
+        ${state.outputError ? `<p class="notice">${esc(state.outputError)}</p>` : ''}
+        ${d ? `<div class="count-split"><div class="count-box"><strong>${d.semantic_asset_count}</strong><span>semantic assets</span></div><div class="count-box"><strong>${d.derivative_count}</strong><span>packaging derivatives</span></div></div><p class="notice" style="margin-top:14px">State Manager: ${esc(d.state_manager_status)} · canonical truth=${d.canonical_truth}. Derivatives never increase semantic asset count.</p>` : '<p class="muted">Loading output evidence…</p>'}
+      </article>
+      <div class="output-grid">${rows.map(o => `<article class="card"><div class="master-preview"><div class="master-glyph"></div></div><div class="result-head"><div><span class="badge violet">${esc(o.task_id)}</span><h3>${esc(o.seed_id)}</h3></div><span class="badge good">SEMANTIC COUNT ${o.semantic_count}</span></div>
+        <dl class="kv"><dt>Semantic ID</dt><dd>${esc(o.semantic_asset_id)}</dd><dt>Blueprint</dt><dd>${esc(o.blueprint_id)}</dd><dt>Master</dt><dd>${esc(o.master.format)} · ${esc(o.master.dimensions.join('×'))}</dd><dt>Master SHA</dt><dd>${esc(o.master.sha256)}</dd><dt>Immutable</dt><dd>${badge(o.master.immutable ? 'PASS' : 'FAIL')}</dd><dt>Ingestion</dt><dd>${badge(o.master.ingestion_state)}</dd><dt>Package files</dt><dd>${o.package.unique_file_count}/${o.package.manifest_entry_count}</dd></dl>
+        <div class="derivatives">${o.derivatives.map(x => `<div class="derivative" style="display:block"><div style="display:flex;justify-content:space-between;gap:10px"><span><strong>${esc(x.format)}</strong> · ${esc(x.purpose)}</span><span>${badge(x.qa_state)} ${badge(x.compatibility_state)}</span></div><div class="muted" style="margin-top:4px">${esc(x.recipe_id)} · ${esc(x.dimensions.join('×'))}</div><div class="muted" style="margin-top:3px;overflow-wrap:anywhere">${esc(x.sha256)}</div></div>`).join('')}</div>
+        <details style="margin-top:12px"><summary>Lineage</summary><dl class="kv" style="margin-top:10px"><dt>Linux master</dt><dd>${esc(o.lineage.linux_master_path)}</dd><dt>Inventory</dt><dd>${esc(o.lineage.inventory_receipt)}</dd><dt>Canary</dt><dd>${esc(o.lineage.canary_receipt)}</dd><dt>Ingestion</dt><dd>${esc(o.lineage.ingestion_receipt)}</dd></dl></details>
+      </article>`).join('')}</div>`;
+  }
+
+  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); if(view==='providers') refreshProviders(); if(view==='output') refreshOutputs(); }
   $$('.nav-item').forEach(button=>button.addEventListener('click',()=>activateView(button.dataset.view)));
-  renderMetrics();renderBlueprint();renderBatch();renderQueue();renderProviders();renderOutput();activateView('blueprint');refreshQueue();refreshProviders();
+  renderMetrics();renderBlueprint();renderBatch();renderQueue();renderProviders();renderOutput();activateView('blueprint');refreshQueue();refreshProviders();refreshOutputs();
 })();

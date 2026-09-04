@@ -402,3 +402,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Actual five-master staging: 6 attempts -> 5 unique SHA-addressed blobs; duplicate attempt reuses bytes while keeping a separate receipt.
 - All staged records remain `STAGED_NOT_CANONICAL`; the proposal requires `DIE_STATE_MANAGER` as physical writer. No direct canonical state mutation occurred.
 - Regression 231/231 PASS. `FA-109` and `FA-C008` are READY.
+
+
+### FA-C008 — DONE / PASS — actual output gallery lineage / derivative / QA
+- `/api/outputs` serves five FA-029 semantic masters and 20 derivatives with recipe/hash/dimensions, QA/compatibility, lineage and duplicate suppression.
+- Output evidence remains visibly `STAGED_NOT_CANONICAL` until State Manager commit; derivative count never inflates semantic count.
+- Regression 237/237 PASS.
