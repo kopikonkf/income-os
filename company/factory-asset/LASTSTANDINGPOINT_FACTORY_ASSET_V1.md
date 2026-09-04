@@ -557,3 +557,5 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Post-injection SHA is re-pinned, read-back must exactly match, derivative QA reruns, and package evidence uses the new hash. Unsupported formats stay sidecar-only.
 - Real PRODSEED000025 headphones JPEG 6144x4096 canary passed exact XMP/IPTC read-back and QA.
 - Success-path Telegram is reduced to PRODUCTION_STARTED / ARTIFACT_CREATED / WAITING_FOUNDER_QC plus cron STARTED response. Backend rights/package state remains durable; failure alerts remain enabled.
+
+- FA-141 Linux live canary also PASS under `die-hermes` using Factory venv on a copy of PRODSEED000025 JPEG: XMP/IPTC exact read-back, technical QA PASS, output SHA `211f28375a4c...`, production workspace untouched.

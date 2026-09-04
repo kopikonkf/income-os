@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "7.5-fa141-binary-metadata-founder-notifications",
+  "revision": "7.5.1-fa141-linux-live-canary",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2168,7 +2168,7 @@
       "artifact": "Hash-safe metadata injector/read-back engine for supported marketplace delivery formats",
       "acceptance": "For supported delivery formats, title/description/keywords/AI-disclosure are embedded only into packaging derivatives, never immutable masters; output hash is re-pinned, metadata is read back and compared byte-for-byte/field-for-field to the canonical metadata bundle, unsupported formats remain sidecar-only, semantic asset count stays one, and any injection/read-back mismatch blocks package.",
       "completed_at": "2026-09-04",
-      "result": "PASS: JPEG marketplace derivative metadata injector embeds deterministic title/description/keywords/AI disclosure into XMP APP1 and IPTC-IIM APP13 on a copy only; immutable source/master preserved; post-injection SHA is re-pinned, XMP/IPTC read back exactly, derivative QA reruns, package evidence uses the new hash, unsupported formats remain SIDECAR_ONLY. Real PRODSEED000025 headphones JPEG canary 6144x4096 passed. Success-path Telegram simplified to PRODUCTION_STARTED, ARTIFACT_CREATED and WAITING_FOUNDER_QC plus cron STARTED response; backend rights/package states remain governed and failure alerts remain enabled."
+      "result": "PASS: JPEG marketplace derivative metadata injector embeds deterministic title/description/keywords/AI disclosure into XMP APP1 and IPTC-IIM APP13 on a copy only; immutable source/master preserved; post-injection SHA is re-pinned, XMP/IPTC read back exactly, derivative QA reruns, package evidence uses the new hash, unsupported formats remain SIDECAR_ONLY. Real PRODSEED000025 headphones JPEG canary 6144x4096 passed. Success-path Telegram simplified to PRODUCTION_STARTED, ARTIFACT_CREATED and WAITING_FOUNDER_QC plus cron STARTED response; backend rights/package states remain governed and failure alerts remain enabled. Linux production-runtime deployment also PASS: die-hermes live canary on a copy of PRODSEED000025 JPEG produced the same post-injection SHA 211f2837..., exact XMP/IPTC read-back and derivative QA PASS without mutating the production workspace."
     },
     {
       "id": "FA-140A",
