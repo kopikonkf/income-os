@@ -370,3 +370,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - `FA-107` sanitized observability is DONE: attempts, masters, QA, derivatives, packages, failures, resources and economics stay separate; secrets are rejected recursively.
 - `FA-C007` Providers dashboard is DONE: policy/capacity/router truth is served through `/api/providers`; evidence is explicitly SYNTHETIC_OBSERVED_FIXTURE, guessed quotas are absent, and Grok remains optional/deferred.
 - Final regression: 184/184 PASS.
+
+
+### Derivative Engine unlock batch — FA-021/022/023/024/026/027/028 DONE / PASS
+- Raster derivative worker, deterministic PDF/preview packaging, color/alpha/DPI/metadata policy, derivative QA, native SVG/EPS exporter, gated trace fallback and dry-run package composer are complete.
+- Full Factory regression: 224/224 PASS.
+- `FA-029` remains BLOCKED because `FA-001` Linux five-master inventory is still WAITING_OPERATOR/read-only evidence gated.

@@ -1,0 +1,24 @@
+{
+  "schema": "factory-asset.package-composer-receipt.v1",
+  "task_id": "FA-028",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact": "company/factory-asset/lib/package_composer.py",
+  "manifest_fields": [
+    "exact derivatives",
+    "recipe refs",
+    "receipt refs",
+    "metadata ref",
+    "rights ref",
+    "compatibility ref",
+    "sha256",
+    "bytes"
+  ],
+  "publication_action": "NONE",
+  "upload_action": "NONE",
+  "deterministic_manifest": true,
+  "semantic_count_preserved": true,
+  "validation": "224/224 PASS",
+  "next_blocker": "FA-029 waits on FA-001 Linux master inventory"
+}

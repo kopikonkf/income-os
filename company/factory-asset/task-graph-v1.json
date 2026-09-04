@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "4.0-fa-c007-provider-dashboard",
+  "revision": "4.7-fa028-package-composer",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -821,9 +821,11 @@
       "depends_on": [
         "FA-020"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Raster worker for PNG to JPEG, WebP and TIFF with tests",
-      "acceptance": "Pinned recipes produce decodable outputs, handle alpha explicitly, never overwrite masters and return typed receipts."
+      "acceptance": "Pinned recipes produce decodable outputs, handle alpha explicitly, never overwrite masters and return typed receipts.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: deterministic Pillow raster worker produces JPEG/WebP/TIFF/PNG derivatives with explicit alpha policy, master-hash pinning, overwrite protection, decode/magic/hash verification and typed derivative receipts. Same recipe/input yields byte-identical output. Regression 194/194 PASS."
     },
     {
       "id": "FA-022",
@@ -834,9 +836,11 @@
       "depends_on": [
         "FA-021"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "artifact": "PDF/preview recipe worker and tests",
-      "acceptance": "PDF and preview outputs reopen/render correctly, preserve dimensions/aspect policy and have deterministic receipts."
+      "acceptance": "PDF and preview outputs reopen/render correctly, preserve dimensions/aspect policy and have deterministic receipts.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: deterministic PDF derivative writer embeds a validated JPEG XObject, reopens through PyPDF2 with preserved page dimensions/aspect, and returns derivative receipts; preview PNG/JPEG packaging is deterministic, bounded and aspect-preserving. Regression 198/198 PASS."
     },
     {
       "id": "FA-023",
@@ -847,9 +851,11 @@
       "depends_on": [
         "FA-021"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Derivative color/metadata policy module and tests",
-      "acceptance": "sRGB/ICC, alpha flattening, DPI and metadata outcomes are explicit, verified after conversion and never silently guessed."
+      "acceptance": "sRGB/ICC, alpha flattening, DPI and metadata outcomes are explicit, verified after conversion and never silently guessed.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: explicit derivative policy validates sRGB/ICC action, alpha handling, DPI and metadata policy; outputs are reopened and verified, source ICC is never guessed, and structural JPEG metadata is distinguished from user/application metadata. Regression 203/203 PASS."
     },
     {
       "id": "FA-024",
@@ -862,9 +868,11 @@
         "FA-022",
         "FA-023"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "artifact": "Derivative magic/decode/dimensions/hash/compatibility QA suite",
-      "acceptance": "Corrupt, mislabeled, truncated, wrong-alpha and incompatible outputs fail; zero false success in fixtures."
+      "acceptance": "Corrupt, mislabeled, truncated, wrong-alpha and incompatible outputs fail; zero false success in fixtures.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: derivative QA inspector validates magic/format, decode reopen, dimensions, alpha, SHA-256 and compatibility; corrupt, mislabeled, truncated, wrong-alpha and incompatible fixtures all fail closed with zero false success. Regression 210/210 PASS."
     },
     {
       "id": "FA-025",
@@ -890,9 +898,11 @@
       "depends_on": [
         "FA-025"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Native vector export worker with SVG/EPS and preview tests",
-      "acceptance": "Outputs contain real editable paths, render correctly and reject embedded-raster-only, font, bounds and excessive-path failures."
+      "acceptance": "Outputs contain real editable paths, render correctly and reject embedded-raster-only, font, bounds and excessive-path failures.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: native SVG normalizer/exporter requires real editable paths, validates viewBox/bounds, rejects embedded raster/text/font/excessive paths, emits deterministic EPS path instructions and renders a local preview. Regression 215/215 PASS."
     },
     {
       "id": "FA-027",
@@ -903,9 +913,11 @@
       "depends_on": [
         "FA-025"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Trace fallback worker with simple-shape fixtures and rejection tests",
-      "acceptance": "Only explicitly eligible inputs trace; output path count/editability/preview pass; photorealistic input is rejected."
+      "acceptance": "Only explicitly eligible inputs trace; output path count/editability/preview pass; photorealistic input is rejected.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: OpenCV trace fallback invokes FA-025 vectorizability gate first, traces only explicit TRACE_ELIGIBLE simple raster shapes into editable native SVG paths with preview validation, and rejects photorealistic/unauthorized/blank inputs. Regression 219/219 PASS."
     },
     {
       "id": "FA-028",
@@ -919,9 +931,11 @@
         "FA-026",
         "FA-027"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "artifact": "Marketplace package composer and manifest tests",
-      "acceptance": "Packages include exact derivatives, previews, metadata/rights references and compatibility receipts; no upload/publication action exists."
+      "acceptance": "Packages include exact derivatives, previews, metadata/rights references and compatibility receipts; no upload/publication action exists.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: deterministic marketplace dry-run package composer copies exact compatible derivatives into hash-addressed package paths, records recipe/receipt plus metadata/rights/compatibility references, keeps semantic asset count separate from derivative count and contains no upload/publication action. Regression 224/224 PASS."
     },
     {
       "id": "FA-029",

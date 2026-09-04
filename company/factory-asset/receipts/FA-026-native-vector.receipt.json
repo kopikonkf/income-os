@@ -1,0 +1,21 @@
+{
+  "schema": "factory-asset.native-vector-export-receipt.v1",
+  "task_id": "FA-026",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact": "company/factory-asset/lib/native_vector.py",
+  "guards": [
+    "paths required",
+    "embedded raster rejected",
+    "text/font rejected",
+    "viewBox bounds",
+    "path count"
+  ],
+  "outputs": [
+    "canonical SVG",
+    "editable EPS",
+    "preview render"
+  ],
+  "validation": "215/215 PASS"
+}

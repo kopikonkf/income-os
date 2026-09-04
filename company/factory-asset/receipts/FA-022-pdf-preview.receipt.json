@@ -1,0 +1,13 @@
+{
+  "schema": "factory-asset.pdf-preview-receipt.v1",
+  "task_id": "FA-022",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact": "company/factory-asset/lib/pdf_preview.py",
+  "pdf_reopen": "PyPDF2 strict reader",
+  "deterministic_pdf_bytes": true,
+  "preview_aspect_preserved": true,
+  "master_overwrite_forbidden": true,
+  "validation": "198/198 PASS"
+}
