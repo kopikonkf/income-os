@@ -16,3 +16,8 @@ def test_pdf_never_overwrites_master(tmp_path):
  p=master(tmp_path)
  with pytest.raises(m.PackagingError) as e:m.render_pdf_derivative(p,p,recipe(p))
  assert e.value.code=='MASTER_OVERWRITE_FORBIDDEN'
+
+def test_pdf_alpha_requires_explicit_white_flatten(tmp_path):
+ p=tmp_path/'alpha.png';Image.new('RGBA',(40,20),(10,20,30,0)).save(p);r=recipe(p);r['output']['alpha_policy']='PRESERVE'
+ with pytest.raises(m.PackagingError) as e:m.render_pdf_derivative(p,tmp_path/'alpha.pdf',r)
+ assert e.value.code=='PDF_ALPHA_POLICY_REQUIRED'

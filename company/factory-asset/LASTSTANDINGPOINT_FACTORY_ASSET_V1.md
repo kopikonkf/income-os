@@ -382,3 +382,10 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Five newest final production manifests were cross-checked against actual files: exact path, PNG magic/MIME, 6144x4096 dimensions, bytes and SHA-256 all match 5/5.
 - Job/blueprint lineage is recorded. No Linux file, service, queue or state was modified.
 - `FA-029` is READY.
+
+
+### FA-029 — DONE / PASS — five-master Asset Derivative Engine canary
+- Five current Linux production masters were copied read-only to isolated Windows canary storage; source hashes match FA-001 inventory 5/5.
+- 20 JPEG/WebP/TIFF/PDF outputs generated; 20/20 second-pass hashes match; 20/20 derivative QA PASS; 5/5 dry-run packages PASS.
+- Duplicate package bytes are suppressed (2 manifest entries -> 1 physical file). Vector gate returns fail-closed NOT_VECTORIZABLE for all five current raster masters because trace was not authorized.
+- No Linux mutation, provider call, upload or publication action occurred. `FA-030` is READY.

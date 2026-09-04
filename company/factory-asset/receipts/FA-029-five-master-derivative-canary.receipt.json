@@ -1,0 +1,837 @@
+{
+  "schema": "factory-asset.five-master-derivative-canary-receipt.v1",
+  "task_id": "FA-029",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "source_inventory_receipt": "company\\factory-asset\\receipts\\FA-001-linux-master-inventory.receipt.json",
+  "master_count": 5,
+  "target_dimensions": [
+    3072,
+    2048
+  ],
+  "formats": [
+    "JPEG",
+    "WEBP",
+    "TIFF",
+    "PDF"
+  ],
+  "masters": [
+    {
+      "task_id": "PRODSEED000024",
+      "seed_id": "SEED-000024",
+      "blueprint_id": "BP-PROD-SMARTPHONE-TECH-COMMUNICATION-001",
+      "blueprint_sha256": "912bffbbf493db92c4fe18ff6b017aa5512328059c79be2e6c96ea1927be9df8",
+      "linux_master_path": "/var/lib/die/workspaces/PRODSEED000024/final/asset.png",
+      "master_sha256": "9d63a5a08ff5547801bbe885d50eb5bc9cd38b1fa79f0d9cf21ca090e20d6e3d",
+      "master_bytes": 15578885,
+      "master_dimensions": [
+        6144,
+        4096
+      ],
+      "copy_hash_match": true,
+      "source_has_alpha_channel": true,
+      "source_meaningful_alpha": false,
+      "derivatives": [
+        {
+          "format": "JPEG",
+          "purpose": "MARKETPLACE_DELIVERY",
+          "recipe_id": "fa029-jpeg-marketplace-delivery-v1",
+          "idempotency_key": "27225e4bd61db7645365788f5d1e5496974f71282dd20fc15c732443f8f0ee84",
+          "sha256": "e7fec7289df0138df96c2b2858a0dac5af9b7b1bd2c4c5b355256a20c82ccfa4",
+          "bytes": 474406,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000024\\pass-a\\asset.jpg",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "JPEG",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "ABSENT",
+            "sha256": "e7fec7289df0138df96c2b2858a0dac5af9b7b1bd2c4c5b355256a20c82ccfa4",
+            "bytes": 474406,
+            "compatibility": "COMPATIBLE"
+          }
+        },
+        {
+          "format": "WEBP",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-webp-preview-v1",
+          "idempotency_key": "ec70cef912960633f2001d19b6d11c674db215ce490049dad00159c83114ea9b",
+          "sha256": "e424a45b6993ae3c423d481e56eb078ed064d9ae8b66e1ed532c3894880a57a5",
+          "bytes": 156022,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000024\\pass-a\\asset.webp",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "WEBP",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "ABSENT",
+            "sha256": "e424a45b6993ae3c423d481e56eb078ed064d9ae8b66e1ed532c3894880a57a5",
+            "bytes": 156022,
+            "compatibility": "COMPATIBLE"
+          }
+        },
+        {
+          "format": "TIFF",
+          "purpose": "COMPATIBILITY_EXPORT",
+          "recipe_id": "fa029-tiff-compatibility-export-v1",
+          "idempotency_key": "6dfa21600d3a12ef519c75c2319906dd63ecd72c2d682348f6c20b58694f697d",
+          "sha256": "3aa2e78bf1b7d45178f85517a781256934620f6d5786fa11b4fc60960466eada",
+          "bytes": 11511564,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000024\\pass-a\\asset.tiff",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "TIFF",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "PRESENT",
+            "sha256": "3aa2e78bf1b7d45178f85517a781256934620f6d5786fa11b4fc60960466eada",
+            "bytes": 11511564,
+            "compatibility": "COMPATIBLE"
+          }
+        },
+        {
+          "format": "PDF",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-pdf-preview-v1",
+          "idempotency_key": "b6332117ab299e96ffba12d93f4060c61f68e60b569aba414ee7acb5c3e4660f",
+          "sha256": "60e2b54711caddf7f77db1308d2fdbabe6be318f65d1e6314edfc888d7921dae",
+          "bytes": 744947,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000024\\pass-a\\asset.pdf",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "PDF",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "ABSENT",
+            "sha256": "60e2b54711caddf7f77db1308d2fdbabe6be318f65d1e6314edfc888d7921dae",
+            "bytes": 744947,
+            "compatibility": "COMPATIBLE"
+          }
+        }
+      ],
+      "rerun_hash_matches": {
+        "JPEG": true,
+        "WEBP": true,
+        "TIFF": true,
+        "PDF": true
+      },
+      "package": {
+        "schema": "die.factory-asset.marketplace-dry-run-package-receipt.v1",
+        "result": "PASS",
+        "manifest_sha256": "5563bc954be6af964f47a98feb90051469999c241abc6b859ea97886bec7cd34",
+        "manifest_path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000024\\package\\manifest.json",
+        "file_count": 4,
+        "unique_file_count": 4,
+        "manifest_entry_count": 4,
+        "semantic_asset_count": 1,
+        "derivative_count": 4,
+        "publication_action": "NONE",
+        "upload_action": "NONE"
+      },
+      "vector_gate": {
+        "schema": "die.factory-asset.vectorizability-decision.v1",
+        "state": "NOT_VECTORIZABLE",
+        "reason_codes": [
+          "DECLARED_NOT_VECTORIZABLE",
+          "PHOTOREALISTIC_INPUT",
+          "COLOR_COMPLEXITY_EXCEEDED",
+          "TRACE_NOT_AUTHORIZED",
+          "TRACE_MODE_NOT_ELIGIBLE"
+        ],
+        "evidence": {
+          "source_representation": "RASTER_PIXELS",
+          "declared_mode": "NOT_VECTORIZABLE",
+          "raster_trace_allowed": false,
+          "photorealistic": true,
+          "color_count": 36,
+          "edge_complexity": 0.042489,
+          "estimated_path_count": 1,
+          "has_text_or_fonts": false
+        }
+      }
+    },
+    {
+      "task_id": "PRODSEED000028",
+      "seed_id": "SEED-000028",
+      "blueprint_id": "BP-PROD-GIFT-BOX-COMMERCE-GIFTING-001",
+      "blueprint_sha256": "0652a3740bdb8df0cc1d68d7ba7775295e738913f28b32aed8482da67f6d958d",
+      "linux_master_path": "/var/lib/die/workspaces/PRODSEED000028/final/asset.png",
+      "master_sha256": "571cbf8ff2664e3696e250245162bbcba33e9840c09a59778b7beba1a8e0faf1",
+      "master_bytes": 18279152,
+      "master_dimensions": [
+        6144,
+        4096
+      ],
+      "copy_hash_match": true,
+      "source_has_alpha_channel": true,
+      "source_meaningful_alpha": false,
+      "derivatives": [
+        {
+          "format": "JPEG",
+          "purpose": "MARKETPLACE_DELIVERY",
+          "recipe_id": "fa029-jpeg-marketplace-delivery-v1",
+          "idempotency_key": "2364f7d9de022db3a63f6ca0dfda4e5e5007577c89727b60ead73b339a949372",
+          "sha256": "76832db8ac47eb2de4a66d7e74efc912677424a7f136df206e06e132e26fcd4a",
+          "bytes": 516776,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000028\\pass-a\\asset.jpg",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "JPEG",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "ABSENT",
+            "sha256": "76832db8ac47eb2de4a66d7e74efc912677424a7f136df206e06e132e26fcd4a",
+            "bytes": 516776,
+            "compatibility": "COMPATIBLE"
+          }
+        },
+        {
+          "format": "WEBP",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-webp-preview-v1",
+          "idempotency_key": "2cf1fd30e5de085f233fae2a8d92dd7d807d9bf6e8ffd3a27dcfc5e0b8bc5db2",
+          "sha256": "f9ff2463d90bc5d6d42ad2df7b6ea4c30c362bcfb1247786769edc36ca5e67ea",
+          "bytes": 217602,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000028\\pass-a\\asset.webp",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "WEBP",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "ABSENT",
+            "sha256": "f9ff2463d90bc5d6d42ad2df7b6ea4c30c362bcfb1247786769edc36ca5e67ea",
+            "bytes": 217602,
+            "compatibility": "COMPATIBLE"
+          }
+        },
+        {
+          "format": "TIFF",
+          "purpose": "COMPATIBILITY_EXPORT",
+          "recipe_id": "fa029-tiff-compatibility-export-v1",
+          "idempotency_key": "381569bb186c9ffaceeb6488dab0c4dc73a003fc9be8ca70dcece09ea5e2b7ca",
+          "sha256": "08ef16299729c0a476b9ac50c6b7e41ac2fa5db87f5d0306f6e1c67da1d5cc90",
+          "bytes": 11045088,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000028\\pass-a\\asset.tiff",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "TIFF",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "PRESENT",
+            "sha256": "08ef16299729c0a476b9ac50c6b7e41ac2fa5db87f5d0306f6e1c67da1d5cc90",
+            "bytes": 11045088,
+            "compatibility": "COMPATIBLE"
+          }
+        },
+        {
+          "format": "PDF",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-pdf-preview-v1",
+          "idempotency_key": "01cf437f99dec38dfb1ef46247cc63362f408136a7032749163c04a7b5af7e01",
+          "sha256": "989945d0b2f8058c4c2a90e8aa3c83892b07e23264953f671b82c88df8adfd9d",
+          "bytes": 801500,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000028\\pass-a\\asset.pdf",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "PDF",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "ABSENT",
+            "sha256": "989945d0b2f8058c4c2a90e8aa3c83892b07e23264953f671b82c88df8adfd9d",
+            "bytes": 801500,
+            "compatibility": "COMPATIBLE"
+          }
+        }
+      ],
+      "rerun_hash_matches": {
+        "JPEG": true,
+        "WEBP": true,
+        "TIFF": true,
+        "PDF": true
+      },
+      "package": {
+        "schema": "die.factory-asset.marketplace-dry-run-package-receipt.v1",
+        "result": "PASS",
+        "manifest_sha256": "8cd632c6b6f766474793e5d8a2499c12560fcd7c7e7f7ee3c1834b8eeb87bd0b",
+        "manifest_path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000028\\package\\manifest.json",
+        "file_count": 4,
+        "unique_file_count": 4,
+        "manifest_entry_count": 4,
+        "semantic_asset_count": 1,
+        "derivative_count": 4,
+        "publication_action": "NONE",
+        "upload_action": "NONE"
+      },
+      "vector_gate": {
+        "schema": "die.factory-asset.vectorizability-decision.v1",
+        "state": "NOT_VECTORIZABLE",
+        "reason_codes": [
+          "DECLARED_NOT_VECTORIZABLE",
+          "PHOTOREALISTIC_INPUT",
+          "COLOR_COMPLEXITY_EXCEEDED",
+          "TRACE_NOT_AUTHORIZED",
+          "TRACE_MODE_NOT_ELIGIBLE"
+        ],
+        "evidence": {
+          "source_representation": "RASTER_PIXELS",
+          "declared_mode": "NOT_VECTORIZABLE",
+          "raster_trace_allowed": false,
+          "photorealistic": true,
+          "color_count": 40,
+          "edge_complexity": 0.040867,
+          "estimated_path_count": 12,
+          "has_text_or_fonts": false
+        }
+      }
+    },
+    {
+      "task_id": "PRODSEED000039",
+      "seed_id": "SEED-000039",
+      "blueprint_id": "BP-PROD-ARROW-SYMBOL-SIGN-001",
+      "blueprint_sha256": "590e6b6cb74641b3e77cfafb30265ec60f592c6a0152b7b28648b3917b32e97c",
+      "linux_master_path": "/var/lib/die/workspaces/PRODSEED000039/final/asset.png",
+      "master_sha256": "c22abb9dbdbf822fe799ad7461b514df1fbb2e2fef2017ce71a660b234ad54c2",
+      "master_bytes": 8124919,
+      "master_dimensions": [
+        6144,
+        4096
+      ],
+      "copy_hash_match": true,
+      "source_has_alpha_channel": true,
+      "source_meaningful_alpha": false,
+      "derivatives": [
+        {
+          "format": "JPEG",
+          "purpose": "MARKETPLACE_DELIVERY",
+          "recipe_id": "fa029-jpeg-marketplace-delivery-v1",
+          "idempotency_key": "6dd6c2d3b2068e6f235d25f426ae76ae24badc53ff31e22e6ab8c1c6905f9abf",
+          "sha256": "dda4cc53d8dabe477c36cd52aeb9576a8797b4597e8a036b685f49b53a053667",
+          "bytes": 284869,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000039\\pass-a\\asset.jpg",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "JPEG",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "ABSENT",
+            "sha256": "dda4cc53d8dabe477c36cd52aeb9576a8797b4597e8a036b685f49b53a053667",
+            "bytes": 284869,
+            "compatibility": "COMPATIBLE"
+          }
+        },
+        {
+          "format": "WEBP",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-webp-preview-v1",
+          "idempotency_key": "1364633b305bf7a58e2427adb00479558265310bfc5148a979bcbb54dd071271",
+          "sha256": "0fc981918a7b6e626ec930ab81408b19d5cafa5d891b3311d9b7f921f2550849",
+          "bytes": 50338,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000039\\pass-a\\asset.webp",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "WEBP",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "ABSENT",
+            "sha256": "0fc981918a7b6e626ec930ab81408b19d5cafa5d891b3311d9b7f921f2550849",
+            "bytes": 50338,
+            "compatibility": "COMPATIBLE"
+          }
+        },
+        {
+          "format": "TIFF",
+          "purpose": "COMPATIBILITY_EXPORT",
+          "recipe_id": "fa029-tiff-compatibility-export-v1",
+          "idempotency_key": "7e272a49391c1811adca708559350b85c81c21b359a6d6756ebe66326ceaba8d",
+          "sha256": "6eebd4f4c6f0d03f2343a19eaccc9b26048d77c539557962be791b92c0ff9939",
+          "bytes": 5724260,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000039\\pass-a\\asset.tiff",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "TIFF",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "PRESENT",
+            "sha256": "6eebd4f4c6f0d03f2343a19eaccc9b26048d77c539557962be791b92c0ff9939",
+            "bytes": 5724260,
+            "compatibility": "COMPATIBLE"
+          }
+        },
+        {
+          "format": "PDF",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-pdf-preview-v1",
+          "idempotency_key": "4230bf27128ad4865fa0549360d56136aaeffca511cc70e30e2835d23423e7e9",
+          "sha256": "08da21d857984625f0c4cfe5086265cf3c1e4a0b061961565da3491b970e359b",
+          "bytes": 414079,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000039\\pass-a\\asset.pdf",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "PDF",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "ABSENT",
+            "sha256": "08da21d857984625f0c4cfe5086265cf3c1e4a0b061961565da3491b970e359b",
+            "bytes": 414079,
+            "compatibility": "COMPATIBLE"
+          }
+        }
+      ],
+      "rerun_hash_matches": {
+        "JPEG": true,
+        "WEBP": true,
+        "TIFF": true,
+        "PDF": true
+      },
+      "package": {
+        "schema": "die.factory-asset.marketplace-dry-run-package-receipt.v1",
+        "result": "PASS",
+        "manifest_sha256": "4a3df8d22869afa9ebe7e470e892211945d5d601259609ca7afaf3d483c9efd5",
+        "manifest_path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000039\\package\\manifest.json",
+        "file_count": 4,
+        "unique_file_count": 4,
+        "manifest_entry_count": 4,
+        "semantic_asset_count": 1,
+        "derivative_count": 4,
+        "publication_action": "NONE",
+        "upload_action": "NONE"
+      },
+      "vector_gate": {
+        "schema": "die.factory-asset.vectorizability-decision.v1",
+        "state": "NOT_VECTORIZABLE",
+        "reason_codes": [
+          "DECLARED_NOT_VECTORIZABLE",
+          "PHOTOREALISTIC_INPUT",
+          "COLOR_COMPLEXITY_EXCEEDED",
+          "TRACE_NOT_AUTHORIZED",
+          "TRACE_MODE_NOT_ELIGIBLE"
+        ],
+        "evidence": {
+          "source_representation": "RASTER_PIXELS",
+          "declared_mode": "NOT_VECTORIZABLE",
+          "raster_trace_allowed": false,
+          "photorealistic": true,
+          "color_count": 36,
+          "edge_complexity": 0.022341,
+          "estimated_path_count": 3,
+          "has_text_or_fonts": false
+        }
+      }
+    },
+    {
+      "task_id": "PRODSEED000040",
+      "seed_id": "SEED-000040",
+      "blueprint_id": "BP-PROD-CAMERA-TECH-PHOTO-001",
+      "blueprint_sha256": "fdf9f5867bf8a6f500628635d3948eea74fe24ce13a24e9790c4718cfa187e97",
+      "linux_master_path": "/var/lib/die/workspaces/PRODSEED000040/final/asset.png",
+      "master_sha256": "3c565beb3cae6c5128e82659d72e365ec44393a2a623634a5cc32104178317b7",
+      "master_bytes": 17646396,
+      "master_dimensions": [
+        6144,
+        4096
+      ],
+      "copy_hash_match": true,
+      "source_has_alpha_channel": true,
+      "source_meaningful_alpha": false,
+      "derivatives": [
+        {
+          "format": "JPEG",
+          "purpose": "MARKETPLACE_DELIVERY",
+          "recipe_id": "fa029-jpeg-marketplace-delivery-v1",
+          "idempotency_key": "c31c4d65177fc41717c2ffc2e55f9ef388c13b281f91739b2280b3d4fa46373c",
+          "sha256": "13efd7a6c99ae24cd7ee90d4a60187db70fbe0424a8d2ea3b1ad8342d00b1334",
+          "bytes": 607429,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000040\\pass-a\\asset.jpg",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "JPEG",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "ABSENT",
+            "sha256": "13efd7a6c99ae24cd7ee90d4a60187db70fbe0424a8d2ea3b1ad8342d00b1334",
+            "bytes": 607429,
+            "compatibility": "COMPATIBLE"
+          }
+        },
+        {
+          "format": "WEBP",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-webp-preview-v1",
+          "idempotency_key": "dbe74460cf852ffb6b7fe6133664a4e028dcd2350d8fc045824691270492116c",
+          "sha256": "fd21762e452201e9f5183046381260fd8f7e248020d6ee7e9999610169c0e07c",
+          "bytes": 239726,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000040\\pass-a\\asset.webp",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "WEBP",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "ABSENT",
+            "sha256": "fd21762e452201e9f5183046381260fd8f7e248020d6ee7e9999610169c0e07c",
+            "bytes": 239726,
+            "compatibility": "COMPATIBLE"
+          }
+        },
+        {
+          "format": "TIFF",
+          "purpose": "COMPATIBILITY_EXPORT",
+          "recipe_id": "fa029-tiff-compatibility-export-v1",
+          "idempotency_key": "6fb6446a1767fa4637d28ff74f07753e645d5fd6abb7eff6dc099a45a2a43cc7",
+          "sha256": "d3d50df2d48b7abea4d639924a515534e84dc4c20f93851dd8c169c613b6e244",
+          "bytes": 13028030,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000040\\pass-a\\asset.tiff",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "TIFF",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "PRESENT",
+            "sha256": "d3d50df2d48b7abea4d639924a515534e84dc4c20f93851dd8c169c613b6e244",
+            "bytes": 13028030,
+            "compatibility": "COMPATIBLE"
+          }
+        },
+        {
+          "format": "PDF",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-pdf-preview-v1",
+          "idempotency_key": "7614ab06675fa7aade82e06c42bda11aa6b37d937d6d21cac4eba9455d0cf8ef",
+          "sha256": "d10c1bb827618553900e503c8ed94e3f91e21d81b1bfebe31179ab90596fd1c8",
+          "bytes": 923290,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000040\\pass-a\\asset.pdf",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "PDF",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "ABSENT",
+            "sha256": "d10c1bb827618553900e503c8ed94e3f91e21d81b1bfebe31179ab90596fd1c8",
+            "bytes": 923290,
+            "compatibility": "COMPATIBLE"
+          }
+        }
+      ],
+      "rerun_hash_matches": {
+        "JPEG": true,
+        "WEBP": true,
+        "TIFF": true,
+        "PDF": true
+      },
+      "package": {
+        "schema": "die.factory-asset.marketplace-dry-run-package-receipt.v1",
+        "result": "PASS",
+        "manifest_sha256": "0c868fe42fc7c8ce149a6282d92f8d83392e03a1158d362da24d5418d3210273",
+        "manifest_path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000040\\package\\manifest.json",
+        "file_count": 4,
+        "unique_file_count": 4,
+        "manifest_entry_count": 4,
+        "semantic_asset_count": 1,
+        "derivative_count": 4,
+        "publication_action": "NONE",
+        "upload_action": "NONE"
+      },
+      "vector_gate": {
+        "schema": "die.factory-asset.vectorizability-decision.v1",
+        "state": "NOT_VECTORIZABLE",
+        "reason_codes": [
+          "DECLARED_NOT_VECTORIZABLE",
+          "PHOTOREALISTIC_INPUT",
+          "COLOR_COMPLEXITY_EXCEEDED",
+          "TRACE_NOT_AUTHORIZED",
+          "TRACE_MODE_NOT_ELIGIBLE"
+        ],
+        "evidence": {
+          "source_representation": "RASTER_PIXELS",
+          "declared_mode": "NOT_VECTORIZABLE",
+          "raster_trace_allowed": false,
+          "photorealistic": true,
+          "color_count": 72,
+          "edge_complexity": 0.078879,
+          "estimated_path_count": 25,
+          "has_text_or_fonts": false
+        }
+      }
+    },
+    {
+      "task_id": "PRODSEED000037",
+      "seed_id": "SEED-000037",
+      "blueprint_id": "BP-PROD-DRAGON-FICTIONAL-CREATURE-001",
+      "blueprint_sha256": "38b34b4ba05c336af256f629f5300d0644f5fdd89886f33e8ffb3b1282c63671",
+      "linux_master_path": "/var/lib/die/workspaces/PRODSEED000037/final/asset.png",
+      "master_sha256": "3bef44414de3f55d9c5667b9f2bf3e49585d2affd5e0008f784b27479b59e727",
+      "master_bytes": 23132843,
+      "master_dimensions": [
+        6144,
+        4096
+      ],
+      "copy_hash_match": true,
+      "source_has_alpha_channel": true,
+      "source_meaningful_alpha": false,
+      "derivatives": [
+        {
+          "format": "JPEG",
+          "purpose": "MARKETPLACE_DELIVERY",
+          "recipe_id": "fa029-jpeg-marketplace-delivery-v1",
+          "idempotency_key": "81ae54b2ef269e6340e334d5166b2fc02b199aa4f68a48589a2a39dd897913fd",
+          "sha256": "356d6fc8c38e32dbf28dcad2a0d2ad4d9a3acda3645766b8395210fb6e069e30",
+          "bytes": 968989,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000037\\pass-a\\asset.jpg",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "JPEG",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "ABSENT",
+            "sha256": "356d6fc8c38e32dbf28dcad2a0d2ad4d9a3acda3645766b8395210fb6e069e30",
+            "bytes": 968989,
+            "compatibility": "COMPATIBLE"
+          }
+        },
+        {
+          "format": "WEBP",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-webp-preview-v1",
+          "idempotency_key": "df21a1934c49ca8f029fe04b5f68b7ccde98d10c391c480badbe54556eb38259",
+          "sha256": "6b0f25dcb4b25973ea29f86834e446f5a2884f838ce0fbc7915f7573647cc165",
+          "bytes": 477742,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000037\\pass-a\\asset.webp",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "WEBP",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "ABSENT",
+            "sha256": "6b0f25dcb4b25973ea29f86834e446f5a2884f838ce0fbc7915f7573647cc165",
+            "bytes": 477742,
+            "compatibility": "COMPATIBLE"
+          }
+        },
+        {
+          "format": "TIFF",
+          "purpose": "COMPATIBILITY_EXPORT",
+          "recipe_id": "fa029-tiff-compatibility-export-v1",
+          "idempotency_key": "5f9cf3e8a77839ff0c37bf324e5b8530b1787b080abe7ba5cccf10ca3a7a0598",
+          "sha256": "13d63faf366d6ef43da3401bd775813af474fcd5eeed885f9ca08e05c244d765",
+          "bytes": 15587794,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000037\\pass-a\\asset.tiff",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "TIFF",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "PRESENT",
+            "sha256": "13d63faf366d6ef43da3401bd775813af474fcd5eeed885f9ca08e05c244d765",
+            "bytes": 15587794,
+            "compatibility": "COMPATIBLE"
+          }
+        },
+        {
+          "format": "PDF",
+          "purpose": "PREVIEW",
+          "recipe_id": "fa029-pdf-preview-v1",
+          "idempotency_key": "6b72b7313c0b5ad2a4897a53ccd13ef39948f65a7352b5b470e1b9f7c90cd3c7",
+          "sha256": "181e1bc04a41857ba4e69c1aa5e5214b699573199424fffacde8656bea69a39f",
+          "bytes": 1445675,
+          "path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000037\\pass-a\\asset.pdf",
+          "qa": {
+            "schema": "die.factory-asset.derivative-qa.v1",
+            "result": "PASS",
+            "failures": [],
+            "format": "PDF",
+            "magic_mime_match": true,
+            "decode_reopen": true,
+            "dimensions": [
+              3072,
+              2048
+            ],
+            "alpha_state": "ABSENT",
+            "sha256": "181e1bc04a41857ba4e69c1aa5e5214b699573199424fffacde8656bea69a39f",
+            "bytes": 1445675,
+            "compatibility": "COMPATIBLE"
+          }
+        }
+      ],
+      "rerun_hash_matches": {
+        "JPEG": true,
+        "WEBP": true,
+        "TIFF": true,
+        "PDF": true
+      },
+      "package": {
+        "schema": "die.factory-asset.marketplace-dry-run-package-receipt.v1",
+        "result": "PASS",
+        "manifest_sha256": "b1d4dbb23058f50fdf1ce22f83623110180c9e925956afdafa39bcb36fc96060",
+        "manifest_path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\PRODSEED000037\\package\\manifest.json",
+        "file_count": 4,
+        "unique_file_count": 4,
+        "manifest_entry_count": 4,
+        "semantic_asset_count": 1,
+        "derivative_count": 4,
+        "publication_action": "NONE",
+        "upload_action": "NONE"
+      },
+      "vector_gate": {
+        "schema": "die.factory-asset.vectorizability-decision.v1",
+        "state": "NOT_VECTORIZABLE",
+        "reason_codes": [
+          "DECLARED_NOT_VECTORIZABLE",
+          "PHOTOREALISTIC_INPUT",
+          "COLOR_COMPLEXITY_EXCEEDED",
+          "TRACE_NOT_AUTHORIZED",
+          "TRACE_MODE_NOT_ELIGIBLE"
+        ],
+        "evidence": {
+          "source_representation": "RASTER_PIXELS",
+          "declared_mode": "NOT_VECTORIZABLE",
+          "raster_trace_allowed": false,
+          "photorealistic": true,
+          "color_count": 66,
+          "edge_complexity": 0.079381,
+          "estimated_path_count": 55,
+          "has_text_or_fonts": false
+        }
+      }
+    }
+  ],
+  "duplicate_suppression_probe": {
+    "schema": "die.factory-asset.marketplace-dry-run-package-receipt.v1",
+    "result": "PASS",
+    "manifest_sha256": "71c484c92b7f2dbdb0ee30c8bd2a4f6f9d407e5d234435a81c57a6b3a422dba1",
+    "manifest_path": "D:\\FACTORY_ASSET\\canaries\\FA-029\\duplicate-suppression-probe\\manifest.json",
+    "file_count": 1,
+    "unique_file_count": 1,
+    "manifest_entry_count": 2,
+    "semantic_asset_count": 1,
+    "derivative_count": 2,
+    "publication_action": "NONE",
+    "upload_action": "NONE"
+  },
+  "summary": {
+    "copy_hash_match": "5/5",
+    "derivative_sets": "5/5",
+    "derivative_outputs": "20/20",
+    "rerun_idempotency": "20/20 hash match",
+    "qa": "20/20 PASS",
+    "package_manifests": "5/5 PASS",
+    "vector_gate": "5/5 NOT_VECTORIZABLE fail-closed",
+    "duplicate_suppression": "2 entries -> 1 physical file",
+    "linux_mutation_performed": false,
+    "publication_action": "NONE",
+    "upload_action": "NONE"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "4.8-fa001-linux-master-inventory",
+  "revision": "4.9-fa029-five-master-canary",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -947,9 +947,11 @@
         "FA-001",
         "FA-028"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/receipts/FA-029-five-master-derivative-canary.receipt.json",
-      "acceptance": "Five masters yield idempotent JPEG/WebP/TIFF/PDF packages as eligible; hashes/lineage/QA complete; duplicates suppressed; vector gate outcomes correct."
+      "acceptance": "Five masters yield idempotent JPEG/WebP/TIFF/PDF packages as eligible; hashes/lineage/QA complete; duplicates suppressed; vector gate outcomes correct.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: five current Linux production masters were copied read-only into an isolated canary workspace and produced JPEG/WebP/TIFF/PDF derivatives at 3072x2048. Copy lineage 5/5, derivative outputs 20/20, rerun idempotency 20/20 hash match, QA 20/20 PASS, package manifests 5/5 PASS, duplicate bytes suppressed to one physical package file, vector gate 5/5 NOT_VECTORIZABLE fail-closed; no Linux mutation/upload/publication."
     },
     {
       "id": "FA-030",
@@ -960,7 +962,7 @@
       "depends_on": [
         "FA-029"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-030-derivative-engine-v0.1-acceptance.receipt.json",
       "acceptance": "Targeted and full regression green, zero master overwrite/false success, 100% receipt lineage and rollback/disable path documented."
