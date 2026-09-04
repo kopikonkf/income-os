@@ -413,3 +413,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 ### FA-109 — DONE / PASS — Factory Core synthetic acceptance
 - Integrated synthetic runner proves routing/capacity/policy, lease, retry, crash recovery, dedupe ingestion, sanitized observability and zero false success with zero live-provider calls.
 - Regression 238/238 PASS. `FA-C009` is READY.
+
+
+### FA-C009 — DONE / PASS — Console to Factory Core synthetic E2E
+- Queue UI now exposes an explicit synthetic E2E trigger through `/api/synthetic/e2e`.
+- One request proves policy/capacity routing, retry -> success, crash RUNNING -> READY, content-addressed output ingestion, sanitized observability and zero false success.
+- Live provider calls remain zero. Regression 243/243 PASS.

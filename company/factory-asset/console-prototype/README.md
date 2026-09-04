@@ -23,3 +23,7 @@ The Queue view now calls the loopback Factory Core bridge (`/api/queue/jobs`, `/
 The Providers view calls `GET /api/providers`, which composes Factory policy evidence, observed-capacity ledger state, deterministic routing rationale and sanitized observability. Current capacity values are explicitly `SYNTHETIC_OBSERVED_FIXTURE`, not live quota polling. Grok remains optional/deferred and cannot block healthy routes.
 
 For a standalone Windows mirror, use `company/factory-asset/bin/sync_console_mirror.py --dest D:\FACTORY_ASSET`; it copies the Console plus required `lib`, `schemas`, `registries` and `fixtures` runtime support tree.
+
+## FA-C009 synthetic end-to-end
+
+The Queue view exposes **Run Synthetic E2E**. It calls `POST /api/synthetic/e2e` and exercises Factory Core policy/capacity routing, lease/queue retry, crash recovery, content-addressed output ingestion and sanitized observability. The run is ephemeral, performs zero live-provider calls and cannot publish/upload.

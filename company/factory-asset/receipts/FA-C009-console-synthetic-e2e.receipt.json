@@ -1,0 +1,44 @@
+{
+  "schema": "factory-asset.console-synthetic-e2e-acceptance-receipt.v1",
+  "task_id": "FA-C009",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "endpoint": "POST /api/synthetic/e2e",
+  "request_schema": "die.factory-asset.console-synthetic-e2e-request.v1",
+  "flow": [
+    "Console HTTP request",
+    "Factory Core synthetic acceptance",
+    "policy/capacity router",
+    "queue retry",
+    "crash reconciliation",
+    "content-addressed output ingestion",
+    "sanitized observability",
+    "Console normalized response"
+  ],
+  "acceptance": {
+    "selected_route": "qwen_a",
+    "constrained_route_rejected": "chatgpt_a",
+    "retry_flow": "RETRY_WAIT -> SUCCEEDED",
+    "crash_recovery": "RUNNING -> READY",
+    "output_ingestion": "2 attempts -> 1 blob",
+    "canonical_truth": false,
+    "secret_observability_blocked": true,
+    "zero_false_success": true,
+    "provider_calls_performed": false
+  },
+  "validation": {
+    "factory_asset_tests": "243/243 PASS",
+    "direct_e2e": "PASS",
+    "dynamic_http_roundtrip": "PASS",
+    "console_ui_trigger": "PASS",
+    "secret_negative": "PASS"
+  },
+  "authority": {
+    "live_provider_calls": false,
+    "browser_ownership": false,
+    "credentials": false,
+    "marketplace_upload": false,
+    "publication": false
+  }
+}

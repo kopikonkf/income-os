@@ -17,6 +17,8 @@
     providerError: null,
     outputGallery: null,
     outputError: null,
+    syntheticE2E: null,
+    syntheticE2EError: null,
     notice: "Compile a Blueprint v2 before creating a batch intent."
   };
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -181,13 +183,27 @@
     catch(error) { state.queueError = `${error.code || 'ERROR'}: ${error.message || 'Control rejected'}`; }
     await refreshQueue();
   }
+  async function runSyntheticE2E() {
+    state.syntheticE2EError = null;
+    try { state.syntheticE2E = await postLocal('/api/synthetic/e2e', { schema:'die.factory-asset.console-synthetic-e2e-request.v1' }); }
+    catch(error) { state.syntheticE2E = null; state.syntheticE2EError = `${error.code || 'ERROR'}: ${error.message || 'Synthetic E2E failed'}`; }
+    renderQueue();
+  }
   function renderQueue() {
     const rows = state.queueEvents;
-    $("#view-queue").innerHTML = `<article class="card"><div class="result-head"><h2>Factory Core Queue</h2><div><span class="badge good">FA-105 GOVERNED</span> <span class="badge warn">NO PROVIDER DISPATCH</span></div></div>
+    const e2e=state.syntheticE2E;
+    $("#view-queue").innerHTML = `
+      <article class="card" style="margin-bottom:16px"><div class="result-head"><div><h2>Console → Factory Core Synthetic E2E</h2><p class="muted">Queue · routing/capacity · retry · crash recovery · output ingestion</p></div>${e2e ? badge(e2e.result) : badge('READY')}</div>
+        <div class="button-row"><button class="primary-btn" id="run-synthetic-e2e">Run Synthetic E2E</button><button class="action-btn" disabled>Live Provider Calls Locked</button></div>
+        ${state.syntheticE2EError ? `<p class="notice">${esc(state.syntheticE2EError)}</p>` : ''}
+        ${e2e ? `<dl class="kv" style="margin-top:14px"><dt>Selected route</dt><dd>${esc(e2e.routing.selected_profile_id)} / ${esc(e2e.routing.selected_provider_id)}</dd><dt>Capacity</dt><dd>Qwen ${badge(e2e.routing.qwen_capacity)} · ChatGPT ${badge(e2e.routing.chatgpt_capacity)}</dd><dt>Retry flow</dt><dd>${badge(e2e.queue.retry_state)} → ${badge(e2e.queue.final_state)} · retries ${e2e.queue.retries}</dd><dt>Crash recovery</dt><dd>${badge(e2e.crash_recovery.state_after_restore)} · recovery ${e2e.crash_recovery.recovery_count}</dd><dt>Output SHA</dt><dd>${esc(e2e.output.master_sha256)}</dd><dt>Ingestion</dt><dd>${e2e.output.ingestion_attempt_count} attempts / ${e2e.output.unique_blob_count} blob · canonical=${e2e.output.canonical_truth}</dd><dt>Secret guard</dt><dd>${badge(e2e.secret_observability_blocked ? 'PASS':'FAIL')}</dd><dt>Zero false success</dt><dd>${badge(e2e.zero_false_success ? 'PASS':'FAIL')}</dd><dt>Provider calls</dt><dd>${e2e.provider_calls_performed ? badge('INVALID'):badge('NONE')}</dd></dl>` : `<p class="notice" style="margin-top:14px">This test is fully synthetic and ephemeral. It exercises Factory Core contracts without provider/browser/network generation.</p>`}
+      </article>
+      <article class="card"><div class="result-head"><h2>Factory Core Queue</h2><div><span class="badge good">FA-105 GOVERNED</span> <span class="badge warn">NO PROVIDER DISPATCH</span></div></div>
       ${state.queueError ? `<p class="notice">${esc(state.queueError)}</p>` : ''}
       <table><thead><tr><th>Job</th><th>Semantic / Blueprint</th><th>State</th><th>Attempts</th><th>Retries</th><th>Recovery</th><th>Failure</th><th>Controls</th></tr></thead><tbody>${rows.map(j => `<tr><td><strong>${esc(j.job_id)}</strong><br><span class="muted">${esc(j.label)}</span></td><td>${esc(j.semantic_asset_id)}<br><span class="muted">${esc(j.blueprint_id)}</span></td><td>${badge(j.state)}</td><td>${j.attempts}</td><td>${j.retries}/2</td><td>${j.recovery_count}</td><td>${esc(j.failure_code || '—')}</td><td>${actionsFor(j).map(([label,action]) => `<button class="action-btn queue-control" data-job-id="${esc(j.job_id)}" data-core-action="${action}">${label}</button>`).join(' ') || '—'}</td></tr>`).join("")}</tbody></table>
-      <p class="notice" style="margin-top:14px">START acquires local queue ownership only. Provider routing/dispatch is intentionally not invoked by FA-C006.</p></article>`;
+      <p class="notice" style="margin-top:14px">START acquires local queue ownership only. Provider routing/dispatch is intentionally not invoked by governed queue controls.</p></article>`;
     $$('.queue-control').forEach(button => button.addEventListener('click', () => queueAction(button.dataset.jobId, button.dataset.coreAction)));
+    if ($('#run-synthetic-e2e')) $('#run-synthetic-e2e').addEventListener('click', runSyntheticE2E);
   }
 
   async function refreshProviders() {

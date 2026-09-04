@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "5.3-fa109-factory-core-synthetic",
+  "revision": "5.4-fa-c009-console-core-synthetic-e2e",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1876,9 +1876,11 @@
         "FA-C007",
         "FA-C008"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Factory Console synthetic E2E acceptance receipt",
-      "acceptance": "Synthetic jobs prove Console to Factory Core queue/routing/retry/capacity/output flows end to end with zero live-provider calls and zero false success."
+      "acceptance": "Synthetic jobs prove Console to Factory Core queue/routing/retry/capacity/output flows end to end with zero live-provider calls and zero false success.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: Console POST /api/synthetic/e2e drives Factory Core synthetic runtime end to end across policy/capacity routing, retry, crash reconciliation, output ingestion and sanitized observability. HTTP/UI acceptance passes with zero live-provider calls and zero false success. Regression 243/243 PASS."
     },
     {
       "id": "FA-C010",
