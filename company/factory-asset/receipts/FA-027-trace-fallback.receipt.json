@@ -1,0 +1,21 @@
+{
+  "schema": "factory-asset.trace-fallback-receipt.v1",
+  "task_id": "FA-027",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact": "company/factory-asset/lib/trace_fallback.py",
+  "gate": "FA-025 TRACE_ELIGIBLE required",
+  "engine": "OpenCV contour -> canonical SVG",
+  "rejects": [
+    "photorealistic",
+    "unauthorized",
+    "blank/no contour"
+  ],
+  "editable_paths": true,
+  "preview_validation": true,
+  "validation": "219/219 PASS",
+  "unblocked": [
+    "FA-028"
+  ]
+}

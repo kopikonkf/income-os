@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "4.5-fa026-native-vector",
+  "revision": "4.6-fa027-trace-fallback",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -913,9 +913,11 @@
       "depends_on": [
         "FA-025"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Trace fallback worker with simple-shape fixtures and rejection tests",
-      "acceptance": "Only explicitly eligible inputs trace; output path count/editability/preview pass; photorealistic input is rejected."
+      "acceptance": "Only explicitly eligible inputs trace; output path count/editability/preview pass; photorealistic input is rejected.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: OpenCV trace fallback invokes FA-025 vectorizability gate first, traces only explicit TRACE_ELIGIBLE simple raster shapes into editable native SVG paths with preview validation, and rejects photorealistic/unauthorized/blank inputs. Regression 219/219 PASS."
     },
     {
       "id": "FA-028",
@@ -929,7 +931,7 @@
         "FA-026",
         "FA-027"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Marketplace package composer and manifest tests",
       "acceptance": "Packages include exact derivatives, previews, metadata/rights references and compatibility receipts; no upload/publication action exists."
     },
