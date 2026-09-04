@@ -1,0 +1,105 @@
+{
+  "schema": "factory-asset.linux-runtime-live-acceptance.v1",
+  "task_id": "FA-140A",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "linux": {
+    "repo_head": "b86630dbc25cf1a664771a1923dd8c6a731d2a19",
+    "factory_python": "/opt/die/factory-asset/venv/bin/python",
+    "runtime_versions": {
+      "Pillow": "11.3.0",
+      "jsonschema": "4.25.1",
+      "PyPDF2": "3.0.1"
+    },
+    "cron_shim_sha256": "16d2139f80064a5a0774cdc482bb51b0f4b4d9726c8fd4de17449b24a1d89c7f"
+  },
+  "cognition_recovery": {
+    "initial_failure": "E_REQUEST_IMMUTABLE_DRIFT",
+    "stale_transport_failure": "E_RESPONSE_TIMEOUT",
+    "stale_prior_generation_stopped": true,
+    "runtime_mcp_block": "E_CONTEXT_CONVERGENCE",
+    "retry_request": "COG-PROD_BP_REVIEW_PRODSEED000025_R01",
+    "retry_outcome": "REVISE",
+    "revision_author_request": "COG-PROD_BP_REVISION_PRODSEED000025_R10",
+    "revision_blueprint_sha256": "fdd0efae16ec225b231f96cd859aba54255f1b0d1ef56f72ab52fa97dd2a8b8e",
+    "final_review_request": "COG-PROD_BP_REVIEW_PRODSEED000025_R10",
+    "final_review_outcome": "NO_VETO",
+    "sealed_context_fallback_used": true
+  },
+  "prodseed000025": {
+    "seed_id": "SEED-000025",
+    "seed": "headphones",
+    "provider": "MUXIA/chatgpt-linux-a",
+    "provider_original": {
+      "path": "/var/lib/die/workspaces/PRODSEED000025/provider/source-original.png",
+      "sha256": "2e23b1d4c9a5b3b5e66f96b781d24cce1aa5e49315c1ba70f537a4657d547629",
+      "bytes": 2164697,
+      "dimensions": [
+        1536,
+        1024
+      ]
+    },
+    "active_master": {
+      "sha256": "991259fb661f3f10530943c74c934882feb7f8bcca49d22ff7269f2bdc817aad",
+      "dimensions": [
+        6144,
+        4096
+      ],
+      "upscale_engine": "realesr-general-x4v3",
+      "model_sha256": "8dc7edb9ac80ccdc30c3a5dca6616509367f05fbc184ad95b731f05bece96292"
+    },
+    "derivatives": [
+      {
+        "id": "ADOBE_JPEG",
+        "sha256": "2cf8eee59f9c823d6e38ee8ab5378b7fe4365986a11779270ce6cdd2323b5d6f",
+        "qa": "PASS"
+      },
+      {
+        "id": "WEB_PREVIEW",
+        "sha256": "bcd133ee9193219134e11512848727e444803e20151f6226d25f247ec58db33b",
+        "qa": "PASS"
+      }
+    ],
+    "metadata_sha256": "f73e1415c21b16b1267242f9f0ff085b86c15376698685cbd2effa7fafc8e500",
+    "listing_filename": "headphones-photo__991259fb.jpg",
+    "rights_result": "REVIEW_REQUIRED",
+    "rights_reason": "required detectors unavailable",
+    "external_state": "WAITING_FOUNDER_RIGHTS_REVIEW",
+    "telegram": [
+      "ARTIFACT_CREATED",
+      "QA_QC_UPDATE"
+    ]
+  },
+  "cadence_recovery": {
+    "successful_headphones_run": "3733b7e244df4355a8074d55bcb0e6f9",
+    "next_tick_run": "caef6872cbe74658aa9cfd0815a37dfa",
+    "next_seed_task": "PRODSEED000035",
+    "next_seed_id": "SEED-000035",
+    "next_seed": "tree",
+    "next_seed_state": "BLUEPRINT_REQUIRED",
+    "parked_rights_review_did_not_block_next_seed": true
+  },
+  "acceptance": {
+    "dedicated_runtime_dependencies": "PASS",
+    "cron_snapshot_shim": "PASS",
+    "cognition_drift_recovery": "PASS",
+    "frozen_generation_recovery": "PASS",
+    "sealed_context_fallback": "PASS",
+    "provider_generation_live": "PASS",
+    "upscale_live": "PASS",
+    "derivative_qa_live": "PASS",
+    "metadata_live": "PASS",
+    "rights_fail_closed": "PASS",
+    "telegram_artifact_milestone": "PASS",
+    "independent_seed_cadence_after_human_park": "PASS",
+    "zero_false_success": true
+  },
+  "authority": {
+    "marketplace_upload": false,
+    "publication": false,
+    "founder_qc_completed": false,
+    "human_rights_clearance": false,
+    "spend_usd": 0
+  }
+}
