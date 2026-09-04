@@ -1,0 +1,111 @@
+{
+  "schema": "factory-asset.factory-core-synthetic-acceptance-receipt.v1",
+  "task_id": "FA-109",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "operational_staging_root": "D:\\FACTORY_ASSET\\canaries\\FA-109",
+  "acceptance": {
+    "schema": "die.factory-asset.factory-core-synthetic-acceptance.v1",
+    "result": "PASS",
+    "provider_calls_performed": false,
+    "routing": {
+      "selected_profile_id": "qwen_a",
+      "selected_provider_id": "qwen",
+      "qwen_capacity": "AVAILABLE",
+      "chatgpt_capacity": "CONSTRAINED",
+      "rejected": [
+        {
+          "profile_id": "chatgpt_a",
+          "provider_id": "chatgpt",
+          "reasons": [
+            "CAPACITY_NOT_AVAILABLE"
+          ]
+        }
+      ]
+    },
+    "lease": {
+      "profile_id": "qwen_a",
+      "released": true
+    },
+    "queue": {
+      "retry_state": "RETRY_WAIT",
+      "final_state": "SUCCEEDED",
+      "retries": 1,
+      "attempts": 2,
+      "artifact_sha256": "db47905a646ac95f6d8d5939b8693b2bba98ef288ce19b1159d053309aed4039",
+      "false_success_blocked": true
+    },
+    "crash_recovery": {
+      "state_after_restore": "READY",
+      "recovery_count": 1,
+      "owner_after_restore": null
+    },
+    "ingestion": {
+      "attempt_count": 2,
+      "unique_blob_count": 1,
+      "duplicate_blob_reused": true,
+      "same_blob_path": true,
+      "canonical_truth": false,
+      "state_manager_commit_required": true
+    },
+    "observability": {
+      "schema": "die.factory-asset.observability.snapshot.v1",
+      "attempts": 2,
+      "unique_masters": 1,
+      "qa_assets": 0,
+      "derivatives": 0,
+      "packages": 0,
+      "failures": 1,
+      "resources": {
+        "cpu_seconds": 1.25,
+        "memory_mb_seconds": 64.0
+      },
+      "economics": {
+        "unit_cost_micros": 0
+      },
+      "events": [
+        {
+          "kind": "ATTEMPT",
+          "job_id": "FA109-JOB-001"
+        },
+        {
+          "kind": "FAILURE",
+          "job_id": "FA109-JOB-001",
+          "failure_code": "RATE_LIMITED",
+          "retryable": true
+        },
+        {
+          "kind": "ATTEMPT",
+          "job_id": "FA109-JOB-001"
+        },
+        {
+          "kind": "MASTER",
+          "artifact_sha256": "db47905a646ac95f6d8d5939b8693b2bba98ef288ce19b1159d053309aed4039"
+        },
+        {
+          "kind": "RESOURCE",
+          "cpu_seconds": 1.25,
+          "memory_mb_seconds": 64.0
+        },
+        {
+          "kind": "ECONOMICS",
+          "unit_cost_micros": 0
+        }
+      ]
+    },
+    "secret_observability_blocked": true,
+    "zero_false_success": true
+  },
+  "validation": {
+    "integrated_synthetic_runner": "PASS",
+    "provider_calls_performed": false,
+    "routing_capacity_policy": "PASS",
+    "lease_release": "PASS",
+    "retry": "PASS",
+    "crash_recovery": "PASS",
+    "dedupe_ingestion": "PASS",
+    "zero_secret_observability": "PASS",
+    "zero_false_success": "PASS"
+  }
+}

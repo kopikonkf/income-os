@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "5.2-fa-c008-output-gallery",
+  "revision": "5.3-fa109-factory-core-synthetic",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1325,10 +1325,12 @@
         "FA-106",
         "FA-107"
       ],
-      "status": "READY",
+      "status": "DONE",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-109-factory-core-synthetic-acceptance.receipt.json",
-      "acceptance": "Synthetic providers prove routing, capacity, leases, retry, crash, dedupe, ingestion and zero-secret observability with zero false success."
+      "acceptance": "Synthetic providers prove routing, capacity, leases, retry, crash, dedupe, ingestion and zero-secret observability with zero false success.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: integrated synthetic Factory Core acceptance proves policy/capacity routing, profile lease release, retry via RETRY_WAIT, crash RUNNING->READY reconciliation, content-addressed duplicate ingestion, sanitized observability, invalid-success rejection and zero live-provider calls. Regression 238/238 PASS."
     },
     {
       "id": "FA-110",
@@ -1874,7 +1876,7 @@
         "FA-C007",
         "FA-C008"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Factory Console synthetic E2E acceptance receipt",
       "acceptance": "Synthetic jobs prove Console to Factory Core queue/routing/retry/capacity/output flows end to end with zero live-provider calls and zero false success."
     },

@@ -1,0 +1,5 @@
+import importlib.util,sys
+from pathlib import Path
+R=Path(__file__).resolve().parents[3];s=importlib.util.spec_from_file_location('fa109',R/'company/factory-asset/lib/factory_core_synthetic_acceptance.py');m=importlib.util.module_from_spec(s);sys.modules[s.name]=m;s.loader.exec_module(m)
+def test_factory_core_synthetic_acceptance_end_to_end(tmp_path):
+ r=m.run_synthetic_acceptance(tmp_path);assert r['result']=='PASS';assert r['provider_calls_performed'] is False;assert r['routing']['selected_profile_id']=='qwen_a';assert r['routing']['chatgpt_capacity']=='CONSTRAINED';assert r['lease']['released'] is True;assert r['queue']['retry_state']=='RETRY_WAIT';assert r['queue']['final_state']=='SUCCEEDED';assert r['queue']['retries']==1;assert r['queue']['false_success_blocked'] is True;assert r['crash_recovery']['state_after_restore']=='READY';assert r['crash_recovery']['recovery_count']==1;assert r['ingestion']['attempt_count']==2 and r['ingestion']['unique_blob_count']==1;assert r['ingestion']['duplicate_blob_reused'] is True;assert r['ingestion']['canonical_truth'] is False;assert r['secret_observability_blocked'] is True;assert r['zero_false_success'] is True

@@ -408,3 +408,8 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - `/api/outputs` serves five FA-029 semantic masters and 20 derivatives with recipe/hash/dimensions, QA/compatibility, lineage and duplicate suppression.
 - Output evidence remains visibly `STAGED_NOT_CANONICAL` until State Manager commit; derivative count never inflates semantic count.
 - Regression 237/237 PASS.
+
+
+### FA-109 — DONE / PASS — Factory Core synthetic acceptance
+- Integrated synthetic runner proves routing/capacity/policy, lease, retry, crash recovery, dedupe ingestion, sanitized observability and zero false success with zero live-provider calls.
+- Regression 238/238 PASS. `FA-C009` is READY.
