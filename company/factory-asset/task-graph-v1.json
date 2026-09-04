@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "6.4-fa133-semantic-producer-dispatch-router",
+  "revision": "6.5-fa134-cognition-router",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2041,9 +2041,11 @@
         "FA-019",
         "FA-129"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Cognition-routing policy and fixtures for blueprint reuse, authoring, challenge and revision",
-      "acceptance": "Hermes reuses a compatible fixed Blueprint without repeated cognition; Division01 is invoked only for missing/stale/materially revised semantics; Executive is invoked only for new family promotion, material strategic challenge or escalation. Neither actor becomes a per-image gate or gains worker/provider authority."
+      "acceptance": "Hermes reuses a compatible fixed Blueprint without repeated cognition; Division01 is invoked only for missing/stale/materially revised semantics; Executive is invoked only for new family promotion, material strategic challenge or escalation. Neither actor becomes a per-image gate or gains worker/provider authority.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: deterministic cognition router enforces reuse-first fixed Blueprint policy. Compatible fixed Blueprints bypass Division01/Executive entirely; missing/stale/incompatible/semantic-defect states route only necessary AUTHOR/REVISE work to Division01; Executive is invoked only for new-family promotion/material strategy/cannibalization/escalation. Actors retain semantic-review roles only with no per-image gate, Worker/provider/submission authority."
     },
     {
       "id": "FA-135",

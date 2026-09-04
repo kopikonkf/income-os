@@ -1,0 +1,266 @@
+{
+  "schema": "factory-asset.cognition-router-receipt.v1",
+  "task_id": "FA-134",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "policy": "company/factory-asset/registries/cognition-routing-policy.v1.json",
+  "router": "company/factory-asset/lib/cognition_router.py",
+  "fixture_results": [
+    {
+      "name": "reuse-valid-fixed-blueprint",
+      "expected": "REUSE_FIXED_BLUEPRINT",
+      "route": {
+        "schema": "die.factory-asset.cognition-route.v1",
+        "result": "ROUTED",
+        "plan_id": "FAEP-SHOPPING_BAG_ONE",
+        "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+        "semantic_mode": "PHOTO",
+        "producer_class": "RASTER_GENERATIVE",
+        "outcome": "REUSE_FIXED_BLUEPRINT",
+        "reuse_allowed": true,
+        "blueprint_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "division01": {
+          "action": "NONE",
+          "reasons": []
+        },
+        "executive": {
+          "action": "NONE",
+          "reasons": []
+        },
+        "sequence": [
+          {
+            "actor": "HERMES",
+            "action": "REUSE_FIXED_BLUEPRINT",
+            "authority": "ORCHESTRATION_ONLY"
+          }
+        ],
+        "per_image_cognition_gate": false,
+        "worker_authority_granted": false,
+        "provider_authority_granted": false,
+        "submission_authority": "FOUNDER_CONTROLLED",
+        "routing_key": "c6637d9e6a96a84fdb61aa54c5e62d542da3c3d04da68acca9e0e9aa466812fe"
+      }
+    },
+    {
+      "name": "new-family-author-and-challenge",
+      "expected": "DIVISION01_AUTHOR_THEN_EXECUTIVE_CHALLENGE",
+      "route": {
+        "schema": "die.factory-asset.cognition-route.v1",
+        "result": "ROUTED",
+        "plan_id": "FAEP-SHOPPING_BAG_ONE",
+        "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+        "semantic_mode": "PHOTO",
+        "producer_class": "RASTER_GENERATIVE",
+        "outcome": "DIVISION01_AUTHOR_THEN_EXECUTIVE_CHALLENGE",
+        "reuse_allowed": false,
+        "blueprint_sha256": null,
+        "division01": {
+          "action": "AUTHOR",
+          "reasons": [
+            "BLUEPRINT_MISSING",
+            "BLUEPRINT_INCOMPATIBLE_FAMILY_MATCH",
+            "BLUEPRINT_INCOMPATIBLE_PRODUCT_EXPRESSION_MATCH",
+            "BLUEPRINT_INCOMPATIBLE_PROVIDER_CAPABILITY_VALID",
+            "BLUEPRINT_INCOMPATIBLE_RIGHTS_ASSUMPTIONS_CURRENT",
+            "BLUEPRINT_INCOMPATIBLE_QUALITY_REQUIREMENTS_MATCH",
+            "BLUEPRINT_INCOMPATIBLE_MARKETPLACE_ROUTE_ACTIVE"
+          ]
+        },
+        "executive": {
+          "action": "CHALLENGE",
+          "reasons": [
+            "NEW_FAMILY_PROMOTION"
+          ]
+        },
+        "sequence": [
+          {
+            "actor": "DIVISION01",
+            "action": "AUTHOR",
+            "authority": "SEMANTIC_AUTHOR_ONLY"
+          },
+          {
+            "actor": "EXECUTIVE",
+            "action": "CHALLENGE",
+            "authority": "STRATEGIC_REVIEW_ONLY"
+          },
+          {
+            "actor": "HERMES",
+            "action": "FREEZE_ACCEPTED_BLUEPRINT_AFTER_REQUIRED_COGNITION",
+            "authority": "ORCHESTRATION_ONLY"
+          }
+        ],
+        "per_image_cognition_gate": false,
+        "worker_authority_granted": false,
+        "provider_authority_granted": false,
+        "submission_authority": "FOUNDER_CONTROLLED",
+        "routing_key": "012f854c5bca78b1a76bb474752959460be9f865ebb4cb62f63c296e8e05d7c8"
+      }
+    },
+    {
+      "name": "stale-blueprint-revision-only",
+      "expected": "DIVISION01_REVISE",
+      "route": {
+        "schema": "die.factory-asset.cognition-route.v1",
+        "result": "ROUTED",
+        "plan_id": "FAEP-SHOPPING_BAG_ONE",
+        "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+        "semantic_mode": "PHOTO",
+        "producer_class": "RASTER_GENERATIVE",
+        "outcome": "DIVISION01_REVISE",
+        "reuse_allowed": false,
+        "blueprint_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "division01": {
+          "action": "REVISE",
+          "reasons": [
+            "BLUEPRINT_STALE"
+          ]
+        },
+        "executive": {
+          "action": "NONE",
+          "reasons": []
+        },
+        "sequence": [
+          {
+            "actor": "DIVISION01",
+            "action": "REVISE",
+            "authority": "SEMANTIC_AUTHOR_ONLY"
+          },
+          {
+            "actor": "HERMES",
+            "action": "FREEZE_ACCEPTED_BLUEPRINT_AFTER_REQUIRED_COGNITION",
+            "authority": "ORCHESTRATION_ONLY"
+          }
+        ],
+        "per_image_cognition_gate": false,
+        "worker_authority_granted": false,
+        "provider_authority_granted": false,
+        "submission_authority": "FOUNDER_CONTROLLED",
+        "routing_key": "f302d9e0bdfc824b6a8877f23d3350a4757a0c2138be7a15a0026f5d9c184fbd"
+      }
+    },
+    {
+      "name": "material-expression-revision-and-challenge",
+      "expected": "DIVISION01_REVISE_THEN_EXECUTIVE_CHALLENGE",
+      "route": {
+        "schema": "die.factory-asset.cognition-route.v1",
+        "result": "ROUTED",
+        "plan_id": "FAEP-SHOPPING_BAG_ONE",
+        "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+        "semantic_mode": "PHOTO",
+        "producer_class": "RASTER_GENERATIVE",
+        "outcome": "DIVISION01_REVISE_THEN_EXECUTIVE_CHALLENGE",
+        "reuse_allowed": false,
+        "blueprint_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "division01": {
+          "action": "REVISE",
+          "reasons": [
+            "MATERIAL_PRODUCT_EXPRESSION_CHANGE"
+          ]
+        },
+        "executive": {
+          "action": "CHALLENGE",
+          "reasons": [
+            "MATERIAL_PRODUCT_EXPRESSION_CHANGE"
+          ]
+        },
+        "sequence": [
+          {
+            "actor": "DIVISION01",
+            "action": "REVISE",
+            "authority": "SEMANTIC_AUTHOR_ONLY"
+          },
+          {
+            "actor": "EXECUTIVE",
+            "action": "CHALLENGE",
+            "authority": "STRATEGIC_REVIEW_ONLY"
+          },
+          {
+            "actor": "HERMES",
+            "action": "FREEZE_ACCEPTED_BLUEPRINT_AFTER_REQUIRED_COGNITION",
+            "authority": "ORCHESTRATION_ONLY"
+          }
+        ],
+        "per_image_cognition_gate": false,
+        "worker_authority_granted": false,
+        "provider_authority_granted": false,
+        "submission_authority": "FOUNDER_CONTROLLED",
+        "routing_key": "d747c437f16985244fe68d5f4d82e793f6c310aa58d336f85a35bd0a7bd89cad"
+      }
+    },
+    {
+      "name": "executive-escalation-existing-blueprint",
+      "expected": "EXECUTIVE_CHALLENGE_EXISTING_BLUEPRINT",
+      "route": {
+        "schema": "die.factory-asset.cognition-route.v1",
+        "result": "ROUTED",
+        "plan_id": "FAEP-SHOPPING_BAG_ONE",
+        "semantic_asset_id": "FASA-SHOPPING_BAG_PHOTO",
+        "semantic_mode": "PHOTO",
+        "producer_class": "RASTER_GENERATIVE",
+        "outcome": "EXECUTIVE_CHALLENGE_EXISTING_BLUEPRINT",
+        "reuse_allowed": true,
+        "blueprint_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "division01": {
+          "action": "NONE",
+          "reasons": []
+        },
+        "executive": {
+          "action": "CHALLENGE",
+          "reasons": [
+            "EXPLICIT_EXECUTIVE_ESCALATION"
+          ]
+        },
+        "sequence": [
+          {
+            "actor": "EXECUTIVE",
+            "action": "CHALLENGE",
+            "authority": "STRATEGIC_REVIEW_ONLY"
+          },
+          {
+            "actor": "HERMES",
+            "action": "REUSE_FIXED_BLUEPRINT",
+            "authority": "ORCHESTRATION_ONLY"
+          }
+        ],
+        "per_image_cognition_gate": false,
+        "worker_authority_granted": false,
+        "provider_authority_granted": false,
+        "submission_authority": "FOUNDER_CONTROLLED",
+        "routing_key": "80cae72f0394126817316dc961de520a630e20959b49699c93a5c6a02d4ec9fc"
+      }
+    }
+  ],
+  "acceptance": {
+    "reuse_valid_fixed_blueprint_without_cognition": "PASS",
+    "missing_blueprint_routes_division01_author": "PASS",
+    "stale_or_incompatible_routes_division01_revision": "PASS",
+    "new_family_routes_executive_challenge": "PASS",
+    "material_expression_change_routes_revision_plus_challenge": "PASS",
+    "strategic_escalation_can_challenge_existing_blueprint": "PASS",
+    "per_image_cognition_gate": false,
+    "division01_worker_authority": false,
+    "executive_worker_authority": false,
+    "provider_authority_granted": false,
+    "submission_authority": "FOUNDER_CONTROLLED",
+    "deterministic_routing": "PASS"
+  },
+  "validation": {
+    "factory_asset_tests": "441 PASS / 2 Linux-only skipped",
+    "python_compile": "PASS",
+    "zero_false_success": true
+  },
+  "authority": {
+    "division01_semantic_author_only": true,
+    "executive_strategic_review_only": true,
+    "hermes_orchestration_only": true,
+    "worker_dispatch_performed": false,
+    "provider_dispatch_performed": false,
+    "marketplace_upload": false,
+    "publication": false,
+    "spend_usd": 0
+  },
+  "unblocked_when_dependencies_complete": [
+    "FA-139"
+  ]
+}
