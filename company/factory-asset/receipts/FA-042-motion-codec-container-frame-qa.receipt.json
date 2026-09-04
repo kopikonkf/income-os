@@ -1,0 +1,475 @@
+{
+  "schema": "factory-asset.motion-codec-container-frame-qa-receipt.v1",
+  "task_id": "FA-042",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "source_task": "FA-041",
+  "source_master": "D:/FACTORY_ASSET/canaries/FA-041/run-c/master.mp4",
+  "operational_fixture_root": "D:\\FACTORY_ASSET\\canaries\\FA-042",
+  "expected_contract": {
+    "container": "MP4",
+    "codec": "H264",
+    "pixel_format": "YUV420P",
+    "width": 1080,
+    "height": 1080,
+    "fps": 30,
+    "frame_count": 180,
+    "duration_seconds": 6,
+    "audio_policy": "NONE"
+  },
+  "positive": {
+    "schema": "die.factory-asset.motion-qa.v1",
+    "result": "PASS",
+    "failures": [],
+    "technical": {
+      "container_magic_mp4": true,
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 1080,
+      "height": 1080,
+      "fps": 30.0,
+      "frame_count": 180,
+      "duration_seconds": 6.0,
+      "video_stream_count": 1,
+      "audio_stream_count": 0,
+      "sha256": "f37c9c41f6e7421ca1f09493061113ddc6f70b74628aef423999df2290e941ba",
+      "bytes": 104049
+    },
+    "visual": {
+      "sample_indices": [
+        0,
+        45,
+        90,
+        135,
+        179
+      ],
+      "sample_count": 5,
+      "samples": [
+        {
+          "frame": 0,
+          "timestamp_seconds": 0.0,
+          "stddev": 22.907488,
+          "mean": 249.799728,
+          "perceptual_sha256": "2a086e26819becc571e2be69434a42f8d1dbfb6ec8b588d9db2093fddee5e108"
+        },
+        {
+          "frame": 45,
+          "timestamp_seconds": 1.5,
+          "stddev": 22.896132,
+          "mean": 249.807053,
+          "perceptual_sha256": "592cb6891e6f07db4f2224b406dd4503d5394909689aba313d66961ffa9aec30"
+        },
+        {
+          "frame": 90,
+          "timestamp_seconds": 3.0,
+          "stddev": 23.044878,
+          "mean": 249.797119,
+          "perceptual_sha256": "43bcbd45aec597e296d4066932e88ba5090c6875f2ce9636dae71b83c692cfb6"
+        },
+        {
+          "frame": 135,
+          "timestamp_seconds": 4.5,
+          "stddev": 22.945923,
+          "mean": 249.805496,
+          "perceptual_sha256": "5a6a1f5395ae49f1b6a22af6effdf46b63582f370b26ec990904bfc95e3cbc80"
+        },
+        {
+          "frame": 179,
+          "timestamp_seconds": 5.966666667,
+          "stddev": 22.880388,
+          "mean": 249.804367,
+          "perceptual_sha256": "8cde6395ca8dd10f05a9b295e79fa36e8882da61054f0816ccea4326988bacc3"
+        }
+      ],
+      "blank_sample_count": 0,
+      "all_samples_blank": false,
+      "distinct_perceptual_samples": 5,
+      "max_pairwise_mae": 7.527506,
+      "frozen": false
+    }
+  },
+  "negative_controls": {
+    "mislabeled.mp4": {
+      "schema": "die.factory-asset.motion-qa.v1",
+      "result": "FAIL",
+      "failures": [
+        "PROBE_FAILED"
+      ],
+      "error": "PROBE_FAILED: [mov,mp4,m4a,3gp,3g2,mj2 @ 000001cea5cb2180] moov atom not found\nD:\\FACTORY_ASSET\\canaries\\FA-042\\mislabeled.mp4: Invalid data found when processing input",
+      "technical": null,
+      "visual": null
+    },
+    "truncated.mp4": {
+      "schema": "die.factory-asset.motion-qa.v1",
+      "result": "FAIL",
+      "failures": [
+        "FRAME_SAMPLE_DECODE_FAILED"
+      ],
+      "error": "FRAME_SAMPLE_DECODE_FAILED: [h264 @ 000002b9976ce140] Invalid NAL unit size (183 > 84).\n[h264 @ 000002b9976ce140] missing picture in access unit with size 88\n[mov,mp4,m4a,3gp,3g2,mj2 @ 000002b9957fde40] stream 0, offset 0x87de: partial file\n[h264 @ 000002b9975a0080] Invalid NAL unit size (183 > 84).\n[h264 @ 000002b9975a0080] Error splitting the input into NAL units.\n[vist#0:0/h264 @ 000002b9976ced80] [dec:h264 @ 000002b9973e5300] Decoding error: Invalid data found when processing input",
+      "technical": {
+        "magic_mp4": true,
+        "sha256": "1f27312e8b85cac284ee2de69c9201fb3900b237fb997227fa17b5e697302c2d",
+        "bytes": 34683,
+        "video_stream_count": 1,
+        "audio_stream_count": 0,
+        "video": {
+          "index": 0,
+          "codec_name": "h264",
+          "codec_long_name": "unknown",
+          "profile": "100",
+          "codec_type": "video",
+          "codec_tag_string": "avc1",
+          "codec_tag": "0x31637661",
+          "width": 1080,
+          "height": 1080,
+          "coded_width": 1080,
+          "coded_height": 1080,
+          "closed_captions": 0,
+          "film_grain": 0,
+          "has_b_frames": 2,
+          "pix_fmt": "yuv420p",
+          "level": 32,
+          "chroma_location": "left",
+          "field_order": "progressive",
+          "refs": 1,
+          "is_avc": "true",
+          "nal_length_size": "4",
+          "id": "0x1",
+          "r_frame_rate": "30/1",
+          "avg_frame_rate": "30/1",
+          "time_base": "1/90000",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "duration_ts": 540000,
+          "duration": "6.000000",
+          "bit_rate": "134661",
+          "bits_per_raw_sample": "8",
+          "nb_frames": "180",
+          "extradata_size": 47,
+          "disposition": {
+            "default": 1,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0,
+            "non_diegetic": 0,
+            "captions": 0,
+            "descriptions": 0,
+            "metadata": 0,
+            "dependent": 0,
+            "still_image": 0,
+            "multilayer": 0
+          },
+          "tags": {
+            "language": "und",
+            "handler_name": "VideoHandler",
+            "vendor_id": "[0][0][0][0]"
+          }
+        },
+        "format": {
+          "filename": "D:\\FACTORY_ASSET\\canaries\\FA-042\\truncated.mp4",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "nb_stream_groups": 0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "start_time": "0.000000",
+          "duration": "6.000000",
+          "size": "34683",
+          "bit_rate": "46244",
+          "probe_score": 100,
+          "tags": {
+            "major_brand": "isom",
+            "minor_version": "512",
+            "compatible_brands": "isomiso2avc1mp41",
+            "encoder": "Lavf61.7.100",
+            "comment": "Made with Remotion 4.0.520"
+          }
+        },
+        "raw": {
+          "streams": [
+            {
+              "index": 0,
+              "codec_name": "h264",
+              "codec_long_name": "unknown",
+              "profile": "100",
+              "codec_type": "video",
+              "codec_tag_string": "avc1",
+              "codec_tag": "0x31637661",
+              "width": 1080,
+              "height": 1080,
+              "coded_width": 1080,
+              "coded_height": 1080,
+              "closed_captions": 0,
+              "film_grain": 0,
+              "has_b_frames": 2,
+              "pix_fmt": "yuv420p",
+              "level": 32,
+              "chroma_location": "left",
+              "field_order": "progressive",
+              "refs": 1,
+              "is_avc": "true",
+              "nal_length_size": "4",
+              "id": "0x1",
+              "r_frame_rate": "30/1",
+              "avg_frame_rate": "30/1",
+              "time_base": "1/90000",
+              "start_pts": 0,
+              "start_time": "0.000000",
+              "duration_ts": 540000,
+              "duration": "6.000000",
+              "bit_rate": "134661",
+              "bits_per_raw_sample": "8",
+              "nb_frames": "180",
+              "extradata_size": 47,
+              "disposition": {
+                "default": 1,
+                "dub": 0,
+                "original": 0,
+                "comment": 0,
+                "lyrics": 0,
+                "karaoke": 0,
+                "forced": 0,
+                "hearing_impaired": 0,
+                "visual_impaired": 0,
+                "clean_effects": 0,
+                "attached_pic": 0,
+                "timed_thumbnails": 0,
+                "non_diegetic": 0,
+                "captions": 0,
+                "descriptions": 0,
+                "metadata": 0,
+                "dependent": 0,
+                "still_image": 0,
+                "multilayer": 0
+              },
+              "tags": {
+                "language": "und",
+                "handler_name": "VideoHandler",
+                "vendor_id": "[0][0][0][0]"
+              }
+            }
+          ],
+          "format": {
+            "filename": "D:\\FACTORY_ASSET\\canaries\\FA-042\\truncated.mp4",
+            "nb_streams": 1,
+            "nb_programs": 0,
+            "nb_stream_groups": 0,
+            "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+            "start_time": "0.000000",
+            "duration": "6.000000",
+            "size": "34683",
+            "bit_rate": "46244",
+            "probe_score": 100,
+            "tags": {
+              "major_brand": "isom",
+              "minor_version": "512",
+              "compatible_brands": "isomiso2avc1mp41",
+              "encoder": "Lavf61.7.100",
+              "comment": "Made with Remotion 4.0.520"
+            }
+          }
+        }
+      },
+      "visual": null
+    },
+    "blank.mp4": {
+      "schema": "die.factory-asset.motion-qa.v1",
+      "result": "FAIL",
+      "failures": [
+        "BLANK_RENDER",
+        "FROZEN_RENDER"
+      ],
+      "technical": {
+        "container_magic_mp4": true,
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 1080,
+        "height": 1080,
+        "fps": 30.0,
+        "frame_count": 180,
+        "duration_seconds": 6.0,
+        "video_stream_count": 1,
+        "audio_stream_count": 0,
+        "sha256": "4499ebc2ff40701ca2b31f818e78e4c1f07ed57f36f910001cd50bed1424ac70",
+        "bytes": 12326
+      },
+      "visual": {
+        "sample_indices": [
+          0,
+          45,
+          90,
+          135,
+          179
+        ],
+        "sample_count": 5,
+        "samples": [
+          {
+            "frame": 0,
+            "timestamp_seconds": 0.0,
+            "stddev": 0.0,
+            "mean": 255.0,
+            "perceptual_sha256": "ec6173a5461ba786931283814af599d5751f1f656cbfb189de6ff0aaa304508a"
+          },
+          {
+            "frame": 45,
+            "timestamp_seconds": 1.5,
+            "stddev": 0.0,
+            "mean": 255.0,
+            "perceptual_sha256": "ec6173a5461ba786931283814af599d5751f1f656cbfb189de6ff0aaa304508a"
+          },
+          {
+            "frame": 90,
+            "timestamp_seconds": 3.0,
+            "stddev": 0.0,
+            "mean": 255.0,
+            "perceptual_sha256": "ec6173a5461ba786931283814af599d5751f1f656cbfb189de6ff0aaa304508a"
+          },
+          {
+            "frame": 135,
+            "timestamp_seconds": 4.5,
+            "stddev": 0.0,
+            "mean": 255.0,
+            "perceptual_sha256": "ec6173a5461ba786931283814af599d5751f1f656cbfb189de6ff0aaa304508a"
+          },
+          {
+            "frame": 179,
+            "timestamp_seconds": 5.966666667,
+            "stddev": 0.0,
+            "mean": 255.0,
+            "perceptual_sha256": "ec6173a5461ba786931283814af599d5751f1f656cbfb189de6ff0aaa304508a"
+          }
+        ],
+        "blank_sample_count": 5,
+        "all_samples_blank": true,
+        "distinct_perceptual_samples": 1,
+        "max_pairwise_mae": 0.0,
+        "frozen": true
+      }
+    },
+    "frozen.mp4": {
+      "schema": "die.factory-asset.motion-qa.v1",
+      "result": "FAIL",
+      "failures": [
+        "FROZEN_RENDER"
+      ],
+      "technical": {
+        "container_magic_mp4": true,
+        "codec": "h264",
+        "pixel_format": "yuv420p",
+        "width": 1080,
+        "height": 1080,
+        "fps": 30.0,
+        "frame_count": 180,
+        "duration_seconds": 6.0,
+        "video_stream_count": 1,
+        "audio_stream_count": 0,
+        "sha256": "d258b5806a13460ebc26c2dc2401a792798f0d7c0f135d18e4a57bf7c4efea39",
+        "bytes": 17260
+      },
+      "visual": {
+        "sample_indices": [
+          0,
+          45,
+          90,
+          135,
+          179
+        ],
+        "sample_count": 5,
+        "samples": [
+          {
+            "frame": 0,
+            "timestamp_seconds": 0.0,
+            "stddev": 23.050129,
+            "mean": 249.796707,
+            "perceptual_sha256": "ef1db72d1a1cc48235cfd55dedb53e07c7c8465599fc247c68ec68036fa3b333"
+          },
+          {
+            "frame": 45,
+            "timestamp_seconds": 1.5,
+            "stddev": 23.05064,
+            "mean": 249.796707,
+            "perceptual_sha256": "4dcda388599f7528649d47f4c6b1700792fa0a211e11fba0181f2a1a01e40135"
+          },
+          {
+            "frame": 90,
+            "timestamp_seconds": 3.0,
+            "stddev": 23.05064,
+            "mean": 249.796707,
+            "perceptual_sha256": "4dcda388599f7528649d47f4c6b1700792fa0a211e11fba0181f2a1a01e40135"
+          },
+          {
+            "frame": 135,
+            "timestamp_seconds": 4.5,
+            "stddev": 23.05064,
+            "mean": 249.796707,
+            "perceptual_sha256": "4dcda388599f7528649d47f4c6b1700792fa0a211e11fba0181f2a1a01e40135"
+          },
+          {
+            "frame": 179,
+            "timestamp_seconds": 5.966666667,
+            "stddev": 23.05064,
+            "mean": 249.796707,
+            "perceptual_sha256": "4dcda388599f7528649d47f4c6b1700792fa0a211e11fba0181f2a1a01e40135"
+          }
+        ],
+        "blank_sample_count": 0,
+        "all_samples_blank": false,
+        "distinct_perceptual_samples": 2,
+        "max_pairwise_mae": 0.00179,
+        "frozen": true
+      }
+    }
+  },
+  "marketplace_compatibility": {
+    "ADOBE_STOCK": {
+      "state": "COMPATIBLE",
+      "reason": "PINNED_PROFILE_MATCH"
+    },
+    "DREAMSTIME": {
+      "state": "UNKNOWN",
+      "reason": "PROFILE_STATE_COMPATIBILITY_UNKNOWN"
+    },
+    "VECTEEZY": {
+      "state": "UNKNOWN",
+      "reason": "PROFILE_STATE_COMPATIBILITY_UNKNOWN"
+    },
+    "MOTIONELEMENTS": {
+      "state": "UNKNOWN",
+      "reason": "NO_EXACT_PINNED_VIDEO_MATCH"
+    }
+  },
+  "acceptance": {
+    "positive_contract_match": "PASS",
+    "positive_sampled_visual_integrity": "PASS",
+    "mislabeled_rejected": "PASS",
+    "truncated_rejected": "PASS",
+    "blank_rejected": "PASS",
+    "frozen_rejected": "PASS",
+    "adobe_stock_pinned_mp4_h264_profile": "COMPATIBLE",
+    "unknown_profiles_not_promoted": true,
+    "false_success_count": 0
+  },
+  "tooling": {
+    "ffmpeg_source": "Remotion compositor runtime from FA-041",
+    "global_ffmpeg_required": false,
+    "global_ffprobe_required": false
+  },
+  "authority": {
+    "provider_generation": false,
+    "marketplace_upload": false,
+    "publication": false,
+    "credential_access": false,
+    "spend_usd": 0
+  },
+  "unblocked": [
+    "FA-043"
+  ]
+}

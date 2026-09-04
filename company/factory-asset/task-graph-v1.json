@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "6.1-fa041-real-remotion-motion-fixture",
+  "revision": "6.2-fa042-motion-codec-container-frame-qa",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1067,9 +1067,11 @@
       "depends_on": [
         "FA-041"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "MP4/MOV probe, frame sampling and compatibility QA suite",
-      "acceptance": "Outputs reopen, match codec/container/frame/duration specs and pass sampled visual integrity; mislabeled, truncated, blank or frozen renders fail."
+      "acceptance": "Outputs reopen, match codec/container/frame/duration specs and pass sampled visual integrity; mislabeled, truncated, blank or frozen renders fail.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: motion QA reopens and probes the real FA-041 MP4 as H.264/yuv420p 1080x1080 30 FPS 180 frames exactly 6.000s with no audio, samples five timeline frames and proves non-blank/non-frozen visual change. Adversarial mislabeled, truncated, blank and frozen MP4 controls all fail closed for typed reasons. Adobe Stock pinned MP4/H.264 profile maps COMPATIBLE; Dreamstime/Vecteezy/MotionElements remain UNKNOWN where profile evidence is not exact. Zero false success."
     },
     {
       "id": "FA-043",
@@ -1080,7 +1082,7 @@
       "depends_on": [
         "FA-042"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-043-motion-engine-v0.1-acceptance.receipt.json",
       "acceptance": "Deterministic render, resource bounds, cancellation, retry, cleanup, preview and compatibility evidence pass with zero false success."
