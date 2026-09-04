@@ -1,0 +1,306 @@
+{
+  "schema": "die.factory-asset.rights-signal-fixtures.v1",
+  "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+  "cases": [
+    {
+      "name": "clean-complete",
+      "master": "company/factory-asset/fixtures/provider-original-v1/opaque.png",
+      "observation": {
+        "schema": "die.factory-asset.rights-observation.v1",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "detectors": {
+          "text": {
+            "state": "COMPLETE",
+            "detected_strings": [],
+            "confirmed_trademark_terms": [],
+            "trademark_candidates": [],
+            "unresolved_strings": []
+          },
+          "logo": {
+            "state": "COMPLETE",
+            "candidates": []
+          },
+          "watermark": {
+            "state": "COMPLETE",
+            "candidates": []
+          },
+          "safety": {
+            "state": "COMPLETE",
+            "flags": []
+          }
+        }
+      },
+      "expected": "PASS"
+    },
+    {
+      "name": "stock-watermark-text",
+      "master": "company/factory-asset/fixtures/provider-original-v1/opaque.png",
+      "observation": {
+        "schema": "die.factory-asset.rights-observation.v1",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "detectors": {
+          "text": {
+            "state": "COMPLETE",
+            "detected_strings": [
+              "Adobe Stock"
+            ],
+            "confirmed_trademark_terms": [],
+            "trademark_candidates": [],
+            "unresolved_strings": []
+          },
+          "logo": {
+            "state": "COMPLETE",
+            "candidates": []
+          },
+          "watermark": {
+            "state": "COMPLETE",
+            "candidates": []
+          },
+          "safety": {
+            "state": "COMPLETE",
+            "flags": []
+          }
+        }
+      },
+      "expected": "BLOCK"
+    },
+    {
+      "name": "confirmed-trademark",
+      "master": "company/factory-asset/fixtures/provider-original-v1/opaque.png",
+      "observation": {
+        "schema": "die.factory-asset.rights-observation.v1",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "detectors": {
+          "text": {
+            "state": "COMPLETE",
+            "detected_strings": [
+              "ExampleBrand"
+            ],
+            "confirmed_trademark_terms": [
+              "ExampleBrand"
+            ],
+            "trademark_candidates": [],
+            "unresolved_strings": []
+          },
+          "logo": {
+            "state": "COMPLETE",
+            "candidates": []
+          },
+          "watermark": {
+            "state": "COMPLETE",
+            "candidates": []
+          },
+          "safety": {
+            "state": "COMPLETE",
+            "flags": []
+          }
+        }
+      },
+      "expected": "BLOCK"
+    },
+    {
+      "name": "unresolved-text",
+      "master": "company/factory-asset/fixtures/provider-original-v1/opaque.png",
+      "observation": {
+        "schema": "die.factory-asset.rights-observation.v1",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "detectors": {
+          "text": {
+            "state": "COMPLETE",
+            "detected_strings": [
+              "Mystery Co"
+            ],
+            "confirmed_trademark_terms": [],
+            "trademark_candidates": [],
+            "unresolved_strings": [
+              "Mystery Co"
+            ]
+          },
+          "logo": {
+            "state": "COMPLETE",
+            "candidates": []
+          },
+          "watermark": {
+            "state": "COMPLETE",
+            "candidates": []
+          },
+          "safety": {
+            "state": "COMPLETE",
+            "flags": []
+          }
+        }
+      },
+      "expected": "REVIEW_REQUIRED"
+    },
+    {
+      "name": "logo-candidate",
+      "master": "company/factory-asset/fixtures/provider-original-v1/opaque.png",
+      "observation": {
+        "schema": "die.factory-asset.rights-observation.v1",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "detectors": {
+          "text": {
+            "state": "COMPLETE",
+            "detected_strings": [],
+            "confirmed_trademark_terms": [],
+            "trademark_candidates": [],
+            "unresolved_strings": []
+          },
+          "logo": {
+            "state": "COMPLETE",
+            "candidates": [
+              {
+                "label": "possible-logo",
+                "confirmed_brand": false
+              }
+            ]
+          },
+          "watermark": {
+            "state": "COMPLETE",
+            "candidates": []
+          },
+          "safety": {
+            "state": "COMPLETE",
+            "flags": []
+          }
+        }
+      },
+      "expected": "REVIEW_REQUIRED"
+    },
+    {
+      "name": "confirmed-brand-logo",
+      "master": "company/factory-asset/fixtures/provider-original-v1/opaque.png",
+      "observation": {
+        "schema": "die.factory-asset.rights-observation.v1",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "detectors": {
+          "text": {
+            "state": "COMPLETE",
+            "detected_strings": [],
+            "confirmed_trademark_terms": [],
+            "trademark_candidates": [],
+            "unresolved_strings": []
+          },
+          "logo": {
+            "state": "COMPLETE",
+            "candidates": [
+              {
+                "label": "ExampleBrand",
+                "confirmed_brand": true
+              }
+            ]
+          },
+          "watermark": {
+            "state": "COMPLETE",
+            "candidates": []
+          },
+          "safety": {
+            "state": "COMPLETE",
+            "flags": []
+          }
+        }
+      },
+      "expected": "BLOCK"
+    },
+    {
+      "name": "text-detector-unavailable",
+      "master": "company/factory-asset/fixtures/provider-original-v1/opaque.png",
+      "observation": {
+        "schema": "die.factory-asset.rights-observation.v1",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "detectors": {
+          "text": {
+            "state": "UNAVAILABLE",
+            "detected_strings": [],
+            "confirmed_trademark_terms": [],
+            "trademark_candidates": [],
+            "unresolved_strings": []
+          },
+          "logo": {
+            "state": "COMPLETE",
+            "candidates": []
+          },
+          "watermark": {
+            "state": "COMPLETE",
+            "candidates": []
+          },
+          "safety": {
+            "state": "COMPLETE",
+            "flags": []
+          }
+        }
+      },
+      "expected": "REVIEW_REQUIRED"
+    },
+    {
+      "name": "watermark-unclear",
+      "master": "company/factory-asset/fixtures/provider-original-v1/opaque.png",
+      "observation": {
+        "schema": "die.factory-asset.rights-observation.v1",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "detectors": {
+          "text": {
+            "state": "COMPLETE",
+            "detected_strings": [],
+            "confirmed_trademark_terms": [],
+            "trademark_candidates": [],
+            "unresolved_strings": []
+          },
+          "logo": {
+            "state": "COMPLETE",
+            "candidates": []
+          },
+          "watermark": {
+            "state": "COMPLETE",
+            "candidates": [
+              {
+                "label": "faint-overlay",
+                "confirmed": false
+              }
+            ]
+          },
+          "safety": {
+            "state": "COMPLETE",
+            "flags": []
+          }
+        }
+      },
+      "expected": "REVIEW_REQUIRED"
+    },
+    {
+      "name": "safety-block",
+      "master": "company/factory-asset/fixtures/provider-original-v1/opaque.png",
+      "observation": {
+        "schema": "die.factory-asset.rights-observation.v1",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "detectors": {
+          "text": {
+            "state": "COMPLETE",
+            "detected_strings": [],
+            "confirmed_trademark_terms": [],
+            "trademark_candidates": [],
+            "unresolved_strings": []
+          },
+          "logo": {
+            "state": "COMPLETE",
+            "candidates": []
+          },
+          "watermark": {
+            "state": "COMPLETE",
+            "candidates": []
+          },
+          "safety": {
+            "state": "COMPLETE",
+            "flags": [
+              {
+                "code": "synthetic-safety-flag",
+                "disposition": "BLOCK"
+              }
+            ]
+          }
+        }
+      },
+      "expected": "BLOCK"
+    }
+  ]
+}

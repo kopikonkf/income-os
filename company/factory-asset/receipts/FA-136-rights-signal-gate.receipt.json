@@ -1,0 +1,323 @@
+{
+  "schema": "factory-asset.rights-signal-gate-receipt.v1",
+  "task_id": "FA-136",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "policy": "company/factory-asset/registries/rights-signal-policy.v1.json",
+  "gate": "company/factory-asset/lib/rights_signal_gate.py",
+  "master_fixture_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+  "cases": [
+    {
+      "name": "clean-complete",
+      "expected": "PASS",
+      "result": {
+        "schema": "die.factory-asset.rights-signal-gate.v1",
+        "result": "PASS",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "master_path": "D:\\mcp-architect\\workspace\\fa136-rights-signal-gate-20260904\\company\\factory-asset\\fixtures\\provider-original-v1\\opaque.png",
+        "detector_states": {
+          "text": "COMPLETE",
+          "logo": "COMPLETE",
+          "watermark": "COMPLETE",
+          "safety": "COMPLETE"
+        },
+        "blocking_signals": [],
+        "review_signals": [],
+        "qa_defects": [],
+        "human_rights_clearance": false,
+        "founder_qc_required": true,
+        "submission_eligible": false,
+        "submission_authority": "FOUNDER_CONTROLLED",
+        "signal_gate_pass": true
+      }
+    },
+    {
+      "name": "stock-watermark-text",
+      "expected": "BLOCK",
+      "result": {
+        "schema": "die.factory-asset.rights-signal-gate.v1",
+        "result": "BLOCK",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "master_path": "D:\\mcp-architect\\workspace\\fa136-rights-signal-gate-20260904\\company\\factory-asset\\fixtures\\provider-original-v1\\opaque.png",
+        "detector_states": {
+          "text": "COMPLETE",
+          "logo": "COMPLETE",
+          "watermark": "COMPLETE",
+          "safety": "COMPLETE"
+        },
+        "blocking_signals": [
+          {
+            "signal": "WATERMARK_PRESENT",
+            "detector": "text",
+            "detail": "adobe stock"
+          }
+        ],
+        "review_signals": [],
+        "qa_defects": [
+          "WATERMARK_PRESENT"
+        ],
+        "human_rights_clearance": false,
+        "founder_qc_required": true,
+        "submission_eligible": false,
+        "submission_authority": "FOUNDER_CONTROLLED",
+        "signal_gate_pass": false
+      }
+    },
+    {
+      "name": "confirmed-trademark",
+      "expected": "BLOCK",
+      "result": {
+        "schema": "die.factory-asset.rights-signal-gate.v1",
+        "result": "BLOCK",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "master_path": "D:\\mcp-architect\\workspace\\fa136-rights-signal-gate-20260904\\company\\factory-asset\\fixtures\\provider-original-v1\\opaque.png",
+        "detector_states": {
+          "text": "COMPLETE",
+          "logo": "COMPLETE",
+          "watermark": "COMPLETE",
+          "safety": "COMPLETE"
+        },
+        "blocking_signals": [
+          {
+            "signal": "TRADEMARK_CONFIRMED",
+            "detector": "text",
+            "detail": "ExampleBrand"
+          }
+        ],
+        "review_signals": [],
+        "qa_defects": [
+          "RIGHTS_FAILED"
+        ],
+        "human_rights_clearance": false,
+        "founder_qc_required": true,
+        "submission_eligible": false,
+        "submission_authority": "FOUNDER_CONTROLLED",
+        "signal_gate_pass": false
+      }
+    },
+    {
+      "name": "unresolved-text",
+      "expected": "REVIEW_REQUIRED",
+      "result": {
+        "schema": "die.factory-asset.rights-signal-gate.v1",
+        "result": "REVIEW_REQUIRED",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "master_path": "D:\\mcp-architect\\workspace\\fa136-rights-signal-gate-20260904\\company\\factory-asset\\fixtures\\provider-original-v1\\opaque.png",
+        "detector_states": {
+          "text": "COMPLETE",
+          "logo": "COMPLETE",
+          "watermark": "COMPLETE",
+          "safety": "COMPLETE"
+        },
+        "blocking_signals": [],
+        "review_signals": [
+          {
+            "signal": "TEXT_PRESENT_UNRESOLVED",
+            "detector": "text",
+            "detail": "Mystery Co"
+          }
+        ],
+        "qa_defects": [
+          "RIGHTS_UNCLEAR"
+        ],
+        "human_rights_clearance": false,
+        "founder_qc_required": true,
+        "submission_eligible": false,
+        "submission_authority": "FOUNDER_CONTROLLED",
+        "signal_gate_pass": false
+      }
+    },
+    {
+      "name": "logo-candidate",
+      "expected": "REVIEW_REQUIRED",
+      "result": {
+        "schema": "die.factory-asset.rights-signal-gate.v1",
+        "result": "REVIEW_REQUIRED",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "master_path": "D:\\mcp-architect\\workspace\\fa136-rights-signal-gate-20260904\\company\\factory-asset\\fixtures\\provider-original-v1\\opaque.png",
+        "detector_states": {
+          "text": "COMPLETE",
+          "logo": "COMPLETE",
+          "watermark": "COMPLETE",
+          "safety": "COMPLETE"
+        },
+        "blocking_signals": [],
+        "review_signals": [
+          {
+            "signal": "LOGO_CANDIDATE",
+            "detector": "logo",
+            "detail": "possible-logo"
+          }
+        ],
+        "qa_defects": [
+          "RIGHTS_UNCLEAR"
+        ],
+        "human_rights_clearance": false,
+        "founder_qc_required": true,
+        "submission_eligible": false,
+        "submission_authority": "FOUNDER_CONTROLLED",
+        "signal_gate_pass": false
+      }
+    },
+    {
+      "name": "confirmed-brand-logo",
+      "expected": "BLOCK",
+      "result": {
+        "schema": "die.factory-asset.rights-signal-gate.v1",
+        "result": "BLOCK",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "master_path": "D:\\mcp-architect\\workspace\\fa136-rights-signal-gate-20260904\\company\\factory-asset\\fixtures\\provider-original-v1\\opaque.png",
+        "detector_states": {
+          "text": "COMPLETE",
+          "logo": "COMPLETE",
+          "watermark": "COMPLETE",
+          "safety": "COMPLETE"
+        },
+        "blocking_signals": [
+          {
+            "signal": "BRAND_LOGO_CONFIRMED",
+            "detector": "logo",
+            "detail": "ExampleBrand"
+          }
+        ],
+        "review_signals": [],
+        "qa_defects": [
+          "RIGHTS_FAILED"
+        ],
+        "human_rights_clearance": false,
+        "founder_qc_required": true,
+        "submission_eligible": false,
+        "submission_authority": "FOUNDER_CONTROLLED",
+        "signal_gate_pass": false
+      }
+    },
+    {
+      "name": "text-detector-unavailable",
+      "expected": "REVIEW_REQUIRED",
+      "result": {
+        "schema": "die.factory-asset.rights-signal-gate.v1",
+        "result": "REVIEW_REQUIRED",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "master_path": "D:\\mcp-architect\\workspace\\fa136-rights-signal-gate-20260904\\company\\factory-asset\\fixtures\\provider-original-v1\\opaque.png",
+        "detector_states": {
+          "text": "UNAVAILABLE",
+          "logo": "COMPLETE",
+          "watermark": "COMPLETE",
+          "safety": "COMPLETE"
+        },
+        "blocking_signals": [],
+        "review_signals": [
+          {
+            "signal": "DETECTOR_INCOMPLETE",
+            "detector": "text",
+            "detail": "UNAVAILABLE"
+          }
+        ],
+        "qa_defects": [
+          "RIGHTS_UNCLEAR"
+        ],
+        "human_rights_clearance": false,
+        "founder_qc_required": true,
+        "submission_eligible": false,
+        "submission_authority": "FOUNDER_CONTROLLED",
+        "signal_gate_pass": false
+      }
+    },
+    {
+      "name": "watermark-unclear",
+      "expected": "REVIEW_REQUIRED",
+      "result": {
+        "schema": "die.factory-asset.rights-signal-gate.v1",
+        "result": "REVIEW_REQUIRED",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "master_path": "D:\\mcp-architect\\workspace\\fa136-rights-signal-gate-20260904\\company\\factory-asset\\fixtures\\provider-original-v1\\opaque.png",
+        "detector_states": {
+          "text": "COMPLETE",
+          "logo": "COMPLETE",
+          "watermark": "COMPLETE",
+          "safety": "COMPLETE"
+        },
+        "blocking_signals": [],
+        "review_signals": [
+          {
+            "signal": "WATERMARK_UNCLEAR",
+            "detector": "watermark",
+            "detail": "faint-overlay"
+          }
+        ],
+        "qa_defects": [
+          "WATERMARK_UNCLEAR"
+        ],
+        "human_rights_clearance": false,
+        "founder_qc_required": true,
+        "submission_eligible": false,
+        "submission_authority": "FOUNDER_CONTROLLED",
+        "signal_gate_pass": false
+      }
+    },
+    {
+      "name": "safety-block",
+      "expected": "BLOCK",
+      "result": {
+        "schema": "die.factory-asset.rights-signal-gate.v1",
+        "result": "BLOCK",
+        "master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+        "master_path": "D:\\mcp-architect\\workspace\\fa136-rights-signal-gate-20260904\\company\\factory-asset\\fixtures\\provider-original-v1\\opaque.png",
+        "detector_states": {
+          "text": "COMPLETE",
+          "logo": "COMPLETE",
+          "watermark": "COMPLETE",
+          "safety": "COMPLETE"
+        },
+        "blocking_signals": [
+          {
+            "signal": "SAFETY_FAILED",
+            "detector": "safety",
+            "detail": "synthetic-safety-flag"
+          }
+        ],
+        "review_signals": [],
+        "qa_defects": [
+          "SAFETY_FAILED"
+        ],
+        "human_rights_clearance": false,
+        "founder_qc_required": true,
+        "submission_eligible": false,
+        "submission_authority": "FOUNDER_CONTROLLED",
+        "signal_gate_pass": false
+      }
+    }
+  ],
+  "acceptance": {
+    "clean_complete_signal_pass": "PASS",
+    "stock_watermark_blocks": "PASS",
+    "confirmed_trademark_blocks": "PASS",
+    "confirmed_brand_logo_blocks": "PASS",
+    "unresolved_text_requires_review": "PASS",
+    "logo_candidate_requires_review": "PASS",
+    "detector_incomplete_requires_review": "PASS",
+    "watermark_unclear_requires_review": "PASS",
+    "safety_block_blocks": "PASS",
+    "exact_master_hash_binding": "PASS",
+    "human_rights_clearance_granted": false,
+    "founder_qc_required": true,
+    "unknown_never_promoted_to_pass": true
+  },
+  "validation": {
+    "factory_asset_tests": "474 PASS / 2 Linux-only skipped",
+    "python_compile": "PASS",
+    "zero_false_success": true
+  },
+  "authority": {
+    "human_rights_clearance": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "marketplace_upload": false,
+    "spend_usd": 0
+  },
+  "unblocked_when_dependencies_complete": [
+    "FA-137",
+    "FA-138"
+  ]
+}

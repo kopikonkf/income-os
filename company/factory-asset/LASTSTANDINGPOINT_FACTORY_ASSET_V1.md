@@ -498,3 +498,8 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Provider-original JPEG can be reused for JPEG delivery; PNG/alpha formats are converted only as required by Blueprint/marketplace profile.
 - Alpha-bearing input -> JPEG requires FLATTEN_WHITE; JPEG->PNG does not invent transparency. UNKNOWN marketplace profiles block package.
 - Duplicate delivery variants collapse and semantic asset count remains one.
+
+
+### FA-136 — DONE / PASS — automated rights/brand/watermark/text signal gate
+- Exact master hash binds detector observations. Confirmed watermark/trademark/brand/safety signals BLOCK; unresolved or incomplete detector evidence requires REVIEW_REQUIRED.
+- Automated PASS never grants human rights clearance; Founder QC remains mandatory.
