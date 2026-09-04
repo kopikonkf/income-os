@@ -10,8 +10,26 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[3]
 STATIC_ROOT = Path(__file__).resolve().parent
+
+
+def _resolve_factory_root(static_root: Path = STATIC_ROOT) -> Path:
+    candidates = []
+    try:
+        candidates.append(static_root.parents[2])
+    except IndexError:
+        pass
+    candidates.append(static_root.parent)
+    for candidate in candidates:
+        marker = candidate / "company/factory-asset/lib/blueprint_compiler.py"
+        if marker.is_file():
+            return candidate
+    raise RuntimeError(
+        "Factory Console runtime support tree not found. Expected company/factory-asset/lib under repository root or mirror root."
+    )
+
+
+ROOT = _resolve_factory_root()
 
 
 def _load_module(name: str, path: Path):
@@ -28,7 +46,14 @@ compiler = _load_module("factory_console_blueprint_compiler", ROOT / "company/fa
 identity = _load_module("factory_console_asset_identity", ROOT / "company/factory-asset/lib/asset_identity.py")
 factory_queue = _load_module("factory_console_factory_queue", ROOT / "company/factory-asset/lib/factory_queue.py")
 console_contract = _load_module("factory_console_contract", ROOT / "company/factory-asset/lib/console_contract.py")
+capacity_ledger = _load_module("factory_console_capacity_ledger", ROOT / "company/factory-asset/lib/capacity_ledger.py")
+policy_gate = _load_module("factory_console_policy_gate", ROOT / "company/factory-asset/lib/policy_gate.py")
+provider_router = _load_module("factory_console_provider_router", ROOT / "company/factory-asset/lib/provider_router.py")
+observability = _load_module("factory_console_observability", ROOT / "company/factory-asset/lib/observability.py")
+provider_dashboard = _load_module("factory_console_provider_dashboard", ROOT / "company/factory-asset/lib/provider_dashboard.py")
 
+PROVIDER_POLICY_REGISTRY = json.loads((ROOT / "company/factory-asset/registries/provider-policy.v1.json").read_text(encoding="utf-8"))
+PROVIDER_DASHBOARD_FIXTURE = json.loads((ROOT / "company/factory-asset/fixtures/provider-dashboard/synthetic-observed.v1.json").read_text(encoding="utf-8"))
 CORE_QUEUE = factory_queue.FactoryJobQueue()
 
 
@@ -115,6 +140,20 @@ def _seed_queue() -> None:
     CORE_QUEUE.fail("FCJOB-DEMO-RETRY", code="RATE_LIMITED", retryable=True)
 
 
+def provider_dashboard_state() -> dict[str, Any]:
+    return provider_dashboard.build_provider_dashboard(
+        policy_registry=PROVIDER_POLICY_REGISTRY,
+        fixture=PROVIDER_DASHBOARD_FIXTURE,
+        capacity_ledger_cls=capacity_ledger.CapacityLedger,
+        evaluate_policy=policy_gate.evaluate_policy,
+        route_provider=provider_router.route_provider,
+        observability=observability,
+        today="2026-09-04",
+        now="2026-09-04T03:15:00Z",
+        route_asset_type="PHOTO",
+    )
+
+
 def queue_state() -> dict[str, Any]:
     return {"schema": "die.factory-asset.console-queue-state.v1", "provider_dispatch_performed": False, "events": [console_contract.queue_event(row) for row in CORE_QUEUE.list()]}
 
@@ -173,6 +212,9 @@ class Handler(SimpleHTTPRequestHandler):
     def do_GET(self) -> None:
         if self.path == "/api/queue/jobs":
             self._json(HTTPStatus.OK, queue_state())
+            return
+        if self.path == "/api/providers":
+            self._json(HTTPStatus.OK, provider_dashboard_state())
             return
         super().do_GET()
 

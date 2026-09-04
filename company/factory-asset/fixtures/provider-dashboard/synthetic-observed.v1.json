@@ -1,0 +1,21 @@
+{
+  "schema":"die.factory-asset.provider-dashboard-fixture.v1",
+  "observed_at":"2026-09-04T03:00:00Z",
+  "evidence_mode":"SYNTHETIC_OBSERVED_FIXTURE",
+  "capacity_events":[
+    {"profile_id":"qwen_a","provider_id":"qwen","event":"SUCCESS","observed_at":"2026-09-04T03:00:00Z","evidence_ref":"fixture://FA-C007/qwen"},
+    {"profile_id":"chatgpt_a","provider_id":"chatgpt","event":"SUCCESS","observed_at":"2026-09-04T03:00:00Z","evidence_ref":"fixture://FA-C007/chatgpt"},
+    {"profile_id":"gemini_a","provider_id":"gemini","event":"RATE_LIMITED","observed_at":"2026-09-04T03:00:00Z","evidence_ref":"fixture://FA-C007/gemini","retry_after_seconds":120},
+    {"profile_id":"manus_a","provider_id":"manus","event":"SUCCESS","observed_at":"2026-09-04T03:00:00Z","evidence_ref":"fixture://FA-C007/manus"},
+    {"profile_id":"duckai_a","provider_id":"duckai","event":"SUCCESS","observed_at":"2026-09-04T03:00:00Z","evidence_ref":"fixture://FA-C007/duckai"},
+    {"profile_id":"grok_a","provider_id":"grok","event":"CAPACITY_UNAVAILABLE","observed_at":"2026-09-04T03:00:00Z","evidence_ref":"fixture://FA-C007/grok"}
+  ],
+  "routing_profiles":[
+    {"profile_id":"qwen_a","provider_id":"qwen","enabled":true,"asset_types":["PHOTO","ISOLATED_OBJECT"],"quality_score":0.95,"unit_cost_micros":0,"priority":10},
+    {"profile_id":"chatgpt_a","provider_id":"chatgpt","enabled":true,"asset_types":["PHOTO","ISOLATED_OBJECT"],"quality_score":0.94,"unit_cost_micros":0,"priority":20},
+    {"profile_id":"gemini_a","provider_id":"gemini","enabled":true,"asset_types":["PHOTO","ISOLATED_OBJECT"],"quality_score":0.93,"unit_cost_micros":0,"priority":30},
+    {"profile_id":"manus_a","provider_id":"manus","enabled":true,"asset_types":["PHOTO","ISOLATED_OBJECT"],"quality_score":0.92,"unit_cost_micros":0,"priority":40},
+    {"profile_id":"duckai_a","provider_id":"duckai","enabled":true,"asset_types":["PHOTO","ISOLATED_OBJECT"],"quality_score":0.91,"unit_cost_micros":0,"priority":50},
+    {"profile_id":"grok_a","provider_id":"grok","enabled":true,"asset_types":["PHOTO","ISOLATED_OBJECT"],"quality_score":0.90,"unit_cost_micros":0,"priority":60}
+  ]
+}

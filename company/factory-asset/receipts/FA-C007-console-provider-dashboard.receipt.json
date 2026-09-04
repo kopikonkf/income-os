@@ -1,0 +1,46 @@
+{
+  "schema": "factory-asset.console-provider-dashboard-receipt.v1",
+  "task_id": "FA-C007",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "artifacts": [
+    "company/factory-asset/lib/provider_dashboard.py",
+    "company/factory-asset/fixtures/provider-dashboard/synthetic-observed.v1.json",
+    "company/factory-asset/console-prototype/"
+  ],
+  "endpoint": "GET /api/providers",
+  "evidence_mode": "SYNTHETIC_OBSERVED_FIXTURE",
+  "live_polling": false,
+  "guessed_quota_present": false,
+  "provider_states": {
+    "qwen": "ELIGIBLE/AVAILABLE",
+    "chatgpt": "ELIGIBLE/AVAILABLE",
+    "gemini": "ELIGIBLE/CONSTRAINED",
+    "manus": "ELIGIBLE/AVAILABLE",
+    "duckai": "ELIGIBLE/AVAILABLE",
+    "grok": "DEFERRED_OPTIONAL/UNAVAILABLE"
+  },
+  "route_sample": {
+    "asset_type": "PHOTO",
+    "selected_profile_id": "qwen_a",
+    "grok_blocks_pool": false
+  },
+  "guards": [
+    "policy evidence gate",
+    "capacity evidence ledger",
+    "deterministic router rationale",
+    "sanitized observability",
+    "no provider/browser credentials",
+    "no live provider dispatch"
+  ],
+  "validation": {
+    "factory_asset_tests": "184/184 PASS",
+    "provider_endpoint": "PASS",
+    "dynamic-port HTTP roundtrip": "PASS",
+    "standalone mirror import": "PASS",
+    "node_syntax": "PASS",
+    "python_compile": "PASS"
+  },
+  "provider_dispatch_performed": false
+}

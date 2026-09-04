@@ -1,0 +1,33 @@
+{
+  "schema": "factory-asset.sanitized-observability-receipt.v1",
+  "task_id": "FA-107",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact": "company/factory-asset/lib/observability.py",
+  "separate_metrics": [
+    "attempts",
+    "unique_masters",
+    "qa_assets",
+    "derivatives",
+    "packages",
+    "failures",
+    "resources",
+    "economics"
+  ],
+  "secret_negative": [
+    "password",
+    "cookie",
+    "session_token",
+    "access_token",
+    "raw_auth_body",
+    "api_key",
+    "client_secret",
+    "browser_profile",
+    "cdp_url"
+  ],
+  "validation": "174/174 PASS",
+  "unblocked": [
+    "FA-C007"
+  ]
+}

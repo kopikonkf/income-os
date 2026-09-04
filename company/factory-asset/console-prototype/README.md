@@ -17,3 +17,9 @@ No provider credentials, browser profiles, vendor endpoints, marketplace publica
 ## FA-C006 governed local queue
 
 The Queue view now calls the loopback Factory Core bridge (`/api/queue/jobs`, `/api/queue/submit`, `/api/queue/action`). START/PAUSE/RESUME/CANCEL/RETRY mutate only the local `FactoryJobQueue`; no provider dispatch is implemented. Retry limit and recovery state come from FA-105.
+
+## FA-C007 provider dashboard
+
+The Providers view calls `GET /api/providers`, which composes Factory policy evidence, observed-capacity ledger state, deterministic routing rationale and sanitized observability. Current capacity values are explicitly `SYNTHETIC_OBSERVED_FIXTURE`, not live quota polling. Grok remains optional/deferred and cannot block healthy routes.
+
+For a standalone Windows mirror, use `company/factory-asset/bin/sync_console_mirror.py --dest D:\FACTORY_ASSET`; it copies the Console plus required `lib`, `schemas`, `registries` and `fixtures` runtime support tree.
