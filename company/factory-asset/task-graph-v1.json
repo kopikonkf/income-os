@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "4.4-fa024-derivative-qa",
+  "revision": "4.5-fa026-native-vector",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -898,9 +898,11 @@
       "depends_on": [
         "FA-025"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Native vector export worker with SVG/EPS and preview tests",
-      "acceptance": "Outputs contain real editable paths, render correctly and reject embedded-raster-only, font, bounds and excessive-path failures."
+      "acceptance": "Outputs contain real editable paths, render correctly and reject embedded-raster-only, font, bounds and excessive-path failures.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: native SVG normalizer/exporter requires real editable paths, validates viewBox/bounds, rejects embedded raster/text/font/excessive paths, emits deterministic EPS path instructions and renders a local preview. Regression 215/215 PASS."
     },
     {
       "id": "FA-027",
