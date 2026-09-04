@@ -13,4 +13,3 @@ Unresolved rights evidence is a parked human gate rather than a global throughpu
 ## Cognition browser transport versioning
 
 Browser recovery markers are fingerprinted from stable request context (excluding created/expires timestamps). A stale prior version of the same logical request cannot masquerade as the current request. If the prior version is still generating, only that stale generation is stopped before the new version is submitted. Legacy unversioned markers remain recoverable when their prompt is byte-identical to the active request.
-
