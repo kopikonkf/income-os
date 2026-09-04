@@ -1,0 +1,49 @@
+{
+  "schema": "factory-asset.fa141-linux-live-canary.v1",
+  "task_id": "FA-141",
+  "date": "2026-09-04",
+  "result": "PASS",
+  "linux_head": "e63c3611c7d979931cc5742a6c95853b97198486",
+  "principal": "die-hermes",
+  "python": "/opt/die/factory-asset/venv/bin/python",
+  "source": {
+    "origin_task": "PRODSEED000025",
+    "origin_path": "/var/lib/die/workspaces/PRODSEED000025/factory-v2/derivatives/adobe_jpeg.jpg",
+    "canary_copy": "/var/lib/die/state/factory-asset-canaries/FA-141/headphones-source.jpg",
+    "sha256": "2cf8eee59f9c823d6e38ee8ab5378b7fe4365986a11779270ce6cdd2323b5d6f",
+    "production_workspace_mutated": false
+  },
+  "output": {
+    "path": "/var/lib/die/state/factory-asset-canaries/FA-141/headphones-photo__991259fb.jpg",
+    "sha256": "211f28375a4c7c7fc3ff04f822dc90090c12a49738ca9d697bf7c9c21c45234e",
+    "dimensions": [
+      6144,
+      4096
+    ],
+    "technical_qa": "PASS"
+  },
+  "readback": {
+    "xmp": "PASS",
+    "iptc": "PASS",
+    "fields": {
+      "title": "Headphones - Photo",
+      "description": "Headphones created for audio technology concepts.",
+      "keywords": [
+        "headphones",
+        "audio",
+        "technology",
+        "concepts",
+        "photo"
+      ],
+      "ai_disclosure": "GENERATIVE_AI"
+    }
+  },
+  "source_immutable": true,
+  "platform_form_ai_disclosure_still_required": true,
+  "authority": {
+    "marketplace_upload": false,
+    "publication": false,
+    "founder_qc_completed": false,
+    "spend_usd": 0
+  }
+}
