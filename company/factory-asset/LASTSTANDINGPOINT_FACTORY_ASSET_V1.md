@@ -443,3 +443,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Graph delta is FA-033 READY -> DONE only. No dependent node unlocked or advanced.
 - Any other graph node started: No.
 - Next existing READY eligible task: FA-041, information only; STOP.
+
+### Factory Orchestration v2 task-graph plan — CANON PLANNED
+- Added FA-129..FA-140 under `FACTORY_ORCHESTRATION`: expression planning, motion capability, provider-original intake, marketplace derivative planning, producer dispatch, cognition routing, conditional upscale, IP/brand signal gate, metadata/package readiness, mandatory postproduction, Hermes v2 wiring and synthetic acceptance.
+- Two-router invariant: semantic asset-expression routing happens before Blueprint/producer; packaging derivative routing happens after master. Motion/pattern are semantic products, not post-hoc raster conversions.
+- FA-120 scale harness and FA-200 governed canary now depend on FA-140 so scale/acceptance cannot bypass orchestration v2.
+- FA-034 was reconciled to READY because Codex already completed FA-033.
