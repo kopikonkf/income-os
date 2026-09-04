@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "4.3-fa023-derivative-policy",
+  "revision": "4.4-fa024-derivative-qa",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -868,9 +868,11 @@
         "FA-022",
         "FA-023"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Derivative magic/decode/dimensions/hash/compatibility QA suite",
-      "acceptance": "Corrupt, mislabeled, truncated, wrong-alpha and incompatible outputs fail; zero false success in fixtures."
+      "acceptance": "Corrupt, mislabeled, truncated, wrong-alpha and incompatible outputs fail; zero false success in fixtures.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: derivative QA inspector validates magic/format, decode reopen, dimensions, alpha, SHA-256 and compatibility; corrupt, mislabeled, truncated, wrong-alpha and incompatible fixtures all fail closed with zero false success. Regression 210/210 PASS."
     },
     {
       "id": "FA-025",

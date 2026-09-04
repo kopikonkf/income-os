@@ -1,0 +1,18 @@
+{
+  "schema": "factory-asset.derivative-qa-receipt.v1",
+  "task_id": "FA-024",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact": "company/factory-asset/lib/derivative_qa.py",
+  "negative_fixtures": [
+    "corrupt",
+    "mislabeled",
+    "truncated",
+    "wrong alpha",
+    "incompatible",
+    "hash mismatch"
+  ],
+  "zero_false_success": true,
+  "validation": "210/210 PASS"
+}
