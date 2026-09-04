@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "6.6-fa132-derivative-delivery-planner",
+  "revision": "6.7-fa136-rights-signal-gate",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2072,9 +2072,11 @@
         "FA-019",
         "FA-131"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Automated rights-risk signal gate with logo/trademark/text/watermark fixtures and typed review outcomes",
-      "acceptance": "Automated checks emit PASS|REVIEW_REQUIRED|BLOCK for observable brand/logo/trademark/text/watermark/safety signals against exact master hashes. Uncertainty never becomes human rights clearance; Founder retains final visual/IP decision at QC."
+      "acceptance": "Automated checks emit PASS|REVIEW_REQUIRED|BLOCK for observable brand/logo/trademark/text/watermark/safety signals against exact master hashes. Uncertainty never becomes human rights clearance; Founder retains final visual/IP decision at QC.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: exact-master-hash rights signal gate emits PASS|REVIEW_REQUIRED|BLOCK for complete observable text/logo/watermark/trademark/safety detector evidence. Confirmed watermark/trademark/brand/safety signals block; unresolved text/logo/watermark or incomplete detectors require review. Automated PASS never grants human rights clearance; Founder QC remains mandatory and uncertainty never becomes PASS."
     },
     {
       "id": "FA-137",
@@ -2087,7 +2089,7 @@
         "FA-132",
         "FA-136"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Metadata/keyword readiness receipts and exact-hash marketplace package plan",
       "acceptance": "Blueprint semantics plus verified technical facts produce deterministic title/description/keywords/AI-disclosure/package metadata bound to exact master and derivative hashes. Rights uncertainty, missing required metadata or incompatible derivatives blocks PACKAGE_READY."
     },

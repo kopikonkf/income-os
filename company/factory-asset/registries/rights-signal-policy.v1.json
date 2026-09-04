@@ -1,0 +1,10 @@
+{
+  "schema":"die.factory-asset.rights-signal-policy.v1",
+  "revision":"1.0",
+  "required_detectors":["text","logo","watermark","safety"],
+  "detector_complete_state":"COMPLETE",
+  "stock_watermark_terms":["adobe stock","shutterstock","getty images","alamy","dreamstime","123rf","vecteezy","motionelements"],
+  "blocking_signals":["WATERMARK_PRESENT","TRADEMARK_CONFIRMED","BRAND_LOGO_CONFIRMED","SAFETY_FAILED"],
+  "review_signals":["DETECTOR_INCOMPLETE","TEXT_PRESENT_UNRESOLVED","TRADEMARK_CANDIDATE","LOGO_CANDIDATE","WATERMARK_UNCLEAR","SAFETY_UNCLEAR"],
+  "invariants":{"human_rights_clearance_granted":false,"submission_authority":"FOUNDER_CONTROLLED","pass_requires_all_detectors_complete":true,"uncertainty_action":"REVIEW_REQUIRED"}
+}
