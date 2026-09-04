@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "5.6-fa040-deterministic-motion-contract",
+  "revision": "6.0-factory-orchestration-v2-plan",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1023,7 +1023,7 @@
       "depends_on": [
         "FA-033"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-034-pattern-engine-v0.1-acceptance.receipt.json",
       "acceptance": "Positive and negative fixtures pass, regeneration is deterministic, outputs remain editable and packaging derivatives do not mint new semantic assets."
@@ -1507,7 +1507,8 @@
       "priority": 70,
       "title": "Build synthetic throughput and backpressure harness",
       "depends_on": [
-        "FA-109"
+        "FA-109",
+        "FA-140"
       ],
       "status": "BLOCKED",
       "artifact": "Factory synthetic load/backpressure harness and benchmark receipt",
@@ -1636,31 +1637,32 @@
       "title": "Select one Factory Asset governed canary opportunity",
       "depends_on": [
         "FA-030",
-        "FA-109"
+        "FA-109",
+        "FA-140"
       ],
       "status": "BLOCKED",
       "artifact": "company/factory-asset/receipts/FA-200-canary-selection.receipt.json",
-      "acceptance": "One evidence-supported opportunity is selected with asset family, marketplace route, rights posture, quality target and no publication authority."
+      "acceptance": "One evidence-supported opportunity is selected through the asset-expression plan with family, semantic mode, producer route, marketplace route, temporal/motion eligibility when relevant, rights posture, quality target and no publication authority."
     },
     {
       "id": "FA-201",
       "phase": 6,
       "track": "GOVERNED_CANARY",
       "priority": 81,
-      "title": "Compile governed canary Asset Blueprint v2",
+      "title": "Compile governed canary expression and Asset Blueprint v2",
       "depends_on": [
         "FA-200"
       ],
       "status": "BLOCKED",
       "artifact": "company/factory-asset/receipts/FA-201-canary-blueprint-compile.receipt.json",
-      "acceptance": "Exact blueprint, producer eligibility, master spec, derivative recipes, distinctness and marketplace profile versions compile and hash-pin."
+      "acceptance": "Exact expression plan plus Blueprint pins semantic mode, producer eligibility, master spec, derivative delivery plan, distinctness and marketplace profile versions; Division01/Executive routing evidence is attached only when cognition policy requires it."
     },
     {
       "id": "FA-202",
       "phase": 6,
       "track": "GOVERNED_CANARY",
       "priority": 82,
-      "title": "Execute one governed master and derivative family",
+      "title": "Execute one governed routed master and derivative family",
       "depends_on": [
         "FA-117",
         "FA-201"
@@ -1668,20 +1670,20 @@
       "status": "BLOCKED",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "artifact": "company/factory-asset/receipts/FA-202-governed-production.receipt.json",
-      "acceptance": "One provider master and all eligible deterministic derivatives are durable, idempotent and correctly counted as one semantic asset."
+      "acceptance": "One governed producer route creates the exact frozen-expression master; provider-original/native bytes remain immutable, all eligible deterministic derivatives are durable/idempotent, and the family counts as one semantic asset regardless of packaging variants."
     },
     {
       "id": "FA-203",
       "phase": 6,
       "track": "GOVERNED_CANARY",
       "priority": 83,
-      "title": "Complete governed canary registry and QA receipts",
+      "title": "Complete governed canary postproduction registry and QA receipts",
       "depends_on": [
         "FA-202"
       ],
       "status": "BLOCKED",
       "artifact": "company/factory-asset/receipts/FA-203-canary-registry-qa.receipt.json",
-      "acceptance": "Master, derivatives, package compatibility, duplicate suppression, QA and provider capacity evidence are committed through the canonical writer."
+      "acceptance": "Master, conditional upscale decision, derivatives, package compatibility, duplicate suppression, technical QA, provider/native capacity evidence and orchestration state are committed through the canonical writer without false success."
     },
     {
       "id": "FA-204",
@@ -1694,7 +1696,7 @@
       ],
       "status": "BLOCKED",
       "artifact": "company/factory-asset/receipts/FA-204-canary-metadata-rights.receipt.json",
-      "acceptance": "Metadata/keywords, AI disclosure, source rights and hard vetoes map to exact master/derivative hashes; uncertainty remains blocking."
+      "acceptance": "Metadata/keywords, AI disclosure, automated brand/IP/right signals, source rights and hard vetoes map to exact master/derivative hashes; uncertainty remains blocking and the package must be PACKAGE_READY before Founder QC."
     },
     {
       "id": "FA-205",
@@ -1708,7 +1710,7 @@
       "status": "BLOCKED",
       "authority": "FOUNDER_REQUIRED",
       "artifact": "company/factory-asset/receipts/FA-205-founder-qc.receipt.json",
-      "acceptance": "Founder records APPROVE|REJECT|REVISE against exact hashes; silence is not approval and no submission occurs."
+      "acceptance": "Founder receives only PACKAGE_READY exact hashes and records APPROVE|REJECT|REVISE; silence is not approval, automated rights signals are not human clearance, and no submission occurs."
     },
     {
       "id": "FA-206",
@@ -1945,6 +1947,183 @@
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-C013-factory-console-production-acceptance.receipt.json",
       "acceptance": "Founder validates the GUI against the authorized 100-unique-master/day model: blueprint/batch controls, queue/recovery, provider capacity/routing, output lineage/QA and rollback all pass; marketplace publication remains outside Console authority."
+    },
+    {
+      "id": "FA-129",
+      "phase": 4,
+      "track": "FACTORY_ORCHESTRATION",
+      "priority": 58,
+      "title": "Define asset-expression plan and semantic expansion contract",
+      "depends_on": [
+        "FA-019"
+      ],
+      "status": "READY",
+      "artifact": "company/factory-asset/schemas/asset-expression-plan.schema.json and decision fixtures",
+      "acceptance": "A seed noun may yield zero, one or multiple evidence-supported semantic asset expressions. The contract separates semantic expansion from packaging derivatives, pins buyer/use-case/product expression, semantic mode, producer class and candidate marketplace route, and forbids forced one-seed-to-all-modes expansion."
+    },
+    {
+      "id": "FA-130",
+      "phase": 4,
+      "track": "FACTORY_ORCHESTRATION",
+      "priority": 59,
+      "title": "Implement motion-capability and temporal-value gate",
+      "depends_on": [
+        "FA-129",
+        "FA-040"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Motion eligibility scorer/gate with temporal-verb and buyer-utility fixtures",
+      "acceptance": "Motion eligibility is evaluated from noun x product expression x temporal verb x buyer utility, not noun alone. Gate emits STATIC_ONLY|MOTION_ELIGIBLE|RESEARCH|REJECT, requires meaningful visual change over time, and prevents automatic animation of every static asset."
+    },
+    {
+      "id": "FA-131",
+      "phase": 4,
+      "track": "FACTORY_ORCHESTRATION",
+      "priority": 60,
+      "title": "Implement provider-original artifact intake and media sniffing",
+      "depends_on": [
+        "FA-100",
+        "FA-106"
+      ],
+      "status": "READY",
+      "artifact": "Provider-original intake module and JPEG/PNG/WebP/TIFF fixtures",
+      "acceptance": "Exact provider-original bytes are immutable and hash-pinned. Intake derives actual magic/MIME, dimensions, alpha and byte size without assuming a provider always returns PNG or JPEG, rejects extension/content mismatch, and creates normalized master-intake evidence without relabeling or lossy overwrite."
+    },
+    {
+      "id": "FA-132",
+      "phase": 4,
+      "track": "FACTORY_ORCHESTRATION",
+      "priority": 61,
+      "title": "Implement marketplace-aware derivative delivery planner",
+      "depends_on": [
+        "FA-011",
+        "FA-030",
+        "FA-131"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Derivative planning engine using master properties plus marketplace delivery profiles",
+      "acceptance": "Planner selects only required JPEG/PNG/WebP/TIFF/PDF/vector derivatives for each marketplace/package route, preserves provider original lineage, requires explicit alpha flattening for JPEG, distinguishes opaque PNG from real transparent PNG, never inflates semantic asset count and suppresses duplicate delivery variants."
+    },
+    {
+      "id": "FA-133",
+      "phase": 4,
+      "track": "FACTORY_ORCHESTRATION",
+      "priority": 62,
+      "title": "Implement semantic producer dispatch router",
+      "depends_on": [
+        "FA-034",
+        "FA-043",
+        "FA-109",
+        "FA-129"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Registry-driven producer router for provider raster, procedural vector/pattern and motion renderer classes",
+      "acceptance": "Frozen Blueprint expression selects exactly one governed master producer class. PHOTO/ISOLATED_OBJECT raster routes use provider generation, PATTERN/native vector routes use native producers, ANIMATION uses motion producer, unknown modes fail closed, and motion/pattern are never implemented as post-hoc conversion of an unrelated static master."
+    },
+    {
+      "id": "FA-134",
+      "phase": 4,
+      "track": "FACTORY_ORCHESTRATION",
+      "priority": 63,
+      "title": "Implement Blueprint reuse and Division01 Executive cognition router",
+      "depends_on": [
+        "FA-019",
+        "FA-129"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Cognition-routing policy and fixtures for blueprint reuse, authoring, challenge and revision",
+      "acceptance": "Hermes reuses a compatible fixed Blueprint without repeated cognition; Division01 is invoked only for missing/stale/materially revised semantics; Executive is invoked only for new family promotion, material strategic challenge or escalation. Neither actor becomes a per-image gate or gains worker/provider authority."
+    },
+    {
+      "id": "FA-135",
+      "phase": 4,
+      "track": "FACTORY_ORCHESTRATION",
+      "priority": 64,
+      "title": "Implement conditional upscale and recovery adapter",
+      "depends_on": [
+        "FA-131"
+      ],
+      "status": "BLOCKED",
+      "artifact": "OS-neutral upscale/recovery decision and adapter contract with lineage receipts",
+      "acceptance": "Upscale/recovery is invoked only when master dimensions/quality fail the selected route requirement; native-sufficient outputs skip it. Original bytes remain immutable, source/final hashes and dimensions are preserved, reruns are idempotent and failures never replace a valid master with partial output."
+    },
+    {
+      "id": "FA-136",
+      "phase": 4,
+      "track": "FACTORY_ORCHESTRATION",
+      "priority": 65,
+      "title": "Implement automated IP brand watermark and text signal gate",
+      "depends_on": [
+        "FA-019",
+        "FA-131"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Automated rights-risk signal gate with logo/trademark/text/watermark fixtures and typed review outcomes",
+      "acceptance": "Automated checks emit PASS|REVIEW_REQUIRED|BLOCK for observable brand/logo/trademark/text/watermark/safety signals against exact master hashes. Uncertainty never becomes human rights clearance; Founder retains final visual/IP decision at QC."
+    },
+    {
+      "id": "FA-137",
+      "phase": 4,
+      "track": "FACTORY_ORCHESTRATION",
+      "priority": 66,
+      "title": "Implement metadata keyword and package-readiness engine",
+      "depends_on": [
+        "FA-028",
+        "FA-132",
+        "FA-136"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Metadata/keyword readiness receipts and exact-hash marketplace package plan",
+      "acceptance": "Blueprint semantics plus verified technical facts produce deterministic title/description/keywords/AI-disclosure/package metadata bound to exact master and derivative hashes. Rights uncertainty, missing required metadata or incompatible derivatives blocks PACKAGE_READY."
+    },
+    {
+      "id": "FA-138",
+      "phase": 4,
+      "track": "FACTORY_ORCHESTRATION",
+      "priority": 67,
+      "title": "Implement mandatory postproduction readiness state machine",
+      "depends_on": [
+        "FA-024",
+        "FA-107",
+        "FA-132",
+        "FA-135",
+        "FA-136",
+        "FA-137"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Durable postproduction state machine from ARTIFACT_CREATED to WAITING_FOUNDER_QC",
+      "acceptance": "Autonomous order is ARTIFACT_CREATED -> MASTER_VALIDATED -> UPSCALE_DECIDED -> DERIVATIVES_READY -> TECHNICAL_QA_PASS -> RIGHTS_SIGNAL_PASS_OR_REVIEW -> METADATA_READY -> PACKAGE_READY -> WAITING_FOUNDER_QC. WAITING_FOUNDER_QC cannot be reached early; every failure is typed and lineage-preserving."
+    },
+    {
+      "id": "FA-139",
+      "phase": 4,
+      "track": "FACTORY_ORCHESTRATION",
+      "priority": 68,
+      "title": "Wire Hermes Factory orchestration v2 across cognition producers and postproduction",
+      "depends_on": [
+        "FA-105",
+        "FA-130",
+        "FA-133",
+        "FA-134",
+        "FA-138"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Hermes orchestration v2 runtime wiring, durable Kanban transitions and Telegram milestone receipts",
+      "acceptance": "Hermes consumes deterministic seed preflight, obtains/reuses/challenges Blueprint as policy requires, spawns bounded Worker, routes the frozen expression to the correct producer, ingests the real artifact, drives mandatory postproduction and sends PRODUCTION_STARTED, ARTIFACT_CREATED, QA_QC_UPDATE and WAITING_FOUNDER_QC Telegram milestones. Parked Founder gates never block independent future seed cadence."
+    },
+    {
+      "id": "FA-140",
+      "phase": 4,
+      "track": "FACTORY_ORCHESTRATION",
+      "priority": 69,
+      "title": "Factory orchestration v2 synthetic acceptance",
+      "depends_on": [
+        "FA-139"
+      ],
+      "status": "BLOCKED",
+      "acceptance_batch": true,
+      "artifact": "company/factory-asset/receipts/FA-140-factory-orchestration-v2-synthetic-acceptance.receipt.json",
+      "acceptance": "Synthetic E2E covers provider-original JPEG and PNG inputs, native pattern SVG and motion MP4 producer paths, cognition reuse/escalation, conditional upscale, derivative planning, QA, IP/brand signals, metadata/package readiness, Telegram milestones, crash/retry and Founder parking with zero live-provider calls and zero false success."
     }
   ],
   "windows_oauth_proof_levels": {
