@@ -1,0 +1,119 @@
+{
+  "schema": "factory-asset.procedural-pattern-producer-receipt.v1",
+  "task_id": "FA-032",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact": "company/factory-asset/lib/procedural_pattern.py",
+  "fixtures": "company/factory-asset/fixtures/procedural-pattern/fixtures.v1.json",
+  "operational_root": "D:\\FACTORY_ASSET\\canaries\\FA-032",
+  "runs": [
+    {
+      "name": "shopping-bag-neutral-diamonds",
+      "seed": 32001,
+      "tile": [
+        128,
+        128
+      ],
+      "master_sha256": "31f460f0424eea26d3ff85ce9e1e41520f986f9699b74d8d328623c679310c9b",
+      "preview_sha256": "895d665227c20f5c2377deb2c8af45b22f1ca06011ebc67e78291c67cb72ee02",
+      "path_count": 8,
+      "master_byte_identical": true,
+      "preview_byte_identical": true,
+      "native_receipt": {
+        "schema": "die.factory-asset.native-producer.v1",
+        "kind": "RECEIPT",
+        "job_id": "FA032-PATTERN-001",
+        "idempotency_key": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "producer_class": "PROCEDURAL_VECTOR",
+        "producer_version": "1.0.0",
+        "result": "PASS",
+        "master": {
+          "format": "SVG",
+          "sha256": "31f460f0424eea26d3ff85ce9e1e41520f986f9699b74d8d328623c679310c9b",
+          "bytes": 739,
+          "native_editable": true,
+          "generated_by_native_producer": true,
+          "conversion_from_raster": false,
+          "lineage_sha256_required": true
+        },
+        "deterministic_receipt_sha256": "e51c4861310ac3315169cfa90bc66533426a4f50395c5ed5c5a96ff117ef7d6a"
+      },
+      "preview": {
+        "schema": "die.factory-asset.pattern-preview.v1",
+        "path": "D:\\FACTORY_ASSET\\canaries\\FA-032\\shopping-bag-neutral-diamonds\\pass-a\\preview.png",
+        "format": "PNG",
+        "sha256": "895d665227c20f5c2377deb2c8af45b22f1ca06011ebc67e78291c67cb72ee02",
+        "bytes": 3835,
+        "dimensions": [
+          384,
+          384
+        ],
+        "repeat": [
+          3,
+          3
+        ],
+        "source_master_sha256": "31f460f0424eea26d3ff85ce9e1e41520f986f9699b74d8d328623c679310c9b"
+      }
+    },
+    {
+      "name": "retail-blue-diamonds",
+      "seed": 32002,
+      "tile": [
+        96,
+        96
+      ],
+      "master_sha256": "e6801cf9904703004c79165e8cb8e6f3edc12408cc09ab64cfe8283255a23eac",
+      "preview_sha256": "9875d8120c1b961be6595f8be1ff3f70be3d35564662f2264fc65b60ef40228a",
+      "path_count": 6,
+      "master_byte_identical": true,
+      "preview_byte_identical": true,
+      "native_receipt": {
+        "schema": "die.factory-asset.native-producer.v1",
+        "kind": "RECEIPT",
+        "job_id": "FA032-PATTERN-002",
+        "idempotency_key": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "producer_class": "PROCEDURAL_VECTOR",
+        "producer_version": "1.0.0",
+        "result": "PASS",
+        "master": {
+          "format": "SVG",
+          "sha256": "e6801cf9904703004c79165e8cb8e6f3edc12408cc09ab64cfe8283255a23eac",
+          "bytes": 560,
+          "native_editable": true,
+          "generated_by_native_producer": true,
+          "conversion_from_raster": false,
+          "lineage_sha256_required": true
+        },
+        "deterministic_receipt_sha256": "d184b33c944a398f6ec4b158f14aa238b8bce0fe32d5d13857bc6cf16ea44dbb"
+      },
+      "preview": {
+        "schema": "die.factory-asset.pattern-preview.v1",
+        "path": "D:\\FACTORY_ASSET\\canaries\\FA-032\\retail-blue-diamonds\\pass-a\\preview.png",
+        "format": "PNG",
+        "sha256": "9875d8120c1b961be6595f8be1ff3f70be3d35564662f2264fc65b60ef40228a",
+        "bytes": 3528,
+        "dimensions": [
+          384,
+          384
+        ],
+        "repeat": [
+          4,
+          4
+        ],
+        "source_master_sha256": "e6801cf9904703004c79165e8cb8e6f3edc12408cc09ab64cfe8283255a23eac"
+      }
+    }
+  ],
+  "acceptance": {
+    "seeded_stable_hashes": true,
+    "editable_vector_tiles": true,
+    "conversion_from_raster": false,
+    "preview_outputs": 2,
+    "embedded_raster_only_false_success": false
+  },
+  "validation": "249/249 PASS",
+  "unblocked": [
+    "FA-033"
+  ]
+}

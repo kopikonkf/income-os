@@ -1,0 +1,87 @@
+{
+  "schema": "factory-asset.motion-producer-contract-receipt.v1",
+  "task_id": "FA-040",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "schema_artifact": "company/factory-asset/schemas/motion-composition.schema.json",
+  "renderer_boundary": "company/factory-asset/lib/motion_contract.py",
+  "fixture_plan": "company/factory-asset/fixtures/motion-composition/fixture-plan.v1.json",
+  "fixtures": [
+    {
+      "name": "shopping-bag-bounce-mp4",
+      "composition_sha256": "7560dd4fe0ab48593cf4c7a9f05f763e49ef004b51eb47d0d2b2487b56f54677",
+      "duration_seconds": 6,
+      "fps": 30,
+      "frame_count": 180,
+      "dimensions": [
+        1080,
+        1080
+      ],
+      "renderer": {
+        "renderer_id": "REMOTION",
+        "renderer_version": "1.0.0"
+      },
+      "video": {
+        "container": "MP4",
+        "codec": "H264",
+        "pixel_format": "YUV420P"
+      },
+      "audio_policy": "NONE",
+      "native_request_idempotency_key": "b242892287755ca71e33420a77143e68a5f586aa18f35cf22939a41824e5c22d",
+      "semantic_mode": "ANIMATION",
+      "native_representation": "TIMED_FRAMES",
+      "conversion_from_raster": false
+    },
+    {
+      "name": "shopping-bag-slide-mov",
+      "composition_sha256": "382aeac196361a9da6e243ead8962277c84d6c1484d41bf54125e2ef6293c226",
+      "duration_seconds": 4,
+      "fps": 24,
+      "frame_count": 96,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "renderer": {
+        "renderer_id": "REMOTION",
+        "renderer_version": "1.0.0"
+      },
+      "video": {
+        "container": "MOV",
+        "codec": "PRORES_422",
+        "pixel_format": "YUV422P10LE"
+      },
+      "audio_policy": "SILENT_TRACK",
+      "native_request_idempotency_key": "f38942c3b1179268ad8b401e40097d02f6ae2def37710dcf40273b48a6c003ba",
+      "semantic_mode": "ANIMATION",
+      "native_representation": "TIMED_FRAMES",
+      "conversion_from_raster": false
+    }
+  ],
+  "contract_invariants": [
+    "semantic_mode=ANIMATION",
+    "native_representation=TIMED_FRAMES",
+    "conversion_from_raster=false",
+    "frame_count=duration*fps",
+    "renderer id/version pinned",
+    "container/codec/pixel format pinned",
+    "audio policy pinned",
+    "seed pinned",
+    "temporal change required"
+  ],
+  "negative_plan": [
+    "frame_count mismatch",
+    "non-integral duration x fps",
+    "PNG/raster conversion masquerade",
+    "unsupported codec/container/pixel format",
+    "no temporal change",
+    "duplicate layer id",
+    "out-of-range keyframe"
+  ],
+  "renderer_execution_performed": false,
+  "validation": "258/258 PASS",
+  "unblocked": [
+    "FA-041"
+  ]
+}
