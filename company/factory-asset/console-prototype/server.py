@@ -10,8 +10,26 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[3]
 STATIC_ROOT = Path(__file__).resolve().parent
+
+
+def _resolve_factory_root(static_root: Path = STATIC_ROOT) -> Path:
+    candidates = []
+    try:
+        candidates.append(static_root.parents[2])
+    except IndexError:
+        pass
+    candidates.append(static_root.parent)
+    for candidate in candidates:
+        marker = candidate / "company/factory-asset/lib/blueprint_compiler.py"
+        if marker.is_file():
+            return candidate
+    raise RuntimeError(
+        "Factory Console runtime support tree not found. Expected company/factory-asset/lib under repository root or mirror root."
+    )
+
+
+ROOT = _resolve_factory_root()
 
 
 def _load_module(name: str, path: Path):
