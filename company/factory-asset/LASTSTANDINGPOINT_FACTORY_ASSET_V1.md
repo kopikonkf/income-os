@@ -419,3 +419,8 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Queue UI now exposes an explicit synthetic E2E trigger through `/api/synthetic/e2e`.
 - One request proves policy/capacity routing, retry -> success, crash RUNNING -> READY, content-addressed output ingestion, sanitized observability and zero false success.
 - Live provider calls remain zero. Regression 243/243 PASS.
+
+
+### FA-032 — DONE / PASS — procedural pattern native producer
+- Seeded recipes generate editable SVG native tiles and deterministic tiled PNG previews; same request is byte-identical across reruns.
+- Raster masquerade/unknown parameters fail closed; cancellation yields typed FA-031 receipt. Regression 249/249 PASS. `FA-033` is READY.

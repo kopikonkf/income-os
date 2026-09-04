@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "5.4-fa-c009-console-core-synthetic-e2e",
+  "revision": "5.5-fa032-procedural-pattern-native-producer",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -993,9 +993,11 @@
       "depends_on": [
         "FA-031"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Procedural SVG pattern producer with deterministic fixtures",
-      "acceptance": "Seeded recipes generate editable vector tiles as native masters with stable hashes, explicit parameters, preview output and no embedded-raster-only false success."
+      "acceptance": "Seeded recipes generate editable vector tiles as native masters with stable hashes, explicit parameters, preview output and no embedded-raster-only false success.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: seeded procedural SCATTERED_DIAMONDS recipes generate deterministic editable SVG native masters plus tiled PNG previews. Same request is byte-identical across reruns; seed changes alter master hash; FA-031 native receipt validates; unknown/raster injection and wrong producer class fail closed; cancellation emits typed receipt without master. Regression 249/249 PASS."
     },
     {
       "id": "FA-033",
@@ -1006,7 +1008,7 @@
       "depends_on": [
         "FA-032"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Pattern QA suite and compatibility receipts",
       "acceptance": "Fixtures prove seamless edges, repeat bounds, editable paths, renderability and preview consistency; broken seams and raster masquerades fail closed."
     },
