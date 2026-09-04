@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "4.0-fa-c007-provider-dashboard",
+  "revision": "4.1-fa021-raster-worker",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -821,9 +821,11 @@
       "depends_on": [
         "FA-020"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Raster worker for PNG to JPEG, WebP and TIFF with tests",
-      "acceptance": "Pinned recipes produce decodable outputs, handle alpha explicitly, never overwrite masters and return typed receipts."
+      "acceptance": "Pinned recipes produce decodable outputs, handle alpha explicitly, never overwrite masters and return typed receipts.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: deterministic Pillow raster worker produces JPEG/WebP/TIFF/PNG derivatives with explicit alpha policy, master-hash pinning, overwrite protection, decode/magic/hash verification and typed derivative receipts. Same recipe/input yields byte-identical output. Regression 194/194 PASS."
     },
     {
       "id": "FA-022",
@@ -834,7 +836,7 @@
       "depends_on": [
         "FA-021"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "PDF/preview recipe worker and tests",
       "acceptance": "PDF and preview outputs reopen/render correctly, preserve dimensions/aspect policy and have deterministic receipts."
     },

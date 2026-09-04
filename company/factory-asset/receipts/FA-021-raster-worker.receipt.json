@@ -1,0 +1,27 @@
+{
+  "schema": "factory-asset.raster-worker-receipt.v1",
+  "task_id": "FA-021",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact": "company/factory-asset/lib/raster_derivative.py",
+  "formats": [
+    "JPEG",
+    "WEBP",
+    "TIFF",
+    "PNG"
+  ],
+  "guards": [
+    "master hash pinned",
+    "master overwrite forbidden",
+    "JPEG alpha requires FLATTEN_WHITE",
+    "decode reopen",
+    "magic/format verify",
+    "receipt schema"
+  ],
+  "deterministic_bytes": true,
+  "validation": "194/194 PASS",
+  "unblocked": [
+    "FA-022"
+  ]
+}
