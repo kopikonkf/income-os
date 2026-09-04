@@ -536,3 +536,10 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Listing alias is seed-noun + semantic-mode + short active-master hash; metadata/submission-fields sidecars include title/description/keywords/AI disclosure. Immutable masters are not renamed.
 - Binary IPTC/XMP injection is explicitly not claimed; follow-up FA-141 added after FA-140.
 - Telegram milestones are idempotent and durable postproduction states are resumable.
+
+
+### FA-140 — DONE / PASS — Factory orchestration v2 synthetic acceptance
+- Provider-original PNG and JPEG both traverse Factory v2 to WAITING_FOUNDER_QC with human-friendly listing filenames.
+- Native Pattern SVG/PNG and Motion Engine MP4 routes accepted; EPS remains uncertified.
+- Cognition reuse/escalation, conditional upscale/no-op, QA, rights signals, metadata/package readiness, Telegram, crash/retry and fail-closed controls pass with zero live provider/network calls.
+- FA-141 becomes READY for binary IPTC/XMP injection/read-back; current metadata remains sidecar/submission-fields only.
