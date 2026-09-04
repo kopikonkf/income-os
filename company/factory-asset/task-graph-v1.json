@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "6.9-fa135-upscale-recovery",
+  "revision": "7.0-fa138-postproduction-state-machine",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2111,9 +2111,11 @@
         "FA-136",
         "FA-137"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Durable postproduction state machine from ARTIFACT_CREATED to WAITING_FOUNDER_QC",
-      "acceptance": "Autonomous order is ARTIFACT_CREATED -> MASTER_VALIDATED -> UPSCALE_DECIDED -> DERIVATIVES_READY -> TECHNICAL_QA_PASS -> RIGHTS_SIGNAL_PASS_OR_REVIEW -> METADATA_READY -> PACKAGE_READY -> WAITING_FOUNDER_QC. WAITING_FOUNDER_QC cannot be reached early; every failure is typed and lineage-preserving."
+      "acceptance": "Autonomous order is ARTIFACT_CREATED -> MASTER_VALIDATED -> UPSCALE_DECIDED -> DERIVATIVES_READY -> TECHNICAL_QA_PASS -> RIGHTS_SIGNAL_PASS_OR_REVIEW -> METADATA_READY -> PACKAGE_READY -> WAITING_FOUNDER_QC. WAITING_FOUNDER_QC cannot be reached early; every failure is typed and lineage-preserving.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: durable atomic postproduction state machine enforces exact ARTIFACT_CREATED->MASTER_VALIDATED->UPSCALE_DECIDED->DERIVATIVES_READY->TECHNICAL_QA_PASS->RIGHTS_SIGNAL_PASS_OR_REVIEW->METADATA_READY->PACKAGE_READY->WAITING_FOUNDER_QC order. Exact source/active master and derivative/metadata/package hash lineage is enforced; FA-135 upscale may change active master only via receipt; stale revisions, event collisions and state skipping fail closed; rights review cannot bypass package; typed failure/retry journal preserves lineage; final state is PARKED_HUMAN_GATE, not QC completion."
     },
     {
       "id": "FA-139",
