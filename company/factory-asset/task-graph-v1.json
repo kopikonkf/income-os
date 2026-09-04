@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "4.6-fa027-trace-fallback",
+  "revision": "4.7-fa028-package-composer",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -931,9 +931,11 @@
         "FA-026",
         "FA-027"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Marketplace package composer and manifest tests",
-      "acceptance": "Packages include exact derivatives, previews, metadata/rights references and compatibility receipts; no upload/publication action exists."
+      "acceptance": "Packages include exact derivatives, previews, metadata/rights references and compatibility receipts; no upload/publication action exists.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: deterministic marketplace dry-run package composer copies exact compatible derivatives into hash-addressed package paths, records recipe/receipt plus metadata/rights/compatibility references, keeps semantic asset count separate from derivative count and contains no upload/publication action. Regression 224/224 PASS."
     },
     {
       "id": "FA-029",
