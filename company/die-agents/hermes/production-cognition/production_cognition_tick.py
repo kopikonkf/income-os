@@ -130,14 +130,35 @@ def write_receipt(workspace:Path,kind:str,req:dict,artifact:dict,transport_out:d
  rec={'schema':'die.production.cognition-receipt.v1','kind':kind,'task_id':req['task_id'],'request_id':req['request_id'],'principal_id':req['target_principal_id'],'artifact_id':artifact_id,'artifact_sha256':csha(artifact),'transport_receipt_ref':str(tpath),'transport_receipt_sha256':sha_bytes(tpath.read_bytes()),'validation_ref':str(vpath),'validation_sha256':sha_bytes(vpath.read_bytes()),'status':'VALID','authority_effect':'NONE','recorded_at':now()}
  schema=json.loads(RECEIPT_SCHEMA.read_text()); jsonschema.Draft202012Validator(schema,format_checker=jsonschema.FormatChecker()).validate(rec); p=recdir/f"{req['request_id']}.receipt.json"; atomic_json(p,rec); return p
 
-def ensure_request(p:Path,v:dict):
+def ensure_request(p:Path,v:dict,*,response_path:Path|None=None,transport_receipt_path:Path|None=None):
  if p.exists():
   old=read_json(p)
-  # created/expires may differ on regenerated state; a sent request is immutable.
-  for k in ['schema','company_instance_id','request_id','task_id','action_type','target_principal_id','thread_generation','prompt','expected_response_schema','repository_sha','evidence_refs']:
-   if old.get(k)!=v.get(k):raise RuntimeError('E_REQUEST_IMMUTABLE_DRIFT')
-  return old
+  identity=['schema','company_instance_id','request_id','task_id','action_type','target_principal_id','expected_response_schema']
+  for k in identity:
+   if old.get(k)!=v.get(k):raise RuntimeError('E_REQUEST_IDENTITY_DRIFT')
+  context=['thread_generation','prompt','repository_sha','evidence_refs']
+  if all(old.get(k)==v.get(k) for k in context):return old
+  delivered=(response_path is not None and response_path.exists()) or (transport_receipt_path is not None and transport_receipt_path.exists())
+  if delivered:
+   # Once delivered, the original request remains authoritative even if canon/thread context later advances.
+   return old
+  superseded=p.parent/'superseded'; superseded.mkdir(parents=True,exist_ok=True)
+  old_sha=csha(old); old_repo=str(old.get('repository_sha') or 'unknown')[:12]
+  archive=superseded/f'{p.stem}.{old_repo}.{old_sha[:12]}.json'
+  if not archive.exists():atomic_json(archive,old)
+  atomic_json(p,v); return v
  atomic_json(p,v); return v
+
+def principal_transport_receipt(req:dict[str,Any])->Path:
+ principal=req.get('target_principal_id')
+ if principal==DIV:return Path('/var/lib/die/division01/cognition-receipts')/f"{req['request_id']}.json"
+ if principal==EXEC:return Path('/var/lib/die/executive/cognition-receipts')/f"{req['request_id']}.json"
+ raise RuntimeError('E_COGNITION_PRINCIPAL_RECEIPT_ROOT')
+
+def run_or_reuse_transport(node:str,transport:Path,reqp:Path,resp:Path,req:dict[str,Any])->dict[str,Any]:
+ trp=principal_transport_receipt(req)
+ if resp.is_file() and trp.is_file():return {'status':'REUSED','receipt_ref':str(trp)}
+ return run_transport(node,transport,reqp,resp)
 
 def fixed_lock(workspace:Path,bp:dict,review:dict,author_receipt:Path,review_receipt:Path)->Path:
  p=workspace/'blueprint.lock.json'; v={'schema':'die.production.fixed-blueprint-lock.v1','task_id':workspace.name,'blueprint_id':bp['blueprint_id'],'blueprint_sha256':csha(bp),'executive_review_id':review['review_id'],'executive_review_sha256':csha(review),'author_receipt_sha256':sha_bytes(author_receipt.read_bytes()),'review_receipt_sha256':sha_bytes(review_receipt.read_bytes()),'locked_at':now(),'authority_effect':'NONE'}; atomic_json(p,v); return p
@@ -166,7 +187,7 @@ def tick(args)->dict[str,Any]:
   kind='BP_REVISION' if stage=='NEED_REVISION' else 'BP_AUTHOR'; idx=(revision*10+attempt) if stage=='NEED_REVISION' else attempt
   rid=request_id(task,kind,idx); prior=read_json(cogn/'blueprint.author.json') if stage=='NEED_REVISION' else None; review=read_json(cogn/'blueprint.review.json') if stage=='NEED_REVISION' else None
   prompt=author_prompt(rid,task,repo_sha,snap,revision=revision,prior=prior,review=review)
-  req=envelope(rid=rid,task=task,action='PRODUCTION_BLUEPRINT_REVISE' if stage=='NEED_REVISION' else 'PRODUCTION_BLUEPRINT_AUTHOR',target=DIV,prompt=prompt,response_schema='die.production.family-blueprint.v1',repo_sha=repo_sha,evidence=[{'ref':str(snap_path),'sha256':csha(snap)}]+([{'ref':str(cogn/'blueprint.review.json'),'sha256':csha(review)}] if review else [])); reqp=outbox/f'{rid}.json'; req=ensure_request(reqp,req); resp=responses/f'{rid}.txt'; tr=run_transport(args.node,Path(args.transport),reqp,resp); parsed=parse_response(resp.read_text(encoding='utf-8'))
+  req=envelope(rid=rid,task=task,action='PRODUCTION_BLUEPRINT_REVISE' if stage=='NEED_REVISION' else 'PRODUCTION_BLUEPRINT_AUTHOR',target=DIV,prompt=prompt,response_schema='die.production.family-blueprint.v1',repo_sha=repo_sha,evidence=[{'ref':str(snap_path),'sha256':csha(snap)}]+([{'ref':str(cogn/'blueprint.review.json'),'sha256':csha(review)}] if review else [])); reqp=outbox/f'{rid}.json'; resp=responses/f'{rid}.txt'; trp=principal_transport_receipt(req); req=ensure_request(reqp,req,response_path=resp,transport_receipt_path=trp); tr=run_or_reuse_transport(args.node,Path(args.transport),reqp,resp,req); parsed=parse_response(resp.read_text(encoding='utf-8'))
   if parsed.get('schema')=='die.cognition.blocked.v1':
    be=validate_blocked_response(parsed,req)
    if be: raise RuntimeError('E_BLOCKED_RESPONSE_BINDING:'+','.join(be))
@@ -175,7 +196,7 @@ def tick(args)->dict[str,Any]:
   if val['status']!='PASS': attempt+=1; state['author_attempt']=attempt; state['stage']='NEED_REVISION' if stage=='NEED_REVISION' else 'NEED_AUTHOR'; state['history'].append({'at':now(),'event':'AUTHOR_INVALID','request_id':rid,'errors':val['errors'][:10]}); atomic_json(statep,state); return {'schema':'die.production.cognition-tick.v1','status':'RETRY','task_id':task,'stage':state['stage'],'errors':val['errors'][:10]}
   rec=write_receipt(workspace,'BLUEPRINT_AUTHOR',req,parsed,tr,val); state['stage']='NEED_REVIEW'; state['author_attempt']=0; state['latest_author_receipt']=str(rec); state['history'].append({'at':now(),'event':'AUTHOR_VALID','request_id':rid,'artifact_sha256':csha(parsed),'receipt':str(rec)}); atomic_json(statep,state); return {'schema':'die.production.cognition-tick.v1','status':'ADVANCED','task_id':task,'from':stage,'to':'NEED_REVIEW','request_id':rid}
  if stage=='NEED_REVIEW':
-  bp=read_json(cogn/'blueprint.author.json'); rid=request_id(task,'BP_REVIEW',revision); prompt=review_prompt(rid,task,repo_sha,bp); req=envelope(rid=rid,task=task,action='PRODUCTION_BLUEPRINT_REVIEW',target=EXEC,prompt=prompt,response_schema='die.production.family-blueprint-review.v1',repo_sha=repo_sha,evidence=[{'ref':str(cogn/'blueprint.author.json'),'sha256':csha(bp)}]); reqp=outbox/f'{rid}.json'; req=ensure_request(reqp,req); resp=responses/f'{rid}.txt'; tr=run_transport(args.node,Path(args.transport),reqp,resp); parsed=parse_response(resp.read_text(encoding='utf-8'))
+  bp=read_json(cogn/'blueprint.author.json'); rid=request_id(task,'BP_REVIEW',revision); prompt=review_prompt(rid,task,repo_sha,bp); req=envelope(rid=rid,task=task,action='PRODUCTION_BLUEPRINT_REVIEW',target=EXEC,prompt=prompt,response_schema='die.production.family-blueprint-review.v1',repo_sha=repo_sha,evidence=[{'ref':str(cogn/'blueprint.author.json'),'sha256':csha(bp)}]); reqp=outbox/f'{rid}.json'; resp=responses/f'{rid}.txt'; trp=principal_transport_receipt(req); req=ensure_request(reqp,req,response_path=resp,transport_receipt_path=trp); tr=run_or_reuse_transport(args.node,Path(args.transport),reqp,resp,req); parsed=parse_response(resp.read_text(encoding='utf-8'))
   if parsed.get('schema')=='die.cognition.blocked.v1':
    be=validate_blocked_response(parsed,req)
    if be: raise RuntimeError('E_BLOCKED_RESPONSE_BINDING:'+','.join(be))
