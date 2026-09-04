@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "7.3-fa140-factory-orchestration-v2-acceptance",
+  "revision": "7.4-fa140a-linux-runtime-live",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2177,9 +2177,11 @@
       "depends_on": [
         "FA-140"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Pinned Factory runtime venv, safe cognition request supersession/reuse, non-blocking rights-review parking and live PRODSEED000025 recovery receipt",
-      "acceptance": "Dedicated Linux Factory Python imports pinned runtime dependencies; delivered cognition requests remain immutable/reusable while unsent stale requests are atomically archived and superseded; PRODSEED000025 escapes E_REQUEST_IMMUTABLE_DRIFT without losing accepted author lineage; unresolved rights review parks without blocking future seed cadence; exact-hash complete rights observation resumes the same card; no provider/publication false success."
+      "acceptance": "Dedicated Linux Factory Python imports pinned runtime dependencies; delivered cognition requests remain immutable/reusable while unsent stale requests are atomically archived and superseded; PRODSEED000025 escapes E_REQUEST_IMMUTABLE_DRIFT without losing accepted author lineage; unresolved rights review parks without blocking future seed cadence; exact-hash complete rights observation resumes the same card; no provider/publication false success.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: live Linux Factory v2 runtime accepted on PRODSEED000025. Dedicated pinned Factory Python active through stable Hermes cron shim; cognition recovered immutable drift, frozen same-request generation and Runtime MCP outage via fresh request attempts plus sealed-envelope fallback. Headphones produced real MUXIA original, RealESRGAN 6144x4096 active master, JPEG/WebP QA PASS and metadata, then fail-closed at unavailable rights detectors as WAITING_FOUNDER_RIGHTS_REVIEW. A subsequent cadence tick started PRODSEED000035 tree, proving parked rights review no longer blocks independent production."
     }
   ],
   "windows_oauth_proof_levels": {

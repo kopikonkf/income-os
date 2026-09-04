@@ -543,3 +543,10 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Native Pattern SVG/PNG and Motion Engine MP4 routes accepted; EPS remains uncertified.
 - Cognition reuse/escalation, conditional upscale/no-op, QA, rights signals, metadata/package readiness, Telegram, crash/retry and fail-closed controls pass with zero live provider/network calls.
 - FA-141 becomes READY for binary IPTC/XMP injection/read-back; current metadata remains sidecar/submission-fields only.
+
+
+### FA-140A — DONE / PASS — Linux Factory v2 live activation and production recovery
+- Dedicated pinned Factory Python and stable Hermes cron shim are live.
+- PRODSEED000025 recovered from immutable drift, frozen cognition transport and Runtime MCP outage; Executive revision converged NO_VETO.
+- Live headphones artifact -> RealESRGAN 6144x4096 -> JPEG/WebP derivative QA -> metadata succeeded. Rights detectors unavailable correctly park at WAITING_FOUNDER_RIGHTS_REVIEW.
+- Next direct production tick started PRODSEED000035 tree, proving human rights-review parking no longer blocks cadence.
