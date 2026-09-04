@@ -3499,3 +3499,17 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Graph delta: FA-012 DONE; FA-013 READY; FA-014 READY.
 - Next highest-priority READY Linux leaf: FA-013.
 
+
+
+### FA-021 — DONE / PASS — Linux deterministic raster derivative worker (2026-09-04)
+
+- Base origin/main: `f9b591c829bafe341e2f5c54cc2dc8f2482db09b`.
+- Direct Codex -> SSH -> Linux isolated checkout: `/home/kopiko/die-worktrees/fa021-manual-20260904`; branch `codex/fa-021-raster-worker-20260904`.
+- PNG -> JPEG/WebP/TIFF pinned recipes, explicit alpha, verified decode/magic/dimensions/hash, atomic publication and immutable master/replay guards.
+- Dependency setup is confined to checkout-local `.venv-fa021`; no system or production runtime change.
+- Typed conversion receipts retain `FAIL/COMPATIBILITY_UNKNOWN` until separate package compatibility acceptance; no false package PASS.
+- Linux acceptance: focused 36/36; full Factory 195/195; one-canon pytest 6/6; validator 11/11; zero high-confidence secret hits; diff-check PASS.
+- Acceptance and command evidence: `company/factory-asset/receipts/FA-021-raster-worker.receipt.json` and `FA-021-linux-validation.json`.
+- Only FA-021 moves READY -> DONE in this change. No dependent node is unlocked or advanced; other graph state is unchanged.
+- Any other graph node started: No.
+- Next already-READY eligible node after this change: FA-023, information only. STOP.

@@ -1,0 +1,34 @@
+{
+  "task_id": "FA-021",
+  "host": "administrator / 157.20.32.166",
+  "worktree": "/home/kopiko/die-worktrees/fa021-manual-20260904",
+  "base_sha": "f9b591c829bafe341e2f5c54cc2dc8f2482db09b",
+  "recorded_at": "2026-09-04T03:18:03.717141+00:00",
+  "commands": [
+    {
+      "command": ".venv-fa021/bin/python -m pytest -q company/factory-asset/tests/test_raster_derivative.py",
+      "exit_code": 0,
+      "output": "....................................                                     [100%]\n36 passed in 1.94s\n"
+    },
+    {
+      "command": ".venv-fa021/bin/python -m pytest -q company/factory-asset/tests",
+      "exit_code": 0,
+      "output": "........................................................................ [ 36%]\n........................................................................ [ 73%]\n...................................................                      [100%]\n195 passed in 5.17s\n"
+    },
+    {
+      "command": ".venv-fa021/bin/python -m pytest -q bridge/tests/test_one_canon_validator_v1.py",
+      "exit_code": 0,
+      "output": "......                                                                   [100%]\n6 passed in 1.34s\n"
+    },
+    {
+      "command": ".venv-fa021/bin/python company/scripts/validate_one_canon.py --root .",
+      "exit_code": 0,
+      "output": "{\n  \"schema\": \"die.one-canon-validation-result.v1\",\n  \"status\": \"PASS\",\n  \"root\": \"/home/kopiko/die-worktrees/fa021-manual-20260904\",\n  \"checks_total\": 11,\n  \"checks_passed\": 11,\n  \"checks_failed\": 0,\n  \"results\": [\n    {\n      \"name\": \"repo_identity\",\n      \"ok\": true,\n      \"detail\": \"git_root=/home/kopiko/die-worktrees/fa021-manual-20260904; require_clean=False\"\n    },\n    {\n      \"name\": \"canonical_paths\",\n      \"ok\": true,\n      \"detail\": \"canonical paths present; legacy Atlas absent\"\n    },\n    {\n      \"name\": \"component_registry\",\n      \"ok\": true,\n      \"detail\": \"components=9\"\n    },\n    {\n      \"name\": \"path_root_separation\",\n      \"ok\": true,\n      \"detail\": \"{\\\"DIE_CONFIG_ROOT\\\": \\\"/etc/die\\\", \\\"DIE_HOME\\\": \\\"/srv/die\\\", \\\"DIE_INSTALL_ROOT\\\": \\\"/opt/die\\\", \\\"DIE_STATE_ROOT\\\": \\\"/var/lib/die\\\", \\\"MUXIA_ROOT\\\": \\\"/var/lib/muxia\\\"}\"\n    },\n    {\n      \"name\": \"company_forbidden_paths\",\n      \"ok\": true,\n      \"detail\": \"forbidden_company_paths=0\"\n    },\n    {\n      \"name\": \"legacy_runtime_boundary\",\n      \"ok\": true,\n      \"detail\": \"legacy_state_allowlist=15; tracked_workspaces=0\"\n    },\n    {\n      \"name\": \"migration_boundaries\",\n      \"ok\": true,\n      \"detail\": \"Architect deferred; OAUTH separate; Aether external; task ordering intact\"\n    },\n    {\n      \"name\": \"atlas_canon\",\n      \"ok\": true,\n      \"detail\": \"Atlas canonical path singular in operational references\"\n    },\n    {\n      \"name\": \"object_snapshot\",\n      \"ok\": true,\n      \"detail\": \"files=22\"\n    },\n    {\n      \"name\": \"oauth_snapshot\",\n      \"ok\": true,\n      \"detail\": \"files=6\"\n    },\n    {\n      \"name\": \"company_secret_scan\",\n      \"ok\": true,\n      \"detail\": \"high_confidence_secret_hits=0\"\n    }\n  ]\n}\n"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "output": ""
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "schema": "die.factory-asset.raster-worker-acceptance.receipt.v1",
+  "task_id": "FA-021",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "repository_base_sha": "f9b591c829bafe341e2f5c54cc2dc8f2482db09b",
+  "execution": {
+    "lane": "LINUX_HOURLY_BUILD",
+    "trigger": "FOUNDER_REQUESTED_SINGLE_MANUAL_RESUME",
+    "transport": "DIRECT_CODEX_SSH",
+    "host": "administrator / 157.20.32.166",
+    "user": "kopiko",
+    "ssh_port": 25013,
+    "worktree": "/home/kopiko/die-worktrees/fa021-manual-20260904",
+    "branch": "codex/fa-021-raster-worker-20260904"
+  },
+  "eligibility": {
+    "status_at_selection": "READY",
+    "priority": 31,
+    "dependencies": {
+      "FA-020": "DONE"
+    },
+    "dependency_receipt": "company/factory-asset/receipts/FA-020-derivative-contracts.receipt.json"
+  },
+  "acceptance": {
+    "focused_tests": "36 passed",
+    "factory_regression": "195 passed",
+    "one_canon_tests": "6 passed",
+    "one_canon_validator": "11/11 PASS; high_confidence_secret_hits=0",
+    "diff_check": "PASS",
+    "command_evidence": "company/factory-asset/receipts/FA-021-linux-validation.json"
+  },
+  "criteria_evidence": {
+    "pinned_recipes_decodable": "JPEG/WebP/TIFF magic, decode, dimensions, byte count and hashes verified; repeat bytes match on recorded runtime.",
+    "alpha_explicit": "FLATTEN_WHITE/PRESERVE/FORBID tested, including palette transparency and resized alpha; JPEG preservation rejected.",
+    "masters_immutable": "Master bytes and timestamps unchanged; collisions/corrupt artifacts rejected without overwrite.",
+    "typed_receipts": "Durable FA-020 schema receipts with parent semantic ID and no new semantic identity; CLI errors have codes and no invented artifact.",
+    "idempotency": "Repeated/process replay preserves artifact/receipt/manifest inode and mtime; concurrent same-key work has one creator."
+  },
+  "limitations": [
+    "Conversion completion is distinct from package acceptance: output receipts retain FAIL/COMPATIBILITY_UNKNOWN despite green conversion QA.",
+    "Only explicitly sRGB-tagged PNG without ICC/chromaticity ambiguity; broader ICC/DPI/metadata contract remains FA-023.",
+    "Determinism is bounded to recorded Pillow/codec runtime; no cross-version byte identity claim."
+  ],
+  "dependency_setup": {
+    "scope": "checkout-local .venv-fa021 only",
+    "system_python_mutated": false,
+    "requirements": "company/factory-asset/requirements-raster-worker.txt"
+  },
+  "artifacts": [
+    {
+      "path": "company/factory-asset/lib/raster_derivative.py",
+      "sha256": "db21bcd3e81a233f64048d128b821282c84d9df34a7bde312c4868cb477ceaba"
+    },
+    {
+      "path": "company/factory-asset/bin/derive_raster.py",
+      "sha256": "9bbd600bfac2d6c0c0a8a015660153f259cefae0cf0685203ab782b36029efaa"
+    },
+    {
+      "path": "company/factory-asset/tests/test_raster_derivative.py",
+      "sha256": "2a6f948ccd5541bc24df2d8033a4d7ae2f90b7b9c457ee134569169821fbc67a"
+    },
+    {
+      "path": "company/factory-asset/requirements-raster-worker.txt",
+      "sha256": "5a2594a8b950f0fed1d1bfc621ca36eb05c0e02abaeff80e72285d63d017dff3"
+    },
+    {
+      "path": "company/factory-asset/RASTER_DERIVATIVE_WORKER_V1.md",
+      "sha256": "487e53d744d7e7204be406627f9719e0b155dd3ca9165aebcf0810a14902aadd"
+    },
+    {
+      "path": "company/factory-asset/receipts/FA-021-linux-validation.json",
+      "sha256": "fffe49363394a50c287a06a913d3fda8db6c26095495aee005e79b25036b0e5c"
+    }
+  ],
+  "graph_delta": {
+    "FA-021": "READY -> DONE"
+  },
+  "other_graph_nodes_changed": [],
+  "any_other_graph_node_started": false,
+  "next_eligible_node_information_only": "FA-023",
+  "authority": {
+    "production_runtime_mutated": false,
+    "windows_live_workspaces_mutated": false,
+    "provider_action": false,
+    "credential_rotation": false,
+    "spend": false,
+    "marketplace_publication": false,
+    "merge_performed": false
+  }
+}

@@ -821,9 +821,11 @@
       "depends_on": [
         "FA-020"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Raster worker for PNG to JPEG, WebP and TIFF with tests",
-      "acceptance": "Pinned recipes produce decodable outputs, handle alpha explicitly, never overwrite masters and return typed receipts."
+      "acceptance": "Pinned recipes produce decodable outputs, handle alpha explicitly, never overwrite masters and return typed receipts.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: deterministic Linux PNG to JPEG/WebP/TIFF worker, explicit alpha, immutable master, atomic verified replay and typed FA-020 receipts. Conversion QA does not claim marketplace compatibility. Focused 36/36, Factory 195/195, one-canon 6/6 and validator 11/11 PASS."
     },
     {
       "id": "FA-022",

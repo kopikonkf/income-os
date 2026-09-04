@@ -1,0 +1,4 @@
+# Isolated FA-021 Linux acceptance environment; no system installation.
+Pillow==11.3.0
+pytest==8.4.2
+jsonschema==4.25.1
