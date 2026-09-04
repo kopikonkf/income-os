@@ -245,11 +245,35 @@ class Handler(SimpleHTTPRequestHandler):
         return
 
 
-def serve(host: str = "127.0.0.1", port: int = 8765) -> None:
+DEFAULT_PORT = 8876
+FALLBACK_PORTS = (8877, 0)
+
+
+def _bind_loopback_server(host: str, preferred_port: int) -> tuple[ThreadingHTTPServer, int, list[tuple[int, str]]]:
+    attempts: list[tuple[int, str]] = []
+    candidates: list[int] = []
+    for candidate in (preferred_port, *FALLBACK_PORTS):
+        if candidate not in candidates:
+            candidates.append(candidate)
+    last_error: OSError | None = None
+    for candidate in candidates:
+        try:
+            server = ThreadingHTTPServer((host, candidate), Handler)
+            return server, int(server.server_port), attempts
+        except OSError as exc:
+            last_error = exc
+            attempts.append((candidate, f"{type(exc).__name__}: {exc}"))
+    assert last_error is not None
+    raise last_error
+
+
+def serve(host: str = "127.0.0.1", port: int = DEFAULT_PORT) -> None:
     if host not in {"127.0.0.1", "localhost"}:
         raise ValueError("Factory Console prototype server is loopback-only")
-    server = ThreadingHTTPServer((host, port), Handler)
-    print(f"Factory Console prototype: http://{host}:{port}/ (loopback-only, no live dispatch)")
+    server, bound_port, attempts = _bind_loopback_server(host, port)
+    for failed_port, reason in attempts:
+        print(f"Factory Console port {failed_port} unavailable; trying fallback. {reason}")
+    print(f"Factory Console prototype: http://{host}:{bound_port}/ (loopback-only, no live dispatch)")
     server.serve_forever()
 
 
