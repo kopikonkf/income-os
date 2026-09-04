@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "7.2-fa139-hermes-orchestration-v2",
+  "revision": "7.3-fa140-factory-orchestration-v2-acceptance",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1517,7 +1517,7 @@
         "FA-109",
         "FA-140"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Factory synthetic load/backpressure harness and benchmark receipt",
       "acceptance": "Thousands of simulated jobs prove bounded queues, fairness, leases, retries, dedupe, restart and disk/backpressure behavior without provider calls."
     },
@@ -1647,7 +1647,7 @@
         "FA-109",
         "FA-140"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/receipts/FA-200-canary-selection.receipt.json",
       "acceptance": "One evidence-supported opportunity is selected through the asset-expression plan with family, semantic mode, producer route, marketplace route, temporal/motion eligibility when relevant, rights posture, quality target and no publication authority."
     },
@@ -2147,10 +2147,12 @@
       "depends_on": [
         "FA-139"
       ],
-      "status": "READY",
+      "status": "DONE",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-140-factory-orchestration-v2-synthetic-acceptance.receipt.json",
-      "acceptance": "Synthetic E2E covers provider-original JPEG and PNG inputs, native pattern SVG and motion MP4 producer paths, cognition reuse/escalation, conditional upscale, derivative planning, QA, IP/brand signals, metadata/package readiness, Telegram milestones, crash/retry and Founder parking with zero live-provider calls and zero false success."
+      "acceptance": "Synthetic E2E covers provider-original JPEG and PNG inputs, native pattern SVG and motion MP4 producer paths, cognition reuse/escalation, conditional upscale, derivative planning, QA, IP/brand signals, metadata/package readiness, Telegram milestones, crash/retry and Founder parking with zero live-provider calls and zero false success.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: composed zero-network Factory v2 synthetic acceptance covers actual provider-original PNG+JPEG raster E2E to WAITING_FOUNDER_QC with human-friendly listing aliases; native pattern generates editable SVG+PNG through accepted pattern route (EPS remains uncertified); motion passes temporal-value gate and accepted Motion Engine v0.1 MP4 route; cognition reuse/escalation, conditional upscale/no-op, derivative QA, rights/IP signals, metadata/package readiness, Telegram milestones, crash/retry and fail-closed controls all pass with zero live-provider calls and zero false success."
     },
     {
       "id": "FA-141",
@@ -2162,7 +2164,7 @@
         "FA-137",
         "FA-140"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Hash-safe metadata injector/read-back engine for supported marketplace delivery formats",
       "acceptance": "For supported delivery formats, title/description/keywords/AI-disclosure are embedded only into packaging derivatives, never immutable masters; output hash is re-pinned, metadata is read back and compared byte-for-byte/field-for-field to the canonical metadata bundle, unsupported formats remain sidecar-only, semantic asset count stays one, and any injection/read-back mismatch blocks package."
     }
