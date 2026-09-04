@@ -528,3 +528,11 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Motion requires evidence-supported noun x product expression x temporal verb x buyer utility plus meaningful change over time.
 - Static-equivalent/decorative motion -> STATIC_ONLY; incomplete/unmodeled -> RESEARCH; noun alone never authorizes animation.
 - FA-139 becomes READY when all canonical dependencies are DONE.
+
+
+### FA-139 — DONE / PASS — Hermes Factory orchestration v2 wiring
+- Live runtime no longer hardcodes `final/asset.png` or jumps directly from ARTIFACT_CREATED to Founder QC.
+- Legacy L0 raster production bridges to Asset Expression/Blueprint v2 and then runs FA-131/135/132/024/136/137/138.
+- Listing alias is seed-noun + semantic-mode + short active-master hash; metadata/submission-fields sidecars include title/description/keywords/AI disclosure. Immutable masters are not renamed.
+- Binary IPTC/XMP injection is explicitly not claimed; follow-up FA-141 added after FA-140.
+- Telegram milestones are idempotent and durable postproduction states are resumable.

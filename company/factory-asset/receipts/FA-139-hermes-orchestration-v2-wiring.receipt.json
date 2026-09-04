@@ -1,0 +1,211 @@
+{
+  "schema": "factory-asset.hermes-orchestration-v2-wiring-receipt.v1",
+  "task_id": "FA-139",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "workspace": "D:\\FACTORY_ASSET\\canaries\\FA-139\\PRODSEEDSYN001",
+  "legacy_bridge": {
+    "expression_plan": "D:\\FACTORY_ASSET\\canaries\\FA-139\\PRODSEEDSYN001\\factory-v2\\asset-expression-plan.json",
+    "asset_blueprint_v2": "D:\\FACTORY_ASSET\\canaries\\FA-139\\PRODSEEDSYN001\\factory-v2\\asset-blueprint-v2.json",
+    "producer_route": {
+      "schema": "die.factory-asset.semantic-producer-dispatch.v1",
+      "result": "DISPATCH_READY",
+      "plan_id": "FAEP-SEED_999001_ISOLATED_OBJECT",
+      "seed_id": "SEED-999001",
+      "seed_noun": "shopping bag",
+      "semantic_asset_id": "FASA-SEED_999001_ISOLATED_OBJECT",
+      "semantic_mode": "ISOLATED_OBJECT",
+      "producer_class": "RASTER_GENERATIVE",
+      "blueprint_id": "FABP-SEED_999001_ISOLATED_OBJECT",
+      "frozen_blueprint_sha256": "45f9ab92a16cc063196f370b8dc512fde3553dad20bef987b4651156bc0dd7da",
+      "native_representation": "RASTER_PIXELS",
+      "master_spec": {
+        "format": "PNG",
+        "width_px": 2000,
+        "height_px": 2000,
+        "color_space": "SRGB",
+        "lineage_sha256_required": true
+      },
+      "marketplace_route": "ADOBE_STOCK",
+      "route_kind": "PROVIDER_ROUTER",
+      "dispatch_adapter": "FA104_PROVIDER_ROUTER",
+      "engine_state": "ACCEPTED",
+      "evidence_refs": [
+        "receipt://FA-W019",
+        "receipt://FA-109"
+      ],
+      "master_generation_mode": "DIRECT_FROM_BLUEPRINT",
+      "post_hoc_conversion_allowed": false,
+      "derivative_planning_stage": "AFTER_VALIDATED_MASTER",
+      "provider_selection_delegated": true,
+      "submission_authority": "FOUNDER_CONTROLLED",
+      "dispatch_key": "dc6e0935dbdad14d8ac82dfbe6df8fac2ce2d1f7af7b266e52ef3245375a66da"
+    },
+    "cognition_provenance": {
+      "schema": "die.factory-asset.cognition-provenance.v1",
+      "result": "LEGACY_AUTHOR_REVIEW_ACCEPTED",
+      "legacy_blueprint_id": "BP-PROD-SYN001",
+      "legacy_blueprint_sha256": "dab5404f09d1579283d26514100b6f6a0d97f266afc16f55265de3d13b1807bf",
+      "asset_blueprint_id": "FABP-SEED_999001_ISOLATED_OBJECT",
+      "repeated_cognition_per_image": false,
+      "division01_worker_authority": false,
+      "executive_worker_authority": false
+    }
+  },
+  "first_pass_without_detector_evidence": {
+    "status": "RIGHTS_REVIEW_REQUIRED",
+    "task_id": "PRODSEEDSYN001",
+    "state": "METADATA_READY",
+    "rights": "REVIEW_REQUIRED",
+    "metadata": "D:\\FACTORY_ASSET\\canaries\\FA-139\\PRODSEEDSYN001\\factory-v2\\metadata.json",
+    "submission_fields": "D:\\FACTORY_ASSET\\canaries\\FA-139\\PRODSEEDSYN001\\factory-v2\\submission-fields.json"
+  },
+  "second_pass_after_exact_hash_rights_observation": {
+    "status": "WAITING_FOUNDER_QC",
+    "task_id": "PRODSEEDSYN001",
+    "listing_path": "D:\\FACTORY_ASSET\\canaries\\FA-139\\PRODSEEDSYN001\\final\\shopping-bag-isolated-object__463ac6d2.jpg",
+    "metadata": "D:\\FACTORY_ASSET\\canaries\\FA-139\\PRODSEEDSYN001\\factory-v2\\metadata.json",
+    "submission_fields": "D:\\FACTORY_ASSET\\canaries\\FA-139\\PRODSEEDSYN001\\factory-v2\\submission-fields.json",
+    "state_path": "D:\\FACTORY_ASSET\\canaries\\FA-139\\PRODSEEDSYN001\\factory-v2\\postproduction-state.json"
+  },
+  "final_artifact": {
+    "schema": "die.production.final-artifact.v2",
+    "task_id": "PRODSEEDSYN001",
+    "seed_noun": "shopping bag",
+    "semantic_asset_id": "FASA-SEED_999001_ISOLATED_OBJECT",
+    "blueprint_id": "FABP-SEED_999001_ISOLATED_OBJECT",
+    "source_master_sha256": "49ec2116d4e0a1145e0507d05f50f3ab42a051405ca2557a9f1e06821cd0ea76",
+    "active_master_sha256": "463ac6d2e1f58591640dd59c8d201095b7b71b44317a24606a4563b3e8c1edf6",
+    "listing_filename": "shopping-bag-isolated-object__463ac6d2.jpg",
+    "listing_path": "D:\\FACTORY_ASSET\\canaries\\FA-139\\PRODSEEDSYN001\\final\\shopping-bag-isolated-object__463ac6d2.jpg",
+    "listing_sha256": "fac7864b17c374380544f2c4646ba44a7515d76318620713705f581ea5aba87e",
+    "metadata_ref": "D:\\FACTORY_ASSET\\canaries\\FA-139\\PRODSEEDSYN001\\factory-v2\\metadata.json",
+    "submission_fields_ref": "D:\\FACTORY_ASSET\\canaries\\FA-139\\PRODSEEDSYN001\\factory-v2\\submission-fields.json",
+    "binary_metadata_injected": false,
+    "package_plan_sha256": "a7f4d6e7637c80b75c90114fe79322272d6ea79ca9578954e66d31378c366320",
+    "founder_qc": "PENDING",
+    "submission_authorized": false,
+    "publication_authorized": false
+  },
+  "metadata": {
+    "schema": "die.factory-asset.metadata-bundle.v1",
+    "blueprint_id": "FABP-SEED_999001_ISOLATED_OBJECT",
+    "semantic_asset_id": "FASA-SEED_999001_ISOLATED_OBJECT",
+    "master_sha256": "463ac6d2e1f58591640dd59c8d201095b7b71b44317a24606a4563b3e8c1edf6",
+    "title": "Shopping Bag - Isolated Object",
+    "description": "Shopping bag created for Compose clean retail product layouts.",
+    "keywords": [
+      "shopping",
+      "bag",
+      "compose",
+      "clean",
+      "retail",
+      "product",
+      "layouts",
+      "isolated",
+      "object"
+    ],
+    "ai_generated": true,
+    "ai_disclosure": "GENERATIVE_AI",
+    "source_class": "GENERATIVE_AI",
+    "derivative_hashes": [
+      {
+        "derivative_id": "ADOBE_JPEG",
+        "format": "JPEG",
+        "purpose": "MARKETPLACE_DELIVERY",
+        "sha256": "fac7864b17c374380544f2c4646ba44a7515d76318620713705f581ea5aba87e"
+      },
+      {
+        "derivative_id": "WEB_PREVIEW",
+        "format": "WEBP",
+        "purpose": "PREVIEW",
+        "sha256": "e8a84ba5d56d78dd6943607c43cea677945aa0fc8953681d1371eccdd67f378a"
+      }
+    ],
+    "listing_filename": "shopping-bag-isolated-object__463ac6d2.jpg",
+    "submission_fields": {
+      "title": "Shopping Bag - Isolated Object",
+      "description": "Shopping bag created for Compose clean retail product layouts.",
+      "keywords": [
+        "shopping",
+        "bag",
+        "compose",
+        "clean",
+        "retail",
+        "product",
+        "layouts",
+        "isolated",
+        "object"
+      ],
+      "ai_disclosure": "GENERATIVE_AI",
+      "filename": "shopping-bag-isolated-object__463ac6d2.jpg"
+    },
+    "binary_metadata_injected": false,
+    "metadata_delivery": "SIDECAR_AND_SUBMISSION_FIELDS",
+    "submission_authority": "FOUNDER_CONTROLLED",
+    "metadata_sha256": "2f5a61df5fc4bc960d7be39a0982fe092ada87349d70781731c674a12c430605"
+  },
+  "submission_fields": {
+    "title": "Shopping Bag - Isolated Object",
+    "description": "Shopping bag created for Compose clean retail product layouts.",
+    "keywords": [
+      "shopping",
+      "bag",
+      "compose",
+      "clean",
+      "retail",
+      "product",
+      "layouts",
+      "isolated",
+      "object"
+    ],
+    "ai_disclosure": "GENERATIVE_AI",
+    "filename": "shopping-bag-isolated-object__463ac6d2.jpg"
+  },
+  "postproduction_final_state": {
+    "state": "WAITING_FOUNDER_QC",
+    "status": "PARKED_HUMAN_GATE",
+    "revision": 9
+  },
+  "telegram": {
+    "kinds": [
+      "PRODUCTION_STARTED",
+      "ARTIFACT_CREATED",
+      "QA_QC_UPDATE",
+      "QA_QC_UPDATE",
+      "WAITING_FOUNDER_QC"
+    ],
+    "ledger_count": 5,
+    "duplicate_final_milestone_suppressed": true,
+    "messages_captured": [
+      "PRODUCTION_STARTED | PRODSEEDSYN001 | seed=shopping bag | seed_id=SEED-999001",
+      "ARTIFACT_CREATED | PRODSEEDSYN001 | file=source-original.png | seed=shopping bag | sha256=49ec2116d4e0...",
+      "QA_QC_UPDATE | PRODSEEDSYN001 | package=PACKAGE_BLOCKED | postproduction_state=METADATA_READY | rights=REVIEW_REQUIRED",
+      "QA_QC_UPDATE | PRODSEEDSYN001 | package=PACKAGE_READY | postproduction_state=METADATA_READY | rights=PASS",
+      "WAITING_FOUNDER_QC | PRODSEEDSYN001 | filename=shopping-bag-isolated-object__463ac6d2.jpg | seed=shopping bag | sha256=fac7864b17c3... | state=WAITING_FOUNDER_QC"
+    ]
+  },
+  "acceptance": {
+    "legacy_raster_bridge_to_asset_v2": "PASS",
+    "frozen_expression_producer_route": "PASS",
+    "provider_original_ingestion": "PASS",
+    "mandatory_postproduction_fsm": "PASS",
+    "rights_missing_stops_before_package": "PASS",
+    "rights_resolution_resumes_same_card": "PASS",
+    "metadata_submission_fields": "PASS",
+    "human_friendly_listing_filename": "PASS",
+    "canonical_master_not_renamed": "PASS",
+    "telegram_milestones": "PASS",
+    "telegram_idempotency": "PASS",
+    "parked_founder_gate_nonblocking_contract": "PASS"
+  },
+  "authority": {
+    "live_provider_call": false,
+    "marketplace_upload": false,
+    "publication": false,
+    "founder_qc_completed": false,
+    "human_rights_clearance": false,
+    "spend_usd": 0
+  }
+}

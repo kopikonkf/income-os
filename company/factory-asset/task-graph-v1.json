@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "7.1-fa130-motion-capability-gate",
+  "revision": "7.2-fa139-hermes-orchestration-v2",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2132,9 +2132,11 @@
         "FA-134",
         "FA-138"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Hermes orchestration v2 runtime wiring, durable Kanban transitions and Telegram milestone receipts",
-      "acceptance": "Hermes consumes deterministic seed preflight, obtains/reuses/challenges Blueprint as policy requires, spawns bounded Worker, routes the frozen expression to the correct producer, ingests the real artifact, drives mandatory postproduction and sends PRODUCTION_STARTED, ARTIFACT_CREATED, QA_QC_UPDATE and WAITING_FOUNDER_QC Telegram milestones. Parked Founder gates never block independent future seed cadence."
+      "acceptance": "Hermes consumes deterministic seed preflight, obtains/reuses/challenges Blueprint as policy requires, spawns bounded Worker, routes the frozen expression to the correct producer, ingests the real artifact, drives mandatory postproduction and sends PRODUCTION_STARTED, ARTIFACT_CREATED, QA_QC_UPDATE and WAITING_FOUNDER_QC Telegram milestones. Parked Founder gates never block independent future seed cadence.",
+      "completed_at": "2026-09-04",
+      "result": "PASS: live Hermes production runtime now routes provider artifacts into Factory orchestration v2 instead of direct asset.png parking. Legacy L0 raster family Blueprints bridge honestly through OBJECT_ATLAS_SEED expression evidence to Asset Blueprint v2 + FA-133 producer routing; provider original remains immutable; FA-131/135/132/024/136/137/138 drive postproduction. Missing rights detector evidence stops at review; exact-hash PASS resumes same card. Human-friendly listing alias uses seed noun + semantic mode + short active-master hash, metadata/submission fields carry title/description/keywords/AI disclosure, Telegram milestones are idempotent, and all durable postproduction states are resumable."
     },
     {
       "id": "FA-140",
@@ -2145,10 +2147,24 @@
       "depends_on": [
         "FA-139"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-140-factory-orchestration-v2-synthetic-acceptance.receipt.json",
       "acceptance": "Synthetic E2E covers provider-original JPEG and PNG inputs, native pattern SVG and motion MP4 producer paths, cognition reuse/escalation, conditional upscale, derivative planning, QA, IP/brand signals, metadata/package readiness, Telegram milestones, crash/retry and Founder parking with zero live-provider calls and zero false success."
+    },
+    {
+      "id": "FA-141",
+      "phase": 4,
+      "track": "FACTORY_ORCHESTRATION",
+      "priority": 70,
+      "title": "Implement binary IPTC/XMP metadata injector and read-back verifier",
+      "depends_on": [
+        "FA-137",
+        "FA-140"
+      ],
+      "status": "BLOCKED",
+      "artifact": "Hash-safe metadata injector/read-back engine for supported marketplace delivery formats",
+      "acceptance": "For supported delivery formats, title/description/keywords/AI-disclosure are embedded only into packaging derivatives, never immutable masters; output hash is re-pinned, metadata is read back and compared byte-for-byte/field-for-field to the canonical metadata bundle, unsupported formats remain sidecar-only, semantic asset count stays one, and any injection/read-back mismatch blocks package."
     }
   ],
   "windows_oauth_proof_levels": {
