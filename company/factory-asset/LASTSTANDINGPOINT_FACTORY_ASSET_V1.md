@@ -522,3 +522,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Source/active master plus derivative/metadata/package hashes are lineage-bound; upscale active-master transition is explicit.
 - State skipping, stale revision, event collision, unresolved rights review and invalid failure resume all fail closed.
 - Final status is PARKED_HUMAN_GATE, not Founder QC completion.
+
+
+### FA-130 — DONE / PASS — motion capability / temporal value gate
+- Motion requires evidence-supported noun x product expression x temporal verb x buyer utility plus meaningful change over time.
+- Static-equivalent/decorative motion -> STATIC_ONLY; incomplete/unmodeled -> RESEARCH; noun alone never authorizes animation.
+- FA-139 becomes READY when all canonical dependencies are DONE.

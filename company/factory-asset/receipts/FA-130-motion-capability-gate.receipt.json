@@ -1,0 +1,151 @@
+{
+  "schema": "factory-asset.motion-capability-gate-receipt.v1",
+  "task_id": "FA-130",
+  "date": "2026-09-04",
+  "status": "DONE",
+  "result": "PASS",
+  "gate": "company/factory-asset/lib/motion_capability.py",
+  "cases": [
+    {
+      "name": "shopping-bag-checkout-completion",
+      "expected": "MOTION_ELIGIBLE",
+      "result": {
+        "schema": "die.factory-asset.motion-capability.v1",
+        "result": "MOTION_ELIGIBLE",
+        "seed_noun": "shopping bag",
+        "product_expression": "Shopping bag filling and settling completion loop",
+        "temporal_verbs": [
+          "fill",
+          "settle",
+          "complete"
+        ],
+        "buyer_utility": "Communicate successful order completion in checkout",
+        "motion_value_kind": "STATE_CHANGE",
+        "meaningful_visual_change": true,
+        "static_equivalent_sufficient": false,
+        "reasons": [
+          "MEANINGFUL_VISUAL_CHANGE",
+          "TEMPORAL_BUYER_VALUE_SUPPORTED"
+        ],
+        "motion_production_authorized": true,
+        "automatic_animation_of_static_asset": false,
+        "decision_sha256": "e1c425dd1142dc9ae743517b2ce0a090c66bb33624379879d8fdf219923422f4"
+      }
+    },
+    {
+      "name": "shopping-bag-photo-static",
+      "expected": "STATIC_ONLY",
+      "result": {
+        "schema": "die.factory-asset.motion-capability.v1",
+        "result": "STATIC_ONLY",
+        "seed_noun": "shopping bag",
+        "product_expression": "Unbranded shopping bag lifestyle photograph",
+        "temporal_verbs": [],
+        "buyer_utility": "Illustrate a reusable shopping promotion",
+        "motion_value_kind": "NONE",
+        "meaningful_visual_change": false,
+        "static_equivalent_sufficient": true,
+        "reasons": [
+          "NO_MEANINGFUL_TEMPORAL_CHANGE"
+        ],
+        "motion_production_authorized": false,
+        "automatic_animation_of_static_asset": false,
+        "decision_sha256": "edcfa8926aced0194843134dae6e5db7cc9dfb0df8e675dc1e3259d8c15fd54e"
+      }
+    },
+    {
+      "name": "motion-idea-without-evidence",
+      "expected": "RESEARCH",
+      "result": {
+        "schema": "die.factory-asset.motion-capability.v1",
+        "result": "RESEARCH",
+        "seed_noun": "shopping bag",
+        "product_expression": "Shopping bag transition concept",
+        "temporal_verbs": [
+          "transition"
+        ],
+        "buyer_utility": "",
+        "motion_value_kind": "STATE_CHANGE",
+        "meaningful_visual_change": null,
+        "static_equivalent_sufficient": null,
+        "reasons": [
+          "MOTION_EVIDENCE_INCOMPLETE"
+        ],
+        "motion_production_authorized": false,
+        "automatic_animation_of_static_asset": false,
+        "decision_sha256": "5a22753f1094583b4df6d354f0f0d3e6876c1b28ca8d3dbfbbcd2f6ce74edf96"
+      }
+    },
+    {
+      "name": "decorative-wiggle-adds-no-value",
+      "expected": "STATIC_ONLY",
+      "result": {
+        "schema": "die.factory-asset.motion-capability.v1",
+        "result": "STATIC_ONLY",
+        "seed_noun": "shopping bag",
+        "product_expression": "Shopping bag decorative wiggle",
+        "temporal_verbs": [
+          "move"
+        ],
+        "buyer_utility": "Decorative still image already communicates the same message",
+        "motion_value_kind": "DECORATIVE_ONLY",
+        "meaningful_visual_change": true,
+        "static_equivalent_sufficient": true,
+        "reasons": [
+          "TEMPORAL_CHANGE_LACKS_BUYER_VALUE"
+        ],
+        "motion_production_authorized": false,
+        "automatic_animation_of_static_asset": false,
+        "decision_sha256": "cf6eba1e5201ea7646df6e0a713bc49e39a845e090123ec3f60cf121d851f28f"
+      }
+    },
+    {
+      "name": "commercially-rejected-motion",
+      "expected": "REJECT",
+      "result": {
+        "schema": "die.factory-asset.motion-capability.v1",
+        "result": "REJECT",
+        "seed_noun": "shopping bag",
+        "product_expression": "Irrelevant forced animation",
+        "temporal_verbs": [
+          "move"
+        ],
+        "buyer_utility": "none",
+        "motion_value_kind": "STATE_CHANGE",
+        "meaningful_visual_change": true,
+        "static_equivalent_sufficient": false,
+        "reasons": [
+          "COMMERCIAL_RELEVANCE_REJECTED"
+        ],
+        "motion_production_authorized": false,
+        "automatic_animation_of_static_asset": false,
+        "decision_sha256": "48da65eba5f3502787a8d80c1691bbd8bb424270731edf74f1843c9964d0f2a4"
+      }
+    }
+  ],
+  "acceptance": {
+    "noun_alone_never_sufficient": "PASS",
+    "product_expression_required": "PASS",
+    "temporal_verb_required": "PASS",
+    "buyer_utility_required": "PASS",
+    "meaningful_visual_change_required": "PASS",
+    "static_equivalent_blocks_motion": "PASS",
+    "unknown_temporal_concept_requires_research": "PASS",
+    "automatic_animation_of_every_static_asset": false
+  },
+  "validation": {
+    "factory_asset_tests": "512 PASS / 2 Linux-only skipped",
+    "python_compile": "PASS",
+    "zero_false_success": true
+  },
+  "authority": {
+    "motion_render_performed": false,
+    "provider_dispatch": false,
+    "marketplace_upload": false,
+    "publication": false,
+    "spend_usd": 0
+  },
+  "unblocked": [
+    "FA-139"
+  ]
+}
