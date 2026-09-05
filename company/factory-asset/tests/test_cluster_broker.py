@@ -50,10 +50,13 @@ const cfg={{clusterId:"fixture",profileId:"fixture-profile",profileDir:root+"/pr
 const b=new ClusterBrokerCore(cfg);
 const st=await b.start();
 const attach=await (await fetch(`http://127.0.0.1:${{st.control_port}}/v1/attach`)).json();
-let secondError="";
-try {{ const fake2={{...fake}}; const b2=new ClusterBrokerCore({{...cfg,driver:fake2}}); await b2.start(); }} catch(e) {{ secondError=String(e.message||e); }}
+let secondError=""; let b2=null;
+try {{ const fake2={{...fake}}; b2=new ClusterBrokerCore({{...cfg,driver:fake2,stateFile:root+"/state2.json"}}); await b2.start(); }} catch(e) {{ secondError=String(e.message||e); }}
+const lockPreservedAfterSecond=fs.existsSync(cfg.lockFile);
+if(b2) await b2.stop();
+const lockPreservedAfterNonOwnerStop=fs.existsSync(cfg.lockFile);
 await b.stop();
-console.log(JSON.stringify({{launchCalls:fake.launchCalls,stopCalls:fake.stopCalls,attach,secondError,lockExists:fs.existsSync(cfg.lockFile),state:JSON.parse(fs.readFileSync(cfg.stateFile,"utf8"))}}));
+console.log(JSON.stringify({{launchCalls:fake.launchCalls,stopCalls:fake.stopCalls,attach,secondError,lockPreservedAfterSecond,lockPreservedAfterNonOwnerStop,lockExists:fs.existsSync(cfg.lockFile),state:JSON.parse(fs.readFileSync(cfg.stateFile,"utf8"))}}));
 '''
         harness.write_text(script)
         r = subprocess.run(['node', str(harness)], capture_output=True, text=True, check=True, timeout=30)
@@ -64,5 +67,7 @@ console.log(JSON.stringify({{launchCalls:fake.launchCalls,stopCalls:fake.stopCal
         assert 'profile_dir' not in v['attach']
         assert v['attach']['credential_values_read'] is False
         assert 'E_CLUSTER_BROKER_ALREADY_OWNED' in v['secondError']
+        assert v['lockPreservedAfterSecond'] is True
+        assert v['lockPreservedAfterNonOwnerStop'] is True
         assert v['lockExists'] is False
         assert v['state']['state'] == 'OFFLINE'

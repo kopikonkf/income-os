@@ -3763,3 +3763,9 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Safe rerun proved byte-for-byte idempotency: same MUXIA generation receipt, zero provider call, upscale/master/staging reused, all 3 derivatives reused. One semantic asset, 3 packaging variants.
 - Truth boundary: no independent visual/commercial classifier is claimed here; exact-expression lineage is the frozen semantic route + deterministic prompt + hashes. FA-203 owns technical/registry QA. Rights remain REVIEW_REQUIRED; canonical truth false pending DIE State Manager; no upload/publication/spend.
 - FA-203 READY. FA-121 remains separate and was not started.
+
+## 2026-09-05 — FA-305 Cluster B provisioning implementation PASS / WAITING_FOUNDER_AUTH
+- Independent Cluster B provisioning contract and lifecycle are implemented without cloning/importing Cluster A. Temporary real-Chromium proof starts from an empty profile, preserves one broker owner + max-tabs 8, rejects a second owner without losing the primary lock, and validates rollback/path/ownership guards.
+- Canonical Cluster B profile is not created and is not routable yet. Provider calls/login actions/spend = 0; Cluster A session material was not read or compared.
+- Founder boundary is explicit: visible stable browser with no CDP/automation, broker stopped; after the browser is fully closed, one broker restarts and FA-303 readiness must be verified before FA-305 can become DONE/PASS.
+- Validation: focused 8 PASS; Factory 645 PASS / 1 PyPDF2 warning; one-canon 6 PASS; validator 11/11 PASS. FA-306 remains BLOCKED. Receipt: `company/factory-asset/receipts/FA-305-cluster-b-provisioning.receipt.json`.

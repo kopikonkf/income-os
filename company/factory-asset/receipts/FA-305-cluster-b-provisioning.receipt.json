@@ -1,0 +1,142 @@
+{
+  "assertions": {
+    "auth_handoff_is_visible_no_cdp_contract": true,
+    "cluster_a_not_accessed": true,
+    "final_state_waiting_founder_auth": true,
+    "fresh_profile_created_empty": true,
+    "loopback_only_broker": true,
+    "max_eight_preserved": true,
+    "no_inherited_session_material": true,
+    "no_source_profile_supplied_or_read": true,
+    "ownership_mismatch_rejected": true,
+    "real_chromium_single_broker_owner": true,
+    "rollback_after_broker_failure": true,
+    "rollback_after_pre_auth_proof": true,
+    "symlink_path_rejected": true,
+    "zero_founder_auth_actions": true,
+    "zero_provider_calls": true
+  },
+  "auth_handoff": "company/muxia/scripts/linux/muxia-cluster-auth-handoff.mjs",
+  "canonical_cluster_b_profile_created": false,
+  "cluster_a_profile_accessed": false,
+  "contract": "company/factory-asset/contracts/cluster-provisioning.v1.json",
+  "date": "2026-09-05",
+  "evidence": {
+    "auth_handoff_contract": {
+      "broker_must_be_stopped": true,
+      "executed_in_fa305_acceptance": false,
+      "initial_url_about_blank": true,
+      "provider_login_automated": false,
+      "remote_debugging_or_automation_tokens_present": [],
+      "source_present": true,
+      "visible_display_required": true
+    },
+    "ownership_guard_proof": {
+      "mismatched_uid_rejected": true
+    },
+    "path_guard_proof": {
+      "symlink_rejected": true
+    },
+    "rollback_failure_proof": {
+      "broker_lock_released": true,
+      "cluster_root_removed": true,
+      "launch_failure_typed": true,
+      "rollback": {
+        "auth_handoff_started": false,
+        "cluster_id": "cluster-b",
+        "cookies_or_tokens_read": false,
+        "credential_values_read": false,
+        "inherited_session_material": false,
+        "next_state": "ROLLED_BACK",
+        "previous_state": "FAILED",
+        "profile_id": "web-ai-cluster-b",
+        "reason": "SYNTHETIC_BROKER_START_FAILURE",
+        "schema": "die.factory-asset.cluster-provisioning-rollback.v1",
+        "source_profile_read": false
+      }
+    },
+    "temporary_real_broker_proof": {
+      "broker_lock_released": true,
+      "broker_state": "READY",
+      "browser_generated_entries_after_start_count": 15,
+      "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+      "browser_owner_pid_present": true,
+      "control_host": "127.0.0.1",
+      "cookies_or_tokens_read": false,
+      "credential_values_read": false,
+      "debug_host": "127.0.0.1",
+      "final_pre_auth_state": "WAITING_FOUNDER_AUTH",
+      "first_owner_launch_calls": 1,
+      "first_owner_stop_calls": 1,
+      "fresh_profile_initial_entries": 0,
+      "inherited_session_material": false,
+      "max_tabs": 8,
+      "ownership": {
+        "cluster": {
+          "gid": 1000,
+          "mode": 488,
+          "uid": 1000
+        },
+        "locks": {
+          "gid": 1000,
+          "mode": 488,
+          "uid": 1000
+        },
+        "profile": {
+          "gid": 1000,
+          "mode": 448,
+          "uid": 1000
+        },
+        "state": {
+          "gid": 1000,
+          "mode": 488,
+          "uid": 1000
+        }
+      },
+      "primary_owner_lock_preserved_after_non_owner_stop": true,
+      "primary_owner_lock_preserved_after_second_rejection": true,
+      "rollback": {
+        "auth_handoff_started": false,
+        "cluster_id": "cluster-b",
+        "cluster_root_removed": true,
+        "cookies_or_tokens_read": false,
+        "credential_values_read": false,
+        "inherited_session_material": false,
+        "next_state": "ROLLED_BACK",
+        "previous_state": "WAITING_FOUNDER_AUTH",
+        "profile_id": "web-ai-cluster-b",
+        "reason": "TEMPORARY_ACCEPTANCE_COMPLETE",
+        "schema": "die.factory-asset.cluster-provisioning-rollback.v1",
+        "source_profile_read": false
+      },
+      "second_owner_blocked": true,
+      "second_owner_browser_launch_calls": 0,
+      "source_profile_read": false,
+      "source_profile_supplied": false
+    }
+  },
+  "founder_auth_performed": false,
+  "full_fa305_acceptance": false,
+  "implementation_result": "PASS",
+  "next_boundary": "FOUNDER_AUTH_REQUIRED: provision canonical Cluster B under governed authority, open visible no-CDP browser, Founder authenticates chosen providers, fully close browser, then restart one MUXIA broker and verify FA-303 readiness before FA-305 can become DONE/PASS.",
+  "provider_calls_performed": 0,
+  "provider_login_automation_performed": false,
+  "provisioner": "company/browser/linux/cluster_profile_provisioning.mjs",
+  "reason": "Founder provider-account authentication has not been performed; full FA-305 PASS is intentionally not claimed.",
+  "schema": "die.factory-asset.fa305-cluster-b-provisioning-acceptance.v1",
+  "source_profile_copy_attempted": false,
+  "source_profile_read_attempted": false,
+  "spend_authorized": false,
+  "task_id": "FA-305",
+  "task_state": "WAITING_FOUNDER_AUTH",
+  "temporary_profile_only": true,
+  "validation": {
+    "combined_pytest": "651 passed, 1 warning",
+    "company_secret_scan_hits": 0,
+    "factory_regression": "645 passed, 1 warning (PyPDF2 deprecation)",
+    "focused_pytest": "8 passed",
+    "node_syntax_check": "PASS",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS"
+  }
+}

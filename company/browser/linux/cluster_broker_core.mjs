@@ -68,7 +68,7 @@ export class ClusterBrokerCore {
     this.clusterId = clusterId; this.profileId = profileId; this.profileDir = profileDir;
     this.stateFile = stateFile; this.lockFile = lockFile; this.driver = driver; this.maxTabs = maxTabs;
     this.controlHost = controlHost; this.controlPort = controlPort; this.server = null; this.handle = null; this.state = null;
-    this.leaseManagerFactory = leaseManagerFactory; this.leaseManager = null;
+    this.leaseManagerFactory = leaseManagerFactory; this.leaseManager = null; this.lockOwned = false;
   }
 
   attachDescriptor() {
@@ -134,6 +134,7 @@ export class ClusterBrokerCore {
   async start() {
     if (this.server || this.handle) throw new Error('E_CLUSTER_BROKER_ALREADY_STARTED');
     acquireLock(this.lockFile, { schema: 'die.muxia.cluster-broker-lock.v1', cluster_id: this.clusterId, profile_id: this.profileId, owner_pid: process.pid, acquired_at: new Date().toISOString() });
+    this.lockOwned = true;
     try {
       this.handle = await this.driver.launch(this.profileDir);
       assertLoopbackHandle(this.handle);
@@ -171,6 +172,9 @@ export class ClusterBrokerCore {
       state: 'OFFLINE', stopped_at: new Date().toISOString(), credential_values_read: false, cookies_or_tokens_read: false,
     };
     atomicWriteJson(this.stateFile, this.state);
-    fs.rmSync(this.lockFile, { force: true });
+    if (this.lockOwned) {
+      fs.rmSync(this.lockFile, { force: true });
+      this.lockOwned = false;
+    }
   }
 }

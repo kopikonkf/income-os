@@ -102,3 +102,15 @@ Provider readiness is **provider-specific**, not a single ChatGPT-biased classif
 Readiness probes inspect only the current page URL after canonicalization to `origin + pathname`, visible composer/auth selectors, and bounded checkpoint text patterns. They do not read cookies, local/session storage, IndexedDB, OAuth callbacks, authorization headers or credential values. Probe outputs persist only safe URL, state/reason, booleans and timestamps.
 
 Provider states are `HEALTHY`, `DEGRADED`, `AUTH_REQUIRED`, `CHECKPOINT`, `UNAVAILABLE`. One provider in `CHECKPOINT` degrades the cluster but does not fail healthy siblings. Operational probes attach through the FA-301 broker and can observe a leased tab without owning the profile or spawning Chromium.
+
+## Governed Cluster B Provisioning and Founder Auth Boundary (FA-305)
+
+Cluster B is provisioned independently; it is **not** cloned from Cluster A and is not inserted into the active routing registry before authentication and readiness verification. The canonical provisioning contract is `company/factory-asset/contracts/cluster-provisioning.v1.json` and defines `cluster-b` / `web-ai-cluster-b`, target root `/var/lib/muxia/profiles/web-ai-cluster-b`, one MUXIA Chromium owner, and the FA-302 ceiling `max_tabs=8`.
+
+Provisioning is create-new only. The target root must not pre-exist, existing path components may not traverse symlinks, the browser profile starts empty with restrictive ownership/mode validation, and the provisioning API accepts no source-profile import/clone input. It does not copy, inspect, export, hash or compare Cluster A cookies, tokens, session databases, OAuth material or credential values.
+
+The lifecycle is `PROVISIONED_EMPTY -> BROKER_PROOF_RUNNING -> WAITING_FOUNDER_AUTH -> AUTH_HANDOFF_VISIBLE_NO_CDP -> AUTH_HANDOFF_CLOSED -> BROKER_VERIFYING -> READY`, with typed FAILED/ROLLED_BACK exits. Automatic rollback is allowed only before Founder auth begins and only while the broker lock is free. Once visible auth handoff begins, generic automatic deletion is forbidden because the profile may contain Founder-created session material.
+
+Founder auth is a deliberate human boundary. `company/muxia/scripts/linux/muxia-cluster-auth-handoff.mjs` opens a visible stable browser at `about:blank` using the dedicated Cluster B profile, requires the broker to be stopped, and contains no remote-debugging/CDP or provider-login automation. After the Founder closes the visible browser, the single MUXIA broker may restart and FA-303 provider-specific readiness must be verified before Cluster B can become active/routable under FA-304 provider+cluster identity.
+
+FA-305 pre-auth acceptance uses only a temporary isolated root. A real headless Chromium process proved single broker ownership, loopback-only control/debug endpoints, max-tabs 8, second-owner exclusion, rollback, symlink rejection and ownership validation. No provider login/call was performed and no canonical Cluster B profile was created. Therefore the legitimate task state is `WAITING_FOUNDER_AUTH`, not DONE/PASS.

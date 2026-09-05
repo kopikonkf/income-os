@@ -1,0 +1,75 @@
+{
+  "schema": "die.factory-asset.cluster-provisioning-contract.v1",
+  "revision": "1.0.0",
+  "task_id": "FA-305",
+  "status": "CANONICAL_CANDIDATE",
+  "purpose": "Governed provisioning and pre-auth boundary for an independent Web-AI Army Cluster B profile.",
+  "lifecycle_states": [
+    "PROVISIONED_EMPTY",
+    "BROKER_PROOF_RUNNING",
+    "WAITING_FOUNDER_AUTH",
+    "AUTH_HANDOFF_VISIBLE_NO_CDP",
+    "AUTH_HANDOFF_CLOSED",
+    "BROKER_VERIFYING",
+    "READY",
+    "FAILED",
+    "ROLLED_BACK"
+  ],
+  "cluster_b": {
+    "cluster_id": "cluster-b",
+    "display_name": "Web-AI Army Cluster B",
+    "profile_id": "web-ai-cluster-b",
+    "target_cluster_root": "/var/lib/muxia/profiles/web-ai-cluster-b",
+    "profile_relative_dir": "browser",
+    "runtime_owner": "MUXIA",
+    "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+    "max_tabs": 8,
+    "provider_tab_limit_default": 1,
+    "initial_activation_state": "WAITING_FOUNDER_AUTH",
+    "profile_secret_copy_allowed": false,
+    "credential_cookie_token_export_allowed": false,
+    "source_profile_clone_allowed": false,
+    "source_profile_import_allowed": false,
+    "auth_handoff": "VISIBLE_NO_CDP_PRE_DISPATCH_THEN_CLOSE_PROFILE_OWNER_BEFORE_BROKER_START",
+    "provider_readiness_semantics": "FA-303_PROVIDER_SPECIFIC",
+    "routing_identity_semantics": "FA-304_PROVIDER_PLUS_CLUSTER",
+    "tab_lease_semantics": "FA-302_MAX_8_SINGLE_OWNER",
+    "qwen_transport_preference": "SESSION_API_WHEN_ELIGIBLE_BROWSER_CDP_FALLBACK",
+    "active_registry_insertion_before_auth_verification": false
+  },
+  "provisioning_invariants": [
+    "Target cluster root must be a new absolute dedicated path and must not pre-exist.",
+    "Existing path components must not traverse symlinks.",
+    "The browser profile directory is created mode 0700 and is empty before first browser start.",
+    "No source profile path is accepted by the provisioning API.",
+    "No Cluster A file, cookie, token, session database, storage value, OAuth callback material or credential value is copied, inspected, exported, hashed or compared.",
+    "A broker lock must be exclusive and the browser owner model remains one long-lived Chromium process per cluster profile.",
+    "Browser routes remain bounded by max_tabs=8 and later consume FA-302 tab leases.",
+    "Cluster B is not inserted into the active routing registry until Founder auth handoff is closed and broker/readiness verification is complete."
+  ],
+  "auth_boundary": {
+    "precondition_state": "WAITING_FOUNDER_AUTH",
+    "operator": "FOUNDER",
+    "browser_mode": "VISIBLE_STABLE_BROWSER_NO_CDP",
+    "initial_url": "about:blank",
+    "remote_debugging_forbidden": true,
+    "automation_attachment_forbidden": true,
+    "provider_login_automation_forbidden": true,
+    "browser_must_be_fully_closed_before_broker_start": true,
+    "receipt_sensitive_material_forbidden": true
+  },
+  "rollback": {
+    "automatic_before_auth_handoff": true,
+    "requires_broker_lock_free": true,
+    "deletes_only_transaction_created_cluster_root": true,
+    "automatic_after_auth_handoff_started": false,
+    "reason": "After auth begins, the profile may contain Founder-created session material and must never be auto-deleted by generic rollback."
+  },
+  "acceptance_boundary": {
+    "synthetic_or_temporary_profile_proof_required": true,
+    "real_chromium_broker_owner_proof_required": true,
+    "provider_calls_required": false,
+    "founder_auth_required_for_full_fa305_pass": true,
+    "pre_auth_terminal_task_state": "WAITING_FOUNDER_AUTH"
+  }
+}
