@@ -2,6 +2,7 @@ from pathlib import Path
 
 R = Path(__file__).resolve().parents[3]
 P = R / 'company/factory-asset/providers/qwen/linux/qwen_muxia_auth.sh'
+CANARY = R / 'company/factory-asset/providers/qwen/linux/qwen_muxia_canary.mjs'
 CORE = R / 'company/browser/linux/operator_browser_core.mjs'
 
 
@@ -49,3 +50,21 @@ def test_generic_muxia_status_writer_strips_query_and_fragment():
     assert 'return `${parsed.origin}${parsed.pathname}`' in s
     assert 'url: sanitizeStatusUrl(status?.url)' in s
     assert "url: sanitizeStatusUrl(page.url())" in s
+
+
+def test_canary_uses_muxia_owned_cluster_a_and_one_bounded_dispatch():
+    s = CANARY.read_text()
+    assert "PlaywrightChromiumDriver" in s
+    assert "/var/lib/muxia/profiles/chatgpt-linux-a/browser" in s
+    assert "browser_runtime_owner: 'MUXIA'" in s
+    assert s.count("composer.press('Enter')") == 1
+    assert 'timeoutMs = 240000' in s
+
+
+def test_canary_never_reads_session_secret_material_or_windows_paths():
+    s = CANARY.read_text().lower()
+    for bad in ('context.cookies', 'storage_state', 'storagestate', 'cookie=', 'token=', 'credentials/qwen', 'd:/assets', 'c:\\'):
+        assert bad not in s
+    assert 'credential_values_read: false' in s
+    assert 'cookies_or_tokens_read: false' in s
+    assert 'operator_actions_after_dispatch: 0' in s
