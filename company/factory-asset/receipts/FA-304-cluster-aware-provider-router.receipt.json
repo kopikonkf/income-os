@@ -1,0 +1,799 @@
+{
+  "assertions": {
+    "browser_backpressure_isolated_from_session_api": true,
+    "canonical_qwen_session_primary": true,
+    "checkpoint_isolated": true,
+    "fa117_open_pages_fail_closed": true,
+    "failed_retry_event_idempotent": true,
+    "no_retry_after_dispatch_commit": true,
+    "provider_cluster_capacity_keyed": true,
+    "provider_plus_cluster_selection": true,
+    "queue_backpressure_fail_closed": true,
+    "queue_failure_latency_used": true,
+    "qwen_session_preferred": true,
+    "retries_bounded_idempotent": true,
+    "stale_fail_closed": true,
+    "unknown_fail_closed": true,
+    "zero_provider_calls": true
+  },
+  "browser_processes_spawned": 0,
+  "canonical_inputs": {
+    "fa117_capacity_keying": "provider_id + cluster_id",
+    "fa117_startup_tab_guard": "fail closed when open_pages > max_tabs",
+    "fa120_queue_semantics": "bounded depth/limit + freshness/backpressure",
+    "fa302_tab_lease_snapshot_schema": "die.muxia.cluster-tab-lease-snapshot.v1",
+    "fa303_readiness_schema": "die.muxia.provider-readiness.v1",
+    "qwen_browser_fallback": "BROWSER_CDP",
+    "qwen_preferred_transport": "SESSION_API"
+  },
+  "cluster_a_profile_mutated": false,
+  "date": "2026-09-05",
+  "evidence": {
+    "active_tab_load_cluster_choice": {
+      "attempt": 1,
+      "browser_owner_action": "NONE",
+      "cluster_id": "synthetic-cluster-b",
+      "dispatch_committed": false,
+      "factors": {
+        "active_tab_load": 0,
+        "active_tabs": 0,
+        "browser_generation_limit": 5,
+        "capacity_state": "AVAILABLE",
+        "latency_ms": 650,
+        "provider_active_tabs": 0,
+        "queue_pressure": 0.15625,
+        "readiness_state": "HEALTHY",
+        "recent_failures": 0
+      },
+      "idempotency_key": "idem-choose-cluster-load",
+      "idempotent_replay": false,
+      "job_id": "choose-cluster-load",
+      "provider_calls_performed": false,
+      "provider_id": "gemini",
+      "rejected": [],
+      "requires_tab_lease": true,
+      "retry_index": 0,
+      "route_id": "cbc6cf375b82b516f1e4c04ec62c5c23ba83bb08437d7b57252f9b97500ec87a",
+      "schema": "die.factory-asset.cluster-provider-route.v1",
+      "score": -522.5,
+      "tab_capacity_consumed_by_router": false,
+      "transport": "BROWSER_CDP"
+    },
+    "fa117_open_pages_edge_failclosed": {
+      "attempt": 1,
+      "browser_owner_action": "NONE",
+      "cluster_id": "cluster-a",
+      "dispatch_committed": false,
+      "factors": {
+        "active_tab_load": 0,
+        "active_tabs": 0,
+        "browser_generation_limit": 5,
+        "capacity_state": "AVAILABLE",
+        "latency_ms": 800,
+        "provider_active_tabs": 0,
+        "queue_pressure": 0.039063,
+        "readiness_state": "HEALTHY",
+        "recent_failures": 0
+      },
+      "idempotency_key": "idem-fa117-open-pages-edge",
+      "idempotent_replay": false,
+      "job_id": "fa117-open-pages-edge",
+      "provider_calls_performed": false,
+      "provider_id": "manus",
+      "rejected": [
+        {
+          "cluster_id": "cluster-a",
+          "provider_id": "gemini",
+          "reasons": [
+            "CLUSTER_OPEN_PAGES_OVER_BUDGET"
+          ],
+          "transport": "BROWSER_CDP"
+        }
+      ],
+      "requires_tab_lease": true,
+      "retry_index": 0,
+      "route_id": "e2a63a5d5d12800948a0005a3d51d2fa48f4688a5844ac348827cb0ad3eb9be5",
+      "schema": "die.factory-asset.cluster-provider-route.v1",
+      "score": -456.875,
+      "tab_capacity_consumed_by_router": false,
+      "transport": "BROWSER_CDP"
+    },
+    "failed_retry_event_idempotency": {
+      "firstError": {
+        "code": "E_NO_ELIGIBLE_ROUTE",
+        "details": {
+          "rejected": [
+            {
+              "cluster_id": "cluster-a",
+              "provider_id": "qwen",
+              "reasons": [
+                "CAPACITY_UNAVAILABLE"
+              ],
+              "transport": "SESSION_API"
+            },
+            {
+              "cluster_id": "cluster-a",
+              "provider_id": "gemini",
+              "reasons": [
+                "READINESS_CHECKPOINT"
+              ],
+              "transport": "BROWSER_CDP"
+            }
+          ]
+        }
+      },
+      "secondError": {
+        "code": "E_NO_ELIGIBLE_ROUTE",
+        "details": {
+          "rejected": [
+            {
+              "cluster_id": "cluster-a",
+              "provider_id": "qwen",
+              "reasons": [
+                "CAPACITY_UNAVAILABLE"
+              ],
+              "transport": "SESSION_API"
+            },
+            {
+              "cluster_id": "cluster-a",
+              "provider_id": "gemini",
+              "reasons": [
+                "READINESS_CHECKPOINT"
+              ],
+              "transport": "BROWSER_CDP"
+            }
+          ]
+        }
+      },
+      "state": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "browser_owner_action": "NONE",
+            "cluster_id": "cluster-a",
+            "dispatch_committed": false,
+            "factors": {
+              "active_tab_load": 0,
+              "active_tabs": 0,
+              "browser_generation_limit": null,
+              "capacity_state": "AVAILABLE",
+              "latency_ms": 1200,
+              "provider_active_tabs": 0,
+              "queue_pressure": 0.039063,
+              "readiness_state": "HEALTHY",
+              "recent_failures": 0
+            },
+            "idempotency_key": "idem-retry-blocked-event",
+            "idempotent_replay": false,
+            "job_id": "retry-blocked-event",
+            "provider_calls_performed": false,
+            "provider_id": "qwen",
+            "rejected": [],
+            "requires_tab_lease": false,
+            "retry_index": 0,
+            "route_id": "1ac890172cfed72afbc839cbc13a2a430ffe1a13b1793c43840e716799646c06",
+            "schema": "die.factory-asset.cluster-provider-route.v1",
+            "score": 9352.125,
+            "tab_capacity_consumed_by_router": false,
+            "transport": "SESSION_API"
+          }
+        ],
+        "idempotency_key": "idem-retry-blocked-event",
+        "max_retries": 2,
+        "retries_used": 0,
+        "route_failures": {
+          "qwen@cluster-a:SESSION_API": 1
+        },
+        "schema": "die.factory-asset.cluster-provider-router-state.v1"
+      }
+    },
+    "provider_cluster_capacity_keying": {
+      "attempt": 1,
+      "browser_owner_action": "NONE",
+      "cluster_id": "cluster-a",
+      "dispatch_committed": false,
+      "factors": {
+        "active_tab_load": 0,
+        "active_tabs": 0,
+        "browser_generation_limit": 5,
+        "capacity_state": "AVAILABLE",
+        "latency_ms": 850,
+        "provider_active_tabs": 0,
+        "queue_pressure": 0.039063,
+        "readiness_state": "HEALTHY",
+        "recent_failures": 0
+      },
+      "idempotency_key": "idem-capacity-provider-cluster-key",
+      "idempotent_replay": false,
+      "job_id": "capacity-provider-cluster-key",
+      "provider_calls_performed": false,
+      "provider_id": "manus",
+      "rejected": [
+        {
+          "cluster_id": "cluster-a",
+          "provider_id": "qwen",
+          "reasons": [
+            "CAPACITY_PROVIDER_KEY_MISMATCH"
+          ],
+          "transport": "SESSION_API"
+        },
+        {
+          "cluster_id": "cluster-a",
+          "provider_id": "gemini",
+          "reasons": [
+            "CAPACITY_CLUSTER_KEY_MISMATCH"
+          ],
+          "transport": "BROWSER_CDP"
+        }
+      ],
+      "requires_tab_lease": true,
+      "retry_index": 0,
+      "route_id": "2b93a0020ab402a13948790255f0e0c0c077a162137437642ef7c7204d00211b",
+      "schema": "die.factory-asset.cluster-provider-route.v1",
+      "score": -481.875,
+      "tab_capacity_consumed_by_router": false,
+      "transport": "BROWSER_CDP"
+    },
+    "provider_failure_isolation": {
+      "attempt": 1,
+      "browser_owner_action": "NONE",
+      "cluster_id": "cluster-a",
+      "dispatch_committed": false,
+      "factors": {
+        "active_tab_load": 0,
+        "active_tabs": 0,
+        "browser_generation_limit": 5,
+        "capacity_state": "AVAILABLE",
+        "latency_ms": 700,
+        "provider_active_tabs": 0,
+        "queue_pressure": 0.078125,
+        "readiness_state": "HEALTHY",
+        "recent_failures": 0
+      },
+      "idempotency_key": "idem-sibling-isolation",
+      "idempotent_replay": false,
+      "job_id": "sibling-isolation",
+      "provider_calls_performed": false,
+      "provider_id": "gemini",
+      "rejected": [
+        {
+          "cluster_id": "cluster-a",
+          "provider_id": "chatgpt",
+          "reasons": [
+            "READINESS_CHECKPOINT"
+          ],
+          "transport": "BROWSER_CDP"
+        }
+      ],
+      "requires_tab_lease": true,
+      "retry_index": 0,
+      "route_id": "d8bd418995f939627913d1bc74172039fd5cf632007aacc1c0849194331ca04d",
+      "schema": "die.factory-asset.cluster-provider-route.v1",
+      "score": -453.75,
+      "tab_capacity_consumed_by_router": false,
+      "transport": "BROWSER_CDP"
+    },
+    "queue_backpressure_failclosed": {
+      "code": "E_NO_ELIGIBLE_ROUTE",
+      "details": {
+        "rejected": [
+          {
+            "cluster_id": "cluster-a",
+            "provider_id": "qwen",
+            "reasons": [
+              "QUEUE_BACKPRESSURE"
+            ],
+            "transport": "SESSION_API"
+          },
+          {
+            "cluster_id": "cluster-a",
+            "provider_id": "gemini",
+            "reasons": [
+              "QUEUE_BACKPRESSURE"
+            ],
+            "transport": "BROWSER_CDP"
+          }
+        ]
+      }
+    },
+    "queue_failure_latency_choice": {
+      "attempt": 1,
+      "browser_owner_action": "NONE",
+      "cluster_id": "synthetic-cluster-b",
+      "dispatch_committed": false,
+      "factors": {
+        "active_tab_load": 0,
+        "active_tabs": 0,
+        "browser_generation_limit": 5,
+        "capacity_state": "AVAILABLE",
+        "latency_ms": 450,
+        "provider_active_tabs": 0,
+        "queue_pressure": 0.2,
+        "readiness_state": "HEALTHY",
+        "recent_failures": 0
+      },
+      "idempotency_key": "idem-queue-failure-latency-choice",
+      "idempotent_replay": false,
+      "job_id": "queue-failure-latency-choice",
+      "provider_calls_performed": false,
+      "provider_id": "manus",
+      "rejected": [],
+      "requires_tab_lease": true,
+      "retry_index": 0,
+      "route_id": "3823df0221b251b9eed7fa1f156a490d2a242ace226a115918913926b20b7f4e",
+      "schema": "die.factory-asset.cluster-provider-route.v1",
+      "score": -475,
+      "tab_capacity_consumed_by_router": false,
+      "transport": "BROWSER_CDP"
+    },
+    "qwen_session_preferred": {
+      "attempt": 1,
+      "browser_owner_action": "NONE",
+      "cluster_id": "cluster-a",
+      "dispatch_committed": false,
+      "factors": {
+        "active_tab_load": 0,
+        "active_tabs": 0,
+        "browser_generation_limit": null,
+        "capacity_state": "AVAILABLE",
+        "latency_ms": 1800,
+        "provider_active_tabs": 0,
+        "queue_pressure": 0.078125,
+        "readiness_state": "HEALTHY",
+        "recent_failures": 0
+      },
+      "idempotency_key": "idem-prefer-qwen-session",
+      "idempotent_replay": false,
+      "job_id": "prefer-qwen-session",
+      "provider_calls_performed": false,
+      "provider_id": "qwen",
+      "rejected": [
+        {
+          "cluster_id": "cluster-a",
+          "provider_id": "gemini",
+          "reasons": [
+            "PROVIDER_TAB_BACKPRESSURE"
+          ],
+          "transport": "BROWSER_CDP"
+        }
+      ],
+      "requires_tab_lease": false,
+      "retry_index": 0,
+      "route_id": "52eef635993c4249883337e848eb2b4df40aa4780a2d849da20ec172cea91519",
+      "schema": "die.factory-asset.cluster-provider-route.v1",
+      "score": 9005.25,
+      "tab_capacity_consumed_by_router": false,
+      "transport": "SESSION_API"
+    },
+    "retry_idempotency": {
+      "afterCommit": {
+        "code": "E_RETRY_AFTER_DISPATCH_COMMIT",
+        "details": null
+      },
+      "conflict": {
+        "code": "E_IDEMPOTENCY_CONFLICT",
+        "details": null
+      },
+      "first": {
+        "attempt": 1,
+        "browser_owner_action": "NONE",
+        "cluster_id": "cluster-a",
+        "dispatch_committed": false,
+        "factors": {
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": null,
+          "capacity_state": "AVAILABLE",
+          "latency_ms": 1200,
+          "provider_active_tabs": 0,
+          "queue_pressure": 0.039063,
+          "readiness_state": "HEALTHY",
+          "recent_failures": 0
+        },
+        "idempotency_key": "idem-retry-idempotency",
+        "idempotent_replay": false,
+        "job_id": "retry-idempotency",
+        "provider_calls_performed": false,
+        "provider_id": "qwen",
+        "rejected": [],
+        "requires_tab_lease": false,
+        "retry_index": 0,
+        "route_id": "c79c26ba7af8139ee3a3f5d5a23774c7749d32a4a2966a20c93e4dd772f1b223",
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "score": 9352.125,
+        "tab_capacity_consumed_by_router": false,
+        "transport": "SESSION_API"
+      },
+      "retryLimit": {
+        "code": "E_RETRY_LIMIT",
+        "details": null
+      },
+      "second": {
+        "attempt": 2,
+        "browser_owner_action": "NONE",
+        "cluster_id": "cluster-a",
+        "dispatch_committed": false,
+        "factors": {
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": 5,
+          "capacity_state": "AVAILABLE",
+          "latency_ms": 500,
+          "provider_active_tabs": 0,
+          "queue_pressure": 0.039063,
+          "readiness_state": "HEALTHY",
+          "recent_failures": 0
+        },
+        "idempotency_key": "idem-retry-idempotency",
+        "idempotent_replay": false,
+        "job_id": "retry-idempotency",
+        "provider_calls_performed": false,
+        "provider_id": "gemini",
+        "rejected": [
+          {
+            "cluster_id": "cluster-a",
+            "provider_id": "qwen",
+            "reasons": [
+              "CAPACITY_UNAVAILABLE"
+            ],
+            "transport": "SESSION_API"
+          }
+        ],
+        "requires_tab_lease": true,
+        "retry_index": 1,
+        "route_id": "492c5a5071a07c081cbdbbbe23873e3997b1b06a28af93f2f36550f96664b234",
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "score": -306.875,
+        "tab_capacity_consumed_by_router": false,
+        "transport": "BROWSER_CDP"
+      },
+      "secondReplay": {
+        "attempt": 2,
+        "browser_owner_action": "NONE",
+        "cluster_id": "cluster-a",
+        "dispatch_committed": false,
+        "factors": {
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": 5,
+          "capacity_state": "AVAILABLE",
+          "latency_ms": 500,
+          "provider_active_tabs": 0,
+          "queue_pressure": 0.039063,
+          "readiness_state": "HEALTHY",
+          "recent_failures": 0
+        },
+        "idempotency_key": "idem-retry-idempotency",
+        "idempotent_replay": true,
+        "job_id": "retry-idempotency",
+        "provider_calls_performed": false,
+        "provider_id": "gemini",
+        "rejected": [
+          {
+            "cluster_id": "cluster-a",
+            "provider_id": "qwen",
+            "reasons": [
+              "CAPACITY_UNAVAILABLE"
+            ],
+            "transport": "SESSION_API"
+          }
+        ],
+        "requires_tab_lease": true,
+        "retry_index": 1,
+        "route_id": "492c5a5071a07c081cbdbbbe23873e3997b1b06a28af93f2f36550f96664b234",
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "score": -306.875,
+        "tab_capacity_consumed_by_router": false,
+        "transport": "BROWSER_CDP"
+      },
+      "state": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "browser_owner_action": "NONE",
+            "cluster_id": "cluster-a",
+            "dispatch_committed": false,
+            "factors": {
+              "active_tab_load": 0,
+              "active_tabs": 0,
+              "browser_generation_limit": null,
+              "capacity_state": "AVAILABLE",
+              "latency_ms": 1200,
+              "provider_active_tabs": 0,
+              "queue_pressure": 0.039063,
+              "readiness_state": "HEALTHY",
+              "recent_failures": 0
+            },
+            "idempotency_key": "idem-retry-idempotency",
+            "idempotent_replay": false,
+            "job_id": "retry-idempotency",
+            "provider_calls_performed": false,
+            "provider_id": "qwen",
+            "rejected": [],
+            "requires_tab_lease": false,
+            "retry_index": 0,
+            "route_id": "c79c26ba7af8139ee3a3f5d5a23774c7749d32a4a2966a20c93e4dd772f1b223",
+            "schema": "die.factory-asset.cluster-provider-route.v1",
+            "score": 9352.125,
+            "tab_capacity_consumed_by_router": false,
+            "transport": "SESSION_API"
+          },
+          {
+            "attempt": 2,
+            "browser_owner_action": "NONE",
+            "cluster_id": "cluster-a",
+            "dispatch_committed": false,
+            "factors": {
+              "active_tab_load": 0,
+              "active_tabs": 0,
+              "browser_generation_limit": 5,
+              "capacity_state": "AVAILABLE",
+              "latency_ms": 500,
+              "provider_active_tabs": 0,
+              "queue_pressure": 0.039063,
+              "readiness_state": "HEALTHY",
+              "recent_failures": 0
+            },
+            "idempotency_key": "idem-retry-idempotency",
+            "idempotent_replay": false,
+            "job_id": "retry-idempotency",
+            "provider_calls_performed": false,
+            "provider_id": "gemini",
+            "rejected": [
+              {
+                "cluster_id": "cluster-a",
+                "provider_id": "qwen",
+                "reasons": [
+                  "CAPACITY_UNAVAILABLE"
+                ],
+                "transport": "SESSION_API"
+              }
+            ],
+            "requires_tab_lease": true,
+            "retry_index": 1,
+            "route_id": "492c5a5071a07c081cbdbbbe23873e3997b1b06a28af93f2f36550f96664b234",
+            "schema": "die.factory-asset.cluster-provider-route.v1",
+            "score": -306.875,
+            "tab_capacity_consumed_by_router": false,
+            "transport": "BROWSER_CDP"
+          },
+          {
+            "attempt": 3,
+            "browser_owner_action": "NONE",
+            "cluster_id": "cluster-a",
+            "dispatch_committed": true,
+            "factors": {
+              "active_tab_load": 0,
+              "active_tabs": 0,
+              "browser_generation_limit": 5,
+              "capacity_state": "AVAILABLE",
+              "latency_ms": 800,
+              "provider_active_tabs": 0,
+              "queue_pressure": 0.039063,
+              "readiness_state": "HEALTHY",
+              "recent_failures": 0
+            },
+            "idempotency_key": "idem-retry-idempotency",
+            "idempotent_replay": false,
+            "job_id": "retry-idempotency",
+            "provider_calls_performed": false,
+            "provider_id": "manus",
+            "rejected": [
+              {
+                "cluster_id": "cluster-a",
+                "provider_id": "qwen",
+                "reasons": [
+                  "CAPACITY_UNAVAILABLE"
+                ],
+                "transport": "SESSION_API"
+              },
+              {
+                "cluster_id": "cluster-a",
+                "provider_id": "gemini",
+                "reasons": [
+                  "READINESS_CHECKPOINT"
+                ],
+                "transport": "BROWSER_CDP"
+              }
+            ],
+            "requires_tab_lease": true,
+            "retry_index": 2,
+            "route_id": "577f252bf5c3715a65e521c19f31670cd638b8941e10f773cdd829df0568d409",
+            "schema": "die.factory-asset.cluster-provider-route.v1",
+            "score": -456.875,
+            "tab_capacity_consumed_by_router": false,
+            "transport": "BROWSER_CDP"
+          }
+        ],
+        "idempotency_key": "idem-retry-idempotency",
+        "max_retries": 2,
+        "retries_used": 2,
+        "route_failures": {
+          "gemini@cluster-a:BROWSER_CDP": 1,
+          "qwen@cluster-a:SESSION_API": 1
+        },
+        "schema": "die.factory-asset.cluster-provider-router-state.v1"
+      },
+      "third": {
+        "attempt": 3,
+        "browser_owner_action": "NONE",
+        "cluster_id": "cluster-a",
+        "dispatch_committed": false,
+        "factors": {
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": 5,
+          "capacity_state": "AVAILABLE",
+          "latency_ms": 800,
+          "provider_active_tabs": 0,
+          "queue_pressure": 0.039063,
+          "readiness_state": "HEALTHY",
+          "recent_failures": 0
+        },
+        "idempotency_key": "idem-retry-idempotency",
+        "idempotent_replay": false,
+        "job_id": "retry-idempotency",
+        "provider_calls_performed": false,
+        "provider_id": "manus",
+        "rejected": [
+          {
+            "cluster_id": "cluster-a",
+            "provider_id": "qwen",
+            "reasons": [
+              "CAPACITY_UNAVAILABLE"
+            ],
+            "transport": "SESSION_API"
+          },
+          {
+            "cluster_id": "cluster-a",
+            "provider_id": "gemini",
+            "reasons": [
+              "READINESS_CHECKPOINT"
+            ],
+            "transport": "BROWSER_CDP"
+          }
+        ],
+        "requires_tab_lease": true,
+        "retry_index": 2,
+        "route_id": "577f252bf5c3715a65e521c19f31670cd638b8941e10f773cdd829df0568d409",
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "score": -456.875,
+        "tab_capacity_consumed_by_router": false,
+        "transport": "BROWSER_CDP"
+      }
+    },
+    "session_api_does_not_consume_tab_capacity": {
+      "attempt": 1,
+      "browser_owner_action": "NONE",
+      "cluster_id": "cluster-a",
+      "dispatch_committed": false,
+      "factors": {
+        "active_tab_load": 0,
+        "active_tabs": 0,
+        "browser_generation_limit": null,
+        "capacity_state": "AVAILABLE",
+        "latency_ms": 1200,
+        "provider_active_tabs": 0,
+        "queue_pressure": 0.078125,
+        "readiness_state": "HEALTHY",
+        "recent_failures": 0
+      },
+      "idempotency_key": "idem-session-survives-browser-backpressure",
+      "idempotent_replay": false,
+      "job_id": "session-survives-browser-backpressure",
+      "provider_calls_performed": false,
+      "provider_id": "qwen",
+      "rejected": [
+        {
+          "cluster_id": "cluster-a",
+          "provider_id": "gemini",
+          "reasons": [
+            "CLUSTER_TAB_BACKPRESSURE"
+          ],
+          "transport": "BROWSER_CDP"
+        }
+      ],
+      "requires_tab_lease": false,
+      "retry_index": 0,
+      "route_id": "c7503ca6d73e5fc409d78b6c3b781e307fe483eab928192878b2f98fcb127e4c",
+      "schema": "die.factory-asset.cluster-provider-route.v1",
+      "score": 9305.25,
+      "tab_capacity_consumed_by_router": false,
+      "transport": "SESSION_API"
+    },
+    "stale_readiness_capacity_failclosed": {
+      "attempt": 1,
+      "browser_owner_action": "NONE",
+      "cluster_id": "cluster-a",
+      "dispatch_committed": false,
+      "factors": {
+        "active_tab_load": 0,
+        "active_tabs": 0,
+        "browser_generation_limit": 5,
+        "capacity_state": "AVAILABLE",
+        "latency_ms": 800,
+        "provider_active_tabs": 0,
+        "queue_pressure": 0.039063,
+        "readiness_state": "HEALTHY",
+        "recent_failures": 0
+      },
+      "idempotency_key": "idem-stale-failclosed",
+      "idempotent_replay": false,
+      "job_id": "stale-failclosed",
+      "provider_calls_performed": false,
+      "provider_id": "manus",
+      "rejected": [
+        {
+          "cluster_id": "cluster-a",
+          "provider_id": "qwen",
+          "reasons": [
+            "READINESS_STALE",
+            "CAPACITY_STALE"
+          ],
+          "transport": "SESSION_API"
+        }
+      ],
+      "requires_tab_lease": true,
+      "retry_index": 0,
+      "route_id": "99390c1291514cb12f9a6bc126d8dca92f0a1ce3a49ec82a2d25faf96008b603",
+      "schema": "die.factory-asset.cluster-provider-route.v1",
+      "score": -456.875,
+      "tab_capacity_consumed_by_router": false,
+      "transport": "BROWSER_CDP"
+    },
+    "unknown_readiness_capacity_failclosed": {
+      "attempt": 1,
+      "browser_owner_action": "NONE",
+      "cluster_id": "cluster-a",
+      "dispatch_committed": false,
+      "factors": {
+        "active_tab_load": 0,
+        "active_tabs": 0,
+        "browser_generation_limit": 5,
+        "capacity_state": "AVAILABLE",
+        "latency_ms": 800,
+        "provider_active_tabs": 0,
+        "queue_pressure": 0.039063,
+        "readiness_state": "HEALTHY",
+        "recent_failures": 0
+      },
+      "idempotency_key": "idem-unknown-failclosed",
+      "idempotent_replay": false,
+      "job_id": "unknown-failclosed",
+      "provider_calls_performed": false,
+      "provider_id": "manus",
+      "rejected": [
+        {
+          "cluster_id": "cluster-a",
+          "provider_id": "qwen",
+          "reasons": [
+            "READINESS_UNKNOWN",
+            "CAPACITY_UNKNOWN"
+          ],
+          "transport": "SESSION_API"
+        }
+      ],
+      "requires_tab_lease": true,
+      "retry_index": 0,
+      "route_id": "512ada9a3c5253f218b54a69e2708b4f61ebd06d0d064f4cc898167ca0b0db69",
+      "schema": "die.factory-asset.cluster-provider-route.v1",
+      "score": -456.875,
+      "tab_capacity_consumed_by_router": false,
+      "transport": "BROWSER_CDP"
+    }
+  },
+  "provider_calls_performed": false,
+  "result": "PASS",
+  "schema": "die.factory-asset.fa304-cluster-router-synthetic-acceptance.v1",
+  "status": "DONE",
+  "task_id": "FA-304",
+  "validation": {
+    "company_secret_scan_hits": 0,
+    "factory_regression": "641 passed, 1 warning (PyPDF2 deprecation)",
+    "focused_pytest": "7 passed",
+    "node_syntax_check": "PASS",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "reconciled_main": "8feed5413832ff7cd65212d65aa3493e17dc5e19 (FA-117 merged)"
+  }
+}

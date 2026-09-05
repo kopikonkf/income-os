@@ -2351,10 +2351,12 @@
         "FA-303",
         "FA-120"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
-      "artifact": "cluster-aware provider router",
-      "acceptance": "Router chooses provider plus cluster from capability, readiness, active-tab load, recent failures, latency and queue pressure; retries are bounded and idempotent."
+      "artifact": "company/browser/linux/cluster_provider_router.mjs; company/factory-asset/bin/run_fa304_cluster_router_synthetic.mjs; company/factory-asset/receipts/FA-304-cluster-aware-provider-router.receipt.json",
+      "acceptance": "Router chooses provider plus cluster from capability, readiness, active-tab load, recent failures, latency and queue pressure; retries are bounded and idempotent.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: Pure scheduling/control-plane router consumes fresh FA-303 readiness, provider+cluster-keyed observed capacity, FA-302 tab-lease snapshots and FA-120 bounded queue pressure. It selects provider+cluster using capability, queue pressure, active browser load, recent failures and latency; Qwen SESSION_API is preferred when eligible and consumes no browser tab, while BROWSER_CDP emits requires_tab_lease=true without spawning/owning Chromium. CHECKPOINT/AUTH/UNAVAILABLE siblings are isolated; unknown/stale/mis-keyed readiness-capacity and saturated queue/tab capacity fail closed. Reconciled FA-117 startup evidence is enforced: browser snapshots with open_pages > max_tabs fail closed. Retry events are idempotent (including no-route errors), bounded to 2 retries, and forbidden after dispatch commit. Zero provider calls. Validation after FA-117 merge: 7 focused PASS; 641 Factory PASS (1 PyPDF2 deprecation warning); 6 one-canon pytest PASS; validator 11/11 PASS."
     },
     {
       "id": "FA-305",
@@ -2366,7 +2368,7 @@
         "FA-300",
         "FA-304"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_REQUIRED_FOR_ACCOUNT_AUTH",
       "artifact": "cluster provisioning contract and bounded Cluster B receipt",
       "acceptance": "A new persistent profile is created without copying session secrets from Cluster A; Founder may pre-auth providers; runtime returns to headless single-owner operation after auth."

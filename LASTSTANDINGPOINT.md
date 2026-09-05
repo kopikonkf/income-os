@@ -3736,3 +3736,9 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Shared-profile lease contention is blocked; live intervals do not overlap; both observed SUCCESS capacity events classify AVAILABLE.
 - Browser footprint exposed startup tab creep: raw restore 10 pages, `enforceTabBudget` closed 2 -> 8/8. FA-304 must fail closed for `open_pages > max_tabs` and key capacity by provider+cluster.
 - FA-121 and FA-202 become READY. No submission/publication/spend authority granted.
+
+## 2026-09-05 — FA-304 cluster-aware provider router DONE/PASS
+- Pure zero-provider scheduling router now selects provider + cluster using capability, fresh provider+cluster-keyed capacity, FA-303 readiness, FA-302 tab load, FA-120 queue pressure, recent failures and latency. Qwen SESSION_API is preferred when eligible and does not consume browser tabs; BROWSER_CDP requires a broker tab lease and never creates a Chromium owner.
+- Unknown/stale/mis-keyed readiness or capacity, provider checkpoint/auth/unavailable state, queue saturation, tab saturation, and FA-117 `open_pages > max_tabs` all fail closed without blocking healthy siblings. Retries are event-idempotent, max 2, and forbidden after dispatch commit.
+- Validation after FA-117 merge reconciliation: focused 7 PASS; Factory 641 PASS / 1 PyPDF2 warning; one-canon pytest 6 PASS; validator 11/11 PASS; provider calls 0.
+- Dependency reconciliation only: FA-305 READY; no FA-305 work started. FA-117/FA-121/FA-202 updates from merged main were preserved, not executed by FA-304. Receipt: `company/factory-asset/receipts/FA-304-cluster-aware-provider-router.receipt.json`.
