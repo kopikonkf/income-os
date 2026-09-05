@@ -1,0 +1,8 @@
+{
+  "schema":"die.factory-asset.provider-source-provenance.v1",
+  "task_id":"FA-118",
+  "provider_id":"duckai",
+  "evidence":[{"type":"CANONICAL_RECEIPT","ref":"company/factory-asset/receipts/FA-W017-duckai-autonomous-backend.receipt.json","proven_transport":"BROWSER_CDP","proven_mode":"Duck.ai New Image / GPT Image 2","proven_acquisition":"provider_data_uri_dom","proven_artifact_sha256":"f2b213037b06e9e46d20e51994bff8eb339d20c1f2beffd681cafa296dc917bf"}],
+  "explicitly_excluded":"Legacy text-only duckchat endpoint cannot satisfy image-provider success.",
+  "linux_normalization":"Duck.ai Tools -> Create Image UI is driven inside MUXIA Cluster A; only new post-dispatch data:image DOM output is eligible."
+}

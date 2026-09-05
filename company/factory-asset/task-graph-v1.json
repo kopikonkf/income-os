@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "8.5-fa299-cluster-scale-roadmap",
+  "revision": "8.6-fa118-duckai-human-challenge",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1496,10 +1496,11 @@
         "FA-109",
         "FA-110"
       ],
-      "status": "READY",
+      "status": "WAITING_OPERATOR",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
-      "artifact": "Duck.ai Factory adapter or explicit unsupported-lane decision receipt",
-      "acceptance": "A Windows-proven allowed image route is normalized and canaried, or the lane remains UNSUPPORTED with no fabricated image success; its text-only endpoint cannot satisfy this task."
+      "artifact": "company/factory-asset/receipts/FA-118-duckai-capability-probe.receipt.json",
+      "acceptance": "A Windows-proven allowed image route is normalized and canaried, or the lane remains UNSUPPORTED with no fabricated image success; its text-only endpoint cannot satisfy this task.",
+      "result": "WAITING_OPERATOR: Linux Cluster A Duck.ai Create Image dispatch reaches POST /duckchat/v1/chat but provider returns HTTP 418 and a human challenge. Adapter now types E_HUMAN_CHALLENGE_REQUIRED, excludes /assets/anomaly challenge tiles and rejects sub-512px false candidates. No challenge bypass was attempted. Founder/operator must complete one manual no-CDP trust bootstrap, close browser, then FA-118 requires a fresh zero-touch-after-dispatch canary before PASS."
     },
     {
       "id": "FA-119",
