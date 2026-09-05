@@ -121,7 +121,8 @@ async function fetchBytes(page, context, src) {
 }
 
 fs.mkdirSync(providerDir, { recursive: true, mode: 0o770 });
-const driver = new PlaywrightChromiumDriver({ headless: true, launchTimeoutMs: 30000, shutdownTimeoutMs: 8000 });
+const chrome = process.env.MUXIA_CHROME || '/opt/muxia/playwright-browsers/chromium-1234/chrome-linux64/chrome';
+const driver = new PlaywrightChromiumDriver({ executablePath: chrome, headless: true, launchTimeoutMs: 30000, shutdownTimeoutMs: 8000 });
 try {
   receipt.started_at = now();
   const handle = await driver.launch(profileDir);
