@@ -1,0 +1,47 @@
+{
+  "schema": "die.factory-asset.qwen-linux-canary-receipt.v1",
+  "task_id": "FA-112",
+  "date": "2026-09-05",
+  "status": "WAITING_OPERATOR",
+  "result": "PRE_DISPATCH_AUTH_REQUIRED",
+  "base_main": "48f0c2d381d3c9ef6727e663dd42ff2b3f485f31",
+  "authorization": "Founder-directed progression into FA-112; one bounded live provider call is authorized once pre-dispatch auth is READY.",
+  "preflight": {
+    "session_api_auth_reference": "ABSENT_BY_NAME_ONLY_SCAN",
+    "browser_profile_tested": "chatgpt-linux-a",
+    "browser_runtime_owner": "MUXIA",
+    "start_url": "https://chat.qwen.ai/",
+    "observed_at": "2026-09-05T08:00:50.348Z",
+    "state": "AUTH_REQUIRED",
+    "title": "Qwen Studio",
+    "editable_count": 1,
+    "login_ui_count": 1,
+    "prompt_submitted": false,
+    "provider_generation_dispatched": false,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false
+  },
+  "operator_handoff": {
+    "helper": "company/factory-asset/providers/qwen/linux/qwen_muxia_auth.sh",
+    "target_profile_id": "web-ai-shared",
+    "reason": "isolate Qwen manual pre-dispatch login from the active chatgpt-linux-a production profile",
+    "steps": [
+      "Connect to the Linux XFCE/RDP desktop.",
+      "Open a terminal in /srv/die.",
+      "Run: company/factory-asset/providers/qwen/linux/qwen_muxia_auth.sh login",
+      "Complete Qwen login manually. Do not submit an image prompt.",
+      "Close the MUXIA browser to release the profile lock.",
+      "Run: company/factory-asset/providers/qwen/linux/qwen_muxia_auth.sh probe",
+      "Resume FA-112 only when probe returns READY."
+    ]
+  },
+  "boundaries": {
+    "windows_cookie_or_session_copy": false,
+    "production_chatgpt_profile_used_for_persistent_login": false,
+    "account_creation_performed": false,
+    "captcha_or_protection_bypass": false,
+    "provider_call_count": 0,
+    "spend": 0
+  },
+  "next": "WAITING_OPERATOR until Qwen pre-dispatch login is complete; then exactly one bounded Linux canary."
+}

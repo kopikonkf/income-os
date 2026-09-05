@@ -3583,3 +3583,15 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Validation: 23 focused PASS; 571 Factory regression PASS; 6 one-canon pytest PASS.
 - Graph: FA-111 DONE; FA-112 READY.
 - Receipt: `company/factory-asset/receipts/FA-111-qwen-clean-extraction.receipt.json`.
+
+
+---
+
+## 2026-09-05 - FA-112 Qwen Linux canary pre-dispatch auth gate
+
+- FA-112 entered bounded Linux preflight under existing Founder direction, but no provider generation was dispatched.
+- No Linux opaque SESSION_API auth reference was found by names-only/config-key inspection. No Windows credential/session material was copied.
+- No-prompt MUXIA browser probe to `https://chat.qwen.ai/` on existing profile `chatgpt-linux-a` returned `AUTH_REQUIRED` at 2026-09-05T08:00:50.348Z (`Qwen Studio`, loginUiCount=1).
+- To avoid locking the production ChatGPT profile, the operator handoff targets MUXIA-owned `web-ai-shared`. Canonical helper: `company/factory-asset/providers/qwen/linux/qwen_muxia_auth.sh` with `login` and `probe`; neither operation contains generation logic or credential-copy logic.
+- FA-112 = WAITING_OPERATOR / PRE_DISPATCH_AUTH_REQUIRED. Resume only after `probe` returns READY, then execute exactly one bounded provider job.
+- Receipt: `company/factory-asset/receipts/FA-112-qwen-linux-canary.receipt.json`.

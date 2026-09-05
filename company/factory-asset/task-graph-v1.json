@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "8.0-fa111-qwen-clean-extraction",
+  "revision": "8.1-fa112-qwen-auth-preflight",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1392,10 +1392,14 @@
       "depends_on": [
         "FA-111"
       ],
-      "status": "READY",
+      "status": "WAITING_OPERATOR",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "artifact": "company/factory-asset/receipts/FA-112-qwen-linux-canary.receipt.json",
-      "acceptance": "One bounded authorized job produces a durable master with complete lineage; no bypass, secret output, duplicate save or Windows dependency."
+      "acceptance": "One bounded authorized job produces a durable master with complete lineage; no bypass, secret output, duplicate save or Windows dependency.",
+      "last_attempt": "PRE_DISPATCH_AUTH_PREFLIGHT",
+      "blocker": "AUTH_REQUIRED: no Linux opaque SESSION_API auth reference exists and the existing MUXIA chatgpt-linux-a profile shows Qwen login UI. No provider generation dispatch was committed.",
+      "operator_action": "From a visible Linux RDP session, run company/factory-asset/providers/qwen/linux/qwen_muxia_auth.sh login, complete Qwen login in the MUXIA-owned web-ai-shared profile, close that browser, then rerun probe. Do not submit a generation prompt manually.",
+      "resume_condition": "qwen_muxia_auth.sh probe returns READY with login_ui_count=0; then execute exactly one bounded FA-112 provider job."
     },
     {
       "id": "FA-113",
