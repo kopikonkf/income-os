@@ -3690,3 +3690,12 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Initial Cluster A policy: max 8 tabs; one browser-generation tab each for ChatGPT/Qwen/Gemini/Manus/Duck = max normal 5 concurrent generations; 3 tabs reserved for recovery/secondary use. Qwen SESSION_API uses no tab.
 - Real fixture: 5 leases/5 pages; duplicate Qwen rejected; ChatGPT CHECKPOINT isolated while Duck/Gemini/Manus/Qwen stayed leased; TTL reclaim PASS; final active/open=0; broker OFFLINE.
 - FA-302 DONE/PASS. FA-303 remains READY; FA-304 waits on FA-303 and FA-120.
+
+---
+
+## 2026-09-05 - FA-303 provider readiness health DONE/PASS
+
+- Added provider-specific readiness profiles for ChatGPT, Qwen, Gemini, Manus and Duck.ai; Grok stays deferred optional.
+- Readiness stores safe URL origin+pathname only plus state/reason/booleans; no cookies, tokens, OAuth callback, local/session storage or IndexedDB reads.
+- Real broker + real Chromium loopback fixture observed a leased Qwen page as HEALTHY; query/fragment redaction PASS; zero provider call; fixture cleaned up.
+- Provider CHECKPOINT/AUTH_REQUIRED is isolated to that provider; cluster aggregation remains DEGRADED while healthy siblings continue. FA-304 still waits for FA-120.

@@ -53,33 +53,54 @@
           "provider_id": "chatgpt",
           "membership": "ACTIVE",
           "preferred_transport": "BROWSER_CDP",
-          "linux_evidence": "PROVEN"
+          "linux_evidence": "PROVEN",
+          "readiness_profile": "chatgpt",
+          "evidence": [
+            "company/factory-asset/receipts/FA-W016-chatgpt-browser-cdp-backend.receipt.json",
+            "company/factory-asset/receipts/FA-113-muxia-provider-boundary.receipt.json"
+          ]
         },
         {
           "provider_id": "qwen",
           "membership": "ACTIVE",
           "preferred_transport": "SESSION_API",
           "browser_fallback": "BROWSER_CDP",
-          "linux_evidence": "PROVEN_FALLBACK"
+          "linux_evidence": "PROVEN_FALLBACK",
+          "readiness_profile": "qwen",
+          "evidence": [
+            "company/factory-asset/receipts/FA-112-qwen-linux-canary.receipt.json"
+          ]
         },
         {
           "provider_id": "gemini",
           "membership": "ACTIVE",
           "preferred_transport": "BROWSER_CDP",
-          "linux_evidence": "PROVEN"
+          "linux_evidence": "PROVEN",
+          "readiness_profile": "gemini",
+          "evidence": [
+            "company/factory-asset/receipts/FA-114-gemini-capability-probe.receipt.json"
+          ]
         },
         {
           "provider_id": "manus",
           "membership": "ACTIVE",
           "preferred_transport": "BROWSER_CDP",
-          "linux_evidence": "PROVEN"
+          "linux_evidence": "PROVEN",
+          "readiness_profile": "manus",
+          "evidence": [
+            "company/factory-asset/receipts/FA-116-manus-capability-probe.receipt.json"
+          ]
         },
         {
           "provider_id": "duckai",
           "membership": "ACTIVE",
           "preferred_transport": "BROWSER_CDP",
           "linux_evidence": "ROUTE_AND_EXTRACTION_PROVEN",
-          "autonomous_shared_broker_reproof": "FA-301/FA-302/FA-307"
+          "autonomous_shared_broker_reproof": "FA-301/FA-302/FA-307",
+          "readiness_profile": "duckai",
+          "evidence": [
+            "company/factory-asset/receipts/FA-118-duckai-capability-probe.receipt.json"
+          ]
         },
         {
           "provider_id": "grok",

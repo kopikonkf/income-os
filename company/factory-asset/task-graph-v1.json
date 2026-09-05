@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "9.0-fa302-cluster-tab-leases",
+  "revision": "9.1-fa303-provider-readiness-health",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2325,10 +2325,12 @@
       "depends_on": [
         "FA-301"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
-      "artifact": "cluster registry and readiness probes",
-      "acceptance": "ChatGPT, Qwen, Gemini, Manus and Duck.ai membership/readiness can be observed without exporting cookies, tokens or OAuth callback material; Grok remains independently policy/capacity gated."
+      "artifact": "company/browser/linux/provider_readiness.mjs; company/muxia/scripts/linux/muxia-provider-readiness-probe.mjs; company/factory-asset/registries/provider-readiness-profiles.v1.json; company/factory-asset/receipts/FA-303-provider-readiness-health.receipt.json",
+      "acceptance": "ChatGPT, Qwen, Gemini, Manus and Duck.ai membership/readiness can be observed without exporting cookies, tokens or OAuth callback material; Grok remains independently policy/capacity gated.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: Provider-specific readiness profiles cover ChatGPT/Qwen/Gemini/Manus/Duck.ai and bind canonical evidence. Safe probe classifies HEALTHY/DEGRADED/AUTH_REQUIRED/CHECKPOINT/UNAVAILABLE using origin+pathname plus visible DOM signals only; no cookie/token/storage reads. Real broker+Chromium loopback fixture observed a leased Qwen page as HEALTHY while stripping query/fragment. Cluster A was not opened or mutated."
     },
     {
       "id": "FA-304",

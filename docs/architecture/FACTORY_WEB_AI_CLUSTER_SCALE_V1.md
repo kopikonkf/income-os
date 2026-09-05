@@ -93,3 +93,12 @@ Cluster A policy starts with a hard ceiling of **8 tabs**, browser-generation li
 Provider health is isolated. `AUTH_REQUIRED`, `CHECKPOINT` or `UNAVAILABLE` prevents new leases for that provider only. Healthy sibling providers remain schedulable. The scheduler rejects duplicate job leases, enforces per-provider concurrency, counts unmanaged pages against the 8-tab ceiling, and reclaims expired/closed pages.
 
 Hermes/Factory orchestration must therefore reason in logical capacity: `job -> provider -> cluster -> tab lease`, never `job -> spawn browser`.
+
+
+## Provider Session Readiness Health (FA-303)
+
+Provider readiness is **provider-specific**, not a single ChatGPT-biased classifier. Machine-readable profiles live in `company/factory-asset/registries/provider-readiness-profiles.v1.json` for ChatGPT, Qwen, Gemini, Manus and Duck.ai. Grok remains outside the active pool.
+
+Readiness probes inspect only the current page URL after canonicalization to `origin + pathname`, visible composer/auth selectors, and bounded checkpoint text patterns. They do not read cookies, local/session storage, IndexedDB, OAuth callbacks, authorization headers or credential values. Probe outputs persist only safe URL, state/reason, booleans and timestamps.
+
+Provider states are `HEALTHY`, `DEGRADED`, `AUTH_REQUIRED`, `CHECKPOINT`, `UNAVAILABLE`. One provider in `CHECKPOINT` degrades the cluster but does not fail healthy siblings. Operational probes attach through the FA-301 broker and can observe a leased tab without owning the profile or spawning Chromium.
