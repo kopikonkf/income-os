@@ -1,0 +1,54 @@
+{
+  "schema": "die.production-runtime.idle-heartbeat-hotfix.receipt.v1",
+  "task_id": "PROD-HB001",
+  "date": "2026-09-05",
+  "status": "DONE",
+  "result": "PASS",
+  "incident": {
+    "reported_symptom": "No Telegram production-cycle notification after parked PRODSEED000031 status; Hermes appeared stalled.",
+    "scheduler_truth": {
+      "job_id": "6c1d9f5c504e",
+      "name": "die-production-cycle-v1",
+      "schedule": "0 */3 * * *",
+      "active": true,
+      "runs_observed": [
+        "2026-09-05T12:00Z ok",
+        "2026-09-05T15:00Z ok",
+        "2026-09-05T18:00Z ok"
+      ]
+    },
+    "cron_output_truth": "The 12:00, 15:00 and 18:00 UTC durable outputs were silent/empty, so the scheduler had no payload to deliver.",
+    "telegram_network_history": "Gateway recorded Telegram network recovery errors earlier on 2026-09-05, but an explicit current diagnostic send succeeded.",
+    "production_truth": {
+      "resolver_status": "NO_ACTIVE_CARD",
+      "parked_card_count": 17,
+      "seed_selector_status": "NO_ELIGIBLE_SEED",
+      "excluded_used_seed_count": 17
+    },
+    "root_cause": "production_runtime_tick.py intentionally suppressed all IDLE stdout; after the eligible U1 validated seed pool was exhausted, healthy cron runs became silent and looked stalled."
+  },
+  "fix": {
+    "runtime_file": "company/die-agents/hermes/production-runtime/production_runtime_tick.py",
+    "behavior": "Every deterministic tick emits JSON. IDLE results include PRODUCTION_RUNTIME_IDLE heartbeat, observed_at, provider_call_performed=false and parked count where available. NO_ELIGIBLE_SEED additionally emits next_action=REPLENISH_APPROVED_U1_VALIDATED_SEED_POOL.",
+    "cron_schedule_changed": false,
+    "cron_job_mutated": false,
+    "provider_call_performed": false,
+    "credentials_read": false,
+    "fa121_wired_to_hermes": false,
+    "fa121_note": "FA-121 remains a separate READY 24-hour live-load task and is not silently grafted onto die-production-cycle-v1."
+  },
+  "validation": {
+    "focused_runtime_resolver_selector": "31 passed, 1 PyPDF2 deprecation warning",
+    "factory_regression": "641 passed, 1 warning",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "secret_scan": "0 high-confidence hits",
+    "git_diff_check": "PASS"
+  },
+  "next": [
+    "Merge/deploy source-only hotfix to /srv/die.",
+    "Run zero-provider idle tick and Hermes cron delivery probe.",
+    "Replenish approved U1 validated seed pool before normal production can create another seed.",
+    "Execute FA-202 before FA-121; FA-121 should be wired as its own bounded stability canary after router/runtime readiness."
+  ]
+}

@@ -126,14 +126,22 @@ def upscale_and_park(w:Path)->dict:
 
 def tick()->dict:
  a=resolve_active_card(WORKSPACES)
- if a['status']=='NO_ACTIVE_CARD':return start_seed()
- if a['status']=='DELEGATED_ACTIVE_CARD':return {'status':'IDLE','reason':'WAITING_COGNITION'}
- if a['status']!='CONTINUE_ACTIVE_CARD':return {'status':'IDLE','reason':a['status']}
+ if a['status']=='NO_ACTIVE_CARD':
+  r=start_seed()
+  if r.get('status')=='IDLE':
+   r['parked_card_count']=a.get('parked_card_count',0)
+   r['heartbeat']='PRODUCTION_RUNTIME_IDLE'
+   r['observed_at']=now()
+   r['provider_call_performed']=False
+   if r.get('reason')=='NO_ELIGIBLE_SEED':r['next_action']='REPLENISH_APPROVED_U1_VALIDATED_SEED_POOL'
+  return r
+ if a['status']=='DELEGATED_ACTIVE_CARD':return {'status':'IDLE','reason':'WAITING_COGNITION','heartbeat':'PRODUCTION_RUNTIME_IDLE','observed_at':now(),'provider_call_performed':False,'parked_card_count':a.get('parked_card_count',0)}
+ if a['status']!='CONTINUE_ACTIVE_CARD':return {'status':'IDLE','reason':a['status'],'heartbeat':'PRODUCTION_RUNTIME_IDLE','observed_at':now(),'provider_call_performed':False,'parked_card_count':a.get('parked_card_count',0)}
  c=a['active_card'];w=Path(c['workspace']);state=c['state']
- if state=='BLUEPRINT_REQUIRED':return {'status':'IDLE','reason':'WAITING_COGNITION'}
+ if state=='BLUEPRINT_REQUIRED':return {'status':'IDLE','reason':'WAITING_COGNITION','heartbeat':'PRODUCTION_RUNTIME_IDLE','observed_at':now(),'provider_call_performed':False,'task_id':w.name}
  if state=='BLUEPRINT_READY':return generate(w)
  if state in {'ARTIFACT_CREATED','MASTER_VALIDATED','UPSCALE_DECIDED','DERIVATIVES_READY','TECHNICAL_QA_PASS','RIGHTS_SIGNAL_PASS_OR_REVIEW','METADATA_READY','PACKAGE_READY','POSTPROCESSING'}:return upscale_and_park(w)
- return {'status':'IDLE','reason':'UNHANDLED_STATE','state':state}
+ return {'status':'IDLE','reason':'UNHANDLED_STATE','state':state,'heartbeat':'PRODUCTION_RUNTIME_IDLE','observed_at':now(),'provider_call_performed':False,'task_id':w.name}
 
 def main()->int:
  LOCK.parent.mkdir(parents=True,exist_ok=True)
@@ -145,6 +153,6 @@ def main()->int:
    try:send(f"PRODUCTION_FAILED | stage=deterministic-runtime | retryable=yes | error={type(e).__name__}:{str(e)[:500]} | next=retry same durable card; no compensating seed")
    except Exception:pass
    print(json.dumps({'status':'FAILED','error':type(e).__name__,'message':str(e)[:800]}));return 2
-  if r.get('status') not in {'IDLE'}:print(json.dumps(r))
+  print(json.dumps(r))
  return 0
 if __name__=='__main__':raise SystemExit(main())
