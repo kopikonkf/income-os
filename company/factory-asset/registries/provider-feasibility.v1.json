@@ -1,0 +1,362 @@
+{
+  "schema": "die.factory-asset.provider-feasibility.v1",
+  "task_id": "FA-110",
+  "date": "2026-09-05",
+  "status": "CANONICAL_CANDIDATE",
+  "score_semantics": {
+    "max": 100,
+    "dimensions": {
+      "transport": 20,
+      "policy": 15,
+      "auth": 10,
+      "linux_feasibility": 20,
+      "image_capability": 15,
+      "capacity_evidence": 10,
+      "technical_quality": 5,
+      "maintenance": 5
+    },
+    "guardrails": [
+      "Score is engineering prioritization, not provider quality ranking or routing authority.",
+      "UNKNOWN is never upgraded to supported/available by score arithmetic.",
+      "Capacity score rewards only bounded evidence maturity; no jobs/day, quota, or concurrency is inferred from single-job latency.",
+      "Technical quality means file integrity only, not marketplace aesthetics or acceptance probability.",
+      "Policy gate overrides numeric score; DEFERRED/UNKNOWN policy is not route-eligible."
+    ]
+  },
+  "providers": [
+    {
+      "provider_id": "chatgpt",
+      "display_name": "ChatGPT/MUXIA",
+      "transport": {
+        "state": "PROVEN",
+        "class": "BROWSER_CDP",
+        "score": 14,
+        "evidence": [
+          "receipt://FA-W016",
+          "receipt://FA-W020",
+          "receipt://FA-W021"
+        ]
+      },
+      "policy": {
+        "state": "ALLOWED_EVIDENCED",
+        "score": 15,
+        "evidence": "company/factory-asset/registries/provider-policy.v1.json"
+      },
+      "auth": {
+        "state": "PREAUTHENTICATED_SESSION_PROVEN",
+        "score": 10
+      },
+      "linux_feasibility": {
+        "state": "PROVEN_LIVE",
+        "score": 20,
+        "evidence": [
+          "receipt://FA-140C",
+          "receipt://FA-140C-R1"
+        ]
+      },
+      "image_capability": {
+        "state": "PROVIDER_ORIGINAL_PASS",
+        "score": 15,
+        "evidence": [
+          "receipt://FA-W004",
+          "receipt://FA-W016"
+        ]
+      },
+      "capacity": {
+        "state": "UNKNOWN",
+        "bounded_success_evidence": true,
+        "sustained_throughput_proven": false,
+        "score": 3,
+        "note": "Successful bounded jobs exist; no sustained quota/throughput measurement is canonical."
+      },
+      "technical_quality": {
+        "state": "PASS",
+        "scope": "magic/MIME/dimensions/decode/reopen/hash only",
+        "score": 5
+      },
+      "maintenance": {
+        "risk": "MEDIUM",
+        "score": 3,
+        "basis": "Browser-CDP selectors/session lifecycle require maintenance, mitigated by current MUXIA Linux ownership and live recovery evidence."
+      },
+      "total_score": 85,
+      "eligibility": "CURRENT_LINUX_ANCHOR",
+      "next_action": "FA-113 normalize existing MUXIA boundary; do not duplicate browser/session ownership."
+    },
+    {
+      "provider_id": "qwen",
+      "display_name": "Qwen",
+      "transport": {
+        "state": "PROVEN_DUAL",
+        "class": "SESSION_API_PRIMARY_BROWSER_CDP_FALLBACK",
+        "score": 20,
+        "evidence": [
+          "receipt://FA-W002",
+          "task://FA-W012",
+          "receipt://FA-W018"
+        ]
+      },
+      "policy": {
+        "state": "ALLOWED_EVIDENCED",
+        "score": 15,
+        "evidence": "company/factory-asset/registries/provider-policy.v1.json"
+      },
+      "auth": {
+        "state": "PREAUTHENTICATED_SESSION_PROVEN",
+        "score": 10
+      },
+      "linux_feasibility": {
+        "state": "CANDIDATE_NOT_PROVEN",
+        "score": 6,
+        "evidence": "Windows transport is adapter-owned and no hard Windows-only requirement is accepted as necessary, but no Factory Linux provider canary exists yet."
+      },
+      "image_capability": {
+        "state": "PROVIDER_ORIGINAL_PASS",
+        "score": 15,
+        "evidence": [
+          "receipt://FA-W002",
+          "receipt://FA-W018"
+        ]
+      },
+      "capacity": {
+        "state": "UNKNOWN",
+        "bounded_success_evidence": true,
+        "sustained_throughput_proven": false,
+        "score": 4,
+        "note": "Two transport classes have bounded success evidence; this is resilience evidence, not quota or sustained-throughput evidence."
+      },
+      "technical_quality": {
+        "state": "PASS",
+        "scope": "magic/MIME/dimensions/decode/reopen/hash only",
+        "score": 5
+      },
+      "maintenance": {
+        "risk": "LOW_TO_MEDIUM",
+        "score": 4,
+        "basis": "SESSION_API primary reduces UI coupling and explicit BROWSER_CDP fallback provides resilience; provider route drift remains possible."
+      },
+      "total_score": 79,
+      "eligibility": "NEXT_LINUX_EXTRACTION_CANDIDATE",
+      "next_action": "FA-111 extract clean adapter, then FA-112 bounded authorized Linux canary."
+    },
+    {
+      "provider_id": "gemini",
+      "display_name": "Gemini",
+      "transport": {
+        "state": "PROVEN",
+        "class": "BROWSER_CDP",
+        "score": 14,
+        "evidence": "receipt://FA-W013"
+      },
+      "policy": {
+        "state": "ALLOWED_EVIDENCED",
+        "score": 15,
+        "evidence": "company/factory-asset/registries/provider-policy.v1.json"
+      },
+      "auth": {
+        "state": "PREAUTHENTICATED_SESSION_PROVEN",
+        "score": 10
+      },
+      "linux_feasibility": {
+        "state": "CANDIDATE_NOT_PROVEN",
+        "score": 6,
+        "evidence": "Zero-touch Windows BROWSER_CDP is proven; Linux browser/profile ownership has not been accepted for this Factory provider."
+      },
+      "image_capability": {
+        "state": "PROVIDER_ORIGINAL_PASS",
+        "score": 15,
+        "evidence": [
+          "receipt://FA-W005",
+          "receipt://FA-W013"
+        ]
+      },
+      "capacity": {
+        "state": "UNKNOWN",
+        "bounded_success_evidence": true,
+        "sustained_throughput_proven": false,
+        "score": 3,
+        "note": "One accepted bounded Level-2 job does not establish quota or daily throughput."
+      },
+      "technical_quality": {
+        "state": "PASS",
+        "scope": "magic/MIME/dimensions/decode/reopen/hash only",
+        "score": 5
+      },
+      "maintenance": {
+        "risk": "MEDIUM",
+        "score": 3,
+        "basis": "Browser-CDP route is proven but UI/download behavior and authenticated profile lifecycle remain maintenance surfaces."
+      },
+      "total_score": 71,
+      "eligibility": "WINDOWS_PROVEN_LINUX_CANDIDATE",
+      "next_action": "FA-114 extract normalized adapter after FA-110."
+    },
+    {
+      "provider_id": "manus",
+      "display_name": "Manus",
+      "transport": {
+        "state": "PROVEN",
+        "class": "BROWSER_CDP",
+        "score": 14,
+        "evidence": "receipt://FA-W015"
+      },
+      "policy": {
+        "state": "ALLOWED_EVIDENCED",
+        "score": 15,
+        "evidence": "company/factory-asset/registries/provider-policy.v1.json"
+      },
+      "auth": {
+        "state": "PREAUTHENTICATED_SESSION_PROVEN",
+        "score": 10
+      },
+      "linux_feasibility": {
+        "state": "CANDIDATE_NOT_PROVEN",
+        "score": 6,
+        "evidence": "Zero-touch Windows BROWSER_CDP is proven; Linux Factory adapter/canary is not."
+      },
+      "image_capability": {
+        "state": "PROVIDER_ORIGINAL_PASS",
+        "score": 15,
+        "evidence": [
+          "receipt://FA-W007",
+          "receipt://FA-W015"
+        ]
+      },
+      "capacity": {
+        "state": "UNKNOWN",
+        "bounded_success_evidence": true,
+        "sustained_throughput_proven": false,
+        "score": 3,
+        "note": "One bounded Level-2 success is not sustained-capacity evidence."
+      },
+      "technical_quality": {
+        "state": "PASS",
+        "scope": "magic/MIME/dimensions/decode/reopen/hash only",
+        "score": 5
+      },
+      "maintenance": {
+        "risk": "MEDIUM",
+        "score": 3,
+        "basis": "Browser-CDP plus generated CDN artifact discovery is an evidenced but provider-surface-dependent path."
+      },
+      "total_score": 71,
+      "eligibility": "WINDOWS_PROVEN_LINUX_CANDIDATE",
+      "next_action": "FA-116 extract normalized adapter after FA-110."
+    },
+    {
+      "provider_id": "duckai",
+      "display_name": "Duck.ai",
+      "transport": {
+        "state": "PROVEN",
+        "class": "BROWSER_CDP",
+        "score": 14,
+        "evidence": "receipt://FA-W017"
+      },
+      "policy": {
+        "state": "ALLOWED_EVIDENCED",
+        "score": 15,
+        "evidence": "company/factory-asset/registries/provider-policy.v1.json"
+      },
+      "auth": {
+        "state": "NO_ACCOUNT_REQUIRED_OR_EXISTING_SESSION_PROVEN",
+        "score": 10
+      },
+      "linux_feasibility": {
+        "state": "CANDIDATE_NOT_PROVEN",
+        "score": 6,
+        "evidence": "Windows zero-touch BROWSER_CDP is proven; Linux Factory adapter/canary is not."
+      },
+      "image_capability": {
+        "state": "PROVIDER_ORIGINAL_PASS",
+        "score": 15,
+        "evidence": [
+          "receipt://FA-W008",
+          "receipt://FA-W017"
+        ]
+      },
+      "capacity": {
+        "state": "UNKNOWN",
+        "bounded_success_evidence": true,
+        "sustained_throughput_proven": false,
+        "score": 3,
+        "note": "One bounded Level-2 success is not quota or throughput evidence."
+      },
+      "technical_quality": {
+        "state": "PASS",
+        "scope": "magic/MIME/dimensions/decode/reopen/hash only",
+        "score": 5
+      },
+      "maintenance": {
+        "risk": "MEDIUM_TO_HIGH",
+        "score": 2,
+        "basis": "Browser-CDP route depends on current UI/DOM data-URI artifact behavior; historical failed attempts are retained."
+      },
+      "total_score": 70,
+      "eligibility": "WINDOWS_PROVEN_LINUX_CANDIDATE",
+      "next_action": "FA-118 extract normalized adapter after FA-110."
+    },
+    {
+      "provider_id": "grok",
+      "display_name": "Grok",
+      "transport": {
+        "state": "CURRENT_ROUTE_GATED",
+        "class": "BROWSER_CDP_EVIDENCED_ATTEMPT_AUTOMATION_ROUTE_CURRENTLY_UNKNOWN",
+        "score": 4,
+        "evidence": [
+          "receipt://FA-W006",
+          "receipt://FA-W014"
+        ]
+      },
+      "policy": {
+        "state": "DEFERRED_PLATFORM_GATE",
+        "score": 0,
+        "evidence": "company/factory-asset/registries/provider-policy.v1.json"
+      },
+      "auth": {
+        "state": "PLAN_OR_PLATFORM_GATE",
+        "score": 0
+      },
+      "linux_feasibility": {
+        "state": "UNSUPPORTED_CURRENTLY",
+        "score": 0,
+        "evidence": "No Level-2 PASS and current Imagine route is gated; no Linux extraction should claim readiness."
+      },
+      "image_capability": {
+        "state": "LEVEL1_PROVIDER_ORIGINAL_PASS",
+        "score": 15,
+        "evidence": "receipt://FA-W006"
+      },
+      "capacity": {
+        "state": "UNAVAILABLE_OBSERVED_AND_THROUGHPUT_UNKNOWN",
+        "bounded_success_evidence": false,
+        "sustained_throughput_proven": false,
+        "score": 0,
+        "note": "FA-W014 observed HIGH_DEMAND/PROVIDER_CAPACITY_UNAVAILABLE, then a SuperGrok spend/platform gate. This does not authorize spend or establish future capacity."
+      },
+      "technical_quality": {
+        "state": "PASS_LEVEL1_ONLY",
+        "scope": "historical Level-1 original bytes passed technical validation; no Level-2 artifact exists",
+        "score": 5
+      },
+      "maintenance": {
+        "risk": "HIGH",
+        "score": 1,
+        "basis": "Current route is provider/plan gated and no accepted autonomous route exists."
+      },
+      "total_score": 25,
+      "eligibility": "DEFERRED_NOT_IN_ACTIVE_POOL",
+      "next_action": "Do not block Factory. Resume only if an already-authorized route becomes available or Founder separately authorizes required spend."
+    }
+  ],
+  "recommended_sequence": [
+    "chatgpt",
+    "qwen",
+    "gemini",
+    "manus",
+    "duckai"
+  ],
+  "deferred": [
+    "grok"
+  ],
+  "decision": "Keep ChatGPT/MUXIA as the current Linux anchor; execute Qwen extraction/canary next because its SESSION_API primary plus explicit BROWSER_CDP fallback provides the strongest not-yet-Linux-proven transport foundation. Normalize Gemini, Manus and Duck.ai after the common boundary exists. Grok remains non-blocking/deferred."
+}

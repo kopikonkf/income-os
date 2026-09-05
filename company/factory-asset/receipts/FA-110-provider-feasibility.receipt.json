@@ -1,0 +1,82 @@
+{
+  "schema": "die.factory-asset.provider-feasibility-receipt.v1",
+  "task_id": "FA-110",
+  "date": "2026-09-05",
+  "status": "DONE",
+  "result": "PASS",
+  "base_main": "05ed1b04808e6bcb1c0351cd16715a0dc1ce2abb",
+  "artifacts": [
+    "docs/architecture/FACTORY_ASSET_PROVIDER_FEASIBILITY_V1.md",
+    "company/factory-asset/registries/provider-feasibility.v1.json",
+    "company/factory-asset/tests/test_provider_feasibility_scorecard.py"
+  ],
+  "evidence_basis": [
+    "FA-W009",
+    "FA-W011",
+    "FA-W012",
+    "FA-W013",
+    "FA-W014",
+    "FA-W015",
+    "FA-W016",
+    "FA-W017",
+    "FA-W018",
+    "FA-W019",
+    "FA-102",
+    "FA-103",
+    "FA-140C",
+    "FA-140C-R1"
+  ],
+  "ranking": [
+    {
+      "provider": "chatgpt",
+      "score": 85,
+      "disposition": "CURRENT_LINUX_ANCHOR"
+    },
+    {
+      "provider": "qwen",
+      "score": 79,
+      "disposition": "NEXT_LINUX_EXTRACTION_CANDIDATE"
+    },
+    {
+      "provider": "gemini",
+      "score": 71,
+      "disposition": "WINDOWS_PROVEN_LINUX_CANDIDATE"
+    },
+    {
+      "provider": "manus",
+      "score": 71,
+      "disposition": "WINDOWS_PROVEN_LINUX_CANDIDATE"
+    },
+    {
+      "provider": "duckai",
+      "score": 70,
+      "disposition": "WINDOWS_PROVEN_LINUX_CANDIDATE"
+    },
+    {
+      "provider": "grok",
+      "score": 25,
+      "disposition": "DEFERRED_NOT_IN_ACTIVE_POOL"
+    }
+  ],
+  "truth_boundaries": {
+    "score_is_routing_authority": false,
+    "unknown_capacity_preserved": true,
+    "jobs_per_day_inferred": false,
+    "linux_support_claimed_for_unproven_candidates": false,
+    "grok_spend_authorized": false
+  },
+  "dependency_reconciliation": {
+    "FA-111": "READY",
+    "FA-114": "READY",
+    "FA-116": "READY",
+    "FA-118": "READY",
+    "FA-115": "DEFERRED",
+    "FA-113": "READY_ALREADY"
+  },
+  "validation": {
+    "focused_tests": "29/29 PASS",
+    "factory_regression": "554/554 PASS (1 deprecation warning)",
+    "one_canon_pytest": "6/6 PASS; current-repo validator assertion requires 11/11 checks",
+    "git_diff_check": "PASS"
+  }
+}
