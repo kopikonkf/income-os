@@ -1,0 +1,60 @@
+{
+  "schema": "die.factory-asset.production-plan.v1",
+  "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
+  "blueprint_sha256": "d66654c5031f5c36aebfeb348124f9fedd17685c9362fdf6b8dbd39cd0a2e31c",
+  "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+  "asset_type": "ISOLATED_OBJECT",
+  "asset_type_registry_revision": "1.0",
+  "marketplace_delivery_profile_revision": "1.0",
+  "producer": {
+    "class": "RASTER_GENERATIVE",
+    "recipe_id": "raster-generative-master-v1",
+    "maturity": "PRODUCTION_READY"
+  },
+  "master": {
+    "format": "PNG",
+    "width_px": 4096,
+    "height_px": 4096,
+    "color_space": "SRGB",
+    "lineage_sha256_required": true
+  },
+  "derivatives": [
+    {
+      "derivative_id": "ADOBE_JPEG",
+      "purpose": "MARKETPLACE_DELIVERY",
+      "format": "JPEG",
+      "recipe_id": "raster-jpeg-stock-v1",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+      "semantic_identity_effect": "NONE",
+      "marketplace_profiles": [
+        "ADOBE_STOCK"
+      ]
+    },
+    {
+      "derivative_id": "PNG_PREVIEW",
+      "purpose": "PREVIEW",
+      "format": "PNG",
+      "recipe_id": "raster-png-export-v1",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+      "semantic_identity_effect": "NONE",
+      "marketplace_profiles": []
+    },
+    {
+      "derivative_id": "WEBP_PREVIEW",
+      "purpose": "PREVIEW",
+      "format": "WEBP",
+      "recipe_id": "raster-webp-preview-v1",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+      "semantic_identity_effect": "NONE",
+      "marketplace_profiles": []
+    }
+  ],
+  "policy_gate": {
+    "compatibility_state": "COMPATIBLE",
+    "marketplace_profiles": [
+      "ADOBE_STOCK"
+    ],
+    "submission_blocked": false,
+    "submission_authority": "FOUNDER_CONTROLLED"
+  }
+}

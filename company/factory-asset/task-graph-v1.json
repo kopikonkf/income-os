@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "9.2-fa200-governed-canary-selection",
+  "revision": "9.3-fa201-governed-canary-blueprint",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1678,9 +1678,11 @@
       "depends_on": [
         "FA-200"
       ],
-      "status": "READY",
-      "artifact": "company/factory-asset/receipts/FA-201-canary-blueprint-compile.receipt.json",
-      "acceptance": "Exact expression plan plus Blueprint pins semantic mode, producer eligibility, master spec, derivative delivery plan, distinctness and marketplace profile versions; Division01/Executive routing evidence is attached only when cognition policy requires it."
+      "status": "DONE",
+      "artifact": "company/factory-asset/receipts/FA-201-canary-blueprint-compile.receipt.json; company/factory-asset/fixtures/governed-canary/FA-201-shopping-bag-blueprint-v2.json; company/factory-asset/fixtures/governed-canary/FA-201-shopping-bag-production-plan.json; company/factory-asset/fixtures/governed-canary/FA-201-shopping-bag-blueprint-lock.json",
+      "acceptance": "Exact expression plan plus Blueprint pins semantic mode, producer eligibility, master spec, derivative delivery plan, distinctness and marketplace profile versions; Division01/Executive routing evidence is attached only when cognition policy requires it.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: Exact FA-200 frozen expression compiled deterministically to Asset Blueprint v2 `FABP-FA200_SHOPPING_BAG_FULFILLMENT` / semantic asset `FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED`: ISOLATED_OBJECT, RASTER_GENERATIVE, 4096x4096 SRGB PNG immutable master, Adobe JPEG marketplace derivative plus PNG/WebP previews, all semantic_identity_effect=NONE. Asset-type and marketplace profile revisions 1.0 are hash-pinned; distinctness quarantines near duplicates. FA-134 cognition is not invoked because compile introduces no semantic drift. Compiler technical compatibility does not grant rights/submission: runtime rights remain REVIEW_REQUIRED and effective submission is blocked pending rights + Founder QC. No provider call, production dispatch or publication."
     },
     {
       "id": "FA-202",

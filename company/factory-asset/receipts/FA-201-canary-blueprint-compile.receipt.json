@@ -1,0 +1,85 @@
+{
+  "schema": "die.factory-asset.governed-canary-blueprint-compile-receipt.v1",
+  "task_id": "FA-201",
+  "date": "2026-09-05",
+  "status": "DONE",
+  "result": "PASS",
+  "inputs": {
+    "fa200_expression_plan": "company/factory-asset/fixtures/governed-canary/FA-200-shopping-bag-expression-plan.json",
+    "fa200_expression_plan_sha256": "89c213c86231a52b47681a83c084f202c9ac21524f0a6fa7bb42b517ee4bfc65",
+    "fa200_selection": "company/factory-asset/fixtures/governed-canary/FA-200-shopping-bag-selection.json",
+    "fa200_selection_sha256": "33d778f21b10c02beddf2ab4674a0cd062f6940957b5428b923e0e6437a23ca7"
+  },
+  "blueprint": {
+    "ref": "company/factory-asset/fixtures/governed-canary/FA-201-shopping-bag-blueprint-v2.json",
+    "file_sha256": "58a5aa9f3d390bdb2257b95070f3cd7acfba4156a2f001c55013f4ec93d1b49e",
+    "canonical_sha256": "d66654c5031f5c36aebfeb348124f9fedd17685c9362fdf6b8dbd39cd0a2e31c",
+    "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+    "semantic_mode": "ISOLATED_OBJECT",
+    "asset_type": "ISOLATED_OBJECT"
+  },
+  "producer": {
+    "class": "RASTER_GENERATIVE",
+    "recipe_id": "raster-generative-master-v1",
+    "maturity": "PRODUCTION_READY"
+  },
+  "master_spec": {
+    "format": "PNG",
+    "width_px": 4096,
+    "height_px": 4096,
+    "pixel_count": 16777216,
+    "color_space": "SRGB",
+    "lineage_sha256_required": true,
+    "immutable": true
+  },
+  "derivatives": {
+    "ADOBE_JPEG": "raster-jpeg-stock-v1",
+    "PNG_PREVIEW": "raster-png-export-v1",
+    "WEBP_PREVIEW": "raster-webp-preview-v1",
+    "semantic_identity_effect": "NONE"
+  },
+  "versions": {
+    "asset_type_registry_revision": "1.0",
+    "asset_type_registry_sha256": "ad5b52fd5ed433aab992fa38d1d2f98e8461c5632c2d9868e115fed68a18d83c",
+    "marketplace_delivery_profile_revision": "1.0",
+    "marketplace_delivery_profile_sha256": "1020b9dd5fc558cfcbec72aa7f2e8cea76b327dd98ad21adaf0ed8aef8d3a2ad"
+  },
+  "distinctness": {
+    "identity_rule": "DISTINCT_COMMERCIAL_USE_CASE_AND_BLUEPRINT",
+    "packaging_variants_create_new_semantic_asset": false,
+    "near_duplicate_action": "QUARANTINE"
+  },
+  "cognition": {
+    "decision": "NOT_REQUIRED_DETERMINISTIC_COMPILE_OF_FROZEN_FA200_SELECTION",
+    "division01_called": false,
+    "executive_called": false,
+    "policy_ref": "company/factory-asset/receipts/FA-134-cognition-router.receipt.json",
+    "policy_sha256": "54a5bcf16538e0e296c96e49f8d8ef77ba88977a5aa383929ecdaaae9469600f"
+  },
+  "governance": {
+    "compiler_technical_compatibility": "COMPATIBLE",
+    "compiler_submission_blocked": false,
+    "rights_runtime_state": "REVIEW_REQUIRED",
+    "founder_qc_complete": false,
+    "effective_submission_blocked": true,
+    "marketplace_acceptance": false,
+    "publication_authority": false,
+    "provider_call": false,
+    "production_dispatch": false
+  },
+  "production_plan": {
+    "ref": "company/factory-asset/fixtures/governed-canary/FA-201-shopping-bag-production-plan.json",
+    "file_sha256": "31b6133bf5ee40c92a3ac4d8aebe6c0729e18e949cc2d15646ecdab2441a2f6e"
+  },
+  "lock": {
+    "ref": "company/factory-asset/fixtures/governed-canary/FA-201-shopping-bag-blueprint-lock.json",
+    "file_sha256": "9aa30cb682103a1450896197ae3b3f6921fa39666cc583a527bcf1cb582b5937"
+  },
+  "next": "FA-202 remains gated by FA-117 live two-provider acceptance plus this compiled canary; FA-201 grants no live-provider authority.",
+  "validation": {
+    "focused_blueprint_canary_stack": "29 passed",
+    "factory_regression": "627 passed, 1 PyPDF2 deprecation warning",
+    "one_canon_pytest": "6 passed"
+  }
+}
