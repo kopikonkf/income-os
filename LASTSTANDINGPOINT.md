@@ -3652,3 +3652,14 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - A 240x213 JPEG challenge tile was previously mistaken as an image response candidate; post-validation rejected it and adapter now excludes `/assets/anomaly/*` and requires >=512x512 for network image candidates.
 - FA-118 status is `WAITING_OPERATOR`, not PASS. Required bootstrap: visible no-CDP Duck.ai prompt + manual challenge completion; then close Chromium and run a fresh bounded canary with zero operator action after dispatch.
 - Graph revision `8.6-fa118-duckai-human-challenge`; FA-300 remains blocked on FA-118.
+
+---
+
+## 2026-09-05 - FA-118 Duck.ai route correction and Linux extraction PASS
+
+- Founder disproved the earlier global WAITING_OPERATOR diagnosis by generating normally in Duck.ai `Tools -> Create Image` on the same Cluster A profile.
+- The automated HTTP 418/challenge observation is retained only as a scoped headless diagnostic; Duck internal `/duckchat/v1/chat` transport is not the Factory image success contract.
+- Current Duck image output is persisted by the browser in IndexedDB object store `chat-images`; newest Blob timestamp 2026-09-05T17:50:31.476076Z extracted automatically to `/var/lib/die/workspaces/FA118-DUCKAI-MANUAL-PROOF-20260905/provider/source-original.jpg`.
+- Provider original: JPEG 1254x1254 RGB, 48,969 bytes, SHA `19aa19644fef9435657b4496f0d8b501c5fa5299273431c313414dcc1afe0645`; decode/reopen PASS; center blue/corners white consistent with visible tab `Blue circle on white background`.
+- Truth boundary: Linux dispatch was Founder GUI; Windows FA-W017 remains zero-touch BROWSER_CDP reference. Autonomous shared-broker Duck is re-proven in FA-301/302/307.
+- FA-118 DONE/PASS; FA-300 READY. Graph browser budget corrected to 8. Revision `8.7-fa118-duck-image-route-corrected`.

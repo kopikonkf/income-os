@@ -1,94 +1,95 @@
 {
-  "attempts": [
-    {
-      "dispatch_committed": true,
-      "failure_code": "E_BOUNDED_COMPLETION_TIMEOUT",
-      "job_id": "FA118-DUCKAI-CANARY-20260905A",
-      "note": "Original extractor waited only for new data:image DOM output; later diagnostic proved Duck challenge was the real blocker.",
-      "status": "FAILED"
-    },
-    {
-      "dispatch_committed": false,
-      "failure_code": "E_CREATE_BUTTON_UNAVAILABLE",
-      "job_id": "FA118-DUCKAI-CANARY-20260905B",
-      "note": "Duck UI changed image-mode submit control from visible Create label to aria-label Send/type=submit.",
-      "status": "FAILED_PRE_DISPATCH"
-    },
-    {
-      "candidate": {
-        "bytes": 34139,
-        "dimensions": [
-          240,
-          213
-        ],
-        "mime": "image/jpeg",
-        "path": "/var/lib/die/workspaces/FA118-DUCKAI-CANARY-20260905C/provider/source-original.jpg",
-        "sha256": "d4a15cada5721db6fe5a7d0de18ead08bccfafd68bb7dcd242ad1b24740d642c"
-      },
-      "dispatch_committed": true,
-      "job_id": "FA118-DUCKAI-CANARY-20260905C",
-      "reason": "Post-validation proved this was a Duck anomaly/challenge tile, not generated provider output. It is explicitly excluded from acceptance.",
-      "status": "REJECTED_FALSE_CANDIDATE"
-    },
-    {
-      "dispatch_committed": true,
-      "failure_code": "E_BOUNDED_COMPLETION_TIMEOUT",
-      "job_id": "FA118-DUCKAI-CANARY-20260905D",
-      "note": "Dimension gate correctly rejected small anomaly images.",
-      "status": "FAILED"
-    },
-    {
-      "dispatch_committed": true,
-      "http": {
-        "content_type": "application/json",
-        "method": "POST",
-        "safe_path": "/duckchat/v1/chat",
-        "status": 418
-      },
-      "job_id": "FA118-DUCKAI-DIAGNOSTIC-20260905E",
-      "status": "HUMAN_CHALLENGE_REQUIRED",
-      "visible_checkpoint": "Duck.ai asks the human to select image squares containing a duck and submit the challenge. No challenge response was automated."
-    }
-  ],
+  "autonomy_truth_boundary": "FA-W017 remains the canonical zero-touch-after-dispatch BROWSER_CDP proof. This Linux FA-118 canary proves the current Cluster A image-mode route and automated original-byte extraction, but the dispatch itself was Founder GUI action. Shared-broker autonomous Linux Duck production must be re-proven under FA-301/FA-302/FA-307; FA-118 does not fabricate that proof.",
+  "correction": {
+    "corrected_as": "FALSE_GLOBAL_DIAGNOSIS",
+    "previous_status": "WAITING_OPERATOR/HUMAN_CHALLENGE_REQUIRED",
+    "reason": "A headless automated diagnostic received HTTP 418 on Duck internal chat transport, but Founder then used the actual Duck.ai Create Image UI successfully in the same Cluster A profile. Therefore HTTP 418 is scoped to that diagnostic execution and cannot describe Duck image capability globally."
+  },
   "date": "2026-09-05",
-  "hardening": {
+  "diagnostic_history": {
     "anomaly_asset_exclusion": "/assets/anomaly/*",
     "captcha_or_protection_bypass": false,
-    "challenge_text_detection": true,
-    "http_418_detection": true,
-    "minimum_network_candidate_dimensions": [
-      512,
-      512
-    ],
-    "typed_failure": "E_HUMAN_CHALLENGE_REQUIRED"
+    "false_candidate_240x213": "REJECTED",
+    "http_418_headless_observation": "RETAINED_AS_SCOPED_DIAGNOSTIC_ONLY"
   },
-  "next": "Founder/operator manual trust bootstrap for Duck.ai, then one fresh zero-touch-after-dispatch Linux canary. FA-300 remains dependency-blocked until FA-118 becomes DONE/PASS.",
+  "linux_cluster_a_canary": {
+    "browser_mode": "VISIBLE_NO_CDP",
+    "content_consistency": {
+      "center_rgb": [
+        2,
+        112,
+        253
+      ],
+      "coarse_blue_fraction": 0.3531,
+      "coarse_white_fraction": 0.6416,
+      "corner_rgb": [
+        254,
+        254,
+        254
+      ]
+    },
+    "dispatch_actor": "FOUNDER_GUI",
+    "generation_result": "PASS",
+    "profile_id": "chatgpt-linux-a",
+    "provider_original": {
+      "browser_blob_last_modified_utc": "2026-09-05T17:50:31.476076+00:00",
+      "bytes": 48969,
+      "decode_reopen": "PASS",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "extraction_performed_by_automation": true,
+      "local_path": "/var/lib/die/workspaces/FA118-DUCKAI-MANUAL-PROOF-20260905/provider/source-original.jpg",
+      "mime": "image/jpeg",
+      "original_byte_acquisition_method": "duckai_indexeddb_chat_images_blob",
+      "sha256": "19aa19644fef9435657b4496f0d8b501c5fa5299273431c313414dcc1afe0645"
+    },
+    "visible_tab_title": "Blue circle on white background"
+  },
+  "master_lineage": {
+    "byte_preservation": "EXACT_COPY",
+    "canonical_truth": false,
+    "decode_verified": true,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "ingestion_state": "STAGED_NOT_CANONICAL",
+    "sha256": "19aa19644fef9435657b4496f0d8b501c5fa5299273431c313414dcc1afe0645",
+    "staged_blob_path": "/var/lib/die/workspaces/FA118-DUCKAI-MANUAL-PROOF-20260905/master-staging/blobs/sha256/19/19aa19644fef9435657b4496f0d8b501c5fa5299273431c313414dcc1afe0645",
+    "state_manager_commit_required": true
+  },
+  "next": "FA-300 cluster lifecycle contract is unblocked. FA-301/FA-302 must preserve provider-level failure isolation and later re-prove automated Duck operation inside the shared browser broker.",
   "normalization": {
     "browser_runtime_owner": "MUXIA",
-    "canonical_windows_acquisition": "provider_data_uri_dom",
+    "fallback_acquisition_route": "PROVIDER_DATA_URI_DOM",
     "image_mode_activation": [
       "Tools",
       "Create Image"
     ],
+    "indexeddb_object_store": "chat-images",
+    "internal_chat_endpoint_is_success_contract": false,
+    "primary_acquisition_route": "INDEXEDDB_CHAT_IMAGES_BLOB",
     "profile_id": "chatgpt-linux-a",
     "provider_id": "duckai",
     "text_only_endpoint_eligible": false,
     "transport_class": "BROWSER_CDP",
     "windows_dependency": false
   },
-  "operator_action_required": "Open Duck.ai in the existing Cluster A profile without CDP, submit one harmless Create Image prompt, complete the Duck.ai human challenge manually, then close Chromium. After that run a fresh bounded FA-118 canary; acceptance still requires zero operator action after its own dispatch.",
-  "result": "HUMAN_CHALLENGE_REQUIRED",
+  "result": "PASS",
   "schema": "die.factory-asset.duckai-capability-probe-receipt.v1",
   "source_evidence": [
     "company/factory-asset/receipts/FA-W017-duckai-autonomous-backend.receipt.json"
   ],
-  "status": "WAITING_OPERATOR",
+  "status": "DONE",
   "task_id": "FA-118",
-  "truth_boundary": "FA-118 is not PASS. Windows FA-W017 remains prior proof, but current Linux Cluster A is checkpointed by Duck.ai anti-bot challenge. Other Cluster A providers must remain independently schedulable in the future shared-browser broker.",
   "validation": {
     "factory_regression": "599 passed, 1 PyPDF2 deprecation warning",
-    "focused_duckai": "6 passed",
-    "node_syntax_check": "PASS",
-    "one_canon_pytest": "6 passed"
+    "focused_duck_route_tab_budget_roadmap": "12 passed",
+    "indexeddb_extractor_reproducibility": "PASS same SHA256",
+    "master_exact_copy_and_lineage": "PASS",
+    "one_canon_pytest": "6 passed",
+    "provider_original_decode_reopen": "PASS"
   }
 }

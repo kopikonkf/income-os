@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "8.6-fa118-duckai-human-challenge",
+  "revision": "8.7-fa118-duck-image-route-corrected",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -29,7 +29,7 @@
       "ACTIVE_CONFLICTING_ENGINEERING_LEASE"
     ],
     "browser_budget": {
-      "max_open_tabs_per_principal": 2,
+      "max_open_tabs_per_principal": 8,
       "tab_roles": [
         "WORK",
         "AUTH_OR_RECOVERY"
@@ -1496,11 +1496,12 @@
         "FA-109",
         "FA-110"
       ],
-      "status": "WAITING_OPERATOR",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "artifact": "company/factory-asset/receipts/FA-118-duckai-capability-probe.receipt.json",
       "acceptance": "A Windows-proven allowed image route is normalized and canaried, or the lane remains UNSUPPORTED with no fabricated image success; its text-only endpoint cannot satisfy this task.",
-      "result": "WAITING_OPERATOR: Linux Cluster A Duck.ai Create Image dispatch reaches POST /duckchat/v1/chat but provider returns HTTP 418 and a human challenge. Adapter now types E_HUMAN_CHALLENGE_REQUIRED, excludes /assets/anomaly challenge tiles and rejects sub-512px false candidates. No challenge bypass was attempted. Founder/operator must complete one manual no-CDP trust bootstrap, close browser, then FA-118 requires a fresh zero-touch-after-dispatch canary before PASS."
+      "result": "PASS: Previous global HUMAN_CHALLENGE diagnosis corrected. Founder successfully generated through Duck.ai Tools -> Create Image in the same visible no-CDP Cluster A profile. Duck browser IndexedDB object store chat-images contained the current provider JPEG Blob; automated snapshot extraction persisted exact 1254x1254 JPEG, 48,969 bytes, SHA 19aa19644fef9435657b4496f0d8b501c5fa5299273431c313414dcc1afe0645 to Factory local workspace with decode/reopen PASS and no credential/cookie read. FA-W017 remains zero-touch BROWSER_CDP reference; Linux autonomous shared-broker dispatch is intentionally re-proven in FA-301/302/307.",
+      "completed_at": "2026-09-05"
     },
     {
       "id": "FA-119",
@@ -2276,7 +2277,7 @@
         "FA-118",
         "FA-299"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "docs/architecture/FACTORY_WEB_AI_CLUSTER_SCALE_V1.md",
       "acceptance": "Cluster identity, profile path, provider-session membership, auth handoff, owner process, tab ceiling, health state, retirement and no-secret-copy rules are canonical."
