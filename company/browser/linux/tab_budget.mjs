@@ -1,4 +1,4 @@
-export const MAX_TABS_PER_PRINCIPAL = 2;
+export const MAX_TABS_PER_PRINCIPAL = 8;
 
 export async function enforceTabBudget(context, { preserve = [], maxTabs = MAX_TABS_PER_PRINCIPAL } = {}) {
   if (!Number.isInteger(maxTabs) || maxTabs < 1) throw new Error('E_TAB_BUDGET');

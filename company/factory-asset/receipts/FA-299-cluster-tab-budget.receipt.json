@@ -1,0 +1,44 @@
+{
+  "schema": "die.factory-asset.cluster-tab-budget.receipt.v1",
+  "task_id": "FA-299",
+  "date": "2026-09-05",
+  "status": "DONE",
+  "result": "PASS",
+  "before": {
+    "max_tabs_per_principal": 2
+  },
+  "after": {
+    "max_tabs_per_principal": 8
+  },
+  "scope": "Central company/browser/linux/tab_budget.mjs ceiling used by operator, wake, MUXIA and normalized provider canaries.",
+  "truth_boundary": "Eight active tabs are allowed inside one shared browser context. Parallel provider generation is not accepted until a single-owner cluster broker and per-tab lease scheduler prevent competing Chromium processes from owning the same persistent profile.",
+  "historical_receipts_mutated": false,
+  "roadmap_revision": "8.5-fa299-cluster-scale-roadmap",
+  "new_future_tasks": [
+    "FA-300",
+    "FA-301",
+    "FA-302",
+    "FA-303",
+    "FA-304",
+    "FA-305",
+    "FA-306",
+    "FA-307",
+    "FA-308",
+    "FA-309",
+    "FA-C014",
+    "FA-C015",
+    "FA-C016",
+    "FA-C017",
+    "FA-C018",
+    "FA-C019",
+    "FA-C020",
+    "FA-C021",
+    "FA-C022"
+  ],
+  "validation": {
+    "focused_tab_budget_and_roadmap": "6 passed",
+    "factory_regression": "593 passed, 1 PyPDF2 deprecation warning",
+    "one_canon_pytest": "6 passed",
+    "runtime_constant_probe": "MAX_TABS=8"
+  }
+}

@@ -3631,3 +3631,14 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Attempt A stopped pre-dispatch at editor hydration; attempt B is the only provider call reaching dispatch and PASS.
 - Original PNG 1920x1920 RGB, 2,699,279 bytes, SHA `5fae90fe9dbb8d213cdd7e1ab6c9d7dcb5725d626a9139893606685a1a68c5e7`; decode/reopen and exact content-addressed master staging PASS.
 - Validation: 5 focused PASS; 590 Factory PASS; 6 one-canon PASS. Graph revision `8.4-fa116-manus-linux-canary`. Next: FA-118 Duck.ai.
+
+---
+
+## 2026-09-05 - FA-299 Cluster-A tab ceiling and future scale roadmap
+
+- Central `MAX_TABS_PER_PRINCIPAL` raised 2 -> 8. Historical receipts remain immutable.
+- Truth boundary: 8 tabs means bounded tabs inside one Chromium owner; simultaneous five-provider production still requires FA-301 single-owner broker + FA-302 tab leases.
+- `chatgpt-linux-a` remains accepted historical profile name and is modeled as Web-AI Army Cluster A.
+- Added FA-300..FA-309 for cluster registry, broker, tab scheduler, routing, Cluster B provisioning, cross-cluster scheduling and 1K/5K scale acceptance.
+- Added FA-C014..FA-C022 for Factory Console v2 cluster topology, unified operations, telemetry, governed commands, web acceptance, optional Tauri shell and future DIE federation boundary.
+- Architecture: `docs/architecture/FACTORY_WEB_AI_CLUSTER_SCALE_V1.md`. Graph revision `8.5-fa299-cluster-scale-roadmap`.
