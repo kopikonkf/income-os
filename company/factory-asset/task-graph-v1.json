@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "9.1-fa303-provider-readiness-health",
+  "revision": "9.2-fa200-governed-canary-selection",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1663,9 +1663,11 @@
         "FA-109",
         "FA-140"
       ],
-      "status": "READY",
-      "artifact": "company/factory-asset/receipts/FA-200-canary-selection.receipt.json",
-      "acceptance": "One evidence-supported opportunity is selected through the asset-expression plan with family, semantic mode, producer route, marketplace route, temporal/motion eligibility when relevant, rights posture, quality target and no publication authority."
+      "status": "DONE",
+      "artifact": "company/factory-asset/receipts/FA-200-canary-selection.receipt.json; company/factory-asset/fixtures/governed-canary/FA-200-shopping-bag-expression-plan.json; company/factory-asset/fixtures/governed-canary/FA-200-shopping-bag-selection.json",
+      "acceptance": "One evidence-supported opportunity is selected through the asset-expression plan with family, semantic mode, producer route, marketplace route, temporal/motion eligibility when relevant, rights posture, quality target and no publication authority.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: One evidence-supported governed canary is selected: shopping bag / CUSTOMER_ORDER_FULFILLMENT / ISOLATED_OBJECT / RASTER_GENERATIVE with Adobe Stock as CANDIDATE_REQUIRES_POLICY_CHECK, STATIC_ONLY motion posture, REVIEW_REQUIRED rights posture and >=4MP sRGB JPEG candidate-delivery target. Evidence is pinned to OE-007A plus remediated buyer-demand/platform-fit and current marketplace/rights registries. Category-level demand is observed, exact transaction unobserved, competition gap not proven; this is a governed canary experiment, not a market-winner claim. No provider call, production dispatch, upload, publication, credential access or spend."
     },
     {
       "id": "FA-201",
@@ -1676,7 +1678,7 @@
       "depends_on": [
         "FA-200"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/receipts/FA-201-canary-blueprint-compile.receipt.json",
       "acceptance": "Exact expression plan plus Blueprint pins semantic mode, producer eligibility, master spec, derivative delivery plan, distinctness and marketplace profile versions; Division01/Executive routing evidence is attached only when cognition policy requires it."
     },

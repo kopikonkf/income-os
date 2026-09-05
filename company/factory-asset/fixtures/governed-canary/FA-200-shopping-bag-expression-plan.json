@@ -1,0 +1,85 @@
+{
+  "schema": "die.factory-asset.asset-expression-plan.v1",
+  "plan_id": "FAEP-FA200_SHOPPING_BAG_FULFILLMENT",
+  "seed": {
+    "seed_id": "SEED-000029",
+    "noun": "shopping bag"
+  },
+  "decision": "SELECT",
+  "decision_rationale": "Select one conservative static raster expression for a governed Factory canary using observed category-level small-business/ecommerce demand and a policy-eligible Adobe Stock route; this is not exact-candidate sales proof.",
+  "policy": {
+    "expansion_rule": "EVIDENCE_SUPPORTED_ONLY",
+    "force_all_modes": false,
+    "packaging_variants_create_new_semantic_asset": false,
+    "derivative_planning_stage": "AFTER_VALIDATED_MASTER",
+    "submission_authority": "FOUNDER_CONTROLLED"
+  },
+  "evidence": [
+    {
+      "evidence_id": "fa200-object-atlas-candidate",
+      "kind": "OBJECT_ATLAS_SEED",
+      "source_ref": "company/muxia/receipts/oe007/OE-007A-candidate-snapshot.receipt.json",
+      "source_sha256": "48ca5b13822c6b7d1721b31240cc23be85caec21a4d06647d05e541a4a8d8a86",
+      "support": {
+        "seed_noun": "shopping bag",
+        "buyer": "Small-business ecommerce designer or operator",
+        "commercial_use_case": "Illustrate customer-order packing and fulfillment workflows",
+        "product_expression": "Unbranded shopping bag isolated object for customer-order fulfillment",
+        "semantic_mode": "ISOLATED_OBJECT",
+        "platform_id": "ADOBE_STOCK"
+      },
+      "rationale": "Canonical OE-007A pins the approved Object Atlas shopping-bag seed and the longtail customer-order-packing context used by this canary."
+    },
+    {
+      "evidence_id": "fa200-buyer-demand",
+      "kind": "APPROVED_RESEARCH",
+      "source_ref": "company/muxia/receipts/oe007/evidence-remediation/EVID-A-buyer-demand.receipt.json",
+      "source_sha256": "c3ba5807687f7cd5cb48310d3361379f6413c13d6a68d8228eda21e5e3b47536",
+      "support": {
+        "seed_noun": "shopping bag",
+        "buyer": "Small-business ecommerce designer or operator",
+        "commercial_use_case": "Illustrate customer-order packing and fulfillment workflows",
+        "product_expression": "Unbranded shopping bag isolated object for customer-order fulfillment",
+        "semantic_mode": "ISOLATED_OBJECT",
+        "platform_id": "ADOBE_STOCK"
+      },
+      "rationale": "Observed first-party category-level evidence supports versatile bags/boxes plus small-business and ecommerce stock needs; exact candidate transaction remains unobserved."
+    },
+    {
+      "evidence_id": "fa200-platform-fit",
+      "kind": "APPROVED_RESEARCH",
+      "source_ref": "company/muxia/receipts/oe007/evidence-remediation/EVID-B-platform-fit.receipt.json",
+      "source_sha256": "0efbb0f496aa6f2dc21046c835984ce56502dbe92c657e94671187e8a2a67936",
+      "support": {
+        "seed_noun": "shopping bag",
+        "buyer": "Small-business ecommerce designer or operator",
+        "commercial_use_case": "Illustrate customer-order packing and fulfillment workflows",
+        "product_expression": "Unbranded shopping bag isolated object for customer-order fulfillment",
+        "semantic_mode": "ISOLATED_OBJECT",
+        "platform_id": "ADOBE_STOCK"
+      },
+      "rationale": "Canonical platform-fit remediation records Adobe Stock as conditionally eligible for generative-AI content subject to disclosure, rights and quality policy."
+    }
+  ],
+  "expressions": [
+    {
+      "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+      "buyer": "Small-business ecommerce designer or operator",
+      "commercial_use_case": "Illustrate customer-order packing and fulfillment workflows",
+      "product_expression": "Unbranded shopping bag isolated object for customer-order fulfillment",
+      "semantic_mode": "ISOLATED_OBJECT",
+      "producer_class": "RASTER_GENERATIVE",
+      "candidate_marketplace_route": {
+        "platform_id": "ADOBE_STOCK",
+        "listing_use": "Unbranded shopping bag isolated object for customer-order fulfillment",
+        "state": "CANDIDATE_REQUIRES_POLICY_CHECK"
+      },
+      "evidence_refs": [
+        "fa200-object-atlas-candidate",
+        "fa200-buyer-demand",
+        "fa200-platform-fit"
+      ],
+      "selection_rationale": "A simple unbranded shopping-bag isolated object is the narrowest static expression matching the canonical order-packing context and observed category-level small-business/ecommerce demand while remaining suitable for governed raster production."
+    }
+  ]
+}

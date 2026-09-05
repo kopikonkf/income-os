@@ -1,0 +1,67 @@
+{
+  "schema": "die.factory-asset.governed-canary-selection-receipt.v1",
+  "task_id": "FA-200",
+  "date": "2026-09-05",
+  "status": "DONE",
+  "result": "PASS",
+  "selection_id": "FA200-SHOPPING-BAG-FULFILLMENT-ISOLATED-001",
+  "artifacts": {
+    "expression_plan": "company/factory-asset/fixtures/governed-canary/FA-200-shopping-bag-expression-plan.json",
+    "expression_plan_sha256": "89c213c86231a52b47681a83c084f202c9ac21524f0a6fa7bb42b517ee4bfc65",
+    "selection": "company/factory-asset/fixtures/governed-canary/FA-200-shopping-bag-selection.json",
+    "selection_sha256": "33d778f21b10c02beddf2ab4674a0cd062f6940957b5428b923e0e6437a23ca7"
+  },
+  "selected": {
+    "candidate_id": "LT-CAND-085B5EFA6B30F97C1235ABA9",
+    "seed_id": "SEED-000029",
+    "seed_noun": "shopping bag",
+    "family": "CUSTOMER_ORDER_FULFILLMENT",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+    "semantic_mode": "ISOLATED_OBJECT",
+    "producer_class": "RASTER_GENERATIVE",
+    "marketplace_route": "ADOBE_STOCK",
+    "marketplace_state": "CANDIDATE_REQUIRES_POLICY_CHECK",
+    "motion_eligibility": "STATIC_ONLY",
+    "rights_posture": "REVIEW_REQUIRED",
+    "quality_target": {
+      "candidate_delivery_format": "JPEG",
+      "color_space": "sRGB",
+      "minimum_final_pixel_count": 4000000,
+      "provider_original_immutable": true,
+      "conditional_upscale": "FA-135_ONLY_IF_REQUIRED"
+    }
+  },
+  "evidence": {
+    "candidate_snapshot_sha256": "48ca5b13822c6b7d1721b31240cc23be85caec21a4d06647d05e541a4a8d8a86",
+    "buyer_demand_sha256": "c3ba5807687f7cd5cb48310d3361379f6413c13d6a68d8228eda21e5e3b47536",
+    "platform_fit_sha256": "0efbb0f496aa6f2dc21046c835984ce56502dbe92c657e94671187e8a2a67936",
+    "marketplace_delivery_sha256": "5ebbcf59ca09868c5c2be57f658c91ba3915d5ac75c8e9cb1a490206de4cc38f",
+    "rights_policy_sha256": "b56f8264f7769de8332c6ad1e3126a3391ba471843176389f4e874349f989000"
+  },
+  "truth_boundary": {
+    "buyer_demand": "OBSERVED_CATEGORY_LEVEL",
+    "exact_candidate_transaction": "UNOBSERVED",
+    "competition_gap": "NOT_PROVEN",
+    "market_winner_claim": false,
+    "worth_making_fresh_validate_receipt_present": false,
+    "selection_scope": "GOVERNED_CANARY_EXPERIMENT_ONLY",
+    "human_rights_clearance": false,
+    "marketplace_acceptance": false,
+    "submission_authority": false,
+    "publication_authority": false
+  },
+  "authority": {
+    "provider_call": false,
+    "production_dispatch": false,
+    "marketplace_upload": false,
+    "publication": false,
+    "credential_access": false,
+    "spend_usd": 0
+  },
+  "next": "FA-201 compile exact selected expression into Asset Blueprint v2; no provider call until FA-202 and required Founder authority.",
+  "validation": {
+    "focused_canary_and_expression": "50 passed",
+    "factory_regression": "621 passed, 1 PyPDF2 deprecation warning",
+    "one_canon_pytest": "6 passed"
+  }
+}

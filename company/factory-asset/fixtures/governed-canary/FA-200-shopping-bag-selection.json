@@ -1,0 +1,94 @@
+{
+  "schema": "die.factory-asset.governed-canary-selection.v1",
+  "task_id": "FA-200",
+  "selection_id": "FA200-SHOPPING-BAG-FULFILLMENT-ISOLATED-001",
+  "status": "SELECTED_FOR_GOVERNED_CANARY",
+  "expression_plan_ref": "company/factory-asset/fixtures/governed-canary/FA-200-shopping-bag-expression-plan.json",
+  "opportunity": {
+    "candidate_id": "LT-CAND-085B5EFA6B30F97C1235ABA9",
+    "seed_id": "SEED-000029",
+    "seed_noun": "shopping bag",
+    "human_context_id": "HCTX-SMALL-BUSINESS-PACKAGING-001",
+    "canonical_phrase": "shopping bag for packing customer orders",
+    "family": "CUSTOMER_ORDER_FULFILLMENT",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED"
+  },
+  "expression": {
+    "semantic_mode": "ISOLATED_OBJECT",
+    "producer_class": "RASTER_GENERATIVE",
+    "product_expression": "Unbranded shopping bag isolated object for customer-order fulfillment",
+    "buyer": "Small-business ecommerce designer or operator",
+    "commercial_use_case": "Illustrate customer-order packing and fulfillment workflows"
+  },
+  "marketplace_route": {
+    "platform_id": "ADOBE_STOCK",
+    "state": "CANDIDATE_REQUIRES_POLICY_CHECK",
+    "delivery_profile_revision": "1.0",
+    "delivery_target": "JPEG",
+    "compatibility_disposition": "EVIDENCE_PINNED_NOT_ACCEPTANCE",
+    "delivery_evidence_ref": "company/factory-asset/registries/marketplace-delivery-evidence.v1.json",
+    "delivery_evidence_sha256": "5ebbcf59ca09868c5c2be57f658c91ba3915d5ac75c8e9cb1a490206de4cc38f"
+  },
+  "temporal_motion": {
+    "eligibility": "STATIC_ONLY",
+    "temporal_verbs": [],
+    "meaningful_visual_change": false,
+    "static_equivalent_sufficient": true,
+    "motion_production_authorized": false,
+    "reason": "The selected isolated-object product communicates its buyer utility as a still; no evidence-backed temporal buyer value is selected."
+  },
+  "rights_posture": {
+    "state": "REVIEW_REQUIRED",
+    "required_detectors": [
+      "text",
+      "logo",
+      "watermark",
+      "safety"
+    ],
+    "blocking_signals": [
+      "WATERMARK_PRESENT",
+      "TRADEMARK_CONFIRMED",
+      "BRAND_LOGO_CONFIRMED",
+      "SAFETY_FAILED"
+    ],
+    "human_rights_clearance": false,
+    "founder_qc_required": true,
+    "submission_authority": "FOUNDER_CONTROLLED",
+    "creative_constraints": [
+      "unbranded",
+      "no logo",
+      "no trademarked text",
+      "no stock watermark",
+      "no identifiable person"
+    ],
+    "policy_ref": "company/factory-asset/registries/rights-signal-policy.v1.json",
+    "policy_sha256": "b56f8264f7769de8332c6ad1e3126a3391ba471843176389f4e874349f989000"
+  },
+  "quality_target": {
+    "provider_original_immutable": true,
+    "master_immutable": true,
+    "final_raster_color_space": "sRGB",
+    "candidate_delivery_format": "JPEG",
+    "minimum_final_megapixels": 4.0,
+    "minimum_final_pixel_count": 4000000,
+    "conditional_upscale_policy": "FA-135_ONLY_IF_REQUIRED",
+    "derivative_engine": "FA-030",
+    "technical_qa_required": true,
+    "marketplace_compatibility_recheck_required": true
+  },
+  "evidence_limits": {
+    "buyer_demand": "OBSERVED_CATEGORY_LEVEL",
+    "exact_candidate_transaction": "UNOBSERVED",
+    "competition_gap": "NOT_PROVEN",
+    "portfolio_overlap": "HIGH_INTRA_FAMILY_OVERLAP_REQUIRES_DISTINCTNESS_REVIEW",
+    "selection_claim": "GOVERNED_CANARY_NOT_MARKET_WINNER"
+  },
+  "authority": {
+    "provider_call": false,
+    "production_dispatch": false,
+    "marketplace_upload": false,
+    "publication": false,
+    "spend_usd": 0,
+    "founder_qc_required_before_any_submission": true
+  }
+}
