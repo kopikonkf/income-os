@@ -7,6 +7,15 @@ import { enforceTabBudget, MAX_TABS_PER_PRINCIPAL } from './tab_budget.mjs';
 
 const DEVTOOLS_ACTIVE_PORT = 'DevToolsActivePort';
 
+export function sanitizeStatusUrl(value) {
+  try {
+    const parsed = new URL(String(value || ''));
+    return `${parsed.origin}${parsed.pathname}`;
+  } catch {
+    return '';
+  }
+}
+
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -104,16 +113,17 @@ export async function runOperatorBrowser(options) {
     await page.waitForTimeout(2500);
 
     async function classify() {
-      const url = page.url();
+      const rawUrl = page.url();
+      const url = sanitizeStatusUrl(rawUrl);
       const title = await page.title().catch(() => '');
       const editableCount = await page.locator('textarea, [contenteditable="true"]').count().catch(() => 0);
       const loginButtonCount = await page.getByRole('button', { name: /log in/i }).count().catch(() => 0);
       const loginLinkCount = await page.getByRole('link', { name: /log in/i }).count().catch(() => 0);
       const loginUiCount = loginButtonCount + loginLinkCount;
       let state = 'UNKNOWN';
-      if (/auth|login|signup/i.test(url) || loginUiCount > 0) state = 'AUTH_REQUIRED';
-      else if (url.startsWith('https://chatgpt.com') && editableCount > 0) state = 'READY';
-      else if (url.startsWith('https://chatgpt.com')) state = 'OPERATOR_CHECK_REQUIRED';
+      if (/auth|login|signup/i.test(rawUrl) || loginUiCount > 0) state = 'AUTH_REQUIRED';
+      else if (rawUrl.startsWith('https://chatgpt.com') && editableCount > 0) state = 'READY';
+      else if (rawUrl.startsWith('https://chatgpt.com')) state = 'OPERATOR_CHECK_REQUIRED';
       return { state, url, title, editableCount, loginUiCount, browserPid: child.pid, debugHost: '127.0.0.1', debugPort };
     }
 
@@ -127,6 +137,7 @@ export async function runOperatorBrowser(options) {
         launch_mode: 'DIRECT_SPAWN_LOOPBACK_CDP',
         observed_at: new Date().toISOString(),
         ...status,
+        url: sanitizeStatusUrl(status?.url),
       };
       fs.mkdirSync(path.dirname(statusFile), { recursive: true, mode: 0o750 });
       const tmp = `${statusFile}.tmp`;
@@ -148,7 +159,7 @@ export async function runOperatorBrowser(options) {
 
     const timer = setInterval(async () => {
       await enforceTabBudget(context, { preserve: [page], maxTabs: MAX_TABS_PER_PRINCIPAL }).catch(() => {});
-      status = await classify().catch(() => ({ state: 'UNKNOWN', url: page.url(), title: '', editableCount: 0, loginUiCount: 0, browserPid: child.pid, debugHost: '127.0.0.1', debugPort }));
+      status = await classify().catch(() => ({ state: 'UNKNOWN', url: sanitizeStatusUrl(page.url()), title: '', editableCount: 0, loginUiCount: 0, browserPid: child.pid, debugHost: '127.0.0.1', debugPort }));
       writeStatus(status);
     }, 5000);
 
