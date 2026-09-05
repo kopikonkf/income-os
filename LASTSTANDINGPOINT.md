@@ -3642,3 +3642,13 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Added FA-300..FA-309 for cluster registry, broker, tab scheduler, routing, Cluster B provisioning, cross-cluster scheduling and 1K/5K scale acceptance.
 - Added FA-C014..FA-C022 for Factory Console v2 cluster topology, unified operations, telemetry, governed commands, web acceptance, optional Tauri shell and future DIE federation boundary.
 - Architecture: `docs/architecture/FACTORY_WEB_AI_CLUSTER_SCALE_V1.md`. Graph revision `8.5-fa299-cluster-scale-roadmap`.
+
+---
+
+## 2026-09-05 - FA-118 Duck.ai Linux checkpoint isolated
+
+- Duck image mode is current UI `Tools -> Create Image`; submit control is now aria `Send` / type submit.
+- Diagnostic live dispatch proves `POST /duckchat/v1/chat -> HTTP 418`, followed by Duck.ai human challenge. No CAPTCHA/protection bypass attempted.
+- A 240x213 JPEG challenge tile was previously mistaken as an image response candidate; post-validation rejected it and adapter now excludes `/assets/anomaly/*` and requires >=512x512 for network image candidates.
+- FA-118 status is `WAITING_OPERATOR`, not PASS. Required bootstrap: visible no-CDP Duck.ai prompt + manual challenge completion; then close Chromium and run a fresh bounded canary with zero operator action after dispatch.
+- Graph revision `8.6-fa118-duckai-human-challenge`; FA-300 remains blocked on FA-118.
