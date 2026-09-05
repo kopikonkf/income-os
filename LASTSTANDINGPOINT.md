@@ -3752,3 +3752,14 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Hotfix makes deterministic ticks always emit JSON; idle heartbeat includes `PRODUCTION_RUNTIME_IDLE`, observed time, `provider_call_performed=false`, parked count, and `REPLENISH_APPROVED_U1_VALIDATED_SEED_POOL` for seed exhaustion. Cron cadence remains `0 */3 * * *`.
 - FA-121 is NOT wired into this cron; it remains a separate governed 24-hour live-load acceptance.
 - Validation: 31 focused PASS; 641 Factory PASS; 6 one-canon pytest PASS; validator 11/11 PASS; secret scan 0.
+
+---
+
+## 2026-09-05 - FA-202 governed routed master + derivative family DONE/PASS
+
+- Frozen FA-200/FA-201 semantic asset `FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED` routed through one bounded ChatGPT/MUXIA Cluster A generation. Deterministic prompt SHA `30890313f7cf29cabbaa327c503343c847837dcd8ef9aadd8e2904387a555992`; one live provider generation only.
+- Provider original: PNG 1254x1254, 1,197,046 bytes, SHA `f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7`; immutable through postprocessing.
+- Pinned RealESRGAN x4 -> exact 4096x4096 PNG active master SHA `5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06`. Adobe JPEG, PNG preview and WebP preview all QA PASS with semantic identity effect NONE.
+- Safe rerun proved byte-for-byte idempotency: same MUXIA generation receipt, zero provider call, upscale/master/staging reused, all 3 derivatives reused. One semantic asset, 3 packaging variants.
+- Truth boundary: no independent visual/commercial classifier is claimed here; exact-expression lineage is the frozen semantic route + deterministic prompt + hashes. FA-203 owns technical/registry QA. Rights remain REVIEW_REQUIRED; canonical truth false pending DIE State Manager; no upload/publication/spend.
+- FA-203 READY. FA-121 remains separate and was not started.

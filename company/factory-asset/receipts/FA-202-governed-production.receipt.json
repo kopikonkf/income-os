@@ -1,0 +1,235 @@
+{
+  "schema": "die.factory-asset.fa202-governed-production-receipt.v1",
+  "task_id": "FA-202",
+  "date": "2026-09-05",
+  "status": "DONE",
+  "result": "PASS",
+  "authorization": "Founder explicitly directed FA-202 to execute before FA-121 after Hermes repair; exactly one live ChatGPT/MUXIA provider generation was allowed for this governed canary.",
+  "frozen_semantics": {
+    "expression_plan": "company/factory-asset/fixtures/governed-canary/FA-200-shopping-bag-expression-plan.json",
+    "blueprint": "company/factory-asset/fixtures/governed-canary/FA-201-shopping-bag-blueprint-v2.json",
+    "blueprint_sha256": "d66654c5031f5c36aebfeb348124f9fedd17685c9362fdf6b8dbd39cd0a2e31c",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+    "semantic_asset_count": 1,
+    "packaging_variant_count": 3,
+    "semantic_mode": "ISOLATED_OBJECT",
+    "producer_class": "RASTER_GENERATIVE",
+    "prompt_sha256": "30890313f7cf29cabbaa327c503343c847837dcd8ef9aadd8e2904387a555992",
+    "prompt_compilation": "DETERMINISTIC_FROM_FROZEN_FA200_FA201_SEMANTICS_AND_RIGHTS_CONSTRAINTS"
+  },
+  "provider_dispatch": {
+    "provider_id": "chatgpt",
+    "cluster_id": "cluster-a",
+    "transport": "BROWSER_CDP",
+    "runtime_owner": "MUXIA",
+    "job_id": "FA202-SHOPPING-BAG-20260905A-muxia",
+    "started_at": "2026-09-05T20:20:52.023Z",
+    "completed_at": "2026-09-05T20:21:37.568Z",
+    "prompt_submitted_by_automation": true,
+    "output_extracted_by_automation": true,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "generation_call_count": 1,
+    "rerun_generation_call_count": 0,
+    "route_reason": "FA-117 live-accepted MUXIA export boundary is the current governed Linux live executor; FA-304 Qwen SESSION_API preference is preserved but no Linux governed SESSION_API live executor is falsely claimed."
+  },
+  "provider_original": {
+    "path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/provider/source-original.png",
+    "sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7",
+    "bytes": 1197046,
+    "media": {
+      "alpha_max": 255,
+      "alpha_min": 255,
+      "bytes": 1197046,
+      "decode_verified": true,
+      "extension": ".png",
+      "extension_content_match": true,
+      "format": "PNG",
+      "frame_count": 1,
+      "has_alpha_channel": false,
+      "has_transparency": false,
+      "has_transparency_metadata": false,
+      "height_px": 1254,
+      "magic_hex": "89504e470d0a1a0a0000000d",
+      "mime_type": "image/png",
+      "mode": "RGB",
+      "width_px": 1254
+    },
+    "immutable_after_postprocess": true
+  },
+  "master": {
+    "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "format": "PNG",
+    "dimensions": [
+      4096,
+      4096
+    ],
+    "lineage": {
+      "provider_original_sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7",
+      "realesrgan_x4_sha256": "247439b26f2a87a31bf76d3a06973ca85b60edc242b687a42439eef0c8c10359",
+      "normalization_method": "REALESRGAN_X4_THEN_LANCZOS_DOWNSAMPLE"
+    },
+    "normalization": {
+      "schema": "die.factory-asset.fa202-master-normalization.v1",
+      "method": "REALESRGAN_X4_THEN_LANCZOS_DOWNSAMPLE",
+      "input_sha256": "247439b26f2a87a31bf76d3a06973ca85b60edc242b687a42439eef0c8c10359",
+      "input_dimensions": [
+        5016,
+        5016
+      ],
+      "output_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "output_dimensions": [
+        4096,
+        4096
+      ],
+      "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+      "semantic_identity_effect": "NONE",
+      "provider_original_sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7",
+      "provider_original_immutable": true
+    },
+    "provider_original_immutable": true,
+    "ingestion_state": "STAGED_NOT_CANONICAL",
+    "canonical_truth": false,
+    "state_manager_commit_required": true
+  },
+  "upscale": {
+    "engine": {
+      "name": "realesr-general-x4v3",
+      "path": "/var/lib/die/models/realesrgan/realesr-general-x4v3.pth",
+      "sha256": "8dc7edb9ac80ccdc30c3a5dca6616509367f05fbc184ad95b731f05bece96292"
+    },
+    "status": "PASS",
+    "action": "UPSCALE_X4",
+    "source_sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7",
+    "output_sha256": "247439b26f2a87a31bf76d3a06973ca85b60edc242b687a42439eef0c8c10359",
+    "source_dimensions": [
+      1254,
+      1254
+    ],
+    "output_dimensions": [
+      5016,
+      5016
+    ],
+    "rights_state": "PENDING_HUMAN_REVIEW",
+    "safety_state": "PENDING_HUMAN_REVIEW"
+  },
+  "derivatives": {
+    "ADOBE_JPEG": {
+      "recipe_id": "raster-jpeg-stock-v1",
+      "format": "JPEG",
+      "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd",
+      "bytes": 670824,
+      "dimensions": [
+        4096,
+        4096
+      ],
+      "semantic_identity_effect": "NONE",
+      "qa_result": "PASS",
+      "magic_mime_match": true,
+      "decode_reopen": true,
+      "idempotent_reuse": true
+    },
+    "PNG_PREVIEW": {
+      "recipe_id": "raster-png-export-v1",
+      "format": "PNG",
+      "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "bytes": 4075628,
+      "dimensions": [
+        4096,
+        4096
+      ],
+      "semantic_identity_effect": "NONE",
+      "qa_result": "PASS",
+      "magic_mime_match": true,
+      "decode_reopen": true,
+      "idempotent_reuse": true
+    },
+    "WEBP_PREVIEW": {
+      "recipe_id": "raster-webp-preview-v1",
+      "format": "WEBP",
+      "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224",
+      "bytes": 116278,
+      "dimensions": [
+        4096,
+        4096
+      ],
+      "semantic_identity_effect": "NONE",
+      "qa_result": "PASS",
+      "magic_mime_match": true,
+      "decode_reopen": true,
+      "idempotent_reuse": true
+    }
+  },
+  "idempotency": {
+    "bytes_unchanged_on_rerun": true,
+    "same_muxia_generation_reused": true,
+    "rerun_provider_call_performed": false,
+    "master_reused": true,
+    "upscale_reused": true,
+    "active_stage_reused": true,
+    "derivatives_reused": {
+      "ADOBE_JPEG": true,
+      "PNG_PREVIEW": true,
+      "WEBP_PREVIEW": true
+    }
+  },
+  "truth_boundaries": {
+    "visual_semantic_content_classifier_run": false,
+    "exact_expression_claim_basis": "FROZEN_SEMANTIC_ROUTE_PLUS_DETERMINISTIC_PROMPT_AND_HASH_LINEAGE; independent visual/commercial QA remains FA-203.",
+    "rights_runtime_state": "REVIEW_REQUIRED",
+    "founder_qc_complete": false,
+    "marketplace_acceptance": false,
+    "canonical_truth": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "marketplace_upload": false,
+    "spend_usd": 0,
+    "qwen_session_api_live_executor_claimed": false
+  },
+  "fixtures": {
+    "FA-202-adobe-jpeg-receipt.json": {
+      "ref": "company/factory-asset/fixtures/governed-canary/FA-202-adobe-jpeg-receipt.json",
+      "sha256": "60f1845e1bc61e125ff95424c0ca22c746b19dac72143d537c58d44edf6e9f51"
+    },
+    "FA-202-idempotency-proof.json": {
+      "ref": "company/factory-asset/fixtures/governed-canary/FA-202-idempotency-proof.json",
+      "sha256": "10e3600d75c25e98efeff6ef4d4a8b8e4c2491e3821bd2c7379f629dfaadb711"
+    },
+    "FA-202-live-result.json": {
+      "ref": "company/factory-asset/fixtures/governed-canary/FA-202-live-result.json",
+      "sha256": "39ffd6c7265cb27c75601ee9d50d58cbd0b70129e14506cafe6d936b3d0d6f71"
+    },
+    "FA-202-master-normalization.json": {
+      "ref": "company/factory-asset/fixtures/governed-canary/FA-202-master-normalization.json",
+      "sha256": "96f69941e88a9d72ec85ac5c0eba97c8ef0978fc4f142955d6326523f7524654"
+    },
+    "FA-202-muxia-dispatch-receipt.json": {
+      "ref": "company/factory-asset/fixtures/governed-canary/FA-202-muxia-dispatch-receipt.json",
+      "sha256": "e36f4a6197977862d3e7004215103eadfead02cc244cd88d2e8fea59112c6646"
+    },
+    "FA-202-png-preview-receipt.json": {
+      "ref": "company/factory-asset/fixtures/governed-canary/FA-202-png-preview-receipt.json",
+      "sha256": "8b05a734525f0bb4fff4e1ca68f173aa6eb7224e37383072662439106dace3d9"
+    },
+    "FA-202-realesrgan-x4-receipt.json": {
+      "ref": "company/factory-asset/fixtures/governed-canary/FA-202-realesrgan-x4-receipt.json",
+      "sha256": "7b2436b4e88d3dd9c69afe360fc35a5f0fca2e35b96e1a2dd897abf908254c31"
+    },
+    "FA-202-webp-preview-receipt.json": {
+      "ref": "company/factory-asset/fixtures/governed-canary/FA-202-webp-preview-receipt.json",
+      "sha256": "399483c78c560cc7fa7f9a78ebf374253368d7e90a722b81cebc780baca2b702"
+    }
+  },
+  "next": "FA-203 becomes READY to commit registry/technical QA/capacity/orchestration evidence through canonical writer without false success.",
+  "validation": {
+    "focused_governed_production_stack": "30 passed, 1 PyPDF2 deprecation warning",
+    "factory_regression": "647 passed, 1 warning",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "secret_scan": "0 high-confidence hits",
+    "runner_pycompile": "PASS",
+    "git_diff_check": "PASS"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "die.factory-asset.derivative-receipt.v1",
+  "recipe_id": "raster-jpeg-stock-v1",
+  "recipe_version": "1.0.0",
+  "idempotency_key": "10d0b247d5647145e161e9ec818b487f1e614c1331bf2aed83535d3b518a04da",
+  "input": {
+    "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED"
+  },
+  "marketplace_profile": {
+    "platform_id": "ADOBE_STOCK",
+    "profile_revision": "1.0"
+  },
+  "output": {
+    "format": "JPEG",
+    "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd",
+    "bytes": 670824,
+    "width_px": 4096,
+    "height_px": 4096,
+    "semantic_identity_effect": "NONE"
+  },
+  "qa": {
+    "magic_mime_match": true,
+    "decode_reopen": true,
+    "sha256_verified": true,
+    "failure_code": null
+  },
+  "compatibility": {
+    "state": "COMPATIBLE",
+    "reason": null
+  },
+  "result": "PASS"
+}

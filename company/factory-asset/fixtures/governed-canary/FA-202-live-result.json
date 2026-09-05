@@ -1,0 +1,284 @@
+{
+  "schema": "die.factory-asset.fa202-governed-production.v1",
+  "result": "PASS",
+  "task_id": "FA202-SHOPPING-BAG-20260905A",
+  "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+  "semantic_asset_count": 1,
+  "packaging_variant_count": 3,
+  "frozen_blueprint_sha256": "d66654c5031f5c36aebfeb348124f9fedd17685c9362fdf6b8dbd39cd0a2e31c",
+  "semantic_route": {
+    "schema": "die.factory-asset.semantic-producer-dispatch.v1",
+    "result": "DISPATCH_READY",
+    "plan_id": "FAEP-FA200_SHOPPING_BAG_FULFILLMENT",
+    "seed_id": "SEED-000029",
+    "seed_noun": "shopping bag",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+    "semantic_mode": "ISOLATED_OBJECT",
+    "producer_class": "RASTER_GENERATIVE",
+    "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
+    "frozen_blueprint_sha256": "d66654c5031f5c36aebfeb348124f9fedd17685c9362fdf6b8dbd39cd0a2e31c",
+    "native_representation": "RASTER_PIXELS",
+    "master_spec": {
+      "format": "PNG",
+      "width_px": 4096,
+      "height_px": 4096,
+      "color_space": "SRGB",
+      "lineage_sha256_required": true
+    },
+    "marketplace_route": "ADOBE_STOCK",
+    "route_kind": "PROVIDER_ROUTER",
+    "dispatch_adapter": "FA104_PROVIDER_ROUTER",
+    "engine_state": "ACCEPTED",
+    "evidence_refs": [
+      "receipt://FA-W019",
+      "receipt://FA-109"
+    ],
+    "master_generation_mode": "DIRECT_FROM_BLUEPRINT",
+    "post_hoc_conversion_allowed": false,
+    "derivative_planning_stage": "AFTER_VALIDATED_MASTER",
+    "provider_selection_delegated": true,
+    "submission_authority": "FOUNDER_CONTROLLED",
+    "dispatch_key": "e08fc53c73cea6204d5f75260e371b2be49dd519f4f54717d469afa179541658"
+  },
+  "provider_route": {
+    "provider_id": "chatgpt",
+    "cluster_id": "cluster-a",
+    "transport": "BROWSER_CDP",
+    "runtime_owner": "MUXIA",
+    "selection_basis": "FA117_LIVE_ACCEPTED_MUXIA_EXPORT_BOUNDARY"
+  },
+  "prompt_sha256": "30890313f7cf29cabbaa327c503343c847837dcd8ef9aadd8e2904387a555992",
+  "provider_call_performed": false,
+  "provider_original": {
+    "path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/provider/source-original.png",
+    "sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7",
+    "bytes": 1197046,
+    "media": {
+      "alpha_max": 255,
+      "alpha_min": 255,
+      "bytes": 1197046,
+      "decode_verified": true,
+      "extension": ".png",
+      "extension_content_match": true,
+      "format": "PNG",
+      "frame_count": 1,
+      "has_alpha_channel": false,
+      "has_transparency": false,
+      "has_transparency_metadata": false,
+      "height_px": 1254,
+      "magic_hex": "89504e470d0a1a0a0000000d",
+      "mime_type": "image/png",
+      "mode": "RGB",
+      "width_px": 1254
+    },
+    "immutable_after_postprocess": true
+  },
+  "master": {
+    "path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/master/master.png",
+    "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "dimensions": [
+      4096,
+      4096
+    ],
+    "format": "PNG",
+    "lineage": {
+      "provider_original_sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7",
+      "realesrgan_x4_sha256": "247439b26f2a87a31bf76d3a06973ca85b60edc242b687a42439eef0c8c10359",
+      "normalization_method": "REALESRGAN_X4_THEN_LANCZOS_DOWNSAMPLE"
+    },
+    "staging": {
+      "attempt_id": "FA202-SHOPPING-BAG-20260905A-active-master",
+      "blob_reused": false,
+      "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
+      "canonical_truth": false,
+      "ingestion_state": "STAGED_NOT_CANONICAL",
+      "schema": "die.factory-asset.master-ingestion-attempt.v1",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+      "source_bytes": 4075628,
+      "source_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/master/master.png",
+      "source_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "staged_blob_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/master-staging/active-master/blobs/sha256/56/5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06.png",
+      "state_manager_commit_required": true,
+      "state_manager_proposal": {
+        "action": "FACTORY_MASTER_INGEST",
+        "attempt_receipt_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/master-staging/active-master/attempt-receipts/FA202-SHOPPING-BAG-20260905A-active-master.json",
+        "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
+        "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+        "physical_writer_required": "DIE_STATE_MANAGER",
+        "schema": "die.factory-asset.master-ingestion-proposal.v1",
+        "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+        "staged_blob_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/master-staging/active-master/blobs/sha256/56/5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06.png"
+      }
+    },
+    "active_stage_reused": true,
+    "upscale_reused": true,
+    "master_reused": true
+  },
+  "derivatives": {
+    "ADOBE_JPEG": {
+      "receipt": {
+        "schema": "die.factory-asset.derivative-receipt.v1",
+        "recipe_id": "raster-jpeg-stock-v1",
+        "recipe_version": "1.0.0",
+        "idempotency_key": "10d0b247d5647145e161e9ec818b487f1e614c1331bf2aed83535d3b518a04da",
+        "input": {
+          "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+          "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED"
+        },
+        "marketplace_profile": {
+          "platform_id": "ADOBE_STOCK",
+          "profile_revision": "1.0"
+        },
+        "output": {
+          "format": "JPEG",
+          "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd",
+          "bytes": 670824,
+          "width_px": 4096,
+          "height_px": 4096,
+          "semantic_identity_effect": "NONE"
+        },
+        "qa": {
+          "magic_mime_match": true,
+          "decode_reopen": true,
+          "sha256_verified": true,
+          "failure_code": null
+        },
+        "compatibility": {
+          "state": "COMPATIBLE",
+          "reason": null
+        },
+        "result": "PASS"
+      },
+      "idempotent_reuse": true,
+      "qa": {
+        "schema": "die.factory-asset.derivative-qa.v1",
+        "result": "PASS",
+        "failures": [],
+        "format": "JPEG",
+        "magic_mime_match": true,
+        "decode_reopen": true,
+        "dimensions": [
+          4096,
+          4096
+        ],
+        "alpha_state": "ABSENT",
+        "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd",
+        "bytes": 670824,
+        "compatibility": "COMPATIBLE"
+      }
+    },
+    "PNG_PREVIEW": {
+      "receipt": {
+        "schema": "die.factory-asset.derivative-receipt.v1",
+        "recipe_id": "raster-png-export-v1",
+        "recipe_version": "1.0.0",
+        "idempotency_key": "135fa6e8eeee3d37ccb3a69771ee42a5d967402515bebffa4aeaae1471b8df05",
+        "input": {
+          "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+          "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED"
+        },
+        "marketplace_profile": {
+          "platform_id": "ADOBE_STOCK",
+          "profile_revision": "1.0"
+        },
+        "output": {
+          "format": "PNG",
+          "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+          "bytes": 4075628,
+          "width_px": 4096,
+          "height_px": 4096,
+          "semantic_identity_effect": "NONE"
+        },
+        "qa": {
+          "magic_mime_match": true,
+          "decode_reopen": true,
+          "sha256_verified": true,
+          "failure_code": null
+        },
+        "compatibility": {
+          "state": "COMPATIBLE",
+          "reason": null
+        },
+        "result": "PASS"
+      },
+      "idempotent_reuse": true,
+      "qa": {
+        "schema": "die.factory-asset.derivative-qa.v1",
+        "result": "PASS",
+        "failures": [],
+        "format": "PNG",
+        "magic_mime_match": true,
+        "decode_reopen": true,
+        "dimensions": [
+          4096,
+          4096
+        ],
+        "alpha_state": "ABSENT",
+        "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+        "bytes": 4075628,
+        "compatibility": "COMPATIBLE"
+      }
+    },
+    "WEBP_PREVIEW": {
+      "receipt": {
+        "schema": "die.factory-asset.derivative-receipt.v1",
+        "recipe_id": "raster-webp-preview-v1",
+        "recipe_version": "1.0.0",
+        "idempotency_key": "c16b3fdeac745fd671395e838c845d5df4a86e3ff0c5f40a33676222b31bc2d1",
+        "input": {
+          "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+          "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED"
+        },
+        "marketplace_profile": {
+          "platform_id": "ADOBE_STOCK",
+          "profile_revision": "1.0"
+        },
+        "output": {
+          "format": "WEBP",
+          "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224",
+          "bytes": 116278,
+          "width_px": 4096,
+          "height_px": 4096,
+          "semantic_identity_effect": "NONE"
+        },
+        "qa": {
+          "magic_mime_match": true,
+          "decode_reopen": true,
+          "sha256_verified": true,
+          "failure_code": null
+        },
+        "compatibility": {
+          "state": "COMPATIBLE",
+          "reason": null
+        },
+        "result": "PASS"
+      },
+      "idempotent_reuse": true,
+      "qa": {
+        "schema": "die.factory-asset.derivative-qa.v1",
+        "result": "PASS",
+        "failures": [],
+        "format": "WEBP",
+        "magic_mime_match": true,
+        "decode_reopen": true,
+        "dimensions": [
+          4096,
+          4096
+        ],
+        "alpha_state": "ABSENT",
+        "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224",
+        "bytes": 116278,
+        "compatibility": "COMPATIBLE"
+      }
+    }
+  },
+  "authority": {
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "marketplace_upload": false,
+    "spend_usd": 0
+  },
+  "rights_runtime_state": "REVIEW_REQUIRED",
+  "canonical_truth": false,
+  "state_manager_commit_required": true
+}

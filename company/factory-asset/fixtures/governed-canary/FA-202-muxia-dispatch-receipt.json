@@ -1,0 +1,39 @@
+{
+  "schema": "die.muxia.chatgpt-image-run.v1",
+  "job_id": "FA202-SHOPPING-BAG-20260905A-muxia",
+  "profile_id": "chatgpt-linux-a",
+  "prompt_sha256": "30890313f7cf29cabbaa327c503343c847837dcd8ef9aadd8e2904387a555992",
+  "prompt_submitted_by_automation": true,
+  "output_extracted_by_automation": true,
+  "credential_values_read": false,
+  "cookies_or_tokens_read": false,
+  "submission_authorized": false,
+  "publication_authorized": false,
+  "status": "SUCCEEDED",
+  "started_at": "2026-09-05T20:20:52.023Z",
+  "initial_state": {
+    "state": "READY",
+    "reason": "COMPOSER_READY",
+    "url": "https://chatgpt.com/",
+    "observedAt": "2026-09-05T20:20:58.892Z",
+    "signals": [
+      "composer-visible"
+    ],
+    "operatorActionRequired": false
+  },
+  "composer_selector": "#prompt-textarea",
+  "composer_acquisition_attempt": 2,
+  "send_selector": "[data-testid=\"send-button\"]",
+  "submitted_at": "2026-09-05T20:21:10.255Z",
+  "generated_image_observed": {
+    "width": 1254,
+    "height": 1254,
+    "src_scheme": "https"
+  },
+  "output_method": "context-request-original-src",
+  "content_type": "image/png",
+  "artifact_path": "/var/lib/muxia/artifacts/FA202-SHOPPING-BAG-20260905A-muxia/source-original.png",
+  "bytes": 1197046,
+  "sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7",
+  "completed_at": "2026-09-05T20:21:37.568Z"
+}
