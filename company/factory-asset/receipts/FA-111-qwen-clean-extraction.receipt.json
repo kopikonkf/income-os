@@ -1,0 +1,39 @@
+{
+  "schema": "die.factory-asset.qwen-clean-extraction-receipt.v1",
+  "task_id": "FA-111",
+  "date": "2026-09-05",
+  "status": "DONE",
+  "result": "PASS",
+  "base_main": "e5c70b0c65a533be8e21b139e4c4507021f2742d",
+  "source_repository": "github.com/kopikonkf/web-ai-adapter",
+  "source_head": "cd102e8f3d473718adbc7c304df9a9babc4095e2",
+  "behavior_commits": [
+    "e2cf037",
+    "3046c25",
+    "acd957e"
+  ],
+  "artifacts": [
+    "company/factory-asset/providers/qwen/adapter.py",
+    "company/factory-asset/providers/qwen/source-provenance.json",
+    "company/factory-asset/tests/test_qwen_clean_adapter.py"
+  ],
+  "boundaries": {
+    "session_api_primary": true,
+    "browser_cdp_fallback": true,
+    "browser_runtime_owner": "MUXIA",
+    "credentials_copied": false,
+    "raw_captures_copied": false,
+    "windows_paths_copied": false,
+    "playwright_or_cdp_owner_copied": false,
+    "capacity_inferred": false
+  },
+  "validation": {
+    "focused": "23/23 PASS",
+    "factory_regression": "571/571 PASS (1 deprecation warning)",
+    "one_canon": "6/6 PASS",
+    "git_diff_check": "PASS"
+  },
+  "unblocked": [
+    "FA-112"
+  ]
+}

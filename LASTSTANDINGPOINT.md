@@ -3571,3 +3571,15 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Validation: 86 focused PASS; 562 Factory regression PASS; 6 one-canon pytest PASS. No provider call or production mutation was required for FA-113.
 - Next: FA-111 clean Qwen provider extraction, then FA-112 bounded Linux canary. FA-117 remains blocked until FA-112 completes.
 - Receipt: `company/factory-asset/receipts/FA-113-muxia-provider-boundary.receipt.json`.
+
+
+---
+
+## 2026-09-05 - FA-111 Qwen clean extraction
+
+- FA-111 = DONE/PASS. Portable Qwen image-provider logic extracted from `kopikonkf/web-ai-adapter` canonical head `cd102e8f...` with behavior provenance `e2cf037`, `3046c25`, `acd957e`.
+- `SESSION_API` remains primary; `BROWSER_CDP` remains explicit fallback but browser ownership is delegated to MUXIA/shared runtime.
+- No credentials, raw captures, hard-coded Windows asset paths, Playwright lifecycle or CDP ownership were copied into Factory.
+- Validation: 23 focused PASS; 571 Factory regression PASS; 6 one-canon pytest PASS.
+- Graph: FA-111 DONE; FA-112 READY.
+- Receipt: `company/factory-asset/receipts/FA-111-qwen-clean-extraction.receipt.json`.
