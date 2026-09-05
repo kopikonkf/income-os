@@ -1,0 +1,33 @@
+{
+  "schema": "die.factory-asset.extracted-source-provenance.v1",
+  "task_id": "FA-111",
+  "source_repository": "github.com/kopikonkf/web-ai-adapter",
+  "source_head": "cd102e8f3d473718adbc7c304df9a9babc4095e2",
+  "behavior_commits": {
+    "session_api_original_byte_hardening": "e2cf037",
+    "browser_cdp_fallback": "3046c25",
+    "muxia_runtime_resolver": "acd957e"
+  },
+  "source_files": [
+    {
+      "path": "src/providers/qwen_image.py",
+      "sha256": "1aa3896eca18787523fa19e43bd7a0520792200dd34c209b4f2919409950c82c"
+    },
+    {
+      "path": "src/providers/qwen_browser_image.py",
+      "sha256": "e65e85068316210eef87ce8378259816726f33dadbd801fa4f8b3313f2cf6eff"
+    },
+    {
+      "path": "src/utils/image_artifact.py",
+      "sha256": "a66ff64b1f7d87d688282e3e4ef7ec1f0f37453355539dd258caead90b6a8d4f"
+    }
+  ],
+  "extraction_policy": {
+    "copied_credentials": false,
+    "copied_raw_captures": false,
+    "copied_windows_paths": false,
+    "copied_browser_ownership": false,
+    "session_api_primary_preserved": true,
+    "browser_cdp_fallback_preserved_as_external_runtime_contract": true
+  }
+}

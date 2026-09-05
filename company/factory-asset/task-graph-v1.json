@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "7.9-fa113-muxia-provider-boundary",
+  "revision": "8.0-fa111-qwen-clean-extraction",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1377,9 +1377,11 @@
         "FA-109",
         "FA-110"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "Clean Qwen provider package, fixtures and tests",
-      "acceptance": "Only required code is extracted; no credentials/raw captures/hard-coded Windows paths; unit/parser/negative tests pass."
+      "acceptance": "Only required code is extracted; no credentials/raw captures/hard-coded Windows paths; unit/parser/negative tests pass.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: clean portable Qwen image-provider logic extracted from canonical web-ai-adapter evidence. SESSION_API remains primary, BROWSER_CDP remains explicit fallback delegated to external MUXIA runtime; no credentials/raw captures/hard-coded Windows paths/browser ownership copied. Validation: 23 focused PASS; 571 Factory regression PASS; 6 one-canon pytest PASS."
     },
     {
       "id": "FA-112",
@@ -1390,7 +1392,7 @@
       "depends_on": [
         "FA-111"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "artifact": "company/factory-asset/receipts/FA-112-qwen-linux-canary.receipt.json",
       "acceptance": "One bounded authorized job produces a durable master with complete lineage; no bypass, secret output, duplicate save or Windows dependency."
