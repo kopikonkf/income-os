@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "8.4-fa116-manus-linux-canary",
+  "revision": "8.5-fa299-cluster-scale-roadmap",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2243,6 +2243,313 @@
       "acceptance": "Hermes gateway can create and repair die-runtime shared workspace/provider directories at 2770 without adding root or Linux capabilities; live PRODSEED000036 starts on the same selected seed without PermissionError, compensation, or credential changes.",
       "completed_at": "2026-09-05",
       "result": "PASS: RestrictSUIDSGID=true rejected 2770 mkdir/chmod inside the Hermes sandbox with EPERM. PR #221 changes only that conflicting sandbox knob to false while preserving die-hermes identity, NoNewPrivileges, empty capability sets, ProtectSystem/ProtectHome and bounded write paths. Live deployment at main 529184f8 created PRODSEED000036 and provider/ as 2770 die-hermes:die-runtime; cognition authored a valid blueprint and advanced to NEED_REVIEW without compensating seed."
+    },
+    {
+      "id": "FA-299",
+      "phase": 5,
+      "track": "MULTI_CLUSTER_SCALE",
+      "priority": 300,
+      "title": "Raise Web-AI cluster tab ceiling to eight and codify concurrency boundary",
+      "depends_on": [
+        "FA-113",
+        "FA-140"
+      ],
+      "status": "DONE",
+      "authority": "ARCHITECT",
+      "artifact": "company/factory-asset/receipts/FA-299-cluster-tab-budget.receipt.json",
+      "acceptance": "Central persistent-browser tab ceiling is 8 with regression proof; historical 2-tab receipts remain immutable; documentation explicitly distinguishes eight tabs in one browser from unsafe multi-process ownership of one profile.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: MAX_TABS_PER_PRINCIPAL raised from 2 to 8 centrally. Shared-profile parallelism remains gated on a single-owner browser broker and per-tab leases; separate provider runners must not concurrently spawn Chromium against the same user-data-dir."
+    },
+    {
+      "id": "FA-300",
+      "phase": 5,
+      "track": "MULTI_CLUSTER_SCALE",
+      "priority": 301,
+      "title": "Define Web-AI Army Cluster registry and lifecycle contract",
+      "depends_on": [
+        "FA-112",
+        "FA-113",
+        "FA-114",
+        "FA-116",
+        "FA-118",
+        "FA-299"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "docs/architecture/FACTORY_WEB_AI_CLUSTER_SCALE_V1.md",
+      "acceptance": "Cluster identity, profile path, provider-session membership, auth handoff, owner process, tab ceiling, health state, retirement and no-secret-copy rules are canonical."
+    },
+    {
+      "id": "FA-301",
+      "phase": 5,
+      "track": "MULTI_CLUSTER_SCALE",
+      "priority": 302,
+      "title": "Implement single-owner shared Chromium cluster broker",
+      "depends_on": [
+        "FA-300"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "MUXIA cluster broker runtime plus tests",
+      "acceptance": "Exactly one Chromium process owns one persistent cluster profile; provider workers attach through broker-issued loopback CDP context and cannot independently launch the same profile."
+    },
+    {
+      "id": "FA-302",
+      "phase": 5,
+      "track": "MULTI_CLUSTER_SCALE",
+      "priority": 303,
+      "title": "Implement provider tab leases and max-eight cluster scheduler",
+      "depends_on": [
+        "FA-301"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "cluster tab lease scheduler plus receipts",
+      "acceptance": "Up to 8 bounded tabs can coexist in one cluster; provider/job tab leases prevent cross-job mutation, reclaim abandoned tabs and enforce per-provider concurrency limits."
+    },
+    {
+      "id": "FA-303",
+      "phase": 5,
+      "track": "MULTI_CLUSTER_SCALE",
+      "priority": 304,
+      "title": "Implement cluster provider-session registry and readiness health",
+      "depends_on": [
+        "FA-301"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "cluster registry and readiness probes",
+      "acceptance": "ChatGPT, Qwen, Gemini, Manus and Duck.ai membership/readiness can be observed without exporting cookies, tokens or OAuth callback material; Grok remains independently policy/capacity gated."
+    },
+    {
+      "id": "FA-304",
+      "phase": 5,
+      "track": "MULTI_CLUSTER_SCALE",
+      "priority": 305,
+      "title": "Implement cluster-aware provider router with capacity and backpressure",
+      "depends_on": [
+        "FA-302",
+        "FA-303",
+        "FA-120"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "cluster-aware provider router",
+      "acceptance": "Router chooses provider plus cluster from capability, readiness, active-tab load, recent failures, latency and queue pressure; retries are bounded and idempotent."
+    },
+    {
+      "id": "FA-305",
+      "phase": 5,
+      "track": "MULTI_CLUSTER_SCALE",
+      "priority": 306,
+      "title": "Implement governed Cluster B provisioning and auth bootstrap",
+      "depends_on": [
+        "FA-300",
+        "FA-304"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_ACCOUNT_AUTH",
+      "artifact": "cluster provisioning contract and bounded Cluster B receipt",
+      "acceptance": "A new persistent profile is created without copying session secrets from Cluster A; Founder may pre-auth providers; runtime returns to headless single-owner operation after auth."
+    },
+    {
+      "id": "FA-306",
+      "phase": 5,
+      "track": "MULTI_CLUSTER_SCALE",
+      "priority": 307,
+      "title": "Implement cross-cluster queue leases fairness and circuit breakers",
+      "depends_on": [
+        "FA-304",
+        "FA-305"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "multi-cluster scheduler and fault-isolation tests",
+      "acceptance": "Jobs distribute across healthy clusters with lease isolation, bounded retries, provider/cluster circuit breakers, fairness and no duplicate committed generation."
+    },
+    {
+      "id": "FA-307",
+      "phase": 5,
+      "track": "MULTI_CLUSTER_SCALE",
+      "priority": 308,
+      "title": "Run bounded two-cluster parallel production acceptance",
+      "depends_on": [
+        "FA-306",
+        "FA-121"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
+      "artifact": "two-cluster parallel acceptance receipt",
+      "acceptance": "Two clusters execute concurrent heterogeneous provider jobs with correct original-byte lineage, no profile lock collisions, bounded RAM/tabs and deterministic recovery."
+    },
+    {
+      "id": "FA-308",
+      "phase": 5,
+      "track": "MULTI_CLUSTER_SCALE",
+      "priority": 309,
+      "title": "Accept multi-cluster architecture for one thousand masters per day",
+      "depends_on": [
+        "FA-127",
+        "FA-307"
+      ],
+      "status": "DEFERRED",
+      "authority": "FOUNDER_REQUIRED_FOR_SCALE_AUTHORIZATION",
+      "artifact": "1k-per-day cluster capacity model and canary plan",
+      "acceptance": "Measured provider capacity, cluster count, failure/reject rates, postproduction capacity and economics support an authorized 1,000 unique-master/day plan without assuming unlimited web-provider quota.",
+      "defer_reason": "Depends on existing FA-127 1,000/day scale authorization and measured multi-cluster acceptance."
+    },
+    {
+      "id": "FA-309",
+      "phase": 5,
+      "track": "MULTI_CLUSTER_SCALE",
+      "priority": 310,
+      "title": "Accept separate five-thousand-masters-per-day distributed cluster architecture",
+      "depends_on": [
+        "FA-128",
+        "FA-308"
+      ],
+      "status": "DEFERRED",
+      "authority": "FOUNDER_REQUIRED_FOR_SCALE_AUTHORIZATION",
+      "artifact": "5k-per-day distributed cluster architecture decision",
+      "acceptance": "5,000/day is treated as a distinct distributed-capacity decision covering provider economics, required cluster/account pool, queue sharding, QA throughput, storage and marketplace absorption.",
+      "defer_reason": "Depends on FA-128 5,000/day architecture decision and 1,000/day evidence; no quota or account-farming assumptions are permitted."
+    },
+    {
+      "id": "FA-C014",
+      "phase": 5,
+      "track": "UNIFIED_CONTROL_PLANE",
+      "priority": 320,
+      "title": "Define Factory Console v2 visual system and web-first stack ADR",
+      "depends_on": [
+        "FA-C013",
+        "FA-300"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Factory Console v2 ADR and clean-room UI spec",
+      "acceptance": "9router-like dense operator ergonomics are translated clean-room into Factory concepts: left navigation, cluster/provider cards, status pills, queue/usage views and dark operational UI; implementation stack and desktop-wrapper boundary are decided."
+    },
+    {
+      "id": "FA-C015",
+      "phase": 5,
+      "track": "UNIFIED_CONTROL_PLANE",
+      "priority": 321,
+      "title": "Implement cluster topology provider and tab-occupancy views",
+      "depends_on": [
+        "FA-C014",
+        "FA-303"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Factory Console cluster topology module",
+      "acceptance": "Console shows clusters, provider-session readiness, active tabs/jobs, profile lock owner, tab budget, health and safe auth-required state without exposing secret material."
+    },
+    {
+      "id": "FA-C016",
+      "phase": 5,
+      "track": "UNIFIED_CONTROL_PLANE",
+      "priority": 322,
+      "title": "Unify batch queue routing and provider-cluster operations surfaces",
+      "depends_on": [
+        "FA-C015",
+        "FA-304"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Factory Console unified production operations module",
+      "acceptance": "Founder can inspect blueprint/batch intent, queue state, selected provider+cluster, retries, backpressure and bounded pause/resume/cancel actions from one operational surface."
+    },
+    {
+      "id": "FA-C017",
+      "phase": 5,
+      "track": "UNIFIED_CONTROL_PLANE",
+      "priority": 323,
+      "title": "Unify assets lineage derivatives QA and marketplace-readiness surfaces",
+      "depends_on": [
+        "FA-C016",
+        "FA-137",
+        "FA-141"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Factory Console asset operations module",
+      "acceptance": "Generated originals, masters, derivatives, metadata, QA/IP/rights state and package readiness are traceable by semantic asset and content hash from one UI."
+    },
+    {
+      "id": "FA-C018",
+      "phase": 5,
+      "track": "UNIFIED_CONTROL_PLANE",
+      "priority": 324,
+      "title": "Implement cluster usage throughput economics and capacity telemetry dashboard",
+      "depends_on": [
+        "FA-C015",
+        "FA-307"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Factory Console telemetry module",
+      "acceptance": "Console reports queue depth, provider/cluster success rate, latency, active tabs, RAM, generated masters/day, reject rate and cost where observable; UNKNOWN remains explicit."
+    },
+    {
+      "id": "FA-C019",
+      "phase": 5,
+      "track": "UNIFIED_CONTROL_PLANE",
+      "priority": 325,
+      "title": "Implement governed control-plane command API and Founder authority boundaries",
+      "depends_on": [
+        "FA-C016",
+        "FA-C017"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER",
+      "artifact": "control-plane command contract and authorization tests",
+      "acceptance": "Read operations and reversible runtime controls are distinct from red-zone account, spend, publication, destructive and irreversible actions; UI cannot bypass canonical authority gates."
+    },
+    {
+      "id": "FA-C020",
+      "phase": 5,
+      "track": "UNIFIED_CONTROL_PLANE",
+      "priority": 326,
+      "title": "Factory Console v2 web control-plane integration acceptance",
+      "depends_on": [
+        "FA-C018",
+        "FA-C019",
+        "FA-C012"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_ACCEPTANCE",
+      "artifact": "Factory Console v2 web acceptance receipt",
+      "acceptance": "Web UI survives restart/reconciliation and controls real multi-cluster Factory jobs through canonical APIs/events with no direct browser-profile or artifact-store mutation."
+    },
+    {
+      "id": "FA-C021",
+      "phase": 5,
+      "track": "UNIFIED_CONTROL_PLANE",
+      "priority": 327,
+      "title": "Evaluate and package optional Tauri desktop shell around web control plane",
+      "depends_on": [
+        "FA-C020"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "desktop packaging ADR and bounded package fixture",
+      "acceptance": "Desktop packaging is a thin shell over the same web/API contracts; Rust/Tauri is adopted only if it improves distribution/tray/native integration without duplicating Factory business logic."
+    },
+    {
+      "id": "FA-C022",
+      "phase": 5,
+      "track": "UNIFIED_CONTROL_PLANE",
+      "priority": 328,
+      "title": "Define future DIE operational control-plane federation boundary",
+      "depends_on": [
+        "FA-C020"
+      ],
+      "status": "DEFERRED",
+      "authority": "FOUNDER",
+      "artifact": "DIE control-plane federation architecture contract",
+      "acceptance": "Factory Console can become a bounded module of a future DIE holding-company dashboard through stable identity, event, command and deep-link contracts without coupling Factory runtime to an unfinished holding UI.",
+      "defer_reason": "DIE holding-company control plane remains a future strategic layer; preserve module boundary now and implement federation only when the holding dashboard is authorized."
     }
   ],
   "windows_oauth_proof_levels": {
