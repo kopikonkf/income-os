@@ -131,12 +131,13 @@
   "task_state": "WAITING_FOUNDER_AUTH",
   "temporary_profile_only": true,
   "validation": {
-    "combined_pytest": "651 passed, 1 warning",
+    "combined_pytest": "657 passed, 1 warning",
     "company_secret_scan_hits": 0,
-    "factory_regression": "645 passed, 1 warning (PyPDF2 deprecation)",
+    "factory_regression": "651 passed, 1 warning (PyPDF2 deprecation)",
     "focused_pytest": "8 passed",
     "node_syntax_check": "PASS",
     "one_canon_pytest": "6 passed",
-    "one_canon_validator": "11/11 PASS"
+    "one_canon_validator": "11/11 PASS",
+    "reconciled_main": "6715240491b3dda40276ea3de4b9eff72536b70a (FA-202 merged)"
   }
 }
