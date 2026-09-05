@@ -1533,9 +1533,11 @@
         "FA-109",
         "FA-140"
       ],
-      "status": "READY",
-      "artifact": "Factory synthetic load/backpressure harness and benchmark receipt",
-      "acceptance": "Thousands of simulated jobs prove bounded queues, fairness, leases, retries, dedupe, restart and disk/backpressure behavior without provider calls."
+      "status": "DONE",
+      "artifact": "company/factory-asset/lib/synthetic_throughput.py; company/factory-asset/bin/run_fa120_synthetic_throughput.py; company/factory-asset/receipts/FA-120-synthetic-throughput-backpressure.receipt.json",
+      "acceptance": "Thousands of simulated jobs prove bounded queues, fairness, leases, retries, dedupe, restart and disk/backpressure behavior without provider calls.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: 5,000 zero-provider synthetic jobs completed with peak active depth 256, strict round-robin completion fairness 1,250 per tenant, 390 bounded retries (max 2/job), 217/217 idempotent duplicate reuses, lease contention exclusion, persisted crash/restart recovery, and 63 virtual-disk high-watermark backpressure/resume cycles without modeled overflow. Focused 3/3 PASS; Factory regression 619 PASS, 1 pre-existing PyPDF2 deprecation warning. No live provider, browser profile/runtime, production queue/database/artifact or Cluster Broker/readiness mutation."
     },
     {
       "id": "FA-121",
@@ -2347,7 +2349,7 @@
         "FA-303",
         "FA-120"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "cluster-aware provider router",
       "acceptance": "Router chooses provider plus cluster from capability, readiness, active-tab load, recent failures, latency and queue pressure; retries are bounded and idempotent."
