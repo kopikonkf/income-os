@@ -3559,3 +3559,15 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Dependency reconciliation: FA-111, FA-114, FA-116 and FA-118 become READY; FA-113 was already READY; FA-115 stays DEFERRED because current Grok policy/plan gate overrides technical dependency closure.
 - Next execution sequence: FA-113 normalize existing ChatGPT/MUXIA boundary without duplicate browser/session ownership, then FA-111 -> FA-112 Qwen Linux path, followed by Gemini/Manus/Duck.ai lanes.
 - Receipt: company/factory-asset/receipts/FA-110-provider-feasibility.receipt.json.
+
+
+---
+
+## 2026-09-05 - FA-113 ChatGPT/MUXIA provider boundary
+
+- FA-113 = DONE/PASS. Factory now has a compatibility adapter from MUXIA verified workspace export to Factory `GENERATE_RESULT`, provider-original intake and master-facts.
+- MUXIA remains sole owner of browser, authenticated profile and session lifecycle. Factory does not launch/attach a second browser and does not dereference `/var/lib/muxia/artifacts`.
+- Live `PRODSEED000036` evidence matches the adapter contract: automated prompt/output, no credential/cookie read, no submission/publication authority, export SHA equal to MUXIA artifact SHA, 1536x1024 PNG 2,044,670 bytes SHA `0702191d...`, then Factory postproduction to `WAITING_FOUNDER_QC`.
+- Validation: 86 focused PASS; 562 Factory regression PASS; 6 one-canon pytest PASS. No provider call or production mutation was required for FA-113.
+- Next: FA-111 clean Qwen provider extraction, then FA-112 bounded Linux canary. FA-117 remains blocked until FA-112 completes.
+- Receipt: `company/factory-asset/receipts/FA-113-muxia-provider-boundary.receipt.json`.

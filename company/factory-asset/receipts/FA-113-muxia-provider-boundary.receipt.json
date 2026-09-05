@@ -1,0 +1,56 @@
+{
+  "schema": "die.factory-asset.muxia-provider-boundary-receipt.v1",
+  "task_id": "FA-113",
+  "date": "2026-09-05",
+  "status": "DONE",
+  "result": "PASS",
+  "base_main": "8fe9825b12cdfcc807360bb17b0ccfe15a6f7593",
+  "artifacts": [
+    "company/factory-asset/lib/muxia_provider_adapter.py",
+    "company/factory-asset/tests/test_muxia_provider_adapter.py",
+    "docs/architecture/FACTORY_MUXIA_PROVIDER_BOUNDARY_V1.md"
+  ],
+  "mapping": {
+    "provider_id": "chatgpt",
+    "transport_class": "BROWSER_CDP",
+    "capacity_state": "UNKNOWN",
+    "muxia_profile_id": "chatgpt-linux-a",
+    "factory_source": "workspace/provider/source-original.*",
+    "factory_private_muxia_access": false,
+    "browser_owner": "MUXIA",
+    "profile_owner": "MUXIA",
+    "session_owner": "MUXIA",
+    "state_manager_commit_required": true
+  },
+  "live_evidence_observed": {
+    "task_id": "PRODSEED000036",
+    "muxia_status": "SUCCEEDED",
+    "prompt_submitted_by_automation": true,
+    "output_extracted_by_automation": true,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "export_sha_matches_private_sha": true,
+    "export_artifact": "/var/lib/die/workspaces/PRODSEED000036/provider/source-original.png",
+    "bytes": 2044670,
+    "dimensions": "1536x1024",
+    "sha256": "0702191d09d4736a2414959f9d3ea6d43be4a4d52e7349a6dbb8874b09beafc3",
+    "final_factory_state": "WAITING_FOUNDER_QC"
+  },
+  "truth_boundaries": {
+    "new_browser_owner_created": false,
+    "credential_or_cookie_copy": false,
+    "private_muxia_artifact_dereferenced_by_factory_adapter": false,
+    "provider_call_performed_for_fa113": false,
+    "production_workspace_mutated_for_fa113": false,
+    "capacity_inferred": false
+  },
+  "validation": {
+    "focused_adapter_and_contract_tests": "86/86 PASS",
+    "factory_regression": "562/562 PASS (1 deprecation warning)",
+    "one_canon_pytest": "6/6 PASS",
+    "git_diff_check": "PASS"
+  },
+  "next": "FA-111 clean Qwen provider extraction; FA-117 remains blocked until FA-112 also passes."
+}

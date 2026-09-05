@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "7.8-fa110-provider-feasibility",
+  "revision": "7.9-fa113-muxia-provider-boundary",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1405,9 +1405,11 @@
         "FA-100",
         "FA-109"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "MUXIA-to-Factory provider compatibility adapter and tests",
-      "acceptance": "Existing MUXIA generation satisfies Factory provider/master contracts without duplicating browser/session ownership or changing MUXIA authority."
+      "acceptance": "Existing MUXIA generation satisfies Factory provider/master contracts without duplicating browser/session ownership or changing MUXIA authority.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: Factory compatibility adapter consumes only MUXIA verified workspace exports and produces image-provider GENERATE_RESULT, provider-original intake and master-facts while MUXIA retains sole browser/profile/session ownership. No private MUXIA artifact read, credential/session copy or second browser owner is introduced. Validation: 86 focused PASS; 562 Factory regression PASS; 6 one-canon pytest PASS."
     },
     {
       "id": "FA-114",
