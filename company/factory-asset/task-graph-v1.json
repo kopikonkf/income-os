@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "9.3-fa201-governed-canary-blueprint",
+  "revision": "9.4-fa117-two-provider-pool-live",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1479,11 +1479,13 @@
         "FA-112",
         "FA-113"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "acceptance_batch": true,
-      "artifact": "company/factory-asset/receipts/FA-117-two-provider-pool-acceptance.receipt.json",
-      "acceptance": "Qwen and ChatGPT/MUXIA execute isolated bounded jobs with correct leases, capacity events, masters, dedupe and resource/tab metrics."
+      "artifact": "company/factory-asset/receipts/FA-117-two-provider-pool-acceptance.receipt.json; company/factory-asset/fixtures/provider-pool/FA-117-live-acceptance.json",
+      "acceptance": "Qwen and ChatGPT/MUXIA execute isolated bounded jobs with correct leases, capacity events, masters, dedupe and resource/tab metrics.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: bounded live two-provider pool acceptance executed exactly one Qwen and one ChatGPT/MUXIA generation on shared Cluster A without overlap. Qwen BROWSER_CDP fallback produced validated 1664x928 PNG; ChatGPT/MUXIA produced validated 1254x1254 PNG. Shared-profile lease contention blocks concurrent ownership; both capacity SUCCESS events classify AVAILABLE; four intake attempts dedupe to two unique immutable staged masters; no credentials/cookies read and no publication authority. Raw restore reached 10 tabs but canonical budget enforcement normalized to 8/8; router must fail closed above max. Qwen SESSION_API remains primary contract but was not falsely claimed as live executor here."
     },
     {
       "id": "FA-118",
@@ -1549,7 +1551,7 @@
         "FA-117",
         "FA-120"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_LOAD",
       "artifact": "company/factory-asset/receipts/FA-121-24h-provider-stability.receipt.json",
       "acceptance": "Authorized safe pace runs 24 hours with zero profile corruption/secret leakage/duplicate ownership; all limits and failures are observed, not inferred."
@@ -1696,7 +1698,7 @@
         "FA-117",
         "FA-201"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "artifact": "company/factory-asset/receipts/FA-202-governed-production.receipt.json",
       "acceptance": "One governed producer route creates the exact frozen-expression master; provider-original/native bytes remain immutable, all eligible deterministic derivatives are durable/idempotent, and the family counts as one semantic asset regardless of packaging variants."

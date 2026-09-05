@@ -1,0 +1,117 @@
+{
+  "schema": "die.factory-asset.fa117-two-provider-pool-live.v1",
+  "result": "PASS",
+  "providers": {
+    "qwen": {
+      "job_id": "FA117-QWEN-POOL-20260905A",
+      "transport_class": "BROWSER_CDP",
+      "transport_role": "FALLBACK",
+      "primary_transport": "SESSION_API",
+      "sha256": "9e9db71646570a0701602f2fd89e1ccc70143eb63400f73aa8e416591bf6c358",
+      "bytes": 1448211,
+      "media": {
+        "format": "PNG",
+        "mime_type": "image/png",
+        "magic_hex": "89504e470d0a1a0a0000000d",
+        "bytes": 1448211,
+        "width_px": 1664,
+        "height_px": 928,
+        "mode": "RGB",
+        "frame_count": 1,
+        "has_alpha_channel": false,
+        "has_transparency_metadata": false,
+        "has_transparency": false,
+        "alpha_min": 255,
+        "alpha_max": 255,
+        "extension": ".png",
+        "extension_content_match": true,
+        "decode_verified": true
+      },
+      "duration_ms": 22010,
+      "capacity_state": "AVAILABLE",
+      "capacity_event": {
+        "profile_id": "chatgpt-linux-a",
+        "provider_id": "qwen",
+        "event": "SUCCESS",
+        "observed_at": "2026-09-05T19:44:31.120Z",
+        "evidence_ref": "receipt://FA117/qwen-live"
+      }
+    },
+    "chatgpt": {
+      "job_id": "FA117-CHATGPT-POOL-20260905A-muxia",
+      "transport_class": "BROWSER_CDP",
+      "sha256": "fc345bf35edcefedae6f7498b4f2196d50bbe3b9e1589bb9a193ce16562127f0",
+      "bytes": 1116977,
+      "media": {
+        "format": "PNG",
+        "mime_type": "image/png",
+        "magic_hex": "89504e470d0a1a0a0000000d",
+        "bytes": 1116977,
+        "width_px": 1254,
+        "height_px": 1254,
+        "mode": "RGB",
+        "frame_count": 1,
+        "has_alpha_channel": false,
+        "has_transparency_metadata": false,
+        "has_transparency": false,
+        "alpha_min": 255,
+        "alpha_max": 255,
+        "extension": ".png",
+        "extension_content_match": true,
+        "decode_verified": true
+      },
+      "duration_ms": 46918,
+      "capacity_state": "AVAILABLE",
+      "capacity_event": {
+        "profile_id": "chatgpt-linux-a",
+        "provider_id": "chatgpt",
+        "event": "SUCCESS",
+        "observed_at": "2026-09-05T19:45:39.921Z",
+        "evidence_ref": "receipt://FA117/chatgpt-live"
+      }
+    }
+  },
+  "shared_profile": {
+    "profile_id": "chatgpt-linux-a",
+    "live_intervals_non_overlapping": true,
+    "inter_job_gap_ms": 21883,
+    "logical_contention_blocked": true,
+    "lease_released_after_each": true
+  },
+  "master_staging": {
+    "attempt_count": 4,
+    "unique_blob_count": 2,
+    "qwen_duplicate_reused": true,
+    "chatgpt_duplicate_reused": true,
+    "canonical_truth": false,
+    "state_manager_commit_required": true
+  },
+  "resource_tab_metrics": {
+    "schema": "die.factory-asset.fa117-browser-footprint-budgeted.v1",
+    "profile_id": "chatgpt-linux-a",
+    "open_pages_before": 10,
+    "open_pages_after": 8,
+    "closed_by_budget": 2,
+    "max_tabs": 8,
+    "within_tab_ceiling_after": true,
+    "root_process_rss_kb": 250084,
+    "provider_generation_call": false,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false
+  },
+  "provider_generation_calls": {
+    "qwen": 1,
+    "chatgpt": 1,
+    "total": 2
+  },
+  "operator_actions_after_dispatch": {
+    "qwen": 0,
+    "chatgpt": 0
+  },
+  "capacity_key_note": "Provider-scoped capacity observations are kept separate because Qwen and ChatGPT share Cluster A; FA-304 must key routing capacity by provider plus cluster.",
+  "startup_tab_note": "Persistent-profile restore exceeded max before enforcement; accepted path normalizes to max 8 and router must fail closed when open_pages exceeds max_tabs.",
+  "credential_values_read": false,
+  "cookies_or_tokens_read": false,
+  "submission_authorized": false,
+  "publication_authorized": false
+}
