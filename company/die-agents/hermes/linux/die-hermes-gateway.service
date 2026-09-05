@@ -34,7 +34,9 @@ ProtectKernelTunables=true
 ProtectKernelModules=true
 ProtectKernelLogs=true
 ProtectControlGroups=true
-RestrictSUIDSGID=true
+# Production runtime must repair die-runtime shared 2770 workspace/provider directories.
+# NoNewPrivileges + empty capability sets remain enforced; this only permits owner SGID mode repair.
+RestrictSUIDSGID=false
 LockPersonality=true
 CapabilityBoundingSet=
 AmbientCapabilities=

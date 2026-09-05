@@ -106,6 +106,15 @@ def test_muxia_service_has_private_writable_home_and_installer_restarts_unit():
     assert 'enable --now die-muxia-dispatch.service' not in installer
 
 
+def test_gateway_allows_required_sgid_directory_repair_without_privilege_escalation():
+    unit=(ROOT/'company/die-agents/hermes/linux/die-hermes-gateway.service').read_text()
+    assert 'RestrictSUIDSGID=false' in unit
+    assert 'NoNewPrivileges=true' in unit
+    assert 'CapabilityBoundingSet=\n' in unit
+    assert 'AmbientCapabilities=\n' in unit
+    assert 'ProtectSystem=strict' in unit and 'ProtectHome=true' in unit
+    assert 'User=die-hermes' in unit and 'Group=die-runtime' in unit
+
 def test_runtime_repairs_shared_workspace_and_provider_permissions_before_muxia():
     runtime=(ROOT/'company/die-agents/hermes/production-runtime/production_runtime_tick.py').read_text()
     assert "def ensure_shared_workspace" in runtime
