@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "7.6-fa140bc-live-production-recovery",
+  "revision": "7.7-fa140c-r1-hermes-sgid-recovery",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2214,6 +2214,21 @@
       "acceptance": "Every new production workspace and provider handoff directory is die-runtime-group writable/setgid (2770); existing active cards are repaired before MUXIA dispatch; wrong group fails closed; a failed E_EXPORT card reuses verified private MUXIA artifact and reaches ARTIFACT_CREATED without compensating seed or duplicate semantic asset.",
       "completed_at": "2026-09-04",
       "result": "PASS: live PRODSEED000035 E_EXPORT PermissionError recovered by self-healing shared workspace/provider 2770 die-runtime boundary. Verified tree provider original 1536x1024 SHA 33847b68... exported on the same card, postprocessed to 6144x4096 master SHA 531ef32b..., FA-141 XMP/IPTC JPEG SHA 66583df7... PASS, Telegram success surface exactly PRODUCTION_STARTED/ARTIFACT_CREATED/WAITING_FOUNDER_QC, resolver NO_ACTIVE_CARD, and 3-hour cron remains active."
+    },
+    {
+      "id": "FA-140C-R1",
+      "phase": 4,
+      "track": "FACTORY_ORCHESTRATION",
+      "priority": 69,
+      "title": "Repair Hermes systemd SGID sandbox conflict",
+      "depends_on": [
+        "FA-140C"
+      ],
+      "status": "DONE",
+      "artifact": "company/factory-asset/receipts/FA-140C-R1-hermes-sgid-recovery.receipt.json",
+      "acceptance": "Hermes gateway can create and repair die-runtime shared workspace/provider directories at 2770 without adding root or Linux capabilities; live PRODSEED000036 starts on the same selected seed without PermissionError, compensation, or credential changes.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: RestrictSUIDSGID=true rejected 2770 mkdir/chmod inside the Hermes sandbox with EPERM. PR #221 changes only that conflicting sandbox knob to false while preserving die-hermes identity, NoNewPrivileges, empty capability sets, ProtectSystem/ProtectHome and bounded write paths. Live deployment at main 529184f8 created PRODSEED000036 and provider/ as 2770 die-hermes:die-runtime; cognition authored a valid blueprint and advanced to NEED_REVIEW without compensating seed."
     }
   ],
   "windows_oauth_proof_levels": {

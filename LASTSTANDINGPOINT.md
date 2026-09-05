@@ -3524,3 +3524,16 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Receipts: `FA-034-pattern-engine-v0.1-acceptance.receipt.json`, `FA-129-asset-expression-plan.receipt.json`, `FA-131-provider-original-intake.receipt.json`; commands in `FA-034-129-131-linux-validation.json` under `company/factory-asset/receipts`.
 - Dependency reconciliation only: FA-130, FA-132, FA-133, FA-134, FA-135, FA-136 become READY. No downstream implementation started; FA-133 dependencies now all DONE, including Architect-owned FA-043.
 - No production runtime, provider, credential, marketplace or spend action. Intake is STAGED_NOT_CANONICAL; State Manager remains the sole canonical writer.
+
+---
+
+## 2026-09-05 - FA-140C-R1 Hermes SGID sandbox recovery
+
+- Root cause of PRODSEED000036 five-run PermissionError streak: die-hermes-gateway.service enforced RestrictSUIDSGID=true while deterministic runtime intentionally creates/repairs shared workspace/provider directories as setgid 2770.
+- Exact sandbox canary proved RestrictSUIDSGID=yes => EPERM and RestrictSUIDSGID=no => 2770 PASS as die-hermes:die-runtime.
+- Implementation merged as PR #221; canonical main 529184f83558d66aac0d130e27079b5f2e751b14. NoNewPrivileges, empty capability sets, ProtectSystem/ProtectHome and bounded write paths remain enforced.
+- Live unit deployed and gateway restarted active with RestrictSUIDSGID=no.
+- Same next semantic seed recovered as PRODSEED000036 (SEED-000036, cat), workspace and provider/ both 2770 die-hermes:die-runtime; no compensating seed.
+- Production cognition resumed: AUTHOR_VALID at 2026-09-05T07:08:16Z, artifact SHA 79f22431d6c94ce345226c57609de58269f72ed1a74e3c851966f118d8a8c9f5, stage observed NEED_REVIEW.
+- Repair child FA-140C-R1 = DONE/PASS.
+- Next strategic READY Factory leaf: FA-110 - Build provider feasibility scorecard; other READY leaves remain FA-113, FA-120 and FA-200.

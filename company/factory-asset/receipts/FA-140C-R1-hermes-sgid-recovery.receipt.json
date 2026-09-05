@@ -1,0 +1,54 @@
+{
+  "schema": "die.factory-asset.repair-receipt.v1",
+  "task_id": "FA-140C-R1",
+  "status": "PASS",
+  "date": "2026-09-05",
+  "implementation_pr": 221,
+  "implementation_head": "9a68fa4971b107f0023d7f1e6221732fa3c3339f",
+  "merged_main": "529184f83558d66aac0d130e27079b5f2e751b14",
+  "failure": {
+    "card": "PRODSEED000036",
+    "error": "PermissionError:[Errno 1] Operation not permitted",
+    "consecutive_cron_failures_observed": 5,
+    "stage": "deterministic-runtime"
+  },
+  "root_cause": "RestrictSUIDSGID=true in die-hermes-gateway.service rejected runtime-required setgid 2770 mkdir/chmod operations inside the Hermes systemd sandbox.",
+  "fix": {
+    "RestrictSUIDSGID": false,
+    "preserved": [
+      "User=die-hermes",
+      "Group=die-runtime",
+      "NoNewPrivileges=true",
+      "CapabilityBoundingSet=",
+      "AmbientCapabilities=",
+      "ProtectSystem=strict",
+      "ProtectHome=true",
+      "bounded ReadWritePaths"
+    ],
+    "privilege_escalation_added": false
+  },
+  "validation": {
+    "restrict_true_canary": "EPERM on mkdir 2770",
+    "restrict_false_canary": "PASS: mkdir and chmod 2770 as die-hermes:die-runtime",
+    "targeted_runtime_tests": "15 passed",
+    "hermes_install_relocation_tests": "2 passed",
+    "diff_check": "PASS"
+  },
+  "live_recovery": {
+    "task_id": "PRODSEED000036",
+    "seed_id": "SEED-000036",
+    "seed": "cat",
+    "workspace": "2770 die-hermes:die-runtime",
+    "provider": "2770 die-hermes:die-runtime",
+    "started_at": "2026-09-05T07:07:08Z",
+    "cognition_stage_observed": "NEED_REVIEW",
+    "author_event_at": "2026-09-05T07:08:16Z",
+    "author_artifact_sha256": "79f22431d6c94ce345226c57609de58269f72ed1a74e3c851966f118d8a8c9f5",
+    "compensating_seed_created": false
+  },
+  "authority": {
+    "provider_credentials_read": false,
+    "marketplace_submission_authorized": false,
+    "publication_authorized": false
+  }
+}
