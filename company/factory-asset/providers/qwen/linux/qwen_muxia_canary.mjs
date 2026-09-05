@@ -2,13 +2,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { PlaywrightChromiumDriver } from '../../../../muxia/dist/browser/playwright-driver.js';
-import { enforceTabBudget, MAX_TABS_PER_PRINCIPAL } from '../../../../browser/linux/tab_budget.mjs';
+import { pathToFileURL } from 'node:url';
 
 function arg(name, fallback = null) {
   const i = process.argv.indexOf(name);
   return i >= 0 && i + 1 < process.argv.length ? process.argv[i + 1] : fallback;
 }
+
+const dieHome = path.resolve(arg('--die-home', '/srv/die'));
+const { PlaywrightChromiumDriver } = await import(pathToFileURL(path.join(dieHome, 'company/muxia/dist/browser/playwright-driver.js')).href);
+const { enforceTabBudget, MAX_TABS_PER_PRINCIPAL } = await import(pathToFileURL(path.join(dieHome, 'company/browser/linux/tab_budget.mjs')).href);
 
 const jobId = String(arg('--job-id', '')).trim();
 const promptFile = String(arg('--prompt-file', '')).trim();
