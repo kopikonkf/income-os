@@ -2,46 +2,112 @@
   "schema": "die.factory-asset.qwen-linux-canary-receipt.v1",
   "task_id": "FA-112",
   "date": "2026-09-05",
-  "status": "WAITING_OPERATOR",
-  "result": "PRE_DISPATCH_AUTH_REQUIRED",
+  "status": "DONE",
+  "result": "PASS",
   "base_main": "48f0c2d381d3c9ef6727e663dd42ff2b3f485f31",
-  "authorization": "Founder-directed progression into FA-112; one bounded live provider call is authorized once pre-dispatch auth is READY.",
-  "preflight": {
-    "session_api_auth_reference": "ABSENT_BY_NAME_ONLY_SCAN",
-    "browser_profile_tested": "chatgpt-linux-a",
+  "authorization": "Founder explicitly completed Cluster A pre-dispatch login and directed FA-112 continuation; exactly one provider generation reached dispatch_committed_at.",
+  "architecture": {
+    "cluster_profile_id": "chatgpt-linux-a",
+    "cluster_profile_path": "/var/lib/muxia/profiles/chatgpt-linux-a/browser",
     "browser_runtime_owner": "MUXIA",
-    "start_url": "https://chat.qwen.ai/",
-    "observed_at": "2026-09-05T08:00:50.348Z",
-    "state": "AUTH_REQUIRED",
-    "title": "Qwen Studio",
-    "editable_count": 1,
-    "login_ui_count": 1,
-    "prompt_submitted": false,
-    "provider_generation_dispatched": false,
-    "credential_values_read": false,
-    "cookies_or_tokens_read": false
+    "transport_class": "BROWSER_CDP",
+    "transport_role": "FALLBACK",
+    "primary_transport": "SESSION_API",
+    "windows_dependency": false,
+    "manual_auth_phase_cdp": false,
+    "production_canary_cdp": true,
+    "max_tabs_per_principal": 2
   },
-  "operator_handoff": {
-    "helper": "company/factory-asset/providers/qwen/linux/qwen_muxia_auth.sh",
-    "target_profile_id": "web-ai-shared",
-    "reason": "isolate Qwen manual pre-dispatch login from the active chatgpt-linux-a production profile",
-    "steps": [
-      "Connect to the Linux XFCE/RDP desktop.",
-      "Open a terminal in /srv/die.",
-      "Run: company/factory-asset/providers/qwen/linux/qwen_muxia_auth.sh login",
-      "Complete Qwen login manually. Do not submit an image prompt.",
-      "Close the MUXIA browser to release the profile lock.",
-      "Run: company/factory-asset/providers/qwen/linux/qwen_muxia_auth.sh probe",
-      "Resume FA-112 only when probe returns READY."
-    ]
+  "auth_preflight": {
+    "qwen_login_completed_by_founder": true,
+    "profile_reused_as_multi_provider_cluster": true,
+    "probe_after_cdp_restore": {
+      "safe_url": "https://chat.qwen.ai/",
+      "editable_count": 1,
+      "login_ui_count": 0,
+      "state": "READY"
+    },
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "windows_cookie_or_session_copy": false
+  },
+  "oauth_status_redaction_hardening": {
+    "trigger": "Generic browser status writer briefly observed a provider OAuth callback URL during login; secret values are intentionally omitted from this receipt.",
+    "containment": "Provider was navigated back to its clean root and transient runtime log/state exposure was sanitized before acceptance continued.",
+    "canonical_fix": "company/browser/linux/operator_browser_core.mjs now stores only URL origin plus pathname; query and fragment are stripped in classify, fallback and writeStatus paths.",
+    "regression_test": "company/factory-asset/tests/test_qwen_muxia_auth_handoff.py",
+    "credential_values_retained_in_receipt": false
+  },
+  "pre_dispatch_attempts": [
+    {
+      "job_id": "FA112-QWEN-CANARY-20260905A",
+      "result": "FAILED_PRE_DISPATCH",
+      "failure_code": "CHROMIUM_DEBUG_PORT_TIMEOUT:30000",
+      "cause": "Canary initially used Playwright default executable instead of the pinned MUXIA Chromium executable.",
+      "prompt_submitted_by_automation": false,
+      "dispatch_committed": false,
+      "provider_generation_call_count": 0
+    }
+  ],
+  "accepted_canary": {
+    "job_id": "FA112-QWEN-CANARY-20260905B",
+    "provider_id": "qwen",
+    "profile_id": "chatgpt-linux-a",
+    "prompt_sha256": "aa5bebbb75e6132d020fb0302794d8b7efea027f25169c32842620c7476e0f9a",
+    "started_at": "2026-09-05T09:46:06.594Z",
+    "preflight_at": "2026-09-05T09:46:13.077Z",
+    "dispatch_started_at": "2026-09-05T09:46:13.077Z",
+    "dispatch_committed_at": "2026-09-05T09:46:13.536Z",
+    "generation_completed_at": "2026-09-05T09:46:24.831Z",
+    "completed_at": "2026-09-05T09:46:24.839Z",
+    "prompt_submitted_by_automation": true,
+    "output_extracted_by_automation": true,
+    "operator_actions_after_dispatch": 0,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "original_byte_acquisition_method": "provider_original_cdn_url_browser_context",
+    "provider_original_path": "/var/lib/die/workspaces/FA112-QWEN-CANARY-20260905B/provider/source-original.png",
+    "mime": "image/png",
+    "format": "PNG",
+    "dimensions": [1664, 928],
+    "mode": "RGB",
+    "bytes": 1492973,
+    "sha256": "d3fd3534441a0dc5e7eac18e5dbfd4f285f89cdb4aa55c1ca7736cca250f88cd",
+    "decode_reopen": true,
+    "dom_preview_dimensions": [807, 450]
+  },
+  "master_lineage": {
+    "source": "/var/lib/die/workspaces/FA112-QWEN-CANARY-20260905B/provider/source-original.png",
+    "staging_root": "/var/lib/die/workspaces/FA112-QWEN-CANARY-20260905B/master-staging",
+    "staged_blob_path": "/var/lib/die/workspaces/FA112-QWEN-CANARY-20260905B/master-staging/blobs/sha256/d3/d3fd3534441a0dc5e7eac18e5dbfd4f285f89cdb4aa55c1ca7736cca250f88cd",
+    "attempt_id": "FA112-QWEN-CANARY-20260905B",
+    "semantic_asset_id": "FA112-QWEN-CANARY-APPLE",
+    "blueprint_id": "FA112-QWEN-CANARY-BLUEPRINT",
+    "provider_id": "qwen",
+    "byte_preservation": "EXACT_COPY",
+    "sha256": "d3fd3534441a0dc5e7eac18e5dbfd4f285f89cdb4aa55c1ca7736cca250f88cd",
+    "decode_verified": true,
+    "ingestion_state": "STAGED_NOT_CANONICAL",
+    "canonical_truth": false,
+    "state_manager_commit_required": true,
+    "truth_boundary": "FA-112 proves durable immutable master staging and complete lineage; it does not falsely claim the separate DIE_STATE_MANAGER canonical commit."
   },
   "boundaries": {
-    "windows_cookie_or_session_copy": false,
-    "production_chatgpt_profile_used_for_persistent_login": false,
+    "provider_generation_call_count": 1,
     "account_creation_performed": false,
     "captcha_or_protection_bypass": false,
-    "provider_call_count": 0,
+    "windows_cookie_or_session_copy": false,
+    "windows_runtime_dependency": false,
+    "manual_prompt_submission": false,
     "spend": 0
   },
-  "next": "WAITING_OPERATOR until Qwen pre-dispatch login is complete; then exactly one bounded Linux canary."
+  "validation": {
+    "focused_pytest": "17 passed",
+    "factory_regression": "579 passed, 1 PyPDF2 deprecation warning",
+    "one_canon_pytest": "6 passed",
+    "node_syntax_check": "PASS",
+    "provider_original_decode_reopen": "PASS",
+    "master_exact_copy_and_lineage": "PASS"
+  },
+  "next": "FA-112 is DONE/PASS. Dependency reconciliation makes FA-117 READY. Founder-directed provider sequence continues with FA-114 Gemini, then FA-116 Manus, then FA-118 Duck.ai; Grok remains deferred."
 }
