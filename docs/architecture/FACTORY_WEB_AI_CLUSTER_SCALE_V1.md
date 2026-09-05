@@ -52,3 +52,24 @@ The uploaded 9router interface is used only as a clean-room interaction referenc
 ## DIE federation boundary
 
 Factory Console is a domain control plane. A future DIE holding-company dashboard can federate it later through stable event/command/deep-link contracts. Factory should therefore be a module that can be embedded or linked, not a UI that owns company-wide truth.
+
+
+## Canonical Cluster Registry Contract (FA-300)
+
+The machine-readable registry is `company/factory-asset/registries/web-ai-clusters.v1.json`. A **cluster** is a persistent browser-profile capacity unit with one MUXIA browser owner. Cluster identity is not inferred from a provider name. Historical `chatgpt-linux-a` remains the profile ID for Cluster A.
+
+### Lifecycle
+
+`ACTIVE_REFERENCE/HEALTHY -> DEGRADED -> DRAINING -> OFFLINE/RETIRED` is cluster-scoped. Retirement first rejects new tab leases, waits or cancels bounded in-flight work according to policy, closes leased tabs, stops the sole Chromium owner, and only then allows governed profile archive/removal. No profile deletion is implicit.
+
+### Auth handoff
+
+Provider authentication may be completed by the Founder in a visible **no-CDP** browser using the cluster profile. That browser must be fully closed before the production broker acquires the profile. Session storage stays inside the profile. Cookies, tokens, OAuth callback material and raw credential values are never copied into Factory registries or receipts.
+
+### Failure isolation
+
+A tab checkpoint or provider auth failure reduces only that provider's usable capacity. Healthy sibling providers in the same cluster remain schedulable. The whole cluster is unavailable only when the single Chromium owner/profile failure domain is unhealthy. Multi-cluster replication is the next fault-isolation layer.
+
+### Capacity
+
+`max_tabs=8` is a hard ceiling, not a target for eight simultaneous generation jobs. Active-generation concurrency is separately governed by tab leases, provider limits, RAM/CPU observations and backpressure. Qwen continues to prefer `SESSION_API` when governed and healthy, using Cluster A `BROWSER_CDP` only as fallback.

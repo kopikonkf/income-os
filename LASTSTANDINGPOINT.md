@@ -3663,3 +3663,12 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Provider original: JPEG 1254x1254 RGB, 48,969 bytes, SHA `19aa19644fef9435657b4496f0d8b501c5fa5299273431c313414dcc1afe0645`; decode/reopen PASS; center blue/corners white consistent with visible tab `Blue circle on white background`.
 - Truth boundary: Linux dispatch was Founder GUI; Windows FA-W017 remains zero-touch BROWSER_CDP reference. Autonomous shared-broker Duck is re-proven in FA-301/302/307.
 - FA-118 DONE/PASS; FA-300 READY. Graph browser budget corrected to 8. Revision `8.7-fa118-duck-image-route-corrected`.
+
+---
+
+## 2026-09-05 - FA-300 Web-AI Army Cluster contract DONE/PASS
+
+- Canonical registry: `company/factory-asset/registries/web-ai-clusters.v1.json`.
+- Cluster A = profile `chatgpt-linux-a`, MUXIA-owned, one long-lived Chromium owner, max 8 tabs.
+- Active membership: ChatGPT, Qwen, Gemini, Manus, Duck.ai; Grok deferred optional. Qwen prefers SESSION_API with BROWSER_CDP fallback.
+- Auth handoff, failure isolation, drain/retire and no-secret-copy rules are explicit. FA-301 READY.

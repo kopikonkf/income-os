@@ -1,0 +1,37 @@
+{
+  "schema": "die.factory-asset.web-ai-cluster-contract.receipt.v1",
+  "task_id": "FA-300",
+  "date": "2026-09-05",
+  "status": "DONE",
+  "result": "PASS",
+  "cluster_registry": "company/factory-asset/registries/web-ai-clusters.v1.json",
+  "cluster_a": {
+    "cluster_id": "cluster-a",
+    "profile_id": "chatgpt-linux-a",
+    "profile_dir": "/var/lib/muxia/profiles/chatgpt-linux-a/browser",
+    "runtime_owner": "MUXIA",
+    "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+    "max_tabs": 8,
+    "active_providers": [
+      "chatgpt",
+      "qwen",
+      "gemini",
+      "manus",
+      "duckai"
+    ],
+    "grok": "DEFERRED_OPTIONAL"
+  },
+  "boundaries": {
+    "profile_secret_copy_allowed": false,
+    "credential_cookie_token_export_allowed": false,
+    "auth_handoff": "VISIBLE_NO_CDP_THEN_CLOSE_BEFORE_BROKER",
+    "provider_failure_isolation": true,
+    "retirement_requires_drain": true
+  },
+  "next": "FA-301 single-owner shared Chromium broker.",
+  "validation": {
+    "focused_cluster_contract": "10 passed",
+    "factory_regression": "603 passed, 1 PyPDF2 deprecation warning",
+    "one_canon_pytest": "6 passed"
+  }
+}

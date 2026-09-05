@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "8.7-fa118-duck-image-route-corrected",
+  "revision": "8.8-fa300-cluster-registry-contract",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2277,10 +2277,12 @@
         "FA-118",
         "FA-299"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
-      "artifact": "docs/architecture/FACTORY_WEB_AI_CLUSTER_SCALE_V1.md",
-      "acceptance": "Cluster identity, profile path, provider-session membership, auth handoff, owner process, tab ceiling, health state, retirement and no-secret-copy rules are canonical."
+      "artifact": "docs/architecture/FACTORY_WEB_AI_CLUSTER_SCALE_V1.md; company/factory-asset/registries/web-ai-clusters.v1.json; company/factory-asset/receipts/FA-300-web-ai-cluster-contract.receipt.json",
+      "acceptance": "Cluster identity, profile path, provider-session membership, auth handoff, owner process, tab ceiling, health state, retirement and no-secret-copy rules are canonical.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: Cluster A machine-readable contract defines historical chatgpt-linux-a profile as one MUXIA-owned persistent browser cluster with max 8 tabs, five active provider memberships, Qwen SESSION_API preference with BROWSER_CDP fallback, visible no-CDP auth handoff, provider-level failure isolation, explicit cluster failure domain, governed drain/retire lifecycle and no secret/session copying."
     },
     {
       "id": "FA-301",
@@ -2291,7 +2293,7 @@
       "depends_on": [
         "FA-300"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "MUXIA cluster broker runtime plus tests",
       "acceptance": "Exactly one Chromium process owns one persistent cluster profile; provider workers attach through broker-issued loopback CDP context and cannot independently launch the same profile."
