@@ -1,0 +1,88 @@
+{
+  "assertions": {
+    "bounded_active_queue": true,
+    "dedupe": true,
+    "disk_backpressure": true,
+    "fair_round_robin": true,
+    "lease_exclusion": true,
+    "restart_recovery": true,
+    "retries_bounded": true,
+    "thousands_processed": true,
+    "zero_loss_or_duplicate_success": true,
+    "zero_provider_calls": true
+  },
+  "benchmark": {
+    "elapsed_seconds": 0.661883,
+    "successful_jobs_per_second": 7554.202
+  },
+  "config": {
+    "disk_high_watermark_bytes": 53687091,
+    "disk_low_watermark_bytes": 33554432,
+    "max_active_jobs": 256,
+    "tenants": [
+      "alpha",
+      "beta",
+      "gamma",
+      "delta"
+    ],
+    "unique_jobs": 5000,
+    "virtual_disk_capacity_bytes": 67108864,
+    "worker_slots": 8
+  },
+  "dedupe": {
+    "duplicate_reused": 217,
+    "duplicate_submissions": 217,
+    "idempotency_conflicts_blocked": 1
+  },
+  "disk_backpressure": {
+    "events": 63,
+    "final_modeled_bytes": 43417600,
+    "high_watermark_bytes": 53687091,
+    "model": "VIRTUAL_BOUNDED_SPOOL_NO_PAYLOAD_ALLOCATION",
+    "peak_bytes": 53673984,
+    "reclaimed_bytes": 1267138560,
+    "resume_events": 63
+  },
+  "fairness": {
+    "completion_counts": {
+      "alpha": 1250,
+      "beta": 1250,
+      "delta": 1250,
+      "gamma": 1250
+    },
+    "first_dispatch_counts": {
+      "alpha": 1250,
+      "beta": 1250,
+      "delta": 1250,
+      "gamma": 1250
+    },
+    "max_first_dispatch_skew": 11,
+    "violations": 0
+  },
+  "leases": {
+    "active_after_run": 0,
+    "contention_blocked": 1
+  },
+  "provider_calls_performed": false,
+  "queue": {
+    "admission_backpressure_events": 647,
+    "peak_active_depth": 256,
+    "terminal_failures": 0,
+    "terminal_successes": 5000,
+    "unique_jobs": 5000
+  },
+  "restart": {
+    "max_recovery_count": 1,
+    "performed": true,
+    "recovered_jobs": 1,
+    "snapshot_bytes": 999160
+  },
+  "result": "PASS",
+  "retries": {
+    "max_retries_per_job": 2,
+    "retry_events": 390,
+    "total_attempts": 5391
+  },
+  "schema": "die.factory-asset.synthetic-throughput-backpressure.v1",
+  "task_id": "FA-120"
+}
