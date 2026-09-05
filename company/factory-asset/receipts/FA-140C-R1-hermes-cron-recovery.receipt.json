@@ -1,0 +1,50 @@
+{
+  "schema": "die.factory-asset.hermes-cron-recovery-receipt.v1",
+  "task_id": "FA-140C-R1-CRON",
+  "date": "2026-09-05",
+  "status": "PASS",
+  "job": {
+    "name": "die-production-cycle-v1",
+    "job_id": "6c1d9f5c504e",
+    "schedule": "0 */3 * * *",
+    "delivery": "telegram",
+    "script": "production-runtime/production_runtime_tick.sh"
+  },
+  "pre_repair_failure_streak": {
+    "count": 5,
+    "failure_code": "PermissionError",
+    "message": "[Errno 1] Operation not permitted: '/var/lib/die/workspaces/PRODSEED000036'",
+    "builtin_run_ids": [
+      "af60b7f566a04da89d26d343579c06b9",
+      "7e64906071af4246888db44f82500b58",
+      "1786a313f0a64feda714cbea120e6f46",
+      "a612989c002048f485d07ccd5eb46dee",
+      "59693ebbf1274f17a39a084c8c30850b"
+    ]
+  },
+  "post_repair_cron_execution": {
+    "execution_id": "173bcd20e83843449886a5a4b277a9e0",
+    "source": "direct",
+    "started_at": "2026-09-05T07:10:13.443193+00:00",
+    "completed_at_observed": "2026-09-05T07:13:12.991450+00:00",
+    "result": "completed",
+    "last_run_status_in_cron_list": "ok",
+    "next_builtin_run": "2026-09-05T09:00:00+00:00"
+  },
+  "live_card_result": {
+    "task_id": "PRODSEED000036",
+    "seed_id": "SEED-000036",
+    "seed": "cat",
+    "final_state": "WAITING_FOUNDER_QC",
+    "listing_artifact": "qc/cat-photo__f84e7f10.jpg",
+    "resolver_after_completion": "NO_ACTIVE_CARD",
+    "workspace_mode": "2770",
+    "workspace_owner_group": "die-hermes:die-runtime"
+  },
+  "truth_boundary": {
+    "proves_hermes_cron_subsystem_can_execute_the_real_production_job_after_repair": true,
+    "proves_permission_failure_streak_broken": true,
+    "natural_builtin_0900_run_has_already_occurred": false,
+    "note": "The post-repair PASS was an actual Hermes cron job execution with source=direct. The next natural cadence execution remains scheduled for 09:00 UTC and is not pre-claimed as PASS."
+  }
+}
