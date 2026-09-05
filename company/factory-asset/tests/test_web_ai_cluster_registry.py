@@ -33,3 +33,12 @@ def test_failure_isolation_and_lifecycle_states():
  assert 'DRAINING' in g['health_states']['cluster']
  assert 'CHECKPOINT' in g['health_states']['provider']
  assert 'IN_FLIGHT' in g['health_states']['tab']
+
+
+def test_cluster_a_initial_browser_concurrency_policy():
+    c=load()['clusters'][0]
+    assert c['max_tabs']==8
+    assert c['max_active_browser_generations']==5
+    assert c['reserved_recovery_tabs']==3
+    assert c['lease_default_ttl_seconds']==300
+    assert c['provider_tab_limits']=={'chatgpt':1,'qwen':1,'gemini':1,'manus':1,'duckai':1}

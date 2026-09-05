@@ -1,0 +1,70 @@
+{
+  "schema": "die.factory-asset.cluster-tab-leases.receipt.v1",
+  "task_id": "FA-302",
+  "date": "2026-09-05",
+  "status": "DONE",
+  "result": "PASS",
+  "implementation": [
+    "company/browser/linux/cluster_tab_leases.mjs",
+    "company/browser/linux/cluster_broker_core.mjs",
+    "company/browser/linux/cluster_broker_client.mjs",
+    "company/muxia/scripts/linux/muxia-cluster-broker.mjs"
+  ],
+  "policy": {
+    "max_tabs": 8,
+    "active_browser_providers": [
+      "chatgpt",
+      "qwen",
+      "gemini",
+      "manus",
+      "duckai"
+    ],
+    "provider_tab_limits": {
+      "chatgpt": 1,
+      "qwen": 1,
+      "gemini": 1,
+      "manus": 1,
+      "duckai": 1
+    },
+    "max_normal_simultaneous_browser_generations": 5,
+    "reserved_recovery_tabs": 3,
+    "default_lease_ttl_seconds": 300,
+    "qwen_session_api_consumes_tab": false
+  },
+  "real_fixture": {
+    "active_provider_leases": 5,
+    "open_pages_at_five_leases": 5,
+    "leased_page_attach": "PASS",
+    "duplicate_qwen": "E_PROVIDER_TAB_CAPACITY:qwen",
+    "chatgpt_checkpoint": "E_PROVIDER_NOT_SCHEDULABLE:chatgpt:CHECKPOINT",
+    "healthy_siblings_remained_leased": [
+      "duckai",
+      "gemini",
+      "manus",
+      "qwen"
+    ],
+    "ttl_reclaim": "TTL_EXPIRED",
+    "final_active_leases": 0,
+    "final_open_pages": 0,
+    "terminal_broker_state": "OFFLINE"
+  },
+  "invariants": {
+    "job_to_page_isolation": true,
+    "duplicate_job_fails_closed": true,
+    "per_provider_limit": true,
+    "max_eight": true,
+    "unmanaged_pages_count_against_capacity": true,
+    "expired_page_reclaimed": true,
+    "provider_failure_isolation": true,
+    "worker_profile_ownership": false
+  },
+  "cluster_a_mutated": false,
+  "next": "FA-303 provider-session readiness health; FA-304 later combines FA-302 + FA-303 + FA-120 into cluster-aware routing.",
+  "validation": {
+    "focused_cluster_tab_broker_registry": "19 passed",
+    "factory_regression": "612 passed, 1 PyPDF2 deprecation warning",
+    "one_canon_pytest": "6 passed",
+    "node_syntax_checks": "PASS",
+    "real_chromium_fixture": "PASS"
+  }
+}

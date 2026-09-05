@@ -82,3 +82,14 @@ MUXIA owns one long-lived Chromium process for each active cluster profile. Work
 The broker holds an exclusive cluster lock before launching Chromium. A second broker for the same cluster is rejected while the first owner PID is alive. Broker shutdown closes the browser, writes `OFFLINE`, and removes the owner lock. This converts the Chromium profile lock from a per-job hot-path concern into a cluster cold-start/recovery concern.
 
 Provider workers must never use `--user-data-dir` or launch a second Chromium process for a broker-owned profile. FA-302 adds bounded tab leases on top of this single owner.
+
+
+## Provider Tab Leases and Scheduler (FA-302)
+
+The broker owns browser lifetime; the tab scheduler owns **job-to-page isolation**. Every browser job acquires a lease identified by `lease_id + provider_id + job_id + TTL`. The broker creates or reuses an unleased `about:blank` page, stamps it with a unique lease claim URL, and provider clients attach to that exact page through the broker. Release or TTL reclamation closes the mapped page.
+
+Cluster A policy starts with a hard ceiling of **8 tabs**, browser-generation limit **1 active tab per provider** for ChatGPT/Qwen/Gemini/Manus/Duck.ai, and therefore at most **5 normal simultaneous browser generations**, leaving **3 recovery/secondary slots**. This is an initial safe policy, not a permanent throughput ceiling. Qwen `SESSION_API` consumes no browser tab when selected.
+
+Provider health is isolated. `AUTH_REQUIRED`, `CHECKPOINT` or `UNAVAILABLE` prevents new leases for that provider only. Healthy sibling providers remain schedulable. The scheduler rejects duplicate job leases, enforces per-provider concurrency, counts unmanaged pages against the 8-tab ceiling, and reclaims expired/closed pages.
+
+Hermes/Factory orchestration must therefore reason in logical capacity: `job -> provider -> cluster -> tab lease`, never `job -> spawn browser`.
