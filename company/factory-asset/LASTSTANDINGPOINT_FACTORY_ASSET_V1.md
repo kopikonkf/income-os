@@ -598,3 +598,13 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Retry state is idempotent by job idempotency key + retry-event ID, bounded to 2 retries, caches repeated failed retry events, rejects conflicting intent reuse and fails closed on retry after dispatch commit.
 - Validation after rebasing onto merged FA-117: focused FA-304 `7 passed`; full Factory regression `641 passed, 1 warning` (PyPDF2 deprecation); one-canon pytest `6 passed`; one-canon validator `11/11 PASS`, secret scan 0. Receipt: `company/factory-asset/receipts/FA-304-cluster-aware-provider-router.receipt.json`.
 - Dependency reconciliation only: FA-305 becomes READY because FA-300 + FA-304 are DONE. **No FA-305 implementation/auth/bootstrap was started.** FA-306 and FA-C016 remain blocked on their other dependencies. Canonical FA-117/FA-121/FA-202 updates from merged main were preserved; FA-304 did not edit or execute those tasks.
+---
+
+## 2026-09-05 - PROD-HB001 Hermes production IDLE heartbeat hotfix
+
+- `die-production-cycle-v1` was not stalled: 12:00/15:00/18:00 UTC runs completed `ok`, but all three durable outputs were `silent (empty output)`.
+- Live resolver shows 17 parked human-gated cards and `NO_ACTIVE_CARD`; deterministic seed selector shows `NO_ELIGIBLE_SEED` with 17 used eligible seeds. Telegram diagnostic delivery currently succeeds.
+- Root cause: production runtime suppressed every `IDLE` result, so seed-pool exhaustion looked like a dead scheduler.
+- Hotfix makes deterministic ticks always emit JSON; idle heartbeat includes `PRODUCTION_RUNTIME_IDLE`, observed time, `provider_call_performed=false`, parked count, and `REPLENISH_APPROVED_U1_VALIDATED_SEED_POOL` for seed exhaustion. Cron cadence remains `0 */3 * * *`.
+- FA-121 is NOT wired into this cron; it remains a separate governed 24-hour live-load acceptance.
+- Validation: 31 focused PASS; 641 Factory PASS; 6 one-canon pytest PASS; validator 11/11 PASS; secret scan 0.

@@ -3742,3 +3742,13 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Unknown/stale/mis-keyed readiness or capacity, provider checkpoint/auth/unavailable state, queue saturation, tab saturation, and FA-117 `open_pages > max_tabs` all fail closed without blocking healthy siblings. Retries are event-idempotent, max 2, and forbidden after dispatch commit.
 - Validation after FA-117 merge reconciliation: focused 7 PASS; Factory 641 PASS / 1 PyPDF2 warning; one-canon pytest 6 PASS; validator 11/11 PASS; provider calls 0.
 - Dependency reconciliation only: FA-305 READY; no FA-305 work started. FA-117/FA-121/FA-202 updates from merged main were preserved, not executed by FA-304. Receipt: `company/factory-asset/receipts/FA-304-cluster-aware-provider-router.receipt.json`.
+---
+
+## 2026-09-05 - PROD-HB001 Hermes production IDLE heartbeat hotfix
+
+- `die-production-cycle-v1` was not stalled: 12:00/15:00/18:00 UTC runs completed `ok`, but all three durable outputs were `silent (empty output)`.
+- Live resolver shows 17 parked human-gated cards and `NO_ACTIVE_CARD`; deterministic seed selector shows `NO_ELIGIBLE_SEED` with 17 used eligible seeds. Telegram diagnostic delivery currently succeeds.
+- Root cause: production runtime suppressed every `IDLE` result, so seed-pool exhaustion looked like a dead scheduler.
+- Hotfix makes deterministic ticks always emit JSON; idle heartbeat includes `PRODUCTION_RUNTIME_IDLE`, observed time, `provider_call_performed=false`, parked count, and `REPLENISH_APPROVED_U1_VALIDATED_SEED_POOL` for seed exhaustion. Cron cadence remains `0 */3 * * *`.
+- FA-121 is NOT wired into this cron; it remains a separate governed 24-hour live-load acceptance.
+- Validation: 31 focused PASS; 641 Factory PASS; 6 one-canon pytest PASS; validator 11/11 PASS; secret scan 0.
