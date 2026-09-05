@@ -73,3 +73,12 @@ A tab checkpoint or provider auth failure reduces only that provider's usable ca
 ### Capacity
 
 `max_tabs=8` is a hard ceiling, not a target for eight simultaneous generation jobs. Active-generation concurrency is separately governed by tab leases, provider limits, RAM/CPU observations and backpressure. Qwen continues to prefer `SESSION_API` when governed and healthy, using Cluster A `BROWSER_CDP` only as fallback.
+
+
+## Single-owner Cluster Broker (FA-301)
+
+MUXIA owns one long-lived Chromium process for each active cluster profile. Workers do not receive the profile path as an execution primitive; they request a loopback attach descriptor from the broker and connect to the already-running browser over CDP. The broker control interface and Chromium debug endpoint are both loopback-only.
+
+The broker holds an exclusive cluster lock before launching Chromium. A second broker for the same cluster is rejected while the first owner PID is alive. Broker shutdown closes the browser, writes `OFFLINE`, and removes the owner lock. This converts the Chromium profile lock from a per-job hot-path concern into a cluster cold-start/recovery concern.
+
+Provider workers must never use `--user-data-dir` or launch a second Chromium process for a broker-owned profile. FA-302 adds bounded tab leases on top of this single owner.
