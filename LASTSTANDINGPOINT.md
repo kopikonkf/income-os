@@ -3547,3 +3547,15 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - PRODSEED000036 reached WAITING_FOUNDER_QC, resolver returned NO_ACTIVE_CARD, and workspace ownership remained 2770 die-hermes:die-runtime.
 - Truth boundary: the successful execution source is direct inside the Hermes cron subsystem. The next natural builtin cadence remains scheduled for 2026-09-05T09:00:00+00:00 and is not pre-claimed as PASS.
 - Receipt: company/factory-asset/receipts/FA-140C-R1-hermes-cron-recovery.receipt.json.
+
+
+---
+
+## 2026-09-05 - FA-110 provider feasibility scorecard
+
+- FA-110 = DONE/PASS. Six providers are scored from canonical Windows/OAUTH, policy, capacity and Linux evidence without converting UNKNOWN into support or throughput claims.
+- Engineering order: ChatGPT/MUXIA 85 CURRENT_LINUX_ANCHOR; Qwen 79 NEXT_LINUX_EXTRACTION_CANDIDATE; Gemini 71, Manus 71 and Duck.ai 70 WINDOWS_PROVEN_LINUX_CANDIDATE; Grok 25 DEFERRED_NOT_IN_ACTIVE_POOL.
+- Capacity remains UNKNOWN for the active candidates; no jobs/day, quota or concurrency is inferred from bounded single-job success.
+- Dependency reconciliation: FA-111, FA-114, FA-116 and FA-118 become READY; FA-113 was already READY; FA-115 stays DEFERRED because current Grok policy/plan gate overrides technical dependency closure.
+- Next execution sequence: FA-113 normalize existing ChatGPT/MUXIA boundary without duplicate browser/session ownership, then FA-111 -> FA-112 Qwen Linux path, followed by Gemini/Manus/Duck.ai lanes.
+- Receipt: company/factory-asset/receipts/FA-110-provider-feasibility.receipt.json.

@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "7.7-fa140c-r1-hermes-sgid-recovery",
+  "revision": "7.8-fa110-provider-feasibility",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1360,9 +1360,11 @@
         "FA-W008",
         "FA-103"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "docs/architecture/FACTORY_ASSET_PROVIDER_FEASIBILITY_V1.md",
-      "acceptance": "Qwen, ChatGPT/MUXIA, Gemini, Grok, Manus and Duck.ai are scored from Windows evidence on transport class, policy, auth, Linux feasibility, image capability, capacity evidence, quality and maintenance risk; UNSUPPORTED and UNKNOWN remain explicit."
+      "acceptance": "Qwen, ChatGPT/MUXIA, Gemini, Grok, Manus and Duck.ai are scored from Windows evidence on transport class, policy, auth, Linux feasibility, image capability, capacity evidence, quality and maintenance risk; UNSUPPORTED and UNKNOWN remain explicit.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: six-provider feasibility scorecard compiled from canonical Windows/OAUTH, policy and live Linux evidence. ChatGPT/MUXIA is current Linux anchor; Qwen is next extraction candidate; Gemini/Manus/Duck.ai remain Windows-proven Linux candidates; Grok remains deferred. UNKNOWN capacity is preserved without jobs/day or quota inference. Validation: 29 focused PASS; 554 Factory regression PASS; 6 one-canon pytest PASS."
     },
     {
       "id": "FA-111",
@@ -1375,7 +1377,7 @@
         "FA-109",
         "FA-110"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "Clean Qwen provider package, fixtures and tests",
       "acceptance": "Only required code is extracted; no credentials/raw captures/hard-coded Windows paths; unit/parser/negative tests pass."
     },
@@ -1418,7 +1420,7 @@
         "FA-109",
         "FA-110"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "artifact": "company/factory-asset/receipts/FA-114-gemini-capability-probe.receipt.json",
       "acceptance": "Only the Windows-proven allowed route is normalized; one bounded Linux canary acquires validated durable original bytes, while 403 URL-only or unsupported outcomes fail closed."
@@ -1434,10 +1436,12 @@
         "FA-109",
         "FA-110"
       ],
-      "status": "BLOCKED",
+      "status": "DEFERRED",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "artifact": "company/factory-asset/receipts/FA-115-grok-capability-probe.receipt.json",
-      "acceptance": "Only the Windows-proven allowed route is normalized and canaried; guessed endpoint loops, unexplained 404 assumptions and protection bypass are prohibited."
+      "acceptance": "Only the Windows-proven allowed route is normalized and canaried; guessed endpoint loops, unexplained 404 assumptions and protection bypass are prohibited.",
+      "defer_reason": "Current Grok Imagine route remains provider/plan gated; FA-W014 is DEFERRED and no spend or bypass is authorized. Technical dependency closure does not override policy eligibility.",
+      "resume_condition": "Resume only when an already-authorized evidenced Grok route is policy-eligible or Founder separately authorizes required spend; do not bypass provider protection or plan gates."
     },
     {
       "id": "FA-116",
@@ -1450,7 +1454,7 @@
         "FA-109",
         "FA-110"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "artifact": "company/factory-asset/receipts/FA-116-manus-capability-probe.receipt.json",
       "acceptance": "Windows-proven create/poll/artifact semantics are normalized with bounded deadline and durable bytes; no infinite polling, status-only success or guessed artifact."
@@ -1482,7 +1486,7 @@
         "FA-109",
         "FA-110"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "artifact": "Duck.ai Factory adapter or explicit unsupported-lane decision receipt",
       "acceptance": "A Windows-proven allowed image route is normalized and canaried, or the lane remains UNSUPPORTED with no fabricated image success; its text-only endpoint cannot satisfy this task."
