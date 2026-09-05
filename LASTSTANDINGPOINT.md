@@ -3537,3 +3537,13 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Production cognition resumed: AUTHOR_VALID at 2026-09-05T07:08:16Z, artifact SHA 79f22431d6c94ce345226c57609de58269f72ed1a74e3c851966f118d8a8c9f5, stage observed NEED_REVIEW.
 - Repair child FA-140C-R1 = DONE/PASS.
 - Next strategic READY Factory leaf: FA-110 - Build provider feasibility scorecard; other READY leaves remain FA-113, FA-120 and FA-200.
+
+---
+
+## 2026-09-05 - Hermes production cron recovery execution sealed
+
+- die-production-cycle-v1 job 6c1d9f5c504e executed through Hermes cron after FA-140C-R1 and completed successfully as execution 173bcd20e83843449886a5a4b277a9e0.
+- Cron list reports the post-repair last run 2026-09-05T07:13:12.991450+00:00 as ok; the prior five builtin executions remain preserved as failed PermissionError evidence rather than rewritten.
+- PRODSEED000036 reached WAITING_FOUNDER_QC, resolver returned NO_ACTIVE_CARD, and workspace ownership remained 2770 die-hermes:die-runtime.
+- Truth boundary: the successful execution source is direct inside the Hermes cron subsystem. The next natural builtin cadence remains scheduled for 2026-09-05T09:00:00+00:00 and is not pre-claimed as PASS.
+- Receipt: company/factory-asset/receipts/FA-140C-R1-hermes-cron-recovery.receipt.json.
