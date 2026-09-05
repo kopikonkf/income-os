@@ -3621,3 +3621,13 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Exact content-addressed Factory master staging PASS; truth remains `STAGED_NOT_CANONICAL`, `canonical_truth=false` pending DIE_STATE_MANAGER.
 - Validation: 6 focused PASS; 585 Factory PASS; 6 one-canon PASS. Graph revision `8.3-fa114-gemini-linux-canary`.
 - Next in Founder-authorized batch: FA-116 Manus.
+
+---
+
+## 2026-09-05 - FA-116 Manus Linux provider lane DONE/PASS
+
+- Normalized canonical FA-W015 BROWSER_CDP Manus route only; legacy guessed create/poll API candidates are explicitly excluded.
+- Cluster A editor route uses Manus ProseMirror UI and captures only post-dispatch generated private `manuscdn` image response bodies; `files.manuscdn.com` UI artwork remains excluded.
+- Attempt A stopped pre-dispatch at editor hydration; attempt B is the only provider call reaching dispatch and PASS.
+- Original PNG 1920x1920 RGB, 2,699,279 bytes, SHA `5fae90fe9dbb8d213cdd7e1ab6c9d7dcb5725d626a9139893606685a1a68c5e7`; decode/reopen and exact content-addressed master staging PASS.
+- Validation: 5 focused PASS; 590 Factory PASS; 6 one-canon PASS. Graph revision `8.4-fa116-manus-linux-canary`. Next: FA-118 Duck.ai.

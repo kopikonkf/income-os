@@ -1,0 +1,8 @@
+{
+  "schema":"die.factory-asset.provider-source-provenance.v1",
+  "task_id":"FA-116",
+  "provider_id":"manus",
+  "evidence":[{"type":"CANONICAL_RECEIPT","ref":"company/factory-asset/receipts/FA-W015-manus-autonomous-backend.receipt.json","proven_transport":"BROWSER_CDP","proven_acquisition":"BROWSER_CDP generated manuscdn asset response/body","proven_host":"private-us-east-1.manuscdn.com","proven_artifact_sha256":"39c545d2646502553737e5096d90fd2e5060fa46d71bea02a99b72ed50ee52a2"}],
+  "explicitly_excluded":"Legacy web-ai-adapter Manus API candidates remain hypothesis and are not normalized into Factory.",
+  "false_candidate_excluded":"520x293 files.manuscdn.com UI artwork documented by FA-W015 is never eligible as generated output."
+}

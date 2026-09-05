@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "8.3-fa114-gemini-linux-canary",
+  "revision": "8.4-fa116-manus-linux-canary",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1462,10 +1462,12 @@
         "FA-109",
         "FA-110"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "artifact": "company/factory-asset/receipts/FA-116-manus-capability-probe.receipt.json",
-      "acceptance": "Windows-proven create/poll/artifact semantics are normalized with bounded deadline and durable bytes; no infinite polling, status-only success or guessed artifact."
+      "acceptance": "Windows-proven create/poll/artifact semantics are normalized with bounded deadline and durable bytes; no infinite polling, status-only success or guessed artifact.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: Canonical FA-W015 Manus BROWSER_CDP route normalized to MUXIA Cluster A without legacy guessed API endpoints. One provider generation reached dispatch; generated private manuscdn response/body captured automatically with zero operator action after dispatch and no credential/cookie read. PNG 1920x1920 RGB, 2,699,279 bytes, SHA 5fae90fe9dbb8d213cdd7e1ab6c9d7dcb5725d626a9139893606685a1a68c5e7; exact master staging and decode/reopen PASS. Validation: 5 focused; 590 Factory; 6 one-canon."
     },
     {
       "id": "FA-117",
