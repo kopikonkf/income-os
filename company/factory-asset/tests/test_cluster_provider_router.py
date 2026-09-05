@@ -66,6 +66,19 @@ def test_checkpoint_stale_unknown_and_queue_pressure_fail_closed_per_route():
     assert 'QUEUE_BACKPRESSURE' in reasons
 
 
+def test_fa117_capacity_keying_and_open_page_overbudget_edges_fail_closed():
+    v = run_acceptance()['evidence']
+    edge = v['fa117_open_pages_edge_failclosed']
+    assert edge['provider_id'] == 'manus'
+    rejected = next(x for x in edge['rejected'] if x['provider_id'] == 'gemini')
+    assert 'CLUSTER_OPEN_PAGES_OVER_BUDGET' in rejected['reasons']
+    keyed = v['provider_cluster_capacity_keying']
+    qwen = next(x for x in keyed['rejected'] if x['provider_id'] == 'qwen')
+    gemini = next(x for x in keyed['rejected'] if x['provider_id'] == 'gemini')
+    assert 'CAPACITY_PROVIDER_KEY_MISMATCH' in qwen['reasons']
+    assert 'CAPACITY_CLUSTER_KEY_MISMATCH' in gemini['reasons']
+
+
 def test_retry_contract_is_bounded_idempotent_and_commit_safe():
     v = run_acceptance()['evidence']['retry_idempotency']
     assert v['first']['attempt'] == 1 and v['first']['provider_id'] == 'qwen'

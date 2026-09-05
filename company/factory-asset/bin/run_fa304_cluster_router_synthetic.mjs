@@ -11,54 +11,64 @@ const NOW = Date.parse('2026-09-05T19:45:00Z');
 const OBS = '2026-09-05T19:44:00Z';
 const STALE = '2026-09-05T18:00:00Z';
 
-function tabSnapshot({ active = 0, states = {}, leases = [] } = {}) {
+function tabSnapshot({ active = 0, openPages = active, states = {}, leases = [] } = {}) {
   return {
     schema: 'die.muxia.cluster-tab-lease-snapshot.v1',
     max_tabs: 8,
     active_leases: active,
-    open_pages: active,
+    open_pages: openPages,
     provider_states: states,
     leases,
   };
 }
 
+function readiness(provider, state = 'HEALTHY', observed_at = OBS) { return { provider_id: provider, state, observed_at }; }
+function capacity(provider, cluster, state = 'AVAILABLE', observed_at = OBS) { return { provider_id: provider, cluster_id: cluster, state, observed_at }; }
+
 function browserCandidate(provider, cluster = 'cluster-a', overrides = {}) {
   const member = CLUSTERS.clusters[0].providers.find((x) => x.provider_id === provider);
-  return {
+  const base = {
     provider_id: provider,
     cluster_id: cluster,
     transport: 'BROWSER_CDP',
     enabled: true,
     policy_allowed: true,
     asset_types: ['PHOTO', 'ISOLATED_OBJECT'],
-    readiness: { state: 'HEALTHY', observed_at: OBS },
-    capacity: { state: 'AVAILABLE', observed_at: OBS },
-    tab_capacity: { observed_at: OBS, snapshot: tabSnapshot() },
+    readiness: readiness(provider),
+    capacity: capacity(provider, cluster),
+    tab_capacity: { cluster_id: cluster, observed_at: OBS, snapshot: tabSnapshot() },
     provider_tab_limit: CLUSTERS.clusters[0].provider_tab_limits[provider] || 1,
     cluster_browser_generation_limit: CLUSTERS.clusters[0].max_active_browser_generations,
     recent_failures: 0,
     latency_ms: 900,
     priority: 100,
     evidence_membership: member?.membership || 'SYNTHETIC',
-    ...overrides,
   };
+  const out = { ...base, ...overrides };
+  if (overrides.readiness !== null) out.readiness = { ...base.readiness, ...(overrides.readiness || {}) };
+  if (overrides.capacity !== null) out.capacity = { ...base.capacity, ...(overrides.capacity || {}) };
+  if (overrides.tab_capacity !== null) out.tab_capacity = { ...base.tab_capacity, ...(overrides.tab_capacity || {}) };
+  return out;
 }
 
 function qwenSession(overrides = {}) {
-  return {
+  const base = {
     provider_id: 'qwen',
     cluster_id: 'cluster-a',
     transport: 'SESSION_API',
     enabled: true,
     policy_allowed: true,
     asset_types: ['PHOTO', 'ISOLATED_OBJECT'],
-    readiness: { state: 'HEALTHY', observed_at: OBS },
-    capacity: { state: 'AVAILABLE', observed_at: OBS },
+    readiness: readiness('qwen'),
+    capacity: capacity('qwen', 'cluster-a'),
     recent_failures: 0,
     latency_ms: 1200,
     priority: 10,
-    ...overrides,
   };
+  const out = { ...base, ...overrides };
+  if (overrides.readiness !== null) out.readiness = { ...base.readiness, ...(overrides.readiness || {}) };
+  if (overrides.capacity !== null) out.capacity = { ...base.capacity, ...(overrides.capacity || {}) };
+  return out;
 }
 
 function queue(depth = 10, limit = 256, observed_at = OBS) { return { depth, limit, observed_at }; }
@@ -180,6 +190,44 @@ const results = {};
 
 {
   const router = new ClusterAwareProviderRouter({ now: () => NOW });
+  const overBudget = tabSnapshot({ active: 4, openPages: 10, leases: [
+    { provider_id: 'chatgpt' }, { provider_id: 'qwen' }, { provider_id: 'manus' }, { provider_id: 'duckai' },
+  ] });
+  const decision = router.route({
+    job: job('fa117-open-pages-edge'),
+    queue: queue(10),
+    candidates: [
+      browserCandidate('gemini', 'cluster-a', { latency_ms: 200, tab_capacity: { snapshot: overBudget } }),
+      browserCandidate('manus', 'cluster-a', { latency_ms: 800 }),
+    ],
+  });
+  if (decision.provider_id !== 'manus') throw new Error('OPEN_PAGES_OVER_BUDGET_NOT_REJECTED');
+  const rejected = decision.rejected.find((x) => x.provider_id === 'gemini');
+  if (!rejected?.reasons.includes('CLUSTER_OPEN_PAGES_OVER_BUDGET')) throw new Error('OPEN_PAGES_OVER_BUDGET_REASON_MISSING');
+  results.fa117_open_pages_edge_failclosed = decision;
+}
+
+{
+  const router = new ClusterAwareProviderRouter({ now: () => NOW });
+  const decision = router.route({
+    job: job('capacity-provider-cluster-key'),
+    queue: queue(10),
+    candidates: [
+      qwenSession({ capacity: { provider_id: 'chatgpt' } }),
+      browserCandidate('gemini', 'cluster-a', { capacity: { cluster_id: 'synthetic-cluster-b' } }),
+      browserCandidate('manus', 'cluster-a', { latency_ms: 850 }),
+    ],
+  });
+  if (decision.provider_id !== 'manus') throw new Error('CAPACITY_KEY_MISMATCH_NOT_REJECTED');
+  const qwenRejected = decision.rejected.find((x) => x.provider_id === 'qwen');
+  const geminiRejected = decision.rejected.find((x) => x.provider_id === 'gemini');
+  if (!qwenRejected?.reasons.includes('CAPACITY_PROVIDER_KEY_MISMATCH')) throw new Error('CAPACITY_PROVIDER_KEY_REASON_MISSING');
+  if (!geminiRejected?.reasons.includes('CAPACITY_CLUSTER_KEY_MISMATCH')) throw new Error('CAPACITY_CLUSTER_KEY_REASON_MISSING');
+  results.provider_cluster_capacity_keying = decision;
+}
+
+{
+  const router = new ClusterAwareProviderRouter({ now: () => NOW });
   const lowQueue = { depth: 20, limit: 100, observed_at: OBS };
   const highQueue = { depth: 80, limit: 100, observed_at: OBS };
   const decision = router.route({
@@ -260,6 +308,8 @@ const assertions = {
   stale_fail_closed: results.stale_readiness_capacity_failclosed.provider_id === 'manus',
   unknown_fail_closed: results.unknown_readiness_capacity_failclosed.provider_id === 'manus',
   browser_backpressure_isolated_from_session_api: results.session_api_does_not_consume_tab_capacity.transport === 'SESSION_API',
+  fa117_open_pages_fail_closed: results.fa117_open_pages_edge_failclosed.provider_id === 'manus',
+  provider_cluster_capacity_keyed: results.provider_cluster_capacity_keying.provider_id === 'manus',
   queue_failure_latency_used: results.queue_failure_latency_choice.provider_id === 'manus',
   queue_backpressure_fail_closed: results.queue_backpressure_failclosed.code === 'E_NO_ELIGIBLE_ROUTE',
   retries_bounded_idempotent: results.retry_idempotency.state.retries_used === 2 && results.retry_idempotency.retryLimit.code === 'E_RETRY_LIMIT',
@@ -280,6 +330,8 @@ const receipt = {
     fa302_tab_lease_snapshot_schema: 'die.muxia.cluster-tab-lease-snapshot.v1',
     fa303_readiness_schema: 'die.muxia.provider-readiness.v1',
     fa120_queue_semantics: 'bounded depth/limit + freshness/backpressure',
+    fa117_capacity_keying: 'provider_id + cluster_id',
+    fa117_startup_tab_guard: 'fail closed when open_pages > max_tabs',
     qwen_preferred_transport: canonicalQwen.preferred_transport,
     qwen_browser_fallback: canonicalQwen.browser_fallback,
   },

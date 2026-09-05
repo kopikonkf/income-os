@@ -54,6 +54,8 @@ function browserFacts(candidate, nowMs, maxAgeMs) {
   const wrapper = candidate.tab_capacity;
   const fresh = freshness(wrapper, nowMs, maxAgeMs, 'TAB_CAPACITY');
   if (!fresh.ok) return { ok: false, reasons: [fresh.reason] };
+  if (!wrapper?.cluster_id) return { ok: false, reasons: ['TAB_CAPACITY_CLUSTER_KEY_UNKNOWN'] };
+  if (wrapper.cluster_id !== candidate.cluster_id) return { ok: false, reasons: ['TAB_CAPACITY_CLUSTER_KEY_MISMATCH'] };
   const snapshot = wrapper?.snapshot;
   if (!snapshot || snapshot.schema !== 'die.muxia.cluster-tab-lease-snapshot.v1') {
     return { ok: false, reasons: ['TAB_CAPACITY_SCHEMA_INVALID'] };
@@ -64,6 +66,10 @@ function browserFacts(candidate, nowMs, maxAgeMs) {
   if (!Number.isInteger(snapshot.active_leases) || snapshot.active_leases < 0 || snapshot.active_leases > snapshot.max_tabs) {
     return { ok: false, reasons: ['TAB_ACTIVE_INVALID'] };
   }
+  if (!Number.isInteger(snapshot.open_pages) || snapshot.open_pages < snapshot.active_leases) {
+    return { ok: false, reasons: ['TAB_OPEN_PAGES_INVALID'] };
+  }
+  if (snapshot.open_pages > snapshot.max_tabs) return { ok: false, reasons: ['CLUSTER_OPEN_PAGES_OVER_BUDGET'] };
   const providerLimit = candidate.provider_tab_limit;
   if (!Number.isInteger(providerLimit) || providerLimit < 1 || providerLimit > snapshot.max_tabs) {
     return { ok: false, reasons: ['PROVIDER_TAB_LIMIT_UNKNOWN'] };
@@ -105,11 +111,22 @@ function candidateFacts(candidate, job, queue, config, nowMs, historicalFailures
 
   const readyFresh = freshness(candidate.readiness, nowMs, config.readiness_freshness_ms, 'READINESS');
   if (!readyFresh.ok) reasons.push(readyFresh.reason);
-  else if (!READINESS_SCHEDULABLE.has(candidate.readiness.state)) reasons.push(`READINESS_${candidate.readiness.state || 'UNKNOWN'}`);
+  else {
+    if (!candidate.readiness.provider_id) reasons.push('READINESS_PROVIDER_KEY_UNKNOWN');
+    else if (candidate.readiness.provider_id !== candidate.provider_id) reasons.push('READINESS_PROVIDER_KEY_MISMATCH');
+    if (!READINESS_SCHEDULABLE.has(candidate.readiness.state)) reasons.push(`READINESS_${candidate.readiness.state || 'UNKNOWN'}`);
+  }
 
   const capacityFresh = freshness(candidate.capacity, nowMs, config.capacity_freshness_ms, 'CAPACITY');
   if (!capacityFresh.ok) reasons.push(capacityFresh.reason);
-  else if (!CAPACITY_SCHEDULABLE.has(candidate.capacity.state)) reasons.push(`CAPACITY_${candidate.capacity.state || 'UNKNOWN'}`);
+  else {
+    if (!candidate.capacity.provider_id || !candidate.capacity.cluster_id) reasons.push('CAPACITY_KEY_UNKNOWN');
+    else {
+      if (candidate.capacity.provider_id !== candidate.provider_id) reasons.push('CAPACITY_PROVIDER_KEY_MISMATCH');
+      if (candidate.capacity.cluster_id !== candidate.cluster_id) reasons.push('CAPACITY_CLUSTER_KEY_MISMATCH');
+    }
+    if (!CAPACITY_SCHEDULABLE.has(candidate.capacity.state)) reasons.push(`CAPACITY_${candidate.capacity.state || 'UNKNOWN'}`);
+  }
 
   const q = queueFacts(candidate.queue || queue, nowMs, config.queue_freshness_ms);
   if (!q.ok) reasons.push(...q.reasons);
