@@ -1,0 +1,69 @@
+{
+  "schema": "die.factory-asset.asset-blueprint.v2",
+  "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
+  "semantic_identity": {
+    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+    "commercial_use_case": "Illustrate customer-order packing and fulfillment workflows",
+    "subject": "shopping bag",
+    "intent": "DESIGN_COMPONENT"
+  },
+  "asset_type": "ISOLATED_OBJECT",
+  "native_representation": "RASTER_PIXELS",
+  "producer_class": "RASTER_GENERATIVE",
+  "master_spec": {
+    "format": "PNG",
+    "width_px": 4096,
+    "height_px": 4096,
+    "color_space": "SRGB",
+    "lineage_sha256_required": true
+  },
+  "derivatives": [
+    {
+      "derivative_id": "ADOBE_JPEG",
+      "purpose": "MARKETPLACE_DELIVERY",
+      "format": "JPEG",
+      "semantic_identity_effect": "NONE"
+    },
+    {
+      "derivative_id": "PNG_PREVIEW",
+      "purpose": "PREVIEW",
+      "format": "PNG",
+      "semantic_identity_effect": "NONE"
+    },
+    {
+      "derivative_id": "WEBP_PREVIEW",
+      "purpose": "PREVIEW",
+      "format": "WEBP",
+      "semantic_identity_effect": "NONE"
+    }
+  ],
+  "distinctness": {
+    "identity_rule": "DISTINCT_COMMERCIAL_USE_CASE_AND_BLUEPRINT",
+    "packaging_variants_create_new_semantic_asset": false,
+    "near_duplicate_action": "QUARANTINE"
+  },
+  "rights": {
+    "commercial_use_cleared": true,
+    "trademark_free": true,
+    "recognizable_person_or_property": false,
+    "release_state": "NOT_REQUIRED"
+  },
+  "quality": {
+    "magic_mime_match": true,
+    "decode_reopen": true,
+    "lineage_sha256": true,
+    "family_checks": [
+      "RASTER_DIMENSIONS",
+      "ALPHA_POLICY",
+      "COLOR_SPACE"
+    ]
+  },
+  "policy": {
+    "compatibility_state": "COMPATIBLE",
+    "marketplace_profiles": [
+      "ADOBE_STOCK"
+    ],
+    "unknown_policy_action": "BLOCK_SUBMISSION",
+    "submission_authority": "FOUNDER_CONTROLLED"
+  }
+}
