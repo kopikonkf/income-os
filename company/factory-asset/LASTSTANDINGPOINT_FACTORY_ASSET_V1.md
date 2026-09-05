@@ -588,3 +588,13 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Shared-profile lease contention is blocked; live intervals do not overlap; both observed SUCCESS capacity events classify AVAILABLE.
 - Browser footprint exposed startup tab creep: raw restore 10 pages, `enforceTabBudget` closed 2 -> 8/8. FA-304 must fail closed for `open_pages > max_tabs` and key capacity by provider+cluster.
 - FA-121 and FA-202 become READY. No submission/publication/spend authority granted.
+
+### FA-304 — DONE / PASS — cluster-aware provider router with capacity/backpressure (2026-09-05)
+- Implemented in fresh isolated Linux worktree `/home/kopiko/die-worktrees/fa304-cluster-router-20260905` from canonical `origin/main`; no `/srv/die`, production cron, production queue/DB, Cluster A profile, credentials or active artifacts were mutated.
+- Router is control-plane only: it does not launch Chromium, open tabs or call providers. Browser candidates consume a fresh FA-302 `cluster-tab-lease-snapshot` for capacity and emit `requires_tab_lease=true`; the execution layer must still acquire the broker-backed tab lease.
+- Fresh FA-303 readiness and explicit observed provider capacity are required. `UNKNOWN`, missing or stale readiness/capacity fail closed; CHECKPOINT/AUTH_REQUIRED/UNAVAILABLE affect only that provider so healthy siblings remain routable.
+- Qwen `SESSION_API` is the preferred eligible route from the canonical cluster registry and does **not** consume browser-tab capacity. `BROWSER_CDP` remains a fallback/other-provider transport and is scored with cluster/provider tab load.
+- Provider+cluster selection uses asset capability, readiness, explicit capacity, per-route queue pressure, recent failures, latency and browser-tab load. Synthetic two-cluster fixture chooses the lower-load cluster without provisioning or mutating a real Cluster B.
+- Retry state is idempotent by job idempotency key + retry-event ID, bounded to 2 retries, caches repeated failed retry events, rejects conflicting intent reuse and fails closed on retry after dispatch commit.
+- Validation: focused FA-304 `6 passed`; full Factory regression `636 passed, 1 warning` (PyPDF2 deprecation); one-canon pytest `6 passed`; one-canon validator `11/11 PASS`, secret scan 0. Receipt: `company/factory-asset/receipts/FA-304-cluster-aware-provider-router.receipt.json`.
+- Dependency reconciliation only: FA-305 becomes READY because FA-300 + FA-304 are DONE. **No FA-305 implementation/auth/bootstrap was started.** FA-306 and FA-C016 remain blocked on their other dependencies. FA-117/FA-121/FA-202 were not touched.
