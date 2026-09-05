@@ -1,0 +1,64 @@
+{
+  "accepted_canary": {
+    "bytes": 1907120,
+    "cookies_or_tokens_read": false,
+    "credential_values_read": false,
+    "decode_reopen": true,
+    "dimensions": [
+      2816,
+      1536
+    ],
+    "dispatch_committed_at": "2026-09-05T10:35:01.906Z",
+    "format": "JPEG",
+    "job_id": "FA114-GEMINI-CANARY-20260905A",
+    "local_path": "/var/lib/die/workspaces/FA114-GEMINI-CANARY-20260905A/provider/source-original.jpg",
+    "mime": "image/jpeg",
+    "mode": "RGB",
+    "operator_actions_after_dispatch": 0,
+    "original_byte_acquisition_method": "provider_browser_download_event",
+    "output_extracted_by_automation": true,
+    "prompt_submitted_by_automation": true,
+    "sha256": "6698f8190b2fc242aa601187e66c548260476e354782b54a2cb03a802a497d6c"
+  },
+  "boundaries": {
+    "account_creation_performed": false,
+    "captcha_or_protection_bypass": false,
+    "manual_prompt_submission": false,
+    "provider_generation_call_count": 1,
+    "spend": 0
+  },
+  "date": "2026-09-05",
+  "master_lineage": {
+    "byte_preservation": "EXACT_COPY",
+    "canonical_truth": false,
+    "ingestion_state": "STAGED_NOT_CANONICAL",
+    "staged_blob_path": "/var/lib/die/workspaces/FA114-GEMINI-CANARY-20260905A/master-staging/blobs/sha256/66/6698f8190b2fc242aa601187e66c548260476e354782b54a2cb03a802a497d6c",
+    "state_manager_commit_required": true
+  },
+  "next": "FA-116 Manus in the same Founder-authorized provider expansion batch.",
+  "normalization": {
+    "acquisition_route": "PROVIDER_DOWNLOAD_CONTROL",
+    "browser_runtime_owner": "MUXIA",
+    "profile_id": "chatgpt-linux-a",
+    "provider_id": "gemini",
+    "stale_session_api_guessing": false,
+    "transport_class": "BROWSER_CDP",
+    "windows_dependency": false
+  },
+  "result": "PASS",
+  "schema": "die.factory-asset.gemini-capability-probe-receipt.v1",
+  "source_evidence": [
+    "company/factory-asset/receipts/FA-W013-gemini-autonomous-backend.receipt.json",
+    "github.com/kopikonkf/web-ai-adapter@65227657a10199da31be093f0a36a8d26447e1a3:src/providers/gemini_image.py"
+  ],
+  "status": "DONE",
+  "task_id": "FA-114",
+  "validation": {
+    "decode_reopen": "PASS",
+    "factory_regression": "585 passed, 1 PyPDF2 deprecation warning",
+    "focused_pytest": "6 passed",
+    "master_exact_copy": "PASS",
+    "node_syntax_check": "PASS",
+    "one_canon_pytest": "6 passed"
+  }
+}

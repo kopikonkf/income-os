@@ -1,0 +1,28 @@
+﻿{
+  "schema": "die.factory-asset.provider-source-provenance.v1",
+  "task_id": "FA-114",
+  "provider_id": "gemini",
+  "evidence": [
+    {
+      "type": "CANONICAL_RECEIPT",
+      "ref": "company/factory-asset/receipts/FA-W013-gemini-autonomous-backend.receipt.json",
+      "proven_transport": "BROWSER_CDP",
+      "proven_acquisition": "provider browser download event captured automatically by backend",
+      "proven_artifact_sha256": "c04c5d7651d2133d338307627b60b2eba09069d90f9fdc8873f2c76a52a0c52d"
+    },
+    {
+      "type": "SOURCE_FILE",
+      "repository": "github.com/kopikonkf/web-ai-adapter",
+      "merge_commit": "65227657a10199da31be093f0a36a8d26447e1a3",
+      "path": "src/providers/gemini_image.py",
+      "sha256": "a13f43997e430b3c152f1f75219ae3289cb074832fb99aae81239d71e335976f"
+    }
+  ],
+  "excluded_routes": [
+    "stale SESSION_API opaque RPC guessing",
+    "manual prompt submission after dispatch",
+    "manual download success",
+    "URL-only success"
+  ],
+  "linux_normalization": "Provider-specific UI/download semantics are retained; browser/profile/session ownership is delegated to MUXIA Cluster A."
+}

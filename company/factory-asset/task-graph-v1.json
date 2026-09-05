@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "8.2-fa112-qwen-linux-canary",
+  "revision": "8.3-fa114-gemini-linux-canary",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1426,10 +1426,12 @@
         "FA-109",
         "FA-110"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "artifact": "company/factory-asset/receipts/FA-114-gemini-capability-probe.receipt.json",
-      "acceptance": "Only the Windows-proven allowed route is normalized; one bounded Linux canary acquires validated durable original bytes, while 403 URL-only or unsupported outcomes fail closed."
+      "acceptance": "Only the Windows-proven allowed route is normalized; one bounded Linux canary acquires validated durable original bytes, while 403 URL-only or unsupported outcomes fail closed.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: Windows-proven Gemini BROWSER_CDP download-control route normalized to MUXIA Cluster A. Exactly one Linux canary reached dispatch and automatically captured provider original via browser download event, zero operator action after dispatch, no credential/cookie read, no Windows dependency. JPEG 2816x1536 RGB, 1,907,120 bytes, SHA 6698f8190b2fc242aa601187e66c548260476e354782b54a2cb03a802a497d6c; decode/reopen and exact master staging PASS. Validation: 6 focused; 585 Factory; 6 one-canon."
     },
     {
       "id": "FA-115",
