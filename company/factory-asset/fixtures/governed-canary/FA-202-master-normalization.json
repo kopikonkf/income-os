@@ -1,0 +1,18 @@
+{
+  "schema": "die.factory-asset.fa202-master-normalization.v1",
+  "method": "REALESRGAN_X4_THEN_LANCZOS_DOWNSAMPLE",
+  "input_sha256": "247439b26f2a87a31bf76d3a06973ca85b60edc242b687a42439eef0c8c10359",
+  "input_dimensions": [
+    5016,
+    5016
+  ],
+  "output_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+  "output_dimensions": [
+    4096,
+    4096
+  ],
+  "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+  "semantic_identity_effect": "NONE",
+  "provider_original_sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7",
+  "provider_original_immutable": true
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "die.factory-asset.fa202-idempotency-proof.v1",
+  "bytes_unchanged": true,
+  "before": {
+    "derivatives/adobe-jpeg.jpg": {
+      "bytes": 670824,
+      "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd"
+    },
+    "derivatives/png-preview.png": {
+      "bytes": 4075628,
+      "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06"
+    },
+    "derivatives/webp-preview.webp": {
+      "bytes": 116278,
+      "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224"
+    },
+    "master-work/realesrgan-x4.png": {
+      "bytes": 6548320,
+      "sha256": "247439b26f2a87a31bf76d3a06973ca85b60edc242b687a42439eef0c8c10359"
+    },
+    "master/master.png": {
+      "bytes": 4075628,
+      "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06"
+    },
+    "muxia_receipt": {
+      "completed_at": "2026-09-05T20:21:37.568Z",
+      "sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7",
+      "started_at": "2026-09-05T20:20:52.023Z"
+    },
+    "provider/source-original.png": {
+      "bytes": 1197046,
+      "sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7"
+    }
+  },
+  "after": {
+    "provider/source-original.png": {
+      "sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7",
+      "bytes": 1197046
+    },
+    "master-work/realesrgan-x4.png": {
+      "sha256": "247439b26f2a87a31bf76d3a06973ca85b60edc242b687a42439eef0c8c10359",
+      "bytes": 6548320
+    },
+    "master/master.png": {
+      "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "bytes": 4075628
+    },
+    "derivatives/adobe-jpeg.jpg": {
+      "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd",
+      "bytes": 670824
+    },
+    "derivatives/png-preview.png": {
+      "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "bytes": 4075628
+    },
+    "derivatives/webp-preview.webp": {
+      "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224",
+      "bytes": 116278
+    }
+  },
+  "muxia_receipt_same_generation": true,
+  "rerun_provider_call_performed": false,
+  "rerun_master_reused": true,
+  "rerun_upscale_reused": true,
+  "rerun_active_stage_reused": true,
+  "rerun_derivatives_reused": {
+    "ADOBE_JPEG": true,
+    "PNG_PREVIEW": true,
+    "WEBP_PREVIEW": true
+  }
+}

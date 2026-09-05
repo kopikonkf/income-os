@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "9.4-fa117-two-provider-pool-live",
+  "revision": "9.5-fa202-governed-production",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1698,10 +1698,12 @@
         "FA-117",
         "FA-201"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
-      "artifact": "company/factory-asset/receipts/FA-202-governed-production.receipt.json",
-      "acceptance": "One governed producer route creates the exact frozen-expression master; provider-original/native bytes remain immutable, all eligible deterministic derivatives are durable/idempotent, and the family counts as one semantic asset regardless of packaging variants."
+      "artifact": "company/factory-asset/receipts/FA-202-governed-production.receipt.json; company/factory-asset/fixtures/governed-canary/FA-202-live-result.json; company/factory-asset/fixtures/governed-canary/FA-202-idempotency-proof.json; company/factory-asset/bin/run_fa202_governed_production.py",
+      "acceptance": "One governed producer route creates the exact frozen-expression master; provider-original/native bytes remain immutable, all eligible deterministic derivatives are durable/idempotent, and the family counts as one semantic asset regardless of packaging variants.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: exactly one governed ChatGPT/MUXIA generation from the frozen FA-200/FA-201 shopping-bag expression produced immutable provider-original PNG bytes, pinned RealESRGAN x4 lineage, exact 4096x4096 sRGB PNG active master, and Adobe JPEG/PNG/WebP deterministic derivatives. Rerun performed zero provider calls and reused the same MUXIA generation, upscale, master staging and all derivatives byte-for-byte. Family remains one semantic asset despite three packaging variants. Rights remain REVIEW_REQUIRED, canonical state is STAGED_NOT_CANONICAL, and no submission/publication/spend occurred."
     },
     {
       "id": "FA-203",
@@ -1712,7 +1714,7 @@
       "depends_on": [
         "FA-202"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/receipts/FA-203-canary-registry-qa.receipt.json",
       "acceptance": "Master, conditional upscale decision, derivatives, package compatibility, duplicate suppression, technical QA, provider/native capacity evidence and orchestration state are committed through the canonical writer without false success."
     },
