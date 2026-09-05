@@ -3583,3 +3583,29 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Validation: 23 focused PASS; 571 Factory regression PASS; 6 one-canon pytest PASS.
 - Graph: FA-111 DONE; FA-112 READY.
 - Receipt: `company/factory-asset/receipts/FA-111-qwen-clean-extraction.receipt.json`.
+
+
+---
+
+## 2026-09-05 - FA-112 Qwen Linux canary pre-dispatch auth gate
+
+- FA-112 entered bounded Linux preflight under existing Founder direction, but no provider generation was dispatched.
+- No Linux opaque SESSION_API auth reference was found by names-only/config-key inspection. No Windows credential/session material was copied.
+- No-prompt MUXIA browser probe to `https://chat.qwen.ai/` on existing profile `chatgpt-linux-a` returned `AUTH_REQUIRED` at 2026-09-05T08:00:50.348Z (`Qwen Studio`, loginUiCount=1).
+- To avoid locking the production ChatGPT profile, the operator handoff targets MUXIA-owned `web-ai-shared`. Canonical helper: `company/factory-asset/providers/qwen/linux/qwen_muxia_auth.sh` with `login` and `probe`; neither operation contains generation logic or credential-copy logic.
+- FA-112 = WAITING_OPERATOR / PRE_DISPATCH_AUTH_REQUIRED. Resume only after `probe` returns READY, then execute exactly one bounded provider job.
+- Receipt: `company/factory-asset/receipts/FA-112-qwen-linux-canary.receipt.json`.
+
+---
+
+## 2026-09-05 - FA-112 Qwen Linux canary DONE/PASS
+
+- Founder completed no-CDP manual authentication for Qwen in the existing MUXIA `chatgpt-linux-a` persistent profile; this profile is treated as Cluster A and is not ChatGPT-exclusive.
+- Generic MUXIA browser status handling was hardened after a provider OAuth callback was observed: status URLs now retain only origin + pathname and strip query/fragment. No credential/token value is reproduced in canon.
+- Pre-dispatch attempt `FA112-QWEN-CANARY-20260905A` failed before provider dispatch with `CHROMIUM_DEBUG_PORT_TIMEOUT:30000`; `prompt_submitted_by_automation=false`, so provider generation-call count remained zero. Runner was corrected to pin the proven MUXIA Chromium executable.
+- Accepted canary `FA112-QWEN-CANARY-20260905B` reached exactly one `dispatch_committed_at` over MUXIA-owned `BROWSER_CDP` fallback: automated prompt submit=true, automated output extraction=true, operator actions after dispatch=0, credential/cookie values read=false, Windows dependency=false.
+- Qwen provider-original extraction removed the CDN preview transform and persisted PNG 1664x928 RGB, 1,492,973 bytes, SHA `d3fd3534441a0dc5e7eac18e5dbfd4f285f89cdb4aa55c1ca7736cca250f88cd`; decode/reopen PASS. The DOM preview was only 807x450.
+- Factory `provider_original` intake staged the exact bytes into content-addressed master staging with provider/attempt/semantic/blueprint lineage. Truth boundary remains explicit: `STAGED_NOT_CANONICAL`, `canonical_truth=false`, `state_manager_commit_required=true`; FA-112 does not claim the separate DIE_STATE_MANAGER commit.
+- Validation: 17 focused pytest PASS; 579 Factory regression PASS (one PyPDF2 deprecation warning); 6 one-canon pytest PASS; Node syntax check PASS.
+- Graph revision `8.2-fa112-qwen-linux-canary`: FA-112 DONE/PASS; dependency reconciliation makes FA-117 READY. Founder-directed sequence remains FA-114 Gemini -> FA-116 Manus -> FA-118 Duck.ai; Grok remains deferred.
+- Receipt: `company/factory-asset/receipts/FA-112-qwen-linux-canary.receipt.json`.

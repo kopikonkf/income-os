@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "8.0-fa111-qwen-clean-extraction",
+  "revision": "8.2-fa112-qwen-linux-canary",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1392,10 +1392,12 @@
       "depends_on": [
         "FA-111"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "artifact": "company/factory-asset/receipts/FA-112-qwen-linux-canary.receipt.json",
-      "acceptance": "One bounded authorized job produces a durable master with complete lineage; no bypass, secret output, duplicate save or Windows dependency."
+      "acceptance": "One bounded authorized job produces a durable master with complete lineage; no bypass, secret output, duplicate save or Windows dependency.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: Founder authenticated Qwen in the existing MUXIA chatgpt-linux-a Cluster A profile using a no-CDP auth phase. Exactly one generation reached dispatch_committed_at over MUXIA-owned BROWSER_CDP, with automated prompt submission and original-byte extraction, zero operator actions after dispatch, no credential/cookie read and no Windows dependency. Qwen original PNG is 1664x928 RGB, 1,492,973 bytes, SHA d3fd3534441a0dc5e7eac18e5dbfd4f285f89cdb4aa55c1ca7736cca250f88cd; decode/reopen PASS. Factory provider-original intake staged an exact immutable content-addressed master with complete provider/attempt/semantic/blueprint lineage while correctly retaining STAGED_NOT_CANONICAL/canonical_truth=false pending DIE_STATE_MANAGER. OAuth status URL logging was hardened to strip query and fragment. Validation: 17 focused PASS; 579 Factory regression PASS; 6 one-canon pytest PASS."
     },
     {
       "id": "FA-113",
@@ -1473,7 +1475,7 @@
         "FA-112",
         "FA-113"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-117-two-provider-pool-acceptance.receipt.json",
