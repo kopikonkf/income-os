@@ -3719,3 +3719,9 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Asset-type and marketplace profile revisions 1.0 hash-pinned; distinctness near-duplicate action QUARANTINE.
 - Cognition not called: deterministic compile of already frozen FA-200 semantics. Technical compatibility is not submission clearance; rights remain REVIEW_REQUIRED and effective submission remains blocked pending rights + Founder QC.
 - FA-201 DONE/PASS. FA-202 still requires FA-117 plus FA-201 and remains live-provider gated.
+
+## 2026-09-05 — FA-120 synthetic throughput/backpressure acceptance
+- FA-120 = **DONE / PASS** on isolated Linux checkout with zero provider calls: 5,000 unique jobs / 5,391 attempts; active queue bounded at 256; four tenants completed 1,250 each; 390 bounded retries; 217 duplicate reuses; persisted restart recovery; 63 disk high-watermark pause/resume cycles.
+- Focused FA-120: 3 PASS. Factory regression: 619 PASS, 1 PyPDF2 deprecation warning. No `/srv/die`, production runtime, Cluster Broker/readiness, browser profile/session, credential, production queue/database or active-artifact mutation.
+- Publication-only dependency reconciliation sets FA-304 READY; implementation was not started. FA-121 stays BLOCKED on FA-117.
+- Receipt: `company/factory-asset/receipts/FA-120-synthetic-throughput-backpressure.receipt.json`.

@@ -568,3 +568,12 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Live tree workspace/provider repaired to `2770 die-runtime`; MUXIA exported `source-original.png` SHA `33847b68...` on the same card.
 - Tree reached WAITING_FOUNDER_QC with 6144x4096 active master, human listing `tree-photo__531ef32b.jpg`, FA-141 XMP/IPTC PASS, rights review preserved fail-closed.
 - Telegram success milestones are exactly PRODUCTION_STARTED / ARTIFACT_CREATED / WAITING_FOUNDER_QC; resolver reports NO_ACTIVE_CARD and production cron remains `0 */3 * * *`.
+
+### FA-120 — DONE / PASS — synthetic throughput and backpressure harness (2026-09-05)
+- Executed from fresh isolated Linux checkout `/home/kopiko/die-worktrees/fa120-throughput-20260905-1914`; publication rebase used current `origin/main` after FA-303 and FA-200 merged. `/srv/die`, production cron, MUXIA profiles, credentials, queues, databases and active artifacts were not mutated.
+- 5,000 unique synthetic jobs completed as 5,391 attempts with peak active queue depth 256 and 647 admission-backpressure observations; all four fairness tenants completed exactly 1,250 jobs with zero round-robin violations.
+- Retry injection produced 390 retries with max 2/job; provider-profile lease contention failed closed; 217/217 duplicate submissions reused the original idempotent job and conflicting reuse was rejected.
+- Persisted queue snapshot/reload recovered an in-flight RUNNING job to READY exactly once. Synthetic disk accounting hit 63 high-watermark pauses and 63 resumptions; modeled peak 53,673,984 bytes stayed below the 53,687,091-byte high watermark without allocating modeled payload bytes.
+- Provider calls performed: **zero**. FA-120 does not import provider adapters/network clients and did not touch Cluster Broker, provider-readiness registry/probes, browser profile/runtime or live provider surfaces.
+- Validation: focused FA-120 `3 passed`; Factory regression `619 passed, 1 warning` (PyPDF2 deprecation only). Receipt: `company/factory-asset/receipts/FA-120-synthetic-throughput-backpressure.receipt.json`.
+- Dependency reconciliation only: FA-304 is now READY because FA-302 + FA-303 + FA-120 are DONE; **no FA-304 implementation was started**. FA-121 remains BLOCKED because FA-117 is still READY, not DONE.
