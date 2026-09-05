@@ -3609,3 +3609,15 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Validation: 17 focused pytest PASS; 579 Factory regression PASS (one PyPDF2 deprecation warning); 6 one-canon pytest PASS; Node syntax check PASS.
 - Graph revision `8.2-fa112-qwen-linux-canary`: FA-112 DONE/PASS; dependency reconciliation makes FA-117 READY. Founder-directed sequence remains FA-114 Gemini -> FA-116 Manus -> FA-118 Duck.ai; Grok remains deferred.
 - Receipt: `company/factory-asset/receipts/FA-112-qwen-linux-canary.receipt.json`.
+
+---
+
+## 2026-09-05 - FA-114 Gemini Linux provider lane DONE/PASS
+
+- Normalized only the canonical FA-W013 BROWSER_CDP download-control route; stale opaque SESSION_API guessing remains excluded.
+- Cluster A profile: `chatgpt-linux-a`; browser/profile/session owner remains MUXIA.
+- Accepted canary `FA114-GEMINI-CANARY-20260905A`: exactly one dispatch; automated submit/output; 0 operator actions after dispatch; no credential/cookie read.
+- Provider original: JPEG 2816x1536 RGB, 1,907,120 bytes, SHA `6698f8190b2fc242aa601187e66c548260476e354782b54a2cb03a802a497d6c`; browser download-event acquisition; decode/reopen PASS.
+- Exact content-addressed Factory master staging PASS; truth remains `STAGED_NOT_CANONICAL`, `canonical_truth=false` pending DIE_STATE_MANAGER.
+- Validation: 6 focused PASS; 585 Factory PASS; 6 one-canon PASS. Graph revision `8.3-fa114-gemini-linux-canary`.
+- Next in Founder-authorized batch: FA-116 Manus.
