@@ -1,0 +1,100 @@
+{
+  "schema": "die.factory-asset.provider-readiness-profiles.v1",
+  "revision": "1.0.0",
+  "providers": {
+    "chatgpt": {
+      "allowed_origins": [
+        "https://chatgpt.com"
+      ],
+      "composer_selectors": [
+        "textarea",
+        "[contenteditable=\"true\"]"
+      ],
+      "auth_selectors": [
+        "a[href*=\"auth/login\"]",
+        "button:has-text(\"Log in\")",
+        "button:has-text(\"Sign up\")"
+      ],
+      "checkpoint_patterns": [
+        "verify you are human",
+        "security check",
+        "unusual activity"
+      ]
+    },
+    "qwen": {
+      "allowed_origins": [
+        "https://chat.qwen.ai"
+      ],
+      "composer_selectors": [
+        "textarea",
+        "[contenteditable=\"true\"]"
+      ],
+      "auth_selectors": [
+        "button:has-text(\"Log in\")",
+        "a:has-text(\"Log in\")",
+        "button:has-text(\"Sign in\")"
+      ],
+      "checkpoint_patterns": [
+        "verify you are human",
+        "security verification",
+        "unusual activity"
+      ]
+    },
+    "gemini": {
+      "allowed_origins": [
+        "https://gemini.google.com"
+      ],
+      "composer_selectors": [
+        "[contenteditable=\"true\"][role=\"textbox\"]",
+        ".ql-editor[contenteditable=\"true\"]",
+        "[contenteditable=\"true\"]",
+        "textarea"
+      ],
+      "auth_selectors": [
+        "a:has-text(\"Sign in\")",
+        "button:has-text(\"Sign in\")",
+        "[aria-label*=\"sign in\" i]"
+      ],
+      "checkpoint_patterns": [
+        "verify you are human",
+        "unusual traffic",
+        "security check"
+      ]
+    },
+    "manus": {
+      "allowed_origins": [
+        "https://manus.im"
+      ],
+      "composer_selectors": [
+        ".tiptap.ProseMirror[contenteditable=\"true\"]",
+        "textarea",
+        "[contenteditable=\"true\"]"
+      ],
+      "auth_selectors": [
+        "button:has-text(\"Log in\")",
+        "a:has-text(\"Log in\")",
+        "button:has-text(\"Sign in\")"
+      ],
+      "checkpoint_patterns": [
+        "verify you are human",
+        "security check",
+        "unusual activity"
+      ]
+    },
+    "duckai": {
+      "allowed_origins": [
+        "https://duck.ai"
+      ],
+      "composer_selectors": [
+        "textarea[aria-label=\"Ask anything privately\"]",
+        "textarea"
+      ],
+      "auth_selectors": [],
+      "checkpoint_patterns": [
+        "please complete the following challenge",
+        "confirm this prompt was made by a human",
+        "unfortunately, bots use duckduckgo too"
+      ]
+    }
+  }
+}

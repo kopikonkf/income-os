@@ -1,0 +1,77 @@
+{
+  "schema": "die.factory-asset.provider-readiness-health.receipt.v1",
+  "task_id": "FA-303",
+  "date": "2026-09-05",
+  "status": "DONE",
+  "result": "PASS",
+  "implementation": [
+    "company/browser/linux/provider_readiness.mjs",
+    "company/muxia/scripts/linux/muxia-provider-readiness-probe.mjs",
+    "company/factory-asset/registries/provider-readiness-profiles.v1.json",
+    "company/factory-asset/registries/web-ai-clusters.v1.json"
+  ],
+  "active_providers": [
+    "chatgpt",
+    "qwen",
+    "gemini",
+    "manus",
+    "duckai"
+  ],
+  "grok": "DEFERRED_OPTIONAL",
+  "health_contract": {
+    "states": [
+      "HEALTHY",
+      "DEGRADED",
+      "AUTH_REQUIRED",
+      "CHECKPOINT",
+      "UNAVAILABLE"
+    ],
+    "safe_url": "ORIGIN_PLUS_PATHNAME_ONLY",
+    "body_text_persisted": false,
+    "query_or_fragment_persisted": false,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "storage_read": false,
+    "provider_failure_isolation": true
+  },
+  "evidence_binding": {
+    "chatgpt": [
+      "company/factory-asset/receipts/FA-W016-chatgpt-browser-cdp-backend.receipt.json",
+      "company/factory-asset/receipts/FA-113-muxia-provider-boundary.receipt.json"
+    ],
+    "qwen": [
+      "company/factory-asset/receipts/FA-112-qwen-linux-canary.receipt.json"
+    ],
+    "gemini": [
+      "company/factory-asset/receipts/FA-114-gemini-capability-probe.receipt.json"
+    ],
+    "manus": [
+      "company/factory-asset/receipts/FA-116-manus-capability-probe.receipt.json"
+    ],
+    "duckai": [
+      "company/factory-asset/receipts/FA-118-duckai-capability-probe.receipt.json"
+    ]
+  },
+  "real_fixture": {
+    "browser": "REAL_CHROMIUM_TEMP_PROFILE",
+    "broker_attach": true,
+    "provider_id": "qwen",
+    "external_provider_call": false,
+    "fixture_origin": "LOOPBACK_HTTP",
+    "leased_tab": true,
+    "observed_state": "HEALTHY",
+    "safe_url_query_fragment_redaction": "PASS",
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "fixture_profile_processes_after_stop": 0
+  },
+  "cluster_a_mutated": false,
+  "next": "FA-304 becomes unblocked when FA-120 is DONE; combine FA-302 tab capacity, FA-303 readiness and FA-120 backpressure into cluster-aware provider routing.",
+  "validation": {
+    "focused_readiness_cluster_stack": "23 passed",
+    "factory_regression": "616 passed, 1 PyPDF2 deprecation warning",
+    "one_canon_pytest": "6 passed",
+    "node_syntax_checks": "PASS",
+    "real_broker_chromium_fixture": "PASS"
+  }
+}
