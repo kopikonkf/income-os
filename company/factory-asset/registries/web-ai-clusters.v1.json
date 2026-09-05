@@ -1,0 +1,93 @@
+{
+  "schema": "die.factory-asset.web-ai-cluster-registry.v1",
+  "revision": "1.0.0",
+  "status": "CANONICAL_CANDIDATE",
+  "rules": {
+    "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS_PER_CLUSTER_PROFILE",
+    "max_tabs_per_cluster": 8,
+    "profile_secret_copy_allowed": false,
+    "credential_cookie_token_export_allowed": false,
+    "auth_handoff": "VISIBLE_NO_CDP_PRE_DISPATCH_THEN_CLOSE_PROFILE_OWNER_BEFORE_BROKER_START",
+    "provider_failure_isolation": "TAB_OR_PROVIDER_FAILURE_MUST_NOT_FAIL_HEALTHY_SIBLING_PROVIDERS",
+    "cluster_failure_domain": "BROWSER_OWNER_OR_PROFILE_FAILURE",
+    "retirement": "DRAIN_NEW_LEASES_THEN_CLOSE_TABS_THEN_STOP_OWNER_THEN_ARCHIVE_OR_DELETE_ONLY_WITH_GOVERNED_AUTHORITY"
+  },
+  "health_states": {
+    "tab": [
+      "IDLE",
+      "LEASED",
+      "IN_FLIGHT",
+      "COOLDOWN",
+      "AUTH_REQUIRED",
+      "CHECKPOINT",
+      "FAILED"
+    ],
+    "provider": [
+      "HEALTHY",
+      "DEGRADED",
+      "AUTH_REQUIRED",
+      "CHECKPOINT",
+      "UNAVAILABLE"
+    ],
+    "cluster": [
+      "HEALTHY",
+      "DEGRADED",
+      "DRAINING",
+      "OWNER_FAILED",
+      "OFFLINE",
+      "RETIRED"
+    ]
+  },
+  "clusters": [
+    {
+      "cluster_id": "cluster-a",
+      "display_name": "Web-AI Army Cluster A",
+      "profile_id": "chatgpt-linux-a",
+      "profile_dir": "/var/lib/muxia/profiles/chatgpt-linux-a/browser",
+      "runtime_owner": "MUXIA",
+      "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+      "max_tabs": 8,
+      "lifecycle_state": "ACTIVE_REFERENCE",
+      "providers": [
+        {
+          "provider_id": "chatgpt",
+          "membership": "ACTIVE",
+          "preferred_transport": "BROWSER_CDP",
+          "linux_evidence": "PROVEN"
+        },
+        {
+          "provider_id": "qwen",
+          "membership": "ACTIVE",
+          "preferred_transport": "SESSION_API",
+          "browser_fallback": "BROWSER_CDP",
+          "linux_evidence": "PROVEN_FALLBACK"
+        },
+        {
+          "provider_id": "gemini",
+          "membership": "ACTIVE",
+          "preferred_transport": "BROWSER_CDP",
+          "linux_evidence": "PROVEN"
+        },
+        {
+          "provider_id": "manus",
+          "membership": "ACTIVE",
+          "preferred_transport": "BROWSER_CDP",
+          "linux_evidence": "PROVEN"
+        },
+        {
+          "provider_id": "duckai",
+          "membership": "ACTIVE",
+          "preferred_transport": "BROWSER_CDP",
+          "linux_evidence": "ROUTE_AND_EXTRACTION_PROVEN",
+          "autonomous_shared_broker_reproof": "FA-301/FA-302/FA-307"
+        },
+        {
+          "provider_id": "grok",
+          "membership": "DEFERRED_OPTIONAL",
+          "preferred_transport": "UNKNOWN",
+          "linux_evidence": "DEFERRED_NOT_IN_ACTIVE_POOL"
+        }
+      ]
+    }
+  ]
+}
