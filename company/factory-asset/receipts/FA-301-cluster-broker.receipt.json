@@ -1,0 +1,46 @@
+{
+  "schema": "die.factory-asset.cluster-broker.receipt.v1",
+  "task_id": "FA-301",
+  "date": "2026-09-05",
+  "status": "DONE",
+  "result": "PASS",
+  "implementation": [
+    "company/browser/linux/cluster_broker_core.mjs",
+    "company/browser/linux/cluster_broker_client.mjs",
+    "company/muxia/scripts/linux/muxia-cluster-broker.mjs"
+  ],
+  "contract": {
+    "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+    "control_host": "127.0.0.1",
+    "debug_host": "127.0.0.1",
+    "max_tabs": 8,
+    "worker_receives_profile_path": false,
+    "worker_attach_method": "BROKER_ISSUED_LOOPBACK_CDP",
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false
+  },
+  "real_fixture": {
+    "profile_dir": "/tmp/fa301-cluster-profile-fixture/browser",
+    "broker_state": "READY_THEN_OFFLINE",
+    "root_chromium_owners": 1,
+    "debug_port": 39837,
+    "control_port": 33837,
+    "client_attach_schema": "die.muxia.cluster-broker-attach.v1",
+    "client_contexts": 1,
+    "client_pages": 1,
+    "second_broker_rejected": "E_CLUSTER_BROKER_ALREADY_OWNED",
+    "profile_processes_after_stop": 0
+  },
+  "boundaries": {
+    "cluster_a_mutated": false,
+    "production_profile_used": false,
+    "manual_cluster_a_browser_closed": false
+  },
+  "next": "FA-302 provider tab leases and max-eight scheduler.",
+  "validation": {
+    "focused_broker_cluster_contract": "14 passed",
+    "factory_regression": "607 passed, 1 PyPDF2 deprecation warning",
+    "one_canon_pytest": "6 passed",
+    "node_syntax_checks": "PASS"
+  }
+}

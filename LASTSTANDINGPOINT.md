@@ -3672,3 +3672,12 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Cluster A = profile `chatgpt-linux-a`, MUXIA-owned, one long-lived Chromium owner, max 8 tabs.
 - Active membership: ChatGPT, Qwen, Gemini, Manus, Duck.ai; Grok deferred optional. Qwen prefers SESSION_API with BROWSER_CDP fallback.
 - Auth handoff, failure isolation, drain/retire and no-secret-copy rules are explicit. FA-301 READY.
+
+---
+
+## 2026-09-05 - FA-301 single-owner Cluster Broker DONE/PASS
+
+- Broker owns one persistent Chromium process per cluster profile and exposes loopback-only attach/status endpoints.
+- Worker client has no spawn or `--user-data-dir`; it attaches over broker-issued CDP.
+- Real `/tmp` fixture: exactly one root Chromium owner, client attach contexts=1/pages=1, second broker rejected, shutdown OFFLINE, zero leftover profile processes.
+- Cluster A/manual browser was not touched. FA-302 and FA-303 READY.

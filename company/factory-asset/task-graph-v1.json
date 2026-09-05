@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "8.8-fa300-cluster-registry-contract",
+  "revision": "8.9-fa301-single-owner-cluster-broker",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2293,10 +2293,12 @@
       "depends_on": [
         "FA-300"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
-      "artifact": "MUXIA cluster broker runtime plus tests",
-      "acceptance": "Exactly one Chromium process owns one persistent cluster profile; provider workers attach through broker-issued loopback CDP context and cannot independently launch the same profile."
+      "artifact": "company/browser/linux/cluster_broker_core.mjs; company/browser/linux/cluster_broker_client.mjs; company/muxia/scripts/linux/muxia-cluster-broker.mjs; company/factory-asset/receipts/FA-301-cluster-broker.receipt.json",
+      "acceptance": "Exactly one Chromium process owns one persistent cluster profile; provider workers attach through broker-issued loopback CDP context and cannot independently launch the same profile.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: MUXIA cluster broker acquires exclusive cluster owner lock, launches exactly one Chromium owner for the profile, exposes loopback-only status/attach descriptor, and lets workers connect over CDP without profile ownership. Real /tmp fixture proved one root Chromium owner, one client CDP attach, second broker rejected, deterministic OFFLINE shutdown and zero leftover profile processes."
     },
     {
       "id": "FA-302",
@@ -2307,7 +2309,7 @@
       "depends_on": [
         "FA-301"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "cluster tab lease scheduler plus receipts",
       "acceptance": "Up to 8 bounded tabs can coexist in one cluster; provider/job tab leases prevent cross-job mutation, reclaim abandoned tabs and enforce per-provider concurrency limits."
@@ -2321,7 +2323,7 @@
       "depends_on": [
         "FA-301"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "cluster registry and readiness probes",
       "acceptance": "ChatGPT, Qwen, Gemini, Manus and Duck.ai membership/readiness can be observed without exporting cookies, tokens or OAuth callback material; Grok remains independently policy/capacity gated."
