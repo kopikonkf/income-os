@@ -3725,3 +3725,14 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Focused FA-120: 3 PASS. Factory regression: 619 PASS, 1 PyPDF2 deprecation warning. No `/srv/die`, production runtime, Cluster Broker/readiness, browser profile/session, credential, production queue/database or active-artifact mutation.
 - Publication-only dependency reconciliation sets FA-304 READY; implementation was not started. FA-121 stays BLOCKED on FA-117.
 - Receipt: `company/factory-asset/receipts/FA-120-synthetic-throughput-backpressure.receipt.json`.
+
+---
+
+## 2026-09-05 - FA-117 two-provider bounded pool DONE/PASS
+
+- Exactly one live Qwen generation and one live ChatGPT/MUXIA generation completed sequentially on shared Cluster A; zero operator actions after dispatch and no secret reads.
+- Qwen: BROWSER_CDP fallback (SESSION_API remains primary contract, not falsely claimed live here), 1664x928 PNG, SHA `9e9db716...bf6c358`; ChatGPT: BROWSER_CDP/MUXIA, 1254x1254 PNG, SHA `fc345bf3...62127f0`.
+- Provider-original strict decode PASS; 4 intake attempts -> 2 unique staged masters with duplicate reuse 2/2; canonical truth remains false pending DIE State Manager.
+- Shared-profile lease contention is blocked; live intervals do not overlap; both observed SUCCESS capacity events classify AVAILABLE.
+- Browser footprint exposed startup tab creep: raw restore 10 pages, `enforceTabBudget` closed 2 -> 8/8. FA-304 must fail closed for `open_pages > max_tabs` and key capacity by provider+cluster.
+- FA-121 and FA-202 become READY. No submission/publication/spend authority granted.

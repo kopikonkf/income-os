@@ -577,3 +577,14 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Provider calls performed: **zero**. FA-120 does not import provider adapters/network clients and did not touch Cluster Broker, provider-readiness registry/probes, browser profile/runtime or live provider surfaces.
 - Validation: focused FA-120 `3 passed`; Factory regression `619 passed, 1 warning` (PyPDF2 deprecation only). Receipt: `company/factory-asset/receipts/FA-120-synthetic-throughput-backpressure.receipt.json`.
 - Dependency reconciliation only: FA-304 is now READY because FA-302 + FA-303 + FA-120 are DONE; **no FA-304 implementation was started**. FA-121 remains BLOCKED because FA-117 is still READY, not DONE.
+
+---
+
+## 2026-09-05 - FA-117 two-provider bounded pool DONE/PASS
+
+- Exactly one live Qwen generation and one live ChatGPT/MUXIA generation completed sequentially on shared Cluster A; zero operator actions after dispatch and no secret reads.
+- Qwen: BROWSER_CDP fallback (SESSION_API remains primary contract, not falsely claimed live here), 1664x928 PNG, SHA `9e9db716...bf6c358`; ChatGPT: BROWSER_CDP/MUXIA, 1254x1254 PNG, SHA `fc345bf3...62127f0`.
+- Provider-original strict decode PASS; 4 intake attempts -> 2 unique staged masters with duplicate reuse 2/2; canonical truth remains false pending DIE State Manager.
+- Shared-profile lease contention is blocked; live intervals do not overlap; both observed SUCCESS capacity events classify AVAILABLE.
+- Browser footprint exposed startup tab creep: raw restore 10 pages, `enforceTabBudget` closed 2 -> 8/8. FA-304 must fail closed for `open_pages > max_tabs` and key capacity by provider+cluster.
+- FA-121 and FA-202 become READY. No submission/publication/spend authority granted.
