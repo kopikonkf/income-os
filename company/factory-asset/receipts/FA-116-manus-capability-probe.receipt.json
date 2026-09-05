@@ -1,0 +1,74 @@
+{
+  "accepted_canary": {
+    "bytes": 2699279,
+    "cookies_or_tokens_read": false,
+    "credential_values_read": false,
+    "decode_reopen": true,
+    "dimensions": [
+      1920,
+      1920
+    ],
+    "dispatch_committed_at": "2026-09-05T10:44:49.339Z",
+    "format": "PNG",
+    "job_id": "FA116-MANUS-CANARY-20260905B",
+    "local_path": "/var/lib/die/workspaces/FA116-MANUS-CANARY-20260905B/provider/source-original.png",
+    "mime": "image/png",
+    "mode": "RGB",
+    "operator_actions_after_dispatch": 0,
+    "original_byte_acquisition_method": "BROWSER_CDP generated manuscdn asset response/body",
+    "output_extracted_by_automation": true,
+    "prompt_submitted_by_automation": true,
+    "provider_original_url_host": "private-us-east-1.manuscdn.com",
+    "sha256": "5fae90fe9dbb8d213cdd7e1ab6c9d7dcb5725d626a9139893606685a1a68c5e7"
+  },
+  "boundaries": {
+    "captcha_or_protection_bypass": false,
+    "files_manuscdn_ui_artwork_eligible": false,
+    "legacy_hypothesis_api_normalized": false,
+    "manual_prompt_submission": false,
+    "provider_generation_call_count": 1,
+    "spend": 0
+  },
+  "date": "2026-09-05",
+  "master_lineage": {
+    "byte_preservation": "EXACT_COPY",
+    "canonical_truth": false,
+    "ingestion_state": "STAGED_NOT_CANONICAL",
+    "staged_blob_path": "/var/lib/die/workspaces/FA116-MANUS-CANARY-20260905B/master-staging/blobs/sha256/5f/5fae90fe9dbb8d213cdd7e1ab6c9d7dcb5725d626a9139893606685a1a68c5e7",
+    "state_manager_commit_required": true
+  },
+  "next": "FA-118 Duck.ai in the same Founder-authorized provider expansion batch.",
+  "normalization": {
+    "acquisition_route": "GENERATED_MANUSCDN_RESPONSE_BODY",
+    "browser_runtime_owner": "MUXIA",
+    "guessed_api_endpoints": false,
+    "profile_id": "chatgpt-linux-a",
+    "provider_id": "manus",
+    "transport_class": "BROWSER_CDP",
+    "windows_dependency": false
+  },
+  "pre_dispatch_attempts": [
+    {
+      "failure_code": "E_EDITOR_UNAVAILABLE",
+      "job_id": "FA116-MANUS-CANARY-20260905A",
+      "prompt_submitted_by_automation": false,
+      "provider_generation_call_count": 0,
+      "result": "FAILED_PRE_DISPATCH"
+    }
+  ],
+  "result": "PASS",
+  "schema": "die.factory-asset.manus-capability-probe-receipt.v1",
+  "source_evidence": [
+    "company/factory-asset/receipts/FA-W015-manus-autonomous-backend.receipt.json"
+  ],
+  "status": "DONE",
+  "task_id": "FA-116",
+  "validation": {
+    "decode_reopen": "PASS",
+    "factory_regression": "590 passed, 1 PyPDF2 deprecation warning",
+    "focused_pytest": "5 passed",
+    "master_exact_copy": "PASS",
+    "node_syntax_check": "PASS",
+    "one_canon_pytest": "6 passed"
+  }
+}
