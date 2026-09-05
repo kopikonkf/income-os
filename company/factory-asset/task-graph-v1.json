@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "8.9-fa301-single-owner-cluster-broker",
+  "revision": "9.0-fa302-cluster-tab-leases",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2309,10 +2309,12 @@
       "depends_on": [
         "FA-301"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
-      "artifact": "cluster tab lease scheduler plus receipts",
-      "acceptance": "Up to 8 bounded tabs can coexist in one cluster; provider/job tab leases prevent cross-job mutation, reclaim abandoned tabs and enforce per-provider concurrency limits."
+      "artifact": "company/browser/linux/cluster_tab_leases.mjs; company/browser/linux/cluster_broker_core.mjs; company/browser/linux/cluster_broker_client.mjs; company/factory-asset/receipts/FA-302-cluster-tab-leases.receipt.json",
+      "acceptance": "Up to 8 bounded tabs can coexist in one cluster; provider/job tab leases prevent cross-job mutation, reclaim abandoned tabs and enforce per-provider concurrency limits.",
+      "completed_at": "2026-09-05",
+      "result": "PASS: Broker-backed tab lease scheduler enforces max 8 pages, unique job leases, per-provider concurrency, TTL reclamation and provider-state isolation. Real Chromium fixture acquired five concurrent ChatGPT/Qwen/Gemini/Manus/Duck leases as five pages; duplicate Qwen failed capacity; ChatGPT CHECKPOINT blocked only ChatGPT while four sibling providers remained leased; expired Duck page reclaimed; all tabs released and broker stopped OFFLINE."
     },
     {
       "id": "FA-303",

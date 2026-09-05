@@ -3681,3 +3681,12 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Worker client has no spawn or `--user-data-dir`; it attaches over broker-issued CDP.
 - Real `/tmp` fixture: exactly one root Chromium owner, client attach contexts=1/pages=1, second broker rejected, shutdown OFFLINE, zero leftover profile processes.
 - Cluster A/manual browser was not touched. FA-302 and FA-303 READY.
+
+---
+
+## 2026-09-05 - FA-302 provider tab leases DONE/PASS
+
+- Cluster tab scheduler maps `provider_id + job_id + lease_id + TTL` to a broker-owned Page; workers attach to claim URL and never own the profile.
+- Initial Cluster A policy: max 8 tabs; one browser-generation tab each for ChatGPT/Qwen/Gemini/Manus/Duck = max normal 5 concurrent generations; 3 tabs reserved for recovery/secondary use. Qwen SESSION_API uses no tab.
+- Real fixture: 5 leases/5 pages; duplicate Qwen rejected; ChatGPT CHECKPOINT isolated while Duck/Gemini/Manus/Qwen stayed leased; TTL reclaim PASS; final active/open=0; broker OFFLINE.
+- FA-302 DONE/PASS. FA-303 remains READY; FA-304 waits on FA-303 and FA-120.

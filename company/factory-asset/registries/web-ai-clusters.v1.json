@@ -87,7 +87,17 @@
           "preferred_transport": "UNKNOWN",
           "linux_evidence": "DEFERRED_NOT_IN_ACTIVE_POOL"
         }
-      ]
+      ],
+      "provider_tab_limits": {
+        "chatgpt": 1,
+        "qwen": 1,
+        "gemini": 1,
+        "manus": 1,
+        "duckai": 1
+      },
+      "lease_default_ttl_seconds": 300,
+      "max_active_browser_generations": 5,
+      "reserved_recovery_tabs": 3
     }
   ]
 }

@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ClusterBrokerCore } from '../../../browser/linux/cluster_broker_core.mjs';
+import { ClusterTabLeaseManager } from '../../../browser/linux/cluster_tab_leases.mjs';
 
 function arg(name, fallback = null) { const i = process.argv.indexOf(name); return i >= 0 && i + 1 < process.argv.length ? process.argv[i + 1] : fallback; }
 const dieHome = path.resolve(arg('--die-home', '/srv/die'));
@@ -16,11 +17,21 @@ const browserExecutable = path.resolve(arg('--browser-executable', '/opt/muxia/p
 const headless = String(arg('--headless', 'true')).toLowerCase() !== 'false';
 const { PlaywrightChromiumDriver } = await import(pathToFileURL(path.join(dieHome, 'company/muxia/dist/browser/playwright-driver.js')).href);
 const driver = new PlaywrightChromiumDriver({ executablePath: browserExecutable, headless, launchTimeoutMs: 30000, shutdownTimeoutMs: 8000 });
+const providerLimits = cluster.provider_tab_limits || Object.fromEntries((cluster.providers || []).filter((x) => x.membership === 'ACTIVE').map((x) => [x.provider_id, 1]));
+const defaultTtlMs = Number(cluster.lease_default_ttl_seconds || 300) * 1000;
 const broker = new ClusterBrokerCore({
-  clusterId: cluster.cluster_id, profileId: cluster.profile_id, profileDir: cluster.profile_dir,
-  stateFile: path.join(stateRoot, `${cluster.cluster_id}.json`), lockFile: path.join(stateRoot, `${cluster.cluster_id}.lock`),
-  driver, maxTabs: cluster.max_tabs, controlHost: '127.0.0.1', controlPort: Number(arg('--control-port', '0')),
+  clusterId: cluster.cluster_id,
+  profileId: cluster.profile_id,
+  profileDir: cluster.profile_dir,
+  stateFile: path.join(stateRoot, `${cluster.cluster_id}.json`),
+  lockFile: path.join(stateRoot, `${cluster.cluster_id}.lock`),
+  driver,
+  maxTabs: cluster.max_tabs,
+  controlHost: '127.0.0.1',
+  controlPort: Number(arg('--control-port', '0')),
+  leaseManagerFactory: ({ context, maxTabs }) => new ClusterTabLeaseManager({ context, maxTabs, providerLimits, defaultProviderLimit: 1, defaultTtlMs }),
 });
-const state = await broker.start(); console.log(JSON.stringify(state));
+const state = await broker.start();
+console.log(JSON.stringify(state));
 await new Promise((resolve) => { process.once('SIGINT', resolve); process.once('SIGTERM', resolve); });
 await broker.stop();
