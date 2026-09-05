@@ -3699,3 +3699,13 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Readiness stores safe URL origin+pathname only plus state/reason/booleans; no cookies, tokens, OAuth callback, local/session storage or IndexedDB reads.
 - Real broker + real Chromium loopback fixture observed a leased Qwen page as HEALTHY; query/fragment redaction PASS; zero provider call; fixture cleaned up.
 - Provider CHECKPOINT/AUTH_REQUIRED is isolated to that provider; cluster aggregation remains DEGRADED while healthy siblings continue. FA-304 still waits for FA-120.
+
+---
+
+## 2026-09-05 - FA-200 governed canary selection DONE/PASS
+
+- Selected one narrow governed canary: `shopping bag` -> `CUSTOMER_ORDER_FULFILLMENT` -> `ISOLATED_OBJECT` -> `RASTER_GENERATIVE`.
+- Commercial expression: unbranded shopping bag isolated object for customer-order fulfillment; Adobe Stock is candidate route only (`CANDIDATE_REQUIRES_POLICY_CHECK`).
+- Motion `STATIC_ONLY`; rights `REVIEW_REQUIRED`; quality target sRGB JPEG >=4MP with immutable provider original/master and FA-135 conditional upscale only if required.
+- Evidence truth: category-level buyer demand observed; exact candidate transaction UNOBSERVED; competition gap NOT_PROVEN; no fresh OE-007C VALIDATE receipt exists, so selection is a governed experiment, not a market-winner claim.
+- Zero provider call/production/upload/publication/spend. FA-201 READY.
