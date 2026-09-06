@@ -155,3 +155,49 @@ def test_runtime_start_seed_replenishes_then_starts_without_provider_call(tmp_pa
     progress = (workspace / "PROGRESS.md").read_text()
     assert "State: BLUEPRINT_REQUIRED" in progress
     assert "Commercial expression:" in progress
+
+
+def test_audit_surface_must_be_writable_before_db_mutation(tmp_path: Path):
+    db = tmp_path / "atlas.db"; _db(db)
+    work = tmp_path / "workspaces"; work.mkdir()
+    old = work / "PRODOLD"; old.mkdir(); (old / "seed-selection.json").write_text(json.dumps({"seed":{"id":"SEED-000001"}}))
+    policy = tmp_path / "policy.json"; _policy(policy)
+    state = tmp_path / "state"; state.mkdir(); state.chmod(0o555)
+    try:
+        failed = False
+        try:
+            replenish_seed_pool(db, work, policy_path=policy, state_root=state)
+        except OSError:
+            failed = True
+        assert failed is True
+    finally:
+        state.chmod(0o755)
+    c = sqlite3.connect(db)
+    try:
+        assert c.execute("SELECT count(*) FROM seeds").fetchone()[0] == 1
+        assert c.execute("SELECT count(*) FROM candidate_seeds WHERE promoted_to_seed_id IS NOT NULL").fetchone()[0] == 0
+        assert c.execute("SELECT count(*) FROM sqlite_master WHERE type='table' AND name='production_seed_expressions'").fetchone()[0] == 0
+    finally:
+        c.close()
+
+
+def test_pending_receipt_blocks_future_replenishment_until_reconciled(tmp_path: Path):
+    db = tmp_path / "atlas.db"; _db(db)
+    work = tmp_path / "workspaces"; work.mkdir()
+    old = work / "PRODOLD"; old.mkdir(); (old / "seed-selection.json").write_text(json.dumps({"seed":{"id":"SEED-000001"}}))
+    policy = tmp_path / "policy.json"; _policy(policy)
+    state = tmp_path / "state"; state.mkdir()
+    pending = state / "REPLENISH-TEST.json"
+    pending.write_text(json.dumps({"schema":"die.production-seed-replenishment.v1","status":"PENDING_DB_COMMIT"}))
+    message = ""
+    try:
+        replenish_seed_pool(db, work, policy_path=policy, state_root=state)
+    except RuntimeError as exc:
+        message = str(exc)
+    assert "E_PENDING_REPLENISHMENT_RECEIPT" in message
+    c = sqlite3.connect(db)
+    try:
+        assert c.execute("SELECT count(*) FROM seeds").fetchone()[0] == 1
+        assert c.execute("SELECT count(*) FROM candidate_seeds WHERE promoted_to_seed_id IS NOT NULL").fetchone()[0] == 0
+    finally:
+        c.close()

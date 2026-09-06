@@ -175,6 +175,20 @@ def _expression(candidate_id: str, noun: str, policy: dict[str, Any]) -> tuple[s
     return expression_id, text
 
 
+def _assert_no_pending_receipt(state_root: Path) -> None:
+    if not state_root.exists():
+        return
+    if not state_root.is_dir():
+        raise RuntimeError(f"E_REPLENISHMENT_STATE_ROOT_NOT_DIRECTORY:{state_root}")
+    for path in sorted(state_root.glob("REPLENISH-*.json")):
+        try:
+            value = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if value.get("schema") == SCHEMA and value.get("status") == "PENDING_DB_COMMIT":
+            raise RuntimeError(f"E_PENDING_REPLENISHMENT_RECEIPT:{path}")
+
+
 def replenish_seed_pool(
     db_path: Path = DEFAULT_DB,
     workspaces_root: Path = DEFAULT_WORKSPACES,
@@ -184,9 +198,13 @@ def replenish_seed_pool(
     dry_run: bool = False,
 ) -> dict[str, Any]:
     policy = load_policy(policy_path)
+    _assert_no_pending_receipt(state_root)
     used = produced_seed_ids(workspaces_root)
     connection = sqlite3.connect(str(db_path), timeout=30)
     connection.row_factory = sqlite3.Row
+    intent_path: Path | None = None
+    intent: dict[str, Any] | None = None
+    committed = False
     try:
         remaining_before = _remaining(connection, used)
         low = int(policy["low_watermark"])
@@ -234,6 +252,19 @@ def replenish_seed_pool(
             }
 
         created = now()
+        run_id = "REPLENISH-" + created.replace(":", "").replace("-", "")
+        intent_path = state_root / f"{run_id}.json"
+        intent = {
+            "schema": SCHEMA, "status": "PENDING_DB_COMMIT", "run_id": run_id,
+            "policy_revision": policy["revision"], "policy_sha256": csha(policy),
+            "remaining_before": len(remaining_before), "target_pool_size": target,
+            "planned_count": len(planned), "planned": planned,
+            "truth_boundary": policy["evidence"]["truth_boundary"],
+            "provider_call_performed": False, "authority": policy["authority"],
+            "created_at": created,
+        }
+        # Audit intent must be durable before any Object Atlas mutation.
+        atomic_json(intent_path, intent)
         connection.execute("BEGIN IMMEDIATE")
         connection.execute(
             """
@@ -288,24 +319,31 @@ def replenish_seed_pool(
                 (item["seed_id"], created, item["candidate_id"]),
             )
         connection.commit()
+        committed = True
 
         remaining_after = _remaining(connection, used)
         receipt = {
-            "schema": SCHEMA, "status": "PROMOTED", "run_id": "REPLENISH-" + created.replace(":", "").replace("-", ""),
+            "schema": SCHEMA, "status": "PROMOTED", "run_id": run_id,
             "policy_revision": policy["revision"], "policy_sha256": csha(policy),
             "remaining_before": len(remaining_before), "remaining_after": len(remaining_after),
             "target_pool_size": target, "promoted_count": len(planned), "promoted": planned,
             "truth_boundary": policy["evidence"]["truth_boundary"],
-            "provider_call_performed": False,
-            "authority": policy["authority"],
+            "provider_call_performed": False, "authority": policy["authority"],
+            "created_at": created, "committed_at": now(),
         }
-        receipt_path = state_root / f"{receipt['run_id']}.json"
-        atomic_json(receipt_path, receipt)
-        receipt["receipt_path"] = str(receipt_path)
+        atomic_json(intent_path, receipt)
+        receipt["receipt_path"] = str(intent_path)
         return receipt
-    except Exception:
+    except Exception as exc:
         if connection.in_transaction:
             connection.rollback()
+        if intent_path is not None and intent is not None and not committed:
+            try:
+                rolled = dict(intent)
+                rolled.update({"status": "ROLLED_BACK", "error": type(exc).__name__, "message": str(exc)[:500], "rolled_back_at": now()})
+                atomic_json(intent_path, rolled)
+            except Exception:
+                pass
         raise
     finally:
         connection.close()
