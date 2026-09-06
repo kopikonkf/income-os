@@ -2,11 +2,11 @@
   "schema": "die.factory-asset.fa121-24h-provider-stability-receipt.v1",
   "task_id": "FA-121",
   "date": "2026-09-06",
-  "status": "READY",
+  "status": "IN_PROGRESS",
   "implementation_result": "PASS",
-  "runtime_status": "NOT_STARTED",
+  "runtime_status": "RUNNING",
   "full_fa121_acceptance": false,
-  "reason": "The dedicated 24-hour stability runner, broker-backed provider worker, load contract and systemd scheduler are implemented and validated. No 24-hour live window has started yet; DONE/PASS is intentionally not claimed.",
+  "reason": "Hotfix is merged/deployed and the dedicated timer is running. A fresh 24-hour observed unattended window began after the hotfix; only one legitimate scheduled generation has completed, so DONE/PASS is intentionally not claimed.",
   "architecture": {
     "contract": "company/factory-asset/contracts/fa121-stability-canary.v1.json",
     "runner": "company/factory-asset/bin/run_fa121_stability_canary.mjs",
@@ -82,5 +82,104 @@
     "combined_pytest": "673 passed, 1 warning",
     "reconciled_main": "dc47a0f82bd995bea044001cd6447ed66ce4c416 (FA-204 merged)"
   },
-  "next_boundary": "Publish setup while FA-121 remains READY, deploy only from merged canon to the dedicated runtime root, initialize the exact 24-hour state with the encoded budget, start the dedicated broker/timer, then publish FA-121 as RUNNING with exact start/end and scheduler identity."
+  "next_boundary": "Keep the dedicated timer running until the real observed interval reaches 2026-09-07T06:55:01.139Z. Only then may a later session evaluate durable heartbeat/attempt/profile-integrity evidence and decide FA-121 PASS/FAIL.",
+  "configured_pre_hotfix_window": {
+    "start_at": "2026-09-06T05:53:37.354Z",
+    "end_at": "2026-09-07T05:53:37.354Z",
+    "timer_enabled": false,
+    "heartbeat_count": 0,
+    "provider_generations": 0,
+    "acceptance_eligible": false,
+    "runtime_evidence": "/var/lib/factory-asset/fa121-stability/configured-window-prehotfix-observation-gap.json",
+    "archived_state": "/var/lib/factory-asset/fa121-stability/configured-window-prehotfix-20260906T055337Z.state.json",
+    "reason": "Oneshot CDP client did not exit cleanly and the timer was not enabled; wall-clock time is not accepted as stability evidence."
+  },
+  "observed_runtime": {
+    "runtime_revision": "e9882298c88a31ecc366e3fab1bb3dba9c694590",
+    "hotfix_pr": 248,
+    "hotfix_merge_commit": "e9882298c88a31ecc366e3fab1bb3dba9c694590",
+    "start_at": "2026-09-06T06:55:01.139Z",
+    "end_target": "2026-09-07T06:55:01.139Z",
+    "lifecycle": "RUNNING",
+    "scheduler_identity": {
+      "broker_service": "die-fa121-cluster-broker.service",
+      "tick_service": "die-fa121-stability-tick.service",
+      "timer": "die-fa121-stability.timer",
+      "control_base_url": "http://127.0.0.1:39121/"
+    },
+    "timer_enabled": true,
+    "timer_active": true,
+    "generation_budget": {
+      "max": 12,
+      "used": 1,
+      "per_provider_max": 6,
+      "encoded_before_first_dispatch": true
+    },
+    "provider_generation_count": {
+      "qwen": 1,
+      "chatgpt": 0
+    },
+    "next_slot_index": 1,
+    "heartbeat_count_at_snapshot": 1,
+    "profile_integrity_ok": true,
+    "broker": {
+      "state": "READY",
+      "cluster_id": "cluster-a",
+      "profile_id": "chatgpt-linux-a",
+      "browser_owner_pid": 640348,
+      "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+      "max_tabs": 8,
+      "active_leases": 0,
+      "open_pages": 5
+    },
+    "first_scheduled_generation": {
+      "slot_index": 0,
+      "planned_at": "2026-09-06T06:55:01.139Z",
+      "terminal_at": "2026-09-06T06:55:40.571Z",
+      "status": "SUCCEEDED",
+      "provider_id": "qwen",
+      "cluster_id": "cluster-a",
+      "actual_transport": "BROWSER_CDP",
+      "transport_role": "FALLBACK",
+      "primary_transport_contract": "SESSION_API",
+      "qwen_session_api_live_executor_claimed": false,
+      "qwen_session_api_rejection": "CAPACITY_UNKNOWN",
+      "chatgpt_sibling_readiness": "DEGRADED",
+      "qwen_readiness": "HEALTHY",
+      "pre_dispatch_retries": 0,
+      "dispatch_committed_count": 1,
+      "lease_acquired": true,
+      "lease_released": true,
+      "latency_ms": 16357,
+      "artifact": {
+        "sha256": "d4a845815aa3d01d202ad80efba7ed9af50e859a9f9b6195c3cbaa891462eced",
+        "bytes": 1324473,
+        "mime": "image/png",
+        "original_byte_acquisition_method": "provider_original_cdn_url_browser_context"
+      },
+      "credential_values_read": false,
+      "cookies_or_tokens_read": false,
+      "spend_usd": 0,
+      "submission_authorized": false,
+      "publication_authorized": false
+    }
+  },
+  "runtime_hotfix_validation": {
+    "pre_hotfix_reproduction": "init durable write observed but command exceeded 5s until timeout; broker remained READY",
+    "focused_hotfix": "7 passed",
+    "factory_regression": "668 passed, 1 warning (PyPDF2 deprecation)",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "company_secret_scan_hits": 0,
+    "live_safe_oneshots": [
+      "init",
+      "status",
+      "reconcile",
+      "tick-before-start"
+    ],
+    "broker_owner_pid_preserved": true,
+    "max_tabs_preserved": true,
+    "no_lease_leak": true,
+    "provider_calls_in_non_dispatch_validation": 0
+  }
 }
