@@ -150,17 +150,75 @@
       "kind": "ADVANCE",
       "revision": 6,
       "to": "METADATA_READY"
+    },
+    {
+      "event_id": "FA204-AUTOMATED-RIGHTS-RESOLUTION",
+      "evidence": {
+        "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+        "result": "PASS",
+        "rights_signal_sha256": "81525f402c411d5122a8cec7a234af2a8874e01f0603b24b56e4860bc95891ef",
+        "visual_detector_run_sha256": "effc69ab150a90f35468400bc673fa554c3a008e70ac4d69fc9986fa2c1bbf94"
+      },
+      "evidence_sha256": "fae525be9f5c7f5cc247d9dcc55e0aec589f8a51c19ebbcfc6b90f3ec23f1b21",
+      "from": "METADATA_READY",
+      "kind": "RIGHTS_RESOLUTION",
+      "revision": 7,
+      "to": "METADATA_READY"
+    },
+    {
+      "event_id": "FA204-PACKAGE-READY",
+      "evidence": {
+        "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+        "package_plan": {
+          "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
+          "deliverables": [
+            {
+              "derivative_id": "ADOBE_JPEG",
+              "format": "JPEG",
+              "purpose": "MARKETPLACE_DELIVERY",
+              "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd"
+            },
+            {
+              "derivative_id": "PNG_PREVIEW",
+              "format": "PNG",
+              "purpose": "PREVIEW",
+              "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06"
+            },
+            {
+              "derivative_id": "WEBP_PREVIEW",
+              "format": "WEBP",
+              "purpose": "PREVIEW",
+              "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224"
+            }
+          ],
+          "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+          "metadata_sha256": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
+          "package_plan_sha256": "e5912d1892f5faeedf0a931076ac8d34f7854e6ba12635f0c5840554a69a326b",
+          "publication_action": "NONE",
+          "rights_signal_result": "PASS",
+          "schema": "die.factory-asset.hash-bound-package-plan.v1",
+          "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+          "submission_authority": "FOUNDER_CONTROLLED",
+          "upload_action": "NONE"
+        },
+        "result": "PACKAGE_READY"
+      },
+      "evidence_sha256": "f2ff91cf0b35287e052274c67e919645930bce6524bcb37a8973ec9967a21423",
+      "from": "METADATA_READY",
+      "kind": "ADVANCE",
+      "revision": 8,
+      "to": "PACKAGE_READY"
     }
   ],
   "job_id": "FA-203",
   "last_failure": null,
   "metadata_sha256": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
-  "package_plan_sha256": null,
-  "revision": 6,
-  "rights_disposition": "REVIEW_REQUIRED",
+  "package_plan_sha256": "e5912d1892f5faeedf0a931076ac8d34f7854e6ba12635f0c5840554a69a326b",
+  "revision": 8,
+  "rights_disposition": "PASS",
   "schema": "die.factory-asset.postproduction-state.v1",
   "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
   "source_master_sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7",
-  "state": "METADATA_READY",
+  "state": "PACKAGE_READY",
   "status": "ACTIVE"
 }

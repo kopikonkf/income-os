@@ -1,5 +1,6 @@
 {
   "authority": {
+    "human_rights_clearance": false,
     "marketplace_upload": false,
     "publication_authorized": false,
     "spend_usd": 0,
@@ -77,10 +78,11 @@
     }
   },
   "detector_runtime": {
-    "logo": false,
-    "ocr": false,
-    "safety_vision": false,
-    "watermark": false
+    "cpu_only": true,
+    "logo": true,
+    "ocr": true,
+    "safety_vision": true,
+    "watermark": true
   },
   "hard_veto_negative_control": {
     "blocking_signals": [
@@ -175,16 +177,15 @@
     },
     "title": "Shopping Bag - Isolated Object"
   },
-  "next_action": "FOUNDER_OR_APPROVED_VISUAL_RIGHTS_DETECTOR_MUST_CLEAR_EXACT_MASTER_HASH_BEFORE_PACKAGE_READY",
+  "next_action": "FA-205_FOUNDER_EXACT_HASH_QC",
   "orchestration": {
-    "revision": 6,
-    "rights_disposition": "REVIEW_REQUIRED",
-    "state": "METADATA_READY"
+    "package_plan_sha256": "e5912d1892f5faeedf0a931076ac8d34f7854e6ba12635f0c5840554a69a326b",
+    "revision": 8,
+    "rights_disposition": "PASS",
+    "state": "PACKAGE_READY"
   },
   "package_readiness": {
-    "blockers": [
-      "RIGHTS_REVIEW_REQUIRED"
-    ],
+    "blockers": [],
     "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
     "founder_qc_required": true,
     "human_rights_clearance": false,
@@ -253,106 +254,150 @@
       },
       "title": "Shopping Bag - Isolated Object"
     },
-    "package_plan": null,
-    "result": "PACKAGE_BLOCKED",
+    "package_plan": {
+      "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
+      "deliverables": [
+        {
+          "derivative_id": "ADOBE_JPEG",
+          "format": "JPEG",
+          "purpose": "MARKETPLACE_DELIVERY",
+          "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd"
+        },
+        {
+          "derivative_id": "PNG_PREVIEW",
+          "format": "PNG",
+          "purpose": "PREVIEW",
+          "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06"
+        },
+        {
+          "derivative_id": "WEBP_PREVIEW",
+          "format": "WEBP",
+          "purpose": "PREVIEW",
+          "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224"
+        }
+      ],
+      "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "metadata_sha256": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
+      "package_plan_sha256": "e5912d1892f5faeedf0a931076ac8d34f7854e6ba12635f0c5840554a69a326b",
+      "publication_action": "NONE",
+      "rights_signal_result": "PASS",
+      "schema": "die.factory-asset.hash-bound-package-plan.v1",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+      "submission_authority": "FOUNDER_CONTROLLED",
+      "upload_action": "NONE"
+    },
+    "result": "PACKAGE_READY",
     "schema": "die.factory-asset.package-readiness.v1",
     "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
     "submission_authority": "FOUNDER_CONTROLLED"
   },
   "provider_calls_performed": false,
-  "result": "WAITING_FOUNDER_RIGHTS_REVIEW",
+  "result": "PASS",
   "rights_signal": {
     "blocking_signals": [],
     "detector_states": {
-      "logo": "INCOMPLETE",
-      "safety": "INCOMPLETE",
-      "text": "INCOMPLETE",
-      "watermark": "INCOMPLETE"
+      "logo": "COMPLETE",
+      "safety": "COMPLETE",
+      "text": "COMPLETE",
+      "watermark": "COMPLETE"
     },
     "founder_qc_required": true,
     "human_rights_clearance": false,
     "master_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/master/master.png",
     "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
-    "qa_defects": [
-      "RIGHTS_UNCLEAR"
-    ],
-    "result": "REVIEW_REQUIRED",
-    "review_signals": [
-      {
-        "detail": "INCOMPLETE",
-        "detector": "text",
-        "signal": "DETECTOR_INCOMPLETE"
-      },
-      {
-        "detail": "INCOMPLETE",
-        "detector": "logo",
-        "signal": "DETECTOR_INCOMPLETE"
-      },
-      {
-        "detail": "INCOMPLETE",
-        "detector": "watermark",
-        "signal": "DETECTOR_INCOMPLETE"
-      },
-      {
-        "detail": "INCOMPLETE",
-        "detector": "safety",
-        "signal": "DETECTOR_INCOMPLETE"
-      }
-    ],
+    "qa_defects": [],
+    "result": "PASS",
+    "review_signals": [],
     "schema": "die.factory-asset.rights-signal-gate.v1",
-    "signal_gate_pass": false,
+    "signal_gate_pass": true,
     "submission_authority": "FOUNDER_CONTROLLED",
     "submission_eligible": false
   },
   "schema": "die.factory-asset.fa204-metadata-rights-result.v1",
   "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
   "source_rights_preflight": {
-    "artifact_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
     "authority_boundary": {
       "publication_authorized": false,
-      "qa_hard_veto_waivable": false,
       "submission_authorized": false
     },
-    "findings": [
-      {
-        "class": "uncertain_missing_evidence",
-        "decision": "UNKNOWN",
-        "signal": "automated visual rights detector runtime unavailable"
-      },
-      {
-        "class": "uncertain_missing_evidence",
-        "decision": "UNKNOWN",
-        "signal": "automated visual rights detector runtime unavailable"
-      },
-      {
-        "class": "uncertain_missing_evidence",
-        "decision": "UNKNOWN",
-        "signal": "visual rights review not clear"
-      }
-    ],
-    "hard_veto_expected": true,
+    "automated_visual_rights_state": "PASS",
+    "detector_evidence_sha256": "f21fbb84c2f430e6853383f45da326c40805972bb71660baa596685b86d963fb",
+    "detector_self_test_sha256": "55f548228234e30f32c4981687b065d645176fd859a2ca00031941f9269dd151",
+    "findings": [],
+    "hard_veto_expected": false,
+    "human_rights_clearance": false,
     "legal_clearance_claimed": false,
-    "qa_review_state": "UNKNOWN",
-    "schema": "die.asset.rights-preflight.v1",
-    "state": "UNCLEAR"
+    "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "release_evidence": {
+      "refs": [],
+      "required": false,
+      "state": "NOT_REQUIRED"
+    },
+    "schema": "die.factory-asset.automated-source-rights-preflight.v1",
+    "source_ip": {
+      "disposition": "CLEAR",
+      "foreground_risk_score": 0.002604,
+      "full_risk_score": 0.001579,
+      "risk_score": 0.002604
+    },
+    "source_lineage_clear": true,
+    "state": "CLEAR"
   },
   "state_manager_commit": {
     "committed_by": "DIE_STATE_MANAGER",
-    "metadata_rights_enrichment_sha256": "d9608c016ff7ab9f243fb734a250cf3ce63d7402891690258738afaf03ba3d95",
-    "package_state": "PACKAGE_BLOCKED_RIGHTS_REVIEW",
+    "metadata_rights_enrichment_sha256": "ac46a3626fc6d95fbbdd7ebe55278e220cb6dadf635d8d6105c7528a0d89f3b4",
+    "package_state": "PACKAGE_READY",
     "result": "IDEMPOTENT_REUSE",
-    "revision": 2,
+    "revision": 3,
     "schema": "die.factory-asset.state-manager-enrichment.v1",
     "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED"
   },
   "state_manager_replay": {
     "committed_by": "DIE_STATE_MANAGER",
-    "metadata_rights_enrichment_sha256": "d9608c016ff7ab9f243fb734a250cf3ce63d7402891690258738afaf03ba3d95",
-    "package_state": "PACKAGE_BLOCKED_RIGHTS_REVIEW",
+    "metadata_rights_enrichment_sha256": "ac46a3626fc6d95fbbdd7ebe55278e220cb6dadf635d8d6105c7528a0d89f3b4",
+    "package_state": "PACKAGE_READY",
     "result": "IDEMPOTENT_REUSE",
-    "revision": 2,
+    "revision": 3,
     "schema": "die.factory-asset.state-manager-enrichment.v1",
     "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED"
   },
-  "task_id": "FA-204"
+  "task_id": "FA-204",
+  "visual_rights_detector": {
+    "classification": {
+      "logo": {
+        "disposition": "CLEAR",
+        "foreground_positive_score": 0.104515,
+        "full_positive_score": 0.083557,
+        "positive_score": 0.104515
+      },
+      "safety": {
+        "disposition": "CLEAR",
+        "foreground_unsafe_score": 0.0002,
+        "full_unsafe_score": 1.1e-05,
+        "unsafe_score": 0.0002
+      },
+      "source_ip": {
+        "disposition": "CLEAR",
+        "foreground_risk_score": 0.002604,
+        "full_risk_score": 0.001579,
+        "risk_score": 0.002604
+      },
+      "watermark": {
+        "disposition": "CLEAR",
+        "positive_score": 0.118678
+      }
+    },
+    "run_ref": "company/factory-asset/fixtures/governed-canary/FA-204-visual-rights-detector-run.json",
+    "run_sha256": "f21fbb84c2f430e6853383f45da326c40805972bb71660baa596685b86d963fb",
+    "runtime": {
+      "clip_checkpoint_sha256": "afeb0e10f9e5a86da6080e35cf09123aca3b358a0c3e3b6c78a7b63bc04b6762",
+      "clip_model": "RN50",
+      "cpu_only": true,
+      "self_test_result": "PASS",
+      "tesseract_version": "tesseract 5.3.4",
+      "torch_version": "2.14.0+cpu"
+    },
+    "self_test_ref": "company/factory-asset/fixtures/governed-canary/FA-204-visual-rights-self-test.json",
+    "self_test_sha256": "55f548228234e30f32c4981687b065d645176fd859a2ca00031941f9269dd151"
+  }
 }

@@ -1,0 +1,1101 @@
+{
+  "schema": "die.factory-asset.visual-rights-detector-self-test.v1",
+  "result": "PASS",
+  "failures": [],
+  "controls": {
+    "watermark": {
+      "schema": "die.factory-asset.visual-rights-detector-run.v1",
+      "master_path": "/tmp/fa204-visual-rights-run3/self-test/controls/watermark.png",
+      "master_sha256": "19ac9558955e3fdd743722473e1ce5420ecb71ed926640dcde2e1bc24a81583e",
+      "ocr": {
+        "consensus": [
+          {
+            "normalized": "watermark",
+            "text": "WATERMARK",
+            "max_confidence": 96.292168,
+            "pass_count": 2,
+            "passes": [
+              "threshold_140",
+              "threshold_160"
+            ]
+          }
+        ],
+        "raw_qualified_hit_count": 2
+      },
+      "clip_scores": {
+        "foreground_box": [
+          695,
+          60,
+          3415,
+          3899
+        ],
+        "logo": {
+          "prompts": [
+            "a clean generic unbranded shopping bag product image",
+            "a shopping bag with a visible text brand logo",
+            "a shopping bag with a prominent graphic brand emblem or logo",
+            "a plain shopping bag with no branding"
+          ],
+          "full": [
+            0.42284247,
+            0.12538192,
+            0.2197409,
+            0.23203467
+          ],
+          "foreground": [
+            0.57689607,
+            0.13156378,
+            0.08995156,
+            0.20158853
+          ]
+        },
+        "watermark": {
+          "prompts": [
+            "a clean stock product image with no overlay",
+            "a stock image with a large visible watermark text overlay",
+            "an image with a transparent logo watermark overlay",
+            "an image with a photographer signature or copyright overlay"
+          ],
+          "full": [
+            0.32188287,
+            0.47198212,
+            0.20555013,
+            0.00058488
+          ],
+          "foreground": [
+            0.12891601,
+            0.53484982,
+            0.33586243,
+            0.00037176
+          ]
+        },
+        "safety": {
+          "prompts": [
+            "a safe ordinary retail shopping bag product image",
+            "an image of a knife or weapon",
+            "an image with blood or gore",
+            "an image with nudity or sexual adult content",
+            "an image showing illegal drugs, cigarettes, or drug paraphernalia"
+          ],
+          "full": [
+            0.99994302,
+            7.78e-06,
+            2.942e-05,
+            1.214e-05,
+            7.58e-06
+          ],
+          "foreground": [
+            0.99966991,
+            5.669e-05,
+            0.00015293,
+            8.499e-05,
+            3.55e-05
+          ]
+        },
+        "source_ip": {
+          "prompts": [
+            "a generic ordinary unbranded shopping bag with no distinctive brand design",
+            "a famous branded product with distinctive trade dress",
+            "a copyrighted fictional character or character artwork",
+            "a recognizable celebrity or real person likeness",
+            "a private property or landmark that may require a release"
+          ],
+          "full": [
+            0.95746332,
+            0.04200218,
+            0.00024049,
+            2.291e-05,
+            0.00027112
+          ],
+          "foreground": [
+            0.95343703,
+            0.04579248,
+            0.00047545,
+            2.845e-05,
+            0.0002666
+          ]
+        }
+      },
+      "classification": {
+        "logo": {
+          "positive_score": 0.345123,
+          "full_positive_score": 0.345123,
+          "foreground_positive_score": 0.221515,
+          "disposition": "REVIEW_CANDIDATE"
+        },
+        "watermark": {
+          "positive_score": 0.678117,
+          "disposition": "STRONG_CANDIDATE"
+        },
+        "safety": {
+          "unsafe_score": 0.00033,
+          "full_unsafe_score": 5.7e-05,
+          "foreground_unsafe_score": 0.00033,
+          "disposition": "CLEAR"
+        },
+        "source_ip": {
+          "risk_score": 0.046563,
+          "full_risk_score": 0.042537,
+          "foreground_risk_score": 0.046563,
+          "disposition": "CLEAR"
+        }
+      },
+      "observation": {
+        "schema": "die.factory-asset.rights-observation.v1",
+        "master_sha256": "19ac9558955e3fdd743722473e1ce5420ecb71ed926640dcde2e1bc24a81583e",
+        "detectors": {
+          "text": {
+            "state": "COMPLETE",
+            "detected_strings": [
+              "WATERMARK"
+            ],
+            "confirmed_trademark_terms": [],
+            "trademark_candidates": [],
+            "unresolved_strings": []
+          },
+          "logo": {
+            "state": "COMPLETE",
+            "candidates": [
+              {
+                "label": "CLIP_VISUAL_LOGO_OR_BRAND_MARK",
+                "confirmed_brand": false,
+                "score": 0.345123
+              }
+            ]
+          },
+          "watermark": {
+            "state": "COMPLETE",
+            "candidates": [
+              {
+                "label": "OCR_WATERMARK_TEXT",
+                "confirmed": true,
+                "strings": [
+                  "WATERMARK"
+                ]
+              }
+            ]
+          },
+          "safety": {
+            "state": "COMPLETE",
+            "flags": []
+          }
+        }
+      }
+    },
+    "logo_text": {
+      "schema": "die.factory-asset.visual-rights-detector-run.v1",
+      "master_path": "/tmp/fa204-visual-rights-run3/self-test/controls/logo_text.png",
+      "master_sha256": "b61c7f6245ccbe9b16f21273dea3268ba260139bb04374f5e998285b755512d7",
+      "ocr": {
+        "consensus": [
+          {
+            "normalized": "acme",
+            "text": "ACME",
+            "max_confidence": 96.560036,
+            "pass_count": 2,
+            "passes": [
+              "autocontrast",
+              "threshold_200"
+            ]
+          }
+        ],
+        "raw_qualified_hit_count": 2
+      },
+      "clip_scores": {
+        "foreground_box": [
+          867,
+          60,
+          3187,
+          3899
+        ],
+        "logo": {
+          "prompts": [
+            "a clean generic unbranded shopping bag product image",
+            "a shopping bag with a visible text brand logo",
+            "a shopping bag with a prominent graphic brand emblem or logo",
+            "a plain shopping bag with no branding"
+          ],
+          "full": [
+            0.07438204,
+            0.11784611,
+            0.66563344,
+            0.14213844
+          ],
+          "foreground": [
+            0.09752444,
+            0.11716802,
+            0.67712164,
+            0.10818593
+          ]
+        },
+        "watermark": {
+          "prompts": [
+            "a clean stock product image with no overlay",
+            "a stock image with a large visible watermark text overlay",
+            "an image with a transparent logo watermark overlay",
+            "an image with a photographer signature or copyright overlay"
+          ],
+          "full": [
+            0.35174152,
+            0.09436024,
+            0.52819782,
+            0.02570035
+          ],
+          "foreground": [
+            0.08380285,
+            0.13747618,
+            0.75959259,
+            0.01912836
+          ]
+        },
+        "safety": {
+          "prompts": [
+            "a safe ordinary retail shopping bag product image",
+            "an image of a knife or weapon",
+            "an image with blood or gore",
+            "an image with nudity or sexual adult content",
+            "an image showing illegal drugs, cigarettes, or drug paraphernalia"
+          ],
+          "full": [
+            0.999897,
+            1.92e-06,
+            6.077e-05,
+            3.273e-05,
+            7.56e-06
+          ],
+          "foreground": [
+            0.99946719,
+            1.506e-05,
+            0.00019828,
+            0.00027781,
+            4.166e-05
+          ]
+        },
+        "source_ip": {
+          "prompts": [
+            "a generic ordinary unbranded shopping bag with no distinctive brand design",
+            "a famous branded product with distinctive trade dress",
+            "a copyrighted fictional character or character artwork",
+            "a recognizable celebrity or real person likeness",
+            "a private property or landmark that may require a release"
+          ],
+          "full": [
+            0.98821902,
+            0.01163899,
+            7.973e-05,
+            4.545e-05,
+            1.676e-05
+          ],
+          "foreground": [
+            0.97711062,
+            0.02191187,
+            0.00068989,
+            0.00012677,
+            0.00016083
+          ]
+        }
+      },
+      "classification": {
+        "logo": {
+          "positive_score": 0.79429,
+          "full_positive_score": 0.78348,
+          "foreground_positive_score": 0.79429,
+          "disposition": "STRONG_CANDIDATE"
+        },
+        "watermark": {
+          "positive_score": 0.648258,
+          "disposition": "STRONG_CANDIDATE"
+        },
+        "safety": {
+          "unsafe_score": 0.000533,
+          "full_unsafe_score": 0.000103,
+          "foreground_unsafe_score": 0.000533,
+          "disposition": "CLEAR"
+        },
+        "source_ip": {
+          "risk_score": 0.022889,
+          "full_risk_score": 0.011781,
+          "foreground_risk_score": 0.022889,
+          "disposition": "CLEAR"
+        }
+      },
+      "observation": {
+        "schema": "die.factory-asset.rights-observation.v1",
+        "master_sha256": "b61c7f6245ccbe9b16f21273dea3268ba260139bb04374f5e998285b755512d7",
+        "detectors": {
+          "text": {
+            "state": "COMPLETE",
+            "detected_strings": [
+              "ACME"
+            ],
+            "confirmed_trademark_terms": [],
+            "trademark_candidates": [],
+            "unresolved_strings": [
+              "ACME"
+            ]
+          },
+          "logo": {
+            "state": "COMPLETE",
+            "candidates": [
+              {
+                "label": "CLIP_VISUAL_LOGO_OR_BRAND_MARK",
+                "confirmed_brand": false,
+                "score": 0.79429
+              }
+            ]
+          },
+          "watermark": {
+            "state": "COMPLETE",
+            "candidates": [
+              {
+                "label": "CLIP_WATERMARK_OR_OVERLAY",
+                "confirmed": false,
+                "score": 0.648258
+              }
+            ]
+          },
+          "safety": {
+            "state": "COMPLETE",
+            "flags": []
+          }
+        }
+      }
+    },
+    "logo_emblem": {
+      "schema": "die.factory-asset.visual-rights-detector-run.v1",
+      "master_path": "/tmp/fa204-visual-rights-run3/self-test/controls/logo_emblem.png",
+      "master_sha256": "ff74886186777c65d44649bbca312d844ba612529077cf9a484063c721a16fa0",
+      "ocr": {
+        "consensus": [],
+        "raw_qualified_hit_count": 0
+      },
+      "clip_scores": {
+        "foreground_box": [
+          867,
+          60,
+          3187,
+          3899
+        ],
+        "logo": {
+          "prompts": [
+            "a clean generic unbranded shopping bag product image",
+            "a shopping bag with a visible text brand logo",
+            "a shopping bag with a prominent graphic brand emblem or logo",
+            "a plain shopping bag with no branding"
+          ],
+          "full": [
+            0.16237836,
+            0.02990247,
+            0.56744409,
+            0.24027506
+          ],
+          "foreground": [
+            0.12663077,
+            0.03843267,
+            0.63828403,
+            0.19665249
+          ]
+        },
+        "watermark": {
+          "prompts": [
+            "a clean stock product image with no overlay",
+            "a stock image with a large visible watermark text overlay",
+            "an image with a transparent logo watermark overlay",
+            "an image with a photographer signature or copyright overlay"
+          ],
+          "full": [
+            0.6987102,
+            0.06122334,
+            0.20386012,
+            0.0362063
+          ],
+          "foreground": [
+            0.3106159,
+            0.08757699,
+            0.56936181,
+            0.03244526
+          ]
+        },
+        "safety": {
+          "prompts": [
+            "a safe ordinary retail shopping bag product image",
+            "an image of a knife or weapon",
+            "an image with blood or gore",
+            "an image with nudity or sexual adult content",
+            "an image showing illegal drugs, cigarettes, or drug paraphernalia"
+          ],
+          "full": [
+            0.99993563,
+            5.01e-06,
+            1.53e-05,
+            3.054e-05,
+            1.357e-05
+          ],
+          "foreground": [
+            0.99981529,
+            1.296e-05,
+            2.341e-05,
+            0.000102,
+            4.631e-05
+          ]
+        },
+        "source_ip": {
+          "prompts": [
+            "a generic ordinary unbranded shopping bag with no distinctive brand design",
+            "a famous branded product with distinctive trade dress",
+            "a copyrighted fictional character or character artwork",
+            "a recognizable celebrity or real person likeness",
+            "a private property or landmark that may require a release"
+          ],
+          "full": [
+            0.9825294,
+            0.01651777,
+            0.00060399,
+            0.00023607,
+            0.00011273
+          ],
+          "foreground": [
+            0.98754311,
+            0.01163915,
+            0.000619,
+            0.00011677,
+            8.188e-05
+          ]
+        }
+      },
+      "classification": {
+        "logo": {
+          "positive_score": 0.676717,
+          "full_positive_score": 0.597347,
+          "foreground_positive_score": 0.676717,
+          "disposition": "STRONG_CANDIDATE"
+        },
+        "watermark": {
+          "positive_score": 0.30129,
+          "disposition": "REVIEW_CANDIDATE"
+        },
+        "safety": {
+          "unsafe_score": 0.000185,
+          "full_unsafe_score": 6.4e-05,
+          "foreground_unsafe_score": 0.000185,
+          "disposition": "CLEAR"
+        },
+        "source_ip": {
+          "risk_score": 0.017471,
+          "full_risk_score": 0.017471,
+          "foreground_risk_score": 0.012457,
+          "disposition": "CLEAR"
+        }
+      },
+      "observation": {
+        "schema": "die.factory-asset.rights-observation.v1",
+        "master_sha256": "ff74886186777c65d44649bbca312d844ba612529077cf9a484063c721a16fa0",
+        "detectors": {
+          "text": {
+            "state": "COMPLETE",
+            "detected_strings": [],
+            "confirmed_trademark_terms": [],
+            "trademark_candidates": [],
+            "unresolved_strings": []
+          },
+          "logo": {
+            "state": "COMPLETE",
+            "candidates": [
+              {
+                "label": "CLIP_VISUAL_LOGO_OR_BRAND_MARK",
+                "confirmed_brand": false,
+                "score": 0.676717
+              }
+            ]
+          },
+          "watermark": {
+            "state": "COMPLETE",
+            "candidates": [
+              {
+                "label": "CLIP_WATERMARK_OR_OVERLAY",
+                "confirmed": false,
+                "score": 0.30129
+              }
+            ]
+          },
+          "safety": {
+            "state": "COMPLETE",
+            "flags": []
+          }
+        }
+      }
+    },
+    "unsafe_knife": {
+      "schema": "die.factory-asset.visual-rights-detector-run.v1",
+      "master_path": "/tmp/fa204-visual-rights-run3/self-test/controls/unsafe_knife.png",
+      "master_sha256": "03824e170d8b1def2e4f9052d9bf8a47a707d3e65cf3bf5dfd58d65996f088d6",
+      "ocr": {
+        "consensus": [],
+        "raw_qualified_hit_count": 0
+      },
+      "clip_scores": {
+        "foreground_box": [
+          530,
+          1330,
+          3421,
+          2671
+        ],
+        "logo": {
+          "prompts": [
+            "a clean generic unbranded shopping bag product image",
+            "a shopping bag with a visible text brand logo",
+            "a shopping bag with a prominent graphic brand emblem or logo",
+            "a plain shopping bag with no branding"
+          ],
+          "full": [
+            0.55300075,
+            0.01322375,
+            0.22855879,
+            0.20521669
+          ],
+          "foreground": [
+            0.78349257,
+            0.01472989,
+            0.09270454,
+            0.10907307
+          ]
+        },
+        "watermark": {
+          "prompts": [
+            "a clean stock product image with no overlay",
+            "a stock image with a large visible watermark text overlay",
+            "an image with a transparent logo watermark overlay",
+            "an image with a photographer signature or copyright overlay"
+          ],
+          "full": [
+            0.11066455,
+            0.10107343,
+            0.74816459,
+            0.0400974
+          ],
+          "foreground": [
+            0.00998528,
+            0.15477064,
+            0.78375512,
+            0.05148889
+          ]
+        },
+        "safety": {
+          "prompts": [
+            "a safe ordinary retail shopping bag product image",
+            "an image of a knife or weapon",
+            "an image with blood or gore",
+            "an image with nudity or sexual adult content",
+            "an image showing illegal drugs, cigarettes, or drug paraphernalia"
+          ],
+          "full": [
+            0.00065964,
+            0.99050069,
+            0.00094731,
+            0.00089797,
+            0.00699431
+          ],
+          "foreground": [
+            6.658e-05,
+            0.99817193,
+            4.634e-05,
+            0.00028343,
+            0.00143173
+          ]
+        },
+        "source_ip": {
+          "prompts": [
+            "a generic ordinary unbranded shopping bag with no distinctive brand design",
+            "a famous branded product with distinctive trade dress",
+            "a copyrighted fictional character or character artwork",
+            "a recognizable celebrity or real person likeness",
+            "a private property or landmark that may require a release"
+          ],
+          "full": [
+            0.11455936,
+            0.14565374,
+            0.60252386,
+            0.05721348,
+            0.08004949
+          ],
+          "foreground": [
+            0.02845981,
+            0.28129655,
+            0.60098296,
+            0.05959794,
+            0.02966275
+          ]
+        }
+      },
+      "classification": {
+        "logo": {
+          "positive_score": 0.241783,
+          "full_positive_score": 0.241783,
+          "foreground_positive_score": 0.107434,
+          "disposition": "REVIEW_CANDIDATE"
+        },
+        "watermark": {
+          "positive_score": 0.889335,
+          "disposition": "STRONG_CANDIDATE"
+        },
+        "safety": {
+          "unsafe_score": 0.999933,
+          "full_unsafe_score": 0.99934,
+          "foreground_unsafe_score": 0.999933,
+          "disposition": "BLOCK"
+        },
+        "source_ip": {
+          "risk_score": 0.97154,
+          "full_risk_score": 0.885441,
+          "foreground_risk_score": 0.97154,
+          "disposition": "STRONG_RISK"
+        }
+      },
+      "observation": {
+        "schema": "die.factory-asset.rights-observation.v1",
+        "master_sha256": "03824e170d8b1def2e4f9052d9bf8a47a707d3e65cf3bf5dfd58d65996f088d6",
+        "detectors": {
+          "text": {
+            "state": "COMPLETE",
+            "detected_strings": [],
+            "confirmed_trademark_terms": [],
+            "trademark_candidates": [],
+            "unresolved_strings": []
+          },
+          "logo": {
+            "state": "COMPLETE",
+            "candidates": [
+              {
+                "label": "CLIP_VISUAL_LOGO_OR_BRAND_MARK",
+                "confirmed_brand": false,
+                "score": 0.241783
+              }
+            ]
+          },
+          "watermark": {
+            "state": "COMPLETE",
+            "candidates": [
+              {
+                "label": "CLIP_WATERMARK_OR_OVERLAY",
+                "confirmed": false,
+                "score": 0.889335
+              }
+            ]
+          },
+          "safety": {
+            "state": "COMPLETE",
+            "flags": [
+              {
+                "code": "CLIP_UNSAFE_CONTENT_STRONG",
+                "disposition": "BLOCK",
+                "score": 0.999933
+              }
+            ]
+          }
+        }
+      }
+    },
+    "branded_trade_dress": {
+      "schema": "die.factory-asset.visual-rights-detector-run.v1",
+      "master_path": "/tmp/fa204-visual-rights-run3/self-test/controls/branded_trade_dress.png",
+      "master_sha256": "d46bd42a99652c1edbeb8fc25d707e736cc9e0c8a934e567ee0ea80f31ce6082",
+      "ocr": {
+        "consensus": [
+          {
+            "normalized": "brand",
+            "text": "BRAND",
+            "max_confidence": 96.166145,
+            "pass_count": 4,
+            "passes": [
+              "autocontrast",
+              "threshold_140",
+              "threshold_160",
+              "threshold_200"
+            ]
+          },
+          {
+            "normalized": "famous",
+            "text": "FAMOUS",
+            "max_confidence": 95.97789,
+            "pass_count": 4,
+            "passes": [
+              "autocontrast",
+              "threshold_140",
+              "threshold_160",
+              "threshold_200"
+            ]
+          }
+        ],
+        "raw_qualified_hit_count": 8
+      },
+      "clip_scores": {
+        "foreground_box": [
+          1380,
+          580,
+          2721,
+          3521
+        ],
+        "logo": {
+          "prompts": [
+            "a clean generic unbranded shopping bag product image",
+            "a shopping bag with a visible text brand logo",
+            "a shopping bag with a prominent graphic brand emblem or logo",
+            "a plain shopping bag with no branding"
+          ],
+          "full": [
+            0.08368128,
+            0.05978606,
+            0.80229706,
+            0.0542356
+          ],
+          "foreground": [
+            0.10046187,
+            0.07576767,
+            0.77693164,
+            0.04683876
+          ]
+        },
+        "watermark": {
+          "prompts": [
+            "a clean stock product image with no overlay",
+            "a stock image with a large visible watermark text overlay",
+            "an image with a transparent logo watermark overlay",
+            "an image with a photographer signature or copyright overlay"
+          ],
+          "full": [
+            0.02732083,
+            0.10985208,
+            0.82197022,
+            0.0408568
+          ],
+          "foreground": [
+            0.03671394,
+            0.15938169,
+            0.7725684,
+            0.03133591
+          ]
+        },
+        "safety": {
+          "prompts": [
+            "a safe ordinary retail shopping bag product image",
+            "an image of a knife or weapon",
+            "an image with blood or gore",
+            "an image with nudity or sexual adult content",
+            "an image showing illegal drugs, cigarettes, or drug paraphernalia"
+          ],
+          "full": [
+            0.77789754,
+            0.11886428,
+            0.00900223,
+            0.08342371,
+            0.01081225
+          ],
+          "foreground": [
+            0.88720286,
+            0.03535765,
+            0.00385069,
+            0.06073574,
+            0.01285297
+          ]
+        },
+        "source_ip": {
+          "prompts": [
+            "a generic ordinary unbranded shopping bag with no distinctive brand design",
+            "a famous branded product with distinctive trade dress",
+            "a copyrighted fictional character or character artwork",
+            "a recognizable celebrity or real person likeness",
+            "a private property or landmark that may require a release"
+          ],
+          "full": [
+            0.06489816,
+            0.91200316,
+            0.01326353,
+            0.00921159,
+            0.00062348
+          ],
+          "foreground": [
+            0.11193413,
+            0.87125891,
+            0.00920983,
+            0.00717253,
+            0.00042463
+          ]
+        }
+      },
+      "classification": {
+        "logo": {
+          "positive_score": 0.862083,
+          "full_positive_score": 0.862083,
+          "foreground_positive_score": 0.852699,
+          "disposition": "STRONG_CANDIDATE"
+        },
+        "watermark": {
+          "positive_score": 0.972679,
+          "disposition": "STRONG_CANDIDATE"
+        },
+        "safety": {
+          "unsafe_score": 0.222102,
+          "full_unsafe_score": 0.222102,
+          "foreground_unsafe_score": 0.112797,
+          "disposition": "REVIEW"
+        },
+        "source_ip": {
+          "risk_score": 0.935102,
+          "full_risk_score": 0.935102,
+          "foreground_risk_score": 0.888066,
+          "disposition": "STRONG_RISK"
+        }
+      },
+      "observation": {
+        "schema": "die.factory-asset.rights-observation.v1",
+        "master_sha256": "d46bd42a99652c1edbeb8fc25d707e736cc9e0c8a934e567ee0ea80f31ce6082",
+        "detectors": {
+          "text": {
+            "state": "COMPLETE",
+            "detected_strings": [
+              "BRAND",
+              "FAMOUS"
+            ],
+            "confirmed_trademark_terms": [],
+            "trademark_candidates": [],
+            "unresolved_strings": [
+              "BRAND",
+              "FAMOUS"
+            ]
+          },
+          "logo": {
+            "state": "COMPLETE",
+            "candidates": [
+              {
+                "label": "CLIP_VISUAL_LOGO_OR_BRAND_MARK",
+                "confirmed_brand": false,
+                "score": 0.862083
+              }
+            ]
+          },
+          "watermark": {
+            "state": "COMPLETE",
+            "candidates": [
+              {
+                "label": "CLIP_WATERMARK_OR_OVERLAY",
+                "confirmed": false,
+                "score": 0.972679
+              }
+            ]
+          },
+          "safety": {
+            "state": "COMPLETE",
+            "flags": [
+              {
+                "code": "CLIP_UNSAFE_CONTENT_UNCERTAIN",
+                "disposition": "REVIEW",
+                "score": 0.222102
+              }
+            ]
+          }
+        }
+      }
+    },
+    "fictional_character": {
+      "schema": "die.factory-asset.visual-rights-detector-run.v1",
+      "master_path": "/tmp/fa204-visual-rights-run3/self-test/controls/fictional_character.png",
+      "master_sha256": "1b27e5d41f201051ec583db65df9f3404186f71bff300ce830cacb825c2952b3",
+      "ocr": {
+        "consensus": [
+          {
+            "normalized": "character",
+            "text": "CHARACTER",
+            "max_confidence": 96.206093,
+            "pass_count": 4,
+            "passes": [
+              "autocontrast",
+              "threshold_140",
+              "threshold_160",
+              "threshold_200"
+            ]
+          },
+          {
+            "normalized": "fictional",
+            "text": "FICTIONAL",
+            "max_confidence": 96.249702,
+            "pass_count": 4,
+            "passes": [
+              "autocontrast",
+              "threshold_140",
+              "threshold_160",
+              "threshold_200"
+            ]
+          }
+        ],
+        "raw_qualified_hit_count": 8
+      },
+      "clip_scores": {
+        "foreground_box": [
+          1014,
+          780,
+          3324,
+          3021
+        ],
+        "logo": {
+          "prompts": [
+            "a clean generic unbranded shopping bag product image",
+            "a shopping bag with a visible text brand logo",
+            "a shopping bag with a prominent graphic brand emblem or logo",
+            "a plain shopping bag with no branding"
+          ],
+          "full": [
+            0.31043771,
+            0.12037809,
+            0.25831991,
+            0.31086433
+          ],
+          "foreground": [
+            0.24682695,
+            0.13613501,
+            0.37082419,
+            0.24621381
+          ]
+        },
+        "watermark": {
+          "prompts": [
+            "a clean stock product image with no overlay",
+            "a stock image with a large visible watermark text overlay",
+            "an image with a transparent logo watermark overlay",
+            "an image with a photographer signature or copyright overlay"
+          ],
+          "full": [
+            0.01256398,
+            0.06726006,
+            0.90462965,
+            0.01554638
+          ],
+          "foreground": [
+            0.00315881,
+            0.07096986,
+            0.91922134,
+            0.00664999
+          ]
+        },
+        "safety": {
+          "prompts": [
+            "a safe ordinary retail shopping bag product image",
+            "an image of a knife or weapon",
+            "an image with blood or gore",
+            "an image with nudity or sexual adult content",
+            "an image showing illegal drugs, cigarettes, or drug paraphernalia"
+          ],
+          "full": [
+            0.05589468,
+            0.14665964,
+            0.35311365,
+            0.44125107,
+            0.00308097
+          ],
+          "foreground": [
+            0.02134272,
+            0.18013155,
+            0.25033844,
+            0.54464108,
+            0.00354612
+          ]
+        },
+        "source_ip": {
+          "prompts": [
+            "a generic ordinary unbranded shopping bag with no distinctive brand design",
+            "a famous branded product with distinctive trade dress",
+            "a copyrighted fictional character or character artwork",
+            "a recognizable celebrity or real person likeness",
+            "a private property or landmark that may require a release"
+          ],
+          "full": [
+            6.712e-05,
+            7.819e-05,
+            0.99800223,
+            0.00185103,
+            1.41e-06
+          ],
+          "foreground": [
+            3.979e-05,
+            5.523e-05,
+            0.99784732,
+            0.00205697,
+            7.4e-07
+          ]
+        }
+      },
+      "classification": {
+        "logo": {
+          "positive_score": 0.506959,
+          "full_positive_score": 0.378698,
+          "foreground_positive_score": 0.506959,
+          "disposition": "STRONG_CANDIDATE"
+        },
+        "watermark": {
+          "positive_score": 0.987436,
+          "disposition": "STRONG_CANDIDATE"
+        },
+        "safety": {
+          "unsafe_score": 0.978657,
+          "full_unsafe_score": 0.944105,
+          "foreground_unsafe_score": 0.978657,
+          "disposition": "BLOCK"
+        },
+        "source_ip": {
+          "risk_score": 0.99996,
+          "full_risk_score": 0.999933,
+          "foreground_risk_score": 0.99996,
+          "disposition": "STRONG_RISK"
+        }
+      },
+      "observation": {
+        "schema": "die.factory-asset.rights-observation.v1",
+        "master_sha256": "1b27e5d41f201051ec583db65df9f3404186f71bff300ce830cacb825c2952b3",
+        "detectors": {
+          "text": {
+            "state": "COMPLETE",
+            "detected_strings": [
+              "CHARACTER",
+              "FICTIONAL"
+            ],
+            "confirmed_trademark_terms": [],
+            "trademark_candidates": [],
+            "unresolved_strings": [
+              "CHARACTER",
+              "FICTIONAL"
+            ]
+          },
+          "logo": {
+            "state": "COMPLETE",
+            "candidates": [
+              {
+                "label": "CLIP_VISUAL_LOGO_OR_BRAND_MARK",
+                "confirmed_brand": false,
+                "score": 0.506959
+              }
+            ]
+          },
+          "watermark": {
+            "state": "COMPLETE",
+            "candidates": [
+              {
+                "label": "CLIP_WATERMARK_OR_OVERLAY",
+                "confirmed": false,
+                "score": 0.987436
+              }
+            ]
+          },
+          "safety": {
+            "state": "COMPLETE",
+            "flags": [
+              {
+                "code": "CLIP_UNSAFE_CONTENT_STRONG",
+                "disposition": "BLOCK",
+                "score": 0.978657
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

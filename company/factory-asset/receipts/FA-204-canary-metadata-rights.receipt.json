@@ -1,40 +1,16 @@
 {
-  "schema": "die.factory-asset.fa204-canary-metadata-rights-receipt.v1",
+  "schema": "die.factory-asset.fa204-canary-metadata-rights-receipt.v2",
   "task_id": "FA-204",
   "date": "2026-09-06",
-  "status": "WAITING_FOUNDER",
-  "semantic_status": "WAITING_FOUNDER_RIGHTS_REVIEW",
-  "result": "PARTIAL_PASS_FAIL_CLOSED",
+  "status": "DONE",
+  "result": "PASS",
   "master": {
     "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
     "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06"
   },
   "metadata": {
-    "ai_disclosure": "GENERATIVE_AI",
-    "ai_generated": true,
-    "binary_metadata_injected": true,
-    "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
-    "derivative_hashes": [
-      {
-        "derivative_id": "ADOBE_JPEG",
-        "format": "JPEG",
-        "purpose": "MARKETPLACE_DELIVERY",
-        "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd"
-      },
-      {
-        "derivative_id": "PNG_PREVIEW",
-        "format": "PNG",
-        "purpose": "PREVIEW",
-        "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06"
-      },
-      {
-        "derivative_id": "WEBP_PREVIEW",
-        "format": "WEBP",
-        "purpose": "PREVIEW",
-        "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224"
-      }
-    ],
-    "description": "Unbranded shopping bag isolated on white for customer-order packing and fulfillment workflows.",
+    "metadata_sha256": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
+    "title": "Shopping Bag - Isolated Object",
     "keywords": [
       "shopping",
       "bag",
@@ -46,300 +22,199 @@
       "isolated",
       "object"
     ],
-    "listing_filename": "shopping-bag-isolated-object__5630d1fd.jpg",
-    "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
-    "metadata_delivery": "BINARY_IPTC_XMP_AND_SIDECAR_AND_SUBMISSION_FIELDS",
-    "metadata_sha256": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
-    "schema": "die.factory-asset.metadata-bundle.v1",
-    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
-    "source_class": "GENERATIVE_AI",
-    "submission_authority": "FOUNDER_CONTROLLED",
-    "submission_fields": {
-      "ai_disclosure": "GENERATIVE_AI",
-      "description": "Unbranded shopping bag isolated on white for customer-order packing and fulfillment workflows.",
-      "filename": "shopping-bag-isolated-object__5630d1fd.jpg",
-      "keywords": [
-        "shopping",
-        "bag",
-        "illustrate",
-        "customer-order",
-        "packing",
-        "fulfillment",
-        "workflows",
-        "isolated",
-        "object"
-      ],
-      "title": "Shopping Bag - Isolated Object"
-    },
-    "title": "Shopping Bag - Isolated Object"
+    "ai_generated": true,
+    "ai_disclosure": "GENERATIVE_AI",
+    "listing_filename": "shopping-bag-isolated-object__5630d1fd.jpg"
   },
   "binary_metadata": {
-    "dimensions": [
-      4096,
-      4096
-    ],
-    "fields": {
-      "ai_disclosure": "GENERATIVE_AI",
-      "description": "Unbranded shopping bag isolated on white for customer-order packing and fulfillment workflows.",
-      "keywords": [
-        "shopping",
-        "bag",
-        "illustrate",
-        "customer-order",
-        "packing",
-        "fulfillment",
-        "workflows",
-        "isolated",
-        "object"
-      ],
-      "title": "Shopping Bag - Isolated Object"
-    },
-    "format": "JPEG",
-    "immutable_source_preserved": true,
-    "iptc_readback": "PASS",
-    "output_path": "/var/lib/die/workspaces/FA204-SHOPPING-BAG-20260906A/shopping-bag-isolated-object__5630d1fd.jpg",
-    "output_sha256": "d097dbce84ec47ef4e70ccdc819e82fe9fbd5bb460e8c5b913fb3ff03cdf7cb8",
-    "platform_form_ai_disclosure_still_required": true,
     "result": "IDEMPOTENT_REUSE",
-    "schema": "die.factory-asset.binary-metadata-injection.v1",
-    "semantic_identity_effect": "NONE",
-    "source_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/derivatives/adobe-jpeg.jpg",
     "source_sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd",
-    "xmp_readback": "PASS"
+    "listing_output_sha256": "d097dbce84ec47ef4e70ccdc819e82fe9fbd5bb460e8c5b913fb3ff03cdf7cb8",
+    "xmp_readback": "PASS",
+    "iptc_readback": "PASS",
+    "immutable_source_preserved": true
   },
-  "rights": {
-    "signal": {
-      "blocking_signals": [],
-      "detector_states": {
-        "logo": "INCOMPLETE",
-        "safety": "INCOMPLETE",
-        "text": "INCOMPLETE",
-        "watermark": "INCOMPLETE"
-      },
-      "founder_qc_required": true,
-      "human_rights_clearance": false,
-      "master_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/master/master.png",
-      "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
-      "qa_defects": [
-        "RIGHTS_UNCLEAR"
-      ],
-      "result": "REVIEW_REQUIRED",
-      "review_signals": [
-        {
-          "detail": "INCOMPLETE",
-          "detector": "text",
-          "signal": "DETECTOR_INCOMPLETE"
-        },
-        {
-          "detail": "INCOMPLETE",
-          "detector": "logo",
-          "signal": "DETECTOR_INCOMPLETE"
-        },
-        {
-          "detail": "INCOMPLETE",
-          "detector": "watermark",
-          "signal": "DETECTOR_INCOMPLETE"
-        },
-        {
-          "detail": "INCOMPLETE",
-          "detector": "safety",
-          "signal": "DETECTOR_INCOMPLETE"
-        }
-      ],
-      "schema": "die.factory-asset.rights-signal-gate.v1",
-      "signal_gate_pass": false,
-      "submission_authority": "FOUNDER_CONTROLLED",
-      "submission_eligible": false
+  "visual_rights_runtime": {
+    "config_ref": "company/factory-asset/registries/visual-rights-detector.v1.json",
+    "detector_ref": "company/factory-asset/bin/run_visual_rights_detector.py",
+    "install_ref": "company/factory-asset/bin/install_visual_rights_runtime.sh",
+    "run_ref": "company/factory-asset/fixtures/governed-canary/FA-204-visual-rights-detector-run.json",
+    "run_sha256": "effc69ab150a90f35468400bc673fa554c3a008e70ac4d69fc9986fa2c1bbf94",
+    "self_test_ref": "company/factory-asset/fixtures/governed-canary/FA-204-visual-rights-self-test.json",
+    "self_test_sha256": "b9858007c4df88fe59866b227d6db1fa339483b3e2ac67d37858c032c7013955",
+    "runtime": {
+      "clip_checkpoint_sha256": "afeb0e10f9e5a86da6080e35cf09123aca3b358a0c3e3b6c78a7b63bc04b6762",
+      "clip_model": "RN50",
+      "cpu_only": true,
+      "self_test_result": "PASS",
+      "tesseract_version": "tesseract 5.3.4",
+      "torch_version": "2.14.0+cpu"
     },
-    "source_rights_preflight": {
-      "artifact_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
-      "authority_boundary": {
-        "publication_authorized": false,
-        "qa_hard_veto_waivable": false,
-        "submission_authorized": false
+    "classification": {
+      "logo": {
+        "disposition": "CLEAR",
+        "foreground_positive_score": 0.104515,
+        "full_positive_score": 0.083557,
+        "positive_score": 0.104515
       },
-      "findings": [
-        {
-          "class": "uncertain_missing_evidence",
-          "decision": "UNKNOWN",
-          "signal": "automated visual rights detector runtime unavailable"
-        },
-        {
-          "class": "uncertain_missing_evidence",
-          "decision": "UNKNOWN",
-          "signal": "automated visual rights detector runtime unavailable"
-        },
-        {
-          "class": "uncertain_missing_evidence",
-          "decision": "UNKNOWN",
-          "signal": "visual rights review not clear"
-        }
-      ],
-      "hard_veto_expected": true,
-      "legal_clearance_claimed": false,
-      "qa_review_state": "UNKNOWN",
-      "schema": "die.asset.rights-preflight.v1",
-      "state": "UNCLEAR"
-    },
-    "negative_control": {
-      "blocking_signals": [
-        {
-          "detail": "FA204 Synthetic Test Brand",
-          "detector": "text",
-          "signal": "TRADEMARK_CONFIRMED"
-        }
-      ],
-      "detector_states": {
-        "logo": "COMPLETE",
-        "safety": "COMPLETE",
-        "text": "COMPLETE",
-        "watermark": "COMPLETE"
+      "safety": {
+        "disposition": "CLEAR",
+        "foreground_unsafe_score": 0.0002,
+        "full_unsafe_score": 1.1e-05,
+        "unsafe_score": 0.0002
       },
-      "founder_qc_required": true,
-      "human_rights_clearance": false,
-      "master_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/master/master.png",
-      "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
-      "qa_defects": [
-        "RIGHTS_FAILED"
-      ],
-      "result": "BLOCK",
-      "review_signals": [],
-      "schema": "die.factory-asset.rights-signal-gate.v1",
-      "signal_gate_pass": false,
-      "submission_authority": "FOUNDER_CONTROLLED",
-      "submission_eligible": false
+      "watermark": {
+        "disposition": "CLEAR",
+        "positive_score": 0.118678
+      }
     }
   },
-  "package": {
-    "blockers": [
-      "RIGHTS_REVIEW_REQUIRED"
-    ],
-    "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
-    "founder_qc_required": true,
-    "human_rights_clearance": false,
-    "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
-    "metadata": {
-      "ai_disclosure": "GENERATIVE_AI",
-      "ai_generated": true,
-      "binary_metadata_injected": true,
-      "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
-      "derivative_hashes": [
-        {
-          "derivative_id": "ADOBE_JPEG",
-          "format": "JPEG",
-          "purpose": "MARKETPLACE_DELIVERY",
-          "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd"
-        },
-        {
-          "derivative_id": "PNG_PREVIEW",
-          "format": "PNG",
-          "purpose": "PREVIEW",
-          "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06"
-        },
-        {
-          "derivative_id": "WEBP_PREVIEW",
-          "format": "WEBP",
-          "purpose": "PREVIEW",
-          "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224"
-        }
-      ],
-      "description": "Unbranded shopping bag isolated on white for customer-order packing and fulfillment workflows.",
-      "keywords": [
-        "shopping",
-        "bag",
-        "illustrate",
-        "customer-order",
-        "packing",
-        "fulfillment",
-        "workflows",
-        "isolated",
-        "object"
-      ],
-      "listing_filename": "shopping-bag-isolated-object__5630d1fd.jpg",
-      "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
-      "metadata_delivery": "BINARY_IPTC_XMP_AND_SIDECAR_AND_SUBMISSION_FIELDS",
-      "metadata_sha256": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
-      "schema": "die.factory-asset.metadata-bundle.v1",
-      "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
-      "source_class": "GENERATIVE_AI",
-      "submission_authority": "FOUNDER_CONTROLLED",
-      "submission_fields": {
-        "ai_disclosure": "GENERATIVE_AI",
-        "description": "Unbranded shopping bag isolated on white for customer-order packing and fulfillment workflows.",
-        "filename": "shopping-bag-isolated-object__5630d1fd.jpg",
-        "keywords": [
-          "shopping",
-          "bag",
-          "illustrate",
-          "customer-order",
-          "packing",
-          "fulfillment",
-          "workflows",
-          "isolated",
-          "object"
-        ],
-        "title": "Shopping Bag - Isolated Object"
-      },
-      "title": "Shopping Bag - Isolated Object"
+  "rights": {
+    "signal_result": "PASS",
+    "detector_states": {
+      "logo": "COMPLETE",
+      "safety": "COMPLETE",
+      "text": "COMPLETE",
+      "watermark": "COMPLETE"
     },
-    "package_plan": null,
-    "result": "PACKAGE_BLOCKED",
-    "schema": "die.factory-asset.package-readiness.v1",
-    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
-    "submission_authority": "FOUNDER_CONTROLLED"
+    "blocking_signals": [],
+    "review_signals": [],
+    "source_preflight": {
+      "authority_boundary": {
+        "publication_authorized": false,
+        "submission_authorized": false
+      },
+      "automated_visual_rights_state": "PASS",
+      "detector_evidence_sha256": "f21fbb84c2f430e6853383f45da326c40805972bb71660baa596685b86d963fb",
+      "detector_self_test_sha256": "55f548228234e30f32c4981687b065d645176fd859a2ca00031941f9269dd151",
+      "findings": [],
+      "hard_veto_expected": false,
+      "human_rights_clearance": false,
+      "legal_clearance_claimed": false,
+      "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "release_evidence": {
+        "refs": [],
+        "required": false,
+        "state": "NOT_REQUIRED"
+      },
+      "schema": "die.factory-asset.automated-source-rights-preflight.v1",
+      "source_ip": {
+        "disposition": "CLEAR",
+        "foreground_risk_score": 0.002604,
+        "full_risk_score": 0.001579,
+        "risk_score": 0.002604
+      },
+      "source_lineage_clear": true,
+      "state": "CLEAR"
+    },
+    "legal_clearance_claimed": false,
+    "human_rights_clearance": false,
+    "hard_veto_negative_control_result": "BLOCK"
+  },
+  "package": {
+    "result": "PACKAGE_READY",
+    "blockers": [],
+    "package_plan_sha256": "e5912d1892f5faeedf0a931076ac8d34f7854e6ba12635f0c5840554a69a326b",
+    "founder_qc_required": true
   },
   "orchestration": {
-    "revision": 6,
-    "rights_disposition": "REVIEW_REQUIRED",
-    "state": "METADATA_READY"
+    "package_plan_sha256": "e5912d1892f5faeedf0a931076ac8d34f7854e6ba12635f0c5840554a69a326b",
+    "revision": 8,
+    "rights_disposition": "PASS",
+    "state": "PACKAGE_READY"
   },
   "state_manager": {
     "commit": {
       "committed_by": "DIE_STATE_MANAGER",
-      "metadata_rights_enrichment_sha256": "d9608c016ff7ab9f243fb734a250cf3ce63d7402891690258738afaf03ba3d95",
-      "package_state": "PACKAGE_BLOCKED_RIGHTS_REVIEW",
+      "metadata_rights_enrichment_sha256": "ac46a3626fc6d95fbbdd7ebe55278e220cb6dadf635d8d6105c7528a0d89f3b4",
+      "package_state": "PACKAGE_READY",
       "result": "IDEMPOTENT_REUSE",
-      "revision": 2,
+      "revision": 3,
       "schema": "die.factory-asset.state-manager-enrichment.v1",
       "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED"
     },
     "replay": {
       "committed_by": "DIE_STATE_MANAGER",
-      "metadata_rights_enrichment_sha256": "d9608c016ff7ab9f243fb734a250cf3ce63d7402891690258738afaf03ba3d95",
-      "package_state": "PACKAGE_BLOCKED_RIGHTS_REVIEW",
+      "metadata_rights_enrichment_sha256": "ac46a3626fc6d95fbbdd7ebe55278e220cb6dadf635d8d6105c7528a0d89f3b4",
+      "package_state": "PACKAGE_READY",
       "result": "IDEMPOTENT_REUSE",
-      "revision": 2,
+      "revision": 3,
       "schema": "die.factory-asset.state-manager-enrichment.v1",
       "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED"
     },
-    "registry_sha256": "f4b9b799d1c39cf1465b90c1539d42314910ed261e2a94029597fd0aaa06592c"
-  },
-  "detector_runtime_truth": {
-    "ocr_text_detector_available": false,
-    "logo_detector_available": false,
-    "watermark_detector_available": false,
-    "safety_vision_detector_available": false,
-    "invented_empty_detector_results": false
+    "registry_ref": "company/factory-asset/registries/governed-canary-assets.v1.json",
+    "registry_sha256": "9529ecf05af8e9e98d3050746cf19ab0d86a40cfc499b13826dbeeb0fcd4d102"
   },
   "truth_boundaries": {
-    "provider_calls_performed": false,
+    "automated_rights_signal_pass": true,
+    "human_rights_clearance": false,
+    "founder_qc_complete": false,
     "submission_authorized": false,
     "publication_authorized": false,
     "marketplace_upload": false,
-    "spend_usd": 0,
-    "package_ready": false,
-    "fa205_unlocked": false
+    "provider_calls_performed": false,
+    "spend_usd": 0
   },
   "idempotency": {
-    "binary_metadata": "IDEMPOTENT_REUSE",
-    "state_manager": "IDEMPOTENT_REUSE"
+    "binary_metadata_rerun": "IDEMPOTENT_REUSE",
+    "state_manager_rerun": "IDEMPOTENT_REUSE",
+    "package_plan_sha256_stable": true
   },
+  "next_action": "FA-205 Founder exact-hash QC. Automated rights PASS is not Founder approval and does not authorize submission.",
   "validation": {
-    "focused": "41 passed",
-    "factory_regression": "661 passed, 1 warning",
+    "focused_visual_rights_fa204_stack": "46 passed",
+    "factory_regression": "673 passed, 1 PyPDF2 deprecation warning",
     "one_canon_pytest": "6 passed",
     "one_canon_validator": "11/11 PASS",
-    "secret_scan": "0"
+    "secret_scan": "0 high-confidence hits",
+    "python_compile": "PASS",
+    "bash_syntax": "PASS",
+    "git_diff_check": "PASS",
+    "live_fa121_test_dependency_note": "Ephemeral worktree node_modules symlink pointed only to /srv/die/company/muxia/node_modules for validation and was unlinked immediately after tests."
   },
-  "next_action": "Clear exact master SHA through Founder or approved complete visual rights detectors before PACKAGE_READY/FA-205."
+  "visual_rights_detector": {
+    "config_ref": "company/factory-asset/registries/visual-rights-detector.v1.json",
+    "config_sha256": "84868a4e6aa66c58acfae232e024877a1ef7e7b20c13fc864a685ee06943e76c",
+    "run_ref": "company/factory-asset/fixtures/governed-canary/FA-204-visual-rights-detector-run.json",
+    "run_sha256": "f21fbb84c2f430e6853383f45da326c40805972bb71660baa596685b86d963fb",
+    "self_test_ref": "company/factory-asset/fixtures/governed-canary/FA-204-visual-rights-self-test.json",
+    "self_test_sha256": "55f548228234e30f32c4981687b065d645176fd859a2ca00031941f9269dd151",
+    "runtime": {
+      "clip_checkpoint_sha256": "afeb0e10f9e5a86da6080e35cf09123aca3b358a0c3e3b6c78a7b63bc04b6762",
+      "clip_model": "RN50",
+      "cpu_only": true,
+      "self_test_result": "PASS",
+      "tesseract_version": "tesseract 5.3.4",
+      "torch_version": "2.14.0+cpu"
+    },
+    "classification": {
+      "logo": {
+        "disposition": "CLEAR",
+        "foreground_positive_score": 0.104515,
+        "full_positive_score": 0.083557,
+        "positive_score": 0.104515
+      },
+      "safety": {
+        "disposition": "CLEAR",
+        "foreground_unsafe_score": 0.0002,
+        "full_unsafe_score": 1.1e-05,
+        "unsafe_score": 0.0002
+      },
+      "source_ip": {
+        "disposition": "CLEAR",
+        "foreground_risk_score": 0.002604,
+        "full_risk_score": 0.001579,
+        "risk_score": 0.002604
+      },
+      "watermark": {
+        "disposition": "CLEAR",
+        "positive_score": 0.118678
+      }
+    },
+    "self_test_result": "PASS",
+    "source_ip_controls": {
+      "branded_trade_dress": "STRONG_RISK",
+      "fictional_character": "STRONG_RISK"
+    }
+  }
 }

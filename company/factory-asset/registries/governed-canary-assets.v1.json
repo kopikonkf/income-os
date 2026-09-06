@@ -75,7 +75,7 @@
       ],
       "evidence_sha256": "bdb672f74b7c59ce9ff05b0f4a8ca89ced7f70787927b3ae73596c7549c954ce",
       "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
-      "metadata_rights_enrichment_sha256": "d9608c016ff7ab9f243fb734a250cf3ce63d7402891690258738afaf03ba3d95",
+      "metadata_rights_enrichment_sha256": "ac46a3626fc6d95fbbdd7ebe55278e220cb6dadf635d8d6105c7528a0d89f3b4",
       "metadata_sha256": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
       "orchestration": {
         "next_task": "FA-204",
@@ -103,13 +103,14 @@
         "state": "TECHNICALLY_COMPATIBLE_METADATA_RIGHTS_PENDING",
         "submission_authorized": false
       },
-      "package_state": "PACKAGE_BLOCKED_RIGHTS_REVIEW",
-      "record_sha256": "ec2f473c480819f1d60e3922c2c89d0194ef3023dcbfb666a08dd0ae25995967",
-      "rights_signal_sha256": "4df1e7c38334c1486ddd3a78dbb09a921838014778932b81729ed3a0930fc882",
-      "rights_state": "REVIEW_REQUIRED",
+      "package_plan_sha256": "e5912d1892f5faeedf0a931076ac8d34f7854e6ba12635f0c5840554a69a326b",
+      "package_state": "PACKAGE_READY",
+      "record_sha256": "1c6e9771081827172f6fa54c6595d30ab0d7e7fb19aa9b87c85c8a71970bb507",
+      "rights_signal_sha256": "81525f402c411d5122a8cec7a234af2a8874e01f0603b24b56e4860bc95891ef",
+      "rights_state": "PASS",
       "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
       "source_proposal_sha256": "e5af1f517de6226d07c3f9811e5349c56074b6659397e1d93c891bdb80f09bb7",
-      "state": "METADATA_READY_RIGHTS_REVIEW_REQUIRED"
+      "state": "PACKAGE_READY"
     }
   ],
   "canonical_writer": "DIE_STATE_MANAGER",
@@ -135,6 +136,19 @@
       "rights_result": "REVIEW_REQUIRED",
       "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
       "writer": "DIE_STATE_MANAGER"
+    },
+    {
+      "enrichment_sha256": "ac46a3626fc6d95fbbdd7ebe55278e220cb6dadf635d8d6105c7528a0d89f3b4",
+      "event_sha256": "243b9a38305f72cfd6ce3fc57cfc52be96d89cdef2b09ac33914ac1e7b60a171",
+      "kind": "ASSET_RIGHTS_RESOLUTION",
+      "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "metadata_sha256": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
+      "package_result": "PACKAGE_READY",
+      "prior_enrichment_sha256": "d9608c016ff7ab9f243fb734a250cf3ce63d7402891690258738afaf03ba3d95",
+      "revision": 3,
+      "rights_result": "PASS",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+      "writer": "DIE_STATE_MANAGER"
     }
   ],
   "physical_masters": [
@@ -144,6 +158,6 @@
       "staged_blob_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/master-staging/active-master/blobs/sha256/56/5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06.png"
     }
   ],
-  "revision": 2,
+  "revision": 3,
   "schema": "die.factory-asset.canonical-asset-registry.v1"
 }

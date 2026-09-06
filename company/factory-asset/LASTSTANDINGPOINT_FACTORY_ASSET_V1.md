@@ -662,3 +662,15 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Fresh observed unattended window: **2026-09-06T06:55:01.139Z -> 2026-09-07T06:55:01.139Z**. Dedicated systemd identities: `die-fa121-cluster-broker.service`, `die-fa121-stability-tick.service`, `die-fa121-stability.timer`; control loopback `127.0.0.1:39121`. Timer is enabled/active.
 - First timer-fired slot completed normally, not as catch-up: Qwen `cluster-a` actual transport `BROWSER_CDP` / FALLBACK; SESSION_API remains primary contract but live candidate was rejected `CAPACITY_UNKNOWN`. Qwen readiness HEALTHY; ChatGPT sibling DEGRADED; lease acquired/released; 0 pre-dispatch retries; generation budget now 1/12. Provider-original PNG 1,324,473 bytes SHA `d4a845815aa3d01d202ad80efba7ed9af50e859a9f9b6195c3cbaa891462eced`.
 - Current safety: broker READY single owner PID 640348, max_tabs=8, active leases 0, profile integrity metadata check PASS, credential/cookie/token reads false, spend/submission/publication false. **Do not mark DONE before 2026-09-07T06:55:01.139Z and durable 24h evidence evaluation.**
+
+---
+
+## 2026-09-06 - FA-204 visual-rights resolution DONE/PASS
+
+- Previous `WAITING_FOUNDER_RIGHTS_REVIEW` remains preserved as registry revision 2. Added CPU-only rights runtime: Tesseract 5.3.4 + OpenAI CLIP RN50 (`afeb0e10...04b6762`), with deterministic thresholds and synthetic watermark/text-logo/graphic-logo/unsafe controls.
+- Exact master `5630d1fd...70a06`: OCR consensus empty; logo score 0.104515 CLEAR; watermark score 0.118678 CLEAR; unsafe score 0.000200 CLEAR; source-IP risk score 0.002604 CLEAR. All text/logo/watermark/safety detector states COMPLETE.
+- Self-test PASS proves the runtime is not an always-clear detector: watermark/text-logo/graphic-logo/unsafe controls are detected; synthetic branded trade-dress source-IP risk is 0.935102 STRONG_RISK and synthetic fictional-character source-IP risk is 0.999960 STRONG_RISK.
+- Rights signal now PASS; automated source-rights preflight CLEAR while explicitly claiming neither legal clearance nor human rights clearance. Synthetic trademark hard-veto remains BLOCK.
+- Package is `PACKAGE_READY` with package-plan SHA `e5912d1892f5faeedf0a931076ac8d34f7854e6ba12635f0c5840554a69a326b`. Orchestration revision 8 is PACKAGE_READY; State Manager revision 3 records explicit review->PASS rights resolution and idempotent replay.
+- Final validation after FA-121 runtime-status reconciliation: 46 focused PASS; 673 Factory PASS / 1 PyPDF2 warning; one-canon pytest 6 PASS; validator 11/11 PASS; secret scan 0.
+- FA-205 READY for Founder exact-hash QC. Automated rights PASS is not Founder approval and grants no submission/publication authority.
