@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "10.0-fa206-factory-asset-v1-accepted",
+  "revision": "10.1-fa305-auth-closed-cluster-b-activation-prep-vector-future",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2384,13 +2384,13 @@
         "FA-300",
         "FA-304"
       ],
-      "status": "WAITING_FOUNDER",
+      "status": "IN_PROGRESS",
       "authority": "FOUNDER_REQUIRED_FOR_ACCOUNT_AUTH",
       "artifact": "company/factory-asset/contracts/cluster-provisioning.v1.json; company/browser/linux/cluster_profile_provisioning.mjs; company/muxia/scripts/linux/muxia-cluster-auth-handoff.mjs; company/factory-asset/receipts/FA-305-cluster-b-provisioning.receipt.json",
       "acceptance": "A new persistent profile is created without copying session secrets from Cluster A; Founder may pre-auth providers; runtime returns to headless single-owner operation after auth.",
-      "updated_at": "2026-09-05",
-      "waiting_on": "FOUNDER_AUTH",
-      "result": "WAITING_FOUNDER_AUTH: implementation/pre-auth acceptance PASS, but full FA-305 PASS is intentionally not claimed. A real temporary Cluster B profile began with 0 entries, was owned by one real Chromium broker on loopback, preserved max_tabs=8, rejected a second broker without losing the primary lock, and rolled back cleanly. Provisioning accepts no source profile and records zero inherited session material; Cluster A was not accessed. Path symlinks and ownership mismatch fail closed. The visible Founder handoff contract requires a stable browser with no CDP/automation attachment and a fully stopped broker. Provider calls/login actions/spend were 0 and the canonical Cluster B profile was not created. Validation: 8 focused PASS; 651 Factory PASS (1 PyPDF2 deprecation warning); 6 one-canon pytest PASS; validator 11/11 PASS."
+      "updated_at": "2026-09-06",
+      "waiting_on": "ARCHITECT_LIVE_CLUSTER_B_ACTIVATION",
+      "result": "IN_PROGRESS: Founder completed visible no-CDP authentication on fresh canonical Cluster B profile and closed the auth browser cleanly. Ephemeral headless broker proved READY single-owner/max_tabs=8/loopback and rejected a second owner. Readiness: Qwen, Gemini, Manus and Duck.ai HEALTHY; ChatGPT DEGRADED COMPOSER_NOT_READY with no auth/checkpoint UI and is excluded from schedulable Cluster B membership until recovery. Canonical registry/systemd activation is being deployed before full PASS."
     },
     {
       "id": "FA-306",
@@ -2589,6 +2589,105 @@
       "artifact": "DIE control-plane federation architecture contract",
       "acceptance": "Factory Console can become a bounded module of a future DIE holding-company dashboard through stable identity, event, command and deep-link contracts without coupling Factory runtime to an unfinished holding UI.",
       "defer_reason": "DIE holding-company control plane remains a future strategic layer; preserve module boundary now and implement federation only when the holding dashboard is authorized."
+    },
+    {
+      "id": "FA-V001",
+      "phase": 6,
+      "track": "VECTOR_NATIVE_EXPANSION",
+      "priority": 340,
+      "title": "Define Claude native SVG provider contract",
+      "depends_on": [
+        "FA-206"
+      ],
+      "status": "DEFERRED",
+      "authority": "ARCHITECT",
+      "artifact": "Claude native SVG provider contract and capability truth matrix",
+      "acceptance": "Define a text/code-output native-vector provider boundary for Claude SVG Artifacts without claiming raster image generation; pin supported SVG artifact extraction, model/surface truth, zero-spend authority and no Cluster A login requirement before canary.",
+      "defer_reason": "Founder approved as future work only; do not execute during FA-305/FA-306 scale-up."
+    },
+    {
+      "id": "FA-V002",
+      "phase": 6,
+      "track": "VECTOR_NATIVE_EXPANSION",
+      "priority": 341,
+      "title": "Implement SVG sanitizer and structural QA",
+      "depends_on": [
+        "FA-V001"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "SVG sanitizer, parser and structural QA tests",
+      "acceptance": "Fail closed on scripts, external references, embedded raster, malformed XML, unsafe fonts/text and non-editable structure; preserve deterministic native vector geometry and lineage."
+    },
+    {
+      "id": "FA-V003",
+      "phase": 6,
+      "track": "VECTOR_NATIVE_EXPANSION",
+      "priority": 342,
+      "title": "Run Claude bounded native-vector canary",
+      "depends_on": [
+        "FA-V002"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
+      "artifact": "Claude bounded SVG canary receipt and original SVG bytes",
+      "acceptance": "One Founder-authorized Claude attempt produces extractable original SVG bytes that pass sanitizer/structural QA and are stored with exact hash lineage; no raster-image-generation claim, no publication, no spend."
+    },
+    {
+      "id": "FA-V004",
+      "phase": 6,
+      "track": "VECTOR_NATIVE_EXPANSION",
+      "priority": 343,
+      "title": "Implement SVG to EPS and preview derivative pipeline",
+      "depends_on": [
+        "FA-V003"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "SVG master to EPS/PNG/JPEG/WEBP/PDF derivative pipeline",
+      "acceptance": "Native SVG master deterministically yields marketplace EPS plus preview derivatives while preserving editability, dimensions/viewBox and exact lineage; raster-to-vector fabrication remains forbidden."
+    },
+    {
+      "id": "FA-V005",
+      "phase": 6,
+      "track": "VECTOR_NATIVE_EXPANSION",
+      "priority": 344,
+      "title": "Implement vector metadata rights and distinctness gates",
+      "depends_on": [
+        "FA-V004"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "vector metadata, trademark/IP, structural distinctness and rights gates",
+      "acceptance": "Vector-native assets receive metadata/disclosure plus duplicate, trademark/logo, text/font and rights checks with explicit UNKNOWN/REVIEW_REQUIRED states."
+    },
+    {
+      "id": "FA-V006",
+      "phase": 6,
+      "track": "VECTOR_NATIVE_EXPANSION",
+      "priority": 345,
+      "title": "Accept Adobe Stock vector PACKAGE_READY canary",
+      "depends_on": [
+        "FA-V005"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_ACCEPTANCE",
+      "artifact": "Adobe Stock vector PACKAGE_READY canary receipt",
+      "acceptance": "One sanitized editable SVG vector package satisfies current Adobe-specific delivery evidence, metadata and Founder QC without marketplace submission/publication."
+    },
+    {
+      "id": "FA-V007",
+      "phase": 6,
+      "track": "VECTOR_NATIVE_EXPANSION",
+      "priority": 346,
+      "title": "Accept multi-market vector packaging",
+      "depends_on": [
+        "FA-V006"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "multi-market vector packaging acceptance receipt",
+      "acceptance": "One native vector semantic asset compiles into evidence-supported per-market SVG/EPS/preview packages with unsupported or stale format rules explicit; no marketplace upload is performed."
     }
   ],
   "windows_oauth_proof_levels": {

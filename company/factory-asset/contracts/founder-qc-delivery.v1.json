@@ -1,0 +1,27 @@
+{
+  "schema": "die.factory-asset.founder-qc-delivery-contract.v1",
+  "revision": "1.0.0",
+  "status": "CANONICAL",
+  "purpose": "Guarantee every Founder-facing QC artifact is readable from the governed RDP operator account without weakening internal artifact permissions.",
+  "review_surface": {
+    "workspace_pattern": "/var/lib/die/workspaces/<TASK_ID>/qc/<listing-file>",
+    "file_mode_octal": "0640",
+    "required_group": "die-runtime",
+    "world_readable": false,
+    "source_derivative_permission_may_remain_restrictive": true,
+    "copy_semantics": "FOUNDER_FACING_ALIAS_ONLY"
+  },
+  "invariants": [
+    "WAITING_FOUNDER_QC must reference a Founder-readable qc alias, not a private internal derivative.",
+    "QC alias content must remain exact-byte/hash lineage-linked to its internal delivery artifact.",
+    "QC alias must be owner-readable and die-runtime-group-readable, never world-readable.",
+    "Permission normalization must not grant submission, publication, account, spend or provider authority.",
+    "Legacy parked QC aliases are reconciled to the same readability invariant without changing bytes."
+  ],
+  "authority": {
+    "read_access_only": true,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_usd": 0
+  }
+}

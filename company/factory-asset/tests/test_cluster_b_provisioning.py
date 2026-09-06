@@ -24,7 +24,13 @@ def test_cluster_b_contract_is_pre_auth_and_not_active_registry_member():
     assert b['initial_activation_state'] == 'WAITING_FOUNDER_AUTH'
     assert c['acceptance_boundary']['founder_auth_required_for_full_fa305_pass'] is True
     active = json.loads(ACTIVE.read_text())
-    assert {x['cluster_id'] for x in active['clusters']} == {'cluster-a'}
+    ids = {x['cluster_id'] for x in active['clusters']}
+    assert 'cluster-a' in ids
+    if 'cluster-b' in ids:
+        live = next(x for x in active['clusters'] if x['cluster_id']=='cluster-b')
+        assert live['profile_id']=='web-ai-cluster-b'
+        assert live['profile_dir']=='/var/lib/muxia/profiles/web-ai-cluster-b/browser'
+        assert live['lifecycle_state']=='ACTIVE'
 
 
 def test_provisioner_has_no_profile_clone_or_cluster_a_secret_read_surface():

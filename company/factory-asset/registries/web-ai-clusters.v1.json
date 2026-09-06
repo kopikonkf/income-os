@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.web-ai-cluster-registry.v1",
-  "revision": "1.0.0",
-  "status": "CANONICAL_CANDIDATE",
+  "revision": "1.1.0-cluster-b-activated",
+  "status": "CANONICAL_ACTIVE_MULTI_CLUSTER",
   "rules": {
     "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS_PER_CLUSTER_PROFILE",
     "max_tabs_per_cluster": 8,
@@ -119,6 +119,105 @@
       "lease_default_ttl_seconds": 300,
       "max_active_browser_generations": 5,
       "reserved_recovery_tabs": 3
+    },
+    {
+      "cluster_id": "cluster-b",
+      "display_name": "Web-AI Army Cluster B",
+      "profile_id": "web-ai-cluster-b",
+      "profile_dir": "/var/lib/muxia/profiles/web-ai-cluster-b/browser",
+      "runtime_owner": "MUXIA",
+      "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+      "max_tabs": 8,
+      "lifecycle_state": "ACTIVE",
+      "providers": [
+        {
+          "provider_id": "chatgpt",
+          "membership": "DEGRADED_NOT_SCHEDULABLE",
+          "preferred_transport": "BROWSER_CDP",
+          "linux_evidence": "PROVEN",
+          "readiness_profile": "chatgpt",
+          "evidence": [
+            "company/factory-asset/receipts/FA-W016-chatgpt-browser-cdp-backend.receipt.json",
+            "company/factory-asset/receipts/FA-113-muxia-provider-boundary.receipt.json"
+          ],
+          "cluster_b_readiness": "DEGRADED",
+          "cluster_b_readiness_reason": "COMPOSER_NOT_READY",
+          "cluster_b_readiness_evidence": "company/factory-asset/fixtures/multi-cluster/FA-305-cluster-b-readiness.json"
+        },
+        {
+          "provider_id": "qwen",
+          "membership": "ACTIVE",
+          "preferred_transport": "SESSION_API",
+          "browser_fallback": "BROWSER_CDP",
+          "linux_evidence": "PROVEN_FALLBACK",
+          "readiness_profile": "qwen",
+          "evidence": [
+            "company/factory-asset/receipts/FA-112-qwen-linux-canary.receipt.json"
+          ],
+          "cluster_b_readiness": "HEALTHY",
+          "cluster_b_readiness_reason": "COMPOSER_READY",
+          "cluster_b_readiness_evidence": "company/factory-asset/fixtures/multi-cluster/FA-305-cluster-b-readiness.json"
+        },
+        {
+          "provider_id": "gemini",
+          "membership": "ACTIVE",
+          "preferred_transport": "BROWSER_CDP",
+          "linux_evidence": "PROVEN",
+          "readiness_profile": "gemini",
+          "evidence": [
+            "company/factory-asset/receipts/FA-114-gemini-capability-probe.receipt.json"
+          ],
+          "cluster_b_readiness": "HEALTHY",
+          "cluster_b_readiness_reason": "COMPOSER_READY",
+          "cluster_b_readiness_evidence": "company/factory-asset/fixtures/multi-cluster/FA-305-cluster-b-readiness.json"
+        },
+        {
+          "provider_id": "manus",
+          "membership": "ACTIVE",
+          "preferred_transport": "BROWSER_CDP",
+          "linux_evidence": "PROVEN",
+          "readiness_profile": "manus",
+          "evidence": [
+            "company/factory-asset/receipts/FA-116-manus-capability-probe.receipt.json"
+          ],
+          "cluster_b_readiness": "HEALTHY",
+          "cluster_b_readiness_reason": "COMPOSER_READY",
+          "cluster_b_readiness_evidence": "company/factory-asset/fixtures/multi-cluster/FA-305-cluster-b-readiness.json"
+        },
+        {
+          "provider_id": "duckai",
+          "membership": "ACTIVE",
+          "preferred_transport": "BROWSER_CDP",
+          "linux_evidence": "ROUTE_AND_EXTRACTION_PROVEN",
+          "autonomous_shared_broker_reproof": "FA-301/FA-302/FA-307",
+          "readiness_profile": "duckai",
+          "evidence": [
+            "company/factory-asset/receipts/FA-118-duckai-capability-probe.receipt.json"
+          ],
+          "cluster_b_readiness": "HEALTHY",
+          "cluster_b_readiness_reason": "COMPOSER_READY",
+          "cluster_b_readiness_evidence": "company/factory-asset/fixtures/multi-cluster/FA-305-cluster-b-readiness.json"
+        },
+        {
+          "provider_id": "grok",
+          "membership": "DEFERRED_OPTIONAL",
+          "preferred_transport": "UNKNOWN",
+          "linux_evidence": "DEFERRED_NOT_IN_ACTIVE_POOL",
+          "cluster_b_readiness": "NOT_PROBED_FOR_ACTIVE_POOL"
+        }
+      ],
+      "provider_tab_limits": {
+        "qwen": 1,
+        "gemini": 1,
+        "manus": 1,
+        "duckai": 1,
+        "chatgpt": 1
+      },
+      "lease_default_ttl_seconds": 300,
+      "max_active_browser_generations": 4,
+      "reserved_recovery_tabs": 4,
+      "activation_task": "FA-305",
+      "activation_policy": "AUTH_CLOSED_THEN_HEADLESS_BROKER_THEN_READINESS_GATED_PROVIDER_MEMBERSHIP"
     }
   ]
 }

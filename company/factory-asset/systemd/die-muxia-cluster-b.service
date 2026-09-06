@@ -1,0 +1,22 @@
+[Unit]
+Description=MUXIA Cluster B single-owner browser broker
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=kopiko
+Group=kopiko
+WorkingDirectory=/srv/die
+Environment=PLAYWRIGHT_BROWSERS_PATH=/opt/muxia/playwright-browsers
+ExecStart=/usr/local/bin/node /srv/die/company/muxia/scripts/linux/muxia-cluster-broker.mjs --die-home /srv/die --cluster-id cluster-b --registry /srv/die/company/factory-asset/registries/web-ai-clusters.v1.json --state-root /var/lib/muxia/state/cluster-brokers --control-port 39122 --headless true
+Restart=on-failure
+RestartSec=5
+TimeoutStartSec=45
+TimeoutStopSec=30
+KillSignal=SIGTERM
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

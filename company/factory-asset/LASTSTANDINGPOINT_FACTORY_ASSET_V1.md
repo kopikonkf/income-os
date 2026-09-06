@@ -690,3 +690,12 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Live bytes were re-hashed during acceptance: provider original, 4096x4096 master, Adobe JPEG, PNG preview, WebP preview and metadata-injected listing all remain exact. Metadata identity is verified through canonical `metadata_sha256`, not JSON formatting bytes.
 - Rollback evidence PASS non-destructively: registry history preserves revision 1 commit, revision 2 REVIEW_REQUIRED/PACKAGE_BLOCKED and revision 3 PASS/PACKAGE_READY; revision-3 `prior_enrichment_sha256` points to revision-2 enrichment; provider original, staged master blob and canonical master remain retained and hash-stable. There is no external publication side effect to undo.
 - Publication/submission/upload/spend remain outside scope and unauthorized. FA-121 24h soak is independent and remains IN_PROGRESS.
+
+---
+
+## 2026-09-06 - FA-305 Founder auth closed; Cluster B activation prepared
+- Founder authenticated ChatGPT, Qwen, Grok, Gemini and Manus in the fresh canonical `web-ai-cluster-b` profile; Duck.ai requires no login. Visible no-CDP auth browser closed normally and provisioning state reached `AUTH_HANDOFF_CLOSED`.
+- Ephemeral headless Cluster B broker proved READY single-owner on loopback, max_tabs=8 and second-owner rejection. Qwen/Gemini/Manus/Duck.ai are HEALTHY; ChatGPT is DEGRADED (`COMPOSER_NOT_READY`) without auth/checkpoint UI and remains non-schedulable on Cluster B until recovery.
+- Canonical Cluster B registry/systemd activation prepared; FA-305 remains IN_PROGRESS until deployed live service is proven.
+- Founder-approved future vector track FA-V001..FA-V007 is recorded only as future work; FA-V001 is DEFERRED and no Claude live action/login is authorized in this lane.
+- Founder QC Delivery Contract v1 requires every `WAITING_FOUNDER_QC` alias under `qc/` to be `0640`, `die-runtime` group-readable and not world-readable. Legacy live aliases were reconciled 7/7 without changing bytes.
