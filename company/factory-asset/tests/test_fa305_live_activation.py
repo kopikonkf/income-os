@@ -44,3 +44,13 @@ def test_founder_qc_delivery_contract_matches_runtime_alias_policy():
  c=json.loads(QC.read_text());r=c['review_surface']
  assert r['file_mode_octal']=='0640' and r['required_group']=='die-runtime' and r['world_readable'] is False
  s=ORCH.read_text();assert 'def make_founder_readable' in s and 'path.chmod(0o640)' in s
+
+
+def test_fa305_done_unlocks_fa306_and_receipt_records_live_systemd_acceptance():
+ g=json.loads(GRAPH.read_text());by={x['id']:x for x in g['tasks']}
+ assert by['FA-305']['status']=='DONE' and by['FA-306']['status']=='READY'
+ r=json.loads((R/'company/factory-asset/receipts/FA-305-cluster-b-provisioning.receipt.json').read_text())
+ assert r['full_fa305_acceptance'] is True and r['result']=='PASS'
+ live=r['live_systemd_acceptance'];assert live['enabled'] is True and live['active'] is True and live['state']=='READY'
+ assert live['owner_pid_changed_after_restart'] is True and live['second_owner_rejected'] is True and live['active_leases_after_restart']==0
+ assert live['provider_generation_calls_performed']==0 and live['submission_authorized'] is False and live['publication_authorized'] is False
