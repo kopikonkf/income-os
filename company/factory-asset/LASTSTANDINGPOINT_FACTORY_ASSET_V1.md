@@ -682,3 +682,11 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Exact package hashes are pinned in `company/factory-asset/receipts/FA-205-founder-qc.receipt.json`; package state at review was `PACKAGE_READY`.
 - This records Founder QC only. Submission, publication, marketplace upload and spend remain unauthorized.
 - FA-205 DONE; FA-206 READY.
+
+---
+
+## 2026-09-06 - FA-206 Factory Asset Level Up v1 acceptance DONE/PASS
+- End-to-end governed canary acceptance passes FA-200 selection -> FA-201 Blueprint -> FA-202 provider/master/derivatives -> FA-203 registry/QA -> FA-204 metadata/rights/PACKAGE_READY -> FA-205 Founder exact-hash APPROVE.
+- Live bytes were re-hashed during acceptance: provider original, 4096x4096 master, Adobe JPEG, PNG preview, WebP preview and metadata-injected listing all remain exact. Metadata identity is verified through canonical `metadata_sha256`, not JSON formatting bytes.
+- Rollback evidence PASS non-destructively: registry history preserves revision 1 commit, revision 2 REVIEW_REQUIRED/PACKAGE_BLOCKED and revision 3 PASS/PACKAGE_READY; revision-3 `prior_enrichment_sha256` points to revision-2 enrichment; provider original, staged master blob and canonical master remain retained and hash-stable. There is no external publication side effect to undo.
+- Publication/submission/upload/spend remain outside scope and unauthorized. FA-121 24h soak is independent and remains IN_PROGRESS.

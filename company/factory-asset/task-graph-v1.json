@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "9.9-fa205-founder-qc-approved",
+  "revision": "10.0-fa206-factory-asset-v1-accepted",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1766,10 +1766,12 @@
       "depends_on": [
         "FA-205"
       ],
-      "status": "READY",
+      "status": "DONE",
       "acceptance_batch": true,
-      "artifact": "company/factory-asset/receipts/FA-206-factory-asset-v1-acceptance.receipt.json",
-      "acceptance": "Blueprint, provider, immutable master, derivatives, registry, QA, metadata/rights, Founder QC and rollback evidence pass; publication remains outside scope."
+      "artifact": "company/factory-asset/receipts/FA-206-factory-asset-v1-acceptance.receipt.json; company/factory-asset/fixtures/governed-canary/FA-206-v1-acceptance-result.json",
+      "acceptance": "Blueprint, provider, immutable master, derivatives, registry, QA, metadata/rights, Founder QC and rollback evidence pass; publication remains outside scope.",
+      "completed_at": "2026-09-06",
+      "result": "PASS: complete governed canary v1 chain accepted from FA-200 selection through FA-205 Founder exact-hash approval. Blueprint/provider/immutable original/master normalization/derivatives/registry/technical QA/metadata/automated rights/package readiness/Founder QC/rollback evidence all PASS. Rollback rehearsal reconstructs revision-2 review boundary in-memory from durable history while immutable provider original, staged master and canonical master remain hash-stable. No provider call, upload, submission, publication or spend occurred in FA-206; publication remains outside scope."
     },
     {
       "id": "FA-C000",
