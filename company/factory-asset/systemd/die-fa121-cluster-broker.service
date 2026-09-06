@@ -1,0 +1,22 @@
+[Unit]
+Description=Factory Asset FA-121 Cluster A single-owner broker
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=kopiko
+Group=kopiko
+WorkingDirectory=/opt/factory-asset/fa121-runtime
+Environment=PLAYWRIGHT_BROWSERS_PATH=/opt/muxia/playwright-browsers
+ExecStart=/usr/local/bin/node /opt/factory-asset/fa121-runtime/company/muxia/scripts/linux/muxia-cluster-broker.mjs --die-home /opt/factory-asset/fa121-runtime --cluster-id cluster-a --registry /opt/factory-asset/fa121-runtime/company/factory-asset/registries/web-ai-clusters.v1.json --state-root /var/lib/factory-asset/fa121-stability/broker --control-port 39121 --headless true
+Restart=on-failure
+RestartSec=5
+TimeoutStartSec=45
+TimeoutStopSec=30
+KillSignal=SIGTERM
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

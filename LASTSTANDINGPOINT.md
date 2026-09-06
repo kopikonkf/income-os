@@ -3786,3 +3786,9 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Rights are fail-closed: text/logo/watermark/safety detector runtimes are unavailable, so all four detector states remain INCOMPLETE and package remains PACKAGE_BLOCKED(RIGHTS_REVIEW_REQUIRED). No empty PASS evidence was fabricated.
 - Orchestration stops at METADATA_READY with rights REVIEW_REQUIRED; State Manager registry revision 2 records the enrichment idempotently. FA-205 remains BLOCKED.
 - Validation: 41 focused; 661 Factory; 6 one-canon pytest; 11/11 validator; secret scan 0.
+
+## 2026-09-06 — FA-121 stability canary implementation ready / live window not started
+- Dedicated 24h provider-stability runner is implemented independently of the production cycle. Frozen load budget before first dispatch: 5m heartbeat tick, 2h provider-generation cadence, max 12 total / 6 per provider, queue limit 1, no catch-up bursts, max 2 pre-dispatch retries.
+- FA-301 single broker owner + FA-302 tab leases + FA-303 readiness + FA-304 provider+cluster routing + FA-120 backpressure are wired. ChatGPT actual transport is BROWSER_CDP; Qwen live transport is truthfully BROWSER_CDP fallback, never falsely SESSION_API.
+- Restart journal and duplicate-commit guards are validated; profile integrity is metadata-only and no cookie/token/OAuth/session-secret value is read or hashed. Provider calls remain 0 before start.
+- Validation: focused 6 PASS; Factory 667 PASS / 1 PyPDF2 warning; one-canon 6 PASS; validator 11/11 PASS. FA-121 remains READY until the real 24h runtime is initialized and started.

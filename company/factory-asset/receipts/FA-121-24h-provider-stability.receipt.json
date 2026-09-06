@@ -1,0 +1,86 @@
+{
+  "schema": "die.factory-asset.fa121-24h-provider-stability-receipt.v1",
+  "task_id": "FA-121",
+  "date": "2026-09-06",
+  "status": "READY",
+  "implementation_result": "PASS",
+  "runtime_status": "NOT_STARTED",
+  "full_fa121_acceptance": false,
+  "reason": "The dedicated 24-hour stability runner, broker-backed provider worker, load contract and systemd scheduler are implemented and validated. No 24-hour live window has started yet; DONE/PASS is intentionally not claimed.",
+  "architecture": {
+    "contract": "company/factory-asset/contracts/fa121-stability-canary.v1.json",
+    "runner": "company/factory-asset/bin/run_fa121_stability_canary.mjs",
+    "provider_worker": "company/factory-asset/lib/fa121_provider_worker.mjs",
+    "broker_service": "company/factory-asset/systemd/die-fa121-cluster-broker.service",
+    "tick_service": "company/factory-asset/systemd/die-fa121-stability-tick.service",
+    "timer": "company/factory-asset/systemd/die-fa121-stability.timer",
+    "installer": "company/factory-asset/bin/install_fa121_stability_systemd.sh",
+    "starter": "company/factory-asset/bin/start_fa121_stability.sh"
+  },
+  "load_budget": {
+    "window_seconds": 86400,
+    "scheduler_tick_seconds": 300,
+    "dispatch_interval_seconds": 7200,
+    "maximum_provider_generations": 12,
+    "maximum_provider_generations_per_provider": 6,
+    "maximum_pre_dispatch_retries": 2,
+    "queue_limit": 1,
+    "catch_up_burst_allowed": false
+  },
+  "transport_truth": {
+    "chatgpt": "BROWSER_CDP",
+    "qwen_primary_contract": "SESSION_API",
+    "qwen_live_canary_transport": "BROWSER_CDP_FALLBACK",
+    "qwen_session_api_live_executor_claimed": false
+  },
+  "safety": {
+    "dedicated_lane_separate_from_die_production_cycle": true,
+    "production_seed_selection_used": false,
+    "fa202_artifact_family_mutated": false,
+    "fa203_or_fa204_mutated": false,
+    "fa305_or_fa306_mutated": false,
+    "profile_secret_values_read": false,
+    "cookie_token_oauth_values_read": false,
+    "profile_secret_values_hashed": false,
+    "provider_calls_performed": 0,
+    "accounts_created": 0,
+    "checkpoint_or_captcha_bypass": false,
+    "spend_usd": 0,
+    "packaging_derivatives_counted_as_generations": false
+  },
+  "restart_and_idempotency": {
+    "attempt_journal_before_dispatch": true,
+    "dispatch_commit_persisted_before_waiting_for_output": true,
+    "pre_dispatch_restart_counts_generation": false,
+    "post_dispatch_restart_counts_generation_once_and_forbids_retry": true,
+    "duplicate_committed_generation_fails_closed": true
+  },
+  "profile_integrity": {
+    "content_read": false,
+    "secret_value_hashing": false,
+    "metadata_only": [
+      "directory_exists",
+      "is_directory",
+      "is_symlink",
+      "uid",
+      "gid",
+      "mode",
+      "inode",
+      "device"
+    ]
+  },
+  "validation": {
+    "focused_fa121": "6 passed",
+    "factory_regression": "667 passed, 1 warning (PyPDF2 deprecation)",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "company_secret_scan_hits": 0,
+    "muxia_typescript_build": "PASS",
+    "node_syntax": "PASS",
+    "shell_syntax": "PASS",
+    "selftest": "PASS",
+    "combined_pytest": "673 passed, 1 warning",
+    "reconciled_main": "dc47a0f82bd995bea044001cd6447ed66ce4c416 (FA-204 merged)"
+  },
+  "next_boundary": "Publish setup while FA-121 remains READY, deploy only from merged canon to the dedicated runtime root, initialize the exact 24-hour state with the encoded budget, start the dedicated broker/timer, then publish FA-121 as RUNNING with exact start/end and scheduler identity."
+}
