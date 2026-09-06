@@ -6,6 +6,7 @@ HERE=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(HERE))
 from production_active_card_resolver import resolve_active_card
 from production_seed_selector import select_seed
+from production_seed_replenisher import replenish_seed_pool
 import factory_orchestration_v2 as factory_v2
 WORKSPACES=Path('/var/lib/die/workspaces'); DB=Path('/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db')
 HERMES='/opt/die/hermes/venv/bin/hermes'; HERMES_HOME='/var/lib/die/hermes/income-operator'
@@ -13,6 +14,8 @@ WORKER_DISPATCH=HERE/'worker_dispatch.py'; WORKER_RUNNER=Path('/srv/die/company/
 UPSCALE=Path('/srv/die/bridge/income_os_bridge/asset_upscale.py'); UPSCALE_POLICY=Path('/srv/die/company/atlas/object-centric/object-asset-engine/source/scripts/postprocess/upscale-policy.v1.json')
 MUXIA_QUEUE=Path('/var/lib/die/state/muxia-dispatch')
 LOCK=Path('/var/lib/die/state/production-runtime/tick.lock')
+REPLENISH_POLICY=Path(__file__).with_name('production_seed_replenishment_policy.v1.json')
+REPLENISH_STATE=Path('/var/lib/die/state/production-runtime/replenishment')
 DIE_GROUP='die-runtime'
 
 def ensure_shared_workspace(w:Path)->Path:
@@ -39,14 +42,25 @@ def send(msg:str):
 def write_progress(w:Path,lines:list[str]):(w/'PROGRESS.md').write_text('# '+w.name+' progress\n\n'+'\n'.join('- '+x for x in lines)+'\n')
 
 def start_seed()->dict:
+ replenishment=replenish_seed_pool(DB,WORKSPACES,policy_path=REPLENISH_POLICY,state_root=REPLENISH_STATE)
  s=select_seed(DB,WORKSPACES)
- if s['status']!='SELECTED':return {'status':'IDLE','reason':s['status']}
+ if s['status']!='SELECTED':
+  return {'status':'IDLE','reason':s['status'],'replenishment':{k:replenishment.get(k) for k in ('status','remaining_before','remaining_after','promoted_count','next_action') if k in replenishment},'next_action':replenishment.get('next_action','REPLENISH_APPROVED_U1_VALIDATED_SEED_POOL')}
  seed=s['seed'];task='PROD'+seed['id'].replace('-','')
  w=WORKSPACES/task;w.mkdir(mode=0o2770,parents=True,exist_ok=False);ensure_shared_workspace(w)
+ selection={**s,'replenishment':{k:replenishment.get(k) for k in ('status','policy_revision','remaining_before','remaining_after','promoted_count','receipt_path') if k in replenishment}}
+ (w/'seed-selection.json').write_text(json.dumps(selection,indent=2)+'\n')
  fam=f"{seed['category_path']} (object_class: {seed['object_class']})"
- write_progress(w,[f"Seed: {seed['id']} ({seed['canonical_name']})",f"Family: {fam}",'State: BLUEPRINT_REQUIRED','Blueprint status: REQUIRED','Intended provider: MUXIA (chatgpt-linux-a)',f'Started: {now()}','Next action: Production cognition line authors/reviews fixed Blueprint.'])
- factory_v2.telegram_event(w,'PRODUCTION_STARTED',{'seed':seed['canonical_name'],'seed_id':seed['id'],'family':fam,'blueprint':'REQUIRED','provider':'MUXIA/chatgpt-linux-a'},send)
- return {'status':'STARTED','task_id':task,'seed':seed['canonical_name']}
+ expr=s.get('commercial_expression') or {}
+ rows=[f"Seed: {seed['id']} ({seed['canonical_name']})",f"Family: {fam}"]
+ if expr:
+  rows+=[f"Commercial expression: {expr.get('expression_id')} | {expr.get('commercial_expression')}",f"Opportunity evidence: {expr.get('evidence_level')} | policy={expr.get('policy_revision')}"]
+ rows+=['State: BLUEPRINT_REQUIRED','Blueprint status: REQUIRED','Intended provider: MUXIA (chatgpt-linux-a)',f'Started: {now()}','Next action: Production cognition line authors/reviews fixed Blueprint.']
+ write_progress(w,rows)
+ event={'seed':seed['canonical_name'],'seed_id':seed['id'],'family':fam,'blueprint':'REQUIRED','provider':'MUXIA/chatgpt-linux-a'}
+ if expr:event.update({'expression_id':expr.get('expression_id'),'commercial_expression':expr.get('commercial_expression'),'opportunity_evidence':expr.get('evidence_level')})
+ factory_v2.telegram_event(w,'PRODUCTION_STARTED',event,send)
+ return {'status':'STARTED','task_id':task,'seed':seed['canonical_name'],'seed_id':seed['id'],'commercial_expression':expr or None,'provider_call_performed':False,'replenishment':selection['replenishment']}
 
 def build_worker(w:Path,bp:dict,lock:dict):
  if lock.get('blueprint_sha256')!=csha(bp):raise RuntimeError('E_BLUEPRINT_LOCK_HASH')
@@ -133,7 +147,7 @@ def tick()->dict:
    r['heartbeat']='PRODUCTION_RUNTIME_IDLE'
    r['observed_at']=now()
    r['provider_call_performed']=False
-   if r.get('reason')=='NO_ELIGIBLE_SEED':r['next_action']='REPLENISH_APPROVED_U1_VALIDATED_SEED_POOL'
+   if r.get('reason')=='NO_ELIGIBLE_SEED' and not r.get('next_action'):r['next_action']='REPLENISH_APPROVED_U1_VALIDATED_SEED_POOL'
   return r
  if a['status']=='DELEGATED_ACTIVE_CARD':return {'status':'IDLE','reason':'WAITING_COGNITION','heartbeat':'PRODUCTION_RUNTIME_IDLE','observed_at':now(),'provider_call_performed':False,'parked_card_count':a.get('parked_card_count',0)}
  if a['status']!='CONTINUE_ACTIVE_CARD':return {'status':'IDLE','reason':a['status'],'heartbeat':'PRODUCTION_RUNTIME_IDLE','observed_at':now(),'provider_call_performed':False,'parked_card_count':a.get('parked_card_count',0)}

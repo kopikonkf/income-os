@@ -1,0 +1,85 @@
+{
+  "schema": "die.production.seed-replenishment-policy.v1",
+  "revision": "1.0",
+  "low_watermark": 8,
+  "target_pool_size": 24,
+  "max_promotions_per_run": 24,
+  "candidate_gate": {
+    "wave3_status": "eligible",
+    "source_tier": "pass",
+    "ip_risk": "none",
+    "min_concreteness_score": 0.85,
+    "max_word_count": 3,
+    "allowed_suitability": [
+      "lexname=noun.artifact",
+      "lexname=noun.food",
+      "lexname=noun.plant",
+      "lexname=noun.object"
+    ]
+  },
+  "evidence": {
+    "source_kind": "FOUNDER_PROVIDED_RESEARCH_SNAPSHOT",
+    "source_title": "ChatGPT - Riset Format Asset Demand",
+    "source_date": "2026-09-01",
+    "claims": [
+      "Photo/raster and PNG/transparent elements are high-demand stock asset families.",
+      "Reusable design components and text-free composable elements show strong marketplace utility.",
+      "Observed marketplace/search examples include flower, car, map, frame, laptop, coffee cup, water bottle and rocket-related terms."
+    ],
+    "truth_boundary": {
+      "absolute_search_volume_available": false,
+      "exact_noun_transaction_observed": false,
+      "category_level_market_utility_observed": true,
+      "direct_term_presence_observed_for_direct_terms": true
+    }
+  },
+  "direct_terms": [
+    "flower", "car", "water bottle", "map", "frame", "rocket",
+    "tree", "laptop", "bottle", "shopping bag", "camera", "chair",
+    "headphones", "light bulb", "candle"
+  ],
+  "utility_terms": [
+    "apron", "barrel", "bead", "bed", "bell", "bench", "binder", "blanket",
+    "boot", "bowl", "bucket", "calculator", "calendar", "clock", "compass",
+    "envelope", "flag", "fork", "hammer", "key", "lamp", "pencil", "plate",
+    "scissors", "spoon", "suitcase", "umbrella", "wallet", "watch", "backpack",
+    "basket", "briefcase", "broom", "can opener", "clipboard", "comb", "drill",
+    "eraser", "flashlight", "frying pan", "helmet", "keyboard", "notebook", "pillow",
+    "pitcher", "rope", "screwdriver", "shelf", "shoe", "stapler", "teapot",
+    "toothbrush", "vase", "wrench", "zipper", "apple", "banana", "orange", "lemon",
+    "strawberry", "avocado", "bread", "cheese", "donut", "cupcake", "cookie", "tomato",
+    "potato", "carrot", "onion", "garlic", "pepper", "mushroom", "broccoli", "cabbage",
+    "corn", "egg", "towel", "hanger", "watering can", "garden shovel", "garden rake",
+    "garden hose", "bicycle helmet", "tennis ball", "soccer ball", "basketball", "baseball glove",
+    "dumbbell", "yoga mat", "camera tripod", "microphone", "speaker", "usb cable", "power bank",
+    "router", "modem", "monitor", "tablet", "smartwatch", "eyeglasses", "sunglasses", "handbag",
+    "purse", "tote bag", "shopping basket", "package", "parcel", "storage box", "toolbox",
+    "lunch box", "thermos", "kettle", "pan", "tray", "cutting board", "spatula", "ladle",
+    "whisk", "rolling pin", "colander", "measuring cup", "bottle opener", "wine glass", "coffee mug", "tea cup"
+  ],
+  "scoring": {
+    "direct_base": 0.72,
+    "category_base": 0.58,
+    "concreteness_bonus_max": 0.06,
+    "class_bonus": {
+      "lexname=noun.artifact": 0.03,
+      "lexname=noun.food": 0.03,
+      "lexname=noun.plant": 0.02,
+      "lexname=noun.object": 0.02
+    },
+    "validated_high_threshold": 0.68,
+    "validated_medium_threshold": 0.55
+  },
+  "expression": {
+    "mode": "ISOLATED_COMPOSABLE_RASTER_V1",
+    "template": "generic unbranded {noun} isolated on white, text-free, for reusable stock design composition",
+    "semantic_identity": "SEED_NOUN_PLUS_COMMERCIAL_EXPRESSION"
+  },
+  "authority": {
+    "provider_call": false,
+    "submission": false,
+    "publication": false,
+    "marketplace_upload": false,
+    "spend_usd": 0
+  }
+}

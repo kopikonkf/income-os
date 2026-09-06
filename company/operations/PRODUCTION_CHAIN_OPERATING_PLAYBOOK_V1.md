@@ -75,6 +75,8 @@ Hermes selects the next eligible seed from the canonical Object Atlas database t
 
 The selector ranks approved `U1-raster` seeds by validated demand and excludes seeds already materialized in production workspaces. It is a child primitive of `production_tick_preflight.py`; the production cron attaches that wrapper as the single agent-mode preflight script, so deterministic active-card orientation is resolved before seed selection and its JSON stdout is injected before Hermes reasoning begins. Hermes MUST consume the injected preflight mode before any ad-hoc repository/database discovery. The wrapper, active-card resolver, and seed selector all have **no authority effect**: they neither grant nor revoke existing authority. Existing zero-spend automated production authority remains governed by this playbook; Founder gates for publish/spend/account/manual rights-QC remain unchanged.
 
+When the remaining approved/validated pool falls below the canonical low-watermark, `production_seed_replenisher.py` MAY perform one bounded transactional replenishment before selection. Replenishment is governed by `production_seed_replenishment_policy.v1.json` and may promote only Wave-3 eligible, source-tier pass, IP-none, sufficiently concrete candidates that are present in the versioned commercial lexicon. Each promotion binds a deterministic `seed_id + commercial_expression_id`, retains its evidence grade, and writes an audit receipt. Direct-term evidence and category-level composable-raster evidence are distinct; category-level evidence MUST NOT be described as observed exact-noun transactions or absolute search volume. Replenishment has no provider/submission/publication/spend authority effect. Bulk promotion of the whole candidate reservoir is forbidden.
+
 ### 4.2 Family role
 
 Family is a portfolio-management and Blueprint-reuse unit, not the lowest-level generation unit.
@@ -419,7 +421,7 @@ On each production tick Hermes:
 0. consumes deterministic `die.production-tick-preflight.v1` output before LLM reasoning. `CONTINUE_ACTIVE_CARD` injects the exact durable card, state, required actor and next action; it takes precedence over seed selection. `BLOCKED_ACTIVE_CARD` fails closed for the current card. Only `START_NEW_SEED` opens Phase-0 seed selection. The preflight is authority-neutral and must not be re-derived by repository search;
 1. reads this playbook;
 2. checks whether an **actionable** unfinished production cycle should be continued first; parked human-gated cards (`WAITING_FOUNDER_QC`, `READY_FOR_MANUAL_PUBLISH`) are excluded from this blocking set;
-3. if no actionable unfinished cycle blocks the slot, selects at most one eligible seed noun even when older parked human-gated cards still await Founder action;
+3. if no actionable unfinished cycle blocks the slot, runs bounded low-watermark seed replenishment when required and then selects at most one eligible seed noun even when older parked human-gated cards still await Founder action;
 4. sends `PRODUCTION_STARTED` Telegram message;
 5. creates/updates Kanban;
 6. obtains/reuses fixed Blueprint;
