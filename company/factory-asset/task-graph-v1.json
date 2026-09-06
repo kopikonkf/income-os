@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "10.1-fa305-auth-closed-cluster-b-activation-prep-vector-future",
+  "revision": "10.2-fa305-cluster-b-pass-fa306-ready",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2384,13 +2384,13 @@
         "FA-300",
         "FA-304"
       ],
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_ACCOUNT_AUTH",
       "artifact": "company/factory-asset/contracts/cluster-provisioning.v1.json; company/browser/linux/cluster_profile_provisioning.mjs; company/muxia/scripts/linux/muxia-cluster-auth-handoff.mjs; company/factory-asset/receipts/FA-305-cluster-b-provisioning.receipt.json",
       "acceptance": "A new persistent profile is created without copying session secrets from Cluster A; Founder may pre-auth providers; runtime returns to headless single-owner operation after auth.",
       "updated_at": "2026-09-06",
-      "waiting_on": "ARCHITECT_LIVE_CLUSTER_B_ACTIVATION",
-      "result": "IN_PROGRESS: Founder completed visible no-CDP authentication on fresh canonical Cluster B profile and closed the auth browser cleanly. Ephemeral headless broker proved READY single-owner/max_tabs=8/loopback and rejected a second owner. Readiness: Qwen, Gemini, Manus and Duck.ai HEALTHY; ChatGPT DEGRADED COMPOSER_NOT_READY with no auth/checkpoint UI and is excluded from schedulable Cluster B membership until recovery. Canonical registry/systemd activation is being deployed before full PASS."
+      "result": "PASS: fresh canonical Cluster B authenticated by Founder without copying Cluster A session material; auth handoff closed cleanly; canonical headless systemd broker is enabled/active/READY single owner on loopback with max_tabs=8, second-owner rejection and restart recovery. Qwen/Gemini/Manus/Duck.ai are schedulable HEALTHY; ChatGPT is isolated DEGRADED COMPOSER_NOT_READY, not AUTH_REQUIRED/CHECKPOINT. No provider generation, secret reads, spend, submission or publication.",
+      "completed_at": "2026-09-06"
     },
     {
       "id": "FA-306",
@@ -2402,10 +2402,11 @@
         "FA-304",
         "FA-305"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "multi-cluster scheduler and fault-isolation tests",
-      "acceptance": "Jobs distribute across healthy clusters with lease isolation, bounded retries, provider/cluster circuit breakers, fairness and no duplicate committed generation."
+      "acceptance": "Jobs distribute across healthy clusters with lease isolation, bounded retries, provider/cluster circuit breakers, fairness and no duplicate committed generation.",
+      "updated_at": "2026-09-06"
     },
     {
       "id": "FA-307",

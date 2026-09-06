@@ -3834,3 +3834,12 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Canonical Cluster B registry/systemd activation prepared; FA-305 remains IN_PROGRESS until deployed live service is proven.
 - Founder-approved future vector track FA-V001..FA-V007 is recorded only as future work; FA-V001 is DEFERRED and no Claude live action/login is authorized in this lane.
 - Founder QC Delivery Contract v1 requires every `WAITING_FOUNDER_QC` alias under `qc/` to be `0640`, `die-runtime` group-readable and not world-readable. Legacy live aliases were reconciled 7/7 without changing bytes.
+
+---
+
+## 2026-09-06 - FA-305 DONE/PASS — canonical Cluster B active
+- Founder-authenticated `web-ai-cluster-b` completed `AUTH_HANDOFF_CLOSED` with no CDP/provider automation and no Cluster A profile copy/import.
+- PR #257 activated canonical Cluster B registry and headless service. `die-muxia-cluster-b.service` is enabled/active and broker is READY on loopback `127.0.0.1:39122`, max_tabs=8. Canonical second-owner attempt was rejected; controlled service restart changed browser owner PID 693865 -> 694238 and returned READY with zero active leases.
+- Schedulable Cluster B provider subset: Qwen, Gemini, Manus, Duck.ai = HEALTHY. ChatGPT remains `DEGRADED_NOT_SCHEDULABLE` (`COMPOSER_NOT_READY`) with no auth/checkpoint UI; Grok remains deferred optional.
+- FA-121 timer/broker remained active. No provider generation, secret-value read, spend, submission or publication occurred.
+- FA-305 DONE/PASS; FA-306 READY.
