@@ -71,14 +71,16 @@
   },
   "validation": {
     "focused_fa121": "6 passed",
-    "factory_regression": "662 passed, 1 warning (PyPDF2 deprecation)",
+    "factory_regression": "667 passed, 1 warning (PyPDF2 deprecation)",
     "one_canon_pytest": "6 passed",
     "one_canon_validator": "11/11 PASS",
     "company_secret_scan_hits": 0,
     "muxia_typescript_build": "PASS",
     "node_syntax": "PASS",
     "shell_syntax": "PASS",
-    "selftest": "PASS"
+    "selftest": "PASS",
+    "combined_pytest": "673 passed, 1 warning",
+    "reconciled_main": "dc47a0f82bd995bea044001cd6447ed66ce4c416 (FA-204 merged)"
   },
   "next_boundary": "Publish setup while FA-121 remains READY, deploy only from merged canon to the dedicated runtime root, initialize the exact 24-hour state with the encoded budget, start the dedicated broker/timer, then publish FA-121 as RUNNING with exact start/end and scheduler identity."
 }
