@@ -11,3 +11,6 @@ def test_telegram_event_is_idempotent(tmp_path):
  w=tmp_path/'PRODTEST';w.mkdir();sent=[];a=m.telegram_event(w,'ARTIFACT_CREATED',{'seed':'shopping bag'},sent.append);b=m.telegram_event(w,'ARTIFACT_CREATED',{'seed':'shopping bag'},sent.append);assert a['event_id']==b['event_id'];assert len(sent)==1;assert b['delivery']=='IDEMPOTENT_REUSE';assert len((w/'factory-v2/telegram-events.jsonl').read_text().splitlines())==1
 def test_listing_slug_is_human_readable_and_collision_bounded():
  assert m.slug('Shopping Bag / Retail')=='shopping-bag-retail'
+
+def test_founder_facing_alias_is_group_readable_but_not_world_readable(tmp_path):
+ p=tmp_path/'listing.jpg';p.write_bytes(b'jpeg');p.chmod(0o600);m.make_founder_readable(p);assert (p.stat().st_mode & 0o777)==0o640
