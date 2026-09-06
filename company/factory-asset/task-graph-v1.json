@@ -1551,13 +1551,15 @@
         "FA-117",
         "FA-120"
       ],
-      "status": "READY",
+      "status": "IN_PROGRESS",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_LOAD",
       "artifact": "company/factory-asset/contracts/fa121-stability-canary.v1.json; company/factory-asset/bin/run_fa121_stability_canary.mjs; company/factory-asset/lib/fa121_provider_worker.mjs; company/factory-asset/receipts/FA-121-24h-provider-stability.receipt.json",
       "acceptance": "Authorized safe pace runs 24 hours with zero profile corruption/secret leakage/duplicate ownership; all limits and failures are observed, not inferred.",
       "updated_at": "2026-09-06",
-      "setup_status": "IMPLEMENTATION_PASS_READY_TO_START",
-      "result": "SETUP PASS / NOT STARTED: dedicated FA-121 lane is implemented with one FA-301 broker owner, FA-302 max-8 tab leases, FA-303 readiness observations, FA-304 provider+cluster routing and FA-120 queue/backpressure semantics. The encoded pre-dispatch budget is 24 hours, 5-minute scheduler ticks, one provider-generation slot every 2 hours, max 12 total generations / max 6 per provider, queue limit 1, no catch-up bursts and max 2 pre-dispatch retries. Qwen SESSION_API remains the primary contract but live canary transport is explicitly BROWSER_CDP fallback because approved live SESSION_API capacity is UNKNOWN. Attempt journals persist dispatch commit before output wait; restart after commit counts once and never retries the same logical generation. Profile integrity uses metadata only and never reads/hashes cookie/token/session secret values. Focused 6 PASS; Factory 667 PASS (1 PyPDF2 warning); one-canon 6 PASS; validator 11/11 PASS. Provider calls performed: 0."
+      "setup_status": "HOTFIX_MERGED_DEPLOYED_CANARY_RUNNING",
+      "runtime_start_at": "2026-09-06T06:55:01.139Z",
+      "runtime_end_target": "2026-09-07T06:55:01.139Z",
+      "result": "IN_PROGRESS: PR #248 hotfix e9882298 closes only each oneshot's own connectOverCDP client transport and preserves broker-owned Chromium. The original configured 05:53:37Z window is explicitly not acceptance-eligible because timer execution was not unattended and heartbeat_count=0. Fresh observed window is 2026-09-06T06:55:01.139Z -> 2026-09-07T06:55:01.139Z. Dedicated timer is enabled/active; broker READY single owner PID 640348; max_tabs=8; no leaked lease. First timer-fired slot SUCCEEDED with Qwen on cluster-a using actual BROWSER_CDP fallback, primary SESSION_API retained but live SESSION_API rejected CAPACITY_UNKNOWN; 1/12 generation budget used, 0 pre-dispatch retries, lease released, original PNG 1,324,473 bytes SHA d4a845815aa3d01d202ad80efba7ed9af50e859a9f9b6195c3cbaa891462eced. ChatGPT sibling was DEGRADED and therefore not selected. No secret reads, spend, submission or publication. FA-121 must remain IN_PROGRESS until 24 real observed hours elapse."
     },
     {
       "id": "FA-122",

@@ -3792,3 +3792,8 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - FA-301 single broker owner + FA-302 tab leases + FA-303 readiness + FA-304 provider+cluster routing + FA-120 backpressure are wired. ChatGPT actual transport is BROWSER_CDP; Qwen live transport is truthfully BROWSER_CDP fallback, never falsely SESSION_API.
 - Restart journal and duplicate-commit guards are validated; profile integrity is metadata-only and no cookie/token/OAuth/session-secret value is read or hashed. Provider calls remain 0 before start.
 - Validation: focused 6 PASS; Factory 667 PASS / 1 PyPDF2 warning; one-canon 6 PASS; validator 11/11 PASS. FA-121 remains READY until the real 24h runtime is initialized and started.
+## 2026-09-06 — FA-121 runtime hotfix merged; fresh observed 24h window IN_PROGRESS
+- PR #248 (`e9882298c88a31ecc366e3fab1bb3dba9c694590`) fixes the FA-121 oneshot CDP-client lifecycle without closing broker-owned Chromium. Post-deploy init/status/reconcile/tick-before-start exit cleanly with the same broker PID, <=8 pages, zero leaked leases and zero validation provider calls.
+- The original configured 05:53:37Z window is excluded from acceptance because it had no unattended timer evidence. Fresh observed window is `2026-09-06T06:55:01.139Z -> 2026-09-07T06:55:01.139Z`.
+- Dedicated timer is enabled/active. First legitimate timer-fired generation SUCCEEDED: Qwen on Cluster A using actual `BROWSER_CDP` fallback; SESSION_API remains primary but was rejected `CAPACITY_UNKNOWN`; ChatGPT was DEGRADED. Budget 1/12, retries 0, lease released, original PNG SHA `d4a845815aa3d01d202ad80efba7ed9af50e859a9f9b6195c3cbaa891462eced`.
+- FA-121 remains **IN_PROGRESS**. FA-122 remains blocked; no FA-204/205/305/306 work was executed by this lane.
