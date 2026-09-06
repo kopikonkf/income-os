@@ -1,0 +1,127 @@
+{
+  "active_master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+  "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
+  "derivatives": [
+    {
+      "derivative_id": "ADOBE_JPEG",
+      "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd"
+    },
+    {
+      "derivative_id": "PNG_PREVIEW",
+      "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06"
+    },
+    {
+      "derivative_id": "WEBP_PREVIEW",
+      "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224"
+    }
+  ],
+  "history": [
+    {
+      "event_id": "CREATE",
+      "evidence": {
+        "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
+        "job_id": "FA-203",
+        "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+        "source_master_sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7"
+      },
+      "evidence_sha256": "705d54e7d9f82e348093a3808d5fccfe1a4cfb469e4318cebcc9bbca109b614e",
+      "from": null,
+      "kind": "CREATE",
+      "revision": 0,
+      "to": "ARTIFACT_CREATED"
+    },
+    {
+      "event_id": "FA203-MASTER-VALIDATED",
+      "evidence": {
+        "master_sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7",
+        "result": "PASS"
+      },
+      "evidence_sha256": "ec74e3f56ab7fe8c83e8be462ce0506a2235d8ffaf9eeb07a0a678ba4b0193ae",
+      "from": "ARTIFACT_CREATED",
+      "kind": "ADVANCE",
+      "revision": 1,
+      "to": "MASTER_VALIDATED"
+    },
+    {
+      "event_id": "FA203-UPSCALE-DECIDED",
+      "evidence": {
+        "final_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+        "result": "PASS",
+        "source_sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7",
+        "source_unchanged": true
+      },
+      "evidence_sha256": "b1f200ffd055b409f359a4f27573aa74a296dbedd8f558268eff9ef029a1f901",
+      "from": "MASTER_VALIDATED",
+      "kind": "ADVANCE",
+      "revision": 2,
+      "to": "UPSCALE_DECIDED"
+    },
+    {
+      "event_id": "FA203-DERIVATIVES-READY",
+      "evidence": {
+        "derivatives": [
+          {
+            "derivative_id": "ADOBE_JPEG",
+            "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+            "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd"
+          },
+          {
+            "derivative_id": "PNG_PREVIEW",
+            "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+            "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06"
+          },
+          {
+            "derivative_id": "WEBP_PREVIEW",
+            "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+            "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224"
+          }
+        ],
+        "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06"
+      },
+      "evidence_sha256": "941f51e2b4261a7b21a96e661a7c85c2928983316f459acad5a4a02a83b1b84f",
+      "from": "UPSCALE_DECIDED",
+      "kind": "ADVANCE",
+      "revision": 3,
+      "to": "DERIVATIVES_READY"
+    },
+    {
+      "event_id": "FA203-TECHNICAL-QA-PASS",
+      "evidence": {
+        "derivatives": [
+          {
+            "derivative_id": "ADOBE_JPEG",
+            "result": "PASS",
+            "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd"
+          },
+          {
+            "derivative_id": "PNG_PREVIEW",
+            "result": "PASS",
+            "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06"
+          },
+          {
+            "derivative_id": "WEBP_PREVIEW",
+            "result": "PASS",
+            "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224"
+          }
+        ],
+        "result": "PASS"
+      },
+      "evidence_sha256": "04cdad7b8f36fef3cdf9a713bec934b4242f71089a2b1196e5768b5fa4382c9f",
+      "from": "DERIVATIVES_READY",
+      "kind": "ADVANCE",
+      "revision": 4,
+      "to": "TECHNICAL_QA_PASS"
+    }
+  ],
+  "job_id": "FA-203",
+  "last_failure": null,
+  "metadata_sha256": null,
+  "package_plan_sha256": null,
+  "revision": 4,
+  "rights_disposition": null,
+  "schema": "die.factory-asset.postproduction-state.v1",
+  "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+  "source_master_sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7",
+  "state": "TECHNICAL_QA_PASS",
+  "status": "ACTIVE"
+}

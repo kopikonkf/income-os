@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "9.5-fa202-governed-production",
+  "revision": "9.6-fa203-registry-qa",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1714,9 +1714,11 @@
       "depends_on": [
         "FA-202"
       ],
-      "status": "READY",
-      "artifact": "company/factory-asset/receipts/FA-203-canary-registry-qa.receipt.json",
-      "acceptance": "Master, conditional upscale decision, derivatives, package compatibility, duplicate suppression, technical QA, provider/native capacity evidence and orchestration state are committed through the canonical writer without false success."
+      "status": "DONE",
+      "artifact": "company/factory-asset/receipts/FA-203-canary-registry-qa.receipt.json; company/factory-asset/registries/governed-canary-assets.v1.json; company/factory-asset/fixtures/governed-canary/FA-203-registry-qa-result.json; company/factory-asset/fixtures/governed-canary/FA-203-postproduction-state.json",
+      "acceptance": "Master, conditional upscale decision, derivatives, package compatibility, duplicate suppression, technical QA, provider/native capacity evidence and orchestration state are committed through the canonical writer without false success.",
+      "completed_at": "2026-09-06",
+      "result": "PASS: FA-202 master and three derivatives were reverified from durable Linux bytes; conditional RealESRGAN x4 lineage and 4096x4096 master QA PASS; Adobe JPEG technical compatibility PASS while metadata/rights remain pending; observed ChatGPT Cluster A capacity is retained as historical SUCCESS evidence and explicitly not current-routing eligible; postproduction state committed through TECHNICAL_QA_PASS; deterministic DIE_STATE_MANAGER writer committed one canonical semantic asset/one physical master and identical replay is idempotently suppressed. Zero provider calls, no submission/publication/spend."
     },
     {
       "id": "FA-204",
@@ -1727,7 +1729,7 @@
       "depends_on": [
         "FA-203"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/receipts/FA-204-canary-metadata-rights.receipt.json",
       "acceptance": "Metadata/keywords, AI disclosure, automated brand/IP/right signals, source rights and hard vetoes map to exact master/derivative hashes; uncertainty remains blocking and the package must be PACKAGE_READY before Founder QC."
     },
