@@ -38,7 +38,12 @@ if (!args['state-file'] || !path.isAbsolute(args['state-file'])) throw new Error
 if (!process.env.DISPLAY) throw new Error('E_AUTH_HANDOFF_DISPLAY_REQUIRED');
 
 const current = loadClusterProvisioningState(args['state-file']);
-if (current.state !== 'WAITING_FOUNDER_AUTH') throw new Error(`E_AUTH_HANDOFF_STATE:${current.state}`);
+const resumeVisible = args['resume-visible'] === 'yes';
+if (resumeVisible) {
+  if (current.state !== 'AUTH_HANDOFF_VISIBLE_NO_CDP') throw new Error(`E_AUTH_HANDOFF_RESUME_STATE:${current.state}`);
+} else if (current.state !== 'WAITING_FOUNDER_AUTH') {
+  throw new Error(`E_AUTH_HANDOFF_STATE:${current.state}`);
+}
 const clusterRoot = path.resolve(current.cluster_root);
 const paths = {
   cluster_root: clusterRoot,
@@ -51,17 +56,19 @@ const brokerLock = path.join(paths.lock_dir, 'broker.lock');
 if (fs.existsSync(brokerLock)) throw new Error('E_AUTH_HANDOFF_BROKER_MUST_BE_STOPPED');
 
 const browser = resolveBrowser(args.browser);
-transitionClusterProvisioning({
-  stateFile: args['state-file'],
-  nextState: 'AUTH_HANDOFF_VISIBLE_NO_CDP',
-  patch: {
-    auth_handoff_mode: 'VISIBLE_STABLE_BROWSER_NO_CDP',
-    initial_url: 'about:blank',
-    automation_attachment_used: false,
-    credential_values_read: false,
-    cookies_or_tokens_read: false,
-  },
-});
+if (!resumeVisible) {
+  transitionClusterProvisioning({
+    stateFile: args['state-file'],
+    nextState: 'AUTH_HANDOFF_VISIBLE_NO_CDP',
+    patch: {
+      auth_handoff_mode: 'VISIBLE_STABLE_BROWSER_NO_CDP',
+      initial_url: 'about:blank',
+      automation_attachment_used: false,
+      credential_values_read: false,
+      cookies_or_tokens_read: false,
+    },
+  });
+}
 
 const child = spawn(browser, [
   `--user-data-dir=${paths.profile_dir}`,
@@ -87,7 +94,7 @@ if (result.code === 0) {
       cookies_or_tokens_read: false,
     },
   });
-  process.stdout.write(`${JSON.stringify({ schema: 'die.muxia.cluster-auth-handoff.v1', status: 'CLOSED', browser_fully_closed: true, broker_restart_permitted: true, provider_login_automated: false, credential_values_read: false, cookies_or_tokens_read: false })}\n`);
+  process.stdout.write(`${JSON.stringify({ schema: 'die.muxia.cluster-auth-handoff.v1', status: 'CLOSED', resumed_visible_handoff: resumeVisible, browser_fully_closed: true, broker_restart_permitted: true, provider_login_automated: false, credential_values_read: false, cookies_or_tokens_read: false })}\n`);
 } else {
   transitionClusterProvisioning({
     stateFile: args['state-file'],
