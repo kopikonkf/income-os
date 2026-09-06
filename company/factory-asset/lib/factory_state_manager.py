@@ -101,8 +101,19 @@ def advance_asset_metadata_rights(*,registry_path:str|Path,semantic_asset_id:str
     enrichment={'metadata_sha256':metadata['metadata_sha256'],'rights_result':rights,'rights_signal_sha256':_sha(rights_signal),'package_result':pr,'package_plan_sha256':(package_readiness.get('package_plan') or {}).get('package_plan_sha256'),'blockers':package_readiness.get('blockers',[])}
     esha=_sha(enrichment)
     if a.get('metadata_rights_enrichment_sha256'):
-        if a['metadata_rights_enrichment_sha256']==esha: return {'schema':'die.factory-asset.state-manager-enrichment.v1','result':'IDEMPOTENT_REUSE','revision':d['revision'],'semantic_asset_id':semantic_asset_id,'metadata_rights_enrichment_sha256':esha,'committed_by':WRITER,'package_state':a.get('package_state')}
-        raise FactoryStateManagerError('METADATA_RIGHTS_CONFLICT',semantic_asset_id)
+        if a['metadata_rights_enrichment_sha256']==esha:
+            return {'schema':'die.factory-asset.state-manager-enrichment.v1','result':'IDEMPOTENT_REUSE','revision':d['revision'],'semantic_asset_id':semantic_asset_id,'metadata_rights_enrichment_sha256':esha,'committed_by':WRITER,'package_state':a.get('package_state')}
+        review_to_pass=(a.get('rights_state')=='REVIEW_REQUIRED' and a.get('package_state')=='PACKAGE_BLOCKED_RIGHTS_REVIEW' and a.get('metadata_sha256')==metadata['metadata_sha256'] and rights=='PASS' and pr=='PACKAGE_READY')
+        if not review_to_pass:
+            raise FactoryStateManagerError('METADATA_RIGHTS_CONFLICT',semantic_asset_id)
+        prior_enrichment=a['metadata_rights_enrichment_sha256']
+        a['rights_state']='PASS'; a['rights_signal_sha256']=enrichment['rights_signal_sha256']; a['metadata_rights_enrichment_sha256']=esha
+        a['state']='PACKAGE_READY'; a['package_state']='PACKAGE_READY'; a['package_plan_sha256']=enrichment['package_plan_sha256']
+        a['record_sha256']=_sha({k:v for k,v in a.items() if k!='record_sha256'})
+        d['revision']+=1
+        event={'kind':'ASSET_RIGHTS_RESOLUTION','revision':d['revision'],'semantic_asset_id':semantic_asset_id,'master_sha256':master,'metadata_sha256':metadata['metadata_sha256'],'prior_enrichment_sha256':prior_enrichment,'rights_result':'PASS','package_result':'PACKAGE_READY','enrichment_sha256':esha,'writer':WRITER};event['event_sha256']=_sha(event);d['history'].append(event)
+        _atomic(path,d)
+        return {'schema':'die.factory-asset.state-manager-enrichment.v1','result':'RIGHTS_RESOLVED_AND_COMMITTED','revision':d['revision'],'semantic_asset_id':semantic_asset_id,'metadata_rights_enrichment_sha256':esha,'committed_by':WRITER,'package_state':a['package_state']}
     a['metadata_sha256']=metadata['metadata_sha256']; a['rights_state']=rights; a['rights_signal_sha256']=enrichment['rights_signal_sha256']; a['metadata_rights_enrichment_sha256']=esha
     if rights=='PASS':
         a['state']='PACKAGE_READY'; a['package_state']='PACKAGE_READY'; a['package_plan_sha256']=enrichment['package_plan_sha256']

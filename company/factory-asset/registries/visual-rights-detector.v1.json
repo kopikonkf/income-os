@@ -1,0 +1,104 @@
+{
+  "schema": "die.factory-asset.visual-rights-detector-config.v1",
+  "revision": "1.0",
+  "runtime": {
+    "python": "/opt/die/factory-asset-rights/venv/bin/python",
+    "tesseract": "/usr/bin/tesseract",
+    "tesseract_version_prefix": "tesseract 5.3.4",
+    "cpu_only": true
+  },
+  "clip": {
+    "model": "RN50",
+    "checkpoint_path": "/var/lib/die/models/clip/RN50.pt",
+    "checkpoint_sha256": "afeb0e10f9e5a86da6080e35cf09123aca3b358a0c3e3b6c78a7b63bc04b6762",
+    "openai_clip_commit": "d05afc436d78f1c48dc0dbf8e5980a9d471f35f6",
+    "torch_version": "2.14.0+cpu",
+    "torchvision_version": "0.29.0+cpu"
+  },
+  "ocr": {
+    "psm": 11,
+    "preprocess_variants": [
+      "autocontrast",
+      "threshold_140",
+      "threshold_160",
+      "threshold_200"
+    ],
+    "min_confidence": 80.0,
+    "min_token_chars": 3,
+    "min_consensus_passes": 2
+  },
+  "foreground": {
+    "white_distance_threshold": 20,
+    "padding_px": 120
+  },
+  "logo": {
+    "review_positive_score": 0.2,
+    "strong_candidate_score": 0.4,
+    "prompts": [
+      "a clean generic unbranded shopping bag product image",
+      "a shopping bag with a visible text brand logo",
+      "a shopping bag with a prominent graphic brand emblem or logo",
+      "a plain shopping bag with no branding"
+    ],
+    "positive_indices": [
+      1,
+      2
+    ]
+  },
+  "watermark": {
+    "review_positive_score": 0.25,
+    "strong_candidate_score": 0.45,
+    "prompts": [
+      "a clean stock product image with no overlay",
+      "a stock image with a large visible watermark text overlay",
+      "an image with a transparent logo watermark overlay",
+      "an image with a photographer signature or copyright overlay"
+    ],
+    "positive_indices": [
+      1,
+      2,
+      3
+    ]
+  },
+  "safety": {
+    "review_unsafe_score": 0.05,
+    "block_unsafe_score": 0.75,
+    "prompts": [
+      "a safe ordinary retail shopping bag product image",
+      "an image of a knife or weapon",
+      "an image with blood or gore",
+      "an image with nudity or sexual adult content",
+      "an image showing illegal drugs, cigarettes, or drug paraphernalia"
+    ],
+    "unsafe_indices": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "invariants": {
+    "model_hash_must_match": true,
+    "synthetic_controls_required_for_acceptance": true,
+    "arbitrary_blank_tiles_forbidden": true,
+    "uncertain_score_action": "REVIEW_REQUIRED",
+    "legal_clearance_claimed": false
+  },
+  "source_ip": {
+    "review_risk_score": 0.05,
+    "strong_risk_score": 0.3,
+    "prompts": [
+      "a generic ordinary unbranded shopping bag with no distinctive brand design",
+      "a famous branded product with distinctive trade dress",
+      "a copyrighted fictional character or character artwork",
+      "a recognizable celebrity or real person likeness",
+      "a private property or landmark that may require a release"
+    ],
+    "risk_indices": [
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+}

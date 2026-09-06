@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "9.7-fa204-metadata-rights-waiting-founder",
+  "revision": "9.8-fa204-visual-rights-pass",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1734,12 +1734,12 @@
       "depends_on": [
         "FA-203"
       ],
-      "status": "WAITING_FOUNDER",
-      "artifact": "company/factory-asset/receipts/FA-204-canary-metadata-rights.receipt.json; company/factory-asset/fixtures/governed-canary/FA-204-metadata-rights-result.json",
+      "status": "DONE",
+      "artifact": "company/factory-asset/receipts/FA-204-canary-metadata-rights.receipt.json; company/factory-asset/fixtures/governed-canary/FA-204-metadata-rights-result.json; company/factory-asset/fixtures/governed-canary/FA-204-visual-rights-detector-run.json; company/factory-asset/fixtures/governed-canary/FA-204-visual-rights-self-test.json",
       "acceptance": "Metadata/keywords, AI disclosure, automated brand/IP/right signals, source rights and hard vetoes map to exact master/derivative hashes; uncertainty remains blocking and the package must be PACKAGE_READY before Founder QC.",
       "updated_at": "2026-09-06",
-      "waiting_on": "FOUNDER_RIGHTS_REVIEW",
-      "result": "WAITING_FOUNDER_RIGHTS_REVIEW: metadata/AI disclosure and XMP+IPTC integration PASS; actual rights signal remains REVIEW_REQUIRED because text/logo/watermark/safety detector runtimes are unavailable. Package correctly remains PACKAGE_BLOCKED(RIGHTS_REVIEW_REQUIRED); State Manager records metadata-ready rights-review state; FA-205 stays blocked."
+      "result": "PASS: exact-hash metadata/GENERATIVE_AI disclosure and XMP+IPTC integration remain immutable-source safe; CPU-only Tesseract+OpenAI CLIP RN50 visual-rights runtime is hash-pinned and self-tested against watermark, text-logo, graphic-logo and unsafe controls; exact master has all four detector states COMPLETE with no text/logo/watermark/safety findings; rights signal PASS, automated source-rights preflight CLEAR without legal/human-clearance claim, hard-veto negative control BLOCK, package PACKAGE_READY, orchestration PACKAGE_READY, State Manager review->PASS revision committed idempotently. No provider call/submission/publication/spend.",
+      "completed_at": "2026-09-06"
     },
     {
       "id": "FA-205",
@@ -1750,7 +1750,7 @@
       "depends_on": [
         "FA-204"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_REQUIRED",
       "artifact": "company/factory-asset/receipts/FA-205-founder-qc.receipt.json",
       "acceptance": "Founder receives only PACKAGE_READY exact hashes and records APPROVE|REJECT|REVISE; silence is not approval, automated rights signals are not human clearance, and no submission occurs."

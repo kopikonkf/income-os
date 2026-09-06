@@ -1,0 +1,160 @@
+{
+  "schema": "die.factory-asset.visual-rights-detector-run.v1",
+  "master_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/master/master.png",
+  "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+  "ocr": {
+    "consensus": [],
+    "raw_qualified_hit_count": 0
+  },
+  "clip_scores": {
+    "foreground_box": [
+      867,
+      60,
+      3187,
+      3899
+    ],
+    "logo": {
+      "prompts": [
+        "a clean generic unbranded shopping bag product image",
+        "a shopping bag with a visible text brand logo",
+        "a shopping bag with a prominent graphic brand emblem or logo",
+        "a plain shopping bag with no branding"
+      ],
+      "full": [
+        0.51618993,
+        0.03685468,
+        0.04670212,
+        0.40025324
+      ],
+      "foreground": [
+        0.59028411,
+        0.05351641,
+        0.05099855,
+        0.30520093
+      ]
+    },
+    "watermark": {
+      "prompts": [
+        "a clean stock product image with no overlay",
+        "a stock image with a large visible watermark text overlay",
+        "an image with a transparent logo watermark overlay",
+        "an image with a photographer signature or copyright overlay"
+      ],
+      "full": [
+        0.88132167,
+        0.06225115,
+        0.04866422,
+        0.00776302
+      ],
+      "foreground": [
+        0.56612158,
+        0.18952248,
+        0.23341829,
+        0.01093769
+      ]
+    },
+    "safety": {
+      "prompts": [
+        "a safe ordinary retail shopping bag product image",
+        "an image of a knife or weapon",
+        "an image with blood or gore",
+        "an image with nudity or sexual adult content",
+        "an image showing illegal drugs, cigarettes, or drug paraphernalia"
+      ],
+      "full": [
+        0.99998879,
+        8.1e-07,
+        1.24e-06,
+        7.09e-06,
+        2.11e-06
+      ],
+      "foreground": [
+        0.99980026,
+        2.924e-05,
+        1.003e-05,
+        0.00011167,
+        4.891e-05
+      ]
+    },
+    "source_ip": {
+      "prompts": [
+        "a generic ordinary unbranded shopping bag with no distinctive brand design",
+        "a famous branded product with distinctive trade dress",
+        "a copyrighted fictional character or character artwork",
+        "a recognizable celebrity or real person likeness",
+        "a private property or landmark that may require a release"
+      ],
+      "full": [
+        0.99842143,
+        0.00154696,
+        1.526e-05,
+        9.33e-06,
+        7.19e-06
+      ],
+      "foreground": [
+        0.99739599,
+        0.00247967,
+        8.295e-05,
+        2.071e-05,
+        2.071e-05
+      ]
+    }
+  },
+  "classification": {
+    "logo": {
+      "positive_score": 0.104515,
+      "full_positive_score": 0.083557,
+      "foreground_positive_score": 0.104515,
+      "disposition": "CLEAR"
+    },
+    "watermark": {
+      "positive_score": 0.118678,
+      "disposition": "CLEAR"
+    },
+    "safety": {
+      "unsafe_score": 0.0002,
+      "full_unsafe_score": 1.1e-05,
+      "foreground_unsafe_score": 0.0002,
+      "disposition": "CLEAR"
+    },
+    "source_ip": {
+      "risk_score": 0.002604,
+      "full_risk_score": 0.001579,
+      "foreground_risk_score": 0.002604,
+      "disposition": "CLEAR"
+    }
+  },
+  "observation": {
+    "schema": "die.factory-asset.rights-observation.v1",
+    "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "detectors": {
+      "text": {
+        "state": "COMPLETE",
+        "detected_strings": [],
+        "confirmed_trademark_terms": [],
+        "trademark_candidates": [],
+        "unresolved_strings": []
+      },
+      "logo": {
+        "state": "COMPLETE",
+        "candidates": []
+      },
+      "watermark": {
+        "state": "COMPLETE",
+        "candidates": []
+      },
+      "safety": {
+        "state": "COMPLETE",
+        "flags": []
+      }
+    }
+  },
+  "runtime": {
+    "tesseract_version": "tesseract 5.3.4",
+    "clip_model": "RN50",
+    "clip_checkpoint_sha256": "afeb0e10f9e5a86da6080e35cf09123aca3b358a0c3e3b6c78a7b63bc04b6762",
+    "torch_version": "2.14.0+cpu",
+    "cpu_only": true,
+    "self_test_result": "PASS"
+  }
+}
