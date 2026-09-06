@@ -3809,3 +3809,11 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Package is `PACKAGE_READY` with package-plan SHA `e5912d1892f5faeedf0a931076ac8d34f7854e6ba12635f0c5840554a69a326b`. Orchestration revision 8 is PACKAGE_READY; State Manager revision 3 records explicit review->PASS rights resolution and idempotent replay.
 - Final validation after FA-121 runtime-status reconciliation: 46 focused PASS; 673 Factory PASS / 1 PyPDF2 warning; one-canon pytest 6 PASS; validator 11/11 PASS; secret scan 0.
 - FA-205 READY for Founder exact-hash QC. Automated rights PASS is not Founder approval and grants no submission/publication authority.
+
+---
+
+## 2026-09-06 - FA-205 Founder exact-hash QC APPROVED
+- Founder manually reviewed the governed canary master and delivery/preview artifacts, including PNG, JPEG and WebP outputs, and explicitly returned `APPROVE`.
+- Exact package hashes are pinned in `company/factory-asset/receipts/FA-205-founder-qc.receipt.json`; package state at review was `PACKAGE_READY`.
+- This records Founder QC only. Submission, publication, marketplace upload and spend remain unauthorized.
+- FA-205 DONE; FA-206 READY.

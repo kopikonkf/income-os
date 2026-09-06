@@ -72,8 +72,12 @@ def test_state_manager_review_to_pass_transition_is_bounded_and_idempotent(tmp_p
     final=sm.load_registry(rp);assert final['revision']==3 and final['assets'][0]['rights_state']=='PASS' and final['assets'][0]['package_state']=='PACKAGE_READY'
 
 
-def test_fa204_done_unlocks_fa205_but_does_not_approve_founder_qc():
+def test_fa204_done_unlocks_fa205_but_does_not_itself_approve_founder_qc():
     g=json.loads(GRAPH.read_text());by={x['id']:x for x in g['tasks']}
     assert by['FA-204']['status']=='DONE'
-    assert by['FA-205']['status']=='READY'
+    assert by['FA-205']['status'] in {'READY','DONE'}
     assert by['FA-205']['authority']=='FOUNDER_REQUIRED'
+    if by['FA-205']['status']=='DONE':
+        r=json.loads((ROOT/'company/factory-asset/receipts/FA-205-founder-qc.receipt.json').read_text())
+        assert r['founder_verdict']['decision'] in {'APPROVE','REJECT','REVISE'}
+        assert r['founder_verdict']['silence_is_approval'] is False

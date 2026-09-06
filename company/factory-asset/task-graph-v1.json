@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "9.8-fa204-visual-rights-pass",
+  "revision": "9.9-fa205-founder-qc-approved",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1750,10 +1750,12 @@
       "depends_on": [
         "FA-204"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED",
       "artifact": "company/factory-asset/receipts/FA-205-founder-qc.receipt.json",
-      "acceptance": "Founder receives only PACKAGE_READY exact hashes and records APPROVE|REJECT|REVISE; silence is not approval, automated rights signals are not human clearance, and no submission occurs."
+      "acceptance": "Founder receives only PACKAGE_READY exact hashes and records APPROVE|REJECT|REVISE; silence is not approval, automated rights signals are not human clearance, and no submission occurs.",
+      "completed_at": "2026-09-06",
+      "result": "APPROVE: Founder visually reviewed the PACKAGE_READY exact-hash canary artifacts and explicitly approved them. Exact package hashes are pinned in FA-205 receipt. Automated rights PASS remains distinct from Founder QC; no submission/publication/spend authority is granted."
     },
     {
       "id": "FA-206",
@@ -1764,7 +1766,7 @@
       "depends_on": [
         "FA-205"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-206-factory-asset-v1-acceptance.receipt.json",
       "acceptance": "Blueprint, provider, immutable master, derivatives, registry, QA, metadata/rights, Founder QC and rollback evidence pass; publication remains outside scope."
