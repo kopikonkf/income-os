@@ -1,0 +1,126 @@
+{
+  "schema": "die.factory-asset.fa206-v1-acceptance-receipt.v1",
+  "task_id": "FA-206",
+  "date": "2026-09-06",
+  "status": "DONE",
+  "result": "PASS",
+  "acceptance_matrix": {
+    "automated_rights": "PASS",
+    "blueprint": "PASS",
+    "canonical_registry": "PASS",
+    "derivatives": "PASS",
+    "founder_exact_hash_qc": "PASS",
+    "immutable_provider_original": "PASS",
+    "master_normalization": "PASS",
+    "metadata": "PASS",
+    "package_readiness": "PASS",
+    "provider_generation": "PASS",
+    "publication_outside_scope": "PASS",
+    "rollback_rehearsal": "PASS",
+    "selection_and_demand_basis": "PASS",
+    "technical_qa": "PASS"
+  },
+  "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+  "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
+  "founder_qc": {
+    "decision": "APPROVE",
+    "exact_hashes": {
+      "adobe_jpeg": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd",
+      "listing_jpeg": "d097dbce84ec47ef4e70ccdc819e82fe9fbd5bb460e8c5b913fb3ff03cdf7cb8",
+      "master_png": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "metadata_bundle": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
+      "package_plan": "e5912d1892f5faeedf0a931076ac8d34f7854e6ba12635f0c5840554a69a326b",
+      "png_preview": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "webp_preview": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224"
+    },
+    "receipt": "company/factory-asset/receipts/FA-205-founder-qc.receipt.json"
+  },
+  "rollback_evidence": {
+    "canonical_master_retained": true,
+    "external_side_effect_to_undo": false,
+    "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "metadata_sha256": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
+    "mode": "NON_DESTRUCTIVE_IN_MEMORY_RECONSTRUCTION",
+    "package_state": "PACKAGE_BLOCKED",
+    "prior_enrichment_sha256": "d9608c016ff7ab9f243fb734a250cf3ce63d7402891690258738afaf03ba3d95",
+    "provider_original_retained": true,
+    "result": "PASS",
+    "rights_state": "REVIEW_REQUIRED",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+    "source_master_retained": true,
+    "target_revision": 2
+  },
+  "registry": {
+    "history": [
+      {
+        "event_sha256": "d57cc6bfff37d9ea944457f90d88b435de5b263e9146d08698dae9e3c8c0e4ef",
+        "kind": "ASSET_COMMIT",
+        "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+        "physical_master_reused": false,
+        "record_sha256": "ac5a3a4dc2d38d45b5f3b0f06425afe67d3e8270e29a1f95f150dc0dc2d2dd40",
+        "revision": 1,
+        "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+        "writer": "DIE_STATE_MANAGER"
+      },
+      {
+        "enrichment_sha256": "d9608c016ff7ab9f243fb734a250cf3ce63d7402891690258738afaf03ba3d95",
+        "event_sha256": "98b70d9e9d7176292ee16c891732f504b23b4d7c50c7e23026a977d6ea3c4757",
+        "kind": "ASSET_METADATA_RIGHTS",
+        "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+        "metadata_sha256": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
+        "package_result": "PACKAGE_BLOCKED",
+        "revision": 2,
+        "rights_result": "REVIEW_REQUIRED",
+        "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+        "writer": "DIE_STATE_MANAGER"
+      },
+      {
+        "enrichment_sha256": "ac46a3626fc6d95fbbdd7ebe55278e220cb6dadf635d8d6105c7528a0d89f3b4",
+        "event_sha256": "243b9a38305f72cfd6ce3fc57cfc52be96d89cdef2b09ac33914ac1e7b60a171",
+        "kind": "ASSET_RIGHTS_RESOLUTION",
+        "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+        "metadata_sha256": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
+        "package_result": "PACKAGE_READY",
+        "prior_enrichment_sha256": "d9608c016ff7ab9f243fb734a250cf3ce63d7402891690258738afaf03ba3d95",
+        "revision": 3,
+        "rights_result": "PASS",
+        "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+        "writer": "DIE_STATE_MANAGER"
+      }
+    ],
+    "physical_master_count": 1,
+    "revision": 3,
+    "semantic_asset_count": 1
+  },
+  "truth_boundaries": {
+    "fa121_dependency": false,
+    "human_rights_clearance": false,
+    "legal_clearance_claimed": false,
+    "marketplace_acceptance_claimed": false,
+    "marketplace_upload": false,
+    "provider_calls_performed": false,
+    "publication_authorized": false,
+    "spend_usd": 0,
+    "submission_authorized": false
+  },
+  "result_fixture": {
+    "ref": "company/factory-asset/fixtures/governed-canary/FA-206-v1-acceptance-result.json",
+    "sha256": "f0539aaad32d7c2131506d78d4d29b3eb75a7f5ca0073faaeda210f5452cd083"
+  },
+  "scope": {
+    "factory_asset_level_up_v1_acceptance": true,
+    "marketplace_publication_in_scope": false,
+    "marketplace_submission_in_scope": false,
+    "fa121_24h_stability_required_for_this_acceptance": false
+  },
+  "next": "FA-206 completes governed canary v1 acceptance. Remaining unrelated graph work includes FA-121 soak completion and FA-305 Founder auth path.",
+  "validation": {
+    "focused": "11 passed",
+    "factory_regression": "678 passed, 1 PyPDF2 warning",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "secret_scan": "0 high-confidence hits",
+    "pycompile": "PASS",
+    "git_diff_check": "PASS"
+  }
+}
