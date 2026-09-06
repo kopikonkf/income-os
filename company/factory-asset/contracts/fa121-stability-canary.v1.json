@@ -1,0 +1,97 @@
+{
+  "schema": "die.factory-asset.fa121-stability-canary-contract.v1",
+  "revision": "1.0.0",
+  "task_id": "FA-121",
+  "duration_seconds": 86400,
+  "scheduler_tick_seconds": 300,
+  "dispatch_interval_seconds": 7200,
+  "max_provider_generations": 12,
+  "max_provider_generations_per_provider": 6,
+  "max_pre_dispatch_retries": 2,
+  "lease_ttl_seconds": 600,
+  "heartbeat_max_gap_seconds_for_acceptance": 900,
+  "queue": {
+    "limit": 1,
+    "catch_up_burst_allowed": false,
+    "missed_slot_action": "RECORD_SKIPPED_MISSED_WINDOW"
+  },
+  "cluster": {
+    "cluster_id": "cluster-a",
+    "profile_id": "chatgpt-linux-a",
+    "broker_control_url": "http://127.0.0.1:39121/",
+    "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+    "max_tabs": 8
+  },
+  "providers": {
+    "qwen": {
+      "generation_enabled": true,
+      "browser_url": "https://chat.qwen.ai/",
+      "actual_live_transport": "BROWSER_CDP",
+      "transport_role": "FALLBACK",
+      "primary_transport_contract": "SESSION_API",
+      "session_api_live_capacity": "UNKNOWN",
+      "session_api_live_executor_claimed": false
+    },
+    "chatgpt": {
+      "generation_enabled": true,
+      "browser_url": "https://chatgpt.com/",
+      "actual_live_transport": "BROWSER_CDP",
+      "transport_role": "PRIMARY",
+      "primary_transport_contract": "BROWSER_CDP"
+    }
+  },
+  "prompt_corpus": [
+    "Create one simple isolated red ceramic mug centered on a pure white background, studio product photo, no text, no logo, no watermark.",
+    "Create one simple isolated blue desk lamp centered on a pure white background, studio product photo, no text, no logo, no watermark.",
+    "Create one simple isolated green watering can centered on a pure white background, studio product photo, no text, no logo, no watermark.",
+    "Create one simple isolated yellow pencil cup centered on a pure white background, studio product photo, no text, no logo, no watermark.",
+    "Create one simple isolated orange travel pouch centered on a pure white background, studio product photo, no text, no logo, no watermark.",
+    "Create one simple isolated purple plant pot centered on a pure white background, studio product photo, no text, no logo, no watermark.",
+    "Create one simple isolated silver kitchen timer centered on a pure white background, studio product photo, no text, no logo, no watermark.",
+    "Create one simple isolated white soap dispenser centered on a pure white background, studio product photo, no text, no logo, no watermark.",
+    "Create one simple isolated black notebook centered on a pure white background, studio product photo, no text, no logo, no watermark.",
+    "Create one simple isolated beige storage basket centered on a pure white background, studio product photo, no text, no logo, no watermark.",
+    "Create one simple isolated cyan reusable bottle centered on a pure white background, studio product photo, no text, no logo, no watermark.",
+    "Create one simple isolated pink gift box centered on a pure white background, studio product photo, no text, no logo, no watermark."
+  ],
+  "failure_policy": {
+    "post_dispatch_retry_allowed": false,
+    "rate_limited_cooldown_seconds": 14400,
+    "timeout_cooldown_seconds": 14400,
+    "provider_error_cooldown_seconds": 7200,
+    "checkpoint_or_auth_action": "FAIL_CLOSED_PROVIDER_ONLY",
+    "unknown_or_stale_capacity_action": "FAIL_CLOSED"
+  },
+  "profile_integrity": {
+    "content_read_allowed": false,
+    "secret_value_hashing_allowed": false,
+    "observed_metadata": [
+      "directory_exists",
+      "is_directory",
+      "is_symlink",
+      "uid",
+      "gid",
+      "mode",
+      "inode",
+      "device"
+    ]
+  },
+  "authority": {
+    "provider_live_load_authorized": true,
+    "production_seed_selection_allowed": false,
+    "packaging_derivatives_count_as_provider_generation": false,
+    "account_creation_allowed": false,
+    "checkpoint_or_captcha_bypass_allowed": false,
+    "spend_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "cookie_token_oauth_secret_read_allowed": false
+  },
+  "runtime": {
+    "repo_root": "/opt/factory-asset/fa121-runtime",
+    "state_root": "/var/lib/factory-asset/fa121-stability",
+    "broker_service": "die-fa121-cluster-broker.service",
+    "tick_service": "die-fa121-stability-tick.service",
+    "timer": "die-fa121-stability.timer"
+  }
+}

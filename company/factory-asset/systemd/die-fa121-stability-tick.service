@@ -1,0 +1,9 @@
+[Unit]
+Description=Factory Asset FA-121 bounded stability canary tick
+Requires=die-fa121-cluster-broker.service
+After=die-fa121-cluster-broker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/die-fa121-stability-tick
+TimeoutStartSec=900

@@ -1,0 +1,12 @@
+[Unit]
+Description=Factory Asset FA-121 five-minute stability scheduler
+
+[Timer]
+OnBootSec=60s
+OnUnitInactiveSec=5min
+AccuracySec=15s
+Persistent=true
+Unit=die-fa121-stability-tick.service
+
+[Install]
+WantedBy=timers.target
