@@ -42,6 +42,11 @@ def slug(text:str)->str:
     s=re.sub(r'[^a-z0-9]+','-',str(text).casefold()).strip('-')
     return s[:72] or 'asset'
 
+def make_founder_readable(path:Path)->Path:
+    """Expose only Founder-facing listing aliases to the shared die-runtime group."""
+    path.chmod(0o640)
+    return path
+
 def project_legacy_raster_blueprint(*,legacy_blueprint:dict[str,Any],blueprint_sha256:str,workspace:Path)->tuple[dict[str,Any],dict[str,Any]]:
     seed=legacy_blueprint['seed'];family=legacy_blueprint['family'];prod=legacy_blueprint['production'];meta=legacy_blueprint['metadata_direction']
     prompt=str(prod.get('master_prompt','')).casefold()
@@ -157,12 +162,14 @@ def postprocess_raster_workspace(*,workspace:Path,source_path:Path,provider_id:s
             qc_alias=qcdir/meta['listing_filename']
             if qc_alias.exists() and sha(qc_alias)!=delivery['sha256']:raise FactoryOrchestrationError('QC_ALIAS_CONFLICT',str(qc_alias))
             if not qc_alias.exists():shutil.copy2(Path(delivery['path']),qc_alias)
+            make_founder_readable(qc_alias)
         telegram_event(workspace,'WAITING_FOUNDER_QC',{'seed':bp['semantic_identity']['subject'],'artifact':str(qc_alias.relative_to(workspace)) if qc_alias else None,'rights':rs['result'],'package':pkg['result'],'card':'PARKED_HUMAN_GATE'},send_fn)
         return {'status':'WAITING_FOUNDER_QC','task_id':workspace.name,'state':d['state'],'backend_gate':'RIGHTS_REVIEW_REQUIRED' if rs['result']=='REVIEW_REQUIRED' else 'PACKAGE_BLOCKED','rights':rs['result'],'package':pkg['result'],'listing_path':str(qc_alias) if qc_alias else None,'metadata':str(root/'metadata.json'),'submission_fields':str(root/'submission-fields.json'),'submission_eligible':False,'publication_authorized':False}
     d=state.advance(sm_path,target_state='PACKAGE_READY',evidence=pkg,event_id='PACKAGE-'+pkg['package_plan']['package_plan_sha256'][:16],expected_revision=d['revision'])
     delivery=next(x for x in evidence if x['purpose']=='MARKETPLACE_DELIVERY');final=workspace/'final';final.mkdir(exist_ok=True);alias=final/meta['listing_filename']
     if alias.exists() and sha(alias)!=delivery['sha256']:raise FactoryOrchestrationError('LISTING_ALIAS_CONFLICT',str(alias))
     if not alias.exists():shutil.copy2(Path(delivery['path']),alias)
+    make_founder_readable(alias)
     final_manifest={'schema':'die.production.final-artifact.v2','task_id':workspace.name,'seed_noun':bp['semantic_identity']['subject'],'semantic_asset_id':sid,'blueprint_id':bp['blueprint_id'],'source_master_sha256':d['source_master_sha256'],'active_master_sha256':d['active_master_sha256'],'listing_filename':alias.name,'listing_path':str(alias),'listing_sha256':sha(alias),'metadata_ref':str(root/'metadata.json'),'submission_fields_ref':str(root/'submission-fields.json'),'binary_metadata_injected':meta['binary_metadata_injected'],'package_plan_sha256':pkg['package_plan']['package_plan_sha256'],'founder_qc':'PENDING','submission_authorized':False,'publication_authorized':False}
     atomic_json(final/'final-artifact.json',final_manifest)
     d=state.advance(sm_path,target_state='WAITING_FOUNDER_QC',evidence={'founder_qc_required':True,'human_rights_clearance':False,'package_plan_sha256':pkg['package_plan']['package_plan_sha256']},event_id='FOUNDER-'+pkg['package_plan']['package_plan_sha256'][:16],expected_revision=d['revision'])
