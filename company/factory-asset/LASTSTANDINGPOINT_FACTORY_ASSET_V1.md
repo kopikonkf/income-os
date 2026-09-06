@@ -637,3 +637,11 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Added deterministic `DIE_STATE_MANAGER` Factory writer. Commit produced canonical registry revision 1 with 1 semantic asset / 1 physical master; identical commit replay returns IDEMPOTENT_REUSE. Conflicting semantic rebind fails closed; physical duplicate bytes are deduped.
 - Capacity evidence is historical observed ChatGPT/Cluster A SUCCESS, retained as acceptance evidence and explicitly not eligible for current routing because stale. Orchestration stops at TECHNICAL_QA_PASS; FA-204 is next.
 - Validation: 22 focused; 656 Factory; 6 one-canon pytest; 11/11 validator; secret scan 0.
+
+---
+
+## 2026-09-06 - FA-204 WAITING_FOUNDER_RIGHTS_REVIEW
+- Metadata/keywords/GENERATIVE_AI disclosure are hash-bound to the canonical master and three derivatives. XMP+IPTC listing JPEG readback PASS without mutating the FA-202 canonical JPEG.
+- Rights are fail-closed: text/logo/watermark/safety detector runtimes are unavailable, so all four detector states remain INCOMPLETE and package remains PACKAGE_BLOCKED(RIGHTS_REVIEW_REQUIRED). No empty PASS evidence was fabricated.
+- Orchestration stops at METADATA_READY with rights REVIEW_REQUIRED; State Manager registry revision 2 records the enrichment idempotently. FA-205 remains BLOCKED.
+- Validation: 41 focused; 661 Factory; 6 one-canon pytest; 11/11 validator; secret scan 0.

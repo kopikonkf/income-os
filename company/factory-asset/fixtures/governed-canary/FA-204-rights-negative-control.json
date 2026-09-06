@@ -1,0 +1,62 @@
+{
+  "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+  "observation": {
+    "detectors": {
+      "logo": {
+        "candidates": [],
+        "state": "COMPLETE"
+      },
+      "safety": {
+        "flags": [],
+        "state": "COMPLETE"
+      },
+      "text": {
+        "confirmed_trademark_terms": [
+          "FA204 Synthetic Test Brand"
+        ],
+        "detected_strings": [
+          "FA204 Synthetic Test Brand"
+        ],
+        "state": "COMPLETE",
+        "trademark_candidates": [],
+        "unresolved_strings": []
+      },
+      "watermark": {
+        "candidates": [],
+        "state": "COMPLETE"
+      }
+    },
+    "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "schema": "die.factory-asset.rights-observation.v1"
+  },
+  "result": {
+    "blocking_signals": [
+      {
+        "detail": "FA204 Synthetic Test Brand",
+        "detector": "text",
+        "signal": "TRADEMARK_CONFIRMED"
+      }
+    ],
+    "detector_states": {
+      "logo": "COMPLETE",
+      "safety": "COMPLETE",
+      "text": "COMPLETE",
+      "watermark": "COMPLETE"
+    },
+    "founder_qc_required": true,
+    "human_rights_clearance": false,
+    "master_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/master/master.png",
+    "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "qa_defects": [
+      "RIGHTS_FAILED"
+    ],
+    "result": "BLOCK",
+    "review_signals": [],
+    "schema": "die.factory-asset.rights-signal-gate.v1",
+    "signal_gate_pass": false,
+    "submission_authority": "FOUNDER_CONTROLLED",
+    "submission_eligible": false
+  },
+  "schema": "die.factory-asset.fa204-rights-negative-control.v1",
+  "synthetic_control": true
+}
