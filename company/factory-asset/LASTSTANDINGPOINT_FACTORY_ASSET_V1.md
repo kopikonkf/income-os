@@ -628,3 +628,12 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Founder handoff contract: visible stable browser, `about:blank`, broker fully stopped, no CDP/remote-debugging or automation attachment. After Founder closes the browser, one broker must restart and FA-303 provider readiness must be verified before full FA-305 PASS.
 - Validation: focused FA-305 + broker regression `8 passed`; full Factory `651 passed, 1 warning` (PyPDF2 deprecation); one-canon pytest `6 passed`; validator `11/11 PASS`, secret scan 0.
 - **Boundary:** task graph state is `WAITING_FOUNDER` with semantic boundary `WAITING_FOUNDER_AUTH`. FA-306 remains BLOCKED. FA-121/FA-202 and Hermes observability surfaces were not executed or modified by this lane.
+---
+
+## 2026-09-06 - FA-203 governed canary registry + technical QA DONE/PASS
+
+- Reverified FA-202 live bytes without provider calls. Master PNG 4096x4096 SHA `5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06` technical QA PASS; all three derivatives QA PASS.
+- RealESRGAN x4 recovery evidence remains hash-pinned; Adobe JPEG is technically compatible with evidence-pinned Adobe Stock raster delivery. Package remains NOT READY because metadata + rights belong to FA-204.
+- Added deterministic `DIE_STATE_MANAGER` Factory writer. Commit produced canonical registry revision 1 with 1 semantic asset / 1 physical master; identical commit replay returns IDEMPOTENT_REUSE. Conflicting semantic rebind fails closed; physical duplicate bytes are deduped.
+- Capacity evidence is historical observed ChatGPT/Cluster A SUCCESS, retained as acceptance evidence and explicitly not eligible for current routing because stale. Orchestration stops at TECHNICAL_QA_PASS; FA-204 is next.
+- Validation: 22 focused; 656 Factory; 6 one-canon pytest; 11/11 validator; secret scan 0.

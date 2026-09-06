@@ -1,0 +1,167 @@
+{
+  "authority": {
+    "marketplace_upload": false,
+    "publication_authorized": false,
+    "spend_usd": 0,
+    "submission_authorized": false
+  },
+  "canonical_writer_commit": {
+    "canonical_truth": true,
+    "committed_by": "DIE_STATE_MANAGER",
+    "duplicate_suppressed": true,
+    "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "record_sha256": "ac5a3a4dc2d38d45b5f3b0f06425afe67d3e8270e29a1f95f150dc0dc2d2dd40",
+    "result": "IDEMPOTENT_REUSE",
+    "revision": 1,
+    "schema": "die.factory-asset.state-manager-commit.v1",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED"
+  },
+  "canonical_writer_replay": {
+    "canonical_truth": true,
+    "committed_by": "DIE_STATE_MANAGER",
+    "duplicate_suppressed": true,
+    "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "record_sha256": "ac5a3a4dc2d38d45b5f3b0f06425afe67d3e8270e29a1f95f150dc0dc2d2dd40",
+    "result": "IDEMPOTENT_REUSE",
+    "revision": 1,
+    "schema": "die.factory-asset.state-manager-commit.v1",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED"
+  },
+  "capacity": {
+    "capacity_state_at_observation": "AVAILABLE",
+    "cluster_id": "cluster-a",
+    "evidence_ref": "company/factory-asset/fixtures/governed-canary/FA-202-muxia-dispatch-receipt.json",
+    "evidence_type": "OBSERVED_SUCCESS_NOT_QUOTA_GUESS",
+    "freshness": "STALE_FOR_CURRENT_ROUTING_RETAINED_AS_ACCEPTANCE_EVIDENCE",
+    "kind": "PROVIDER",
+    "native_capacity_required": false,
+    "observed_at": "2026-09-05T20:21:37.568Z",
+    "profile_id": "chatgpt-linux-a",
+    "provider_id": "chatgpt",
+    "route_class": "PROVIDER_ROUTER",
+    "routing_eligible_now": false,
+    "state": "OBSERVED_SUCCESS",
+    "transport": "BROWSER_CDP"
+  },
+  "derivatives": [
+    {
+      "bytes": 670824,
+      "compatibility": "COMPATIBLE",
+      "derivative_id": "ADOBE_JPEG",
+      "dimensions": [
+        4096,
+        4096
+      ],
+      "format": "JPEG",
+      "purpose": "MARKETPLACE_DELIVERY",
+      "recipe_id": "raster-jpeg-stock-v1",
+      "semantic_identity_effect": "NONE",
+      "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd",
+      "technical_qa": "PASS"
+    },
+    {
+      "bytes": 4075628,
+      "compatibility": "COMPATIBLE",
+      "derivative_id": "PNG_PREVIEW",
+      "dimensions": [
+        4096,
+        4096
+      ],
+      "format": "PNG",
+      "purpose": "PREVIEW",
+      "recipe_id": "raster-png-export-v1",
+      "semantic_identity_effect": "NONE",
+      "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "technical_qa": "PASS"
+    },
+    {
+      "bytes": 116278,
+      "compatibility": "COMPATIBLE",
+      "derivative_id": "WEBP_PREVIEW",
+      "dimensions": [
+        4096,
+        4096
+      ],
+      "format": "WEBP",
+      "purpose": "PREVIEW",
+      "recipe_id": "raster-webp-preview-v1",
+      "semantic_identity_effect": "NONE",
+      "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224",
+      "technical_qa": "PASS"
+    }
+  ],
+  "duplicate_suppression": {
+    "physical_master_count_after_replay": 1,
+    "same_semantic_commit_replay": "IDEMPOTENT_REUSE",
+    "semantic_asset_count_after_replay": 1
+  },
+  "master_qa": {
+    "bytes": 4075628,
+    "color_space_contract": "SRGB_BLUEPRINT_EXPECTATION",
+    "decode_reopen": true,
+    "dimensions": [
+      4096,
+      4096
+    ],
+    "failures": [],
+    "format": "PNG",
+    "magic_mime_match": true,
+    "mode": "RGB",
+    "result": "PASS",
+    "schema": "die.factory-asset.fa203-master-technical-qa.v1",
+    "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06"
+  },
+  "metadata_state": "PENDING_FA204",
+  "orchestration": {
+    "next_task": "FA-204",
+    "revision": 4,
+    "state": "TECHNICAL_QA_PASS",
+    "state_sha256": "77301bb8eb62a9b744ed3117c795e471e935647337d1e42a8aba9580266075e0"
+  },
+  "package_compatibility": {
+    "blocking_next": [
+      "METADATA_PENDING_FA204",
+      "RIGHTS_REVIEW_PENDING_FA204"
+    ],
+    "marketplace": "ADOBE_STOCK",
+    "marketplace_delivery_derivative_id": "ADOBE_JPEG",
+    "marketplace_delivery_format": "JPEG",
+    "package_ready": false,
+    "preview_derivatives": [
+      "PNG_PREVIEW",
+      "WEBP_PREVIEW"
+    ],
+    "profile_revision": "1.0",
+    "profile_state": "EVIDENCE_PINNED",
+    "publication_authorized": false,
+    "schema": "die.factory-asset.fa203-package-compatibility.v1",
+    "state": "TECHNICALLY_COMPATIBLE_METADATA_RIGHTS_PENDING",
+    "submission_authorized": false
+  },
+  "provider_calls_performed": false,
+  "registry": {
+    "canonical_truth": true,
+    "committed_by": "DIE_STATE_MANAGER",
+    "path": "company/factory-asset/registries/governed-canary-assets.v1.json",
+    "physical_master_count": 1,
+    "revision": 1,
+    "semantic_asset_count": 1
+  },
+  "result": "PASS",
+  "rights_state": "REVIEW_REQUIRED",
+  "schema": "die.factory-asset.fa203-registry-qa-result.v1",
+  "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+  "task_id": "FA-203",
+  "upscale": {
+    "active_master_dimensions": [
+      4096,
+      4096
+    ],
+    "decision": "UPSCALE_X4_REQUIRED_AND_PASS",
+    "model_sha256": "8dc7edb9ac80ccdc30c3a5dca6616509367f05fbc184ad95b731f05bece96292",
+    "provider_original_dimensions": [
+      1254,
+      1254
+    ]
+  }
+}

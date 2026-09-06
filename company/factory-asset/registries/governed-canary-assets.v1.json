@@ -1,0 +1,134 @@
+{
+  "assets": [
+    {
+      "authority": {
+        "marketplace_upload": false,
+        "publication_authorized": false,
+        "spend_usd": 0,
+        "submission_authorized": false
+      },
+      "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
+      "canonical_truth": true,
+      "capacity": {
+        "capacity_state_at_observation": "AVAILABLE",
+        "cluster_id": "cluster-a",
+        "evidence_ref": "company/factory-asset/fixtures/governed-canary/FA-202-muxia-dispatch-receipt.json",
+        "evidence_type": "OBSERVED_SUCCESS_NOT_QUOTA_GUESS",
+        "freshness": "STALE_FOR_CURRENT_ROUTING_RETAINED_AS_ACCEPTANCE_EVIDENCE",
+        "kind": "PROVIDER",
+        "native_capacity_required": false,
+        "observed_at": "2026-09-05T20:21:37.568Z",
+        "profile_id": "chatgpt-linux-a",
+        "provider_id": "chatgpt",
+        "route_class": "PROVIDER_ROUTER",
+        "routing_eligible_now": false,
+        "state": "OBSERVED_SUCCESS",
+        "transport": "BROWSER_CDP"
+      },
+      "committed_by": "DIE_STATE_MANAGER",
+      "derivatives": [
+        {
+          "bytes": 670824,
+          "compatibility": "COMPATIBLE",
+          "derivative_id": "ADOBE_JPEG",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "format": "JPEG",
+          "purpose": "MARKETPLACE_DELIVERY",
+          "recipe_id": "raster-jpeg-stock-v1",
+          "semantic_identity_effect": "NONE",
+          "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd",
+          "technical_qa": "PASS"
+        },
+        {
+          "bytes": 4075628,
+          "compatibility": "COMPATIBLE",
+          "derivative_id": "PNG_PREVIEW",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "format": "PNG",
+          "purpose": "PREVIEW",
+          "recipe_id": "raster-png-export-v1",
+          "semantic_identity_effect": "NONE",
+          "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+          "technical_qa": "PASS"
+        },
+        {
+          "bytes": 116278,
+          "compatibility": "COMPATIBLE",
+          "derivative_id": "WEBP_PREVIEW",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "format": "WEBP",
+          "purpose": "PREVIEW",
+          "recipe_id": "raster-webp-preview-v1",
+          "semantic_identity_effect": "NONE",
+          "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224",
+          "technical_qa": "PASS"
+        }
+      ],
+      "evidence_sha256": "bdb672f74b7c59ce9ff05b0f4a8ca89ced7f70787927b3ae73596c7549c954ce",
+      "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "orchestration": {
+        "next_task": "FA-204",
+        "revision": 4,
+        "state": "TECHNICAL_QA_PASS",
+        "state_sha256": "77301bb8eb62a9b744ed3117c795e471e935647337d1e42a8aba9580266075e0"
+      },
+      "package_compatibility": {
+        "blocking_next": [
+          "METADATA_PENDING_FA204",
+          "RIGHTS_REVIEW_PENDING_FA204"
+        ],
+        "marketplace": "ADOBE_STOCK",
+        "marketplace_delivery_derivative_id": "ADOBE_JPEG",
+        "marketplace_delivery_format": "JPEG",
+        "package_ready": false,
+        "preview_derivatives": [
+          "PNG_PREVIEW",
+          "WEBP_PREVIEW"
+        ],
+        "profile_revision": "1.0",
+        "profile_state": "EVIDENCE_PINNED",
+        "publication_authorized": false,
+        "schema": "die.factory-asset.fa203-package-compatibility.v1",
+        "state": "TECHNICALLY_COMPATIBLE_METADATA_RIGHTS_PENDING",
+        "submission_authorized": false
+      },
+      "package_state": "METADATA_RIGHTS_PENDING",
+      "record_sha256": "ac5a3a4dc2d38d45b5f3b0f06425afe67d3e8270e29a1f95f150dc0dc2d2dd40",
+      "rights_state": "REVIEW_REQUIRED",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+      "source_proposal_sha256": "e5af1f517de6226d07c3f9811e5349c56074b6659397e1d93c891bdb80f09bb7",
+      "state": "TECHNICAL_QA_PASS"
+    }
+  ],
+  "canonical_writer": "DIE_STATE_MANAGER",
+  "history": [
+    {
+      "event_sha256": "d57cc6bfff37d9ea944457f90d88b435de5b263e9146d08698dae9e3c8c0e4ef",
+      "kind": "ASSET_COMMIT",
+      "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "physical_master_reused": false,
+      "record_sha256": "ac5a3a4dc2d38d45b5f3b0f06425afe67d3e8270e29a1f95f150dc0dc2d2dd40",
+      "revision": 1,
+      "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+      "writer": "DIE_STATE_MANAGER"
+    }
+  ],
+  "physical_masters": [
+    {
+      "first_semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+      "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "staged_blob_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/master-staging/active-master/blobs/sha256/56/5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06.png"
+    }
+  ],
+  "revision": 1,
+  "schema": "die.factory-asset.canonical-asset-registry.v1"
+}

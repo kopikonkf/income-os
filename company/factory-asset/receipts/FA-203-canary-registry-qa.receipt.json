@@ -1,0 +1,112 @@
+{
+  "schema": "die.factory-asset.fa203-canary-registry-qa-receipt.v1",
+  "task_id": "FA-203",
+  "date": "2026-09-06",
+  "status": "DONE",
+  "result": "PASS",
+  "source": "FA-202 governed shopping-bag family",
+  "canonical_writer": {
+    "implementation": "company/factory-asset/lib/factory_state_manager.py",
+    "writer_id": "DIE_STATE_MANAGER",
+    "commit": {
+      "canonical_truth": true,
+      "committed_by": "DIE_STATE_MANAGER",
+      "duplicate_suppressed": true,
+      "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "record_sha256": "ac5a3a4dc2d38d45b5f3b0f06425afe67d3e8270e29a1f95f150dc0dc2d2dd40",
+      "result": "IDEMPOTENT_REUSE",
+      "revision": 1,
+      "schema": "die.factory-asset.state-manager-commit.v1",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED"
+    },
+    "replay": {
+      "canonical_truth": true,
+      "committed_by": "DIE_STATE_MANAGER",
+      "duplicate_suppressed": true,
+      "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "record_sha256": "ac5a3a4dc2d38d45b5f3b0f06425afe67d3e8270e29a1f95f150dc0dc2d2dd40",
+      "result": "IDEMPOTENT_REUSE",
+      "revision": 1,
+      "schema": "die.factory-asset.state-manager-commit.v1",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED"
+    },
+    "registry_ref": "company/factory-asset/registries/governed-canary-assets.v1.json",
+    "registry_sha256": "fce5774335d47a8958acd887a9efe3c9d22b2e8547772b28ad9fa51c5991d774"
+  },
+  "acceptance": {
+    "master_technical_qa": "PASS",
+    "conditional_upscale": {
+      "active_master_dimensions": [
+        4096,
+        4096
+      ],
+      "decision": "UPSCALE_X4_REQUIRED_AND_PASS",
+      "model_sha256": "8dc7edb9ac80ccdc30c3a5dca6616509367f05fbc184ad95b731f05bece96292",
+      "provider_original_dimensions": [
+        1254,
+        1254
+      ]
+    },
+    "derivatives_qa": {
+      "ADOBE_JPEG": "PASS",
+      "PNG_PREVIEW": "PASS",
+      "WEBP_PREVIEW": "PASS"
+    },
+    "package_compatibility": "TECHNICALLY_COMPATIBLE_METADATA_RIGHTS_PENDING",
+    "duplicate_suppression": {
+      "physical_master_count_after_replay": 1,
+      "same_semantic_commit_replay": "IDEMPOTENT_REUSE",
+      "semantic_asset_count_after_replay": 1
+    },
+    "provider_capacity_evidence": {
+      "capacity_state_at_observation": "AVAILABLE",
+      "cluster_id": "cluster-a",
+      "evidence_ref": "company/factory-asset/fixtures/governed-canary/FA-202-muxia-dispatch-receipt.json",
+      "evidence_type": "OBSERVED_SUCCESS_NOT_QUOTA_GUESS",
+      "freshness": "STALE_FOR_CURRENT_ROUTING_RETAINED_AS_ACCEPTANCE_EVIDENCE",
+      "kind": "PROVIDER",
+      "native_capacity_required": false,
+      "observed_at": "2026-09-05T20:21:37.568Z",
+      "profile_id": "chatgpt-linux-a",
+      "provider_id": "chatgpt",
+      "route_class": "PROVIDER_ROUTER",
+      "routing_eligible_now": false,
+      "state": "OBSERVED_SUCCESS",
+      "transport": "BROWSER_CDP"
+    },
+    "orchestration_state": {
+      "next_task": "FA-204",
+      "revision": 4,
+      "state": "TECHNICAL_QA_PASS",
+      "state_sha256": "77301bb8eb62a9b744ed3117c795e471e935647337d1e42a8aba9580266075e0"
+    },
+    "canonical_truth": true,
+    "semantic_asset_count": 1,
+    "physical_master_count": 1
+  },
+  "truth_boundaries": {
+    "package_ready": false,
+    "metadata_state": "PENDING_FA204",
+    "rights_state": "REVIEW_REQUIRED",
+    "capacity_evidence_current_routing_eligible": false,
+    "marketplace_acceptance": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "provider_calls_performed": false,
+    "spend_usd": 0
+  },
+  "fixtures": {
+    "result_sha256": "70d0e8b5060944c8ee09bce648d8368781512df18b64953dfe88a71cd6f0376b",
+    "orchestration_sha256": "77301bb8eb62a9b744ed3117c795e471e935647337d1e42a8aba9580266075e0"
+  },
+  "validation": {
+    "focused": "22 passed, 1 PyPDF2 warning",
+    "factory_regression": "656 passed, 1 warning",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "secret_scan": "0 high-confidence hits",
+    "pycompile": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "next": "FA-204 READY for metadata + rights integration; do not claim PACKAGE_READY before that task."
+}
