@@ -1,0 +1,358 @@
+{
+  "authority": {
+    "marketplace_upload": false,
+    "publication_authorized": false,
+    "spend_usd": 0,
+    "submission_authorized": false
+  },
+  "binary_metadata": {
+    "dimensions": [
+      4096,
+      4096
+    ],
+    "fields": {
+      "ai_disclosure": "GENERATIVE_AI",
+      "description": "Unbranded shopping bag isolated on white for customer-order packing and fulfillment workflows.",
+      "keywords": [
+        "shopping",
+        "bag",
+        "illustrate",
+        "customer-order",
+        "packing",
+        "fulfillment",
+        "workflows",
+        "isolated",
+        "object"
+      ],
+      "title": "Shopping Bag - Isolated Object"
+    },
+    "format": "JPEG",
+    "immutable_source_preserved": true,
+    "iptc_readback": "PASS",
+    "output_path": "/var/lib/die/workspaces/FA204-SHOPPING-BAG-20260906A/shopping-bag-isolated-object__5630d1fd.jpg",
+    "output_sha256": "d097dbce84ec47ef4e70ccdc819e82fe9fbd5bb460e8c5b913fb3ff03cdf7cb8",
+    "platform_form_ai_disclosure_still_required": true,
+    "result": "IDEMPOTENT_REUSE",
+    "schema": "die.factory-asset.binary-metadata-injection.v1",
+    "semantic_identity_effect": "NONE",
+    "source_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/derivatives/adobe-jpeg.jpg",
+    "source_sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd",
+    "xmp_readback": "PASS"
+  },
+  "binary_metadata_readback": {
+    "format": "JPEG",
+    "iptc": {
+      "ai_disclosure": "GENERATIVE_AI",
+      "description": "Unbranded shopping bag isolated on white for customer-order packing and fulfillment workflows.",
+      "keywords": [
+        "shopping",
+        "bag",
+        "illustrate",
+        "customer-order",
+        "packing",
+        "fulfillment",
+        "workflows",
+        "isolated",
+        "object"
+      ],
+      "title": "Shopping Bag - Isolated Object"
+    },
+    "schema": "die.factory-asset.binary-metadata-readback.v1",
+    "sha256": "d097dbce84ec47ef4e70ccdc819e82fe9fbd5bb460e8c5b913fb3ff03cdf7cb8",
+    "xmp": {
+      "ai_disclosure": "GENERATIVE_AI",
+      "description": "Unbranded shopping bag isolated on white for customer-order packing and fulfillment workflows.",
+      "keywords": [
+        "shopping",
+        "bag",
+        "illustrate",
+        "customer-order",
+        "packing",
+        "fulfillment",
+        "workflows",
+        "isolated",
+        "object"
+      ],
+      "title": "Shopping Bag - Isolated Object"
+    }
+  },
+  "detector_runtime": {
+    "logo": false,
+    "ocr": false,
+    "safety_vision": false,
+    "watermark": false
+  },
+  "hard_veto_negative_control": {
+    "blocking_signals": [
+      {
+        "detail": "FA204 Synthetic Test Brand",
+        "detector": "text",
+        "signal": "TRADEMARK_CONFIRMED"
+      }
+    ],
+    "detector_states": {
+      "logo": "COMPLETE",
+      "safety": "COMPLETE",
+      "text": "COMPLETE",
+      "watermark": "COMPLETE"
+    },
+    "founder_qc_required": true,
+    "human_rights_clearance": false,
+    "master_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/master/master.png",
+    "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "qa_defects": [
+      "RIGHTS_FAILED"
+    ],
+    "result": "BLOCK",
+    "review_signals": [],
+    "schema": "die.factory-asset.rights-signal-gate.v1",
+    "signal_gate_pass": false,
+    "submission_authority": "FOUNDER_CONTROLLED",
+    "submission_eligible": false
+  },
+  "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+  "metadata": {
+    "ai_disclosure": "GENERATIVE_AI",
+    "ai_generated": true,
+    "binary_metadata_injected": true,
+    "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
+    "derivative_hashes": [
+      {
+        "derivative_id": "ADOBE_JPEG",
+        "format": "JPEG",
+        "purpose": "MARKETPLACE_DELIVERY",
+        "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd"
+      },
+      {
+        "derivative_id": "PNG_PREVIEW",
+        "format": "PNG",
+        "purpose": "PREVIEW",
+        "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06"
+      },
+      {
+        "derivative_id": "WEBP_PREVIEW",
+        "format": "WEBP",
+        "purpose": "PREVIEW",
+        "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224"
+      }
+    ],
+    "description": "Unbranded shopping bag isolated on white for customer-order packing and fulfillment workflows.",
+    "keywords": [
+      "shopping",
+      "bag",
+      "illustrate",
+      "customer-order",
+      "packing",
+      "fulfillment",
+      "workflows",
+      "isolated",
+      "object"
+    ],
+    "listing_filename": "shopping-bag-isolated-object__5630d1fd.jpg",
+    "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "metadata_delivery": "BINARY_IPTC_XMP_AND_SIDECAR_AND_SUBMISSION_FIELDS",
+    "metadata_sha256": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
+    "schema": "die.factory-asset.metadata-bundle.v1",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+    "source_class": "GENERATIVE_AI",
+    "submission_authority": "FOUNDER_CONTROLLED",
+    "submission_fields": {
+      "ai_disclosure": "GENERATIVE_AI",
+      "description": "Unbranded shopping bag isolated on white for customer-order packing and fulfillment workflows.",
+      "filename": "shopping-bag-isolated-object__5630d1fd.jpg",
+      "keywords": [
+        "shopping",
+        "bag",
+        "illustrate",
+        "customer-order",
+        "packing",
+        "fulfillment",
+        "workflows",
+        "isolated",
+        "object"
+      ],
+      "title": "Shopping Bag - Isolated Object"
+    },
+    "title": "Shopping Bag - Isolated Object"
+  },
+  "next_action": "FOUNDER_OR_APPROVED_VISUAL_RIGHTS_DETECTOR_MUST_CLEAR_EXACT_MASTER_HASH_BEFORE_PACKAGE_READY",
+  "orchestration": {
+    "revision": 6,
+    "rights_disposition": "REVIEW_REQUIRED",
+    "state": "METADATA_READY"
+  },
+  "package_readiness": {
+    "blockers": [
+      "RIGHTS_REVIEW_REQUIRED"
+    ],
+    "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
+    "founder_qc_required": true,
+    "human_rights_clearance": false,
+    "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "metadata": {
+      "ai_disclosure": "GENERATIVE_AI",
+      "ai_generated": true,
+      "binary_metadata_injected": true,
+      "blueprint_id": "FABP-FA200_SHOPPING_BAG_FULFILLMENT",
+      "derivative_hashes": [
+        {
+          "derivative_id": "ADOBE_JPEG",
+          "format": "JPEG",
+          "purpose": "MARKETPLACE_DELIVERY",
+          "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd"
+        },
+        {
+          "derivative_id": "PNG_PREVIEW",
+          "format": "PNG",
+          "purpose": "PREVIEW",
+          "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06"
+        },
+        {
+          "derivative_id": "WEBP_PREVIEW",
+          "format": "WEBP",
+          "purpose": "PREVIEW",
+          "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224"
+        }
+      ],
+      "description": "Unbranded shopping bag isolated on white for customer-order packing and fulfillment workflows.",
+      "keywords": [
+        "shopping",
+        "bag",
+        "illustrate",
+        "customer-order",
+        "packing",
+        "fulfillment",
+        "workflows",
+        "isolated",
+        "object"
+      ],
+      "listing_filename": "shopping-bag-isolated-object__5630d1fd.jpg",
+      "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+      "metadata_delivery": "BINARY_IPTC_XMP_AND_SIDECAR_AND_SUBMISSION_FIELDS",
+      "metadata_sha256": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
+      "schema": "die.factory-asset.metadata-bundle.v1",
+      "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+      "source_class": "GENERATIVE_AI",
+      "submission_authority": "FOUNDER_CONTROLLED",
+      "submission_fields": {
+        "ai_disclosure": "GENERATIVE_AI",
+        "description": "Unbranded shopping bag isolated on white for customer-order packing and fulfillment workflows.",
+        "filename": "shopping-bag-isolated-object__5630d1fd.jpg",
+        "keywords": [
+          "shopping",
+          "bag",
+          "illustrate",
+          "customer-order",
+          "packing",
+          "fulfillment",
+          "workflows",
+          "isolated",
+          "object"
+        ],
+        "title": "Shopping Bag - Isolated Object"
+      },
+      "title": "Shopping Bag - Isolated Object"
+    },
+    "package_plan": null,
+    "result": "PACKAGE_BLOCKED",
+    "schema": "die.factory-asset.package-readiness.v1",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+    "submission_authority": "FOUNDER_CONTROLLED"
+  },
+  "provider_calls_performed": false,
+  "result": "WAITING_FOUNDER_RIGHTS_REVIEW",
+  "rights_signal": {
+    "blocking_signals": [],
+    "detector_states": {
+      "logo": "INCOMPLETE",
+      "safety": "INCOMPLETE",
+      "text": "INCOMPLETE",
+      "watermark": "INCOMPLETE"
+    },
+    "founder_qc_required": true,
+    "human_rights_clearance": false,
+    "master_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/master/master.png",
+    "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "qa_defects": [
+      "RIGHTS_UNCLEAR"
+    ],
+    "result": "REVIEW_REQUIRED",
+    "review_signals": [
+      {
+        "detail": "INCOMPLETE",
+        "detector": "text",
+        "signal": "DETECTOR_INCOMPLETE"
+      },
+      {
+        "detail": "INCOMPLETE",
+        "detector": "logo",
+        "signal": "DETECTOR_INCOMPLETE"
+      },
+      {
+        "detail": "INCOMPLETE",
+        "detector": "watermark",
+        "signal": "DETECTOR_INCOMPLETE"
+      },
+      {
+        "detail": "INCOMPLETE",
+        "detector": "safety",
+        "signal": "DETECTOR_INCOMPLETE"
+      }
+    ],
+    "schema": "die.factory-asset.rights-signal-gate.v1",
+    "signal_gate_pass": false,
+    "submission_authority": "FOUNDER_CONTROLLED",
+    "submission_eligible": false
+  },
+  "schema": "die.factory-asset.fa204-metadata-rights-result.v1",
+  "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+  "source_rights_preflight": {
+    "artifact_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "authority_boundary": {
+      "publication_authorized": false,
+      "qa_hard_veto_waivable": false,
+      "submission_authorized": false
+    },
+    "findings": [
+      {
+        "class": "uncertain_missing_evidence",
+        "decision": "UNKNOWN",
+        "signal": "automated visual rights detector runtime unavailable"
+      },
+      {
+        "class": "uncertain_missing_evidence",
+        "decision": "UNKNOWN",
+        "signal": "automated visual rights detector runtime unavailable"
+      },
+      {
+        "class": "uncertain_missing_evidence",
+        "decision": "UNKNOWN",
+        "signal": "visual rights review not clear"
+      }
+    ],
+    "hard_veto_expected": true,
+    "legal_clearance_claimed": false,
+    "qa_review_state": "UNKNOWN",
+    "schema": "die.asset.rights-preflight.v1",
+    "state": "UNCLEAR"
+  },
+  "state_manager_commit": {
+    "committed_by": "DIE_STATE_MANAGER",
+    "metadata_rights_enrichment_sha256": "d9608c016ff7ab9f243fb734a250cf3ce63d7402891690258738afaf03ba3d95",
+    "package_state": "PACKAGE_BLOCKED_RIGHTS_REVIEW",
+    "result": "IDEMPOTENT_REUSE",
+    "revision": 2,
+    "schema": "die.factory-asset.state-manager-enrichment.v1",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED"
+  },
+  "state_manager_replay": {
+    "committed_by": "DIE_STATE_MANAGER",
+    "metadata_rights_enrichment_sha256": "d9608c016ff7ab9f243fb734a250cf3ce63d7402891690258738afaf03ba3d95",
+    "package_state": "PACKAGE_BLOCKED_RIGHTS_REVIEW",
+    "result": "IDEMPOTENT_REUSE",
+    "revision": 2,
+    "schema": "die.factory-asset.state-manager-enrichment.v1",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED"
+  },
+  "task_id": "FA-204"
+}

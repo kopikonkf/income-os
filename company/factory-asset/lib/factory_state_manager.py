@@ -81,3 +81,37 @@ def commit_asset(*,registry_path:str|Path,proposal:dict[str,Any],evidence:dict[s
     event={'kind':'ASSET_COMMIT','revision':d['revision'],'semantic_asset_id':proposal['semantic_asset_id'],'master_sha256':proposal['master_sha256'],'record_sha256':record['record_sha256'],'physical_master_reused':physical_reused,'writer':WRITER};event['event_sha256']=_sha(event);d['history'].append(event)
     _atomic(path,d)
     return {'schema':'die.factory-asset.state-manager-commit.v1','result':'COMMITTED','canonical_truth':True,'semantic_asset_id':proposal['semantic_asset_id'],'master_sha256':proposal['master_sha256'],'record_sha256':record['record_sha256'],'revision':d['revision'],'duplicate_suppressed':physical_reused,'committed_by':WRITER}
+
+def advance_asset_metadata_rights(*,registry_path:str|Path,semantic_asset_id:str,metadata:dict[str,Any],rights_signal:dict[str,Any],package_readiness:dict[str,Any],writer_id:str)->dict[str,Any]:
+    if writer_id!=WRITER: raise FactoryStateManagerError('WRITER_ID_FORBIDDEN',writer_id)
+    path=Path(registry_path); d=load_registry(path)
+    rows=[x for x in d['assets'] if x.get('semantic_asset_id')==semantic_asset_id]
+    if len(rows)!=1: raise FactoryStateManagerError('SEMANTIC_ASSET_NOT_FOUND_OR_AMBIGUOUS',semantic_asset_id)
+    a=rows[0]; master=a['master_sha256']
+    if metadata.get('schema')!='die.factory-asset.metadata-bundle.v1' or metadata.get('semantic_asset_id')!=semantic_asset_id or metadata.get('master_sha256')!=master: raise FactoryStateManagerError('METADATA_IDENTITY_MISMATCH',semantic_asset_id)
+    if not _valid_sha(metadata.get('metadata_sha256')): raise FactoryStateManagerError('METADATA_SHA_INVALID',str(metadata.get('metadata_sha256')))
+    canon_der={x['derivative_id']:x['sha256'] for x in a.get('derivatives',[])}
+    meta_der={x['derivative_id']:x['sha256'] for x in metadata.get('derivative_hashes',[])}
+    if meta_der!=canon_der: raise FactoryStateManagerError('METADATA_DERIVATIVE_HASH_MISMATCH',str(meta_der))
+    if rights_signal.get('master_sha256')!=master or rights_signal.get('result') not in {'PASS','REVIEW_REQUIRED','BLOCK'}: raise FactoryStateManagerError('RIGHTS_SIGNAL_INVALID',str(rights_signal.get('result')))
+    if package_readiness.get('master_sha256')!=master or package_readiness.get('semantic_asset_id')!=semantic_asset_id: raise FactoryStateManagerError('PACKAGE_IDENTITY_MISMATCH',semantic_asset_id)
+    rights=rights_signal['result']; pr=package_readiness.get('result')
+    if rights=='PASS' and pr!='PACKAGE_READY': raise FactoryStateManagerError('PACKAGE_READY_REQUIRED_AFTER_RIGHTS_PASS',str(pr))
+    if rights!='PASS' and pr!='PACKAGE_BLOCKED': raise FactoryStateManagerError('PACKAGE_MUST_BLOCK_ON_RIGHTS_UNCERTAINTY',str(pr))
+    enrichment={'metadata_sha256':metadata['metadata_sha256'],'rights_result':rights,'rights_signal_sha256':_sha(rights_signal),'package_result':pr,'package_plan_sha256':(package_readiness.get('package_plan') or {}).get('package_plan_sha256'),'blockers':package_readiness.get('blockers',[])}
+    esha=_sha(enrichment)
+    if a.get('metadata_rights_enrichment_sha256'):
+        if a['metadata_rights_enrichment_sha256']==esha: return {'schema':'die.factory-asset.state-manager-enrichment.v1','result':'IDEMPOTENT_REUSE','revision':d['revision'],'semantic_asset_id':semantic_asset_id,'metadata_rights_enrichment_sha256':esha,'committed_by':WRITER,'package_state':a.get('package_state')}
+        raise FactoryStateManagerError('METADATA_RIGHTS_CONFLICT',semantic_asset_id)
+    a['metadata_sha256']=metadata['metadata_sha256']; a['rights_state']=rights; a['rights_signal_sha256']=enrichment['rights_signal_sha256']; a['metadata_rights_enrichment_sha256']=esha
+    if rights=='PASS':
+        a['state']='PACKAGE_READY'; a['package_state']='PACKAGE_READY'; a['package_plan_sha256']=enrichment['package_plan_sha256']
+    elif rights=='REVIEW_REQUIRED':
+        a['state']='METADATA_READY_RIGHTS_REVIEW_REQUIRED'; a['package_state']='PACKAGE_BLOCKED_RIGHTS_REVIEW'
+    else:
+        a['state']='RIGHTS_BLOCKED'; a['package_state']='PACKAGE_BLOCKED_RIGHTS'
+    a['record_sha256']=_sha({k:v for k,v in a.items() if k!='record_sha256'})
+    d['revision']+=1
+    event={'kind':'ASSET_METADATA_RIGHTS','revision':d['revision'],'semantic_asset_id':semantic_asset_id,'master_sha256':master,'metadata_sha256':metadata['metadata_sha256'],'rights_result':rights,'package_result':pr,'enrichment_sha256':esha,'writer':WRITER};event['event_sha256']=_sha(event);d['history'].append(event)
+    _atomic(path,d)
+    return {'schema':'die.factory-asset.state-manager-enrichment.v1','result':'COMMITTED','revision':d['revision'],'semantic_asset_id':semantic_asset_id,'metadata_rights_enrichment_sha256':esha,'committed_by':WRITER,'package_state':a['package_state']}

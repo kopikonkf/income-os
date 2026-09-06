@@ -111,17 +111,56 @@
       "kind": "ADVANCE",
       "revision": 4,
       "to": "TECHNICAL_QA_PASS"
+    },
+    {
+      "event_id": "FA204-RIGHTS-REVIEW",
+      "evidence": {
+        "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+        "result": "REVIEW_REQUIRED",
+        "rights_signal_sha256": "4df1e7c38334c1486ddd3a78dbb09a921838014778932b81729ed3a0930fc882"
+      },
+      "evidence_sha256": "cd90033ddd59ab85faa8a30536a638d0090f16b3ccfacc0bfc7f71a1175c6cab",
+      "from": "TECHNICAL_QA_PASS",
+      "kind": "ADVANCE",
+      "revision": 5,
+      "to": "RIGHTS_SIGNAL_PASS_OR_REVIEW"
+    },
+    {
+      "event_id": "FA204-METADATA-READY",
+      "evidence": {
+        "derivative_hashes": [
+          {
+            "derivative_id": "ADOBE_JPEG",
+            "sha256": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd"
+          },
+          {
+            "derivative_id": "PNG_PREVIEW",
+            "sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06"
+          },
+          {
+            "derivative_id": "WEBP_PREVIEW",
+            "sha256": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224"
+          }
+        ],
+        "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+        "metadata_sha256": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a"
+      },
+      "evidence_sha256": "809da83e1bcfd8034b9fd65e42c2b204165ccc10776ffdc85c0f24c98a2ffadc",
+      "from": "RIGHTS_SIGNAL_PASS_OR_REVIEW",
+      "kind": "ADVANCE",
+      "revision": 6,
+      "to": "METADATA_READY"
     }
   ],
   "job_id": "FA-203",
   "last_failure": null,
-  "metadata_sha256": null,
+  "metadata_sha256": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
   "package_plan_sha256": null,
-  "revision": 4,
-  "rights_disposition": null,
+  "revision": 6,
+  "rights_disposition": "REVIEW_REQUIRED",
   "schema": "die.factory-asset.postproduction-state.v1",
   "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
   "source_master_sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7",
-  "state": "TECHNICAL_QA_PASS",
+  "state": "METADATA_READY",
   "status": "ACTIVE"
 }

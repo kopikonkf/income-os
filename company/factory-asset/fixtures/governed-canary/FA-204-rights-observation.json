@@ -1,0 +1,29 @@
+{
+  "detectors": {
+    "logo": {
+      "candidates": [],
+      "reason": "LOGO_DETECTOR_RUNTIME_UNAVAILABLE",
+      "state": "INCOMPLETE"
+    },
+    "safety": {
+      "flags": [],
+      "reason": "SAFETY_VISION_DETECTOR_RUNTIME_UNAVAILABLE",
+      "state": "INCOMPLETE"
+    },
+    "text": {
+      "confirmed_trademark_terms": [],
+      "detected_strings": [],
+      "reason": "OCR_TEXT_DETECTOR_RUNTIME_UNAVAILABLE",
+      "state": "INCOMPLETE",
+      "trademark_candidates": [],
+      "unresolved_strings": []
+    },
+    "watermark": {
+      "candidates": [],
+      "reason": "WATERMARK_DETECTOR_RUNTIME_UNAVAILABLE",
+      "state": "INCOMPLETE"
+    }
+  },
+  "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+  "schema": "die.factory-asset.rights-observation.v1"
+}

@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "9.6-fa203-registry-qa",
+  "revision": "9.7-fa204-metadata-rights-waiting-founder",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1729,9 +1729,12 @@
       "depends_on": [
         "FA-203"
       ],
-      "status": "READY",
-      "artifact": "company/factory-asset/receipts/FA-204-canary-metadata-rights.receipt.json",
-      "acceptance": "Metadata/keywords, AI disclosure, automated brand/IP/right signals, source rights and hard vetoes map to exact master/derivative hashes; uncertainty remains blocking and the package must be PACKAGE_READY before Founder QC."
+      "status": "WAITING_FOUNDER",
+      "artifact": "company/factory-asset/receipts/FA-204-canary-metadata-rights.receipt.json; company/factory-asset/fixtures/governed-canary/FA-204-metadata-rights-result.json",
+      "acceptance": "Metadata/keywords, AI disclosure, automated brand/IP/right signals, source rights and hard vetoes map to exact master/derivative hashes; uncertainty remains blocking and the package must be PACKAGE_READY before Founder QC.",
+      "updated_at": "2026-09-06",
+      "waiting_on": "FOUNDER_RIGHTS_REVIEW",
+      "result": "WAITING_FOUNDER_RIGHTS_REVIEW: metadata/AI disclosure and XMP+IPTC integration PASS; actual rights signal remains REVIEW_REQUIRED because text/logo/watermark/safety detector runtimes are unavailable. Package correctly remains PACKAGE_BLOCKED(RIGHTS_REVIEW_REQUIRED); State Manager records metadata-ready rights-review state; FA-205 stays blocked."
     },
     {
       "id": "FA-205",
