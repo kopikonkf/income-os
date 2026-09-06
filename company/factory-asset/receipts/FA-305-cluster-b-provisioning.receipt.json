@@ -13,14 +13,19 @@
     "rollback_after_broker_failure": true,
     "rollback_after_pre_auth_proof": true,
     "symlink_path_rejected": true,
-    "zero_founder_auth_actions": true,
-    "zero_provider_calls": true
+    "zero_founder_auth_actions": false,
+    "zero_provider_calls": true,
+    "founder_auth_completed_manually": true,
+    "auth_handoff_closed_cleanly": true,
+    "healthy_provider_subset_ready": true,
+    "chatgpt_degraded_isolated": true,
+    "canonical_cluster_b_activation_prepared": true
   },
   "auth_handoff": "company/muxia/scripts/linux/muxia-cluster-auth-handoff.mjs",
-  "canonical_cluster_b_profile_created": false,
+  "canonical_cluster_b_profile_created": true,
   "cluster_a_profile_accessed": false,
   "contract": "company/factory-asset/contracts/cluster-provisioning.v1.json",
-  "date": "2026-09-05",
+  "date": "2026-09-06",
   "evidence": {
     "auth_handoff_contract": {
       "broker_must_be_stopped": true,
@@ -115,29 +120,71 @@
       "source_profile_supplied": false
     }
   },
-  "founder_auth_performed": false,
+  "founder_auth_performed": true,
   "full_fa305_acceptance": false,
   "implementation_result": "PASS",
-  "next_boundary": "FOUNDER_AUTH_REQUIRED: provision canonical Cluster B under governed authority, open visible no-CDP browser, Founder authenticates chosen providers, fully close browser, then restart one MUXIA broker and verify FA-303 readiness before FA-305 can become DONE/PASS.",
+  "next_boundary": "ARCHITECT_LIVE_CLUSTER_B_ACTIVATION: deploy canonical registry/systemd unit, prove die-muxia-cluster-b.service READY with exclusive owner and zero leaked leases, then seal FA-305 and unlock FA-306.",
   "provider_calls_performed": 0,
   "provider_login_automation_performed": false,
   "provisioner": "company/browser/linux/cluster_profile_provisioning.mjs",
-  "reason": "Founder provider-account authentication has not been performed; full FA-305 PASS is intentionally not claimed.",
+  "reason": "Founder visible no-CDP provider authentication is complete and the auth browser closed normally. Cluster B headless broker/readiness acceptance is green on a four-provider schedulable subset; canonical systemd activation must be deployed and re-verified before full FA-305 PASS.",
   "schema": "die.factory-asset.fa305-cluster-b-provisioning-acceptance.v1",
   "source_profile_copy_attempted": false,
   "source_profile_read_attempted": false,
   "spend_authorized": false,
   "task_id": "FA-305",
-  "task_state": "WAITING_FOUNDER_AUTH",
-  "temporary_profile_only": true,
+  "task_state": "IN_PROGRESS",
+  "temporary_profile_only": false,
   "validation": {
-    "combined_pytest": "657 passed, 1 warning",
-    "company_secret_scan_hits": 0,
-    "factory_regression": "651 passed, 1 warning (PyPDF2 deprecation)",
-    "focused_pytest": "8 passed",
-    "node_syntax_check": "PASS",
+    "focused_activation": "20 passed",
+    "factory_regression": "692 passed, 1 PyPDF2 warning",
     "one_canon_pytest": "6 passed",
     "one_canon_validator": "11/11 PASS",
-    "reconciled_main": "6715240491b3dda40276ea3de4b9eff72536b70a (FA-202 merged)"
+    "company_secret_scan_hits": 0,
+    "python_compile": "PASS",
+    "shell_syntax": "PASS",
+    "node_syntax": "PASS",
+    "git_diff_check": "PASS",
+    "base_main": "af2490666c706b750cf199eb9e7e8807326aed3f"
+  },
+  "live_auth_and_readiness": {
+    "provisioning_state": "AUTH_HANDOFF_CLOSED",
+    "browser_fully_closed": true,
+    "provider_login_automated": false,
+    "fresh_profile_created": true,
+    "profile_initial_entries": 0,
+    "source_profile_supplied": false,
+    "source_profile_read": false,
+    "inherited_session_material": false,
+    "ephemeral_broker": {
+      "state": "READY",
+      "control_host": "127.0.0.1",
+      "control_port": 39122,
+      "debug_host": "127.0.0.1",
+      "max_tabs": 8,
+      "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+      "second_owner_rejected": true,
+      "leases_after_probe": 0
+    },
+    "provider_readiness": {
+      "qwen": "HEALTHY",
+      "gemini": "HEALTHY",
+      "manus": "HEALTHY",
+      "duckai": "HEALTHY",
+      "chatgpt": "DEGRADED_COMPOSER_NOT_READY"
+    },
+    "schedulable_cluster_b_providers": [
+      "qwen",
+      "gemini",
+      "manus",
+      "duckai"
+    ],
+    "chatgpt_isolated_until_readiness_recovers": true,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_usd": 0,
+    "fixture": "company/factory-asset/fixtures/multi-cluster/FA-305-cluster-b-readiness.json"
   }
 }

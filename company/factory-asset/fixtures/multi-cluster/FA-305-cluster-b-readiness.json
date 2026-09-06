@@ -1,0 +1,80 @@
+{
+  "schema": "die.factory-asset.fa305-cluster-b-readiness.v1",
+  "task_id": "FA-305",
+  "cluster_id": "cluster-b",
+  "profile_id": "web-ai-cluster-b",
+  "observed_date": "2026-09-06",
+  "auth_handoff": {
+    "state": "AUTH_HANDOFF_CLOSED",
+    "browser_fully_closed": true,
+    "provider_login_automated": false,
+    "source_profile_supplied": false,
+    "source_profile_read": false,
+    "inherited_session_material": false
+  },
+  "broker_acceptance": {
+    "state": "READY",
+    "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+    "control_host": "127.0.0.1",
+    "control_port": 39122,
+    "debug_host": "127.0.0.1",
+    "max_tabs": 8,
+    "second_owner_rejected": true,
+    "second_owner_error": "E_CLUSTER_BROKER_ALREADY_OWNED",
+    "leases_after_probe": 0
+  },
+  "providers": [
+    {
+      "provider_id": "qwen",
+      "state": "HEALTHY",
+      "reason_code": "COMPOSER_READY",
+      "safe_url": "https://chat.qwen.ai/",
+      "schedulable": true
+    },
+    {
+      "provider_id": "gemini",
+      "state": "HEALTHY",
+      "reason_code": "COMPOSER_READY",
+      "safe_url": "https://gemini.google.com/app",
+      "schedulable": true
+    },
+    {
+      "provider_id": "manus",
+      "state": "HEALTHY",
+      "reason_code": "COMPOSER_READY",
+      "safe_url": "https://manus.im/app",
+      "schedulable": true,
+      "note": "healthy on bounded re-probe using proven 20-second editor wait"
+    },
+    {
+      "provider_id": "duckai",
+      "state": "HEALTHY",
+      "reason_code": "COMPOSER_READY",
+      "safe_url": "https://duck.ai/",
+      "schedulable": true
+    },
+    {
+      "provider_id": "chatgpt",
+      "state": "DEGRADED",
+      "reason_code": "COMPOSER_NOT_READY",
+      "safe_url": "https://chatgpt.com/",
+      "schedulable": false,
+      "auth_ui_visible": false,
+      "checkpoint_visible": false,
+      "note": "session not classified as logged out; provider isolated until readiness recovers"
+    }
+  ],
+  "active_provider_subset": [
+    "qwen",
+    "gemini",
+    "manus",
+    "duckai"
+  ],
+  "aggregate_activation_state": "HEALTHY_ACTIVE_SUBSET",
+  "credential_values_read": false,
+  "cookies_or_tokens_read": false,
+  "provider_generation_calls_performed": 0,
+  "spend_usd": 0,
+  "submission_authorized": false,
+  "publication_authorized": false
+}
