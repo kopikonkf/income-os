@@ -16,6 +16,7 @@ DEFAULT_WORKSPACES = Path("/var/lib/die/workspaces")
 ELIGIBLE_DEMAND = ("validated_high", "validated_medium")
 SEED_RE = re.compile(r"^SEED-\d{6}$")
 SEED_ANY_RE = re.compile(r"\bSEED-\d{6}\b")
+SELECTION_POLICY = "APPROVED_U1_DEMAND_RANKED_UNUSED_WITH_EXPRESSION_V2"
 
 
 def _collect_seed_ids(value: Any, out: set[str]) -> None:
@@ -32,8 +33,8 @@ def _collect_seed_ids(value: Any, out: set[str]) -> None:
 def produced_seed_ids(workspaces_root: Path) -> set[str]:
     """Return seeds already materialized into production workspaces.
 
-    This is intentionally conservative: a seed is considered used when it is
-    present in a known production envelope/manifest/blueprint. Invalid JSON is
+    A newly-started production card writes seed-selection.json before cognition,
+    so seed ownership is durable before a Blueprint/job exists. Invalid JSON is
     ignored instead of inventing state.
     """
     used: set[str] = set()
@@ -41,6 +42,7 @@ def produced_seed_ids(workspaces_root: Path) -> set[str]:
         return used
 
     relpaths = (
+        "seed-selection.json",
         "job.json",
         "blueprint.json",
         "qa/manifest.json",
@@ -57,11 +59,40 @@ def produced_seed_ids(workspaces_root: Path) -> set[str]:
             except (OSError, UnicodeDecodeError, json.JSONDecodeError):
                 continue
             _collect_seed_ids(payload, used)
+            if rel == "seed-selection.json" and isinstance(payload, dict):
+                seed = payload.get("seed")
+                if isinstance(seed, dict) and isinstance(seed.get("id"), str) and SEED_RE.fullmatch(seed["id"]):
+                    used.add(seed["id"])
             if rel == "job.json":
-                # Legacy/current worker envelopes may keep canonical seed only
-                # inside bounded context prose. Restrict fallback to SEED ids.
                 used.update(SEED_ANY_RE.findall(raw))
     return used
+
+
+def _expressions(connection: sqlite3.Connection) -> dict[str, dict[str, Any]]:
+    exists = connection.execute(
+        "SELECT 1 FROM sqlite_master WHERE type='table' AND name='production_seed_expressions'"
+    ).fetchone()
+    if not exists:
+        return {}
+    rows = connection.execute(
+        """
+        SELECT expression_id, seed_id, candidate_id, commercial_expression,
+               evidence_level, evidence_ref, opportunity_score, policy_revision
+          FROM production_seed_expressions
+        """
+    ).fetchall()
+    return {
+        str(r["seed_id"]): {
+            "expression_id": r["expression_id"],
+            "candidate_id": r["candidate_id"],
+            "commercial_expression": r["commercial_expression"],
+            "evidence_level": r["evidence_level"],
+            "evidence_ref": r["evidence_ref"],
+            "opportunity_score": r["opportunity_score"],
+            "policy_revision": r["policy_revision"],
+        }
+        for r in rows
+    }
 
 
 def select_seed(db_path: Path, workspaces_root: Path) -> dict[str, Any]:
@@ -77,7 +108,7 @@ def select_seed(db_path: Path, workspaces_root: Path) -> dict[str, Any]:
             """
             SELECT id, canonical_name, object_class, existence_type,
                    category_path, demand_score, demand_status, asset_tier,
-                   risk_score, status
+                   risk_score, status, source_batch, master_source_id, demand_signal
               FROM seeds
              WHERE status = 'approved'
                AND asset_tier = 'U1-raster'
@@ -92,6 +123,7 @@ def select_seed(db_path: Path, workspaces_root: Path) -> dict[str, Any]:
                id ASC
             """
         ).fetchall()
+        expressions = _expressions(connection)
     finally:
         connection.close()
 
@@ -102,7 +134,7 @@ def select_seed(db_path: Path, workspaces_root: Path) -> dict[str, Any]:
         return {
             "schema": SCHEMA,
             "status": "SELECTED",
-            "selection_policy": "APPROVED_U1_DEMAND_RANKED_UNUSED_V1",
+            "selection_policy": SELECTION_POLICY,
             "seed": {
                 "id": seed_id,
                 "canonical_name": row["canonical_name"],
@@ -114,7 +146,11 @@ def select_seed(db_path: Path, workspaces_root: Path) -> dict[str, Any]:
                 "asset_tier": row["asset_tier"],
                 "risk_score": row["risk_score"],
                 "atlas_status": row["status"],
+                "source_batch": row["source_batch"],
+                "master_source_id": row["master_source_id"],
+                "demand_signal": row["demand_signal"],
             },
+            "commercial_expression": expressions.get(seed_id),
             "excluded_used_seed_count": len(used),
             "used_seed_ids": sorted(used),
             "authority_effect": "NONE",
@@ -124,7 +160,7 @@ def select_seed(db_path: Path, workspaces_root: Path) -> dict[str, Any]:
     return {
         "schema": SCHEMA,
         "status": "NO_ELIGIBLE_SEED",
-        "selection_policy": "APPROVED_U1_DEMAND_RANKED_UNUSED_V1",
+        "selection_policy": SELECTION_POLICY,
         "excluded_used_seed_count": len(used),
         "used_seed_ids": sorted(used),
         "authority_effect": "NONE",
