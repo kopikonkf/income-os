@@ -139,13 +139,17 @@ async function brokerObservation() {
 }
 async function normalizeStartupTabs() {
   const before = await fetchClusterLeases(controlBaseUrl);
-  const { browser } = await connectClusterBrowser({ controlBaseUrl, playwrightEntry, timeoutMs: 10000 });
-  const context = browser.contexts()[0];
-  if (!context) throw new Error('E_FA121_BROKER_CONTEXT');
-  const normalized = await enforceTabBudget(context, { maxTabs: config.cluster.max_tabs });
-  const after = await fetchClusterLeases(controlBaseUrl);
-  if (after.open_pages > config.cluster.max_tabs) throw new Error(`E_FA121_TAB_NORMALIZATION:${after.open_pages}`);
-  return { before_open_pages: before.open_pages, after_open_pages: after.open_pages, closed: normalized.closed, max_tabs: config.cluster.max_tabs };
+  const connected = await connectClusterBrowser({ controlBaseUrl, playwrightEntry, timeoutMs: 10000 });
+  try {
+    const context = connected.browser.contexts()[0];
+    if (!context) throw new Error('E_FA121_BROKER_CONTEXT');
+    const normalized = await enforceTabBudget(context, { maxTabs: config.cluster.max_tabs });
+    const after = await fetchClusterLeases(controlBaseUrl);
+    if (after.open_pages > config.cluster.max_tabs) throw new Error(`E_FA121_TAB_NORMALIZATION:${after.open_pages}`);
+    return { before_open_pages: before.open_pages, after_open_pages: after.open_pages, closed: normalized.closed, max_tabs: config.cluster.max_tabs };
+  } finally {
+    await connected.disconnect();
+  }
 }
 function appendHeartbeat(state, heartbeat) {
   state.heartbeats.push(heartbeat);
@@ -387,6 +391,13 @@ function heartbeatCoverage(state) {
   const observedDuration = times[times.length - 1] - times[0];
   return { first_observed_at: iso(times[0]), last_observed_at: iso(times[times.length - 1]), observed_duration_ms: observedDuration, max_gap_ms: maxGap, covers_24h: times[0] <= ms(state.start_at) + config.heartbeat_max_gap_seconds_for_acceptance * 1000 && times[times.length - 1] >= ms(state.end_at) && maxGap <= config.heartbeat_max_gap_seconds_for_acceptance * 1000 };
 }
+function reconcileOnly() {
+  const state = loadState();
+  const reconciliation = reconcileInterrupted(state);
+  saveState(state);
+  console.log(JSON.stringify({ action: 'RECONCILED', reconciliation, status: summary(state) }, null, 2));
+}
+
 function finalizeAcceptance() {
   const state = loadState(); const nowAt = arg('--now', nowIso());
   if (ms(nowAt) < ms(state.end_at)) throw new Error('E_FA121_24H_NOT_ELAPSED');
@@ -446,6 +457,7 @@ try {
   if (command === 'init') await initState();
   else if (command === 'tick') await tick();
   else if (command === 'status') console.log(JSON.stringify(summary(loadState()), null, 2));
+  else if (command === 'reconcile') reconcileOnly();
   else if (command === 'finalize') finalizeAcceptance();
   else if (command === 'selftest') await selftest();
   else throw new Error(`E_FA121_COMMAND:${command}`);

@@ -48,18 +48,27 @@ export async function connectClusterBrowser({ controlBaseUrl, playwrightEntry, t
   const attach = await fetchClusterAttach(controlBaseUrl, timeoutMs);
   const { chromium } = await import(pathToFileURL(path.resolve(playwrightEntry)).href);
   const browser = await chromium.connectOverCDP(attach.debug_url, { timeout: timeoutMs });
-  return { browser, attach, ownership: 'BROKER_OWNS_BROWSER' };
+  let disconnected = false;
+  const disconnect = async () => {
+    if (disconnected) return;
+    disconnected = true;
+    // For a Browser created by connectOverCDP, Playwright's close path closes
+    // this CDP client's transport. The broker-owned Chromium process remains up.
+    await browser.close({ reason: 'DIE_CDP_CLIENT_DISCONNECT' }).catch(() => {});
+  };
+  return { browser, attach, ownership: 'BROKER_OWNS_BROWSER', disconnect };
 }
 
 export async function connectLeasedClusterTab({ controlBaseUrl, lease, playwrightEntry, timeoutMs = 10000 }) {
-  const { browser, attach } = await connectClusterBrowser({ controlBaseUrl, playwrightEntry, timeoutMs });
+  const { browser, attach, disconnect } = await connectClusterBrowser({ controlBaseUrl, playwrightEntry, timeoutMs });
   const deadline = Date.now() + timeoutMs;
   while (Date.now() < deadline) {
     for (const context of browser.contexts()) {
       const page = context.pages().find((p) => p.url() === lease.claim_url);
-      if (page) return { browser, page, attach, lease, ownership: 'BROKER_OWNS_BROWSER' };
+      if (page) return { browser, page, attach, lease, ownership: 'BROKER_OWNS_BROWSER', disconnect };
     }
     await new Promise((resolve) => setTimeout(resolve, 50));
   }
+  await disconnect();
   throw new Error(`E_CLUSTER_TAB_CLAIM_TIMEOUT:${lease.lease_id}`);
 }
