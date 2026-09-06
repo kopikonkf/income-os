@@ -154,12 +154,14 @@ function assertProviderConfig(providerId, providerConfig) {
 
 export async function probeFa121Provider({ controlBaseUrl, playwrightEntry, providerId, providerConfig, readinessProfile, jobId, ttlMs = 120000 }) {
   assertProviderConfig(providerId, providerConfig);
-  const started = Date.now(); let lease = null; let released = null;
+  const started = Date.now(); let lease = null; let released = null; let disconnect = null;
   const out = { schema: 'die.factory-asset.fa121-provider-readiness-observation.v1', provider_id: providerId, cluster_id: 'cluster-a', actual_transport: 'BROWSER_CDP', job_id: jobId, observed_at: nowIso(), credential_values_read: false, cookies_or_tokens_read: false };
   try {
     lease = await acquireClusterTab(controlBaseUrl, { providerId, jobId, ttlMs });
     out.lease = { lease_id: lease.lease_id, state: lease.state, acquired_at: lease.acquired_at, expires_at: lease.expires_at };
-    const { page } = await connectLeasedClusterTab({ controlBaseUrl, lease, playwrightEntry, timeoutMs: 10000 });
+    const connected = await connectLeasedClusterTab({ controlBaseUrl, lease, playwrightEntry, timeoutMs: 10000 });
+    disconnect = connected.disconnect;
+    const page = connected.page;
     await page.goto(providerConfig.browser_url, { waitUntil: 'domcontentloaded', timeout: 60000 });
     await page.waitForTimeout(2200);
     const readiness = await classifyProviderPage({ page, providerId, profile: readinessProfile });
@@ -175,6 +177,7 @@ export async function probeFa121Provider({ controlBaseUrl, playwrightEntry, prov
   } finally {
     if (lease?.lease_id) released = await releaseClusterTab(controlBaseUrl, lease.lease_id, 'FA121_READINESS_PROBE_COMPLETE').catch(() => null);
     if (released) out.lease_release = released;
+    if (disconnect) await disconnect();
   }
 }
 
@@ -182,7 +185,7 @@ export async function generateFa121ProviderImage({ controlBaseUrl, playwrightEnt
   assertProviderConfig(providerId, providerConfig);
   if (typeof prompt !== 'string' || prompt.length < 10 || prompt.length > 4000) throw new Error('E_FA121_PROMPT');
   fs.mkdirSync(artifactDir, { recursive: true, mode: 0o750 });
-  const startedAt = nowIso(); const startedMs = Date.now(); let lease = null; let dispatchCommitted = false; let body = '';
+  const startedAt = nowIso(); const startedMs = Date.now(); let lease = null; let disconnect = null; let dispatchCommitted = false; let body = '';
   const receipt = {
     schema: 'die.factory-asset.fa121-provider-attempt.v1', job_id: jobId, provider_id: providerId, cluster_id: 'cluster-a',
     actual_transport: 'BROWSER_CDP', transport_role: providerConfig.transport_role, primary_transport_contract: providerConfig.primary_transport_contract,
@@ -196,6 +199,7 @@ export async function generateFa121ProviderImage({ controlBaseUrl, playwrightEnt
     receipt.lease = { lease_id: lease.lease_id, state: lease.state, acquired_at: lease.acquired_at, expires_at: lease.expires_at, max_tabs: lease.max_tabs, provider_limit: lease.provider_limit };
     atomicJson(journalPath, receipt);
     const connected = await connectLeasedClusterTab({ controlBaseUrl, lease, playwrightEntry, timeoutMs: 10000 });
+    disconnect = connected.disconnect;
     const page = connected.page; const context = connected.browser.contexts()[0];
     if (!context) throw new Error('E_FA121_BROWSER_CONTEXT');
     await page.goto(providerConfig.browser_url, { waitUntil: 'domcontentloaded', timeout: 60000 });
@@ -231,6 +235,7 @@ export async function generateFa121ProviderImage({ controlBaseUrl, playwrightEnt
       receipt.lease_release = release;
     }
     receipt.cluster_lease_snapshot_after = await fetchClusterLeases(controlBaseUrl).then((v) => ({ schema: v.schema, max_tabs: v.max_tabs, active_leases: v.active_leases, open_pages: v.open_pages, provider_states: v.provider_states })).catch(() => null);
+    if (disconnect) await disconnect();
     atomicJson(journalPath, receipt);
   }
 }

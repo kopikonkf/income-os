@@ -59,6 +59,7 @@ def test_worker_uses_broker_tab_leases_and_never_spawns_or_reads_profile_secrets
     assert 'qwen_session_api_live_executor_claimed' in s
     assert 'dispatch_committed' in s
     assert 'journalpath' in s
+    assert 'if (disconnect) await disconnect()' in s
 
 
 def test_runner_consumes_router_queue_readiness_capacity_and_restart_journal():
@@ -75,6 +76,8 @@ def test_runner_consumes_router_queue_readiness_capacity_and_restart_journal():
     assert 'profileintegrity' in s
     assert 'content_read: false' in s
     assert 'secret_value_hashing: false' in s
+    assert 'await connected.disconnect()' in s
+    assert "command === 'reconcile'" in s
 
 
 def test_systemd_lane_is_dedicated_and_does_not_replace_production_cycle():
