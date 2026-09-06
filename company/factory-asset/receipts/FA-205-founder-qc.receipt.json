@@ -1,0 +1,60 @@
+{
+  "schema": "die.factory-asset.fa205-founder-qc-receipt.v1",
+  "task_id": "FA-205",
+  "date": "2026-09-06",
+  "status": "DONE",
+  "result": "APPROVE",
+  "founder_verdict": {
+    "decision": "APPROVE",
+    "decision_source": "FOUNDER_DIRECT_CHAT",
+    "silence_is_approval": false,
+    "visual_qc_performed": true,
+    "founder_reviewed_files": [
+      "master_png",
+      "adobe_jpeg",
+      "png_preview",
+      "webp_preview",
+      "metadata_injected_listing_jpeg"
+    ]
+  },
+  "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+  "package_state_at_review": "PACKAGE_READY",
+  "exact_hashes": {
+    "master_png": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "adobe_jpeg": "49d116013c9241ae7c12e7b9cc64abb9709db189416fec7a1828df78cf8f9cfd",
+    "png_preview": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "webp_preview": "48808e4959f3b9b0e979a7c063974599c20b1628b0bdc1df9c7994497b466224",
+    "listing_jpeg": "d097dbce84ec47ef4e70ccdc819e82fe9fbd5bb460e8c5b913fb3ff03cdf7cb8",
+    "metadata_bundle": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
+    "package_plan": "e5912d1892f5faeedf0a931076ac8d34f7854e6ba12635f0c5840554a69a326b"
+  },
+  "review_basis": {
+    "master_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/master/master.png",
+    "adobe_jpeg_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/derivatives/adobe-jpeg.jpg",
+    "png_preview_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/derivatives/png-preview.png",
+    "webp_preview_path": "/var/lib/die/workspaces/FA202-SHOPPING-BAG-20260905A/derivatives/webp-preview.webp",
+    "listing_jpeg_path": "/var/lib/die/workspaces/FA204-SHOPPING-BAG-20260906A/shopping-bag-isolated-object__5630d1fd.jpg"
+  },
+  "automated_evidence": {
+    "fa204_result": "PASS",
+    "rights_signal": "PASS",
+    "package_readiness": "PACKAGE_READY",
+    "founder_qc_required": true
+  },
+  "authority_boundary": {
+    "founder_qc_approved": true,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "marketplace_upload": false,
+    "spend_usd": 0
+  },
+  "next": "FA-206 Factory Asset Level Up v1 acceptance",
+  "validation": {
+    "focused": "8 passed",
+    "factory_regression": "675 passed, 1 PyPDF2 warning",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "secret_scan": "0 high-confidence hits",
+    "git_diff_check": "PASS"
+  }
+}
