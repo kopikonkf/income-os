@@ -6,8 +6,8 @@
   "result": null,
   "founder_authorization": {
     "observed_in_session": true,
-    "instruction": "silakan dilanjut baca terminal ... jika PASS seal FA-307",
-    "attempt_number": 5,
+    "instruction": "silakan dilanjut ... jika PASS seal FA-307",
+    "attempt_number": 6,
     "authorized_provider_calls": 2,
     "fresh_jobs_required": true
   },
@@ -18,15 +18,15 @@
       "provider_id": "gemini",
       "cluster_id": "cluster-a",
       "transport": "BROWSER_CDP",
-      "semantic": "isolated red ceramic teapot",
-      "job_id": "FA307-R5-GEMINI-A-20260907"
+      "semantic": "isolated orange desk lamp",
+      "job_id": "FA307-R6-GEMINI-A-20260907"
     },
     {
       "provider_id": "manus",
       "cluster_id": "cluster-b",
       "transport": "BROWSER_CDP",
       "semantic": "isolated green ceramic watering can",
-      "job_id": "FA307-R5-MANUS-B-20260907"
+      "job_id": "FA307-R6-MANUS-B-20260907"
     }
   ],
   "authority": {
@@ -37,7 +37,7 @@
     "credential_values_read": false,
     "cookies_or_tokens_read": false
   },
-  "next_boundary": "Run fresh attempt #5 Gemini@A + Manus@B with exactly two calls and zero retries. Seal only if both original bytes and all overlap/resource/profile/lease/recovery assertions pass.",
+  "next_boundary": "Run fresh attempt #6 Gemini@A + Manus@B with hardened Gemini generated-DOM-byte acquisition before download-event fallback. Exactly two calls, zero retries; seal only if all assertions pass.",
   "validation": {
     "selftest": "PASS",
     "focused_fa307": "7 passed",
@@ -48,7 +48,7 @@
     "company_secret_scan_hits": 0,
     "node_syntax": "PASS",
     "git_diff_check": "PASS",
-    "base_main": "e3417ea517d9cc6571ae1d67874a58a695e0cb1c"
+    "base_main": "98ad023178f07d41b1f4e875306c2c952676ac7b"
   },
   "attempt_history": [
     {
@@ -143,6 +143,22 @@
       "manus_original_bytes": 61408,
       "post_dispatch_retry_performed": false,
       "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-4-duck-manus-result.json"
+    },
+    {
+      "attempt_number": 5,
+      "pair": [
+        "gemini@cluster-a",
+        "manus@cluster-b"
+      ],
+      "result": "FAIL",
+      "failure_boundary": "GEMINI_DOWNLOAD_SAVEAS_ENOENT_WHILE_MANUS_SUCCEEDED",
+      "provider_dispatch_commits": 2,
+      "parallel_dispatch_overlap": true,
+      "gemini_status": "FAILED_DOWNLOAD_TEMP_RACE",
+      "manus_status": "SUCCEEDED",
+      "manus_original_sha256": "baa35d50d0fbfdb6cf23e840c7467c381e659fd10a7b8d84a9edc89810d2366e",
+      "post_dispatch_retry_performed": false,
+      "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-5-gemini-manus-result.json"
     }
   ],
   "preflight_selection": {

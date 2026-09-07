@@ -2427,7 +2427,7 @@
       "acceptance": "Two clusters execute concurrent heterogeneous provider jobs with correct original-byte lineage, no profile lock collisions, bounded RAM/tabs and deterministic recovery.",
       "updated_at": "2026-09-07",
       "waiting_on": "ARCHITECT_BOUNDED_TWO_CLUSTER_LIVE_ACCEPTANCE",
-      "result": "IN_PROGRESS: Attempts #1-#4 terminal and preserved without post-dispatch retries; Duck human challenge was not bypassed. Manus@B succeeded in attempts #3/#4. Broker-owned navigation preflight selected Gemini@A HEALTHY/COMPOSER_READY over ChatGPT DEGRADED. Fresh attempt #5 uses Gemini@A + Manus@B, new job IDs, exactly two calls and zero retries."
+      "result": "IN_PROGRESS: Attempt #5 had two overlapping dispatch commits and Manus@B success; Gemini@A generation reached a download control but Playwright saveAs hit an ephemeral temp-file ENOENT. No retry/reconciliation was possible after lease release. Fresh attempt #6 uses new Gemini@A + Manus@B jobs and prefers fresh generated DOM/browser-context bytes after the new download control before falling back to download-event saveAs."
     },
     {
       "id": "FA-308",
