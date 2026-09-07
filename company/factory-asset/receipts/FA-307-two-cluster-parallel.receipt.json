@@ -6,8 +6,8 @@
   "result": null,
   "founder_authorization": {
     "observed_in_session": true,
-    "instruction": "silakan tuntaskan FA-307",
-    "attempt_number": 3,
+    "instruction": "silakan dilanjut ... jika PASS seal FA-307",
+    "attempt_number": 4,
     "authorized_provider_calls": 2,
     "fresh_jobs_required": true
   },
@@ -15,18 +15,18 @@
   "runner": "company/factory-asset/bin/run_fa307_two_cluster_live.mjs",
   "planned_jobs": [
     {
-      "provider_id": "qwen",
+      "provider_id": "duckai",
       "cluster_id": "cluster-a",
       "transport": "BROWSER_CDP",
-      "semantic": "isolated teal desk clock",
-      "job_id": "FA307-R3-QWEN-A-20260907"
+      "semantic": "isolated blue enamel camping mug",
+      "job_id": "FA307-R4-DUCK-A-20260907"
     },
     {
       "provider_id": "manus",
       "cluster_id": "cluster-b",
       "transport": "BROWSER_CDP",
       "semantic": "isolated green ceramic watering can",
-      "job_id": "FA307-R3-MANUS-B-20260907"
+      "job_id": "FA307-R4-MANUS-B-20260907"
     }
   ],
   "authority": {
@@ -37,18 +37,18 @@
     "credential_values_read": false,
     "cookies_or_tokens_read": false
   },
-  "next_boundary": "Attempt #2 is terminal: Manus never dispatched because generic readiness was too early; Qwen later timed out. No retry occurred. Attempt #3 uses fresh job IDs and fixes Manus pre-dispatch gating to the proven bounded 20-second editor wait while preserving exact two-call/zero-retry authority.",
+  "next_boundary": "Run fresh attempt #4 Duck.ai@A + Manus@B with exactly two provider calls and zero retries. Duck.ai was live-readiness HEALTHY preselection; Manus succeeded in attempt #3. Seal FA-307 only if both originals and all architecture assertions pass.",
   "validation": {
     "selftest": "PASS",
-    "focused_fa307": "8 passed",
-    "focused_progression_plus_fa307": "15 passed",
-    "factory_regression": "717 passed, 1 PyPDF2 warning",
+    "focused_fa307": "7 passed",
+    "focused_progression_plus_fa307": "14 passed",
+    "factory_regression": "716 passed, 1 PyPDF2 warning",
     "one_canon_pytest": "6 passed",
     "one_canon_validator": "11/11 PASS",
     "company_secret_scan_hits": 0,
     "node_syntax": "PASS",
     "git_diff_check": "PASS",
-    "base_main": "55112bba6a1f89c0f144d5f5fba42b2102a457be"
+    "base_main": "15f4624a66c4d5ef3e01cbc00a48fab02fd7701e"
   },
   "attempt_history": [
     {
@@ -110,6 +110,22 @@
       ],
       "post_dispatch_retry_performed": false,
       "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-2-qwen-manus-result.json"
+    },
+    {
+      "attempt_number": 3,
+      "pair": [
+        "qwen@cluster-a",
+        "manus@cluster-b"
+      ],
+      "result": "FAIL",
+      "failure_boundary": "QWEN_PROVIDER_TIMEOUT_WHILE_MANUS_SUCCEEDED",
+      "provider_dispatch_commits": 2,
+      "qwen_status": "FAILED_PROVIDER_TIMEOUT",
+      "manus_status": "SUCCEEDED",
+      "manus_original_sha256": "0e3195e675c789835126b675a0e75d2142f689482ed28f81696422c1483465de",
+      "manus_original_bytes": 2772228,
+      "post_dispatch_retry_performed": false,
+      "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-3-qwen-manus-result.json"
     }
   ]
 }
