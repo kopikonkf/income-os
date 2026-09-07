@@ -768,3 +768,10 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Attempt #4 terminal FAIL: Duck.ai@A hit `E_HUMAN_CHALLENGE_REQUIRED` immediately after dispatch and was not bypassed; Manus@B SUCCEEDED with original SHA256 `6b6f763c4a6dd144055fd16be1849ffa34b13b2d7e8ee847d08e0b24d008e052`. Resource/profile/lease/recovery safety remained bounded.
 - Broker-owned navigation preflight observed ChatGPT@A DEGRADED/COMPOSER_NOT_READY and Gemini@A HEALTHY/COMPOSER_READY with zero provider call and zero credential/token read.
 - Fresh attempt #5 therefore uses new Gemini@A + Manus@B jobs, exactly two provider calls, zero retries. Gemini uses the canonical FA-114 download-control original-byte path adapted to broker leases.
+
+---
+
+## 2026-09-07 - FA-307 attempt #5 terminal; attempt #6 Gemini DOM-byte hardening staged
+- Attempt #5 had two overlapping committed dispatches. Manus@B SUCCEEDED; Gemini@A reached its generated download control but Playwright `download.saveAs()` failed because the ephemeral download artifact vanished (`ENOENT`). This is classified as extractor failure, not a provider-generation failure.
+- The released Gemini page no longer existed, so no false reconciliation was claimed and no retry was performed.
+- Fresh attempt #6 uses new Gemini@A + Manus@B job identities. Gemini snapshots image sources pre-dispatch and, only after a new download control proves generation, first fetches fresh >=512px generated image bytes through the authenticated browser context; the browser download event remains fallback.

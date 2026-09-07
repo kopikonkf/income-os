@@ -1,0 +1,256 @@
+{
+  "schema": "die.factory-asset.fa307-attempt5-sanitized-evidence.v1",
+  "task_id": "FA-307",
+  "attempt_number": 5,
+  "result": "FAIL",
+  "executed_at": "2026-09-07T14:09:07.277Z",
+  "pair": [
+    "gemini@cluster-a",
+    "manus@cluster-b"
+  ],
+  "failure_boundary": "GEMINI_PLAYWRIGHT_DOWNLOAD_TEMP_RACE_WHILE_MANUS_SUCCEEDED",
+  "assertions": {
+    "both_jobs_succeeded": false,
+    "exactly_two_dispatch_commits": true,
+    "heterogeneous_providers": true,
+    "different_clusters": true,
+    "parallel_dispatch_intervals_overlap": true,
+    "distinct_original_sha256": false,
+    "original_bytes_persisted": false,
+    "profile_metadata_identity_preserved": true,
+    "zero_monitor_bound_violation": true,
+    "bounded_ram": true,
+    "bounded_tabs": true,
+    "bounded_leases": true,
+    "zero_lease_leak_after_completion": true,
+    "second_owner_rejected": true,
+    "recovery_owner_pid_changed": true,
+    "recovery_cluster_b_ready": true,
+    "sibling_cluster_a_remained_ready": true,
+    "fa121_timer_remained_inactive": true,
+    "zero_duplicate_generation_after_recovery": true,
+    "zero_secret_reads": true
+  },
+  "attempts": {
+    "gemini": {
+      "schema": "die.factory-asset.fa307-gemini-attempt.v1",
+      "job_id": "FA307-R5-GEMINI-A-20260907",
+      "provider_id": "gemini",
+      "cluster_id": "cluster-a",
+      "actual_transport": "BROWSER_CDP",
+      "profile_id": "chatgpt-linux-a",
+      "status": "FAILED",
+      "dispatch_committed": true,
+      "dispatch_started_at": "2026-09-07T14:07:13.944Z",
+      "dispatch_committed_at": "2026-09-07T14:07:14.219Z",
+      "completed_at": "2026-09-07T14:07:48.161Z",
+      "latency_ms": 41815,
+      "failure_code": "E_DOWNLOAD_FAILED:download.saveAs: ENOENT: no such file or directory, copyfile '/tmp/playwright-artifacts-s4oygb/e584dead-552d-4d6d-9e49-8c8695666337' -> '/tmp/fa307-gemini-b1e16462-0853-4f3e-a8eb-a390a14b7d20'",
+      "credential_values_read": false,
+      "cookies_or_tokens_read": false,
+      "provider_login_automated": false,
+      "submission_authorized": false,
+      "publication_authorized": false,
+      "spend_usd": 0,
+      "artifact": {},
+      "lease_release": {
+        "lease_id": "c76112e8-3525-4d2f-a072-6fbdf21c55cd",
+        "released": true,
+        "reason": "FA307_ATTEMPT5_COMPLETE",
+        "provider_id": "gemini",
+        "job_id": "FA307-R5-GEMINI-A-20260907"
+      }
+    },
+    "manus": {
+      "schema": "die.factory-asset.fa307-manus-attempt.v1",
+      "job_id": "FA307-R5-MANUS-B-20260907",
+      "provider_id": "manus",
+      "cluster_id": "cluster-b",
+      "actual_transport": "BROWSER_CDP",
+      "profile_id": "web-ai-cluster-b",
+      "status": "SUCCEEDED",
+      "dispatch_committed": true,
+      "dispatch_started_at": "2026-09-07T14:07:24.686Z",
+      "dispatch_committed_at": "2026-09-07T14:07:26.773Z",
+      "completed_at": "2026-09-07T14:09:01.348Z",
+      "latency_ms": 114996,
+      "failure_code": null,
+      "credential_values_read": false,
+      "cookies_or_tokens_read": false,
+      "provider_login_automated": false,
+      "submission_authorized": false,
+      "publication_authorized": false,
+      "spend_usd": 0,
+      "artifact": {
+        "path": "/var/lib/die/state/fa307-two-cluster-live-attempt5/jobs/FA307-R5-MANUS-B-20260907/provider/source-original.webp",
+        "sha256": "baa35d50d0fbfdb6cf23e840c7467c381e659fd10a7b8d84a9edc89810d2366e",
+        "bytes": 116894,
+        "mime": "image/webp",
+        "original_byte_acquisition_method": "BROWSER_CDP generated manuscdn asset response/body",
+        "provider_original_url_host": "private-us-east-1.manuscdn.com"
+      },
+      "lease_release": {
+        "lease_id": "dd37c787-d147-4229-bfc3-26e8616015c1",
+        "released": true,
+        "reason": "FA307_ATTEMPT2_COMPLETE",
+        "provider_id": "manus",
+        "job_id": "FA307-R5-MANUS-B-20260907"
+      }
+    }
+  },
+  "topology": {
+    "before": {
+      "observed_at": "2026-09-07T14:07:06.205Z",
+      "label": "before",
+      "clusters": {
+        "cluster-a": {
+          "state": "READY",
+          "owner_pid": 724502,
+          "max_tabs": 8,
+          "active_leases": 0,
+          "open_pages": 2,
+          "rss_tree_mb": 2788.39
+        },
+        "cluster-b": {
+          "state": "READY",
+          "owner_pid": 728333,
+          "max_tabs": 8,
+          "active_leases": 0,
+          "open_pages": 2,
+          "rss_tree_mb": 1177.83
+        }
+      }
+    },
+    "after": {
+      "observed_at": "2026-09-07T14:09:01.770Z",
+      "label": "after",
+      "clusters": {
+        "cluster-a": {
+          "state": "READY",
+          "owner_pid": 724502,
+          "max_tabs": 8,
+          "active_leases": 0,
+          "open_pages": 2,
+          "rss_tree_mb": 2706.35
+        },
+        "cluster-b": {
+          "state": "READY",
+          "owner_pid": 728333,
+          "max_tabs": 8,
+          "active_leases": 0,
+          "open_pages": 1,
+          "rss_tree_mb": 1741.32
+        }
+      }
+    },
+    "max_combined_browser_tree_rss_mb": 5195.67,
+    "max_active_leases": {
+      "cluster-a": 1,
+      "cluster-b": 1
+    },
+    "max_open_pages": {
+      "cluster-a": 3,
+      "cluster-b": 2
+    },
+    "monitor_violation": null,
+    "raw_samples_omitted_from_canon": true
+  },
+  "profiles": {
+    "before": {
+      "cluster-a": {
+        "directory_exists": true,
+        "is_directory": true,
+        "is_symlink": false,
+        "uid": 1000,
+        "gid": 999,
+        "mode": 448,
+        "inode": 1312453,
+        "device": 2050,
+        "content_read": false,
+        "secret_value_hashing": false
+      },
+      "cluster-b": {
+        "directory_exists": true,
+        "is_directory": true,
+        "is_symlink": false,
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 448,
+        "inode": 1706635,
+        "device": 2050,
+        "content_read": false,
+        "secret_value_hashing": false
+      }
+    },
+    "after": {
+      "cluster-a": {
+        "directory_exists": true,
+        "is_directory": true,
+        "is_symlink": false,
+        "uid": 1000,
+        "gid": 999,
+        "mode": 448,
+        "inode": 1312453,
+        "device": 2050,
+        "content_read": false,
+        "secret_value_hashing": false
+      },
+      "cluster-b": {
+        "directory_exists": true,
+        "is_directory": true,
+        "is_symlink": false,
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 448,
+        "inode": 1706635,
+        "device": 2050,
+        "content_read": false,
+        "secret_value_hashing": false
+      }
+    }
+  },
+  "second_owner": {
+    "a": {
+      "cluster_id": "cluster-a",
+      "exit_code": 1,
+      "error_code": "E_CLUSTER_BROKER_ALREADY_OWNED",
+      "rejected": true
+    },
+    "b": {
+      "cluster_id": "cluster-b",
+      "exit_code": 1,
+      "error_code": "E_CLUSTER_BROKER_ALREADY_OWNED",
+      "rejected": true
+    }
+  },
+  "recovery": {
+    "cluster_b_before": {
+      "owner_pid": 728333,
+      "state": "READY"
+    },
+    "cluster_b_after": {
+      "owner_pid": 729865,
+      "state": "READY",
+      "active_leases": 0
+    },
+    "cluster_a_before": {
+      "owner_pid": 724502,
+      "state": "READY"
+    },
+    "cluster_a_after": {
+      "owner_pid": 724502,
+      "state": "READY"
+    }
+  },
+  "truth_boundaries": {
+    "provider_dispatch_commits": 2,
+    "pre_dispatch_retries": 0,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "spend_usd": 0,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "marketplace_upload_performed": false
+  },
+  "post_dispatch_retry_performed": false
+}
