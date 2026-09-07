@@ -761,3 +761,10 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Attempt #3 is terminal FAIL without retry: Manus@Cluster B SUCCEEDED and persisted a 2,772,228-byte PNG SHA256 `0e3195e675c789835126b675a0e75d2142f689482ed28f81696422c1483465de`; Qwen@Cluster A timed out. Resource/profile/lease/recovery gates remained bounded.
 - Read-only live readiness preselection observed Duck.ai@Cluster A HEALTHY/COMPOSER_READY, ChatGPT DEGRADED/COMPOSER_NOT_READY. Duck.ai is selected for fresh attempt #4 using FA-118-style Create Image + response/DOM original-byte extraction adapted to the broker lease.
 - Attempt #4 uses fresh Duck.ai@A + Manus@B job IDs, exactly two provider calls and zero retries.
+
+---
+
+## 2026-09-07 - FA-307 attempt #4 terminal; attempt #5 Gemini A + Manus B staged
+- Attempt #4 terminal FAIL: Duck.ai@A hit `E_HUMAN_CHALLENGE_REQUIRED` immediately after dispatch and was not bypassed; Manus@B SUCCEEDED with original SHA256 `6b6f763c4a6dd144055fd16be1849ffa34b13b2d7e8ee847d08e0b24d008e052`. Resource/profile/lease/recovery safety remained bounded.
+- Broker-owned navigation preflight observed ChatGPT@A DEGRADED/COMPOSER_NOT_READY and Gemini@A HEALTHY/COMPOSER_READY with zero provider call and zero credential/token read.
+- Fresh attempt #5 therefore uses new Gemini@A + Manus@B jobs, exactly two provider calls, zero retries. Gemini uses the canonical FA-114 download-control original-byte path adapted to broker leases.

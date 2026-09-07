@@ -1,6 +1,6 @@
 {
   "schema": "die.factory-asset.fa307-two-cluster-live-contract.v1",
-  "revision": "1.3.0-attempt4-duck-manus",
+  "revision": "1.4.0-attempt5-gemini-manus",
   "task_id": "FA-307",
   "status": "CANONICAL_CANDIDATE",
   "authority": {
@@ -11,16 +11,17 @@
     "publication_authorized": false,
     "credential_secret_reads_allowed": false,
     "cookie_token_reads_allowed": false,
-    "authorization_scope": "FRESH_ATTEMPT_4_ONLY",
-    "prior_attempt_provider_calls": 5,
+    "authorization_scope": "FRESH_ATTEMPT_5_ONLY",
+    "prior_attempt_provider_calls": 7,
     "cumulative_provider_call_ceiling_through_attempt_3": 5,
-    "cumulative_provider_call_ceiling_through_attempt_4": 7
+    "cumulative_provider_call_ceiling_through_attempt_4": 7,
+    "cumulative_provider_call_ceiling_through_attempt_5": 9
   },
   "clusters": {
     "cluster-a": {
       "control_base_url": "http://127.0.0.1:39121/",
       "profile_id": "chatgpt-linux-a",
-      "provider_id": "duckai",
+      "provider_id": "gemini",
       "broker_service": "die-fa121-cluster-broker.service",
       "broker_state_root": "/var/lib/factory-asset/fa121-stability/broker"
     },
@@ -53,7 +54,7 @@
     "zero_lease_leak_after_completion": true,
     "fresh_job_ids_required_after_prior_dispatched_failure": true,
     "manus_readiness_policy": "AUTH/CHECKPOINT/UNAVAILABLE fail closed; initial DEGRADED composer result may proceed only to bounded 20s proven editor visibility wait; no prompt dispatch until editor is visible.",
-    "cluster_a_provider_selection": "Duck.ai selected because live read-only readiness probe at 2026-09-07T13:51:35Z was HEALTHY/COMPOSER_READY while ChatGPT was DEGRADED; FA-118 provides exact original-byte extraction evidence."
+    "cluster_a_provider_selection": "Gemini selected after broker-owned navigation preflight on 2026-09-07T14:01:28Z returned HEALTHY/COMPOSER_READY with no provider call, credential read or token read. Canonical FA-114 proves Linux Gemini original-byte download extraction."
   },
   "recovery": {
     "controlled_restart_cluster": "cluster-b",
@@ -63,7 +64,7 @@
     "post_restart_active_leases": 0,
     "duplicate_generation_after_restart": 0
   },
-  "attempt_number": 4,
+  "attempt_number": 5,
   "prior_attempts": [
     {
       "attempt_number": 1,
@@ -97,6 +98,18 @@
       "provider_dispatch_commits": 2,
       "post_dispatch_retry_performed": false,
       "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-3-qwen-manus-result.json"
+    },
+    {
+      "attempt_number": 4,
+      "pair": [
+        "duckai@cluster-a",
+        "manus@cluster-b"
+      ],
+      "result": "FAIL_DUCK_HUMAN_CHALLENGE_MANUS_SUCCESS",
+      "provider_dispatch_commits": 2,
+      "post_dispatch_retry_performed": false,
+      "human_challenge_bypassed": false,
+      "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-4-duck-manus-result.json"
     }
   ]
 }
