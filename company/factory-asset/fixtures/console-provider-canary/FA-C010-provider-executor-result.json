@@ -1,0 +1,220 @@
+{
+  "schema": "die.factory-asset.console-provider-executor.v1",
+  "task_id": "FA-C010",
+  "result": "PASS",
+  "status": "SUCCEEDED",
+  "job_id": "FCJOB-FA-C010-20260907-002",
+  "idempotency_key": "3d7ea3b7512a2673a7353d6971ad9f7e114382075d8960e9c509a35400228351",
+  "route": {
+    "schema": "die.factory-asset.cluster-provider-route.v1",
+    "job_id": "FCJOB-FA-C010-20260907-002",
+    "idempotency_key": "3d7ea3b7512a2673a7353d6971ad9f7e114382075d8960e9c509a35400228351",
+    "attempt": 1,
+    "retry_index": 0,
+    "route_id": "1a9a436d897cebec9bea90c5515db4500c0670574c93bd5fa3229e2a5409620b",
+    "provider_id": "qwen",
+    "cluster_id": "cluster-b",
+    "transport": "BROWSER_CDP",
+    "requires_tab_lease": true,
+    "tab_capacity_consumed_by_router": false,
+    "browser_owner_action": "NONE",
+    "score": -2840.5,
+    "factors": {
+      "readiness_state": "HEALTHY",
+      "capacity_state": "AVAILABLE",
+      "queue_pressure": 0,
+      "active_tab_load": 0,
+      "active_tabs": 0,
+      "browser_generation_limit": 4,
+      "provider_active_tabs": 0,
+      "recent_failures": 0,
+      "latency_ms": 5681
+    },
+    "rejected": [],
+    "dispatch_committed": false,
+    "provider_calls_performed": false,
+    "idempotent_replay": false,
+    "scheduler_schema": "die.factory-asset.multi-cluster-schedule.v1",
+    "queue_lease": {
+      "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+      "lease_id": "68e6a647-26fd-4b96-aa7c-e8e4af0c2227",
+      "job_id": "FCJOB-FA-C010-20260907-002",
+      "idempotency_key": "3d7ea3b7512a2673a7353d6971ad9f7e114382075d8960e9c509a35400228351",
+      "state": "LEASED",
+      "acquired_at_ms": 1788812899015,
+      "expires_at_ms": 1788813199015,
+      "cluster_id": "cluster-b",
+      "provider_id": "qwen",
+      "route_id": "1a9a436d897cebec9bea90c5515db4500c0670574c93bd5fa3229e2a5409620b",
+      "acquired_at": "2026-09-07T20:28:19.015Z",
+      "expires_at": "2026-09-07T20:33:19.015Z"
+    },
+    "fairness": {
+      "cluster_selection_counts": {
+        "cluster-b": 1
+      },
+      "selected_cluster_prior_count": 0
+    },
+    "circuits": {
+      "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+      "provider_cluster": {
+        "qwen@cluster-b": {
+          "state": "CLOSED",
+          "failures": 0,
+          "open_until_ms": 0,
+          "last_failure_code": null
+        }
+      },
+      "clusters": {
+        "cluster-b": {
+          "state": "CLOSED",
+          "failures": 0,
+          "open_until_ms": 0,
+          "last_failure_code": null
+        }
+      }
+    },
+    "scheduler_idempotent_replay": false
+  },
+  "generation_commit": {
+    "schema": "die.factory-asset.generation-commit.v1",
+    "commit_id": "8ab4f12f062b728cdfdc1dea2553db9a73666589fa5a565b58c263af9262ce6b",
+    "job_id": "FCJOB-FA-C010-20260907-002",
+    "idempotency_key": "3d7ea3b7512a2673a7353d6971ad9f7e114382075d8960e9c509a35400228351",
+    "attempt": 1,
+    "route_id": "1a9a436d897cebec9bea90c5515db4500c0670574c93bd5fa3229e2a5409620b",
+    "provider_id": "qwen",
+    "cluster_id": "cluster-b",
+    "external_commit_key": "qwen:cluster-b:FCJOB-FA-C010-20260907-002:2026-09-07T20:28:24.141Z",
+    "committed_at_ms": 1788812904153,
+    "idempotent_replay": false
+  },
+  "dispatch_committed_count": 1,
+  "completion": {
+    "schema": "die.factory-asset.cross-cluster-completion.v1",
+    "job_id": "FCJOB-FA-C010-20260907-002",
+    "idempotency_key": "3d7ea3b7512a2673a7353d6971ad9f7e114382075d8960e9c509a35400228351",
+    "released": true,
+    "idempotent_replay": false,
+    "commit_id": "8ab4f12f062b728cdfdc1dea2553db9a73666589fa5a565b58c263af9262ce6b"
+  },
+  "readiness": {
+    "schema": "die.factory-asset.console-provider-readiness-observation.v1",
+    "provider_id": "qwen",
+    "cluster_id": "cluster-b",
+    "actual_transport": "BROWSER_CDP",
+    "job_id": "FCJOB-FA-C010-20260907-002-preflight",
+    "observed_at": "2026-09-07T20:28:13.251Z",
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "lease": {
+      "lease_id": "4c80c2e2-0918-4619-8606-2b7ced2ca576",
+      "state": "LEASED",
+      "acquired_at": "2026-09-07T20:28:13.474Z",
+      "expires_at": "2026-09-07T20:30:13.474Z"
+    },
+    "readiness": {
+      "schema": "die.muxia.provider-readiness.v1",
+      "provider_id": "qwen",
+      "state": "HEALTHY",
+      "reason_code": "COMPOSER_READY",
+      "safe_url": "https://chat.qwen.ai/",
+      "observed_at": "2026-09-07T20:28:18.775Z",
+      "composer_visible": true,
+      "auth_ui_visible": false,
+      "checkpoint_visible": false,
+      "operator_action_required": false,
+      "credential_values_read": false,
+      "cookies_or_tokens_read": false
+    },
+    "latency_ms": 5681,
+    "status": "OBSERVED",
+    "lease_release": {
+      "lease_id": "4c80c2e2-0918-4619-8606-2b7ced2ca576",
+      "released": true,
+      "reason": "FA_C010_READINESS_PROBE_COMPLETE",
+      "provider_id": "qwen",
+      "job_id": "FCJOB-FA-C010-20260907-002-preflight"
+    }
+  },
+  "artifact": {
+    "path": "/home/kopiko/factory-asset-canaries/fa-c010-console-provider-canary-20260907-r2/provider-artifact/source-original.png",
+    "sha256": "adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f",
+    "bytes": 1417392,
+    "mime": "image/png",
+    "dom_width_px": 807,
+    "dom_height_px": 450,
+    "original_byte_acquisition_method": "provider_original_cdn_url_browser_context"
+  },
+  "provider_attempt": {
+    "schema": "die.factory-asset.console-provider-attempt.v1",
+    "provider_id": "qwen",
+    "cluster_id": "cluster-b",
+    "actual_transport": "BROWSER_CDP",
+    "transport_role": "FALLBACK",
+    "primary_transport_contract": "SESSION_API",
+    "qwen_session_api_live_executor_claimed": false,
+    "prompt_sha256": "9eb65ea636762ae419b12086942d3b805b26b31b5e4b0c028c0c301923e7eb68",
+    "started_at": "2026-09-07T20:28:19.021Z",
+    "dispatch_committed": true,
+    "dispatch_committed_at": "2026-09-07T20:28:24.141Z",
+    "completed_at": "2026-09-07T20:28:36.040Z",
+    "latency_ms": 17019,
+    "original_byte_acquisition_method": "provider_original_cdn_url_browser_context",
+    "lease_release": {
+      "lease_id": "a54e5202-8f7c-47dd-a48e-63d54e8debdf",
+      "released": true,
+      "reason": "FA_C010_ATTEMPT_COMPLETE",
+      "provider_id": "qwen",
+      "job_id": "FCJOB-FA-C010-20260907-002"
+    }
+  },
+  "broker_before": {
+    "schema": "die.factory-asset.fa-c010-broker-observation.v1",
+    "cluster_id": "cluster-b",
+    "profile_id": "web-ai-cluster-b",
+    "state": "READY",
+    "browser_owner_pid": 736537,
+    "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+    "control_host": "127.0.0.1",
+    "control_port": 39122,
+    "max_tabs": 8,
+    "active_leases": 0,
+    "open_pages": 0,
+    "provider_states": {},
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false
+  },
+  "broker_after": {
+    "schema": "die.factory-asset.fa-c010-broker-observation.v1",
+    "cluster_id": "cluster-b",
+    "profile_id": "web-ai-cluster-b",
+    "state": "READY",
+    "browser_owner_pid": 736537,
+    "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+    "control_host": "127.0.0.1",
+    "control_port": 39122,
+    "max_tabs": 8,
+    "active_leases": 0,
+    "open_pages": 0,
+    "provider_states": {
+      "qwen": "HEALTHY"
+    },
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false
+  },
+  "browser_owner_action": "NONE",
+  "direct_gui_provider_browser_ownership": false,
+  "provider_call_performed": true,
+  "credential_values_read": false,
+  "cookies_or_tokens_read": false,
+  "provider_login_automated": false,
+  "submission_authorized": false,
+  "publication_authorized": false,
+  "spend_usd": 0,
+  "cluster_b_runtime_used": true,
+  "cluster_b_auth_touched": false,
+  "fa305_306_canonical_state_touched": false,
+  "fa121_state_touched": false,
+  "production_runtime_touched": false
+}

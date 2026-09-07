@@ -1948,10 +1948,12 @@
         "FA-C009",
         "FA-117"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
-      "artifact": "company/factory-asset/receipts/FA-C010-console-provider-canary.receipt.json",
-      "acceptance": "One Founder-authorized Console job reaches an accepted provider through Factory Core, produces a durable master and updates Console state without direct GUI provider/browser ownership."
+      "artifact": "company/factory-asset/receipts/FA-C010-console-provider-canary.receipt.json; company/factory-asset/fixtures/console-provider-canary/FA-C010-live-result.json; company/factory-asset/fixtures/console-provider-canary/FA-C010-provider-executor-result.json; company/factory-asset/bin/run_fa_c010_console_provider_canary.py",
+      "acceptance": "One Founder-authorized Console job reaches an accepted provider through Factory Core, produces a durable master and updates Console state without direct GUI provider/browser ownership.",
+      "completed_at": "2026-09-07",
+      "result": "PASS: Founder-authorized Factory Console job FCJOB-FA-C010-20260907-002 routed through Factory Core to Qwen on canonical Cluster B using actual BROWSER_CDP fallback. Exactly one dispatch commit produced an immutable 1664x928 PNG master, 1,417,392 bytes, SHA adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f; Console state reached SUCCEEDED with full job/master/lineage evidence, browser owner PID remained unchanged and all leases released. Replay returned idempotent reuse with zero provider call. No direct GUI/browser ownership, secret read, spend, account action, marketplace submission or publication occurred. Validation: focused 7 PASS; Factory 721 PASS with only the Founder-excluded FA-121 live-broker oneshot omitted; one-canon 6 PASS; validator 11/11 PASS."
     },
     {
       "id": "FA-C011",
@@ -1963,9 +1965,11 @@
         "FA-C010",
         "FA-120"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/receipts/FA-C011-console-batch-acceptance.receipt.json",
-      "acceptance": "Bounded batch proves queue progress, provider routing, backpressure, pause/resume and partial failures without duplicate ownership or semantic-count inflation."
+      "acceptance": "Bounded batch proves queue progress, provider routing, backpressure, pause/resume and partial failures without duplicate ownership or semantic-count inflation.",
+      "updated_at": "2026-09-07",
+      "result": "READY: FA-C010 and FA-120 dependencies are DONE; no FA-C011 execution occurred in the FA-C010 acceptance run."
     },
     {
       "id": "FA-C012",

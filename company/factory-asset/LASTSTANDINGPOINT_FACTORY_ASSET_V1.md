@@ -794,3 +794,17 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 ## 2026-09-07 - FA-307 attempt #8 terminal; attempt #9 Gemini network-byte capture staged
 - Attempt #8 terminal FAIL without retry: Qwen@A SUCCEEDED again; Gemini@B generated but none of `createReadStream()`, path, or saveAs yielded stable Playwright download bytes before the ephemeral artifact disappeared.
 - Fresh attempt #9 captures qualifying Gemini post-dispatch image response bodies (>=100KB, >=512px where dimensions are parsable). A response is eligible only after dispatch and is consumed only after a new download control proves that the current job generated an image. DOM/browser-context and download paths remain fallbacks.
+
+
+---
+
+## 2026-09-07 - FA-C010 DONE/PASS — bounded real-provider Factory Console canary
+- Founder-authorized Console job `FCJOB-FA-C010-20260907-002` executed from isolated SSOT checkout `a1bae6761d2693a82b984b69f812fe00093bb61a` and routed through `FactoryJobQueue -> MultiClusterScheduler -> ClusterAwareProviderRouter -> BrokerTabLease -> GovernedProviderWorker -> ProviderOriginalIntake`.
+- Exact live route: Qwen on canonical `cluster-b` / profile `web-ai-cluster-b`, actual transport `BROWSER_CDP` fallback; Qwen `SESSION_API` remains the primary contract and was not falsely claimed as the live executor. Readiness was `HEALTHY/COMPOSER_READY` before dispatch. Console never owned provider/browser GUI state.
+- Exactly one generation commit was recorded: `8ab4f12f062b728cdfdc1dea2553db9a73666589fa5a565b58c263af9262ce6b`. Original bytes were extracted through the authenticated browser context (`provider_original_cdn_url_browser_context`) and staged as an immutable exact-copy PNG master: 1664x928, 1,417,392 bytes, SHA256 `adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f`.
+- Console terminal state is `SUCCEEDED`; durable final result, provider-executor result and lineage are canonical fixtures. Preflight lease, generation lease and cross-cluster queue completion were all released. Cluster B broker owner PID stayed `736537`, active leases returned to 0, and Qwen provider state remained HEALTHY.
+- Replay was explicitly `idempotent_replay=true` with `provider_call_performed=false`; no duplicate committed generation occurred. Earlier `FCJOB-FA-C010-20260907-001` is preserved as a pre-dispatch-only aborted control-plane attempt with zero provider call and zero dispatch commit and is not acceptance evidence.
+- Truth boundaries: Cluster B auth was not touched; FA-121 state/broker was not touched; production runtime/lock/workspaces were not touched; credential/cookie/token values were not read; no account action, CAPTCHA/checkpoint bypass, spend, marketplace submission or publication occurred.
+- Runtime deployment truth was preserved: live Cluster B broker ran from `/srv/die` SHA `5fc0646a1cb395d2be7dfaa7903c0bf31ef8ddd4`, a verified ancestor of Git SSOT `a1bae6761d2693a82b984b69f812fe00093bb61a`; no runtime-sensitive cluster/browser source changed between those revisions.
+- Validation: focused Console+Factory Core 7/7 PASS; Linux Factory regression 721/721 PASS with only `test_fa121_oneshot_exit_live_safe.py` excluded by Founder scope; one-canon pytest 6/6 PASS; validator 11/11 PASS; high-confidence secret hits 0; Node syntax/Python compile PASS.
+- `FA-C010 = DONE/PASS`. Dependency reconciliation only: `FA-C011 = READY`; no FA-C011 implementation or live batch execution was started.
