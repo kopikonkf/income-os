@@ -6,8 +6,8 @@
   "result": null,
   "founder_authorization": {
     "observed_in_session": true,
-    "instruction": "silakan dilanjut ... jika PASS seal FA-307",
-    "attempt_number": 6,
+    "instruction": "silakan lanjutkan ... FA-307",
+    "attempt_number": 7,
     "authorized_provider_calls": 2,
     "fresh_jobs_required": true
   },
@@ -15,18 +15,18 @@
   "runner": "company/factory-asset/bin/run_fa307_two_cluster_live.mjs",
   "planned_jobs": [
     {
-      "provider_id": "gemini",
+      "provider_id": "qwen",
       "cluster_id": "cluster-a",
       "transport": "BROWSER_CDP",
-      "semantic": "isolated orange desk lamp",
-      "job_id": "FA307-R6-GEMINI-A-20260907"
+      "semantic": "isolated purple alarm clock",
+      "job_id": "FA307-R7-QWEN-A-20260907"
     },
     {
-      "provider_id": "manus",
+      "provider_id": "gemini",
       "cluster_id": "cluster-b",
       "transport": "BROWSER_CDP",
-      "semantic": "isolated green ceramic watering can",
-      "job_id": "FA307-R6-MANUS-B-20260907"
+      "semantic": "isolated silver desk fan",
+      "job_id": "FA307-R7-GEMINI-B-20260907"
     }
   ],
   "authority": {
@@ -37,7 +37,7 @@
     "credential_values_read": false,
     "cookies_or_tokens_read": false
   },
-  "next_boundary": "Run fresh attempt #6 Gemini@A + Manus@B with hardened Gemini generated-DOM-byte acquisition before download-event fallback. Exactly two calls, zero retries; seal only if all assertions pass.",
+  "next_boundary": "Run fresh attempt #7 Qwen@A + Gemini@B with exactly two calls and zero retries. Seal only if both originals and all architecture assertions pass.",
   "validation": {
     "selftest": "PASS",
     "focused_fa307": "7 passed",
@@ -48,7 +48,7 @@
     "company_secret_scan_hits": 0,
     "node_syntax": "PASS",
     "git_diff_check": "PASS",
-    "base_main": "98ad023178f07d41b1f4e875306c2c952676ac7b"
+    "base_main": "77512bcf1e66873c9bcf70994c607e0721420e23"
   },
   "attempt_history": [
     {
@@ -159,12 +159,35 @@
       "manus_original_sha256": "baa35d50d0fbfdb6cf23e840c7467c381e659fd10a7b8d84a9edc89810d2366e",
       "post_dispatch_retry_performed": false,
       "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-5-gemini-manus-result.json"
+    },
+    {
+      "attempt_number": 6,
+      "pair": [
+        "gemini@cluster-a",
+        "manus@cluster-b"
+      ],
+      "result": "FAIL",
+      "failure_boundary": "GEMINI_A_AUTH_REQUIRED_PRE_DISPATCH_WHILE_MANUS_SUCCEEDED",
+      "provider_dispatch_commits": 1,
+      "gemini_dispatch_committed": false,
+      "manus_status": "SUCCEEDED",
+      "manus_original_sha256": "3aa44d4258e5d90eb933bcab125dbc796ba993af9bd26b9331aaed6543197da0",
+      "post_dispatch_retry_performed": false,
+      "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-6-gemini-manus-result.json"
     }
   ],
   "preflight_selection": {
     "chatgpt_cluster_a": "DEGRADED_COMPOSER_NOT_READY",
     "gemini_cluster_a": "HEALTHY_COMPOSER_READY",
     "observed_at": "2026-09-07T14:01:28.925Z",
+    "provider_call_performed": false,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false
+  },
+  "cross_cluster_preflight": {
+    "observed_at": "2026-09-07T15:43:37Z",
+    "qwen_cluster_a": "HEALTHY_COMPOSER_READY",
+    "gemini_cluster_b": "HEALTHY_COMPOSER_READY",
     "provider_call_performed": false,
     "credential_values_read": false,
     "cookies_or_tokens_read": false

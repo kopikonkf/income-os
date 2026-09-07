@@ -2427,7 +2427,7 @@
       "acceptance": "Two clusters execute concurrent heterogeneous provider jobs with correct original-byte lineage, no profile lock collisions, bounded RAM/tabs and deterministic recovery.",
       "updated_at": "2026-09-07",
       "waiting_on": "ARCHITECT_BOUNDED_TWO_CLUSTER_LIVE_ACCEPTANCE",
-      "result": "IN_PROGRESS: Attempt #5 had two overlapping dispatch commits and Manus@B success; Gemini@A generation reached a download control but Playwright saveAs hit an ephemeral temp-file ENOENT. No retry/reconciliation was possible after lease release. Fresh attempt #6 uses new Gemini@A + Manus@B jobs and prefers fresh generated DOM/browser-context bytes after the new download control before falling back to download-event saveAs."
+      "result": "IN_PROGRESS: Attempt #6 failed pre-dispatch for Gemini@A because its session became AUTH_REQUIRED; Manus@B succeeded and no retry occurred. Cross-cluster zero-call preflight observed Qwen@A and Gemini@B both HEALTHY/COMPOSER_READY. Fresh attempt #7 uses Qwen@A + Gemini@B with new job IDs, exactly two calls, zero retries, and the hardened Gemini original-byte extractor."
     },
     {
       "id": "FA-308",
