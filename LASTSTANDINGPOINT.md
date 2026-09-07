@@ -3910,3 +3910,10 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Attempt #5 had two overlapping committed dispatches. Manus@B SUCCEEDED; Gemini@A reached its generated download control but Playwright `download.saveAs()` failed because the ephemeral download artifact vanished (`ENOENT`). This is classified as extractor failure, not a provider-generation failure.
 - The released Gemini page no longer existed, so no false reconciliation was claimed and no retry was performed.
 - Fresh attempt #6 uses new Gemini@A + Manus@B job identities. Gemini snapshots image sources pre-dispatch and, only after a new download control proves generation, first fetches fresh >=512px generated image bytes through the authenticated browser context; the browser download event remains fallback.
+
+---
+
+## 2026-09-07 - FA-307 attempt #6 terminal; attempt #7 Qwen A + Gemini B staged
+- Attempt #6 terminal FAIL without retry: Gemini@A became AUTH_REQUIRED before dispatch, while Manus@B SUCCEEDED. This is a provider-session boundary, not an SSH or cluster failure.
+- Cross-cluster zero-call navigation preflight then observed Qwen@A and Gemini@B both HEALTHY/COMPOSER_READY; no credential/token values were read.
+- Fresh attempt #7 uses Qwen@A + Gemini@B. Qwen reuses the proven broker-owned FA-121 worker; Gemini runs on Cluster B/web-ai-cluster-b with the hardened post-download-control fresh DOM/browser-context original-byte path.
