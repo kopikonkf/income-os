@@ -6,8 +6,10 @@
   "result": null,
   "founder_authorization": {
     "observed_in_session": true,
-    "instruction": "gass kerjakan FA-307",
-    "authorized_provider_calls": 2
+    "instruction": "silakan tuntaskan FA-307",
+    "attempt_number": 2,
+    "authorized_provider_calls": 2,
+    "fresh_jobs_required": true
   },
   "contract": "company/factory-asset/contracts/fa307-two-cluster-live.v1.json",
   "runner": "company/factory-asset/bin/run_fa307_two_cluster_live.mjs",
@@ -16,13 +18,15 @@
       "provider_id": "qwen",
       "cluster_id": "cluster-a",
       "transport": "BROWSER_CDP",
-      "semantic": "isolated teal desk clock"
+      "semantic": "isolated teal desk clock",
+      "job_id": "FA307-R2-QWEN-A-20260907"
     },
     {
-      "provider_id": "gemini",
+      "provider_id": "manus",
       "cluster_id": "cluster-b",
       "transport": "BROWSER_CDP",
-      "semantic": "isolated yellow rain boot"
+      "semantic": "isolated green ceramic watering can",
+      "job_id": "FA307-R2-MANUS-B-20260907"
     }
   ],
   "authority": {
@@ -33,16 +37,51 @@
     "credential_values_read": false,
     "cookies_or_tokens_read": false
   },
-  "next_boundary": "Run implementation selftest/full regression, deploy canonical prep, then execute exactly two concurrent live calls and seal only if original-byte lineage, overlap, resource/profile/lease bounds and controlled recovery all PASS.",
+  "next_boundary": "Attempt #1 is preserved as a terminal failure after Gemini dispatch; no retry is permitted. Run fresh attempt #2 with new Qwen@A + Manus@B job identities, exactly two provider calls and zero retries; seal FA-307 only if all live assertions pass.",
   "validation": {
     "selftest": "PASS",
-    "focused_progression_and_fa307": "11 passed",
-    "factory_regression": "707 passed, 1 skipped, 1 PyPDF2 warning",
+    "focused_fa307": "6 passed",
+    "focused_progression_plus_fa307": "13 passed",
+    "live_safe_fa121_oneshot": "1 passed after controlled Cluster A owner restart 715947->721917",
+    "factory_regression": "715 passed, 1 PyPDF2 warning",
     "one_canon_pytest": "6 passed",
     "one_canon_validator": "11/11 PASS",
     "company_secret_scan_hits": 0,
     "node_syntax": "PASS",
     "git_diff_check": "PASS",
-    "base_main": "0b30b8e334464ecf93941c862e210b849840377c"
-  }
+    "base_main": "c4ad45626fa21576546a31661dd3fe42e76f3b44"
+  },
+  "attempt_history": [
+    {
+      "attempt_number": 1,
+      "pair": [
+        "qwen@cluster-a",
+        "gemini@cluster-b"
+      ],
+      "result": "FAIL",
+      "failure_boundary": "GEMINI_OUTPUT_ACQUISITION_TIMEOUT_AFTER_DISPATCH",
+      "provider_dispatch_commits": 2,
+      "qwen_original_sha256": "95482edef77a7d62f689916a76a45955dc561f4f92fe58ab54e8d6a5e2b924ce",
+      "architecture_assertions_passed": [
+        "exactly_two_dispatch_commits",
+        "heterogeneous_providers",
+        "different_clusters",
+        "parallel_dispatch_intervals_overlap",
+        "profile_metadata_identity_preserved",
+        "bounded_ram",
+        "bounded_tabs",
+        "bounded_leases",
+        "zero_lease_leak_after_completion",
+        "second_owner_rejected",
+        "recovery_owner_pid_changed",
+        "recovery_cluster_b_ready",
+        "sibling_cluster_a_remained_ready",
+        "fa121_timer_remained_inactive",
+        "zero_duplicate_generation_after_recovery",
+        "zero_secret_reads"
+      ],
+      "post_dispatch_retry_performed": false,
+      "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-1-qwen-gemini-result.json"
+    }
+  ]
 }

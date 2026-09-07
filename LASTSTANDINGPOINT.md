@@ -3875,3 +3875,10 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Guest Linux remained resource-healthy while public management reachability intermittently black-holed; guest is private `192.168.25.13` with sshd on `:22`, so public `157.20.32.166:25013` is treated as an upstream NAT/filtering boundary to be hardened/observed before scale.
 - Canon preserves `linux-mcp` Cloudflare ingress for Executive/Division01 MCP only; CDP/browser/wake/cluster broker routes remain forbidden. Public `*.aethers.biz.id` DNS was observed NXDOMAIN during this audit and is included in management-plane remediation scope.
 - Added FA-310..FA-315 scale-foundation chain and made FA-315 an explicit prerequisite for FA-308. These tasks remain blocked behind FA-307 so the active frontier is not diverted from the two-cluster acceptance.
+
+---
+
+## 2026-09-07 - FA-307 attempt #1 preserved; fresh attempt #2 Qwen A + Manus B
+- Attempt #1 Qwen@Cluster A + Gemini@Cluster B had two overlapping committed dispatches and passed all resource/profile/lease/recovery assertions, but Gemini timed out during original-byte acquisition after dispatch; overall acceptance remained FAIL. Qwen original SHA256 `95482edef77a7d62f689916a76a45955dc561f4f92fe58ab54e8d6a5e2b924ce`.
+- No Gemini post-dispatch retry was performed. The full attempt #1 result is preserved at `company/factory-asset/fixtures/multi-cluster/FA-307-attempt-1-qwen-gemini-result.json`.
+- Founder authorized completion of FA-307. Attempt #2 is a fresh bounded acceptance with new job identities: Qwen@Cluster A plus Manus@Cluster B, exactly two provider calls, zero retries, same profile/RAM/tab/lease/recovery gates.
