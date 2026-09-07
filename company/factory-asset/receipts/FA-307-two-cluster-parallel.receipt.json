@@ -7,7 +7,7 @@
   "founder_authorization": {
     "observed_in_session": true,
     "instruction": "silakan lanjutkan ... FA-307",
-    "attempt_number": 7,
+    "attempt_number": 8,
     "authorized_provider_calls": 2,
     "fresh_jobs_required": true
   },
@@ -18,15 +18,15 @@
       "provider_id": "qwen",
       "cluster_id": "cluster-a",
       "transport": "BROWSER_CDP",
-      "semantic": "isolated purple alarm clock",
-      "job_id": "FA307-R7-QWEN-A-20260907"
+      "semantic": "isolated turquoise kitchen timer",
+      "job_id": "FA307-R8-QWEN-A-20260907"
     },
     {
       "provider_id": "gemini",
       "cluster_id": "cluster-b",
       "transport": "BROWSER_CDP",
-      "semantic": "isolated silver desk fan",
-      "job_id": "FA307-R7-GEMINI-B-20260907"
+      "semantic": "isolated blue ceramic vase",
+      "job_id": "FA307-R8-GEMINI-B-20260907"
     }
   ],
   "authority": {
@@ -37,7 +37,7 @@
     "credential_values_read": false,
     "cookies_or_tokens_read": false
   },
-  "next_boundary": "Run fresh attempt #7 Qwen@A + Gemini@B with exactly two calls and zero retries. Seal only if both originals and all architecture assertions pass.",
+  "next_boundary": "Run fresh attempt #8 Qwen@A + Gemini@B. Gemini consumes the browser download stream before any temp-file path/copy fallback. Exactly two calls, zero retries; seal only if every live assertion passes.",
   "validation": {
     "selftest": "PASS",
     "focused_fa307": "7 passed",
@@ -48,7 +48,7 @@
     "company_secret_scan_hits": 0,
     "node_syntax": "PASS",
     "git_diff_check": "PASS",
-    "base_main": "77512bcf1e66873c9bcf70994c607e0721420e23"
+    "base_main": "bdadadeb2285d07d003753b7c75291e3609cf629"
   },
   "attempt_history": [
     {
@@ -174,6 +174,22 @@
       "manus_original_sha256": "3aa44d4258e5d90eb933bcab125dbc796ba993af9bd26b9331aaed6543197da0",
       "post_dispatch_retry_performed": false,
       "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-6-gemini-manus-result.json"
+    },
+    {
+      "attempt_number": 7,
+      "pair": [
+        "qwen@cluster-a",
+        "gemini@cluster-b"
+      ],
+      "result": "FAIL",
+      "failure_boundary": "GEMINI_DOWNLOAD_SAVEAS_ENOENT_QWEN_SUCCESS",
+      "provider_dispatch_commits": 2,
+      "parallel_dispatch_overlap": true,
+      "qwen_status": "SUCCEEDED",
+      "qwen_original_sha256": "017ef1229139c1a342cc6c0b797693fcbbe56235cf3d1221cc95900e5027c96f",
+      "gemini_status": "FAILED_DOWNLOAD_TEMP_RACE",
+      "post_dispatch_retry_performed": false,
+      "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-7-qwen-gemini-result.json"
     }
   ],
   "preflight_selection": {

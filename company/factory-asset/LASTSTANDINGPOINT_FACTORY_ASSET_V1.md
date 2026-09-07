@@ -782,3 +782,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Attempt #6 terminal FAIL without retry: Gemini@A became AUTH_REQUIRED before dispatch, while Manus@B SUCCEEDED. This is a provider-session boundary, not an SSH or cluster failure.
 - Cross-cluster zero-call navigation preflight then observed Qwen@A and Gemini@B both HEALTHY/COMPOSER_READY; no credential/token values were read.
 - Fresh attempt #7 uses Qwen@A + Gemini@B. Qwen reuses the proven broker-owned FA-121 worker; Gemini runs on Cluster B/web-ai-cluster-b with the hardened post-download-control fresh DOM/browser-context original-byte path.
+
+---
+
+## 2026-09-07 - FA-307 attempt #7 terminal; attempt #8 Gemini download stream staged
+- Attempt #7 terminal FAIL without retry: Qwen@A SUCCEEDED (1,374,952-byte PNG, SHA256 `017ef1229139c1a342cc6c0b797693fcbbe56235cf3d1221cc95900e5027c96f`) and parallel overlap passed; Gemini@B generated a download but `saveAs()` again lost the ephemeral Playwright temp artifact.
+- Fresh attempt #8 keeps Qwen@A + Gemini@B. Gemini now consumes `Download.createReadStream()` directly into memory first, then tries `Download.path()`, `saveAs()`, and authenticated href fallback.
