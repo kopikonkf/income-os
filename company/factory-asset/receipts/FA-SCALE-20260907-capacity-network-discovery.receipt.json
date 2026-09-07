@@ -1,0 +1,103 @@
+{
+  "schema": "die.factory-asset.scale-foundation-discovery.receipt.v1",
+  "date": "2026-09-07",
+  "status": "CANONICAL_DISCOVERY",
+  "source_context": "FA-307 live attempt #1 plus VPS read-only capacity/network audit",
+  "observed": {
+    "vps_root_disk": {
+      "size_gib": 125,
+      "used_gib": 50,
+      "free_gib": 69,
+      "use_percent": 43
+    },
+    "memory": {
+      "total_gib": 31,
+      "available_gib": 26,
+      "swap_total_gib": 4,
+      "swap_used_mib_approx": 2
+    },
+    "persistent_profiles_mib": {
+      "chatgpt-linux-a": 341,
+      "web-ai-cluster-b": 349,
+      "measured_average": 345
+    },
+    "shared_runtime_mib": {
+      "playwright_chromium": 656,
+      "muxia_node_modules": 45
+    },
+    "die_state_gib": 15,
+    "fa307_attempt1": {
+      "result": "FAIL_OUTPUT_TIMEOUT_GEMINI",
+      "architecture_assertions_passed_except_two-original-requirement": true,
+      "qwen_cluster_a_original_bytes": 1401529,
+      "qwen_cluster_a_sha256": "95482edef77a7d62f689916a76a45955dc561f4f92fe58ab54e8d6a5e2b924ce",
+      "combined_browser_tree_peak_mib": 4739.25,
+      "max_active_leases_per_cluster": 1,
+      "max_open_pages": {
+        "cluster-a": 4,
+        "cluster-b": 2
+      },
+      "profile_metadata_identity_preserved": true,
+      "zero_lease_leak": true,
+      "cluster_b_restart_recovered": true
+    },
+    "network": {
+      "guest_ipv4": "192.168.25.13",
+      "guest_gateway": "192.168.25.1",
+      "guest_sshd_listener_port": 22,
+      "public_control_endpoint": "157.20.32.166:25013",
+      "public_to_guest_mapping_interpretation": "UPSTREAM_NAT_OR_PORT_FORWARD",
+      "sshd_maxstartups_hits_observed": 0,
+      "failed_password_events_72h": 171,
+      "dominant_failed_source": "202.165.25.8",
+      "dominant_failed_source_count": 170,
+      "guest_oom_or_kernel_network_failure_observed": false,
+      "public_reachability_intermittent": true
+    },
+    "cloudflare_boundary": {
+      "tunnel": "linux-mcp",
+      "executive_origin": "127.0.0.1:8891",
+      "division01_origin": "127.0.0.1:8892",
+      "cdp_route_exposed": false,
+      "browser_wake_route_exposed": false,
+      "cluster_broker_route_exposed": false,
+      "public_dns_observed_nxdomain_on_2026_09_07": true
+    }
+  },
+  "planning_scenarios_not_observed_capacity": {
+    "100_profiles_current_footprint_mib": 34500,
+    "100_profiles_current_plus_shared_runtime_mib": 35201,
+    "100_profiles_current_plus_shared_runtime_gib": 34.38,
+    "100_profiles_at_1_gib_each_gib": 100,
+    "100_profiles_at_2_gib_each_gib": 200,
+    "1000_masters_per_day_if_10_mib_each_gib_per_day": 9.77,
+    "1000_masters_per_day_if_20_mib_each_gib_per_day": 19.53,
+    "1000_masters_per_day_if_30_mib_each_gib_per_day": 29.3,
+    "30_day_retention_if_10_mib_each_gib": 292.97,
+    "30_day_retention_if_20_mib_each_gib": 585.94,
+    "30_day_retention_if_30_mib_each_gib": 878.91
+  },
+  "decisions": [
+    "Do not model shared Chromium executable cost per persistent profile.",
+    "Do not equate persistent-profile count with concurrently-running Chromium-owner count.",
+    "Do not route Cluster A/B broker or CDP endpoints through linux-mcp Cloudflare ingress.",
+    "Do not accept FA-308 until FA-315 passes."
+  ],
+  "authority": {
+    "spend_authorized": false,
+    "infrastructure_purchase_authorized": false,
+    "network_cutover_authorized": false,
+    "provider_calls_performed": 0,
+    "submission_authorized": false,
+    "publication_authorized": false
+  },
+  "validation": {
+    "focused_scale_graph": "5 passed",
+    "factory_regression": "713 passed, 1 PyPDF2 warning",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "company_secret_scan_hits": 0,
+    "git_diff_check": "PASS",
+    "base_main": "ed4ad82745a04984c960aa69bd319a7b75bff3aa"
+  }
+}

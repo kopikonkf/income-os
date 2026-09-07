@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "10.5-fa307-live-acceptance-in-progress",
+  "revision": "10.6-scale-foundation-discovery-before-fa308",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2433,23 +2433,24 @@
       "id": "FA-308",
       "phase": 5,
       "track": "MULTI_CLUSTER_SCALE",
-      "priority": 309,
+      "priority": 315,
       "title": "Accept multi-cluster architecture for one thousand masters per day",
       "depends_on": [
         "FA-127",
-        "FA-307"
+        "FA-307",
+        "FA-315"
       ],
       "status": "DEFERRED",
       "authority": "FOUNDER_REQUIRED_FOR_SCALE_AUTHORIZATION",
       "artifact": "1k-per-day cluster capacity model and canary plan",
-      "acceptance": "Measured provider capacity, cluster count, failure/reject rates, postproduction capacity and economics support an authorized 1,000 unique-master/day plan without assuming unlimited web-provider quota.",
+      "acceptance": "Founder-authorized 1,000 unique-master/day architecture is accepted only after FA-307 passes and the scale-foundation gate FA-315 proves management ingress resilience, persistent-profile storage budgeting, measured browser-concurrency/RAM sharding, Hermes multi-cluster routing integration, and hot/archive storage retention capacity. Provider quota, rejection rates, QA/postproduction capacity and economics remain evidence-bound; 100 persistent profiles must never be treated as 100 concurrently-running Chromium owners.",
       "defer_reason": "Depends on existing FA-127 1,000/day scale authorization and measured multi-cluster acceptance."
     },
     {
       "id": "FA-309",
       "phase": 5,
       "track": "MULTI_CLUSTER_SCALE",
-      "priority": 310,
+      "priority": 316,
       "title": "Accept separate five-thousand-masters-per-day distributed cluster architecture",
       "depends_on": [
         "FA-128",
@@ -2695,6 +2696,94 @@
       "authority": "ARCHITECT",
       "artifact": "multi-market vector packaging acceptance receipt",
       "acceptance": "One native vector semantic asset compiles into evidence-supported per-market SVG/EPS/preview packages with unsupported or stale format rules explicit; no marketplace upload is performed."
+    },
+    {
+      "id": "FA-310",
+      "phase": 6,
+      "track": "SCALE_FOUNDATION",
+      "priority": 309,
+      "title": "Harden VPS management ingress and upstream NAT observability before scale",
+      "depends_on": [
+        "FA-307"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_NETWORK_CUTOVER",
+      "artifact": "Management-ingress hardening contract, upstream NAT evidence, SSH security/recovery receipt",
+      "acceptance": "Distinguish guest sshd health from upstream public NAT/filtering; establish repeatable reachability telemetry for public management ingress; move SSH to key-only non-root governance with bounded brute-force/rate-limit controls and a proven rollback/recovery channel before any lockout-prone mutation. Preserve Cloudflare linux-mcp as cognition/management MCP only: executive/division origins may be repaired, but CDP/browser/wake/Cluster A/Cluster B broker ports must remain loopback and never be exposed through the MCP tunnel."
+    },
+    {
+      "id": "FA-311",
+      "phase": 6,
+      "track": "SCALE_FOUNDATION",
+      "priority": 310,
+      "title": "Define persistent Chromium profile storage budget and safe cache lifecycle",
+      "depends_on": [
+        "FA-307"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Per-profile storage budget, cache taxonomy, cleanup/recovery policy and capacity calculator",
+      "acceptance": "Use measured persistent-profile baselines (341 MiB Cluster A, 349 MiB Cluster B on 2026-09-07) and shared Chromium cost (656 MiB once, not per profile). Separate authentication/session state from recreatable caches; prove any cache cleanup cannot destroy login/session identity. Publish at least current-footprint, 1 GiB/profile and 2 GiB/profile planning envelopes for 100 persistent profiles; do not claim 100 persistent profiles imply 100 active browsers."
+    },
+    {
+      "id": "FA-312",
+      "phase": 6,
+      "track": "SCALE_FOUNDATION",
+      "priority": 311,
+      "title": "Measure browser concurrency RAM envelope and define cluster sharding policy",
+      "depends_on": [
+        "FA-307"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Measured Chromium process-tree capacity model, active-owner ceiling and sharding/backpressure contract",
+      "acceptance": "Start from FA-307 measured two-cluster concurrent process-tree peak and re-measure under accepted live workload. Define a bounded active-browser-owner ceiling from RAM, tab, provider and recovery constraints; persistent profiles beyond that ceiling remain cold/parked until leased. Sharding/backpressure must prevent profile-count growth from linearly becoming simultaneous Chromium-owner growth."
+    },
+    {
+      "id": "FA-313",
+      "phase": 6,
+      "track": "SCALE_FOUNDATION",
+      "priority": 312,
+      "title": "Wire Hermes production runtime to governed multi-cluster scheduler",
+      "depends_on": [
+        "FA-307"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Hermes production multi-cluster routing integration and regression receipt",
+      "acceptance": "Remove the production-runtime assumption that every raster blueprint/handoff is hard-pinned to MUXIA/chatgpt-linux-a. Route eligible production through the FA-306 multi-cluster scheduler using capability/readiness/capacity/fairness/circuit state while preserving exact blueprint semantics, exactly-once dispatch, provider-original lineage and parked Founder-QC behavior. Cluster B availability must improve capacity without making it a mandatory single point of failure."
+    },
+    {
+      "id": "FA-314",
+      "phase": 6,
+      "track": "SCALE_FOUNDATION",
+      "priority": 313,
+      "title": "Define hot workspace retention and immutable archive/object-storage architecture",
+      "depends_on": [
+        "FA-307"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Hot/cold storage tiers, retention policy, capacity scenarios, integrity and restore contract",
+      "acceptance": "Measure real per-master workspace growth and distinguish provider originals, masters, derivatives, metadata/QA/rights receipts and disposable intermediates. Publish 1,000-master/day hot-storage and 30-day retention scenarios, with immutable original/master hash lineage, bounded local NVMe pressure, archival/object-storage handoff and restore verification. Any spend/provisioning remains Founder-authorized separately."
+    },
+    {
+      "id": "FA-315",
+      "phase": 6,
+      "track": "SCALE_FOUNDATION",
+      "priority": 314,
+      "title": "Accept pre-1K infrastructure and orchestration readiness gate",
+      "depends_on": [
+        "FA-310",
+        "FA-311",
+        "FA-312",
+        "FA-313",
+        "FA-314"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Pre-1K scale-foundation acceptance receipt",
+      "acceptance": "All five scale-foundation prerequisites pass together: resilient management ingress; persistent-profile storage lifecycle; measured active-browser RAM/sharding ceiling; Hermes multi-cluster production routing; and hot/archive storage retention. The gate must state measured capacity separately from planning assumptions and must not authorize spend or 1,000/day production by itself."
     }
   ],
   "windows_oauth_proof_levels": {

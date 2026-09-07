@@ -3866,3 +3866,12 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Founder explicitly authorized execution after FA-121 and FA-306 reached DONE/PASS.
 - Scope is exactly two concurrent heterogeneous broker-owned BROWSER_CDP generations: Qwen on Cluster A and Gemini on Cluster B. No pre-dispatch retries, spend, submission, publication or secret-value reads.
 - Acceptance requires overlapping in-flight dispatches, two distinct original-byte hashes, unchanged profile metadata identity, max 8 tabs / 1 live lease per cluster, bounded combined Chromium process-tree RSS, zero lease leak, second-owner rejection, and controlled Cluster B restart recovery with no duplicate generation.
+
+---
+
+## 2026-09-07 - Scale-foundation discovery inserted before FA-308
+- Live audit measured persistent browser profiles at 341 MiB (`chatgpt-linux-a`) and 349 MiB (`web-ai-cluster-b`), with Chromium shared once at 656 MiB. Current 100-profile footprint scenario is ~34.38 GiB including shared Chromium+MUXIA node modules, but this is not a provisioning target; 1 GiB/profile and 2 GiB/profile envelopes are retained as planning scenarios.
+- FA-307 attempt #1 measured 4,739.25 MiB combined Chromium process-tree RSS for two concurrent clusters while staying within one lease/cluster and A=4/B=2 open pages. Therefore persistent profile count and active Chromium-owner concurrency are now separate capacity dimensions.
+- Guest Linux remained resource-healthy while public management reachability intermittently black-holed; guest is private `192.168.25.13` with sshd on `:22`, so public `157.20.32.166:25013` is treated as an upstream NAT/filtering boundary to be hardened/observed before scale.
+- Canon preserves `linux-mcp` Cloudflare ingress for Executive/Division01 MCP only; CDP/browser/wake/cluster broker routes remain forbidden. Public `*.aethers.biz.id` DNS was observed NXDOMAIN during this audit and is included in management-plane remediation scope.
+- Added FA-310..FA-315 scale-foundation chain and made FA-315 an explicit prerequisite for FA-308. These tasks remain blocked behind FA-307 so the active frontier is not diverted from the two-cluster acceptance.
