@@ -788,3 +788,9 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 ## 2026-09-07 - FA-307 attempt #7 terminal; attempt #8 Gemini download stream staged
 - Attempt #7 terminal FAIL without retry: Qwen@A SUCCEEDED (1,374,952-byte PNG, SHA256 `017ef1229139c1a342cc6c0b797693fcbbe56235cf3d1221cc95900e5027c96f`) and parallel overlap passed; Gemini@B generated a download but `saveAs()` again lost the ephemeral Playwright temp artifact.
 - Fresh attempt #8 keeps Qwen@A + Gemini@B. Gemini now consumes `Download.createReadStream()` directly into memory first, then tries `Download.path()`, `saveAs()`, and authenticated href fallback.
+
+---
+
+## 2026-09-07 - FA-307 attempt #8 terminal; attempt #9 Gemini network-byte capture staged
+- Attempt #8 terminal FAIL without retry: Qwen@A SUCCEEDED again; Gemini@B generated but none of `createReadStream()`, path, or saveAs yielded stable Playwright download bytes before the ephemeral artifact disappeared.
+- Fresh attempt #9 captures qualifying Gemini post-dispatch image response bodies (>=100KB, >=512px where dimensions are parsable). A response is eligible only after dispatch and is consumed only after a new download control proves that the current job generated an image. DOM/browser-context and download paths remain fallbacks.
