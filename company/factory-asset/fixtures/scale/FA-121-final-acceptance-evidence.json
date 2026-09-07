@@ -1,0 +1,107 @@
+{
+  "schema": "die.factory-asset.fa121-final-acceptance-evidence.v1",
+  "task_id": "FA-121",
+  "observed_date": "2026-09-07",
+  "result": "PASS",
+  "final_evaluation": {
+    "schema": "die.factory-asset.fa121-final-acceptance-evaluation.v1",
+    "evaluated_at": "2026-09-07T08:02:00.830Z",
+    "start_at": "2026-09-06T06:55:01.139Z",
+    "end_at": "2026-09-07T06:55:01.139Z",
+    "lifecycle": "WINDOW_COMPLETE_PENDING_ACCEPTANCE",
+    "coverage": {
+      "first_observed_at": "2026-09-06T06:55:11.244Z",
+      "last_observed_at": "2026-09-07T06:59:24.981Z",
+      "observed_duration_ms": 86653737,
+      "max_gap_ms": 340011,
+      "covers_24h": true
+    },
+    "observed_provider_generations": 6,
+    "provider_generation_count": {
+      "qwen": 6,
+      "chatgpt": 0
+    },
+    "assertions": {
+      "real_24h_observed": true,
+      "profile_integrity_preserved": true,
+      "zero_duplicate_committed_generation": true,
+      "zero_secret_leakage": true,
+      "load_budget_respected": true,
+      "actual_transport_preserved": true,
+      "production_seed_selection_unused": true,
+      "packaging_derivatives_not_counted": true
+    }
+  },
+  "slot_statuses": {
+    "0": "SUCCEEDED",
+    "1": "SUCCEEDED",
+    "2": "SUCCEEDED",
+    "3": "SUCCEEDED",
+    "4": "SUCCEEDED",
+    "5": "SUCCEEDED",
+    "6": "SKIPPED_NO_ELIGIBLE_ROUTE",
+    "7": "SKIPPED_NO_ELIGIBLE_ROUTE",
+    "8": "SKIPPED_NO_ELIGIBLE_ROUTE",
+    "9": "SKIPPED_NO_ELIGIBLE_ROUTE",
+    "10": "SKIPPED_NO_ELIGIBLE_ROUTE",
+    "11": "SKIPPED_NO_ELIGIBLE_ROUTE"
+  },
+  "skip_explanation": "After Qwen reached the canonical per-provider generation cap of 6, ChatGPT remained DEGRADED/COMPOSER_NOT_READY and Qwen could no longer be selected; the remaining six scheduled slots therefore correctly failed closed as SKIPPED_NO_ELIGIBLE_ROUTE with zero dispatch commits.",
+  "artifacts": [
+    {
+      "job_id": "FA121-S00-qwen-A1",
+      "bytes": 1324473,
+      "sha256": "d4a845815aa3d01d202ad80efba7ed9af50e859a9f9b6195c3cbaa891462eced"
+    },
+    {
+      "job_id": "FA121-S01-qwen-A1",
+      "bytes": 1312071,
+      "sha256": "76a6503e080ea2395e5f21817ab52f331d67ec62cd402215ee8c4c145af4cd9d"
+    },
+    {
+      "job_id": "FA121-S02-qwen-A1",
+      "bytes": 1374049,
+      "sha256": "6871c494921b3f8410ce5ce05f362bc7cbbc7511a415a1e69d0eee28ac5147e9"
+    },
+    {
+      "job_id": "FA121-S03-qwen-A1",
+      "bytes": 1363317,
+      "sha256": "3d581b4828a55c0d9dd8501b689c03f79568a2af6fa2af6128dd85550f51f7e6"
+    },
+    {
+      "job_id": "FA121-S04-qwen-A1",
+      "bytes": 1559806,
+      "sha256": "5f1618b68b16d4368511cca12ca0b0c81d579f007b8457c8e3e7a4d487582768"
+    },
+    {
+      "job_id": "FA121-S05-qwen-A1",
+      "bytes": 1603631,
+      "sha256": "97340778b4df0f002b84402aa6e4edd863f4df1d3c3048efc75d7afc67ecd58b"
+    }
+  ],
+  "runtime_final": {
+    "heartbeat_count": 282,
+    "heartbeat_max_gap_ms": 340011,
+    "terminal_slots": 12,
+    "successful_generations": 6,
+    "skipped_no_eligible_route": 6,
+    "failure_events": 0,
+    "profile_integrity_ok": true,
+    "last_broker_state": "READY",
+    "last_broker_owner_pid": 640348,
+    "last_active_leases": 0,
+    "last_open_pages": 2,
+    "timer_auto_stopped": true,
+    "broker_auto_stopped": true,
+    "close_sentinel_present": true
+  },
+  "truth_boundaries": {
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "provider_login_automated": false,
+    "spend_usd": 0,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "production_seed_selection_used": false
+  }
+}

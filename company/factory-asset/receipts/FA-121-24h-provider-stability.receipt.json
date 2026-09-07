@@ -1,12 +1,12 @@
 {
   "schema": "die.factory-asset.fa121-24h-provider-stability-receipt.v1",
   "task_id": "FA-121",
-  "date": "2026-09-06",
-  "status": "IN_PROGRESS",
+  "date": "2026-09-07",
+  "status": "DONE",
   "implementation_result": "PASS",
-  "runtime_status": "RUNNING",
-  "full_fa121_acceptance": false,
-  "reason": "Hotfix is merged/deployed and the dedicated timer is running. A fresh 24-hour observed unattended window began after the hotfix; only one legitimate scheduled generation has completed, so DONE/PASS is intentionally not claimed.",
+  "runtime_status": "WINDOW_COMPLETE",
+  "full_fa121_acceptance": true,
+  "reason": "PASS: the fresh unattended window observed more than 24 real hours with heartbeat max gap below the 900-second acceptance limit, preserved profile metadata identity, zero duplicate committed generations, zero secret leakage and six successful bounded Qwen BROWSER_CDP generations. After Qwen reached its per-provider cap of 6 while ChatGPT remained DEGRADED, the remaining six slots correctly failed closed with zero dispatch commits. Timer and dedicated FA-121 broker auto-stopped after window completion.",
   "architecture": {
     "contract": "company/factory-asset/contracts/fa121-stability-canary.v1.json",
     "runner": "company/factory-asset/bin/run_fa121_stability_canary.mjs",
@@ -42,7 +42,7 @@
     "profile_secret_values_read": false,
     "cookie_token_oauth_values_read": false,
     "profile_secret_values_hashed": false,
-    "provider_calls_performed": 0,
+    "provider_calls_performed": 6,
     "accounts_created": 0,
     "checkpoint_or_captcha_bypass": false,
     "spend_usd": 0,
@@ -70,19 +70,16 @@
     ]
   },
   "validation": {
-    "focused_fa121": "6 passed",
-    "factory_regression": "667 passed, 1 warning (PyPDF2 deprecation)",
+    "focused_final_acceptance": "7 passed",
+    "factory_regression": "703 passed, 1 skipped, 1 PyPDF2 warning",
     "one_canon_pytest": "6 passed",
     "one_canon_validator": "11/11 PASS",
     "company_secret_scan_hits": 0,
-    "muxia_typescript_build": "PASS",
-    "node_syntax": "PASS",
-    "shell_syntax": "PASS",
-    "selftest": "PASS",
-    "combined_pytest": "673 passed, 1 warning",
-    "reconciled_main": "dc47a0f82bd995bea044001cd6447ed66ce4c416 (FA-204 merged)"
+    "git_diff_check": "PASS",
+    "linux_validation_head": "017ddac5",
+    "base_main": "f1f8632e167b463f03e182ff76bec0856bfabc57"
   },
-  "next_boundary": "Keep the dedicated timer running until the real observed interval reaches 2026-09-07T06:55:01.139Z. Only then may a later session evaluate durable heartbeat/attempt/profile-integrity evidence and decide FA-121 PASS/FAIL.",
+  "next_boundary": "FA-121 is DONE/PASS. FA-122 dependency is unlocked. FA-307 also has all dependency gates satisfied because FA-306 is DONE; a separate Founder-authorized bounded live two-cluster acceptance may proceed.",
   "configured_pre_hotfix_window": {
     "start_at": "2026-09-06T05:53:37.354Z",
     "end_at": "2026-09-07T05:53:37.354Z",
@@ -100,69 +97,55 @@
     "hotfix_merge_commit": "e9882298c88a31ecc366e3fab1bb3dba9c694590",
     "start_at": "2026-09-06T06:55:01.139Z",
     "end_target": "2026-09-07T06:55:01.139Z",
-    "lifecycle": "RUNNING",
-    "scheduler_identity": {
-      "broker_service": "die-fa121-cluster-broker.service",
-      "tick_service": "die-fa121-stability-tick.service",
-      "timer": "die-fa121-stability.timer",
-      "control_base_url": "http://127.0.0.1:39121/"
-    },
-    "timer_enabled": true,
-    "timer_active": true,
+    "window_closed_at": "2026-09-07T06:59:24.981Z",
+    "lifecycle": "WINDOW_COMPLETE_PENDING_ACCEPTANCE",
+    "heartbeat_count": 282,
+    "observed_duration_ms": 86653737,
+    "heartbeat_max_gap_ms": 340011,
+    "heartbeat_gap_limit_ms": 900000,
     "generation_budget": {
       "max": 12,
-      "used": 1,
+      "used": 6,
       "per_provider_max": 6,
       "encoded_before_first_dispatch": true
     },
     "provider_generation_count": {
-      "qwen": 1,
+      "qwen": 6,
       "chatgpt": 0
     },
-    "next_slot_index": 1,
-    "heartbeat_count_at_snapshot": 1,
+    "slot_status_counts": {
+      "SUCCEEDED": 6,
+      "SKIPPED_NO_ELIGIBLE_ROUTE": 6
+    },
+    "failure_events": 0,
     "profile_integrity_ok": true,
-    "broker": {
+    "last_broker_observation": {
       "state": "READY",
       "cluster_id": "cluster-a",
       "profile_id": "chatgpt-linux-a",
       "browser_owner_pid": 640348,
-      "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
       "max_tabs": 8,
       "active_leases": 0,
-      "open_pages": 5
+      "open_pages": 2
     },
-    "first_scheduled_generation": {
-      "slot_index": 0,
-      "planned_at": "2026-09-06T06:55:01.139Z",
-      "terminal_at": "2026-09-06T06:55:40.571Z",
-      "status": "SUCCEEDED",
-      "provider_id": "qwen",
-      "cluster_id": "cluster-a",
-      "actual_transport": "BROWSER_CDP",
-      "transport_role": "FALLBACK",
-      "primary_transport_contract": "SESSION_API",
-      "qwen_session_api_live_executor_claimed": false,
-      "qwen_session_api_rejection": "CAPACITY_UNKNOWN",
-      "chatgpt_sibling_readiness": "DEGRADED",
-      "qwen_readiness": "HEALTHY",
-      "pre_dispatch_retries": 0,
-      "dispatch_committed_count": 1,
-      "lease_acquired": true,
-      "lease_released": true,
-      "latency_ms": 16357,
-      "artifact": {
-        "sha256": "d4a845815aa3d01d202ad80efba7ed9af50e859a9f9b6195c3cbaa891462eced",
-        "bytes": 1324473,
-        "mime": "image/png",
-        "original_byte_acquisition_method": "provider_original_cdn_url_browser_context"
-      },
-      "credential_values_read": false,
-      "cookies_or_tokens_read": false,
-      "spend_usd": 0,
-      "submission_authorized": false,
-      "publication_authorized": false
-    }
+    "runtime_auto_shutdown": {
+      "timer_inactive": true,
+      "broker_inactive": true,
+      "close_sentinel_present": true
+    },
+    "final_evaluation_result": "PASS",
+    "final_evaluation_assertions": {
+      "real_24h_observed": true,
+      "profile_integrity_preserved": true,
+      "zero_duplicate_committed_generation": true,
+      "zero_secret_leakage": true,
+      "load_budget_respected": true,
+      "actual_transport_preserved": true,
+      "production_seed_selection_unused": true,
+      "packaging_derivatives_not_counted": true
+    },
+    "evidence_ref": "company/factory-asset/fixtures/scale/FA-121-final-acceptance-evidence.json",
+    "evidence_sha256": "85cc00e4858f9ed7fc96a6c31f8d77d8053960426d0588743cc2adf6c748d692"
   },
   "runtime_hotfix_validation": {
     "pre_hotfix_reproduction": "init durable write observed but command exceeded 5s until timeout; broker remained READY",
@@ -181,5 +164,32 @@
     "max_tabs_preserved": true,
     "no_lease_leak": true,
     "provider_calls_in_non_dispatch_validation": 0
+  },
+  "result": "PASS",
+  "final_acceptance": {
+    "result": "PASS",
+    "evaluated_at": "2026-09-07T08:02:00.830Z",
+    "assertions": {
+      "real_24h_observed": true,
+      "profile_integrity_preserved": true,
+      "zero_duplicate_committed_generation": true,
+      "zero_secret_leakage": true,
+      "load_budget_respected": true,
+      "actual_transport_preserved": true,
+      "production_seed_selection_unused": true,
+      "packaging_derivatives_not_counted": true
+    },
+    "artifact_count": 6,
+    "artifact_sha256": [
+      "d4a845815aa3d01d202ad80efba7ed9af50e859a9f9b6195c3cbaa891462eced",
+      "76a6503e080ea2395e5f21817ab52f331d67ec62cd402215ee8c4c145af4cd9d",
+      "6871c494921b3f8410ce5ce05f362bc7cbbc7511a415a1e69d0eee28ac5147e9",
+      "3d581b4828a55c0d9dd8501b689c03f79568a2af6fa2af6128dd85550f51f7e6",
+      "5f1618b68b16d4368511cca12ca0b0c81d579f007b8457c8e3e7a4d487582768",
+      "97340778b4df0f002b84402aa6e4edd863f4df1d3c3048efc75d7afc67ecd58b"
+    ],
+    "zero_failure_events": true,
+    "zero_lease_leak_at_last_heartbeat": true,
+    "skipped_slots_are_fail_closed_after_provider_cap": true
   }
 }
