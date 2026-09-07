@@ -1,6 +1,6 @@
 {
   "schema": "die.factory-asset.fa307-two-cluster-live-contract.v1",
-  "revision": "1.1.0-attempt2-qwen-manus",
+  "revision": "1.2.0-attempt3-manus-bounded-editor-readiness",
   "task_id": "FA-307",
   "status": "CANONICAL_CANDIDATE",
   "authority": {
@@ -11,9 +11,9 @@
     "publication_authorized": false,
     "credential_secret_reads_allowed": false,
     "cookie_token_reads_allowed": false,
-    "authorization_scope": "FRESH_ATTEMPT_2_ONLY",
-    "prior_attempt_provider_calls": 2,
-    "cumulative_provider_call_ceiling_through_attempt_2": 4
+    "authorization_scope": "FRESH_ATTEMPT_3_ONLY",
+    "prior_attempt_provider_calls": 3,
+    "cumulative_provider_call_ceiling_through_attempt_3": 5
   },
   "clusters": {
     "cluster-a": {
@@ -50,7 +50,8 @@
     "profile_metadata_identity_preserved": true,
     "zero_profile_lock_collision": true,
     "zero_lease_leak_after_completion": true,
-    "fresh_job_ids_required_after_prior_dispatched_failure": true
+    "fresh_job_ids_required_after_prior_dispatched_failure": true,
+    "manus_readiness_policy": "AUTH/CHECKPOINT/UNAVAILABLE fail closed; initial DEGRADED composer result may proceed only to bounded 20s proven editor visibility wait; no prompt dispatch until editor is visible."
   },
   "recovery": {
     "controlled_restart_cluster": "cluster-b",
@@ -60,16 +61,29 @@
     "post_restart_active_leases": 0,
     "duplicate_generation_after_restart": 0
   },
-  "attempt_number": 2,
-  "prior_attempt": {
-    "attempt_number": 1,
-    "pair": [
-      "qwen@cluster-a",
-      "gemini@cluster-b"
-    ],
-    "result": "FAIL_OUTPUT_TIMEOUT_GEMINI",
-    "provider_dispatch_commits": 2,
-    "post_dispatch_retry_performed": false,
-    "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-1-qwen-gemini-result.json"
-  }
+  "attempt_number": 3,
+  "prior_attempts": [
+    {
+      "attempt_number": 1,
+      "pair": [
+        "qwen@cluster-a",
+        "gemini@cluster-b"
+      ],
+      "result": "FAIL_OUTPUT_TIMEOUT_GEMINI",
+      "provider_dispatch_commits": 2,
+      "post_dispatch_retry_performed": false,
+      "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-1-qwen-gemini-result.json"
+    },
+    {
+      "attempt_number": 2,
+      "pair": [
+        "qwen@cluster-a",
+        "manus@cluster-b"
+      ],
+      "result": "FAIL_PRE_DISPATCH_MANUS_PLUS_QWEN_TIMEOUT",
+      "provider_dispatch_commits": 1,
+      "post_dispatch_retry_performed": false,
+      "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-2-qwen-manus-result.json"
+    }
+  ]
 }

@@ -3882,3 +3882,10 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Attempt #1 Qwen@Cluster A + Gemini@Cluster B had two overlapping committed dispatches and passed all resource/profile/lease/recovery assertions, but Gemini timed out during original-byte acquisition after dispatch; overall acceptance remained FAIL. Qwen original SHA256 `95482edef77a7d62f689916a76a45955dc561f4f92fe58ab54e8d6a5e2b924ce`.
 - No Gemini post-dispatch retry was performed. The full attempt #1 result is preserved at `company/factory-asset/fixtures/multi-cluster/FA-307-attempt-1-qwen-gemini-result.json`.
 - Founder authorized completion of FA-307. Attempt #2 is a fresh bounded acceptance with new job identities: Qwen@Cluster A plus Manus@Cluster B, exactly two provider calls, zero retries, same profile/RAM/tab/lease/recovery gates.
+
+---
+
+## 2026-09-07 - FA-307 attempt #2 terminal; attempt #3 staged
+- Attempt #2 Qwen@A + Manus@B is terminal FAIL without retry. Manus never dispatched because generic readiness reported `DEGRADED/COMPOSER_NOT_READY` before the proven Manus editor wait; Qwen independently committed once and later timed out. Recovery/profile/resource/lease safety remained bounded.
+- Sanitized attempt #2 evidence is canonical at `company/factory-asset/fixtures/multi-cluster/FA-307-attempt-2-qwen-manus-result.json`.
+- Attempt #3 uses new Qwen@A + Manus@B job identities. Manus pre-dispatch gating now fails immediately only on AUTH_REQUIRED/CHECKPOINT/UNAVAILABLE; otherwise it waits up to 20 seconds for the proven `.tiptap.ProseMirror` editor before any dispatch.

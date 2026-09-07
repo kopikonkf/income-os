@@ -7,7 +7,7 @@
   "founder_authorization": {
     "observed_in_session": true,
     "instruction": "silakan tuntaskan FA-307",
-    "attempt_number": 2,
+    "attempt_number": 3,
     "authorized_provider_calls": 2,
     "fresh_jobs_required": true
   },
@@ -19,14 +19,14 @@
       "cluster_id": "cluster-a",
       "transport": "BROWSER_CDP",
       "semantic": "isolated teal desk clock",
-      "job_id": "FA307-R2-QWEN-A-20260907"
+      "job_id": "FA307-R3-QWEN-A-20260907"
     },
     {
       "provider_id": "manus",
       "cluster_id": "cluster-b",
       "transport": "BROWSER_CDP",
       "semantic": "isolated green ceramic watering can",
-      "job_id": "FA307-R2-MANUS-B-20260907"
+      "job_id": "FA307-R3-MANUS-B-20260907"
     }
   ],
   "authority": {
@@ -37,19 +37,18 @@
     "credential_values_read": false,
     "cookies_or_tokens_read": false
   },
-  "next_boundary": "Attempt #1 is preserved as a terminal failure after Gemini dispatch; no retry is permitted. Run fresh attempt #2 with new Qwen@A + Manus@B job identities, exactly two provider calls and zero retries; seal FA-307 only if all live assertions pass.",
+  "next_boundary": "Attempt #2 is terminal: Manus never dispatched because generic readiness was too early; Qwen later timed out. No retry occurred. Attempt #3 uses fresh job IDs and fixes Manus pre-dispatch gating to the proven bounded 20-second editor wait while preserving exact two-call/zero-retry authority.",
   "validation": {
     "selftest": "PASS",
-    "focused_fa307": "6 passed",
-    "focused_progression_plus_fa307": "13 passed",
-    "live_safe_fa121_oneshot": "1 passed after controlled Cluster A owner restart 715947->721917",
-    "factory_regression": "715 passed, 1 PyPDF2 warning",
+    "focused_fa307": "8 passed",
+    "focused_progression_plus_fa307": "15 passed",
+    "factory_regression": "717 passed, 1 PyPDF2 warning",
     "one_canon_pytest": "6 passed",
     "one_canon_validator": "11/11 PASS",
     "company_secret_scan_hits": 0,
     "node_syntax": "PASS",
     "git_diff_check": "PASS",
-    "base_main": "c4ad45626fa21576546a31661dd3fe42e76f3b44"
+    "base_main": "55112bba6a1f89c0f144d5f5fba42b2102a457be"
   },
   "attempt_history": [
     {
@@ -82,6 +81,35 @@
       ],
       "post_dispatch_retry_performed": false,
       "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-1-qwen-gemini-result.json"
+    },
+    {
+      "attempt_number": 2,
+      "pair": [
+        "qwen@cluster-a",
+        "manus@cluster-b"
+      ],
+      "result": "FAIL",
+      "failure_boundary": "MANUS_PRE_DISPATCH_COMPOSER_NOT_READY_PLUS_QWEN_PROVIDER_TIMEOUT",
+      "provider_dispatch_commits": 1,
+      "qwen_status": "FAILED_PROVIDER_TIMEOUT",
+      "manus_status": "FAILED_PRE_DISPATCH",
+      "manus_dispatch_committed": false,
+      "architecture_assertions_passed": [
+        "profile_metadata_identity_preserved",
+        "zero_monitor_bound_violation",
+        "bounded_ram",
+        "bounded_tabs",
+        "bounded_leases",
+        "zero_lease_leak_after_completion",
+        "second_owner_rejected",
+        "recovery_owner_pid_changed",
+        "recovery_cluster_b_ready",
+        "sibling_cluster_a_remained_ready",
+        "fa121_timer_remained_inactive",
+        "zero_secret_reads"
+      ],
+      "post_dispatch_retry_performed": false,
+      "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-2-qwen-manus-result.json"
     }
   ]
 }
