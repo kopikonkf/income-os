@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "10.2-fa305-cluster-b-pass-fa306-ready",
+  "revision": "10.3-fa306-multi-cluster-scheduler-pass",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2402,11 +2402,13 @@
         "FA-304",
         "FA-305"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
-      "artifact": "multi-cluster scheduler and fault-isolation tests",
+      "artifact": "company/factory-asset/contracts/multi-cluster-scheduler.v1.json; company/browser/linux/multi_cluster_scheduler.mjs; company/factory-asset/receipts/FA-306-multi-cluster-scheduler.receipt.json",
       "acceptance": "Jobs distribute across healthy clusters with lease isolation, bounded retries, provider/cluster circuit breakers, fairness and no duplicate committed generation.",
-      "updated_at": "2026-09-06"
+      "updated_at": "2026-09-06",
+      "completed_at": "2026-09-06",
+      "result": "PASS: cross-cluster control-plane scheduler adds exclusive job queue leases over per-cluster FA-302 tab leases, deterministic fairness across comparable healthy clusters, provider@cluster and cluster-wide circuit breakers, max 2 pre-dispatch retries, idempotent retry events, explicit expired-lease reclaim and exactly-one generation commit per job_id. Synthetic acceptance PASS; live Cluster A/B topology read-only snapshot shows both READY/max_tabs=8/zero active leases. No provider calls, live lease acquisition, browser ownership, secret reads, spend, submission or publication."
     },
     {
       "id": "FA-307",

@@ -1,0 +1,97 @@
+{
+  "schema": "die.factory-asset.fa306-multi-cluster-scheduler.receipt.v1",
+  "task_id": "FA-306",
+  "date": "2026-09-06",
+  "status": "DONE",
+  "result": "PASS",
+  "contract": "company/factory-asset/contracts/multi-cluster-scheduler.v1.json",
+  "implementation": "company/browser/linux/multi_cluster_scheduler.mjs",
+  "synthetic_runner": "company/factory-asset/bin/run_fa306_multi_cluster_scheduler_synthetic.mjs",
+  "acceptance_matrix": {
+    "fairness_balanced": true,
+    "cross_cluster_queue_lease_isolated": true,
+    "provider_cluster_circuit_opened": true,
+    "cluster_circuit_opened_and_recovered": true,
+    "retries_bounded": true,
+    "duplicate_commit_blocked": true,
+    "post_dispatch_retry_blocked": true,
+    "expired_lease_reclaim_explicit": true
+  },
+  "evidence": {
+    "synthetic_result": {
+      "ref": "company/factory-asset/fixtures/multi-cluster/FA-306-multi-cluster-scheduler-result.json",
+      "sha256": "149b92635672d9b56677434a2799b1f65e5d0b833352f1248e787080acfd1684"
+    },
+    "live_topology": {
+      "ref": "company/factory-asset/fixtures/multi-cluster/FA-306-live-topology-snapshot.json",
+      "sha256": "7405ae76c8c039a806e4e04a510a276408e6605f229453d1347a72d776a43274",
+      "clusters": [
+        {
+          "cluster_id": "cluster-a",
+          "control_port": 39121,
+          "state": "READY",
+          "profile_id": "chatgpt-linux-a",
+          "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+          "browser_owner_pid_present": true,
+          "debug_host": "127.0.0.1",
+          "control_host": "127.0.0.1",
+          "max_tabs": 8,
+          "active_leases": 0,
+          "open_pages": 2,
+          "credential_values_read": false,
+          "cookies_or_tokens_read": false
+        },
+        {
+          "cluster_id": "cluster-b",
+          "control_port": 39122,
+          "state": "READY",
+          "profile_id": "web-ai-cluster-b",
+          "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+          "browser_owner_pid_present": true,
+          "debug_host": "127.0.0.1",
+          "control_host": "127.0.0.1",
+          "max_tabs": 8,
+          "active_leases": 0,
+          "open_pages": 2,
+          "credential_values_read": false,
+          "cookies_or_tokens_read": false
+        }
+      ]
+    }
+  },
+  "semantics": {
+    "cross_cluster_queue_lease": "EXCLUSIVE_JOB_OWNERSHIP",
+    "per_cluster_tab_lease": "REQUIRED_FOR_BROWSER_ROUTE_EXECUTION",
+    "fairness": "LEAST_SELECTED_HEALTHY_CLUSTER_PRIORITY_PENALTY",
+    "provider_cluster_circuit_breaker": "PASS",
+    "cluster_circuit_breaker": "PASS",
+    "bounded_retries": 2,
+    "post_dispatch_retry_allowed": false,
+    "generation_commit_uniqueness": "job_id",
+    "idempotent_replay": true
+  },
+  "truth_boundaries": {
+    "provider_calls_performed": false,
+    "browser_processes_spawned": 0,
+    "live_broker_leases_acquired": 0,
+    "secret_values_read": false,
+    "spend_usd": 0,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "fa121_mutated": false
+  },
+  "next": "FA-307 remains blocked until FA-121 completes; then a separate Founder-authorized two-cluster live provider acceptance may run.",
+  "validation": {
+    "deterministic_fixture_sha256": "149b92635672d9b56677434a2799b1f65e5d0b833352f1248e787080acfd1684",
+    "deterministic_rerun": "PASS_IDENTICAL_BYTES",
+    "focused_scheduler_pytest": "7 passed",
+    "focused_progression_plus_scheduler": "13 passed",
+    "factory_regression": "700 passed, 1 PyPDF2 warning",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "company_secret_scan_hits": 0,
+    "node_syntax": "PASS",
+    "git_diff_check": "PASS",
+    "base_main": "6769e47f7bfadf2778e940c32e9f56e23c56b8c9"
+  }
+}

@@ -1,0 +1,1793 @@
+{
+  "schema": "die.factory-asset.fa306-multi-cluster-scheduler-acceptance.v1",
+  "task_id": "FA-306",
+  "result": "PASS",
+  "assertions": {
+    "fairness_balanced": true,
+    "cross_cluster_queue_lease_isolated": true,
+    "provider_cluster_circuit_opened": true,
+    "cluster_circuit_opened_and_recovered": true,
+    "retries_bounded": true,
+    "duplicate_commit_blocked": true,
+    "post_dispatch_retry_blocked": true,
+    "expired_lease_reclaim_explicit": true
+  },
+  "evidence": {
+    "fairness": {
+      "picks": [
+        "cluster-a",
+        "cluster-b",
+        "cluster-a",
+        "cluster-b"
+      ],
+      "snapshot": {
+        "schema": "die.factory-asset.multi-cluster-scheduler-state.v1",
+        "active_queue_leases": 0,
+        "active_jobs": [],
+        "committed_job_ids": [
+          "fair-1",
+          "fair-2",
+          "fair-3",
+          "fair-4"
+        ],
+        "cluster_selection_counts": {
+          "cluster-a": 2,
+          "cluster-b": 2
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "provider_calls_performed": false,
+        "browser_owner_actions": 0
+      }
+    },
+    "queue_lease_isolation": {
+      "first": {
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "job_id": "lease-one",
+        "idempotency_key": "idem-lease-one",
+        "attempt": 1,
+        "retry_index": 0,
+        "route_id": "bf4e21926000e11683ca67831b4a6194897700dd49dc37797b530dc2db576244",
+        "provider_id": "gemini",
+        "cluster_id": "cluster-a",
+        "transport": "BROWSER_CDP",
+        "requires_tab_lease": true,
+        "tab_capacity_consumed_by_router": false,
+        "browser_owner_action": "NONE",
+        "score": -260,
+        "factors": {
+          "readiness_state": "HEALTHY",
+          "capacity_state": "AVAILABLE",
+          "queue_pressure": 0,
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": 4,
+          "provider_active_tabs": 0,
+          "recent_failures": 0,
+          "latency_ms": 500
+        },
+        "rejected": [],
+        "dispatch_committed": false,
+        "provider_calls_performed": false,
+        "idempotent_replay": false,
+        "scheduler_schema": "die.factory-asset.multi-cluster-schedule.v1",
+        "queue_lease": {
+          "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+          "lease_id": "lease-0005",
+          "job_id": "lease-one",
+          "idempotency_key": "idem-lease-one",
+          "state": "LEASED",
+          "acquired_at_ms": 1788719400000,
+          "expires_at_ms": 1788719700000,
+          "cluster_id": "cluster-a",
+          "provider_id": "gemini",
+          "route_id": "bf4e21926000e11683ca67831b4a6194897700dd49dc37797b530dc2db576244",
+          "acquired_at": "2026-09-06T18:30:00.000Z",
+          "expires_at": "2026-09-06T18:35:00.000Z"
+        },
+        "fairness": {
+          "cluster_selection_counts": {
+            "cluster-a": 1
+          },
+          "selected_cluster_prior_count": 0
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "scheduler_idempotent_replay": false
+      },
+      "replay": {
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "job_id": "lease-one",
+        "idempotency_key": "idem-lease-one",
+        "attempt": 1,
+        "retry_index": 0,
+        "route_id": "bf4e21926000e11683ca67831b4a6194897700dd49dc37797b530dc2db576244",
+        "provider_id": "gemini",
+        "cluster_id": "cluster-a",
+        "transport": "BROWSER_CDP",
+        "requires_tab_lease": true,
+        "tab_capacity_consumed_by_router": false,
+        "browser_owner_action": "NONE",
+        "score": -260,
+        "factors": {
+          "readiness_state": "HEALTHY",
+          "capacity_state": "AVAILABLE",
+          "queue_pressure": 0,
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": 4,
+          "provider_active_tabs": 0,
+          "recent_failures": 0,
+          "latency_ms": 500
+        },
+        "rejected": [],
+        "dispatch_committed": false,
+        "provider_calls_performed": false,
+        "idempotent_replay": false,
+        "scheduler_schema": "die.factory-asset.multi-cluster-schedule.v1",
+        "queue_lease": {
+          "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+          "lease_id": "lease-0005",
+          "job_id": "lease-one",
+          "idempotency_key": "idem-lease-one",
+          "state": "LEASED",
+          "acquired_at_ms": 1788719400000,
+          "expires_at_ms": 1788719700000,
+          "cluster_id": "cluster-a",
+          "provider_id": "gemini",
+          "route_id": "bf4e21926000e11683ca67831b4a6194897700dd49dc37797b530dc2db576244",
+          "acquired_at": "2026-09-06T18:30:00.000Z",
+          "expires_at": "2026-09-06T18:35:00.000Z"
+        },
+        "fairness": {
+          "cluster_selection_counts": {
+            "cluster-a": 1
+          },
+          "selected_cluster_prior_count": 0
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "scheduler_idempotent_replay": true
+      },
+      "conflict": {
+        "code": "E_JOB_QUEUE_LEASE_CONFLICT",
+        "details": {
+          "active_idempotency_key": "idem-lease-one"
+        }
+      },
+      "snapshot": {
+        "schema": "die.factory-asset.multi-cluster-scheduler-state.v1",
+        "active_queue_leases": 1,
+        "active_jobs": [
+          {
+            "job_id": "lease-one",
+            "idempotency_key": "idem-lease-one",
+            "queue_lease": {
+              "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+              "lease_id": "lease-0005",
+              "job_id": "lease-one",
+              "idempotency_key": "idem-lease-one",
+              "state": "LEASED",
+              "acquired_at_ms": 1788719400000,
+              "expires_at_ms": 1788719700000,
+              "cluster_id": "cluster-a",
+              "provider_id": "gemini",
+              "route_id": "bf4e21926000e11683ca67831b4a6194897700dd49dc37797b530dc2db576244",
+              "acquired_at": "2026-09-06T18:30:00.000Z",
+              "expires_at": "2026-09-06T18:35:00.000Z"
+            },
+            "committed": null
+          }
+        ],
+        "committed_job_ids": [],
+        "cluster_selection_counts": {
+          "cluster-a": 1
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "provider_calls_performed": false,
+        "browser_owner_actions": 0
+      }
+    },
+    "provider_cluster_circuit": {
+      "first": {
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "job_id": "provider-circuit",
+        "idempotency_key": "idem-provider-circuit",
+        "attempt": 1,
+        "retry_index": 0,
+        "route_id": "7c43eaeb3b1dc7333b9a76e10fb49edb3210ba09ada09033cb74d50982dc707d",
+        "provider_id": "gemini",
+        "cluster_id": "cluster-a",
+        "transport": "BROWSER_CDP",
+        "requires_tab_lease": true,
+        "tab_capacity_consumed_by_router": false,
+        "browser_owner_action": "NONE",
+        "score": -260,
+        "factors": {
+          "readiness_state": "HEALTHY",
+          "capacity_state": "AVAILABLE",
+          "queue_pressure": 0,
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": 4,
+          "provider_active_tabs": 0,
+          "recent_failures": 0,
+          "latency_ms": 500
+        },
+        "rejected": [],
+        "dispatch_committed": false,
+        "provider_calls_performed": false,
+        "idempotent_replay": false,
+        "scheduler_schema": "die.factory-asset.multi-cluster-schedule.v1",
+        "queue_lease": {
+          "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+          "lease_id": "lease-0006",
+          "job_id": "provider-circuit",
+          "idempotency_key": "idem-provider-circuit",
+          "state": "LEASED",
+          "acquired_at_ms": 1788719400000,
+          "expires_at_ms": 1788719700000,
+          "cluster_id": "cluster-a",
+          "provider_id": "gemini",
+          "route_id": "7c43eaeb3b1dc7333b9a76e10fb49edb3210ba09ada09033cb74d50982dc707d",
+          "acquired_at": "2026-09-06T18:30:00.000Z",
+          "expires_at": "2026-09-06T18:35:00.000Z"
+        },
+        "fairness": {
+          "cluster_selection_counts": {
+            "cluster-a": 1
+          },
+          "selected_cluster_prior_count": 0
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "scheduler_idempotent_replay": false
+      },
+      "second": {
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "job_id": "provider-circuit",
+        "idempotency_key": "idem-provider-circuit",
+        "attempt": 2,
+        "retry_index": 1,
+        "route_id": "919b4a7676531c8e86d2a1632b889b5007c0cca7b92db11b98c68467000cfd70",
+        "provider_id": "gemini",
+        "cluster_id": "cluster-b",
+        "transport": "BROWSER_CDP",
+        "requires_tab_lease": true,
+        "tab_capacity_consumed_by_router": false,
+        "browser_owner_action": "NONE",
+        "score": -260,
+        "factors": {
+          "readiness_state": "HEALTHY",
+          "capacity_state": "AVAILABLE",
+          "queue_pressure": 0,
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": 4,
+          "provider_active_tabs": 0,
+          "recent_failures": 0,
+          "latency_ms": 500
+        },
+        "rejected": [
+          {
+            "provider_id": "gemini",
+            "cluster_id": "cluster-a",
+            "transport": "BROWSER_CDP",
+            "reasons": [
+              "ROUTE_DISABLED"
+            ]
+          }
+        ],
+        "dispatch_committed": false,
+        "provider_calls_performed": false,
+        "idempotent_replay": false,
+        "scheduler_schema": "die.factory-asset.multi-cluster-schedule.v1",
+        "queue_lease": {
+          "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+          "lease_id": "lease-0006",
+          "job_id": "provider-circuit",
+          "idempotency_key": "idem-provider-circuit",
+          "state": "LEASED",
+          "acquired_at_ms": 1788719400000,
+          "expires_at_ms": 1788719700000,
+          "cluster_id": "cluster-b",
+          "provider_id": "gemini",
+          "route_id": "919b4a7676531c8e86d2a1632b889b5007c0cca7b92db11b98c68467000cfd70",
+          "acquired_at": "2026-09-06T18:30:00.000Z",
+          "expires_at": "2026-09-06T18:35:00.000Z"
+        },
+        "fairness": {
+          "cluster_selection_counts": {
+            "cluster-a": 1,
+            "cluster-b": 1
+          },
+          "selected_cluster_prior_count": 0
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "gemini@cluster-a": {
+              "state": "OPEN",
+              "failures": 1,
+              "open_until_ms": 1788719700000,
+              "last_failure_code": "PROVIDER_TIMEOUT"
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_TIMEOUT"
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "scheduler_idempotent_replay": false
+      },
+      "replay": {
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "job_id": "provider-circuit",
+        "idempotency_key": "idem-provider-circuit",
+        "attempt": 2,
+        "retry_index": 1,
+        "route_id": "919b4a7676531c8e86d2a1632b889b5007c0cca7b92db11b98c68467000cfd70",
+        "provider_id": "gemini",
+        "cluster_id": "cluster-b",
+        "transport": "BROWSER_CDP",
+        "requires_tab_lease": true,
+        "tab_capacity_consumed_by_router": false,
+        "browser_owner_action": "NONE",
+        "score": -260,
+        "factors": {
+          "readiness_state": "HEALTHY",
+          "capacity_state": "AVAILABLE",
+          "queue_pressure": 0,
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": 4,
+          "provider_active_tabs": 0,
+          "recent_failures": 0,
+          "latency_ms": 500
+        },
+        "rejected": [
+          {
+            "provider_id": "gemini",
+            "cluster_id": "cluster-a",
+            "transport": "BROWSER_CDP",
+            "reasons": [
+              "ROUTE_DISABLED"
+            ]
+          }
+        ],
+        "dispatch_committed": false,
+        "provider_calls_performed": false,
+        "idempotent_replay": false,
+        "scheduler_schema": "die.factory-asset.multi-cluster-schedule.v1",
+        "queue_lease": {
+          "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+          "lease_id": "lease-0006",
+          "job_id": "provider-circuit",
+          "idempotency_key": "idem-provider-circuit",
+          "state": "LEASED",
+          "acquired_at_ms": 1788719400000,
+          "expires_at_ms": 1788719700000,
+          "cluster_id": "cluster-b",
+          "provider_id": "gemini",
+          "route_id": "919b4a7676531c8e86d2a1632b889b5007c0cca7b92db11b98c68467000cfd70",
+          "acquired_at": "2026-09-06T18:30:00.000Z",
+          "expires_at": "2026-09-06T18:35:00.000Z"
+        },
+        "fairness": {
+          "cluster_selection_counts": {
+            "cluster-a": 1,
+            "cluster-b": 1
+          },
+          "selected_cluster_prior_count": 0
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "gemini@cluster-a": {
+              "state": "OPEN",
+              "failures": 1,
+              "open_until_ms": 1788719700000,
+              "last_failure_code": "PROVIDER_TIMEOUT"
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_TIMEOUT"
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "scheduler_idempotent_replay": true
+      },
+      "circuits": {
+        "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+        "provider_cluster": {
+          "gemini@cluster-a": {
+            "state": "OPEN",
+            "failures": 1,
+            "open_until_ms": 1788719700000,
+            "last_failure_code": "PROVIDER_TIMEOUT"
+          },
+          "gemini@cluster-b": {
+            "state": "CLOSED",
+            "failures": 0,
+            "open_until_ms": 0,
+            "last_failure_code": null
+          }
+        },
+        "clusters": {
+          "cluster-a": {
+            "state": "CLOSED",
+            "failures": 1,
+            "open_until_ms": 0,
+            "last_failure_code": "PROVIDER_TIMEOUT"
+          },
+          "cluster-b": {
+            "state": "CLOSED",
+            "failures": 0,
+            "open_until_ms": 0,
+            "last_failure_code": null
+          }
+        }
+      }
+    },
+    "cluster_circuit": {
+      "d1": {
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "job_id": "cluster-fail-1",
+        "idempotency_key": "idem-cluster-fail-1",
+        "attempt": 1,
+        "retry_index": 0,
+        "route_id": "8144d06bac967e808c58078a254c785df4b5886aaef251793651c6bbc8e0ce31",
+        "provider_id": "gemini",
+        "cluster_id": "cluster-a",
+        "transport": "BROWSER_CDP",
+        "requires_tab_lease": true,
+        "tab_capacity_consumed_by_router": false,
+        "browser_owner_action": "NONE",
+        "score": -260,
+        "factors": {
+          "readiness_state": "HEALTHY",
+          "capacity_state": "AVAILABLE",
+          "queue_pressure": 0,
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": 4,
+          "provider_active_tabs": 0,
+          "recent_failures": 0,
+          "latency_ms": 500
+        },
+        "rejected": [],
+        "dispatch_committed": false,
+        "provider_calls_performed": false,
+        "idempotent_replay": false,
+        "scheduler_schema": "die.factory-asset.multi-cluster-schedule.v1",
+        "queue_lease": {
+          "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+          "lease_id": "lease-0007",
+          "job_id": "cluster-fail-1",
+          "idempotency_key": "idem-cluster-fail-1",
+          "state": "LEASED",
+          "acquired_at_ms": 1788719400000,
+          "expires_at_ms": 1788719700000,
+          "cluster_id": "cluster-a",
+          "provider_id": "gemini",
+          "route_id": "8144d06bac967e808c58078a254c785df4b5886aaef251793651c6bbc8e0ce31",
+          "acquired_at": "2026-09-06T18:30:00.000Z",
+          "expires_at": "2026-09-06T18:35:00.000Z"
+        },
+        "fairness": {
+          "cluster_selection_counts": {
+            "cluster-a": 1
+          },
+          "selected_cluster_prior_count": 0
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "scheduler_idempotent_replay": false
+      },
+      "r1": {
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "job_id": "cluster-fail-1",
+        "idempotency_key": "idem-cluster-fail-1",
+        "attempt": 2,
+        "retry_index": 1,
+        "route_id": "c21672d36c8fa25ff9cd2971841aab0d3e1a92d00c20cee5f3e49a8c1a066567",
+        "provider_id": "gemini",
+        "cluster_id": "cluster-b",
+        "transport": "BROWSER_CDP",
+        "requires_tab_lease": true,
+        "tab_capacity_consumed_by_router": false,
+        "browser_owner_action": "NONE",
+        "score": -260,
+        "factors": {
+          "readiness_state": "HEALTHY",
+          "capacity_state": "AVAILABLE",
+          "queue_pressure": 0,
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": 4,
+          "provider_active_tabs": 0,
+          "recent_failures": 0,
+          "latency_ms": 500
+        },
+        "rejected": [],
+        "dispatch_committed": false,
+        "provider_calls_performed": false,
+        "idempotent_replay": false,
+        "scheduler_schema": "die.factory-asset.multi-cluster-schedule.v1",
+        "queue_lease": {
+          "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+          "lease_id": "lease-0007",
+          "job_id": "cluster-fail-1",
+          "idempotency_key": "idem-cluster-fail-1",
+          "state": "LEASED",
+          "acquired_at_ms": 1788719400000,
+          "expires_at_ms": 1788719700000,
+          "cluster_id": "cluster-b",
+          "provider_id": "gemini",
+          "route_id": "c21672d36c8fa25ff9cd2971841aab0d3e1a92d00c20cee5f3e49a8c1a066567",
+          "acquired_at": "2026-09-06T18:30:00.000Z",
+          "expires_at": "2026-09-06T18:35:00.000Z"
+        },
+        "fairness": {
+          "cluster_selection_counts": {
+            "cluster-a": 1,
+            "cluster-b": 1
+          },
+          "selected_cluster_prior_count": 0
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_TIMEOUT"
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_TIMEOUT"
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "scheduler_idempotent_replay": false
+      },
+      "d2": {
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "job_id": "cluster-fail-2",
+        "idempotency_key": "idem-cluster-fail-2",
+        "attempt": 1,
+        "retry_index": 0,
+        "route_id": "2f1dd987f87d66012b4007b308d15efdf6a9a57141a5b10d2597f0f14e42e947",
+        "provider_id": "manus",
+        "cluster_id": "cluster-a",
+        "transport": "BROWSER_CDP",
+        "requires_tab_lease": true,
+        "tab_capacity_consumed_by_router": false,
+        "browser_owner_action": "NONE",
+        "score": -1260,
+        "factors": {
+          "readiness_state": "HEALTHY",
+          "capacity_state": "AVAILABLE",
+          "queue_pressure": 0,
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": 4,
+          "provider_active_tabs": 0,
+          "recent_failures": 0,
+          "latency_ms": 500
+        },
+        "rejected": [],
+        "dispatch_committed": false,
+        "provider_calls_performed": false,
+        "idempotent_replay": false,
+        "scheduler_schema": "die.factory-asset.multi-cluster-schedule.v1",
+        "queue_lease": {
+          "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+          "lease_id": "lease-0008",
+          "job_id": "cluster-fail-2",
+          "idempotency_key": "idem-cluster-fail-2",
+          "state": "LEASED",
+          "acquired_at_ms": 1788719400000,
+          "expires_at_ms": 1788719700000,
+          "cluster_id": "cluster-a",
+          "provider_id": "manus",
+          "route_id": "2f1dd987f87d66012b4007b308d15efdf6a9a57141a5b10d2597f0f14e42e947",
+          "acquired_at": "2026-09-06T18:30:00.000Z",
+          "expires_at": "2026-09-06T18:35:00.000Z"
+        },
+        "fairness": {
+          "cluster_selection_counts": {
+            "cluster-a": 2,
+            "cluster-b": 1
+          },
+          "selected_cluster_prior_count": 1
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_TIMEOUT"
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "manus@cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "manus@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_TIMEOUT"
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "scheduler_idempotent_replay": false
+      },
+      "r2": {
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "job_id": "cluster-fail-2",
+        "idempotency_key": "idem-cluster-fail-2",
+        "attempt": 2,
+        "retry_index": 1,
+        "route_id": "7da7f4e77692fcffd6ed7ee2c16d39a6bb77a1ea43fe87aec08343c0d78f5401",
+        "provider_id": "manus",
+        "cluster_id": "cluster-b",
+        "transport": "BROWSER_CDP",
+        "requires_tab_lease": true,
+        "tab_capacity_consumed_by_router": false,
+        "browser_owner_action": "NONE",
+        "score": -1260,
+        "factors": {
+          "readiness_state": "HEALTHY",
+          "capacity_state": "AVAILABLE",
+          "queue_pressure": 0,
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": 4,
+          "provider_active_tabs": 0,
+          "recent_failures": 0,
+          "latency_ms": 500
+        },
+        "rejected": [
+          {
+            "provider_id": "manus",
+            "cluster_id": "cluster-a",
+            "transport": "BROWSER_CDP",
+            "reasons": [
+              "ROUTE_DISABLED"
+            ]
+          }
+        ],
+        "dispatch_committed": false,
+        "provider_calls_performed": false,
+        "idempotent_replay": false,
+        "scheduler_schema": "die.factory-asset.multi-cluster-schedule.v1",
+        "queue_lease": {
+          "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+          "lease_id": "lease-0008",
+          "job_id": "cluster-fail-2",
+          "idempotency_key": "idem-cluster-fail-2",
+          "state": "LEASED",
+          "acquired_at_ms": 1788719400000,
+          "expires_at_ms": 1788719700000,
+          "cluster_id": "cluster-b",
+          "provider_id": "manus",
+          "route_id": "7da7f4e77692fcffd6ed7ee2c16d39a6bb77a1ea43fe87aec08343c0d78f5401",
+          "acquired_at": "2026-09-06T18:30:00.000Z",
+          "expires_at": "2026-09-06T18:35:00.000Z"
+        },
+        "fairness": {
+          "cluster_selection_counts": {
+            "cluster-a": 2,
+            "cluster-b": 2
+          },
+          "selected_cluster_prior_count": 1
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_TIMEOUT"
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "manus@cluster-a": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_ERROR"
+            },
+            "manus@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "OPEN",
+              "failures": 2,
+              "open_until_ms": 1788719405000,
+              "last_failure_code": "PROVIDER_ERROR"
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "scheduler_idempotent_replay": false
+      },
+      "d3": {
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "job_id": "cluster-open-routes-away",
+        "idempotency_key": "idem-cluster-open-routes-away",
+        "attempt": 1,
+        "retry_index": 0,
+        "route_id": "e11a14dff5a8c5f3f3a036cf1ee9021cb0f9e86ff4f6764373db2953289266e9",
+        "provider_id": "duckai",
+        "cluster_id": "cluster-b",
+        "transport": "BROWSER_CDP",
+        "requires_tab_lease": true,
+        "tab_capacity_consumed_by_router": false,
+        "browser_owner_action": "NONE",
+        "score": -2260,
+        "factors": {
+          "readiness_state": "HEALTHY",
+          "capacity_state": "AVAILABLE",
+          "queue_pressure": 0,
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": 4,
+          "provider_active_tabs": 0,
+          "recent_failures": 0,
+          "latency_ms": 500
+        },
+        "rejected": [
+          {
+            "provider_id": "duckai",
+            "cluster_id": "cluster-a",
+            "transport": "BROWSER_CDP",
+            "reasons": [
+              "ROUTE_DISABLED"
+            ]
+          }
+        ],
+        "dispatch_committed": false,
+        "provider_calls_performed": false,
+        "idempotent_replay": false,
+        "scheduler_schema": "die.factory-asset.multi-cluster-schedule.v1",
+        "queue_lease": {
+          "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+          "lease_id": "lease-0009",
+          "job_id": "cluster-open-routes-away",
+          "idempotency_key": "idem-cluster-open-routes-away",
+          "state": "LEASED",
+          "acquired_at_ms": 1788719400000,
+          "expires_at_ms": 1788719700000,
+          "cluster_id": "cluster-b",
+          "provider_id": "duckai",
+          "route_id": "e11a14dff5a8c5f3f3a036cf1ee9021cb0f9e86ff4f6764373db2953289266e9",
+          "acquired_at": "2026-09-06T18:30:00.000Z",
+          "expires_at": "2026-09-06T18:35:00.000Z"
+        },
+        "fairness": {
+          "cluster_selection_counts": {
+            "cluster-a": 2,
+            "cluster-b": 3
+          },
+          "selected_cluster_prior_count": 2
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "duckai@cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "duckai@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_TIMEOUT"
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "manus@cluster-a": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_ERROR"
+            },
+            "manus@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "OPEN",
+              "failures": 2,
+              "open_until_ms": 1788719405000,
+              "last_failure_code": "PROVIDER_ERROR"
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "scheduler_idempotent_replay": false
+      },
+      "after": {
+        "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+        "provider_cluster": {
+          "duckai@cluster-a": {
+            "state": "CLOSED",
+            "failures": 0,
+            "open_until_ms": 0,
+            "last_failure_code": null
+          },
+          "duckai@cluster-b": {
+            "state": "CLOSED",
+            "failures": 0,
+            "open_until_ms": 0,
+            "last_failure_code": null
+          },
+          "gemini@cluster-a": {
+            "state": "CLOSED",
+            "failures": 1,
+            "open_until_ms": 0,
+            "last_failure_code": "PROVIDER_TIMEOUT"
+          },
+          "gemini@cluster-b": {
+            "state": "CLOSED",
+            "failures": 0,
+            "open_until_ms": 0,
+            "last_failure_code": null
+          },
+          "manus@cluster-a": {
+            "state": "CLOSED",
+            "failures": 1,
+            "open_until_ms": 0,
+            "last_failure_code": "PROVIDER_ERROR"
+          },
+          "manus@cluster-b": {
+            "state": "CLOSED",
+            "failures": 0,
+            "open_until_ms": 0,
+            "last_failure_code": null
+          }
+        },
+        "clusters": {
+          "cluster-a": {
+            "state": "CLOSED",
+            "failures": 0,
+            "open_until_ms": 0,
+            "last_failure_code": null
+          },
+          "cluster-b": {
+            "state": "CLOSED",
+            "failures": 0,
+            "open_until_ms": 0,
+            "last_failure_code": null
+          }
+        }
+      },
+      "d4": {
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "job_id": "cluster-recovered",
+        "idempotency_key": "idem-cluster-recovered",
+        "attempt": 1,
+        "retry_index": 0,
+        "route_id": "1d9912e1483dc8b85411a523dc29e3db3e74a4ad5bfb2489312e6006a5d57bd8",
+        "provider_id": "qwen",
+        "cluster_id": "cluster-a",
+        "transport": "BROWSER_CDP",
+        "requires_tab_lease": true,
+        "tab_capacity_consumed_by_router": false,
+        "browser_owner_action": "NONE",
+        "score": -2260,
+        "factors": {
+          "readiness_state": "HEALTHY",
+          "capacity_state": "AVAILABLE",
+          "queue_pressure": 0,
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": 4,
+          "provider_active_tabs": 0,
+          "recent_failures": 0,
+          "latency_ms": 500
+        },
+        "rejected": [],
+        "dispatch_committed": false,
+        "provider_calls_performed": false,
+        "idempotent_replay": false,
+        "scheduler_schema": "die.factory-asset.multi-cluster-schedule.v1",
+        "queue_lease": {
+          "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+          "lease_id": "lease-0010",
+          "job_id": "cluster-recovered",
+          "idempotency_key": "idem-cluster-recovered",
+          "state": "LEASED",
+          "acquired_at_ms": 1788719406000,
+          "expires_at_ms": 1788719706000,
+          "cluster_id": "cluster-a",
+          "provider_id": "qwen",
+          "route_id": "1d9912e1483dc8b85411a523dc29e3db3e74a4ad5bfb2489312e6006a5d57bd8",
+          "acquired_at": "2026-09-06T18:30:06.000Z",
+          "expires_at": "2026-09-06T18:35:06.000Z"
+        },
+        "fairness": {
+          "cluster_selection_counts": {
+            "cluster-a": 3,
+            "cluster-b": 3
+          },
+          "selected_cluster_prior_count": 2
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "duckai@cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "duckai@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_TIMEOUT"
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "manus@cluster-a": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_ERROR"
+            },
+            "manus@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "qwen@cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "qwen@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "scheduler_idempotent_replay": false
+      },
+      "final": {
+        "schema": "die.factory-asset.multi-cluster-scheduler-state.v1",
+        "active_queue_leases": 0,
+        "active_jobs": [],
+        "committed_job_ids": [
+          "cluster-fail-1",
+          "cluster-fail-2",
+          "cluster-open-routes-away",
+          "cluster-recovered"
+        ],
+        "cluster_selection_counts": {
+          "cluster-a": 3,
+          "cluster-b": 3
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "duckai@cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "duckai@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_TIMEOUT"
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "manus@cluster-a": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_ERROR"
+            },
+            "manus@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "qwen@cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "qwen@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "provider_calls_performed": false,
+        "browser_owner_actions": 0
+      }
+    },
+    "retry_budget": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "provider_id": "gemini",
+          "cluster_id": "cluster-a"
+        },
+        {
+          "attempt": 2,
+          "provider_id": "gemini",
+          "cluster_id": "cluster-b"
+        },
+        {
+          "attempt": 3,
+          "provider_id": "manus",
+          "cluster_id": "cluster-a"
+        }
+      ],
+      "limit": {
+        "code": "E_RETRY_LIMIT",
+        "details": null
+      },
+      "snapshot": {
+        "schema": "die.factory-asset.multi-cluster-scheduler-state.v1",
+        "active_queue_leases": 1,
+        "active_jobs": [
+          {
+            "job_id": "retry-budget",
+            "idempotency_key": "idem-retry-budget",
+            "queue_lease": {
+              "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+              "lease_id": "lease-0011",
+              "job_id": "retry-budget",
+              "idempotency_key": "idem-retry-budget",
+              "state": "LEASED",
+              "acquired_at_ms": 1788719400000,
+              "expires_at_ms": 1788719700000,
+              "cluster_id": "cluster-a",
+              "provider_id": "manus",
+              "route_id": "6c2a832ef76a398dfbfb1ac10f907417353539a6cdd7f5db4220433894acf989",
+              "acquired_at": "2026-09-06T18:30:00.000Z",
+              "expires_at": "2026-09-06T18:35:00.000Z"
+            },
+            "committed": null
+          }
+        ],
+        "committed_job_ids": [],
+        "cluster_selection_counts": {
+          "cluster-a": 2,
+          "cluster-b": 1
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_TIMEOUT"
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_ERROR"
+            },
+            "manus@cluster-a": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_ERROR"
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 2,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_ERROR"
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 1,
+              "open_until_ms": 0,
+              "last_failure_code": "PROVIDER_ERROR"
+            }
+          }
+        },
+        "provider_calls_performed": false,
+        "browser_owner_actions": 0
+      }
+    },
+    "exactly_once_commit": {
+      "decision": {
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "job_id": "commit-once",
+        "idempotency_key": "idem-commit-once",
+        "attempt": 1,
+        "retry_index": 0,
+        "route_id": "f74da01bfaf0659e3ddc6b168622ddf34fd7261669bea9623d8f9383b58eca8d",
+        "provider_id": "gemini",
+        "cluster_id": "cluster-a",
+        "transport": "BROWSER_CDP",
+        "requires_tab_lease": true,
+        "tab_capacity_consumed_by_router": false,
+        "browser_owner_action": "NONE",
+        "score": -260,
+        "factors": {
+          "readiness_state": "HEALTHY",
+          "capacity_state": "AVAILABLE",
+          "queue_pressure": 0,
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": 4,
+          "provider_active_tabs": 0,
+          "recent_failures": 0,
+          "latency_ms": 500
+        },
+        "rejected": [],
+        "dispatch_committed": false,
+        "provider_calls_performed": false,
+        "idempotent_replay": false,
+        "scheduler_schema": "die.factory-asset.multi-cluster-schedule.v1",
+        "queue_lease": {
+          "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+          "lease_id": "lease-0012",
+          "job_id": "commit-once",
+          "idempotency_key": "idem-commit-once",
+          "state": "LEASED",
+          "acquired_at_ms": 1788719400000,
+          "expires_at_ms": 1788719700000,
+          "cluster_id": "cluster-a",
+          "provider_id": "gemini",
+          "route_id": "f74da01bfaf0659e3ddc6b168622ddf34fd7261669bea9623d8f9383b58eca8d",
+          "acquired_at": "2026-09-06T18:30:00.000Z",
+          "expires_at": "2026-09-06T18:35:00.000Z"
+        },
+        "fairness": {
+          "cluster_selection_counts": {
+            "cluster-a": 1
+          },
+          "selected_cluster_prior_count": 0
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "scheduler_idempotent_replay": false
+      },
+      "commit": {
+        "schema": "die.factory-asset.generation-commit.v1",
+        "commit_id": "543451b3f33b819ff571ec3e9c35505663f736b78ebe121dde3496fcfbfd9958",
+        "job_id": "commit-once",
+        "idempotency_key": "idem-commit-once",
+        "attempt": 1,
+        "route_id": "f74da01bfaf0659e3ddc6b168622ddf34fd7261669bea9623d8f9383b58eca8d",
+        "provider_id": "gemini",
+        "cluster_id": "cluster-a",
+        "external_commit_key": "external-commit-1",
+        "committed_at_ms": 1788719400000,
+        "idempotent_replay": false
+      },
+      "replay": {
+        "schema": "die.factory-asset.generation-commit.v1",
+        "commit_id": "543451b3f33b819ff571ec3e9c35505663f736b78ebe121dde3496fcfbfd9958",
+        "job_id": "commit-once",
+        "idempotency_key": "idem-commit-once",
+        "attempt": 1,
+        "route_id": "f74da01bfaf0659e3ddc6b168622ddf34fd7261669bea9623d8f9383b58eca8d",
+        "provider_id": "gemini",
+        "cluster_id": "cluster-a",
+        "external_commit_key": "external-commit-1",
+        "committed_at_ms": 1788719400000,
+        "idempotent_replay": true
+      },
+      "duplicate": {
+        "code": "E_DUPLICATE_GENERATION_COMMIT",
+        "details": {
+          "schema": "die.factory-asset.generation-commit.v1",
+          "commit_id": "543451b3f33b819ff571ec3e9c35505663f736b78ebe121dde3496fcfbfd9958",
+          "job_id": "commit-once",
+          "idempotency_key": "idem-commit-once",
+          "attempt": 1,
+          "route_id": "f74da01bfaf0659e3ddc6b168622ddf34fd7261669bea9623d8f9383b58eca8d",
+          "provider_id": "gemini",
+          "cluster_id": "cluster-a",
+          "external_commit_key": "external-commit-1",
+          "committed_at_ms": 1788719400000,
+          "idempotent_replay": false
+        }
+      },
+      "retryAfter": {
+        "code": "E_RETRY_AFTER_DISPATCH_COMMIT",
+        "details": null
+      },
+      "complete": {
+        "schema": "die.factory-asset.cross-cluster-completion.v1",
+        "job_id": "commit-once",
+        "idempotency_key": "idem-commit-once",
+        "released": true,
+        "idempotent_replay": false,
+        "commit_id": "543451b3f33b819ff571ec3e9c35505663f736b78ebe121dde3496fcfbfd9958"
+      },
+      "jobDuplicate": {
+        "code": "E_JOB_ALREADY_COMMITTED",
+        "details": {
+          "schema": "die.factory-asset.generation-commit.v1",
+          "commit_id": "543451b3f33b819ff571ec3e9c35505663f736b78ebe121dde3496fcfbfd9958",
+          "job_id": "commit-once",
+          "idempotency_key": "idem-commit-once",
+          "attempt": 1,
+          "route_id": "f74da01bfaf0659e3ddc6b168622ddf34fd7261669bea9623d8f9383b58eca8d",
+          "provider_id": "gemini",
+          "cluster_id": "cluster-a",
+          "external_commit_key": "external-commit-1",
+          "committed_at_ms": 1788719400000,
+          "idempotent_replay": false
+        }
+      },
+      "snapshot": {
+        "schema": "die.factory-asset.multi-cluster-scheduler-state.v1",
+        "active_queue_leases": 0,
+        "active_jobs": [],
+        "committed_job_ids": [
+          "commit-once"
+        ],
+        "cluster_selection_counts": {
+          "cluster-a": 1
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "gemini@cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            },
+            "cluster-b": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "provider_calls_performed": false,
+        "browser_owner_actions": 0
+      }
+    },
+    "lease_expiry": {
+      "decision": {
+        "schema": "die.factory-asset.cluster-provider-route.v1",
+        "job_id": "lease-expiry",
+        "idempotency_key": "idem-lease-expiry",
+        "attempt": 1,
+        "retry_index": 0,
+        "route_id": "dbbfc55d6e8500d6488396b921a32200cf356f4cec58a70642fb94601f59dee9",
+        "provider_id": "gemini",
+        "cluster_id": "cluster-a",
+        "transport": "BROWSER_CDP",
+        "requires_tab_lease": true,
+        "tab_capacity_consumed_by_router": false,
+        "browser_owner_action": "NONE",
+        "score": -260,
+        "factors": {
+          "readiness_state": "HEALTHY",
+          "capacity_state": "AVAILABLE",
+          "queue_pressure": 0,
+          "active_tab_load": 0,
+          "active_tabs": 0,
+          "browser_generation_limit": 4,
+          "provider_active_tabs": 0,
+          "recent_failures": 0,
+          "latency_ms": 500
+        },
+        "rejected": [],
+        "dispatch_committed": false,
+        "provider_calls_performed": false,
+        "idempotent_replay": false,
+        "scheduler_schema": "die.factory-asset.multi-cluster-schedule.v1",
+        "queue_lease": {
+          "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+          "lease_id": "lease-0013",
+          "job_id": "lease-expiry",
+          "idempotency_key": "idem-lease-expiry",
+          "state": "LEASED",
+          "acquired_at_ms": 1788719400000,
+          "expires_at_ms": 1788719402000,
+          "cluster_id": "cluster-a",
+          "provider_id": "gemini",
+          "route_id": "dbbfc55d6e8500d6488396b921a32200cf356f4cec58a70642fb94601f59dee9",
+          "acquired_at": "2026-09-06T18:30:00.000Z",
+          "expires_at": "2026-09-06T18:30:02.000Z"
+        },
+        "fairness": {
+          "cluster_selection_counts": {
+            "cluster-a": 1
+          },
+          "selected_cluster_prior_count": 0
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "scheduler_idempotent_replay": false
+      },
+      "expired": {
+        "code": "E_QUEUE_LEASE_EXPIRED",
+        "details": null
+      },
+      "reclaimed": {
+        "schema": "die.factory-asset.cross-cluster-queue-lease-reclaim.v1",
+        "reclaimed": [
+          {
+            "lease_id": "lease-0013",
+            "job_id": "lease-expiry",
+            "idempotency_key": "idem-lease-expiry",
+            "reason": "TTL_EXPIRED"
+          }
+        ]
+      },
+      "snapshot": {
+        "schema": "die.factory-asset.multi-cluster-scheduler-state.v1",
+        "active_queue_leases": 1,
+        "active_jobs": [
+          {
+            "job_id": "lease-expiry",
+            "idempotency_key": "idem-lease-expiry",
+            "queue_lease": {
+              "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+              "lease_id": "lease-0013",
+              "job_id": "lease-expiry",
+              "idempotency_key": "idem-lease-expiry",
+              "state": "EXPIRED",
+              "acquired_at_ms": 1788719400000,
+              "expires_at_ms": 1788719402000,
+              "cluster_id": "cluster-a",
+              "provider_id": "gemini",
+              "route_id": "dbbfc55d6e8500d6488396b921a32200cf356f4cec58a70642fb94601f59dee9",
+              "acquired_at": "2026-09-06T18:30:00.000Z",
+              "expires_at": "2026-09-06T18:30:02.000Z"
+            },
+            "committed": null
+          }
+        ],
+        "committed_job_ids": [],
+        "cluster_selection_counts": {
+          "cluster-a": 1
+        },
+        "circuits": {
+          "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1",
+          "provider_cluster": {
+            "gemini@cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          },
+          "clusters": {
+            "cluster-a": {
+              "state": "CLOSED",
+              "failures": 0,
+              "open_until_ms": 0,
+              "last_failure_code": null
+            }
+          }
+        },
+        "provider_calls_performed": false,
+        "browser_owner_actions": 0
+      }
+    }
+  },
+  "provider_calls_performed": false,
+  "browser_processes_spawned": 0,
+  "live_broker_leases_acquired": 0,
+  "secret_values_read": false,
+  "spend_usd": 0,
+  "submission_authorized": false,
+  "publication_authorized": false
+}
