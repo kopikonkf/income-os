@@ -1,0 +1,59 @@
+{
+  "schema": "die.factory-asset.fa307-two-cluster-live-contract.v1",
+  "revision": "1.0.0",
+  "task_id": "FA-307",
+  "status": "CANONICAL_CANDIDATE",
+  "authority": {
+    "founder_live_provider_authorization_required": true,
+    "authorized_provider_calls": 2,
+    "spend_usd": 0,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "credential_secret_reads_allowed": false,
+    "cookie_token_reads_allowed": false
+  },
+  "clusters": {
+    "cluster-a": {
+      "control_base_url": "http://127.0.0.1:39121/",
+      "profile_id": "chatgpt-linux-a",
+      "provider_id": "qwen",
+      "broker_service": "die-fa121-cluster-broker.service",
+      "broker_state_root": "/var/lib/factory-asset/fa121-stability/broker"
+    },
+    "cluster-b": {
+      "control_base_url": "http://127.0.0.1:39122/",
+      "profile_id": "web-ai-cluster-b",
+      "provider_id": "gemini",
+      "broker_service": "die-muxia-cluster-b.service",
+      "broker_state_root": "/var/lib/muxia/state/cluster-brokers"
+    }
+  },
+  "limits": {
+    "max_tabs_per_cluster": 8,
+    "max_live_leases_per_cluster": 1,
+    "max_provider_calls": 2,
+    "max_pre_dispatch_retries": 0,
+    "max_combined_browser_tree_rss_mb": 6144,
+    "poll_interval_ms": 1000,
+    "generation_timeout_ms": 300000,
+    "lease_ttl_ms": 600000
+  },
+  "parallel_acceptance": {
+    "heterogeneous_providers_required": true,
+    "different_clusters_required": true,
+    "dispatch_intervals_must_overlap": true,
+    "original_byte_lineage_required": true,
+    "distinct_original_sha256_required": true,
+    "profile_metadata_identity_preserved": true,
+    "zero_profile_lock_collision": true,
+    "zero_lease_leak_after_completion": true
+  },
+  "recovery": {
+    "controlled_restart_cluster": "cluster-b",
+    "restart_service": "die-muxia-cluster-b.service",
+    "owner_pid_must_change": true,
+    "sibling_cluster_must_remain_ready": true,
+    "post_restart_active_leases": 0,
+    "duplicate_generation_after_restart": 0
+  }
+}

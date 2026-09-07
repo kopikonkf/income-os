@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "10.4-fa121-24h-pass-fa122-fa307-unlocked",
+  "revision": "10.5-fa307-live-acceptance-in-progress",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2421,11 +2421,13 @@
         "FA-306",
         "FA-121"
       ],
-      "status": "READY",
+      "status": "IN_PROGRESS",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
-      "artifact": "two-cluster parallel acceptance receipt",
+      "artifact": "company/factory-asset/contracts/fa307-two-cluster-live.v1.json; company/factory-asset/bin/run_fa307_two_cluster_live.mjs; company/factory-asset/receipts/FA-307-two-cluster-parallel.receipt.json",
       "acceptance": "Two clusters execute concurrent heterogeneous provider jobs with correct original-byte lineage, no profile lock collisions, bounded RAM/tabs and deterministic recovery.",
-      "updated_at": "2026-09-07"
+      "updated_at": "2026-09-07",
+      "waiting_on": "ARCHITECT_BOUNDED_TWO_CLUSTER_LIVE_ACCEPTANCE",
+      "result": "IN_PROGRESS: Founder explicitly authorized FA-307 live execution on 2026-09-07 after FA-121 and FA-306 became DONE/PASS. Acceptance is bounded to exactly two concurrent heterogeneous provider dispatches: Qwen@cluster-a and Gemini@cluster-b, broker-owned BROWSER_CDP only, zero pre-dispatch retries, no spend/submission/publication/secret reads."
     },
     {
       "id": "FA-308",
