@@ -46,9 +46,12 @@ def test_founder_qc_delivery_contract_matches_runtime_alias_policy():
  s=ORCH.read_text();assert 'def make_founder_readable' in s and 'path.chmod(0o640)' in s
 
 
-def test_fa305_done_unlocks_fa306_and_receipt_records_live_systemd_acceptance():
+def test_fa305_done_unlocks_or_accepts_fa306_and_receipt_records_live_systemd_acceptance():
  g=json.loads(GRAPH.read_text());by={x['id']:x for x in g['tasks']}
- assert by['FA-305']['status']=='DONE' and by['FA-306']['status']=='READY'
+ assert by['FA-305']['status']=='DONE' and by['FA-306']['status'] in {'READY','DONE'}
+ if by['FA-306']['status']=='DONE':
+  r306=json.loads((R/'company/factory-asset/receipts/FA-306-multi-cluster-scheduler.receipt.json').read_text())
+  assert r306['task_id']=='FA-306' and r306['status']=='DONE' and r306['result']=='PASS'
  r=json.loads((R/'company/factory-asset/receipts/FA-305-cluster-b-provisioning.receipt.json').read_text())
  assert r['full_fa305_acceptance'] is True and r['result']=='PASS'
  live=r['live_systemd_acceptance'];assert live['enabled'] is True and live['active'] is True and live['state']=='READY'

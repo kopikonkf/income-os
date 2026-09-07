@@ -708,3 +708,11 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Schedulable Cluster B provider subset: Qwen, Gemini, Manus, Duck.ai = HEALTHY. ChatGPT remains `DEGRADED_NOT_SCHEDULABLE` (`COMPOSER_NOT_READY`) with no auth/checkpoint UI; Grok remains deferred optional.
 - FA-121 timer/broker remained active. No provider generation, secret-value read, spend, submission or publication occurred.
 - FA-305 DONE/PASS; FA-306 READY.
+
+---
+
+## 2026-09-06 - FA-306 DONE/PASS — cross-cluster scheduler
+- Added pure control-plane `multi_cluster_scheduler.mjs` over FA-304 routing and FA-302 per-cluster tab leases.
+- Acceptance proves exclusive cross-cluster job queue leases, A/B/A/B fairness for equivalent healthy routes, provider@cluster and whole-cluster circuit isolation/cooldown recovery, max-2 pre-dispatch retries, idempotent retry events, explicit TTL reclaim, post-dispatch retry prohibition and exactly-one generation commit per `job_id`.
+- Read-only live topology snapshot observed Cluster A (`39121`) and Cluster B (`39122`) both READY, max_tabs=8 and zero active leases; no live lease was acquired and FA-121 was not mutated.
+- No provider generation, browser-owner action, secret read, spend, submission or publication occurred. FA-306 DONE/PASS. FA-307 remains BLOCKED only because FA-121 24h stability dependency is still IN_PROGRESS and FA-307 separately requires Founder live-provider authority.
