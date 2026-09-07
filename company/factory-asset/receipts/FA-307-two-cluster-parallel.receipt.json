@@ -1,0 +1,48 @@
+{
+  "schema": "die.factory-asset.fa307-two-cluster-parallel.receipt.v1",
+  "task_id": "FA-307",
+  "date": "2026-09-07",
+  "status": "IN_PROGRESS",
+  "result": null,
+  "founder_authorization": {
+    "observed_in_session": true,
+    "instruction": "gass kerjakan FA-307",
+    "authorized_provider_calls": 2
+  },
+  "contract": "company/factory-asset/contracts/fa307-two-cluster-live.v1.json",
+  "runner": "company/factory-asset/bin/run_fa307_two_cluster_live.mjs",
+  "planned_jobs": [
+    {
+      "provider_id": "qwen",
+      "cluster_id": "cluster-a",
+      "transport": "BROWSER_CDP",
+      "semantic": "isolated teal desk clock"
+    },
+    {
+      "provider_id": "gemini",
+      "cluster_id": "cluster-b",
+      "transport": "BROWSER_CDP",
+      "semantic": "isolated yellow rain boot"
+    }
+  ],
+  "authority": {
+    "pre_dispatch_retries": 0,
+    "spend_usd": 0,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false
+  },
+  "next_boundary": "Run implementation selftest/full regression, deploy canonical prep, then execute exactly two concurrent live calls and seal only if original-byte lineage, overlap, resource/profile/lease bounds and controlled recovery all PASS.",
+  "validation": {
+    "selftest": "PASS",
+    "focused_progression_and_fa307": "11 passed",
+    "factory_regression": "707 passed, 1 skipped, 1 PyPDF2 warning",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "company_secret_scan_hits": 0,
+    "node_syntax": "PASS",
+    "git_diff_check": "PASS",
+    "base_main": "0b30b8e334464ecf93941c862e210b849840377c"
+  }
+}

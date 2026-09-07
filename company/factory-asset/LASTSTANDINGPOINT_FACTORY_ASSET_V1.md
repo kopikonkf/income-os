@@ -724,3 +724,10 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - 282 heartbeats covered 86,653,737 ms with maximum gap 340,011 ms (<900s acceptance cap). Profile metadata identity remained intact; zero secret leakage, duplicate committed generations or failure events.
 - Six bounded Qwen generations succeeded over actual BROWSER_CDP fallback and retained six distinct original PNG hashes. Qwen then reached its per-provider cap of 6; with ChatGPT still DEGRADED/COMPOSER_NOT_READY, slots 6-11 correctly became `SKIPPED_NO_ELIGIBLE_ROUTE` with zero dispatch commits.
 - Dedicated FA-121 timer and broker auto-stopped after `CLOSE_RUNTIME`. FA-121 DONE/PASS; FA-122 and FA-307 dependencies unlocked.
+
+---
+
+## 2026-09-07 - FA-307 bounded two-cluster live acceptance authorized / IN_PROGRESS
+- Founder explicitly authorized execution after FA-121 and FA-306 reached DONE/PASS.
+- Scope is exactly two concurrent heterogeneous broker-owned BROWSER_CDP generations: Qwen on Cluster A and Gemini on Cluster B. No pre-dispatch retries, spend, submission, publication or secret-value reads.
+- Acceptance requires overlapping in-flight dispatches, two distinct original-byte hashes, unchanged profile metadata identity, max 8 tabs / 1 live lease per cluster, bounded combined Chromium process-tree RSS, zero lease leak, second-owner rejection, and controlled Cluster B restart recovery with no duplicate generation.
