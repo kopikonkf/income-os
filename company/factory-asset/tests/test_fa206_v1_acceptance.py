@@ -28,4 +28,6 @@ def test_fa206_receipt_and_graph_close_v1_without_publication_authority():
     r=json.loads(R.read_text());g=json.loads(G.read_text());by={x["id"]:x for x in g["tasks"]}
     assert r["result"]=="PASS" and r["scope"]["marketplace_publication_in_scope"] is False
     assert by["FA-206"]["status"]=="DONE"
-    assert by["FA-121"]["status"]=="IN_PROGRESS"
+    assert by["FA-121"]["status"]=="DONE"
+    assert by["FA-122"]["status"]=="READY"
+    assert by["FA-307"]["status"]=="READY"

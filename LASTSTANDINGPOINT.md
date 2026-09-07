@@ -3851,3 +3851,11 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Acceptance proves exclusive cross-cluster job queue leases, A/B/A/B fairness for equivalent healthy routes, provider@cluster and whole-cluster circuit isolation/cooldown recovery, max-2 pre-dispatch retries, idempotent retry events, explicit TTL reclaim, post-dispatch retry prohibition and exactly-one generation commit per `job_id`.
 - Read-only live topology snapshot observed Cluster A (`39121`) and Cluster B (`39122`) both READY, max_tabs=8 and zero active leases; no live lease was acquired and FA-121 was not mutated.
 - No provider generation, browser-owner action, secret read, spend, submission or publication occurred. FA-306 DONE/PASS. FA-307 remains BLOCKED only because FA-121 24h stability dependency is still IN_PROGRESS and FA-307 separately requires Founder live-provider authority.
+
+---
+
+## 2026-09-07 - FA-121 DONE/PASS — real 24h provider stability
+- Fresh unattended observation window `2026-09-06T06:55:01.139Z -> 2026-09-07T06:55:01.139Z` completed and final evaluator returned PASS 8/8.
+- 282 heartbeats covered 86,653,737 ms with maximum gap 340,011 ms (<900s acceptance cap). Profile metadata identity remained intact; zero secret leakage, duplicate committed generations or failure events.
+- Six bounded Qwen generations succeeded over actual BROWSER_CDP fallback and retained six distinct original PNG hashes. Qwen then reached its per-provider cap of 6; with ChatGPT still DEGRADED/COMPOSER_NOT_READY, slots 6-11 correctly became `SKIPPED_NO_ELIGIBLE_ROUTE` with zero dispatch commits.
+- Dedicated FA-121 timer and broker auto-stopped after `CLOSE_RUNTIME`. FA-121 DONE/PASS; FA-122 and FA-307 dependencies unlocked.

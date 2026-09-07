@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-03",
-  "revision": "10.3-fa306-multi-cluster-scheduler-pass",
+  "revision": "10.4-fa121-24h-pass-fa122-fa307-unlocked",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -1551,15 +1551,15 @@
         "FA-117",
         "FA-120"
       ],
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_LOAD",
       "artifact": "company/factory-asset/contracts/fa121-stability-canary.v1.json; company/factory-asset/bin/run_fa121_stability_canary.mjs; company/factory-asset/lib/fa121_provider_worker.mjs; company/factory-asset/receipts/FA-121-24h-provider-stability.receipt.json",
       "acceptance": "Authorized safe pace runs 24 hours with zero profile corruption/secret leakage/duplicate ownership; all limits and failures are observed, not inferred.",
-      "updated_at": "2026-09-06",
-      "setup_status": "HOTFIX_MERGED_DEPLOYED_CANARY_RUNNING",
+      "updated_at": "2026-09-07",
       "runtime_start_at": "2026-09-06T06:55:01.139Z",
       "runtime_end_target": "2026-09-07T06:55:01.139Z",
-      "result": "IN_PROGRESS: PR #248 hotfix e9882298 closes only each oneshot's own connectOverCDP client transport and preserves broker-owned Chromium. The original configured 05:53:37Z window is explicitly not acceptance-eligible because timer execution was not unattended and heartbeat_count=0. Fresh observed window is 2026-09-06T06:55:01.139Z -> 2026-09-07T06:55:01.139Z. Dedicated timer is enabled/active; broker READY single owner PID 640348; max_tabs=8; no leaked lease. First timer-fired slot SUCCEEDED with Qwen on cluster-a using actual BROWSER_CDP fallback, primary SESSION_API retained but live SESSION_API rejected CAPACITY_UNKNOWN; 1/12 generation budget used, 0 pre-dispatch retries, lease released, original PNG 1,324,473 bytes SHA d4a845815aa3d01d202ad80efba7ed9af50e859a9f9b6195c3cbaa891462eced. ChatGPT sibling was DEGRADED and therefore not selected. No secret reads, spend, submission or publication. FA-121 must remain IN_PROGRESS until 24 real observed hours elapse."
+      "result": "PASS: fresh unattended 24h window 2026-09-06T06:55:01.139Z -> 2026-09-07T06:55:01.139Z completed with 282 heartbeats, max gap 340.011s (<900s), profile integrity preserved, zero duplicate commits/secret leakage/failure events, 6/12 bounded Qwen BROWSER_CDP generations and 6 fail-closed SKIPPED_NO_ELIGIBLE_ROUTE slots after Qwen reached per-provider cap while ChatGPT stayed DEGRADED. Six immutable original PNGs retained; final evaluator PASS 8/8; timer/broker auto-stopped cleanly.",
+      "completed_at": "2026-09-07"
     },
     {
       "id": "FA-122",
@@ -1570,10 +1570,11 @@
       "depends_on": [
         "FA-121"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_LOAD",
       "artifact": "company/factory-asset/receipts/FA-122-20-50-masters-day.receipt.json",
-      "acceptance": "Unique master count, QA pass rate, provider failures, duplicates, resource use and policy/capacity evidence are complete; file derivatives excluded from master count."
+      "acceptance": "Unique master count, QA pass rate, provider failures, duplicates, resource use and policy/capacity evidence are complete; file derivatives excluded from master count.",
+      "updated_at": "2026-09-07"
     },
     {
       "id": "FA-123",
@@ -2420,10 +2421,11 @@
         "FA-306",
         "FA-121"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "artifact": "two-cluster parallel acceptance receipt",
-      "acceptance": "Two clusters execute concurrent heterogeneous provider jobs with correct original-byte lineage, no profile lock collisions, bounded RAM/tabs and deterministic recovery."
+      "acceptance": "Two clusters execute concurrent heterogeneous provider jobs with correct original-byte lineage, no profile lock collisions, bounded RAM/tabs and deterministic recovery.",
+      "updated_at": "2026-09-07"
     },
     {
       "id": "FA-308",
