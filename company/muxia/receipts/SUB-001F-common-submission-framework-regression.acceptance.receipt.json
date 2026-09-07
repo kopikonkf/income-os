@@ -1,0 +1,57 @@
+{
+  "schema": "die.asset.sub001f-acceptance.v1",
+  "task_id": "SUB-001F",
+  "date": "2026-09-07",
+  "status": "PASS",
+  "base_sha": "5fc0646a1cb395d2be7dfaa7903c0bf31ef8ddd4",
+  "title": "Common submission framework regression suite",
+  "artifacts": {
+    "bridge/income_os_bridge/submission_dry_run.py": "7d40a5075e44b901ce031d80ea6cf095dec7f69b913edab4e1c6b2c8b20d3fb1",
+    "bridge/tests/test_sub001f_submission_framework_regression.py": "4841553678bd73c2a47831b371e6e6fd68729cdf48dc0ba1ff4231e562080b7b",
+    "bridge/tests/test_sub001e_submission_adapter_contract.py": "d2fac637b6a94cb50e1ad8c1685cfa102c2e693bbee5a12c838416b319e4ce61",
+    "bridge/tests/test_production_assurance_distribution_task_graph_v1.py": "67e52242834f83fc3ccb0bb51b0100e4f5b6625e1f1bce8c25182f22d499b448",
+    "company/muxia-task-graph-v1.json": "f5cf78bc1e0a5693151969a6f4aa8092700a2d0c00cda4eab5131cf33f934d6e"
+  },
+  "acceptance_matrix": {
+    "missing_or_invalid_authority": "PASS_FAIL_CLOSED",
+    "duplicate_package_idempotency": "PASS_NOOP_DUPLICATE",
+    "retry_ambiguity": "PASS_STOP_REVIEW",
+    "credential_session_leakage": "PASS_REJECTED",
+    "unknown_policy": "PASS_BLOCKED_POLICY_UNKNOWN",
+    "dry_run_safety": "PASS_NO_EXTERNAL_ACTION",
+    "reconciliation_ambiguity_conflict": "PASS_RECONCILE_OR_STOP",
+    "self_authorization": "PASS_ALWAYS_FALSE"
+  },
+  "implementation_delta": {
+    "dry_run_sensitive_field_gate": "Credential/session-shaped field names in canonical metadata or mapped metadata are rejected before any dry-run material is copied.",
+    "value_scanning_policy": "Ordinary metadata values are not keyword-scanned; structural credential/session field names are the fail-closed boundary.",
+    "external_provider_action_added": false
+  },
+  "validation": {
+    "scoped_sub001_a_through_f": "41/41 PASS",
+    "production_assurance_task_graph": "10/10 PASS",
+    "one_canon_validator": "9/11 checks PASS; 2 pre-existing unrelated baseline snapshot hash mismatches: object scripts/audit/gemini_audit_scale.py and oauth src/core/adapter.py",
+    "one_canon_pytest": "4/6 PASS; 2 baseline failures correspond exactly to those pre-existing snapshot mismatches",
+    "baseline_failure_attribution": "Neither failing snapshot path differs from origin/main 5fc0646a1cb395d2be7dfaa7903c0bf31ef8ddd4; SUB-001F does not relabel them green.",
+    "high_confidence_secret_hits": 0
+  },
+  "authority_boundary": {
+    "marketplace_login_performed": false,
+    "credentials_read": false,
+    "credential_or_session_material_persisted": false,
+    "submission_performed": false,
+    "publication_performed": false,
+    "spend_performed": false,
+    "founder_submission_authority_consumed": false,
+    "policy_weakened": false
+  },
+  "graph_transition": {
+    "SUB-001F": "DONE",
+    "SUB-001": "READY",
+    "SUB-ADOBEA": "BLOCKED",
+    "SUB-DREAMSTIMEA": "BLOCKED",
+    "SUB-123RFA": "BLOCKED",
+    "SUB-VECTEEZYA": "BLOCKED",
+    "SUB-MOTIONELEMENTSA": "BLOCKED"
+  }
+}

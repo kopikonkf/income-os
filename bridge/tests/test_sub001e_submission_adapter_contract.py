@@ -56,4 +56,4 @@ def test_sub001e_doc_and_graph_preserve_policy_and_authority_boundaries():
     tasks={x['id']:x for x in json.loads(GRAPH.read_text(encoding='utf-8'))['tasks']}
     assert tasks['SUB-001D']['status']=='DONE'
     assert tasks['SUB-001E']['status'] in {'READY','DONE'}
-    assert tasks['SUB-001F']['status'] in {'BLOCKED','READY'}
+    assert tasks['SUB-001F']['status'] in {'BLOCKED','READY','DONE'}

@@ -2,8 +2,19 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from copy import deepcopy
 from typing import Any
+
+
+_SENSITIVE_FIELD_ATOMS = frozenset({
+    "password",
+    "cookie",
+    "cookies",
+    "token",
+    "secret",
+    "authorization",
+})
 
 
 def canonical_json_bytes(value: Any) -> bytes:
@@ -12,6 +23,38 @@ def canonical_json_bytes(value: Any) -> bytes:
 
 def sha256_json(value: Any) -> str:
     return hashlib.sha256(canonical_json_bytes(value)).hexdigest()
+
+
+def _field_parts(name: str) -> tuple[str, ...]:
+    camel_split = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", name)
+    return tuple(part for part in re.split(r"[^a-z0-9]+", camel_split.lower()) if part)
+
+
+def _assert_no_credential_or_session_fields(value: Any, *, path: str) -> None:
+    """Reject credential/session-shaped fields before any dry-run material is copied.
+
+    Values are intentionally not keyword-scanned: ordinary stock metadata may
+    legitimately describe tokens, passwords, or sessions. The fail-closed
+    boundary is structural field names that could carry authentication state.
+    """
+    if isinstance(value, dict):
+        for key, child in value.items():
+            if not isinstance(key, str):
+                raise ValueError(f"{path} contains a non-string field name")
+            parts = _field_parts(key)
+            joined = "_".join(parts)
+            sensitive = (
+                any(part in _SENSITIVE_FIELD_ATOMS for part in parts)
+                or joined in {"api_key", "apikey", "session", "session_id", "session_token", "access_token", "refresh_token"}
+                or ("api" in parts and "key" in parts)
+                or "session" in parts
+            )
+            if sensitive:
+                raise ValueError(f"{path} contains forbidden credential/session field: {key}")
+            _assert_no_credential_or_session_fields(child, path=f"{path}.{key}")
+    elif isinstance(value, (list, tuple)):
+        for index, child in enumerate(value):
+            _assert_no_credential_or_session_fields(child, path=f"{path}[{index}]")
 
 
 def compose_submission_dry_run(
@@ -57,6 +100,9 @@ def compose_submission_dry_run(
     mapped_fields = platform_mapping.get("mapped_fields")
     if not isinstance(mapped_fields, dict) or not mapped_fields:
         raise ValueError("platform metadata mapping must contain mapped_fields")
+
+    _assert_no_credential_or_session_fields(metadata, path="metadata")
+    _assert_no_credential_or_session_fields(mapped_fields, path="platform_mapping.mapped_fields")
 
     observed_metadata_sha256 = sha256_json(metadata)
     if observed_metadata_sha256 != submission_package["metadata_sha256"]:

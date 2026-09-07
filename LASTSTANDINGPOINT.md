@@ -3929,3 +3929,15 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 ## 2026-09-07 - FA-307 attempt #8 terminal; attempt #9 Gemini network-byte capture staged
 - Attempt #8 terminal FAIL without retry: Qwen@A SUCCEEDED again; Gemini@B generated but none of `createReadStream()`, path, or saveAs yielded stable Playwright download bytes before the ephemeral artifact disappeared.
 - Fresh attempt #9 captures qualifying Gemini post-dispatch image response bodies (>=100KB, >=512px where dimensions are parsable). A response is eligible only after dispatch and is consumed only after a new download control proves that the current job generated an image. DOM/browser-context and download paths remain fallbacks.
+
+---
+
+## 2026-09-07 - SUB-001F DONE/PASS — common submission framework regression suite
+- Fresh pre-edit and pre-publication refetch both pinned `origin/main` at `5fc0646a1cb395d2be7dfaa7903c0bf31ef8ddd4`; isolated checkout is `D:\Dee_Workspace\MC006-SUB-001F`, branch `mission/MC006-SUB-001F`. Dirty live `C:\DIE` was not used as an editable checkout.
+- Added `bridge/tests/test_sub001f_submission_framework_regression.py` covering missing/invalid Founder authority, duplicate package/idempotency, retry ambiguity, credential/session leakage, unknown policy, dry-run safety, reconciliation ambiguity/conflict, and the invariant that framework decisions never self-grant submission authority.
+- Hardened `submission_dry_run.py` so credential/session-shaped field names in canonical or mapped metadata fail closed before dry-run material is copied. No marketplace login, provider action, submission, publication, spend, credential extraction, or policy weakening was added.
+- Scoped SUB-001A..F regression: `41/41 PASS`. Production-assurance task-graph regression: `10/10 PASS`.
+- DIE-104 one-canon validator: `9/11 checks PASS`; the two failures are pre-existing unrelated snapshot hash mismatches at object `scripts/audit/gemini_audit_scale.py` and OAuth `src/core/adapter.py`. Both paths are unchanged from origin/main; they are recorded as baseline failures and are not relabeled green. Validator secret scan remains `0` high-confidence hits.
+- Canonical receipt: `company/muxia/receipts/SUB-001F-common-submission-framework-regression.acceptance.receipt.json`.
+- Graph transition is dependency-bounded: `SUB-001F DONE`; `SUB-001 READY`; `SUB-ADOBEA`, `SUB-DREAMSTIMEA`, `SUB-123RFA`, `SUB-VECTEEZYA`, and `SUB-MOTIONELEMENTSA` remain `BLOCKED`.
+- Commit standing at this seal checkpoint: changes are staged for validation/commit on `mission/MC006-SUB-001F` from base `5fc0646a1cb395d2be7dfaa7903c0bf31ef8ddd4`; publication is not accepted until a fresh post-merge refetch proves the receipt + graph + this LSP entry on `origin/main`.
