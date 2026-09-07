@@ -1,0 +1,71 @@
+{
+  "blueprint_id": "FABP-FA-C010-BOUNDED-CANARY-001",
+  "generation_commit_id": "8ab4f12f062b728cdfdc1dea2553db9a73666589fa5a565b58c263af9262ce6b",
+  "idempotency_key": "3d7ea3b7512a2673a7353d6971ad9f7e114382075d8960e9c509a35400228351",
+  "job_id": "FCJOB-FA-C010-20260907-002",
+  "master_sha256": "adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f",
+  "master_staging": {
+    "attempt_id": "FCJOB-FA-C010-20260907-002-provider-original",
+    "blob_reused": false,
+    "blueprint_id": "FABP-FA-C010-BOUNDED-CANARY-001",
+    "canonical_truth": false,
+    "ingestion_state": "STAGED_NOT_CANONICAL",
+    "provider_original": {
+      "byte_preservation": "EXACT_COPY",
+      "declared_mime_matches": true,
+      "declared_mime_type": "image/png",
+      "media": {
+        "alpha_max": 255,
+        "alpha_min": 255,
+        "bytes": 1417392,
+        "decode_verified": true,
+        "extension": ".png",
+        "extension_content_match": true,
+        "format": "PNG",
+        "frame_count": 1,
+        "has_alpha_channel": false,
+        "has_transparency": false,
+        "has_transparency_metadata": false,
+        "height_px": 928,
+        "magic_hex": "89504e470d0a1a0a0000000d",
+        "mime_type": "image/png",
+        "mode": "RGB",
+        "width_px": 1664
+      },
+      "provider_id": "qwen",
+      "schema": "die.factory-asset.provider-original.v1",
+      "semantic_identity_effect": "NONE",
+      "sha256": "adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f",
+      "source_filename": "source-original.png",
+      "transformation": "NONE"
+    },
+    "schema": "die.factory-asset.master-ingestion-attempt.v1",
+    "semantic_asset_id": "FASA-FA-C010-CANARY-001",
+    "source_bytes": 1417392,
+    "source_path": "/home/kopiko/factory-asset-canaries/fa-c010-console-provider-canary-20260907-r2/provider-artifact/source-original.png",
+    "source_sha256": "adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f",
+    "staged_blob_path": "/home/kopiko/factory-asset-canaries/fa-c010-console-provider-canary-20260907-r2/master-staging/blobs/sha256/ad/adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f",
+    "state_manager_commit_required": true,
+    "state_manager_proposal": {
+      "action": "FACTORY_MASTER_INGEST",
+      "attempt_receipt_path": "/home/kopiko/factory-asset-canaries/fa-c010-console-provider-canary-20260907-r2/master-staging/attempt-receipts/FCJOB-FA-C010-20260907-002-provider-original.json",
+      "blueprint_id": "FABP-FA-C010-BOUNDED-CANARY-001",
+      "master_sha256": "adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f",
+      "physical_writer_required": "DIE_STATE_MANAGER",
+      "schema": "die.factory-asset.master-ingestion-proposal.v1",
+      "semantic_asset_id": "FASA-FA-C010-CANARY-001",
+      "staged_blob_path": "/home/kopiko/factory-asset-canaries/fa-c010-console-provider-canary-20260907-r2/master-staging/blobs/sha256/ad/adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f"
+    }
+  },
+  "provider": {
+    "cluster_id": "cluster-b",
+    "provider_id": "qwen",
+    "transport": "BROWSER_CDP"
+  },
+  "provider_original_immutable": true,
+  "provider_original_sha256": "adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f",
+  "schema": "die.factory-asset.console-provider-canary-lineage.v1",
+  "semantic_asset_id": "FASA-FA-C010-CANARY-001",
+  "task_id": "FA-C010",
+  "transformation": "NONE"
+}

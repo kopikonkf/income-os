@@ -1,0 +1,145 @@
+{
+  "schema": "die.factory-asset.fa-c010-console-provider-canary.receipt.v1",
+  "task_id": "FA-C010",
+  "date": "2026-09-07",
+  "status": "DONE",
+  "result": "PASS",
+  "acceptance": "One Founder-authorized Console job reached an accepted provider through Factory Core, produced a durable master, and updated Console state without direct GUI provider/browser ownership.",
+  "base_main": "a1bae6761d2693a82b984b69f812fe00093bb61a",
+  "implementation": {
+    "console_runner": "company/factory-asset/bin/run_fa_c010_console_provider_canary.py",
+    "provider_executor": "company/factory-asset/bin/run_fa_c010_cluster_provider_executor.mjs",
+    "provider_worker": "company/factory-asset/lib/console_broker_provider_worker.mjs",
+    "console_contract": "company/factory-asset/lib/console_provider_canary.py",
+    "request": "company/factory-asset/fixtures/console-provider-canary/FA-C010-request.json",
+    "tests": "company/factory-asset/tests/test_console_provider_canary.py"
+  },
+  "live_evidence": {
+    "console_result": {
+      "ref": "company/factory-asset/fixtures/console-provider-canary/FA-C010-live-result.json",
+      "sha256": "8f1c4776311dfb64b3366c74886e7bc11b6a1a76967be9ae02e9a652188b4b4a"
+    },
+    "provider_executor_result": {
+      "ref": "company/factory-asset/fixtures/console-provider-canary/FA-C010-provider-executor-result.json",
+      "sha256": "72edf905a618a934eb887a7e5cf8ec434e14d63c62f5f5bbbcebff0ee5d24423"
+    },
+    "lineage": {
+      "ref": "company/factory-asset/fixtures/console-provider-canary/FA-C010-lineage.json",
+      "sha256": "a89a763e52433503a81c84c679bcc295ecb5ff0a4dc668387b7440f661a9b2b4"
+    }
+  },
+  "job": {
+    "job_id": "FCJOB-FA-C010-20260907-002",
+    "idempotency_key": "3d7ea3b7512a2673a7353d6971ad9f7e114382075d8960e9c509a35400228351",
+    "request_sha256": "73bf51da56493adc5966d02a74f330352c20a9e97dbbb9f79210e83a4edaaab2",
+    "prompt_sha256": "9eb65ea636762ae419b12086942d3b805b26b31b5e4b0c028c0c301923e7eb68",
+    "semantic_asset_id": "FASA-FA-C010-CANARY-001",
+    "blueprint_id": "FABP-FA-C010-BOUNDED-CANARY-001"
+  },
+  "route_truth": {
+    "provider_id": "qwen",
+    "cluster_id": "cluster-b",
+    "profile_id": "web-ai-cluster-b",
+    "transport": "BROWSER_CDP",
+    "transport_role": "FALLBACK",
+    "primary_transport_contract": "SESSION_API",
+    "session_api_live_executor_claimed": false,
+    "runtime_owner": "MUXIA",
+    "browser_owner_action": "NONE",
+    "direct_gui_provider_browser_ownership": false,
+    "readiness": "HEALTHY/COMPOSER_READY",
+    "route_id": "1a9a436d897cebec9bea90c5515db4500c0670574c93bd5fa3229e2a5409620b"
+  },
+  "generation": {
+    "dispatch_committed_count": 1,
+    "generation_commit_id": "8ab4f12f062b728cdfdc1dea2553db9a73666589fa5a565b58c263af9262ce6b",
+    "dispatch_committed_at": "2026-09-07T20:28:24.141Z",
+    "completed_at": "2026-09-07T20:28:36.040Z",
+    "original_byte_acquisition_method": "provider_original_cdn_url_browser_context",
+    "provider_call_performed": true,
+    "pre_dispatch_retries": 0,
+    "post_dispatch_retries": 0
+  },
+  "master": {
+    "format": "PNG",
+    "mime": "image/png",
+    "width_px": 1664,
+    "height_px": 928,
+    "bytes": 1417392,
+    "sha256": "adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f",
+    "provider_original_exact_copy": true,
+    "transformation": "NONE",
+    "runtime_master_path": "/home/kopiko/factory-asset-canaries/fa-c010-console-provider-canary-20260907-r2/master-staging/blobs/sha256/ad/adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f"
+  },
+  "ownership_and_leases": {
+    "browser_owner_pid_before": 736537,
+    "browser_owner_pid_after": 736537,
+    "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+    "broker_control_port": 39122,
+    "active_leases_before": 0,
+    "active_leases_after": 0,
+    "preflight_lease_released": true,
+    "generation_lease_released": true,
+    "cross_cluster_queue_completion_released": true,
+    "generation_commit_unique": true
+  },
+  "console_state": {
+    "source_surface": "FACTORY_CONSOLE",
+    "terminal_state": "SUCCEEDED",
+    "artifact_sha256": "adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f",
+    "factory_core_path": [
+      "FactoryJobQueue",
+      "MultiClusterScheduler",
+      "ClusterAwareProviderRouter",
+      "BrokerTabLease",
+      "GovernedProviderWorker",
+      "ProviderOriginalIntake"
+    ]
+  },
+  "idempotency": {
+    "replay_result": "PASS",
+    "idempotent_replay": true,
+    "provider_call_performed_on_replay": false,
+    "replay_reason": "FINAL_RECEIPT_AND_MASTER_VERIFIED",
+    "duplicate_committed_generation": false
+  },
+  "runtime_truth": {
+    "git_ssot": "a1bae6761d2693a82b984b69f812fe00093bb61a",
+    "deployed_srv_die_sha": "5fc0646a1cb395d2be7dfaa7903c0bf31ef8ddd4",
+    "deployed_sha_is_ancestor_of_git_ssot": true,
+    "runtime_sensitive_cluster_browser_files_changed_between_deployed_and_ssot": false,
+    "cluster_b_runtime_used": true,
+    "cluster_b_auth_touched": false,
+    "fa121_state_touched": false,
+    "production_runtime_touched": false
+  },
+  "authority": {
+    "founder_authorized_live_provider_call": true,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "provider_login_automated": false,
+    "account_creation_or_action_authorized": false,
+    "captcha_checkpoint_bypass_authorized": false,
+    "spend_usd": 0,
+    "marketplace_submission_authorized": false,
+    "publication_authorized": false
+  },
+  "prior_pre_dispatch_attempt": {
+    "job_id": "FCJOB-FA-C010-20260907-001",
+    "terminal_acceptance": false,
+    "provider_call_performed": false,
+    "dispatch_commit_present": false,
+    "reason": "PRE_DISPATCH_EXECUTION_BOUNDARY; preserved separately and not counted as live acceptance"
+  },
+  "validation": {
+    "focused_console_plus_factory_core": "7 passed",
+    "factory_regression": "721 passed, 1 PyPDF2 deprecation warning; FA-121 live-broker oneshot test excluded by Founder scope",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "company_secret_scan_hits": 0,
+    "node_syntax": "PASS",
+    "python_compile": "PASS",
+    "live_replay": "PASS_NO_PROVIDER_CALL"
+  },
+  "next": "FA-C011 is dependency-unblocked and may be marked READY, but was not executed in this FA-C010 run."
+}

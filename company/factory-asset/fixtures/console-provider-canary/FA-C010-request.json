@@ -1,0 +1,27 @@
+{
+    "schema":  "die.factory-asset.console-provider-canary-request.v1",
+    "task_id":  "FA-C010",
+    "job_id":  "FCJOB-FA-C010-20260907-002",
+    "idempotency_key":  "3d7ea3b7512a2673a7353d6971ad9f7e114382075d8960e9c509a35400228351",
+    "asset_type":  "PHOTO",
+    "blueprint_id":  "FABP-FA-C010-BOUNDED-CANARY-001",
+    "semantic_asset_id":  "FASA-FA-C010-CANARY-001",
+    "prompt":  "Create one simple isolated teal ceramic bowl centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "routing_constraint":  {
+                               "allowed_provider_ids":  [
+                                                            "qwen"
+                                                        ],
+                               "cluster_id":  "cluster-b",
+                               "transport":  "BROWSER_CDP",
+                               "direct_gui_provider_browser_ownership":  false
+                           },
+    "authority":  {
+                      "founder_authorized_live_provider_call":  true,
+                      "spend_usd":  0,
+                      "marketplace_submission_authorized":  false,
+                      "publication_authorized":  false,
+                      "account_creation_or_action_authorized":  false,
+                      "captcha_checkpoint_bypass_authorized":  false,
+                      "credential_cookie_token_session_value_read_authorized":  false
+                  }
+}

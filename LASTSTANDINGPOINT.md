@@ -3941,3 +3941,11 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Canonical receipt: `company/muxia/receipts/SUB-001F-common-submission-framework-regression.acceptance.receipt.json`.
 - Graph transition is dependency-bounded: `SUB-001F DONE`; `SUB-001 READY`; `SUB-ADOBEA`, `SUB-DREAMSTIMEA`, `SUB-123RFA`, `SUB-VECTEEZYA`, and `SUB-MOTIONELEMENTSA` remain `BLOCKED`.
 - Commit standing at this seal checkpoint: changes are staged for validation/commit on `mission/MC006-SUB-001F` from base `5fc0646a1cb395d2be7dfaa7903c0bf31ef8ddd4`; publication is not accepted until a fresh post-merge refetch proves the receipt + graph + this LSP entry on `origin/main`.
+
+---
+
+## 2026-09-07 - FA-C010 Factory Console real-provider canary DONE/PASS
+- Founder-authorized `FCJOB-FA-C010-20260907-002` reached Qwen through Factory Core on canonical Cluster B using actual `BROWSER_CDP` fallback with no direct Console browser/provider GUI ownership.
+- Exactly one dispatch commit produced immutable original/master PNG bytes: 1664x928, 1,417,392 bytes, SHA256 `adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f`; Console state reached SUCCEEDED and all broker/queue leases released.
+- Replay performed zero provider calls and verified the same final receipt/master. Zero secret read, spend, account action, CAPTCHA bypass, submission or publication. Cluster B auth, FA-121 and production runtime were not mutated.
+- Validation: focused 7 PASS; Factory 721 PASS with the Founder-excluded FA-121 live-broker oneshot omitted; one-canon 6 PASS; validator 11/11 PASS. `FA-C011` is dependency-unblocked/READY but was not executed.

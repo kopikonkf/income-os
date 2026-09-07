@@ -1,0 +1,159 @@
+{
+  "account_creation_or_action_authorized": false,
+  "broker_after": {
+    "active_leases": 0,
+    "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+    "browser_owner_pid": 736537,
+    "cluster_id": "cluster-b",
+    "control_host": "127.0.0.1",
+    "control_port": 39122,
+    "cookies_or_tokens_read": false,
+    "credential_values_read": false,
+    "max_tabs": 8,
+    "open_pages": 0,
+    "profile_id": "web-ai-cluster-b",
+    "provider_states": {
+      "qwen": "HEALTHY"
+    },
+    "schema": "die.factory-asset.fa-c010-broker-observation.v1",
+    "state": "READY"
+  },
+  "broker_before": {
+    "active_leases": 0,
+    "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+    "browser_owner_pid": 736537,
+    "cluster_id": "cluster-b",
+    "control_host": "127.0.0.1",
+    "control_port": 39122,
+    "cookies_or_tokens_read": false,
+    "credential_values_read": false,
+    "max_tabs": 8,
+    "open_pages": 0,
+    "profile_id": "web-ai-cluster-b",
+    "provider_states": {},
+    "schema": "die.factory-asset.fa-c010-broker-observation.v1",
+    "state": "READY"
+  },
+  "captcha_checkpoint_bypass_authorized": false,
+  "console_state_path": "/home/kopiko/factory-asset-canaries/fa-c010-console-provider-canary-20260907-r2/console-state.json",
+  "cookies_or_tokens_read": false,
+  "credential_values_read": false,
+  "direct_gui_provider_browser_ownership": false,
+  "dispatch_committed_count": 1,
+  "factory_core_path": [
+    "FactoryJobQueue",
+    "MultiClusterScheduler",
+    "ClusterAwareProviderRouter",
+    "BrokerTabLease",
+    "GovernedProviderWorker",
+    "ProviderOriginalIntake"
+  ],
+  "generation_commit": {
+    "attempt": 1,
+    "cluster_id": "cluster-b",
+    "commit_id": "8ab4f12f062b728cdfdc1dea2553db9a73666589fa5a565b58c263af9262ce6b",
+    "committed_at_ms": 1788812904153,
+    "external_commit_key": "qwen:cluster-b:FCJOB-FA-C010-20260907-002:2026-09-07T20:28:24.141Z",
+    "idempotency_key": "3d7ea3b7512a2673a7353d6971ad9f7e114382075d8960e9c509a35400228351",
+    "idempotent_replay": false,
+    "job_id": "FCJOB-FA-C010-20260907-002",
+    "provider_id": "qwen",
+    "route_id": "1a9a436d897cebec9bea90c5515db4500c0670574c93bd5fa3229e2a5409620b",
+    "schema": "die.factory-asset.generation-commit.v1"
+  },
+  "idempotency_key": "3d7ea3b7512a2673a7353d6971ad9f7e114382075d8960e9c509a35400228351",
+  "idempotent_replay": false,
+  "job_id": "FCJOB-FA-C010-20260907-002",
+  "lineage_path": "/home/kopiko/factory-asset-canaries/fa-c010-console-provider-canary-20260907-r2/lineage.json",
+  "marketplace_submission_authorized": false,
+  "master": {
+    "bytes": 1417392,
+    "dimensions": [
+      1664,
+      928
+    ],
+    "format": "PNG",
+    "path": "/home/kopiko/factory-asset-canaries/fa-c010-console-provider-canary-20260907-r2/master-staging/blobs/sha256/ad/adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f",
+    "provider_original_exact_copy": true,
+    "sha256": "adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f"
+  },
+  "provider_call_performed": true,
+  "publication_authorized": false,
+  "request_sha256": "73bf51da56493adc5966d02a74f330352c20a9e97dbbb9f79210e83a4edaaab2",
+  "result": "PASS",
+  "route": {
+    "attempt": 1,
+    "browser_owner_action": "NONE",
+    "circuits": {
+      "clusters": {
+        "cluster-b": {
+          "failures": 0,
+          "last_failure_code": null,
+          "open_until_ms": 0,
+          "state": "CLOSED"
+        }
+      },
+      "provider_cluster": {
+        "qwen@cluster-b": {
+          "failures": 0,
+          "last_failure_code": null,
+          "open_until_ms": 0,
+          "state": "CLOSED"
+        }
+      },
+      "schema": "die.factory-asset.multi-cluster-circuit-snapshot.v1"
+    },
+    "cluster_id": "cluster-b",
+    "dispatch_committed": false,
+    "factors": {
+      "active_tab_load": 0,
+      "active_tabs": 0,
+      "browser_generation_limit": 4,
+      "capacity_state": "AVAILABLE",
+      "latency_ms": 5681,
+      "provider_active_tabs": 0,
+      "queue_pressure": 0,
+      "readiness_state": "HEALTHY",
+      "recent_failures": 0
+    },
+    "fairness": {
+      "cluster_selection_counts": {
+        "cluster-b": 1
+      },
+      "selected_cluster_prior_count": 0
+    },
+    "idempotency_key": "3d7ea3b7512a2673a7353d6971ad9f7e114382075d8960e9c509a35400228351",
+    "idempotent_replay": false,
+    "job_id": "FCJOB-FA-C010-20260907-002",
+    "provider_calls_performed": false,
+    "provider_id": "qwen",
+    "queue_lease": {
+      "acquired_at": "2026-09-07T20:28:19.015Z",
+      "acquired_at_ms": 1788812899015,
+      "cluster_id": "cluster-b",
+      "expires_at": "2026-09-07T20:33:19.015Z",
+      "expires_at_ms": 1788813199015,
+      "idempotency_key": "3d7ea3b7512a2673a7353d6971ad9f7e114382075d8960e9c509a35400228351",
+      "job_id": "FCJOB-FA-C010-20260907-002",
+      "lease_id": "68e6a647-26fd-4b96-aa7c-e8e4af0c2227",
+      "provider_id": "qwen",
+      "route_id": "1a9a436d897cebec9bea90c5515db4500c0670574c93bd5fa3229e2a5409620b",
+      "schema": "die.factory-asset.cross-cluster-queue-lease.v1",
+      "state": "LEASED"
+    },
+    "rejected": [],
+    "requires_tab_lease": true,
+    "retry_index": 0,
+    "route_id": "1a9a436d897cebec9bea90c5515db4500c0670574c93bd5fa3229e2a5409620b",
+    "scheduler_idempotent_replay": false,
+    "scheduler_schema": "die.factory-asset.multi-cluster-schedule.v1",
+    "schema": "die.factory-asset.cluster-provider-route.v1",
+    "score": -2840.5,
+    "tab_capacity_consumed_by_router": false,
+    "transport": "BROWSER_CDP"
+  },
+  "schema": "die.factory-asset.console-provider-canary-result.v1",
+  "source_surface": "FACTORY_CONSOLE",
+  "spend_usd": 0,
+  "task_id": "FA-C010"
+}
