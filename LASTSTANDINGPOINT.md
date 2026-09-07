@@ -3889,3 +3889,10 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Attempt #2 Qwen@A + Manus@B is terminal FAIL without retry. Manus never dispatched because generic readiness reported `DEGRADED/COMPOSER_NOT_READY` before the proven Manus editor wait; Qwen independently committed once and later timed out. Recovery/profile/resource/lease safety remained bounded.
 - Sanitized attempt #2 evidence is canonical at `company/factory-asset/fixtures/multi-cluster/FA-307-attempt-2-qwen-manus-result.json`.
 - Attempt #3 uses new Qwen@A + Manus@B job identities. Manus pre-dispatch gating now fails immediately only on AUTH_REQUIRED/CHECKPOINT/UNAVAILABLE; otherwise it waits up to 20 seconds for the proven `.tiptap.ProseMirror` editor before any dispatch.
+
+---
+
+## 2026-09-07 - FA-307 attempt #3 terminal; attempt #4 Duck A + Manus B staged
+- Attempt #3 is terminal FAIL without retry: Manus@Cluster B SUCCEEDED and persisted a 2,772,228-byte PNG SHA256 `0e3195e675c789835126b675a0e75d2142f689482ed28f81696422c1483465de`; Qwen@Cluster A timed out. Resource/profile/lease/recovery gates remained bounded.
+- Read-only live readiness preselection observed Duck.ai@Cluster A HEALTHY/COMPOSER_READY, ChatGPT DEGRADED/COMPOSER_NOT_READY. Duck.ai is selected for fresh attempt #4 using FA-118-style Create Image + response/DOM original-byte extraction adapted to the broker lease.
+- Attempt #4 uses fresh Duck.ai@A + Manus@B job IDs, exactly two provider calls and zero retries.
