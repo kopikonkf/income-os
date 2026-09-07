@@ -2427,7 +2427,7 @@
       "acceptance": "Two clusters execute concurrent heterogeneous provider jobs with correct original-byte lineage, no profile lock collisions, bounded RAM/tabs and deterministic recovery.",
       "updated_at": "2026-09-07",
       "waiting_on": "ARCHITECT_BOUNDED_TWO_CLUSTER_LIVE_ACCEPTANCE",
-      "result": "IN_PROGRESS: Attempt #7 proved Qwen@A original-byte success plus parallel two-cluster dispatch, while Gemini@B generation again reached download but saveAs lost the ephemeral Playwright temp artifact. Fresh attempt #8 keeps the healthy pair and consumes Gemini Download.createReadStream() directly before path/saveAs/href fallbacks. New job IDs, exactly two calls, zero retries."
+      "result": "IN_PROGRESS: Attempt #8 again proved Qwen@A success and two-cluster overlap but Gemini download APIs yielded no usable bytes before saveAs ENOENT. Fresh attempt #9 keeps the healthy pair and captures qualifying post-dispatch Gemini image response bodies, gated by appearance of a new generated download control, before DOM/download fallbacks. New jobs, exactly two calls, zero retries."
     },
     {
       "id": "FA-308",

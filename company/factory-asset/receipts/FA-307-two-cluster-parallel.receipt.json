@@ -7,7 +7,7 @@
   "founder_authorization": {
     "observed_in_session": true,
     "instruction": "silakan lanjutkan ... FA-307",
-    "attempt_number": 8,
+    "attempt_number": 9,
     "authorized_provider_calls": 2,
     "fresh_jobs_required": true
   },
@@ -18,15 +18,15 @@
       "provider_id": "qwen",
       "cluster_id": "cluster-a",
       "transport": "BROWSER_CDP",
-      "semantic": "isolated turquoise kitchen timer",
-      "job_id": "FA307-R8-QWEN-A-20260907"
+      "semantic": "isolated mint green wall clock",
+      "job_id": "FA307-R9-QWEN-A-20260907"
     },
     {
       "provider_id": "gemini",
       "cluster_id": "cluster-b",
       "transport": "BROWSER_CDP",
-      "semantic": "isolated blue ceramic vase",
-      "job_id": "FA307-R8-GEMINI-B-20260907"
+      "semantic": "isolated yellow table lamp",
+      "job_id": "FA307-R9-GEMINI-B-20260907"
     }
   ],
   "authority": {
@@ -37,7 +37,7 @@
     "credential_values_read": false,
     "cookies_or_tokens_read": false
   },
-  "next_boundary": "Run fresh attempt #8 Qwen@A + Gemini@B. Gemini consumes the browser download stream before any temp-file path/copy fallback. Exactly two calls, zero retries; seal only if every live assertion passes.",
+  "next_boundary": "Run fresh attempt #9 Qwen@A + Gemini@B. Gemini captures qualifying image response bodies only after dispatch and consumes the largest one only after a new download control proves generation. Exactly two calls, zero retries.",
   "validation": {
     "selftest": "PASS",
     "focused_fa307": "7 passed",
@@ -48,7 +48,7 @@
     "company_secret_scan_hits": 0,
     "node_syntax": "PASS",
     "git_diff_check": "PASS",
-    "base_main": "bdadadeb2285d07d003753b7c75291e3609cf629"
+    "base_main": "1244116b9e1ab975edf9be4c3bd2d8c901713392"
   },
   "attempt_history": [
     {
@@ -190,6 +190,22 @@
       "gemini_status": "FAILED_DOWNLOAD_TEMP_RACE",
       "post_dispatch_retry_performed": false,
       "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-7-qwen-gemini-result.json"
+    },
+    {
+      "attempt_number": 8,
+      "pair": [
+        "qwen@cluster-a",
+        "gemini@cluster-b"
+      ],
+      "result": "FAIL",
+      "failure_boundary": "GEMINI_DOWNLOAD_APIS_NO_USABLE_BYTES_QWEN_SUCCESS",
+      "provider_dispatch_commits": 2,
+      "parallel_dispatch_overlap": true,
+      "qwen_status": "SUCCEEDED",
+      "qwen_original_sha256": "1669bedf1bde073d6c44d7b196357dddaba547d0f823c5abd8eae78017cb91a9",
+      "gemini_status": "FAILED_DOWNLOAD_TEMP_RACE",
+      "post_dispatch_retry_performed": false,
+      "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-8-qwen-gemini-result.json"
     }
   ],
   "preflight_selection": {
