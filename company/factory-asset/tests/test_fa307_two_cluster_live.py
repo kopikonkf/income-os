@@ -7,7 +7,7 @@ G=ROOT/"company/factory-asset/task-graph-v1.json"
 REC=ROOT/"company/factory-asset/receipts/FA-307-two-cluster-parallel.receipt.json"
 
 def test_fa307_contract_is_exactly_two_broker_owned_calls_and_closed_authority():
- c=json.loads(C.read_text());assert c["authority"]["authorized_provider_calls"]==2;assert c["limits"]["max_provider_calls"]==2;assert c["limits"]["max_pre_dispatch_retries"]==0;assert c["clusters"]["cluster-a"]["provider_id"]=="qwen";assert c["clusters"]["cluster-b"]["provider_id"]=="gemini";assert c["authority"]["spend_usd"]==0;assert c["authority"]["submission_authorized"] is False;assert c["authority"]["publication_authorized"] is False
+ c=json.loads(C.read_text());assert c["authority"]["authorized_provider_calls"]==2;assert c["limits"]["max_provider_calls"]==2;assert c["limits"]["max_pre_dispatch_retries"]==0;assert c["clusters"]["cluster-a"]["provider_id"]=="qwen";assert c["clusters"]["cluster-b"]["provider_id"]=="manus";assert c["attempt_number"]==2;assert c["prior_attempt"]["result"]=="FAIL_OUTPUT_TIMEOUT_GEMINI";assert c["authority"]["spend_usd"]==0;assert c["authority"]["submission_authorized"] is False;assert c["authority"]["publication_authorized"] is False
 
 def test_fa307_selftest_passes_without_live_provider_calls():
  r=subprocess.run(["node",str(R),"selftest"],capture_output=True,text=True,check=True,timeout=30);d=json.loads(r.stdout);assert d["result"]=="PASS";assert all(d["assertions"].values())
@@ -17,3 +17,12 @@ def test_fa307_runner_uses_existing_brokers_not_new_profile_owner():
 
 def test_fa307_prep_is_in_progress_with_founder_live_authorization():
  g=json.loads(G.read_text());by={x["id"]:x for x in g["tasks"]};r=json.loads(REC.read_text());assert by["FA-121"]["status"]=="DONE" and by["FA-306"]["status"]=="DONE";assert by["FA-307"]["status"]=="IN_PROGRESS";assert r["status"]=="IN_PROGRESS" and r["founder_authorization"]["observed_in_session"] is True
+
+
+def test_fa307_attempt1_failure_is_preserved_and_attempt2_is_fresh():
+ prior=ROOT/"company/factory-asset/fixtures/multi-cluster/FA-307-attempt-1-qwen-gemini-result.json"
+ d=json.loads(prior.read_text());assert d["result"]=="FAIL";assert d["attempts"]["qwen"]["status"]=="SUCCEEDED";assert d["attempts"]["gemini"]["status"]=="FAILED";assert d["attempts"]["gemini"]["dispatch_committed"] is True;assert "E_BOUNDED_COMPLETION_TIMEOUT" in d["attempts"]["gemini"]["failure_code"]
+ r=json.loads(REC.read_text());assert r["founder_authorization"]["attempt_number"]==2;assert r["planned_jobs"][1]["provider_id"]=="manus";assert r["planned_jobs"][0]["job_id"].startswith("FA307-R2-") and r["planned_jobs"][1]["job_id"].startswith("FA307-R2-")
+
+def test_attempt2_runner_uses_manus_response_byte_extraction_via_cluster_b_broker():
+ s=R.read_text();assert "generateManus" in s and "manuscdn.com" in s and "provider_id:'manus'" in s;assert "FA307-R2-MANUS-B-20260907" in s;assert "FA307-R2-QWEN-A-20260907" in s

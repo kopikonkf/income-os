@@ -2427,7 +2427,7 @@
       "acceptance": "Two clusters execute concurrent heterogeneous provider jobs with correct original-byte lineage, no profile lock collisions, bounded RAM/tabs and deterministic recovery.",
       "updated_at": "2026-09-07",
       "waiting_on": "ARCHITECT_BOUNDED_TWO_CLUSTER_LIVE_ACCEPTANCE",
-      "result": "IN_PROGRESS: Founder explicitly authorized FA-307 live execution on 2026-09-07 after FA-121 and FA-306 became DONE/PASS. Acceptance is bounded to exactly two concurrent heterogeneous provider dispatches: Qwen@cluster-a and Gemini@cluster-b, broker-owned BROWSER_CDP only, zero pre-dispatch retries, no spend/submission/publication/secret reads."
+      "result": "IN_PROGRESS: Attempt #1 Qwen@A + Gemini@B proved concurrent dispatch/resource/profile/lease/recovery safety but failed final two-original acceptance because Gemini output acquisition timed out after dispatch. Post-dispatch retry was not performed. Founder authorized completion; fresh attempt #2 uses new Qwen@A + Manus@B job IDs, exactly two provider calls, zero retries."
     },
     {
       "id": "FA-308",
