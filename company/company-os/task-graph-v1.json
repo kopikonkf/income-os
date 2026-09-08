@@ -1,7 +1,7 @@
 {
   "schema": "die.company-os.task-graph.v1",
   "generated_at": "2026-09-08",
-  "revision": "1.0-company-os-economic-shadow-foundation",
+  "revision": "1.1-cos001-host-exit-map-accepted",
   "status": "CANONICAL",
   "project": "DIE Company OS / Economic Layer",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -67,13 +67,24 @@
       "id": "COS-001",
       "track": "HOST_EXIT",
       "title": "21-day Windows host-exit dependency and survivability map",
-      "status": "READY",
+      "status": "DONE",
       "priority": 990,
       "depends_on": ["COS-000"],
       "execution_mode": "tool_native",
       "risk": "LOW",
       "scope": "Read-only inventory of Mission Control, Universal MCP, Windows Architect rollback plane, primary browser principals, Qwen Desktop, Cloudflare/service ownership, Aether external estate, durable state, DNS/tunnels and manual re-auth requirements.",
-      "acceptance": "Every company-critical Windows dependency is classified MIGRATE/REBUILD/REAUTH/RETIRE/KEEP_EXTERNAL with target host, deadline, rollback and evidence requirements; no runtime cutover occurs."
+      "acceptance": "Every company-critical Windows dependency is classified MIGRATE/REBUILD/REAUTH/RETIRE/KEEP_EXTERNAL with target host, deadline, rollback and evidence requirements; no runtime cutover occurs.",
+      "result": {
+        "status": "PASS",
+        "artifact": "company/company-os/COS-001_WINDOWS_HOST_EXIT_SURVIVABILITY_MAP_V1.md",
+        "receipt": "company/company-os/receipts/COS-001-host-exit-survivability.receipt.json",
+        "observed_at": "2026-09-08",
+        "target_cutover": "T-3_before_old_vps_expiry",
+        "hard_blockers": 9,
+        "runtime_mutation": false,
+        "aether_mutation": false,
+        "credential_session_copy": false
+      }
     },
     {
       "id": "COS-002",
