@@ -45,7 +45,7 @@ def test_fake_driver_lifecycle_attach_and_exclusive_lock():
 import fs from "node:fs";
 import {{ ClusterBrokerCore }} from {json.dumps(core_uri)};
 const root={json.dumps(root)};
-const fake={{launchCalls:0,stopCalls:0,async launch(profile){{this.launchCalls++;return {{pid:4242,userDataDir:profile,debugHost:"127.0.0.1",debugPort:39421,debugUrl:"http://127.0.0.1:39421",browser:{{}}}};}},async stop(){{this.stopCalls++;}}}};
+const fake={{launchCalls:0,stopCalls:0,async launch(profile){{this.launchCalls++;return {{pid:process.pid,userDataDir:profile,debugHost:"127.0.0.1",debugPort:39421,debugUrl:"http://127.0.0.1:39421",browser:{{}}}};}},async stop(){{this.stopCalls++;}}}};
 const cfg={{clusterId:"fixture",profileId:"fixture-profile",profileDir:root+"/profile",stateFile:root+"/state.json",lockFile:root+"/broker.lock",driver:fake,maxTabs:8}};
 const b=new ClusterBrokerCore(cfg);
 const st=await b.start();

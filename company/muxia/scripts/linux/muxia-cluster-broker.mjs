@@ -33,5 +33,13 @@ const broker = new ClusterBrokerCore({
 });
 const state = await broker.start();
 console.log(JSON.stringify(state));
-await new Promise((resolve) => { process.once('SIGINT', resolve); process.once('SIGTERM', resolve); });
-await broker.stop();
+const signal = new Promise((resolve) => {
+  process.once('SIGINT', () => resolve({ kind: 'SIGNAL', signal: 'SIGINT' }));
+  process.once('SIGTERM', () => resolve({ kind: 'SIGNAL', signal: 'SIGTERM' }));
+});
+const outcome = await Promise.race([signal, broker.waitForOwnerFailure()]);
+if (outcome?.kind === 'OWNER_FAILED') {
+  await broker.stop({ finalState: 'OWNER_FAILED', reason: outcome.reason });
+  throw new Error(`E_CLUSTER_BROKER_OWNER_FAILED:${outcome.reason}`);
+}
+await broker.stop({ reason: outcome?.signal || 'BROKER_STOP' });
