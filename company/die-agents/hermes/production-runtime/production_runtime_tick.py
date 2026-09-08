@@ -4,16 +4,13 @@ import datetime as dt, fcntl, grp, hashlib, json, os, shutil, subprocess, sys, t
 from pathlib import Path
 HERE=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(HERE))
-from production_active_card_resolver import resolve_active_card
-from production_seed_selector import select_seed
-from production_seed_replenisher import replenish_seed_pool
-import factory_orchestration_v2 as factory_v2
 WORKSPACES=Path('/var/lib/die/workspaces'); DB=Path('/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db')
 HERMES='/opt/die/hermes/venv/bin/hermes'; HERMES_HOME='/var/lib/die/hermes/income-operator'
 WORKER_DISPATCH=HERE/'worker_dispatch.py'; WORKER_RUNNER=Path('/srv/die/company/workers/opencode/runner.py')
 UPSCALE=Path('/srv/die/bridge/income_os_bridge/asset_upscale.py'); UPSCALE_POLICY=Path('/srv/die/company/atlas/object-centric/object-asset-engine/source/scripts/postprocess/upscale-policy.v1.json')
 MUXIA_QUEUE=Path('/var/lib/die/state/muxia-dispatch')
 LOCK=Path('/var/lib/die/state/production-runtime/tick.lock')
+EXCLUSIVE_HOLD=Path('/var/lib/die/state/production-runtime/exclusive-production-hold.json')
 REPLENISH_POLICY=Path(__file__).with_name('production_seed_replenishment_policy.v1.json')
 REPLENISH_STATE=Path('/var/lib/die/state/production-runtime/replenishment')
 DIE_GROUP='die-runtime'
@@ -42,6 +39,9 @@ def send(msg:str):
 def write_progress(w:Path,lines:list[str]):(w/'PROGRESS.md').write_text('# '+w.name+' progress\n\n'+'\n'.join('- '+x for x in lines)+'\n')
 
 def start_seed()->dict:
+ from production_seed_replenisher import replenish_seed_pool
+ from production_seed_selector import select_seed
+ import factory_orchestration_v2 as factory_v2
  replenishment=replenish_seed_pool(DB,WORKSPACES,policy_path=REPLENISH_POLICY,state_root=REPLENISH_STATE)
  s=select_seed(DB,WORKSPACES)
  if s['status']!='SELECTED':
@@ -78,6 +78,7 @@ def build_worker(w:Path,bp:dict,lock:dict):
  if rec.get('accepted_status')!='done':raise RuntimeError('E_WORKER_ACCEPTANCE')
 
 def generate(w:Path)->dict:
+ import factory_orchestration_v2 as factory_v2
  ensure_shared_workspace(w)
  bp=json.loads((w/'blueprint.json').read_text());lock=json.loads((w/'blueprint.lock.json').read_text());build_worker(w,bp,lock)
  req={'schema':'die.muxia-dispatch-request.v1','task_id':w.name,'blueprint_sha256':lock['blueprint_sha256']}
@@ -132,6 +133,7 @@ def _progress_from_v2(w:Path,result:dict)->None:
  rows+=['Founder QC: PENDING',f'Next action: {next_action}'];write_progress(w,rows)
 
 def upscale_and_park(w:Path)->dict:
+ import factory_orchestration_v2 as factory_v2
  src=source_for(w)
  result=factory_v2.postprocess_raster_workspace(workspace=w,source_path=src,provider_id='chatgpt-linux-a',expected_source_sha256=sha(src),upscale_fn=_legacy_upscale_adapter,send_fn=send)
  _progress_from_v2(w,result)
@@ -139,6 +141,12 @@ def upscale_and_park(w:Path)->dict:
 
 
 def tick()->dict:
+ if EXCLUSIVE_HOLD.is_file():
+  try: hold=json.loads(EXCLUSIVE_HOLD.read_text())
+  except Exception: hold={'active':True,'reason':'UNREADABLE_HOLD'}
+  if hold.get('active',True):
+   return {'status':'IDLE','reason':'EXCLUSIVE_PRODUCTION_HOLD','heartbeat':'PRODUCTION_RUNTIME_IDLE','observed_at':now(),'provider_call_performed':False,'hold':{'owner':str(hold.get('owner','UNKNOWN'))[:80],'task_id':str(hold.get('task_id','UNKNOWN'))[:80],'reason':str(hold.get('reason','EXCLUSIVE_RUNTIME'))[:160]}}
+ from production_active_card_resolver import resolve_active_card
  a=resolve_active_card(WORKSPACES)
  if a['status']=='NO_ACTIVE_CARD':
   r=start_seed()
