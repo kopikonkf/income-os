@@ -1,0 +1,112 @@
+{
+  "assertions": {
+    "automated_backlog_zero_at_100_per_day": true,
+    "automated_capacity_at_least_100_per_day": true,
+    "current_package_policy_requires_founder_qc": true,
+    "exact_duplicate_negative_control_quarantined": true,
+    "fa122_live_input_pass": true,
+    "founder_touch_requirement_quantified": true,
+    "human_service_rate_not_fabricated": true,
+    "near_duplicate_negative_control_quarantined": true,
+    "no_provider_or_marketplace_actions": true,
+    "package_composition_100_of_100": true,
+    "package_readiness_100_of_100": true,
+    "positive_set_zero_exact_duplicates": true,
+    "positive_set_zero_near_duplicate_pairs": true,
+    "queue_backpressure_evidence_supports_100_day": true,
+    "sampling_scenarios_do_not_change_authority": true,
+    "technical_qa_100_of_100": true
+  },
+  "automated_capacity": {
+    "arrival_rate_per_day": 100,
+    "benchmark_seconds_per_modeled_master": 0.133841,
+    "benchmark_total_seconds": 13.384054,
+    "fa120_queue_terminal_failures": 0,
+    "fa120_queue_unique_jobs": 5000,
+    "modeled_automated_backlog_per_day": 0,
+    "modeled_capacity_per_24h": 645544,
+    "truth_boundary": "LOCAL_SYNTHETIC_DOWNSTREAM_COMPUTE_BENCHMARK_NOT_PROVIDER_OR_HUMAN_THROUGHPUT"
+  },
+  "distinctness": {
+    "elapsed_seconds": 1.220279,
+    "exact_duplicate_negative_control_detected": true,
+    "near_duplicate_negative_control_detected": true,
+    "near_duplicate_negative_control_hamming": 0,
+    "pairwise_comparisons": 4950,
+    "positive_set_exact_duplicate_count": 0,
+    "positive_set_near_duplicate_pair_count": 0,
+    "threshold": 4
+  },
+  "founder_qc": {
+    "backlog_if_zero_founder_reviews_per_day": 100,
+    "current_policy_sampling_rate": 1.0,
+    "human_capacity_status": "EXTERNAL_UNPROVEN",
+    "measured_founder_review_capacity_per_day": null,
+    "no_backlog_requires_founder_reviews_per_day": 100,
+    "required_founder_touches_per_100_masters": 100,
+    "required_founder_touches_per_day_at_target": 100,
+    "sampling_policy_changed": false,
+    "sampling_scenarios": [
+      {
+        "authority_status": "CURRENT_POLICY",
+        "sampling_rate": 1.0,
+        "touches_per_100_masters": 100
+      },
+      {
+        "authority_status": "INFORMATIONAL_NOT_AUTHORIZED",
+        "sampling_rate": 0.25,
+        "touches_per_100_masters": 25
+      },
+      {
+        "authority_status": "INFORMATIONAL_NOT_AUTHORIZED",
+        "sampling_rate": 0.1,
+        "touches_per_100_masters": 10
+      },
+      {
+        "authority_status": "INFORMATIONAL_NOT_AUTHORIZED",
+        "sampling_rate": 0.05,
+        "touches_per_100_masters": 5
+      }
+    ]
+  },
+  "live_input": {
+    "fa122_near_duplicate_pairs": 0,
+    "fa122_provider_failures": 0,
+    "fa122_qa_pass_rate": 1.0,
+    "fa122_unique_qa_masters": 20
+  },
+  "model": {
+    "fixture_truth": "SYNTHETIC_DOWNSTREAM_CAPACITY_FIXTURES_NOT_PRODUCTION_MASTERS",
+    "modeled_master_count": 100,
+    "provider_calls_performed": false,
+    "target_masters_per_day": 100
+  },
+  "package": {
+    "composition_passed": 100,
+    "derivatives_per_master": 2,
+    "elapsed_seconds": 10.978208,
+    "founder_qc_required_per_package": true,
+    "readiness_passed": 100,
+    "total": 100
+  },
+  "result": "PASS",
+  "schema": "die.factory-asset.fa123-downstream-capacity-evidence.v1",
+  "task_id": "FA-123",
+  "technical_qa": {
+    "elapsed_seconds": 1.185567,
+    "pass_rate": 1.0,
+    "passed": 100,
+    "total": 100
+  },
+  "truth_boundaries": {
+    "cookies_or_tokens_read": false,
+    "credential_values_read": false,
+    "founder_qc_service_rate_claimed": false,
+    "marketplace_actions": 0,
+    "provider_calls_performed": false,
+    "publication_authorized": false,
+    "spend_usd": 0,
+    "submission_authorized": false,
+    "synthetic_fixtures_counted_as_production_masters": false
+  }
+}
