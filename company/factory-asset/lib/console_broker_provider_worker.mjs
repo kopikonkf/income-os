@@ -87,24 +87,64 @@ async function fetchImageBytes(page, context, src, providerId) {
   }
   throw new Error('E_IMAGE_SOURCE');
 }
-async function fillAndSubmitChatGpt(page, prompt) {
-  const selectors = ['[data-testid="prompt-textarea"]', '#prompt-textarea', 'textarea[placeholder*="Message" i]', 'textarea[placeholder*="Ask" i]', '[contenteditable="true"][data-lexical-editor="true"]', '[contenteditable="true"]'];
-  let composer = null; let composerSelector = null;
+const CHATGPT_COMPOSER_SELECTORS = [
+  '[data-testid="prompt-textarea"]',
+  '#prompt-textarea',
+  'div#prompt-textarea[contenteditable="true"]',
+  '[contenteditable="true"][data-lexical-editor="true"]',
+  '[contenteditable="true"][role="textbox"]',
+  'form [contenteditable="true"]',
+  'textarea[placeholder*="Message" i]',
+  'textarea[placeholder*="Ask" i]',
+  'textarea',
+  '[contenteditable="true"]',
+];
+
+async function composerText(locator) {
+  return await locator.evaluate((el) => {
+    if (typeof el.value === 'string') return el.value.trim();
+    return String(el.innerText || el.textContent || '').trim();
+  }).catch(() => '');
+}
+
+export async function fillAndSubmitChatGpt(page, prompt) {
+  let composer = null; let composerSelector = null; let writeMethod = null;
   for (let attempt = 0; attempt < 6 && !composer; attempt += 1) {
-    for (const selector of selectors) {
+    for (const selector of CHATGPT_COMPOSER_SELECTORS) {
       const loc = page.locator(selector).first();
       if (!await loc.isVisible({ timeout: 350 }).catch(() => false)) continue;
-      try { await loc.click({ timeout: 1500 }); await loc.fill(prompt, { timeout: 3000 }); composer = loc; composerSelector = selector; break; } catch {}
+      if (typeof loc.isEditable === 'function' && !await loc.isEditable().catch(() => false)) continue;
+      try {
+        await loc.click({ timeout: 1500 });
+        let written = false;
+        try {
+          await loc.fill(prompt, { timeout: 3000 });
+          written = (await composerText(loc)).length > 0;
+          if (written) writeMethod = 'locator-fill';
+        } catch {}
+        if (!written) {
+          await loc.click({ timeout: 1500 });
+          await page.keyboard.press('Control+A').catch(() => null);
+          await page.keyboard.type(prompt, { delay: 3 });
+          written = (await composerText(loc)).length > 0;
+          if (written) writeMethod = 'keyboard-type';
+        }
+        if (!written) continue;
+        composer = loc; composerSelector = selector; break;
+      } catch {}
     }
     if (!composer) await page.waitForTimeout(400 * (attempt + 1));
   }
   if (!composer) throw new Error('E_CHATGPT_COMPOSER_UNAVAILABLE');
-  for (const selector of ['[data-testid="send-button"]', 'button[aria-label*="Send" i]', 'button[data-testid*="send" i]']) {
+  for (const selector of ['[data-testid="send-button"]', 'button[aria-label*="Send" i]', 'button[data-testid*="send" i]', 'form button[type="submit"]', 'button[aria-label*="Submit" i]']) {
     const button = page.locator(selector).first();
-    if (await button.isVisible({ timeout: 300 }).catch(() => false)) { await button.click(); return { composer_selector: composerSelector, send_selector: selector }; }
+    if (!await button.isVisible({ timeout: 300 }).catch(() => false)) continue;
+    if (typeof button.isEnabled === 'function' && !await button.isEnabled().catch(() => false)) continue;
+    await button.click();
+    return { composer_selector: composerSelector, send_selector: selector, write_method: writeMethod };
   }
   await composer.press('Enter');
-  return { composer_selector: composerSelector, send_selector: 'composer-enter' };
+  return { composer_selector: composerSelector, send_selector: 'composer-enter', write_method: writeMethod };
 }
 async function fillAndSubmitQwen(page, prompt) {
   const selectors = ['textarea[placeholder*="Ask Qwen" i]', 'textarea', '[contenteditable="true"][role="textbox"]', '[contenteditable="true"]'];

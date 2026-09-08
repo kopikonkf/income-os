@@ -7,6 +7,14 @@
         "https://chatgpt.com"
       ],
       "composer_selectors": [
+        "[data-testid=\"prompt-textarea\"]",
+        "#prompt-textarea",
+        "div#prompt-textarea[contenteditable=\"true\"]",
+        "[contenteditable=\"true\"][data-lexical-editor=\"true\"]",
+        "[contenteditable=\"true\"][role=\"textbox\"]",
+        "form [contenteditable=\"true\"]",
+        "textarea[placeholder*=\"Message\" i]",
+        "textarea[placeholder*=\"Ask\" i]",
         "textarea",
         "[contenteditable=\"true\"]"
       ],
