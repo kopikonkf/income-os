@@ -67,12 +67,16 @@
     "removal_gate": "CUT-002/CUT-003 after final state sync and restore/replay proof"
   },
   "architect_boundary": {
-    "component_status": "DEFERRED_SOURCE_IMPORT",
+    "component_status": "LINUX_STAGING_AUTHORIZED",
     "migration_task": "MX-053",
     "mx053_depends_on": [
-      "CUT-005"
+      "MCP-LNX-005"
     ],
-    "handoff_task": "CUT-006"
+    "handoff_task": "CUT-006",
+    "handoff_depends_on": [
+      "MX-054",
+      "CUT-005"
+    ]
   },
   "division01_boundary": {
     "principal_id": "division-head-division01",
