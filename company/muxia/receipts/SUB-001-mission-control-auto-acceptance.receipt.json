@@ -1,0 +1,57 @@
+{
+  "schema": "mission-control.canonical-writeback.acceptance-receipt.v1",
+  "created_at": "2026-09-08T14:14:31.463Z",
+  "task_id": "SUB-001",
+  "source_node_id": "SUB-001",
+  "source_repo": "kopikonkf/income-os",
+  "source_ref": "origin/main",
+  "observed_source_sha": "4cdc3f00b20ea0daac18b1517ade06161d9d64df",
+  "writeback_base_sha": "4cdc3f00b20ea0daac18b1517ade06161d9d64df",
+  "owner_principal_id": "chatgpt-web-02",
+  "actor_principal_id": "claude-web-01",
+  "decision": "PASS",
+  "review_summary": "Claude live MCP review passed",
+  "findings": [],
+  "transitions": [
+    {
+      "id": "SUB-001",
+      "from": "READY",
+      "to": "DONE"
+    },
+    {
+      "id": "SUB-ADOBEA",
+      "from": "BLOCKED",
+      "to": "READY"
+    },
+    {
+      "id": "SUB-DREAMSTIMEA",
+      "from": "BLOCKED",
+      "to": "READY"
+    },
+    {
+      "id": "SUB-123RFA",
+      "from": "BLOCKED",
+      "to": "READY"
+    },
+    {
+      "id": "SUB-VECTEEZYA",
+      "from": "BLOCKED",
+      "to": "READY"
+    },
+    {
+      "id": "SUB-MOTIONELEMENTSA",
+      "from": "BLOCKED",
+      "to": "READY"
+    }
+  ],
+  "authority": {
+    "external_submission_authorized": false,
+    "spend_authorized": false,
+    "credential_mutation_authorized": false
+  },
+  "mission_control": {
+    "canonical_writeback_enabled": true,
+    "isolated_checkout": true,
+    "live_tree_mutated": false
+  }
+}
