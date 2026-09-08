@@ -100,9 +100,13 @@
   },
   "validation": {
     "chatgpt_hotfix_focused": "29 passed",
-    "fa122_local_plus_related_focused": "26 passed",
-    "fa122_evaluator": "PASS",
-    "company_secret_scan_hits": 0
+    "fa122_final_focused_linux": "22 passed",
+    "factory_regression_linux": "747 passed, 1 PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded as out of FA-122 scope",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "company_secret_scan_hits": 0,
+    "node_syntax_and_python_compile": "PASS",
+    "fa122_evaluator": "PASS"
   },
   "next_boundary": "FA-123 dependency is unlocked and may proceed as the next tightly-coupled scale acceptance step."
 }
