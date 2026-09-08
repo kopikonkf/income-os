@@ -2,8 +2,8 @@
   "schema": "die.factory-asset.fa307-two-cluster-parallel.receipt.v1",
   "task_id": "FA-307",
   "date": "2026-09-07",
-  "status": "IN_PROGRESS",
-  "result": null,
+  "status": "DONE",
+  "result": "PASS",
   "founder_authorization": {
     "observed_in_session": true,
     "instruction": "silakan lanjutkan ... FA-307",
@@ -37,18 +37,16 @@
     "credential_values_read": false,
     "cookies_or_tokens_read": false
   },
-  "next_boundary": "Run fresh attempt #9 Qwen@A + Gemini@B. Gemini captures qualifying image response bodies only after dispatch and consumes the largest one only after a new download control proves generation. Exactly two calls, zero retries.",
+  "next_boundary": "FA-307 closed; no attempt #9 provider calls required. Direct dependents may progress according to their own dependencies and authority.",
   "validation": {
-    "selftest": "PASS",
-    "focused_fa307": "7 passed",
-    "focused_progression_plus_fa307": "14 passed",
-    "factory_regression": "716 passed, 1 PyPDF2 warning",
-    "one_canon_pytest": "6 passed",
-    "one_canon_validator": "11/11 PASS",
+    "selftest": "PASS_CLOSURE_AWARE_ZERO_NEW_CALLS",
+    "focused_fa307": "5 passed",
+    "focused_scale_plus_fa307": "10 passed",
+    "factory_regression": "760 passed, 1 PyPDF2 deprecation warning",
     "company_secret_scan_hits": 0,
     "node_syntax": "PASS",
     "git_diff_check": "PASS",
-    "base_main": "1244116b9e1ab975edf9be4c3bd2d8c901713392"
+    "base_main": "3d6fb0bab579ec55c8f11db6992ec32c1ac6ec04"
   },
   "attempt_history": [
     {
@@ -223,5 +221,16 @@
     "provider_call_performed": false,
     "credential_values_read": false,
     "cookies_or_tokens_read": false
+  },
+  "completed_at": "2026-09-08T18:06:50.014990Z",
+  "closure_mode": "PASS_COMPOSITE_EVIDENCE",
+  "composite_closure": {
+    "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-composite-closure-20260908.json",
+    "attempt_9_provider_calls_performed": 0,
+    "historical_attempts_1_to_8_relabelled": false,
+    "acceptance_predicates_satisfied": true,
+    "qwen_current_sha256": "85f329b96dd4cd3c7ba3ab0e1be2b85d6a14697c4c068d82f9c58d5335700673",
+    "gemini_current_sha256": "5ce435586377754bba088f61936c19231b05c17cef56270dafda3439d12a4709",
+    "gemini_acquisition_method": "provider_generated_image_response_body_after_dispatch"
   }
 }

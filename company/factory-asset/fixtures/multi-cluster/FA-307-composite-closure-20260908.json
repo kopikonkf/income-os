@@ -1,0 +1,304 @@
+{
+  "schema": "die.factory-asset.fa307-composite-closure-evidence.v1",
+  "task_id": "FA-307",
+  "closed_at": "2026-09-08T18:06:50.014990Z",
+  "result": "PASS_COMPOSITE_EVIDENCE",
+  "rationale": "Attempts 7/8 already prove concurrent heterogeneous two-cluster execution and all topology/recovery bounds. Their only unsatisfied acceptance predicate was Gemini original-byte acquisition. FA-124 subsequently proves repeated Qwen@cluster-a and Gemini@cluster-b original-byte success on the same broker-owned BROWSER_CDP topology, including the exact post-dispatch Gemini response-body strategy planned for FA-307 attempt 9. A new provider call would only repeat already-proven predicates.",
+  "historical_attempts_relabelled": false,
+  "attempt_9_provider_calls_performed": 0,
+  "parallel_topology_basis": {
+    "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-8-qwen-gemini-result.json",
+    "attempt_number": 8,
+    "pair": [
+      "qwen@cluster-a",
+      "gemini@cluster-b"
+    ],
+    "assertions": {
+      "both_jobs_succeeded": false,
+      "exactly_two_dispatch_commits": true,
+      "heterogeneous_providers": true,
+      "different_clusters": true,
+      "parallel_dispatch_intervals_overlap": true,
+      "distinct_original_sha256": false,
+      "original_bytes_persisted": false,
+      "profile_metadata_identity_preserved": true,
+      "zero_monitor_bound_violation": true,
+      "bounded_ram": true,
+      "bounded_tabs": true,
+      "bounded_leases": true,
+      "zero_lease_leak_after_completion": true,
+      "second_owner_rejected": true,
+      "recovery_owner_pid_changed": true,
+      "recovery_cluster_b_ready": true,
+      "sibling_cluster_a_remained_ready": true,
+      "fa121_timer_remained_inactive": true,
+      "zero_duplicate_generation_after_recovery": true,
+      "zero_secret_reads": true
+    },
+    "topology": {
+      "before": {
+        "observed_at": "2026-09-07T15:53:15.374Z",
+        "label": "before",
+        "clusters": {
+          "cluster-a": {
+            "state": "READY",
+            "owner_pid": 724502,
+            "max_tabs": 8,
+            "active_leases": 0,
+            "open_pages": 2,
+            "rss_tree_mb": 2743.21
+          },
+          "cluster-b": {
+            "state": "READY",
+            "owner_pid": 734012,
+            "max_tabs": 8,
+            "active_leases": 0,
+            "open_pages": 1,
+            "rss_tree_mb": 1062.6
+          }
+        }
+      },
+      "after": {
+        "observed_at": "2026-09-07T15:54:11.105Z",
+        "label": "after",
+        "clusters": {
+          "cluster-a": {
+            "state": "READY",
+            "owner_pid": 724502,
+            "max_tabs": 8,
+            "active_leases": 0,
+            "open_pages": 2,
+            "rss_tree_mb": 2373.18
+          },
+          "cluster-b": {
+            "state": "READY",
+            "owner_pid": 734012,
+            "max_tabs": 8,
+            "active_leases": 0,
+            "open_pages": 0,
+            "rss_tree_mb": 1557.57
+          }
+        }
+      },
+      "max_combined_browser_tree_rss_mb": 4960.5599999999995,
+      "max_active_leases": {
+        "cluster-a": 1,
+        "cluster-b": 1
+      },
+      "max_open_pages": {
+        "cluster-a": 3,
+        "cluster-b": 1
+      },
+      "monitor_violation": null,
+      "raw_samples_omitted_from_canon": true
+    },
+    "profiles": {
+      "before": {
+        "cluster-a": {
+          "directory_exists": true,
+          "is_directory": true,
+          "is_symlink": false,
+          "uid": 1000,
+          "gid": 999,
+          "mode": 448,
+          "inode": 1312453,
+          "device": 2050,
+          "content_read": false,
+          "secret_value_hashing": false
+        },
+        "cluster-b": {
+          "directory_exists": true,
+          "is_directory": true,
+          "is_symlink": false,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": 448,
+          "inode": 1706635,
+          "device": 2050,
+          "content_read": false,
+          "secret_value_hashing": false
+        }
+      },
+      "after": {
+        "cluster-a": {
+          "directory_exists": true,
+          "is_directory": true,
+          "is_symlink": false,
+          "uid": 1000,
+          "gid": 999,
+          "mode": 448,
+          "inode": 1312453,
+          "device": 2050,
+          "content_read": false,
+          "secret_value_hashing": false
+        },
+        "cluster-b": {
+          "directory_exists": true,
+          "is_directory": true,
+          "is_symlink": false,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": 448,
+          "inode": 1706635,
+          "device": 2050,
+          "content_read": false,
+          "secret_value_hashing": false
+        }
+      }
+    },
+    "second_owner": {
+      "a": {
+        "cluster_id": "cluster-a",
+        "exit_code": 1,
+        "error_code": "E_CLUSTER_BROKER_ALREADY_OWNED",
+        "rejected": true
+      },
+      "b": {
+        "cluster_id": "cluster-b",
+        "exit_code": 1,
+        "error_code": "E_CLUSTER_BROKER_ALREADY_OWNED",
+        "rejected": true
+      }
+    },
+    "recovery": {
+      "cluster_b_before": {
+        "owner_pid": 734012,
+        "state": "READY"
+      },
+      "cluster_b_after": {
+        "owner_pid": 735225,
+        "state": "READY",
+        "active_leases": 0
+      },
+      "cluster_a_before": {
+        "owner_pid": 724502,
+        "state": "READY"
+      },
+      "cluster_a_after": {
+        "owner_pid": 724502,
+        "state": "READY"
+      }
+    }
+  },
+  "current_original_lineage": {
+    "qwen_cluster_a": {
+      "job_id": "FA124-CW-A-QWEN-03",
+      "provider_id": "qwen",
+      "cluster_id": "cluster-a",
+      "actual_transport": "BROWSER_CDP",
+      "status": "SUCCEEDED",
+      "dispatch_committed": true,
+      "dispatch_committed_at": "2026-09-08T17:45:11.986Z",
+      "completed_at": "2026-09-08T17:45:26.329Z",
+      "latency_ms": 19865,
+      "credential_values_read": false,
+      "cookies_or_tokens_read": false,
+      "spend_usd": 0,
+      "artifact": {
+        "path": "/var/lib/die/state/fa124-cartoon-watercolor-100-r1/jobs/FA124-CW-A-QWEN-03/provider/source-original.png",
+        "sha256": "85f329b96dd4cd3c7ba3ab0e1be2b85d6a14697c4c068d82f9c58d5335700673",
+        "bytes": 1644644,
+        "mime": "image/png",
+        "dom_width_px": 807,
+        "dom_height_px": 450,
+        "original_byte_acquisition_method": "provider_original_cdn_url_browser_context",
+        "provider_original_url_host": null,
+        "dom_kind": null
+      },
+      "lease_release": {
+        "lease_id": "5fc66d16-124f-4ac2-826c-e0f032949959",
+        "released": true,
+        "reason": "FA_C010_ATTEMPT_COMPLETE",
+        "provider_id": "qwen",
+        "job_id": "FA124-CW-A-QWEN-03",
+        "page_recycled": true,
+        "standby_created": false,
+        "idle_pages_compacted": 0
+      },
+      "cluster_lease_snapshot_after": {
+        "schema": "die.muxia.cluster-tab-lease-snapshot.v1",
+        "max_tabs": 8,
+        "active_leases": 0,
+        "open_pages": 1,
+        "provider_states": {
+          "chatgpt": "CHECKPOINT",
+          "qwen": "HEALTHY",
+          "gemini": "HEALTHY",
+          "manus": "HEALTHY",
+          "duckai": "HEALTHY"
+        }
+      }
+    },
+    "gemini_cluster_b": {
+      "job_id": "FA124-CW-B-GEMINI-02",
+      "provider_id": "gemini",
+      "cluster_id": "cluster-b",
+      "actual_transport": "BROWSER_CDP",
+      "status": "SUCCEEDED",
+      "dispatch_committed": true,
+      "dispatch_committed_at": "2026-09-08T17:15:38.936Z",
+      "completed_at": "2026-09-08T17:15:58.913Z",
+      "latency_ms": 26372,
+      "credential_values_read": false,
+      "cookies_or_tokens_read": false,
+      "spend_usd": 0,
+      "artifact": {
+        "path": "/var/lib/die/state/fa124-cartoon-watercolor-100-r1/jobs/FA124-CW-B-GEMINI-02/provider/source-original.jpg",
+        "sha256": "5ce435586377754bba088f61936c19231b05c17cef56270dafda3439d12a4709",
+        "bytes": 398093,
+        "mime": "image/jpeg",
+        "dom_width_px": 1024,
+        "dom_height_px": 1024,
+        "original_byte_acquisition_method": "provider_generated_image_response_body_after_dispatch",
+        "provider_original_url_host": "lh3.googleusercontent.com",
+        "dom_kind": null
+      },
+      "lease_release": {
+        "lease_id": "849558eb-e311-44bf-9476-8c68e829303d",
+        "released": true,
+        "reason": "FA_C010_ATTEMPT_COMPLETE",
+        "provider_id": "gemini",
+        "job_id": "FA124-CW-B-GEMINI-02",
+        "page_recycled": true,
+        "standby_created": false,
+        "idle_pages_compacted": 0
+      },
+      "cluster_lease_snapshot_after": {
+        "schema": "die.muxia.cluster-tab-lease-snapshot.v1",
+        "max_tabs": 8,
+        "active_leases": 0,
+        "open_pages": 1,
+        "provider_states": {
+          "chatgpt": "CHECKPOINT",
+          "qwen": "HEALTHY",
+          "gemini": "HEALTHY",
+          "manus": "HEALTHY",
+          "duckai": "HEALTHY"
+        }
+      }
+    }
+  },
+  "assertions": {
+    "heterogeneous_providers": true,
+    "different_clusters": true,
+    "parallel_dispatch_intervals_overlap": true,
+    "qwen_original_bytes_persisted": true,
+    "gemini_original_bytes_persisted": true,
+    "distinct_original_sha256": true,
+    "profile_metadata_identity_preserved": true,
+    "zero_monitor_bound_violation": true,
+    "bounded_ram": true,
+    "bounded_tabs": true,
+    "bounded_leases": true,
+    "zero_lease_leak_after_completion": true,
+    "second_owner_rejected": true,
+    "recovery_owner_pid_changed": true,
+    "recovery_cluster_b_ready": true,
+    "sibling_cluster_a_remained_ready": true,
+    "zero_duplicate_generation_after_recovery": true,
+    "zero_secret_reads": true,
+    "zero_spend": true,
+    "gemini_uses_planned_post_dispatch_response_body_strategy": true
+  },
+  "all_acceptance_predicates_satisfied": true
+}
