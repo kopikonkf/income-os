@@ -3988,3 +3988,4 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 
 ## 2026-09-08 - Cluster broker CDP disconnect lifecycle hotfix
 - Fixed a separate broker lifecycle bug discovered during ChatGPT B recovery: CDP client cleanup used `browser.close()` and could close the broker-owned browser context. Transport-only connection close now preserves the owner; live proof kept the same owner PID and allowed a fresh lease afterward. No provider call or secret read was involved.
+- CDP disconnect hotfix Linux validation: 20 focused PASS, 749 Factory PASS, one-canon 6 PASS, validator 11/11 PASS, secret hits 0.
