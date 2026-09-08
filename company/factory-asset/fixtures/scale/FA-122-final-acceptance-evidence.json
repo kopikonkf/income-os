@@ -1,0 +1,120 @@
+{
+  "schema": "die.factory-asset.fa122-final-acceptance-evidence.v1",
+  "task_id": "FA-122",
+  "date": "2026-09-08",
+  "result": "PASS",
+  "runtime_workspace": "/home/kopiko/factory-asset-canaries/fa122-live-load-20260908-r1",
+  "plan_created_at": "2026-09-08T03:05:23.299Z",
+  "final_executed_at": "2026-09-08T03:29:57.817Z",
+  "source_evidence": {
+    "plan": {
+      "runtime_path": "/home/kopiko/factory-asset-canaries/fa122-live-load-20260908-r1/plan.json",
+      "sha256": "0a55c48c961e417d0c757c38eee5c9455db5da1750ce3bdcdf33e0aaa5ad0494"
+    },
+    "progress_at_16": {
+      "runtime_path": "/home/kopiko/factory-asset-canaries/fa122-live-load-20260908-r1/progress.json",
+      "sha256": "9147f037634de60f5f98c75e0fc413b26a9a3e614aa906b4a05e3a30e615a4d5"
+    },
+    "live_result": {
+      "runtime_path": "/home/kopiko/factory-asset-canaries/fa122-live-load-20260908-r1/live-result.json",
+      "sha256": "cd95fbd1e29510084118619a40837f8cb3ecf18104ddfc1c1914796831d2f153"
+    },
+    "evaluation": {
+      "runtime_path": "/home/kopiko/factory-asset-canaries/fa122-live-load-20260908-r1/evaluation.json",
+      "sha256": "495f008c2f8cb4dbc50b65790ef0365d15e2b7e0e9f0715815b5a0d4d82863c1"
+    }
+  },
+  "load_bounds": {
+    "target_unique_masters": 20,
+    "max_provider_generation_commits": 24,
+    "max_planned_semantic_jobs": 24,
+    "max_concurrent_generations": 2,
+    "max_live_leases_per_cluster": 1,
+    "max_tabs_per_cluster": 8,
+    "max_combined_browser_tree_rss_mb": 6144,
+    "packaging_derivatives_count_as_unique_masters": false
+  },
+  "live_result": {
+    "terminal_jobs": 20,
+    "dispatch_commits": 20,
+    "successful_provider_artifacts": 20,
+    "unique_artifact_sha256": 20,
+    "provider_failures": 0,
+    "provider_counts": {
+      "qwen": 20,
+      "chatgpt": 0
+    },
+    "cluster_counts": {
+      "cluster-a": 10,
+      "cluster-b": 10
+    }
+  },
+  "technical_qa_and_distinctness": {
+    "qa_passed_masters": 20,
+    "unique_qa_master_sha256": 20,
+    "exact_duplicate_hash_count": 0,
+    "near_duplicate_pair_count": 0,
+    "qa_pass_rate": 1.0,
+    "exact_hash_unique_rate": 1.0
+  },
+  "resource_observations": {
+    "max_combined_browser_tree_rss_mb_observed": 6011.93,
+    "rss_hard_cap_mb": 6144,
+    "max_active_leases": {
+      "cluster-a": 1,
+      "cluster-b": 1
+    },
+    "max_open_pages": {
+      "cluster-a": 3,
+      "cluster-b": 1
+    },
+    "safety_violation": null,
+    "zero_lease_leak_after_completion": true,
+    "profile_metadata_identity_preserved": true
+  },
+  "chatgpt_incident_and_routing_truth": {
+    "observed_on_cluster_a": "CHECKPOINT",
+    "observed_on_cluster_b": "CHECKPOINT",
+    "reason_code": "PROTECTION_CHALLENGE",
+    "observed_page_title": "Just a moment...",
+    "composer_visible": false,
+    "composer_writable": false,
+    "auth_ui_visible": false,
+    "challenge_bypass_attempted": false,
+    "hotfix_pr": 275,
+    "hotfix_merge_commit": "e4b4bb73dbe932b5f7106ea06a4516fb561e7ee7",
+    "routing_behavior": "FAIL_CLOSED_TO_HEALTHY_SIBLING_QWEN",
+    "qwen_actual_transport": "BROWSER_CDP",
+    "qwen_transport_role": "FALLBACK",
+    "qwen_primary_transport_contract": "SESSION_API",
+    "qwen_session_api_live_executor_claimed": false
+  },
+  "authority_and_safety": {
+    "provider_calls_performed": 20,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "spend_usd": 0,
+    "account_actions": 0,
+    "marketplace_actions": 0,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "production_seed_selection_used": false,
+    "packaging_derivatives_counted_as_unique_masters": false
+  },
+  "assertions": {
+    "live_execution_complete": true,
+    "target_unique_qa_masters_reached": true,
+    "qa_pass_count_at_least_target": true,
+    "provider_commit_budget_respected": true,
+    "zero_exact_duplicate_master_hashes": true,
+    "zero_near_duplicate_pairs": true,
+    "profile_metadata_identity_preserved": true,
+    "resource_safety_preserved": true,
+    "zero_lease_leak": true,
+    "zero_secret_reads": true,
+    "zero_spend": true,
+    "no_derivative_volume_inflation": true,
+    "no_account_marketplace_actions": true,
+    "chatgpt_challenge_failed_closed_without_bypass": true
+  }
+}

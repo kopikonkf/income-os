@@ -1570,11 +1570,12 @@
       "depends_on": [
         "FA-121"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_LOAD",
-      "artifact": "company/factory-asset/receipts/FA-122-20-50-masters-day.receipt.json",
+      "artifact": "company/factory-asset/receipts/FA-122-20-50-masters-day.receipt.json; company/factory-asset/fixtures/scale/FA-122-final-acceptance-evidence.json; company/factory-asset/contracts/fa122-live-load.v1.json; company/factory-asset/bin/run_fa122_live_load.mjs; company/factory-asset/lib/fa122_load_evaluator.py",
       "acceptance": "Unique master count, QA pass rate, provider failures, duplicates, resource use and policy/capacity evidence are complete; file derivatives excluded from master count.",
-      "updated_at": "2026-09-07"
+      "completed_at": "2026-09-08",
+      "result": "PASS: Founder-authorized bounded live load produced 20/20 successful provider originals and 20/20 unique QA-passed masters across cluster-a and cluster-b (10/10), with 0 provider failures, 0 exact duplicates and 0 near-duplicate pairs. ChatGPT on both clusters was correctly reclassified from false COMPOSER_NOT_READY to CHECKPOINT/PROTECTION_CHALLENGE after observing the upstream 'Just a moment...' interstitial; no challenge bypass was attempted and routing failed closed to healthy Qwen BROWSER_CDP fallback for all 20 committed generations. Maximum observed combined browser-tree RSS was 6011.93 MB under the 6144 MB hard cap; max active leases remained 1 per cluster; final lease leakage was zero; profile metadata identity was preserved. No derivative volume inflation, credential/cookie/token reads, spend, account actions, marketplace actions, submission or publication occurred."
     },
     {
       "id": "FA-123",
@@ -1585,9 +1586,11 @@
       "depends_on": [
         "FA-122"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/receipts/FA-123-downstream-capacity.receipt.json",
-      "acceptance": "QA/QC sampling, near-duplicate quarantine, package generation, backlog and Founder-touch requirements are measured at 100-master/day model."
+      "acceptance": "QA/QC sampling, near-duplicate quarantine, package generation, backlog and Founder-touch requirements are measured at 100-master/day model.",
+      "updated_at": "2026-09-08",
+      "result": "READY: FA-122 is DONE/PASS; no FA-123 downstream-capacity execution occurred in the FA-122 live-load acceptance run."
     },
     {
       "id": "FA-124",
