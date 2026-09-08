@@ -1,8 +1,8 @@
-﻿{
+{
   "schema": "die.company-os.task-graph.v1",
   "generated_at": "2026-09-08",
   "revision": "1.0-company-os-economic-shadow-foundation",
-  "status": "CANONICAL_CANDIDATE",
+  "status": "CANONICAL",
   "project": "DIE Company OS / Economic Layer",
   "target_repository": "github.com/kopikonkf/income-os",
   "target_path": "company/company-os/task-graph-v1.json",
@@ -246,3 +246,4 @@
     }
   ]
 }
+

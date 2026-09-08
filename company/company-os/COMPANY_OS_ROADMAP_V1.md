@@ -1,7 +1,7 @@
-﻿# DIE Company OS / Economic Layer Roadmap v1
+# DIE Company OS / Economic Layer Roadmap v1
 
-Status: CANONICAL CANDIDATE  
-Date: 2026-09-08  
+Status: CANONICAL
+Date: 2026-09-08
 Authority: subordinate to `CONSTITUTION.md`; this document grants no new spend, credential, publication, migration, or Aether mutation authority.
 
 ## Purpose
@@ -111,3 +111,4 @@ Remote publication remains serialized by the shared `income-os.repo-write` engin
 3. `COS-003` — Aether-DIE constitutional bridge contract.
 
 These three are deliberately parallelizable and do not require changing Aether, spending money, or disturbing MC-008J.
+
