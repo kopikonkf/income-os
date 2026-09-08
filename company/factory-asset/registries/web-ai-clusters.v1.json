@@ -1,6 +1,6 @@
 {
   "schema": "die.factory-asset.web-ai-cluster-registry.v1",
-  "revision": "1.1.0-cluster-b-activated",
+  "revision": "1.2.0-headful-default-owner-health",
   "status": "CANONICAL_ACTIVE_MULTI_CLUSTER",
   "rules": {
     "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS_PER_CLUSTER_PROFILE",

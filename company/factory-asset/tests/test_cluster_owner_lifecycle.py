@@ -63,3 +63,14 @@ def test_launcher_restarts_on_owner_failure_and_registry_is_headful_by_default()
     assert 'VISIBLE_BROWSER_WITH_CDP_OFF' in rules['interactive_auth_policy']
     assert rules['checkpoint_policy'].startswith('DO_NOT_BYPASS_PROVIDER_CHALLENGES')
     assert 'OWNER_DEATH_MUST_FAIL_CLOSED' in rules['owner_health_policy']
+
+
+def test_headed_owner_lifecycle_receipt_is_done_pass():
+    receipt = json.loads((R / 'company/factory-asset/receipts/FA-HOTFIX-cluster-headed-owner-lifecycle.receipt.json').read_text(encoding='utf-8'))
+    assert receipt['status'] == 'DONE' and receipt['result'] == 'PASS'
+    assert receipt['acceptance']['same_owner_across_chatgpt_and_qwen'] is True
+    assert receipt['acceptance']['active_leases_after_sequence'] == 0
+    assert receipt['acceptance']['open_pages_after_sequence'] == 1
+    assert receipt['permanent_protocol']['production_browser_mode'] == 'HEADFUL_OR_VIRTUAL_DISPLAY_DEFAULT'
+    assert receipt['authority_and_safety']['provider_generation_calls_performed'] == 0
+    assert receipt['authority_and_safety']['checkpoint_or_captcha_bypass'] is False

@@ -3982,3 +3982,10 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - The affected broker profiles were `chatgpt-linux-a` (Cluster A) and `web-ai-cluster-b` (Cluster B). The Cluster B controlled comparison proved the session was valid: headless Chromium received `Just a moment...`, while the same profile in headed Xvfb immediately returned `COMPOSER_READY` with CDP still present.
 - Cluster B is therefore recovered server-side without Founder intervention: headed-Xvfb broker, ChatGPT HEALTHY+writable, Qwen HEALTHY, zero leases leaked, zero provider calls/challenge bypass/secret reads. Production MUXIA headed `chatgpt-linux-a` remained untouched and has recent successful PRODSEED receipts.
 - ChatGPT Cluster B headed-broker hotfix Linux validation: 14 focused PASS, 747 Factory PASS, one-canon 6 PASS, validator 11/11 PASS, secret hits 0.
+
+
+---
+
+## 2026-09-08 - Web-AI production browser protocol: headful by default
+- Production web-AI browser mode is now canonically **headful/virtual-display by default**. Headless requires explicit provider-specific acceptance; auth verification may run visible with CDP off when needed. This follows live evidence: ChatGPT Cluster B failed under headless protection interstitial but was healthy on the same session in headed Xvfb, while prior Qwen verification also required a CDP-off human handoff boundary.
+- Headed Cluster B lifecycle is now hardened: owner death cannot remain stale READY, and released lease tabs are recycled to `about:blank` so the last headed window is not closed. Final same-owner ChatGPT->Qwen zero-call acceptance PASS on PID 768282 with both providers HEALTHY, zero leaked leases and one standby page preserved.
