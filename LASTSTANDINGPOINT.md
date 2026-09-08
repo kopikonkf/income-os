@@ -3996,3 +3996,10 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 ## 2026-09-08 - Hermes production runtime idle loop recovered
 - `PRODUCTION_RUNTIME_IDLE` was traced to `PRODSEED000113` waiting on a Division01 cognition turn that remained generating with an empty assistant placeholder. The cognition cron had 92 consecutive response-timeout failures because timeout never advanced durable retry state.
 - Cognition now stops stale sent turns and advances bounded versioned retries. Live recovery used R01 on the same seed/card, obtained valid Division01 authoring + Executive NO_VETO, locked the Blueprint, resumed production, and created a 1536x1024 MUXIA original. No compensating seed or Founder intervention was used.
+
+
+---
+
+## 2026-09-08 - Hermes production idle loop recovered
+- `PRODSEED000113` was not idle because of seed exhaustion or MUXIA downtime; deterministic cognition had an indefinitely stuck Division01 ChatGPT turn and logged 92 `E_RESPONSE_TIMEOUT` failures. Timeout handling is now bounded and durable: stale generating turn is stopped, request attempt advances, and repeated exhaustion fails closed instead of looping forever.
+- Live same-card recovery passed: author R01 VALID -> Executive `NO_VETO` -> production resumed -> `WAITING_FOUNDER_QC`. No compensating seed was created.
