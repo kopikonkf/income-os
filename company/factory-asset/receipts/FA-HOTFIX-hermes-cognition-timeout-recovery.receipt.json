@@ -53,6 +53,10 @@
   "validation": {
     "linux_python_focused": "25 passed",
     "linux_node_roundtrip": "13 passed",
-    "windows_non_fcntl_regressions": "11 passed"
+    "windows_non_fcntl_regressions": "11 passed",
+    "factory_regression_linux": "755 passed, 1 PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded as out of hotfix scope",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "company_secret_scan_hits": 0
   }
 }
