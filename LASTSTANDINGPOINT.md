@@ -3949,3 +3949,11 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Exactly one dispatch commit produced immutable original/master PNG bytes: 1664x928, 1,417,392 bytes, SHA256 `adb63d2820b86c730d4a9dd41eb3cd29739c22c3a4c7fa3f1ff4f57b5b612d2f`; Console state reached SUCCEEDED and all broker/queue leases released.
 - Replay performed zero provider calls and verified the same final receipt/master. Zero secret read, spend, account action, CAPTCHA bypass, submission or publication. Cluster B auth, FA-121 and production runtime were not mutated.
 - Validation: focused 7 PASS; Factory 721 PASS with the Founder-excluded FA-121 live-broker oneshot omitted; one-canon 6 PASS; validator 11/11 PASS. `FA-C011` is dependency-unblocked/READY but was not executed.
+
+
+---
+
+## 2026-09-08 - FA-C011 Factory Console batch/concurrency DONE/PASS
+- Zero-provider synthetic Console acceptance processed 12 semantic jobs in five waves with three concurrent worker slots, four backpressure events, Qwen/ChatGPT routing 6/6, one pause/resume, one bounded retry and one terminal partial failure; seven jobs still succeeded after that failure.
+- Final truth: 11 SUCCEEDED + 1 FAILED, 14 attempts, exactly 12 unique semantic assets. Three duplicate submissions reused existing jobs; duplicate ownership and conflicting idempotency reuse were blocked, with no semantic-count inflation.
+- Validation: focused 20 PASS; Factory 728 PASS with the FA-121 live-broker oneshot omitted as out of scope; one-canon 6 PASS; validator 11/11 PASS. No provider/browser, secret, spend, account, marketplace or production action occurred. `FA-C012 = READY` by dependency only and was not executed.

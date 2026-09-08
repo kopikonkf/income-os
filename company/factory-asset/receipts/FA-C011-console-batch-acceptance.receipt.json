@@ -1,0 +1,105 @@
+{
+  "schema": "die.factory-asset.fa-c011-console-batch-acceptance.receipt.v1",
+  "task_id": "FA-C011",
+  "date": "2026-09-08",
+  "status": "DONE",
+  "result": "PASS",
+  "acceptance": "Bounded batch proved queue progress, provider routing, backpressure, pause/resume and partial failures without duplicate ownership or semantic-count inflation.",
+  "base_main": "912d585288614c0994741b7419163fa780f1ce76",
+  "execution_mode": "SYNTHETIC_GOVERNED_ZERO_PROVIDER_CALL",
+  "console_surface": {
+    "endpoint": "POST /api/synthetic/batch-acceptance",
+    "request_schema": "die.factory-asset.console-batch-acceptance-request.v1",
+    "source_surface": "FACTORY_CONSOLE",
+    "dispatch_authority": "SIMULATED_ONLY"
+  },
+  "implementation": {
+    "harness": "company/factory-asset/lib/console_batch_acceptance.py",
+    "runner": "company/factory-asset/bin/run_fa_c011_console_batch_acceptance.py",
+    "console_server": "company/factory-asset/console-prototype/server.py",
+    "tests": "company/factory-asset/tests/test_console_batch_acceptance.py"
+  },
+  "canonical_evidence": {
+    "final_result": {
+      "ref": "company/factory-asset/fixtures/console-batch/FA-C011-final-result.json",
+      "sha256": "f7b80a74cb1ee7710b48626f4004185a4db36a622f001a1933999cdcd8e8746e"
+    },
+    "console_state": {
+      "ref": "company/factory-asset/fixtures/console-batch/FA-C011-console-state.json",
+      "sha256": "de2d04bc1112d20a61e08cdcc70ef6afcdffac05987a5a5293d58aa818d490f7"
+    },
+    "timeline": {
+      "ref": "company/factory-asset/fixtures/console-batch/FA-C011-timeline.json",
+      "sha256": "777296733c5f48a37a05ec5d93fac466ddcb04753e41842562c56a22482333ee"
+    },
+    "runtime_workspace": "/home/kopiko/factory-asset-canaries/fa-c011-console-batch-20260908-r1"
+  },
+  "batch": {
+    "batch_id": "FCBATCH-FA-C011-20260908-001",
+    "blueprint_id": "FABP-FA-C011-SYNTHETIC-BATCH-001",
+    "quantity": 12,
+    "semantic_asset_count": 12,
+    "terminal_jobs": 12,
+    "successful_jobs": 11,
+    "failed_jobs": 1,
+    "total_attempts": 14
+  },
+  "concurrency_and_backpressure": {
+    "worker_slot_limit": 3,
+    "peak_concurrent_running": 3,
+    "waves": 5,
+    "backpressure_events": 4,
+    "queue_progress_to_terminal": true,
+    "running_never_exceeded_worker_limit": true
+  },
+  "provider_routing": {
+    "mode": "SYNTHETIC_POLICY_CAPACITY_ROUTER",
+    "qwen_jobs": 6,
+    "chatgpt_jobs": 6,
+    "provider_calls_performed": false,
+    "browser_owner_actions": 0
+  },
+  "controls_and_partial_failures": {
+    "pause_events": 1,
+    "resume_events": 1,
+    "retry_events": 1,
+    "max_retries_per_job": 1,
+    "terminal_partial_failures": 1,
+    "successful_jobs_after_terminal_partial_failure": 7,
+    "batch_stalled_after_partial_failure": false
+  },
+  "ownership_and_dedupe": {
+    "duplicate_ownership_blocked": 1,
+    "duplicate_submissions": 3,
+    "duplicate_reuses": 3,
+    "idempotency_conflicts_blocked": 1
+  },
+  "semantic_integrity": {
+    "expected_semantic_assets": 12,
+    "unique_semantic_assets": 12,
+    "attempts_do_not_count_as_semantic_assets": true,
+    "duplicates_do_not_count_as_semantic_assets": true,
+    "partial_failure_does_not_create_replacement_semantic_asset": true,
+    "semantic_count_inflation": false
+  },
+  "authority_and_safety": {
+    "live_provider_authority_used": false,
+    "provider_calls_performed": false,
+    "browser_runtime_touched": false,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "spend_usd": 0,
+    "account_actions": 0,
+    "marketplace_actions": 0,
+    "production_runtime_touched": false
+  },
+  "validation": {
+    "focused_console_batch_plus_console_regressions": "20 passed",
+    "factory_regression": "728 passed, 1 PyPDF2 deprecation warning; FA-121 live-broker oneshot test excluded because it is outside FA-C011 synthetic scope",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "company_secret_scan_hits": 0,
+    "python_compile": "PASS"
+  },
+  "next": "FA-C012 is dependency-unblocked and may become READY; no FA-C012 implementation or recovery execution occurred in this FA-C011 run."
+}

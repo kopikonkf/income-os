@@ -808,3 +808,16 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Runtime deployment truth was preserved: live Cluster B broker ran from `/srv/die` SHA `5fc0646a1cb395d2be7dfaa7903c0bf31ef8ddd4`, a verified ancestor of Git SSOT `a1bae6761d2693a82b984b69f812fe00093bb61a`; no runtime-sensitive cluster/browser source changed between those revisions.
 - Validation: focused Console+Factory Core 7/7 PASS; Linux Factory regression 721/721 PASS with only `test_fa121_oneshot_exit_live_safe.py` excluded by Founder scope; one-canon pytest 6/6 PASS; validator 11/11 PASS; high-confidence secret hits 0; Node syntax/Python compile PASS.
 - `FA-C010 = DONE/PASS`. Dependency reconciliation only: `FA-C011 = READY`; no FA-C011 implementation or live batch execution was started.
+
+
+---
+
+## 2026-09-08 - FA-C011 DONE/PASS — Factory Console bounded batch and concurrency acceptance
+- Deterministic Console batch `FCBATCH-FA-C011-20260908-001` executed from isolated Linux checkout at canonical base `912d585288614c0994741b7419163fa780f1ce76`; execution authority was `SIMULATED_ONLY`, with zero provider/browser calls.
+- Twelve semantic jobs completed through five bounded waves with exactly three worker slots; peak concurrent RUNNING=3 and four backpressure events proved the worker cap while the queue continued progressing. Synthetic Factory Core routing selected Qwen for 6 jobs and ChatGPT for 6 jobs.
+- Control/failure probes all passed: one RUNNING job paused and released ownership, resumed to READY and later SUCCEEDED; one RATE_LIMITED job entered RETRY_WAIT, retried once and SUCCEEDED; one non-retryable PROVIDER_ERROR ended FAILED while seven later jobs still succeeded. Final batch truth is 11 SUCCEEDED + 1 FAILED, not false all-success.
+- Ownership/idempotency remained bounded: one competing RUNNING owner was rejected as DUPLICATE_OWNERSHIP, three duplicate submissions reused their existing jobs, and one conflicting idempotency-key reuse was rejected. The batch produced 14 attempts but exactly 12 unique semantic assets; retries, pause/resume and duplicate submissions did not inflate semantic count or synthesize a replacement for the failed asset.
+- Durable Linux evidence is canonicalized under `company/factory-asset/fixtures/console-batch/`; final-result SHA256 `f7b80a74cb1ee7710b48626f4004185a4db36a622f001a1933999cdcd8e8746e`, terminal Console-state SHA256 `de2d04bc1112d20a61e08cdcc70ef6afcdffac05987a5a5293d58aa818d490f7`, timeline SHA256 `777296733c5f48a37a05ec5d93fac466ddcb04753e41842562c56a22482333ee`.
+- Console exposes `POST /api/synthetic/batch-acceptance` for this governed acceptance surface. No credentials/cookies/tokens were read; spend/account/marketplace/production actions were zero.
+- Validation: focused C011 + queue/C009 regressions 20/20 PASS; Factory regression 728/728 PASS with only the out-of-scope FA-121 live-broker oneshot omitted; one-canon pytest 6/6 PASS; validator 11/11 PASS; high-confidence secret hits 0; Python compile PASS.
+- `FA-C011 = DONE/PASS`. Dependency reconciliation only: `FA-C012 = READY`; no FA-C012 restart/recovery implementation or execution occurred.

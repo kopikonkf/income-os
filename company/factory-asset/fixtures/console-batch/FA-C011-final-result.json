@@ -1,0 +1,222 @@
+{
+  "account_actions": 0,
+  "assertions": {
+    "bounded_backpressure": true,
+    "duplicate_ownership_blocked": true,
+    "idempotent_batch_dedupe": true,
+    "no_semantic_count_inflation": true,
+    "partial_failures_contained": true,
+    "pause_resume": true,
+    "provider_routing": true,
+    "queue_progress": true,
+    "retry_bounded": true,
+    "zero_provider_calls": true
+  },
+  "batch": {
+    "batch_id": "FCBATCH-FA-C011-20260908-001",
+    "blueprint_id": "FABP-FA-C011-SYNTHETIC-BATCH-001",
+    "dispatch_authority": "SIMULATED_ONLY",
+    "quantity": 12,
+    "semantic_asset_count": 12
+  },
+  "browser_owner_actions": 0,
+  "controls": {
+    "pause_events": 1,
+    "resume_events": 1,
+    "retry_events": 1,
+    "succeeded_after_terminal_failure": 7,
+    "terminal_partial_failures": 1
+  },
+  "cookies_or_tokens_read": false,
+  "credential_values_read": false,
+  "evidence_paths": {
+    "console_state": "/home/kopiko/factory-asset-canaries/fa-c011-console-batch-20260908-r1/console-batch-state.json",
+    "final_result": "/home/kopiko/factory-asset-canaries/fa-c011-console-batch-20260908-r1/final-result.json",
+    "timeline": "/home/kopiko/factory-asset-canaries/fa-c011-console-batch-20260908-r1/console-batch-timeline.json"
+  },
+  "marketplace_actions": 0,
+  "ownership_and_dedupe": {
+    "duplicate_ownership_blocked": 1,
+    "duplicate_reuses": 3,
+    "duplicate_submissions": 3,
+    "idempotency_conflicts_blocked": 1
+  },
+  "provider_calls_performed": false,
+  "queue": {
+    "backpressure_events": 4,
+    "failed": 1,
+    "max_retries_per_job": 1,
+    "peak_concurrent_running": 3,
+    "succeeded": 11,
+    "terminal_count": 12,
+    "total_attempts": 14,
+    "waves": 5,
+    "worker_slot_limit": 3
+  },
+  "result": "PASS",
+  "routing": {
+    "route_counts": {
+      "chatgpt": 6,
+      "qwen": 6
+    },
+    "routes": {
+      "FCJOB-FA-C011-001": {
+        "profile_id": "qwen_batch_synth",
+        "provider_id": "qwen",
+        "reasons": [
+          "POLICY_ALLOWED",
+          "CAPACITY_AVAILABLE",
+          "CAPABILITY_MATCH",
+          "QUALITY_SCORE=0.97",
+          "UNIT_COST_MICROS=0"
+        ],
+        "rejected": []
+      },
+      "FCJOB-FA-C011-002": {
+        "profile_id": "chatgpt_batch_synth",
+        "provider_id": "chatgpt",
+        "reasons": [
+          "POLICY_ALLOWED",
+          "CAPACITY_AVAILABLE",
+          "CAPABILITY_MATCH",
+          "QUALITY_SCORE=0.97",
+          "UNIT_COST_MICROS=0"
+        ],
+        "rejected": []
+      },
+      "FCJOB-FA-C011-003": {
+        "profile_id": "qwen_batch_synth",
+        "provider_id": "qwen",
+        "reasons": [
+          "POLICY_ALLOWED",
+          "CAPACITY_AVAILABLE",
+          "CAPABILITY_MATCH",
+          "QUALITY_SCORE=0.97",
+          "UNIT_COST_MICROS=0"
+        ],
+        "rejected": []
+      },
+      "FCJOB-FA-C011-004": {
+        "profile_id": "chatgpt_batch_synth",
+        "provider_id": "chatgpt",
+        "reasons": [
+          "POLICY_ALLOWED",
+          "CAPACITY_AVAILABLE",
+          "CAPABILITY_MATCH",
+          "QUALITY_SCORE=0.97",
+          "UNIT_COST_MICROS=0"
+        ],
+        "rejected": []
+      },
+      "FCJOB-FA-C011-005": {
+        "profile_id": "qwen_batch_synth",
+        "provider_id": "qwen",
+        "reasons": [
+          "POLICY_ALLOWED",
+          "CAPACITY_AVAILABLE",
+          "CAPABILITY_MATCH",
+          "QUALITY_SCORE=0.97",
+          "UNIT_COST_MICROS=0"
+        ],
+        "rejected": []
+      },
+      "FCJOB-FA-C011-006": {
+        "profile_id": "chatgpt_batch_synth",
+        "provider_id": "chatgpt",
+        "reasons": [
+          "POLICY_ALLOWED",
+          "CAPACITY_AVAILABLE",
+          "CAPABILITY_MATCH",
+          "QUALITY_SCORE=0.97",
+          "UNIT_COST_MICROS=0"
+        ],
+        "rejected": []
+      },
+      "FCJOB-FA-C011-007": {
+        "profile_id": "qwen_batch_synth",
+        "provider_id": "qwen",
+        "reasons": [
+          "POLICY_ALLOWED",
+          "CAPACITY_AVAILABLE",
+          "CAPABILITY_MATCH",
+          "QUALITY_SCORE=0.97",
+          "UNIT_COST_MICROS=0"
+        ],
+        "rejected": []
+      },
+      "FCJOB-FA-C011-008": {
+        "profile_id": "chatgpt_batch_synth",
+        "provider_id": "chatgpt",
+        "reasons": [
+          "POLICY_ALLOWED",
+          "CAPACITY_AVAILABLE",
+          "CAPABILITY_MATCH",
+          "QUALITY_SCORE=0.97",
+          "UNIT_COST_MICROS=0"
+        ],
+        "rejected": []
+      },
+      "FCJOB-FA-C011-009": {
+        "profile_id": "qwen_batch_synth",
+        "provider_id": "qwen",
+        "reasons": [
+          "POLICY_ALLOWED",
+          "CAPACITY_AVAILABLE",
+          "CAPABILITY_MATCH",
+          "QUALITY_SCORE=0.97",
+          "UNIT_COST_MICROS=0"
+        ],
+        "rejected": []
+      },
+      "FCJOB-FA-C011-010": {
+        "profile_id": "chatgpt_batch_synth",
+        "provider_id": "chatgpt",
+        "reasons": [
+          "POLICY_ALLOWED",
+          "CAPACITY_AVAILABLE",
+          "CAPABILITY_MATCH",
+          "QUALITY_SCORE=0.97",
+          "UNIT_COST_MICROS=0"
+        ],
+        "rejected": []
+      },
+      "FCJOB-FA-C011-011": {
+        "profile_id": "qwen_batch_synth",
+        "provider_id": "qwen",
+        "reasons": [
+          "POLICY_ALLOWED",
+          "CAPACITY_AVAILABLE",
+          "CAPABILITY_MATCH",
+          "QUALITY_SCORE=0.97",
+          "UNIT_COST_MICROS=0"
+        ],
+        "rejected": []
+      },
+      "FCJOB-FA-C011-012": {
+        "profile_id": "chatgpt_batch_synth",
+        "provider_id": "chatgpt",
+        "reasons": [
+          "POLICY_ALLOWED",
+          "CAPACITY_AVAILABLE",
+          "CAPABILITY_MATCH",
+          "QUALITY_SCORE=0.97",
+          "UNIT_COST_MICROS=0"
+        ],
+        "rejected": []
+      }
+    }
+  },
+  "schema": "die.factory-asset.console-batch-acceptance.v1",
+  "semantic_integrity": {
+    "attempts_do_not_count_as_semantic_assets": true,
+    "duplicates_do_not_count_as_semantic_assets": true,
+    "expected_semantic_assets": 12,
+    "partial_failure_does_not_create_replacement_semantic_asset": true,
+    "terminal_jobs": 12,
+    "total_attempts": 14,
+    "unique_semantic_assets": 12
+  },
+  "source_surface": "FACTORY_CONSOLE",
+  "spend_usd": 0,
+  "task_id": "FA-C011"
+}

@@ -53,6 +53,7 @@ provider_router = _load_module("factory_console_provider_router", ROOT / "compan
 observability = _load_module("factory_console_observability", ROOT / "company/factory-asset/lib/observability.py")
 provider_dashboard = _load_module("factory_console_provider_dashboard", ROOT / "company/factory-asset/lib/provider_dashboard.py")
 factory_core_synthetic = _load_module("factory_console_core_synthetic", ROOT / "company/factory-asset/lib/factory_core_synthetic_acceptance.py")
+console_batch_acceptance = _load_module("factory_console_batch_acceptance", ROOT / "company/factory-asset/lib/console_batch_acceptance.py")
 
 PROVIDER_POLICY_REGISTRY = json.loads((ROOT / "company/factory-asset/registries/provider-policy.v1.json").read_text(encoding="utf-8"))
 PROVIDER_DASHBOARD_FIXTURE = json.loads((ROOT / "company/factory-asset/fixtures/provider-dashboard/synthetic-observed.v1.json").read_text(encoding="utf-8"))
@@ -188,6 +189,16 @@ def run_console_synthetic_e2e() -> dict[str, Any]:
     }
 
 
+def run_console_synthetic_batch_acceptance() -> dict[str, Any]:
+    with tempfile.TemporaryDirectory(prefix="factory-console-c011-") as temp_root:
+        result = console_batch_acceptance.run_console_batch_acceptance(Path(temp_root))
+    if result.get("result") != "PASS" or result.get("provider_calls_performed") is not False:
+        raise ConsoleRequestError("SYNTHETIC_BATCH_ACCEPTANCE_FAILED", "Factory Console batch acceptance did not pass")
+    sanitized = deepcopy(result)
+    sanitized.pop("evidence_paths", None)
+    return sanitized
+
+
 def output_gallery_state() -> dict[str, Any]:
     return json.loads(json.dumps(OUTPUT_GALLERY_FIXTURE))
 
@@ -260,7 +271,7 @@ class Handler(SimpleHTTPRequestHandler):
         super().do_GET()
 
     def do_POST(self) -> None:
-        if self.path not in {"/api/compile", "/api/batch-intent", "/api/queue/submit", "/api/queue/action", "/api/synthetic/e2e"}:
+        if self.path not in {"/api/compile", "/api/batch-intent", "/api/queue/submit", "/api/queue/action", "/api/synthetic/e2e", "/api/synthetic/batch-acceptance"}:
             self._json(HTTPStatus.NOT_FOUND, {"result": "FAIL", "code": "NOT_FOUND"})
             return
         try:
@@ -274,10 +285,14 @@ class Handler(SimpleHTTPRequestHandler):
             elif self.path == "/api/batch-intent": result = create_batch_intent(payload)
             elif self.path == "/api/queue/submit": result = submit_batch_to_queue(payload)
             elif self.path == "/api/queue/action": result = apply_queue_command(payload)
-            else:
+            elif self.path == "/api/synthetic/e2e":
                 if set(payload) != {"schema"} or payload.get("schema") != "die.factory-asset.console-synthetic-e2e-request.v1":
                     raise ConsoleRequestError("INVALID_SYNTHETIC_E2E_REQUEST", "synthetic E2E request schema required")
                 result = run_console_synthetic_e2e()
+            else:
+                if set(payload) != {"schema"} or payload.get("schema") != "die.factory-asset.console-batch-acceptance-request.v1":
+                    raise ConsoleRequestError("INVALID_SYNTHETIC_BATCH_ACCEPTANCE_REQUEST", "synthetic batch acceptance request schema required")
+                result = run_console_synthetic_batch_acceptance()
             self._json(HTTPStatus.OK, result)
         except compiler.BlueprintCompileError as exc:
             self._json(HTTPStatus.UNPROCESSABLE_ENTITY, {"result": "FAIL", "code": exc.code, "message": str(exc), "dispatch_performed": False})
