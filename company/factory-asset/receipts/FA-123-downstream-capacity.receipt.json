@@ -101,5 +101,13 @@
     "human_service_rate_not_fabricated": true,
     "sampling_scenarios_do_not_change_authority": true
   },
+  "validation": {
+    "focused_acceptance": "10 passed",
+    "factory_regression_linux": "761 passed, 1 PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded as out of FA-123 scope",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "company_secret_scan_hits": 0,
+    "python_compile": "PASS"
+  },
   "next_boundary": "FA-124 dependency is unlocked. FA-124 remains a separate Founder-authorized live 100-unique-master canary; FA-123 does not authorize that live load or change Founder QC policy."
 }
