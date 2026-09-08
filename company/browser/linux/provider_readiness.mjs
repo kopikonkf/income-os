@@ -11,10 +11,50 @@ async function anyVisible(page, selectors = []) {
   return false;
 }
 
+async function anyUsableComposer(page, selectors = []) {
+  for (const selector of selectors) {
+    const loc = page.locator(selector);
+    const n = Math.min(await loc.count().catch(() => 0), 20);
+    for (let i = 0; i < n; i += 1) {
+      const item = loc.nth(i);
+      if (!await item.isVisible().catch(() => false)) continue;
+      if (typeof item.isEditable === 'function') {
+        const editable = await item.isEditable().catch(() => false);
+        if (editable) return true;
+      }
+      if (typeof item.evaluate !== 'function') return true;
+      const usable = await item.evaluate((el) => {
+        const tag = String(el.tagName || '').toUpperCase();
+        const role = String(el.getAttribute?.('role') || '').toLowerCase();
+        const contentEditable = String(el.getAttribute?.('contenteditable') || '').toLowerCase() === 'true';
+        const ariaDisabled = String(el.getAttribute?.('aria-disabled') || '').toLowerCase() === 'true';
+        const disabled = Boolean(el.disabled) || Boolean(el.hasAttribute?.('disabled')) || ariaDisabled;
+        const readOnly = Boolean(el.readOnly) || String(el.getAttribute?.('aria-readonly') || '').toLowerCase() === 'true';
+        return !disabled && !readOnly && (tag === 'TEXTAREA' || tag === 'INPUT' || contentEditable || role === 'textbox');
+      }).catch(() => false);
+      if (usable) return true;
+    }
+  }
+  return false;
+}
+
 async function bodyContains(page, patterns = []) {
   if (!patterns.length) return false;
   const text = (await page.locator('body').innerText().catch(() => '')).toLowerCase();
   return patterns.some((p) => text.includes(String(p).toLowerCase()));
+}
+
+async function protectionChallengeVisible(page, patterns = []) {
+  if (await bodyContains(page, patterns)) return true;
+  const title = typeof page.title === 'function' ? String(await page.title().catch(() => '')).toLowerCase() : '';
+  if (title.includes('just a moment') || title.includes('attention required') || title.includes('security check')) return true;
+  return await anyVisible(page, [
+    '#challenge-running',
+    '#challenge-stage',
+    '[id*="cf-chl"]',
+    '[class*="cf-chl"]',
+    'iframe[src*="challenges.cloudflare.com"]',
+  ]);
 }
 
 export function sanitizeProviderStatusUrl(raw) { return safeUrl(raw); }
@@ -26,16 +66,17 @@ export async function classifyProviderPage({ page, providerId, profile, observed
   try { origin = new URL(page.url()).origin; } catch {}
   const allowed = Array.isArray(profile.allowed_origins) && profile.allowed_origins.includes(origin);
   const authVisible = await anyVisible(page, profile.auth_selectors || []);
-  const checkpointVisible = await bodyContains(page, profile.checkpoint_patterns || []);
+  const checkpointVisible = await protectionChallengeVisible(page, profile.checkpoint_patterns || []);
   const composerVisible = await anyVisible(page, profile.composer_selectors || []);
-  let state = 'DEGRADED'; let reasonCode = 'COMPOSER_NOT_READY';
+  const composerWritable = composerVisible ? await anyUsableComposer(page, profile.composer_selectors || []) : false;
+  let state = 'DEGRADED'; let reasonCode = composerVisible ? 'COMPOSER_NOT_WRITABLE' : 'COMPOSER_NOT_READY';
   if (!allowed) { state = 'UNAVAILABLE'; reasonCode = 'ORIGIN_MISMATCH'; }
   else if (checkpointVisible) { state = 'CHECKPOINT'; reasonCode = 'PROTECTION_CHALLENGE'; }
   else if (authVisible || /\/(login|signin|signup|auth)(?:\/|$)/i.test(new URL(page.url()).pathname)) { state = 'AUTH_REQUIRED'; reasonCode = 'AUTH_UI_VISIBLE'; }
-  else if (composerVisible) { state = 'HEALTHY'; reasonCode = 'COMPOSER_READY'; }
+  else if (composerWritable) { state = 'HEALTHY'; reasonCode = 'COMPOSER_READY'; }
   return {
     schema: 'die.muxia.provider-readiness.v1', provider_id: providerId, state, reason_code: reasonCode,
-    safe_url: url, observed_at: observedAt, composer_visible: composerVisible,
+    safe_url: url, observed_at: observedAt, composer_visible: composerVisible, composer_writable: composerWritable,
     auth_ui_visible: authVisible, checkpoint_visible: checkpointVisible,
     operator_action_required: state === 'AUTH_REQUIRED' || state === 'CHECKPOINT',
     credential_values_read: false, cookies_or_tokens_read: false,
@@ -53,7 +94,7 @@ export async function probeProviderReadiness({ context, providerId, profile, cla
   }
   if (!page) return {
     schema:'die.muxia.provider-readiness.v1',provider_id:providerId,state:'UNAVAILABLE',reason_code:'PAGE_NOT_FOUND',safe_url:'',observed_at:observedAt,
-    composer_visible:false,auth_ui_visible:false,checkpoint_visible:false,operator_action_required:false,credential_values_read:false,cookies_or_tokens_read:false,
+    composer_visible:false,composer_writable:false,auth_ui_visible:false,checkpoint_visible:false,operator_action_required:false,credential_values_read:false,cookies_or_tokens_read:false,
   };
   return await classifyProviderPage({ page, providerId, profile, observedAt });
 }
