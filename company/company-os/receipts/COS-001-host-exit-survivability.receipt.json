@@ -1,0 +1,57 @@
+{
+    "schema":  "die.company-os.cos001.host-exit-receipt.v1",
+    "task_id":  "COS-001",
+    "status":  "PASS",
+    "observed_at":  "2026-09-08",
+    "source_main":  "4b17e7563e3fdc4f601dd4402cf36cafa1c084d4",
+    "artifact":  "company/company-os/COS-001_WINDOWS_HOST_EXIT_SURVIVABILITY_MAP_V1.md",
+    "artifact_sha256":  "7da1ff38fcef97ebea9be5987ddcdc0db5235523f4e115c904811154730dfa1f",
+    "planning":  {
+                     "founder_observed_remaining_days":  21,
+                     "planning_t0":  "2026-09-29",
+                     "target_authoritative_cutover":  "T-3 / approximately 2026-09-26",
+                     "rollback_window_hours_target":  72
+                 },
+    "live":  {
+                 "mission_control":  "0.8.15@8891",
+                 "universal_mcp":  "0.1.0@8793",
+                 "architect_mcp":  "0.1.2@8790",
+                 "executive_mcp":  "1.1.0@8791",
+                 "division01_mcp":  "1.1.0@8792",
+                 "grok_relay":  "healthy@8794",
+                 "principal_browser_cdp":  9444,
+                 "architect_browser_cdp":  9555,
+                 "qwen_cdp":  9666,
+                 "aether_gateway":  "0.19.2@8000",
+                 "aether_living_mcp_8787":  "not_listening",
+                 "cloudflared":  "running_automatic"
+             },
+    "classification_summary":  {
+                                   "global_control_plane_target":  "H03 Windows",
+                                   "holding_execution_target":  "H01 Linux",
+                                   "aether":  "KEEP_EXTERNAL",
+                                   "browser_auth":  "REAUTH_NOT_PROFILE_COPY",
+                                   "durable_sqlite":  "MIGRATE_WITH_QUIESCE_HASH_INTEGRITY",
+                                   "reconstructible_source":  "REBUILD_FROM_CANONICAL_GIT",
+                                   "legacy_resident_workers":  "RETIRE_AFTER_ACCEPTED_REPLACEMENT"
+                               },
+    "hard_blockers":  [
+                          "H03_NOT_PROVISIONED",
+                          "MC008J_FINAL_PENDING",
+                          "MC009_BLOCKED_BEHIND_MC008J",
+                          "LEGACY_CUTOVER_CHAIN_BLOCKED",
+                          "EXEC_DIVISION_CONNECTORS_STILL_WINDOWS",
+                          "MCP_ARCHITECT_DIRTY_UNPUBLISHED_RISK",
+                          "LIVE_C_DIE_DIRTY_STATE",
+                          "AETHER_EXTERNAL_HOST_DEPENDENCY",
+                          "CLOUDFLARE_OLD_HOST_ROUTE_CONCENTRATION"
+                      ],
+    "authority":  {
+                      "runtime_cutover":  false,
+                      "service_stop":  false,
+                      "dns_change":  false,
+                      "spend":  false,
+                      "credential_or_session_copy":  false,
+                      "aether_mutation":  false
+                  }
+}
