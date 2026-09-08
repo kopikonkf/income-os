@@ -1,7 +1,7 @@
 # DIE Linux Principal MCP + Identity Roadmap v1
 
-Date: 2026-08-31  
-Scope: Executive, Division01, Hermes; Architect remains last.  
+Date: 2026-08-31
+Scope: Executive, Division01, Hermes; Architect Linux coexistence staging authorized before final control handoff.
 Empirical reference: stable Windows runtime plus Linux OE/Operator-v2 improvements.
 
 ## 1. Governing decision
@@ -72,7 +72,7 @@ Domain intelligence owner for digital assets: seed/context retrieval, platform/s
 Company/portfolio strategic intelligence and adversarial reviewer. It challenges opportunity quality, reviews Worth-Making/Blueprint capability when contractually required, compares cross-division tradeoffs, requests audits and escalates Founder-level decisions. It does not command workers or replace Division01 authorship.
 
 ### Architect
-DEV/control plane only. Existing graph ordering remains: non-Architect cutover through `CUT-005` first, then `MX-053`, `MX-054`, and Founder `CUT-006`. Architect migration is intentionally last.
+DEV/control plane only. Founder amendment 2026-09-08: Architect Linux staging may proceed before CUT-005 after `MCP-LNX-005` acceptance, while the Windows Architect MCP remains active as rollback/control. `MX-053 -> MX-054` may therefore execute early, but CUT-006 remains blocked on both MX-054 and CUT-005 and still requires explicit Founder action.
 
 ## 6. Cloudflare staging boundary
 
@@ -101,9 +101,9 @@ ID-LNX-000 DONE
                                             |
                                CUT-004A / CUT-004B
                                             |
-                                          CUT-005
-                                            |
-                                MX-053 -> MX-054 -> CUT-006
+MCP-LNX-005 -> MX-053 -> MX-054 -----------+
+                                             |
+CUT-004 -> CUT-005 --------------------------+-> CUT-006
 ```
 
 

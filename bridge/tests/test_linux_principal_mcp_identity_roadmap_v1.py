@@ -47,16 +47,18 @@ def test_non_architect_acceptance_is_required_before_connector_handoff() -> None
     tasks = _tasks()
     assert tasks["CUT-004A"]["depends_on"] == ["CUT-003", "MCP-LNX-005"]
     assert tasks["CUT-004B"]["depends_on"] == ["CUT-003", "MCP-LNX-005"]
-    assert tasks["MX-053"]["depends_on"] == ["CUT-005"]
+    assert tasks["MX-053"]["depends_on"] == ["MCP-LNX-005"]
+    assert tasks["MX-053"]["status"] == "READY"
     assert tasks["MX-054"]["depends_on"] == ["MX-053"]
-    assert tasks["CUT-006"]["depends_on"] == ["MX-054"]
+    assert tasks["CUT-006"]["depends_on"] == ["MX-054", "CUT-005"]
 
 
-def test_roadmap_preserves_two_lines_and_architect_last() -> None:
+def test_roadmap_preserves_two_lines_and_architect_safe_coexistence() -> None:
     text = ROADMAP.read_text(encoding="utf-8")
     assert "WAKE / COGNITION LINE" in text
     assert "RUNTIME MCP / STATE LINE" in text
     assert "Wake may trigger cognition but never substitutes for `context_snapshot`" in text
-    assert "Architect migration is intentionally last" in text
+    assert "Architect Linux staging may proceed before CUT-005" in text
+    assert "CUT-006 remains blocked on both MX-054 and CUT-005" in text
     assert "executive-mcp.aethers.biz.id" in text
     assert "division01-mcp.aethers.biz.id" in text

@@ -186,7 +186,7 @@ def validate(root: pathlib.Path, *, require_clean: bool = False) -> dict:
         expected_arch = contract["architect_boundary"]
         _assert(architect["status"] == expected_arch["component_status"], "Architect component status drift")
         _assert(architect["migration_task"] == expected_arch["migration_task"], "Architect migration task drift")
-        _assert(architect["source_refs"] == [r"D:\mcp-architect"], "Architect source must remain external/deferred")
+        _assert(architect["source_refs"] == [r"D:\mcp-architect"], "Architect canonical source reference drift")
 
         division = components["division01"]
         expected_div = contract["division01_boundary"]
@@ -201,7 +201,7 @@ def validate(root: pathlib.Path, *, require_clean: bool = False) -> dict:
         _assert(by["DIE-104"].get("depends_on") == ["DIE-103"], "DIE-104 dependency drift")
         _assert("DIE-104" in by["DIE-200"].get("depends_on", []), "DIE-200 must depend on DIE-104")
         _assert(by["MX-053"].get("depends_on") == expected_arch["mx053_depends_on"], "MX-053 ordering drift")
-        _assert(by[expected_arch["handoff_task"]].get("depends_on") == ["MX-054"], "Architect handoff ordering drift")
+        _assert(by[expected_arch["handoff_task"]].get("depends_on") == expected_arch["handoff_depends_on"], "Architect handoff ordering drift")
 
         overlay = graph.get("migration_overlay", {})
         _assert(overlay.get("aether_boundary") == contract["aether_boundary"], "Aether overlay drift")
@@ -210,7 +210,7 @@ def validate(root: pathlib.Path, *, require_clean: bool = False) -> dict:
         for token in [r"C:\aether\aether-ai-os", r"D:\aether-bridge", r"D:\aether-identity", r"D:\state-shared"]:
             _assert(token in disposition, f"Aether disposition missing: {token}")
         _assert(disposition.count("`KEEP_EXTERNAL`") >= 4, "KEEP_EXTERNAL dispositions insufficient")
-        return "Architect deferred; OAUTH separate; Aether external; task ordering intact"
+        return "Architect Linux staging authorized with Founder-gated handoff; OAUTH separate; Aether external; task ordering intact"
 
     add("migration_boundaries", migration_boundaries)
 

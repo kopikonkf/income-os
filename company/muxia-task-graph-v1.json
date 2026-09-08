@@ -805,14 +805,14 @@
                   {
                       "id":  "MX-053",
                       "phase":  14,
-                      "title":  "Architect MCP Linux build/deploy - final pre-cutover",
+                      "title":  "Architect MCP Linux coexistence staging",
                       "depends_on":  [
-                                         "CUT-005"
+                                         "MCP-LNX-005"
                                      ],
-                      "status":  "DEFERRED",
+                      "status":  "READY",
                       "artifact":  "/srv/die/company/architect source + /opt/mcp-architect Linux runtime + receipt",
-                      "acceptance":  "Linux Architect MCP is built with loopback/systemd hardening and sanitized logs while Windows Architect MCP remains available.",
-                      "resume_condition":  "All Windows-dependent migration and non-Architect cutover tasks through CUT-005 are complete."
+                      "acceptance":  "Linux Architect MCP is built with loopback/systemd hardening and sanitized logs while Windows Architect MCP remains active as rollback/control; this task does not authorize connector handoff.",
+                      "resume_condition":  "Founder authorized early Linux-native Architect coexistence staging on 2026-09-08 after MCP-LNX-005 DONE."
                   },
                   {
                       "id":  "MX-054",
@@ -830,11 +830,12 @@
                       "phase":  14,
                       "title":  "Founder Architect control-channel handoff",
                       "depends_on":  [
-                                         "MX-054"
+                                         "MX-054",
+                                         "CUT-005"
                                      ],
                       "status":  "BLOCKED",
                       "artifact":  "Founder-authorized control-channel handoff receipt",
-                      "acceptance":  "Explicit Founder action switches Architect control to Linux only after Linux E2E PASS; no remaining task depends on Windows Architect MCP access."
+                      "acceptance":  "Explicit Founder action switches Architect control to Linux only after Linux E2E PASS and CUT-005 retirement gate; no remaining task depends on Windows Architect MCP access."
                   },
                   {
                       "id":  "MX-043-R1",

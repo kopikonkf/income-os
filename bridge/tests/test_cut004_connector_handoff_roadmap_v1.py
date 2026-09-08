@@ -28,9 +28,10 @@ def test_cut004_chatgpt_connector_handoffs_are_first_class_atomic_tasks() -> Non
     assert umbrella["depends_on"] == ["CUT-004A", "CUT-004B"]
 
 
-def test_cut004_connector_handoffs_do_not_move_architect_ordering() -> None:
+def test_cut004_connector_handoffs_preserve_architect_handoff_gate() -> None:
     graph = json.loads(GRAPH.read_text(encoding="utf-8"))
     tasks = {row["id"]: row for row in graph["tasks"]}
     assert tasks["CUT-005"]["depends_on"] == ["CUT-004"]
-    assert tasks["MX-053"]["depends_on"] == ["CUT-005"]
-    assert tasks["CUT-006"]["depends_on"] == ["MX-054"]
+    assert tasks["MX-053"]["depends_on"] == ["MCP-LNX-005"]
+    assert tasks["MX-053"]["status"] == "READY"
+    assert tasks["CUT-006"]["depends_on"] == ["MX-054", "CUT-005"]
