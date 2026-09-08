@@ -67,7 +67,7 @@
     "removal_gate": "CUT-002/CUT-003 after final state sync and restore/replay proof"
   },
   "architect_boundary": {
-    "component_status": "LINUX_STAGING_AUTHORIZED",
+    "component_status": "LINUX_STAGING_LIVE",
     "migration_task": "MX-053",
     "mx053_depends_on": [
       "MCP-LNX-005"

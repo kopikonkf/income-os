@@ -210,7 +210,7 @@ def validate(root: pathlib.Path, *, require_clean: bool = False) -> dict:
         for token in [r"C:\aether\aether-ai-os", r"D:\aether-bridge", r"D:\aether-identity", r"D:\state-shared"]:
             _assert(token in disposition, f"Aether disposition missing: {token}")
         _assert(disposition.count("`KEEP_EXTERNAL`") >= 4, "KEEP_EXTERNAL dispositions insufficient")
-        return "Architect Linux staging authorized with Founder-gated handoff; OAUTH separate; Aether external; task ordering intact"
+        return "Architect Linux staging live with Founder-gated handoff; OAUTH separate; Aether external; task ordering intact"
 
     add("migration_boundaries", migration_boundaries)
 
