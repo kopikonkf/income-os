@@ -1,0 +1,23 @@
+{
+  "batch_id": "FCBATCH-FA-C011-20260908-001",
+  "browser_owner_actions": 0,
+  "phase": "TERMINAL",
+  "provider_calls_performed": false,
+  "provider_route_counts": {
+    "chatgpt": 6,
+    "qwen": 6
+  },
+  "schema": "die.factory-asset.console-batch-state.v1",
+  "semantic_asset_count": 12,
+  "source_surface": "FACTORY_CONSOLE",
+  "state_counts": {
+    "CANCELLED": 0,
+    "FAILED": 1,
+    "PAUSED": 0,
+    "READY": 0,
+    "RETRY_WAIT": 0,
+    "RUNNING": 0,
+    "SUCCEEDED": 11
+  },
+  "task_id": "FA-C011"
+}

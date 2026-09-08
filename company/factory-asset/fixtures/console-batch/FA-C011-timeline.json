@@ -1,0 +1,399 @@
+{
+  "events": [
+    {
+      "batch_id": "FCBATCH-FA-C011-20260908-001",
+      "note": null,
+      "pending_dispatch": 12,
+      "phase": "BATCH_READY",
+      "provider_calls_performed": false,
+      "running_job_ids": [],
+      "running_owners": [],
+      "schema": "die.factory-asset.console-batch-timeline-event.v1",
+      "semantic_asset_count": 12,
+      "source_surface": "FACTORY_CONSOLE",
+      "states": {
+        "CANCELLED": 0,
+        "FAILED": 0,
+        "PAUSED": 0,
+        "READY": 12,
+        "RETRY_WAIT": 0,
+        "RUNNING": 0,
+        "SUCCEEDED": 0
+      },
+      "task_id": "FA-C011",
+      "wave": 0
+    },
+    {
+      "batch_id": "FCBATCH-FA-C011-20260908-001",
+      "note": "worker-slot bound applied before outcomes",
+      "pending_dispatch": 9,
+      "phase": "WAVE_RUNNING",
+      "provider_calls_performed": false,
+      "running_job_ids": [
+        "FCJOB-FA-C011-001",
+        "FCJOB-FA-C011-002",
+        "FCJOB-FA-C011-003"
+      ],
+      "running_owners": [
+        "factory-console-c011-worker-0",
+        "factory-console-c011-worker-1",
+        "factory-console-c011-worker-2"
+      ],
+      "schema": "die.factory-asset.console-batch-timeline-event.v1",
+      "semantic_asset_count": 12,
+      "source_surface": "FACTORY_CONSOLE",
+      "states": {
+        "CANCELLED": 0,
+        "FAILED": 0,
+        "PAUSED": 0,
+        "READY": 9,
+        "RETRY_WAIT": 0,
+        "RUNNING": 3,
+        "SUCCEEDED": 0
+      },
+      "task_id": "FA-C011",
+      "wave": 1
+    },
+    {
+      "batch_id": "FCBATCH-FA-C011-20260908-001",
+      "note": "FCJOB-FA-C011-003",
+      "pending_dispatch": 9,
+      "phase": "JOB_PAUSED",
+      "provider_calls_performed": false,
+      "running_job_ids": [],
+      "running_owners": [],
+      "schema": "die.factory-asset.console-batch-timeline-event.v1",
+      "semantic_asset_count": 12,
+      "source_surface": "FACTORY_CONSOLE",
+      "states": {
+        "CANCELLED": 0,
+        "FAILED": 0,
+        "PAUSED": 1,
+        "READY": 9,
+        "RETRY_WAIT": 0,
+        "RUNNING": 0,
+        "SUCCEEDED": 2
+      },
+      "task_id": "FA-C011",
+      "wave": 1
+    },
+    {
+      "batch_id": "FCBATCH-FA-C011-20260908-001",
+      "note": "FCJOB-FA-C011-003",
+      "pending_dispatch": 10,
+      "phase": "JOB_RESUMED",
+      "provider_calls_performed": false,
+      "running_job_ids": [],
+      "running_owners": [],
+      "schema": "die.factory-asset.console-batch-timeline-event.v1",
+      "semantic_asset_count": 12,
+      "source_surface": "FACTORY_CONSOLE",
+      "states": {
+        "CANCELLED": 0,
+        "FAILED": 0,
+        "PAUSED": 0,
+        "READY": 10,
+        "RETRY_WAIT": 0,
+        "RUNNING": 0,
+        "SUCCEEDED": 2
+      },
+      "task_id": "FA-C011",
+      "wave": 1
+    },
+    {
+      "batch_id": "FCBATCH-FA-C011-20260908-001",
+      "note": null,
+      "pending_dispatch": 10,
+      "phase": "WAVE_SETTLED",
+      "provider_calls_performed": false,
+      "running_job_ids": [],
+      "running_owners": [],
+      "schema": "die.factory-asset.console-batch-timeline-event.v1",
+      "semantic_asset_count": 12,
+      "source_surface": "FACTORY_CONSOLE",
+      "states": {
+        "CANCELLED": 0,
+        "FAILED": 0,
+        "PAUSED": 0,
+        "READY": 10,
+        "RETRY_WAIT": 0,
+        "RUNNING": 0,
+        "SUCCEEDED": 2
+      },
+      "task_id": "FA-C011",
+      "wave": 1
+    },
+    {
+      "batch_id": "FCBATCH-FA-C011-20260908-001",
+      "note": "worker-slot bound applied before outcomes",
+      "pending_dispatch": 7,
+      "phase": "WAVE_RUNNING",
+      "provider_calls_performed": false,
+      "running_job_ids": [
+        "FCJOB-FA-C011-004",
+        "FCJOB-FA-C011-005",
+        "FCJOB-FA-C011-006"
+      ],
+      "running_owners": [
+        "factory-console-c011-worker-0",
+        "factory-console-c011-worker-1",
+        "factory-console-c011-worker-2"
+      ],
+      "schema": "die.factory-asset.console-batch-timeline-event.v1",
+      "semantic_asset_count": 12,
+      "source_surface": "FACTORY_CONSOLE",
+      "states": {
+        "CANCELLED": 0,
+        "FAILED": 0,
+        "PAUSED": 0,
+        "READY": 7,
+        "RETRY_WAIT": 0,
+        "RUNNING": 3,
+        "SUCCEEDED": 2
+      },
+      "task_id": "FA-C011",
+      "wave": 2
+    },
+    {
+      "batch_id": "FCBATCH-FA-C011-20260908-001",
+      "note": "FCJOB-FA-C011-005",
+      "pending_dispatch": 7,
+      "phase": "JOB_RETRY_WAIT",
+      "provider_calls_performed": false,
+      "running_job_ids": [
+        "FCJOB-FA-C011-006"
+      ],
+      "running_owners": [
+        "factory-console-c011-worker-2"
+      ],
+      "schema": "die.factory-asset.console-batch-timeline-event.v1",
+      "semantic_asset_count": 12,
+      "source_surface": "FACTORY_CONSOLE",
+      "states": {
+        "CANCELLED": 0,
+        "FAILED": 0,
+        "PAUSED": 0,
+        "READY": 7,
+        "RETRY_WAIT": 1,
+        "RUNNING": 1,
+        "SUCCEEDED": 3
+      },
+      "task_id": "FA-C011",
+      "wave": 2
+    },
+    {
+      "batch_id": "FCBATCH-FA-C011-20260908-001",
+      "note": null,
+      "pending_dispatch": 8,
+      "phase": "WAVE_SETTLED",
+      "provider_calls_performed": false,
+      "running_job_ids": [],
+      "running_owners": [],
+      "schema": "die.factory-asset.console-batch-timeline-event.v1",
+      "semantic_asset_count": 12,
+      "source_surface": "FACTORY_CONSOLE",
+      "states": {
+        "CANCELLED": 0,
+        "FAILED": 0,
+        "PAUSED": 0,
+        "READY": 8,
+        "RETRY_WAIT": 0,
+        "RUNNING": 0,
+        "SUCCEEDED": 4
+      },
+      "task_id": "FA-C011",
+      "wave": 2
+    },
+    {
+      "batch_id": "FCBATCH-FA-C011-20260908-001",
+      "note": "worker-slot bound applied before outcomes",
+      "pending_dispatch": 5,
+      "phase": "WAVE_RUNNING",
+      "provider_calls_performed": false,
+      "running_job_ids": [
+        "FCJOB-FA-C011-007",
+        "FCJOB-FA-C011-008",
+        "FCJOB-FA-C011-009"
+      ],
+      "running_owners": [
+        "factory-console-c011-worker-0",
+        "factory-console-c011-worker-1",
+        "factory-console-c011-worker-2"
+      ],
+      "schema": "die.factory-asset.console-batch-timeline-event.v1",
+      "semantic_asset_count": 12,
+      "source_surface": "FACTORY_CONSOLE",
+      "states": {
+        "CANCELLED": 0,
+        "FAILED": 0,
+        "PAUSED": 0,
+        "READY": 5,
+        "RETRY_WAIT": 0,
+        "RUNNING": 3,
+        "SUCCEEDED": 4
+      },
+      "task_id": "FA-C011",
+      "wave": 3
+    },
+    {
+      "batch_id": "FCBATCH-FA-C011-20260908-001",
+      "note": "FCJOB-FA-C011-007",
+      "pending_dispatch": 5,
+      "phase": "JOB_PARTIAL_FAILURE",
+      "provider_calls_performed": false,
+      "running_job_ids": [
+        "FCJOB-FA-C011-008",
+        "FCJOB-FA-C011-009"
+      ],
+      "running_owners": [
+        "factory-console-c011-worker-1",
+        "factory-console-c011-worker-2"
+      ],
+      "schema": "die.factory-asset.console-batch-timeline-event.v1",
+      "semantic_asset_count": 12,
+      "source_surface": "FACTORY_CONSOLE",
+      "states": {
+        "CANCELLED": 0,
+        "FAILED": 1,
+        "PAUSED": 0,
+        "READY": 5,
+        "RETRY_WAIT": 0,
+        "RUNNING": 2,
+        "SUCCEEDED": 4
+      },
+      "task_id": "FA-C011",
+      "wave": 3
+    },
+    {
+      "batch_id": "FCBATCH-FA-C011-20260908-001",
+      "note": null,
+      "pending_dispatch": 5,
+      "phase": "WAVE_SETTLED",
+      "provider_calls_performed": false,
+      "running_job_ids": [],
+      "running_owners": [],
+      "schema": "die.factory-asset.console-batch-timeline-event.v1",
+      "semantic_asset_count": 12,
+      "source_surface": "FACTORY_CONSOLE",
+      "states": {
+        "CANCELLED": 0,
+        "FAILED": 1,
+        "PAUSED": 0,
+        "READY": 5,
+        "RETRY_WAIT": 0,
+        "RUNNING": 0,
+        "SUCCEEDED": 6
+      },
+      "task_id": "FA-C011",
+      "wave": 3
+    },
+    {
+      "batch_id": "FCBATCH-FA-C011-20260908-001",
+      "note": "worker-slot bound applied before outcomes",
+      "pending_dispatch": 2,
+      "phase": "WAVE_RUNNING",
+      "provider_calls_performed": false,
+      "running_job_ids": [
+        "FCJOB-FA-C011-010",
+        "FCJOB-FA-C011-011",
+        "FCJOB-FA-C011-012"
+      ],
+      "running_owners": [
+        "factory-console-c011-worker-0",
+        "factory-console-c011-worker-1",
+        "factory-console-c011-worker-2"
+      ],
+      "schema": "die.factory-asset.console-batch-timeline-event.v1",
+      "semantic_asset_count": 12,
+      "source_surface": "FACTORY_CONSOLE",
+      "states": {
+        "CANCELLED": 0,
+        "FAILED": 1,
+        "PAUSED": 0,
+        "READY": 2,
+        "RETRY_WAIT": 0,
+        "RUNNING": 3,
+        "SUCCEEDED": 6
+      },
+      "task_id": "FA-C011",
+      "wave": 4
+    },
+    {
+      "batch_id": "FCBATCH-FA-C011-20260908-001",
+      "note": null,
+      "pending_dispatch": 2,
+      "phase": "WAVE_SETTLED",
+      "provider_calls_performed": false,
+      "running_job_ids": [],
+      "running_owners": [],
+      "schema": "die.factory-asset.console-batch-timeline-event.v1",
+      "semantic_asset_count": 12,
+      "source_surface": "FACTORY_CONSOLE",
+      "states": {
+        "CANCELLED": 0,
+        "FAILED": 1,
+        "PAUSED": 0,
+        "READY": 2,
+        "RETRY_WAIT": 0,
+        "RUNNING": 0,
+        "SUCCEEDED": 9
+      },
+      "task_id": "FA-C011",
+      "wave": 4
+    },
+    {
+      "batch_id": "FCBATCH-FA-C011-20260908-001",
+      "note": "worker-slot bound applied before outcomes",
+      "pending_dispatch": 0,
+      "phase": "WAVE_RUNNING",
+      "provider_calls_performed": false,
+      "running_job_ids": [
+        "FCJOB-FA-C011-003",
+        "FCJOB-FA-C011-005"
+      ],
+      "running_owners": [
+        "factory-console-c011-worker-0",
+        "factory-console-c011-worker-1"
+      ],
+      "schema": "die.factory-asset.console-batch-timeline-event.v1",
+      "semantic_asset_count": 12,
+      "source_surface": "FACTORY_CONSOLE",
+      "states": {
+        "CANCELLED": 0,
+        "FAILED": 1,
+        "PAUSED": 0,
+        "READY": 0,
+        "RETRY_WAIT": 0,
+        "RUNNING": 2,
+        "SUCCEEDED": 9
+      },
+      "task_id": "FA-C011",
+      "wave": 5
+    },
+    {
+      "batch_id": "FCBATCH-FA-C011-20260908-001",
+      "note": null,
+      "pending_dispatch": 0,
+      "phase": "WAVE_SETTLED",
+      "provider_calls_performed": false,
+      "running_job_ids": [],
+      "running_owners": [],
+      "schema": "die.factory-asset.console-batch-timeline-event.v1",
+      "semantic_asset_count": 12,
+      "source_surface": "FACTORY_CONSOLE",
+      "states": {
+        "CANCELLED": 0,
+        "FAILED": 1,
+        "PAUSED": 0,
+        "READY": 0,
+        "RETRY_WAIT": 0,
+        "RUNNING": 0,
+        "SUCCEEDED": 11
+      },
+      "task_id": "FA-C011",
+      "wave": 5
+    }
+  ],
+  "schema": "die.factory-asset.console-batch-timeline.v1",
+  "task_id": "FA-C011"
+}

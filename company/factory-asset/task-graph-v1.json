@@ -1965,11 +1965,11 @@
         "FA-C010",
         "FA-120"
       ],
-      "status": "READY",
-      "artifact": "company/factory-asset/receipts/FA-C011-console-batch-acceptance.receipt.json",
+      "status": "DONE",
+      "artifact": "company/factory-asset/receipts/FA-C011-console-batch-acceptance.receipt.json; company/factory-asset/fixtures/console-batch/FA-C011-final-result.json; company/factory-asset/fixtures/console-batch/FA-C011-console-state.json; company/factory-asset/fixtures/console-batch/FA-C011-timeline.json; company/factory-asset/lib/console_batch_acceptance.py",
       "acceptance": "Bounded batch proves queue progress, provider routing, backpressure, pause/resume and partial failures without duplicate ownership or semantic-count inflation.",
-      "updated_at": "2026-09-07",
-      "result": "READY: FA-C010 and FA-120 dependencies are DONE; no FA-C011 execution occurred in the FA-C010 acceptance run."
+      "completed_at": "2026-09-08",
+      "result": "PASS: deterministic zero-provider Factory Console batch acceptance processed 12 semantic jobs through five bounded waves with three concurrent worker slots, four backpressure events, synthetic provider routing split Qwen 6 / ChatGPT 6, one pause/resume cycle, one bounded retry, and one terminal partial failure while seven later jobs still succeeded. Final state was 11 SUCCEEDED + 1 FAILED across exactly 12 unique semantic assets and 14 attempts; three duplicate submissions were idempotently reused, one idempotency conflict and one duplicate ownership attempt were blocked, and no semantic-count inflation occurred. Provider/browser calls, credential or cookie/token reads, spend, account actions, marketplace actions and production mutations were all zero. Validation: focused 20 PASS; Factory 728 PASS with only the out-of-scope FA-121 live-broker oneshot omitted; one-canon 6 PASS; validator 11/11 PASS."
     },
     {
       "id": "FA-C012",
@@ -1980,9 +1980,11 @@
       "depends_on": [
         "FA-C011"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "artifact": "company/factory-asset/receipts/FA-C012-console-recovery.receipt.json",
-      "acceptance": "Browser/UI restart and Factory process interruption preserve durable job truth; resumed UI reconciles from Factory Core and never creates false success or duplicate dispatch."
+      "acceptance": "Browser/UI restart and Factory process interruption preserve durable job truth; resumed UI reconciles from Factory Core and never creates false success or duplicate dispatch.",
+      "updated_at": "2026-09-08",
+      "result": "READY: FA-C011 dependency is DONE/PASS; no FA-C012 implementation or recovery execution occurred in the FA-C011 run."
     },
     {
       "id": "FA-C013",
