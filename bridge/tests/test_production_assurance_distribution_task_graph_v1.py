@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 from pathlib import Path
@@ -132,7 +132,10 @@ def test_operator_acceptance_and_reliability_open_parallel_soak_and_qa_readiness
     assert tasks["SUB-001D"]["status"] == "DONE"
     assert tasks["SUB-001E"]["status"] == "DONE"
     assert tasks["SUB-001F"]["status"] == "DONE"
-    assert tasks["SUB-001"]["status"] == "READY"
+    assert tasks["SUB-001"]["status"] in {"READY", "DONE"}
+    marketplace_contracts = ("SUB-ADOBEA", "SUB-DREAMSTIMEA", "SUB-123RFA", "SUB-VECTEEZYA", "SUB-MOTIONELEMENTSA")
+    expected_marketplace_status = "READY" if tasks["SUB-001"]["status"] == "DONE" else "BLOCKED"
+    assert all(tasks[task_id]["status"] == expected_marketplace_status for task_id in marketplace_contracts)
     pad_statuses = {row["status"] for task_id, row in tasks.items() if task_id.startswith(("QA-", "QC-", "SUB-", "CL-"))}
     assert pad_statuses == {"DONE", "READY", "BLOCKED"}
     taskdoc = TASKDOC.read_text(encoding="utf-8")

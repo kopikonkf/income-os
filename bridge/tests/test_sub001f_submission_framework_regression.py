@@ -325,6 +325,7 @@ def test_sub001f_graph_transition_is_dependency_bounded() -> None:
     if tasks["SUB-001F"]["status"] == "READY":
         assert tasks["SUB-001"]["status"] == "BLOCKED"
     else:
-        assert tasks["SUB-001"]["status"] == "READY"
+        assert tasks["SUB-001"]["status"] in {"READY", "DONE"}
+    expected_marketplace_status = "READY" if tasks["SUB-001"]["status"] == "DONE" else "BLOCKED"
     for marketplace in ("SUB-ADOBEA", "SUB-DREAMSTIMEA", "SUB-123RFA", "SUB-VECTEEZYA", "SUB-MOTIONELEMENTSA"):
-        assert tasks[marketplace]["status"] == "BLOCKED"
+        assert tasks[marketplace]["status"] == expected_marketplace_status
