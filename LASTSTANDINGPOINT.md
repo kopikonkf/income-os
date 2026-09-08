@@ -3982,3 +3982,10 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - The affected broker profiles were `chatgpt-linux-a` (Cluster A) and `web-ai-cluster-b` (Cluster B). The Cluster B controlled comparison proved the session was valid: headless Chromium received `Just a moment...`, while the same profile in headed Xvfb immediately returned `COMPOSER_READY` with CDP still present.
 - Cluster B is therefore recovered server-side without Founder intervention: headed-Xvfb broker, ChatGPT HEALTHY+writable, Qwen HEALTHY, zero leases leaked, zero provider calls/challenge bypass/secret reads. Production MUXIA headed `chatgpt-linux-a` remained untouched and has recent successful PRODSEED receipts.
 - ChatGPT Cluster B headed-broker hotfix Linux validation: 14 focused PASS, 747 Factory PASS, one-canon 6 PASS, validator 11/11 PASS, secret hits 0.
+
+
+---
+
+## 2026-09-08 - Cluster broker CDP disconnect lifecycle hotfix
+- Fixed a separate broker lifecycle bug discovered during ChatGPT B recovery: CDP client cleanup used `browser.close()` and could close the broker-owned browser context. Transport-only connection close now preserves the owner; live proof kept the same owner PID and allowed a fresh lease afterward. No provider call or secret read was involved.
+- CDP disconnect hotfix Linux validation: 20 focused PASS, 749 Factory PASS, one-canon 6 PASS, validator 11/11 PASS, secret hits 0.

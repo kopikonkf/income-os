@@ -52,9 +52,13 @@ export async function connectClusterBrowser({ controlBaseUrl, playwrightEntry, t
   const disconnect = async () => {
     if (disconnected) return;
     disconnected = true;
-    // For a Browser created by connectOverCDP, Playwright's close path closes
-    // this CDP client's transport. The broker-owned Chromium process remains up.
-    await browser.close({ reason: 'DIE_CDP_CLIENT_DISCONNECT' }).catch(() => {});
+    // Browser.close() on a connectOverCDP Browser sends a browser-close command and
+    // can terminate the broker-owned Chromium. Playwright has no public disconnect
+    // API, so close only this client Connection transport. This private API is
+    // intentionally pinned by regression coverage and must fail closed if removed.
+    const connection = browser?._connection;
+    if (!connection || typeof connection.close !== 'function') throw new Error('E_CLUSTER_BROKER_CDP_CLIENT_DISCONNECT_UNSUPPORTED');
+    connection.close();
   };
   return { browser, attach, ownership: 'BROKER_OWNS_BROWSER', disconnect };
 }

@@ -859,3 +859,13 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Canonical current-state evidence: `company/factory-asset/fixtures/multi-cluster/FA-HOTFIX-chatgpt-cluster-b-headed-recovery.json` and receipt `company/factory-asset/receipts/FA-HOTFIX-chatgpt-cluster-b-headed-recovery.receipt.json`. Historical FA-305 headless evidence remains unchanged.
 - Cluster B registry now promotes ChatGPT from `DEGRADED_NOT_SCHEDULABLE` to `ACTIVE` on the headed-Xvfb broker path. Cluster A headless broker remains unchanged because `chatgpt-linux-a` is also used by the production MUXIA headed runner and ownership convergence is a separate concern.
 - Post-hotfix Linux validation: 14 focused PASS; Factory regression 747 PASS with one PyPDF2 deprecation warning and only the out-of-scope FA-121 live-broker oneshot excluded; one-canon 6 PASS; validator 11/11 PASS; secret hits 0.
+
+
+---
+
+## 2026-09-08 - Broker CDP client disconnect hotfix PASS
+- Follow-up after ChatGPT Cluster B recovery found a separate lifecycle defect: `connectClusterBrowser()` used `browser.close()` after `chromium.connectOverCDP()`. Live evidence showed that this closed the broker-owned browser context, causing the next lease to fail with `Target page, context or browser has been closed` even though the broker service process still appeared READY.
+- Controlled live proof on Cluster B confirmed the correct transport-only path: calling the Playwright client connection close left broker owner PID 760771 unchanged, broker state READY, and a new Qwen lease could be acquired and released immediately afterward.
+- Canonical fix changes disconnect to `browser._connection.close()` and fails closed if that pinned Playwright private transport API disappears. Regression coverage asserts the helper never sends `browser.close()` to a broker-owned CDP browser.
+- Zero provider generation, secret reads, spend, account actions, submission or publication occurred. Receipt: `company/factory-asset/receipts/FA-HOTFIX-cluster-cdp-client-disconnect.receipt.json`.
+- Post-hotfix Linux validation: 20 focused PASS; Factory regression 749 PASS with one PyPDF2 deprecation warning and only the out-of-scope FA-121 live-broker oneshot excluded; one-canon 6 PASS; validator 11/11 PASS; secret hits 0.
