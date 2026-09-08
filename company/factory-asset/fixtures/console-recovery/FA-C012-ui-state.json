@@ -1,0 +1,100 @@
+{
+  "events": [
+    {
+      "artifact_sha256": null,
+      "attempts": 1,
+      "blueprint_id": "FABP-FA-C012-PAUSED",
+      "failure_code": null,
+      "job_id": "FCJOB-FA-C012-PAUSED",
+      "kind": "QUEUE_EVENT",
+      "label": "FA-C012 PAUSED",
+      "provider_id": null,
+      "recovery_count": 0,
+      "retries": 0,
+      "schema": "die.factory-asset.console-api.v1",
+      "semantic_asset_id": "FASA-FA-C012-PAUSED",
+      "state": "PAUSED"
+    },
+    {
+      "artifact_sha256": null,
+      "attempts": 0,
+      "blueprint_id": "FABP-FA-C012-READY",
+      "failure_code": null,
+      "job_id": "FCJOB-FA-C012-READY",
+      "kind": "QUEUE_EVENT",
+      "label": "FA-C012 READY",
+      "provider_id": null,
+      "recovery_count": 0,
+      "retries": 0,
+      "schema": "die.factory-asset.console-api.v1",
+      "semantic_asset_id": "FASA-FA-C012-READY",
+      "state": "READY"
+    },
+    {
+      "artifact_sha256": null,
+      "attempts": 1,
+      "blueprint_id": "FABP-FA-C012-RETRY-WAIT",
+      "failure_code": "RATE_LIMITED",
+      "job_id": "FCJOB-FA-C012-RETRY-WAIT",
+      "kind": "QUEUE_EVENT",
+      "label": "FA-C012 RETRY-WAIT",
+      "provider_id": null,
+      "recovery_count": 0,
+      "retries": 0,
+      "schema": "die.factory-asset.console-api.v1",
+      "semantic_asset_id": "FASA-FA-C012-RETRY-WAIT",
+      "state": "RETRY_WAIT"
+    },
+    {
+      "artifact_sha256": null,
+      "attempts": 1,
+      "blueprint_id": "FABP-FA-C012-RUNNING-COMMITTED",
+      "failure_code": "DISPATCH_RECONCILIATION_REQUIRED",
+      "job_id": "FCJOB-FA-C012-RUNNING-COMMITTED",
+      "kind": "QUEUE_EVENT",
+      "label": "FA-C012 RUNNING-COMMITTED",
+      "provider_id": "qwen",
+      "recovery_count": 1,
+      "retries": 0,
+      "schema": "die.factory-asset.console-api.v1",
+      "semantic_asset_id": "FASA-FA-C012-RUNNING-COMMITTED",
+      "state": "PAUSED"
+    },
+    {
+      "artifact_sha256": null,
+      "attempts": 1,
+      "blueprint_id": "FABP-FA-C012-RUNNING-UNCOMMITTED",
+      "failure_code": null,
+      "job_id": "FCJOB-FA-C012-RUNNING-UNCOMMITTED",
+      "kind": "QUEUE_EVENT",
+      "label": "FA-C012 RUNNING-UNCOMMITTED",
+      "provider_id": "qwen",
+      "recovery_count": 1,
+      "retries": 0,
+      "schema": "die.factory-asset.console-api.v1",
+      "semantic_asset_id": "FASA-FA-C012-RUNNING-UNCOMMITTED",
+      "state": "READY"
+    },
+    {
+      "artifact_sha256": "ef372404aa24554eb74f41d2739bb31d77875f516a26a6eabfaadeebfb005035",
+      "attempts": 1,
+      "blueprint_id": "FABP-FA-C012-SUCCEEDED",
+      "failure_code": null,
+      "job_id": "FCJOB-FA-C012-SUCCEEDED",
+      "kind": "QUEUE_EVENT",
+      "label": "FA-C012 SUCCEEDED",
+      "provider_id": null,
+      "recovery_count": 0,
+      "retries": 0,
+      "schema": "die.factory-asset.console-api.v1",
+      "semantic_asset_id": "FASA-FA-C012-SUCCEEDED",
+      "state": "SUCCEEDED"
+    }
+  ],
+  "provider_dispatch_performed": false,
+  "reconciliation_required_job_ids": [
+    "FCJOB-FA-C012-RUNNING-COMMITTED"
+  ],
+  "schema": "die.factory-asset.console-recovery-ui-state.v1",
+  "task_id": "FA-C012"
+}

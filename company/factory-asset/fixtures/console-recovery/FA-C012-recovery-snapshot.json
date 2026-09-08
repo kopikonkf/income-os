@@ -1,0 +1,150 @@
+{
+  "browser_owner_actions": 0,
+  "cookies_or_tokens_read": false,
+  "credential_values_read": false,
+  "dispatch_fences": {
+    "FCJOB-FA-C012-RUNNING-COMMITTED": {
+      "attempt": 1,
+      "commit_id": "f70d994f4f079804ad1acb60f735c15a6abb89e9c5eaa0c0f97282abf82cc58e",
+      "external_commit_key": "synthetic:fa-c012:committed-before-crash",
+      "idempotency_key": "fb45725dbc2648825a4090196fe04684cd7dc15da140bddb41c3bdadfb33e42b",
+      "job_id": "FCJOB-FA-C012-RUNNING-COMMITTED",
+      "schema": "die.factory-asset.generation-commit.v1"
+    }
+  },
+  "provider_calls_performed": false,
+  "queue_snapshot": {
+    "jobs": [
+      {
+        "artifact_sha256": null,
+        "attempts": 1,
+        "failure_code": null,
+        "idempotency_key": "d02233b9db55241e2e993204df9ebe00eb7a1bdfc16de6ec5542274a714ac308",
+        "intent": {
+          "blueprint_id": "FABP-FA-C012-PAUSED",
+          "label": "FA-C012 PAUSED",
+          "provider_id": null,
+          "semantic_asset_id": "FASA-FA-C012-PAUSED",
+          "source_surface": "FACTORY_CONSOLE",
+          "task_id": "FA-C012"
+        },
+        "intent_hash": "d912ae25685cadfebb5c79c2066db6c9a231adf25250c14f860944d089e694b2",
+        "job_id": "FCJOB-FA-C012-PAUSED",
+        "lease_token": null,
+        "owner": null,
+        "recovery_count": 0,
+        "retries": 0,
+        "state": "PAUSED"
+      },
+      {
+        "artifact_sha256": null,
+        "attempts": 0,
+        "failure_code": null,
+        "idempotency_key": "9d6f21c578973df244af0a0ffb75a537466c07ed9f53d5de735ce85df18c0da6",
+        "intent": {
+          "blueprint_id": "FABP-FA-C012-READY",
+          "label": "FA-C012 READY",
+          "provider_id": null,
+          "semantic_asset_id": "FASA-FA-C012-READY",
+          "source_surface": "FACTORY_CONSOLE",
+          "task_id": "FA-C012"
+        },
+        "intent_hash": "530e5be9d9834ba4bca6caa5ecf725e634a4c5c477c0f905f96a15210adcaf4f",
+        "job_id": "FCJOB-FA-C012-READY",
+        "lease_token": null,
+        "owner": null,
+        "recovery_count": 0,
+        "retries": 0,
+        "state": "READY"
+      },
+      {
+        "artifact_sha256": null,
+        "attempts": 1,
+        "failure_code": "RATE_LIMITED",
+        "idempotency_key": "5f48188f10a602edf46d2f133bc41724406a35d14488263a5fc3fe1d081f2291",
+        "intent": {
+          "blueprint_id": "FABP-FA-C012-RETRY-WAIT",
+          "label": "FA-C012 RETRY-WAIT",
+          "provider_id": null,
+          "semantic_asset_id": "FASA-FA-C012-RETRY-WAIT",
+          "source_surface": "FACTORY_CONSOLE",
+          "task_id": "FA-C012"
+        },
+        "intent_hash": "900c4203de4199ede68a3b9562921461b3ef34323f615fee1c9196b23607c1b7",
+        "job_id": "FCJOB-FA-C012-RETRY-WAIT",
+        "lease_token": null,
+        "owner": null,
+        "recovery_count": 0,
+        "retries": 0,
+        "state": "RETRY_WAIT"
+      },
+      {
+        "artifact_sha256": null,
+        "attempts": 1,
+        "failure_code": null,
+        "idempotency_key": "fb45725dbc2648825a4090196fe04684cd7dc15da140bddb41c3bdadfb33e42b",
+        "intent": {
+          "blueprint_id": "FABP-FA-C012-RUNNING-COMMITTED",
+          "label": "FA-C012 RUNNING-COMMITTED",
+          "provider_id": "qwen",
+          "semantic_asset_id": "FASA-FA-C012-RUNNING-COMMITTED",
+          "source_surface": "FACTORY_CONSOLE",
+          "task_id": "FA-C012"
+        },
+        "intent_hash": "99d53272e1b12e67b2623d751e7247e5bfd210fc64291933c5ebb5863a57fcde",
+        "job_id": "FCJOB-FA-C012-RUNNING-COMMITTED",
+        "lease_token": "77081b0341402cf2f53a3d8e7d576ee375a2c1c81542edaf0af502590b8d9f59",
+        "owner": "factory-c012-worker-e",
+        "recovery_count": 0,
+        "retries": 0,
+        "state": "RUNNING"
+      },
+      {
+        "artifact_sha256": null,
+        "attempts": 1,
+        "failure_code": null,
+        "idempotency_key": "fa4492bd2a261bce2e6131a4a0ede25eae0530955d87c5bece7e3eec2d7c64a9",
+        "intent": {
+          "blueprint_id": "FABP-FA-C012-RUNNING-UNCOMMITTED",
+          "label": "FA-C012 RUNNING-UNCOMMITTED",
+          "provider_id": "qwen",
+          "semantic_asset_id": "FASA-FA-C012-RUNNING-UNCOMMITTED",
+          "source_surface": "FACTORY_CONSOLE",
+          "task_id": "FA-C012"
+        },
+        "intent_hash": "dfaa1b19b316865853e7c214b2d4fa95a64f62244a79c8bd90ce1ebaf5925c10",
+        "job_id": "FCJOB-FA-C012-RUNNING-UNCOMMITTED",
+        "lease_token": "66eb0a386bd1ddcd90ba9e5d0e2c34755519d15d7c5d93697468deb6802cf16b",
+        "owner": "factory-c012-worker-a",
+        "recovery_count": 0,
+        "retries": 0,
+        "state": "RUNNING"
+      },
+      {
+        "artifact_sha256": "ef372404aa24554eb74f41d2739bb31d77875f516a26a6eabfaadeebfb005035",
+        "attempts": 1,
+        "failure_code": null,
+        "idempotency_key": "a2ebb1c2be89d1f0bb864eac07ff72d840c677402cf6c0ef2bd8423a4594a958",
+        "intent": {
+          "blueprint_id": "FABP-FA-C012-SUCCEEDED",
+          "label": "FA-C012 SUCCEEDED",
+          "provider_id": null,
+          "semantic_asset_id": "FASA-FA-C012-SUCCEEDED",
+          "source_surface": "FACTORY_CONSOLE",
+          "task_id": "FA-C012"
+        },
+        "intent_hash": "de2cf32675f5ba6a2fdf845beb6c4c91f23a1e5fd9e0274e4cdcce334dd87961",
+        "job_id": "FCJOB-FA-C012-SUCCEEDED",
+        "lease_token": null,
+        "owner": null,
+        "recovery_count": 0,
+        "retries": 0,
+        "state": "SUCCEEDED"
+      }
+    ],
+    "schema": "die.factory-asset.job-queue.snapshot.v1"
+  },
+  "schema": "die.factory-asset.console-recovery-snapshot.v1",
+  "snapshot_sha256": "cfbad34449ebbbb6294d41374c7a59c1587a8cf87d1cd2bb596783e2e09c743b",
+  "task_id": "FA-C012"
+}

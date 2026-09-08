@@ -1,0 +1,92 @@
+{
+  "schema": "die.factory-asset.fa-c012-console-recovery.receipt.v1",
+  "task_id": "FA-C012",
+  "date": "2026-09-08",
+  "status": "DONE",
+  "result": "PASS",
+  "acceptance": "Browser/UI restart and Factory process interruption preserve durable job truth; resumed UI reconciles from Factory Core and never creates false success or duplicate dispatch.",
+  "base_main": "dc7bda68282ba3763241f2806c93ae3f3d798b07",
+  "execution_mode": "DETERMINISTIC_ZERO_PROVIDER_RECOVERY_ACCEPTANCE",
+  "implementation": {
+    "recovery_harness": "company/factory-asset/lib/console_recovery_acceptance.py",
+    "runner": "company/factory-asset/bin/run_fa_c012_console_recovery_acceptance.py",
+    "console_server": "company/factory-asset/console-prototype/server.py",
+    "tests": "company/factory-asset/tests/test_console_recovery_acceptance.py"
+  },
+  "canonical_evidence": {
+    "final_result": {
+      "ref": "company/factory-asset/fixtures/console-recovery/FA-C012-final-result.json",
+      "sha256": "db24598e3681772442adbee1c01f89b4881d21e3247b50aec25467f4b34b91d0"
+    },
+    "recovery_snapshot": {
+      "ref": "company/factory-asset/fixtures/console-recovery/FA-C012-recovery-snapshot.json",
+      "sha256": "ac4e46744a77b95f8c97c40a075690502e8da6c1ecc68dac85a00f9657ddeb8d"
+    },
+    "reconciliation": {
+      "ref": "company/factory-asset/fixtures/console-recovery/FA-C012-reconciliation.json",
+      "sha256": "d98c6921459267c748c89192c9f775a94a49fdf659d8ad4a1aa5be9d4859aef3"
+    },
+    "ui_state": {
+      "ref": "company/factory-asset/fixtures/console-recovery/FA-C012-ui-state.json",
+      "sha256": "686abafe5d024a0a2b871f2b79d88db821088838043515b4dc10d82195a60eca"
+    },
+    "runtime_workspace": "/home/kopiko/factory-asset-canaries/fa-c012-console-recovery-20260908-r1"
+  },
+  "recovery_truth": {
+    "precrash": {
+      "READY": 1,
+      "RUNNING": 2,
+      "PAUSED": 1,
+      "RETRY_WAIT": 1,
+      "SUCCEEDED": 1
+    },
+    "postrecovery": {
+      "READY": 2,
+      "RUNNING": 0,
+      "PAUSED": 2,
+      "RETRY_WAIT": 1,
+      "SUCCEEDED": 1
+    },
+    "uncommitted_running": "RECOVERED_TO_READY_WITH_RECOVERY_COUNT_1",
+    "committed_dispatch": "PAUSED_DISPATCH_RECONCILIATION_REQUIRED",
+    "existing_success": "PRESERVED_EXACTLY",
+    "paused_state": "PRESERVED",
+    "retry_wait_state": "PRESERVED",
+    "false_success_created": false,
+    "duplicate_dispatch_blocked": true
+  },
+  "console_restart": {
+    "fresh_server_instances_compared": 2,
+    "normalized_queue_truth_identical": true,
+    "ui_source_of_truth": "RECOVERED_FACTORY_CORE_QUEUE",
+    "reconciliation_required_job_ids": [
+      "FCJOB-FA-C012-RUNNING-COMMITTED"
+    ],
+    "redispatch_capable_actions_blocked_while_fenced": [
+      "START",
+      "RESUME",
+      "RETRY"
+    ]
+  },
+  "authority_and_safety": {
+    "provider_calls_performed": false,
+    "browser_owner_actions": 0,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "spend_usd": 0,
+    "account_actions": 0,
+    "marketplace_actions": 0,
+    "production_runtime_touched": false
+  },
+  "validation": {
+    "focused_recovery_plus_queue_console_regressions": "31 passed",
+    "factory_regression": "736 passed, 1 PyPDF2 deprecation warning; FA-121 live-broker oneshot test excluded as out of FA-C012 zero-provider scope",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "company_secret_scan_hits": 0,
+    "python_compile": "PASS"
+  },
+  "dependency_reconciliation": {
+    "FA-C013": "BLOCKED: FA-C012 is DONE/PASS but FA-124 remains incomplete; no FA-C013 Founder acceptance executed."
+  }
+}

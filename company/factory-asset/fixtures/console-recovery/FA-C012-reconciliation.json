@@ -1,0 +1,22 @@
+{
+  "browser_owner_actions": 0,
+  "preserved_paused_job_ids": [
+    "FCJOB-FA-C012-PAUSED"
+  ],
+  "preserved_retry_wait_job_ids": [
+    "FCJOB-FA-C012-RETRY-WAIT"
+  ],
+  "preserved_success_job_ids": [
+    "FCJOB-FA-C012-SUCCEEDED"
+  ],
+  "provider_calls_performed": false,
+  "reconciliation_required_job_ids": [
+    "FCJOB-FA-C012-RUNNING-COMMITTED"
+  ],
+  "schema": "die.factory-asset.console-recovery-reconciliation.v1",
+  "source_snapshot_sha256": "cfbad34449ebbbb6294d41374c7a59c1587a8cf87d1cd2bb596783e2e09c743b",
+  "task_id": "FA-C012",
+  "uncommitted_running_recovered_to_ready": [
+    "FCJOB-FA-C012-RUNNING-UNCOMMITTED"
+  ]
+}

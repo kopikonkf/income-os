@@ -3957,3 +3957,11 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Zero-provider synthetic Console acceptance processed 12 semantic jobs in five waves with three concurrent worker slots, four backpressure events, Qwen/ChatGPT routing 6/6, one pause/resume, one bounded retry and one terminal partial failure; seven jobs still succeeded after that failure.
 - Final truth: 11 SUCCEEDED + 1 FAILED, 14 attempts, exactly 12 unique semantic assets. Three duplicate submissions reused existing jobs; duplicate ownership and conflicting idempotency reuse were blocked, with no semantic-count inflation.
 - Validation: focused 20 PASS; Factory 728 PASS with the FA-121 live-broker oneshot omitted as out of scope; one-canon 6 PASS; validator 11/11 PASS. No provider/browser, secret, spend, account, marketplace or production action occurred. `FA-C012 = READY` by dependency only and was not executed.
+
+
+---
+
+## 2026-09-08 - FA-C012 Console recovery DONE/PASS
+- Console/Factory Core recovery now distinguishes pre-dispatch and post-dispatch crash boundaries: uncommitted RUNNING work returns safely to READY, while a committed generation is fenced as `DISPATCH_RECONCILIATION_REQUIRED` and cannot be START/RESUME/RETRY-dispatched again.
+- Existing success, paused and retry-wait truth survived process/UI restarts exactly; two fresh HTTP server instances reconciled identical Factory Core state. Zero provider/browser, secret, spend, account, marketplace or production action occurred.
+- Validation: focused 31 PASS; Factory 736 PASS; one-canon 6 PASS; validator 11/11 PASS. `FA-C013` remains blocked only by `FA-124`.
