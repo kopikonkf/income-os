@@ -1,0 +1,49 @@
+{
+  "schema": "die.factory-asset.chatgpt-cluster-b-headed-recovery.receipt.v1",
+  "date": "2026-09-08",
+  "status": "DONE",
+  "result": "PASS",
+  "scope": "Recover ChatGPT schedulability on Cluster B without Founder login or challenge bypass.",
+  "cluster_id": "cluster-b",
+  "profile_id": "web-ai-cluster-b",
+  "root_cause": "HEADLESS_BROWSER_MODE_TRIGGERS_UPSTREAM_PROTECTION_INTERSTITIAL_ON_THIS_PROFILE",
+  "root_cause_evidence": "company/factory-asset/fixtures/multi-cluster/FA-HOTFIX-chatgpt-cluster-b-headed-recovery.json",
+  "recovery": {
+    "browser_mode_before": "HEADLESS_NEW",
+    "browser_mode_after": "HEADED_XVFB",
+    "cdp_retained": true,
+    "single_owner_model_retained": true,
+    "loopback_control_retained": true,
+    "max_tabs_retained": 8,
+    "profile_relogin_performed": false,
+    "profile_auth_material_copied": false,
+    "challenge_interaction_performed": false
+  },
+  "acceptance": {
+    "broker_ready": true,
+    "chatgpt_state": "HEALTHY",
+    "chatgpt_reason": "COMPOSER_READY",
+    "chatgpt_composer_writable": true,
+    "qwen_state": "HEALTHY",
+    "active_leases_after_probe": 0,
+    "founder_intervention_required": false
+  },
+  "truth_boundary": {
+    "headless_mode_trigger_supported_by_controlled_comparison": true,
+    "cdp_alone_proven_cause": false,
+    "bot_detection_mechanism_claimed": false,
+    "login_required": false,
+    "session_loss_observed": false
+  },
+  "authority_and_safety": {
+    "provider_generation_calls_performed": 0,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "checkpoint_or_captcha_bypass": false,
+    "spend_usd": 0,
+    "account_actions": 0,
+    "marketplace_actions": 0,
+    "submission_authorized": false,
+    "publication_authorized": false
+  }
+}

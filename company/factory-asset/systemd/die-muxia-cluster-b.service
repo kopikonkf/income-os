@@ -9,7 +9,7 @@ User=kopiko
 Group=kopiko
 WorkingDirectory=/srv/die
 Environment=PLAYWRIGHT_BROWSERS_PATH=/opt/muxia/playwright-browsers
-ExecStart=/usr/local/bin/node /srv/die/company/muxia/scripts/linux/muxia-cluster-broker.mjs --die-home /srv/die --cluster-id cluster-b --registry /srv/die/company/factory-asset/registries/web-ai-clusters.v1.json --state-root /var/lib/muxia/state/cluster-brokers --control-port 39122 --headless true
+ExecStart=/usr/bin/xvfb-run -a /usr/local/bin/node /srv/die/company/muxia/scripts/linux/muxia-cluster-broker.mjs --die-home /srv/die --cluster-id cluster-b --registry /srv/die/company/factory-asset/registries/web-ai-clusters.v1.json --state-root /var/lib/muxia/state/cluster-brokers --control-port 39122 --headless false
 Restart=on-failure
 RestartSec=5
 TimeoutStartSec=45

@@ -1,0 +1,88 @@
+{
+  "schema": "die.factory-asset.chatgpt-cluster-b-headed-recovery.v1",
+  "date": "2026-09-08",
+  "cluster_id": "cluster-b",
+  "profile_id": "web-ai-cluster-b",
+  "result": "PASS",
+  "problem": {
+    "headless_browser_mode": "--headless=new",
+    "chatgpt_state": "CHECKPOINT",
+    "reason_code": "PROTECTION_CHALLENGE",
+    "page_title": "Just a moment...",
+    "composer_visible": false,
+    "composer_writable": false,
+    "auth_ui_visible": false,
+    "passive_wait_ms": 25000,
+    "auto_cleared": false
+  },
+  "controlled_comparison": {
+    "same_profile_session": true,
+    "same_profile_dir": "/var/lib/muxia/profiles/web-ai-cluster-b/browser",
+    "same_vps_network": true,
+    "automation_stack_retained": true,
+    "cdp_retained": true,
+    "challenge_interaction_performed": false,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "headed_mode": "Xvfb + Chromium without --headless",
+    "headed_chatgpt_state": "READY",
+    "headed_reason": "COMPOSER_READY",
+    "headed_page_title": "ChatGPT: Chat, Work, Create & Code with AI",
+    "operator_action_required": false
+  },
+  "permanent_runtime_recovery": {
+    "service": "die-muxia-cluster-b.service",
+    "effective_exec_wrapper": "/usr/bin/xvfb-run -a",
+    "browser_headless": false,
+    "control_endpoint": "127.0.0.1:39122",
+    "browser_owner_pid_after_restart": 758934,
+    "broker_started_at": "2026-09-08T04:57:23.760Z",
+    "broker_state": "READY",
+    "max_tabs": 8,
+    "active_leases_after_probe": 0,
+    "open_pages_after_probe": 1
+  },
+  "zero_call_readiness": {
+    "chatgpt": {
+      "observed_at": "2026-09-08T04:57:41.055Z",
+      "state": "HEALTHY",
+      "reason_code": "COMPOSER_READY",
+      "composer_visible": true,
+      "composer_writable": true,
+      "auth_ui_visible": false,
+      "checkpoint_visible": false,
+      "credential_values_read": false,
+      "cookies_or_tokens_read": false
+    },
+    "qwen": {
+      "observed_at": "2026-09-08T04:57:47.863Z",
+      "state": "HEALTHY",
+      "reason_code": "COMPOSER_READY",
+      "composer_visible": true,
+      "composer_writable": true,
+      "auth_ui_visible": false,
+      "checkpoint_visible": false,
+      "credential_values_read": false,
+      "cookies_or_tokens_read": false
+    }
+  },
+  "diagnosis": {
+    "login_required": false,
+    "session_loss_observed": false,
+    "cdp_alone_proven_cause": false,
+    "headless_mode_trigger_supported_by_controlled_comparison": true,
+    "founder_intervention_required": false
+  },
+  "authority_and_safety": {
+    "provider_generation_calls_performed": 0,
+    "prompt_submitted": false,
+    "challenge_bypass_attempted": false,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "spend_usd": 0,
+    "account_actions": 0,
+    "marketplace_actions": 0,
+    "submission_authorized": false,
+    "publication_authorized": false
+  }
+}
