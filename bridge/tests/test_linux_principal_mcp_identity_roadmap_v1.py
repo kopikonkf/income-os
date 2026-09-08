@@ -48,8 +48,9 @@ def test_non_architect_acceptance_is_required_before_connector_handoff() -> None
     assert tasks["CUT-004A"]["depends_on"] == ["CUT-003", "MCP-LNX-005"]
     assert tasks["CUT-004B"]["depends_on"] == ["CUT-003", "MCP-LNX-005"]
     assert tasks["MX-053"]["depends_on"] == ["MCP-LNX-005"]
-    assert tasks["MX-053"]["status"] == "READY"
+    assert tasks["MX-053"]["status"] == "DONE"
     assert tasks["MX-054"]["depends_on"] == ["MX-053"]
+    assert tasks["MX-054"]["status"] == "READY"
     assert tasks["CUT-006"]["depends_on"] == ["MX-054", "CUT-005"]
 
 

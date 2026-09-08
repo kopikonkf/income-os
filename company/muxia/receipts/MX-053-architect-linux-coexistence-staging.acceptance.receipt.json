@@ -1,0 +1,146 @@
+{
+  "schema": "die.mx053.architect-linux-coexistence-staging.acceptance.receipt.v1",
+  "date": "2026-09-08",
+  "task_id": "MX-053",
+  "status": "DONE",
+  "decision": "LINUX_LOCAL_EXECUTOR_STAGING_PASS_NO_HANDOFF",
+  "dependency": {
+    "MCP-LNX-005": "DONE"
+  },
+  "founder_amendment": "Founder authorized early Linux-native Architect coexistence staging before MC-008F while preserving Windows Architect rollback/control.",
+  "mcp_architect_canon": {
+    "repository": "github.com/kopikonkf/mcp-architect",
+    "version": "0.2.0",
+    "accepted_main_sha": "1c3cd96847f94624a4c470291247798d4e31bfba",
+    "h01_checkout": "/srv/mcp-architect",
+    "h01_checkout_dirty_lines": 0,
+    "publication": [
+      {
+        "pr": 1,
+        "merge_sha": "e74f2d2cc6d8b1e9fa1580b02bf1ee31173a9f2d",
+        "purpose": "Windows/Linux single-codebase runtime + H01 staging installer"
+      },
+      {
+        "pr": 2,
+        "merge_sha": "362631e343f91290c4efc38c03aa33ad64bb2263",
+        "purpose": "separate canonical /srv/mcp-architect checkout; no nested Git under /srv/die"
+      },
+      {
+        "pr": 3,
+        "merge_sha": "1c3cd96847f94624a4c470291247798d4e31bfba",
+        "purpose": "systemd PrivateTmp/Node-path portability hotfix proven on H01"
+      }
+    ]
+  },
+  "h01_runtime": {
+    "holding_id": "H01",
+    "runtime_id": "architect-h01-linux",
+    "principal_id": "chatgpt-architect",
+    "platform": "linux",
+    "service": "mcp-architect.service",
+    "service_state": "active",
+    "service_enabled": true,
+    "main_pid": 779460,
+    "listener": "127.0.0.1:8890",
+    "public_bind": false,
+    "tools": 31,
+    "runtime_root": "/opt/mcp-architect",
+    "config_file": "/etc/mcp-architect/mcp-architect.env",
+    "config_mode": "0640 root:kopiko",
+    "state_root": "/var/lib/mcp-architect",
+    "read_roots": [
+      "/srv/die",
+      "/srv/mcp-architect",
+      "/opt/mcp-architect",
+      "/var/lib/die",
+      "/var/lib/muxia",
+      "/var/lib/mcp-architect"
+    ],
+    "write_roots": [
+      "/var/lib/mcp-architect/worktrees",
+      "/var/lib/mcp-architect/state",
+      "/var/lib/mcp-architect/tmp"
+    ],
+    "blocked_roots": [
+      "/root/.ssh",
+      "/home/kopiko/.ssh",
+      "/etc/shadow",
+      "/etc/sudoers"
+    ]
+  },
+  "systemd_hardening": {
+    "User": "kopiko",
+    "Group": "kopiko",
+    "PrivateTmp": true,
+    "ProtectSystem": "strict",
+    "NoNewPrivileges": true,
+    "RestrictSUIDSGID": true
+  },
+  "acceptance_evidence": {
+    "ephemeral_linux_preflight": {
+      "exit_code": 0,
+      "version": "0.2.0",
+      "platform": "linux",
+      "tools": 31,
+      "checks": [
+        "health",
+        "initialize",
+        "tools-list",
+        "fs-stat",
+        "processes",
+        "services",
+        "exec",
+        "fs-write-read",
+        "zip-unzip",
+        "git-status",
+        "sys-stats"
+      ]
+    },
+    "persistent_local_tools": {
+      "fs_read_srv_die": true,
+      "git_status_srv_die": true,
+      "exec_run_linux": true,
+      "state_write_read": true,
+      "srv_die_write_denied": true,
+      "sys_services": true
+    },
+    "restart_recovery": {
+      "pass": true,
+      "boot_id_before": "a5bfc2f9-929b-40ad-8a0a-cff25bac10e9",
+      "boot_id_after": "5e942396-6ca6-4b54-85de-60b96e59eb78",
+      "existing_access_token_valid_after_restart": true
+    },
+    "sanitized_runtime_log": {
+      "secret_pattern_hits": 0
+    },
+    "production_dependency_audit": {
+      "vulnerabilities": 0
+    },
+    "source_verify": "PASS",
+    "unit_tests": "4/4 PASS",
+    "build": "PASS",
+    "h01_bash_syntax": "PASS",
+    "h01_systemd_analyze_verify": "PASS"
+  },
+  "windows_rollback": {
+    "architect_health": "PASS",
+    "loopback": "127.0.0.1:8790",
+    "version": "0.1.2",
+    "tools": 31,
+    "remains_control_channel": true
+  },
+  "authority_boundaries": {
+    "public_ingress_created": false,
+    "cloudflare_route_changed": false,
+    "chatgpt_connector_changed": false,
+    "universal_mcp_cloned_per_holding": false,
+    "mission_control_target_runtime_broker_claimed": false,
+    "cut006_handoff_authorized": false,
+    "windows_architect_retired": false
+  },
+  "downstream": {
+    "MX-054": "READY for bounded temporary Linux E2E proof; this receipt does not authorize public ingress or control handoff",
+    "CUT-006": "BLOCKED on MX-054 + CUT-005 + explicit Founder action"
+  },
+  "acceptance": "H01 Linux-native Architect MCP is accepted as a loopback-only local executor staging service from the single mcp-architect codebase. Windows Architect remains healthy rollback/control. No public ingress, primary-principal direct attachment, Universal authority split, or control-channel handoff is implied."
+}

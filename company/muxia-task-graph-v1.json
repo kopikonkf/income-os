@@ -809,8 +809,8 @@
                       "depends_on":  [
                                          "MCP-LNX-005"
                                      ],
-                      "status":  "READY",
-                      "artifact":  "/srv/die/company/architect source + /opt/mcp-architect Linux runtime + receipt",
+                      "status":  "DONE",
+                      "artifact":  "company/muxia/receipts/MX-053-architect-linux-coexistence-staging.acceptance.receipt.json",
                       "acceptance":  "Linux Architect MCP is built with loopback/systemd hardening and sanitized logs while Windows Architect MCP remains active as rollback/control; this task does not authorize connector handoff.",
                       "resume_condition":  "Founder authorized early Linux-native Architect coexistence staging on 2026-09-08 after MCP-LNX-005 DONE."
                   },
@@ -821,7 +821,7 @@
                       "depends_on":  [
                                          "MX-053"
                                      ],
-                      "status":  "BLOCKED",
+                      "status":  "READY",
                       "artifact":  "temporary Linux Architect MCP E2E receipt",
                       "acceptance":  "Linux endpoint/tool parity passes without replacing the active Windows Architect control channel."
                   },

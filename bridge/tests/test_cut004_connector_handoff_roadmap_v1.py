@@ -33,5 +33,6 @@ def test_cut004_connector_handoffs_preserve_architect_handoff_gate() -> None:
     tasks = {row["id"]: row for row in graph["tasks"]}
     assert tasks["CUT-005"]["depends_on"] == ["CUT-004"]
     assert tasks["MX-053"]["depends_on"] == ["MCP-LNX-005"]
-    assert tasks["MX-053"]["status"] == "READY"
+    assert tasks["MX-053"]["status"] == "DONE"
+    assert tasks["MX-054"]["status"] == "READY"
     assert tasks["CUT-006"]["depends_on"] == ["MX-054", "CUT-005"]

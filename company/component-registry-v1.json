@@ -7,12 +7,12 @@
   "components": {
     "architect": {
       "logical_root": "company/architect",
-      "status": "LINUX_STAGING_AUTHORIZED",
+      "status": "LINUX_STAGING_LIVE",
       "source_refs": [
         "D:\\mcp-architect"
       ],
       "migration_task": "MX-053",
-      "note": "Founder amendment 2026-09-08 authorizes Linux-native Architect coexistence staging under MX-053 after MCP-LNX-005; Windows Architect remains rollback/control and CUT-006 is still gated by MX-054 plus CUT-005."
+      "note": "MX-053 DONE/PASS: H01 Linux-native Architect MCP v0.2.0 is live on loopback as a local executor staging service from the single mcp-architect codebase. Windows Architect remains rollback/control; no public ingress or connector handoff occurred, and CUT-006 is still gated by MX-054 plus CUT-005."
     },
     "executive": {
       "logical_root": "company/executive",
