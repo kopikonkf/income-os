@@ -821,3 +821,15 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Console exposes `POST /api/synthetic/batch-acceptance` for this governed acceptance surface. No credentials/cookies/tokens were read; spend/account/marketplace/production actions were zero.
 - Validation: focused C011 + queue/C009 regressions 20/20 PASS; Factory regression 728/728 PASS with only the out-of-scope FA-121 live-broker oneshot omitted; one-canon pytest 6/6 PASS; validator 11/11 PASS; high-confidence secret hits 0; Python compile PASS.
 - `FA-C011 = DONE/PASS`. Dependency reconciliation only: `FA-C012 = READY`; no FA-C012 restart/recovery implementation or execution occurred.
+
+
+---
+
+## 2026-09-08 - FA-C012 DONE/PASS — Console restart/recovery continuity
+- Deterministic zero-provider acceptance ran from isolated Linux checkout at canonical base `dc7bda68282ba3763241f2806c93ae3f3d798b07`.
+- Recovery snapshot contained READY, two RUNNING, PAUSED, RETRY_WAIT and SUCCEEDED truth. The uncommitted RUNNING job reconciled to READY with ownership cleared and `recovery_count=1`; the committed-dispatch RUNNING job was converted to PAUSED with `DISPATCH_RECONCILIATION_REQUIRED` and fenced from START/RESUME/RETRY, preventing duplicate dispatch after crash.
+- Existing SUCCEEDED artifact hash survived exactly, PAUSED and RETRY_WAIT survived exactly, and crash recovery created no false success. Two fresh Console HTTP server instances loaded the same recovered Factory Core state and emitted identical normalized queue truth.
+- Durable Linux evidence is canonicalized under `company/factory-asset/fixtures/console-recovery/`: final result SHA256 `db24598e3681772442adbee1c01f89b4881d21e3247b50aec25467f4b34b91d0`, recovery snapshot `ac4e46744a77b95f8c97c40a075690502e8da6c1ecc68dac85a00f9657ddeb8d`, reconciliation `d98c6921459267c748c89192c9f775a94a49fdf659d8ad4a1aa5be9d4859aef3`, UI state `686abafe5d024a0a2b871f2b79d88db821088838043515b4dc10d82195a60eca`.
+- No provider/browser action, secret read, spend, account action, marketplace action or production runtime mutation occurred.
+- Validation: focused recovery/queue/Console 31 PASS; Factory regression 736 PASS with only the out-of-scope FA-121 live-broker oneshot omitted; one-canon 6 PASS; validator 11/11 PASS; high-confidence secret hits 0; Python compile PASS.
+- `FA-C012 = DONE/PASS`. `FA-C013` remains BLOCKED solely because `FA-124` is not DONE; no C013 Founder acceptance occurred.

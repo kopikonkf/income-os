@@ -1980,11 +1980,11 @@
       "depends_on": [
         "FA-C011"
       ],
-      "status": "READY",
-      "artifact": "company/factory-asset/receipts/FA-C012-console-recovery.receipt.json",
+      "status": "DONE",
+      "artifact": "company/factory-asset/receipts/FA-C012-console-recovery.receipt.json; company/factory-asset/fixtures/console-recovery/FA-C012-final-result.json; company/factory-asset/fixtures/console-recovery/FA-C012-recovery-snapshot.json; company/factory-asset/fixtures/console-recovery/FA-C012-reconciliation.json; company/factory-asset/fixtures/console-recovery/FA-C012-ui-state.json; company/factory-asset/lib/console_recovery_acceptance.py",
       "acceptance": "Browser/UI restart and Factory process interruption preserve durable job truth; resumed UI reconciles from Factory Core and never creates false success or duplicate dispatch.",
-      "updated_at": "2026-09-08",
-      "result": "READY: FA-C011 dependency is DONE/PASS; no FA-C012 implementation or recovery execution occurred in the FA-C011 run."
+      "completed_at": "2026-09-08",
+      "result": "PASS: deterministic zero-provider recovery acceptance preserved durable Console/Factory Core truth across process and UI restarts. An uncommitted RUNNING job reconciled to READY with recovery_count=1 and ownership cleared; a committed-dispatch RUNNING job was fenced as PAUSED/DISPATCH_RECONCILIATION_REQUIRED and START/RESUME/RETRY were blocked, preventing duplicate dispatch. Existing SUCCEEDED artifact truth, PAUSED and RETRY_WAIT states survived exactly; two fresh Console HTTP server instances returned identical normalized recovered queue truth. No false success, provider/browser action, secret read, spend, account/marketplace action or production mutation occurred. Validation: focused 31 PASS; Factory 736 PASS with only out-of-scope FA-121 live-broker oneshot omitted; one-canon 6 PASS; validator 11/11 PASS."
     },
     {
       "id": "FA-C013",
@@ -2000,7 +2000,9 @@
       "authority": "FOUNDER_REQUIRED",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-C013-factory-console-production-acceptance.receipt.json",
-      "acceptance": "Founder validates the GUI against the authorized 100-unique-master/day model: blueprint/batch controls, queue/recovery, provider capacity/routing, output lineage/QA and rollback all pass; marketplace publication remains outside Console authority."
+      "acceptance": "Founder validates the GUI against the authorized 100-unique-master/day model: blueprint/batch controls, queue/recovery, provider capacity/routing, output lineage/QA and rollback all pass; marketplace publication remains outside Console authority.",
+      "updated_at": "2026-09-08",
+      "result": "BLOCKED: FA-C012 is DONE/PASS; remaining dependency FA-124 is not DONE. No FA-C013 Founder acceptance occurred in the FA-C012 run."
     },
     {
       "id": "FA-129",

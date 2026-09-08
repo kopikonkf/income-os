@@ -1,0 +1,52 @@
+{
+  "account_actions": 0,
+  "assertions": {
+    "committed_dispatch_fenced": true,
+    "duplicate_dispatch_blocked": true,
+    "durable_snapshot_roundtrip": true,
+    "paused_and_retry_state_preserved": true,
+    "success_preserved_exactly": true,
+    "ui_reconciles_from_recovered_core": true,
+    "uncommitted_running_recovers_ready": true,
+    "zero_false_success": true,
+    "zero_provider_calls": true
+  },
+  "browser_owner_actions": 0,
+  "cookies_or_tokens_read": false,
+  "credential_values_read": false,
+  "duplicate_dispatch_blocked": true,
+  "evidence_paths": {
+    "final_result": "/home/kopiko/factory-asset-canaries/fa-c012-console-recovery-20260908-r1/final-result.json",
+    "reconciliation": "/home/kopiko/factory-asset-canaries/fa-c012-console-recovery-20260908-r1/reconciliation.json",
+    "snapshot": "/home/kopiko/factory-asset-canaries/fa-c012-console-recovery-20260908-r1/recovery-snapshot.json",
+    "ui_state": "/home/kopiko/factory-asset-canaries/fa-c012-console-recovery-20260908-r1/ui-reconciled-state.json"
+  },
+  "marketplace_actions": 0,
+  "postrecovery_state_counts": {
+    "CANCELLED": 0,
+    "FAILED": 0,
+    "PAUSED": 2,
+    "READY": 2,
+    "RETRY_WAIT": 1,
+    "RUNNING": 0,
+    "SUCCEEDED": 1
+  },
+  "precrash_state_counts": {
+    "CANCELLED": 0,
+    "FAILED": 0,
+    "PAUSED": 1,
+    "READY": 1,
+    "RETRY_WAIT": 1,
+    "RUNNING": 2,
+    "SUCCEEDED": 1
+  },
+  "provider_calls_performed": false,
+  "reconciliation_required_job_ids": [
+    "FCJOB-FA-C012-RUNNING-COMMITTED"
+  ],
+  "result": "PASS",
+  "schema": "die.factory-asset.console-recovery-acceptance.v1",
+  "source_surface": "FACTORY_CONSOLE",
+  "spend_usd": 0,
+  "task_id": "FA-C012"
+}

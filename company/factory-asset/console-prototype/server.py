@@ -59,6 +59,7 @@ PROVIDER_POLICY_REGISTRY = json.loads((ROOT / "company/factory-asset/registries/
 PROVIDER_DASHBOARD_FIXTURE = json.loads((ROOT / "company/factory-asset/fixtures/provider-dashboard/synthetic-observed.v1.json").read_text(encoding="utf-8"))
 OUTPUT_GALLERY_FIXTURE = json.loads((ROOT / "company/factory-asset/fixtures/output-gallery/fa029-actual-canary.v1.json").read_text(encoding="utf-8"))
 CORE_QUEUE = factory_queue.FactoryJobQueue()
+RECONCILIATION_REQUIRED_JOB_IDS: set[str] = set()
 
 
 class ConsoleRequestError(ValueError):
@@ -203,8 +204,14 @@ def output_gallery_state() -> dict[str, Any]:
     return json.loads(json.dumps(OUTPUT_GALLERY_FIXTURE))
 
 
+def install_recovered_queue(queue: Any, *, reconciliation_required_job_ids: list[str] | tuple[str, ...] | set[str] = ()) -> None:
+    global CORE_QUEUE, RECONCILIATION_REQUIRED_JOB_IDS
+    CORE_QUEUE = queue
+    RECONCILIATION_REQUIRED_JOB_IDS = {str(job_id) for job_id in reconciliation_required_job_ids}
+
+
 def queue_state() -> dict[str, Any]:
-    return {"schema": "die.factory-asset.console-queue-state.v1", "provider_dispatch_performed": False, "events": [console_contract.queue_event(row) for row in CORE_QUEUE.list()]}
+    return {"schema": "die.factory-asset.console-queue-state.v1", "provider_dispatch_performed": False, "reconciliation_required_job_ids": sorted(RECONCILIATION_REQUIRED_JOB_IDS), "events": [console_contract.queue_event(row) for row in CORE_QUEUE.list()]}
 
 
 def submit_batch_to_queue(payload: dict[str, Any]) -> dict[str, Any]:
@@ -234,6 +241,8 @@ def apply_queue_command(payload: dict[str, Any]) -> dict[str, Any]:
     if set(payload) != required or payload.get("schema") != "die.factory-asset.console-api.v1" or payload.get("kind") != "CONTROL_COMMAND":
         raise ConsoleRequestError("INVALID_CONTROL_COMMAND", "normalized CONTROL_COMMAND required")
     job_id = str(payload["job_id"]); action = str(payload["action"]); command_id = str(payload["command_id"])
+    if job_id in RECONCILIATION_REQUIRED_JOB_IDS and action in {"START", "RESUME", "RETRY"}:
+        raise ConsoleRequestError("RECONCILIATION_REQUIRED", "committed dispatch requires durable reconciliation before redispatch-capable control actions")
     if action == "START": CORE_QUEUE.start(job_id, owner="factory-console-local", lease_token=_job_key("control", command_id, job_id))
     elif action == "PAUSE": CORE_QUEUE.pause(job_id)
     elif action == "RESUME": CORE_QUEUE.resume(job_id)
