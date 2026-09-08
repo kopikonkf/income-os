@@ -1,0 +1,85 @@
+{
+  "schema": "die.factory-asset.fa122-live-load-contract.v1",
+  "revision": "1.0.0",
+  "task_id": "FA-122",
+  "target_unique_masters": 20,
+  "max_provider_generation_commits": 24,
+  "max_planned_semantic_jobs": 24,
+  "max_concurrent_generations": 2,
+  "max_live_leases_per_cluster": 1,
+  "max_tabs_per_cluster": 8,
+  "max_combined_browser_tree_rss_mb": 6144,
+  "generation_timeout_ms": 300000,
+  "lease_ttl_ms": 600000,
+  "clusters": {
+    "cluster-a": {
+      "control_base_url": "http://127.0.0.1:39121/",
+      "profile_id": "chatgpt-linux-a",
+      "profile_dir": "/var/lib/muxia/profiles/chatgpt-linux-a/browser"
+    },
+    "cluster-b": {
+      "control_base_url": "http://127.0.0.1:39122/",
+      "profile_id": "web-ai-cluster-b",
+      "profile_dir": "/var/lib/muxia/profiles/web-ai-cluster-b/browser"
+    }
+  },
+  "providers": {
+    "qwen": {
+      "browser_url": "https://chat.qwen.ai/",
+      "actual_live_transport": "BROWSER_CDP",
+      "transport_role": "FALLBACK",
+      "primary_transport_contract": "SESSION_API",
+      "session_api_live_executor_claimed": false
+    },
+    "chatgpt": {
+      "browser_url": "https://chatgpt.com/",
+      "actual_live_transport": "BROWSER_CDP",
+      "transport_role": "PRIMARY",
+      "primary_transport_contract": "BROWSER_CDP"
+    }
+  },
+  "technical_qa": {
+    "min_bytes": 50000,
+    "min_width_px": 512,
+    "min_height_px": 512,
+    "allowed_formats": ["PNG", "JPEG", "WEBP"],
+    "near_duplicate_dhash_hamming_threshold": 4
+  },
+  "prompt_corpus": [
+    "Create one simple isolated teal ceramic bowl centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated yellow rubber duck centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated red metal watering can centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated blue glass bottle centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated natural wooden clothes peg centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated green canvas tote bag centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated orange ceramic mug centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated purple desk lamp centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated silver kitchen whisk centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated black over-ear headphones centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated pink gift box centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated brown leather wallet centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated cyan plastic bucket centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated gray desktop stapler centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated lime green toothbrush centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated navy blue umbrella centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated copper frying pan centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated beige notebook centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated turquoise alarm clock centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated maroon backpack centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated white soap dispenser centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated amber storage jar centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated olive green pencil case centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects.",
+    "Create one simple isolated pale blue plant pot centered on a pure white background, clean studio product photo, fully visible, no people, no text, no logo, no trademark, no watermark, no extra objects."
+  ],
+  "authority": {
+    "founder_live_load_authorization_required": true,
+    "spend_authorized": false,
+    "account_creation_or_action_authorized": false,
+    "checkpoint_or_captcha_bypass_authorized": false,
+    "credential_cookie_token_session_value_read_authorized": false,
+    "marketplace_submission_authorized": false,
+    "publication_authorized": false,
+    "production_seed_selection_allowed": false,
+    "packaging_derivatives_count_as_unique_masters": false
+  }
+}
