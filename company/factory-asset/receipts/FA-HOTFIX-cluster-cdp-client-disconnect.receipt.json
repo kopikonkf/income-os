@@ -1,0 +1,37 @@
+{
+  "schema": "die.factory-asset.cluster-cdp-client-disconnect.receipt.v1",
+  "date": "2026-09-08",
+  "status": "DONE",
+  "result": "PASS",
+  "problem": "connectClusterBrowser used browser.close() to disconnect a connectOverCDP client, which closed the broker-owned browser context and made later leases fail with Target page, context or browser has been closed.",
+  "root_cause": "CDP_CLIENT_DISCONNECT_SENT_BROWSER_CLOSE",
+  "fix": {
+    "file": "company/browser/linux/cluster_broker_client.mjs",
+    "old_behavior": "browser.close()",
+    "new_behavior": "browser._connection.close()",
+    "browser_owner_close_command_sent": false,
+    "fail_closed_if_private_transport_api_missing": true
+  },
+  "live_controlled_proof": {
+    "cluster_id": "cluster-b",
+    "browser_owner_pid_before": 760771,
+    "browser_owner_pid_after": 760771,
+    "broker_state_before": "READY",
+    "broker_state_after": "READY",
+    "new_lease_after_disconnect": "SUCCEEDED",
+    "lease_released": true
+  },
+  "authority_and_safety": {
+    "provider_generation_calls_performed": 0,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "spend_usd": 0,
+    "account_actions": 0,
+    "marketplace_actions": 0,
+    "submission_authorized": false,
+    "publication_authorized": false
+  },
+  "validation": {
+    "focused_local": "20 passed"
+  }
+}
