@@ -1586,11 +1586,11 @@
       "depends_on": [
         "FA-122"
       ],
-      "status": "READY",
+      "status": "DONE",
       "artifact": "company/factory-asset/receipts/FA-123-downstream-capacity.receipt.json",
       "acceptance": "QA/QC sampling, near-duplicate quarantine, package generation, backlog and Founder-touch requirements are measured at 100-master/day model.",
       "updated_at": "2026-09-08",
-      "result": "READY: FA-122 is DONE/PASS; no FA-123 downstream-capacity execution occurred in the FA-122 live-load acceptance run."
+      "result": "PASS: deterministic Linux downstream-capacity model processed 100/100 technical QA fixtures, 4,950 pairwise distinctness comparisons with zero positive-set exact/near duplicates and passing duplicate negative controls, plus 100/100 package readiness and composition. Automated modeled backlog is zero at 100/day. Current canonical Founder QC remains 100% (100 required touches/day); human review service rate is external/unproven and no sampling-policy change was authorized."
     },
     {
       "id": "FA-124",
@@ -1601,10 +1601,12 @@
       "depends_on": [
         "FA-123"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_LOAD",
       "artifact": "company/factory-asset/receipts/FA-124-100-masters-day.receipt.json",
-      "acceptance": "100 unique masters are attempted under approved bounds; success/QA/distinctness/package/economics and provider-policy results are reported without volume inflation."
+      "acceptance": "100 unique masters are attempted under approved bounds; success/QA/distinctness/package/economics and provider-policy results are reported without volume inflation.",
+      "updated_at": "2026-09-08",
+      "result": "READY: FA-123 is DONE/PASS. Live 100-unique-master execution still requires explicit Founder live-load authority and must preserve FA-123 truth boundaries, including current 100% Founder QC policy unless separately changed."
     },
     {
       "id": "FA-125",

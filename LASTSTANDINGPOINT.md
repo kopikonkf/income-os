@@ -4004,3 +4004,10 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - `PRODSEED000113` was not idle because of seed exhaustion or MUXIA downtime; deterministic cognition had an indefinitely stuck Division01 ChatGPT turn and logged 92 `E_RESPONSE_TIMEOUT` failures. Timeout handling is now bounded and durable: stale generating turn is stopped, request attempt advances, and repeated exhaustion fails closed instead of looping forever.
 - Live same-card recovery passed: author R01 VALID -> Executive `NO_VETO` -> production resumed -> `WAITING_FOUNDER_QC`. No compensating seed was created.
 - Hermes cognition timeout hotfix final Linux validation: 755 Factory PASS, one-canon 6 PASS, validator 11/11 PASS, Node roundtrip 13 PASS, secret hits 0.
+
+
+---
+
+## 2026-09-08 - FA-123 100/day downstream model PASS
+- FA-123 downstream compute capacity is proven for the 100/day model without faking 100 live provider masters: 100/100 QA, 4,950 distinctness comparisons, zero positive-set duplicate/near-duplicate pairs, passing duplicate quarantine controls, and 100/100 package readiness/composition. Automated modeled backlog at 100/day is zero.
+- Current Founder QC remains the scale bottleneck/boundary: 100% QC means 100 Founder decisions/day. Human review throughput was not fabricated and sampling-policy alternatives remain informational only. `FA-124 = READY` but still requires Founder authorization for the actual 100-live-master canary.

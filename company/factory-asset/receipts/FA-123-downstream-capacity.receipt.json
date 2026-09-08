@@ -1,0 +1,105 @@
+{
+  "schema": "die.factory-asset.fa123-downstream-capacity.receipt.v1",
+  "task_id": "FA-123",
+  "date": "2026-09-08",
+  "status": "DONE",
+  "result": "PASS",
+  "acceptance": "QA/QC sampling, near-duplicate quarantine, package generation, backlog and Founder-touch requirements are measured at 100-master/day model.",
+  "execution_mode": "DETERMINISTIC_SYNTHETIC_DOWNSTREAM_CAPACITY_MODEL",
+  "implementation": {
+    "contract": "company/factory-asset/contracts/fa123-downstream-capacity.v1.json",
+    "model": "company/factory-asset/lib/fa123_capacity_model.py",
+    "runner": "company/factory-asset/bin/run_fa123_downstream_capacity.py",
+    "tests": "company/factory-asset/tests/test_fa123_downstream_capacity.py",
+    "canonical_evidence": "company/factory-asset/fixtures/scale/FA-123-downstream-capacity-evidence.json"
+  },
+  "linux_evidence": {
+    "state_root": "/home/kopiko/factory-asset-canaries/fa123-downstream-capacity-20260908-r1",
+    "evidence_sha256": "28afd9ab6ffc25ef7d0cefc88b77f584cd1aa3b894119763374303038fa843f9",
+    "modeled_master_count": 100,
+    "target_masters_per_day": 100
+  },
+  "observed_live_input": {
+    "fa122_unique_qa_masters": 20,
+    "fa122_qa_pass_rate": 1.0,
+    "fa122_exact_duplicate_hash_count": 0,
+    "fa122_near_duplicate_pair_count": 0,
+    "fa122_provider_failures": 0
+  },
+  "technical_qa_capacity": {
+    "passed": 100,
+    "total": 100,
+    "pass_rate": 1.0,
+    "elapsed_seconds": 1.185567
+  },
+  "distinctness_capacity": {
+    "pairwise_comparisons": 4950,
+    "positive_set_exact_duplicate_count": 0,
+    "positive_set_near_duplicate_pair_count": 0,
+    "near_duplicate_dhash_hamming_threshold": 4,
+    "exact_duplicate_negative_control_detected": true,
+    "near_duplicate_negative_control_detected": true,
+    "near_duplicate_negative_control_hamming": 0,
+    "elapsed_seconds": 1.220279
+  },
+  "package_capacity": {
+    "readiness_passed": 100,
+    "composition_passed": 100,
+    "total": 100,
+    "derivatives_per_master": 2,
+    "elapsed_seconds": 10.978208,
+    "founder_qc_required_per_package": true
+  },
+  "automated_backlog_model": {
+    "arrival_rate_per_day": 100,
+    "benchmark_total_seconds": 13.384054,
+    "benchmark_seconds_per_modeled_master": 0.133841,
+    "raw_local_compute_capacity_per_24h": 645544,
+    "modeled_automated_backlog_per_day_at_100": 0,
+    "fa120_queue_unique_jobs": 5000,
+    "fa120_queue_terminal_failures": 0,
+    "truth_boundary": "Raw benchmark is synthetic downstream compute headroom only; it is not a provider, end-to-end production, marketplace or human throughput claim."
+  },
+  "founder_qc_model": {
+    "current_policy_sampling_rate": 1.0,
+    "required_founder_touches_per_100_masters": 100,
+    "required_founder_touches_per_day_at_target": 100,
+    "measured_founder_review_capacity_per_day": null,
+    "human_capacity_status": "EXTERNAL_UNPROVEN",
+    "backlog_if_zero_founder_reviews_per_day": 100,
+    "no_backlog_requires_founder_reviews_per_day": 100,
+    "sampling_policy_changed": false,
+    "informational_sampling_scenarios": [
+      {"sampling_rate": 1.0, "touches_per_100_masters": 100, "authority_status": "CURRENT_POLICY"},
+      {"sampling_rate": 0.25, "touches_per_100_masters": 25, "authority_status": "INFORMATIONAL_NOT_AUTHORIZED"},
+      {"sampling_rate": 0.1, "touches_per_100_masters": 10, "authority_status": "INFORMATIONAL_NOT_AUTHORIZED"},
+      {"sampling_rate": 0.05, "touches_per_100_masters": 5, "authority_status": "INFORMATIONAL_NOT_AUTHORIZED"}
+    ]
+  },
+  "truth_boundaries": {
+    "synthetic_capacity_fixtures_counted_as_production_masters": false,
+    "provider_calls_performed": false,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "founder_qc_service_rate_claimed": false,
+    "marketplace_actions": 0,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_usd": 0,
+    "sampling_policy_changed": false
+  },
+  "acceptance_assertions": {
+    "technical_qa_100_of_100": true,
+    "positive_set_zero_exact_duplicates": true,
+    "positive_set_zero_near_duplicate_pairs": true,
+    "exact_duplicate_negative_control_quarantined": true,
+    "near_duplicate_negative_control_quarantined": true,
+    "package_readiness_100_of_100": true,
+    "package_composition_100_of_100": true,
+    "automated_backlog_zero_at_100_per_day": true,
+    "founder_touch_requirement_quantified": true,
+    "human_service_rate_not_fabricated": true,
+    "sampling_scenarios_do_not_change_authority": true
+  },
+  "next_boundary": "FA-124 dependency is unlocked. FA-124 remains a separate Founder-authorized live 100-unique-master canary; FA-123 does not authorize that live load or change Founder QC policy."
+}
