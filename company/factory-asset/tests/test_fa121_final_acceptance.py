@@ -18,4 +18,3 @@ def test_fa121_receipt_and_graph_close_soak_and_unlock_dependencies():
 
 def test_fa121_final_truth_boundaries_remain_closed():
  d=json.loads(F.read_text())["truth_boundaries"];assert d["credential_values_read"] is False;assert d["cookies_or_tokens_read"] is False;assert d["spend_usd"]==0;assert d["submission_authorized"] is False;assert d["publication_authorized"] is False
-

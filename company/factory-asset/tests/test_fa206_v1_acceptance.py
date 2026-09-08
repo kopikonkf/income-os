@@ -34,4 +34,3 @@ def test_fa206_receipt_and_graph_close_v1_without_publication_authority():
     if by["FA-307"]["status"]!="READY":
         q=json.loads((ROOT/"company/factory-asset/receipts/FA-307-two-cluster-parallel.receipt.json").read_text())
         assert q["task_id"]=="FA-307" and q["status"]==by["FA-307"]["status"]
-
