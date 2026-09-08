@@ -3981,3 +3981,4 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 ## 2026-09-08 - ChatGPT broker checkpoint diagnosed and Cluster B recovered without login
 - The affected broker profiles were `chatgpt-linux-a` (Cluster A) and `web-ai-cluster-b` (Cluster B). The Cluster B controlled comparison proved the session was valid: headless Chromium received `Just a moment...`, while the same profile in headed Xvfb immediately returned `COMPOSER_READY` with CDP still present.
 - Cluster B is therefore recovered server-side without Founder intervention: headed-Xvfb broker, ChatGPT HEALTHY+writable, Qwen HEALTHY, zero leases leaked, zero provider calls/challenge bypass/secret reads. Production MUXIA headed `chatgpt-linux-a` remained untouched and has recent successful PRODSEED receipts.
+- ChatGPT Cluster B headed-broker hotfix Linux validation: 14 focused PASS, 747 Factory PASS, one-canon 6 PASS, validator 11/11 PASS, secret hits 0.

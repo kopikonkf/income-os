@@ -45,5 +45,12 @@
     "marketplace_actions": 0,
     "submission_authorized": false,
     "publication_authorized": false
+  },
+  "validation": {
+    "focused_linux": "14 passed",
+    "factory_regression_linux": "747 passed, 1 PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded as out of hotfix scope",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "company_secret_scan_hits": 0
   }
 }
