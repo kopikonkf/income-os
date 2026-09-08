@@ -3989,3 +3989,10 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 ## 2026-09-08 - Web-AI production browser protocol: headful by default
 - Production web-AI browser mode is now canonically **headful/virtual-display by default**. Headless requires explicit provider-specific acceptance; auth verification may run visible with CDP off when needed. This follows live evidence: ChatGPT Cluster B failed under headless protection interstitial but was healthy on the same session in headed Xvfb, while prior Qwen verification also required a CDP-off human handoff boundary.
 - Headed Cluster B lifecycle is now hardened: owner death cannot remain stale READY, and released lease tabs are recycled to `about:blank` so the last headed window is not closed. Final same-owner ChatGPT->Qwen zero-call acceptance PASS on PID 768282 with both providers HEALTHY, zero leaked leases and one standby page preserved.
+
+
+---
+
+## 2026-09-08 - Hermes production runtime idle loop recovered
+- `PRODUCTION_RUNTIME_IDLE` was traced to `PRODSEED000113` waiting on a Division01 cognition turn that remained generating with an empty assistant placeholder. The cognition cron had 92 consecutive response-timeout failures because timeout never advanced durable retry state.
+- Cognition now stops stale sent turns and advances bounded versioned retries. Live recovery used R01 on the same seed/card, obtained valid Division01 authoring + Executive NO_VETO, locked the Blueprint, resumed production, and created a 1536x1024 MUXIA original. No compensating seed or Founder intervention was used.
