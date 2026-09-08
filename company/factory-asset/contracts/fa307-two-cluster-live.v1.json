@@ -1,17 +1,17 @@
 {
   "schema": "die.factory-asset.fa307-two-cluster-live-contract.v1",
-  "revision": "1.8.0-attempt9-gemini-network-response",
+  "revision": "1.9.0-composite-closure",
   "task_id": "FA-307",
-  "status": "CANONICAL_CANDIDATE",
+  "status": "ACCEPTED",
   "authority": {
     "founder_live_provider_authorization_required": true,
-    "authorized_provider_calls": 2,
+    "authorized_provider_calls": 0,
     "spend_usd": 0,
     "submission_authorized": false,
     "publication_authorized": false,
     "credential_secret_reads_allowed": false,
     "cookie_token_reads_allowed": false,
-    "authorization_scope": "FRESH_ATTEMPT_9_ONLY",
+    "authorization_scope": "NO_FURTHER_CALLS_REQUIRED_COMPOSITE_CLOSURE",
     "prior_attempt_provider_calls": 14,
     "cumulative_provider_call_ceiling_through_attempt_3": 5,
     "cumulative_provider_call_ceiling_through_attempt_4": 7,
@@ -163,5 +163,12 @@
       "post_dispatch_retry_performed": false,
       "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-attempt-8-qwen-gemini-result.json"
     }
-  ]
+  ],
+  "closure": {
+    "mode": "PASS_COMPOSITE_EVIDENCE",
+    "evidence": "company/factory-asset/fixtures/multi-cluster/FA-307-composite-closure-20260908.json",
+    "attempt_9_provider_calls_performed": 0,
+    "historical_failed_attempts_preserved": true,
+    "closed_at": "2026-09-08T18:06:50.014990Z"
+  }
 }

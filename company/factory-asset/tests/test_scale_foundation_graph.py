@@ -4,10 +4,12 @@ ROOT=Path(__file__).resolve().parents[3]
 G=ROOT/"company/factory-asset/task-graph-v1.json"
 R=ROOT/"company/factory-asset/receipts/FA-SCALE-20260907-capacity-network-discovery.receipt.json"
 
-def test_scale_foundation_nodes_are_atomic_and_blocked_behind_fa307():
+def test_scale_foundation_nodes_follow_fa307_dependency_lifecycle():
  g=json.loads(G.read_text());by={x["id"]:x for x in g["tasks"]}
+ fa307_done=by["FA-307"]["status"]=="DONE"
  for i in range(310,315):
-  t=by[f"FA-{i}"];assert t["track"]=="SCALE_FOUNDATION" and t["status"]=="BLOCKED" and "FA-307" in t["depends_on"]
+  t=by[f"FA-{i}"];assert t["track"]=="SCALE_FOUNDATION" and "FA-307" in t["depends_on"]
+  assert t["status"] in ({"READY","IN_PROGRESS","DONE"} if fa307_done else {"BLOCKED"})
  assert by["FA-315"]["status"]=="BLOCKED" and set(by["FA-315"]["depends_on"])=={f"FA-{i}" for i in range(310,315)}
 
 def test_fa308_requires_scale_foundation_gate_and_never_equates_profiles_with_live_browsers():

@@ -2434,13 +2434,13 @@
         "FA-306",
         "FA-121"
       ],
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "artifact": "company/factory-asset/contracts/fa307-two-cluster-live.v1.json; company/factory-asset/bin/run_fa307_two_cluster_live.mjs; company/factory-asset/receipts/FA-307-two-cluster-parallel.receipt.json",
       "acceptance": "Two clusters execute concurrent heterogeneous provider jobs with correct original-byte lineage, no profile lock collisions, bounded RAM/tabs and deterministic recovery.",
-      "updated_at": "2026-09-07",
-      "waiting_on": "ARCHITECT_BOUNDED_TWO_CLUSTER_LIVE_ACCEPTANCE",
-      "result": "IN_PROGRESS: Attempt #8 again proved Qwen@A success and two-cluster overlap but Gemini download APIs yielded no usable bytes before saveAs ENOENT. Fresh attempt #9 keeps the healthy pair and captures qualifying post-dispatch Gemini image response bodies, gated by appearance of a new generated download control, before DOM/download fallbacks. New jobs, exactly two calls, zero retries."
+      "updated_at": "2026-09-08",
+      "waiting_on": null,
+      "result": "PASS_COMPOSITE_EVIDENCE: Attempts #7/#8 proved concurrent heterogeneous two-cluster execution, isolation, bounded RAM/tabs/leases, second-owner rejection and deterministic recovery. FA-124 then proved repeated Qwen@A and Gemini@B provider-original byte persistence on the same broker-owned BROWSER_CDP topology, with Gemini using the planned post-dispatch response-body extractor. No attempt #9 provider calls were required; attempts #1-#8 remain historical FAIL."
     },
     {
       "id": "FA-308",
@@ -2719,10 +2719,12 @@
       "depends_on": [
         "FA-307"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_REQUIRED_FOR_NETWORK_CUTOVER",
       "artifact": "Management-ingress hardening contract, upstream NAT evidence, SSH security/recovery receipt",
-      "acceptance": "Distinguish guest sshd health from upstream public NAT/filtering; establish repeatable reachability telemetry for public management ingress; move SSH to key-only non-root governance with bounded brute-force/rate-limit controls and a proven rollback/recovery channel before any lockout-prone mutation. Preserve Cloudflare linux-mcp as cognition/management MCP only: executive/division origins may be repaired, but CDP/browser/wake/Cluster A/Cluster B broker ports must remain loopback and never be exposed through the MCP tunnel."
+      "acceptance": "Distinguish guest sshd health from upstream public NAT/filtering; establish repeatable reachability telemetry for public management ingress; move SSH to key-only non-root governance with bounded brute-force/rate-limit controls and a proven rollback/recovery channel before any lockout-prone mutation. Preserve Cloudflare linux-mcp as cognition/management MCP only: executive/division origins may be repaired, but CDP/browser/wake/Cluster A/Cluster B broker ports must remain loopback and never be exposed through the MCP tunnel.",
+      "updated_at": "2026-09-08",
+      "result": "READY: FA-307 is DONE/PASS by composite acceptance evidence; execute this task under its own authority and acceptance contract."
     },
     {
       "id": "FA-311",
@@ -2733,10 +2735,12 @@
       "depends_on": [
         "FA-307"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "Per-profile storage budget, cache taxonomy, cleanup/recovery policy and capacity calculator",
-      "acceptance": "Use measured persistent-profile baselines (341 MiB Cluster A, 349 MiB Cluster B on 2026-09-07) and shared Chromium cost (656 MiB once, not per profile). Separate authentication/session state from recreatable caches; prove any cache cleanup cannot destroy login/session identity. Publish at least current-footprint, 1 GiB/profile and 2 GiB/profile planning envelopes for 100 persistent profiles; do not claim 100 persistent profiles imply 100 active browsers."
+      "acceptance": "Use measured persistent-profile baselines (341 MiB Cluster A, 349 MiB Cluster B on 2026-09-07) and shared Chromium cost (656 MiB once, not per profile). Separate authentication/session state from recreatable caches; prove any cache cleanup cannot destroy login/session identity. Publish at least current-footprint, 1 GiB/profile and 2 GiB/profile planning envelopes for 100 persistent profiles; do not claim 100 persistent profiles imply 100 active browsers.",
+      "updated_at": "2026-09-08",
+      "result": "READY: FA-307 is DONE/PASS by composite acceptance evidence; execute this task under its own authority and acceptance contract."
     },
     {
       "id": "FA-312",
@@ -2747,10 +2751,12 @@
       "depends_on": [
         "FA-307"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "Measured Chromium process-tree capacity model, active-owner ceiling and sharding/backpressure contract",
-      "acceptance": "Start from FA-307 measured two-cluster concurrent process-tree peak and re-measure under accepted live workload. Define a bounded active-browser-owner ceiling from RAM, tab, provider and recovery constraints; persistent profiles beyond that ceiling remain cold/parked until leased. Sharding/backpressure must prevent profile-count growth from linearly becoming simultaneous Chromium-owner growth."
+      "acceptance": "Start from FA-307 measured two-cluster concurrent process-tree peak and re-measure under accepted live workload. Define a bounded active-browser-owner ceiling from RAM, tab, provider and recovery constraints; persistent profiles beyond that ceiling remain cold/parked until leased. Sharding/backpressure must prevent profile-count growth from linearly becoming simultaneous Chromium-owner growth.",
+      "updated_at": "2026-09-08",
+      "result": "READY: FA-307 is DONE/PASS by composite acceptance evidence; execute this task under its own authority and acceptance contract."
     },
     {
       "id": "FA-313",
@@ -2761,10 +2767,12 @@
       "depends_on": [
         "FA-307"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "Hermes production multi-cluster routing integration and regression receipt",
-      "acceptance": "Remove the production-runtime assumption that every raster blueprint/handoff is hard-pinned to MUXIA/chatgpt-linux-a. Route eligible production through the FA-306 multi-cluster scheduler using capability/readiness/capacity/fairness/circuit state while preserving exact blueprint semantics, exactly-once dispatch, provider-original lineage and parked Founder-QC behavior. Cluster B availability must improve capacity without making it a mandatory single point of failure."
+      "acceptance": "Remove the production-runtime assumption that every raster blueprint/handoff is hard-pinned to MUXIA/chatgpt-linux-a. Route eligible production through the FA-306 multi-cluster scheduler using capability/readiness/capacity/fairness/circuit state while preserving exact blueprint semantics, exactly-once dispatch, provider-original lineage and parked Founder-QC behavior. Cluster B availability must improve capacity without making it a mandatory single point of failure.",
+      "updated_at": "2026-09-08",
+      "result": "READY: FA-307 is DONE/PASS by composite acceptance evidence; execute this task under its own authority and acceptance contract."
     },
     {
       "id": "FA-314",
@@ -2775,10 +2783,12 @@
       "depends_on": [
         "FA-307"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "Hot/cold storage tiers, retention policy, capacity scenarios, integrity and restore contract",
-      "acceptance": "Measure real per-master workspace growth and distinguish provider originals, masters, derivatives, metadata/QA/rights receipts and disposable intermediates. Publish 1,000-master/day hot-storage and 30-day retention scenarios, with immutable original/master hash lineage, bounded local NVMe pressure, archival/object-storage handoff and restore verification. Any spend/provisioning remains Founder-authorized separately."
+      "acceptance": "Measure real per-master workspace growth and distinguish provider originals, masters, derivatives, metadata/QA/rights receipts and disposable intermediates. Publish 1,000-master/day hot-storage and 30-day retention scenarios, with immutable original/master hash lineage, bounded local NVMe pressure, archival/object-storage handoff and restore verification. Any spend/provisioning remains Founder-authorized separately.",
+      "updated_at": "2026-09-08",
+      "result": "READY: FA-307 is DONE/PASS by composite acceptance evidence; execute this task under its own authority and acceptance contract."
     },
     {
       "id": "FA-315",
