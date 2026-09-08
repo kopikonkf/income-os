@@ -1,0 +1,77 @@
+{
+  "schema": "die.factory-asset.cluster-headed-owner-lifecycle.receipt.v1",
+  "date": "2026-09-08",
+  "status": "DONE",
+  "result": "PASS",
+  "scope": "Make headed Cluster B production-safe by eliminating stale READY on browser-owner death and preserving a reusable tab after lease release.",
+  "revert": {
+    "unsafe_pr": 278,
+    "revert_pr": 279,
+    "revert_merge_commit": "d807f3efffed588824355f1a6e8d0386ba1f3c06",
+    "runtime_restored_to_pre_278_disconnect_behavior": true
+  },
+  "implementation": {
+    "owner_health_core": "company/browser/linux/cluster_broker_core.mjs",
+    "owner_failure_launcher": "company/muxia/scripts/linux/muxia-cluster-broker.mjs",
+    "tab_recycle_manager": "company/browser/linux/cluster_tab_leases.mjs",
+    "cluster_registry": "company/factory-asset/registries/web-ai-clusters.v1.json",
+    "tests": [
+      "company/factory-asset/tests/test_cluster_owner_lifecycle.py",
+      "company/factory-asset/tests/test_cluster_broker.py",
+      "company/factory-asset/tests/test_cluster_tab_leases.py"
+    ],
+    "evidence": "company/factory-asset/fixtures/multi-cluster/FA-HOTFIX-cluster-headed-owner-lifecycle.json"
+  },
+  "root_cause": {
+    "chatgpt_headless_checkpoint": "HEADLESS_BROWSER_MODE_TRIGGERED_UPSTREAM_PROTECTION_INTERSTITIAL_ON_CONTROLLED_COMPARISON",
+    "headed_browser_owner_exit": "LEASE_RELEASE_CLOSED_LAST_WINDOW",
+    "stale_ready": "NO_BROWSER_OWNER_HEALTH_MONITOR"
+  },
+  "acceptance": {
+    "owner_failure_transition": "READY -> OWNER_FAILED",
+    "owner_failure_reason": "OWNER_BROWSER_DISCONNECTED",
+    "systemd_restart_proven": true,
+    "old_fault_injection_owner_pid": 766537,
+    "replacement_owner_pid": 766876,
+    "final_durability_owner_pid": 768282,
+    "final_durability_seconds": 60,
+    "final_durability_owner_stable": true,
+    "chatgpt_zero_call_state": "HEALTHY",
+    "chatgpt_zero_call_reason": "COMPOSER_READY",
+    "chatgpt_release_page_recycled": true,
+    "qwen_zero_call_state": "HEALTHY",
+    "qwen_zero_call_reason": "COMPOSER_READY",
+    "qwen_release_page_recycled": true,
+    "same_owner_across_chatgpt_and_qwen": true,
+    "active_leases_after_sequence": 0,
+    "open_pages_after_sequence": 1,
+    "post_sequence_owner_still_ready_after_seconds": 20
+  },
+  "permanent_protocol": {
+    "production_browser_mode": "HEADFUL_OR_VIRTUAL_DISPLAY_DEFAULT",
+    "headless_policy": "HEADLESS_REQUIRES_PROVIDER_SPECIFIC_ACCEPTANCE",
+    "provider_specificity": "BROWSER_MODE_AND_AUTOMATION_TRANSPORT_MUST_BE_ACCEPTED_PER_PROVIDER",
+    "interactive_auth": "VISIBLE_BROWSER_WITH_CDP_OFF_WHEN_PROVIDER_VERIFICATION_REQUIRES_HUMAN_INTERACTION",
+    "challenge_policy": "NO_BYPASS; FAIL_CLOSED_AND_ROUTE_OR_ESCALATE",
+    "ready_invariant": "READY_REQUIRES_LIVE_OWNER_PID_AND_CONNECTED_PLAYWRIGHT_BROWSER"
+  },
+  "authority_and_safety": {
+    "provider_generation_calls_performed": 0,
+    "prompt_submitted": false,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "checkpoint_or_captcha_bypass": false,
+    "spend_usd": 0,
+    "account_actions": 0,
+    "marketplace_actions": 0,
+    "submission_authorized": false,
+    "publication_authorized": false
+  },
+  "validation": {
+    "focused_linux": "25 passed",
+    "factory_regression_linux": "750 passed, 1 PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded as out of hotfix scope",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "company_secret_scan_hits": 0
+  }
+}

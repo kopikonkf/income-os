@@ -71,8 +71,19 @@ export class ClusterTabLeaseManager {
   async release(leaseId, reason = 'RELEASED') {
     const lease = this.leases.get(leaseId); if (!lease) return { lease_id: leaseId, released: false, reason: 'NOT_FOUND' };
     this.leases.delete(leaseId);
-    await lease.page.close({ runBeforeUnload: false }).catch(() => {});
-    return { lease_id: leaseId, released: true, reason, provider_id: lease.providerId, job_id: lease.jobId };
+    let pageRecycled = false; let standbyCreated = false;
+    if (!lease.page.isClosed()) {
+      try {
+        await lease.page.goto('about:blank');
+        pageRecycled = !lease.page.isClosed() && lease.page.url() === 'about:blank';
+      } catch {}
+    }
+    if (!pageRecycled) {
+      const otherOpen = this.context.pages().filter((page) => page !== lease.page && !page.isClosed());
+      if (!otherOpen.length) { try { await this.context.newPage(); standbyCreated = true; } catch {} }
+      if (!lease.page.isClosed()) await lease.page.close({ runBeforeUnload: false }).catch(() => {});
+    }
+    return { lease_id: leaseId, released: true, reason, provider_id: lease.providerId, job_id: lease.jobId, page_recycled: pageRecycled, standby_created: standbyCreated };
   }
 
   async reclaimExpired() {

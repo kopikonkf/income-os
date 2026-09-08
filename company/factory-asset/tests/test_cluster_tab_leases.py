@@ -55,7 +55,7 @@ console.log(JSON.stringify({{blocked,q:q.job_id,rel,q2:q2.job_id,snapshot:m.snap
         assert v['snapshot']['active_leases'] == 1
 
 
-def test_expired_lease_is_reclaimed_and_page_closed():
+def test_expired_lease_is_reclaimed_and_page_recycled():
     with tempfile.TemporaryDirectory() as td:
         h = Path(td) / 'h.mjs'
         script = f'''
@@ -71,8 +71,9 @@ console.log(JSON.stringify({{rec,s:m.snapshot(),allPages:c.ps.map(p=>({{closed:p
         r = subprocess.run(['node', str(h)], capture_output=True, text=True, check=True, timeout=30)
         v = json.loads(r.stdout.strip().splitlines()[-1])
         assert len(v['rec']) == 1 and v['rec'][0]['reason'] == 'TTL_EXPIRED'
-        assert v['s']['active_leases'] == 0 and v['s']['open_pages'] == 0
-        assert v['allPages'][0]['closed'] is True
+        assert v['s']['active_leases'] == 0 and v['s']['open_pages'] == 1
+        assert v['allPages'][0]['closed'] is False and v['allPages'][0]['url'] == 'about:blank'
+        assert v['rec'][0]['page_recycled'] is True
 
 
 def test_client_and_broker_expose_lease_api_without_profile_launch():

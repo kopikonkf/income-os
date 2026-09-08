@@ -61,18 +61,62 @@ function jsonReply(res, status, value) {
 }
 
 export class ClusterBrokerCore {
-  constructor({ clusterId, profileId, profileDir, stateFile, lockFile, driver, maxTabs = 8, controlHost = '127.0.0.1', controlPort = 0, leaseManagerFactory = null }) {
+  constructor({ clusterId, profileId, profileDir, stateFile, lockFile, driver, maxTabs = 8, controlHost = '127.0.0.1', controlPort = 0, leaseManagerFactory = null, ownerHealthIntervalMs = 1000 }) {
     if (!clusterId || !profileId || !path.isAbsolute(profileDir) || !path.isAbsolute(stateFile) || !path.isAbsolute(lockFile)) throw new Error('E_CLUSTER_BROKER_CONFIG');
     if (controlHost !== '127.0.0.1') throw new Error('E_CLUSTER_BROKER_CONTROL_NOT_LOOPBACK');
     if (!Number.isInteger(maxTabs) || maxTabs < 1 || maxTabs > 8) throw new Error('E_CLUSTER_BROKER_TAB_CEILING');
+    if (!Number.isInteger(ownerHealthIntervalMs) || ownerHealthIntervalMs < 100 || ownerHealthIntervalMs > 10000) throw new Error('E_CLUSTER_BROKER_OWNER_HEALTH_INTERVAL');
     this.clusterId = clusterId; this.profileId = profileId; this.profileDir = profileDir;
     this.stateFile = stateFile; this.lockFile = lockFile; this.driver = driver; this.maxTabs = maxTabs;
     this.controlHost = controlHost; this.controlPort = controlPort; this.server = null; this.handle = null; this.state = null;
     this.leaseManagerFactory = leaseManagerFactory; this.leaseManager = null; this.lockOwned = false;
+    this.ownerHealthIntervalMs = ownerHealthIntervalMs; this.ownerHealthTimer = null; this.ownerDisconnectedListener = null;
+    this.ownerFailurePromise = null; this.ownerFailureResolve = null; this.stopping = false;
+  }
+
+  ownerHealthReason() {
+    if (!this.handle) return 'OWNER_HANDLE_MISSING';
+    if (!pidAlive(Number(this.handle.pid))) return 'OWNER_PROCESS_NOT_ALIVE';
+    if (typeof this.handle.browser?.isConnected === 'function' && !this.handle.browser.isConnected()) return 'OWNER_BROWSER_DISCONNECTED';
+    return null;
+  }
+
+  markOwnerFailed(reason) {
+    if (this.stopping || !this.state || this.state.state !== 'READY') return;
+    this.state = { ...this.state, state: 'OWNER_FAILED', owner_failure_reason: String(reason || 'OWNER_FAILED'), failed_at: new Date().toISOString() };
+    atomicWriteJson(this.stateFile, this.state);
+    if (this.leaseManager) void this.leaseManager.releaseAll('OWNER_FAILED').catch(() => {});
+    if (this.ownerFailureResolve) this.ownerFailureResolve({ kind: 'OWNER_FAILED', reason: this.state.owner_failure_reason, state: { ...this.state } });
+  }
+
+  armOwnerHealthMonitor() {
+    this.ownerFailurePromise = new Promise((resolve) => { this.ownerFailureResolve = resolve; });
+    this.ownerDisconnectedListener = () => this.markOwnerFailed('OWNER_BROWSER_DISCONNECTED');
+    if (typeof this.handle?.browser?.on === 'function') this.handle.browser.on('disconnected', this.ownerDisconnectedListener);
+    this.ownerHealthTimer = setInterval(() => { const reason = this.ownerHealthReason(); if (reason) this.markOwnerFailed(reason); }, this.ownerHealthIntervalMs);
+    this.ownerHealthTimer.unref?.();
+  }
+
+  waitForOwnerFailure() {
+    if (!this.ownerFailurePromise) throw new Error('E_CLUSTER_BROKER_OWNER_MONITOR_NOT_ARMED');
+    return this.ownerFailurePromise;
+  }
+
+  clearOwnerHealthMonitor() {
+    if (this.ownerHealthTimer) clearInterval(this.ownerHealthTimer);
+    this.ownerHealthTimer = null;
+    if (this.ownerDisconnectedListener && typeof this.handle?.browser?.off === 'function') this.handle.browser.off('disconnected', this.ownerDisconnectedListener);
+    this.ownerDisconnectedListener = null; this.ownerFailureResolve = null;
+  }
+
+  assertOwnerReady() {
+    const reason = this.ownerHealthReason();
+    if (reason) this.markOwnerFailed(reason);
+    if (!this.handle || !this.state || this.state.state !== 'READY') throw new Error(`E_CLUSTER_BROKER_NOT_READY:${this.state?.state || 'OFFLINE'}`);
   }
 
   attachDescriptor() {
-    if (!this.handle || !this.state || this.state.state !== 'READY') throw new Error('E_CLUSTER_BROKER_NOT_READY');
+    this.assertOwnerReady();
     return {
       schema: 'die.muxia.cluster-broker-attach.v1', cluster_id: this.clusterId, profile_id: this.profileId,
       debug_host: '127.0.0.1', debug_port: this.handle.debugPort, debug_url: this.handle.debugUrl,
@@ -82,6 +126,7 @@ export class ClusterBrokerCore {
   }
 
   status() {
+    if (this.state?.state === 'READY') { const reason = this.ownerHealthReason(); if (reason) this.markOwnerFailed(reason); }
     const base = this.state ? { ...this.state } : { schema: 'die.muxia.cluster-broker-state.v1', cluster_id: this.clusterId, profile_id: this.profileId, state: 'OFFLINE' };
     if (this.leaseManager && base.state === 'READY') base.tab_leases = this.leaseManager.snapshot();
     return base;
@@ -96,6 +141,7 @@ export class ClusterBrokerCore {
         return jsonReply(res, 200, this.leaseManager.snapshot());
       }
       if (req.method === 'POST' && req.url === '/v1/leases/acquire') {
+        this.assertOwnerReady();
         if (!this.leaseManager) throw new Error('E_CLUSTER_TAB_LEASES_DISABLED');
         const body = await readJson(req);
         const lease = await this.leaseManager.acquire({ providerId: body.provider_id, jobId: body.job_id, ttlMs: body.ttl_ms ?? undefined });
@@ -155,6 +201,8 @@ export class ClusterBrokerCore {
         credential_values_read: false, cookies_or_tokens_read: false,
       };
       atomicWriteJson(this.stateFile, this.state);
+      this.stopping = false;
+      this.armOwnerHealthMonitor();
       return this.status();
     } catch (error) {
       await this.stop().catch(() => {});
@@ -162,14 +210,16 @@ export class ClusterBrokerCore {
     }
   }
 
-  async stop() {
+  async stop({ finalState = 'OFFLINE', reason = 'BROKER_STOP' } = {}) {
+    this.stopping = true;
+    this.clearOwnerHealthMonitor();
     const server = this.server; this.server = null;
     if (server) await new Promise((resolve) => server.close(() => resolve()));
-    if (this.leaseManager) { await this.leaseManager.releaseAll('BROKER_STOP'); this.leaseManager = null; }
+    if (this.leaseManager) { await this.leaseManager.releaseAll(reason); this.leaseManager = null; }
     if (this.handle) { await this.driver.stop(); this.handle = null; }
     this.state = {
       schema: 'die.muxia.cluster-broker-state.v1', cluster_id: this.clusterId, profile_id: this.profileId,
-      state: 'OFFLINE', stopped_at: new Date().toISOString(), credential_values_read: false, cookies_or_tokens_read: false,
+      state: finalState, stopped_at: new Date().toISOString(), stop_reason: reason, credential_values_read: false, cookies_or_tokens_read: false,
     };
     atomicWriteJson(this.stateFile, this.state);
     if (this.lockOwned) {
