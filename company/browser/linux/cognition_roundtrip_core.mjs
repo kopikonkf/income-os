@@ -167,14 +167,26 @@ export async function runRoundtrip({dieHome='/srv/die', requestFile, responseFil
       await send.click(); submitted=true; recovered={state:'SENT_WAITING'};
     }
     if(recovered.state==='SENT_WAITING') {
+      const stop=page.locator('button[data-testid="stop-button"], button[aria-label*="Stop"]').first();
+      const expiredWhileWaiting=Date.now()>=parseTime(req.expires_at);
+      if(expiredWhileWaiting && (await stop.count())>0 && await stop.isVisible().catch(()=>false)){
+        await stop.click({timeout:2500}).catch(()=>{});
+        await stop.waitFor({state:'hidden',timeout:15000}).catch(()=>{});
+        throw new Error('E_RESPONSE_TIMEOUT_STALE_TURN_STOPPED');
+      }
       const deadline=Date.now()+timeoutMs; let stable=0,last='';
       while(Date.now()<deadline){
         await page.waitForTimeout(1000); turns=await turnSnapshot(page); recovered=chooseRecoveredTurn(turns,req.request_id,fingerprint,req.prompt);
         if(recovered.state==='RESPONDED'){
           assistant=recovered.assistant; const text=assistant.text||''; if(text===last && text.length>0) stable++; else {last=text;stable=0;}
-          const stop=page.locator('button[data-testid="stop-button"], button[aria-label*="Stop"]').first(); const generating=(await stop.count())>0 && await stop.isVisible().catch(()=>false);
+          const generating=(await stop.count())>0 && await stop.isVisible().catch(()=>false);
           if(stable>=2 && !generating) break;
         }
+      }
+      if((!assistant || !assistant.text) && (await stop.count())>0 && await stop.isVisible().catch(()=>false)){
+        await stop.click({timeout:2500}).catch(()=>{});
+        await stop.waitFor({state:'hidden',timeout:15000}).catch(()=>{});
+        throw new Error('E_RESPONSE_TIMEOUT_STALE_TURN_STOPPED');
       }
     }
     if(!assistant || !assistant.text) throw new Error('E_RESPONSE_TIMEOUT');

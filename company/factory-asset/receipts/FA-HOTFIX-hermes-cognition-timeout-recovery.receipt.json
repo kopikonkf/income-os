@@ -1,0 +1,62 @@
+{
+  "schema": "die.factory-asset.hermes-cognition-timeout-recovery.receipt.v1",
+  "date": "2026-09-08",
+  "status": "DONE",
+  "result": "PASS",
+  "scope": "Recover deterministic Hermes production cognition from an indefinitely stuck ChatGPT author turn without creating a compensating production seed.",
+  "incident": {
+    "task_id": "PRODSEED000113",
+    "seed_id": "SEED-000113",
+    "seed_name": "binder",
+    "runtime_symptom": "PRODUCTION_RUNTIME_IDLE / WAITING_COGNITION",
+    "cognition_cron_failures_before_fix": 92,
+    "transport_error": "E_RESPONSE_TIMEOUT",
+    "stuck_request_id": "COG-PROD_BP_AUTHOR_PRODSEED000113_R00",
+    "stuck_turn_observation": "assistant placeholder remained empty while Stop control stayed visible",
+    "auth_loss_observed": false,
+    "compensating_seed_created": false
+  },
+  "fix": {
+    "transport": "Expired or timed-out SENT_WAITING turn with visible Stop is stopped and reported as E_RESPONSE_TIMEOUT_STALE_TURN_STOPPED.",
+    "cognition_state": "Transport response timeout is converted into a bounded durable author/review retry attempt instead of leaving the same logical request in an infinite wait loop.",
+    "author_retry_limit": 3,
+    "review_retry_limit": 3,
+    "exhaustion_boundary": "WAITING_FOUNDER"
+  },
+  "live_recovery": {
+    "r00_timeout_recorded_at": "2026-09-08T07:54:49Z",
+    "r00_state_after_fix": "NEED_AUTHOR",
+    "author_attempt_after_r00": 1,
+    "r01_request_id": "COG-PROD_BP_AUTHOR_PRODSEED000113_R01",
+    "r01_author_valid_at": "2026-09-08T07:56:22Z",
+    "r01_author_artifact_sha256": "333b58dc58c39a2b882911dbc4634f359dea3d2ebf6e9111006e33da72553625",
+    "review_request_id": "COG-PROD_BP_REVIEW_PRODSEED000113_R00",
+    "review_valid_at": "2026-09-08T07:57:10Z",
+    "review_outcome": "NO_VETO",
+    "cognition_final_stage": "READY",
+    "production_final_progress_state": "WAITING_FOUNDER_QC",
+    "listing_artifact": "qc/binder-photo__c706e45a.jpg",
+    "metadata_artifact": "factory-v2/metadata.json",
+    "submission_fields_artifact": "factory-v2/submission-fields.json",
+    "provider": "MUXIA/chatgpt-linux-a"
+  },
+  "authority_and_safety": {
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "challenge_bypass_attempted": false,
+    "account_actions": 0,
+    "marketplace_actions": 0,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "compensating_seed_created": false
+  },
+  "validation": {
+    "linux_python_focused": "25 passed",
+    "linux_node_roundtrip": "13 passed",
+    "windows_non_fcntl_regressions": "11 passed",
+    "factory_regression_linux": "755 passed, 1 PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded as out of hotfix scope",
+    "one_canon_pytest": "6 passed",
+    "one_canon_validator": "11/11 PASS",
+    "company_secret_scan_hits": 0
+  }
+}
