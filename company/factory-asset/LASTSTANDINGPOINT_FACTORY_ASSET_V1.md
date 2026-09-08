@@ -833,3 +833,16 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - No provider/browser action, secret read, spend, account action, marketplace action or production runtime mutation occurred.
 - Validation: focused recovery/queue/Console 31 PASS; Factory regression 736 PASS with only the out-of-scope FA-121 live-broker oneshot omitted; one-canon 6 PASS; validator 11/11 PASS; high-confidence secret hits 0; Python compile PASS.
 - `FA-C012 = DONE/PASS`. `FA-C013` remains BLOCKED solely because `FA-124` is not DONE; no C013 Founder acceptance occurred.
+
+
+---
+
+## 2026-09-08 - FA-122 DONE/PASS — 20 unique masters/day bounded live-load acceptance
+- Founder-authorized bounded live load used durable workspace `/home/kopiko/factory-asset-canaries/fa122-live-load-20260908-r1` with a pre-dispatch hard budget of 20 target unique masters, 24 maximum provider commits, 2 maximum concurrent generations, one live lease per cluster and 6144 MB combined browser-tree RSS cap.
+- Final result: 20 terminal jobs, 20 committed generations, 20 successful provider originals, 20 unique SHA-256 masters, 20/20 technical-QA PASS, 0 provider failures, 0 exact duplicates and 0 dHash near-duplicate pairs. Cluster distribution was 10 on cluster-a and 10 on cluster-b.
+- ChatGPT incident root cause was corrected from a misleading `DEGRADED/COMPOSER_NOT_READY` label to `CHECKPOINT/PROTECTION_CHALLENGE`: both existing profiles received the upstream `Just a moment...` protection interstitial with no composer, no auth UI and no writable editor. No bypass was attempted. Hotfix PR #275 (`e4b4bb73dbe932b5f7106ea06a4516fb561e7ee7`) adds protection-interstitial detection, writable-composer readiness, stronger ChatGPT selectors, verified fill + keyboard fallback, and broader send controls. While the challenge remains, routing fails closed to healthy sibling Qwen instead of stalling production.
+- All 20 accepted live generations therefore used Qwen `BROWSER_CDP` fallback; `SESSION_API` remains Qwen's primary transport contract and was not falsely claimed as the live executor. Provider counts: Qwen 20, ChatGPT 0.
+- Resource/capacity truth: maximum observed combined browser-tree RSS across the stepped run was 6011.93 MB < 6144 MB; max active leases remained 1 per cluster; max open pages A=3/B=1; profile metadata identity was preserved; final lease leakage was zero; no safety-bound violation occurred.
+- Raw runtime evidence is hash-pinned from the VPS: plan `0a55c48c961e417d0c757c38eee5c9455db5da1750ce3bdcdf33e0aaa5ad0494`, progress-at-16 `9147f037634de60f5f98c75e0fc413b26a9a3e614aa906b4a05e3a30e615a4d5`, final live result `cd95fbd1e29510084118619a40837f8cb3ecf18104ddfc1c1914796831d2f153`, evaluator `495f008c2f8cb4dbc50b65790ef0365d15e2b7e0e9f0715815b5a0d4d82863c1`; compact canonical evidence is `company/factory-asset/fixtures/scale/FA-122-final-acceptance-evidence.json`.
+- Authority boundaries: zero credential/cookie/token reads, zero spend, zero account actions, zero checkpoint/CAPTCHA bypass, zero marketplace/submission/publication action, production seed selection unused and derivatives never counted as masters.
+- `FA-122 = DONE/PASS`; dependency reconciliation only: `FA-123 = READY`. No FA-123 downstream-capacity execution occurred in this acceptance run.

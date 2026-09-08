@@ -3965,3 +3965,11 @@ Executive and Division01 Linux MCP/wake/identity stack has all required proof la
 - Console/Factory Core recovery now distinguishes pre-dispatch and post-dispatch crash boundaries: uncommitted RUNNING work returns safely to READY, while a committed generation is fenced as `DISPATCH_RECONCILIATION_REQUIRED` and cannot be START/RESUME/RETRY-dispatched again.
 - Existing success, paused and retry-wait truth survived process/UI restarts exactly; two fresh HTTP server instances reconciled identical Factory Core state. Zero provider/browser, secret, spend, account, marketplace or production action occurred.
 - Validation: focused 31 PASS; Factory 736 PASS; one-canon 6 PASS; validator 11/11 PASS. `FA-C013` remains blocked only by `FA-124`.
+
+
+---
+
+## 2026-09-08 - FA-122 scale live-load DONE/PASS + ChatGPT protection-interstitial hotfix
+- Bounded live load reached 20/20 successful, QA-passed, unique provider-original masters with 0 failures, 0 exact duplicates and 0 near-duplicate pairs; cluster-a/cluster-b split 10/10 and maximum observed combined browser-tree RSS was 6011.93 MB under the 6144 MB cap.
+- ChatGPT was not suffering an auth failure or ordinary selector miss: both existing browser profiles were receiving the upstream `Just a moment...` protection interstitial. PR #275 merged the safe fix: classify it as `CHECKPOINT/PROTECTION_CHALLENGE`, require writable-composer readiness, harden normal composer submission, and fail closed to healthy sibling providers without bypassing the challenge. FA-122 completed through Qwen BROWSER_CDP fallback only.
+- No secret read, spend, account action, challenge bypass, marketplace action, submission or publication occurred. `FA-122 = DONE/PASS`; `FA-123 = READY` by dependency only.

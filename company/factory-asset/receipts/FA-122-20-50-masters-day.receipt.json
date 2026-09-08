@@ -1,0 +1,108 @@
+{
+  "schema": "die.factory-asset.fa122-20-50-masters-day.receipt.v1",
+  "task_id": "FA-122",
+  "date": "2026-09-08",
+  "status": "DONE",
+  "result": "PASS",
+  "acceptance": "Unique master count, QA pass rate, provider failures, duplicates, resource use and policy/capacity evidence are complete; file derivatives excluded from master count.",
+  "base_main": "e4b4bb73dbe932b5f7106ea06a4516fb561e7ee7",
+  "execution_mode": "FOUNDER_AUTHORIZED_BOUNDED_LIVE_LOAD",
+  "implementation": {
+    "contract": "company/factory-asset/contracts/fa122-live-load.v1.json",
+    "runner": "company/factory-asset/bin/run_fa122_live_load.mjs",
+    "evaluator": "company/factory-asset/lib/fa122_load_evaluator.py",
+    "evaluator_cli": "company/factory-asset/bin/evaluate_fa122_live_load.py",
+    "tests": "company/factory-asset/tests/test_fa122_live_load.py",
+    "canonical_evidence": "company/factory-asset/fixtures/scale/FA-122-final-acceptance-evidence.json"
+  },
+  "load_budget": {
+    "target_unique_masters": 20,
+    "max_provider_generation_commits": 24,
+    "actual_provider_generation_commits": 20,
+    "max_planned_semantic_jobs": 24,
+    "actual_terminal_jobs": 20,
+    "max_concurrent_generations": 2,
+    "max_live_leases_per_cluster": 1,
+    "max_tabs_per_cluster": 8,
+    "max_combined_browser_tree_rss_mb": 6144
+  },
+  "live_result": {
+    "successful_provider_artifacts": 20,
+    "unique_provider_original_sha256": 20,
+    "provider_failures": 0,
+    "provider_counts": {
+      "qwen": 20,
+      "chatgpt": 0
+    },
+    "cluster_counts": {
+      "cluster-a": 10,
+      "cluster-b": 10
+    },
+    "runtime_workspace": "/home/kopiko/factory-asset-canaries/fa122-live-load-20260908-r1"
+  },
+  "qa_and_distinctness": {
+    "qa_passed_masters": 20,
+    "qa_pass_rate": 1.0,
+    "unique_qa_master_sha256": 20,
+    "exact_duplicate_hash_count": 0,
+    "near_duplicate_pair_count": 0,
+    "derivative_files_counted_as_masters": false
+  },
+  "resource_and_capacity": {
+    "max_combined_browser_tree_rss_mb_observed": 6011.93,
+    "max_active_leases": {
+      "cluster-a": 1,
+      "cluster-b": 1
+    },
+    "max_open_pages": {
+      "cluster-a": 3,
+      "cluster-b": 1
+    },
+    "profile_metadata_identity_preserved": true,
+    "zero_lease_leak_after_completion": true,
+    "safety_violation": null
+  },
+  "chatgpt_incident": {
+    "root_cause_observed": "UPSTREAM_PROTECTION_INTERSTITIAL",
+    "page_title": "Just a moment...",
+    "cluster_a_readiness": "CHECKPOINT",
+    "cluster_b_readiness": "CHECKPOINT",
+    "reason_code": "PROTECTION_CHALLENGE",
+    "auth_ui_visible": false,
+    "composer_visible": false,
+    "composer_writable": false,
+    "challenge_bypass_attempted": false,
+    "hotfix_pr": 275,
+    "hotfix_merge_commit": "e4b4bb73dbe932b5f7106ea06a4516fb561e7ee7",
+    "production_behavior_after_hotfix": "FAIL_CLOSED_AND_ROUTE_TO_HEALTHY_SIBLING",
+    "fallback_provider": "qwen",
+    "qwen_actual_transport": "BROWSER_CDP",
+    "qwen_primary_contract": "SESSION_API",
+    "qwen_session_api_live_executor_claimed": false
+  },
+  "source_evidence_hashes": {
+    "plan_sha256": "0a55c48c961e417d0c757c38eee5c9455db5da1750ce3bdcdf33e0aaa5ad0494",
+    "progress_at_16_sha256": "9147f037634de60f5f98c75e0fc413b26a9a3e614aa906b4a05e3a30e615a4d5",
+    "live_result_sha256": "cd95fbd1e29510084118619a40837f8cb3ecf18104ddfc1c1914796831d2f153",
+    "evaluation_sha256": "495f008c2f8cb4dbc50b65790ef0365d15e2b7e0e9f0715815b5a0d4d82863c1"
+  },
+  "authority_and_safety": {
+    "founder_live_load_authorization_observed": true,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "spend_usd": 0,
+    "account_actions": 0,
+    "checkpoint_or_captcha_bypass": false,
+    "marketplace_actions": 0,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "production_seed_selection_used": false
+  },
+  "validation": {
+    "chatgpt_hotfix_focused": "29 passed",
+    "fa122_local_plus_related_focused": "26 passed",
+    "fa122_evaluator": "PASS",
+    "company_secret_scan_hits": 0
+  },
+  "next_boundary": "FA-123 dependency is unlocked and may proceed as the next tightly-coupled scale acceptance step."
+}
