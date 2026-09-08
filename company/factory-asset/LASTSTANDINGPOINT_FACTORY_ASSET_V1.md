@@ -847,3 +847,15 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Authority boundaries: zero credential/cookie/token reads, zero spend, zero account actions, zero checkpoint/CAPTCHA bypass, zero marketplace/submission/publication action, production seed selection unused and derivatives never counted as masters.
 - `FA-122 = DONE/PASS`; dependency reconciliation only: `FA-123 = READY`. No FA-123 downstream-capacity execution occurred in this acceptance run.
 - Post-canonical Linux validation: focused FA-122/hotfix/canonical 22 PASS; Factory regression 747 PASS with one PyPDF2 deprecation warning and only the out-of-scope FA-121 live-broker oneshot excluded; one-canon 6 PASS; validator 11/11 PASS; secret hits 0; Node syntax/Python compile PASS.
+
+
+---
+
+## 2026-09-08 - ChatGPT Cluster B headed-broker recovery PASS
+- Live diagnosis isolated the prior ChatGPT Cluster B `CHECKPOINT/PROTECTION_CHALLENGE` to broker browser mode, not lost auth. With the same `web-ai-cluster-b` profile and same VPS/network, headless Chromium stayed on `Just a moment...` for 25 seconds, while headed Chromium under Xvfb immediately reached `READY/COMPOSER_READY`. CDP remained in the automation stack, so CDP alone is not proven as the cause.
+- No Founder login, challenge interaction, credential/cookie/token read, provider generation, spend, account action, submission or publication was required.
+- `die-muxia-cluster-b.service` was recovered with a reversible headed-Xvfb execution path while preserving loopback CDP, single-owner broker semantics, max_tabs=8 and lease governance. Live broker owner after recovery was PID 758934.
+- Zero-call live readiness after recovery: ChatGPT `HEALTHY/COMPOSER_READY`, composer visible+writable; Qwen `HEALTHY/COMPOSER_READY`; active leases returned to 0.
+- Canonical current-state evidence: `company/factory-asset/fixtures/multi-cluster/FA-HOTFIX-chatgpt-cluster-b-headed-recovery.json` and receipt `company/factory-asset/receipts/FA-HOTFIX-chatgpt-cluster-b-headed-recovery.receipt.json`. Historical FA-305 headless evidence remains unchanged.
+- Cluster B registry now promotes ChatGPT from `DEGRADED_NOT_SCHEDULABLE` to `ACTIVE` on the headed-Xvfb broker path. Cluster A headless broker remains unchanged because `chatgpt-linux-a` is also used by the production MUXIA headed runner and ownership convergence is a separate concern.
+- Post-hotfix Linux validation: 14 focused PASS; Factory regression 747 PASS with one PyPDF2 deprecation warning and only the out-of-scope FA-121 live-broker oneshot excluded; one-canon 6 PASS; validator 11/11 PASS; secret hits 0.

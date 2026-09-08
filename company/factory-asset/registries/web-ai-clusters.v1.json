@@ -132,17 +132,18 @@
       "providers": [
         {
           "provider_id": "chatgpt",
-          "membership": "DEGRADED_NOT_SCHEDULABLE",
+          "membership": "ACTIVE",
           "preferred_transport": "BROWSER_CDP",
-          "linux_evidence": "PROVEN",
+          "linux_evidence": "PROVEN_HEADED_BROKER",
           "readiness_profile": "chatgpt",
           "evidence": [
             "company/factory-asset/receipts/FA-W016-chatgpt-browser-cdp-backend.receipt.json",
-            "company/factory-asset/receipts/FA-113-muxia-provider-boundary.receipt.json"
+            "company/factory-asset/receipts/FA-113-muxia-provider-boundary.receipt.json",
+            "company/factory-asset/receipts/FA-HOTFIX-chatgpt-cluster-b-headed-recovery.receipt.json"
           ],
-          "cluster_b_readiness": "DEGRADED",
-          "cluster_b_readiness_reason": "COMPOSER_NOT_READY",
-          "cluster_b_readiness_evidence": "company/factory-asset/fixtures/multi-cluster/FA-305-cluster-b-readiness.json"
+          "cluster_b_readiness": "HEALTHY",
+          "cluster_b_readiness_reason": "COMPOSER_READY",
+          "cluster_b_readiness_evidence": "company/factory-asset/fixtures/multi-cluster/FA-HOTFIX-chatgpt-cluster-b-headed-recovery.json"
         },
         {
           "provider_id": "qwen",
@@ -217,7 +218,7 @@
       "max_active_browser_generations": 4,
       "reserved_recovery_tabs": 4,
       "activation_task": "FA-305",
-      "activation_policy": "AUTH_CLOSED_THEN_HEADLESS_BROKER_THEN_READINESS_GATED_PROVIDER_MEMBERSHIP"
+      "activation_policy": "AUTH_CLOSED_THEN_HEADED_XVFB_BROKER_THEN_READINESS_GATED_PROVIDER_MEMBERSHIP"
     }
   ]
 }
