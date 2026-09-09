@@ -105,40 +105,60 @@
       "id": "H03-KF-002",
       "track": "KNOWLEDGE",
       "title": "Governed external source ingestion adapters",
-      "status": "READY",
+      "status": "DONE",
       "priority": 900,
       "depends_on": [
         "H03-MVP-001"
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Add source adapters without granting crawlers or LLMs canonical truth; preserve source identity, rights and evidence hashes."
+      "acceptance": "Add source adapters without granting crawlers or LLMs canonical truth; preserve source identity, rights and evidence hashes.",
+      "artifact": "company/h03/lib/source_ingestion.py + company/h03/contracts/external-source-snapshot.v1.schema.json",
+      "result": {
+        "status": "PASS",
+        "crawler_or_llm_truth_authority": false,
+        "default_review_state": "PENDING_REVIEW"
+      }
     },
     {
       "id": "H03-PDF-003",
       "track": "RENDER",
       "title": "Reusable template and typography registry",
-      "status": "READY",
+      "status": "DONE",
       "priority": 890,
       "depends_on": [
         "H03-MVP-001"
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Multiple document forms share one AST while template changes do not mutate Knowledge Packages."
+      "acceptance": "Multiple document forms share one AST while template changes do not mutate Knowledge Packages.",
+      "artifact": "company/h03/templates/pdf-template-registry.v1.json + typography-registry.v1.json",
+      "result": {
+        "status": "PASS",
+        "template_count": 3,
+        "external_font_files": false,
+        "mvp_default_hash_preserved": true
+      }
     },
     {
       "id": "H03-AI-001",
       "track": "CAPABILITY",
       "title": "web-ai-adapter text capability contract for curator/production roles",
-      "status": "READY",
+      "status": "DONE",
       "priority": 880,
       "depends_on": [
         "H03-MVP-001"
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "H03 calls a normalized text capability contract; provider session/profile bytes remain outside product truth."
+      "acceptance": "H03 calls a normalized text capability contract; provider session/profile bytes remain outside product truth.",
+      "artifact": "company/h03/lib/web_ai_capability.py + company/h03/contracts/web-ai-text-capability.v1.schema.json",
+      "result": {
+        "status": "PASS",
+        "web_ai_adapter_reference": "a654f823ce1027951c0204a7b141120ab8607faf",
+        "session_material_in_product_truth": false,
+        "model_output_truth_status": "UNVERIFIED_MODEL_OUTPUT"
+      }
     },
     {
       "id": "H03-ECO-001",
@@ -168,5 +188,6 @@
       "execution_mode": "tool_native",
       "authority": "FOUNDER_EXTERNAL_PUBLICATION_REQUIRED"
     }
-  ]
+  ],
+  "revision": "2026-09-09 H03-KF-002 + H03-PDF-003 + H03-AI-001 PASS"
 }

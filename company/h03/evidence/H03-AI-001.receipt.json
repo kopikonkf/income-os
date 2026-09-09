@@ -1,0 +1,28 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-AI-001",
+  "status": "PASS",
+  "date": "2026-09-09",
+  "web_ai_adapter_reference": "a654f823ce1027951c0204a7b141120ab8607faf",
+  "endpoint_contract": "POST /v1/chat/completions",
+  "roles": [
+    "CURATOR",
+    "PRODUCER"
+  ],
+  "acceptance": {
+    "provider_specific_auth_in_h03": false,
+    "credential_session_fields_rejected": true,
+    "model_output_truth_status": "UNVERIFIED_MODEL_OUTPUT",
+    "canonical_truth_written": false
+  },
+  "artifacts": [
+    "company/h03/lib/web_ai_capability.py",
+    "company/h03/contracts/web-ai-text-capability.v1.schema.json",
+    "company/h03/contracts/web-ai-text-capability-response.v1.schema.json"
+  ],
+  "validation": {
+    "h03_test_suite": "20/20 PASS",
+    "json_parse": "21+ contract/evidence JSON files PASS",
+    "python_compile": "PASS"
+  }
+}

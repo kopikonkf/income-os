@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.web-ai.text-capability.v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "request_id",
+    "holding_id",
+    "role",
+    "task_id",
+    "model_route",
+    "prompt"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.h03.web-ai.text-capability-request.v1"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "holding_id": {
+      "const": "H03"
+    },
+    "role": {
+      "enum": [
+        "CURATOR",
+        "PRODUCER"
+      ]
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "model_route": {
+      "type": "string",
+      "minLength": 1
+    },
+    "prompt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "context": {
+      "type": "object"
+    },
+    "output_mode": {
+      "enum": [
+        "TEXT",
+        "JSON"
+      ]
+    }
+  }
+}
