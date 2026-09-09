@@ -63,7 +63,7 @@ def aggregate_runtime_status(pool: dict[str, Any]) -> dict[str, dict[str, Any]]:
             pid = provider["provider_id"]
             state = provider["state"]
             slots = provider["available_slots"] if state == "READY" else 0
-            candidate = {"state":"READY" if slots > 0 else state,"available_slots":slots,"profile_shard_id":shard["shard_id"]}
+            candidate = {"state":"READY" if slots > 0 else state,"available_slots":slots,"profile_shard_id":shard["shard_id"],"transport_family":provider["transport_family"]}
             current = best.get(pid)
             if current is None or candidate["available_slots"] > current.get("available_slots", 0):
                 best[pid] = candidate

@@ -64,6 +64,7 @@ def route_worker(*, role: str, registry: dict[str, Any], runtime_status: dict[st
             "priority": provider["priority"],
             "profile_shard_id": shard_id,
             "transport_families": list(provider["transport_families"]),
+            "transport_family": status.get("transport_family"),
             "available_slots": slots
         })
     if not eligible:

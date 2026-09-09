@@ -1,0 +1,30 @@
+{
+  "schema_version": "die.h03.batch-receipt.v1",
+  "batch_id": "H03-BATCH-A-E-20260909",
+  "status": "PASS",
+  "date": "2026-09-09",
+  "tasks_done": [
+    "H03-OPP-001",
+    "H03-RT-001",
+    "H03-ECO-001",
+    "H03-OPP-002",
+    "H03-DMD-001",
+    "H03-RT-002",
+    "H03-OPP-003",
+    "H03-RT-003",
+    "H03-RSCH-001",
+    "H03-RT-004",
+    "H03-RSCH-002",
+    "H03-RT-005"
+  ],
+  "validation": {
+    "h03_regression": "75/75 PASS",
+    "ready_frontier": [
+      "H03-KF-003",
+      "H03-RT-006"
+    ]
+  },
+  "external_publication": false,
+  "paid_ads": false,
+  "live_economic_commit": false
+}

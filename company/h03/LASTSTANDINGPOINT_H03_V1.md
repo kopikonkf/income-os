@@ -167,3 +167,13 @@ New READY frontier: `H03-RSCH-001` Deep Research Work Card/stop-policy and `H03-
 - `H03-RT-004`: durable role queues support idempotent enqueue, explicit transitions, bounded fan-out, artifact-only fan-in readiness and typed terminal failure.
 
 New READY frontier: `H03-RSCH-002` parallel multi-provider research execution and `H03-RT-005` retry/backpressure/fallback anti-stall policy.
+
+
+---
+
+## H03 Batch E — RSCH-002 + RT-005 — DONE/PASS — 2026-09-09
+
+- `H03-RSCH-002`: bounded research jobs now allocate across observed Qwen/Gemini/Manus slots, create normalized web-AI requests, ingest returned source text through KF-002, and emit non-canonical research packets with evidence-unit lineage.
+- `H03-RT-005`: retry/fallback/circuit-break/backpressure behavior is deterministic and bounded; unhealthy slots can be bypassed and saturated queues visibly pause new dispatch.
+
+New READY frontier: `H03-KF-003` research synthesis fan-in and `H03-RT-006` Mission Control ↔ H03 batch-supervision boundary.

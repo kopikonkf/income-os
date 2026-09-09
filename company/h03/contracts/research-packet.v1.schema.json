@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.research-packet.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","research_packet_id","holding_id","work_card_id","question_id","provider_observation","source_snapshots","findings","terminal_status","truth_status"],
+  "properties": {
+    "schema_version": {"const":"die.h03.research-packet.v1"},
+    "research_packet_id": {"type":"string","minLength":6},
+    "holding_id": {"const":"H03"},
+    "work_card_id": {"type":"string","minLength":6},
+    "question_id": {"type":"string","minLength":2},
+    "provider_observation": {"type":"object"},
+    "source_snapshots": {"type":"array"},
+    "findings": {"type":"array"},
+    "terminal_status": {"const":"SUCCEEDED"},
+    "truth_status": {"const":"UNVERIFIED_RESEARCH_PACKET"}
+  }
+}
