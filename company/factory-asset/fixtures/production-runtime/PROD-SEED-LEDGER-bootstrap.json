@@ -1,0 +1,14 @@
+{
+  "schema":"die.production-seed-ledger-bootstrap-evidence.v1",
+  "observed_at":"2026-09-09",
+  "consumed_nouns":104,
+  "evidence_rows":132,
+  "evidence_by_scope":{"PRODUCTION_WORKSPACE":32,"FA124_ACCEPTED":100},
+  "canonical_object_atlas_identity_seed_ids":32,
+  "fa124_seed_ids_treated_as_evidence_not_object_atlas_identity":true,
+  "normalized_noun_uniqueness":true,
+  "legacy_workspace_progress_bootstrap":true,
+  "provider_calls_performed":false,
+  "credential_values_read":false,
+  "cookies_or_tokens_read":false
+}

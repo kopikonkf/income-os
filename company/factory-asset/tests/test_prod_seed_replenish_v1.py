@@ -138,6 +138,8 @@ def test_runtime_start_seed_replenishes_then_starts_without_provider_call(tmp_pa
     monkeypatch.setattr(rt, "WORKSPACES", work)
     monkeypatch.setattr(rt, "REPLENISH_POLICY", policy)
     monkeypatch.setattr(rt, "REPLENISH_STATE", state)
+    monkeypatch.setattr(rt, "SEED_LEDGER", tmp_path / "ledger.db")
+    monkeypatch.setattr(rt, "FA124_E4", tmp_path / "missing-fa124-e4.json")
     def fake_shared(w: Path):
         provider = w / "provider"
         provider.mkdir(exist_ok=True)

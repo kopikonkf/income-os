@@ -13,6 +13,8 @@ LOCK=Path('/var/lib/die/state/production-runtime/tick.lock')
 EXCLUSIVE_HOLD=Path('/var/lib/die/state/production-runtime/exclusive-production-hold.json')
 REPLENISH_POLICY=Path(__file__).with_name('production_seed_replenishment_policy.v1.json')
 REPLENISH_STATE=Path('/var/lib/die/state/production-runtime/replenishment')
+SEED_LEDGER=Path('/var/lib/die/state/production-runtime/production_seed_ledger.db')
+FA124_E4=Path('/var/lib/die/state/fa124-cartoon-watercolor-100-r1/FA124-E4-final.json')
 DIE_GROUP='die-runtime'
 
 def ensure_shared_workspace(w:Path)->Path:
@@ -41,15 +43,18 @@ def write_progress(w:Path,lines:list[str]):(w/'PROGRESS.md').write_text('# '+w.n
 def start_seed()->dict:
  from production_seed_replenisher import replenish_seed_pool
  from production_seed_selector import select_seed
+ from production_seed_ledger import bootstrap_seed_ledger, claim_workspace_seed
  import factory_orchestration_v2 as factory_v2
- replenishment=replenish_seed_pool(DB,WORKSPACES,policy_path=REPLENISH_POLICY,state_root=REPLENISH_STATE)
- s=select_seed(DB,WORKSPACES)
+ ledger=bootstrap_seed_ledger(WORKSPACES,ledger_path=SEED_LEDGER,fa124_e4=FA124_E4)
+ replenishment=replenish_seed_pool(DB,WORKSPACES,policy_path=REPLENISH_POLICY,state_root=REPLENISH_STATE,ledger_path=SEED_LEDGER)
+ s=select_seed(DB,WORKSPACES,ledger_path=SEED_LEDGER)
  if s['status']!='SELECTED':
   return {'status':'IDLE','reason':s['status'],'replenishment':{k:replenishment.get(k) for k in ('status','remaining_before','remaining_after','promoted_count','next_action') if k in replenishment},'next_action':replenishment.get('next_action','REPLENISH_APPROVED_U1_VALIDATED_SEED_POOL')}
  seed=s['seed'];task='PROD'+seed['id'].replace('-','')
  w=WORKSPACES/task;w.mkdir(mode=0o2770,parents=True,exist_ok=False);ensure_shared_workspace(w)
  selection={**s,'replenishment':{k:replenishment.get(k) for k in ('status','policy_revision','remaining_before','remaining_after','promoted_count','receipt_path') if k in replenishment}}
  (w/'seed-selection.json').write_text(json.dumps(selection,indent=2)+'\n')
+ claim=claim_workspace_seed(SEED_LEDGER,selection,task)
  fam=f"{seed['category_path']} (object_class: {seed['object_class']})"
  expr=s.get('commercial_expression') or {}
  rows=[f"Seed: {seed['id']} ({seed['canonical_name']})",f"Family: {fam}"]
@@ -60,7 +65,7 @@ def start_seed()->dict:
  event={'seed':seed['canonical_name'],'seed_id':seed['id'],'family':fam,'blueprint':'REQUIRED','provider':'GOVERNED_MULTI_CLUSTER_BROWSER_POOL'}
  if expr:event.update({'expression_id':expr.get('expression_id'),'commercial_expression':expr.get('commercial_expression'),'opportunity_evidence':expr.get('evidence_level')})
  factory_v2.telegram_event(w,'PRODUCTION_STARTED',event,send)
- return {'status':'STARTED','task_id':task,'seed':seed['canonical_name'],'seed_id':seed['id'],'commercial_expression':expr or None,'provider_call_performed':False,'replenishment':selection['replenishment']}
+ return {'status':'STARTED','task_id':task,'seed':seed['canonical_name'],'seed_id':seed['id'],'commercial_expression':expr or None,'provider_call_performed':False,'replenishment':selection['replenishment'],'seed_ledger':{'status':claim['status'],'normalized_noun':claim['normalized_noun'],'bootstrap_consumed_nouns':ledger['consumed_nouns']}}
 
 def build_worker(w:Path,bp:dict,lock:dict):
  if lock.get('blueprint_sha256')!=csha(bp):raise RuntimeError('E_BLUEPRINT_LOCK_HASH')
