@@ -1,0 +1,27 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-RT-006",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "references": {
+    "mission_control_origin_main": "5557e3738cc11d82c53dfb68072b1f09a388e22a",
+    "universal_mcp_origin_main": "07239a1ab00a9ad66f1e1b64c660c1f8e160d614",
+    "mission_protocol": "mc-mission-v1"
+  },
+  "acceptance": {
+    "batch_level_checkpoint": true,
+    "batch_complete": true,
+    "failure_escalation": true,
+    "founder_gate": true,
+    "aggregate_recovery_checkpoint": true,
+    "microjob_mission_protocol_required": false,
+    "worker_prompt_exported": false,
+    "lease_capability_persisted_by_h03": false,
+    "ephemeral_auth_injection": true
+  },
+  "validation": {
+    "h03_regression": "88/88 PASS",
+    "graph_frontier": "H03-PROD-001",
+    "json_parse": "PASS"
+  }
+}

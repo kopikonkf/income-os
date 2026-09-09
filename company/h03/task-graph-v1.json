@@ -402,14 +402,22 @@
       "id": "H03-RT-006",
       "track": "RUNTIME",
       "title": "Mission Control to H03 batch-supervision boundary",
-      "status": "READY",
+      "status": "DONE",
       "priority": 836,
       "depends_on": [
         "H03-RT-005"
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Mission Control supervises H03 batch/product lifecycle, durable checkpoints, Founder gates, failure escalation and recovery while H03 orchestrator owns cognition microjobs. MCP/Mission Protocol must not be required for every worker prompt."
+      "acceptance": "Mission Control supervises H03 batch/product lifecycle, durable checkpoints, Founder gates, failure escalation and recovery while H03 orchestrator owns cognition microjobs. MCP/Mission Protocol must not be required for every worker prompt.",
+      "artifact": "company/h03/contracts/mission-batch-supervision.v1.schema.json + company/h03/runtime/mission-control-boundary.v1.json + company/h03/lib/supervision_boundary.py",
+      "result": {
+        "status": "PASS",
+        "mission_protocol": "mc-mission-v1",
+        "microjob_hot_path": false,
+        "ephemeral_lease_auth": true,
+        "recovery_checkpoint": "BATCH_AGGREGATE"
+      }
     },
     {
       "id": "H03-ECO-002",
@@ -481,20 +489,27 @@
       "id": "H03-KF-003",
       "track": "KNOWLEDGE",
       "title": "Research synthesis fan-in to Knowledge Map and Knowledge Package candidate",
-      "status": "READY",
+      "status": "DONE",
       "priority": 816,
       "depends_on": [
         "H03-RSCH-002"
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Consolidate multiple research packets into supported findings, contradictions, gaps, market/WTP findings and claim/evidence links. Model synthesis remains non-canonical until Knowledge Factory validation accepts the package."
+      "acceptance": "Consolidate multiple research packets into supported findings, contradictions, gaps, market/WTP findings and claim/evidence links. Model synthesis remains non-canonical until Knowledge Factory validation accepts the package.",
+      "artifact": "company/h03/contracts/knowledge-map.v1.schema.json + company/h03/contracts/knowledge-package-candidate.v1.schema.json + company/h03/lib/knowledge_synthesis.py",
+      "result": {
+        "status": "PASS",
+        "knowledge_map_truth": "UNVERIFIED_SYNTHESIS",
+        "candidate_canonical_truth": false,
+        "promotion_gate": "EVIDENCE_GAP_CONTRADICTION_SOURCE_GOVERNANCE"
+      }
     },
     {
       "id": "H03-PROD-001",
       "track": "PRODUCT",
       "title": "Useful Product Planner and format-selection engine",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 800,
       "depends_on": [
         "H03-KF-003",
@@ -502,7 +517,6 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "blocked_reason": "DEPENDENCIES_NOT_DONE",
       "acceptance": "Choose outcome-oriented delivery form (guide/checklist/workbook/playbook/report/template/etc.) from problem/knowledge structure and emit Product Blueprint. Do not optimize for page count or default every opportunity to ebook."
     },
     {
@@ -685,7 +699,7 @@
       "acceptance": "Run a bounded internal batch sized by current safe capacity, not a fixed product-count target. Measure throughput, queue latency, terminal failure rate, retry count, fallback success, provider/profile bottlenecks and resource usage; no external publication."
     }
   ],
-  "revision": "2026-09-09 Batch E PASS: H03-RSCH-002 + H03-RT-005; next KF-003 + RT-006 READY",
+  "revision": "2026-09-09 KF-003 + RT-006 PASS; H03-PROD-001 Useful Product Planner READY",
   "production_organism": {
     "control_plane": "Mission Control supervises batches/products, recovery, gates and durable standing; it does not execute every prompt.",
     "worker_plane": "H03 role queues dispatch normalized cognition jobs through web-ai-adapter; MCP is not a worker hot-path requirement.",
@@ -724,8 +738,7 @@
   },
   "current_frontier": {
     "ready": [
-      "H03-KF-003",
-      "H03-RT-006"
+      "H03-PROD-001"
     ],
     "parallel_lanes": {
       "economic_intelligence": "H03-OPP-001 -> H03-OPP-002 + H03-DMD-001 -> H03-OPP-003 -> H03-RSCH-001",

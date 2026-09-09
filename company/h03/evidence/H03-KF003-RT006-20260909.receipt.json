@@ -1,0 +1,19 @@
+{
+  "schema_version": "die.h03.batch-receipt.v1",
+  "batch_id": "H03-KF003-RT006-20260909",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "tasks_done": [
+    "H03-KF-003",
+    "H03-RT-006"
+  ],
+  "validation": {
+    "h03_regression": "88/88 PASS",
+    "ready_frontier": [
+      "H03-PROD-001"
+    ]
+  },
+  "external_publication": false,
+  "mission_control_mutated": false,
+  "microjob_mission_hot_path": false
+}

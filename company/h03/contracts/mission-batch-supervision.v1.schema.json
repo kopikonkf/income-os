@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.mission-batch-supervision.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "holding_id",
+    "batch_id",
+    "mission_task_id",
+    "status",
+    "progress_percent",
+    "product_ids",
+    "stage_counts",
+    "microjob_count",
+    "artifact_refs",
+    "failure_summary",
+    "founder_gate",
+    "recovery_summary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.h03.mission-batch-supervision.v1"
+    },
+    "holding_id": {
+      "const": "H03"
+    },
+    "batch_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "mission_task_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "status": {
+      "enum": [
+        "PLANNED",
+        "RUNNING",
+        "BLOCKED",
+        "AWAITING_FOUNDER",
+        "COMPLETED",
+        "FAILED"
+      ]
+    },
+    "progress_percent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "product_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "stage_counts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "microjob_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "artifact_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "failure_summary": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "founder_gate": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "recovery_summary": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  }
+}
