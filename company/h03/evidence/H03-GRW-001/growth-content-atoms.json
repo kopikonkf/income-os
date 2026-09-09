@@ -1,0 +1,355 @@
+[
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-x",
+    "attribution_identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "x",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-x-short-text",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "google_play_books",
+      "listing_id": "H03-LIST-h03-prod-org001-001-google-play-books",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-x-short-text",
+        "utm_medium": "organic",
+        "utm_source": "x"
+      }
+    },
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "x",
+    "claim_ids": [
+      "C4",
+      "C5"
+    ],
+    "content": {
+      "body": "People-search listings can reappear, and opting out reduces exposure rather than deleting public records. Recheck periodically.",
+      "cta": "Save the workflow for your next privacy cleanup.",
+      "hook": "Opting out once is not the finish line."
+    },
+    "creative_id": "H03-CR-h03-prod-org001-001-x-short-text",
+    "evidence_refs": [
+      "ORG001-FTC-PEOPLESEARCH-E0210",
+      "ORG001-FTC-PEOPLESEARCH-E0175"
+    ],
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "holding_id": "H03",
+    "paid_ads": false,
+    "product_id": "H03-PROD-ORG001-001",
+    "publication_authorized": false,
+    "schema_version": "die.h03.growth-content-atom.v1",
+    "surface": "SHORT_TEXT"
+  },
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-threads",
+    "attribution_identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "threads",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-threads-conversational-post",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "gumroad",
+      "listing_id": "H03-LIST-h03-prod-org001-001-gumroad",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-threads-conversational-post",
+        "utm_medium": "organic",
+        "utm_source": "threads"
+      }
+    },
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "threads",
+    "claim_ids": [
+      "C1",
+      "C2",
+      "C3"
+    ],
+    "content": {
+      "body": "Search for your listing, follow the site opt-out instructions, then repeat across other relevant sites. The repetitive part is exactly why a checklist helps.",
+      "cta": "Use a repeatable sequence instead of starting from scratch.",
+      "opening": "A practical way to start a people-search cleanup:"
+    },
+    "creative_id": "H03-CR-h03-prod-org001-001-threads-conversational-post",
+    "evidence_refs": [
+      "ORG001-FTC-PEOPLESEARCH-E0208",
+      "ORG001-FTC-PEOPLESEARCH-E0206"
+    ],
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "holding_id": "H03",
+    "paid_ads": false,
+    "product_id": "H03-PROD-ORG001-001",
+    "publication_authorized": false,
+    "schema_version": "die.h03.growth-content-atom.v1",
+    "surface": "CONVERSATIONAL_POST"
+  },
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-instagram",
+    "attribution_identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "instagram",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-instagram-carousel-or-reel-brief",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "leanpub",
+      "listing_id": "H03-LIST-h03-prod-org001-001-leanpub",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-instagram-carousel-or-reel-brief",
+        "utm_medium": "organic",
+        "utm_source": "instagram"
+      }
+    },
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "instagram",
+    "claim_ids": [
+      "C1",
+      "C2",
+      "C4",
+      "C5"
+    ],
+    "content": {
+      "caption": "A simple four-part privacy cleanup sequence grounded in consumer guidance.",
+      "carousel_slides": [
+        "Find your listing",
+        "Follow the opt-out steps",
+        "Recheck later",
+        "Remember: exposure reduction is not total erasure"
+      ],
+      "cta": "Save this carousel for your next recheck."
+    },
+    "creative_id": "H03-CR-h03-prod-org001-001-instagram-carousel-or-reel-brief",
+    "evidence_refs": [
+      "ORG001-FTC-PEOPLESEARCH-E0208",
+      "ORG001-FTC-PEOPLESEARCH-E0210",
+      "ORG001-FTC-PEOPLESEARCH-E0175"
+    ],
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "holding_id": "H03",
+    "paid_ads": false,
+    "product_id": "H03-PROD-ORG001-001",
+    "publication_authorized": false,
+    "schema_version": "die.h03.growth-content-atom.v1",
+    "surface": "CAROUSEL_OR_REEL_BRIEF"
+  },
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-tiktok",
+    "attribution_identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "tiktok",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-tiktok-short-video-script",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "fourthwall",
+      "listing_id": "H03-LIST-h03-prod-org001-001-fourthwall",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-tiktok-short-video-script",
+        "utm_medium": "organic",
+        "utm_source": "tiktok"
+      }
+    },
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "tiktok",
+    "claim_ids": [
+      "C1",
+      "C2",
+      "C4"
+    ],
+    "content": {
+      "cta": "Keep the sequence handy.",
+      "hook": "Your people-search opt-out should be a loop, not a one-time task.",
+      "script_beats": [
+        "Find the listing",
+        "Follow the site opt-out flow",
+        "Set a reminder to recheck"
+      ]
+    },
+    "creative_id": "H03-CR-h03-prod-org001-001-tiktok-short-video-script",
+    "evidence_refs": [
+      "ORG001-FTC-PEOPLESEARCH-E0208",
+      "ORG001-FTC-PEOPLESEARCH-E0210"
+    ],
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "holding_id": "H03",
+    "paid_ads": false,
+    "product_id": "H03-PROD-ORG001-001",
+    "publication_authorized": false,
+    "schema_version": "die.h03.growth-content-atom.v1",
+    "surface": "SHORT_VIDEO_SCRIPT"
+  },
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-youtube",
+    "attribution_identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "youtube",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-youtube-short-video-or-long-outline",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "ko_fi",
+      "listing_id": "H03-LIST-h03-prod-org001-001-ko-fi",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-youtube-short-video-or-long-outline",
+        "utm_medium": "organic",
+        "utm_source": "youtube"
+      }
+    },
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "youtube",
+    "claim_ids": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6"
+    ],
+    "content": {
+      "cta": "Use the guide as a repeatable checklist for the process.",
+      "outline": [
+        "Find exposed listings",
+        "Submit site opt-outs",
+        "Repeat across sites",
+        "Recheck periodically",
+        "Understand what opt-out cannot erase",
+        "DIY versus paid-service choice"
+      ],
+      "title": "How a DIY people-search opt-out workflow actually works"
+    },
+    "creative_id": "H03-CR-h03-prod-org001-001-youtube-short-video-or-long-outline",
+    "evidence_refs": [
+      "ORG001-FTC-PEOPLESEARCH-E0208",
+      "ORG001-FTC-PEOPLESEARCH-E0206",
+      "ORG001-FTC-PEOPLESEARCH-E0210",
+      "ORG001-FTC-PEOPLESEARCH-E0175",
+      "ORG001-FTC-PEOPLESEARCH-E0199"
+    ],
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "holding_id": "H03",
+    "paid_ads": false,
+    "product_id": "H03-PROD-ORG001-001",
+    "publication_authorized": false,
+    "schema_version": "die.h03.growth-content-atom.v1",
+    "surface": "SHORT_VIDEO_OR_LONG_OUTLINE"
+  },
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-pinterest",
+    "attribution_identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "pinterest",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-pinterest-pin-title-description",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "lemon_squeezy",
+      "listing_id": "H03-LIST-h03-prod-org001-001-lemon-squeezy",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-pinterest-pin-title-description",
+        "utm_medium": "organic",
+        "utm_source": "pinterest"
+      }
+    },
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "pinterest",
+    "claim_ids": [
+      "C1",
+      "C2",
+      "C4"
+    ],
+    "content": {
+      "cta": "Save for later.",
+      "pin_description": "Find the listing, follow the opt-out instructions, and schedule periodic rechecks. A compact evergreen privacy-cleanup reference.",
+      "pin_title": "DIY People-Search Opt-Out Workflow"
+    },
+    "creative_id": "H03-CR-h03-prod-org001-001-pinterest-pin-title-description",
+    "evidence_refs": [
+      "ORG001-FTC-PEOPLESEARCH-E0208",
+      "ORG001-FTC-PEOPLESEARCH-E0210"
+    ],
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "holding_id": "H03",
+    "paid_ads": false,
+    "product_id": "H03-PROD-ORG001-001",
+    "publication_authorized": false,
+    "schema_version": "die.h03.growth-content-atom.v1",
+    "surface": "PIN_TITLE_DESCRIPTION"
+  },
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-reddit",
+    "attribution_identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "reddit",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-reddit-community-post",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "payhip",
+      "listing_id": "H03-LIST-h03-prod-org001-001-payhip",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-reddit-community-post",
+        "utm_medium": "organic",
+        "utm_source": "reddit"
+      }
+    },
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "reddit",
+    "claim_ids": [
+      "C3",
+      "C4",
+      "C5"
+    ],
+    "content": {
+      "body": "The frustrating part is that removal is repetitive: you may need to opt out site by site and check again later. Also, removing a people-search listing is not the same as deleting underlying public records. Treat it as exposure reduction and maintenance.",
+      "cta": "NONE",
+      "title": "A useful mental model for people-search opt-outs: maintenance, not permanent erasure"
+    },
+    "creative_id": "H03-CR-h03-prod-org001-001-reddit-community-post",
+    "evidence_refs": [
+      "ORG001-FTC-PEOPLESEARCH-E0206",
+      "ORG001-FTC-PEOPLESEARCH-E0210",
+      "ORG001-FTC-PEOPLESEARCH-E0175"
+    ],
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "holding_id": "H03",
+    "paid_ads": false,
+    "product_id": "H03-PROD-ORG001-001",
+    "publication_authorized": false,
+    "schema_version": "die.h03.growth-content-atom.v1",
+    "surface": "COMMUNITY_POST"
+  }
+]

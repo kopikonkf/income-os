@@ -1,0 +1,30 @@
+{
+  "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+  "event_contract": "die.h03.attribution-event.v1",
+  "event_types": [
+    "IMPRESSION",
+    "CLICK",
+    "PRODUCT_VIEW",
+    "ADD_TO_CART",
+    "ORDER",
+    "REVENUE",
+    "REFUND"
+  ],
+  "external_publication": false,
+  "holding_id": "H03",
+  "join_path": [
+    "problem_seed_id",
+    "product_id",
+    "commerce_package_id",
+    "listing_id",
+    "campaign_id",
+    "creative_id",
+    "channel_id"
+  ],
+  "observation_policy": "Events are absent/UNOBSERVED until evidence-backed source events exist; no zero-conversion coercion.",
+  "observed_event_count": 0,
+  "planned_listing_count": 13,
+  "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+  "product_id": "H03-PROD-ORG001-001",
+  "schema_version": "die.h03.attribution-spine.v1"
+}

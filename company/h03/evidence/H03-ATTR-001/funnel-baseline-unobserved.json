@@ -1,0 +1,418 @@
+[
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "google_play_books",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-google-play-books-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "google_play_books",
+      "listing_id": "H03-LIST-h03-prod-org001-001-google-play-books",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-google-play-books-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "google_play_books"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "gumroad",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-gumroad-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "gumroad",
+      "listing_id": "H03-LIST-h03-prod-org001-001-gumroad",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-gumroad-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "gumroad"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "leanpub",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-leanpub-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "leanpub",
+      "listing_id": "H03-LIST-h03-prod-org001-001-leanpub",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-leanpub-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "leanpub"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "fourthwall",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-fourthwall-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "fourthwall",
+      "listing_id": "H03-LIST-h03-prod-org001-001-fourthwall",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-fourthwall-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "fourthwall"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "ko_fi",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-ko-fi-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "ko_fi",
+      "listing_id": "H03-LIST-h03-prod-org001-001-ko-fi",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-ko-fi-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "ko_fi"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "lemon_squeezy",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-lemon-squeezy-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "lemon_squeezy",
+      "listing_id": "H03-LIST-h03-prod-org001-001-lemon-squeezy",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-lemon-squeezy-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "lemon_squeezy"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "payhip",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-payhip-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "payhip",
+      "listing_id": "H03-LIST-h03-prod-org001-001-payhip",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-payhip-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "payhip"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "sellfy",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-sellfy-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "sellfy",
+      "listing_id": "H03-LIST-h03-prod-org001-001-sellfy",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-sellfy-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "sellfy"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "shopify",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-shopify-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "shopify",
+      "listing_id": "H03-LIST-h03-prod-org001-001-shopify",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-shopify-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "shopify"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "woocommerce",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-woocommerce-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "woocommerce",
+      "listing_id": "H03-LIST-h03-prod-org001-001-woocommerce",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-woocommerce-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "woocommerce"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "etsy",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-etsy-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "etsy",
+      "listing_id": "H03-LIST-h03-prod-org001-001-etsy",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-etsy-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "etsy"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "creative_fabrica",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-creative-fabrica-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "creative_fabrica",
+      "listing_id": "H03-LIST-h03-prod-org001-001-creative-fabrica",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-creative-fabrica-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "creative_fabrica"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "creative_market",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-creative-market-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "creative_market",
+      "listing_id": "H03-LIST-h03-prod-org001-001-creative-market",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-creative-market-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "creative_market"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  }
+]

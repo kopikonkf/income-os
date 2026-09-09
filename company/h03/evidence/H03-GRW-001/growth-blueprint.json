@@ -1,0 +1,126 @@
+{
+  "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+  "channels": [
+    {
+      "atom_id": "H03-ATOM-H03-PROD-ORG001-001-x",
+      "channel_id": "x",
+      "claim_ids": [
+        "C4",
+        "C5"
+      ],
+      "creative_id": "H03-CR-h03-prod-org001-001-x-short-text",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0210",
+        "ORG001-FTC-PEOPLESEARCH-E0175"
+      ],
+      "surface": "SHORT_TEXT"
+    },
+    {
+      "atom_id": "H03-ATOM-H03-PROD-ORG001-001-threads",
+      "channel_id": "threads",
+      "claim_ids": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "creative_id": "H03-CR-h03-prod-org001-001-threads-conversational-post",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0208",
+        "ORG001-FTC-PEOPLESEARCH-E0206"
+      ],
+      "surface": "CONVERSATIONAL_POST"
+    },
+    {
+      "atom_id": "H03-ATOM-H03-PROD-ORG001-001-instagram",
+      "channel_id": "instagram",
+      "claim_ids": [
+        "C1",
+        "C2",
+        "C4",
+        "C5"
+      ],
+      "creative_id": "H03-CR-h03-prod-org001-001-instagram-carousel-or-reel-brief",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0208",
+        "ORG001-FTC-PEOPLESEARCH-E0210",
+        "ORG001-FTC-PEOPLESEARCH-E0175"
+      ],
+      "surface": "CAROUSEL_OR_REEL_BRIEF"
+    },
+    {
+      "atom_id": "H03-ATOM-H03-PROD-ORG001-001-tiktok",
+      "channel_id": "tiktok",
+      "claim_ids": [
+        "C1",
+        "C2",
+        "C4"
+      ],
+      "creative_id": "H03-CR-h03-prod-org001-001-tiktok-short-video-script",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0208",
+        "ORG001-FTC-PEOPLESEARCH-E0210"
+      ],
+      "surface": "SHORT_VIDEO_SCRIPT"
+    },
+    {
+      "atom_id": "H03-ATOM-H03-PROD-ORG001-001-youtube",
+      "channel_id": "youtube",
+      "claim_ids": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "creative_id": "H03-CR-h03-prod-org001-001-youtube-short-video-or-long-outline",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0208",
+        "ORG001-FTC-PEOPLESEARCH-E0206",
+        "ORG001-FTC-PEOPLESEARCH-E0210",
+        "ORG001-FTC-PEOPLESEARCH-E0175",
+        "ORG001-FTC-PEOPLESEARCH-E0199"
+      ],
+      "surface": "SHORT_VIDEO_OR_LONG_OUTLINE"
+    },
+    {
+      "atom_id": "H03-ATOM-H03-PROD-ORG001-001-pinterest",
+      "channel_id": "pinterest",
+      "claim_ids": [
+        "C1",
+        "C2",
+        "C4"
+      ],
+      "creative_id": "H03-CR-h03-prod-org001-001-pinterest-pin-title-description",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0208",
+        "ORG001-FTC-PEOPLESEARCH-E0210"
+      ],
+      "surface": "PIN_TITLE_DESCRIPTION"
+    },
+    {
+      "atom_id": "H03-ATOM-H03-PROD-ORG001-001-reddit",
+      "channel_id": "reddit",
+      "claim_ids": [
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "creative_id": "H03-CR-h03-prod-org001-001-reddit-community-post",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0206",
+        "ORG001-FTC-PEOPLESEARCH-E0210",
+        "ORG001-FTC-PEOPLESEARCH-E0175"
+      ],
+      "surface": "COMMUNITY_POST"
+    }
+  ],
+  "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+  "growth_blueprint_id": "H03-GRW-BP-H03-PROD-ORG001-001",
+  "holding_id": "H03",
+  "objective": "Organic education, problem awareness and demand capture without paid ads or publication authority.",
+  "paid_ads_enabled": false,
+  "product_id": "H03-PROD-ORG001-001",
+  "publication_authorized": false,
+  "schema_version": "die.h03.growth-blueprint.v1"
+}

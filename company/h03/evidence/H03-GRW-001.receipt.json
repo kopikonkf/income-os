@@ -1,0 +1,42 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-GRW-001",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "growth_channels": [
+      "x",
+      "threads",
+      "instagram",
+      "tiktok",
+      "youtube",
+      "pinterest",
+      "reddit"
+    ],
+    "atom_count": 7,
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "destination_listing_channels": [
+      "google_play_books",
+      "gumroad",
+      "leanpub",
+      "fourthwall",
+      "ko_fi",
+      "lemon_squeezy",
+      "payhip"
+    ],
+    "evidence_bound": true,
+    "paid_ads_enabled": false,
+    "publication_authorized": false,
+    "execution_mode": "NONLIVE_ROLE_FIXTURE"
+  },
+  "validation": {
+    "targeted_attribution_growth": "5/5 PASS",
+    "h03_regression": "134/134 PASS",
+    "graph_frontier": [
+      "H03-ANL-001",
+      "H03-GRW-002"
+    ],
+    "dist_status": "WAITING_FOUNDER",
+    "json_parse": "PASS"
+  }
+}

@@ -1,0 +1,226 @@
+[
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "x",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-x-short-text",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "google_play_books",
+      "listing_id": "H03-LIST-h03-prod-org001-001-google-play-books",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-x-short-text",
+        "utm_medium": "organic",
+        "utm_source": "x"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "threads",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-threads-conversational-post",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "gumroad",
+      "listing_id": "H03-LIST-h03-prod-org001-001-gumroad",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-threads-conversational-post",
+        "utm_medium": "organic",
+        "utm_source": "threads"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "instagram",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-instagram-carousel-or-reel-brief",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "leanpub",
+      "listing_id": "H03-LIST-h03-prod-org001-001-leanpub",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-instagram-carousel-or-reel-brief",
+        "utm_medium": "organic",
+        "utm_source": "instagram"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "tiktok",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-tiktok-short-video-script",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "fourthwall",
+      "listing_id": "H03-LIST-h03-prod-org001-001-fourthwall",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-tiktok-short-video-script",
+        "utm_medium": "organic",
+        "utm_source": "tiktok"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "youtube",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-youtube-short-video-or-long-outline",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "ko_fi",
+      "listing_id": "H03-LIST-h03-prod-org001-001-ko-fi",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-youtube-short-video-or-long-outline",
+        "utm_medium": "organic",
+        "utm_source": "youtube"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "pinterest",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-pinterest-pin-title-description",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "lemon_squeezy",
+      "listing_id": "H03-LIST-h03-prod-org001-001-lemon-squeezy",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-pinterest-pin-title-description",
+        "utm_medium": "organic",
+        "utm_source": "pinterest"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "reddit",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-reddit-community-post",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "payhip",
+      "listing_id": "H03-LIST-h03-prod-org001-001-payhip",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-reddit-community-post",
+        "utm_medium": "organic",
+        "utm_source": "reddit"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  }
+]
