@@ -1,7 +1,7 @@
 {
   "schema": "die.company-os.task-graph.v1",
   "generated_at": "2026-09-08",
-  "revision": "1.5-org001-econ001-batch",
+  "revision": "1.6-econ002-econ003-batch",
   "status": "CANONICAL",
   "project": "DIE Company OS / Economic Layer",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -223,29 +223,52 @@
       "id": "ECON-002",
       "track": "ECONOMIC_LEDGER",
       "title": "Economic Ledger v1 schema and immutable event contract",
-      "status": "READY",
+      "status": "DONE",
       "priority": 830,
       "depends_on": ["ECON-001"],
       "execution_mode": "tool_native",
       "risk": "LOW",
-      "acceptance": "Append-only schema records revenue, fees, infrastructure/API/subscription costs, attributable production cost and Founder-time observations with provenance; no bank/payment integration."
+      "acceptance": "Append-only schema records revenue, fees, infrastructure/API/subscription costs, attributable production cost and Founder-time observations with provenance; no bank/payment integration.",
+      "result": {
+        "status": "PASS",
+        "artifact": "company/company-os/ECON-002_ECONOMIC_LEDGER_V1.md",
+        "machine_contract": "company/company-os/contracts/die.economic-ledger.v1.json",
+        "event_schema": "company/company-os/schemas/die.economic-ledger.event.v1.schema.json",
+        "reference_sql": "company/company-os/sql/economic-ledger-v1.sql",
+        "tests": "company/company-os/tests/test_economic_contracts.py",
+        "receipt": "company/company-os/receipts/ECON-002-economic-ledger.receipt.json",
+        "live_ingestion": false,
+        "bank_payment_integration": false,
+        "spend_authority": false
+      }
     },
     {
       "id": "ECON-003",
       "track": "ATTRIBUTION",
       "title": "Revenue Attribution lineage v1",
-      "status": "READY",
+      "status": "DONE",
       "priority": 820,
       "depends_on": ["ECON-001"],
       "execution_mode": "cognition_only",
       "risk": "LOW",
-      "acceptance": "Define trace lineage opportunity -> blueprint/product -> production -> distribution/listing -> click/order/sale -> realized revenue/commission with explicit UNKNOWN attribution handling."
+      "acceptance": "Define trace lineage opportunity -> blueprint/product -> production -> distribution/listing -> click/order/sale -> realized revenue/commission with explicit UNKNOWN attribution handling.",
+      "result": {
+        "status": "PASS",
+        "artifact": "company/company-os/ECON-003_REVENUE_ATTRIBUTION_LINEAGE_V1.md",
+        "machine_contract": "company/company-os/contracts/die.revenue-attribution.v1.json",
+        "claim_schema": "company/company-os/schemas/die.revenue-attribution.claim.v1.schema.json",
+        "tests": "company/company-os/tests/test_economic_contracts.py",
+        "receipt": "company/company-os/receipts/ECON-003-revenue-attribution.receipt.json",
+        "unknown_attribution_first_class": true,
+        "attribution_creates_revenue": false,
+        "model_inference_can_claim_revenue": false
+      }
     },
     {
       "id": "ECON-004",
       "track": "UNIT_ECONOMICS",
       "title": "Economic Work Card and unit-economics contract",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 810,
       "depends_on": ["ECON-002", "ECON-003"],
       "execution_mode": "cognition_only",

@@ -1,0 +1,45 @@
+{
+    "schema":  "die.company-os.econ003.revenue-attribution.receipt.v1",
+    "task_id":  "ECON-003",
+    "status":  "PASS",
+    "observed_at":  "2026-09-09",
+    "source_main":  "542d119f6cfd3553ea75d264a5eb917be57fe14f",
+    "artifacts":  [
+                      {
+                          "path":  "company/company-os/ECON-003_REVENUE_ATTRIBUTION_LINEAGE_V1.md",
+                          "sha256":  "4498d93b989806eafad91c5f553a7d35f2461d105a50970abd4f636718bc6ac7"
+                      },
+                      {
+                          "path":  "company/company-os/contracts/die.revenue-attribution.v1.json",
+                          "sha256":  "1e2c0f86053ec730eee71c71784d1756160608efbfe9df2b2d3977b876b58af8"
+                      },
+                      {
+                          "path":  "company/company-os/schemas/die.revenue-attribution.claim.v1.schema.json",
+                          "sha256":  "0ac6e90aba8ac86041acdf8306e419a66fd05d4da83a21a3227b7c36db2ac2d1"
+                      },
+                      {
+                          "path":  "company/company-os/lib/economic_contracts.py",
+                          "sha256":  "00e19a1d92f0806df6333891d40185869646b13263c0d49e6e47b0ecc1642fb1"
+                      },
+                      {
+                          "path":  "company/company-os/tests/test_economic_contracts.py",
+                          "sha256":  "cf323db366db3e7af0f9edb534b939d9c12444939d32d8fb333c4edc313c7dc2"
+                      }
+                  ],
+    "acceptance":  {
+                       "pytest":  "14_PASSED",
+                       "allocation_conservation_bps":  10000,
+                       "unknown_first_class":  true,
+                       "duplicate_trace_rejected":  true,
+                       "policy_allocation_requires_policy_id":  true,
+                       "model_inference_can_claim_revenue":  false,
+                       "attribution_creates_revenue":  false
+                   },
+    "authority":  {
+                      "live_tracking_integration":  false,
+                      "payment_integration":  false,
+                      "spend":  false,
+                      "submission":  false,
+                      "credential_access":  false
+                  }
+}

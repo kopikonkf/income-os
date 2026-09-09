@@ -1,0 +1,235 @@
+{
+    "$schema":  "https://json-schema.org/draft/2020-12/schema",
+    "$id":  "https://aethers.my.id/schemas/die.revenue-attribution.claim.v1.schema.json",
+    "title":  "DIE Revenue Attribution Claim v1",
+    "type":  "object",
+    "additionalProperties":  false,
+    "required":  [
+                     "schema_version",
+                     "claim_id",
+                     "revenue_event_id",
+                     "holding_id",
+                     "currency",
+                     "amount_minor",
+                     "allocations",
+                     "unknown_bps",
+                     "provenance_refs",
+                     "authority_boundary"
+                 ],
+    "properties":  {
+                       "schema_version":  {
+                                              "const":  "die.revenue-attribution.claim.v1"
+                                          },
+                       "claim_id":  {
+                                        "type":  "string",
+                                        "pattern":  "^ATTR-CLM-[A-Z0-9_-]{8,120}$"
+                                    },
+                       "revenue_event_id":  {
+                                                "type":  "string",
+                                                "pattern":  "^ECON-EVT-[A-Z0-9_-]{8,120}$"
+                                            },
+                       "holding_id":  {
+                                          "type":  "string",
+                                          "minLength":  1,
+                                          "maxLength":  80
+                                      },
+                       "currency":  {
+                                        "type":  "string",
+                                        "pattern":  "^[A-Z]{3}$"
+                                    },
+                       "amount_minor":  {
+                                            "type":  "integer",
+                                            "minimum":  0
+                                        },
+                       "source_sale_or_order_id":  {
+                                                       "type":  [
+                                                                    "string",
+                                                                    "null"
+                                                                ],
+                                                       "maxLength":  240
+                                                   },
+                       "source_channel":  {
+                                              "type":  [
+                                                           "string",
+                                                           "null"
+                                                       ],
+                                              "maxLength":  160
+                                          },
+                       "allocation_policy_id":  {
+                                                    "type":  [
+                                                                 "string",
+                                                                 "null"
+                                                             ],
+                                                    "maxLength":  160
+                                                },
+                       "allocations":  {
+                                           "type":  "array",
+                                           "items":  {
+                                                         "type":  "object",
+                                                         "additionalProperties":  false,
+                                                         "required":  [
+                                                                          "economic_trace_id",
+                                                                          "allocation_bps",
+                                                                          "basis",
+                                                                          "evidence_refs"
+                                                                      ],
+                                                         "properties":  {
+                                                                            "economic_trace_id":  {
+                                                                                                      "type":  "string",
+                                                                                                      "minLength":  1,
+                                                                                                      "maxLength":  160
+                                                                                                  },
+                                                                            "allocation_bps":  {
+                                                                                                   "type":  "integer",
+                                                                                                   "minimum":  1,
+                                                                                                   "maximum":  10000
+                                                                                               },
+                                                                            "basis":  {
+                                                                                          "enum":  [
+                                                                                                       "DIRECT_SOURCE_ID",
+                                                                                                       "DETERMINISTIC_JOIN",
+                                                                                                       "POLICY_ALLOCATED"
+                                                                                                   ]
+                                                                                      },
+                                                                            "evidence_refs":  {
+                                                                                                  "type":  "array",
+                                                                                                  "minItems":  1,
+                                                                                                  "items":  {
+                                                                                                                "type":  "string",
+                                                                                                                "minLength":  1,
+                                                                                                                "maxLength":  800
+                                                                                                            }
+                                                                                              }
+                                                                        }
+                                                     }
+                                       },
+                       "unknown_bps":  {
+                                           "type":  "integer",
+                                           "minimum":  0,
+                                           "maximum":  10000
+                                       },
+                       "provenance_refs":  {
+                                               "type":  "array",
+                                               "minItems":  1,
+                                               "items":  {
+                                                             "type":  "string",
+                                                             "minLength":  1,
+                                                             "maxLength":  800
+                                                         }
+                                           },
+                       "lineage_nodes":  {
+                                             "type":  "array",
+                                             "items":  {
+                                                           "type":  "object",
+                                                           "additionalProperties":  false,
+                                                           "required":  [
+                                                                            "node_id",
+                                                                            "node_type"
+                                                                        ],
+                                                           "properties":  {
+                                                                              "node_id":  {
+                                                                                              "type":  "string",
+                                                                                              "minLength":  1,
+                                                                                              "maxLength":  240
+                                                                                          },
+                                                                              "node_type":  {
+                                                                                                "enum":  [
+                                                                                                             "OPPORTUNITY",
+                                                                                                             "BLUEPRINT",
+                                                                                                             "PRODUCT_ASSET",
+                                                                                                             "PRODUCTION_JOB",
+                                                                                                             "LISTING_DISTRIBUTION",
+                                                                                                             "CLICK_SESSION",
+                                                                                                             "ORDER_SALE",
+                                                                                                             "REVENUE_EVENT",
+                                                                                                             "COMMISSION_PAYOUT",
+                                                                                                             "INCIDENT"
+                                                                                                         ]
+                                                                                            },
+                                                                              "source_ref":  {
+                                                                                                 "type":  [
+                                                                                                              "string",
+                                                                                                              "null"
+                                                                                                          ],
+                                                                                                 "maxLength":  800
+                                                                                             }
+                                                                          }
+                                                       }
+                                         },
+                       "lineage_edges":  {
+                                             "type":  "array",
+                                             "items":  {
+                                                           "type":  "object",
+                                                           "additionalProperties":  false,
+                                                           "required":  [
+                                                                            "from_node_id",
+                                                                            "to_node_id",
+                                                                            "relation",
+                                                                            "evidence_refs"
+                                                                        ],
+                                                           "properties":  {
+                                                                              "from_node_id":  {
+                                                                                                   "type":  "string",
+                                                                                                   "minLength":  1,
+                                                                                                   "maxLength":  240
+                                                                                               },
+                                                                              "to_node_id":  {
+                                                                                                 "type":  "string",
+                                                                                                 "minLength":  1,
+                                                                                                 "maxLength":  240
+                                                                                             },
+                                                                              "relation":  {
+                                                                                               "enum":  [
+                                                                                                            "DERIVED_FROM",
+                                                                                                            "COMPILED_AS",
+                                                                                                            "PRODUCED_AS",
+                                                                                                            "DISTRIBUTED_AS",
+                                                                                                            "CLICKED_THROUGH",
+                                                                                                            "CONVERTED_TO",
+                                                                                                            "REALIZED_AS",
+                                                                                                            "COMMISSIONED_AS",
+                                                                                                            "AFFECTED_BY"
+                                                                                                        ]
+                                                                                           },
+                                                                              "evidence_refs":  {
+                                                                                                    "type":  "array",
+                                                                                                    "minItems":  1,
+                                                                                                    "items":  {
+                                                                                                                  "type":  "string",
+                                                                                                                  "minLength":  1,
+                                                                                                                  "maxLength":  800
+                                                                                                              }
+                                                                                                }
+                                                                          }
+                                                       }
+                                         },
+                       "authority_boundary":  {
+                                                  "type":  "object",
+                                                  "additionalProperties":  false,
+                                                  "required":  [
+                                                                   "creates_revenue",
+                                                                   "spend_authorized",
+                                                                   "submission_authorized",
+                                                                   "model_inference_can_claim_revenue",
+                                                                   "credentials_embedded"
+                                                               ],
+                                                  "properties":  {
+                                                                     "creates_revenue":  {
+                                                                                             "const":  false
+                                                                                         },
+                                                                     "spend_authorized":  {
+                                                                                              "const":  false
+                                                                                          },
+                                                                     "submission_authorized":  {
+                                                                                                   "const":  false
+                                                                                               },
+                                                                     "model_inference_can_claim_revenue":  {
+                                                                                                               "const":  false
+                                                                                                           },
+                                                                     "credentials_embedded":  {
+                                                                                                  "const":  false
+                                                                                              }
+                                                                 }
+                                              }
+                   }
+}

@@ -1,0 +1,38 @@
+{
+    "schema":  "die.revenue-attribution.v1",
+    "status":  "ACCEPTED_E0_ATTRIBUTION_NO_REVENUE_CREATION",
+    "claim_schema":  "company/company-os/schemas/die.revenue-attribution.claim.v1.schema.json",
+    "validator":  "company/company-os/lib/economic_contracts.py",
+    "tests":  "company/company-os/tests/test_economic_contracts.py",
+    "revenue_source_of_truth":  "ECON-002_LEDGER_EVENT",
+    "attribution_creates_revenue":  false,
+    "allocation_total_bps":  10000,
+    "unknown_is_first_class":  true,
+    "accepted_bases":  [
+                           "DIRECT_SOURCE_ID",
+                           "DETERMINISTIC_JOIN",
+                           "POLICY_ALLOCATED"
+                       ],
+    "model_inference_can_claim_revenue":  false,
+    "policy_allocated_requires_policy_id":  true,
+    "duplicate_trace_in_one_claim":  false,
+    "lineage_node_types":  [
+                               "OPPORTUNITY",
+                               "BLUEPRINT",
+                               "PRODUCT_ASSET",
+                               "PRODUCTION_JOB",
+                               "LISTING_DISTRIBUTION",
+                               "CLICK_SESSION",
+                               "ORDER_SALE",
+                               "REVENUE_EVENT",
+                               "COMMISSION_PAYOUT",
+                               "INCIDENT"
+                           ],
+    "authority":  {
+                      "spend":  false,
+                      "submission":  false,
+                      "payment_integration":  false,
+                      "credentials":  false,
+                      "live_tracking_integration":  false
+                  }
+}

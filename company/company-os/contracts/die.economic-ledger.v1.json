@@ -1,0 +1,36 @@
+{
+    "schema":  "die.economic-ledger.v1",
+    "status":  "ACCEPTED_REFERENCE_CONTRACT_NO_LIVE_INGESTION",
+    "event_schema":  "company/company-os/schemas/die.economic-ledger.event.v1.schema.json",
+    "reference_sql":  "company/company-os/sql/economic-ledger-v1.sql",
+    "validator":  "company/company-os/lib/economic_contracts.py",
+    "tests":  "company/company-os/tests/test_economic_contracts.py",
+    "append_only":  true,
+    "update_allowed":  false,
+    "delete_allowed":  false,
+    "correction_pattern":  "REVERSAL_REFERENCE_PLUS_REPLACEMENT_APPEND",
+    "normal_money_amount_semantics":  "NON_NEGATIVE_MAGNITUDE_EVENT_TYPE_DEFINES_DIRECTION",
+    "idempotency_key_unique":  true,
+    "event_types":  [
+                        "REVENUE_REALIZED",
+                        "REVENUE_REFUND",
+                        "REVENUE_CHARGEBACK",
+                        "COST_DIRECT_VARIABLE",
+                        "COST_SHARED_VARIABLE",
+                        "COST_GLOBAL_FIXED",
+                        "COST_OTHER_NONVARIABLE",
+                        "FOUNDER_TIME",
+                        "RESOURCE_USAGE",
+                        "FX_RATE_OBSERVED",
+                        "REVERSAL"
+                    ],
+    "authority":  {
+                      "bank_integration":  false,
+                      "payment_action":  false,
+                      "spend":  false,
+                      "capital_allocation":  false,
+                      "provider_plan_change":  false,
+                      "credentials":  false,
+                      "live_ingestion":  false
+                  }
+}
