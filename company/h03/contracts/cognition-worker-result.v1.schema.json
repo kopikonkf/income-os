@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.cognition-worker-result.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","work_card_id","attempt","status","output_artifacts","worker_observation"],
+  "properties": {
+    "schema_version": {"const":"die.h03.cognition-worker-result.v1"},
+    "work_card_id": {"type":"string"},
+    "attempt": {"type":"integer","minimum":1},
+    "status": {"enum":["SUCCEEDED","FAILED_RETRYABLE","FAILED_TERMINAL","CANCELLED"]},
+    "output_artifacts": {"type":"array"},
+    "worker_observation": {"type":"object"}
+  }
+}

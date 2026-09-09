@@ -24,7 +24,14 @@
     "role": {
       "enum": [
         "CURATOR",
-        "PRODUCER"
+        "PRODUCER",
+        "SEED_CURATOR",
+        "MARKET_RESEARCHER",
+        "KNOWLEDGE_RESEARCHER",
+        "SYNTHESIZER",
+        "PRODUCT_ARCHITECT",
+        "REVIEWER",
+        "GROWTH_PRODUCER"
       ]
     },
     "task_id": {

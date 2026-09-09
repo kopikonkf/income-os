@@ -39,3 +39,9 @@ class WebAICapabilityTests(unittest.TestCase):
     def test_missing_choices_fails_closed(self):
         with self.assertRaisesRegex(ValueError, "WEB_AI_RESPONSE_CHOICES_MISSING"):
             ai.normalize_openai_response(self.req(), {})
+
+    def test_extended_h03_roles_normalize(self):
+        for role in ("SEED_CURATOR","MARKET_RESEARCHER","KNOWLEDGE_RESEARCHER","SYNTHESIZER","PRODUCT_ARCHITECT","REVIEWER","GROWTH_PRODUCER"):
+            payload = ai.build_openai_payload(self.req(role))
+            self.assertEqual(payload["model"], "qwen/qwen3.8-max")
+            self.assertIn(role, ai._ALLOWED_ROLES)

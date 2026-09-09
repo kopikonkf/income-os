@@ -125,3 +125,14 @@ H03-ECO-001  H03 shadow economics mapper to ECON-002B admission
 `H03-ECO-001` is no longer blocked by the obsolete writer-not-implemented warning. `ECON-002A` and `ECON-002B` are now canonical, but live canonical economic submit authority remains unactivated; H03 shadow candidates therefore remain `validated_not_committed`.
 
 External product listing and social publication remain Founder-gated. No paid-ad spend or external publication is authorized by this graph update.
+
+
+---
+
+## H03 Batch A — OPP-001 + RT-001 + ECO-001 — DONE/PASS — 2026-09-09
+
+- `H03-OPP-001`: Human Problem Seed is now a machine contract; topic-only candidates fail, and demand/WTP remain UNKNOWN until evidenced.
+- `H03-RT-001`: role Work Cards and terminal worker results carry durable artifact handoffs. Standard web-AI workers require web-AI access but not MCP, shell or local filesystem.
+- `H03-ECO-001`: explicit H03 resource/founder-time/direct-cost observations can enter ECON-002B as `validated_not_committed`; unknown measurements never become zero and no H03 writer was created.
+
+New READY frontier: `H03-OPP-002`, `H03-DMD-001`, `H03-RT-002`. `H03-ECO-002` remains blocked on future Company-level live submit authority.

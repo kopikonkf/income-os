@@ -170,7 +170,7 @@
       "id": "H03-ECO-001",
       "track": "ECONOMICS",
       "title": "H03 shadow economic observation adapter to ECON-002B admission",
-      "status": "READY",
+      "status": "DONE",
       "priority": 858,
       "depends_on": [
         "H03-MVP-001"
@@ -180,7 +180,14 @@
       "acceptance": "Map H03 build/research/production observations into ECON-002B validated_not_committed admission envelopes with evidence refs; never directly append ECONOMICS.jsonl and never imply live canonical commit authority.",
       "external_depends_on": [
         "ECON-002B"
-      ]
+      ],
+      "artifact": "company/h03/contracts/h03-economic-observation.v1.schema.json + company/h03/lib/h03_economic_shadow.py",
+      "result": {
+        "status": "PASS",
+        "economic_admission": "validated_not_committed",
+        "direct_writer": false,
+        "unknown_coerced_to_zero": false
+      }
     },
     {
       "id": "H03-DIST-001",
@@ -202,7 +209,7 @@
       "id": "H03-OPP-001",
       "track": "OPPORTUNITY",
       "title": "Human Problem Seed contract v1",
-      "status": "READY",
+      "status": "DONE",
       "priority": 870,
       "depends_on": [
         "H03-AI-001",
@@ -210,26 +217,40 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Define provider-independent human-problem seed identity around persona/context/trigger/job-to-be-done/pain/desired-outcome and explicit commercial-signal placeholders. Topic-only seeds are insufficient; no demand or WTP value may be invented."
+      "acceptance": "Define provider-independent human-problem seed identity around persona/context/trigger/job-to-be-done/pain/desired-outcome and explicit commercial-signal placeholders. Topic-only seeds are insufficient; no demand or WTP value may be invented.",
+      "artifact": "company/h03/contracts/human-problem-seed.v1.schema.json + company/h03/lib/problem_seed.py",
+      "result": {
+        "status": "PASS",
+        "topic_only_seed_allowed": false,
+        "unknown_demand_wtp_preserved": true
+      }
     },
     {
       "id": "H03-RT-001",
       "track": "RUNTIME",
       "title": "H03 role Work Card and durable artifact handoff contract",
-      "status": "READY",
+      "status": "DONE",
       "priority": 868,
       "depends_on": [
         "H03-AI-001"
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Define cognition job envelope, role identity, input artifact refs, output artifact contract, idempotency key and terminal states. Standard web-AI workers require neither MCP nor shell/local-filesystem access; those capabilities remain optional future grants."
+      "acceptance": "Define cognition job envelope, role identity, input artifact refs, output artifact contract, idempotency key and terminal states. Standard web-AI workers require neither MCP nor shell/local-filesystem access; those capabilities remain optional future grants.",
+      "artifact": "company/h03/contracts/cognition-work-card.v1.schema.json + cognition-worker-result.v1.schema.json + company/h03/lib/cognition_work_card.py",
+      "result": {
+        "status": "PASS",
+        "standard_worker_mcp": false,
+        "standard_worker_shell": false,
+        "standard_worker_local_filesystem": false,
+        "continuity": "DURABLE_ARTIFACT"
+      }
     },
     {
       "id": "H03-OPP-002",
       "track": "OPPORTUNITY",
       "title": "Human need/pain seed discovery and curation engine",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 850,
       "depends_on": [
         "H03-OPP-001",
@@ -237,14 +258,13 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "blocked_reason": "DEPENDENCIES_NOT_DONE",
       "acceptance": "Produce deduplicated problem-seed candidates from governed signal inputs using role-separated web-AI workers; preserve candidate/source lineage and do not promote topic popularity to demand truth."
     },
     {
       "id": "H03-DMD-001",
       "track": "DEMAND",
       "title": "Demand and willingness-to-pay evidence contract + validator",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 848,
       "depends_on": [
         "H03-OPP-001",
@@ -252,7 +272,6 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "blocked_reason": "DEPENDENCIES_NOT_DONE",
       "acceptance": "Represent pain severity/frequency/urgency, buyer intent, existing spend/substitutes, marketplace/community/search evidence and WTP strength with UNKNOWN preserved when unobserved; distinguish revealed spend evidence from weak engagement signals."
     },
     {
@@ -274,7 +293,7 @@
       "id": "H03-RT-002",
       "track": "RUNTIME",
       "title": "Provider worker registry and role-routing policy",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 844,
       "depends_on": [
         "H03-RT-001",
@@ -282,7 +301,6 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "blocked_reason": "DEPENDENCIES_NOT_DONE",
       "acceptance": "Define provider-capability/role routing with Qwen 3.8 Max and Gemini as first-class curator/researcher/producer candidates, Manus as autonomous research candidate, and other healthy providers as pluggable alternatives. Routing is based on role/capability/health/capacity rather than fixed account identity."
     },
     {
@@ -599,7 +617,7 @@
       "acceptance": "Run a bounded internal batch sized by current safe capacity, not a fixed product-count target. Measure throughput, queue latency, terminal failure rate, retry count, fallback success, provider/profile bottlenecks and resource usage; no external publication."
     }
   ],
-  "revision": "2026-09-09 H03 production organism v1 atomic graph: opportunity + runtime + research + product + commerce + growth + analytics",
+  "revision": "2026-09-09 Batch A PASS: H03-OPP-001 + H03-RT-001 + H03-ECO-001; next OPP-002 + DMD-001 + RT-002 READY",
   "production_organism": {
     "control_plane": "Mission Control supervises batches/products, recovery, gates and durable standing; it does not execute every prompt.",
     "worker_plane": "H03 role queues dispatch normalized cognition jobs through web-ai-adapter; MCP is not a worker hot-path requirement.",
@@ -638,9 +656,9 @@
   },
   "current_frontier": {
     "ready": [
-      "H03-OPP-001",
-      "H03-RT-001",
-      "H03-ECO-001"
+      "H03-OPP-002",
+      "H03-DMD-001",
+      "H03-RT-002"
     ],
     "parallel_lanes": {
       "economic_intelligence": "H03-OPP-001 -> H03-OPP-002 + H03-DMD-001 -> H03-OPP-003 -> H03-RSCH-001",

@@ -1,0 +1,17 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-ECO-001",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "econ002b_reused": true,
+    "validated_not_committed": true,
+    "unknown_not_zero": true,
+    "direct_writer": false,
+    "live_commit_authorized": false
+  },
+  "validation": {
+    "h03_regression": "35/35 PASS",
+    "graph_frontier": "H03-OPP-002,H03-DMD-001,H03-RT-002"
+  }
+}
