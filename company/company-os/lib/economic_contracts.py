@@ -186,3 +186,86 @@ def validate_shadow_budget_envelope(b: dict) -> dict:
     allocated=sum(e['simulated_amount_minor'] for e in envs if e['class']!='RESERVE')
     if allocated>dist: raise EconomicContractError('E_BUDGET_OVERALLOCATED')
     return b
+
+GOVERNOR_RECOMMENDATIONS = {'SCALE','HOLD','OPTIMIZE','KILL'}
+
+
+def capital_priority_score(return_signal_bps: int | None, evidence_strength_bps: int, strategic_fit_bps: int, learning_value_bps: int, risk_penalty_bps: int) -> tuple[int, int]:
+    dims=[evidence_strength_bps,strategic_fit_bps,learning_value_bps,risk_penalty_bps]
+    if any(not isinstance(v,int) or v < 0 or v > 10000 for v in dims):
+        raise EconomicContractError('E_GOVERNOR_DIMENSION_BPS')
+    risk_retention=10000-risk_penalty_bps
+    r=max(int(return_signal_bps or 0),0)
+    score=(r*evidence_strength_bps*strategic_fit_bps*learning_value_bps*risk_retention)//(10000**4)
+    return score,risk_retention
+
+
+def derive_capital_recommendation(e: dict) -> str:
+    required=['actual_status','completeness','kill_condition','scale_condition','hold_condition','actual_contribution_profit_minor','actual_roic_bps','expected_roic_bps','evidence_strength_bps','strategic_fit_bps','learning_value_bps','risk_penalty_bps']
+    for k in required:
+        if k not in e: raise EconomicContractError('E_GOVERNOR_EVALUATION_REQUIRED',k)
+    if e['actual_status'] not in {'NOT_MEASURED','PARTIAL','MEASURED'}: raise EconomicContractError('E_GOVERNOR_ACTUAL_STATUS')
+    if e['completeness'] not in {'YES','PARTIAL','NO'}: raise EconomicContractError('E_GOVERNOR_COMPLETENESS')
+    for k in ['kill_condition','scale_condition','hold_condition']:
+        if e[k] not in {'TRUE','FALSE','UNKNOWN'}: raise EconomicContractError('E_GOVERNOR_PREDICATE',k)
+    if e['actual_status']!='MEASURED' or e['completeness']!='YES':
+        return 'HOLD'
+    profit=e.get('actual_contribution_profit_minor')
+    if profit is None: return 'HOLD'
+    if e['kill_condition']=='TRUE' or profit <= 0:
+        return 'KILL'
+    if e['scale_condition']=='TRUE':
+        return 'SCALE'
+    if e['hold_condition']=='TRUE':
+        return 'HOLD'
+    return 'OPTIMIZE'
+
+
+def validate_capital_governor_shadow_decision(d: dict) -> dict:
+    req=['schema_version','decision_id','economic_work_card_id','holding_id','economic_trace_id','budget_envelope_class','evaluation','recommendation','score','allocation_cap_minor','simulated_allocation_minor','evidence_refs','dimension_evidence','falsifier','basis','authority_boundary']
+    for k in req:
+        if k not in d: raise EconomicContractError('E_GOVERNOR_REQUIRED',k)
+    if d['schema_version']!='die.capital-governor.shadow-decision.v1': raise EconomicContractError('E_GOVERNOR_SCHEMA')
+    if d['budget_envelope_class'] not in {'INFRASTRUCTURE','PRODUCTION','EXPERIMENT'}: raise EconomicContractError('E_GOVERNOR_ENVELOPE_CLASS')
+    auth=d['authority_boundary']
+    if auth.get('shadow_only') is not True: raise EconomicContractError('E_GOVERNOR_NOT_SHADOW')
+    for k in ['spend_authorized','payment_action','capital_transfer','provider_plan_change','infrastructure_purchase','new_vendor_commitment','external_submission','credentials_embedded']:
+        if auth.get(k) is not False: raise EconomicContractError('E_GOVERNOR_AUTHORITY_BOUNDARY',k)
+    if not d.get('evidence_refs') or not d.get('falsifier') or not d.get('basis'): raise EconomicContractError('E_GOVERNOR_EVIDENCE_REQUIRED')
+    de=d.get('dimension_evidence') or {}
+    for k in ['evidence_strength','strategic_fit','learning_value','risk_penalty']:
+        if not de.get(k): raise EconomicContractError('E_GOVERNOR_DIMENSION_EVIDENCE',k)
+    e=d['evaluation']
+    expected_rec=derive_capital_recommendation(e)
+    if d['recommendation'] != expected_rec: raise EconomicContractError('E_GOVERNOR_RECOMMENDATION_MISMATCH')
+    return_signal=e.get('actual_roic_bps') if e.get('actual_status')=='MEASURED' and e.get('actual_roic_bps') is not None else e.get('expected_roic_bps')
+    expected_score,risk_retention=capital_priority_score(return_signal,e['evidence_strength_bps'],e['strategic_fit_bps'],e['learning_value_bps'],e['risk_penalty_bps'])
+    s=d['score']
+    if s.get('formula_version')!='capital-governor-v1-multiplicative-bps': raise EconomicContractError('E_GOVERNOR_SCORE_VERSION')
+    if s.get('return_signal_bps') != int(return_signal or 0): raise EconomicContractError('E_GOVERNOR_RETURN_SIGNAL')
+    if s.get('risk_retention_bps') != risk_retention or s.get('priority_score') != expected_score: raise EconomicContractError('E_GOVERNOR_SCORE_MATH')
+    cap=d['allocation_cap_minor']; alloc=d['simulated_allocation_minor']
+    if not isinstance(cap,int) or cap<0 or not isinstance(alloc,int) or alloc<0: raise EconomicContractError('E_GOVERNOR_ALLOCATION_VALUE')
+    if alloc>cap: raise EconomicContractError('E_GOVERNOR_ALLOCATION_OVER_CAP')
+    if d['recommendation'] in {'HOLD','KILL'} and alloc!=0: raise EconomicContractError('E_GOVERNOR_NONDEPLOY_RECOMMENDATION_ALLOCATED')
+    if expected_score==0 and alloc!=0: raise EconomicContractError('E_GOVERNOR_ZERO_SCORE_ALLOCATED')
+    return d
+
+
+def allocate_shadow_capital(decisions: list[dict], available_minor: int) -> list[dict]:
+    if not isinstance(available_minor,int) or available_minor < 0: raise EconomicContractError('E_GOVERNOR_AVAILABLE_CAPITAL')
+    for d in decisions: validate_capital_governor_shadow_decision(d)
+    eligible=[d for d in decisions if d['recommendation'] in {'SCALE','OPTIMIZE'} and d['score']['priority_score']>0]
+    eligible.sort(key=lambda x:(0 if x['recommendation']=='SCALE' else 1,-x['score']['priority_score'],x['economic_work_card_id']))
+    remaining=available_minor
+    allocations={d['decision_id']:0 for d in decisions}
+    for d in eligible:
+        amount=min(d['allocation_cap_minor'],remaining)
+        allocations[d['decision_id']]=amount
+        remaining-=amount
+        if remaining<=0: break
+    out=[]
+    for d in decisions:
+        nd=dict(d); nd['simulated_allocation_minor']=allocations[d['decision_id']]
+        validate_capital_governor_shadow_decision(nd); out.append(nd)
+    return out

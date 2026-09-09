@@ -147,3 +147,64 @@ def test_shadow_budget_requires_capital_evidence():
     b=shadow_budget(); b['capital_evidence_refs']=[]
     with pytest.raises(m.EconomicContractError) as x:m.validate_shadow_budget_envelope(b)
     assert x.value.code=='E_BUDGET_CAPITAL_EVIDENCE_REQUIRED'
+
+def governor_auth():
+    return {'shadow_only':True,'spend_authorized':False,'payment_action':False,'capital_transfer':False,'provider_plan_change':False,'infrastructure_purchase':False,'new_vendor_commitment':False,'external_submission':False,'credentials_embedded':False}
+
+def gov_decision(card='EWC-H03-GOV00001', status='MEASURED', completeness='YES', profit=9000, actual_roic=18000, expected_roic=14000, kill='FALSE', scale='TRUE', hold='FALSE', evidence=9000, strategic=9000, learning=8000, risk=2000, rec=None, cap=5000, klass='PRODUCTION'):
+    e={'actual_status':status,'completeness':completeness,'kill_condition':kill,'scale_condition':scale,'hold_condition':hold,'actual_contribution_profit_minor':profit,'actual_roic_bps':actual_roic,'expected_roic_bps':expected_roic,'evidence_strength_bps':evidence,'strategic_fit_bps':strategic,'learning_value_bps':learning,'risk_penalty_bps':risk}
+    recommendation=rec or m.derive_capital_recommendation(e)
+    return_signal=actual_roic if status=='MEASURED' and actual_roic is not None else expected_roic
+    score,ret=m.capital_priority_score(return_signal,evidence,strategic,learning,risk)
+    return {'schema_version':'die.capital-governor.shadow-decision.v1','decision_id':'CAP-SHADOW-'+card.replace('EWC-',''),'economic_work_card_id':card,'holding_id':'H03','economic_trace_id':'TRACE-'+card,'budget_envelope_class':klass,'evaluation':e,'recommendation':recommendation,'score':{'return_signal_bps':int(return_signal or 0),'risk_retention_bps':ret,'priority_score':score,'formula_version':'capital-governor-v1-multiplicative-bps'},'allocation_cap_minor':cap,'simulated_allocation_minor':0,'evidence_refs':['ledger://observed','attr://claim'],'dimension_evidence':{'evidence_strength':['ledger://complete'],'strategic_fit':['strategy://fit'],'learning_value':['experiment://lesson'],'risk_penalty':['risk://assessment']},'falsifier':'Contribution economics fail at measurement window','basis':'Shadow recommendation from measured unit economics','authority_boundary':governor_auth()}
+
+def test_governor_complete_positive_scale():
+    d=gov_decision(); assert d['recommendation']=='SCALE'; assert m.validate_capital_governor_shadow_decision(d)['score']['priority_score']>0
+
+def test_governor_incomplete_evidence_holds_even_if_expected_good():
+    d=gov_decision(status='PARTIAL',completeness='PARTIAL',profit=None,actual_roic=None,scale='TRUE')
+    assert d['recommendation']=='HOLD'; m.validate_capital_governor_shadow_decision(d)
+
+def test_governor_complete_nonpositive_kills():
+    d=gov_decision(profit=0,actual_roic=0,scale='FALSE')
+    assert d['recommendation']=='KILL'; m.validate_capital_governor_shadow_decision(d)
+
+def test_governor_positive_without_scale_or_hold_optimizes():
+    d=gov_decision(scale='FALSE',hold='FALSE')
+    assert d['recommendation']=='OPTIMIZE'; m.validate_capital_governor_shadow_decision(d)
+
+def test_governor_score_cannot_override_recommendation_lattice():
+    d=gov_decision(status='PARTIAL',completeness='PARTIAL',profit=None,actual_roic=None,scale='TRUE',rec='SCALE')
+    with pytest.raises(m.EconomicContractError) as x:m.validate_capital_governor_shadow_decision(d)
+    assert x.value.code=='E_GOVERNOR_RECOMMENDATION_MISMATCH'
+
+def test_governor_rejects_score_tampering():
+    d=gov_decision(); d['score']['priority_score']+=1
+    with pytest.raises(m.EconomicContractError) as x:m.validate_capital_governor_shadow_decision(d)
+    assert x.value.code=='E_GOVERNOR_SCORE_MATH'
+
+def test_governor_rejects_authority_widening():
+    d=gov_decision(); d['authority_boundary']['spend_authorized']=True
+    with pytest.raises(m.EconomicContractError) as x:m.validate_capital_governor_shadow_decision(d)
+    assert x.value.code=='E_GOVERNOR_AUTHORITY_BOUNDARY'
+
+def test_shadow_allocator_scale_before_optimize_and_never_hold_kill():
+    scale=gov_decision(card='EWC-H03-SCALE001',scale='TRUE',cap=5000)
+    optimize=gov_decision(card='EWC-H03-OPT00001',scale='FALSE',hold='FALSE',cap=5000,evidence=10000,strategic=10000,learning=10000,risk=0)
+    hold=gov_decision(card='EWC-H03-HOLD0001',status='PARTIAL',completeness='PARTIAL',profit=None,actual_roic=None,cap=5000)
+    kill=gov_decision(card='EWC-H03-KILL0001',profit=-100,actual_roic=-100,scale='FALSE',cap=5000)
+    out=m.allocate_shadow_capital([optimize,hold,kill,scale],7000)
+    by={d['recommendation']:d['simulated_allocation_minor'] for d in out}
+    assert by['SCALE']==5000 and by['OPTIMIZE']==2000 and by['HOLD']==0 and by['KILL']==0
+
+def test_shadow_allocator_respects_available_and_caps():
+    a=gov_decision(card='EWC-H03-A0000001',cap=3000)
+    b=gov_decision(card='EWC-H03-B0000001',cap=4000)
+    out=m.allocate_shadow_capital([a,b],5000)
+    assert sum(x['simulated_allocation_minor'] for x in out)==5000
+    assert all(x['simulated_allocation_minor']<=x['allocation_cap_minor'] for x in out)
+
+def test_zero_score_never_allocated():
+    d=gov_decision(card='EWC-H03-ZERO0001',evidence=0,cap=5000)
+    out=m.allocate_shadow_capital([d],5000)
+    assert out[0]['simulated_allocation_minor']==0

@@ -1,0 +1,58 @@
+{
+    "schema":  "die.company-os.econ006.capital-governor-shadow.receipt.v1",
+    "task_id":  "ECON-006",
+    "status":  "PASS",
+    "observed_at":  "2026-09-09",
+    "source_main":  "53c73475afdab1c4c21c02fa53fefaf4dbe97918",
+    "artifacts":  [
+                      {
+                          "path":  "company/company-os/ECON-006_CAPITAL_GOVERNOR_SHADOW_ALLOCATOR_V1.md",
+                          "sha256":  "61225136019b802c85f1919e1b7fd1e3b0fc4e1efa18c299e47d259448181a10"
+                      },
+                      {
+                          "path":  "company/company-os/contracts/die.capital-governor.shadow.v1.json",
+                          "sha256":  "8f7355cf14950a298fe4eb543500cb1a7b1696f50cce785be9ca14f45b40318e"
+                      },
+                      {
+                          "path":  "company/company-os/schemas/die.capital-governor.shadow-decision.v1.schema.json",
+                          "sha256":  "54c22e3bd082cb9a858bc1b1b5333481adfacdf41cce1a8f9f72e7fd92de555f"
+                      },
+                      {
+                          "path":  "company/company-os/lib/economic_contracts.py",
+                          "sha256":  "52da56ba1a4886524793f102fbe641ea7d08f8707a579fb19430ab4fb7173aa4"
+                      },
+                      {
+                          "path":  "company/company-os/tests/test_economic_contracts.py",
+                          "sha256":  "26c23025871f351dc966bc2ede17fc78325b4dbf084a107f7bfb6eb43122cd71"
+                      }
+                  ],
+    "acceptance":  {
+                       "pytest":  "33_PASSED",
+                       "recommendations":  [
+                                               "SCALE",
+                                               "HOLD",
+                                               "OPTIMIZE",
+                                               "KILL"
+                                           ],
+                       "decision_lattice_precedes_score":  true,
+                       "incomplete_defaults_hold":  true,
+                       "complete_nonpositive_kills":  true,
+                       "scale_before_optimize_allocation":  true,
+                       "hold_kill_allocation_zero":  true,
+                       "zero_score_allocation_zero":  true,
+                       "allocation_caps_and_available_pool_enforced":  true,
+                       "score_tampering_rejected":  true,
+                       "authority_widening_rejected":  true
+                   },
+    "authority":  {
+                      "shadow_only":  true,
+                      "spend":  false,
+                      "payment":  false,
+                      "capital_transfer":  false,
+                      "provider_plan_change":  false,
+                      "infrastructure_purchase":  false,
+                      "new_vendor":  false,
+                      "external_submission":  false,
+                      "credentials":  false
+                  }
+}
