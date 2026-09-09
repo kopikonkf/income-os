@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.content-block-batch.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","content_batch_id","holding_id","product_id","knowledge_package_id","section_id","section_heading","producer_observation","blocks","truth_status"],
+  "properties": {
+    "schema_version": {"const":"die.h03.content-block-batch.v1"},
+    "content_batch_id": {"type":"string","minLength":6},
+    "holding_id": {"const":"H03"},
+    "product_id": {"type":"string","minLength":3},
+    "knowledge_package_id": {"type":"string","minLength":3},
+    "section_id": {"type":"string","minLength":2},
+    "section_heading": {"type":"string","minLength":1},
+    "producer_observation": {"type":"object"},
+    "blocks": {
+      "type":"array","minItems":1,
+      "items": {
+        "type":"object","additionalProperties":false,
+        "required":["block_id","kind","text","claim_ids","evidence_refs"],
+        "properties": {
+          "block_id":{"type":"string","minLength":2},
+          "kind":{"enum":["PARAGRAPH","STEP","BULLET","CHECKLIST_ITEM","CALLOUT","INPUT_PROMPT"]},
+          "text":{"type":"string","minLength":1},
+          "claim_ids":{"type":"array","minItems":1,"items":{"type":"string","minLength":1},"uniqueItems":true},
+          "evidence_refs":{"type":"array","minItems":1,"items":{"type":"string","minLength":1},"uniqueItems":true}
+        }
+      }
+    },
+    "truth_status": {"const":"DERIVED_SEMANTIC_CONTENT"}
+  }
+}

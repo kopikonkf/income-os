@@ -1,0 +1,47 @@
+{
+  "form": "guide",
+  "knowledge_package_id": "H03-KP-MVP-001",
+  "metadata": {
+    "author": "Digital Income Empire - H03",
+    "keywords": [
+      "H03",
+      "knowledge factory",
+      "PDF factory",
+      "provenance",
+      "portability"
+    ],
+    "subject": "Internal deterministic H03 Knowledge to PDF proof"
+  },
+  "product_id": "H03-PROD-MVP-001",
+  "schema_version": "die.h03.product-blueprint.v1",
+  "sections": [
+    {
+      "claim_ids": [
+        "C1",
+        "C6"
+      ],
+      "heading": "1. Reproducibility is part of the product"
+    },
+    {
+      "claim_ids": [
+        "C2"
+      ],
+      "heading": "2. Separate knowledge from presentation"
+    },
+    {
+      "claim_ids": [
+        "C3"
+      ],
+      "heading": "3. Evidence-first lineage"
+    },
+    {
+      "claim_ids": [
+        "C4",
+        "C5"
+      ],
+      "heading": "4. Economic truth without invented zeros"
+    }
+  ],
+  "subtitle": "Internal H03 deterministic pipeline proof",
+  "title": "Portable Knowledge Product Build Verification Guide"
+}

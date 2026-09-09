@@ -1,0 +1,32 @@
+{
+  "form": "guide",
+  "live_provider_claimed": false,
+  "product_id": "H03-PROD-MVP-001",
+  "receipt": {
+    "content_batch_ids": [
+      "H03-CB-ACCEPT-001",
+      "H03-CB-ACCEPT-002",
+      "H03-CB-ACCEPT-003",
+      "H03-CB-ACCEPT-004"
+    ],
+    "external_publication": false,
+    "form": "guide",
+    "holding_id": "H03",
+    "knowledge_package_id": "H03-KP-MVP-001",
+    "manifest_file": "manifest.json",
+    "page_count": 2,
+    "pdf_file": "portable-knowledge-product-build-verification-guide.pdf",
+    "pdf_sha256": "8199048f4a9ee0f70a4e0b62c07c7617ab61b9077cf6700311192617c7eb20ee",
+    "product_id": "H03-PROD-MVP-001",
+    "schema_version": "die.h03.local-product-package.v1",
+    "status": "LOCAL_SALE_READY_UNREVIEWED",
+    "title": "Portable Knowledge Product Build Verification Guide",
+    "validation_file": "validation.json",
+    "zip_file": "portable-knowledge-product-build-verification-guide.zip",
+    "zip_sha256": "c4366856e1aa0b41705a178e9f13dead2e8eac76df9b92af2a391b3b3af32e06"
+  },
+  "schema_version": "die.h03.prod003-acceptance.v1",
+  "semantic_source": "ACCEPTANCE_FIXTURE_NOT_LIVE_PROVIDER",
+  "status": "PASS",
+  "task_id": "H03-PROD-003"
+}

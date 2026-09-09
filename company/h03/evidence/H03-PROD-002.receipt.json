@@ -1,0 +1,22 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-PROD-002",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "one_section_one_producer_job": true,
+    "standard_worker_mcp_required": false,
+    "standard_worker_shell_required": false,
+    "standard_worker_local_filesystem_required": false,
+    "slot_aware_multi_provider_fanout": true,
+    "model_writable_provenance": false,
+    "evidence_attached_from_accepted_knowledge": true,
+    "cross_section_claim_rejected": true,
+    "content_truth_status": "DERIVED_SEMANTIC_CONTENT",
+    "live_provider_call_claimed": false
+  },
+  "validation": {
+    "targeted_prod002_prod003": "11/11 PASS",
+    "h03_regression": "113/113 PASS"
+  }
+}

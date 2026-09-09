@@ -200,3 +200,16 @@ Only accepted `die.h03.knowledge-package.v1` can produce a Product Blueprint; a 
 Validation: product-planner tests `14/14 PASS`; full H03 suite `102/102 PASS`.
 
 New READY frontier: `H03-PROD-002` role-separated semantic producer fan-out to content blocks.
+
+
+---
+
+## H03 Production Batch — PROD-002 + PROD-003 — DONE/PASS — 2026-09-09
+
+- `H03-PROD-002`: Product Blueprint sections now fan out into bounded standard `PRODUCER` Work Cards routed by role/capability/health/capacity. Model output may use only assigned claim IDs; evidence refs are attached deterministically from accepted Knowledge Package truth after output returns.
+- `H03-PROD-003`: content batches now compile locally into Document AST, deterministic PDF, technical/raster QA, manifest and deterministic ZIP. Claim coverage and evidence lineage are revalidated before packaging. Package status is `LOCAL_SALE_READY_UNREVIEWED`; no external publication is performed.
+- Concrete acceptance package uses an explicitly labeled non-live-provider fixture. PDF SHA remains canonical MVP `8199048f...20ee`; deterministic ZIP SHA is `c4366856...32e06`.
+
+Validation: PROD-002/003 targeted `11/11 PASS`; full H03 regression `113/113 PASS`.
+
+New READY frontier: `H03-ORG-001` bounded end-to-end problem-to-package internal canary. This is the first task intended to prove the assembled organism across curation/demand/research/synthesis/product planning/semantic production/compile/package as one continuous internal lifecycle.

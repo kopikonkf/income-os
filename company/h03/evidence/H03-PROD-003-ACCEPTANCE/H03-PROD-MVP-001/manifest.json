@@ -1,0 +1,26 @@
+{
+  "files": {
+    "content-block-batches.json": {
+      "bytes": 4307,
+      "sha256": "02dc14bf4d3b9065b8a0ff35b0c259fb8537489d86f71b582bd734c736fbd2fc"
+    },
+    "document-ast.json": {
+      "bytes": 3502,
+      "sha256": "8ae6d0c1a7538cceac0c36c9a7bc91324c3219995f8e9b64adaf290779aca503"
+    },
+    "portable-knowledge-product-build-verification-guide.pdf": {
+      "bytes": 3976,
+      "sha256": "8199048f4a9ee0f70a4e0b62c07c7617ab61b9077cf6700311192617c7eb20ee"
+    },
+    "product-blueprint.json": {
+      "bytes": 1082,
+      "sha256": "0399849be37c3835382ea17f6be1d5c7b1405be4e2174d8328acc90b55f76071"
+    },
+    "validation.json": {
+      "bytes": 729,
+      "sha256": "86cac85e092175db9897f2379334579cc50a448d3d293f5a77293fe7f92fe984"
+    }
+  },
+  "product_id": "H03-PROD-MVP-001",
+  "schema_version": "die.h03.local-product-manifest.v1"
+}

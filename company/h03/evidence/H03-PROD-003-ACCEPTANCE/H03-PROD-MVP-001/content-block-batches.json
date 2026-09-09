@@ -1,0 +1,140 @@
+[
+  {
+    "blocks": [
+      {
+        "block_id": "FIX-001-01",
+        "claim_ids": [
+          "C1"
+        ],
+        "evidence_refs": [
+          "E1"
+        ],
+        "kind": "PARAGRAPH",
+        "text": "A portable knowledge-product factory treats reproducibility artifacts as first-class deliverables."
+      },
+      {
+        "block_id": "FIX-001-02",
+        "claim_ids": [
+          "C6"
+        ],
+        "evidence_refs": [
+          "E6"
+        ],
+        "kind": "PARAGRAPH",
+        "text": "Authentication and browser session material stays outside product lineage and is manually reprovisioned when hosts change."
+      }
+    ],
+    "content_batch_id": "H03-CB-ACCEPT-001",
+    "holding_id": "H03",
+    "knowledge_package_id": "H03-KP-MVP-001",
+    "producer_observation": {
+      "model_route": "NONE",
+      "profile_shard_id": null,
+      "provider_id": "ACCEPTANCE_FIXTURE_NOT_LIVE_PROVIDER",
+      "transport_family": null
+    },
+    "product_id": "H03-PROD-MVP-001",
+    "schema_version": "die.h03.content-block-batch.v1",
+    "section_heading": "1. Reproducibility is part of the product",
+    "section_id": "SEC-001",
+    "truth_status": "DERIVED_SEMANTIC_CONTENT"
+  },
+  {
+    "blocks": [
+      {
+        "block_id": "FIX-002-01",
+        "claim_ids": [
+          "C2"
+        ],
+        "evidence_refs": [
+          "E2"
+        ],
+        "kind": "PARAGRAPH",
+        "text": "Knowledge Packages are presentation-independent and should compile through a Product Blueprint and Document AST before rendering."
+      }
+    ],
+    "content_batch_id": "H03-CB-ACCEPT-002",
+    "holding_id": "H03",
+    "knowledge_package_id": "H03-KP-MVP-001",
+    "producer_observation": {
+      "model_route": "NONE",
+      "profile_shard_id": null,
+      "provider_id": "ACCEPTANCE_FIXTURE_NOT_LIVE_PROVIDER",
+      "transport_family": null
+    },
+    "product_id": "H03-PROD-MVP-001",
+    "schema_version": "die.h03.content-block-batch.v1",
+    "section_heading": "2. Separate knowledge from presentation",
+    "section_id": "SEC-002",
+    "truth_status": "DERIVED_SEMANTIC_CONTENT"
+  },
+  {
+    "blocks": [
+      {
+        "block_id": "FIX-003-01",
+        "claim_ids": [
+          "C3"
+        ],
+        "evidence_refs": [
+          "E3"
+        ],
+        "kind": "PARAGRAPH",
+        "text": "Every bounded product build needs explicit evidence and artifact lineage rather than model output alone."
+      }
+    ],
+    "content_batch_id": "H03-CB-ACCEPT-003",
+    "holding_id": "H03",
+    "knowledge_package_id": "H03-KP-MVP-001",
+    "producer_observation": {
+      "model_route": "NONE",
+      "profile_shard_id": null,
+      "provider_id": "ACCEPTANCE_FIXTURE_NOT_LIVE_PROVIDER",
+      "transport_family": null
+    },
+    "product_id": "H03-PROD-MVP-001",
+    "schema_version": "die.h03.content-block-batch.v1",
+    "section_heading": "3. Evidence-first lineage",
+    "section_id": "SEC-003",
+    "truth_status": "DERIVED_SEMANTIC_CONTENT"
+  },
+  {
+    "blocks": [
+      {
+        "block_id": "FIX-004-01",
+        "claim_ids": [
+          "C4"
+        ],
+        "evidence_refs": [
+          "E4"
+        ],
+        "kind": "PARAGRAPH",
+        "text": "Economic fields that have not been observed remain UNKNOWN or UNPROVEN, never inferred as zero."
+      },
+      {
+        "block_id": "FIX-004-02",
+        "claim_ids": [
+          "C5"
+        ],
+        "evidence_refs": [
+          "E5"
+        ],
+        "kind": "PARAGRAPH",
+        "text": "H03 may author semantic economic observations but cannot bypass the single logical die-state-manager for canonical Company Truth."
+      }
+    ],
+    "content_batch_id": "H03-CB-ACCEPT-004",
+    "holding_id": "H03",
+    "knowledge_package_id": "H03-KP-MVP-001",
+    "producer_observation": {
+      "model_route": "NONE",
+      "profile_shard_id": null,
+      "provider_id": "ACCEPTANCE_FIXTURE_NOT_LIVE_PROVIDER",
+      "transport_family": null
+    },
+    "product_id": "H03-PROD-MVP-001",
+    "schema_version": "die.h03.content-block-batch.v1",
+    "section_heading": "4. Economic truth without invented zeros",
+    "section_id": "SEC-004",
+    "truth_status": "DERIVED_SEMANTIC_CONTENT"
+  }
+]

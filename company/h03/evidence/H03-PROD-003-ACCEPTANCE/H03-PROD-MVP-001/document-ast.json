@@ -1,0 +1,135 @@
+{
+  "blocks": [
+    {
+      "text": "1. Reproducibility is part of the product",
+      "type": "heading"
+    },
+    {
+      "claim_id": "C1",
+      "text": "A portable knowledge-product factory treats reproducibility artifacts as first-class deliverables.",
+      "type": "paragraph"
+    },
+    {
+      "claim_id": "C6",
+      "text": "Authentication and browser session material stays outside product lineage and is manually reprovisioned when hosts change.",
+      "type": "paragraph"
+    },
+    {
+      "text": "2. Separate knowledge from presentation",
+      "type": "heading"
+    },
+    {
+      "claim_id": "C2",
+      "text": "Knowledge Packages are presentation-independent and should compile through a Product Blueprint and Document AST before rendering.",
+      "type": "paragraph"
+    },
+    {
+      "text": "3. Evidence-first lineage",
+      "type": "heading"
+    },
+    {
+      "claim_id": "C3",
+      "text": "Every bounded product build needs explicit evidence and artifact lineage rather than model output alone.",
+      "type": "paragraph"
+    },
+    {
+      "text": "4. Economic truth without invented zeros",
+      "type": "heading"
+    },
+    {
+      "claim_id": "C4",
+      "text": "Economic fields that have not been observed remain UNKNOWN or UNPROVEN, never inferred as zero.",
+      "type": "paragraph"
+    },
+    {
+      "claim_id": "C5",
+      "text": "H03 may author semantic economic observations but cannot bypass the single logical die-state-manager for canonical Company Truth.",
+      "type": "paragraph"
+    }
+  ],
+  "knowledge_package_id": "H03-KP-MVP-001",
+  "metadata": {
+    "author": "Digital Income Empire - H03",
+    "content_batch_ids": [
+      "H03-CB-ACCEPT-001",
+      "H03-CB-ACCEPT-002",
+      "H03-CB-ACCEPT-003",
+      "H03-CB-ACCEPT-004"
+    ],
+    "content_lineage": [
+      {
+        "block_id": "FIX-001-01",
+        "claim_ids": [
+          "C1"
+        ],
+        "evidence_refs": [
+          "E1"
+        ],
+        "section_id": "SEC-001"
+      },
+      {
+        "block_id": "FIX-001-02",
+        "claim_ids": [
+          "C6"
+        ],
+        "evidence_refs": [
+          "E6"
+        ],
+        "section_id": "SEC-001"
+      },
+      {
+        "block_id": "FIX-002-01",
+        "claim_ids": [
+          "C2"
+        ],
+        "evidence_refs": [
+          "E2"
+        ],
+        "section_id": "SEC-002"
+      },
+      {
+        "block_id": "FIX-003-01",
+        "claim_ids": [
+          "C3"
+        ],
+        "evidence_refs": [
+          "E3"
+        ],
+        "section_id": "SEC-003"
+      },
+      {
+        "block_id": "FIX-004-01",
+        "claim_ids": [
+          "C4"
+        ],
+        "evidence_refs": [
+          "E4"
+        ],
+        "section_id": "SEC-004"
+      },
+      {
+        "block_id": "FIX-004-02",
+        "claim_ids": [
+          "C5"
+        ],
+        "evidence_refs": [
+          "E5"
+        ],
+        "section_id": "SEC-004"
+      }
+    ],
+    "form": "guide",
+    "keywords": [
+      "H03",
+      "knowledge factory",
+      "PDF factory",
+      "provenance",
+      "portability"
+    ],
+    "subject": "Internal deterministic H03 Knowledge to PDF proof",
+    "subtitle": "Internal H03 deterministic pipeline proof",
+    "title": "Portable Knowledge Product Build Verification Guide"
+  },
+  "product_id": "H03-PROD-MVP-001",
+  "schema_version": "die.h03.document-ast.v1"
+}
