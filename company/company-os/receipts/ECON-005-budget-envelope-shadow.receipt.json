@@ -1,0 +1,52 @@
+{
+    "schema":  "die.company-os.econ005.budget-envelope-shadow.receipt.v1",
+    "task_id":  "ECON-005",
+    "status":  "PASS",
+    "observed_at":  "2026-09-09",
+    "source_main":  "11878bf90410f53f293b7be20d11e4a07c7572eb",
+    "artifacts":  [
+                      {
+                          "path":  "company/company-os/ECON-005_BUDGET_ENVELOPE_SHADOW_V1.md",
+                          "sha256":  "50326f64c8c5b17c1e09864b65124701d05804f1b8008965bffe6c558d4d1585"
+                      },
+                      {
+                          "path":  "company/company-os/contracts/die.budget-envelope.shadow.v1.json",
+                          "sha256":  "abb3cc6c794a4f380de56f13c031ac1cdd04285ce49fea50f2a63f14feef7bac"
+                      },
+                      {
+                          "path":  "company/company-os/schemas/die.budget-envelope.shadow.v1.schema.json",
+                          "sha256":  "11c11e20b616893f850aa748d7c12ec4661c2f2631e2a93da63c81e7f4946e6a"
+                      },
+                      {
+                          "path":  "company/company-os/lib/economic_contracts.py",
+                          "sha256":  "e24bc090d1a535c42061d668fb5e736466b6c656fc7ed95bd874deab1934bc5e"
+                      },
+                      {
+                          "path":  "company/company-os/tests/test_economic_contracts.py",
+                          "sha256":  "3b7975bca31efc360c65caddc28c763f1fb92966e51a9f66114f704ebc7915c6"
+                      }
+                  ],
+    "acceptance":  {
+                       "pytest":  "23_PASSED",
+                       "required_classes":  [
+                                                "RESERVE",
+                                                "INFRASTRUCTURE",
+                                                "PRODUCTION",
+                                                "EXPERIMENT"
+                                            ],
+                       "authorized_amount_minor":  0,
+                       "reserve_floor_enforced":  true,
+                       "overallocation_rejected":  true,
+                       "capital_evidence_required":  true
+                   },
+    "authority":  {
+                      "simulation_only":  true,
+                      "spend":  false,
+                      "payment":  false,
+                      "capital_transfer":  false,
+                      "provider_plan_change":  false,
+                      "infrastructure_purchase":  false,
+                      "new_vendor":  false,
+                      "credentials":  false
+                  }
+}

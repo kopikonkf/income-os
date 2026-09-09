@@ -1,0 +1,30 @@
+{
+    "schema":  "die.budget-envelope.shadow.v1",
+    "status":  "ACCEPTED_E0_SHADOW_ZERO_AUTHORIZED_AMOUNT",
+    "json_schema":  "company/company-os/schemas/die.budget-envelope.shadow.v1.schema.json",
+    "validator":  "company/company-os/lib/economic_contracts.py",
+    "tests":  "company/company-os/tests/test_economic_contracts.py",
+    "classes":  [
+                    "RESERVE",
+                    "INFRASTRUCTURE",
+                    "PRODUCTION",
+                    "EXPERIMENT"
+                ],
+    "classes_exactly_once":  true,
+    "shadow_distributable_formula":  "observed_capital_base_minor - reserve_floor_minor",
+    "reserve_must_meet_floor":  true,
+    "nonreserve_allocation_lte_shadow_distributable":  true,
+    "capital_evidence_required":  true,
+    "authorized_amount_minor":  0,
+    "policy_percentages_hardcoded":  false,
+    "authority":  {
+                      "simulation_only":  true,
+                      "spend":  false,
+                      "payment":  false,
+                      "capital_transfer":  false,
+                      "provider_plan_change":  false,
+                      "infrastructure_purchase":  false,
+                      "new_vendor":  false,
+                      "credentials":  false
+                  }
+}

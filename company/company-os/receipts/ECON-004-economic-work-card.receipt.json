@@ -1,0 +1,43 @@
+{
+    "schema":  "die.company-os.econ004.economic-work-card.receipt.v1",
+    "task_id":  "ECON-004",
+    "status":  "PASS",
+    "observed_at":  "2026-09-09",
+    "source_main":  "11878bf90410f53f293b7be20d11e4a07c7572eb",
+    "artifacts":  [
+                      {
+                          "path":  "company/company-os/ECON-004_ECONOMIC_WORK_CARD_UNIT_ECONOMICS_V1.md",
+                          "sha256":  "bab106d8577197cba374a013a5f83146e54c12003a758663db7b1794dff4b9b0"
+                      },
+                      {
+                          "path":  "company/company-os/contracts/die.economic-work-card.v1.json",
+                          "sha256":  "edd45a3bc06983e20abafdba47841fa59c51169bccc24d41384f67a87c0e3f6e"
+                      },
+                      {
+                          "path":  "company/company-os/schemas/die.economic-work-card.v1.schema.json",
+                          "sha256":  "30c917b203181b9c86ab46b2aaf4382846dbd33cd943aaed88f021efc8ea0ad7"
+                      },
+                      {
+                          "path":  "company/company-os/lib/economic_contracts.py",
+                          "sha256":  "e24bc090d1a535c42061d668fb5e736466b6c656fc7ed95bd874deab1934bc5e"
+                      },
+                      {
+                          "path":  "company/company-os/tests/test_economic_contracts.py",
+                          "sha256":  "3b7975bca31efc360c65caddc28c763f1fb92966e51a9f66114f704ebc7915c6"
+                      }
+                  ],
+    "acceptance":  {
+                       "pytest":  "23_PASSED",
+                       "forecast_actual_separation":  true,
+                       "expected_margin_roic_math":  true,
+                       "actual_ledger_evidence_required":  true,
+                       "measurement_window_falsifier_conditions":  true
+                   },
+    "authority":  {
+                      "spend":  false,
+                      "capital_request_is_authority":  false,
+                      "external_commitment":  false,
+                      "provider_plan_change":  false,
+                      "credentials":  false
+                  }
+}

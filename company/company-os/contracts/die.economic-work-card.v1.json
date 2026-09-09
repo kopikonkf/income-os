@@ -1,0 +1,45 @@
+{
+    "schema":  "die.economic-work-card.v1",
+    "status":  "ACCEPTED_E0_SHADOW_NO_SPEND_AUTHORITY",
+    "json_schema":  "company/company-os/schemas/die.economic-work-card.v1.schema.json",
+    "validator":  "company/company-os/lib/economic_contracts.py",
+    "tests":  "company/company-os/tests/test_economic_contracts.py",
+    "forecast_actual_separation":  true,
+    "expected_fields":  [
+                            "capital_requested_minor",
+                            "revenue_minor",
+                            "direct_variable_cost_minor",
+                            "shared_variable_cost_minor",
+                            "contribution_profit_minor",
+                            "contribution_margin_bps",
+                            "payback_days",
+                            "roic_bps"
+                        ],
+    "actual_fields":  [
+                          "capital_observed_minor",
+                          "revenue_minor",
+                          "direct_variable_cost_minor",
+                          "shared_variable_cost_minor",
+                          "contribution_profit_minor",
+                          "contribution_margin_bps",
+                          "founder_active_minutes",
+                          "cash_profit_minor",
+                          "economic_profit_minor",
+                          "payback_days",
+                          "roic_bps"
+                      ],
+    "actual_evidence_requires":  "ECON_002_LEDGER_REFS",
+    "attribution_evidence":  "ECON_003_CLAIM_REFS_WHEN_APPLICABLE",
+    "decision_conditions":  [
+                                "kill_condition",
+                                "scale_condition",
+                                "hold_condition"
+                            ],
+    "authority":  {
+                      "spend":  false,
+                      "capital_request_is_authority":  false,
+                      "external_commitment":  false,
+                      "provider_plan_change":  false,
+                      "credentials":  false
+                  }
+}

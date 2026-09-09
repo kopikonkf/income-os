@@ -1,7 +1,7 @@
 {
   "schema": "die.company-os.task-graph.v1",
   "generated_at": "2026-09-08",
-  "revision": "1.6-econ002-econ003-batch",
+  "revision": "1.7-econ004-econ005-batch",
   "status": "CANONICAL",
   "project": "DIE Company OS / Economic Layer",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -268,29 +268,50 @@
       "id": "ECON-004",
       "track": "UNIT_ECONOMICS",
       "title": "Economic Work Card and unit-economics contract",
-      "status": "READY",
+      "status": "DONE",
       "priority": 810,
       "depends_on": ["ECON-002", "ECON-003"],
       "execution_mode": "cognition_only",
       "risk": "LOW",
-      "acceptance": "Contract includes capital requested/observed, expected vs actual revenue/profit/payback, measurement window, falsifier, kill condition and scale condition; evidence > confidence."
+      "acceptance": "Contract includes capital requested/observed, expected vs actual revenue/profit/payback, measurement window, falsifier, kill condition and scale condition; evidence > confidence.",
+      "result": {
+        "status": "PASS",
+        "artifact": "company/company-os/ECON-004_ECONOMIC_WORK_CARD_UNIT_ECONOMICS_V1.md",
+        "machine_contract": "company/company-os/contracts/die.economic-work-card.v1.json",
+        "schema": "company/company-os/schemas/die.economic-work-card.v1.schema.json",
+        "tests": "company/company-os/tests/test_economic_contracts.py",
+        "receipt": "company/company-os/receipts/ECON-004-economic-work-card.receipt.json",
+        "forecast_actual_separation": true,
+        "spend_authority": false
+      }
     },
     {
       "id": "ECON-005",
       "track": "BUDGET",
       "title": "Budget Envelope v1 shadow contract",
-      "status": "BLOCKED",
+      "status": "DONE",
       "priority": 790,
       "depends_on": ["ECON-004", "COS-003"],
       "execution_mode": "cognition_only",
       "risk": "LOW",
-      "acceptance": "Represent reserve, infrastructure, production and experiment envelopes in simulation only; current zero-spend/Founder authority cannot be bypassed."
+      "acceptance": "Represent reserve, infrastructure, production and experiment envelopes in simulation only; current zero-spend/Founder authority cannot be bypassed.",
+      "result": {
+        "status": "PASS",
+        "artifact": "company/company-os/ECON-005_BUDGET_ENVELOPE_SHADOW_V1.md",
+        "machine_contract": "company/company-os/contracts/die.budget-envelope.shadow.v1.json",
+        "schema": "company/company-os/schemas/die.budget-envelope.shadow.v1.schema.json",
+        "tests": "company/company-os/tests/test_economic_contracts.py",
+        "receipt": "company/company-os/receipts/ECON-005-budget-envelope-shadow.receipt.json",
+        "simulation_only": true,
+        "authorized_amount_minor": 0,
+        "spend_authority": false
+      }
     },
     {
       "id": "ECON-006",
       "track": "CAPITAL_GOVERNOR",
       "title": "Capital Governor v1 shadow allocator",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 780,
       "depends_on": ["ECON-005"],
       "execution_mode": "tool_native",
@@ -323,7 +344,7 @@
       "id": "ECON-009",
       "track": "PORTFOLIO_PILOT",
       "title": "H01/H03 shadow economics pilot design",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 740,
       "depends_on": ["ECON-004", "ORG-001"],
       "execution_mode": "cognition_only",

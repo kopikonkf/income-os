@@ -1,0 +1,336 @@
+{
+    "$schema":  "https://json-schema.org/draft/2020-12/schema",
+    "$id":  "https://aethers.my.id/schemas/die.economic-work-card.v1.schema.json",
+    "title":  "DIE Economic Work Card v1",
+    "type":  "object",
+    "additionalProperties":  false,
+    "required":  [
+                     "schema_version",
+                     "economic_work_card_id",
+                     "holding_id",
+                     "economic_trace_id",
+                     "measurement_window",
+                     "hypothesis",
+                     "expected",
+                     "actual",
+                     "decision_conditions",
+                     "authority_boundary"
+                 ],
+    "properties":  {
+                       "schema_version":  {
+                                              "const":  "die.economic-work-card.v1"
+                                          },
+                       "economic_work_card_id":  {
+                                                     "type":  "string",
+                                                     "pattern":  "^EWC-[A-Z0-9_-]{8,120}$"
+                                                 },
+                       "holding_id":  {
+                                          "type":  "string",
+                                          "minLength":  1,
+                                          "maxLength":  80
+                                      },
+                       "economic_trace_id":  {
+                                                 "type":  "string",
+                                                 "minLength":  1,
+                                                 "maxLength":  160
+                                             },
+                       "parent_task_id":  {
+                                              "type":  [
+                                                           "string",
+                                                           "null"
+                                                       ],
+                                              "maxLength":  160
+                                          },
+                       "measurement_window":  {
+                                                  "type":  "object",
+                                                  "additionalProperties":  false,
+                                                  "required":  [
+                                                                   "starts_at",
+                                                                   "ends_at"
+                                                               ],
+                                                  "properties":  {
+                                                                     "starts_at":  {
+                                                                                       "type":  "string",
+                                                                                       "format":  "date-time"
+                                                                                   },
+                                                                     "ends_at":  {
+                                                                                     "type":  "string",
+                                                                                     "format":  "date-time"
+                                                                                 }
+                                                                 }
+                                              },
+                       "hypothesis":  {
+                                          "type":  "object",
+                                          "additionalProperties":  false,
+                                          "required":  [
+                                                           "statement",
+                                                           "evidence_refs",
+                                                           "confidence_basis",
+                                                           "falsifier"
+                                                       ],
+                                          "properties":  {
+                                                             "statement":  {
+                                                                               "type":  "string",
+                                                                               "minLength":  1
+                                                                           },
+                                                             "evidence_refs":  {
+                                                                                   "type":  "array",
+                                                                                   "items":  {
+                                                                                                 "type":  "string",
+                                                                                                 "minLength":  1
+                                                                                             },
+                                                                                   "minItems":  1
+                                                                               },
+                                                             "confidence_basis":  {
+                                                                                      "type":  "string",
+                                                                                      "minLength":  1
+                                                                                  },
+                                                             "falsifier":  {
+                                                                               "type":  "string",
+                                                                               "minLength":  1
+                                                                           }
+                                                         }
+                                      },
+                       "expected":  {
+                                        "type":  "object",
+                                        "additionalProperties":  false,
+                                        "required":  [
+                                                         "currency",
+                                                         "capital_requested_minor",
+                                                         "revenue_minor",
+                                                         "direct_variable_cost_minor",
+                                                         "shared_variable_cost_minor",
+                                                         "contribution_profit_minor",
+                                                         "payback_days",
+                                                         "roic_bps",
+                                                         "contribution_margin_bps"
+                                                     ],
+                                        "properties":  {
+                                                           "currency":  {
+                                                                            "type":  "string",
+                                                                            "pattern":  "^[A-Z]{3}$"
+                                                                        },
+                                                           "capital_requested_minor":  {
+                                                                                           "type":  "integer",
+                                                                                           "minimum":  0
+                                                                                       },
+                                                           "revenue_minor":  {
+                                                                                 "type":  "integer",
+                                                                                 "minimum":  0
+                                                                             },
+                                                           "direct_variable_cost_minor":  {
+                                                                                              "type":  "integer",
+                                                                                              "minimum":  0
+                                                                                          },
+                                                           "shared_variable_cost_minor":  {
+                                                                                              "type":  "integer",
+                                                                                              "minimum":  0
+                                                                                          },
+                                                           "contribution_profit_minor":  {
+                                                                                             "type":  "integer"
+                                                                                         },
+                                                           "payback_days":  {
+                                                                                "type":  [
+                                                                                             "number",
+                                                                                             "null"
+                                                                                         ],
+                                                                                "minimum":  0
+                                                                            },
+                                                           "roic_bps":  {
+                                                                            "type":  [
+                                                                                         "integer",
+                                                                                         "null"
+                                                                                     ]
+                                                                        },
+                                                           "contribution_margin_bps":  {
+                                                                                           "type":  [
+                                                                                                        "integer",
+                                                                                                        "null"
+                                                                                                    ]
+                                                                                       }
+                                                       }
+                                    },
+                       "actual":  {
+                                      "type":  "object",
+                                      "additionalProperties":  false,
+                                      "required":  [
+                                                       "status",
+                                                       "ledger_event_refs",
+                                                       "attribution_claim_refs",
+                                                       "currency",
+                                                       "capital_observed_minor",
+                                                       "revenue_minor",
+                                                       "direct_variable_cost_minor",
+                                                       "shared_variable_cost_minor",
+                                                       "contribution_profit_minor",
+                                                       "founder_active_minutes",
+                                                       "cash_profit_minor",
+                                                       "economic_profit_minor",
+                                                       "payback_days",
+                                                       "roic_bps",
+                                                       "completeness",
+                                                       "contribution_margin_bps"
+                                                   ],
+                                      "properties":  {
+                                                         "status":  {
+                                                                        "enum":  [
+                                                                                     "NOT_MEASURED",
+                                                                                     "PARTIAL",
+                                                                                     "MEASURED"
+                                                                                 ]
+                                                                    },
+                                                         "ledger_event_refs":  {
+                                                                                   "type":  "array",
+                                                                                   "items":  {
+                                                                                                 "type":  "string",
+                                                                                                 "pattern":  "^ECON-EVT-[A-Z0-9_-]{8,120}$"
+                                                                                             }
+                                                                               },
+                                                         "attribution_claim_refs":  {
+                                                                                        "type":  "array",
+                                                                                        "items":  {
+                                                                                                      "type":  "string",
+                                                                                                      "pattern":  "^ATTR-CLM-[A-Z0-9_-]{8,120}$"
+                                                                                                  }
+                                                                                    },
+                                                         "currency":  {
+                                                                          "type":  [
+                                                                                       "string",
+                                                                                       "null"
+                                                                                   ],
+                                                                          "pattern":  "^[A-Z]{3}$"
+                                                                      },
+                                                         "capital_observed_minor":  {
+                                                                                        "type":  [
+                                                                                                     "integer",
+                                                                                                     "null"
+                                                                                                 ],
+                                                                                        "minimum":  0
+                                                                                    },
+                                                         "revenue_minor":  {
+                                                                               "type":  [
+                                                                                            "integer",
+                                                                                            "null"
+                                                                                        ],
+                                                                               "minimum":  0
+                                                                           },
+                                                         "direct_variable_cost_minor":  {
+                                                                                            "type":  [
+                                                                                                         "integer",
+                                                                                                         "null"
+                                                                                                     ],
+                                                                                            "minimum":  0
+                                                                                        },
+                                                         "shared_variable_cost_minor":  {
+                                                                                            "type":  [
+                                                                                                         "integer",
+                                                                                                         "null"
+                                                                                                     ],
+                                                                                            "minimum":  0
+                                                                                        },
+                                                         "contribution_profit_minor":  {
+                                                                                           "type":  [
+                                                                                                        "integer",
+                                                                                                        "null"
+                                                                                                    ]
+                                                                                       },
+                                                         "founder_active_minutes":  {
+                                                                                        "type":  [
+                                                                                                     "number",
+                                                                                                     "null"
+                                                                                                 ],
+                                                                                        "minimum":  0
+                                                                                    },
+                                                         "cash_profit_minor":  {
+                                                                                   "type":  [
+                                                                                                "integer",
+                                                                                                "null"
+                                                                                            ]
+                                                                               },
+                                                         "economic_profit_minor":  {
+                                                                                       "type":  [
+                                                                                                    "integer",
+                                                                                                    "null"
+                                                                                                ]
+                                                                                   },
+                                                         "payback_days":  {
+                                                                              "type":  [
+                                                                                           "number",
+                                                                                           "null"
+                                                                                       ],
+                                                                              "minimum":  0
+                                                                          },
+                                                         "roic_bps":  {
+                                                                          "type":  [
+                                                                                       "integer",
+                                                                                       "null"
+                                                                                   ]
+                                                                      },
+                                                         "completeness":  {
+                                                                              "enum":  [
+                                                                                           "YES",
+                                                                                           "PARTIAL",
+                                                                                           "NO"
+                                                                                       ]
+                                                                          },
+                                                         "contribution_margin_bps":  {
+                                                                                         "type":  [
+                                                                                                      "integer",
+                                                                                                      "null"
+                                                                                                  ]
+                                                                                     }
+                                                     }
+                                  },
+                       "decision_conditions":  {
+                                                   "type":  "object",
+                                                   "additionalProperties":  false,
+                                                   "required":  [
+                                                                    "kill_condition",
+                                                                    "scale_condition",
+                                                                    "hold_condition"
+                                                                ],
+                                                   "properties":  {
+                                                                      "kill_condition":  {
+                                                                                             "type":  "string",
+                                                                                             "minLength":  1
+                                                                                         },
+                                                                      "scale_condition":  {
+                                                                                              "type":  "string",
+                                                                                              "minLength":  1
+                                                                                          },
+                                                                      "hold_condition":  {
+                                                                                             "type":  "string",
+                                                                                             "minLength":  1
+                                                                                         }
+                                                                  }
+                                               },
+                       "authority_boundary":  {
+                                                  "type":  "object",
+                                                  "additionalProperties":  false,
+                                                  "required":  [
+                                                                   "spend_authorized",
+                                                                   "capital_requested_is_authority",
+                                                                   "external_commitment_authorized",
+                                                                   "provider_plan_change_authorized",
+                                                                   "credentials_embedded"
+                                                               ],
+                                                  "properties":  {
+                                                                     "spend_authorized":  {
+                                                                                              "const":  false
+                                                                                          },
+                                                                     "capital_requested_is_authority":  {
+                                                                                                            "const":  false
+                                                                                                        },
+                                                                     "external_commitment_authorized":  {
+                                                                                                            "const":  false
+                                                                                                        },
+                                                                     "provider_plan_change_authorized":  {
+                                                                                                             "const":  false
+                                                                                                         },
+                                                                     "credentials_embedded":  {
+                                                                                                  "const":  false
+                                                                                              }
+                                                                 }
+                                              }
+                   }
+}
