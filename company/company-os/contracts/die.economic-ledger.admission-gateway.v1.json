@@ -1,0 +1,32 @@
+{
+  "schema": "die.economic-ledger.admission-gateway.v1",
+  "status": "PASS",
+  "mode": "SHADOW_VALIDATION_ONLY",
+  "schema_version": "die.economic-ledger.admission.v1",
+  "result_status": "validated_not_committed",
+  "writer": "die-state-manager",
+  "module": "company/company-os/lib/economic_admission.py",
+  "event_contract": "die.economic-ledger.event.v1",
+  "requirements": {
+    "holding_match": true,
+    "evidence_refs_required": true,
+    "provenance_ref_must_be_evidenced": true,
+    "duplicate_evidence_rejected": true,
+    "event_validation_reused": true
+  },
+  "authority_boundary": {
+    "canonical_commit_authorized": false,
+    "live_ingestion_authorized": false,
+    "spend_authorized": false,
+    "payment_action": false,
+    "capital_allocation_authorized": false,
+    "credential_access": false,
+    "external_submission": false
+  },
+  "writer_coupling": {
+    "imports_die_event": false,
+    "references_economics_store": false,
+    "filesystem_write": false
+  },
+  "identity_registry_change": false
+}
