@@ -1,0 +1,367 @@
+{
+    "$schema":  "https://json-schema.org/draft/2020-12/schema",
+    "$id":  "https://aethers.my.id/schemas/die.economic-ledger.event.v1.schema.json",
+    "title":  "DIE Economic Ledger Event v1",
+    "type":  "object",
+    "additionalProperties":  false,
+    "required":  [
+                     "schema_version",
+                     "event_id",
+                     "observed_at",
+                     "event_type",
+                     "holding_id",
+                     "source_system",
+                     "idempotency_key",
+                     "provenance_ref",
+                     "authority_boundary"
+                 ],
+    "properties":  {
+                       "schema_version":  {
+                                              "const":  "die.economic-ledger.event.v1"
+                                          },
+                       "event_id":  {
+                                        "type":  "string",
+                                        "pattern":  "^ECON-EVT-[A-Z0-9_-]{8,120}$"
+                                    },
+                       "observed_at":  {
+                                           "type":  "string",
+                                           "format":  "date-time"
+                                       },
+                       "event_type":  {
+                                          "enum":  [
+                                                       "REVENUE_REALIZED",
+                                                       "REVENUE_REFUND",
+                                                       "REVENUE_CHARGEBACK",
+                                                       "COST_DIRECT_VARIABLE",
+                                                       "COST_SHARED_VARIABLE",
+                                                       "COST_GLOBAL_FIXED",
+                                                       "COST_OTHER_NONVARIABLE",
+                                                       "FOUNDER_TIME",
+                                                       "RESOURCE_USAGE",
+                                                       "FX_RATE_OBSERVED",
+                                                       "REVERSAL"
+                                                   ]
+                                      },
+                       "holding_id":  {
+                                          "type":  "string",
+                                          "minLength":  1,
+                                          "maxLength":  80
+                                      },
+                       "economic_trace_id":  {
+                                                 "type":  [
+                                                              "string",
+                                                              "null"
+                                                          ],
+                                                 "maxLength":  160
+                                             },
+                       "parent_task_id":  {
+                                              "type":  [
+                                                           "string",
+                                                           "null"
+                                                       ],
+                                              "maxLength":  160
+                                          },
+                       "incident_id":  {
+                                           "type":  [
+                                                        "string",
+                                                        "null"
+                                                    ],
+                                           "maxLength":  160
+                                       },
+                       "source_system":  {
+                                             "type":  "string",
+                                             "minLength":  1,
+                                             "maxLength":  160
+                                         },
+                       "source_event_id":  {
+                                               "type":  [
+                                                            "string",
+                                                            "null"
+                                                        ],
+                                               "maxLength":  240
+                                           },
+                       "idempotency_key":  {
+                                               "type":  "string",
+                                               "minLength":  8,
+                                               "maxLength":  240
+                                           },
+                       "provenance_ref":  {
+                                              "type":  "string",
+                                              "minLength":  1,
+                                              "maxLength":  800
+                                          },
+                       "reversal_of_event_id":  {
+                                                    "type":  [
+                                                                 "string",
+                                                                 "null"
+                                                             ],
+                                                    "pattern":  "^ECON-EVT-[A-Z0-9_-]{8,120}$"
+                                                },
+                       "money":  {
+                                     "type":  [
+                                                  "object",
+                                                  "null"
+                                              ],
+                                     "additionalProperties":  false,
+                                     "required":  [
+                                                      "currency",
+                                                      "amount_minor"
+                                                  ],
+                                     "properties":  {
+                                                        "currency":  {
+                                                                         "type":  "string",
+                                                                         "pattern":  "^[A-Z]{3}$"
+                                                                     },
+                                                        "amount_minor":  {
+                                                                             "type":  "integer"
+                                                                         }
+                                                    }
+                                 },
+                       "founder_time":  {
+                                            "type":  [
+                                                         "object",
+                                                         "null"
+                                                     ],
+                                            "additionalProperties":  false,
+                                            "required":  [
+                                                             "duration_minutes",
+                                                             "precision",
+                                                             "category"
+                                                         ],
+                                            "properties":  {
+                                                               "duration_minutes":  {
+                                                                                        "type":  "number",
+                                                                                        "minimum":  0
+                                                                                    },
+                                                               "precision":  {
+                                                                                 "enum":  [
+                                                                                              "MEASURED",
+                                                                                              "ESTIMATED",
+                                                                                              "UNKNOWN"
+                                                                                          ]
+                                                                             },
+                                                               "category":  {
+                                                                                "enum":  [
+                                                                                             "FOUNDER_AUTHORITY_DECISION",
+                                                                                             "FOUNDER_MANUAL_PRODUCTION",
+                                                                                             "FOUNDER_QC_REVIEW",
+                                                                                             "FOUNDER_INCIDENT_RECOVERY",
+                                                                                             "FOUNDER_REAUTH_ACCOUNT_SETUP",
+                                                                                             "FOUNDER_ENGINEERING_ASSIST",
+                                                                                             "FOUNDER_ADMIN_DISTRIBUTION",
+                                                                                             "FOUNDER_STRATEGY_RESEARCH",
+                                                                                             "FOUNDER_OTHER_ACTIVE"
+                                                                                         ]
+                                                                            }
+                                                           }
+                                        },
+                       "resource_usage":  {
+                                              "type":  [
+                                                           "object",
+                                                           "null"
+                                                       ],
+                                              "additionalProperties":  false,
+                                              "required":  [
+                                                               "resource_class",
+                                                               "usage_quantity",
+                                                               "usage_unit"
+                                                           ],
+                                              "properties":  {
+                                                                 "resource_class":  {
+                                                                                        "enum":  [
+                                                                                                     "G0",
+                                                                                                     "H1",
+                                                                                                     "H2",
+                                                                                                     "P1",
+                                                                                                     "P2",
+                                                                                                     "P3",
+                                                                                                     "P4",
+                                                                                                     "A1"
+                                                                                                 ]
+                                                                                    },
+                                                                 "runtime_id":  {
+                                                                                    "type":  [
+                                                                                                 "string",
+                                                                                                 "null"
+                                                                                             ],
+                                                                                    "maxLength":  160
+                                                                                },
+                                                                 "principal_id_or_provider_id":  {
+                                                                                                     "type":  [
+                                                                                                                  "string",
+                                                                                                                  "null"
+                                                                                                              ],
+                                                                                                     "maxLength":  160
+                                                                                                 },
+                                                                 "usage_quantity":  {
+                                                                                        "type":  "number",
+                                                                                        "minimum":  0
+                                                                                    },
+                                                                 "usage_unit":  {
+                                                                                    "type":  "string",
+                                                                                    "minLength":  1,
+                                                                                    "maxLength":  80
+                                                                                },
+                                                                 "cost_event_ref":  {
+                                                                                        "type":  [
+                                                                                                     "string",
+                                                                                                     "null"
+                                                                                                 ],
+                                                                                        "maxLength":  160
+                                                                                    }
+                                                             }
+                                          },
+                       "fx":  {
+                                  "type":  [
+                                               "object",
+                                               "null"
+                                           ],
+                                  "additionalProperties":  false,
+                                  "required":  [
+                                                   "base_currency",
+                                                   "quote_currency",
+                                                   "rate_text",
+                                                   "rate_timestamp",
+                                                   "rate_source"
+                                               ],
+                                  "properties":  {
+                                                     "base_currency":  {
+                                                                           "type":  "string",
+                                                                           "pattern":  "^[A-Z]{3}$"
+                                                                       },
+                                                     "quote_currency":  {
+                                                                            "type":  "string",
+                                                                            "pattern":  "^[A-Z]{3}$"
+                                                                        },
+                                                     "rate_text":  {
+                                                                       "type":  "string",
+                                                                       "pattern":  "^[0-9]+(\\.[0-9]+)?$"
+                                                                   },
+                                                     "rate_timestamp":  {
+                                                                            "type":  "string",
+                                                                            "format":  "date-time"
+                                                                        },
+                                                     "rate_source":  {
+                                                                         "type":  "string",
+                                                                         "minLength":  1,
+                                                                         "maxLength":  400
+                                                                     }
+                                                 }
+                              },
+                       "metadata":  {
+                                        "type":  "object"
+                                    },
+                       "authority_boundary":  {
+                                                  "type":  "object",
+                                                  "additionalProperties":  false,
+                                                  "required":  [
+                                                                   "bank_integration",
+                                                                   "payment_action",
+                                                                   "spend_authorized",
+                                                                   "capital_allocation_authorized",
+                                                                   "credentials_embedded",
+                                                                   "mutable_after_append"
+                                                               ],
+                                                  "properties":  {
+                                                                     "bank_integration":  {
+                                                                                              "const":  false
+                                                                                          },
+                                                                     "payment_action":  {
+                                                                                            "const":  false
+                                                                                        },
+                                                                     "spend_authorized":  {
+                                                                                              "const":  false
+                                                                                          },
+                                                                     "capital_allocation_authorized":  {
+                                                                                                           "const":  false
+                                                                                                       },
+                                                                     "credentials_embedded":  {
+                                                                                                  "const":  false
+                                                                                              },
+                                                                     "mutable_after_append":  {
+                                                                                                  "const":  false
+                                                                                              }
+                                                                 }
+                                              }
+                   },
+    "allOf":  [
+                  {
+                      "if":  {
+                                 "properties":  {
+                                                    "event_type":  {
+                                                                       "enum":  [
+                                                                                    "REVENUE_REALIZED",
+                                                                                    "REVENUE_REFUND",
+                                                                                    "REVENUE_CHARGEBACK",
+                                                                                    "COST_DIRECT_VARIABLE",
+                                                                                    "COST_SHARED_VARIABLE",
+                                                                                    "COST_GLOBAL_FIXED",
+                                                                                    "COST_OTHER_NONVARIABLE"
+                                                                                ]
+                                                                   }
+                                                }
+                             },
+                      "then":  {
+                                   "required":  [
+                                                    "money"
+                                                ]
+                               }
+                  },
+                  {
+                      "if":  {
+                                 "properties":  {
+                                                    "event_type":  {
+                                                                       "const":  "FOUNDER_TIME"
+                                                                   }
+                                                }
+                             },
+                      "then":  {
+                                   "required":  [
+                                                    "founder_time"
+                                                ]
+                               }
+                  },
+                  {
+                      "if":  {
+                                 "properties":  {
+                                                    "event_type":  {
+                                                                       "const":  "RESOURCE_USAGE"
+                                                                   }
+                                                }
+                             },
+                      "then":  {
+                                   "required":  [
+                                                    "resource_usage"
+                                                ]
+                               }
+                  },
+                  {
+                      "if":  {
+                                 "properties":  {
+                                                    "event_type":  {
+                                                                       "const":  "FX_RATE_OBSERVED"
+                                                                   }
+                                                }
+                             },
+                      "then":  {
+                                   "required":  [
+                                                    "fx"
+                                                ]
+                               }
+                  },
+                  {
+                      "if":  {
+                                 "properties":  {
+                                                    "event_type":  {
+                                                                       "const":  "REVERSAL"
+                                                                   }
+                                                }
+                             },
+                      "then":  {
+                                   "required":  [
+                                                    "reversal_of_event_id"
+                                                ]
+                               }
+                  }
+              ]
+}

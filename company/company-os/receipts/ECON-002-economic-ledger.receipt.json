@@ -1,0 +1,49 @@
+{
+    "schema":  "die.company-os.econ002.economic-ledger.receipt.v1",
+    "task_id":  "ECON-002",
+    "status":  "PASS",
+    "observed_at":  "2026-09-09",
+    "source_main":  "542d119f6cfd3553ea75d264a5eb917be57fe14f",
+    "artifacts":  [
+                      {
+                          "path":  "company/company-os/ECON-002_ECONOMIC_LEDGER_V1.md",
+                          "sha256":  "2f27e07f3827c4b6cf53c82c8fe8973214bd75d614d292af7314b90814ec8979"
+                      },
+                      {
+                          "path":  "company/company-os/contracts/die.economic-ledger.v1.json",
+                          "sha256":  "73c5df935b586a60c1ceb78a912dcf9371886dc08764bba93debf2bb5c437cb3"
+                      },
+                      {
+                          "path":  "company/company-os/schemas/die.economic-ledger.event.v1.schema.json",
+                          "sha256":  "c58ca766f9ea7e5eb434f48d6c88dcbf46bf6093439c352bc5211ac2464a2a58"
+                      },
+                      {
+                          "path":  "company/company-os/sql/economic-ledger-v1.sql",
+                          "sha256":  "2a707763afb983a7cb30b652262c0f5ea0e9bab495f439eaa9e9ff2b478fa291"
+                      },
+                      {
+                          "path":  "company/company-os/lib/economic_contracts.py",
+                          "sha256":  "00e19a1d92f0806df6333891d40185869646b13263c0d49e6e47b0ecc1642fb1"
+                      },
+                      {
+                          "path":  "company/company-os/tests/test_economic_contracts.py",
+                          "sha256":  "cf323db366db3e7af0f9edb534b939d9c12444939d32d8fb333c4edc313c7dc2"
+                      }
+                  ],
+    "acceptance":  {
+                       "pytest":  "14_PASSED",
+                       "append_only_update_rejected":  true,
+                       "append_only_delete_rejected":  true,
+                       "duplicate_idempotency_rejected":  true,
+                       "reversal_reference_only":  true,
+                       "effective_projection_excludes_reversed_events":  true
+                   },
+    "authority":  {
+                      "live_ingestion":  false,
+                      "bank_integration":  false,
+                      "payment_action":  false,
+                      "spend":  false,
+                      "capital_allocation":  false,
+                      "credential_mutation":  false
+                  }
+}
