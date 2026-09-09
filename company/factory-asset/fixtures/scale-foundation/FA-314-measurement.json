@@ -1,0 +1,50 @@
+{
+  "schema": "die.factory-asset.fa-314-measurement.v1",
+  "task_id": "FA-314",
+  "measurement": {
+    "observed_at": "2026-09-09",
+    "postprocessed_workspaces": 19,
+    "workspace_total_bytes": {
+      "median": 33052549,
+      "p95": 50045853,
+      "max": 61297900
+    },
+    "provider_original_bytes": {
+      "median": 2164697,
+      "p95": 2841247,
+      "max": 3038116
+    },
+    "active_master_upscale_bytes": {
+      "median": 20285904,
+      "p95": 28759637,
+      "max": 32861837
+    },
+    "derivative_bytes": {
+      "median": 5811295,
+      "p95": 11213460,
+      "max": 15984421
+    },
+    "qc_bytes": {
+      "median": 2427254,
+      "p95": 4470266,
+      "max": 6302958
+    },
+    "metadata_receipts_other_median_bytes": 39825,
+    "disposable_intermediates_median_bytes": 29025,
+    "current_vps_free_bytes": 70665912320
+  },
+  "planning": {
+    "median_1000_per_day": {
+      "daily_gib": 30.783,
+      "thirty_day_tib": 0.902
+    },
+    "p95_1000_per_day": {
+      "daily_gib": 46.609,
+      "thirty_day_tib": 1.365
+    },
+    "max_observed_1000_per_day": {
+      "daily_gib": 57.088,
+      "thirty_day_tib": 1.673
+    }
+  }
+}

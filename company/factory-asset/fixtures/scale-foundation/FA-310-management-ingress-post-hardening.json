@@ -1,0 +1,38 @@
+{
+  "schema": "die.factory-asset.fa310-management-ingress-audit.v1",
+  "observed_at": "2026-09-09T06:46:48.757369Z",
+  "guest_sshd": {
+    "port": "22",
+    "logingracetime": "30",
+    "maxauthtries": "3",
+    "clientaliveinterval": "60",
+    "clientalivecountmax": "3",
+    "permitrootlogin": "no",
+    "pubkeyauthentication": "yes",
+    "passwordauthentication": "no",
+    "kbdinteractiveauthentication": "no",
+    "allowusers": "kopiko",
+    "authenticationmethods": "publickey",
+    "maxstartups": "10:30:30"
+  },
+  "external_nat": {
+    "public_port": 25013,
+    "guest_port": 22,
+    "external_probe": "PROVEN",
+    "nat_distinguished": true
+  },
+  "loopback_sensitive_ports": [
+    39121,
+    39122,
+    39221,
+    39222
+  ],
+  "sensitive_ports_not_proven_loopback": [],
+  "cloudflare_linux_mcp_routes": [
+    "UNKNOWN_PERMISSION_DENIED_USE_PRIVILEGED_SANITIZED_AUDIT"
+  ],
+  "cloudflare_exposes_browser_or_broker_port": false,
+  "hardening_pass": true,
+  "credential_values_read": false,
+  "private_key_values_read": false
+}

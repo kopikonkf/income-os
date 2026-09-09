@@ -1,0 +1,18 @@
+{
+  "schema": "die.factory-asset.fa310-cloudflare-route-evidence.v1",
+  "routes": [
+    " - hostname: executive-mcp.aethers.biz.id",
+    " service: http://127.0.0.1:8891",
+    " - hostname: division01-mcp.aethers.biz.id",
+    " service: http://127.0.0.1:8892",
+    " - service: http_status:404"
+  ],
+  "browser_broker_ports": [
+    39121,
+    39122,
+    39221,
+    39222
+  ],
+  "browser_broker_port_exposed": false,
+  "credential_values_read": false
+}

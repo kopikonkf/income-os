@@ -41,5 +41,5 @@ def test_receipt_and_graph_close_fa307_and_unlock_direct_dependents():
  assert r['status']=='DONE' and r['result']=='PASS' and r['closure_mode']=='PASS_COMPOSITE_EVIDENCE'
  assert r['composite_closure']['attempt_9_provider_calls_performed']==0 and r['composite_closure']['historical_attempts_1_to_8_relabelled'] is False
  assert by['FA-307']['status']=='DONE' and 'PASS_COMPOSITE_EVIDENCE' in by['FA-307']['result']
- for tid in ['FA-310','FA-311','FA-312','FA-313','FA-314']: assert by[tid]['status']=='READY'
+ for tid in ['FA-310','FA-311','FA-312','FA-313','FA-314']: assert by[tid]['status'] in {'READY','IN_PROGRESS','DONE'}
  assert by['FA-C018']['status']=='BLOCKED' and by['FA-308']['status']=='DEFERRED'

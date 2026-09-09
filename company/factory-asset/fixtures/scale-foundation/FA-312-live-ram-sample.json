@@ -1,0 +1,155 @@
+{
+  "schema": "die.factory-asset.fa312-live-ram-sample.v1",
+  "task_id": "FA-312",
+  "result": "OBSERVED",
+  "provider_calls_performed_by_measurement": false,
+  "samples": [
+    {
+      "observed_at": "2026-09-09T06:50:53.007732Z",
+      "cluster_a_rss_mib": 1467.5,
+      "cluster_b_rss_mib": 2493.54,
+      "combined_rss_mib": 3961.04,
+      "a_active_leases": 0,
+      "b_active_leases": 1,
+      "b_provider": "qwen",
+      "a_processes": 16,
+      "b_processes": 20
+    },
+    {
+      "observed_at": "2026-09-09T06:50:58.324593Z",
+      "cluster_a_rss_mib": 1467.5,
+      "cluster_b_rss_mib": 2631.85,
+      "combined_rss_mib": 4099.35,
+      "a_active_leases": 0,
+      "b_active_leases": 1,
+      "b_provider": "qwen",
+      "a_processes": 16,
+      "b_processes": 20
+    },
+    {
+      "observed_at": "2026-09-09T06:51:03.643655Z",
+      "cluster_a_rss_mib": 1467.5,
+      "cluster_b_rss_mib": 2569.16,
+      "combined_rss_mib": 4036.66,
+      "a_active_leases": 0,
+      "b_active_leases": 1,
+      "b_provider": "qwen",
+      "a_processes": 16,
+      "b_processes": 19
+    },
+    {
+      "observed_at": "2026-09-09T06:51:08.963793Z",
+      "cluster_a_rss_mib": 1467.5,
+      "cluster_b_rss_mib": 2599.75,
+      "combined_rss_mib": 4067.25,
+      "a_active_leases": 0,
+      "b_active_leases": 1,
+      "b_provider": "qwen",
+      "a_processes": 16,
+      "b_processes": 19
+    },
+    {
+      "observed_at": "2026-09-09T06:51:14.291822Z",
+      "cluster_a_rss_mib": 1467.5,
+      "cluster_b_rss_mib": 3007.39,
+      "combined_rss_mib": 4474.89,
+      "a_active_leases": 0,
+      "b_active_leases": 1,
+      "b_provider": "gemini",
+      "a_processes": 16,
+      "b_processes": 22
+    },
+    {
+      "observed_at": "2026-09-09T06:51:19.680347Z",
+      "cluster_a_rss_mib": 1467.5,
+      "cluster_b_rss_mib": 3236.0,
+      "combined_rss_mib": 4703.5,
+      "a_active_leases": 0,
+      "b_active_leases": 1,
+      "b_provider": "gemini",
+      "a_processes": 16,
+      "b_processes": 24
+    },
+    {
+      "observed_at": "2026-09-09T06:51:25.010258Z",
+      "cluster_a_rss_mib": 1467.5,
+      "cluster_b_rss_mib": 3331.47,
+      "combined_rss_mib": 4798.97,
+      "a_active_leases": 0,
+      "b_active_leases": 1,
+      "b_provider": "gemini",
+      "a_processes": 16,
+      "b_processes": 24
+    },
+    {
+      "observed_at": "2026-09-09T06:51:30.277396Z",
+      "cluster_a_rss_mib": 1467.5,
+      "cluster_b_rss_mib": 3245.01,
+      "combined_rss_mib": 4712.51,
+      "a_active_leases": 0,
+      "b_active_leases": 1,
+      "b_provider": "gemini",
+      "a_processes": 16,
+      "b_processes": 23
+    },
+    {
+      "observed_at": "2026-09-09T06:51:35.588240Z",
+      "cluster_a_rss_mib": 1467.5,
+      "cluster_b_rss_mib": 3236.7,
+      "combined_rss_mib": 4704.2,
+      "a_active_leases": 0,
+      "b_active_leases": 1,
+      "b_provider": "gemini",
+      "a_processes": 16,
+      "b_processes": 23
+    },
+    {
+      "observed_at": "2026-09-09T06:51:40.872537Z",
+      "cluster_a_rss_mib": 1467.5,
+      "cluster_b_rss_mib": 3066.62,
+      "combined_rss_mib": 4534.12,
+      "a_active_leases": 0,
+      "b_active_leases": 1,
+      "b_provider": "gemini",
+      "a_processes": 16,
+      "b_processes": 21
+    },
+    {
+      "observed_at": "2026-09-09T06:51:46.170630Z",
+      "cluster_a_rss_mib": 1467.5,
+      "cluster_b_rss_mib": 2973.41,
+      "combined_rss_mib": 4440.91,
+      "a_active_leases": 0,
+      "b_active_leases": 1,
+      "b_provider": "gemini",
+      "a_processes": 16,
+      "b_processes": 20
+    },
+    {
+      "observed_at": "2026-09-09T06:51:51.502584Z",
+      "cluster_a_rss_mib": 1467.5,
+      "cluster_b_rss_mib": 3176.68,
+      "combined_rss_mib": 4644.18,
+      "a_active_leases": 0,
+      "b_active_leases": 1,
+      "b_provider": "manus",
+      "a_processes": 16,
+      "b_processes": 20
+    },
+    {
+      "observed_at": "2026-09-09T06:51:56.830075Z",
+      "cluster_a_rss_mib": 1467.5,
+      "cluster_b_rss_mib": 3038.28,
+      "combined_rss_mib": 4505.78,
+      "a_active_leases": 0,
+      "b_active_leases": 1,
+      "b_provider": "manus",
+      "a_processes": 16,
+      "b_processes": 20
+    }
+  ],
+  "max_combined_rss_mib": 4798.97,
+  "max_cluster_a_rss_mib": 1467.5,
+  "max_cluster_b_rss_mib": 3331.47,
+  "observed_generation_samples": 13
+}

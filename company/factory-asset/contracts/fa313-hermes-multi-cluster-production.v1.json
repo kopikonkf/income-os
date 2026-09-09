@@ -1,0 +1,56 @@
+{
+  "schema": "die.factory-asset.fa313-hermes-multi-cluster-production.v1",
+  "task_id": "FA-313",
+  "status": "ACCEPTED",
+  "scheduler_contract": "FA-306",
+  "production_input": {
+    "legacy_engine_alias": "MUXIA/chatgpt-linux-a",
+    "canonical_pool_engine": "MUXIA/governed-multi-cluster",
+    "legacy_blueprint_semantics_rewritten": false,
+    "master_prompt_rewritten": false
+  },
+  "routing": {
+    "eligible_clusters": [
+      "cluster-a",
+      "cluster-b"
+    ],
+    "eligible_active_provider_memberships": [
+      "chatgpt",
+      "qwen",
+      "gemini",
+      "manus",
+      "duckai"
+    ],
+    "transport": "BROWSER_CDP",
+    "uses_live_broker_readiness": true,
+    "uses_live_tab_capacity": true,
+    "uses_fairness": true,
+    "uses_provider_cluster_circuits": true,
+    "uses_cluster_circuits": true,
+    "cluster_b_optional_capacity_not_spof": true
+  },
+  "exactly_once": {
+    "queue_identity": "task_id + blueprint_sha256",
+    "scheduler_identity": "job_id + idempotency_key",
+    "pre_dispatch_retry_only": true,
+    "post_dispatch_retry": false,
+    "committed_unresolved_action": "E_RECONCILIATION_REQUIRED"
+  },
+  "lineage": {
+    "actual_provider_id_required": true,
+    "actual_cluster_id_required": true,
+    "provider_original_sha256_required": true,
+    "actual_provider_forwarded_to_postprocess": true
+  },
+  "founder_qc": {
+    "parked_founder_qc_behavior_preserved": true,
+    "submission_authority": false,
+    "publication_authority": false
+  },
+  "authority": {
+    "provider_calls_for_acceptance": false,
+    "browser_owner_actions_for_acceptance": false,
+    "secret_reads": false,
+    "spend_usd": 0
+  }
+}

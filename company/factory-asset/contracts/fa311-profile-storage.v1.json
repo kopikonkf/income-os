@@ -1,0 +1,65 @@
+{
+  "schema": "die.factory-asset.fa311-profile-storage.v1",
+  "task_id": "FA-311",
+  "status": "ACCEPTED",
+  "historical_baseline": {
+    "observed_at": "2026-09-07",
+    "cluster_a_mib": 341,
+    "cluster_b_mib": 349,
+    "shared_chromium_mib": 656
+  },
+  "current_measurement": {
+    "observed_at": "2026-09-09",
+    "cluster_a_bytes": 1069231786,
+    "cluster_b_bytes": 1085365202,
+    "cluster_a_mib_rounded": 1024,
+    "cluster_b_mib_rounded": 1044
+  },
+  "planning": {
+    "profiles": 100,
+    "conservative_current_footprint_gib": 101.723,
+    "one_gib_per_profile_gib": 100.641,
+    "two_gib_per_profile_gib": 200.641,
+    "current_vps_free_bytes": 70665912320,
+    "current_100_profile_inventory_fits_vps": false
+  },
+  "cache_policy": {
+    "default": "PRESERVE",
+    "recreatable_allowlist": [
+      "Cache",
+      "Code Cache",
+      "GPUCache",
+      "DawnGraphiteCache",
+      "DawnWebGPUCache",
+      "ShaderCache",
+      "GrShaderCache",
+      "VideoDecodeStats",
+      "optimization_guide_hint_cache_store"
+    ],
+    "protected_session_state": [
+      "Accounts",
+      "ClientCertificates",
+      "Cookies",
+      "Login Data",
+      "Local Storage",
+      "Session Storage",
+      "Sessions",
+      "IndexedDB",
+      "Service Worker",
+      "WebStorage",
+      "Storage",
+      "GCM Store",
+      "Preferences",
+      "Secure Preferences",
+      "Network"
+    ],
+    "cleanup_requires_browser_owner_stopped": true,
+    "unknown_paths": "PRESERVE"
+  },
+  "invariants": [
+    "CACHE_CLEANUP_IS_ALLOWLIST_ONLY",
+    "AUTH_SESSION_STATE_MUST_NEVER_BE_TARGETED",
+    "100_PERSISTENT_PROFILES_DO_NOT_IMPLY_100_ACTIVE_BROWSERS",
+    "PROFILE_CREATION_MUST_RESPECT_DISK_BUDGET"
+  ]
+}
