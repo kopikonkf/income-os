@@ -2,7 +2,7 @@
 
 Date: 2026-09-09
 Holding: H03
-Status: **BOOTSTRAP PASS / FIRST KNOWLEDGE->PDF INTERNAL PROOF PASS**
+Status: **PRODUCTION ORGANISM V1 CANONICAL / ATOMIC GRAPH READY**
 
 ## Canonical architecture
 
@@ -53,7 +53,7 @@ H03 product truth is portable and does not require browser/OAuth bytes. Future c
 
 The local `.venv-h03` used during bootstrap is host-local and is not canonical. Reproduce with a fresh Python 3.11 environment and `pip install -r company/h03/requirements.lock.txt`.
 
-## Current graph frontier
+## Historical post-MVP frontier (superseded; tasks below are now DONE)
 
 READY:
 
@@ -91,3 +91,37 @@ Three independent post-MVP leaves are accepted.
 Validation: H03 regression `20/20 PASS`; all three PDF templates render, reopen and pass PDFium raster QA; default template preserves the original MVP SHA-256.
 
 No provider live call, credential mutation, browser-profile copy, external publication, canonical Company Truth write, economics append, spend or Mission Control cutover occurred.
+
+
+---
+
+## H03 Production Organism v1 - CANONICAL / GRAPH READY - 2026-09-09
+
+Founder closed the brainstorming phase and authorized conversion into an atomic production organism.
+
+Canonical additions:
+
+- `company/h03/H03_PRODUCTION_ORGANISM_V1.md`
+- `company/h03/H03_ATOMIC_EXECUTION_PLAN_V1.md`
+- updated `company/h03/task-graph-v1.json`
+
+Key doctrine:
+
+- Web-AI workers normally do not require MCP, shell or local-filesystem capability. Mission Control/Universal MCP remains the privileged control/authority plane.
+- Qwen 3.8 Max and Gemini are first-class curator/researcher/producer candidates; Manus/ChatGPT/Claude/Grok remain pluggable according to role, health and capacity.
+- One persistent multi-provider Brave profile is an acceptable initial shard. Alternate profile/provider routing is built as resilience, but profile count scales only from measured need.
+- Role continuity is carried by durable artifacts, never by assuming the same browser conversation survives.
+- Mission Control supervises batch/product standing, recovery and gates; H03 orchestrator owns cognition microjobs.
+- Paid ads remain disabled; post-production initially targets organic Gumroad/Etsy/social distribution after Founder authorization.
+
+Current READY frontier:
+
+```text
+H03-OPP-001  Human Problem Seed contract v1
+H03-RT-001   role Work Card + durable artifact handoff contract
+H03-ECO-001  H03 shadow economics mapper to ECON-002B admission
+```
+
+`H03-ECO-001` is no longer blocked by the obsolete writer-not-implemented warning. `ECON-002A` and `ECON-002B` are now canonical, but live canonical economic submit authority remains unactivated; H03 shadow candidates therefore remain `validated_not_committed`.
+
+External product listing and social publication remain Founder-gated. No paid-ad spend or external publication is authorized by this graph update.

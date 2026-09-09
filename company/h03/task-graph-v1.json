@@ -3,15 +3,21 @@
   "generated_at": "2026-09-09",
   "status": "CANONICAL",
   "holding_id": "H03",
-  "project": "H03 Knowledge Factory + PDF Factory",
+  "project": "H03 Knowledge Product Factory",
   "execution_policy": {
     "ssot": "origin/main + company/h03/task-graph-v1.json",
     "control_plane": "GLOBAL_MISSION_CONTROL",
     "canonical_company_state_writer": "die-state-manager",
     "economics_write": "DISABLED_UNTIL_GOVERNED_STATE_MANAGER_ADAPTER",
-    "web_ai": "OPTIONAL_CAPABILITY_NOT_PRODUCT_TRUTH",
+    "web_ai": "FIRST_CLASS_WORKER_CAPABILITY_NOT_PRODUCT_TRUTH",
     "portable_only": true,
-    "publication": "FOUNDER_GATED"
+    "publication": "FOUNDER_GATED",
+    "worker_mcp": "OPTIONAL_NOT_REQUIRED_FOR_WEB_AI_COGNITION",
+    "worker_shell_local_fs": "NOT_REQUIRED_FOR_STANDARD_COGNITION_WORKERS",
+    "continuity": "DURABLE_ARTIFACT_HANDOFF_NOT_CHAT_THREAD_DEPENDENCY",
+    "browser_runtime": "PERSISTENT_PROFILE_POOL_SESSION_API_OR_BROWSER_CDP",
+    "scale_policy": "MEASURED_CAPACITY_NO_FIXED_PRODUCT_COUNT",
+    "paid_ads": "DISABLED_UNTIL_FOUNDER_AUTHORIZATION"
   },
   "states": [
     "READY",
@@ -163,31 +169,484 @@
     {
       "id": "H03-ECO-001",
       "track": "ECONOMICS",
-      "title": "H03 shadow economic observation adapter",
-      "status": "BLOCKED",
-      "priority": 870,
+      "title": "H03 shadow economic observation adapter to ECON-002B admission",
+      "status": "READY",
+      "priority": 858,
       "depends_on": [
         "H03-MVP-001"
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "blocked_reason": "W_ECONOMICS_WRITER_NOT_IMPLEMENTED_CURRENTLY",
-      "acceptance": "Map build receipts to the single logical die-state-manager economics commit path after that governed adapter exists; no direct ECONOMICS.jsonl append."
+      "acceptance": "Map H03 build/research/production observations into ECON-002B validated_not_committed admission envelopes with evidence refs; never directly append ECONOMICS.jsonl and never imply live canonical commit authority.",
+      "external_depends_on": [
+        "ECON-002B"
+      ]
     },
     {
       "id": "H03-DIST-001",
       "track": "DISTRIBUTION",
-      "title": "First external listing/sale canary",
+      "title": "First external H03 listing/sale canary",
       "status": "WAITING_FOUNDER",
-      "priority": 800,
+      "priority": 650,
       "depends_on": [
-        "H03-KF-002",
-        "H03-PDF-003"
+        "H03-REV-001",
+        "H03-COM-001",
+        "H03-ATTR-001"
       ],
       "risk": "HIGH",
       "execution_mode": "tool_native",
-      "authority": "FOUNDER_EXTERNAL_PUBLICATION_REQUIRED"
+      "authority": "FOUNDER_EXTERNAL_PUBLICATION_REQUIRED",
+      "acceptance": "After dependencies are green and Founder authorizes publication, publish one bounded external product/listing with product/campaign/economic identities and no paid-ad spend."
+    },
+    {
+      "id": "H03-OPP-001",
+      "track": "OPPORTUNITY",
+      "title": "Human Problem Seed contract v1",
+      "status": "READY",
+      "priority": 870,
+      "depends_on": [
+        "H03-AI-001",
+        "H03-KF-002"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "acceptance": "Define provider-independent human-problem seed identity around persona/context/trigger/job-to-be-done/pain/desired-outcome and explicit commercial-signal placeholders. Topic-only seeds are insufficient; no demand or WTP value may be invented."
+    },
+    {
+      "id": "H03-RT-001",
+      "track": "RUNTIME",
+      "title": "H03 role Work Card and durable artifact handoff contract",
+      "status": "READY",
+      "priority": 868,
+      "depends_on": [
+        "H03-AI-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "acceptance": "Define cognition job envelope, role identity, input artifact refs, output artifact contract, idempotency key and terminal states. Standard web-AI workers require neither MCP nor shell/local-filesystem access; those capabilities remain optional future grants."
+    },
+    {
+      "id": "H03-OPP-002",
+      "track": "OPPORTUNITY",
+      "title": "Human need/pain seed discovery and curation engine",
+      "status": "BLOCKED",
+      "priority": 850,
+      "depends_on": [
+        "H03-OPP-001",
+        "H03-RT-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Produce deduplicated problem-seed candidates from governed signal inputs using role-separated web-AI workers; preserve candidate/source lineage and do not promote topic popularity to demand truth."
+    },
+    {
+      "id": "H03-DMD-001",
+      "track": "DEMAND",
+      "title": "Demand and willingness-to-pay evidence contract + validator",
+      "status": "BLOCKED",
+      "priority": 848,
+      "depends_on": [
+        "H03-OPP-001",
+        "H03-KF-002"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Represent pain severity/frequency/urgency, buyer intent, existing spend/substitutes, marketplace/community/search evidence and WTP strength with UNKNOWN preserved when unobserved; distinguish revealed spend evidence from weak engagement signals."
+    },
+    {
+      "id": "H03-OPP-003",
+      "track": "OPPORTUNITY",
+      "title": "Worth-Making and productability gate v1",
+      "status": "BLOCKED",
+      "priority": 846,
+      "depends_on": [
+        "H03-OPP-002",
+        "H03-DMD-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Deterministically classify a problem seed as MAKE, RESEARCH_MORE or REJECT using bounded demand/WTP/productability evidence. Deep research/production must not start for REJECT."
+    },
+    {
+      "id": "H03-RT-002",
+      "track": "RUNTIME",
+      "title": "Provider worker registry and role-routing policy",
+      "status": "BLOCKED",
+      "priority": 844,
+      "depends_on": [
+        "H03-RT-001",
+        "H03-AI-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Define provider-capability/role routing with Qwen 3.8 Max and Gemini as first-class curator/researcher/producer candidates, Manus as autonomous research candidate, and other healthy providers as pluggable alternatives. Routing is based on role/capability/health/capacity rather than fixed account identity."
+    },
+    {
+      "id": "H03-RT-003",
+      "track": "RUNTIME",
+      "title": "Persistent browser profile worker-pool and shard contract",
+      "status": "BLOCKED",
+      "priority": 842,
+      "depends_on": [
+        "H03-RT-002"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Model persistent Brave profiles as runtime shards capable of multiple authenticated web-AI providers via SESSION_API or BROWSER_CDP. Allow one shard initially and alternate healthy shard fallback without copying credential/session bytes into H03 product truth."
+    },
+    {
+      "id": "H03-RT-004",
+      "track": "RUNTIME",
+      "title": "Role queues plus fan-out/fan-in continuity state machine",
+      "status": "BLOCKED",
+      "priority": 840,
+      "depends_on": [
+        "H03-RT-001",
+        "H03-RT-003"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Implement curator/research/synthesis/producer queues with durable artifacts as continuity, idempotent dispatch, bounded fan-out/fan-in and no dependency on continuing the same provider chat thread."
+    },
+    {
+      "id": "H03-RT-005",
+      "track": "RUNTIME",
+      "title": "Worker retry, backpressure, fallback and anti-stall policy",
+      "status": "BLOCKED",
+      "priority": 838,
+      "depends_on": [
+        "H03-RT-004"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Bound retries; distinguish auth/rate-limit/provider/runtime failures; circuit-break unhealthy worker slots; route eligible jobs to alternate provider/profile; expose backlog/backpressure instead of silent stalls."
+    },
+    {
+      "id": "H03-RT-006",
+      "track": "RUNTIME",
+      "title": "Mission Control to H03 batch-supervision boundary",
+      "status": "BLOCKED",
+      "priority": 836,
+      "depends_on": [
+        "H03-RT-005"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Mission Control supervises H03 batch/product lifecycle, durable checkpoints, Founder gates, failure escalation and recovery while H03 orchestrator owns cognition microjobs. MCP/Mission Protocol must not be required for every worker prompt."
+    },
+    {
+      "id": "H03-ECO-002",
+      "track": "ECONOMICS",
+      "title": "H03 live canonical economics commit activation boundary",
+      "status": "BLOCKED",
+      "priority": 834,
+      "depends_on": [
+        "H03-ECO-001"
+      ],
+      "external_depends_on": [
+        "FUTURE_ECONOMIC_SUBMIT_AUTHORITY_ACTIVATION"
+      ],
+      "risk": "MEDIUM",
+      "execution_mode": "tool_native",
+      "blocked_reason": "LIVE_CANONICAL_ECONOMIC_SUBMIT_AUTHORITY_NOT_ACTIVATED",
+      "acceptance": "Only after Company-level authority explicitly exists, connect validated H03 admissions to the sole die-state-manager commit path; no second writer and no autonomous spend/payment authority."
+    },
+    {
+      "id": "H03-RSCH-001",
+      "track": "RESEARCH",
+      "title": "Deep Research Work Card, source classes and stop-policy contract",
+      "status": "BLOCKED",
+      "priority": 820,
+      "depends_on": [
+        "H03-OPP-003",
+        "H03-RT-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Define research questions, source classes, evidence requirements, contradiction tracking, WTP/market subquestions, bounded budget and diminishing-return stop conditions. Research breadth is sufficient-confidence driven, not crawl-the-entire-internet literalism."
+    },
+    {
+      "id": "H03-RSCH-002",
+      "track": "RESEARCH",
+      "title": "Parallel multi-provider research fan-out execution",
+      "status": "BLOCKED",
+      "priority": 818,
+      "depends_on": [
+        "H03-RSCH-001",
+        "H03-RT-004",
+        "H03-KF-002"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Dispatch bounded research subjobs to eligible providers such as Qwen/Gemini/Manus, ingest their source/evidence outputs through KF-002, and emit independently addressable research packets with typed terminal status."
+    },
+    {
+      "id": "H03-KF-003",
+      "track": "KNOWLEDGE",
+      "title": "Research synthesis fan-in to Knowledge Map and Knowledge Package candidate",
+      "status": "BLOCKED",
+      "priority": 816,
+      "depends_on": [
+        "H03-RSCH-002"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Consolidate multiple research packets into supported findings, contradictions, gaps, market/WTP findings and claim/evidence links. Model synthesis remains non-canonical until Knowledge Factory validation accepts the package."
+    },
+    {
+      "id": "H03-PROD-001",
+      "track": "PRODUCT",
+      "title": "Useful Product Planner and format-selection engine",
+      "status": "BLOCKED",
+      "priority": 800,
+      "depends_on": [
+        "H03-KF-003",
+        "H03-PDF-003"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Choose outcome-oriented delivery form (guide/checklist/workbook/playbook/report/template/etc.) from problem/knowledge structure and emit Product Blueprint. Do not optimize for page count or default every opportunity to ebook."
+    },
+    {
+      "id": "H03-PROD-002",
+      "track": "PRODUCT",
+      "title": "Role-separated semantic producer fan-out to content blocks",
+      "status": "BLOCKED",
+      "priority": 798,
+      "depends_on": [
+        "H03-PROD-001",
+        "H03-RT-004",
+        "H03-AI-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Dispatch bounded producer sections/jobs to eligible web-AI workers, preserve Knowledge Package refs, and emit structured content blocks. Producers never own PDF mechanics or canonical provenance."
+    },
+    {
+      "id": "H03-PROD-003",
+      "track": "PRODUCT",
+      "title": "Deterministic useful-product compile, QA and local package",
+      "status": "BLOCKED",
+      "priority": 796,
+      "depends_on": [
+        "H03-PROD-002",
+        "H03-QA-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Assemble content blocks into Document AST, render selected template, run technical/raster QA, generate hashes/manifests and produce a local sale-ready product package without external publication."
+    },
+    {
+      "id": "H03-ORG-001",
+      "track": "CANARY",
+      "title": "Bounded end-to-end problem-to-package internal canary",
+      "status": "BLOCKED",
+      "priority": 780,
+      "depends_on": [
+        "H03-PROD-003",
+        "H03-RT-006"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Run one bounded real problem candidate through curation, demand/WTP, research fan-out, synthesis, product planning, production, compile and package with durable lineage; no external listing or promotion."
+    },
+    {
+      "id": "H03-REV-001",
+      "track": "REVIEW",
+      "title": "Independent product review + Founder Review Card",
+      "status": "BLOCKED",
+      "priority": 775,
+      "depends_on": [
+        "H03-ORG-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Produce concise review card with buyer/problem/promise, product preview, evidence confidence, risk/rights flags, market/WTP basis and PASS/REVISE/REJECT decision surface. Prefer reviewer separation from dominant producer where capacity permits."
+    },
+    {
+      "id": "H03-COM-001",
+      "track": "COMMERCE",
+      "title": "Commerce Package contract for Gumroad/Etsy-ready listings",
+      "status": "BLOCKED",
+      "priority": 760,
+      "depends_on": [
+        "H03-REV-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Generate platform-neutral offer identity plus Gumroad/Etsy package fields: title, promise, description, preview, files, tags/keywords, FAQ, pricing hypothesis, disclosure/rights metadata and listing lineage. No live publication."
+    },
+    {
+      "id": "H03-ATTR-001",
+      "track": "ATTRIBUTION",
+      "title": "Product/campaign/channel attribution event contract",
+      "status": "BLOCKED",
+      "priority": 758,
+      "depends_on": [
+        "H03-COM-001",
+        "H03-ECO-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Define product_id/listing_id/campaign_id/creative_id/channel plus UTM/referrer identity so click/order/revenue observations can be joined back to the originating problem seed without inventing unobserved conversions."
+    },
+    {
+      "id": "H03-GRW-001",
+      "track": "GROWTH",
+      "title": "Organic Growth Blueprint and channel-native content atomizer",
+      "status": "BLOCKED",
+      "priority": 750,
+      "depends_on": [
+        "H03-COM-001",
+        "H03-KF-003"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Transform accepted product knowledge into channel-native promotion briefs/atoms for X, Threads, Instagram, TikTok, YouTube, Pinterest and Reddit while retaining product/campaign lineage. Paid ads remain disabled."
+    },
+    {
+      "id": "H03-GRW-002",
+      "track": "GROWTH",
+      "title": "Social distribution runtime and separate persistent-profile pool contract",
+      "status": "BLOCKED",
+      "priority": 748,
+      "depends_on": [
+        "H03-GRW-001",
+        "H03-RT-003"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Define Growth browser-profile pool separately from Knowledge workforce, with BROWSER_CDP as viable initial transport and pluggable future official API/social-manager adapters. Credential/session bytes remain host-local."
+    },
+    {
+      "id": "H03-ANL-001",
+      "track": "ANALYTICS",
+      "title": "Marketplace and social organic analytics observation adapters",
+      "status": "BLOCKED",
+      "priority": 740,
+      "depends_on": [
+        "H03-ATTR-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Normalize read-only Gumroad/Etsy/social observations such as views/clicks/orders/revenue/conversion/referrer where available into evidence-linked H03 analytics records; missing platform metrics stay UNKNOWN."
+    },
+    {
+      "id": "H03-ANL-002",
+      "track": "LEARNING",
+      "title": "Demand/WTP feedback loop from observed channel/product outcomes",
+      "status": "BLOCKED",
+      "priority": 738,
+      "depends_on": [
+        "H03-ANL-001",
+        "H03-DMD-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Join observed marketplace/social outcomes back to problem seeds and demand hypotheses for later score calibration without treating correlation or missing data as causation."
+    },
+    {
+      "id": "H03-GRW-003",
+      "track": "GROWTH",
+      "title": "First bounded organic promotion canary",
+      "status": "WAITING_FOUNDER",
+      "priority": 640,
+      "depends_on": [
+        "H03-DIST-001",
+        "H03-GRW-002",
+        "H03-ANL-001"
+      ],
+      "risk": "HIGH",
+      "execution_mode": "tool_native",
+      "authority": "FOUNDER_SOCIAL_PUBLICATION_REQUIRED",
+      "acceptance": "After Founder authorizes accounts/publication, publish a bounded organic promotion set with campaign/creative/channel identities and no paid-ad spend; collect read-only analytics observations."
+    },
+    {
+      "id": "H03-SCALE-001",
+      "track": "SCALE",
+      "title": "Bounded multi-product internal throughput and resilience soak",
+      "status": "BLOCKED",
+      "priority": 620,
+      "depends_on": [
+        "H03-ORG-001",
+        "H03-RT-006"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "DEPENDENCIES_NOT_DONE",
+      "acceptance": "Run a bounded internal batch sized by current safe capacity, not a fixed product-count target. Measure throughput, queue latency, terminal failure rate, retry count, fallback success, provider/profile bottlenecks and resource usage; no external publication."
     }
   ],
-  "revision": "2026-09-09 H03-KF-002 + H03-PDF-003 + H03-AI-001 PASS"
+  "revision": "2026-09-09 H03 production organism v1 atomic graph: opportunity + runtime + research + product + commerce + growth + analytics",
+  "production_organism": {
+    "control_plane": "Mission Control supervises batches/products, recovery, gates and durable standing; it does not execute every prompt.",
+    "worker_plane": "H03 role queues dispatch normalized cognition jobs through web-ai-adapter; MCP is not a worker hot-path requirement.",
+    "primary_worker_candidates": [
+      "qwen3.8-max",
+      "gemini",
+      "manus",
+      "chatgpt",
+      "claude",
+      "grok"
+    ],
+    "first_class_research_candidates": [
+      "qwen3.8-max",
+      "gemini",
+      "manus"
+    ],
+    "profile_policy": "One persistent multi-provider Brave profile may be the initial shard; add/fallback to another healthy shard when observed capacity or failure requires it.",
+    "continuity_artifacts": [
+      "problem_seed",
+      "opportunity_candidate",
+      "demand_wtp_packet",
+      "research_packets",
+      "knowledge_map",
+      "knowledge_package",
+      "product_blueprint",
+      "content_blocks",
+      "document_ast",
+      "product_package",
+      "campaign_events"
+    ],
+    "minimal_governance_gates": [
+      "OPPORTUNITY_GATE",
+      "KNOWLEDGE_GATE",
+      "FOUNDER_PUBLICATION_GATE"
+    ]
+  },
+  "current_frontier": {
+    "ready": [
+      "H03-OPP-001",
+      "H03-RT-001",
+      "H03-ECO-001"
+    ],
+    "parallel_lanes": {
+      "economic_intelligence": "H03-OPP-001 -> H03-OPP-002 + H03-DMD-001 -> H03-OPP-003 -> H03-RSCH-001",
+      "factory_runtime": "H03-RT-001 -> H03-RT-002 -> H03-RT-003 -> H03-RT-004 -> H03-RT-005 -> H03-RT-006",
+      "product_convergence": "H03-RSCH-002 -> H03-KF-003 -> H03-PROD-001 -> H03-PROD-002 -> H03-PROD-003 -> H03-ORG-001",
+      "postproduction": "H03-REV-001 -> H03-COM-001 -> H03-ATTR-001 + H03-GRW-001 -> distribution/growth/analytics"
+    }
+  }
 }
