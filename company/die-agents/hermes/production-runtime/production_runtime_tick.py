@@ -55,9 +55,9 @@ def start_seed()->dict:
  rows=[f"Seed: {seed['id']} ({seed['canonical_name']})",f"Family: {fam}"]
  if expr:
   rows+=[f"Commercial expression: {expr.get('expression_id')} | {expr.get('commercial_expression')}",f"Opportunity evidence: {expr.get('evidence_level')} | policy={expr.get('policy_revision')}"]
- rows+=['State: BLUEPRINT_REQUIRED','Blueprint status: REQUIRED','Intended provider: MUXIA (chatgpt-linux-a)',f'Started: {now()}','Next action: Production cognition line authors/reviews fixed Blueprint.']
+ rows+=['State: BLUEPRINT_REQUIRED','Blueprint status: REQUIRED','Intended provider: GOVERNED_MULTI_CLUSTER_BROWSER_POOL',f'Started: {now()}','Next action: Production cognition line authors/reviews fixed Blueprint.']
  write_progress(w,rows)
- event={'seed':seed['canonical_name'],'seed_id':seed['id'],'family':fam,'blueprint':'REQUIRED','provider':'MUXIA/chatgpt-linux-a'}
+ event={'seed':seed['canonical_name'],'seed_id':seed['id'],'family':fam,'blueprint':'REQUIRED','provider':'GOVERNED_MULTI_CLUSTER_BROWSER_POOL'}
  if expr:event.update({'expression_id':expr.get('expression_id'),'commercial_expression':expr.get('commercial_expression'),'opportunity_evidence':expr.get('evidence_level')})
  factory_v2.telegram_event(w,'PRODUCTION_STARTED',event,send)
  return {'status':'STARTED','task_id':task,'seed':seed['canonical_name'],'seed_id':seed['id'],'commercial_expression':expr or None,'provider_call_performed':False,'replenishment':selection['replenishment']}
@@ -65,8 +65,8 @@ def start_seed()->dict:
 def build_worker(w:Path,bp:dict,lock:dict):
  if lock.get('blueprint_sha256')!=csha(bp):raise RuntimeError('E_BLUEPRINT_LOCK_HASH')
  prod=bp.get('production',{})
- if prod.get('engine')!='MUXIA/chatgpt-linux-a':raise RuntimeError('E_ENGINE')
- job={'schema':'die.worker-job-envelope.v1','task_id':w.name,'mission_id':'M-001','executor':'opencode','goal':'Prepare bounded MUXIA image-generation handoff from the fixed Blueprint without semantic changes.','context':f"Fixed Blueprint {bp['blueprint_id']} sha256={lock['blueprint_sha256']}. Seed {bp['seed']['id']}={bp['seed']['canonical_name']}. Worker must not rewrite master_prompt.",'workspace':str(w),'constraints':{'time_budget_min':30,'allowed_paths':[str(w)],'network':'none','forbidden':['credentials','market submission','spawning workers','writes outside workspace','destructive operations']},'acceptance_criteria':[{'id':'AC-1','statement':'Pinned OpenCode executable is present and version-probed.','verify_with':'opencode-probe.json'},{'id':'AC-2','statement':'Validated MUXIA image-generation request is written inside assigned workspace.','verify_with':'muxia-job-request.json'}],'handoff':{'kind':'muxia_job','provider_id':'chatgpt','required_capability':'image.generate','profile_selector':'chatgpt-linux-a','timeout_ms':600000}}
+ if prod.get('engine') not in {'MUXIA/chatgpt-linux-a','MUXIA/governed-multi-cluster'}:raise RuntimeError('E_ENGINE')
+ job={'schema':'die.worker-job-envelope.v1','task_id':w.name,'mission_id':'M-001','executor':'opencode','goal':'Prepare bounded MUXIA image-generation handoff from the fixed Blueprint without semantic changes.','context':f"Fixed Blueprint {bp['blueprint_id']} sha256={lock['blueprint_sha256']}. Seed {bp['seed']['id']}={bp['seed']['canonical_name']}. Worker must not rewrite master_prompt.",'workspace':str(w),'constraints':{'time_budget_min':30,'allowed_paths':[str(w)],'network':'none','forbidden':['credentials','market submission','spawning workers','writes outside workspace','destructive operations']},'acceptance_criteria':[{'id':'AC-1','statement':'Pinned OpenCode executable is present and version-probed.','verify_with':'opencode-probe.json'},{'id':'AC-2','statement':'Validated MUXIA image-generation request is written inside assigned workspace.','verify_with':'muxia-job-request.json'}],'handoff':{'kind':'muxia_job','provider_id':'AUTO','required_capability':'image.generate','profile_selector':'governed-multi-cluster','scheduler_contract':'FA-306','timeout_ms':600000}}
  (w/'job.json').write_text(json.dumps(job,indent=2)+'\n')
  progress=w/'PROGRESS.md'; prior=progress.read_bytes() if progress.is_file() else None
  try:
@@ -104,9 +104,9 @@ def generate(w:Path)->dict:
  if src.parent.resolve()!=(w/'provider').resolve():raise RuntimeError('E_MUXIA_EXPORT_PATH')
  dst=src
  seed=bp['seed'];fam=f"{seed['category_path']} (object_class: {seed['object_class']})"
- write_progress(w,[f"Seed: {seed['id']} ({seed['canonical_name']})",f"Family: {fam}",'State: ARTIFACT_CREATED',f"Blueprint status: FIXED {bp['blueprint_id']} sha256={lock['blueprint_sha256']}",'Worker status: ACCEPTED done; dispatch-receipt.json','Provider: MUXIA (chatgpt-linux-a)',f'Provider artifact: provider/{dst.name}',f'Artifact sha256: {sha(dst)}',f'Artifact bytes: {dst.stat().st_size}',f"Artifact dimensions: {rec['generated_image_observed']['width']}x{rec['generated_image_observed']['height']}",'Next action: Run bounded technical upscale/recovery, then park for Founder QC.'])
- factory_v2.telegram_event(w,'ARTIFACT_CREATED',{'seed':seed['canonical_name'],'provider':'MUXIA/chatgpt-linux-a','file':dst.name,'dimensions':f"{rec['generated_image_observed']['width']}x{rec['generated_image_observed']['height']}",'bytes':dst.stat().st_size,'sha256':sha(dst)[:12]+'...','next':'factory-v2-postproduction'},send)
- return upscale_and_park(w)
+ write_progress(w,[f"Seed: {seed['id']} ({seed['canonical_name']})",f"Family: {fam}",'State: ARTIFACT_CREATED',f"Blueprint status: FIXED {bp['blueprint_id']} sha256={lock['blueprint_sha256']}",'Worker status: ACCEPTED done; dispatch-receipt.json',f"Provider: {rec.get('provider_id')}@{rec.get('cluster_id')}",f'Provider artifact: provider/{dst.name}',f'Artifact sha256: {sha(dst)}',f'Artifact bytes: {dst.stat().st_size}',f"Artifact dimensions: {rec['generated_image_observed']['width']}x{rec['generated_image_observed']['height']}",'Next action: Run bounded technical upscale/recovery, then park for Founder QC.'])
+ factory_v2.telegram_event(w,'ARTIFACT_CREATED',{'seed':seed['canonical_name'],'provider':f"{rec.get('provider_id')}@{rec.get('cluster_id')}",'file':dst.name,'dimensions':f"{rec['generated_image_observed']['width']}x{rec['generated_image_observed']['height']}",'bytes':dst.stat().st_size,'sha256':sha(dst)[:12]+'...','next':'factory-v2-postproduction'},send)
+ return upscale_and_park(w,provider_id=str(rec.get('provider_id') or 'unknown'))
 
 def source_for(w:Path)->Path:
  rows=list((w/'provider').glob('source-original.*'))
@@ -126,16 +126,19 @@ def _progress_from_v2(w:Path,result:dict)->None:
  if state_name=='WAITING_FOUNDER_QC': progress_state='WAITING_FOUNDER_QC';next_action='Park this card for Founder QC. Backend rights/package eligibility remains governed separately; no upload/publish authority granted.'
  elif state_name=='PACKAGE_BLOCKED': progress_state='WAITING_FOUNDER_QC';next_action='Park this card for Founder QC with backend package blocker preserved; independent production may continue.'
  else: progress_state='POSTPROCESSING';next_action='Continue durable Factory v2 postproduction.'
- rows=[f"Seed: {seed['id']} ({seed['canonical_name']})",f"Family: {fam}",f'State: {progress_state}',f"Blueprint status: FIXED {bp['blueprint_id']} sha256={lock['blueprint_sha256']}",'Provider: MUXIA (chatgpt-linux-a)',f"Factory v2 result: {state_name}"]
+ rows=[f"Seed: {seed['id']} ({seed['canonical_name']})",f"Family: {fam}",f'State: {progress_state}',f"Blueprint status: FIXED {bp['blueprint_id']} sha256={lock['blueprint_sha256']}",f"Provider: {(json.loads((w/'provider'/'multi-cluster-dispatch.receipt.json').read_text()).get('provider_id') if (w/'provider'/'multi-cluster-dispatch.receipt.json').is_file() else 'UNKNOWN')}",f"Factory v2 result: {state_name}"]
  if result.get('listing_path'):rows.append(f"Listing artifact: {Path(result['listing_path']).relative_to(w)}")
  if result.get('metadata'):rows.append(f"Metadata: {Path(result['metadata']).relative_to(w)}")
  if result.get('submission_fields'):rows.append(f"Submission fields: {Path(result['submission_fields']).relative_to(w)}")
  rows+=['Founder QC: PENDING',f'Next action: {next_action}'];write_progress(w,rows)
 
-def upscale_and_park(w:Path)->dict:
+def upscale_and_park(w:Path,provider_id:str|None=None)->dict:
  import factory_orchestration_v2 as factory_v2
  src=source_for(w)
- result=factory_v2.postprocess_raster_workspace(workspace=w,source_path=src,provider_id='chatgpt-linux-a',expected_source_sha256=sha(src),upscale_fn=_legacy_upscale_adapter,send_fn=send)
+ if provider_id is None:
+  rp=w/'provider'/'multi-cluster-dispatch.receipt.json'
+  provider_id=str(json.loads(rp.read_text()).get('provider_id') or 'unknown') if rp.is_file() else 'unknown'
+ result=factory_v2.postprocess_raster_workspace(workspace=w,source_path=src,provider_id=provider_id,expected_source_sha256=sha(src),upscale_fn=_legacy_upscale_adapter,send_fn=send)
  _progress_from_v2(w,result)
  return result
 

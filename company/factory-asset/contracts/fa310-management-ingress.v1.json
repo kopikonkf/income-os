@@ -1,0 +1,55 @@
+{
+  "schema": "die.factory-asset.fa310-management-ingress.v1",
+  "task_id": "FA-310",
+  "status": "ACCEPTED",
+  "network_truth": {
+    "guest_sshd_port": 22,
+    "external_public_nat_port": 25013,
+    "public_nat_mapping": "UPSTREAM_NOT_GUEST_SSHD_CONFIGURATION",
+    "public_ipv4": "157.20.32.166"
+  },
+  "pre_hardening_observation": {
+    "permit_root_login": "yes",
+    "password_authentication": "yes",
+    "pubkey_authentication": "yes",
+    "fail2ban": "inactive",
+    "ufw": "inactive",
+    "existing_nft_note": "one source subnet drop plus loopback-only 8080 policy"
+  },
+  "target_sshd": {
+    "permit_root_login": "no",
+    "password_authentication": "no",
+    "kbdinteractive_authentication": "no",
+    "pubkey_authentication": "yes",
+    "authentication_methods": "publickey",
+    "allow_users": [
+      "kopiko"
+    ],
+    "max_auth_tries": 3,
+    "login_grace_time_seconds": 30,
+    "max_startups": "10:30:30"
+  },
+  "rollback": {
+    "automatic_local_timer_seconds": 180,
+    "reload_not_restart": true,
+    "new_external_key_connection_required_before_commit": true
+  },
+  "tunnel_boundary": {
+    "cloudflare_linux_mcp_allowed_loopback_services": [
+      8891,
+      8892
+    ],
+    "browser_and_broker_ports_must_remain_loopback": [
+      39121,
+      39122,
+      39221,
+      39222
+    ],
+    "expose_browser_or_cdp_through_cloudflare": false
+  },
+  "authority": {
+    "network_cutover": "FOUNDER",
+    "spend_usd": 0,
+    "credential_or_private_key_value_reads": false
+  }
+}

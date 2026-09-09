@@ -1,0 +1,82 @@
+{
+  "schema": "die.factory-asset.fa314-storage-retention.v1",
+  "task_id": "FA-314",
+  "status": "ACCEPTED",
+  "measurement": {
+    "observed_at": "2026-09-09",
+    "postprocessed_workspaces": 19,
+    "workspace_total_bytes": {
+      "median": 33052549,
+      "p95": 50045853,
+      "max": 61297900
+    },
+    "provider_original_bytes": {
+      "median": 2164697,
+      "p95": 2841247,
+      "max": 3038116
+    },
+    "active_master_upscale_bytes": {
+      "median": 20285904,
+      "p95": 28759637,
+      "max": 32861837
+    },
+    "derivative_bytes": {
+      "median": 5811295,
+      "p95": 11213460,
+      "max": 15984421
+    },
+    "qc_bytes": {
+      "median": 2427254,
+      "p95": 4470266,
+      "max": 6302958
+    },
+    "metadata_receipts_other_median_bytes": 39825,
+    "disposable_intermediates_median_bytes": 29025,
+    "current_vps_free_bytes": 70665912320
+  },
+  "scenarios": {
+    "median_1000_per_day": {
+      "daily_gib": 30.783,
+      "thirty_day_tib": 0.902
+    },
+    "p95_1000_per_day": {
+      "daily_gib": 46.609,
+      "thirty_day_tib": 1.365
+    },
+    "max_observed_1000_per_day": {
+      "daily_gib": 57.088,
+      "thirty_day_tib": 1.673
+    }
+  },
+  "tiers": {
+    "hot": {
+      "purpose": "ACTIVE_PRODUCTION_AND_FOUNDER_QC",
+      "local_nvme": true,
+      "target": "BOUNDED_BY_CAPACITY_NOT_30_DAY_PROMISE"
+    },
+    "immutable_archive": {
+      "required_objects": [
+        "provider_original",
+        "active_master",
+        "lineage_manifest",
+        "metadata_qa_rights_receipts"
+      ],
+      "content_addressed_sha256": true,
+      "write_once_semantics_required": true
+    },
+    "recreatable": {
+      "objects": [
+        "marketplace_derivatives",
+        "web_preview",
+        "disposable_cognition_intermediates"
+      ],
+      "may_be_evicted_after_archive_and_qc_policy": true
+    }
+  },
+  "restore_contract": {
+    "verify_sha256_before_promote": true,
+    "provider_original_and_master_lineage_required": true,
+    "restore_to_new_workspace_only": true,
+    "archive_spend_or_provisioning": "FOUNDER_AUTHORIZATION_REQUIRED"
+  }
+}

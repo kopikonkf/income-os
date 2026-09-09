@@ -10,6 +10,7 @@ import {
   setClusterProviderState,
 } from '../../browser/linux/cluster_broker_client.mjs';
 import { classifyProviderPage } from '../../browser/linux/provider_readiness.mjs';
+import { cleanupLeasedStrategy, hasLeasedStrategy, prepareLeasedStrategy, providerSettleMs, submitLeasedStrategy, waitLeasedStrategy } from './provider_leased_strategies.mjs';
 
 const PROVIDER_STATES = new Set(['HEALTHY', 'DEGRADED', 'AUTH_REQUIRED', 'CHECKPOINT', 'UNAVAILABLE']);
 const SAFE_ERROR_LIMIT = 480;
@@ -42,7 +43,7 @@ function classifyFailure(message, body = '') {
   const text = `${message} ${body}`.toLowerCase();
   if (text.includes('rate limit') || text.includes('too many requests') || text.includes('usage limit') || text.includes('try again later') || text.includes('reached your limit')) return 'RATE_LIMITED';
   if (text.includes('auth_required') || text.includes('log in') || text.includes('sign in')) return 'AUTH_REQUIRED';
-  if (text.includes('checkpoint') || text.includes('captcha') || text.includes('verify you are human') || text.includes('security check') || text.includes('protection')) return 'CHECKPOINT';
+  if (text.includes('checkpoint') || text.includes('captcha') || text.includes('verify you are human') || text.includes('security check') || text.includes('protection') || (text.includes('human challenge') || text.includes('human_challenge'))) return 'CHECKPOINT';
   if (text.includes('timeout')) return 'PROVIDER_TIMEOUT';
   if (text.includes('not schedulable') || text.includes('tab_capacity') || text.includes('cluster_tab_capacity')) return 'CAPACITY_UNAVAILABLE';
   return 'PROVIDER_ERROR';
@@ -152,7 +153,7 @@ async function fillAndSubmitQwen(page, prompt) {
     for (const selector of selectors) {
       const loc = page.locator(selector).first();
       if (!await loc.isVisible({ timeout: 350 }).catch(() => false)) continue;
-      try { await loc.click({ timeout: 1500 }); await loc.fill(prompt, { timeout: 3000 }); await loc.press('Enter'); return { composer_selector: selector, send_selector: 'composer-enter' }; } catch {}
+      try { await loc.click({ timeout: 1500 }); await loc.fill(prompt, { timeout: 3000 }); await page.waitForTimeout(250); const send = page.locator('button[aria-label="Send"], button.send-button').first(); if (await send.isVisible({ timeout: 500 }).catch(() => false) && await send.isEnabled().catch(() => false)) { await send.click(); return { composer_selector: selector, send_selector: 'button[aria-label="Send"]' }; } await loc.press('Enter'); return { composer_selector: selector, send_selector: 'composer-enter-fallback' }; } catch {}
     }
     await page.waitForTimeout(400 * (attempt + 1));
   }
@@ -186,8 +187,21 @@ async function waitForGeneratedImage({ page, context, providerId, baseline, time
   }
   throw new Error('E_BOUNDED_COMPLETION_TIMEOUT');
 }
+
+async function classifyProviderAfterSettle({ page, providerId, profile }) {
+  await page.waitForTimeout(providerSettleMs(providerId));
+  let readiness = await classifyProviderPage({ page, providerId, profile });
+  if (providerId !== 'manus' || readiness.state !== 'DEGRADED' || readiness.reason_code !== 'COMPOSER_NOT_READY') return readiness;
+  const deadline = Date.now() + 15000;
+  while (Date.now() < deadline) {
+    await page.waitForTimeout(1000);
+    readiness = await classifyProviderPage({ page, providerId, profile });
+    if (readiness.state !== 'DEGRADED' || readiness.reason_code !== 'COMPOSER_NOT_READY') break;
+  }
+  return readiness;
+}
 function assertProviderConfig(providerId, providerConfig) {
-  if (!['qwen', 'chatgpt'].includes(providerId)) throw new Error(`E_CONSOLE_PROVIDER_PROVIDER_UNSUPPORTED:${providerId}`);
+  if (!['qwen', 'chatgpt', 'gemini', 'manus', 'duckai'].includes(providerId)) throw new Error(`E_CONSOLE_PROVIDER_PROVIDER_UNSUPPORTED:${providerId}`);
   if (!providerConfig || providerConfig.actual_live_transport !== 'BROWSER_CDP') throw new Error('E_CONSOLE_PROVIDER_TRANSPORT_CONFIG');
   if (providerId === 'qwen' && providerConfig.session_api_live_executor_claimed !== false) throw new Error('E_CONSOLE_PROVIDER_QWEN_TRANSPORT_TRUTH');
 }
@@ -197,14 +211,13 @@ export async function probeConsoleProvider({ controlBaseUrl, playwrightEntry, pr
   const started = Date.now(); let lease = null; let released = null; let disconnect = null;
   const out = { schema: 'die.factory-asset.console-provider-readiness-observation.v1', provider_id: providerId, cluster_id: clusterId, actual_transport: 'BROWSER_CDP', job_id: jobId, observed_at: nowIso(), credential_values_read: false, cookies_or_tokens_read: false };
   try {
-    lease = await acquireClusterTab(controlBaseUrl, { providerId, jobId, ttlMs });
+    lease = await acquireClusterTab(controlBaseUrl, { providerId, jobId, ttlMs, purpose: 'READINESS_PROBE' });
     out.lease = { lease_id: lease.lease_id, state: lease.state, acquired_at: lease.acquired_at, expires_at: lease.expires_at };
     const connected = await connectLeasedClusterTab({ controlBaseUrl, lease, playwrightEntry, timeoutMs: 10000 });
     disconnect = connected.disconnect;
     const page = connected.page;
     await page.goto(providerConfig.browser_url, { waitUntil: 'domcontentloaded', timeout: 60000 });
-    await page.waitForTimeout(2200);
-    const readiness = await classifyProviderPage({ page, providerId, profile: readinessProfile });
+    const readiness = await classifyProviderAfterSettle({ page, providerId, profile: readinessProfile });
     out.readiness = readiness;
     if (PROVIDER_STATES.has(readiness.state)) await setClusterProviderState(controlBaseUrl, providerId, readiness.state);
     out.latency_ms = Date.now() - started;
@@ -223,9 +236,9 @@ export async function probeConsoleProvider({ controlBaseUrl, playwrightEntry, pr
 
 export async function generateConsoleProviderImage({ controlBaseUrl, playwrightEntry, providerId, providerConfig, readinessProfile, jobId, prompt, artifactDir, clusterId, journalPath = null, ttlMs = 600000, timeoutMs = 300000 }) {
   assertProviderConfig(providerId, providerConfig);
-  if (typeof prompt !== 'string' || prompt.length < 10 || prompt.length > 4000) throw new Error('E_CONSOLE_PROVIDER_PROMPT');
+  if (typeof prompt !== 'string' || prompt.length < 10 || prompt.length > 12000) throw new Error('E_CONSOLE_PROVIDER_PROMPT');
   fs.mkdirSync(artifactDir, { recursive: true, mode: 0o750 });
-  const startedAt = nowIso(); const startedMs = Date.now(); let lease = null; let disconnect = null; let dispatchCommitted = false; let body = '';
+  const startedAt = nowIso(); const startedMs = Date.now(); let lease = null; let disconnect = null; let dispatchCommitted = false; let body = ''; let strategyState = null; let leasedPage = null;
   const receipt = {
     schema: 'die.factory-asset.console-provider-attempt.v1', job_id: jobId, provider_id: providerId, cluster_id: clusterId,
     actual_transport: 'BROWSER_CDP', transport_role: providerConfig.transport_role, primary_transport_contract: providerConfig.primary_transport_contract,
@@ -240,24 +253,29 @@ export async function generateConsoleProviderImage({ controlBaseUrl, playwrightE
     atomicJson(journalPath, receipt);
     const connected = await connectLeasedClusterTab({ controlBaseUrl, lease, playwrightEntry, timeoutMs: 10000 });
     disconnect = connected.disconnect;
-    const page = connected.page; const context = connected.browser.contexts()[0];
+    const page = connected.page; leasedPage = page; const context = connected.browser.contexts()[0];
     if (!context) throw new Error('E_CONSOLE_PROVIDER_BROWSER_CONTEXT');
     await page.goto(providerConfig.browser_url, { waitUntil: 'domcontentloaded', timeout: 60000 });
-    await page.waitForTimeout(2200);
-    const readiness = await classifyProviderPage({ page, providerId, profile: readinessProfile });
+    const readiness = await classifyProviderAfterSettle({ page, providerId, profile: readinessProfile });
     receipt.readiness = readiness;
     atomicJson(journalPath, receipt);
     if (PROVIDER_STATES.has(readiness.state)) await setClusterProviderState(controlBaseUrl, providerId, readiness.state);
     if (readiness.state !== 'HEALTHY') throw new Error(`E_PRE_DISPATCH_READINESS_${readiness.state}`);
-    const baseline = new Set((await inventoryImages(page, providerId)).map((x) => x.src));
+    const strategyBacked = hasLeasedStrategy(providerId);
+    const baseline = strategyBacked ? null : new Set((await inventoryImages(page, providerId)).map((x) => x.src));
+    if (strategyBacked) strategyState = await prepareLeasedStrategy(providerId, { page, context });
     await markClusterTab(controlBaseUrl, lease.lease_id, 'IN_FLIGHT');
-    const submit = providerId === 'qwen' ? await fillAndSubmitQwen(page, prompt) : await fillAndSubmitChatGpt(page, prompt);
+    const submit = strategyBacked
+      ? await submitLeasedStrategy(providerId, { page, context, prompt, state: strategyState })
+      : providerId === 'qwen' ? await fillAndSubmitQwen(page, prompt) : await fillAndSubmitChatGpt(page, prompt);
     dispatchCommitted = true; receipt.dispatch_committed = true; receipt.dispatch_committed_at = nowIso(); receipt.composer_selector = submit.composer_selector; receipt.send_selector = submit.send_selector;
     atomicJson(journalPath, receipt);
-    const output = await waitForGeneratedImage({ page, context, providerId, baseline, timeoutMs });
+    const output = strategyBacked
+      ? await waitLeasedStrategy(providerId, { page, context, state: strategyState, timeoutMs })
+      : await waitForGeneratedImage({ page, context, providerId, baseline, timeoutMs });
     const artifactPath = path.join(artifactDir, `source-original.${output.ext}`);
     fs.writeFileSync(artifactPath, output.bytes, { mode: 0o640 });
-    receipt.artifact = { path: artifactPath, sha256: sha256(output.bytes), bytes: output.bytes.length, mime: output.mime, dom_width_px: output.width, dom_height_px: output.height, original_byte_acquisition_method: output.method };
+    receipt.artifact = { path: artifactPath, sha256: sha256(output.bytes), bytes: output.bytes.length, mime: output.mime, dom_width_px: output.width, dom_height_px: output.height, original_byte_acquisition_method: output.method, provider_original_url_host: output.host || null, dom_kind: output.dom_kind || null };
     receipt.status = 'SUCCEEDED'; receipt.completed_at = nowIso(); receipt.latency_ms = Date.now() - startedMs;
     atomicJson(journalPath, receipt);
     await markClusterTab(controlBaseUrl, lease.lease_id, 'COOLDOWN').catch(() => null);
@@ -270,6 +288,7 @@ export async function generateConsoleProviderImage({ controlBaseUrl, playwrightE
     if (lease?.lease_id) await markClusterTab(controlBaseUrl, lease.lease_id, failureCode === 'CHECKPOINT' ? 'CHECKPOINT' : 'FAILED').catch(() => null);
     return receipt;
   } finally {
+    if (leasedPage && strategyState) await cleanupLeasedStrategy(providerId, { page: leasedPage, state: strategyState }).catch(() => null);
     if (lease?.lease_id) {
       const release = await releaseClusterTab(controlBaseUrl, lease.lease_id, 'FA_C010_ATTEMPT_COMPLETE').catch((error) => ({ released: false, error: safeError(error) }));
       receipt.lease_release = release;

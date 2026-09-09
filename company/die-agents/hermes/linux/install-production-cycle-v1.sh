@@ -8,7 +8,7 @@ MUXIA_DISPATCH_SRC="$DIE_HOME/company/muxia/scripts/linux/die-muxia-image-dispat
 MUXIA_WORKER_SRC="$DIE_HOME/company/muxia/scripts/linux/die-muxia-dispatch-worker.py"; MUXIA_WORKER_DST="$DIE_INSTALL_ROOT/bin/die-muxia-dispatch-worker"
 MUXIA_UNIT_SRC="$DIE_HOME/company/muxia/scripts/linux/die-muxia-dispatch.service"; MUXIA_UNIT_DST="/etc/systemd/system/die-muxia-dispatch.service"
 [[ ${EUID:-$(id -u)} -eq 0 ]] || { echo E_ROOT_REQUIRED >&2; exit 2; }
-[[ -x "$HERMES_BIN" && -f "$SRC/production_runtime_tick.py" && -f "$SRC/production_runtime_tick.sh" && -f "$SRC/factory_orchestration_v2.py" && -f "$DIE_HOME/company/muxia/scripts/linux/muxia-chatgpt-image.mjs" && -f "$MUXIA_DISPATCH_SRC" && -f "$MUXIA_WORKER_SRC" && -f "$MUXIA_UNIT_SRC" ]] || { echo E_RUNTIME_SOURCE >&2; exit 2; }
+[[ -x "$HERMES_BIN" && -f "$SRC/production_runtime_tick.py" && -f "$SRC/production_runtime_tick.sh" && -f "$SRC/factory_orchestration_v2.py" && -f "$DIE_HOME/company/factory-asset/bin/production_multi_cluster_dispatch.mjs" && -f "$DIE_HOME/company/factory-asset/lib/console_broker_provider_worker.mjs" && -f "$MUXIA_DISPATCH_SRC" && -f "$MUXIA_WORKER_SRC" && -f "$MUXIA_UNIT_SRC" ]] || { echo E_RUNTIME_SOURCE >&2; exit 2; }
 install -d -o root -g die-runtime -m 2770 "$DIE_STATE_ROOT/workspaces"
 install -d -o die-hermes -g die-runtime -m 2770 "$DEST" "$DIE_STATE_ROOT/state/production-runtime"
 install -o die-hermes -g die-runtime -m 0750 "$SRC/production_runtime_tick.py" "$DEST/production_runtime_tick.py"
@@ -31,7 +31,19 @@ install -d -o kopiko -g die-runtime -m 0700 "$MUXIA_ROOT/service-home"
 rm -f /etc/sudoers.d/die-hermes-muxia-image
 systemctl daemon-reload
 systemctl enable die-muxia-dispatch.service
-systemctl restart die-muxia-dispatch.service
+HOLD_FILE="$DIE_STATE_ROOT/state/production-runtime/exclusive-production-hold.json"
+if [[ -f "$HOLD_FILE" ]] && /usr/bin/python3 - <<'PYH' "$HOLD_FILE"
+import json,sys
+try:x=json.load(open(sys.argv[1]));raise SystemExit(0 if x.get('active',True) else 1)
+except Exception:raise SystemExit(0)
+PYH
+then
+  systemctl stop die-muxia-dispatch.service >/dev/null 2>&1 || true
+  MUXIA_DISPATCH_ACTION=DEFERRED_EXCLUSIVE_HOLD
+else
+  systemctl restart die-muxia-dispatch.service
+  MUXIA_DISPATCH_ACTION=RESTARTED
+fi
 JOB_ID=$(runuser -u die-hermes -- env HERMES_HOME="$HERMES_HOME" python3 - <<'PY'
 import json,os
 p=os.path.join(os.environ['HERMES_HOME'],'cron','jobs.json');d=json.load(open(p));items=d.get('jobs',[]) if isinstance(d,dict) else d
@@ -47,4 +59,4 @@ else
  runuser -u die-hermes -- env HERMES_HOME="$HERMES_HOME" "$HERMES_BIN" cron create "$SCHEDULE" --name "$JOB_NAME" --script "$SCRIPT_REL" --no-agent --deliver telegram --workdir "$WORKDIR"
  ACTION=CREATED
 fi
-echo PRODUCTION_RUNTIME_INSTALL=PASS; echo JOB_ID="$JOB_ID"; echo ACTION="$ACTION"; echo MODE=DETERMINISTIC_NO_AGENT; echo SCHEDULE="$SCHEDULE"; echo SCRIPT="$SCRIPT_REL"
+echo PRODUCTION_RUNTIME_INSTALL=PASS; echo JOB_ID="$JOB_ID"; echo ACTION="$ACTION"; echo MUXIA_DISPATCH_ACTION="$MUXIA_DISPATCH_ACTION"; echo MODE=DETERMINISTIC_NO_AGENT; echo SCHEDULE="$SCHEDULE"; echo SCRIPT="$SCRIPT_REL"

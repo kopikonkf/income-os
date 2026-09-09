@@ -1,0 +1,53 @@
+{
+  "schema": "die.factory-asset.fa312-browser-capacity.v1",
+  "task_id": "FA-312",
+  "status": "ACCEPTED",
+  "measurement": {
+    "observed_at": "2026-09-09",
+    "total_ram_bytes": 33654259712,
+    "current_attach_only_idle": {
+      "cluster_a_rss_mib": 1467.46,
+      "cluster_b_rss_mib": 1492.8,
+      "combined_rss_mib": 2960.26,
+      "open_pages_each": 1,
+      "active_leases_each": 0
+    },
+    "accepted_live_reference": {
+      "source": "FA-307",
+      "combined_two_cluster_peak_mib": 5048.15
+    },
+    "current_attach_only_live_generation": {
+      "source": "/var/lib/die/state/fa124-cartoon-watercolor-100-r1/FA-312-live-ram-sample.json",
+      "samples": 13,
+      "observed_generation_samples": 13,
+      "max_combined_rss_mib": 4798.97,
+      "max_cluster_a_rss_mib": 1467.5,
+      "max_cluster_b_rss_mib": 3331.47,
+      "providers_observed_in_flight": [
+        "qwen",
+        "gemini",
+        "manus"
+      ],
+      "measurement_provider_calls_performed": false
+    }
+  },
+  "capacity_policy": {
+    "system_recovery_reserve_gib": 8,
+    "recovery_owner_reserve": 1,
+    "conservative_per_owner_peak_mib": 2524.075,
+    "raw_ram_owner_limit": 9,
+    "active_browser_owner_ceiling": 8,
+    "current_production_owner_target": 2,
+    "cluster_browser_generation_limit": 1,
+    "max_tabs_per_cluster": 8,
+    "profiles_above_ceiling": "COLD_OR_PARKED",
+    "ceiling_basis_peak_mib": 5048.15,
+    "ceiling_basis": "MAX(HISTORICAL_ACCEPTED_CONCURRENT_PEAK_5048.15,CURRENT_ATTACH_ONLY_LIVE_PEAK_4798.97)"
+  },
+  "sharding": {
+    "unit": "ONE_PERSISTENT_BROWSER_OWNER_PER_CLUSTER_PROFILE",
+    "admission": "LEASE_ONLY_WHEN_ACTIVE_OWNER_COUNT_BELOW_CEILING_AND_RAM_RECOVERY_RESERVE_PRESERVED",
+    "backpressure": "DO_NOT_START_NEW_BROWSER_OWNER; KEEP_PROFILE_COLD",
+    "profile_count_is_not_concurrency": true
+  }
+}

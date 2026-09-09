@@ -10,7 +10,9 @@ def test_scale_foundation_nodes_follow_fa307_dependency_lifecycle():
  for i in range(310,315):
   t=by[f"FA-{i}"];assert t["track"]=="SCALE_FOUNDATION" and "FA-307" in t["depends_on"]
   assert t["status"] in ({"READY","IN_PROGRESS","DONE"} if fa307_done else {"BLOCKED"})
- assert by["FA-315"]["status"]=="BLOCKED" and set(by["FA-315"]["depends_on"])=={f"FA-{i}" for i in range(310,315)}
+ deps={f"FA-{i}" for i in range(310,315)};assert set(by["FA-315"]["depends_on"])==deps
+ all_done=all(by[x]["status"]=="DONE" for x in deps)
+ assert by["FA-315"]["status"] in ({"READY","IN_PROGRESS","DONE"} if all_done else {"BLOCKED"})
 
 def test_fa308_requires_scale_foundation_gate_and_never_equates_profiles_with_live_browsers():
  g=json.loads(G.read_text());by={x["id"]:x for x in g["tasks"]};t=by["FA-308"]

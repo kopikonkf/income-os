@@ -1,0 +1,19 @@
+{
+  "schema": "die.factory-asset.fa-311-measurement.v1",
+  "task_id": "FA-311",
+  "measurement": {
+    "observed_at": "2026-09-09",
+    "cluster_a_bytes": 1069231786,
+    "cluster_b_bytes": 1085365202,
+    "cluster_a_mib_rounded": 1024,
+    "cluster_b_mib_rounded": 1044
+  },
+  "planning": {
+    "profiles": 100,
+    "conservative_current_footprint_gib": 101.723,
+    "one_gib_per_profile_gib": 100.641,
+    "two_gib_per_profile_gib": 200.641,
+    "current_vps_free_bytes": 70665912320,
+    "current_100_profile_inventory_fits_vps": false
+  }
+}

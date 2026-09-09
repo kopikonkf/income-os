@@ -1,0 +1,23 @@
+{
+  "schema": "die.factory-asset.fa315-scale-foundation-gate.v1",
+  "task_id": "FA-315",
+  "status": "DONE",
+  "prerequisites": [
+    "FA-310",
+    "FA-311",
+    "FA-312",
+    "FA-313",
+    "FA-314"
+  ],
+  "acceptance": {
+    "management_ingress_resilient": true,
+    "persistent_profile_storage_budgeted": true,
+    "active_browser_ram_ceiling_measured": true,
+    "hermes_multi_cluster_routing_integrated": true,
+    "hot_archive_retention_architecture_defined": true,
+    "measured_capacity_separate_from_planning_assumptions": true,
+    "authorizes_spend": false,
+    "authorizes_1000_per_day": false
+  },
+  "result": "PASS"
+}
