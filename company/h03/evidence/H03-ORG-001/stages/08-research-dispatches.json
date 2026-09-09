@@ -1,0 +1,20 @@
+[
+  {
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "provider_id": "fixture-market-a",
+    "question_id": "Q-MARKET-1",
+    "work_card_id": "H03-WC-RSCH-H03-RPLAN-ORG001-001-Q-MARKET-1"
+  },
+  {
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "provider_id": "fixture-knowledge-a",
+    "question_id": "Q-OFFICIAL-1",
+    "work_card_id": "H03-WC-RSCH-H03-RPLAN-ORG001-001-Q-OFFICIAL-1"
+  },
+  {
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "provider_id": "fixture-market-b",
+    "question_id": "Q-MARKET-2",
+    "work_card_id": "H03-WC-RSCH-H03-RPLAN-ORG001-001-Q-MARKET-2"
+  }
+]

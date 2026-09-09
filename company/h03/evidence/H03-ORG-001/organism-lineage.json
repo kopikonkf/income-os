@@ -1,0 +1,66 @@
+{
+  "canary_id": "H03-ORG-001-CANARY-001",
+  "content_batch_ids": [
+    "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-001",
+    "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-002",
+    "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-003",
+    "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-004",
+    "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-005"
+  ],
+  "external_publication": false,
+  "founder_publication_gate_crossed": false,
+  "holding_id": "H03",
+  "knowledge_package_id": "H03-KP-ORG001-001",
+  "live_browser_preflight_performed": false,
+  "live_web_ai_provider_call_claimed": false,
+  "package": {
+    "content_batch_ids": [
+      "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-001",
+      "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-002",
+      "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-003",
+      "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-004",
+      "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-005"
+    ],
+    "external_publication": false,
+    "form": "guide",
+    "holding_id": "H03",
+    "knowledge_package_id": "H03-KP-ORG001-001",
+    "manifest_file": "manifest.json",
+    "page_count": 2,
+    "pdf_file": "diy-people-search-opt-out-guide.pdf",
+    "pdf_sha256": "9387de9c840a9aa2f5b77a72ffc48f0d78b8936b90e012d0707309f871c99c19",
+    "product_id": "H03-PROD-ORG001-001",
+    "schema_version": "die.h03.local-product-package.v1",
+    "status": "LOCAL_SALE_READY_UNREVIEWED",
+    "title": "DIY People-Search Opt-Out Guide",
+    "validation_file": "validation.json",
+    "zip_file": "diy-people-search-opt-out-guide.zip",
+    "zip_sha256": "c93b149bfe139c9fe10a2dd662427720afad57ba6523d373c7d7c8e550b1fb8a"
+  },
+  "paid_ads": false,
+  "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+  "producer_execution_mode": "NONLIVE_ROLE_FIXTURE",
+  "producer_provider_ids": [
+    "fixture-producer-a",
+    "fixture-producer-a",
+    "fixture-producer-a",
+    "fixture-producer-b",
+    "fixture-producer-b"
+  ],
+  "product_form": "guide",
+  "research_execution_mode": "NONLIVE_ROLE_FIXTURE",
+  "research_provider_ids": [
+    "fixture-market-a",
+    "fixture-knowledge-a",
+    "fixture-market-b"
+  ],
+  "research_sources": [
+    "https://incogni.com/pricing",
+    "https://consumer.ftc.gov/articles/what-know-about-people-search-sites-sell-your-information",
+    "https://joindeleteme.com/"
+  ],
+  "schema_version": "die.h03.organism-canary.v1",
+  "status": "PASS",
+  "synthesis_execution_mode": "NONLIVE_ROLE_FIXTURE",
+  "worth_making_decision": "MAKE"
+}

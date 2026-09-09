@@ -1,0 +1,59 @@
+{
+  "canonical_truth": false,
+  "claims": [
+    {
+      "claim_id": "C1",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0208"
+      ],
+      "text": "Start by searching a people-search site for your name or other identifying information such as a phone number or address."
+    },
+    {
+      "claim_id": "C2",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0208"
+      ],
+      "text": "When you find a report about yourself, locate the site's opt-out or removal instructions and follow them."
+    },
+    {
+      "claim_id": "C3",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0206"
+      ],
+      "text": "Repeat the opt-out process across other relevant people-search sites; doing this one by one can be time-consuming."
+    },
+    {
+      "claim_id": "C4",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0210"
+      ],
+      "text": "Periodically recheck people-search sites and submit new opt-out requests if your information reappears."
+    },
+    {
+      "claim_id": "C5",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0175"
+      ],
+      "text": "Opting out of people-search sites does not delete information from public records, so the workflow reduces exposure rather than guaranteeing total deletion."
+    },
+    {
+      "claim_id": "C6",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0199"
+      ],
+      "text": "Consumers can perform people-search opt-outs themselves for free or pay a service to perform the work on their behalf."
+    }
+  ],
+  "contradictions": [],
+  "gaps": [],
+  "holding_id": "H03",
+  "knowledge_map_id": "H03-KM-ORG001-001",
+  "knowledge_package_candidate_id": "H03-KPC-ORG001-001",
+  "promotion_state": "ELIGIBLE_FOR_KNOWLEDGE_VALIDATION",
+  "schema_version": "die.h03.knowledge-package-candidate.v1",
+  "source_snapshot_refs": [
+    "ORG001-DELETEME-HOME",
+    "ORG001-FTC-PEOPLESEARCH",
+    "ORG001-INCOGNI-PRICING"
+  ]
+}

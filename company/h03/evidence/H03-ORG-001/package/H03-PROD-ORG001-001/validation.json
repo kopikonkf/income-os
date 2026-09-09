@@ -1,0 +1,33 @@
+{
+  "metadata_title": "DIY People-Search Opt-Out Guide",
+  "page_count": 2,
+  "text_chars": 992,
+  "visual_pages": [
+    {
+      "content_bbox": [
+        67,
+        131,
+        676,
+        1021
+      ],
+      "height": 1053,
+      "nonwhite_ratio": 0.012545,
+      "page": 1,
+      "png_sha256": "4faf6249871b1fefb2876a376979b76cc74d6038e042caf215dd76d4b3bf4e35",
+      "width": 745
+    },
+    {
+      "content_bbox": [
+        67,
+        56,
+        677,
+        1021
+      ],
+      "height": 1053,
+      "nonwhite_ratio": 0.03371,
+      "page": 2,
+      "png_sha256": "31bc11243be27bd89c833ab6a9f10bb71963e7128f022f3e957376832f87715b",
+      "width": 745
+    }
+  ]
+}

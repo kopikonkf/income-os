@@ -1,0 +1,35 @@
+{
+  "capability_requirements": {
+    "local_filesystem": false,
+    "mcp": false,
+    "shell": false,
+    "web_ai": true
+  },
+  "holding_id": "H03",
+  "idempotency_key": "h03-seed-curation:ORG001-001",
+  "input_artifacts": [
+    {
+      "artifact_id": "SIGNALS-ORG001-001",
+      "kind": "governed_signal_packet",
+      "ref": "artifact://canary/problem-signal/people-search-diy",
+      "sha256": null
+    }
+  ],
+  "output_contract": {
+    "artifact_kind": "problem_seed_batch",
+    "schema_version": "die.h03.problem-seed-batch.v1"
+  },
+  "queue": "seed-curation",
+  "role": "SEED_CURATOR",
+  "schema_version": "die.h03.cognition-work-card.v1",
+  "task_id": "H03-OPP-002",
+  "terminal_policy": {
+    "max_attempts": 3,
+    "retryable_failures": [
+      "RATE_LIMITED",
+      "PROVIDER_UNAVAILABLE",
+      "PROFILE_UNAVAILABLE"
+    ]
+  },
+  "work_card_id": "H03-WC-SEED-ORG001-001"
+}

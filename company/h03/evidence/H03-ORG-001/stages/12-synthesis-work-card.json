@@ -1,0 +1,48 @@
+{
+  "capability_requirements": {
+    "local_filesystem": false,
+    "mcp": false,
+    "shell": false,
+    "web_ai": true
+  },
+  "holding_id": "H03",
+  "idempotency_key": "h03-synthesis:H03-KM-ORG001-001",
+  "input_artifacts": [
+    {
+      "artifact_id": "H03-RP-H03-WC-RSCH-H03-RPLAN-ORG001-001-Q-MARKET-1",
+      "kind": "research_packet",
+      "ref": "artifact://research/H03-RP-H03-WC-RSCH-H03-RPLAN-ORG001-001-Q-MARKET-1",
+      "sha256": null
+    },
+    {
+      "artifact_id": "H03-RP-H03-WC-RSCH-H03-RPLAN-ORG001-001-Q-OFFICIAL-1",
+      "kind": "research_packet",
+      "ref": "artifact://research/H03-RP-H03-WC-RSCH-H03-RPLAN-ORG001-001-Q-OFFICIAL-1",
+      "sha256": null
+    },
+    {
+      "artifact_id": "H03-RP-H03-WC-RSCH-H03-RPLAN-ORG001-001-Q-MARKET-2",
+      "kind": "research_packet",
+      "ref": "artifact://research/H03-RP-H03-WC-RSCH-H03-RPLAN-ORG001-001-Q-MARKET-2",
+      "sha256": null
+    }
+  ],
+  "output_contract": {
+    "artifact_kind": "knowledge_map",
+    "schema_version": "die.h03.knowledge-map.v1"
+  },
+  "queue": "synthesis",
+  "role": "SYNTHESIZER",
+  "schema_version": "die.h03.cognition-work-card.v1",
+  "task_id": "H03-KF-003",
+  "terminal_policy": {
+    "max_attempts": 3,
+    "retryable_failures": [
+      "RATE_LIMITED",
+      "PROVIDER_UNAVAILABLE",
+      "PROFILE_UNAVAILABLE",
+      "INVALID_OUTPUT"
+    ]
+  },
+  "work_card_id": "H03-WC-SYNTH-H03-KM-ORG001-001"
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-ORG-001",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "canary_id": "H03-ORG-001-CANARY-001",
+  "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+  "acceptance": {
+    "seed_curator_contract": true,
+    "real_public_source_bytes": true,
+    "cheap_opportunity_evidence_before_deep_research": true,
+    "demand_wtp": "MEDIUM",
+    "worth_making": "MAKE",
+    "research_fanout_workers": [
+      "fixture-market-a",
+      "fixture-knowledge-a",
+      "fixture-market-b"
+    ],
+    "synthesis_execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "knowledge_package_governed": true,
+    "market_sources_excluded_from_product_knowledge_packet": true,
+    "product_form": "guide",
+    "producer_workers": [
+      "fixture-producer-a",
+      "fixture-producer-a",
+      "fixture-producer-a",
+      "fixture-producer-b",
+      "fixture-producer-b"
+    ],
+    "content_batches": 5,
+    "package_status": "LOCAL_SALE_READY_UNREVIEWED",
+    "page_count": 2,
+    "pdf_sha256": "9387de9c840a9aa2f5b77a72ffc48f0d78b8936b90e012d0707309f871c99c19",
+    "zip_sha256": "c93b149bfe139c9fe10a2dd662427720afad57ba6523d373c7d7c8e550b1fb8a",
+    "live_browser_preflight_performed": false,
+    "live_web_ai_provider_call_claimed": false,
+    "external_publication": false,
+    "founder_publication_gate_crossed": false,
+    "hyphenated_question_id_bug_remediated": true,
+    "capacity_gate_exercised": true,
+    "offline_reproducible": true
+  },
+  "validation": {
+    "targeted_org_plus_research_executor": "9/9 PASS",
+    "h03_regression": "119/119 PASS"
+  }
+}

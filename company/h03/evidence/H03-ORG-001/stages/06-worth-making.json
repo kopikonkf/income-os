@@ -1,0 +1,22 @@
+{
+  "decision": "MAKE",
+  "decision_id": "H03-WM-ORG001-001",
+  "evidence_refs": [
+    "ORG001-INCOGNI-PRICING-E0016",
+    "ORG001-FTC-PEOPLESEARCH-E0199",
+    "ORG001-DELETEME-HOME-E0095",
+    "ORG001-FTC-PEOPLESEARCH-E0206",
+    "ORG001-FTC-PEOPLESEARCH-E0210",
+    "ORG001-FTC-PEOPLESEARCH-E0208",
+    "ORG001-FTC-PEOPLESEARCH-E0175"
+  ],
+  "holding_id": "H03",
+  "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+  "productability_state": "HIGH",
+  "reason_codes": [
+    "WTP_EVIDENCED",
+    "BUYER_INTENT_EVIDENCED",
+    "PRODUCTABILITY_EVIDENCED"
+  ],
+  "schema_version": "die.h03.worth-making-decision.v1"
+}
