@@ -1,0 +1,24 @@
+{
+    "schema":  "die.economic-shadow-pilot-design.v1",
+    "status":  "ACCEPTED_DESIGN_GATE_NOT_SATISFIED",
+    "pilot_plan":  "company/company-os/pilots/H01_H03_SHADOW_ECONOMICS_PILOT_V1.json",
+    "validator":  "company/company-os/lib/economic_contracts.py",
+    "tests":  "company/company-os/tests/test_economic_contracts.py",
+    "selected_flows":  [
+                           "H01-L0-ISOLATED-ASSET-LINEAGE-V1",
+                           "H03-KNOWLEDGE-PRODUCT-DIRECT-SALE-V1"
+                       ],
+    "h02":  "DEFERRED_MULTI_TOUCH_ATTRIBUTION_COMPLEXITY",
+    "h03_live_revenue":  "UNPROVEN_UNTIL_OBSERVED",
+    "evidence_gate":  "SUFFICIENT_SHADOW_EVIDENCE_WINDOW",
+    "evidence_gate_satisfied":  false,
+    "authority":  {
+                      "read_only":  true,
+                      "live_ingestion":  false,
+                      "spend":  false,
+                      "external_submission":  false,
+                      "payment":  false,
+                      "provider_plan_change":  false,
+                      "credential_mutation":  false
+                  }
+}

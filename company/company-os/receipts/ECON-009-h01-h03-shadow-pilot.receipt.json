@@ -1,0 +1,47 @@
+{
+    "schema":  "die.company-os.econ009.h01-h03-shadow-pilot.receipt.v1",
+    "task_id":  "ECON-009",
+    "status":  "PASS",
+    "observed_at":  "2026-09-09",
+    "source_main":  "8c29abf917aff748f3fa0be4d4d16927f597f528",
+    "artifacts":  [
+                      {
+                          "path":  "company/company-os/ECON-009_H01_H03_SHADOW_ECONOMICS_PILOT_V1.md",
+                          "sha256":  "b7d3964e9bb00ecb046fd14af014cafef5862108bdf60bcfafb52b5e80f5d878"
+                      },
+                      {
+                          "path":  "company/company-os/contracts/die.economic-shadow-pilot-design.v1.json",
+                          "sha256":  "159141e51fdf0402591e59bdb542ec0eb03ad99ba9b19cabf29c050940b01e2f"
+                      },
+                      {
+                          "path":  "company/company-os/pilots/H01_H03_SHADOW_ECONOMICS_PILOT_V1.json",
+                          "sha256":  "7ab89b89ab302aba4fd8874b64a1bfa6cedf0056ba7e6ab19e85303bf8509a73"
+                      },
+                      {
+                          "path":  "company/company-os/lib/economic_contracts.py",
+                          "sha256":  "bc9585afd76bf48b33a0fb36bf53590294e135f8b2cc4e9bb09d3b471948d724"
+                      },
+                      {
+                          "path":  "company/company-os/tests/test_economic_contracts.py",
+                          "sha256":  "f37d5be447a7366cec7fcce2cf22e82f467a4e2052d71aba9c23aa3541eecce6"
+                      }
+                  ],
+    "acceptance":  {
+                       "pytest":  "44_PASSED",
+                       "h01_flow":  "H01-L0-ISOLATED-ASSET-LINEAGE-V1",
+                       "h03_flow":  "H03-KNOWLEDGE-PRODUCT-DIRECT-SALE-V1",
+                       "h03_live_revenue":  "UNPROVEN_UNTIL_OBSERVED",
+                       "h02":  "DEFERRED_MULTI_TOUCH_ATTRIBUTION_COMPLEXITY",
+                       "gate":  "SUFFICIENT_SHADOW_EVIDENCE_WINDOW",
+                       "gate_satisfied":  false
+                   },
+    "authority":  {
+                      "read_only":  true,
+                      "live_ingestion":  false,
+                      "spend":  false,
+                      "external_submission":  false,
+                      "payment":  false,
+                      "provider_plan_change":  false,
+                      "credential_mutation":  false
+                  }
+}

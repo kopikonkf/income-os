@@ -1,0 +1,32 @@
+{
+    "schema":  "die.reinvestment-engine.shadow.v1",
+    "status":  "ACCEPTED_E0_ZERO_MONEY_MOVEMENT",
+    "waterfall_schema":  "company/company-os/schemas/die.reinvestment-waterfall.shadow.v1.schema.json",
+    "validator":  "company/company-os/lib/economic_contracts.py",
+    "tests":  "company/company-os/tests/test_economic_contracts.py",
+    "profit_basis":  "CASH_OPERATING_PROFIT",
+    "waterfall_order":  [
+                            "TAX_LIABILITY",
+                            "RESERVE_TOPUP",
+                            "RETAINED_EARNINGS",
+                            "REINVESTMENT_POOL"
+                        ],
+    "tax_unknown_behavior":  "HOLD_INCOMPLETE_EVIDENCE_ZERO_POOL",
+    "policy_percentages_invented":  false,
+    "eligible_governor_recommendations":  [
+                                              "SCALE",
+                                              "OPTIMIZE"
+                                          ],
+    "infrastructure_live_change_authorized":  false,
+    "authority":  {
+                      "shadow_only":  true,
+                      "money_moved":  false,
+                      "spend":  false,
+                      "tax_payment":  false,
+                      "provider_plan_change":  false,
+                      "infrastructure_purchase":  false,
+                      "capital_transfer":  false,
+                      "new_vendor":  false,
+                      "credentials":  false
+                  }
+}
