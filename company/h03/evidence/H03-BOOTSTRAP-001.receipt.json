@@ -1,0 +1,24 @@
+{
+  "schema_version": "die.h03.bootstrap-receipt.v1",
+  "holding_id": "H03",
+  "status": "PASS",
+  "date": "2026-09-09",
+  "architecture": "company/h03/H03_KNOWLEDGE_PDF_FACTORY_ARCHITECTURE_V1.md",
+  "task_graph": "company/h03/task-graph-v1.json",
+  "mvp_task_id": "H03-MVP-001",
+  "product_id": "H03-PROD-MVP-001",
+  "knowledge_package_id": "H03-KP-MVP-001",
+  "economic_trace_id": "H03-ECO-TRACE-MVP-001",
+  "pdf": "company/h03/evidence/H03-MVP-001/portable-knowledge-product-build-verification-guide.pdf",
+  "pdf_sha256": "8199048f4a9ee0f70a4e0b62c07c7617ab61b9077cf6700311192617c7eb20ee",
+  "tests": "5/5 PASS",
+  "canonical_economics_write": false,
+  "external_publication": false,
+  "spend": false,
+  "credential_mutation": false,
+  "next_ready": [
+    "H03-KF-002",
+    "H03-PDF-003",
+    "H03-AI-001"
+  ]
+}

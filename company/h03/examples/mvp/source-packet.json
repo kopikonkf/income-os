@@ -1,0 +1,32 @@
+{
+  "schema_version": "die.h03.source-packet.v1",
+  "source_id": "H03-SRC-INT-001",
+  "title": "Portable H03 Knowledge Product Build Policy",
+  "rights_status": "INTERNAL_ORIGINAL",
+  "evidence_units": [
+    {
+      "evidence_id": "E1",
+      "text": "Portable H03 engineering keeps source code, contracts, schemas, tests, receipts and governed durable data reproducible from Git plus explicit bootstrap steps."
+    },
+    {
+      "evidence_id": "E2",
+      "text": "Knowledge semantics remain separate from presentation so the same accepted knowledge can feed PDF and future output formats."
+    },
+    {
+      "evidence_id": "E3",
+      "text": "A bounded product proof preserves source identity, claim evidence, artifact hashes and build lineage instead of treating an LLM response as truth."
+    },
+    {
+      "evidence_id": "E4",
+      "text": "Unknown Founder time, cash cost, shared cost or revenue remains UNKNOWN or UNPROVEN and is never silently converted to zero."
+    },
+    {
+      "evidence_id": "E5",
+      "text": "H03 domain components do not write canonical Company economics directly; canonical Company Truth mutations remain behind the logical die-state-manager boundary."
+    },
+    {
+      "evidence_id": "E6",
+      "text": "Browser profiles, OAuth sessions and secrets are host-local capability state and are not product data or durable knowledge artifacts."
+    }
+  ]
+}

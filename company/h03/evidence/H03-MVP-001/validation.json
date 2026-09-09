@@ -1,0 +1,33 @@
+{
+  "metadata_title": "Portable Knowledge Product Build Verification Guide",
+  "page_count": 2,
+  "text_chars": 1043,
+  "visual_pages": [
+    {
+      "content_bbox": [
+        67,
+        131,
+        676,
+        1021
+      ],
+      "height": 1053,
+      "nonwhite_ratio": 0.013796,
+      "page": 1,
+      "png_sha256": "a1b90f89b02731b4a341539ef067eb470f5ef7911816cab1acd686d376002c2d",
+      "width": 745
+    },
+    {
+      "content_bbox": [
+        67,
+        56,
+        677,
+        1021
+      ],
+      "height": 1053,
+      "nonwhite_ratio": 0.039798,
+      "page": 2,
+      "png_sha256": "f5ed7f20afc63513437c6e7ec806252c8ef05cb3749935998cf2eddfce5ab06c",
+      "width": 745
+    }
+  ]
+}

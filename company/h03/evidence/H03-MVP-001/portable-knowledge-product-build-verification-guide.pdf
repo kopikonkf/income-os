@@ -1,0 +1,132 @@
+%PDF-1.3
+%“Œ‹ž ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/Contents 9 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 8 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+5 0 obj
+<<
+/Contents 10 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 8 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+6 0 obj
+<<
+/PageMode /UseNone /Pages 8 0 R /Type /Catalog
+>>
+endobj
+7 0 obj
+<<
+/Author (Digital Income Empire - H03) /CreationDate (D:20000101000000+00'00') /Creator (DIE H03 PDF Factory v1) /Keywords () /ModDate (D:20000101000000+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (Internal deterministic H03 Knowledge to PDF proof) /Title (Portable Knowledge Product Build Verification Guide) /Trapped /False
+>>
+endobj
+8 0 obj
+<<
+/Count 2 /Kids [ 4 0 R 5 0 R ] /Type /Pages
+>>
+endobj
+9 0 obj
+<<
+/Length 537
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+BT /F2 20 Tf 24 TL ET
+BT 1 0 0 1 54 721.8898 Tm (Portable Knowledge Product Build Verification) Tj T* ET
+BT 1 0 0 1 54 694.8898 Tm (Guide) Tj T* ET
+BT /F1 11 Tf 13.2 TL ET
+BT 1 0 0 1 54 659.8898 Tm (Internal H03 deterministic pipeline proof) Tj T* ET
+BT /F1 9 Tf 10.8 TL ET
+BT 1 0 0 1 54 615.8898 Tm (Product: H03-PROD-MVP-001) Tj T* ET
+BT 1 0 0 1 54 601.8898 Tm (Knowledge package: H03-KP-MVP-001) Tj T* ET
+BT /F1 8 Tf 9.6 TL ET
+BT 1 0 0 1 446.6996 28 Tm (H03 internal proof | page 1) Tj T* ET
+ 
+endstream
+endobj
+10 0 obj
+<<
+/Length 1670
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+BT /F2 13 Tf 15.6 TL ET
+BT 1 0 0 1 54 787.8898 Tm (1. Reproducibility is part of the product) Tj T* ET
+BT /F1 10 Tf 12 TL ET
+BT 1 0 0 1 54 760.8898 Tm (A portable knowledge-product factory treats reproducibility artifacts as first-class deliverables.) Tj T* ET
+BT /F1 10 Tf 12 TL ET
+BT 1 0 0 1 54 738.8898 Tm (Authentication and browser session material stays outside product lineage and is manually reprovisioned) Tj T* ET
+BT 1 0 0 1 54 724.8898 Tm (when hosts change.) Tj T* ET
+BT /F2 13 Tf 15.6 TL ET
+BT 1 0 0 1 54 702.8898 Tm (2. Separate knowledge from presentation) Tj T* ET
+BT /F1 10 Tf 12 TL ET
+BT 1 0 0 1 54 675.8898 Tm (Knowledge Packages are presentation-independent and should compile through a Product Blueprint and) Tj T* ET
+BT 1 0 0 1 54 661.8898 Tm (Document AST before rendering.) Tj T* ET
+BT /F2 13 Tf 15.6 TL ET
+BT 1 0 0 1 54 639.8898 Tm (3. Evidence-first lineage) Tj T* ET
+BT /F1 10 Tf 12 TL ET
+BT 1 0 0 1 54 612.8898 Tm (Every bounded product build needs explicit evidence and artifact lineage rather than model output alone.) Tj T* ET
+BT /F2 13 Tf 15.6 TL ET
+BT 1 0 0 1 54 590.8898 Tm (4. Economic truth without invented zeros) Tj T* ET
+BT /F1 10 Tf 12 TL ET
+BT 1 0 0 1 54 563.8898 Tm (Economic fields that have not been observed remain UNKNOWN or UNPROVEN, never inferred as zero.) Tj T* ET
+BT /F1 10 Tf 12 TL ET
+BT 1 0 0 1 54 541.8898 Tm (H03 may author semantic economic observations but cannot bypass the single logical die-state-manager for) Tj T* ET
+BT 1 0 0 1 54 527.8898 Tm (canonical Company Truth.) Tj T* ET
+BT /F1 8 Tf 9.6 TL ET
+BT 1 0 0 1 446.6996 28 Tm (H03 internal proof | page 2) Tj T* ET
+ 
+endstream
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000061 00000 n 
+0000000102 00000 n 
+0000000209 00000 n 
+0000000321 00000 n 
+0000000524 00000 n 
+0000000728 00000 n 
+0000000796 00000 n 
+0000001169 00000 n 
+0000001234 00000 n 
+0000001821 00000 n 
+trailer
+<<
+/ID 
+[<86e78067bbedbdfb4f6188e4dc13dab4><86e78067bbedbdfb4f6188e4dc13dab4>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 7 0 R
+/Root 6 0 R
+/Size 11
+>>
+startxref
+3543
+%%EOF

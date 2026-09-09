@@ -1,0 +1,39 @@
+{
+  "acceptance": {
+    "ast_compiled": true,
+    "hash_lineage_recorded": true,
+    "knowledge_validated": true,
+    "metadata_validated": true,
+    "pdf_reopened": true,
+    "raster_visual_qa": true
+  },
+  "artifact_manifest": "company/h03/evidence/H03-MVP-001/manifest.json",
+  "build_job_id": "H03-BUILD-MVP-001",
+  "canonical_economics_write": false,
+  "cash_direct_cost": "UNKNOWN",
+  "economic_trace_id": "H03-ECO-TRACE-MVP-001",
+  "founder_active_minutes": "UNKNOWN",
+  "future_commercial_identity": {
+    "listing_id": "UNPROVEN",
+    "order_id": "UNPROVEN",
+    "revenue_event_id": "UNPROVEN"
+  },
+  "holding_id": "H03",
+  "knowledge_package_id": "H03-KP-MVP-001",
+  "pdf_sha256": "8199048f4a9ee0f70a4e0b62c07c7617ab61b9077cf6700311192617c7eb20ee",
+  "product_id": "H03-PROD-MVP-001",
+  "resource_observation": {
+    "build_elapsed_ms": 90.045,
+    "pdf_bytes": 3976,
+    "pdf_pages": 2
+  },
+  "revenue_state": "UNPROVEN",
+  "rights_status": "INTERNAL_ORIGINAL",
+  "schema_version": "die.h03.build-receipt.v1",
+  "shared_cost_attribution_status": "UNKNOWN",
+  "source_id": "H03-SRC-INT-001",
+  "state_manager_boundary": "die-state-manager",
+  "status": "PASS",
+  "task_id": "H03-MVP-001",
+  "work_card_id": "H03-MVP-001"
+}
