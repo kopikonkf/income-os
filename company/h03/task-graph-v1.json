@@ -678,17 +678,18 @@
       "artifact": "company/h03/contracts/growth-blueprint.v1.schema.json + growth-content-atom.v1.schema.json + company/h03/runtime/growth-channel-registry.v1.json + company/h03/lib/growth_atomizer.py + company/h03/evidence/H03-GRW-001",
       "result": {
         "status": "PASS",
-        "channel_count": 7,
+        "channel_count": 9,
         "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
         "paid_ads": false,
-        "publication_authorized": false
+        "publication_authorized": false,
+        "facebook_amendment": true
       }
     },
     {
       "id": "H03-GRW-002",
       "track": "GROWTH",
       "title": "Social distribution runtime and separate persistent-profile pool contract",
-      "status": "READY",
+      "status": "DONE",
       "priority": 748,
       "depends_on": [
         "H03-GRW-001",
@@ -696,26 +697,40 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Define Growth browser-profile pool separately from Knowledge workforce, with BROWSER_CDP as viable initial transport and pluggable future official API/social-manager adapters. Credential/session bytes remain host-local."
+      "acceptance": "Define Growth browser-profile pool separately from Knowledge workforce, with BROWSER_CDP as viable initial transport and pluggable future official API/social-manager adapters. Credential/session bytes remain host-local.",
+      "artifact": "company/h03/runtime/growth-browser-profile-pool.v1.json + social-distribution-adapter-registry.v1.json + company/h03/lib/social_distribution.py + company/h03/evidence/H03-GRW-002",
+      "result": {
+        "status": "PASS",
+        "social_surface_count": 9,
+        "account_preflight_ready_count": 0,
+        "publication_authorized": false
+      }
     },
     {
       "id": "H03-ANL-001",
       "track": "ANALYTICS",
-      "title": "Marketplace and social organic analytics observation adapters",
-      "status": "READY",
+      "title": "Marketplace/social/direct-checkout analytics observation + aggregation",
+      "status": "DONE",
       "priority": 740,
       "depends_on": [
         "H03-ATTR-001"
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Normalize read-only Gumroad/Etsy/social observations such as views/clicks/orders/revenue/conversion/referrer where available into evidence-linked H03 analytics records; missing platform metrics stay UNKNOWN."
+      "acceptance": "Normalize read-only Gumroad/Etsy/social observations such as views/clicks/orders/revenue/conversion/referrer where available into evidence-linked H03 analytics records; missing platform metrics stay UNKNOWN.",
+      "artifact": "company/h03/contracts/analytics-observation.v1.schema.json + analytics-aggregate.v1.schema.json + company/h03/lib/analytics.py + company/h03/evidence/H03-ANL-001",
+      "result": {
+        "status": "PASS",
+        "baseline_observation_count": 22,
+        "live_observed_metric_count": 0,
+        "unknown_preserved": true
+      }
     },
     {
       "id": "H03-ANL-002",
       "track": "LEARNING",
       "title": "Demand/WTP feedback loop from observed channel/product outcomes",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 738,
       "depends_on": [
         "H03-ANL-001",
@@ -723,7 +738,6 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "blocked_reason": "DEPENDENCIES_NOT_DONE",
       "acceptance": "Join observed marketplace/social outcomes back to problem seeds and demand hypotheses for later score calibration without treating correlation or missing data as causation."
     },
     {
@@ -766,7 +780,7 @@
       }
     }
   ],
-  "revision": "2026-09-09 ATTR-001 + GRW-001 PASS: evidence-only attribution spine and seven-channel organic growth atomizer complete",
+  "revision": "2026-09-09 GRW-002 + ANL-001 PASS; Facebook Page/Group added, growth pool separated, multi-destination analytics ready",
   "production_organism": {
     "control_plane": "Mission Control supervises batches/products, recovery, gates and durable standing; it does not execute every prompt.",
     "worker_plane": "H03 role queues dispatch normalized cognition jobs through web-ai-adapter; MCP is not a worker hot-path requirement.",
@@ -805,8 +819,7 @@
   },
   "current_frontier": {
     "ready": [
-      "H03-GRW-002",
-      "H03-ANL-001"
+      "H03-ANL-002"
     ],
     "parallel_lanes": {
       "economic_intelligence": "H03-OPP-001 -> H03-OPP-002 + H03-DMD-001 -> H03-OPP-003 -> H03-RSCH-001",

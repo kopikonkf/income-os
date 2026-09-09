@@ -1,19 +1,59 @@
 {
-  "$schema":"https://json-schema.org/draft/2020-12/schema",
-  "$id":"die.h03.growth-blueprint.v1",
-  "type":"object",
-  "additionalProperties":false,
-  "required":["schema_version","holding_id","growth_blueprint_id","product_id","commerce_package_id","campaign_id","objective","paid_ads_enabled","channels","publication_authorized"],
-  "properties":{
-    "schema_version":{"const":"die.h03.growth-blueprint.v1"},
-    "holding_id":{"const":"H03"},
-    "growth_blueprint_id":{"type":"string","minLength":6},
-    "product_id":{"type":"string","minLength":3},
-    "commerce_package_id":{"type":"string","minLength":3},
-    "campaign_id":{"type":"string","minLength":3},
-    "objective":{"type":"string","minLength":5},
-    "paid_ads_enabled":{"const":false},
-    "channels":{"type":"array","minItems":7,"items":{"type":"object"}},
-    "publication_authorized":{"const":false}
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.growth-blueprint.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "holding_id",
+    "growth_blueprint_id",
+    "product_id",
+    "commerce_package_id",
+    "campaign_id",
+    "objective",
+    "paid_ads_enabled",
+    "channels",
+    "publication_authorized"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.h03.growth-blueprint.v1"
+    },
+    "holding_id": {
+      "const": "H03"
+    },
+    "growth_blueprint_id": {
+      "type": "string",
+      "minLength": 6
+    },
+    "product_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "commerce_package_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "campaign_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 5
+    },
+    "paid_ads_enabled": {
+      "const": false
+    },
+    "channels": {
+      "type": "array",
+      "minItems": 9,
+      "items": {
+        "type": "object"
+      }
+    },
+    "publication_authorized": {
+      "const": false
+    }
   }
 }

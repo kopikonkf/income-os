@@ -1,0 +1,114 @@
+{
+  "schema_version": "die.h03.analytics-source-registry.v1",
+  "holding_id": "H03",
+  "sources": [
+    {
+      "source_id": "gumroad",
+      "source_family": "MARKETPLACE"
+    },
+    {
+      "source_id": "etsy",
+      "source_family": "MARKETPLACE"
+    },
+    {
+      "source_id": "google_play_books",
+      "source_family": "MARKETPLACE"
+    },
+    {
+      "source_id": "payhip",
+      "source_family": "MARKETPLACE"
+    },
+    {
+      "source_id": "ko_fi",
+      "source_family": "MARKETPLACE"
+    },
+    {
+      "source_id": "lemon_squeezy",
+      "source_family": "HOSTED_CHECKOUT"
+    },
+    {
+      "source_id": "paddle",
+      "source_family": "HOSTED_CHECKOUT"
+    },
+    {
+      "source_id": "paypal_payment_links",
+      "source_family": "HOSTED_CHECKOUT"
+    },
+    {
+      "source_id": "stripe_payment_links",
+      "source_family": "HOSTED_CHECKOUT"
+    },
+    {
+      "source_id": "lynk_id",
+      "source_family": "LOCAL_LINK_COMMERCE"
+    },
+    {
+      "source_id": "owned_landing_page",
+      "source_family": "OWNED_WEB"
+    },
+    {
+      "source_id": "x",
+      "source_family": "SOCIAL"
+    },
+    {
+      "source_id": "threads",
+      "source_family": "SOCIAL"
+    },
+    {
+      "source_id": "instagram",
+      "source_family": "SOCIAL"
+    },
+    {
+      "source_id": "facebook_page",
+      "source_family": "SOCIAL"
+    },
+    {
+      "source_id": "facebook_group",
+      "source_family": "SOCIAL"
+    },
+    {
+      "source_id": "tiktok",
+      "source_family": "SOCIAL"
+    },
+    {
+      "source_id": "youtube",
+      "source_family": "SOCIAL"
+    },
+    {
+      "source_id": "pinterest",
+      "source_family": "SOCIAL"
+    },
+    {
+      "source_id": "reddit",
+      "source_family": "SOCIAL"
+    },
+    {
+      "source_id": "leanpub",
+      "source_family": "MARKETPLACE"
+    },
+    {
+      "source_id": "fourthwall",
+      "source_family": "MARKETPLACE"
+    },
+    {
+      "source_id": "sellfy",
+      "source_family": "MARKETPLACE"
+    },
+    {
+      "source_id": "shopify",
+      "source_family": "OWNED_WEB"
+    },
+    {
+      "source_id": "woocommerce",
+      "source_family": "OWNED_WEB"
+    },
+    {
+      "source_id": "creative_fabrica",
+      "source_family": "MARKETPLACE"
+    },
+    {
+      "source_id": "creative_market",
+      "source_family": "MARKETPLACE"
+    }
+  ]
+}

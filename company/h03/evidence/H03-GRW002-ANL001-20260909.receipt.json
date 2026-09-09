@@ -1,0 +1,30 @@
+{
+  "schema_version": "die.h03.batch-receipt.v1",
+  "batch_id": "H03-GRW002-ANL001-20260909",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "tasks_done": [
+    "H03-GRW-002",
+    "H03-ANL-001"
+  ],
+  "amendments": [
+    "H03-GRW-001 Facebook Page + Facebook Group"
+  ],
+  "validation": {
+    "targeted": "12/12 PASS",
+    "h03_regression": "141/141 PASS",
+    "ready_frontier": [
+      "H03-ANL-002"
+    ],
+    "grw003_status": "WAITING_FOUNDER"
+  },
+  "growth_surface_count": 9,
+  "distribution_intent_count": 9,
+  "analytics_baseline_count": 22,
+  "live_observed_metric_count": 0,
+  "custom_domain_required_to_start": false,
+  "primary_market": "GLOBAL_ENGLISH",
+  "secondary_market": "INDONESIA_LOCAL_QRIS",
+  "paid_ads": false,
+  "external_publication": false
+}

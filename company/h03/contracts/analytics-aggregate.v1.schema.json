@@ -1,0 +1,17 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"die.h03.analytics-aggregate.v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema_version","holding_id","group_by","group_key","record_count","metrics","conversion","referrers"],
+  "properties":{
+    "schema_version":{"const":"die.h03.analytics-aggregate.v1"},
+    "holding_id":{"const":"H03"},
+    "group_by":{"enum":["channel_id","listing_channel_id","campaign_id","creative_id","product_id"]},
+    "group_key":{"type":"string","minLength":1},
+    "record_count":{"type":"integer","minimum":1},
+    "metrics":{"type":"object"},
+    "conversion":{"type":"object"},
+    "referrers":{"type":"array","uniqueItems":true,"items":{"type":"string"}}
+  }
+}

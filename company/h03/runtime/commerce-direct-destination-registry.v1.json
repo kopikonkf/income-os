@@ -1,0 +1,80 @@
+{
+  "schema_version": "die.h03.commerce-direct-destination-registry.v1",
+  "holding_id": "H03",
+  "observed_at": "2026-09-09",
+  "market_strategy": {
+    "primary": "GLOBAL_ENGLISH",
+    "primary_priority_markets": ["US", "GB", "CA", "AU", "NZ"],
+    "secondary": "INDONESIA_LOCAL_QRIS",
+    "multilingual": "DEFERRED_INCREMENTAL"
+  },
+  "domain_policy": {
+    "custom_domain_required_to_start": false,
+    "custom_domain_recommended_for_scale": true,
+    "reasons": ["brand_control", "first_party_analytics", "seo", "checkout_router_control", "portability"]
+  },
+  "destinations": [
+    {
+      "destination_id": "paypal_payment_links",
+      "family": "HOSTED_PAYMENT_LINK",
+      "market_scope": "GLOBAL",
+      "checkout_role": "PAYMENT_PROCESSOR",
+      "custom_domain_required": false,
+      "digital_delivery": "H03_OR_EXTERNAL_FULFILLMENT_REQUIRED",
+      "account_state": "PREFLIGHT_REQUIRED",
+      "source_refs": ["https://www.paypal.com/in/business/accept-payments/checkout"]
+    },
+    {
+      "destination_id": "stripe_payment_links",
+      "family": "HOSTED_PAYMENT_LINK",
+      "market_scope": "GLOBAL",
+      "checkout_role": "PAYMENT_PROCESSOR",
+      "custom_domain_required": false,
+      "digital_delivery": "H03_OR_EXTERNAL_FULFILLMENT_REQUIRED",
+      "account_state": "PREFLIGHT_REQUIRED",
+      "source_refs": ["https://stripe.com/in/payments/payment-links"]
+    },
+    {
+      "destination_id": "lemon_squeezy",
+      "family": "HOSTED_CHECKOUT_MOR",
+      "market_scope": "GLOBAL",
+      "checkout_role": "MERCHANT_OF_RECORD",
+      "custom_domain_required": false,
+      "digital_delivery": "SUPPORTED_BY_PLATFORM_OR_H03",
+      "account_state": "PREFLIGHT_REQUIRED",
+      "source_refs": ["https://docs.lemonsqueezy.com/help/payments/merchant-of-record", "https://www.lemonsqueezy.com/ecommerce/digital-products"]
+    },
+    {
+      "destination_id": "paddle",
+      "family": "HOSTED_CHECKOUT_MOR",
+      "market_scope": "GLOBAL",
+      "checkout_role": "MERCHANT_OF_RECORD",
+      "custom_domain_required": false,
+      "digital_delivery": "WEBHOOK_FULFILLMENT_SUPPORTED",
+      "account_state": "PREFLIGHT_REQUIRED",
+      "source_refs": ["https://developer.paddle.com/get-started/how-paddle-works/digital-products/"]
+    },
+    {
+      "destination_id": "lynk_id",
+      "family": "LOCAL_LINK_COMMERCE",
+      "market_scope": "INDONESIA_PRIMARY",
+      "checkout_role": "PLATFORM_CHECKOUT",
+      "custom_domain_required": false,
+      "digital_delivery": "AUTOMATIC_EMAIL_DELIVERY_OBSERVED",
+      "account_state": "PREFLIGHT_REQUIRED",
+      "payment_methods_observed": ["QRIS", "E_WALLET", "BANK_TRANSFER"],
+      "source_refs": ["https://lynk.id/", "https://lynk.id/pricing", "https://lynk.id/faq"]
+    },
+    {
+      "destination_id": "owned_landing_page",
+      "family": "OWNED_WEB",
+      "market_scope": "GLOBAL",
+      "checkout_role": "ROUTER_TO_EXTERNAL_CHECKOUT",
+      "custom_domain_required": false,
+      "custom_domain_recommended": true,
+      "digital_delivery": "H03_FULFILLMENT_REQUIRED",
+      "account_state": "NOT_PROVISIONED",
+      "source_refs": []
+    }
+  ]
+}

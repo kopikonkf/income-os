@@ -1,0 +1,200 @@
+[
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-x",
+    "available_slots": 0,
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "x",
+    "creative_id": "H03-CR-h03-prod-org001-001-x-short-text",
+    "credential_values_read": false,
+    "distribution_state": "WAITING_ACCOUNT_PREFLIGHT",
+    "founder_gate_required": true,
+    "future_adapter_families": [
+      "OFFICIAL_API",
+      "SOCIAL_MANAGER"
+    ],
+    "holding_id": "H03",
+    "profile_shard_id": null,
+    "publication_authorized": false,
+    "runtime_state": "UNKNOWN",
+    "schema_version": "die.h03.social-distribution-intent.v1",
+    "session_material_persisted": false,
+    "surface": "SHORT_TEXT",
+    "transport_family": "BROWSER_CDP"
+  },
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-threads",
+    "available_slots": 0,
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "threads",
+    "creative_id": "H03-CR-h03-prod-org001-001-threads-conversational-post",
+    "credential_values_read": false,
+    "distribution_state": "WAITING_ACCOUNT_PREFLIGHT",
+    "founder_gate_required": true,
+    "future_adapter_families": [
+      "OFFICIAL_API",
+      "SOCIAL_MANAGER"
+    ],
+    "holding_id": "H03",
+    "profile_shard_id": null,
+    "publication_authorized": false,
+    "runtime_state": "UNKNOWN",
+    "schema_version": "die.h03.social-distribution-intent.v1",
+    "session_material_persisted": false,
+    "surface": "CONVERSATIONAL_POST",
+    "transport_family": "BROWSER_CDP"
+  },
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-instagram",
+    "available_slots": 0,
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "instagram",
+    "creative_id": "H03-CR-h03-prod-org001-001-instagram-carousel-or-reel-brief",
+    "credential_values_read": false,
+    "distribution_state": "WAITING_ACCOUNT_PREFLIGHT",
+    "founder_gate_required": true,
+    "future_adapter_families": [
+      "OFFICIAL_API",
+      "SOCIAL_MANAGER"
+    ],
+    "holding_id": "H03",
+    "profile_shard_id": null,
+    "publication_authorized": false,
+    "runtime_state": "UNKNOWN",
+    "schema_version": "die.h03.social-distribution-intent.v1",
+    "session_material_persisted": false,
+    "surface": "CAROUSEL_OR_REEL_BRIEF",
+    "transport_family": "BROWSER_CDP"
+  },
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-facebook_page",
+    "available_slots": 0,
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "facebook_page",
+    "creative_id": "H03-CR-h03-prod-org001-001-facebook-page-facebook-page-post",
+    "credential_values_read": false,
+    "distribution_state": "WAITING_ACCOUNT_PREFLIGHT",
+    "founder_gate_required": true,
+    "future_adapter_families": [
+      "OFFICIAL_API",
+      "SOCIAL_MANAGER"
+    ],
+    "holding_id": "H03",
+    "profile_shard_id": null,
+    "publication_authorized": false,
+    "runtime_state": "UNKNOWN",
+    "schema_version": "die.h03.social-distribution-intent.v1",
+    "session_material_persisted": false,
+    "surface": "FACEBOOK_PAGE_POST",
+    "transport_family": "BROWSER_CDP"
+  },
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-facebook_group",
+    "available_slots": 0,
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "facebook_group",
+    "creative_id": "H03-CR-h03-prod-org001-001-facebook-group-facebook-group-post",
+    "credential_values_read": false,
+    "distribution_state": "WAITING_ACCOUNT_PREFLIGHT",
+    "founder_gate_required": true,
+    "future_adapter_families": [
+      "OFFICIAL_API",
+      "SOCIAL_MANAGER"
+    ],
+    "holding_id": "H03",
+    "profile_shard_id": null,
+    "publication_authorized": false,
+    "runtime_state": "UNKNOWN",
+    "schema_version": "die.h03.social-distribution-intent.v1",
+    "session_material_persisted": false,
+    "surface": "FACEBOOK_GROUP_POST",
+    "transport_family": "BROWSER_CDP"
+  },
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-tiktok",
+    "available_slots": 0,
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "tiktok",
+    "creative_id": "H03-CR-h03-prod-org001-001-tiktok-short-video-script",
+    "credential_values_read": false,
+    "distribution_state": "WAITING_ACCOUNT_PREFLIGHT",
+    "founder_gate_required": true,
+    "future_adapter_families": [
+      "OFFICIAL_API",
+      "SOCIAL_MANAGER"
+    ],
+    "holding_id": "H03",
+    "profile_shard_id": null,
+    "publication_authorized": false,
+    "runtime_state": "UNKNOWN",
+    "schema_version": "die.h03.social-distribution-intent.v1",
+    "session_material_persisted": false,
+    "surface": "SHORT_VIDEO_SCRIPT",
+    "transport_family": "BROWSER_CDP"
+  },
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-youtube",
+    "available_slots": 0,
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "youtube",
+    "creative_id": "H03-CR-h03-prod-org001-001-youtube-short-video-or-long-outline",
+    "credential_values_read": false,
+    "distribution_state": "WAITING_ACCOUNT_PREFLIGHT",
+    "founder_gate_required": true,
+    "future_adapter_families": [
+      "OFFICIAL_API",
+      "SOCIAL_MANAGER"
+    ],
+    "holding_id": "H03",
+    "profile_shard_id": null,
+    "publication_authorized": false,
+    "runtime_state": "UNKNOWN",
+    "schema_version": "die.h03.social-distribution-intent.v1",
+    "session_material_persisted": false,
+    "surface": "SHORT_VIDEO_OR_LONG_OUTLINE",
+    "transport_family": "BROWSER_CDP"
+  },
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-pinterest",
+    "available_slots": 0,
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "pinterest",
+    "creative_id": "H03-CR-h03-prod-org001-001-pinterest-pin-title-description",
+    "credential_values_read": false,
+    "distribution_state": "WAITING_ACCOUNT_PREFLIGHT",
+    "founder_gate_required": true,
+    "future_adapter_families": [
+      "OFFICIAL_API",
+      "SOCIAL_MANAGER"
+    ],
+    "holding_id": "H03",
+    "profile_shard_id": null,
+    "publication_authorized": false,
+    "runtime_state": "UNKNOWN",
+    "schema_version": "die.h03.social-distribution-intent.v1",
+    "session_material_persisted": false,
+    "surface": "PIN_TITLE_DESCRIPTION",
+    "transport_family": "BROWSER_CDP"
+  },
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-reddit",
+    "available_slots": 0,
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "reddit",
+    "creative_id": "H03-CR-h03-prod-org001-001-reddit-community-post",
+    "credential_values_read": false,
+    "distribution_state": "WAITING_ACCOUNT_PREFLIGHT",
+    "founder_gate_required": true,
+    "future_adapter_families": [
+      "OFFICIAL_API",
+      "SOCIAL_MANAGER"
+    ],
+    "holding_id": "H03",
+    "profile_shard_id": null,
+    "publication_authorized": false,
+    "runtime_state": "UNKNOWN",
+    "schema_version": "die.h03.social-distribution-intent.v1",
+    "session_material_persisted": false,
+    "surface": "COMMUNITY_POST",
+    "transport_family": "BROWSER_CDP"
+  }
+]
