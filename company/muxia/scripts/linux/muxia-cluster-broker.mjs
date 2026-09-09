@@ -13,10 +13,21 @@ const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
 const cluster = registry.clusters.find((x) => x.cluster_id === clusterId);
 if (!cluster) throw new Error(`E_CLUSTER_NOT_REGISTERED:${clusterId}`);
 const stateRoot = path.resolve(arg('--state-root', '/var/lib/muxia/state/cluster-brokers'));
-const browserExecutable = path.resolve(arg('--browser-executable', '/opt/muxia/playwright-browsers/chromium-1234/chrome-linux64/chrome'));
-const headless = String(arg('--headless', 'true')).toLowerCase() !== 'false';
-const { PlaywrightChromiumDriver } = await import(pathToFileURL(path.join(dieHome, 'company/muxia/dist/browser/playwright-driver.js')).href);
-const driver = new PlaywrightChromiumDriver({ executablePath: browserExecutable, headless, launchTimeoutMs: 30000, shutdownTimeoutMs: 8000 });
+const attachCdpPort = Number(arg('--attach-cdp-port', '0'));
+let driver;
+if (attachCdpPort) {
+  const ownerPidFile = path.resolve(arg('--browser-owner-pid-file', path.join('/var/lib/muxia/state/external-browsers', `${clusterId}.owner.pid`)));
+  const { ExternalCdpAttachDriver } = await import(pathToFileURL(path.join(dieHome, 'company/browser/linux/external_cdp_attach_driver.mjs')).href);
+  driver = new ExternalCdpAttachDriver({
+    debugHost: '127.0.0.1', debugPort: attachCdpPort,
+    playwrightEntry: path.join(dieHome, 'company/muxia/node_modules/playwright/index.mjs'), ownerPidFile, connectTimeoutMs: 30000,
+  });
+} else {
+  const browserExecutable = path.resolve(arg('--browser-executable', '/opt/muxia/playwright-browsers/chromium-1234/chrome-linux64/chrome'));
+  const headless = String(arg('--headless', 'true')).toLowerCase() !== 'false';
+  const { PlaywrightChromiumDriver } = await import(pathToFileURL(path.join(dieHome, 'company/muxia/dist/browser/playwright-driver.js')).href);
+  driver = new PlaywrightChromiumDriver({ executablePath: browserExecutable, headless, launchTimeoutMs: 30000, shutdownTimeoutMs: 8000 });
+}
 const providerLimits = cluster.provider_tab_limits || Object.fromEntries((cluster.providers || []).filter((x) => x.membership === 'ACTIVE').map((x) => [x.provider_id, 1]));
 const defaultTtlMs = Number(cluster.lease_default_ttl_seconds || 300) * 1000;
 const broker = new ClusterBrokerCore({

@@ -30,7 +30,7 @@ def test_cluster_b_contract_is_pre_auth_and_not_active_registry_member():
         live = next(x for x in active['clusters'] if x['cluster_id']=='cluster-b')
         assert live['profile_id']=='web-ai-cluster-b'
         assert live['profile_dir']=='/var/lib/muxia/profiles/web-ai-cluster-b/browser'
-        assert live['lifecycle_state']=='ACTIVE'
+        assert live['lifecycle_state'] in {'ACTIVE','ACTIVE_ATTACH_ONLY'}
 
 
 def test_provisioner_has_no_profile_clone_or_cluster_a_secret_read_surface():

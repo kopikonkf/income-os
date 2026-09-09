@@ -1,15 +1,15 @@
 [Unit]
-Description=Factory Asset FA-121 Cluster A single-owner broker
-After=network-online.target
+Description=Factory Asset Cluster A attach-only broker
+Requires=die-muxia-cluster-a-browser.service
+After=network-online.target die-muxia-cluster-a-browser.service
 Wants=network-online.target
 
 [Service]
 Type=simple
 User=kopiko
 Group=kopiko
-WorkingDirectory=/opt/factory-asset/fa121-runtime
-Environment=PLAYWRIGHT_BROWSERS_PATH=/opt/muxia/playwright-browsers
-ExecStart=/usr/local/bin/node /opt/factory-asset/fa121-runtime/company/muxia/scripts/linux/muxia-cluster-broker.mjs --die-home /opt/factory-asset/fa121-runtime --cluster-id cluster-a --registry /opt/factory-asset/fa121-runtime/company/factory-asset/registries/web-ai-clusters.v1.json --state-root /var/lib/factory-asset/fa121-stability/broker --control-port 39121 --headless true
+WorkingDirectory=/srv/die
+ExecStart=/usr/local/bin/node /srv/die/company/muxia/scripts/linux/muxia-cluster-broker.mjs --die-home /srv/die --cluster-id cluster-a --registry /srv/die/company/factory-asset/registries/web-ai-clusters.v1.json --state-root /var/lib/muxia/state/cluster-brokers --control-port 39121 --attach-cdp-port 39221 --browser-owner-pid-file /var/lib/muxia/state/external-browsers/cluster-a.owner.pid
 Restart=on-failure
 RestartSec=5
 TimeoutStartSec=45

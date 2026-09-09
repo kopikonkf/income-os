@@ -12,7 +12,7 @@ ORCH=R/'company/die-agents/hermes/production-runtime/factory_orchestration_v2.py
 def test_cluster_b_is_canonical_with_only_observed_healthy_subset_schedulable():
  g=json.loads(REG.read_text());by={x['cluster_id']:x for x in g['clusters']}
  assert set(by)=={'cluster-a','cluster-b'}
- b=by['cluster-b'];assert b['profile_id']=='web-ai-cluster-b' and b['max_tabs']==8 and b['lifecycle_state']=='ACTIVE'
+ b=by['cluster-b'];assert b['profile_id']=='web-ai-cluster-b' and b['max_tabs']==8 and b['lifecycle_state'] in {'ACTIVE','ACTIVE_ATTACH_ONLY'}
  p={x['provider_id']:x for x in b['providers']}
  assert {k for k,v in p.items() if v['membership']=='ACTIVE'}=={'chatgpt','qwen','gemini','manus','duckai'}
  assert p['chatgpt']['membership']=='ACTIVE' and p['chatgpt']['cluster_b_readiness']=='HEALTHY' and p['chatgpt']['cluster_b_readiness_reason']=='COMPOSER_READY'
@@ -26,9 +26,10 @@ def test_fa305_readiness_fixture_preserves_secret_and_authority_boundaries():
  assert d['provider_generation_calls_performed']==0 and d['spend_usd']==0
  assert d['submission_authorized'] is False and d['publication_authorized'] is False
 
-def test_cluster_b_systemd_unit_is_headed_xvfb_single_owner_loopback_broker():
+def test_cluster_b_systemd_unit_is_attach_only_loopback_broker():
  s=UNIT.read_text();assert 'User=kopiko' in s and '--cluster-id cluster-b' in s and '--control-port 39122' in s
- assert '/usr/bin/xvfb-run -a /usr/local/bin/node' in s and '--headless false' in s and '--headless true' not in s and '/srv/die/company/factory-asset/registries/web-ai-clusters.v1.json' in s
+ assert 'Requires=die-muxia-cluster-b-browser.service' in s and '--attach-cdp-port 39222' in s
+ assert '/usr/bin/xvfb-run' not in s and '--headless' not in s and '/srv/die/company/factory-asset/registries/web-ai-clusters.v1.json' in s
  assert 'Restart=on-failure' in s
 
 def test_vector_track_is_future_only_and_dependency_ordered():

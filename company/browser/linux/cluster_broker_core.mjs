@@ -196,7 +196,7 @@ export class ClusterBrokerCore {
       this.state = {
         schema: 'die.muxia.cluster-broker-state.v1', cluster_id: this.clusterId, profile_id: this.profileId,
         profile_dir: this.profileDir, state: 'READY', browser_owner_pid: this.handle.pid,
-        browser_owner_model: 'SINGLE_LONG_LIVED_CHROMIUM_PROCESS', debug_host: '127.0.0.1', debug_port: this.handle.debugPort,
+        browser_owner_model: this.handle.ownerModel || 'SINGLE_LONG_LIVED_CHROMIUM_PROCESS', debug_host: '127.0.0.1', debug_port: this.handle.debugPort,
         control_host: '127.0.0.1', control_port: addr.port, max_tabs: this.maxTabs, started_at: new Date().toISOString(),
         credential_values_read: false, cookies_or_tokens_read: false,
       };

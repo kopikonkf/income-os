@@ -143,7 +143,8 @@ def test_runtime_start_seed_replenishes_then_starts_without_provider_call(tmp_pa
         provider.mkdir(exist_ok=True)
         return provider
     monkeypatch.setattr(rt, "ensure_shared_workspace", fake_shared)
-    monkeypatch.setattr(rt.factory_v2, "telegram_event", lambda *args, **kwargs: None)
+    import sys, types
+    monkeypatch.setitem(sys.modules, 'factory_orchestration_v2', types.SimpleNamespace(telegram_event=lambda *args, **kwargs: None))
     result = rt.start_seed()
     assert result["status"] == "STARTED"
     assert result["provider_call_performed"] is False

@@ -1,6 +1,7 @@
 [Unit]
-Description=MUXIA Cluster B single-owner browser broker
-After=network-online.target
+Description=MUXIA Cluster B attach-only broker
+Requires=die-muxia-cluster-b-browser.service
+After=network-online.target die-muxia-cluster-b-browser.service
 Wants=network-online.target
 
 [Service]
@@ -8,8 +9,7 @@ Type=simple
 User=kopiko
 Group=kopiko
 WorkingDirectory=/srv/die
-Environment=PLAYWRIGHT_BROWSERS_PATH=/opt/muxia/playwright-browsers
-ExecStart=/usr/bin/xvfb-run -a /usr/local/bin/node /srv/die/company/muxia/scripts/linux/muxia-cluster-broker.mjs --die-home /srv/die --cluster-id cluster-b --registry /srv/die/company/factory-asset/registries/web-ai-clusters.v1.json --state-root /var/lib/muxia/state/cluster-brokers --control-port 39122 --headless false
+ExecStart=/usr/local/bin/node /srv/die/company/muxia/scripts/linux/muxia-cluster-broker.mjs --die-home /srv/die --cluster-id cluster-b --registry /srv/die/company/factory-asset/registries/web-ai-clusters.v1.json --state-root /var/lib/muxia/state/cluster-brokers --control-port 39122 --attach-cdp-port 39222 --browser-owner-pid-file /var/lib/muxia/state/external-browsers/cluster-b.owner.pid
 Restart=on-failure
 RestartSec=5
 TimeoutStartSec=45
