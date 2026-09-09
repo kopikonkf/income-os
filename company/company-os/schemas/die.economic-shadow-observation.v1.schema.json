@@ -1,0 +1,202 @@
+{
+    "$schema":  "https://json-schema.org/draft/2020-12/schema",
+    "$id":  "https://aethers.my.id/schemas/die.economic-shadow-observation.v1.schema.json",
+    "title":  "DIE Economic Shadow Observation v1",
+    "type":  "object",
+    "additionalProperties":  false,
+    "required":  [
+                     "schema_version",
+                     "observation_id",
+                     "holding_id",
+                     "flow_id",
+                     "observation_window",
+                     "source_refs",
+                     "lineage_state",
+                     "economic_evidence",
+                     "closed_measurement_window",
+                     "revenue_state",
+                     "authority_boundary"
+                 ],
+    "properties":  {
+                       "schema_version":  {
+                                              "const":  "die.economic-shadow-observation.v1"
+                                          },
+                       "observation_id":  {
+                                              "type":  "string",
+                                              "pattern":  "^ECON-OBS-[A-Z0-9_-]{8,120}$"
+                                          },
+                       "holding_id":  {
+                                          "enum":  [
+                                                       "H01",
+                                                       "H03"
+                                                   ]
+                                      },
+                       "flow_id":  {
+                                       "type":  "string",
+                                       "minLength":  1
+                                   },
+                       "observation_window":  {
+                                                  "type":  "object",
+                                                  "additionalProperties":  false,
+                                                  "required":  [
+                                                                   "starts_at",
+                                                                   "ends_at"
+                                                               ],
+                                                  "properties":  {
+                                                                     "starts_at":  {
+                                                                                       "type":  "string",
+                                                                                       "format":  "date-time"
+                                                                                   },
+                                                                     "ends_at":  {
+                                                                                     "type":  "string",
+                                                                                     "format":  "date-time"
+                                                                                 }
+                                                                 }
+                                              },
+                       "source_refs":  {
+                                           "type":  "array",
+                                           "minItems":  1,
+                                           "items":  {
+                                                         "type":  "string",
+                                                         "minLength":  1
+                                                     }
+                                       },
+                       "lineage_state":  {
+                                             "enum":  [
+                                                          "LINEAGE_RICH",
+                                                          "DESIGN_ONLY",
+                                                          "PARTIAL"
+                                                      ]
+                                         },
+                       "economic_evidence":  {
+                                                 "type":  "object",
+                                                 "additionalProperties":  false,
+                                                 "required":  [
+                                                                  "cash_cost_complete",
+                                                                  "founder_time_complete",
+                                                                  "resource_usage_complete",
+                                                                  "revenue_complete",
+                                                                  "attribution_complete",
+                                                                  "economic_work_card_present",
+                                                                  "governor_decision_present"
+                                                              ],
+                                                 "properties":  {
+                                                                    "cash_cost_complete":  {
+                                                                                               "enum":  [
+                                                                                                            "YES",
+                                                                                                            "PARTIAL",
+                                                                                                            "NO"
+                                                                                                        ]
+                                                                                           },
+                                                                    "founder_time_complete":  {
+                                                                                                  "enum":  [
+                                                                                                               "YES",
+                                                                                                               "PARTIAL",
+                                                                                                               "NO"
+                                                                                                           ]
+                                                                                              },
+                                                                    "resource_usage_complete":  {
+                                                                                                    "enum":  [
+                                                                                                                 "YES",
+                                                                                                                 "PARTIAL",
+                                                                                                                 "NO"
+                                                                                                             ]
+                                                                                                },
+                                                                    "revenue_complete":  {
+                                                                                             "enum":  [
+                                                                                                          "YES",
+                                                                                                          "PARTIAL",
+                                                                                                          "NO",
+                                                                                                          "NOT_APPLICABLE"
+                                                                                                      ]
+                                                                                         },
+                                                                    "attribution_complete":  {
+                                                                                                 "enum":  [
+                                                                                                              "YES",
+                                                                                                              "PARTIAL",
+                                                                                                              "NO",
+                                                                                                              "NOT_APPLICABLE"
+                                                                                                          ]
+                                                                                             },
+                                                                    "economic_work_card_present":  {
+                                                                                                       "type":  "boolean"
+                                                                                                   },
+                                                                    "governor_decision_present":  {
+                                                                                                      "type":  "boolean"
+                                                                                                  }
+                                                                }
+                                             },
+                       "closed_measurement_window":  {
+                                                         "type":  "boolean"
+                                                     },
+                       "economic_work_card_ref":  {
+                                                      "type":  [
+                                                                   "string",
+                                                                   "null"
+                                                               ]
+                                                  },
+                       "governor_decision_ref":  {
+                                                     "type":  [
+                                                                  "string",
+                                                                  "null"
+                                                              ]
+                                                 },
+                       "revenue_state":  {
+                                             "enum":  [
+                                                          "REALIZED_OBSERVED",
+                                                          "NO_REALIZED_REVENUE_EVIDENCE",
+                                                          "UNPROVEN_NO_LIVE_ORDER_PATH"
+                                                      ]
+                                         },
+                       "observations":  {
+                                            "type":  "array",
+                                            "items":  {
+                                                          "type":  "string",
+                                                          "minLength":  1
+                                                      }
+                                        },
+                       "blocking_gaps":  {
+                                             "type":  "array",
+                                             "items":  {
+                                                           "type":  "string",
+                                                           "minLength":  1
+                                                       }
+                                         },
+                       "authority_boundary":  {
+                                                  "type":  "object",
+                                                  "additionalProperties":  false,
+                                                  "required":  [
+                                                                   "read_only",
+                                                                   "live_ingestion",
+                                                                   "spend_authorized",
+                                                                   "external_submission",
+                                                                   "payment_action",
+                                                                   "provider_plan_change",
+                                                                   "credential_mutation"
+                                                               ],
+                                                  "properties":  {
+                                                                     "read_only":  {
+                                                                                       "const":  true
+                                                                                   },
+                                                                     "live_ingestion":  {
+                                                                                            "const":  false
+                                                                                        },
+                                                                     "spend_authorized":  {
+                                                                                              "const":  false
+                                                                                          },
+                                                                     "external_submission":  {
+                                                                                                 "const":  false
+                                                                                             },
+                                                                     "payment_action":  {
+                                                                                            "const":  false
+                                                                                        },
+                                                                     "provider_plan_change":  {
+                                                                                                  "const":  false
+                                                                                              },
+                                                                     "credential_mutation":  {
+                                                                                                 "const":  false
+                                                                                             }
+                                                                 }
+                                              }
+                   }
+}

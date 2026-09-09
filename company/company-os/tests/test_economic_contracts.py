@@ -264,3 +264,39 @@ def test_pilot_plan_cannot_prematurely_open_e1_gate():
     p=pilot_plan(); p['evidence_window_gate']['satisfied']=True
     with pytest.raises(m.EconomicContractError) as x:m.validate_shadow_pilot_plan(p)
     assert x.value.code=='E_PILOT_GATE_PREMATURE'
+
+def test_shadow_observations_validate_from_canon_files():
+    import json
+    from pathlib import Path
+    base=Path(__file__).resolve().parents[1]
+    for name in ['ECON-009A_H01_SHADOW_OBSERVATION_V1.json','ECON-009B_H03_SHADOW_OBSERVATION_V1.json']:
+        o=json.load(open(base/'observations'/name,encoding='utf-8'))
+        m.validate_shadow_observation(o)
+
+def test_shadow_observation_cannot_close_without_ewc():
+    import json
+    from pathlib import Path
+    base=Path(__file__).resolve().parents[1]
+    o=json.load(open(base/'observations'/'ECON-009A_H01_SHADOW_OBSERVATION_V1.json',encoding='utf-8'))
+    o['closed_measurement_window']=True
+    with pytest.raises(m.EconomicContractError) as x:m.validate_shadow_observation(o)
+    assert x.value.code=='E_OBS_CLOSED_WITHOUT_EWC'
+
+def test_evidence_window_current_gate_is_not_satisfied():
+    import json
+    from pathlib import Path
+    base=Path(__file__).resolve().parents[1]
+    e=json.load(open(base/'observations'/'ECON-009C_SHADOW_EVIDENCE_WINDOW_EVALUATION_V1.json',encoding='utf-8'))
+    m.validate_shadow_evidence_window_evaluation(e)
+    assert e['gate_satisfied'] is False
+    assert 'H01_CLOSED_MEASUREMENT_WINDOW' in e['blocking_requirements']
+    assert 'H03_CLOSED_MEASUREMENT_WINDOW' in e['blocking_requirements']
+
+def test_evidence_window_cannot_claim_pass_with_failed_requirements():
+    import json
+    from pathlib import Path
+    base=Path(__file__).resolve().parents[1]
+    e=json.load(open(base/'observations'/'ECON-009C_SHADOW_EVIDENCE_WINDOW_EVALUATION_V1.json',encoding='utf-8'))
+    e['gate_satisfied']=True
+    with pytest.raises(m.EconomicContractError) as x:m.validate_shadow_evidence_window_evaluation(e)
+    assert x.value.code=='E_GATE_BOOLEAN_MISMATCH'

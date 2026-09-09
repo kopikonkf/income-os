@@ -1,0 +1,113 @@
+{
+    "$schema":  "https://json-schema.org/draft/2020-12/schema",
+    "$id":  "https://aethers.my.id/schemas/die.shadow-evidence-window-evaluation.v1.schema.json",
+    "title":  "DIE Shadow Evidence Window Evaluation v1",
+    "type":  "object",
+    "additionalProperties":  false,
+    "required":  [
+                     "schema_version",
+                     "evaluation_id",
+                     "gate_id",
+                     "evaluated_at",
+                     "observation_refs",
+                     "requirements",
+                     "gate_satisfied",
+                     "blocking_requirements",
+                     "authority_boundary"
+                 ],
+    "properties":  {
+                       "schema_version":  {
+                                              "const":  "die.shadow-evidence-window-evaluation.v1"
+                                          },
+                       "evaluation_id":  {
+                                             "type":  "string",
+                                             "pattern":  "^ECON-GATE-[A-Z0-9_-]{8,120}$"
+                                         },
+                       "gate_id":  {
+                                       "const":  "SUFFICIENT_SHADOW_EVIDENCE_WINDOW"
+                                   },
+                       "evaluated_at":  {
+                                            "type":  "string",
+                                            "format":  "date-time"
+                                        },
+                       "observation_refs":  {
+                                                "type":  "array",
+                                                "minItems":  2,
+                                                "items":  {
+                                                              "type":  "string",
+                                                              "minLength":  1
+                                                          }
+                                            },
+                       "requirements":  {
+                                            "type":  "array",
+                                            "minItems":  7,
+                                            "items":  {
+                                                          "type":  "object",
+                                                          "additionalProperties":  false,
+                                                          "required":  [
+                                                                           "requirement_id",
+                                                                           "status",
+                                                                           "evidence_refs",
+                                                                           "detail"
+                                                                       ],
+                                                          "properties":  {
+                                                                             "requirement_id":  {
+                                                                                                    "type":  "string",
+                                                                                                    "minLength":  1
+                                                                                                },
+                                                                             "status":  {
+                                                                                            "enum":  [
+                                                                                                         "PASS",
+                                                                                                         "FAIL"
+                                                                                                     ]
+                                                                                        },
+                                                                             "evidence_refs":  {
+                                                                                                   "type":  "array",
+                                                                                                   "items":  {
+                                                                                                                 "type":  "string",
+                                                                                                                 "minLength":  1
+                                                                                                             }
+                                                                                               },
+                                                                             "detail":  {
+                                                                                            "type":  "string",
+                                                                                            "minLength":  1
+                                                                                        }
+                                                                         }
+                                                      }
+                                        },
+                       "gate_satisfied":  {
+                                              "type":  "boolean"
+                                          },
+                       "blocking_requirements":  {
+                                                     "type":  "array",
+                                                     "items":  {
+                                                                   "type":  "string",
+                                                                   "minLength":  1
+                                                               }
+                                                 },
+                       "authority_boundary":  {
+                                                  "type":  "object",
+                                                  "additionalProperties":  false,
+                                                  "required":  [
+                                                                   "promotion_authorized",
+                                                                   "spend_authorized",
+                                                                   "autonomy_promoted",
+                                                                   "silence_is_approval"
+                                                               ],
+                                                  "properties":  {
+                                                                     "promotion_authorized":  {
+                                                                                                  "const":  false
+                                                                                              },
+                                                                     "spend_authorized":  {
+                                                                                              "const":  false
+                                                                                          },
+                                                                     "autonomy_promoted":  {
+                                                                                               "const":  false
+                                                                                           },
+                                                                     "silence_is_approval":  {
+                                                                                                 "const":  false
+                                                                                             }
+                                                                 }
+                                              }
+                   }
+}

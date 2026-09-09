@@ -1,0 +1,55 @@
+{
+    "schema_version":  "die.economic-shadow-observation.v1",
+    "observation_id":  "ECON-OBS-H01-FA202206-001",
+    "holding_id":  "H01",
+    "flow_id":  "H01-L0-ISOLATED-ASSET-LINEAGE-V1",
+    "observation_window":  {
+                               "starts_at":  "2026-09-05T20:20:52.023Z",
+                               "ends_at":  "2026-09-09T05:47:39Z"
+                           },
+    "source_refs":  [
+                        "company/factory-asset/receipts/FA-202-governed-production.receipt.json",
+                        "company/factory-asset/receipts/FA-203-canary-registry-qa.receipt.json",
+                        "company/factory-asset/receipts/FA-204-canary-metadata-rights.receipt.json",
+                        "company/factory-asset/receipts/FA-205-founder-qc.receipt.json",
+                        "company/factory-asset/receipts/FA-206-factory-asset-v1-acceptance.receipt.json"
+                    ],
+    "lineage_state":  "LINEAGE_RICH",
+    "economic_evidence":  {
+                              "cash_cost_complete":  "PARTIAL",
+                              "founder_time_complete":  "NO",
+                              "resource_usage_complete":  "PARTIAL",
+                              "revenue_complete":  "NO",
+                              "attribution_complete":  "NOT_APPLICABLE",
+                              "economic_work_card_present":  false,
+                              "governor_decision_present":  false
+                          },
+    "closed_measurement_window":  false,
+    "economic_work_card_ref":  null,
+    "governor_decision_ref":  null,
+    "revenue_state":  "NO_REALIZED_REVENUE_EVIDENCE",
+    "observations":  [
+                         "FA-202 records one governed MUXIA/ChatGPT generation with started/completed timestamps, artifact bytes/hash/dimensions and spend_usd=0 for that bounded canary.",
+                         "FA-204 records PACKAGE_READY after metadata/rights processing while submission_authorized=false and publication_authorized=false.",
+                         "FA-205 records Founder QC APPROVE, but no Founder active-duration minutes are recorded.",
+                         "FA-206 accepts the governed canary with spend_usd=0 and no submission/publication authority.",
+                         "No canonical live ECON-002 REVENUE_REALIZED/COST_*/FOUNDER_TIME/RESOURCE_USAGE events or closed EWC were found outside economic contract/test surfaces."
+                     ],
+    "blocking_gaps":  [
+                          "No closed ECON-004 Economic Work Card measurement window for this H01 trace.",
+                          "Founder QC/intervention occurred but active minutes are not measured.",
+                          "Bounded canary spend_usd=0 does not establish complete shared VPS/subscription/provider opportunity cost.",
+                          "Operational resource facts exist but have not been normalized into live ECON-002 RESOURCE_USAGE events.",
+                          "No marketplace submission/order/sale/realized revenue evidence exists for the observed trace.",
+                          "No ECON-006 Governor decision exists for a measured H01 Work Card."
+                      ],
+    "authority_boundary":  {
+                               "read_only":  true,
+                               "live_ingestion":  false,
+                               "spend_authorized":  false,
+                               "external_submission":  false,
+                               "payment_action":  false,
+                               "provider_plan_change":  false,
+                               "credential_mutation":  false
+                           }
+}

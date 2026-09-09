@@ -349,3 +349,51 @@ def validate_shadow_pilot_plan(p: dict) -> dict:
     for k in ['live_ingestion','spend_authorized','external_submission','payment_action','provider_plan_change','credential_mutation']:
         if auth.get(k) is not False: raise EconomicContractError('E_PILOT_AUTHORITY_BOUNDARY',k)
     return p
+
+
+def validate_shadow_observation(o: dict) -> dict:
+    req=['schema_version','observation_id','holding_id','flow_id','observation_window','source_refs','lineage_state','economic_evidence','closed_measurement_window','revenue_state','authority_boundary']
+    for k in req:
+        if k not in o: raise EconomicContractError('E_OBS_REQUIRED',k)
+    if o['schema_version']!='die.economic-shadow-observation.v1': raise EconomicContractError('E_OBS_SCHEMA')
+    if o['holding_id'] not in {'H01','H03'}: raise EconomicContractError('E_OBS_HOLDING')
+    if not o.get('source_refs'): raise EconomicContractError('E_OBS_SOURCE_REFS')
+    ev=o['economic_evidence']
+    for k in ['cash_cost_complete','founder_time_complete','resource_usage_complete','revenue_complete','attribution_complete']:
+        if ev.get(k) not in {'YES','PARTIAL','NO','NOT_APPLICABLE'}: raise EconomicContractError('E_OBS_COMPLETENESS',k)
+    if bool(o.get('economic_work_card_ref')) != bool(ev.get('economic_work_card_present')):
+        raise EconomicContractError('E_OBS_EWC_REF_MISMATCH')
+    if bool(o.get('governor_decision_ref')) != bool(ev.get('governor_decision_present')):
+        raise EconomicContractError('E_OBS_GOV_REF_MISMATCH')
+    if o.get('closed_measurement_window') and not ev.get('economic_work_card_present'):
+        raise EconomicContractError('E_OBS_CLOSED_WITHOUT_EWC')
+    if ev.get('governor_decision_present') and not ev.get('economic_work_card_present'):
+        raise EconomicContractError('E_OBS_GOV_WITHOUT_EWC')
+    auth=o['authority_boundary']
+    if auth.get('read_only') is not True: raise EconomicContractError('E_OBS_NOT_READ_ONLY')
+    for k in ['live_ingestion','spend_authorized','external_submission','payment_action','provider_plan_change','credential_mutation']:
+        if auth.get(k) is not False: raise EconomicContractError('E_OBS_AUTHORITY_BOUNDARY',k)
+    return o
+
+
+def validate_shadow_evidence_window_evaluation(e: dict) -> dict:
+    req=['schema_version','evaluation_id','gate_id','evaluated_at','observation_refs','requirements','gate_satisfied','blocking_requirements','authority_boundary']
+    for k in req:
+        if k not in e: raise EconomicContractError('E_GATE_REQUIRED',k)
+    if e['schema_version']!='die.shadow-evidence-window-evaluation.v1' or e['gate_id']!='SUFFICIENT_SHADOW_EVIDENCE_WINDOW':
+        raise EconomicContractError('E_GATE_SCHEMA_OR_ID')
+    reqs=e.get('requirements') or []
+    ids=[r.get('requirement_id') for r in reqs]
+    if len(ids)!=len(set(ids)): raise EconomicContractError('E_GATE_DUPLICATE_REQUIREMENT')
+    failed=[]
+    for r in reqs:
+        if r.get('status') not in {'PASS','FAIL'}: raise EconomicContractError('E_GATE_STATUS')
+        if not r.get('detail'): raise EconomicContractError('E_GATE_DETAIL')
+        if r['status']=='FAIL': failed.append(r['requirement_id'])
+    expected=(len(failed)==0)
+    if e.get('gate_satisfied') is not expected: raise EconomicContractError('E_GATE_BOOLEAN_MISMATCH')
+    if sorted(e.get('blocking_requirements') or []) != sorted(failed): raise EconomicContractError('E_GATE_BLOCKER_MISMATCH')
+    auth=e['authority_boundary']
+    for k in ['promotion_authorized','spend_authorized','autonomy_promoted','silence_is_approval']:
+        if auth.get(k) is not False: raise EconomicContractError('E_GATE_AUTHORITY_BOUNDARY',k)
+    return e
