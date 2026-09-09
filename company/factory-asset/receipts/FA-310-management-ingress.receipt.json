@@ -1,1 +1,32 @@
-{"schema":"die.factory-asset.scale-foundation-receipt.v1","task_id":"FA-310","status":"DONE","result":"PASS","evidence":["company/factory-asset/fixtures/scale-foundation/FA-310-management-ingress-post-hardening.json","company/factory-asset/fixtures/scale-foundation/FA-310-cloudflare-routes-sanitized.json","company/factory-asset/contracts/fa310-management-ingress.v1.json"],"assertions":{"guest_sshd_vs_upstream_nat_distinguished":true,"external_key_connection_after_reload_proven":true,"root_login_disabled":true,"password_auth_disabled":true,"public_key_only":true,"bounded_auth_controls":true,"automatic_rollback_armed_before_reload_then_cancelled_after_external_proof":true,"browser_and_broker_ports_loopback_only":true,"cloudflare_mcp_does_not_expose_browser_or_broker_ports":true},"authority":{"founder_network_cutover_authority_observed":true,"spend_usd":0},"credential_values_read":false,"private_key_values_read":false}
+{
+  "schema": "die.factory-asset.scale-foundation-receipt.v1.1",
+  "task_id": "FA-310",
+  "status": "DONE",
+  "result": "PASS",
+  "evidence": [
+    "company/factory-asset/fixtures/scale-foundation/FA-310-management-ingress-post-hardening.json",
+    "company/factory-asset/fixtures/scale-foundation/FA-310-cloudflare-routes-sanitized.json",
+    "company/factory-asset/contracts/fa310-management-ingress.v1.json",
+    "company/factory-asset/fixtures/scale-foundation/FA-310-breakglass-recovery-amendment.json"
+  ],
+  "assertions": {
+    "guest_sshd_vs_upstream_nat_distinguished": true,
+    "external_key_connection_after_reload_proven": true,
+    "root_login_disabled": true,
+    "bounded_auth_controls": true,
+    "automatic_rollback_armed_before_reload_then_cancelled_after_external_proof": true,
+    "browser_and_broker_ports_loopback_only": true,
+    "cloudflare_mcp_does_not_expose_browser_or_broker_ports": true,
+    "public_key_auth_enabled": true,
+    "kopiko_password_breakglass_enabled": true,
+    "management_access_not_dependent_on_windows_mcp": true
+  },
+  "authority": {
+    "founder_network_cutover_authority_observed": true,
+    "spend_usd": 0
+  },
+  "credential_values_read": false,
+  "private_key_values_read": false,
+  "revision": "BREAKGLASS_RECOVERY_AMENDMENT_2026-09-09",
+  "recovery_policy": "PUBLICKEY_PREFERRED_PASSWORD_BREAKGLASS"
+}

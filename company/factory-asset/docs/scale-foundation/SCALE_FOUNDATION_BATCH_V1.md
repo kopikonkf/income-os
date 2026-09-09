@@ -4,7 +4,7 @@ This batch closes the pre-1K infrastructure foundation without authorizing 1,000
 
 ## FA-310 management ingress
 
-The guest listens on SSH port 22 while the proven public management ingress is upstream NAT port 25013. A rollback-first cutover changed sshd to non-root, public-key-only management for `kopiko`, `MaxAuthTries 3`, `LoginGraceTime 30`, and `MaxStartups 10:30:30`. A new external Universal MCP connection succeeded after reload before the automatic rollback timer was cancelled. Browser/broker CDP/control ports 39121, 39122, 39221, and 39222 remain loopback. Cloudflare linux-mcp exposes only the cognition/management origins backed by loopback 8891/8892; no browser/CDP port is tunneled.
+The guest listens on SSH port 22 while the proven public management ingress is upstream NAT port 25013. Root login remains disabled and `kopiko` retains two independent management recovery paths: public-key authentication plus provider-password break-glass. Password recovery is intentionally preserved because the Founder has no independent provider/OOB console and Linux management must not depend on the Windows MCP bridge. Current bounded controls are `MaxAuthTries 6`, `LoginGraceTime 60`, and `MaxStartups 10:30:30`. Browser/broker CDP/control ports 39121, 39122, 39221, and 39222 remain loopback. Cloudflare linux-mcp exposes only the cognition/management origins backed by loopback 8891/8892; no browser/CDP port is tunneled.
 
 ## FA-311 persistent profile storage
 
