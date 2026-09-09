@@ -1,0 +1,429 @@
+{
+  "execution_mode": "SYNTHETIC_ACCEPTANCE_FIXTURE_NOT_LIVE",
+  "fixtures": {
+    "engagement_only": {
+      "calibrated_demand_packet_candidate": {
+        "buyer_intent_state": "MEDIUM",
+        "evidence": [
+          {
+            "evidence_id": "DMD-PAID-SUBSTITUTE",
+            "evidence_refs": [
+              "ORG001-INCOGNI-PRICING-E0016",
+              "ORG001-FTC-PEOPLESEARCH-E0199"
+            ],
+            "money": null,
+            "signal_type": "PAID_SUBSTITUTE"
+          },
+          {
+            "evidence_id": "DMD-USAGE-PROXY",
+            "evidence_refs": [
+              "ORG001-DELETEME-HOME-E0095"
+            ],
+            "money": null,
+            "signal_type": "MARKETPLACE_SALE_PROXY"
+          },
+          {
+            "evidence_id": "DMD-REPEATED-PAIN",
+            "evidence_refs": [
+              "ORG001-FTC-PEOPLESEARCH-E0206",
+              "ORG001-FTC-PEOPLESEARCH-E0210"
+            ],
+            "money": null,
+            "signal_type": "REPEATED_PAIN"
+          },
+          {
+            "evidence_id": "H03-FB-ENGAGEMENT",
+            "evidence_refs": [
+              "fixture://fb-page#impression",
+              "fixture://fb-page#click",
+              "fixture://gumroad#view"
+            ],
+            "interpretation": "Observed reach/traffic indicates attention only; it is not willingness-to-pay evidence.",
+            "money": null,
+            "observed_engagement_units": 1120,
+            "signal_type": "ENGAGEMENT_ONLY"
+          }
+        ],
+        "holding_id": "H03",
+        "packet_id": "H03-DMD-ORG001-001-CALIBRATION-CANDIDATE",
+        "pain_observation": {
+          "frequency": "MEDIUM",
+          "severity": "MEDIUM",
+          "urgency": "UNKNOWN"
+        },
+        "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+        "schema_version": "die.h03.demand-wtp-evidence.v1",
+        "truth_status": "CANDIDATE",
+        "wtp_assessment": "MEDIUM"
+      },
+      "calibration_id": "H03-DMD-CAL-83D2FD8A6978D571A5DA",
+      "calibration_state": "ENGAGEMENT_ONLY",
+      "canonical_mutation_authorized": false,
+      "causal_claim": false,
+      "causal_policy": "Observed outcomes are associated with the attributed product/channel/creative identity; calibration does not assert that a channel or creative caused the outcome.",
+      "feedback_signals": [
+        {
+          "evidence_id": "H03-FB-ENGAGEMENT",
+          "evidence_refs": [
+            "fixture://fb-page#impression",
+            "fixture://fb-page#click",
+            "fixture://gumroad#view"
+          ],
+          "interpretation": "Observed reach/traffic indicates attention only; it is not willingness-to-pay evidence.",
+          "money": null,
+          "observed_engagement_units": 1120,
+          "signal_type": "ENGAGEMENT_ONLY"
+        }
+      ],
+      "holding_id": "H03",
+      "observed_outcome_summary": {
+        "observation_count": 1,
+        "observed_metric_record_counts": {
+          "ADD_TO_CART": 0,
+          "CLICK": 1,
+          "IMPRESSION": 1,
+          "ORDER": 1,
+          "PRODUCT_VIEW": 1,
+          "REFUND": 0,
+          "REVENUE": 0
+        },
+        "observed_metric_totals": {
+          "ADD_TO_CART": 0,
+          "CLICK": 80,
+          "IMPRESSION": 1000,
+          "ORDER": 0,
+          "PRODUCT_VIEW": 40,
+          "REFUND": 0,
+          "REVENUE": 0
+        },
+        "source_ids": [
+          "gumroad"
+        ]
+      },
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "recommended_buyer_intent_state": "MEDIUM",
+      "recommended_wtp_assessment": "MEDIUM",
+      "schema_version": "die.h03.demand-feedback-calibration.v1",
+      "source_demand_packet_id": "H03-DMD-ORG001-001",
+      "source_wtp_assessment": "MEDIUM"
+    },
+    "purchase_intent": {
+      "calibrated_demand_packet_candidate": {
+        "buyer_intent_state": "STRONG",
+        "evidence": [
+          {
+            "evidence_id": "DMD-PAID-SUBSTITUTE",
+            "evidence_refs": [
+              "ORG001-INCOGNI-PRICING-E0016",
+              "ORG001-FTC-PEOPLESEARCH-E0199"
+            ],
+            "money": null,
+            "signal_type": "PAID_SUBSTITUTE"
+          },
+          {
+            "evidence_id": "DMD-USAGE-PROXY",
+            "evidence_refs": [
+              "ORG001-DELETEME-HOME-E0095"
+            ],
+            "money": null,
+            "signal_type": "MARKETPLACE_SALE_PROXY"
+          },
+          {
+            "evidence_id": "DMD-REPEATED-PAIN",
+            "evidence_refs": [
+              "ORG001-FTC-PEOPLESEARCH-E0206",
+              "ORG001-FTC-PEOPLESEARCH-E0210"
+            ],
+            "money": null,
+            "signal_type": "REPEATED_PAIN"
+          },
+          {
+            "evidence_id": "H03-FB-PURCHASE-INTENT",
+            "evidence_refs": [
+              "fixture://payhip#cart"
+            ],
+            "interpretation": "Add-to-cart is treated as bounded purchase-intent evidence, not payment or revealed spend.",
+            "money": null,
+            "observed_add_to_cart": 5,
+            "signal_type": "PURCHASE_INTENT_SEARCH"
+          }
+        ],
+        "holding_id": "H03",
+        "packet_id": "H03-DMD-ORG001-001-CALIBRATION-CANDIDATE",
+        "pain_observation": {
+          "frequency": "MEDIUM",
+          "severity": "MEDIUM",
+          "urgency": "UNKNOWN"
+        },
+        "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+        "schema_version": "die.h03.demand-wtp-evidence.v1",
+        "truth_status": "CANDIDATE",
+        "wtp_assessment": "MEDIUM"
+      },
+      "calibration_id": "H03-DMD-CAL-2F1CB79615B64D517003",
+      "calibration_state": "PURCHASE_INTENT_OBSERVED",
+      "canonical_mutation_authorized": false,
+      "causal_claim": false,
+      "causal_policy": "Observed outcomes are associated with the attributed product/channel/creative identity; calibration does not assert that a channel or creative caused the outcome.",
+      "feedback_signals": [
+        {
+          "evidence_id": "H03-FB-PURCHASE-INTENT",
+          "evidence_refs": [
+            "fixture://payhip#cart"
+          ],
+          "interpretation": "Add-to-cart is treated as bounded purchase-intent evidence, not payment or revealed spend.",
+          "money": null,
+          "observed_add_to_cart": 5,
+          "signal_type": "PURCHASE_INTENT_SEARCH"
+        }
+      ],
+      "holding_id": "H03",
+      "observed_outcome_summary": {
+        "observation_count": 1,
+        "observed_metric_record_counts": {
+          "ADD_TO_CART": 1,
+          "CLICK": 1,
+          "IMPRESSION": 0,
+          "ORDER": 0,
+          "PRODUCT_VIEW": 0,
+          "REFUND": 0,
+          "REVENUE": 0
+        },
+        "observed_metric_totals": {
+          "ADD_TO_CART": 5,
+          "CLICK": 30,
+          "IMPRESSION": 0,
+          "ORDER": 0,
+          "PRODUCT_VIEW": 0,
+          "REFUND": 0,
+          "REVENUE": 0
+        },
+        "source_ids": [
+          "payhip"
+        ]
+      },
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "recommended_buyer_intent_state": "STRONG",
+      "recommended_wtp_assessment": "MEDIUM",
+      "schema_version": "die.h03.demand-feedback-calibration.v1",
+      "source_demand_packet_id": "H03-DMD-ORG001-001",
+      "source_wtp_assessment": "MEDIUM"
+    },
+    "revealed_spend": {
+      "calibrated_demand_packet_candidate": {
+        "buyer_intent_state": "STRONG",
+        "evidence": [
+          {
+            "evidence_id": "DMD-PAID-SUBSTITUTE",
+            "evidence_refs": [
+              "ORG001-INCOGNI-PRICING-E0016",
+              "ORG001-FTC-PEOPLESEARCH-E0199"
+            ],
+            "money": null,
+            "signal_type": "PAID_SUBSTITUTE"
+          },
+          {
+            "evidence_id": "DMD-USAGE-PROXY",
+            "evidence_refs": [
+              "ORG001-DELETEME-HOME-E0095"
+            ],
+            "money": null,
+            "signal_type": "MARKETPLACE_SALE_PROXY"
+          },
+          {
+            "evidence_id": "DMD-REPEATED-PAIN",
+            "evidence_refs": [
+              "ORG001-FTC-PEOPLESEARCH-E0206",
+              "ORG001-FTC-PEOPLESEARCH-E0210"
+            ],
+            "money": null,
+            "signal_type": "REPEATED_PAIN"
+          },
+          {
+            "evidence_id": "H03-FB-REVEALED-SPEND",
+            "evidence_refs": [
+              "fixture://gumroad#orders2",
+              "fixture://gumroad#revenue2"
+            ],
+            "interpretation": "Observed paid orders/revenue associated with this product establish revealed spend for the problem/product pair; they do not prove which channel or creative caused purchase.",
+            "money": {
+              "amount_minor": 1800,
+              "currency": "USD"
+            },
+            "observed_orders": 2,
+            "signal_type": "REVEALED_SPEND"
+          }
+        ],
+        "holding_id": "H03",
+        "packet_id": "H03-DMD-ORG001-001-CALIBRATION-CANDIDATE",
+        "pain_observation": {
+          "frequency": "MEDIUM",
+          "severity": "MEDIUM",
+          "urgency": "UNKNOWN"
+        },
+        "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+        "schema_version": "die.h03.demand-wtp-evidence.v1",
+        "truth_status": "CANDIDATE",
+        "wtp_assessment": "STRONG"
+      },
+      "calibration_id": "H03-DMD-CAL-66AFB3558A7250724703",
+      "calibration_state": "REVEALED_SPEND_OBSERVED",
+      "canonical_mutation_authorized": false,
+      "causal_claim": false,
+      "causal_policy": "Observed outcomes are associated with the attributed product/channel/creative identity; calibration does not assert that a channel or creative caused the outcome.",
+      "feedback_signals": [
+        {
+          "evidence_id": "H03-FB-REVEALED-SPEND",
+          "evidence_refs": [
+            "fixture://gumroad#orders2",
+            "fixture://gumroad#revenue2"
+          ],
+          "interpretation": "Observed paid orders/revenue associated with this product establish revealed spend for the problem/product pair; they do not prove which channel or creative caused purchase.",
+          "money": {
+            "amount_minor": 1800,
+            "currency": "USD"
+          },
+          "observed_orders": 2,
+          "signal_type": "REVEALED_SPEND"
+        }
+      ],
+      "holding_id": "H03",
+      "observed_outcome_summary": {
+        "observation_count": 1,
+        "observed_metric_record_counts": {
+          "ADD_TO_CART": 0,
+          "CLICK": 0,
+          "IMPRESSION": 0,
+          "ORDER": 1,
+          "PRODUCT_VIEW": 1,
+          "REFUND": 0,
+          "REVENUE": 1
+        },
+        "observed_metric_totals": {
+          "ADD_TO_CART": 0,
+          "CLICK": 0,
+          "IMPRESSION": 0,
+          "ORDER": 2,
+          "PRODUCT_VIEW": 20,
+          "REFUND": 0,
+          "REVENUE": 1800
+        },
+        "source_ids": [
+          "gumroad"
+        ]
+      },
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "recommended_buyer_intent_state": "STRONG",
+      "recommended_wtp_assessment": "STRONG",
+      "schema_version": "die.h03.demand-feedback-calibration.v1",
+      "source_demand_packet_id": "H03-DMD-ORG001-001",
+      "source_wtp_assessment": "MEDIUM"
+    },
+    "sale_proxy": {
+      "calibrated_demand_packet_candidate": {
+        "buyer_intent_state": "STRONG",
+        "evidence": [
+          {
+            "evidence_id": "DMD-PAID-SUBSTITUTE",
+            "evidence_refs": [
+              "ORG001-INCOGNI-PRICING-E0016",
+              "ORG001-FTC-PEOPLESEARCH-E0199"
+            ],
+            "money": null,
+            "signal_type": "PAID_SUBSTITUTE"
+          },
+          {
+            "evidence_id": "DMD-USAGE-PROXY",
+            "evidence_refs": [
+              "ORG001-DELETEME-HOME-E0095"
+            ],
+            "money": null,
+            "signal_type": "MARKETPLACE_SALE_PROXY"
+          },
+          {
+            "evidence_id": "DMD-REPEATED-PAIN",
+            "evidence_refs": [
+              "ORG001-FTC-PEOPLESEARCH-E0206",
+              "ORG001-FTC-PEOPLESEARCH-E0210"
+            ],
+            "money": null,
+            "signal_type": "REPEATED_PAIN"
+          },
+          {
+            "evidence_id": "H03-FB-SALE-PROXY",
+            "evidence_refs": [
+              "fixture://gpb#orders"
+            ],
+            "interpretation": "Observed orders are a sale proxy; revenue/spend magnitude remains unknown.",
+            "money": null,
+            "observed_orders": 2,
+            "signal_type": "MARKETPLACE_SALE_PROXY"
+          }
+        ],
+        "holding_id": "H03",
+        "packet_id": "H03-DMD-ORG001-001-CALIBRATION-CANDIDATE",
+        "pain_observation": {
+          "frequency": "MEDIUM",
+          "severity": "MEDIUM",
+          "urgency": "UNKNOWN"
+        },
+        "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+        "schema_version": "die.h03.demand-wtp-evidence.v1",
+        "truth_status": "CANDIDATE",
+        "wtp_assessment": "MEDIUM"
+      },
+      "calibration_id": "H03-DMD-CAL-0A78F268679B0F586BB3",
+      "calibration_state": "SALE_PROXY_OBSERVED",
+      "canonical_mutation_authorized": false,
+      "causal_claim": false,
+      "causal_policy": "Observed outcomes are associated with the attributed product/channel/creative identity; calibration does not assert that a channel or creative caused the outcome.",
+      "feedback_signals": [
+        {
+          "evidence_id": "H03-FB-SALE-PROXY",
+          "evidence_refs": [
+            "fixture://gpb#orders"
+          ],
+          "interpretation": "Observed orders are a sale proxy; revenue/spend magnitude remains unknown.",
+          "money": null,
+          "observed_orders": 2,
+          "signal_type": "MARKETPLACE_SALE_PROXY"
+        }
+      ],
+      "holding_id": "H03",
+      "observed_outcome_summary": {
+        "observation_count": 1,
+        "observed_metric_record_counts": {
+          "ADD_TO_CART": 0,
+          "CLICK": 0,
+          "IMPRESSION": 0,
+          "ORDER": 1,
+          "PRODUCT_VIEW": 1,
+          "REFUND": 0,
+          "REVENUE": 0
+        },
+        "observed_metric_totals": {
+          "ADD_TO_CART": 0,
+          "CLICK": 0,
+          "IMPRESSION": 0,
+          "ORDER": 2,
+          "PRODUCT_VIEW": 20,
+          "REFUND": 0,
+          "REVENUE": 0
+        },
+        "source_ids": [
+          "google_play_books"
+        ]
+      },
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "recommended_buyer_intent_state": "STRONG",
+      "recommended_wtp_assessment": "MEDIUM",
+      "schema_version": "die.h03.demand-feedback-calibration.v1",
+      "source_demand_packet_id": "H03-DMD-ORG001-001",
+      "source_wtp_assessment": "MEDIUM"
+    }
+  }
+}

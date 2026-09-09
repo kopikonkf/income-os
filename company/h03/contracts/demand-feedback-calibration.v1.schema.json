@@ -1,0 +1,24 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"die.h03.demand-feedback-calibration.v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema_version","holding_id","calibration_id","problem_seed_id","product_id","source_demand_packet_id","source_wtp_assessment","calibration_state","observed_outcome_summary","feedback_signals","recommended_wtp_assessment","recommended_buyer_intent_state","causal_claim","canonical_mutation_authorized","calibrated_demand_packet_candidate"],
+  "properties":{
+    "schema_version":{"const":"die.h03.demand-feedback-calibration.v1"},
+    "holding_id":{"const":"H03"},
+    "calibration_id":{"type":"string","minLength":6},
+    "problem_seed_id":{"type":"string","minLength":3},
+    "product_id":{"type":"string","minLength":3},
+    "source_demand_packet_id":{"type":"string","minLength":3},
+    "source_wtp_assessment":{"enum":["UNKNOWN","WEAK","MEDIUM","STRONG"]},
+    "calibration_state":{"enum":["INSUFFICIENT_OBSERVED_OUTCOMES","ENGAGEMENT_ONLY","PURCHASE_INTENT_OBSERVED","SALE_PROXY_OBSERVED","REVEALED_SPEND_OBSERVED"]},
+    "observed_outcome_summary":{"type":"object"},
+    "feedback_signals":{"type":"array","items":{"type":"object"}},
+    "recommended_wtp_assessment":{"enum":["UNKNOWN","WEAK","MEDIUM","STRONG"]},
+    "recommended_buyer_intent_state":{"enum":["UNKNOWN","WEAK","MEDIUM","STRONG"]},
+    "causal_claim":{"const":false},
+    "canonical_mutation_authorized":{"const":false},
+    "calibrated_demand_packet_candidate":{"type":["object","null"]}
+  }
+}

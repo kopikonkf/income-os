@@ -281,3 +281,14 @@ Destination architecture: GLOBAL_ENGLISH primary; INDONESIA_LOCAL_QRIS secondary
 ANL-001 normalizes marketplace/social/hosted-checkout/local-link/owned-web observations. Current baseline has 22 observations with metrics UNKNOWN and zero live observed metrics. Aggregates by channel/listing/campaign/creative/product preserve UNKNOWN and derive conversion only from observed numerator+denominator.
 
 New dependency-valid READY frontier: H03-ANL-002. H03-GRW-003 remains WAITING_FOUNDER.
+
+
+---
+
+## H03-ANL-002 — Demand/WTP feedback loop — DONE/PASS — 2026-09-09
+
+ANL-002 now joins evidence-backed channel/product outcomes back to the originating Problem Seed and Demand/WTP packet. Engagement cannot lift WTP; add-to-cart can strengthen buyer intent only; observed order without revenue is a sale proxy; observed order plus revenue can produce a `REVEALED_SPEND` calibration candidate.
+
+Current real unpublished state remains `INSUFFICIENT_OBSERVED_OUTCOMES`: all live analytics are UNKNOWN, no feedback signal exists, no candidate Demand Packet is created, and WTP remains `MEDIUM`. Missing data is not zero. Correlation is not causation. Canonical mutation authority remains false.
+
+No low-risk READY frontier remains after this task. `H03-DIST-001` and `H03-GRW-003` remain WAITING_FOUNDER; `H03-ECO-002` remains BLOCKED/MEDIUM.

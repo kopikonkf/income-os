@@ -1,0 +1,18 @@
+{
+  "canonical_mutation_authorized": false,
+  "current_live_state": "INSUFFICIENT_OBSERVED_OUTCOMES",
+  "current_recommended_wtp": "MEDIUM",
+  "holding_id": "H03",
+  "principles": [
+    "Missing analytics remain UNKNOWN and produce no calibration candidate.",
+    "Engagement can indicate attention but cannot establish willingness to pay.",
+    "Add-to-cart can strengthen buyer-intent evidence but is not payment.",
+    "Observed orders without revenue are sale-proxy evidence, not known spend magnitude.",
+    "Observed orders plus observed revenue can create REVEALED_SPEND evidence and recommend STRONG WTP.",
+    "A zero observed order value does not automatically downgrade demand because channel, creative, exposure quality and sample size are confounders.",
+    "Observed channel/product outcomes are associations; causal_claim is always false in this layer.",
+    "Calibration output is a CANDIDATE only; canonical demand mutation is never authorized by ANL-002."
+  ],
+  "schema_version": "die.h03.demand-feedback-policy.v1",
+  "task_id": "H03-ANL-002"
+}

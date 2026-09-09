@@ -1,0 +1,49 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-ANL-002",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "current_live_calibration_state": "INSUFFICIENT_OBSERVED_OUTCOMES",
+    "current_live_observation_count": 22,
+    "current_live_feedback_signal_count": 0,
+    "current_live_wtp": "MEDIUM",
+    "current_live_candidate_created": false,
+    "synthetic_ladder": {
+      "engagement_only": {
+        "state": "ENGAGEMENT_ONLY",
+        "recommended_wtp": "MEDIUM",
+        "recommended_intent": "MEDIUM"
+      },
+      "purchase_intent": {
+        "state": "PURCHASE_INTENT_OBSERVED",
+        "recommended_wtp": "MEDIUM",
+        "recommended_intent": "STRONG"
+      },
+      "sale_proxy": {
+        "state": "SALE_PROXY_OBSERVED",
+        "recommended_wtp": "MEDIUM",
+        "recommended_intent": "STRONG"
+      },
+      "revealed_spend": {
+        "state": "REVEALED_SPEND_OBSERVED",
+        "recommended_wtp": "STRONG",
+        "recommended_intent": "STRONG"
+      }
+    },
+    "engagement_does_not_lift_wtp": true,
+    "zero_order_does_not_auto_downgrade_demand": true,
+    "revealed_spend_requires_order_plus_revenue": true,
+    "causal_claim": false,
+    "canonical_mutation_authorized": false
+  },
+  "validation": {
+    "targeted_demand_feedback": "6/6 PASS",
+    "h03_regression": "147/147 PASS",
+    "graph_frontier": [],
+    "dist_status": "WAITING_FOUNDER",
+    "grw003_status": "WAITING_FOUNDER",
+    "eco002_status": "BLOCKED",
+    "json_parse": "PASS"
+  }
+}

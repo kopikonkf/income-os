@@ -1,0 +1,62 @@
+{
+  "calibrated_demand_packet_candidate": null,
+  "calibration_id": "H03-DMD-CAL-FC38D601E4EBDECC02AD",
+  "calibration_state": "INSUFFICIENT_OBSERVED_OUTCOMES",
+  "canonical_mutation_authorized": false,
+  "causal_claim": false,
+  "causal_policy": "Observed outcomes are associated with the attributed product/channel/creative identity; calibration does not assert that a channel or creative caused the outcome.",
+  "feedback_signals": [],
+  "holding_id": "H03",
+  "observed_outcome_summary": {
+    "observation_count": 22,
+    "observed_metric_record_counts": {
+      "ADD_TO_CART": 0,
+      "CLICK": 0,
+      "IMPRESSION": 0,
+      "ORDER": 0,
+      "PRODUCT_VIEW": 0,
+      "REFUND": 0,
+      "REVENUE": 0
+    },
+    "observed_metric_totals": {
+      "ADD_TO_CART": 0,
+      "CLICK": 0,
+      "IMPRESSION": 0,
+      "ORDER": 0,
+      "PRODUCT_VIEW": 0,
+      "REFUND": 0,
+      "REVENUE": 0
+    },
+    "source_ids": [
+      "google_play_books",
+      "gumroad",
+      "leanpub",
+      "fourthwall",
+      "ko_fi",
+      "lemon_squeezy",
+      "payhip",
+      "sellfy",
+      "shopify",
+      "woocommerce",
+      "etsy",
+      "creative_fabrica",
+      "creative_market",
+      "x",
+      "threads",
+      "instagram",
+      "facebook_page",
+      "facebook_group",
+      "tiktok",
+      "youtube",
+      "pinterest",
+      "reddit"
+    ]
+  },
+  "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+  "product_id": "H03-PROD-ORG001-001",
+  "recommended_buyer_intent_state": "MEDIUM",
+  "recommended_wtp_assessment": "MEDIUM",
+  "schema_version": "die.h03.demand-feedback-calibration.v1",
+  "source_demand_packet_id": "H03-DMD-ORG001-001",
+  "source_wtp_assessment": "MEDIUM"
+}
