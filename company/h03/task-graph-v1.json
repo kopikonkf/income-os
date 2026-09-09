@@ -359,7 +359,7 @@
       "id": "H03-RT-004",
       "track": "RUNTIME",
       "title": "Role queues plus fan-out/fan-in continuity state machine",
-      "status": "READY",
+      "status": "DONE",
       "priority": 840,
       "depends_on": [
         "H03-RT-001",
@@ -367,20 +367,27 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Implement curator/research/synthesis/producer queues with durable artifacts as continuity, idempotent dispatch, bounded fan-out/fan-in and no dependency on continuing the same provider chat thread."
+      "acceptance": "Implement curator/research/synthesis/producer queues with durable artifacts as continuity, idempotent dispatch, bounded fan-out/fan-in and no dependency on continuing the same provider chat thread.",
+      "artifact": "company/h03/contracts/orchestrator-queue-state.v1.schema.json + company/h03/lib/orchestrator_queue.py",
+      "result": {
+        "status": "PASS",
+        "idempotent_enqueue": true,
+        "bounded_fanout": true,
+        "artifact_fanin": true,
+        "chat_thread_dependency": false
+      }
     },
     {
       "id": "H03-RT-005",
       "track": "RUNTIME",
       "title": "Worker retry, backpressure, fallback and anti-stall policy",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 838,
       "depends_on": [
         "H03-RT-004"
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "blocked_reason": "DEPENDENCIES_NOT_DONE",
       "acceptance": "Bound retries; distinguish auth/rate-limit/provider/runtime failures; circuit-break unhealthy worker slots; route eligible jobs to alternate provider/profile; expose backlog/backpressure instead of silent stalls."
     },
     {
@@ -418,7 +425,7 @@
       "id": "H03-RSCH-001",
       "track": "RESEARCH",
       "title": "Deep Research Work Card, source classes and stop-policy contract",
-      "status": "READY",
+      "status": "DONE",
       "priority": 820,
       "depends_on": [
         "H03-OPP-003",
@@ -426,13 +433,25 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Define research questions, source classes, evidence requirements, contradiction tracking, WTP/market subquestions, bounded budget and diminishing-return stop conditions. Research breadth is sufficient-confidence driven, not crawl-the-entire-internet literalism."
+      "acceptance": "Define research questions, source classes, evidence requirements, contradiction tracking, WTP/market subquestions, bounded budget and diminishing-return stop conditions. Research breadth is sufficient-confidence driven, not crawl-the-entire-internet literalism.",
+      "artifact": "company/h03/contracts/research-plan.v1.schema.json + company/h03/lib/research_plan.py",
+      "result": {
+        "status": "PASS",
+        "bounded_questions": true,
+        "source_classes": true,
+        "stop_policy": [
+          "STOP_BUDGET",
+          "STOP_CONFIDENCE",
+          "STOP_DIMINISHING_RETURNS",
+          "CONTINUE"
+        ]
+      }
     },
     {
       "id": "H03-RSCH-002",
       "track": "RESEARCH",
       "title": "Parallel multi-provider research fan-out execution",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 818,
       "depends_on": [
         "H03-RSCH-001",
@@ -441,7 +460,6 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "blocked_reason": "DEPENDENCIES_NOT_DONE",
       "acceptance": "Dispatch bounded research subjobs to eligible providers such as Qwen/Gemini/Manus, ingest their source/evidence outputs through KF-002, and emit independently addressable research packets with typed terminal status."
     },
     {
@@ -653,7 +671,7 @@
       "acceptance": "Run a bounded internal batch sized by current safe capacity, not a fixed product-count target. Measure throughput, queue latency, terminal failure rate, retry count, fallback success, provider/profile bottlenecks and resource usage; no external publication."
     }
   ],
-  "revision": "2026-09-09 Batch C PASS: H03-OPP-003 + H03-RT-003; next RSCH-001 + RT-004 READY",
+  "revision": "2026-09-09 Batch D PASS: H03-RSCH-001 + H03-RT-004; next RSCH-002 + RT-005 READY",
   "production_organism": {
     "control_plane": "Mission Control supervises batches/products, recovery, gates and durable standing; it does not execute every prompt.",
     "worker_plane": "H03 role queues dispatch normalized cognition jobs through web-ai-adapter; MCP is not a worker hot-path requirement.",
@@ -692,8 +710,8 @@
   },
   "current_frontier": {
     "ready": [
-      "H03-RSCH-001",
-      "H03-RT-004"
+      "H03-RSCH-002",
+      "H03-RT-005"
     ],
     "parallel_lanes": {
       "economic_intelligence": "H03-OPP-001 -> H03-OPP-002 + H03-DMD-001 -> H03-OPP-003 -> H03-RSCH-001",

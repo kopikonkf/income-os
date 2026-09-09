@@ -157,3 +157,13 @@ New READY frontier: `H03-OPP-003` Worth-Making gate and `H03-RT-003` persistent 
 - `H03-RT-003`: persistent browser runtime is modeled as sanitized profile shards; one multi-provider shard is valid initially, with alternate-shard fallback when observed health/capacity requires it.
 
 New READY frontier: `H03-RSCH-001` Deep Research Work Card/stop-policy and `H03-RT-004` role queues + fan-out/fan-in continuity state machine.
+
+
+---
+
+## H03 Batch D — RSCH-001 + RT-004 — DONE/PASS — 2026-09-09
+
+- `H03-RSCH-001`: bounded research-plan contract now defines question lanes, source classes, independent-source minima, job/source budgets and stop conditions.
+- `H03-RT-004`: durable role queues support idempotent enqueue, explicit transitions, bounded fan-out, artifact-only fan-in readiness and typed terminal failure.
+
+New READY frontier: `H03-RSCH-002` parallel multi-provider research execution and `H03-RT-005` retry/backpressure/fallback anti-stall policy.

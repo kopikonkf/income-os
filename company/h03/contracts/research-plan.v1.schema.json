@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.research-plan.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","research_plan_id","holding_id","problem_seed_id","worth_making_decision_id","questions","budget","stop_policy","truth_status"],
+  "properties": {
+    "schema_version": {"const":"die.h03.research-plan.v1"},
+    "research_plan_id": {"type":"string","minLength":6},
+    "holding_id": {"const":"H03"},
+    "problem_seed_id": {"type":"string","minLength":6},
+    "worth_making_decision_id": {"type":"string","minLength":3},
+    "questions": {
+      "type":"array","minItems":1,
+      "items": {
+        "type":"object","additionalProperties":false,"required":["question_id","question","lane","critical","required_source_classes","minimum_independent_sources"],
+        "properties": {
+          "question_id":{"type":"string","minLength":2},
+          "question":{"type":"string","minLength":8},
+          "lane":{"enum":["MARKET_WTP","COMMUNITY_PAIN","OFFICIAL_DOMAIN","ACADEMIC","COMPETITOR_SOLUTIONS","GENERAL_KNOWLEDGE"]},
+          "critical":{"type":"boolean"},
+          "required_source_classes":{"type":"array","minItems":1,"items":{"type":"string"},"uniqueItems":true},
+          "minimum_independent_sources":{"type":"integer","minimum":1,"maximum":20}
+        }
+      }
+    },
+    "budget": {"type":"object","additionalProperties":false,"required":["max_research_jobs","max_sources"],"properties":{"max_research_jobs":{"type":"integer","minimum":1,"maximum":64},"max_sources":{"type":"integer","minimum":1,"maximum":1000}}},
+    "stop_policy": {"type":"object","additionalProperties":false,"required":["minimum_source_classes","diminishing_returns_window_packets","minimum_new_supported_findings_in_window"],"properties":{"minimum_source_classes":{"type":"integer","minimum":1},"diminishing_returns_window_packets":{"type":"integer","minimum":1},"minimum_new_supported_findings_in_window":{"type":"integer","minimum":0}}},
+    "truth_status": {"const":"PLAN"}
+  }
+}

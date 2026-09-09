@@ -1,0 +1,18 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-RSCH-001",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "bounded_research_questions": true,
+    "source_classes_explicit": true,
+    "critical_coverage_required": true,
+    "budget_stop": true,
+    "confidence_stop": true,
+    "diminishing_returns_stop": true
+  },
+  "validation": {
+    "h03_regression": "67/67 PASS",
+    "graph_frontier": "H03-RSCH-002,H03-RT-005"
+  }
+}
