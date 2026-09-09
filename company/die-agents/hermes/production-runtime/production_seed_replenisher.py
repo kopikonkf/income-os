@@ -22,7 +22,8 @@ from typing import Any
 HERE = Path(__file__).resolve().parents[1]
 if str(HERE) not in sys.path:
     sys.path.insert(0, str(HERE))
-from production_seed_selector import produced_seed_ids
+from production_seed_selector import produced_seed_ids, produced_seed_names
+from production_seed_ledger import DEFAULT_LEDGER, consumed, normalize_noun
 
 SCHEMA = "die.production-seed-replenishment.v1"
 DEFAULT_DB = Path("/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db")
@@ -91,8 +92,8 @@ def _eligible_seed_rows(connection: sqlite3.Connection) -> list[sqlite3.Row]:
     ).fetchall()
 
 
-def _remaining(connection: sqlite3.Connection, used: set[str]) -> list[sqlite3.Row]:
-    return [row for row in _eligible_seed_rows(connection) if str(row["id"]) not in used]
+def _remaining(connection: sqlite3.Connection, used: set[str], used_names:set[str]) -> list[sqlite3.Row]:
+    return [row for row in _eligible_seed_rows(connection) if str(row["id"]) not in used and normalize_noun(str(row["canonical_name"])) not in used_names]
 
 
 def _candidate_rows(connection: sqlite3.Connection, policy: dict[str, Any]) -> list[sqlite3.Row]:
@@ -119,7 +120,7 @@ def _candidate_rows(connection: sqlite3.Connection, policy: dict[str, Any]) -> l
     ).fetchall()
 
 
-def _ranked_candidates(connection: sqlite3.Connection, policy: dict[str, Any]) -> list[dict[str, Any]]:
+def _ranked_candidates(connection: sqlite3.Connection, policy: dict[str, Any], consumed_names:set[str]) -> list[dict[str, Any]]:
     direct = [_norm(x) for x in policy["direct_terms"]]
     utility = [_norm(x) for x in policy["utility_terms"]]
     direct_rank = {name: i for i, name in enumerate(direct)}
@@ -127,10 +128,12 @@ def _ranked_candidates(connection: sqlite3.Connection, policy: dict[str, Any]) -
     policy_names = set(direct_rank) | set(util_rank)
     seed_names = [str(r[0]) for r in connection.execute("SELECT canonical_name FROM seeds")]
     rows: list[dict[str, Any]] = []
+    seen_candidate_names:set[str]=set()
     for row in _candidate_rows(connection, policy):
         name = _norm(row["canonical_name"])
-        if name not in policy_names or _represented(str(row["canonical_name"]), seed_names):
+        if name not in policy_names or name in consumed_names or name in seen_candidate_names or _represented(str(row["canonical_name"]), seed_names):
             continue
+        seen_candidate_names.add(name)
         evidence_level = "DIRECT_TERM_OBSERVED" if name in direct_rank else "CATEGORY_LEVEL_COMPOSABLE_RASTER"
         rank_group = 0 if evidence_level == "DIRECT_TERM_OBSERVED" else 1
         rank = direct_rank.get(name, util_rank.get(name, 10**6))
@@ -196,17 +199,21 @@ def replenish_seed_pool(
     policy_path: Path = DEFAULT_POLICY,
     state_root: Path = DEFAULT_STATE,
     dry_run: bool = False,
+    ledger_path: Path | None = None,
 ) -> dict[str, Any]:
     policy = load_policy(policy_path)
     _assert_no_pending_receipt(state_root)
     used = produced_seed_ids(workspaces_root)
+    used_names = produced_seed_names(workspaces_root)
+    ledger_ids,ledger_names = consumed(ledger_path)
+    used |= ledger_ids; used_names |= ledger_names
     connection = sqlite3.connect(str(db_path), timeout=30)
     connection.row_factory = sqlite3.Row
     intent_path: Path | None = None
     intent: dict[str, Any] | None = None
     committed = False
     try:
-        remaining_before = _remaining(connection, used)
+        remaining_before = _remaining(connection, used, used_names)
         low = int(policy["low_watermark"])
         target = int(policy["target_pool_size"])
         max_promotions = int(policy["max_promotions_per_run"])
@@ -219,7 +226,7 @@ def replenish_seed_pool(
             }
 
         need = min(max(0, target - len(remaining_before)), max_promotions)
-        ranked = _ranked_candidates(connection, policy)
+        ranked = _ranked_candidates(connection, policy, used_names)
         selected = ranked[:need]
         planned = []
         next_num = _next_seed_number(connection)
@@ -321,7 +328,7 @@ def replenish_seed_pool(
         connection.commit()
         committed = True
 
-        remaining_after = _remaining(connection, used)
+        remaining_after = _remaining(connection, used, used_names)
         receipt = {
             "schema": SCHEMA, "status": "PROMOTED", "run_id": run_id,
             "policy_revision": policy["revision"], "policy_sha256": csha(policy),
@@ -355,10 +362,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--workspaces", type=Path, default=Path(os.environ.get("DIE_WORKSPACES_ROOT", DEFAULT_WORKSPACES)))
     parser.add_argument("--policy", type=Path, default=DEFAULT_POLICY)
     parser.add_argument("--state-root", type=Path, default=DEFAULT_STATE)
+    parser.add_argument("--ledger", type=Path, default=Path(os.environ.get("DIE_PRODUCTION_SEED_LEDGER", DEFAULT_LEDGER)))
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
     try:
-        result = replenish_seed_pool(args.db, args.workspaces, policy_path=args.policy, state_root=args.state_root, dry_run=args.dry_run)
+        result = replenish_seed_pool(args.db, args.workspaces, policy_path=args.policy, state_root=args.state_root, dry_run=args.dry_run, ledger_path=args.ledger)
     except (OSError, sqlite3.Error, ValueError, RuntimeError) as exc:
         print(json.dumps({"schema": SCHEMA, "status": "BLOCKED", "error": type(exc).__name__, "message": str(exc)[:1000]}, sort_keys=True))
         return 2

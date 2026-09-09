@@ -1,0 +1,12 @@
+{
+  "schema":"die.production-seed-ledger-receipt.v1",
+  "status":"PASS",
+  "result":"PRODUCTION_SEED_DEDUP_HARDENED",
+  "purpose":"Prevent a produced semantic seed noun from being selected or replenished again under a different provider route or colliding seed identifier.",
+  "ledger":{"runtime_path":"/var/lib/die/state/production-runtime/production_seed_ledger.db","semantic_unique_key":"normalized_noun","canonical_seed_identity_source":"NORMAL_PRODUCTION_WORKSPACE_ONLY","fa124_identity_rule":"FA124 seed IDs are provenance evidence only; FA124 normalized nouns participate in dedupe."},
+  "bootstrap":{"consumed_nouns":104,"evidence_rows":132,"production_workspace_evidence":32,"fa124_accepted_evidence":100},
+  "selection":{"exclude_consumed_seed_ids":true,"exclude_consumed_normalized_nouns":true,"filesystem_history_remains_defensive_fallback":true},
+  "replenishment":{"exclude_consumed_normalized_nouns":true,"dedupe_normalized_candidate_variants_within_same_run":true,"low_watermark":8,"target_pool_size":24},
+  "authority":{"provider_call":false,"submission":false,"publication":false,"spend_usd":0},
+  "evidence":["company/factory-asset/fixtures/production-runtime/PROD-SEED-LEDGER-bootstrap.json","company/die-agents/hermes/production_seed_ledger.py","company/die-agents/hermes/production_seed_selector.py","company/die-agents/hermes/production-runtime/production_seed_replenisher.py"]
+}

@@ -9,6 +9,7 @@ import re
 import sqlite3
 from pathlib import Path
 from typing import Any
+from production_seed_ledger import DEFAULT_LEDGER, consumed, normalize_noun
 
 SCHEMA = "die.production-seed-selection.v1"
 DEFAULT_DB = Path("/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db")
@@ -68,6 +69,20 @@ def produced_seed_ids(workspaces_root: Path) -> set[str]:
     return used
 
 
+
+def produced_seed_names(workspaces_root: Path) -> set[str]:
+    names:set[str]=set()
+    if not workspaces_root.exists(): return names
+    for workspace in sorted(p for p in workspaces_root.iterdir() if p.is_dir()):
+        path=workspace/'seed-selection.json'
+        if not path.is_file(): continue
+        try: payload=json.loads(path.read_text(encoding='utf-8')); seed=payload.get('seed') if isinstance(payload,dict) else None
+        except Exception: continue
+        if isinstance(seed,dict) and isinstance(seed.get('canonical_name'),str):
+            n=normalize_noun(seed['canonical_name'])
+            if n:names.add(n)
+    return names
+
 def _expressions(connection: sqlite3.Connection) -> dict[str, dict[str, Any]]:
     exists = connection.execute(
         "SELECT 1 FROM sqlite_master WHERE type='table' AND name='production_seed_expressions'"
@@ -95,11 +110,14 @@ def _expressions(connection: sqlite3.Connection) -> dict[str, dict[str, Any]]:
     }
 
 
-def select_seed(db_path: Path, workspaces_root: Path) -> dict[str, Any]:
+def select_seed(db_path: Path, workspaces_root: Path, *, ledger_path: Path | None = None) -> dict[str, Any]:
     if not db_path.is_file():
         raise FileNotFoundError(f"object atlas database unavailable: {db_path}")
 
     used = produced_seed_ids(workspaces_root)
+    used_names = produced_seed_names(workspaces_root)
+    ledger_ids,ledger_names = consumed(ledger_path)
+    used |= ledger_ids; used_names |= ledger_names
     uri = f"file:{db_path.resolve()}?mode=ro"
     connection = sqlite3.connect(uri, uri=True)
     connection.row_factory = sqlite3.Row
@@ -129,7 +147,7 @@ def select_seed(db_path: Path, workspaces_root: Path) -> dict[str, Any]:
 
     for row in rows:
         seed_id = str(row["id"])
-        if seed_id in used:
+        if seed_id in used or normalize_noun(str(row['canonical_name'])) in used_names:
             continue
         return {
             "schema": SCHEMA,
@@ -152,6 +170,7 @@ def select_seed(db_path: Path, workspaces_root: Path) -> dict[str, Any]:
             },
             "commercial_expression": expressions.get(seed_id),
             "excluded_used_seed_count": len(used),
+            "excluded_used_noun_count": len(used_names),
             "used_seed_ids": sorted(used),
             "authority_effect": "NONE",
             "existing_authority_unchanged": True,
@@ -162,6 +181,7 @@ def select_seed(db_path: Path, workspaces_root: Path) -> dict[str, Any]:
         "status": "NO_ELIGIBLE_SEED",
         "selection_policy": SELECTION_POLICY,
         "excluded_used_seed_count": len(used),
+        "excluded_used_noun_count": len(used_names),
         "used_seed_ids": sorted(used),
         "authority_effect": "NONE",
         "existing_authority_unchanged": True,
@@ -172,9 +192,10 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--db", type=Path, default=Path(os.environ.get("DIE_OBJECT_ATLAS_DB", DEFAULT_DB)))
     parser.add_argument("--workspaces", type=Path, default=Path(os.environ.get("DIE_WORKSPACES_ROOT", DEFAULT_WORKSPACES)))
+    parser.add_argument("--ledger", type=Path, default=Path(os.environ.get("DIE_PRODUCTION_SEED_LEDGER", DEFAULT_LEDGER)))
     args = parser.parse_args(argv)
     try:
-        result = select_seed(args.db, args.workspaces)
+        result = select_seed(args.db, args.workspaces, ledger_path=args.ledger)
     except (FileNotFoundError, sqlite3.Error) as exc:
         print(json.dumps({"schema": SCHEMA, "status": "BLOCKED", "error": type(exc).__name__, "message": str(exc)}, sort_keys=True))
         return 2
