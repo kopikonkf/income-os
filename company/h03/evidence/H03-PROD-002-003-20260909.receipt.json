@@ -1,0 +1,19 @@
+{
+  "schema_version": "die.h03.batch-receipt.v1",
+  "batch_id": "H03-PROD-002-003-20260909",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "tasks_done": [
+    "H03-PROD-002",
+    "H03-PROD-003"
+  ],
+  "validation": {
+    "targeted": "11/11 PASS",
+    "h03_regression": "113/113 PASS",
+    "ready_frontier": [
+      "H03-ORG-001"
+    ]
+  },
+  "live_provider_call_claimed": false,
+  "external_publication": false
+}
