@@ -1,21 +1,23 @@
 {
   "schema": "die.factory-asset.web-ai-cluster-registry.v1",
-  "revision": "1.2.0-headful-default-owner-health",
+  "revision": "1.3.0-external-persistent-browser-attach-only",
   "status": "CANONICAL_ACTIVE_MULTI_CLUSTER",
   "rules": {
-    "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS_PER_CLUSTER_PROFILE",
+    "browser_owner_model": "EXTERNAL_PERSISTENT_CHROME_PROCESS_PER_CLUSTER_PROFILE; MUXIA_BROKER_ATTACH_ONLY_OVER_LOOPBACK_CDP",
     "max_tabs_per_cluster": 8,
     "profile_secret_copy_allowed": false,
     "credential_cookie_token_export_allowed": false,
-    "auth_handoff": "VISIBLE_NO_CDP_PRE_DISPATCH_THEN_CLOSE_PROFILE_OWNER_BEFORE_BROKER_START",
+    "auth_handoff": "VISIBLE_PROFILE_OWNER_FOR_HUMAN_REPAIR_THEN_RETURN_SAME_PERSISTENT_PROFILE_TO_EXTERNAL_BROWSER_SERVICE; BROKER ATTACHES OVER LOOPBACK_CDP",
     "provider_failure_isolation": "TAB_OR_PROVIDER_FAILURE_MUST_NOT_FAIL_HEALTHY_SIBLING_PROVIDERS",
-    "cluster_failure_domain": "BROWSER_OWNER_OR_PROFILE_FAILURE",
-    "retirement": "DRAIN_NEW_LEASES_THEN_CLOSE_TABS_THEN_STOP_OWNER_THEN_ARCHIVE_OR_DELETE_ONLY_WITH_GOVERNED_AUTHORITY",
+    "cluster_failure_domain": "EXTERNAL_BROWSER_OWNER_OR_PROFILE_FAILURE; BROKER_FAILURE_MUST_NOT_TERMINATE_HEALTHY_EXTERNAL_BROWSER",
+    "retirement": "DRAIN_NEW_LEASES_THEN_CLOSE_LEASED_TABS_THEN_STOP_BROKER_THEN_STOP_EXTERNAL_BROWSER_OWNER; ARCHIVE_OR_DELETE_ONLY_WITH_GOVERNED_AUTHORITY",
     "production_browser_mode_policy": "HEADFUL_OR_VIRTUAL_DISPLAY_DEFAULT; HEADLESS_REQUIRES_PROVIDER_SPECIFIC_ACCEPTANCE",
     "provider_sensitivity_policy": "BROWSER_MODE_AND_AUTOMATION_TRANSPORT_ARE_PROVIDER_SPECIFIC_CAPABILITIES_NOT_GLOBAL_ASSUMPTIONS",
     "interactive_auth_policy": "VISIBLE_BROWSER_WITH_CDP_OFF_WHEN_PROVIDER_VERIFICATION_REQUIRES_HUMAN_INTERACTION; CLOSE_VISIBLE_OWNER_BEFORE_GOVERNED_AUTOMATION_OWNER_START",
     "checkpoint_policy": "DO_NOT_BYPASS_PROVIDER_CHALLENGES; FAIL_CLOSED_AND_ROUTE_OR_ESCALATE",
-    "owner_health_policy": "READY_REQUIRES_LIVE_BROWSER_OWNER_PID_AND_CONNECTED_PLAYWRIGHT_BROWSER; OWNER_DEATH_MUST_FAIL_CLOSED_AND_TRIGGER_SERVICE_RESTART"
+    "owner_health_policy": "READY_REQUIRES_LIVE_EXTERNAL_BROWSER_OWNER_PID_AND_CONNECTED_CDP_BROWSER; OWNER_DEATH_MUST_FAIL_CLOSED; CDP_DISCONNECT_MUST_FAIL_CLOSED; BROKER_RESTART_MUST_REATTACH_WITHOUT_TERMINATING_HEALTHY_EXTERNAL_BROWSER",
+    "browser_lifecycle_policy": "BROWSER_PROCESS_LIFECYCLE_IS_OWNED_BY_DEDICATED_SYSTEMD_BROWSER_SERVICE; BROKER MUST_NOT_SPAWN_OR_TERMINATE_BROWSER_IN_ATTACH_ONLY_MODE",
+    "normalization_evidence": "2026-09-09 Duck A09/B06 PASS on Linux Chrome Stable external persistent browser + CDP attach-only; Playwright-owned browser path produced post-dispatch anomaly challenge."
   },
   "health_states": {
     "tab": [
@@ -49,10 +51,10 @@
       "display_name": "Web-AI Army Cluster A",
       "profile_id": "chatgpt-linux-a",
       "profile_dir": "/var/lib/muxia/profiles/chatgpt-linux-a/browser",
-      "runtime_owner": "MUXIA",
-      "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+      "runtime_owner": "SYSTEMD_EXTERNAL_CHROME_OWNER_PLUS_MUXIA_ATTACH_ONLY_BROKER",
+      "browser_owner_model": "EXTERNAL_PERSISTENT_CHROME_CDP_ATTACH_ONLY",
       "max_tabs": 8,
-      "lifecycle_state": "ACTIVE_REFERENCE",
+      "lifecycle_state": "ACTIVE_ATTACH_ONLY_REFERENCE",
       "providers": [
         {
           "provider_id": "chatgpt",
@@ -100,12 +102,13 @@
           "provider_id": "duckai",
           "membership": "ACTIVE",
           "preferred_transport": "BROWSER_CDP",
-          "linux_evidence": "ROUTE_AND_EXTRACTION_PROVEN",
+          "linux_evidence": "PROVEN_EXTERNAL_PERSISTENT_CHROME_CDP",
           "autonomous_shared_broker_reproof": "FA-301/FA-302/FA-307",
           "readiness_profile": "duckai",
           "evidence": [
             "company/factory-asset/receipts/FA-118-duckai-capability-probe.receipt.json"
-          ]
+          ],
+          "external_persistent_cdp_reproof": "FA124-CW-A-DUCKAI-09"
         },
         {
           "provider_id": "grok",
@@ -123,17 +126,24 @@
       },
       "lease_default_ttl_seconds": 300,
       "max_active_browser_generations": 5,
-      "reserved_recovery_tabs": 3
+      "reserved_recovery_tabs": 3,
+      "browser_executable": "/usr/bin/google-chrome-stable",
+      "browser_debug_host": "127.0.0.1",
+      "browser_debug_port": 39221,
+      "browser_virtual_display": 101,
+      "broker_control_port": 39121,
+      "browser_lifecycle_service": "die-muxia-cluster-a-browser.service",
+      "broker_service": "die-fa121-cluster-broker.service"
     },
     {
       "cluster_id": "cluster-b",
       "display_name": "Web-AI Army Cluster B",
       "profile_id": "web-ai-cluster-b",
       "profile_dir": "/var/lib/muxia/profiles/web-ai-cluster-b/browser",
-      "runtime_owner": "MUXIA",
-      "browser_owner_model": "SINGLE_LONG_LIVED_CHROMIUM_PROCESS",
+      "runtime_owner": "SYSTEMD_EXTERNAL_CHROME_OWNER_PLUS_MUXIA_ATTACH_ONLY_BROKER",
+      "browser_owner_model": "EXTERNAL_PERSISTENT_CHROME_CDP_ATTACH_ONLY",
       "max_tabs": 8,
-      "lifecycle_state": "ACTIVE",
+      "lifecycle_state": "ACTIVE_ATTACH_ONLY",
       "providers": [
         {
           "provider_id": "chatgpt",
@@ -194,7 +204,7 @@
           "provider_id": "duckai",
           "membership": "ACTIVE",
           "preferred_transport": "BROWSER_CDP",
-          "linux_evidence": "ROUTE_AND_EXTRACTION_PROVEN",
+          "linux_evidence": "PROVEN_EXTERNAL_PERSISTENT_CHROME_CDP",
           "autonomous_shared_broker_reproof": "FA-301/FA-302/FA-307",
           "readiness_profile": "duckai",
           "evidence": [
@@ -202,7 +212,8 @@
           ],
           "cluster_b_readiness": "HEALTHY",
           "cluster_b_readiness_reason": "COMPOSER_READY",
-          "cluster_b_readiness_evidence": "company/factory-asset/fixtures/multi-cluster/FA-305-cluster-b-readiness.json"
+          "cluster_b_readiness_evidence": "company/factory-asset/fixtures/multi-cluster/FA-305-cluster-b-readiness.json",
+          "external_persistent_cdp_reproof": "FA124-CW-B-DUCKAI-06"
         },
         {
           "provider_id": "grok",
@@ -223,7 +234,14 @@
       "max_active_browser_generations": 4,
       "reserved_recovery_tabs": 4,
       "activation_task": "FA-305",
-      "activation_policy": "AUTH_CLOSED_THEN_HEADED_XVFB_BROKER_THEN_READINESS_GATED_PROVIDER_MEMBERSHIP"
+      "activation_policy": "AUTH_CLOSED_THEN_HEADED_XVFB_BROKER_THEN_READINESS_GATED_PROVIDER_MEMBERSHIP",
+      "browser_executable": "/usr/bin/google-chrome-stable",
+      "browser_debug_host": "127.0.0.1",
+      "browser_debug_port": 39222,
+      "browser_virtual_display": 102,
+      "broker_control_port": 39122,
+      "browser_lifecycle_service": "die-muxia-cluster-b-browser.service",
+      "broker_service": "die-muxia-cluster-b.service"
     }
   ]
 }

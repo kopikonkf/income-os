@@ -10,8 +10,8 @@ def test_cluster_a_identity_and_single_owner_contract():
  assert c['cluster_id']=='cluster-a'
  assert c['profile_id']=='chatgpt-linux-a'
  assert c['profile_dir']=='/var/lib/muxia/profiles/chatgpt-linux-a/browser'
- assert c['runtime_owner']=='MUXIA'
- assert c['browser_owner_model']=='SINGLE_LONG_LIVED_CHROMIUM_PROCESS'
+ assert c['runtime_owner']=='SYSTEMD_EXTERNAL_CHROME_OWNER_PLUS_MUXIA_ATTACH_ONLY_BROKER'
+ assert c['browser_owner_model']=='EXTERNAL_PERSISTENT_CHROME_CDP_ATTACH_ONLY'
  assert c['max_tabs']==8
 
 def test_active_provider_membership_and_qwen_transport_preference():
@@ -25,8 +25,8 @@ def test_secret_and_auth_handoff_boundaries():
  g=load(); r=g['rules']
  assert r['profile_secret_copy_allowed'] is False
  assert r['credential_cookie_token_export_allowed'] is False
- assert 'VISIBLE_NO_CDP' in r['auth_handoff']
- assert 'BEFORE_BROKER_START' in r['auth_handoff']
+ assert 'VISIBLE' in r['auth_handoff'] and 'HUMAN_REPAIR' in r['auth_handoff']
+ assert 'LOOPBACK_CDP' in r['auth_handoff']
 
 def test_failure_isolation_and_lifecycle_states():
  g=load(); assert 'TAB_OR_PROVIDER_FAILURE_MUST_NOT_FAIL_HEALTHY_SIBLING_PROVIDERS'==g['rules']['provider_failure_isolation']

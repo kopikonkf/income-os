@@ -1,0 +1,21 @@
+[Unit]
+Description=MUXIA Cluster A persistent external Chrome owner
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=kopiko
+Group=kopiko
+WorkingDirectory=/srv/die
+ExecStart=/usr/bin/bash /srv/die/company/browser/linux/external_chrome_owner.sh --cluster-id cluster-a --profile-dir /var/lib/muxia/profiles/chatgpt-linux-a/browser --debug-port 39221 --x-display 101 --state-root /var/lib/muxia/state/external-browsers
+Restart=on-failure
+RestartSec=5
+TimeoutStartSec=45
+TimeoutStopSec=30
+KillMode=control-group
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
