@@ -1,14 +1,15 @@
 {
   "backup_checkout": "payhip",
   "canary_id": "H03-FIRST-DOLLAR-H03-PROD-ORG001-001",
-  "distribution_state": "BLOCKED_SELLER_ACCOUNT_PREFLIGHT",
+  "distribution_state": "BLOCKED_FOUNDER_QC",
   "external_publication_occurred": false,
-  "founder_authorized": true,
-  "growth_state": "BLOCKED_DISTRIBUTION_NOT_LIVE",
+  "founder_qc_state": "PENDING",
+  "growth_state": "BLOCKED_FOUNDER_QC",
   "holding_id": "H03",
-  "next_required_action": "Complete one-time seller authentication/onboarding for gumroad; payhip remains backup.",
+  "next_required_action": "Founder must QC the actual product package. Only after Founder QC PASS plus explicit release authorization may H03 provision/use dedicated operational profiles and perform seller/social account preflight.",
   "observed_revenue_minor": null,
   "paid_ads": false,
+  "phase_authorized": true,
   "price_hypothesis": {
     "basis_codes": [
       "MEDIUM_WTP",
@@ -22,6 +23,7 @@
   },
   "primary_checkout": "gumroad",
   "product_id": "H03-PROD-ORG001-001",
+  "product_release_authorized": false,
   "promotion_cohort": [
     "facebook_page",
     "facebook_group",
@@ -29,20 +31,21 @@
     "reddit",
     "youtube"
   ],
+  "runtime_boundary_state": "INVALID_FOREIGN_PROFILE_EVIDENCE",
   "schema_version": "die.h03.first-dollar-canary.v1",
   "seller_preflight": {
-    "gumroad": "AUTH_REQUIRED",
-    "payhip": "CHALLENGE"
+    "gumroad": "UNKNOWN",
+    "payhip": "UNKNOWN"
   },
   "social_preflight": {
-    "facebook_group": "AUTH_REQUIRED",
-    "facebook_page": "AUTH_REQUIRED",
+    "facebook_group": "UNKNOWN",
+    "facebook_page": "UNKNOWN",
     "instagram": "UNKNOWN",
-    "pinterest": "AUTH_REQUIRED",
-    "reddit": "AUTH_REQUIRED",
+    "pinterest": "UNKNOWN",
+    "reddit": "UNKNOWN",
     "threads": "UNKNOWN",
     "tiktok": "UNKNOWN",
-    "x": "CHALLENGE",
-    "youtube": "AUTH_REQUIRED"
+    "x": "UNKNOWN",
+    "youtube": "UNKNOWN"
   }
 }

@@ -198,22 +198,21 @@
       "depends_on": [
         "H03-REV-001",
         "H03-COM-001",
-        "H03-ATTR-001"
+        "H03-ATTR-001",
+        "H03-QC-001"
       ],
       "risk": "HIGH",
       "execution_mode": "tool_native",
       "authority": "FOUNDER_EXTERNAL_PUBLICATION_REQUIRED",
       "acceptance": "After dependencies are green and Founder authorizes publication, publish one bounded external product/listing with product/campaign/economic identities and no paid-ad spend.",
-      "blocked_reason": "SELLER_ACCOUNT_AUTH_OR_ONBOARDING_REQUIRED",
-      "founder_authorization": "GRANTED_FIRST_DOLLAR_CANARY_20260909",
+      "blocked_reason": "FOUNDER_PRODUCT_QC_NOT_DONE",
+      "founder_authorization": "PHASE_AUTHORIZATION_ONLY_PRODUCT_RELEASE_NOT_GRANTED",
       "preflight": {
-        "primary_checkout": "gumroad",
-        "primary_state": "AUTH_REQUIRED",
-        "backup_checkout": "payhip",
-        "backup_state": "CHALLENGE",
+        "runtime_boundary": "H03_DEDICATED_OPERATIONAL_REQUIRED",
+        "seller_state": "NOT_PROBED_VALIDLY",
         "external_publication": false
       },
-      "next_action": "Complete one-time seller onboarding/authentication; then publish exactly one bounded listing using the canonical Gumroad draft."
+      "next_action": "Wait for H03-QC-001 Founder Product QC. If PASS with publication authorization, provision H03-dedicated Commerce profile and perform seller preflight."
     },
     {
       "id": "H03-OPP-001",
@@ -630,6 +629,21 @@
       }
     },
     {
+      "id": "H03-QC-001",
+      "track": "REVIEW",
+      "title": "Founder Product QC and explicit release decision",
+      "status": "WAITING_FOUNDER",
+      "priority": 646,
+      "depends_on": [
+        "H03-REV-001",
+        "H03-PROD-003"
+      ],
+      "risk": "HIGH",
+      "execution_mode": "founder_manual",
+      "authority": "FOUNDER_PRODUCT_QC_REQUIRED",
+      "acceptance": "Founder inspects the actual product package and records PASS/REVISE/REJECT, rights release state, and an explicit publication_authorized boolean. Independent reviewer PASS cannot satisfy this gate."
+    },
+    {
       "id": "H03-COM-001",
       "track": "COMMERCE",
       "title": "Channel-neutral Commerce Package + multi-channel eligibility/router matrix",
@@ -774,14 +788,14 @@
       "execution_mode": "tool_native",
       "authority": "FOUNDER_SOCIAL_PUBLICATION_REQUIRED",
       "acceptance": "After Founder authorizes accounts/publication, publish a bounded organic promotion set with campaign/creative/channel identities and no paid-ad spend; collect read-only analytics observations.",
-      "blocked_reason": "DIST_NOT_LIVE_AND_SOCIAL_ACCOUNT_PREFLIGHT_REQUIRED",
-      "founder_authorization": "GRANTED_FIRST_DOLLAR_CANARY_20260909",
+      "blocked_reason": "FOUNDER_PRODUCT_QC_AND_DIST_NOT_DONE",
+      "founder_authorization": "PHASE_AUTHORIZATION_ONLY_PRODUCT_RELEASE_NOT_GRANTED",
       "preflight": {
-        "preferred_social_ready_count": 0,
-        "publication_authorized": true,
+        "runtime_boundary": "H03_DEDICATED_OPERATIONAL_REQUIRED",
+        "social_state": "NOT_PROBED_VALIDLY",
         "publication_occurred": false
       },
-      "next_action": "After DIST-001 is live, authenticate at least one preferred organic channel and publish one bounded attributed promotion atom."
+      "next_action": "Wait for Founder Product QC and live DIST-001; then use H03-dedicated Growth profile only."
     },
     {
       "id": "H03-SCALE-001",
@@ -807,7 +821,7 @@
       }
     }
   ],
-  "revision": "2026-09-09 First-Dollar Canary authorized; DIST-001/GRW-003 advanced past Founder gates and are now blocked only on seller/social account preflight",
+  "revision": "2026-09-09 governance remediation: explicit Founder Product QC gate added; prior first-dollar phase authorization corrected; foreign Mission Control principal-profile preflight invalidated for H03 runtime readiness",
   "production_organism": {
     "control_plane": "Mission Control supervises batches/products, recovery, gates and durable standing; it does not execute every prompt.",
     "worker_plane": "H03 role queues dispatch normalized cognition jobs through web-ai-adapter; MCP is not a worker hot-path requirement.",
@@ -851,6 +865,9 @@
       "factory_runtime": "H03-RT-001 -> H03-RT-002 -> H03-RT-003 -> H03-RT-004 -> H03-RT-005 -> H03-RT-006",
       "product_convergence": "H03-RSCH-002 -> H03-KF-003 -> H03-PROD-001 -> H03-PROD-002 -> H03-PROD-003 -> H03-ORG-001",
       "postproduction": "H03-REV-001 -> H03-COM-001 -> H03-ATTR-001 + H03-GRW-001 -> distribution/growth/analytics"
-    }
+    },
+    "waiting_founder": [
+      "H03-QC-001"
+    ]
   }
 }

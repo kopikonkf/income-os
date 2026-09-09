@@ -1,5 +1,6 @@
 {
-  "conclusion": "FOUNDER_AUTHORIZED_BUT_ACCOUNT_FUEL_NOT_PROVISIONED",
+  "boundary_violation": true,
+  "conclusion": "INVALID_FOREIGN_PROFILE_PREFLIGHT_NOT_H03_READINESS",
   "external_publication_occurred": false,
   "holding_id": "H03",
   "local_package_ready": true,
@@ -19,6 +20,7 @@
   },
   "product_content_ready": true,
   "product_id": "H03-PROD-ORG001-001",
+  "remediation": "Re-probe seller/social readiness only from H03-dedicated Commerce/Growth operational profiles after Founder QC and release authorization.",
   "schema_version": "die.h03.first-dollar-live-preflight.v1",
   "seller": {
     "backup": {
@@ -75,5 +77,8 @@
       "state": "UNKNOWN"
     }
   ],
-  "transport": "BROWSER_CDP_SANITIZED_STATE_ONLY"
+  "source_profile_class": "MISSION_CONTROL_PRINCIPAL_PRIMARY",
+  "superseded": true,
+  "transport": "BROWSER_CDP_SANITIZED_STATE_ONLY",
+  "valid_for_h03_runtime_readiness": false
 }

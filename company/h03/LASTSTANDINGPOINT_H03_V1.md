@@ -303,3 +303,16 @@ Founder authorization is now durable for the bounded first-dollar phase: one ext
 Live CDP preflight found Gumroad `AUTH_REQUIRED`, Payhip `CHALLENGE`, and zero ready preferred social sessions. Product/package/Commerce/ATTR/Growth/Analytics/Learning layers are ready. No external listing or social post was published and observed revenue remains unknown.
 
 Primary checkout is Gumroad; Payhip is backup. Initial promotion cohort is Facebook Group, Pinterest, Reddit, YouTube, Facebook Page. The minimum manual fuel is one-time seller onboarding plus at least one social login; no credentials/session material should be copied into H03.
+
+
+---
+
+## H03 Governance Remediation — Founder QC + Runtime Boundary — 2026-09-09
+
+The first-dollar transition contained two governance defects and one runtime-boundary defect. The independent `H03-REV-001` reviewer PASS was incorrectly treated as Founder QC; Founder authorization to proceed to the next phase was over-interpreted as product-specific publication approval; and a Mission Control principal-primary browser profile was used to probe H03 seller/social readiness.
+
+Canon is corrected. `H03-REV-001` is explicitly `INDEPENDENT_PRE_FOUNDER_REVIEW` with decision authority `INDEPENDENT_REVIEWER_NOT_FOUNDER`. New `H03-QC-001` is `WAITING_FOUNDER` and requires the Founder to inspect the actual product package and record PASS/REVISE/REJECT, rights release, and explicit publication authorization. `H03-DIST-001` and `H03-GRW-003` are blocked behind that gate.
+
+The prior browser preflight is invalidated as H03 runtime evidence. H03 operational browser use requires `H03_DEDICATED_OPERATIONAL` bindings owned by H03 for Knowledge, Growth, and Commerce. Mission Control principal/Architect profiles, Division01 profiles, and other-holding profiles are forbidden as H03 operational pools. Current dedicated H03 operational bindings are NOT_PROVISIONED.
+
+The DIY People-Search Opt-Out Guide remains an engineering organism canary: real external source bytes/evidence were used, but curator/research/synthesis/production/review cognition was NONLIVE_ROLE_FIXTURE. It is not approved for sale and Founder QC has not occurred.

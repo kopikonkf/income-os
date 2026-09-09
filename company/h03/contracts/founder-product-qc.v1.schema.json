@@ -1,0 +1,20 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"die.h03.founder-product-qc.v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema_version","holding_id","founder_qc_id","product_id","review_card_id","reviewed_artifacts","decision","rights_release","publication_authorized","reviewed_at","notes"],
+  "properties":{
+    "schema_version":{"const":"die.h03.founder-product-qc.v1"},
+    "holding_id":{"const":"H03"},
+    "founder_qc_id":{"type":"string","minLength":6},
+    "product_id":{"type":"string","minLength":3},
+    "review_card_id":{"type":"string","minLength":3},
+    "reviewed_artifacts":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string","minLength":3}},
+    "decision":{"enum":["PASS","REVISE","REJECT"]},
+    "rights_release":{"enum":["APPROVED","HOLD","REJECTED"]},
+    "publication_authorized":{"type":"boolean"},
+    "reviewed_at":{"type":"string","minLength":10},
+    "notes":{"type":"string"}
+  }
+}

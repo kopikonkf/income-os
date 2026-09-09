@@ -1,0 +1,16 @@
+{
+  "founder_qc_decision": null,
+  "founder_qc_state": "PENDING",
+  "founder_review_completed": false,
+  "founder_review_requested": true,
+  "holding_id": "H03",
+  "independent_review_authority": "INDEPENDENT_REVIEWER_NOT_FOUNDER",
+  "independent_review_decision": "PASS",
+  "product_id": "H03-PROD-ORG001-001",
+  "product_package_ref": "company/h03/evidence/H03-ORG-001/package/H03-PROD-ORG001-001/",
+  "publication_authorized": false,
+  "reason": "Independent reviewer PASS only made the product eligible for Founder QC / commerce drafting; Founder has not inspected or accepted the product.",
+  "review_card_id": "H03-RC-H03-PROD-ORG001-001",
+  "rights_release": "PENDING",
+  "schema_version": "die.h03.founder-product-qc-state.v1"
+}

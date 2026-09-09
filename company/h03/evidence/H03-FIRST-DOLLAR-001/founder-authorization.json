@@ -2,19 +2,29 @@
   "authorization_id": "H03-AUTH-FIRST-DOLLAR-20260909",
   "authorized_at": "2026-09-09T17:21:00Z",
   "does_not_authorize": [
-    "paid_ad_spend",
-    "unbounded_multi-product_publication",
-    "credential_capture",
+    "canonical_economics_writer_activation",
     "cookie_or_token_export",
-    "canonical_economics_writer_activation"
+    "credential_capture",
+    "operational_use_of_mission_control_principal_profiles",
+    "paid_ad_spend",
+    "product_release_before_founder_qc",
+    "unbounded_multi-product_publication"
   ],
   "holding_id": "H03",
+  "interpretation_correction": {
+    "external_listing_authorized": false,
+    "organic_publication_authorized": false,
+    "phase_progression_authorized": true,
+    "product_release_authorized": false,
+    "product_specific_founder_qc_observed": false,
+    "reason": "The prior record over-interpreted Founder authorization to proceed to the next phase as approval of a product the Founder had not yet QC reviewed."
+  },
   "schema_version": "die.h03.founder-live-authorization.v1",
   "scope": {
     "backup_checkout": "payhip",
-    "bounded_organic_promotion": true,
+    "bounded_organic_promotion": false,
     "currency": "USD",
-    "external_listing": true,
+    "external_listing": false,
     "paid_ads": false,
     "phase": "FIRST_DOLLAR_CANARY",
     "primary_checkout": "gumroad",
@@ -28,5 +38,5 @@
     ],
     "target_observed_revenue_minor": 100
   },
-  "status": "GRANTED"
+  "status": "SUPERSEDED_BY_GOVERNANCE_REMEDIATION"
 }
