@@ -1,0 +1,95 @@
+{
+    "schema":  "die.aether.constitutional-bridge.v1",
+    "status":  "ACCEPTED_CONTRACT_NO_RUNTIME_BINDING",
+    "authority":  {
+                      "ultimate_human_sovereign":  "Dee",
+                      "die_highest_authority":  "CONSTITUTION.md",
+                      "aether_highest_directional_authority":  "src/aether/dna/north_star.yaml",
+                      "cross_domain_conflict":  "STOP_PRESERVE_EVIDENCE_FOUNDER_REVIEW"
+                  },
+    "stages":  {
+                   "interpret_propose":  {
+                                             "primary_candidate":  "aether-strategic-cognition",
+                                             "effect":  "PROPOSAL_ONLY",
+                                             "cannot_grant_authority":  true
+                                         },
+                   "authorize":  {
+                                     "die":  [
+                                                 "founder",
+                                                 "founder-ratified-constitution",
+                                                 "authorized-canonical-decision",
+                                                 "future-ratified-economic-envelope"
+                                             ],
+                                     "aether":  [
+                                                    "aether-governance",
+                                                    "founder-approval-where-required"
+                                                ]
+                                 },
+                   "enforce":  {
+                                   "candidate":  "mission-control",
+                                   "gated_by":  "COS-002/COS-004",
+                                   "semantic_judgment":  false,
+                                   "capital_authority":  false,
+                                   "company_truth_writer":  false
+                               },
+                   "execute":  {
+                                   "surfaces":  [
+                                                    "replaceable-ai-principals",
+                                                    "bounded-workers",
+                                                    "provider-engines",
+                                                    "holding-local-delegated-executors",
+                                                    "retained-specialists"
+                                                ],
+                                   "authority_inheritance":  "FORBIDDEN"
+                               },
+                   "learn":  {
+                                 "flow":  [
+                                              "evidence",
+                                              "governed-store",
+                                              "sanitized-projection",
+                                              "aether-interpretation",
+                                              "candidate",
+                                              "aether-governed-promotion"
+                                          ],
+                                 "direct_belief_write":  "FORBIDDEN",
+                                 "mission_control_completion_equals_validated_belief":  false
+                             }
+               },
+    "boundaries":  {
+                       "aether":  "KEEP_EXTERNAL",
+                       "shared_writable_canonical_database":  "FORBIDDEN",
+                       "cross_domain_symlinked_state":  "FORBIDDEN",
+                       "credential_token_cookie_payload":  "FORBIDDEN",
+                       "automatic_cross_amendment":  "FORBIDDEN",
+                       "persona_is_authority":  false,
+                       "sense_is_authority":  false
+                   },
+    "economic_bridge":  {
+                            "aether_role":  "STRATEGIC_INTERPRETATION_AND_PROPOSAL",
+                            "economic_layer_role":  "EVIDENCE_AND_RESOURCE_FITNESS",
+                            "founder_or_ratified_envelope_role":  "AUTHORITY",
+                            "mission_control_role":  "ENFORCEMENT",
+                            "shadow_first":  true
+                        },
+    "architect_identity":  {
+                               "chief-executive-architect-dev":  "FOUNDER_INVOKED_NON_RUNTIME_PRIVILEGED_PLANE",
+                               "chatgpt-architect":  "RUNTIME_COGNITION_NO_INHERITED_DEV",
+                               "proactive_privileged_execution":  "TASK_SCOPED_DELEGATION_ONLY_AFTER_ACCEPTANCE"
+                           },
+    "cross_domain_envelope":  {
+                                  "schema":  "die.aether.bridge-envelope.v1",
+                                  "required":  [
+                                                   "direction",
+                                                   "kind",
+                                                   "source_domain",
+                                                   "source_identity",
+                                                   "source_version_or_commit",
+                                                   "authority_basis",
+                                                   "created_at",
+                                                   "provenance_refs",
+                                                   "payload_ref",
+                                                   "requested_effect"
+                                               ],
+                                  "default_requested_effect":  "NONE"
+                              }
+}
