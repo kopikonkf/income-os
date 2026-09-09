@@ -69,3 +69,17 @@ def test_cluster_aggregation_keeps_siblings_alive():
         r = subprocess.run(['node', str(h)], capture_output=True, text=True, check=True, timeout=30)
         v = json.loads(r.stdout.strip())
         assert v == {'a': 'DEGRADED', 'b': 'HEALTHY'}
+
+def test_writable_composer_beats_stale_historical_challenge_text():
+    with tempfile.TemporaryDirectory() as td:
+        h=Path(td)/'h.mjs'
+        h.write_text(f'''
+import {{ classifyProviderPage }} from {json.dumps(CORE.as_uri())};
+import fs from 'node:fs/promises';
+const profiles=JSON.parse(await fs.readFile({json.dumps(str(PROFILES))},'utf8')).providers;
+const visible=['[data-testid="prompt-textarea"]'];
+const page={{url:()=> 'https://chatgpt.com/',title:async()=> 'ChatGPT',locator:(selector)=>({{count:async()=>selector==='body'?1:(visible.includes(selector)?1:0),nth:()=>({{isVisible:async()=>true,isEditable:async()=>true}}),innerText:async()=>selector==='body'?'Earlier conversation text said verify you are human and unusual activity, but composer is ready.':''}})}};
+const x=await classifyProviderPage({{page,providerId:'chatgpt',profile:profiles.chatgpt,observedAt:'2026-09-08T00:00:00Z'}});console.log(JSON.stringify(x));
+''')
+        r=subprocess.run(['node',str(h)],capture_output=True,text=True,check=True,timeout=30);v=json.loads(r.stdout.strip())
+        assert v['state']=='HEALTHY' and v['composer_writable'] is True and v['checkpoint_visible'] is False

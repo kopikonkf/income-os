@@ -208,15 +208,16 @@ function assertProviderConfig(providerId, providerConfig) {
 
 export async function probeConsoleProvider({ controlBaseUrl, playwrightEntry, providerId, providerConfig, readinessProfile, jobId, clusterId, ttlMs = 120000 }) {
   assertProviderConfig(providerId, providerConfig);
-  const started = Date.now(); let lease = null; let released = null; let disconnect = null;
+  const started = Date.now(); let lease = null; let released = null; let disconnect = null; let strategyState = null; let leasedPage = null;
   const out = { schema: 'die.factory-asset.console-provider-readiness-observation.v1', provider_id: providerId, cluster_id: clusterId, actual_transport: 'BROWSER_CDP', job_id: jobId, observed_at: nowIso(), credential_values_read: false, cookies_or_tokens_read: false };
   try {
     lease = await acquireClusterTab(controlBaseUrl, { providerId, jobId, ttlMs, purpose: 'READINESS_PROBE' });
     out.lease = { lease_id: lease.lease_id, state: lease.state, acquired_at: lease.acquired_at, expires_at: lease.expires_at };
     const connected = await connectLeasedClusterTab({ controlBaseUrl, lease, playwrightEntry, timeoutMs: 10000 });
     disconnect = connected.disconnect;
-    const page = connected.page;
+    const page = connected.page; leasedPage = page; const context = connected.browser.contexts()[0];
     await page.goto(providerConfig.browser_url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    if (providerId === 'duckai' && hasLeasedStrategy(providerId)) strategyState = await prepareLeasedStrategy(providerId, { page, context });
     const readiness = await classifyProviderAfterSettle({ page, providerId, profile: readinessProfile });
     out.readiness = readiness;
     if (PROVIDER_STATES.has(readiness.state)) await setClusterProviderState(controlBaseUrl, providerId, readiness.state);
@@ -228,6 +229,7 @@ export async function probeConsoleProvider({ controlBaseUrl, playwrightEntry, pr
     out.status = 'FAILED'; out.failure_code = classifyFailure(message); out.error = message; out.latency_ms = Date.now() - started;
     return out;
   } finally {
+    if (leasedPage && strategyState) await cleanupLeasedStrategy(providerId, { page: leasedPage, state: strategyState }).catch(() => null);
     if (lease?.lease_id) released = await releaseClusterTab(controlBaseUrl, lease.lease_id, 'FA_C010_READINESS_PROBE_COMPLETE').catch(() => null);
     if (released) out.lease_release = released;
     if (disconnect) await disconnect();
@@ -236,7 +238,7 @@ export async function probeConsoleProvider({ controlBaseUrl, playwrightEntry, pr
 
 export async function generateConsoleProviderImage({ controlBaseUrl, playwrightEntry, providerId, providerConfig, readinessProfile, jobId, prompt, artifactDir, clusterId, journalPath = null, ttlMs = 600000, timeoutMs = 300000 }) {
   assertProviderConfig(providerId, providerConfig);
-  if (typeof prompt !== 'string' || prompt.length < 10 || prompt.length > 12000) throw new Error('E_CONSOLE_PROVIDER_PROMPT');
+  if (typeof prompt !== 'string' || prompt.length < 10 || prompt.length > 4000) throw new Error('E_CONSOLE_PROVIDER_PROMPT');
   fs.mkdirSync(artifactDir, { recursive: true, mode: 0o750 });
   const startedAt = nowIso(); const startedMs = Date.now(); let lease = null; let disconnect = null; let dispatchCommitted = false; let body = ''; let strategyState = null; let leasedPage = null;
   const receipt = {
@@ -256,14 +258,15 @@ export async function generateConsoleProviderImage({ controlBaseUrl, playwrightE
     const page = connected.page; leasedPage = page; const context = connected.browser.contexts()[0];
     if (!context) throw new Error('E_CONSOLE_PROVIDER_BROWSER_CONTEXT');
     await page.goto(providerConfig.browser_url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    const strategyBacked = hasLeasedStrategy(providerId);
+    if (providerId === 'duckai' && strategyBacked) strategyState = await prepareLeasedStrategy(providerId, { page, context });
     const readiness = await classifyProviderAfterSettle({ page, providerId, profile: readinessProfile });
     receipt.readiness = readiness;
     atomicJson(journalPath, receipt);
     if (PROVIDER_STATES.has(readiness.state)) await setClusterProviderState(controlBaseUrl, providerId, readiness.state);
     if (readiness.state !== 'HEALTHY') throw new Error(`E_PRE_DISPATCH_READINESS_${readiness.state}`);
-    const strategyBacked = hasLeasedStrategy(providerId);
     const baseline = strategyBacked ? null : new Set((await inventoryImages(page, providerId)).map((x) => x.src));
-    if (strategyBacked) strategyState = await prepareLeasedStrategy(providerId, { page, context });
+    if (strategyBacked && !strategyState) strategyState = await prepareLeasedStrategy(providerId, { page, context });
     await markClusterTab(controlBaseUrl, lease.lease_id, 'IN_FLIGHT');
     const submit = strategyBacked
       ? await submitLeasedStrategy(providerId, { page, context, prompt, state: strategyState })

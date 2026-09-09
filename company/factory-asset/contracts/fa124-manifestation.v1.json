@@ -1,0 +1,52 @@
+{
+  "schema": "die.factory-asset.manifestation-preset.v1",
+  "preset_id": "ISOLATED_CARTOON_WATERCOLOR_L0",
+  "revision": "1.0.0",
+  "asset_family": "RASTER",
+  "asset_function": "ISOLATED_OBJECT",
+  "style_preset": "ISOLATED_CARTOON_WATERCOLOR",
+  "scene_level": "L0",
+  "render_mode": "ILLUSTRATION",
+  "background_mode": "PURE_WHITE",
+  "subject_count": 1,
+  "orientation": "SQUARE",
+  "composition": {
+    "centered": true,
+    "full_subject_visible": true,
+    "crop": "NONE",
+    "environment": "NONE",
+    "unrelated_props": false
+  },
+  "style": {
+    "visual_language": "commercial stock illustration",
+    "medium": "watercolor-cartoon",
+    "edge_character": "clean soft hand-painted edges",
+    "shading": "gentle",
+    "texture": "light watercolor texture",
+    "tone": "friendly versatile non-branded"
+  },
+  "negative": {
+    "people": false,
+    "readable_text": false,
+    "logo": false,
+    "trademark": false,
+    "watermark": false,
+    "unrelated_props": false,
+    "environmental_scene": false
+  },
+  "master": {
+    "preferred_format": "PNG",
+    "semantic_master_count_per_job": 1
+  },
+  "reference_basis": {
+    "founder_selected_reference_archive": "actual_income_research_intelligence-isolated_asset(1).zip",
+    "reference_use": "CATEGORY_AND_VISUAL_DIRECTION_ONLY",
+    "copy_specific_asset": false,
+    "artist_style_imitation": false
+  },
+  "orientation_policy": "REQUESTED_BEST_EFFORT_NOT_HARD_GATE",
+  "acceptance_dimension_policy": {
+    "square_mismatch": "ADVISORY_ONLY",
+    "provider_native_dimensions_allowed": true
+  }
+}
