@@ -187,3 +187,16 @@ New READY frontier: `H03-KF-003` research synthesis fan-in and `H03-RT-006` Miss
 - `H03-RT-006`: H03 now has a coded Mission Control boundary that reuses `mc-mission-v1` for batch checkpoints, completion, block/escalation and Founder requests. Microjob prompts remain inside H03; persisted supervision state excludes credentials/session/profile material and Mission lease tokens. Recovery is surfaced as an aggregate checkpoint, not delegated retry-by-retry to Mission Control.
 
 New READY frontier: `H03-PROD-001` Useful Product Planner and format-selection engine.
+
+
+---
+
+## H03-PROD-001 — Useful Product Planner — DONE/PASS — 2026-09-09
+
+The Product Planner now deterministically selects product form from the buyer outcome / workflow shape instead of defaulting to ebook or optimizing for page count. Guide/checklist/worksheet/workbook/playbook/reference/report/research-brief/template/handbook/ebook are mapped to the existing PDF template registry only after semantic form selection.
+
+Only accepted `die.h03.knowledge-package.v1` can produce a Product Blueprint; a non-canonical Knowledge Package Candidate cannot bypass Knowledge validation. Product Blueprint output remains compatible with the existing Document AST compiler.
+
+Validation: product-planner tests `14/14 PASS`; full H03 suite `102/102 PASS`.
+
+New READY frontier: `H03-PROD-002` role-separated semantic producer fan-out to content blocks.

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.product-planning-profile.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","planning_profile_id","holding_id","problem_seed_id","knowledge_package_id","desired_outcome","delivery_shape","recurrence","decision_complexity","explanation_depth","input_capture","lookup_frequency","evidence_density","reusable_structure","section_plan"],
+  "properties": {
+    "schema_version": {"const":"die.h03.product-planning-profile.v1"},
+    "planning_profile_id": {"type":"string","minLength":6},
+    "holding_id": {"const":"H03"},
+    "problem_seed_id": {"type":"string","minLength":6},
+    "knowledge_package_id": {"type":"string","minLength":4},
+    "desired_outcome": {"type":"string","minLength":3},
+    "delivery_shape": {"enum":["EXECUTE_SEQUENCE","QUICK_VERIFY","ONE_TIME_INPUT_WORKFLOW","REPEATED_INPUT_WORKFLOW","COMPLEX_OPERATION","LOOKUP_REFERENCE","EVIDENCE_DECISION","REUSABLE_OUTPUT","BROAD_LEARNING","NARRATIVE_LEARNING"]},
+    "recurrence": {"enum":["ONE_TIME","REPEATED"]},
+    "decision_complexity": {"enum":["LOW","MEDIUM","HIGH"]},
+    "explanation_depth": {"enum":["LOW","MEDIUM","HIGH"]},
+    "input_capture": {"enum":["NONE","LIGHT","STRUCTURED"]},
+    "lookup_frequency": {"enum":["LOW","HIGH"]},
+    "evidence_density": {"enum":["LOW","MEDIUM","HIGH"]},
+    "reusable_structure": {"type":"boolean"},
+    "section_plan": {
+      "type":"array","minItems":1,
+      "items": {
+        "type":"object","additionalProperties":false,
+        "required":["heading","claim_ids"],
+        "properties":{"heading":{"type":"string","minLength":1},"claim_ids":{"type":"array","minItems":1,"items":{"type":"string","minLength":1},"uniqueItems":true}}
+      }
+    }
+  }
+}
