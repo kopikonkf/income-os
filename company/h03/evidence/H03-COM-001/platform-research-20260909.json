@@ -1,0 +1,53 @@
+{
+  "holding_id": "H03",
+  "observations": [
+    {
+      "channel_id": "etsy",
+      "fact": "Listing fee observed at USD 0.20 per listing and transaction fee observed at 6.5%; setup/payment-processing details can vary.",
+      "source_ref": "https://help.etsy.com/hc/en-us/articles/115014483627-What-are-the-Fees-and-Taxes-for-Selling-on-Etsy"
+    },
+    {
+      "channel_id": "gumroad",
+      "fact": "Direct Gumroad website sales observed at 10% + USD 0.50 plus processing; Discover marketplace sales observed at 30%.",
+      "source_ref": "https://gumroad.com/help/article/66-gumroads-fees"
+    },
+    {
+      "channel_id": "google_play_books",
+      "fact": "Google Play Books accepts PDF or EPUB, states no cost to sell books, and does not require digital-edition exclusivity; availability is country/region dependent.",
+      "source_ref": "https://support.google.com/books/partner/answer/1079107"
+    },
+    {
+      "channel_id": "apple_books",
+      "fact": "Apple Books direct web publishing requires an iTunes Connect account and an EPUB file plus cover/sample/description.",
+      "source_ref": "https://authors.apple.com/support/4574-publish-book-from-web"
+    },
+    {
+      "channel_id": "amazon_kdp",
+      "fact": "KDP digital books expose 35% and 70% royalty options subject to eligibility/territory conditions.",
+      "source_ref": "https://kdp.amazon.com/en_US/help/topic/G200644210"
+    },
+    {
+      "channel_id": "draft2digital",
+      "fact": "Draft2Digital distributes to multiple online retail and library partners including Apple Books, Barnes & Noble, Kobo, OverDrive, cloudLibrary, Everand, Hoopla and others; Amazon distribution is observed as invitation-only.",
+      "source_ref": "https://draft2digital.com/partners/"
+    },
+    {
+      "channel_id": "notion_marketplace",
+      "fact": "Notion Marketplace supports paid templates after creator/payment review; third-party payment links are also supported, and direct Marketplace payments use a platform fee model.",
+      "source_ref": "https://www.notion.com/help/selling-on-marketplace"
+    },
+    {
+      "channel_id": "lemon_squeezy",
+      "fact": "Lemon Squeezy ecommerce pricing observed at 5% + USD 0.50 per transaction with no monthly ecommerce fee, subject to additional-fee conditions.",
+      "source_ref": "https://www.lemonsqueezy.com/pricing"
+    },
+    {
+      "channel_id": "envato",
+      "fact": "Registry intentionally treats new-author intake as paused based on current observed author-help state; recheck before activation.",
+      "source_ref": "https://help.author.envato.com/hc/en-us/articles/900005349363-Beginner-s-Guide-to-Selling-on-Envato"
+    }
+  ],
+  "observed_at": "2026-09-09",
+  "policy": "Dynamic platform fees/rules are dated observations and must be rechecked before live publication.",
+  "schema_version": "die.h03.commerce-platform-research.v1"
+}

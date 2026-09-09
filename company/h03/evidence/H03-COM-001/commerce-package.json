@@ -1,0 +1,532 @@
+{
+  "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+  "delivery": {
+    "files": [
+      {
+        "artifact_type": "PDF",
+        "name": "diy-people-search-opt-out-guide.pdf",
+        "ref": "artifact://H03-ORG-001/package/H03-PROD-ORG001-001/diy-people-search-opt-out-guide.pdf",
+        "sha256": "9387de9c840a9aa2f5b77a72ffc48f0d78b8936b90e012d0707309f871c99c19"
+      },
+      {
+        "artifact_type": "ZIP",
+        "name": "diy-people-search-opt-out-guide.zip",
+        "ref": "artifact://H03-ORG-001/package/H03-PROD-ORG001-001/diy-people-search-opt-out-guide.zip",
+        "sha256": "c93b149bfe139c9fe10a2dd662427720afad57ba6523d373c7d7c8e550b1fb8a"
+      }
+    ],
+    "package_status": "LOCAL_SALE_READY_UNREVIEWED",
+    "page_count": 2
+  },
+  "derivative_opportunities": [
+    {
+      "derivative_type": "epub_book",
+      "reason": "Expands eligible income surfaces without repeating deep research.",
+      "state": "NOT_BUILT"
+    },
+    {
+      "derivative_type": "paperback_book",
+      "reason": "Expands eligible income surfaces without repeating deep research.",
+      "state": "NOT_BUILT"
+    },
+    {
+      "derivative_type": "notion_template",
+      "reason": "Expands eligible income surfaces without repeating deep research.",
+      "state": "NOT_BUILT"
+    }
+  ],
+  "faq": [
+    {
+      "answer": "No. It is a DIY execution guide.",
+      "question": "Is this a done-for-you removal service?"
+    },
+    {
+      "answer": "No. The guide explicitly treats opt-out as exposure reduction rather than total erasure.",
+      "question": "Does opting out erase public records?"
+    },
+    {
+      "answer": "Not necessarily. The workflow includes periodic rechecking because listings can reappear.",
+      "question": "Will the information stay removed forever?"
+    }
+  ],
+  "holding_id": "H03",
+  "lineage": {
+    "knowledge_package_id": "H03-KP-ORG001-001",
+    "local_package_schema": "die.h03.local-product-package.v1",
+    "pdf_sha256": "9387de9c840a9aa2f5b77a72ffc48f0d78b8936b90e012d0707309f871c99c19",
+    "review_card_id": "H03-RC-H03-PROD-ORG001-001",
+    "zip_sha256": "c93b149bfe139c9fe10a2dd662427720afad57ba6523d373c7d7c8e550b1fb8a"
+  },
+  "offer": {
+    "benefits": [
+      "Follow a bounded sequence instead of rediscovering the process from scratch.",
+      "Use a repeatable recheck step so the workflow is not treated as a one-time guarantee.",
+      "Keep the important limitation visible: exposure reduction is not total deletion of public records."
+    ],
+    "buyer": "privacy-conscious consumer",
+    "contents": [
+      "1. Find your exposed listing",
+      "2. Submit the opt-out",
+      "3. Repeat across sites",
+      "4. Recheck periodically",
+      "5. Know the limits"
+    ],
+    "long_description": "DIY People-Search Opt-Out Guide turns a fragmented people-search opt-out task into a bounded sequence: find exposed listings, follow site opt-out instructions, repeat across relevant sites, and recheck periodically. It is designed as a practical execution aid rather than a promise of complete data erasure, and it preserves the product's evidence and rights lineage.",
+    "problem": "manual opt-outs are fragmented across many sites and can be time-consuming to repeat and monitor",
+    "promise": "a concise repeatable DIY sequence for finding, opting out, and rechecking people-search listings while understanding the limits of removal",
+    "short_description": "DIY People-Search Opt-Out Guide is a concise guide for privacy-conscious consumer who want a concise repeatable DIY sequence for finding, opting out, and rechecking people-search listings while understanding the limits of removal.",
+    "subtitle": "A bounded repeatable workflow for reducing exposed personal information",
+    "support_statement": "Digital product support covers delivery/access issues and material corrections; no outcome guarantee is made.",
+    "title": "DIY People-Search Opt-Out Guide"
+  },
+  "pricing_hypothesis": {
+    "basis_codes": [
+      "MEDIUM_WTP",
+      "BOUNDED_GUIDE",
+      "NO_OBSERVED_PRODUCT_SALES_YET"
+    ],
+    "candidate_price_minor": 900,
+    "currency": "USD",
+    "observed_sales": false,
+    "state": "UNTESTED"
+  },
+  "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+  "product_id": "H03-PROD-ORG001-001",
+  "publication_authority": {
+    "external_publication_authorized": false,
+    "founder_required": true
+  },
+  "rights_disclosure": {
+    "market_sources_used_as_product_content": false,
+    "product_rights_basis": "GOVERNED_EXTERNAL_REFERENCE_PLUS_ORIGINAL_DERIVED_WRITING",
+    "review_rights_flags": [
+      {
+        "code": "REFERENCE_ONLY_SOURCE",
+        "detail": "FTC source is governed reference-only; verbatim commercial reuse is not authorized.",
+        "severity": "LOW"
+      },
+      {
+        "code": "MARKET_SOURCES_NOT_PRODUCT_CONTENT",
+        "detail": "Incogni/DeleteMe evidence is restricted to market/WTP basis and excluded from product Knowledge Package.",
+        "severity": "LOW"
+      }
+    ],
+    "verbatim_external_reuse_authorized": false
+  },
+  "route_matrix": [
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "google_play_books",
+      "channel_name": "Google Play Books",
+      "content_readiness": "CONTENT_READY",
+      "discovery": "NATIVE_BOOK_SEARCH",
+      "family": "BOOK_MARKETPLACE",
+      "fit": "HIGH",
+      "intake_state": "ACTIVE_CONDITIONAL_BY_COUNTRY",
+      "reason_codes": [
+        "FORM_HIGH_FIT",
+        "CURRENT_ARTIFACT_COMPATIBLE"
+      ],
+      "required_derivatives": [],
+      "route_score": 43,
+      "source_refs": [
+        "https://support.google.com/books/partner/answer/1079107",
+        "https://support.google.com/books/partner/answer/3244021"
+      ]
+    },
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "gumroad",
+      "channel_name": "Gumroad",
+      "content_readiness": "CONTENT_READY",
+      "discovery": "MIXED_DIRECT_AND_DISCOVER",
+      "family": "CREATOR_STOREFRONT",
+      "fit": "HIGH",
+      "intake_state": "ACTIVE",
+      "reason_codes": [
+        "FORM_HIGH_FIT",
+        "CURRENT_ARTIFACT_COMPATIBLE"
+      ],
+      "required_derivatives": [],
+      "route_score": 42,
+      "source_refs": [
+        "https://gumroad.com/help/article/66-gumroads-fees"
+      ]
+    },
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "leanpub",
+      "channel_name": "Leanpub",
+      "content_readiness": "CONTENT_READY",
+      "discovery": "MIXED",
+      "family": "BOOK_COURSE_STOREFRONT",
+      "fit": "HIGH",
+      "intake_state": "ACTIVE",
+      "reason_codes": [
+        "FORM_HIGH_FIT",
+        "CURRENT_ARTIFACT_COMPATIBLE"
+      ],
+      "required_derivatives": [],
+      "route_score": 42,
+      "source_refs": [
+        "https://leanpub.com/"
+      ]
+    },
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "fourthwall",
+      "channel_name": "Fourthwall",
+      "content_readiness": "CONTENT_READY",
+      "discovery": "CREATOR_AUDIENCE_PRIMARY",
+      "family": "CREATOR_STOREFRONT",
+      "fit": "HIGH",
+      "intake_state": "ACTIVE",
+      "reason_codes": [
+        "FORM_HIGH_FIT",
+        "CURRENT_ARTIFACT_COMPATIBLE"
+      ],
+      "required_derivatives": [],
+      "route_score": 41,
+      "source_refs": [
+        "https://fourthwall.com/"
+      ]
+    },
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "ko_fi",
+      "channel_name": "Ko-fi Shop",
+      "content_readiness": "CONTENT_READY",
+      "discovery": "CREATOR_AUDIENCE_PRIMARY",
+      "family": "CREATOR_STOREFRONT",
+      "fit": "HIGH",
+      "intake_state": "ACTIVE",
+      "reason_codes": [
+        "FORM_HIGH_FIT",
+        "CURRENT_ARTIFACT_COMPATIBLE"
+      ],
+      "required_derivatives": [],
+      "route_score": 41,
+      "source_refs": [
+        "https://ko-fi.com/shop/"
+      ]
+    },
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "lemon_squeezy",
+      "channel_name": "Lemon Squeezy",
+      "content_readiness": "CONTENT_READY",
+      "discovery": "DIRECT_TRAFFIC_PRIMARY",
+      "family": "DIGITAL_COMMERCE_MOR",
+      "fit": "HIGH",
+      "intake_state": "ACTIVE",
+      "reason_codes": [
+        "FORM_HIGH_FIT",
+        "CURRENT_ARTIFACT_COMPATIBLE"
+      ],
+      "required_derivatives": [],
+      "route_score": 41,
+      "source_refs": [
+        "https://www.lemonsqueezy.com/pricing"
+      ]
+    },
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "payhip",
+      "channel_name": "Payhip",
+      "content_readiness": "CONTENT_READY",
+      "discovery": "DIRECT_TRAFFIC_PRIMARY",
+      "family": "CREATOR_STOREFRONT",
+      "fit": "HIGH",
+      "intake_state": "ACTIVE",
+      "reason_codes": [
+        "FORM_HIGH_FIT",
+        "CURRENT_ARTIFACT_COMPATIBLE"
+      ],
+      "required_derivatives": [],
+      "route_score": 41,
+      "source_refs": [
+        "https://payhip.com/"
+      ]
+    },
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "sellfy",
+      "channel_name": "Sellfy",
+      "content_readiness": "CONTENT_READY",
+      "discovery": "DIRECT_TRAFFIC_PRIMARY",
+      "family": "CREATOR_STOREFRONT",
+      "fit": "HIGH",
+      "intake_state": "ACTIVE",
+      "reason_codes": [
+        "FORM_HIGH_FIT",
+        "CURRENT_ARTIFACT_COMPATIBLE"
+      ],
+      "required_derivatives": [],
+      "route_score": 41,
+      "source_refs": [
+        "https://sellfy.com/"
+      ]
+    },
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "shopify",
+      "channel_name": "Shopify",
+      "content_readiness": "CONTENT_READY",
+      "discovery": "OWN_TRAFFIC",
+      "family": "OWNED_STOREFRONT",
+      "fit": "HIGH",
+      "intake_state": "ACTIVE_ACCOUNT_REQUIRED",
+      "reason_codes": [
+        "FORM_HIGH_FIT",
+        "CURRENT_ARTIFACT_COMPATIBLE"
+      ],
+      "required_derivatives": [],
+      "route_score": 41,
+      "source_refs": [
+        "https://www.shopify.com/"
+      ]
+    },
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "woocommerce",
+      "channel_name": "WooCommerce",
+      "content_readiness": "CONTENT_READY",
+      "discovery": "OWN_TRAFFIC",
+      "family": "OWNED_STOREFRONT",
+      "fit": "HIGH",
+      "intake_state": "ACTIVE_SITE_REQUIRED",
+      "reason_codes": [
+        "FORM_HIGH_FIT",
+        "CURRENT_ARTIFACT_COMPATIBLE"
+      ],
+      "required_derivatives": [],
+      "route_score": 41,
+      "source_refs": [
+        "https://woocommerce.com/"
+      ]
+    },
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "amazon_kdp",
+      "channel_name": "Amazon KDP",
+      "content_readiness": "DERIVATIVE_REQUIRED",
+      "discovery": "NATIVE_BOOK_SEARCH",
+      "family": "BOOK_MARKETPLACE",
+      "fit": "HIGH",
+      "intake_state": "ACTIVE",
+      "reason_codes": [
+        "FORM_HIGH_FIT",
+        "CURRENT_ARTIFACT_INCOMPATIBLE"
+      ],
+      "required_derivatives": [
+        "epub_book",
+        "paperback_book"
+      ],
+      "route_score": 36,
+      "source_refs": [
+        "https://kdp.amazon.com/en_US/help/topic/G200644210"
+      ]
+    },
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "apple_books",
+      "channel_name": "Apple Books",
+      "content_readiness": "DERIVATIVE_REQUIRED",
+      "discovery": "NATIVE_BOOK_SEARCH",
+      "family": "BOOK_MARKETPLACE",
+      "fit": "HIGH",
+      "intake_state": "ACTIVE",
+      "reason_codes": [
+        "FORM_HIGH_FIT",
+        "CURRENT_ARTIFACT_INCOMPATIBLE"
+      ],
+      "required_derivatives": [
+        "epub_book"
+      ],
+      "route_score": 36,
+      "source_refs": [
+        "https://authors.apple.com/support/4574-publish-book-from-web"
+      ]
+    },
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "draft2digital",
+      "channel_name": "Draft2Digital",
+      "content_readiness": "DERIVATIVE_REQUIRED",
+      "discovery": "DOWNSTREAM_RETAILER_NETWORK",
+      "family": "BOOK_DISTRIBUTION_AGGREGATOR",
+      "fit": "HIGH",
+      "intake_state": "ACTIVE",
+      "reason_codes": [
+        "FORM_HIGH_FIT",
+        "CURRENT_ARTIFACT_INCOMPATIBLE"
+      ],
+      "required_derivatives": [
+        "epub_book"
+      ],
+      "route_score": 36,
+      "source_refs": [
+        "https://draft2digital.com/",
+        "https://draft2digital.com/partners/"
+      ]
+    },
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "etsy",
+      "channel_name": "Etsy",
+      "content_readiness": "CONTENT_READY",
+      "discovery": "NATIVE_SEARCH",
+      "family": "DISCOVERY_MARKETPLACE",
+      "fit": "MEDIUM",
+      "intake_state": "ACTIVE",
+      "reason_codes": [
+        "FORM_MEDIUM_FIT",
+        "CURRENT_ARTIFACT_COMPATIBLE"
+      ],
+      "required_derivatives": [],
+      "route_score": 33,
+      "source_refs": [
+        "https://help.etsy.com/hc/en-us/articles/115014483627-What-are-the-Fees-and-Taxes-for-Selling-on-Etsy"
+      ]
+    },
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "creative_fabrica",
+      "channel_name": "Creative Fabrica",
+      "content_readiness": "CONTENT_READY",
+      "discovery": "NATIVE_SEARCH_AND_SUBSCRIPTION",
+      "family": "CREATIVE_MARKETPLACE",
+      "fit": "LOW",
+      "intake_state": "ACTIVE_APPLICATION",
+      "reason_codes": [
+        "FORM_REQUIRES_DERIVATIVE",
+        "CURRENT_ARTIFACT_COMPATIBLE"
+      ],
+      "required_derivatives": [],
+      "route_score": 23,
+      "source_refs": [
+        "https://www.creativefabrica.com/"
+      ]
+    },
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "creative_market",
+      "channel_name": "Creative Market",
+      "content_readiness": "CONTENT_READY",
+      "discovery": "NATIVE_SEARCH",
+      "family": "CREATIVE_MARKETPLACE",
+      "fit": "LOW",
+      "intake_state": "ACTIVE_APPLICATION",
+      "reason_codes": [
+        "FORM_REQUIRES_DERIVATIVE",
+        "CURRENT_ARTIFACT_COMPATIBLE"
+      ],
+      "required_derivatives": [],
+      "route_score": 23,
+      "source_refs": [
+        "https://creativemarket.com/sell"
+      ]
+    },
+    {
+      "account_gate": "PREFLIGHT_REQUIRED",
+      "channel_id": "notion_marketplace",
+      "channel_name": "Notion Marketplace",
+      "content_readiness": "DERIVATIVE_REQUIRED",
+      "discovery": "NATIVE_SEARCH",
+      "family": "NATIVE_TEMPLATE_MARKETPLACE",
+      "fit": "LOW",
+      "intake_state": "ACTIVE_WITH_REVIEW",
+      "reason_codes": [
+        "FORM_REQUIRES_DERIVATIVE",
+        "CURRENT_ARTIFACT_INCOMPATIBLE"
+      ],
+      "required_derivatives": [
+        "notion_template"
+      ],
+      "route_score": 16,
+      "source_refs": [
+        "https://www.notion.com/help/selling-on-marketplace"
+      ]
+    },
+    {
+      "account_gate": "NOT_APPLICABLE",
+      "channel_id": "envato",
+      "channel_name": "Envato",
+      "content_readiness": "PAUSED_INTAKE",
+      "discovery": "NATIVE_SEARCH",
+      "family": "CREATIVE_MARKETPLACE",
+      "fit": "LOW",
+      "intake_state": "PAUSED_FOR_NEW_AUTHORS_OBSERVED",
+      "reason_codes": [
+        "FORM_REQUIRES_DERIVATIVE",
+        "PLATFORM_INTAKE_PAUSED"
+      ],
+      "required_derivatives": [],
+      "route_score": 13,
+      "source_refs": [
+        "https://help.author.envato.com/hc/en-us/articles/900005349363-Beginner-s-Guide-to-Selling-on-Envato"
+      ]
+    },
+    {
+      "account_gate": "NOT_APPLICABLE",
+      "channel_id": "teachers_pay_teachers",
+      "channel_name": "Teachers Pay Teachers",
+      "content_readiness": "NOT_ELIGIBLE",
+      "discovery": "NATIVE_SEARCH",
+      "family": "EDUCATION_MARKETPLACE",
+      "fit": "NONE",
+      "intake_state": "ACTIVE",
+      "reason_codes": [
+        "VERTICAL_MISMATCH"
+      ],
+      "required_derivatives": [],
+      "route_score": 3,
+      "source_refs": [
+        "https://www.teacherspayteachers.com/"
+      ]
+    }
+  ],
+  "schema_version": "die.h03.commerce-package.v1",
+  "seo": {
+    "keywords": [
+      "diy",
+      "people",
+      "search",
+      "opt",
+      "out",
+      "guide",
+      "digital",
+      "download",
+      "find",
+      "your",
+      "exposed",
+      "listing",
+      "submit",
+      "the",
+      "repeat",
+      "across",
+      "sites",
+      "recheck",
+      "periodically",
+      "know",
+      "limits"
+    ],
+    "language": "en",
+    "mature_content": false,
+    "tags": [
+      "diy",
+      "people",
+      "search",
+      "opt",
+      "out",
+      "guide",
+      "digital",
+      "download",
+      "find",
+      "your",
+      "exposed",
+      "listing",
+      "submit"
+    ]
+  }
+}

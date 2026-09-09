@@ -1,0 +1,59 @@
+{
+  "account_gate": "PREFLIGHT_REQUIRED",
+  "channel_id": "draft2digital",
+  "content_readiness": "DERIVATIVE_REQUIRED",
+  "fit": "HIGH",
+  "holding_id": "H03",
+  "listing_fields": {
+    "book_title": "DIY People-Search Opt-Out Guide",
+    "description": "DIY People-Search Opt-Out Guide turns a fragmented people-search opt-out task into a bounded sequence: find exposed listings, follow site opt-out instructions, repeat across relevant sites, and recheck periodically. It is designed as a practical execution aid rather than a promise of complete data erasure, and it preserves the product's evidence and rights lineage.",
+    "keywords": [
+      "diy",
+      "people",
+      "search",
+      "opt",
+      "out",
+      "guide",
+      "digital",
+      "download",
+      "find",
+      "your",
+      "exposed",
+      "listing",
+      "submit",
+      "the",
+      "repeat",
+      "across",
+      "sites",
+      "recheck",
+      "periodically",
+      "know",
+      "limits"
+    ],
+    "price_hypothesis": {
+      "basis_codes": [
+        "MEDIUM_WTP",
+        "BOUNDED_GUIDE",
+        "NO_OBSERVED_PRODUCT_SALES_YET"
+      ],
+      "candidate_price_minor": 900,
+      "currency": "USD",
+      "observed_sales": false,
+      "state": "UNTESTED"
+    },
+    "required_derivatives": [
+      "epub_book"
+    ],
+    "subtitle": "A bounded repeatable workflow for reducing exposed personal information"
+  },
+  "product_id": "H03-PROD-ORG001-001",
+  "publication_authorized": false,
+  "reason_codes": [
+    "FORM_HIGH_FIT",
+    "CURRENT_ARTIFACT_INCOMPATIBLE"
+  ],
+  "required_derivatives": [
+    "epub_book"
+  ],
+  "schema_version": "die.h03.channel-listing-draft.v1"
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.commerce-package.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","commerce_package_id","holding_id","product_id","problem_seed_id","offer","delivery","seo","pricing_hypothesis","faq","rights_disclosure","lineage","derivative_opportunities","route_matrix","publication_authority"],
+  "properties": {
+    "schema_version": {"const":"die.h03.commerce-package.v1"},
+    "commerce_package_id": {"type":"string","minLength":6},
+    "holding_id": {"const":"H03"},
+    "product_id": {"type":"string","minLength":3},
+    "problem_seed_id": {"type":"string","minLength":3},
+    "offer": {
+      "type":"object",
+      "required":["title","subtitle","buyer","problem","promise","short_description","long_description","benefits","contents","support_statement"],
+      "properties": {
+        "title":{"type":"string","minLength":3},
+        "subtitle":{"type":"string"},
+        "buyer":{"type":"string","minLength":3},
+        "problem":{"type":"string","minLength":3},
+        "promise":{"type":"string","minLength":3},
+        "short_description":{"type":"string","minLength":20},
+        "long_description":{"type":"string","minLength":40},
+        "benefits":{"type":"array","minItems":1,"items":{"type":"string","minLength":3}},
+        "contents":{"type":"array","minItems":1,"items":{"type":"string","minLength":1}},
+        "support_statement":{"type":"string","minLength":3}
+      }
+    },
+    "delivery":{"type":"object"},
+    "seo":{"type":"object"},
+    "pricing_hypothesis":{"type":"object"},
+    "faq":{"type":"array","items":{"type":"object"}},
+    "rights_disclosure":{"type":"object"},
+    "lineage":{"type":"object"},
+    "derivative_opportunities":{"type":"array","items":{"type":"object"}},
+    "route_matrix":{"type":"array","minItems":1,"items":{"type":"object"}},
+    "publication_authority": {
+      "type":"object",
+      "required":["founder_required","external_publication_authorized"],
+      "properties": {
+        "founder_required":{"const":true},
+        "external_publication_authorized":{"const":false}
+      }
+    }
+  }
+}
