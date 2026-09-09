@@ -147,3 +147,13 @@ New READY frontier: `H03-OPP-002`, `H03-DMD-001`, `H03-RT-002`. `H03-ECO-002` re
 - `H03-RT-002`: provider registry/router makes Qwen 3.8 Max and Gemini first-class workers and routes by role + capability + health + capacity with fallback.
 
 New READY frontier: `H03-OPP-003` Worth-Making gate and `H03-RT-003` persistent browser profile worker-pool/shard contract.
+
+
+---
+
+## H03 Batch C — OPP-003 + RT-003 — DONE/PASS — 2026-09-09
+
+- `H03-OPP-003`: deterministic Worth-Making gate now emits MAKE / RESEARCH_MORE / REJECT from demand/WTP/productability evidence without an opaque score.
+- `H03-RT-003`: persistent browser runtime is modeled as sanitized profile shards; one multi-provider shard is valid initially, with alternate-shard fallback when observed health/capacity requires it.
+
+New READY frontier: `H03-RSCH-001` Deep Research Work Card/stop-policy and `H03-RT-004` role queues + fan-out/fan-in continuity state machine.

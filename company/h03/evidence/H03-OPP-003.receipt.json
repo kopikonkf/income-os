@@ -1,0 +1,16 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-OPP-003",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "make_requires_evidence": true,
+    "unknown_research_more": true,
+    "low_productability_reject": true,
+    "opaque_score": false
+  },
+  "validation": {
+    "h03_regression": "57/57 PASS",
+    "graph_frontier": "H03-RSCH-001,H03-RT-004"
+  }
+}

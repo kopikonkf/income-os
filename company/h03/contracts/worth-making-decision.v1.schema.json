@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.worth-making-decision.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","decision_id","holding_id","problem_seed_id","decision","reason_codes","evidence_refs","productability_state"],
+  "properties": {
+    "schema_version": {"const":"die.h03.worth-making-decision.v1"},
+    "decision_id": {"type":"string","minLength":6},
+    "holding_id": {"const":"H03"},
+    "problem_seed_id": {"type":"string","minLength":6},
+    "decision": {"enum":["MAKE","RESEARCH_MORE","REJECT"]},
+    "reason_codes": {"type":"array","minItems":1,"items":{"type":"string"}},
+    "evidence_refs": {"type":"array","items":{"type":"string"},"uniqueItems":true},
+    "productability_state": {"enum":["UNKNOWN","LOW","MEDIUM","HIGH"]}
+  }
+}

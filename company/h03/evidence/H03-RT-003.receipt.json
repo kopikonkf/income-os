@@ -1,0 +1,16 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-RT-003",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "one_initial_shard_valid": true,
+    "multi_provider_shard": true,
+    "alternate_shard_fallback": true,
+    "secret_or_profile_path_persisted": false
+  },
+  "validation": {
+    "h03_regression": "57/57 PASS",
+    "graph_frontier": "H03-RSCH-001,H03-RT-004"
+  }
+}
