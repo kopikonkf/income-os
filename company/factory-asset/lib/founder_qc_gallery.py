@@ -44,6 +44,11 @@ def ws_img(ws):
   for x in cs:
    if ok(x):return x,kind
  return None,'NONE'
+
+def model_lineage(provider_id, summary):
+ p=str(provider_id or '').lower(); explicit=summary.get('model_id') or summary.get('model') or summary.get('model_name'); version=summary.get('model_version') or summary.get('version') if explicit else None
+ if explicit:return {'model_name':str(explicit),'model_version':str(version) if version else 'NOT_RECORDED','model_evidence':'EXPLICIT_ATTEMPT_RECEIPT'}
+ return {'model_name':'Provider-managed image model','model_version':'NOT_DISCLOSED_OR_NOT_CAPTURED','model_evidence':'NOT_DISCLOSED_BY_PROVIDER'}
 def fa_items(root,cohort):
  plans={x.get('job_id'):x for x in j(cohort).get('jobs',[]) if x.get('job_id')};e4=j(root/'FA124-E4-final.json');out=[]
  for row in e4.get('technical_qa',[]):
@@ -52,7 +57,7 @@ def fa_items(root,cohort):
   p=Path(str(qa.get('path') or ''))
   if not ok(p):continue
   job=str(row.get('job_id') or p.parent.parent.name);pl=plans.get(job,{})
-  out.append({'asset_id':aid('FA124_CANARY',job,p),'source_group':'FA124_CANARY','job_id':job,'seed_id':row.get('seed_id') or pl.get('seed_id'),'seed_name':row.get('seed_noun') or pl.get('seed_noun') or job,'provider_route':f"{row.get('provider_id')}@{row.get('cluster_id')}",'review_kind':'PROVIDER_ORIGINAL_ACCEPTED_MASTER','qc_state':'TECHNICAL_PASS','width_px':qa.get('width_px'),'height_px':qa.get('height_px'),'format':qa.get('format') or p.suffix[1:].upper(),'bytes':qa.get('bytes') or p.stat().st_size,'orientation_result':qa.get('orientation_result'),'created_at':None,'_path':str(p)})
+  summary=j(root/'jobs'/job/'summary.json');ml=model_lineage(row.get('provider_id'),summary);out.append({'asset_id':aid('FA124_CANARY',job,p),'source_group':'FA124_CANARY','job_id':job,'seed_id':row.get('seed_id') or pl.get('seed_id'),'seed_name':row.get('seed_noun') or pl.get('seed_noun') or job,'provider_id':row.get('provider_id'),'cluster_id':row.get('cluster_id'),'provider_route':f"{row.get('provider_id')}@{row.get('cluster_id')}",**ml,'review_kind':'PROVIDER_ORIGINAL_ACCEPTED_MASTER','qc_state':'TECHNICAL_PASS','width_px':qa.get('width_px'),'height_px':qa.get('height_px'),'format':qa.get('format') or p.suffix[1:].upper(),'bytes':qa.get('bytes') or p.stat().st_size,'orientation_result':qa.get('orientation_result'),'created_at':summary.get('completed_at'),'_path':str(p)})
  return out
 def ws_items(root):
  out=[]
@@ -62,7 +67,7 @@ def ws_items(root):
   p,kind=ws_img(ws)
   if p is None:continue
   sid,name=ws_seed(ws);w,h,fmt=meta(p);route=ws_provider(ws)
-  out.append({'asset_id':aid('PRODUCTION_WORKSPACE',ws.name,p),'source_group':'PRODUCTION_WORKSPACE','job_id':ws.name,'seed_id':sid,'seed_name':name or ws.name,'provider_route':route,'review_kind':kind,'qc_state':ws_state(ws),'width_px':w,'height_px':h,'format':fmt,'bytes':p.stat().st_size,'orientation_result':None,'created_at':None,'_path':str(p)})
+  out.append({'asset_id':aid('PRODUCTION_WORKSPACE',ws.name,p),'source_group':'PRODUCTION_WORKSPACE','job_id':ws.name,'seed_id':sid,'seed_name':name or ws.name,'provider_id':route,'cluster_id':None,'provider_route':route,'model_name':'NOT_RECORDED','model_version':'NOT_RECORDED','model_evidence':'LEGACY_WORKSPACE_NO_MODEL_RECEIPT','review_kind':kind,'qc_state':ws_state(ws),'width_px':w,'height_px':h,'format':fmt,'bytes':p.stat().st_size,'orientation_result':None,'created_at':None,'_path':str(p)})
  return out
 def internal(repo,work=WORK,fa124=FA124):
  cohort=Path(repo)/'company/factory-asset/fixtures/scale/FA-124-cartoon-watercolor-cohort.json'
