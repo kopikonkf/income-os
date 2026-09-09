@@ -1,0 +1,26 @@
+{
+  "schema_version": "die.h03.live-canary-preflight-receipt.v1",
+  "task_id": "H03-FIRST-DOLLAR-CANARY",
+  "date": "2026-09-09",
+  "status": "BLOCKED_ACCOUNT_PREFLIGHT",
+  "founder_authorization": "GRANTED",
+  "product_id": "H03-PROD-ORG001-001",
+  "primary_checkout": "gumroad",
+  "backup_checkout": "payhip",
+  "distribution_state": "BLOCKED_SELLER_ACCOUNT_PREFLIGHT",
+  "growth_state": "BLOCKED_DISTRIBUTION_NOT_LIVE",
+  "preferred_social_ready_count": 0,
+  "external_publication": false,
+  "paid_ads": false,
+  "observed_revenue_minor": null,
+  "reauthorization_required": false,
+  "validation": {
+    "targeted_first_dollar": "6/6 PASS",
+    "h03_regression": "153/153 PASS",
+    "graph": "PASS",
+    "ready_frontier": [],
+    "dist_status": "BLOCKED_SELLER_ACCOUNT_PREFLIGHT",
+    "grw003_status": "BLOCKED_DISTRIBUTION_NOT_LIVE",
+    "json_parse": "PASS"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "canary_id": "H03-FIRST-DOLLAR-H03-PROD-ORG001-001",
+  "checkout_priority": [
+    {
+      "channel_id": "gumroad",
+      "rank": 1,
+      "reason": "Global digital-product storefront with current H03 content-ready draft; avoids requiring H03-owned domain for first canary.",
+      "state": "AUTH_REQUIRED"
+    },
+    {
+      "channel_id": "payhip",
+      "rank": 2,
+      "reason": "Content-ready backup; seller must connect an available payment gateway before receiving buyer payments.",
+      "state": "CHALLENGE"
+    },
+    {
+      "channel_id": "lemon_squeezy",
+      "rank": 3,
+      "reason": "Good later global MoR lane but store activation/identity review makes it a slower first-dollar route.",
+      "state": "DEFERRED_FOR_FIRST_CANARY"
+    }
+  ],
+  "current_state": "BLOCKED_ACCOUNT_PREFLIGHT",
+  "custom_domain_required": false,
+  "founder_authorization_status": "GRANTED",
+  "goal": {
+    "currency": "USD",
+    "metric": "evidence_backed_revenue_minor",
+    "target": 100
+  },
+  "holding_id": "H03",
+  "paid_ads": false,
+  "product": {
+    "form": "guide",
+    "listing_draft_ref": "company/h03/evidence/H03-COM-001/channel-drafts/gumroad.json",
+    "package_ref": "company/h03/evidence/H03-ORG-001/package/H03-PROD-ORG001-001/",
+    "price_hypothesis": {
+      "basis_codes": [
+        "MEDIUM_WTP",
+        "BOUNDED_GUIDE",
+        "NO_OBSERVED_PRODUCT_SALES_YET"
+      ],
+      "candidate_price_minor": 900,
+      "currency": "USD",
+      "observed_sales": false,
+      "state": "UNTESTED"
+    },
+    "title": "DIY People-Search Opt-Out Guide"
+  },
+  "product_id": "H03-PROD-ORG001-001",
+  "promotion_priority": [
+    {
+      "channel_id": "facebook_group",
+      "mode": "help_first_no_hard_sell",
+      "rank": 1
+    },
+    {
+      "channel_id": "pinterest",
+      "mode": "evergreen_problem_solution",
+      "rank": 2
+    },
+    {
+      "channel_id": "reddit",
+      "mode": "help_first_no_hard_sell",
+      "rank": 3
+    },
+    {
+      "channel_id": "youtube",
+      "mode": "searchable_education",
+      "rank": 4
+    },
+    {
+      "channel_id": "facebook_page",
+      "mode": "shareable_practical_education",
+      "rank": 5
+    }
+  ],
+  "schema_version": "die.h03.first-dollar-execution-plan.v1",
+  "sequence": [
+    "authenticate_and_complete_primary_seller_onboarding",
+    "publish_one_listing",
+    "capture_public_listing_url_and_update ATTR destination",
+    "authenticate_at_least_one_preferred_social_channel",
+    "publish_bounded_organic_atom",
+    "collect_read_only_analytics",
+    "feed observed outcomes to ANL-001 and ANL-002",
+    "declare first-dollar only after evidence-backed revenue >= USD 1"
+  ]
+}

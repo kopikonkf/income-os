@@ -1,0 +1,26 @@
+{
+  "card_id": "H03-UNBLOCK-FIRST-DOLLAR-001",
+  "founder_reauthorization_required": false,
+  "holding_id": "H03",
+  "minimum_manual_actions": [
+    {
+      "action": "Use the already-open seller tab to sign in or create the seller account and complete any identity/payout/onboarding fields required by Gumroad. Do not send credentials, ID images, tax numbers, payout data, cookies or OTP values to H03.",
+      "step": 1,
+      "surface": "Gumroad seller"
+    },
+    {
+      "action": "Authenticate at least one of Facebook, Pinterest, Reddit or YouTube in the existing growth browser profile. Facebook is preferred because Page/Group are both useful, but one authenticated channel is sufficient to resume a bounded canary.",
+      "step": 2,
+      "surface": "One preferred organic channel"
+    }
+  ],
+  "optional_actions": [
+    {
+      "action": "Authenticate/setup only as backup if Gumroad onboarding cannot be completed promptly.",
+      "surface": "Payhip"
+    }
+  ],
+  "resume_condition": "Primary seller state AUTHENTICATED/READY and at least one bounded growth channel authenticated after listing publication.",
+  "schema_version": "die.h03.operator-unblock-card.v1",
+  "status": "ACTION_REQUIRED"
+}

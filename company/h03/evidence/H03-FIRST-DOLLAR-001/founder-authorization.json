@@ -1,0 +1,32 @@
+{
+  "authorization_id": "H03-AUTH-FIRST-DOLLAR-20260909",
+  "authorized_at": "2026-09-09T17:21:00Z",
+  "does_not_authorize": [
+    "paid_ad_spend",
+    "unbounded_multi-product_publication",
+    "credential_capture",
+    "cookie_or_token_export",
+    "canonical_economics_writer_activation"
+  ],
+  "holding_id": "H03",
+  "schema_version": "die.h03.founder-live-authorization.v1",
+  "scope": {
+    "backup_checkout": "payhip",
+    "bounded_organic_promotion": true,
+    "currency": "USD",
+    "external_listing": true,
+    "paid_ads": false,
+    "phase": "FIRST_DOLLAR_CANARY",
+    "primary_checkout": "gumroad",
+    "product_id": "H03-PROD-ORG001-001",
+    "promotion_cohort": [
+      "facebook_page",
+      "facebook_group",
+      "pinterest",
+      "reddit",
+      "youtube"
+    ],
+    "target_observed_revenue_minor": 100
+  },
+  "status": "GRANTED"
+}
