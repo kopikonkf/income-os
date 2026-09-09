@@ -1,0 +1,79 @@
+{
+  "conclusion": "FOUNDER_AUTHORIZED_BUT_ACCOUNT_FUEL_NOT_PROVISIONED",
+  "external_publication_occurred": false,
+  "holding_id": "H03",
+  "local_package_ready": true,
+  "observed_at": "2026-09-09T18:00:00Z",
+  "observed_revenue_minor": null,
+  "preferred_social_ready_count": 0,
+  "price_hypothesis": {
+    "basis_codes": [
+      "MEDIUM_WTP",
+      "BOUNDED_GUIDE",
+      "NO_OBSERVED_PRODUCT_SALES_YET"
+    ],
+    "candidate_price_minor": 900,
+    "currency": "USD",
+    "observed_sales": false,
+    "state": "UNTESTED"
+  },
+  "product_content_ready": true,
+  "product_id": "H03-PROD-ORG001-001",
+  "schema_version": "die.h03.first-dollar-live-preflight.v1",
+  "seller": {
+    "backup": {
+      "channel_id": "payhip",
+      "credential_values_read": false,
+      "observation": "Account navigation encountered an anti-automation challenge before authenticated readiness could be established.",
+      "session_material_persisted": false,
+      "state": "CHALLENGE"
+    },
+    "primary": {
+      "channel_id": "gumroad",
+      "credential_values_read": false,
+      "observation": "Dashboard navigation redirected to platform login.",
+      "session_material_persisted": false,
+      "state": "AUTH_REQUIRED"
+    }
+  },
+  "seller_ready_count": 0,
+  "social": [
+    {
+      "channel_id": "facebook_page",
+      "state": "AUTH_REQUIRED"
+    },
+    {
+      "channel_id": "facebook_group",
+      "state": "AUTH_REQUIRED"
+    },
+    {
+      "channel_id": "pinterest",
+      "state": "AUTH_REQUIRED"
+    },
+    {
+      "channel_id": "reddit",
+      "state": "AUTH_REQUIRED"
+    },
+    {
+      "channel_id": "youtube",
+      "state": "AUTH_REQUIRED"
+    },
+    {
+      "channel_id": "x",
+      "state": "CHALLENGE"
+    },
+    {
+      "channel_id": "threads",
+      "state": "UNKNOWN"
+    },
+    {
+      "channel_id": "instagram",
+      "state": "UNKNOWN"
+    },
+    {
+      "channel_id": "tiktok",
+      "state": "UNKNOWN"
+    }
+  ],
+  "transport": "BROWSER_CDP_SANITIZED_STATE_ONLY"
+}

@@ -1,0 +1,26 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"die.h03.first-dollar-canary.v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema_version","holding_id","canary_id","product_id","founder_authorized","price_hypothesis","primary_checkout","backup_checkout","promotion_cohort","seller_preflight","social_preflight","distribution_state","growth_state","paid_ads","external_publication_occurred","observed_revenue_minor","next_required_action"],
+  "properties":{
+    "schema_version":{"const":"die.h03.first-dollar-canary.v1"},
+    "holding_id":{"const":"H03"},
+    "canary_id":{"type":"string","minLength":6},
+    "product_id":{"type":"string","minLength":3},
+    "founder_authorized":{"const":true},
+    "price_hypothesis":{"type":"object"},
+    "primary_checkout":{"type":"string","minLength":2},
+    "backup_checkout":{"type":"string","minLength":2},
+    "promotion_cohort":{"type":"array","minItems":1,"items":{"type":"string"}},
+    "seller_preflight":{"type":"object"},
+    "social_preflight":{"type":"object"},
+    "distribution_state":{"enum":["BLOCKED_SELLER_ACCOUNT_PREFLIGHT","READY_FOR_BOUNDED_PUBLICATION","PUBLISHED"]},
+    "growth_state":{"enum":["BLOCKED_DISTRIBUTION_NOT_LIVE","BLOCKED_SOCIAL_ACCOUNT_PREFLIGHT","READY_FOR_BOUNDED_ORGANIC_PROMOTION","PROMOTED"]},
+    "paid_ads":{"const":false},
+    "external_publication_occurred":{"type":"boolean"},
+    "observed_revenue_minor":{"type":["integer","null"],"minimum":0},
+    "next_required_action":{"type":"string","minLength":3}
+  }
+}

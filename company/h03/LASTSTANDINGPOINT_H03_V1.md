@@ -292,3 +292,14 @@ ANL-002 now joins evidence-backed channel/product outcomes back to the originati
 Current real unpublished state remains `INSUFFICIENT_OBSERVED_OUTCOMES`: all live analytics are UNKNOWN, no feedback signal exists, no candidate Demand Packet is created, and WTP remains `MEDIUM`. Missing data is not zero. Correlation is not causation. Canonical mutation authority remains false.
 
 No low-risk READY frontier remains after this task. `H03-DIST-001` and `H03-GRW-003` remain WAITING_FOUNDER; `H03-ECO-002` remains BLOCKED/MEDIUM.
+
+
+---
+
+## H03 First-Dollar Canary — FOUNDER AUTHORIZED / ACCOUNT PREFLIGHT BLOCKED — 2026-09-09
+
+Founder authorization is now durable for the bounded first-dollar phase: one external product listing, bounded organic promotion, zero paid ads. `H03-DIST-001` and `H03-GRW-003` must not return to `WAITING_FOUNDER` merely because login/onboarding remains.
+
+Live CDP preflight found Gumroad `AUTH_REQUIRED`, Payhip `CHALLENGE`, and zero ready preferred social sessions. Product/package/Commerce/ATTR/Growth/Analytics/Learning layers are ready. No external listing or social post was published and observed revenue remains unknown.
+
+Primary checkout is Gumroad; Payhip is backup. Initial promotion cohort is Facebook Group, Pinterest, Reddit, YouTube, Facebook Page. The minimum manual fuel is one-time seller onboarding plus at least one social login; no credentials/session material should be copied into H03.
