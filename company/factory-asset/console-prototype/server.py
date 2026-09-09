@@ -57,6 +57,7 @@ factory_core_synthetic = _load_module("factory_console_core_synthetic", ROOT / "
 console_batch_acceptance = _load_module("factory_console_batch_acceptance", ROOT / "company/factory-asset/lib/console_batch_acceptance.py")
 production_acceptance = _load_module("factory_console_production_acceptance", ROOT / "company/factory-asset/lib/console_production_acceptance.py")
 founder_qc_gallery = _load_module("factory_console_founder_qc_gallery", ROOT / "company/factory-asset/lib/founder_qc_gallery.py")
+cluster_topology = _load_module("factory_console_cluster_topology", ROOT / "company/factory-asset/lib/console_cluster_topology.py")
 
 PROVIDER_POLICY_REGISTRY = json.loads((ROOT / "company/factory-asset/registries/provider-policy.v1.json").read_text(encoding="utf-8"))
 PROVIDER_DASHBOARD_FIXTURE = json.loads((ROOT / "company/factory-asset/fixtures/provider-dashboard/synthetic-observed.v1.json").read_text(encoding="utf-8"))
@@ -232,6 +233,10 @@ def qc_gallery_state() -> dict[str, Any]:
     return founder_qc_gallery.build_gallery(ROOT)
 
 
+def cluster_topology_state() -> dict[str, Any]:
+    return cluster_topology.build_cluster_topology(ROOT)
+
+
 def install_recovered_queue(queue: Any, *, reconciliation_required_job_ids: list[str] | tuple[str, ...] | set[str] = ()) -> None:
     global CORE_QUEUE, RECONCILIATION_REQUIRED_JOB_IDS
     CORE_QUEUE = queue
@@ -317,6 +322,9 @@ class Handler(SimpleHTTPRequestHandler):
             return
         if self.path == "/api/providers":
             self._json(HTTPStatus.OK, provider_dashboard_state())
+            return
+        if self.path == "/api/cluster-topology":
+            self._json(HTTPStatus.OK, cluster_topology_state())
             return
         if self.path == "/api/outputs":
             self._json(HTTPStatus.OK, output_gallery_state())

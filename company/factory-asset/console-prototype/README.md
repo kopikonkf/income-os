@@ -27,3 +27,7 @@ For a standalone Windows mirror, use `company/factory-asset/bin/sync_console_mir
 ## FA-C009 synthetic end-to-end
 
 The Queue view exposes **Run Synthetic E2E**. It calls `POST /api/synthetic/e2e` and exercises Factory Core policy/capacity routing, lease/queue retry, crash recovery, content-addressed output ingestion and sanitized observability. The run is ephemeral, performs zero live-provider calls and cannot publish/upload.
+
+## FA-C015 live cluster topology
+
+The **Clusters** view calls `GET /api/cluster-topology` and renders sanitized live Cluster A/B broker truth: profile/browser owner identity, tab budget, open pages, active leases/jobs and provider-session readiness/capacity. AUTH_REQUIRED/CHECKPOINT states are rendered as safe operator states without exposing cookies, tokens, OAuth material, profile directories, CDP/control endpoints or lease claim URLs. The view is read-only and does not change the baseline `0 */3 * * *` production cadence or authorize the 100/day scale lane.

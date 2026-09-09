@@ -15,6 +15,8 @@
     queueError: null,
     providerDashboard: null,
     providerError: null,
+    clusterTopology: null,
+    clusterError: null,
     outputGallery: null,
     outputError: null,
     productionAcceptance: null,
@@ -32,8 +34,8 @@
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
   const esc = value => String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch]));
   const badgeTone = value => {
-    const good = ["VALID","PASS","COMPATIBLE","AVAILABLE","ELIGIBLE","SUCCEEDED","RUNNING","READY","ALLOWED_EVIDENCED"];
-    const warn = ["CONSTRAINED","RETRY_WAIT","PAUSED","UNKNOWN","DEFERRED_OPTIONAL","SIMULATED_ONLY"];
+    const good = ["VALID","PASS","COMPATIBLE","AVAILABLE","ELIGIBLE","SUCCEEDED","RUNNING","READY","HEALTHY","OWNED","ALLOWED_EVIDENCED"];
+    const warn = ["CONSTRAINED","RETRY_WAIT","PAUSED","UNKNOWN","DEFERRED_OPTIONAL","SIMULATED_ONLY","DEGRADED","BUSY","CHECKPOINT","LOCKED"];
     const bad = ["FAILED","BLOCKED","UNAVAILABLE","POLICY_BLOCKED","AUTH_REQUIRED","INCOMPATIBLE","INVALID"];
     if (good.includes(value)) return "good";
     if (warn.includes(value)) return "warn";
@@ -213,6 +215,26 @@
     if ($('#run-synthetic-e2e')) $('#run-synthetic-e2e').addEventListener('click', runSyntheticE2E);
   }
 
+  async function refreshClusters() {
+    try { state.clusterTopology = await getLocal('/api/cluster-topology'); state.clusterError = null; }
+    catch(error) { state.clusterError = `${error.code || 'ERROR'}: ${error.message || 'Cluster topology unavailable'}`; }
+    renderClusters();
+  }
+  function renderClusters() {
+    const d=state.clusterTopology; const clusters=d ? d.clusters : [];
+    $('#view-clusters').innerHTML = `
+      <article class="card" style="margin-bottom:16px"><div class="result-head"><div><h2>Cluster Topology / Tab Occupancy</h2><p class="muted">Live sanitized browser-owner, tab-budget, lease/job and provider-session truth</p></div>${d ? badge(d.evidence_mode) : badge('UNKNOWN')}</div>
+        ${state.clusterError ? `<p class="notice">${esc(state.clusterError)}</p>` : ''}
+        ${d ? `<dl class="kv"><dt>Observed</dt><dd>${esc(d.observed_at)}</dd><dt>Production cadence changed</dt><dd>${d.production_cadence_changed?badge('INVALID'):badge('NONE')}</dd><dt>100/day scale</dt><dd>${d.scale_100_per_day_authorized?badge('INVALID'):badge('LOCKED')}</dd><dt>Provider calls</dt><dd>${d.provider_calls_performed?badge('INVALID'):badge('NONE')}</dd><dt>Browser owner actions</dt><dd>${d.browser_owner_actions_performed?badge('INVALID'):badge('NONE')}</dd></dl>`:'<p class="muted">Loading live topology…</p>'}
+      </article>
+      <div class="cluster-grid">${clusters.map(c=>`<article class="cluster-card"><header><div><span class="eyebrow">${esc(c.cluster_id)}</span><h2>${esc(c.display_name)}</h2></div><div>${badge(c.health)} ${badge(c.broker_state)}</div></header>
+        <div class="cluster-summary"><div><strong>${c.tab_occupancy.open_pages}/${c.tab_occupancy.max_tabs}</strong><span>open tabs</span></div><div><strong>${c.tab_occupancy.active_leases}</strong><span>active leases</span></div><div><strong>${c.tab_occupancy.free_tab_slots}</strong><span>free tab slots</span></div><div><strong>${c.tab_occupancy.generation_slots_available}</strong><span>generation slots</span></div></div>
+        <dl class="kv"><dt>Profile</dt><dd>${esc(c.profile_id)}</dd><dt>Profile owner</dt><dd>${badge(c.profile_owner.lock_state)} · PID ${esc(c.profile_owner.owner_pid||'UNKNOWN')}</dd><dt>Owner model</dt><dd>${esc(c.profile_owner.owner_model||'UNKNOWN')}</dd><dt>Browser service</dt><dd>${esc(c.profile_owner.browser_service||'UNKNOWN')}</dd><dt>Broker service</dt><dd>${esc(c.profile_owner.broker_service||'UNKNOWN')}</dd><dt>Reserved recovery tabs</dt><dd>${esc(c.tab_occupancy.reserved_recovery_tabs)}</dd></dl>
+        <div class="session-list">${c.provider_sessions.map(p=>`<div class="session-row"><div><strong>${esc(p.provider_id)}</strong><small>${esc(p.preferred_transport)} · tab limit ${esc(p.tab_limit??'—')}</small></div><div>${badge(p.readiness)} ${badge(p.capacity)}</div><div class="session-jobs">${p.active_jobs.length?p.active_jobs.map(j=>`${esc(j.job_id)} · ${badge(j.state)}`).join(' '):'<span class="muted">idle</span>'}${p.human_action_required?`<small>${esc(p.safe_reason)}</small>`:''}</div></div>`).join('')}</div>
+        ${c.active_jobs.length?`<details><summary>Active jobs / leases (${c.active_jobs.length})</summary><div class="lease-list">${c.active_jobs.map(j=>`<div><strong>${esc(j.job_id)}</strong> · ${esc(j.provider_id)} · ${badge(j.state)}<br><span class="muted">${esc(j.acquired_at||'UNKNOWN')} → ${esc(j.expires_at||'UNKNOWN')}</span></div>`).join('')}</div></details>`:'<p class="notice">No active browser tab lease. Standby page only.</p>'}
+      </article>`).join('')}</div>`;
+  }
+
   async function refreshProviders() {
     try { state.providerDashboard = await getLocal('/api/providers'); state.providerError = null; }
     catch(error) { state.providerError = `${error.code || 'ERROR'}: ${error.message || 'Provider dashboard unavailable'}`; }
@@ -290,9 +312,9 @@
       <div class="provider-grid">${routes.map(r => `<article class="provider-card"><header><h3>${esc(r.route_id)}</h3>${badge(r.health)}</header><dl class="kv"><dt>Capacity</dt><dd>${badge(r.capacity)}</dd><dt>FA-124 accepted</dt><dd>${r.accepted_in_fa124}</dd><dt>Cluster</dt><dd>${esc(r.cluster_id)}</dd></dl></article>`).join('')}</div>`;
   }
 
-  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); if(view==='providers') refreshProviders(); if(view==='output') refreshOutputs(); if(view==='qc') refreshQC(); if(view==='acceptance') refreshAcceptance(); }
-  const validViews=new Set(['blueprint','batch','queue','providers','output','qc','acceptance']);
+  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); if(view==='clusters') refreshClusters(); if(view==='providers') refreshProviders(); if(view==='output') refreshOutputs(); if(view==='qc') refreshQC(); if(view==='acceptance') refreshAcceptance(); }
+  const validViews=new Set(['blueprint','batch','queue','clusters','providers','output','qc','acceptance']);
   $$('.nav-item').forEach(button=>button.addEventListener('click',()=>{location.hash=button.dataset.view;activateView(button.dataset.view);}));
   window.addEventListener('hashchange',()=>{const v=location.hash.slice(1);if(validViews.has(v))activateView(v);});
-  renderMetrics();renderBlueprint();renderBatch();renderQueue();renderProviders();renderOutput();renderQC();renderAcceptance();const initial=validViews.has(location.hash.slice(1))?location.hash.slice(1):'blueprint';activateView(initial);refreshQueue();refreshProviders();refreshOutputs();refreshQC();refreshAcceptance();
+  renderMetrics();renderBlueprint();renderBatch();renderQueue();renderClusters();renderProviders();renderOutput();renderQC();renderAcceptance();const initial=validViews.has(location.hash.slice(1))?location.hash.slice(1):'blueprint';activateView(initial);refreshQueue();refreshClusters();refreshProviders();refreshOutputs();refreshQC();refreshAcceptance();
 })();
