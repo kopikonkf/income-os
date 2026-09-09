@@ -1,0 +1,163 @@
+{
+    "$schema":  "https://json-schema.org/draft/2020-12/schema",
+    "$id":  "https://aethers.my.id/schemas/die.budget-envelope.shadow.v1.schema.json",
+    "title":  "DIE Budget Envelope Shadow v1",
+    "type":  "object",
+    "additionalProperties":  false,
+    "required":  [
+                     "schema_version",
+                     "scenario_id",
+                     "period",
+                     "currency",
+                     "observed_capital_base_minor",
+                     "reserve_floor_minor",
+                     "shadow_distributable_minor",
+                     "envelopes",
+                     "authority_boundary"
+                 ],
+    "properties":  {
+                       "schema_version":  {
+                                              "const":  "die.budget-envelope.shadow.v1"
+                                          },
+                       "scenario_id":  {
+                                           "type":  "string",
+                                           "pattern":  "^BUD-SHADOW-[A-Z0-9_-]{8,120}$"
+                                       },
+                       "period":  {
+                                      "type":  "object",
+                                      "additionalProperties":  false,
+                                      "required":  [
+                                                       "starts_at",
+                                                       "ends_at"
+                                                   ],
+                                      "properties":  {
+                                                         "starts_at":  {
+                                                                           "type":  "string",
+                                                                           "format":  "date-time"
+                                                                       },
+                                                         "ends_at":  {
+                                                                         "type":  "string",
+                                                                         "format":  "date-time"
+                                                                     }
+                                                     }
+                                  },
+                       "currency":  {
+                                        "type":  "string",
+                                        "pattern":  "^[A-Z]{3}$"
+                                    },
+                       "observed_capital_base_minor":  {
+                                                           "type":  "integer",
+                                                           "minimum":  0
+                                                       },
+                       "reserve_floor_minor":  {
+                                                   "type":  "integer",
+                                                   "minimum":  0
+                                               },
+                       "shadow_distributable_minor":  {
+                                                          "type":  "integer",
+                                                          "minimum":  0
+                                                      },
+                       "capital_evidence_refs":  {
+                                                     "type":  "array",
+                                                     "items":  {
+                                                                   "type":  "string",
+                                                                   "minLength":  1
+                                                               }
+                                                 },
+                       "envelopes":  {
+                                         "type":  "array",
+                                         "minItems":  4,
+                                         "items":  {
+                                                       "type":  "object",
+                                                       "additionalProperties":  false,
+                                                       "required":  [
+                                                                        "envelope_id",
+                                                                        "class",
+                                                                        "simulated_amount_minor",
+                                                                        "authorized_amount_minor",
+                                                                        "basis",
+                                                                        "work_card_refs"
+                                                                    ],
+                                                       "properties":  {
+                                                                          "envelope_id":  {
+                                                                                              "type":  "string",
+                                                                                              "pattern":  "^ENV-[A-Z0-9_-]{4,120}$"
+                                                                                          },
+                                                                          "class":  {
+                                                                                        "enum":  [
+                                                                                                     "RESERVE",
+                                                                                                     "INFRASTRUCTURE",
+                                                                                                     "PRODUCTION",
+                                                                                                     "EXPERIMENT"
+                                                                                                 ]
+                                                                                    },
+                                                                          "holding_id":  {
+                                                                                             "type":  [
+                                                                                                          "string",
+                                                                                                          "null"
+                                                                                                      ],
+                                                                                             "maxLength":  80
+                                                                                         },
+                                                                          "simulated_amount_minor":  {
+                                                                                                         "type":  "integer",
+                                                                                                         "minimum":  0
+                                                                                                     },
+                                                                          "authorized_amount_minor":  {
+                                                                                                          "const":  0
+                                                                                                      },
+                                                                          "basis":  {
+                                                                                        "type":  "string",
+                                                                                        "minLength":  1
+                                                                                    },
+                                                                          "work_card_refs":  {
+                                                                                                 "type":  "array",
+                                                                                                 "items":  {
+                                                                                                               "type":  "string",
+                                                                                                               "pattern":  "^EWC-[A-Z0-9_-]{8,120}$"
+                                                                                                           }
+                                                                                             }
+                                                                      }
+                                                   }
+                                     },
+                       "authority_boundary":  {
+                                                  "type":  "object",
+                                                  "additionalProperties":  false,
+                                                  "required":  [
+                                                                   "simulation_only",
+                                                                   "spend_authorized",
+                                                                   "payment_action",
+                                                                   "capital_transfer",
+                                                                   "provider_plan_change",
+                                                                   "infrastructure_purchase",
+                                                                   "new_vendor_commitment",
+                                                                   "credentials_embedded"
+                                                               ],
+                                                  "properties":  {
+                                                                     "simulation_only":  {
+                                                                                             "const":  true
+                                                                                         },
+                                                                     "spend_authorized":  {
+                                                                                              "const":  false
+                                                                                          },
+                                                                     "payment_action":  {
+                                                                                            "const":  false
+                                                                                        },
+                                                                     "capital_transfer":  {
+                                                                                              "const":  false
+                                                                                          },
+                                                                     "provider_plan_change":  {
+                                                                                                  "const":  false
+                                                                                              },
+                                                                     "infrastructure_purchase":  {
+                                                                                                     "const":  false
+                                                                                                 },
+                                                                     "new_vendor_commitment":  {
+                                                                                                   "const":  false
+                                                                                               },
+                                                                     "credentials_embedded":  {
+                                                                                                  "const":  false
+                                                                                              }
+                                                                 }
+                                              }
+                   }
+}

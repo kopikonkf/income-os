@@ -112,3 +112,77 @@ def insert_reference_event(db: sqlite3.Connection, e: dict) -> None:
       fx.get('quote_currency'),fx.get('rate_text'),fx.get('rate_timestamp'),fx.get('rate_source'),json.dumps(e.get('metadata') or {},sort_keys=True)
     ))
     db.commit()
+
+
+def validate_economic_work_card(card: dict) -> dict:
+    req=['schema_version','economic_work_card_id','holding_id','economic_trace_id','measurement_window','hypothesis','expected','actual','decision_conditions','authority_boundary']
+    for k in req:
+        if k not in card: raise EconomicContractError('E_EWC_REQUIRED',k)
+    if card['schema_version']!='die.economic-work-card.v1': raise EconomicContractError('E_EWC_SCHEMA')
+    auth=card['authority_boundary']
+    for k in ['spend_authorized','capital_requested_is_authority','external_commitment_authorized','provider_plan_change_authorized','credentials_embedded']:
+        if auth.get(k) is not False: raise EconomicContractError('E_EWC_AUTHORITY_BOUNDARY',k)
+    h=card['hypothesis']
+    if not h.get('evidence_refs') or not h.get('falsifier'): raise EconomicContractError('E_EWC_HYPOTHESIS_EVIDENCE')
+    exp=card['expected']
+    calc=exp['revenue_minor']-exp['direct_variable_cost_minor']-exp['shared_variable_cost_minor']
+    if exp['contribution_profit_minor'] != calc: raise EconomicContractError('E_EWC_EXPECTED_CONTRIBUTION_MATH')
+    margin=exp.get('contribution_margin_bps')
+    expected_margin=None if exp['revenue_minor']==0 else round(exp['contribution_profit_minor']*10000/exp['revenue_minor'])
+    if margin != expected_margin: raise EconomicContractError('E_EWC_EXPECTED_MARGIN_MATH')
+    cap=exp['capital_requested_minor']; roic=exp.get('roic_bps')
+    if cap==0 and roic is not None: raise EconomicContractError('E_EWC_EXPECTED_ROIC_WITH_ZERO_CAPITAL')
+    if cap>0 and roic is not None:
+        expected_roic=round(exp['contribution_profit_minor']*10000/cap)
+        if roic != expected_roic: raise EconomicContractError('E_EWC_EXPECTED_ROIC_MATH')
+    act=card['actual']; status=act['status']; refs=act.get('ledger_event_refs') or []
+    numeric=['capital_observed_minor','revenue_minor','direct_variable_cost_minor','shared_variable_cost_minor','contribution_profit_minor','contribution_margin_bps','founder_active_minutes','cash_profit_minor','economic_profit_minor','payback_days','roic_bps']
+    if status=='NOT_MEASURED':
+        if refs or act.get('attribution_claim_refs') or any(act.get(k) is not None for k in numeric) or act.get('currency') is not None:
+            raise EconomicContractError('E_EWC_NOT_MEASURED_HAS_ACTUALS')
+        if act.get('completeness')!='NO': raise EconomicContractError('E_EWC_NOT_MEASURED_COMPLETENESS')
+    else:
+        if not refs: raise EconomicContractError('E_EWC_ACTUAL_LEDGER_EVIDENCE_REQUIRED')
+        if act.get('currency') is None: raise EconomicContractError('E_EWC_ACTUAL_CURRENCY_REQUIRED')
+        if status=='MEASURED' and act.get('completeness')!='YES': raise EconomicContractError('E_EWC_MEASURED_COMPLETENESS')
+        if all(act.get(k) is not None for k in ['revenue_minor','direct_variable_cost_minor','shared_variable_cost_minor','contribution_profit_minor']):
+            actual_calc=act['revenue_minor']-act['direct_variable_cost_minor']-act['shared_variable_cost_minor']
+            if act['contribution_profit_minor'] != actual_calc: raise EconomicContractError('E_EWC_ACTUAL_CONTRIBUTION_MATH')
+            expected_amargin=None if act['revenue_minor']==0 else round(act['contribution_profit_minor']*10000/act['revenue_minor'])
+            if act.get('contribution_margin_bps') != expected_amargin: raise EconomicContractError('E_EWC_ACTUAL_MARGIN_MATH')
+        acap=act.get('capital_observed_minor'); aroic=act.get('roic_bps'); aprofit=act.get('contribution_profit_minor')
+        if acap==0 and aroic is not None: raise EconomicContractError('E_EWC_ACTUAL_ROIC_WITH_ZERO_CAPITAL')
+        if acap and aroic is not None and aprofit is not None:
+            expected_ar=round(aprofit*10000/acap)
+            if aroic != expected_ar: raise EconomicContractError('E_EWC_ACTUAL_ROIC_MATH')
+    dc=card['decision_conditions']
+    if not all(dc.get(k) for k in ['kill_condition','scale_condition','hold_condition']): raise EconomicContractError('E_EWC_DECISION_CONDITION_REQUIRED')
+    return card
+
+
+def validate_shadow_budget_envelope(b: dict) -> dict:
+    req=['schema_version','scenario_id','period','currency','observed_capital_base_minor','reserve_floor_minor','shadow_distributable_minor','envelopes','authority_boundary']
+    for k in req:
+        if k not in b: raise EconomicContractError('E_BUDGET_REQUIRED',k)
+    if b['schema_version']!='die.budget-envelope.shadow.v1': raise EconomicContractError('E_BUDGET_SCHEMA')
+    auth=b['authority_boundary']
+    if auth.get('simulation_only') is not True: raise EconomicContractError('E_BUDGET_NOT_SHADOW')
+    for k in ['spend_authorized','payment_action','capital_transfer','provider_plan_change','infrastructure_purchase','new_vendor_commitment','credentials_embedded']:
+        if auth.get(k) is not False: raise EconomicContractError('E_BUDGET_AUTHORITY_BOUNDARY',k)
+    if not b.get('capital_evidence_refs'): raise EconomicContractError('E_BUDGET_CAPITAL_EVIDENCE_REQUIRED')
+    base=b['observed_capital_base_minor']; floor=b['reserve_floor_minor']; dist=b['shadow_distributable_minor']
+    if floor>base: raise EconomicContractError('E_BUDGET_RESERVE_EXCEEDS_BASE')
+    if dist != base-floor: raise EconomicContractError('E_BUDGET_DISTRIBUTABLE_MATH')
+    envs=b['envelopes']; classes=[e['class'] for e in envs]
+    required={'RESERVE','INFRASTRUCTURE','PRODUCTION','EXPERIMENT'}
+    if set(classes)!=required or len(classes)!=4: raise EconomicContractError('E_BUDGET_CLASSES_EXACTLY_ONCE')
+    ids=[e['envelope_id'] for e in envs]
+    if len(ids)!=len(set(ids)): raise EconomicContractError('E_BUDGET_DUPLICATE_ENVELOPE_ID')
+    for e in envs:
+        if e.get('authorized_amount_minor') != 0: raise EconomicContractError('E_BUDGET_AUTHORIZED_AMOUNT_NONZERO')
+        if e.get('simulated_amount_minor',-1)<0 or not e.get('basis'): raise EconomicContractError('E_BUDGET_ENVELOPE_INVALID')
+    reserve=next(e for e in envs if e['class']=='RESERVE')
+    if reserve['simulated_amount_minor'] < floor: raise EconomicContractError('E_BUDGET_RESERVE_SHORTFALL')
+    allocated=sum(e['simulated_amount_minor'] for e in envs if e['class']!='RESERVE')
+    if allocated>dist: raise EconomicContractError('E_BUDGET_OVERALLOCATED')
+    return b

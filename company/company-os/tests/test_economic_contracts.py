@@ -96,3 +96,54 @@ def test_lineage_edge_requires_known_nodes():
     c=claim([],10000);c['lineage_nodes']=[{'node_id':'opp-1','node_type':'OPPORTUNITY','source_ref':'x'}];c['lineage_edges']=[{'from_node_id':'opp-1','to_node_id':'sale-1','relation':'CONVERTED_TO','evidence_refs':['x']}]
     with pytest.raises(m.EconomicContractError) as x:m.validate_attribution_claim(c)
     assert x.value.code=='E_ATTR_EDGE_NODE_MISSING'
+
+def ewc(actual_status='NOT_MEASURED'):
+    actual={'status':'NOT_MEASURED','ledger_event_refs':[],'attribution_claim_refs':[],'currency':None,'capital_observed_minor':None,'revenue_minor':None,'direct_variable_cost_minor':None,'shared_variable_cost_minor':None,'contribution_profit_minor':None,'founder_active_minutes':None,'cash_profit_minor':None,'economic_profit_minor':None,'payback_days':None,'roic_bps':None,'completeness':'NO'}
+    if actual_status!='NOT_MEASURED':
+        actual={'status':actual_status,'ledger_event_refs':['ECON-EVT-ACTUAL001'],'attribution_claim_refs':['ATTR-CLM-ACTUAL001'],'currency':'IDR','capital_observed_minor':5000,'revenue_minor':12000,'direct_variable_cost_minor':2000,'shared_variable_cost_minor':1000,'contribution_profit_minor':9000,'contribution_margin_bps':7500,'founder_active_minutes':10,'cash_profit_minor':7000,'economic_profit_minor':None,'payback_days':3,'roic_bps':18000,'completeness':'YES' if actual_status=='MEASURED' else 'PARTIAL'}
+    return {'schema_version':'die.economic-work-card.v1','economic_work_card_id':'EWC-H03-TEST0001','holding_id':'H03','economic_trace_id':'TRACE-H03-001','parent_task_id':'TASK-1','measurement_window':{'starts_at':'2026-09-09T00:00:00Z','ends_at':'2026-09-16T00:00:00Z'},'hypothesis':{'statement':'Product can return positive contribution in one week','evidence_refs':['receipt://hypothesis'],'confidence_basis':'bounded prior evidence','falsifier':'No realized revenue by window end'},'expected':{'currency':'IDR','capital_requested_minor':5000,'revenue_minor':10000,'direct_variable_cost_minor':2000,'shared_variable_cost_minor':1000,'contribution_profit_minor':7000,'contribution_margin_bps':7000,'payback_days':5,'roic_bps':14000},'actual':actual,'decision_conditions':{'kill_condition':'Contribution profit <= 0 at measurement end','scale_condition':'Measured contribution positive and falsifier not triggered','hold_condition':'Data incomplete at window end'},'authority_boundary':{'spend_authorized':False,'capital_requested_is_authority':False,'external_commitment_authorized':False,'provider_plan_change_authorized':False,'credentials_embedded':False}}
+
+def test_economic_work_card_forecast_math_and_authority():
+    c=ewc(); assert m.validate_economic_work_card(c)['expected']['roic_bps']==14000
+
+def test_work_card_not_measured_cannot_smuggle_actuals():
+    c=ewc(); c['actual']['revenue_minor']=1
+    with pytest.raises(m.EconomicContractError) as x:m.validate_economic_work_card(c)
+    assert x.value.code=='E_EWC_NOT_MEASURED_HAS_ACTUALS'
+
+def test_work_card_measured_requires_ledger_and_math():
+    c=ewc('MEASURED'); assert m.validate_economic_work_card(c)['actual']['contribution_profit_minor']==9000
+    c['actual']['ledger_event_refs']=[]
+    with pytest.raises(m.EconomicContractError) as x:m.validate_economic_work_card(c)
+    assert x.value.code=='E_EWC_ACTUAL_LEDGER_EVIDENCE_REQUIRED'
+
+def test_work_card_expected_math_rejected():
+    c=ewc(); c['expected']['contribution_profit_minor']=9999
+    with pytest.raises(m.EconomicContractError) as x:m.validate_economic_work_card(c)
+    assert x.value.code=='E_EWC_EXPECTED_CONTRIBUTION_MATH'
+
+def shadow_budget():
+    return {'schema_version':'die.budget-envelope.shadow.v1','scenario_id':'BUD-SHADOW-TEST0001','period':{'starts_at':'2026-09-09T00:00:00Z','ends_at':'2026-10-01T00:00:00Z'},'currency':'IDR','observed_capital_base_minor':100000,'reserve_floor_minor':40000,'shadow_distributable_minor':60000,'capital_evidence_refs':['ECON-EVT-CAPITAL001'],'envelopes':[{'envelope_id':'ENV-RESERVE-001','class':'RESERVE','holding_id':None,'simulated_amount_minor':40000,'authorized_amount_minor':0,'basis':'Explicit shadow reserve floor','work_card_refs':[]},{'envelope_id':'ENV-INFRA-001','class':'INFRASTRUCTURE','holding_id':None,'simulated_amount_minor':20000,'authorized_amount_minor':0,'basis':'Simulated capacity need','work_card_refs':['EWC-H03-TEST0001']},{'envelope_id':'ENV-PROD-001','class':'PRODUCTION','holding_id':'H01','simulated_amount_minor':30000,'authorized_amount_minor':0,'basis':'Simulated production allocation','work_card_refs':['EWC-H01-TEST0001']},{'envelope_id':'ENV-EXP-001','class':'EXPERIMENT','holding_id':'H03','simulated_amount_minor':10000,'authorized_amount_minor':0,'basis':'Bounded experiment simulation','work_card_refs':['EWC-H03-TEST0001']}],'authority_boundary':{'simulation_only':True,'spend_authorized':False,'payment_action':False,'capital_transfer':False,'provider_plan_change':False,'infrastructure_purchase':False,'new_vendor_commitment':False,'credentials_embedded':False}}
+
+def test_shadow_budget_valid_and_zero_authority():
+    b=shadow_budget(); assert m.validate_shadow_budget_envelope(b)['shadow_distributable_minor']==60000
+
+def test_shadow_budget_rejects_overallocation():
+    b=shadow_budget(); b['envelopes'][1]['simulated_amount_minor']=40000
+    with pytest.raises(m.EconomicContractError) as x:m.validate_shadow_budget_envelope(b)
+    assert x.value.code=='E_BUDGET_OVERALLOCATED'
+
+def test_shadow_budget_rejects_nonzero_authorized_amount():
+    b=shadow_budget(); b['envelopes'][2]['authorized_amount_minor']=1
+    with pytest.raises(m.EconomicContractError) as x:m.validate_shadow_budget_envelope(b)
+    assert x.value.code=='E_BUDGET_AUTHORIZED_AMOUNT_NONZERO'
+
+def test_shadow_budget_rejects_reserve_shortfall():
+    b=shadow_budget(); b['envelopes'][0]['simulated_amount_minor']=39999
+    with pytest.raises(m.EconomicContractError) as x:m.validate_shadow_budget_envelope(b)
+    assert x.value.code=='E_BUDGET_RESERVE_SHORTFALL'
+
+def test_shadow_budget_requires_capital_evidence():
+    b=shadow_budget(); b['capital_evidence_refs']=[]
+    with pytest.raises(m.EconomicContractError) as x:m.validate_shadow_budget_envelope(b)
+    assert x.value.code=='E_BUDGET_CAPITAL_EVIDENCE_REQUIRED'
