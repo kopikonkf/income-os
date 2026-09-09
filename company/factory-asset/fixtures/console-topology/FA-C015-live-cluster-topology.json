@@ -1,0 +1,201 @@
+{
+  "schema": "die.factory-asset.console-cluster-topology.v1",
+  "observed_at": "2026-09-09T18:22:33.879286Z",
+  "evidence_mode": "LIVE_BROKER_SANITIZED",
+  "production_cadence_changed": false,
+  "scale_100_per_day_authorized": false,
+  "provider_calls_performed": false,
+  "browser_owner_actions_performed": false,
+  "clusters": [
+    {
+      "cluster_id": "cluster-a",
+      "display_name": "Web-AI Army Cluster A",
+      "profile_id": "chatgpt-linux-a",
+      "lifecycle_state": "ACTIVE_ATTACH_ONLY_REFERENCE",
+      "health": "HEALTHY",
+      "broker_state": "READY",
+      "profile_owner": {
+        "lock_state": "OWNED",
+        "owner_pid": 845323,
+        "owner_model": "EXTERNAL_PERSISTENT_CHROME_CDP_ATTACH_ONLY",
+        "browser_service": "die-muxia-cluster-a-browser.service",
+        "broker_service": "die-fa121-cluster-broker.service"
+      },
+      "tab_occupancy": {
+        "max_tabs": 8,
+        "open_pages": 1,
+        "active_leases": 0,
+        "free_tab_slots": 7,
+        "max_active_browser_generations": 5,
+        "generation_slots_available": 5,
+        "reserved_recovery_tabs": 3
+      },
+      "active_jobs": [],
+      "provider_sessions": [
+        {
+          "provider_id": "chatgpt",
+          "membership": "ACTIVE",
+          "readiness": "HEALTHY",
+          "capacity": "AVAILABLE",
+          "preferred_transport": "BROWSER_CDP",
+          "tab_limit": 1,
+          "active_jobs": [],
+          "human_action_required": false,
+          "safe_reason": null
+        },
+        {
+          "provider_id": "qwen",
+          "membership": "ACTIVE",
+          "readiness": "HEALTHY",
+          "capacity": "AVAILABLE",
+          "preferred_transport": "SESSION_API",
+          "tab_limit": 1,
+          "active_jobs": [],
+          "human_action_required": false,
+          "safe_reason": null
+        },
+        {
+          "provider_id": "gemini",
+          "membership": "ACTIVE",
+          "readiness": "HEALTHY",
+          "capacity": "AVAILABLE",
+          "preferred_transport": "BROWSER_CDP",
+          "tab_limit": 1,
+          "active_jobs": [],
+          "human_action_required": false,
+          "safe_reason": null
+        },
+        {
+          "provider_id": "manus",
+          "membership": "ACTIVE",
+          "readiness": "HEALTHY",
+          "capacity": "AVAILABLE",
+          "preferred_transport": "BROWSER_CDP",
+          "tab_limit": 1,
+          "active_jobs": [],
+          "human_action_required": false,
+          "safe_reason": null
+        },
+        {
+          "provider_id": "duckai",
+          "membership": "ACTIVE",
+          "readiness": "DEGRADED",
+          "capacity": "DEGRADED",
+          "preferred_transport": "BROWSER_CDP",
+          "tab_limit": 1,
+          "active_jobs": [],
+          "human_action_required": false,
+          "safe_reason": "READINESS_DEGRADED"
+        },
+        {
+          "provider_id": "grok",
+          "membership": "DEFERRED_OPTIONAL",
+          "readiness": "UNAVAILABLE",
+          "capacity": "UNAVAILABLE",
+          "preferred_transport": "UNKNOWN",
+          "tab_limit": null,
+          "active_jobs": [],
+          "human_action_required": false,
+          "safe_reason": null
+        }
+      ],
+      "reachable": true,
+      "error_code": null
+    },
+    {
+      "cluster_id": "cluster-b",
+      "display_name": "Web-AI Army Cluster B",
+      "profile_id": "web-ai-cluster-b",
+      "lifecycle_state": "ACTIVE_ATTACH_ONLY",
+      "health": "HEALTHY",
+      "broker_state": "READY",
+      "profile_owner": {
+        "lock_state": "OWNED",
+        "owner_pid": 845325,
+        "owner_model": "EXTERNAL_PERSISTENT_CHROME_CDP_ATTACH_ONLY",
+        "browser_service": "die-muxia-cluster-b-browser.service",
+        "broker_service": "die-muxia-cluster-b.service"
+      },
+      "tab_occupancy": {
+        "max_tabs": 8,
+        "open_pages": 1,
+        "active_leases": 0,
+        "free_tab_slots": 7,
+        "max_active_browser_generations": 4,
+        "generation_slots_available": 4,
+        "reserved_recovery_tabs": 4
+      },
+      "active_jobs": [],
+      "provider_sessions": [
+        {
+          "provider_id": "chatgpt",
+          "membership": "ACTIVE",
+          "readiness": "HEALTHY",
+          "capacity": "AVAILABLE",
+          "preferred_transport": "BROWSER_CDP",
+          "tab_limit": 1,
+          "active_jobs": [],
+          "human_action_required": false,
+          "safe_reason": null
+        },
+        {
+          "provider_id": "qwen",
+          "membership": "ACTIVE",
+          "readiness": "HEALTHY",
+          "capacity": "AVAILABLE",
+          "preferred_transport": "SESSION_API",
+          "tab_limit": 1,
+          "active_jobs": [],
+          "human_action_required": false,
+          "safe_reason": null
+        },
+        {
+          "provider_id": "gemini",
+          "membership": "ACTIVE",
+          "readiness": "HEALTHY",
+          "capacity": "AVAILABLE",
+          "preferred_transport": "BROWSER_CDP",
+          "tab_limit": 1,
+          "active_jobs": [],
+          "human_action_required": false,
+          "safe_reason": null
+        },
+        {
+          "provider_id": "manus",
+          "membership": "ACTIVE",
+          "readiness": "HEALTHY",
+          "capacity": "AVAILABLE",
+          "preferred_transport": "BROWSER_CDP",
+          "tab_limit": 1,
+          "active_jobs": [],
+          "human_action_required": false,
+          "safe_reason": null
+        },
+        {
+          "provider_id": "duckai",
+          "membership": "ACTIVE",
+          "readiness": "DEGRADED",
+          "capacity": "DEGRADED",
+          "preferred_transport": "BROWSER_CDP",
+          "tab_limit": 1,
+          "active_jobs": [],
+          "human_action_required": false,
+          "safe_reason": "READINESS_DEGRADED"
+        },
+        {
+          "provider_id": "grok",
+          "membership": "DEFERRED_OPTIONAL",
+          "readiness": "UNAVAILABLE",
+          "capacity": "UNAVAILABLE",
+          "preferred_transport": "UNKNOWN",
+          "tab_limit": null,
+          "active_jobs": [],
+          "human_action_required": false,
+          "safe_reason": null
+        }
+      ],
+      "reachable": true,
+      "error_code": null
+    }
+  ]
+}

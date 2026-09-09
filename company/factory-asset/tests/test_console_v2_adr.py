@@ -23,4 +23,4 @@ def test_clean_room_dense_operator_language_maps_factory_concepts():
   assert route in s
 
 def test_graph_transitions_c013_c014_and_opens_c015():
- d=json.load(open(GRAPH));by={x['id']:x for x in d['tasks']};assert by['FA-C013']['status']=='DONE';assert by['FA-C014']['status']=='DONE';assert by['FA-C015']['status']=='READY';assert set(by['FA-C015']['depends_on'])=={'FA-C014','FA-303'}
+ d=json.load(open(GRAPH));by={x['id']:x for x in d['tasks']};assert by['FA-C013']['status']=='DONE';assert by['FA-C014']['status']=='DONE';assert by['FA-C015']['status'] in {'READY','IN_PROGRESS','DONE'};assert set(by['FA-C015']['depends_on'])=={'FA-C014','FA-303'}

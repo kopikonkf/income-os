@@ -2507,12 +2507,13 @@
         "FA-C014",
         "FA-303"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "Factory Console cluster topology module",
       "acceptance": "Console shows clusters, provider-session readiness, active tabs/jobs, profile lock owner, tab budget, health and safe auth-required state without exposing secret material.",
       "updated_at": "2026-09-09",
-      "result": "READY: FA-C014 ADR and FA-303 provider-readiness dependencies are DONE/PASS; implement sanitized cluster topology, provider-session and tab-occupancy views."
+      "result": "PASS: Console Clusters view renders sanitized live Cluster A/B topology with browser/profile owner PID+service, tab budget/open pages/active leases, active jobs, provider-session readiness/capacity and safe AUTH_REQUIRED/CHECKPOINT states. Live evidence observed both clusters HEALTHY, 1 standby page each, 0 leases, 8 healthy active provider sessions and Duck A+B DEGRADED. No secret/session/CDP endpoint material is exposed; no provider call/browser action; production remains baseline 3-hour cadence and 100/day scale remains unauthorized.",
+      "completed_at": "2026-09-09"
     },
     {
       "id": "FA-C016",
@@ -2524,10 +2525,12 @@
         "FA-C015",
         "FA-304"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "Factory Console unified production operations module",
-      "acceptance": "Founder can inspect blueprint/batch intent, queue state, selected provider+cluster, retries, backpressure and bounded pause/resume/cancel actions from one operational surface."
+      "acceptance": "Founder can inspect blueprint/batch intent, queue state, selected provider+cluster, retries, backpressure and bounded pause/resume/cancel actions from one operational surface.",
+      "updated_at": "2026-09-09",
+      "result": "READY: all canonical dependencies are DONE/PASS."
     },
     {
       "id": "FA-C017",
@@ -2555,10 +2558,12 @@
         "FA-C015",
         "FA-307"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "Factory Console telemetry module",
-      "acceptance": "Console reports queue depth, provider/cluster success rate, latency, active tabs, RAM, generated masters/day, reject rate and cost where observable; UNKNOWN remains explicit."
+      "acceptance": "Console reports queue depth, provider/cluster success rate, latency, active tabs, RAM, generated masters/day, reject rate and cost where observable; UNKNOWN remains explicit.",
+      "updated_at": "2026-09-09",
+      "result": "READY: all canonical dependencies are DONE/PASS."
     },
     {
       "id": "FA-C019",

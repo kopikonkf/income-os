@@ -1,0 +1,52 @@
+{
+  "schema": "die.factory-asset.console-cluster-topology-receipt.v1",
+  "task_id": "FA-C015",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-09",
+  "acceptance": {
+    "cluster_a_and_b_visible": true,
+    "provider_session_readiness_visible": true,
+    "active_tabs_and_jobs_visible": true,
+    "profile_lock_owner_visible": true,
+    "tab_budget_visible": true,
+    "health_visible": true,
+    "safe_auth_required_state_supported": true,
+    "secret_material_exposed": false,
+    "provider_calls_performed": false,
+    "browser_owner_actions_performed": false,
+    "production_cadence_changed": false,
+    "scale_100_per_day_authorized": false
+  },
+  "live_evidence": {
+    "clusters": 2,
+    "cluster_a_health": "HEALTHY",
+    "cluster_b_health": "HEALTHY",
+    "cluster_a_open_pages": 1,
+    "cluster_b_open_pages": 1,
+    "cluster_a_active_leases": 0,
+    "cluster_b_active_leases": 0,
+    "active_healthy_provider_sessions": 8,
+    "duckai_cluster_a": "DEGRADED",
+    "duckai_cluster_b": "DEGRADED",
+    "production_schedule": "0 */3 * * *",
+    "scale_100_per_day_authorized": false
+  },
+  "sanitization": {
+    "profile_dir_exposed": false,
+    "debug_or_cdp_port_exposed": false,
+    "control_port_exposed": false,
+    "claim_url_exposed": false,
+    "lease_id_exposed": false,
+    "credential_cookie_token_oauth_material_exposed": false
+  },
+  "artifacts": [
+    "company/factory-asset/lib/console_cluster_topology.py",
+    "company/factory-asset/fixtures/console-topology/FA-C015-live-cluster-topology.json",
+    "company/factory-asset/tests/test_console_cluster_topology.py",
+    "company/factory-asset/console-prototype/server.py",
+    "company/factory-asset/console-prototype/app.js",
+    "company/factory-asset/console-prototype/index.html",
+    "company/factory-asset/console-prototype/styles.css"
+  ]
+}
