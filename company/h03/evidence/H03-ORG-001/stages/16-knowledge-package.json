@@ -1,0 +1,1508 @@
+{
+  "claims": [
+    {
+      "claim_id": "C1",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0208"
+      ],
+      "text": "Start by searching a people-search site for your name or other identifying information such as a phone number or address."
+    },
+    {
+      "claim_id": "C2",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0208"
+      ],
+      "text": "When you find a report about yourself, locate the site's opt-out or removal instructions and follow them."
+    },
+    {
+      "claim_id": "C3",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0206"
+      ],
+      "text": "Repeat the opt-out process across other relevant people-search sites; doing this one by one can be time-consuming."
+    },
+    {
+      "claim_id": "C4",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0210"
+      ],
+      "text": "Periodically recheck people-search sites and submit new opt-out requests if your information reappears."
+    },
+    {
+      "claim_id": "C5",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0175"
+      ],
+      "text": "Opting out of people-search sites does not delete information from public records, so the workflow reduces exposure rather than guaranteeing total deletion."
+    },
+    {
+      "claim_id": "C6",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0199"
+      ],
+      "text": "Consumers can perform people-search opt-outs themselves for free or pay a service to perform the work on their behalf."
+    }
+  ],
+  "holding_id": "H03",
+  "knowledge_package_id": "H03-KP-ORG001-001",
+  "rights_status": "GOVERNED_EXTERNAL",
+  "schema_version": "die.h03.knowledge-package.v1",
+  "source_packet": {
+    "acquisition_method": "HTTP_CLIENT",
+    "canonical_truth": false,
+    "evidence_units": [
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0001",
+        "sha256": "8404b40e91617152fcc61098a2b6cb4526f23ab30b70b945edf168c6067e8ab2",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "What To Know About People Search Sites That Sell Your Information | Consumer Advice"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0002",
+        "sha256": "c887f134c26ea8310e1fb4bd6fbab7b640393bd1b556e62691c7a442be92ec2a",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Skip to main content"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0003",
+        "sha256": "3a8bed1b4de7114660c9d72184b98980e0eb0d161afb5d3ef412e81e45361f70",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "An official website of the United States government"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0004",
+        "sha256": "bc0705f5f9796e0ac7dafc3ce1fab51a6ec6a17f666a6bfad434dbfc2a862d59",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Here\u2019s how you know"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0005",
+        "sha256": "82ba24b4071a59aff534ead54ccd47850160abe0ebff4b43e38e4138f554e92e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Here's how you know"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0006",
+        "sha256": "cd38d049ad6ab96434ec3670e3b18a6a23fc02fc8e87242919d323f987fc92ce",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "The .gov means it\u2019s official."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0007",
+        "sha256": "960e3b9db0188a8bf3db82a380e134add859f66c2221c3606226ed7836e3a583",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Federal government websites often end in .gov or .mil. Before sharing sensitive information, make sure you\u2019re on a federal government site."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0008",
+        "sha256": "2fbd1cd8653e7445608e7775e12e5cd648f2a9960fe4f5b08ad634f59661c2ea",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "The site is secure."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0009",
+        "sha256": "56e3fbe5e2cc18c4f93e5947ad42ec3fd0bd676b98748cd1e43e3cf1a620189e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "The https:// ensures that you are connecting to the official website and that any information you provide is encrypted and transmitted securely."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0010",
+        "sha256": "567e5e59486d9e4223ed2ebbaf3fb4f18bf2267bc8d4b917ac793a910260db8f",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "CFG: Translation Menu"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0011",
+        "sha256": "94b382b61b9dde0ff8d45a44a34b61971d98df5bd810c803a3f33ce5b115eae8",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Espa\u00f1ol"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0012",
+        "sha256": "cbf160ecacc4d9c22c4ec21d9f0826f06c0c9744da2d7b8aaccd214b745480d2",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "CFG: Secondary Menu"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0013",
+        "sha256": "3d4ea1c1caa363faddc004d3253c917485a63a4c75de8f38b5e9cbfb7b93bda7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Report Fraud"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0014",
+        "sha256": "afb2f4e2bf72c8ee935b60c8a91db3a32b360d41579fa0383916d5c1aeb810a5",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Read Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0015",
+        "sha256": "481982583e714517c79df1924acca91be87ae0f5bd7f8e9fb8aa2c69e03f2e65",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Get Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0016",
+        "sha256": "d543ce997c400c83025b1bd3d0fbd06c07798ff8cc1aabc851adacf12bd1a2a7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Visit ftc.gov"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0017",
+        "sha256": "99af6606ff9d6cd5154d4d4e9c21e325086d3e904677cdb41d363c8a3480f862",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Menu"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0018",
+        "sha256": "46a5b59aa514500639d2fd94499c855cc4ec96e9bb28b4648f672b24ed6fb6fc",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "CFG: Main Menu Mega"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0019",
+        "sha256": "a9b4c43586edde05669f3ff2570480ef02d5e73053385256a3a6acd6fdae8c40",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Show/hide Shopping and Donating menu items"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0020",
+        "sha256": "de7c87321e4e8b752e6935fa413c2c55abd8d0a59d48e5e739ca44c056bf97d1",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Shopping and Donating"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0021",
+        "sha256": "306026f562d3b3c1443ca2027a0b5d17a51cd1c362e306c5ced1a0169aaf1896",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Make smart shopping decisions, know your rights, and solve problems when you shop or donate to charity."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0022",
+        "sha256": "2ab7bcff4f9e35c100dda0c1568d3b5c33e7dbe07244f211728694adb20d6abd",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "View Shopping and Donating"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0023",
+        "sha256": "d534be829e32196b4d1e53b67103cf1e376b1d60071857572598c196abfefbc6",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Video"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0024",
+        "sha256": "e22820fcf5cd90e3fdd99a7569e0ee2f30eb7ebadfb2fe4d159b30c166ff81b7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Topics"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0025",
+        "sha256": "e22820fcf5cd90e3fdd99a7569e0ee2f30eb7ebadfb2fe4d159b30c166ff81b7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Topics"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0026",
+        "sha256": "b5b68f9d45ff0c205f6e21dd44e123f7081055866e2ff91394d417cb6fbd0bf0",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Shopping"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0027",
+        "sha256": "5810ec4c707856e4f6c9723829ce8f18a77d84ebac91b83234235128a19a366e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "For the Home"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0028",
+        "sha256": "55898449eb74fb2e348d13e5a5d84ab019bb87ea92687b50b3d3302eb409b784",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Health"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0029",
+        "sha256": "2ec9cc73c524b8795b2212727b323e692969fc46437c63510acd42aaf1d55046",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Funerals"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0030",
+        "sha256": "3acea0ac809b1904b815d6a45484ae75a550b0b009b37be5535883e7c5e7e517",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Buying and Owning a Car"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0031",
+        "sha256": "8ddadc8058d64d601df8e08479eb0ebb24149a74b1bf29af0be917c5c469677d",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Donating to Charity"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0032",
+        "sha256": "6c6cdfb9f1314ba1f80b4532a3501726a5f31769959e39e7496f60c9f0478f9e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0033",
+        "sha256": "ebb3b3333f46347303cd1d0da862b59df1873a21ca2ad566aab0b0d8e3f10645",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Scammers are spoofing car dealership websites: What you need to know"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0034",
+        "sha256": "87f2b599d44b26564151dc81d9917d7187f156485816e24b038b8dcb05eef9dc",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "September 1, 2026"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0035",
+        "sha256": "27268d2596b81c21a7e70893ef434c113d8db961e4c3eec82f8f46bfbd5d9f81",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "BCP Staff"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0036",
+        "sha256": "c2495b7d07d5566559c1269985bda81e161688287906c773828d0bd4f91615ee",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "While the car-buying process can be stressful, whether you\u2019re shopping online or in person, the thought of driving off the dealer\u2019s lot with that sweet ride you\u2019ve had your eyes on can be exhilarating. But imagine showing up at the dealership and finding out the dealer has no record of your order or your payment. And that there\u2019s no shiny car waiting for you! That\u2019s what\u2019s happening to unwitting car buyers who\u2019ve been duped by scammers impersonating a car dealership."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0037",
+        "sha256": "d66d97036110488be3ccedcfe174a4d6fe1eab8d1e81dde3fdc4fe578a2caa71",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "View all Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0038",
+        "sha256": "481982583e714517c79df1924acca91be87ae0f5bd7f8e9fb8aa2c69e03f2e65",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Get Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0039",
+        "sha256": "eb10fc4f6fc533350218d3fe6044470fed45cf910102f1948d9fc6427022158e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Show/hide Credit, Loans, and Debt menu items"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0040",
+        "sha256": "605f7f4ddea92c6e8bfe2925866d77f45ac076ffbd32f95375a45bce97c8be4a",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Credit, Loans, and Debt"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0041",
+        "sha256": "07a509301d91dccf45e997dde24d553b6c184e2f1ce36bcd6cbc6e237f460026",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Learn about getting and using credit, borrowing money, and managing debt."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0042",
+        "sha256": "bfc0c09204dfe5d2bb67bca0e1b3deab43298b5f6a8a8020cc02c13226938b19",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "View Credit, Loans, and Debt"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0043",
+        "sha256": "d534be829e32196b4d1e53b67103cf1e376b1d60071857572598c196abfefbc6",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Video"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0044",
+        "sha256": "e22820fcf5cd90e3fdd99a7569e0ee2f30eb7ebadfb2fe4d159b30c166ff81b7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Topics"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0045",
+        "sha256": "e22820fcf5cd90e3fdd99a7569e0ee2f30eb7ebadfb2fe4d159b30c166ff81b7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Topics"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0046",
+        "sha256": "ec898dc2b10904a343c7445b2c9d20b2d889d8b5859de249d0abca038bd2ad11",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Credit and Debt"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0047",
+        "sha256": "110b8d27653e969ffc65b84cbbce19ba729f3b520001e03c19eee55d13d64f55",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Loans and Mortgages"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0048",
+        "sha256": "6c6cdfb9f1314ba1f80b4532a3501726a5f31769959e39e7496f60c9f0478f9e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0049",
+        "sha256": "65df3074890b036d81756236dbd42d4815fb93493d3afcf6f477d911b759b5ba",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Struggling with tax debt? Here\u2019s what to know"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0050",
+        "sha256": "fee07a958baab72ec90ae42e1cfbf1151db8d6989ef0c441cc6d61e031c656b9",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "August 13, 2026"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0051",
+        "sha256": "27268d2596b81c21a7e70893ef434c113d8db961e4c3eec82f8f46bfbd5d9f81",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "BCP Staff"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0052",
+        "sha256": "18f5067f1bcf947bd87cc7d7f14494fca47f55023be2df6b24bb2b50ebf2ea51",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "If you owe back taxes, there are ways to get real help. But dishonest companies will promise to get rid of your debt for \u201cpennies on the dollar,\u201d before even looking into your tax situation. They\u2019ll often charge service fees without actually doing anything for you, and leave you further in the hole with local, state, or federal tax authorities."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0053",
+        "sha256": "d66d97036110488be3ccedcfe174a4d6fe1eab8d1e81dde3fdc4fe578a2caa71",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "View all Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0054",
+        "sha256": "481982583e714517c79df1924acca91be87ae0f5bd7f8e9fb8aa2c69e03f2e65",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Get Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0055",
+        "sha256": "5d021855069db965798a66774b2dd80a03582d982c56d58b78ab2a9dde712c41",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Show/hide Jobs and Making Money menu items"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0056",
+        "sha256": "ff6f474a590e9eb40da73f5697a1e5219d7180e45525cae970914d2e13da4299",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Jobs and Making Money"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0057",
+        "sha256": "dfba69940de7398e2d20743c2b519e3481da068b901faac4858aab7453b211da",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "What to know when you're looking for a job or more education, or considering a money-making opportunity or investment."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0058",
+        "sha256": "a11daf5f10e3a748d81f0673d2b2265c8c6f9b4cf588b6d2d7bdb325bcbbb348",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "View Jobs and Making Money"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0059",
+        "sha256": "d534be829e32196b4d1e53b67103cf1e376b1d60071857572598c196abfefbc6",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Video"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0060",
+        "sha256": "e22820fcf5cd90e3fdd99a7569e0ee2f30eb7ebadfb2fe4d159b30c166ff81b7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Topics"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0061",
+        "sha256": "e22820fcf5cd90e3fdd99a7569e0ee2f30eb7ebadfb2fe4d159b30c166ff81b7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Topics"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0062",
+        "sha256": "8894a88c6f221f7dd647678241ce65a2047aff28f38e317cef7847e83a6ab168",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Money-Making Opportunities and Investments"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0063",
+        "sha256": "2f17a0f8d518e491c5a0c490b2c1991828dd87d173994ba40996e1da59d4e368",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Jobs"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0064",
+        "sha256": "abe986b0255c1673d00689c4e0c3ca7cdf213a307af91aae068000753c15fd0e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Education and Training"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0065",
+        "sha256": "6c6cdfb9f1314ba1f80b4532a3501726a5f31769959e39e7496f60c9f0478f9e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0066",
+        "sha256": "b501e1f349784a7086df062802674788940d569948e782aad07510667b8fab35",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Are ads on social media vetted or checked for scams? Here\u2019s what to know"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0067",
+        "sha256": "eb5a5c5a78935c0ce83d1dc02de2bb1e315c2240f92dbc116ccd5a16fb523d30",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "August 10, 2026"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0068",
+        "sha256": "27268d2596b81c21a7e70893ef434c113d8db961e4c3eec82f8f46bfbd5d9f81",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "BCP Staff"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0069",
+        "sha256": "616acc4f3fa44a37c3fde04b39a7eb63b613406e4a664528bbe1998ab65d8f48",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "You\u2019re browsing your social media feed when an ad grabs your attention mid-swipe: that designer bag you\u2019ve been dreaming of is 50% off for a limited time only! You\u2019re dying to get your hands on one, so you don\u2019t think twice about clicking on the ad. Why would you? The ad is right there in your feed and it looks real, so you trust that it\u2019s legit. But it might not be. That\u2019s because social media platforms don\u2019t always thoroughly vet the ads you see or the advertisers behind them."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0070",
+        "sha256": "d66d97036110488be3ccedcfe174a4d6fe1eab8d1e81dde3fdc4fe578a2caa71",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "View all Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0071",
+        "sha256": "481982583e714517c79df1924acca91be87ae0f5bd7f8e9fb8aa2c69e03f2e65",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Get Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0072",
+        "sha256": "14e63fbfa7c30010fdc377e77fd86d3b61aa92a57cb6023f1caadee0a75f0535",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Show/hide Unwanted Calls, Emails, and Texts menu items"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0073",
+        "sha256": "c98aa6a05dce97550b79d500cff8135679f897eaa77d7d1d3a114bfeeb1edb18",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Unwanted Calls, Emails, and Texts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0074",
+        "sha256": "874e569639f91b71e7d4ac4933925634c6df48b63c10527809bd17fb8672b553",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "What to do about unwanted calls, emails, and text messages that can be annoying, might be illegal, and are probably scams."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0075",
+        "sha256": "921617564bc1120c98d78ef6faaccdc9e21af513218992e1ef0bc7eeb36d36c7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "View Unwanted Calls, Emails, and Texts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0076",
+        "sha256": "d534be829e32196b4d1e53b67103cf1e376b1d60071857572598c196abfefbc6",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Video"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0077",
+        "sha256": "e22820fcf5cd90e3fdd99a7569e0ee2f30eb7ebadfb2fe4d159b30c166ff81b7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Topics"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0078",
+        "sha256": "e22820fcf5cd90e3fdd99a7569e0ee2f30eb7ebadfb2fe4d159b30c166ff81b7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Topics"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0079",
+        "sha256": "d3dfcc6f5e626e6b95a43962ca9a511d24cb60bc4427087cddfc044898b29ea0",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Unwanted Calls"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0080",
+        "sha256": "087bb0df873f90f22357fbb27fc35f924f9a8d6fb9a88c443c0f267c54250f0d",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Unwanted Emails, Texts, and Mail"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0081",
+        "sha256": "6c6cdfb9f1314ba1f80b4532a3501726a5f31769959e39e7496f60c9f0478f9e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0082",
+        "sha256": "2e2c2fc56246d4ee70f1072d7b8208cea0ce5b1ec89ef703ed4daeb0fdda438a",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Ignore calls, texts, and emails threatening to arrest you for missing jury duty"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0083",
+        "sha256": "62b991f5a1dca9427695f17be5919c495a93699b6512f50c937e88db9074ee4e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "June 11, 2026"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0084",
+        "sha256": "27268d2596b81c21a7e70893ef434c113d8db961e4c3eec82f8f46bfbd5d9f81",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "BCP Staff"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0085",
+        "sha256": "3c76982358cb52fd224d018c2b9b2ae69eb879727d036baebfe6520029528cb3",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Did you get a call claiming you missed jury duty and need to pay? Followed by a text or email with official-looking documents saying there\u2019s a warrant out for your arrest? As alarming as these things sound, they\u2019re a scam designed to steal your money."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0086",
+        "sha256": "d66d97036110488be3ccedcfe174a4d6fe1eab8d1e81dde3fdc4fe578a2caa71",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "View all Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0087",
+        "sha256": "481982583e714517c79df1924acca91be87ae0f5bd7f8e9fb8aa2c69e03f2e65",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Get Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0088",
+        "sha256": "e18c546816cd14629fbb64737ae4d674c5e63f16bd3ad8dde472935b44142527",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Show/hide Identity Theft and Online Security menu items"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0089",
+        "sha256": "d3e0b312d334a9b87e3ffce6ab41f1ab614f2cc96b118a19eac02b6bfa3cc342",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Identity Theft and Online Security"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0090",
+        "sha256": "50e9c5410b2869188b5fd512e709a102a897e8e5f760d698f2b10fff933a7b0b",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "How to protect your personal information and privacy, stay safe online, and help your kids do the same."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0091",
+        "sha256": "3587202461720482c0cd981f89fa14109f5b548e0aea5dd27b12b74485ef7c86",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "View Identity Theft and Online Security"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0092",
+        "sha256": "d534be829e32196b4d1e53b67103cf1e376b1d60071857572598c196abfefbc6",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Video"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0093",
+        "sha256": "e22820fcf5cd90e3fdd99a7569e0ee2f30eb7ebadfb2fe4d159b30c166ff81b7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Topics"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0094",
+        "sha256": "e22820fcf5cd90e3fdd99a7569e0ee2f30eb7ebadfb2fe4d159b30c166ff81b7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Topics"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0095",
+        "sha256": "e31f5e11734f7bd1b53711a712764dd885263985d7bfa070779fd1b2e3036a85",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Identity Theft"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0096",
+        "sha256": "237046d8614865c3a7e0ed57b3f7c9a6fd4c284c9b35a373b040647d7b578432",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Online Privacy and Security"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0097",
+        "sha256": "c5f549641091e873baaa2dcd097c9ef08700a7209929bada483b46b4b1c2b36b",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Protecting Kids Online"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0098",
+        "sha256": "6c6cdfb9f1314ba1f80b4532a3501726a5f31769959e39e7496f60c9f0478f9e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0099",
+        "sha256": "6614212f0c12e93ea98c6e5c01f563971d3f320589d90955af31b3c04fa2dc14",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "See a QR code parked somewhere? Don\u2019t scan it\u2026yet!"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0100",
+        "sha256": "4728886cf1756f260765faf82068d8e75f1d419d63696482aa9c3074bfb8ab35",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "September 3, 2026"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0101",
+        "sha256": "27268d2596b81c21a7e70893ef434c113d8db961e4c3eec82f8f46bfbd5d9f81",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "BCP Staff"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0102",
+        "sha256": "1b57962cd161a5f3105ec8ae6ff4334796ee48a41c29e3d44b90c5d86e19a763",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Ever tried to pay for parking and discovered you need to scan a QR code to pay? It seems like a convenient way to pay, but it turns out scammers like using QR codes, too. People have reported scammers covering up legit QR codes on parking meters with a QR code of their own. If you scan that scammy QR code, it could take you to a fake site designed to steal your money, your personal information, or both. So, how can you protect yourself from these scams?"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0103",
+        "sha256": "d66d97036110488be3ccedcfe174a4d6fe1eab8d1e81dde3fdc4fe578a2caa71",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "View all Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0104",
+        "sha256": "481982583e714517c79df1924acca91be87ae0f5bd7f8e9fb8aa2c69e03f2e65",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Get Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0105",
+        "sha256": "562accc0c7cd3485f371c8e9b9c954359a56dc1deb2cbfda4ebfd673635ddd56",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Scams"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0106",
+        "sha256": "49c266baaaa70981ea188fa714d5c40cf13830d786a861c9943ae0d26a7f3fe9",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Search"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0107",
+        "sha256": "0f87223f7f7c090253616d49de33252756bb11098ae541f77a1aeb040b5a2af3",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Show/hide Search menu items"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0108",
+        "sha256": "766a02e0125f1841e8d3946317dfde39bda6fd9522e276f8136fea5e61fe61a5",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Items per page"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0109",
+        "sha256": "f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "20"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0110",
+        "sha256": "1a6562590ef19d1045d06c4055742d38288e9e6dcd71ccde5cee80f1d5a774eb",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "50"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0111",
+        "sha256": "ad57366865126e55649ecb23ae1d48887544976efea46a48eb5d85a6eeb4d306",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "100"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0112",
+        "sha256": "546ebb8eb993ea561029d9febd84c363bdb09010bb2cb915a8287762b76b9a64",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Filters"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0113",
+        "sha256": "cdfdbc9543688b493005f0626ac36076ee564cd38b3e93c5d401f0b3ef86352b",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Fulltext search"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0114",
+        "sha256": "567e5e59486d9e4223ed2ebbaf3fb4f18bf2267bc8d4b917ac793a910260db8f",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "CFG: Translation Menu"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0115",
+        "sha256": "94b382b61b9dde0ff8d45a44a34b61971d98df5bd810c803a3f33ce5b115eae8",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Espa\u00f1ol"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0116",
+        "sha256": "cbf160ecacc4d9c22c4ec21d9f0826f06c0c9744da2d7b8aaccd214b745480d2",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "CFG: Secondary Menu"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0117",
+        "sha256": "3d4ea1c1caa363faddc004d3253c917485a63a4c75de8f38b5e9cbfb7b93bda7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Report Fraud"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0118",
+        "sha256": "afb2f4e2bf72c8ee935b60c8a91db3a32b360d41579fa0383916d5c1aeb810a5",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Read Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0119",
+        "sha256": "481982583e714517c79df1924acca91be87ae0f5bd7f8e9fb8aa2c69e03f2e65",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Get Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0120",
+        "sha256": "d543ce997c400c83025b1bd3d0fbd06c07798ff8cc1aabc851adacf12bd1a2a7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Visit ftc.gov"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0121",
+        "sha256": "e7d12794445d3f061994c0225588068682ad71e039dfed8c2dacd3acfa27ffd9",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "CFG: Main Navigation"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0122",
+        "sha256": "de7c87321e4e8b752e6935fa413c2c55abd8d0a59d48e5e739ca44c056bf97d1",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Shopping and Donating"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0123",
+        "sha256": "a9b4c43586edde05669f3ff2570480ef02d5e73053385256a3a6acd6fdae8c40",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Show/hide Shopping and Donating menu items"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0124",
+        "sha256": "b5b68f9d45ff0c205f6e21dd44e123f7081055866e2ff91394d417cb6fbd0bf0",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Shopping"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0125",
+        "sha256": "5810ec4c707856e4f6c9723829ce8f18a77d84ebac91b83234235128a19a366e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "For the Home"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0126",
+        "sha256": "55898449eb74fb2e348d13e5a5d84ab019bb87ea92687b50b3d3302eb409b784",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Health"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0127",
+        "sha256": "2ec9cc73c524b8795b2212727b323e692969fc46437c63510acd42aaf1d55046",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Funerals"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0128",
+        "sha256": "3acea0ac809b1904b815d6a45484ae75a550b0b009b37be5535883e7c5e7e517",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Buying and Owning a Car"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0129",
+        "sha256": "8ddadc8058d64d601df8e08479eb0ebb24149a74b1bf29af0be917c5c469677d",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Donating to Charity"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0130",
+        "sha256": "605f7f4ddea92c6e8bfe2925866d77f45ac076ffbd32f95375a45bce97c8be4a",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Credit, Loans, and Debt"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0131",
+        "sha256": "eb10fc4f6fc533350218d3fe6044470fed45cf910102f1948d9fc6427022158e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Show/hide Credit, Loans, and Debt menu items"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0132",
+        "sha256": "ec898dc2b10904a343c7445b2c9d20b2d889d8b5859de249d0abca038bd2ad11",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Credit and Debt"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0133",
+        "sha256": "110b8d27653e969ffc65b84cbbce19ba729f3b520001e03c19eee55d13d64f55",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Loans and Mortgages"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0134",
+        "sha256": "ff6f474a590e9eb40da73f5697a1e5219d7180e45525cae970914d2e13da4299",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Jobs and Making Money"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0135",
+        "sha256": "5d021855069db965798a66774b2dd80a03582d982c56d58b78ab2a9dde712c41",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Show/hide Jobs and Making Money menu items"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0136",
+        "sha256": "8894a88c6f221f7dd647678241ce65a2047aff28f38e317cef7847e83a6ab168",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Money-Making Opportunities and Investments"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0137",
+        "sha256": "2f17a0f8d518e491c5a0c490b2c1991828dd87d173994ba40996e1da59d4e368",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Jobs"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0138",
+        "sha256": "abe986b0255c1673d00689c4e0c3ca7cdf213a307af91aae068000753c15fd0e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Education and Training"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0139",
+        "sha256": "c98aa6a05dce97550b79d500cff8135679f897eaa77d7d1d3a114bfeeb1edb18",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Unwanted Calls, Emails, and Texts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0140",
+        "sha256": "14e63fbfa7c30010fdc377e77fd86d3b61aa92a57cb6023f1caadee0a75f0535",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Show/hide Unwanted Calls, Emails, and Texts menu items"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0141",
+        "sha256": "d3dfcc6f5e626e6b95a43962ca9a511d24cb60bc4427087cddfc044898b29ea0",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Unwanted Calls"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0142",
+        "sha256": "087bb0df873f90f22357fbb27fc35f924f9a8d6fb9a88c443c0f267c54250f0d",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Unwanted Emails, Texts, and Mail"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0143",
+        "sha256": "d3e0b312d334a9b87e3ffce6ab41f1ab614f2cc96b118a19eac02b6bfa3cc342",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Identity Theft and Online Security"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0144",
+        "sha256": "e18c546816cd14629fbb64737ae4d674c5e63f16bd3ad8dde472935b44142527",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Show/hide Identity Theft and Online Security menu items"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0145",
+        "sha256": "e31f5e11734f7bd1b53711a712764dd885263985d7bfa070779fd1b2e3036a85",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Identity Theft"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0146",
+        "sha256": "237046d8614865c3a7e0ed57b3f7c9a6fd4c284c9b35a373b040647d7b578432",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Online Privacy and Security"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0147",
+        "sha256": "c5f549641091e873baaa2dcd097c9ef08700a7209929bada483b46b4b1c2b36b",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Protecting Kids Online"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0148",
+        "sha256": "562accc0c7cd3485f371c8e9b9c954359a56dc1deb2cbfda4ebfd673635ddd56",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Scams"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0149",
+        "sha256": "7cea1a1dc2d2d6f0b4236e160d71009f341b152b3289920c046c7a14d61c1bb5",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Show/hide Scams menu items"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0150",
+        "sha256": "aafc2386c8010f1e63bbbda15868461eb3c6f6d747970d85cfe96153e75b9e27",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Gift Card Scams"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0151",
+        "sha256": "d2035518017283512c40a0d5b1e29be8c7879addebf3b9f153765911c58c5c69",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Government and Business Impersonators"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0152",
+        "sha256": "a2a316e4bec2b989cf2f93fbd20cf308869d33565c2914016285055e9a77ca16",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Phone Scams"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0153",
+        "sha256": "b3f5495bb1cc8c51ed46c2b6794ac7816bb4a5224219b24179d65bae5c11cbc1",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Romance Scams"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0154",
+        "sha256": "a9da29e8b661d8172b570e9d979eb5e29ad2ccabf141702065469879db25e501",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Scams Against Immigrants"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0155",
+        "sha256": "af3cfc9a9eae7d37b9f2e44b8c0a11f613961624302464d3ebf7ac47e690fb90",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Scams Against Older Adults"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0156",
+        "sha256": "0877999fb2a260801ff25b73f665a36b54e8a09dcb9888b035b4b9acb5082a6f",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Scams Against Small Businesses"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0157",
+        "sha256": "aae1b8bc7574521634a904951e7f38d4e3427de1f4b367a75c59fdc279c3c12f",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Wire Transfer Scams"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0158",
+        "sha256": "766a02e0125f1841e8d3946317dfde39bda6fd9522e276f8136fea5e61fe61a5",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Items per page"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0159",
+        "sha256": "f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "20"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0160",
+        "sha256": "1a6562590ef19d1045d06c4055742d38288e9e6dcd71ccde5cee80f1d5a774eb",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "50"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0161",
+        "sha256": "ad57366865126e55649ecb23ae1d48887544976efea46a48eb5d85a6eeb4d306",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "100"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0162",
+        "sha256": "546ebb8eb993ea561029d9febd84c363bdb09010bb2cb915a8287762b76b9a64",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Filters"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0163",
+        "sha256": "cdfdbc9543688b493005f0626ac36076ee564cd38b3e93c5d401f0b3ef86352b",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Fulltext search"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0164",
+        "sha256": "2bd873d6c734e63ea80e163a6a643f75bf87a3d24e3164987d176a2e3e5c567e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Breadcrumb"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0165",
+        "sha256": "3a78695388b38b5cceefaf6796b0137877514593543b91af2752d5a17e3d736c",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Home"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0166",
+        "sha256": "b14ac78a46e90b7137f90518d51ce3677cf078db540d60d17097b6c40e25abf2",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Articles"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0167",
+        "sha256": "1cac12f5c27e7605a822d02211cc5d785c41fe4bac1879b4359e5165943af505",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Vea esta p\u00e1gina en espa\u00f1ol"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0168",
+        "sha256": "29d94922512b93e8d81ffb4c721e52afd32e80d952ebe753ea2b739159219dab",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Article"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0169",
+        "sha256": "5f4f9760565eb903920a467a232daf45ca70878e99242afc3c1959ad6b7dcb49",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "What To Know About People Search Sites That Sell Your Information"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0170",
+        "sha256": "d4821e0e331a97d34b77ae24e4be1f860c2a5c2082a054fd144a94b9d600bd4a",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "People search sites, also known as people finder sites, collect personal information about us from a variety of sources, compile it into a report, and sell those reports to anyone willing to pay for them. Learn how these sites work and how to ask them to stop selling your information."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0171",
+        "sha256": "f9e5e5446203714a192455af8fbf7047609f9914badcf7311c9d60b0cfe62441",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "How People Search Sites Work"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0172",
+        "sha256": "c37b7562c6db648fcfb2763f4860641dac1c068a50e7a5b29de58a50de95248b",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "How To Get People Search Sites To Stop Selling Your Information"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0173",
+        "sha256": "f9e5e5446203714a192455af8fbf7047609f9914badcf7311c9d60b0cfe62441",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "How People Search Sites Work"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0174",
+        "sha256": "43266709bc8d3adf274c200e9572085081b9406b0de5d140768cf932f4f3f7c9",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "The things we do throughout the day give businesses access to information about our habits, tastes, and activities. Businesses know that this information is valuable. In fact, companies known as data brokers collect information about us and sell or share it with others. People search sites are a type of data broker."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0175",
+        "sha256": "2eb9525ccb0dcca47efd5bad1613c365fb670475546d60aaac80f563f20fbb56",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "To build a report about you, people search sites may buy information from other data brokers, collect information from social media profiles that are public or viewable by everyone, and compile data from federal, state, and local government public records."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0176",
+        "sha256": "bb7865c293fde0c2068368c7bf0a82b7e033394f50531051a741dd65b0b3b774",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Information from public records may include"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0177",
+        "sha256": "e7b7e9b6f76b52927338ba1725e44135bff588825c68fb164df18a1205c04d9e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "property records"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0178",
+        "sha256": "588b4d72f10181160533f4d49fe57bb3fc64b6c64386091e21791f07889142e3",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "driving records"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0179",
+        "sha256": "c5b04e688118f843b4da8d3c48e60cb0424542c10b4c685a4cd6265e063c5c33",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "voter registration information"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0180",
+        "sha256": "14b81359b0782e30ccec10f132ca7271246e520cc490eb9293112ffe90b60571",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "criminal records, civil actions, and judgments"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0181",
+        "sha256": "459769ff43b6391760b61a1e853c43029d94560e4788963726c75165cf1f0a0f",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "birth, marriage, divorce, and death records"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0182",
+        "sha256": "d083ecf3a0f98dc244416ec84bf57c55b1a46146efde1350b71828f9a9a2c8ad",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "professional licenses, like those for pilots, doctors, lawyers, or architects"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0183",
+        "sha256": "4970b7a36ec738b59e87933bdd8fef3e600527d2bda8345ad36bc83081bdc3bb",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "If someone has just one piece of information about you, like your name or phone number, they could buy a report that tells them a lot about you, like"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0184",
+        "sha256": "d1ac3fc35357981883f34aa23104071246bb44e4dea22a62940eafa439527f14",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "your age, date of birth, and gender"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0185",
+        "sha256": "7b2330577760d25a2f462a2ac97dbc96ea63ecaba4fed835a9739b072192d18a",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "other names you\u2019ve used"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0186",
+        "sha256": "e3079130862c08493e8829bd5af2dbfebc6e25011cc92d3d1bf72b86d2f4a49f",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "your current and previous addresses"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0187",
+        "sha256": "71a25b3d2523c2644c36e407e75414ca79b7f31459b94a846112f0c14a3c77d0",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "properties you\u2019ve bought or sold"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0188",
+        "sha256": "8355e47a8e9484d71e5ccd3971accdae1eed025d5441f11c2a6ae3016ecd260a",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "your marital status"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0189",
+        "sha256": "226644af72422d4246fb3ec56e3b6bd02d61af51b99b641b567846632a109763",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "your education and employment history"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0190",
+        "sha256": "b18c991fa3ec9ad5a2c58c605a535d7749d4154820b490986ca3426ce7c16e09",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "criminal records and civil records including bankruptcies, liens, and judgments"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0191",
+        "sha256": "690e4275f032969fee662ae8699caf0193214135f7379be0594f1a8a670cc3ff",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "the name and address of your family members"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0192",
+        "sha256": "960e7e5f14a30eed5f7dc7e08e66879bd510cbfbe85522a135dece1989e21303",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "People buy these reports for many different reasons: some might want to find an old friend, look up a potential love interest, or connect with a neighbor."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0193",
+        "sha256": "3d57f4b575ef3084ce9466b84a54c15fa5d195a140a7b24fdf20626414cdc839",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "But some people, like survivors of domestic violence or stalking, may not want anyone to find out where they live, or the name and address of their family members."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0194",
+        "sha256": "c37b7562c6db648fcfb2763f4860641dac1c068a50e7a5b29de58a50de95248b",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "How To Get People Search Sites To Stop Selling Your Information"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0195",
+        "sha256": "715106f86d94757a5c18aee8e0d0b3e8888cbc176454e7218fc071f6f5f76e80",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Most people search sites have a way for you to tell them to stop selling your information. That\u2019s also called opting out."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0196",
+        "sha256": "cd5a85dacdceeb90680e8e2d83126453702110406b6e3257bc80aac7d5a4f87d",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "People search sites will let you opt out of sharing certain types of information, like your address or phone number, but not other information, like sex offender status."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0197",
+        "sha256": "dc56040f38fda754e728dfa18f227a5914a1335f285b21938330f8bc3aa3f73b",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "There are two ways to opt out of people search sites:"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0198",
+        "sha256": "4674d609862c848b6b469dfd416b17649cd437fe216b06a50907faaf94dbab97",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "do it on your own, one by one, for free, or"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0199",
+        "sha256": "69a4f0f13596108c3c04ccc9619aeb9e449ebb146ad87512bb6411af0b0c94d4",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "pay a service to opt out for you"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0200",
+        "sha256": "a88a272934bb4f86f770870d71dbf81523a6d5f7eee413a52b42cacd493b77f3",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "After you opt out, the people search site will stop selling your existing information."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0201",
+        "sha256": "dca16b2a7bcf62b3aaf10cf7cb2241b192ad96f5dd95df93f1e3480aa95308dc",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "But opting out of people search sites might not fix all your privacy concerns. For example, your information may still appear in the reports of your relatives, neighbors, or associates. And if the information in your public records changes, your information could re-appear for sale on people search sites."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0202",
+        "sha256": "3a491722de5c9be4d6f30fdb696069e295d751f79134efcae82d23ab2b84eaee",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Furthermore, opting out of people search sites doesn\u2019t delete your information from public records, so someone could find public records about you on a government website."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0203",
+        "sha256": "88de352c3dd65a238fa727f9f0df3a2ca99424af4c1a791c12db18240ea44047",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Whether you do it yourself or use a service, the process of opting out may require you to give some information to verify your identity."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0204",
+        "sha256": "836f3bf52fb9647686a7d39b7f871184a1f918781b132ebee7e525cb3a598081",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Opting out of people search sites yourself"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0205",
+        "sha256": "6ab06726113cadb3bac7e0dafeba42a7c1bc41d16cb784a1ab15915b8d7f2546",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Before you begin, know that there are a lot of people search sites. If you don\u2019t know of any people search sites by name, check this guide from the National Network to End Domestic Violence or this list from the Minnesota House of Representatives."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0206",
+        "sha256": "121b5f823b18769fc4f2266e86cd6ea100f977daed60588eab7560213faf41ad",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Opting out of people search sites one by one could be a time-consuming process. Follow these steps to opt out:"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0207",
+        "sha256": "e42df0411f1275d0570d281f22ee43cca93a68bf6d408c6344dad1a119df26eb",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Search for your name or other identifying information on a people search site. Start with information like a phone number or address."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0208",
+        "sha256": "75856b0f5f27ea99a4b371ff76cf973541c22861878cb7c34ed37e0f89204c70",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "If you find a report with information about you, look for a link or information about opting out, and follow the steps. If you can\u2019t find an opt-out link on the website, do an online search using the name of the people search site and phrases like \u201copt out\u201d or \u201cremove my information\u201d."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0209",
+        "sha256": "cdd1cb77bcecf097e8cf01024d89784415cc90452ada7d2999cc491eb823fa0d",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Repeat steps 1 and 2 on other people search sites."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0210",
+        "sha256": "de5db5d8b2454ca9c022006541d0f11f6bda3b4f8eecc12a84534f438d109dfd",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Periodically check the people search sites. If you find any new information about yourself, submit a new opt-out request."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0211",
+        "sha256": "160332a5d954265d6771dcb66e73cdd431fb737473929aaac146a743b1dff361",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Using a service to opt out"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0212",
+        "sha256": "c5c8e28e1886bc65ae142e6066ac627180d2fb78a216e08940219eb976c2389c",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Paid services will take the steps to opt you out of people search sites. Before you sign up for a service, find out"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0213",
+        "sha256": "7741235da655d5bf11c9483ba28d7646b54baa07652426e593206e5843d09b8c",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "how many websites it covers"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0214",
+        "sha256": "55e3ccaaaefa79d37b4551e23baedc23ca72ae47d9a2b8c5f90006f95cbfa385",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "if it\u2019ll give you a report about the sites it\u2019s opted you out of"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0215",
+        "sha256": "5ce8618baaf980872ae1447be670c8b084617f380971d1cb7781ac0a8da82de9",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "how often it\u2019ll scan those sites and delete information that has re-appeared or new information it finds"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0216",
+        "sha256": "d82f96b03f328128b19f6ff3d57d48a83d43cd9387c8432bb1f26a87928f607d",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Opting out of people search sites is one way to protect your personal information. Here are more ways to protect your privacy online."
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0217",
+        "sha256": "c31f3005d3911e871d8f687c678ec41aacf6605ef08077b0377d64e15189cd7f",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Search Terms"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0218",
+        "sha256": "4ae03386f883655a2f021ff959e2041dc3f081055d498769da2b369553c4b26c",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "consumer privacy"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0219",
+        "sha256": "e22820fcf5cd90e3fdd99a7569e0ee2f30eb7ebadfb2fe4d159b30c166ff81b7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Topics"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0220",
+        "sha256": "d3e0b312d334a9b87e3ffce6ab41f1ab614f2cc96b118a19eac02b6bfa3cc342",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Identity Theft and Online Security"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0221",
+        "sha256": "237046d8614865c3a7e0ed57b3f7c9a6fd4c284c9b35a373b040647d7b578432",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Online Privacy and Security"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0222",
+        "sha256": "c0f6adc8cb4ea5e9e1bfffd5040a324de5bb671193070d3021db6642744adf20",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "July 2022"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0223",
+        "sha256": "78caeb605c2913c2bf36327ff0adb2cb6416a70127b5df6f9ff51bccfadaa632",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Return to top"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0224",
+        "sha256": "99af6606ff9d6cd5154d4d4e9c21e325086d3e904677cdb41d363c8a3480f862",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Menu"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0225",
+        "sha256": "73fc35fd81c8c0e4f225d55182a9435cd313030157f6fc2842a8e3792634fedd",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "CFG: Footer Menu"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0226",
+        "sha256": "d050ca2d9e8334cc56927c28e6c2a6ca5677156decbc9d343f7aac1e5a378541",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Feature Pages"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0227",
+        "sha256": "b14ac78a46e90b7137f90518d51ce3677cf078db540d60d17097b6c40e25abf2",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Articles"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0228",
+        "sha256": "6c6cdfb9f1314ba1f80b4532a3501726a5f31769959e39e7496f60c9f0478f9e",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0229",
+        "sha256": "c9a9639463c21952df7b8b15ebd3f526a3d49a3c2c5fdc32b0d8405263b6322f",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Videos"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0230",
+        "sha256": "ab0dec38504f00e98a5b04cd03e9fa9efe8d4117fa3acf5e2e641e72d58a686a",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "CFG: Footer Menu Right"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0231",
+        "sha256": "3d4ea1c1caa363faddc004d3253c917485a63a4c75de8f38b5e9cbfb7b93bda7",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Report Fraud"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0232",
+        "sha256": "481982583e714517c79df1924acca91be87ae0f5bd7f8e9fb8aa2c69e03f2e65",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Get Consumer Alerts"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0233",
+        "sha256": "0e36c3f3907a7003e86b308270521b2d559a83d03f608d48204b68cf9683306d",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "CFG: Footer"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0234",
+        "sha256": "7e147ae06cacd6c02bdfe20fd988189af6e6c77bbc9c70427a88d217da3dbd6f",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "ftc.gov"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0235",
+        "sha256": "5d8c71abc527284cd463aa58f3f48098af5ab2f4225a744aa930a4b0e27d7395",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "About Us"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0236",
+        "sha256": "98b67063cf8e584d75e53b88472ee85473e01e0ea16f29ece9cc98f4a2710494",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Contact Us"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0237",
+        "sha256": "8963c1904d2767415e0a0b080d59206a81a42367c741d594edfcebc578469d6b",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Privacy and Notices"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0238",
+        "sha256": "f9cdf90c5ab28c7b9541d983397caeea0c8256e4fc9cf3c6947c80dd940b93ff",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "FOIA"
+      },
+      {
+        "evidence_id": "ORG001-FTC-PEOPLESEARCH-E0239",
+        "sha256": "eafeca687ecdc83f38a47963d898e1a0b5e1ae5e5dec9a6b595c101b5be4e889",
+        "source_raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+        "text": "Office of Inspector General"
+      }
+    ],
+    "normalized_text_sha256": "abfd2d3c2ceef9f193e085af175db6036f96bd58fb998914d78a3e54771eb0c8",
+    "raw_sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+    "review": {
+      "crawler_or_llm_authority": false,
+      "decision_basis": "H03-ORG-001 bounded public-reference review; paraphrase/reference use only",
+      "reviewer_id": "chatgpt-architect",
+      "reviewer_kind": "ARCHITECT",
+      "status": "ACCEPTED_FOR_KNOWLEDGE"
+    },
+    "rights_policy": {
+      "basis": "Public webpage retained only as hashed reference evidence for bounded internal research; no verbatim commercial reuse authorized",
+      "state": "REVIEWED_REFERENCE_ONLY",
+      "verbatim_reuse_allowed": false
+    },
+    "rights_status": "GOVERNED_EXTERNAL",
+    "source_id": "ORG001-FTC-PEOPLESEARCH",
+    "source_uri": "https://consumer.ftc.gov/articles/what-know-about-people-search-sites-sell-your-information"
+  },
+  "version": 1
+}

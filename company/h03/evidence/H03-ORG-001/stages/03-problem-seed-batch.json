@@ -1,0 +1,43 @@
+{
+  "batch_id": "ORG001-001",
+  "candidates": [
+    {
+      "commercial_signals": {
+        "demand": {
+          "evidence_refs": [],
+          "state": "UNKNOWN"
+        },
+        "willingness_to_pay": {
+          "evidence_refs": [],
+          "state": "UNKNOWN"
+        }
+      },
+      "context": "personal information can appear across multiple people-search and data-broker sites",
+      "desired_outcome": "a concise repeatable DIY sequence for finding, opting out, and rechecking people-search listings while understanding the limits of removal",
+      "holding_id": "H03",
+      "job_to_be_done": "find exposed records, submit opt-out requests, repeat across relevant people-search sites, and periodically recheck for reappearance",
+      "pain": {
+        "frequency_state": "OBSERVED",
+        "severity_state": "OBSERVED",
+        "statement": "manual opt-outs are fragmented across many sites and can be time-consuming to repeat and monitor",
+        "urgency_state": "UNKNOWN"
+      },
+      "persona": {
+        "actor": "privacy-conscious consumer",
+        "qualifier": "wants to reduce exposed contact and identity information on people-search sites without delegating the whole job to a paid service"
+      },
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "schema_version": "die.h03.human-problem-seed.v1",
+      "source_refs": [],
+      "trigger": "the consumer discovers searchable personal information and wants a bounded removal workflow",
+      "truth_status": "CANDIDATE"
+    }
+  ],
+  "dedupe_count": 0,
+  "holding_id": "H03",
+  "schema_version": "die.h03.problem-seed-batch.v1",
+  "source_signal_refs": [
+    "artifact://canary/problem-signal/people-search-diy"
+  ],
+  "truth_status": "CANDIDATE"
+}

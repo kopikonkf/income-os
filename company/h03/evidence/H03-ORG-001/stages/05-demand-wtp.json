@@ -1,0 +1,42 @@
+{
+  "buyer_intent_state": "MEDIUM",
+  "evidence": [
+    {
+      "evidence_id": "DMD-PAID-SUBSTITUTE",
+      "evidence_refs": [
+        "ORG001-INCOGNI-PRICING-E0016",
+        "ORG001-FTC-PEOPLESEARCH-E0199"
+      ],
+      "money": null,
+      "signal_type": "PAID_SUBSTITUTE"
+    },
+    {
+      "evidence_id": "DMD-USAGE-PROXY",
+      "evidence_refs": [
+        "ORG001-DELETEME-HOME-E0095"
+      ],
+      "money": null,
+      "signal_type": "MARKETPLACE_SALE_PROXY"
+    },
+    {
+      "evidence_id": "DMD-REPEATED-PAIN",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0206",
+        "ORG001-FTC-PEOPLESEARCH-E0210"
+      ],
+      "money": null,
+      "signal_type": "REPEATED_PAIN"
+    }
+  ],
+  "holding_id": "H03",
+  "packet_id": "H03-DMD-ORG001-001",
+  "pain_observation": {
+    "frequency": "MEDIUM",
+    "severity": "MEDIUM",
+    "urgency": "UNKNOWN"
+  },
+  "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+  "schema_version": "die.h03.demand-wtp-evidence.v1",
+  "truth_status": "VALIDATED",
+  "wtp_assessment": "MEDIUM"
+}

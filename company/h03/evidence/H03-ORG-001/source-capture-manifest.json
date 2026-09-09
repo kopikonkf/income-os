@@ -1,0 +1,27 @@
+{
+  "canary_id": "H03-ORG-001-CANARY-001",
+  "capture_date": "2026-09-09",
+  "method": "HTTP_CLIENT_POWERSHELL_INVOKE_WEBREQUEST",
+  "rights_policy": "REVIEWED_REFERENCE_ONLY_NO_VERBATIM_COMMERCIAL_REUSE",
+  "schema_version": "die.h03.source-capture-manifest.v1",
+  "sources": [
+    {
+      "bytes": 488877,
+      "file": "ftc-people-search-sites.html",
+      "sha256": "d5d5ab707aa987497aaa1772919f3f5f92964dce2bca39ca34a6ea941183efd6",
+      "source_uri": "https://consumer.ftc.gov/articles/what-know-about-people-search-sites-sell-your-information"
+    },
+    {
+      "bytes": 292764,
+      "file": "incogni-pricing.html",
+      "sha256": "e206dfffa461007ac5a10a1f7b789537e1bc37f3107449d5bef46b3905d63b9e",
+      "source_uri": "https://incogni.com/pricing"
+    },
+    {
+      "bytes": 297490,
+      "file": "deleteme-home.html",
+      "sha256": "1233eb1775dfa533bbc63aa6a472fd4f85ce8cc09465a3ccea8a48123d6761a5",
+      "source_uri": "https://joindeleteme.com/"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "blocks": [
+    {
+      "text": "1. Find your exposed listing",
+      "type": "heading"
+    },
+    {
+      "claim_id": "C1",
+      "text": "1. Search the people-search site for your name, phone number, or address and open the listing that appears to describe you.",
+      "type": "bullet"
+    },
+    {
+      "text": "2. Submit the opt-out",
+      "type": "heading"
+    },
+    {
+      "claim_id": "C2",
+      "text": "1. Use the site's opt-out or removal instructions for the listing you found and complete the requested steps.",
+      "type": "bullet"
+    },
+    {
+      "text": "3. Repeat across sites",
+      "type": "heading"
+    },
+    {
+      "claim_id": "C3",
+      "text": "1. Move to the next relevant people-search site and repeat the same search-and-opt-out workflow.",
+      "type": "bullet"
+    },
+    {
+      "text": "4. Recheck periodically",
+      "type": "heading"
+    },
+    {
+      "claim_id": "C4",
+      "text": "[ ] Schedule a periodic recheck and submit another opt-out request if your information appears again.",
+      "type": "bullet"
+    },
+    {
+      "text": "5. Know the limits",
+      "type": "heading"
+    },
+    {
+      "claim_id": "C5",
+      "text": "Note: Treat this as exposure reduction, not total erasure: public records may still remain available.",
+      "type": "paragraph"
+    },
+    {
+      "claim_id": "C6",
+      "text": "DIY opt-outs can be done for free; a paid service is an alternative if you prefer to delegate the repeated work.",
+      "type": "paragraph"
+    }
+  ],
+  "knowledge_package_id": "H03-KP-ORG001-001",
+  "metadata": {
+    "content_batch_ids": [
+      "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-001",
+      "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-002",
+      "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-003",
+      "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-004",
+      "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-005"
+    ],
+    "content_lineage": [
+      {
+        "block_id": "B-001",
+        "claim_ids": [
+          "C1"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0208"
+        ],
+        "section_id": "SEC-001"
+      },
+      {
+        "block_id": "B-002",
+        "claim_ids": [
+          "C2"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0208"
+        ],
+        "section_id": "SEC-002"
+      },
+      {
+        "block_id": "B-003",
+        "claim_ids": [
+          "C3"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0206"
+        ],
+        "section_id": "SEC-003"
+      },
+      {
+        "block_id": "B-004",
+        "claim_ids": [
+          "C4"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0210"
+        ],
+        "section_id": "SEC-004"
+      },
+      {
+        "block_id": "B-005A",
+        "claim_ids": [
+          "C5"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0175"
+        ],
+        "section_id": "SEC-005"
+      },
+      {
+        "block_id": "B-005B",
+        "claim_ids": [
+          "C6"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0199"
+        ],
+        "section_id": "SEC-005"
+      }
+    ],
+    "desired_outcome": "a concise repeatable DIY sequence for finding, opting out, and rechecking people-search listings while understanding the limits of removal",
+    "form": "guide",
+    "form_selection_reason_codes": [
+      "SEQUENTIAL_OUTCOME"
+    ],
+    "format_selection_policy": "OUTCOME_ORIENTED_V1",
+    "page_count_target": null,
+    "planning_profile_id": "H03-PPLAN-ORG001-001",
+    "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+    "subtitle": "A bounded repeatable workflow for reducing exposed personal information",
+    "template_id": "guide.clean.v1",
+    "title": "DIY People-Search Opt-Out Guide"
+  },
+  "product_id": "H03-PROD-ORG001-001",
+  "schema_version": "die.h03.document-ast.v1"
+}

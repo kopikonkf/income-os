@@ -1,0 +1,26 @@
+{
+  "files": {
+    "content-block-batches.json": {
+      "bytes": 5479,
+      "sha256": "68e774b588adc4d00328e62e3de6a47536ead3da26fd87d2e269d2261b66cfa8"
+    },
+    "diy-people-search-opt-out-guide.pdf": {
+      "bytes": 3841,
+      "sha256": "9387de9c840a9aa2f5b77a72ffc48f0d78b8936b90e012d0707309f871c99c19"
+    },
+    "document-ast.json": {
+      "bytes": 4028,
+      "sha256": "97c07936fee3c7cf684b1c46fc00231a723f72291e8423134b0b4647ed23fa39"
+    },
+    "product-blueprint.json": {
+      "bytes": 1356,
+      "sha256": "52fa71fe6e51c56b53e4515206bb288918d2dd2956902c34f4e9a6a0fa3c382b"
+    },
+    "validation.json": {
+      "bytes": 707,
+      "sha256": "4a87cf6ec86db68e769ea00dd43d882b2515458a98d92f2216d14ea7c2af7e9a"
+    }
+  },
+  "product_id": "H03-PROD-ORG001-001",
+  "schema_version": "die.h03.local-product-manifest.v1"
+}

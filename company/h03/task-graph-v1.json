@@ -576,7 +576,7 @@
       "id": "H03-ORG-001",
       "track": "CANARY",
       "title": "Bounded end-to-end problem-to-package internal canary",
-      "status": "READY",
+      "status": "DONE",
       "priority": 780,
       "depends_on": [
         "H03-PROD-003",
@@ -584,20 +584,32 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Run one bounded real problem candidate through curation, demand/WTP, research fan-out, synthesis, product planning, production, compile and package with durable lineage; no external listing or promotion."
+      "acceptance": "Run one bounded real problem candidate through curation, demand/WTP, research fan-out, synthesis, product planning, production, compile and package with durable lineage; no external listing or promotion.",
+      "artifact": "company/h03/lib/org_canary.py + company/h03/evidence/H03-ORG-001",
+      "result": {
+        "status": "PASS",
+        "canary_id": "H03-ORG-001-CANARY-001",
+        "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+        "worth_making": "MAKE",
+        "product_form": "guide",
+        "package_status": "LOCAL_SALE_READY_UNREVIEWED",
+        "pdf_sha256": "9387de9c840a9aa2f5b77a72ffc48f0d78b8936b90e012d0707309f871c99c19",
+        "zip_sha256": "c93b149bfe139c9fe10a2dd662427720afad57ba6523d373c7d7c8e550b1fb8a",
+        "live_provider_call_claimed": false,
+        "external_publication": false
+      }
     },
     {
       "id": "H03-REV-001",
       "track": "REVIEW",
       "title": "Independent product review + Founder Review Card",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 775,
       "depends_on": [
         "H03-ORG-001"
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "blocked_reason": "DEPENDENCIES_NOT_DONE",
       "acceptance": "Produce concise review card with buyer/problem/promise, product preview, evidence confidence, risk/rights flags, market/WTP basis and PASS/REVISE/REJECT decision surface. Prefer reviewer separation from dominant producer where capacity permits."
     },
     {
@@ -708,7 +720,7 @@
       "id": "H03-SCALE-001",
       "track": "SCALE",
       "title": "Bounded multi-product internal throughput and resilience soak",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 620,
       "depends_on": [
         "H03-ORG-001",
@@ -716,11 +728,10 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "blocked_reason": "DEPENDENCIES_NOT_DONE",
       "acceptance": "Run a bounded internal batch sized by current safe capacity, not a fixed product-count target. Measure throughput, queue latency, terminal failure rate, retry count, fallback success, provider/profile bottlenecks and resource usage; no external publication."
     }
   ],
-  "revision": "2026-09-09 PROD-002 + PROD-003 PASS; H03-ORG-001 bounded problem-to-package internal canary READY",
+  "revision": "2026-09-09 H03-ORG-001 PASS: first bounded real-evidence problem-to-package internal canary; REV-001 + SCALE-001 READY",
   "production_organism": {
     "control_plane": "Mission Control supervises batches/products, recovery, gates and durable standing; it does not execute every prompt.",
     "worker_plane": "H03 role queues dispatch normalized cognition jobs through web-ai-adapter; MCP is not a worker hot-path requirement.",
@@ -759,7 +770,8 @@
   },
   "current_frontier": {
     "ready": [
-      "H03-ORG-001"
+      "H03-REV-001",
+      "H03-SCALE-001"
     ],
     "parallel_lanes": {
       "economic_intelligence": "H03-OPP-001 -> H03-OPP-002 + H03-DMD-001 -> H03-OPP-003 -> H03-RSCH-001",

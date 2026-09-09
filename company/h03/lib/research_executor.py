@@ -33,8 +33,14 @@ def build_research_dispatches(*, plan: dict[str, Any], registry: dict[str, Any],
     working_pool = copy.deepcopy(pool)
     dispatches: list[dict[str, Any]] = []
     questions = {q["question_id"]: q for q in plan["questions"]}
+    prefix = f"H03-WC-RSCH-{plan['research_plan_id']}-"
     for card in cards:
-        qid = card["work_card_id"].rsplit("-", 1)[-1]
+        work_card_id = card["work_card_id"]
+        if not work_card_id.startswith(prefix):
+            raise ValueError("RESEARCH_WORK_CARD_PLAN_PREFIX_MISMATCH")
+        qid = work_card_id[len(prefix):]
+        if qid not in questions:
+            raise ValueError(f"RESEARCH_WORK_CARD_QUESTION_UNKNOWN:{qid}")
         question = questions[qid]
         route = profile_pool.route_worker_from_pool(role=card["role"], registry=registry, pool=working_pool, required_capabilities=["web_research"])
         _decrement_slot(working_pool, route)

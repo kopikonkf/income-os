@@ -1,0 +1,57 @@
+{
+  "contradictions": [],
+  "gaps": [],
+  "holding_id": "H03",
+  "knowledge_map_id": "H03-KM-ORG001-001",
+  "market_wtp_findings": [
+    {
+      "evidence_refs": [
+        "ORG001-INCOGNI-PRICING-E0016"
+      ],
+      "finding_id": "MW-1",
+      "signal_type": "PAID_SUBSTITUTE",
+      "text": "A paid removal substitute advertises nonzero recurring pricing."
+    },
+    {
+      "evidence_refs": [
+        "ORG001-DELETEME-HOME-E0095"
+      ],
+      "finding_id": "MW-2",
+      "signal_type": "MARKETPLACE_SALE_PROXY",
+      "text": "Published removal/customer activity supports actual category usage."
+    }
+  ],
+  "research_packet_ids": [
+    "H03-RP-H03-WC-RSCH-H03-RPLAN-ORG001-001-Q-MARKET-1",
+    "H03-RP-H03-WC-RSCH-H03-RPLAN-ORG001-001-Q-OFFICIAL-1",
+    "H03-RP-H03-WC-RSCH-H03-RPLAN-ORG001-001-Q-MARKET-2"
+  ],
+  "schema_version": "die.h03.knowledge-map.v1",
+  "supported_findings": [
+    {
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0208"
+      ],
+      "finding_id": "SF-1",
+      "text": "People-search sites compile personal information and provide opt-out mechanisms."
+    },
+    {
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0199",
+        "ORG001-FTC-PEOPLESEARCH-E0206",
+        "ORG001-FTC-PEOPLESEARCH-E0210"
+      ],
+      "finding_id": "SF-2",
+      "text": "DIY removal can be performed for free but requires repeated site-by-site work and periodic rechecking."
+    },
+    {
+      "evidence_refs": [
+        "ORG001-INCOGNI-PRICING-E0016",
+        "ORG001-DELETEME-HOME-E0095"
+      ],
+      "finding_id": "SF-3",
+      "text": "Paid substitutes exist and the category shows active usage, supporting medium willingness-to-pay evidence."
+    }
+  ],
+  "truth_status": "UNVERIFIED_SYNTHESIS"
+}

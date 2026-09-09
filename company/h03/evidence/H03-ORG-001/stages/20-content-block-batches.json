@@ -1,0 +1,163 @@
+[
+  {
+    "blocks": [
+      {
+        "block_id": "B-001",
+        "claim_ids": [
+          "C1"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0208"
+        ],
+        "kind": "STEP",
+        "text": "Search the people-search site for your name, phone number, or address and open the listing that appears to describe you."
+      }
+    ],
+    "content_batch_id": "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-001",
+    "holding_id": "H03",
+    "knowledge_package_id": "H03-KP-ORG001-001",
+    "producer_observation": {
+      "execution_mode": "NONLIVE_ROLE_FIXTURE",
+      "model_route": "fixture://producer-a",
+      "profile_shard_id": "fixture-producer-shard",
+      "provider_id": "fixture-producer-a",
+      "transport_family": "OPENAI_COMPATIBLE"
+    },
+    "product_id": "H03-PROD-ORG001-001",
+    "schema_version": "die.h03.content-block-batch.v1",
+    "section_heading": "1. Find your exposed listing",
+    "section_id": "SEC-001",
+    "truth_status": "DERIVED_SEMANTIC_CONTENT"
+  },
+  {
+    "blocks": [
+      {
+        "block_id": "B-002",
+        "claim_ids": [
+          "C2"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0208"
+        ],
+        "kind": "STEP",
+        "text": "Use the site's opt-out or removal instructions for the listing you found and complete the requested steps."
+      }
+    ],
+    "content_batch_id": "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-002",
+    "holding_id": "H03",
+    "knowledge_package_id": "H03-KP-ORG001-001",
+    "producer_observation": {
+      "execution_mode": "NONLIVE_ROLE_FIXTURE",
+      "model_route": "fixture://producer-a",
+      "profile_shard_id": "fixture-producer-shard",
+      "provider_id": "fixture-producer-a",
+      "transport_family": "OPENAI_COMPATIBLE"
+    },
+    "product_id": "H03-PROD-ORG001-001",
+    "schema_version": "die.h03.content-block-batch.v1",
+    "section_heading": "2. Submit the opt-out",
+    "section_id": "SEC-002",
+    "truth_status": "DERIVED_SEMANTIC_CONTENT"
+  },
+  {
+    "blocks": [
+      {
+        "block_id": "B-003",
+        "claim_ids": [
+          "C3"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0206"
+        ],
+        "kind": "STEP",
+        "text": "Move to the next relevant people-search site and repeat the same search-and-opt-out workflow."
+      }
+    ],
+    "content_batch_id": "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-003",
+    "holding_id": "H03",
+    "knowledge_package_id": "H03-KP-ORG001-001",
+    "producer_observation": {
+      "execution_mode": "NONLIVE_ROLE_FIXTURE",
+      "model_route": "fixture://producer-a",
+      "profile_shard_id": "fixture-producer-shard",
+      "provider_id": "fixture-producer-a",
+      "transport_family": "OPENAI_COMPATIBLE"
+    },
+    "product_id": "H03-PROD-ORG001-001",
+    "schema_version": "die.h03.content-block-batch.v1",
+    "section_heading": "3. Repeat across sites",
+    "section_id": "SEC-003",
+    "truth_status": "DERIVED_SEMANTIC_CONTENT"
+  },
+  {
+    "blocks": [
+      {
+        "block_id": "B-004",
+        "claim_ids": [
+          "C4"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0210"
+        ],
+        "kind": "CHECKLIST_ITEM",
+        "text": "Schedule a periodic recheck and submit another opt-out request if your information appears again."
+      }
+    ],
+    "content_batch_id": "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-004",
+    "holding_id": "H03",
+    "knowledge_package_id": "H03-KP-ORG001-001",
+    "producer_observation": {
+      "execution_mode": "NONLIVE_ROLE_FIXTURE",
+      "model_route": "fixture://producer-b",
+      "profile_shard_id": "fixture-producer-shard",
+      "provider_id": "fixture-producer-b",
+      "transport_family": "OPENAI_COMPATIBLE"
+    },
+    "product_id": "H03-PROD-ORG001-001",
+    "schema_version": "die.h03.content-block-batch.v1",
+    "section_heading": "4. Recheck periodically",
+    "section_id": "SEC-004",
+    "truth_status": "DERIVED_SEMANTIC_CONTENT"
+  },
+  {
+    "blocks": [
+      {
+        "block_id": "B-005A",
+        "claim_ids": [
+          "C5"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0175"
+        ],
+        "kind": "CALLOUT",
+        "text": "Treat this as exposure reduction, not total erasure: public records may still remain available."
+      },
+      {
+        "block_id": "B-005B",
+        "claim_ids": [
+          "C6"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0199"
+        ],
+        "kind": "PARAGRAPH",
+        "text": "DIY opt-outs can be done for free; a paid service is an alternative if you prefer to delegate the repeated work."
+      }
+    ],
+    "content_batch_id": "H03-CB-H03-WC-PROD-H03-PROD-ORG001-001-SEC-005",
+    "holding_id": "H03",
+    "knowledge_package_id": "H03-KP-ORG001-001",
+    "producer_observation": {
+      "execution_mode": "NONLIVE_ROLE_FIXTURE",
+      "model_route": "fixture://producer-b",
+      "profile_shard_id": "fixture-producer-shard",
+      "provider_id": "fixture-producer-b",
+      "transport_family": "OPENAI_COMPATIBLE"
+    },
+    "product_id": "H03-PROD-ORG001-001",
+    "schema_version": "die.h03.content-block-batch.v1",
+    "section_heading": "5. Know the limits",
+    "section_id": "SEC-005",
+    "truth_status": "DERIVED_SEMANTIC_CONTENT"
+  }
+]

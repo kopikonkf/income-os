@@ -1,0 +1,49 @@
+{
+  "decision_complexity": "LOW",
+  "delivery_shape": "EXECUTE_SEQUENCE",
+  "desired_outcome": "a concise repeatable DIY sequence for finding, opting out, and rechecking people-search listings while understanding the limits of removal",
+  "evidence_density": "MEDIUM",
+  "explanation_depth": "MEDIUM",
+  "holding_id": "H03",
+  "input_capture": "NONE",
+  "knowledge_package_id": "H03-KP-ORG001-001",
+  "lookup_frequency": "LOW",
+  "planning_profile_id": "H03-PPLAN-ORG001-001",
+  "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+  "recurrence": "REPEATED",
+  "reusable_structure": false,
+  "schema_version": "die.h03.product-planning-profile.v1",
+  "section_plan": [
+    {
+      "claim_ids": [
+        "C1"
+      ],
+      "heading": "1. Find your exposed listing"
+    },
+    {
+      "claim_ids": [
+        "C2"
+      ],
+      "heading": "2. Submit the opt-out"
+    },
+    {
+      "claim_ids": [
+        "C3"
+      ],
+      "heading": "3. Repeat across sites"
+    },
+    {
+      "claim_ids": [
+        "C4"
+      ],
+      "heading": "4. Recheck periodically"
+    },
+    {
+      "claim_ids": [
+        "C5",
+        "C6"
+      ],
+      "heading": "5. Know the limits"
+    }
+  ]
+}

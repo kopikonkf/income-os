@@ -1,0 +1,32 @@
+[
+  {
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "provider_id": "fixture-producer-a",
+    "section_id": "SEC-001",
+    "work_card_id": "H03-WC-PROD-H03-PROD-ORG001-001-SEC-001"
+  },
+  {
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "provider_id": "fixture-producer-a",
+    "section_id": "SEC-002",
+    "work_card_id": "H03-WC-PROD-H03-PROD-ORG001-001-SEC-002"
+  },
+  {
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "provider_id": "fixture-producer-a",
+    "section_id": "SEC-003",
+    "work_card_id": "H03-WC-PROD-H03-PROD-ORG001-001-SEC-003"
+  },
+  {
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "provider_id": "fixture-producer-b",
+    "section_id": "SEC-004",
+    "work_card_id": "H03-WC-PROD-H03-PROD-ORG001-001-SEC-004"
+  },
+  {
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "provider_id": "fixture-producer-b",
+    "section_id": "SEC-005",
+    "work_card_id": "H03-WC-PROD-H03-PROD-ORG001-001-SEC-005"
+  }
+]

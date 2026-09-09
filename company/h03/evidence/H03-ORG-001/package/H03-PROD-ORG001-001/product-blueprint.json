@@ -1,0 +1,52 @@
+{
+  "form": "guide",
+  "knowledge_package_id": "H03-KP-ORG001-001",
+  "metadata": {
+    "desired_outcome": "a concise repeatable DIY sequence for finding, opting out, and rechecking people-search listings while understanding the limits of removal",
+    "form_selection_reason_codes": [
+      "SEQUENTIAL_OUTCOME"
+    ],
+    "format_selection_policy": "OUTCOME_ORIENTED_V1",
+    "page_count_target": null,
+    "planning_profile_id": "H03-PPLAN-ORG001-001",
+    "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+    "template_id": "guide.clean.v1"
+  },
+  "product_id": "H03-PROD-ORG001-001",
+  "schema_version": "die.h03.product-blueprint.v1",
+  "sections": [
+    {
+      "claim_ids": [
+        "C1"
+      ],
+      "heading": "1. Find your exposed listing"
+    },
+    {
+      "claim_ids": [
+        "C2"
+      ],
+      "heading": "2. Submit the opt-out"
+    },
+    {
+      "claim_ids": [
+        "C3"
+      ],
+      "heading": "3. Repeat across sites"
+    },
+    {
+      "claim_ids": [
+        "C4"
+      ],
+      "heading": "4. Recheck periodically"
+    },
+    {
+      "claim_ids": [
+        "C5",
+        "C6"
+      ],
+      "heading": "5. Know the limits"
+    }
+  ],
+  "subtitle": "A bounded repeatable workflow for reducing exposed personal information",
+  "title": "DIY People-Search Opt-Out Guide"
+}

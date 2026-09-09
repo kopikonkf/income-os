@@ -25,6 +25,14 @@ class ResearchExecutorTests(unittest.TestCase):
         self.assertEqual(packet['source_snapshots'][0]['review_state'],'PENDING_REVIEW')
         self.assertFalse(packet['source_snapshots'][0]['canonical_truth'])
         self.assertTrue(packet['findings'][0]['evidence_refs'])
+    def test_hyphenated_question_ids_are_preserved_exactly(self):
+        plan=self.plan()
+        plan["questions"][0]["question_id"]="Q-MARKET-1"
+        plan["questions"][1]["question_id"]="Q-OFFICIAL-1"
+        plan["questions"][2]["question_id"]="Q-MARKET-2"
+        dispatches=mod.build_research_dispatches(plan=plan,registry=REG,pool=self.pool())
+        self.assertEqual([d["question"]["question_id"] for d in dispatches],["Q-MARKET-1","Q-OFFICIAL-1","Q-MARKET-2"])
+
     def test_finding_cannot_reference_unknown_source(self):
         d=mod.build_research_dispatches(plan=self.plan(),registry=REG,pool=self.pool())[0]
         out={'source_documents':[{'source_id':'SRC-1','source_uri':'https://example.invalid/a','text':'Evidence text.'}],'findings':[{'finding_id':'F1','text':'Claim','source_ids':['MISSING']} ]}

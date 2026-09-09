@@ -1,0 +1,50 @@
+{
+  "budget": {
+    "max_research_jobs": 3,
+    "max_sources": 3
+  },
+  "holding_id": "H03",
+  "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+  "questions": [
+    {
+      "critical": true,
+      "lane": "MARKET_WTP",
+      "minimum_independent_sources": 1,
+      "question": "Is there a current paid substitute for people-search and data-broker removal, and what nonzero price does it advertise?",
+      "question_id": "Q-MARKET-1",
+      "required_source_classes": [
+        "COMPETITOR_PRODUCT"
+      ]
+    },
+    {
+      "critical": true,
+      "lane": "OFFICIAL_DOMAIN",
+      "minimum_independent_sources": 1,
+      "question": "What official consumer guidance describes the DIY people-search opt-out process, its repetition burden, and its limitations?",
+      "question_id": "Q-OFFICIAL-1",
+      "required_source_classes": [
+        "OFFICIAL_PRIMARY"
+      ]
+    },
+    {
+      "critical": true,
+      "lane": "MARKET_WTP",
+      "minimum_independent_sources": 1,
+      "question": "Is there evidence that consumers actually use data-removal services rather than paid offerings existing only in theory?",
+      "question_id": "Q-MARKET-2",
+      "required_source_classes": [
+        "COMPETITOR_PRODUCT",
+        "CUSTOMER_REVIEW"
+      ]
+    }
+  ],
+  "research_plan_id": "H03-RPLAN-ORG001-001",
+  "schema_version": "die.h03.research-plan.v1",
+  "stop_policy": {
+    "diminishing_returns_window_packets": 2,
+    "minimum_new_supported_findings_in_window": 1,
+    "minimum_source_classes": 2
+  },
+  "truth_status": "PLAN",
+  "worth_making_decision_id": "H03-WM-ORG001-001"
+}
