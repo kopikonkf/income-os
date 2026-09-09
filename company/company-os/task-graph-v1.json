@@ -1,7 +1,7 @@
 {
   "schema": "die.company-os.task-graph.v1",
   "generated_at": "2026-09-08",
-  "revision": "2.1-cos002a-writer-domain-conformance",
+  "revision": "2.2-econ002a-state-manager-ledger-writer",
   "status": "CANONICAL",
   "project": "DIE Company OS / Economic Layer",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -264,6 +264,28 @@
         "live_ingestion": false,
         "bank_payment_integration": false,
         "spend_authority": false
+      }
+    },
+    {
+      "id": "ECON-002A",
+      "track": "ECONOMICS",
+      "title": "State Manager Economic Ledger commit boundary",
+      "status": "DONE",
+      "priority": 825,
+      "depends_on": ["ECON-002", "COS-002A"],
+      "execution_mode": "tool_native",
+      "risk": "LOW",
+      "acceptance": "Implement a shadow-only die-state-manager commit primitive for ECONOMICS.jsonl using the accepted ECON-002 event contract, idempotency/reversal rules and no live financial ingestion or authority widening.",
+      "result": {
+        "status": "PASS",
+        "artifact": "company/company-os/ECON-002A_STATE_MANAGER_ECONOMIC_LEDGER_COMMIT_BOUNDARY_V1.md",
+        "machine_contract": "company/company-os/contracts/die.economic-ledger.state-manager-commit-boundary.v1.json",
+        "physical_writer": "bin/die_event.py",
+        "tests": "company/company-os/tests/test_economic_state_manager.py",
+        "receipt": "company/company-os/receipts/ECON-002A-state-manager-economic-ledger.receipt.json",
+        "writer": "die-state-manager",
+        "live_ingestion": false,
+        "cos002a_economics_warning_resolved": true
       }
     },
     {
