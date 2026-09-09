@@ -1,0 +1,20 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"die.h03.attribution-event.v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema_version","event_id","holding_id","observed_at","event_type","observation_state","identity","source_event_id","evidence_refs","order_id","money"],
+  "properties":{
+    "schema_version":{"const":"die.h03.attribution-event.v1"},
+    "event_id":{"type":"string","minLength":6},
+    "holding_id":{"const":"H03"},
+    "observed_at":{"type":"string","minLength":10},
+    "event_type":{"enum":["IMPRESSION","CLICK","PRODUCT_VIEW","ADD_TO_CART","ORDER","REVENUE","REFUND"]},
+    "observation_state":{"enum":["OBSERVED"]},
+    "identity":{"$ref":"attribution-identity.v1.schema.json"},
+    "source_event_id":{"type":"string","minLength":3},
+    "evidence_refs":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string","minLength":3}},
+    "order_id":{"type":["string","null"]},
+    "money":{"type":["object","null"]}
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-ATTR-001",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "planned_listing_identities": 13,
+    "observed_event_count": 0,
+    "funnel_state": "UNOBSERVED",
+    "acquisition_listing_channel_separated": true,
+    "utm_identity": true,
+    "revenue_requires_order_and_money": true,
+    "external_publication": false
+  },
+  "validation": {
+    "targeted_attribution_growth": "5/5 PASS",
+    "h03_regression": "134/134 PASS",
+    "graph_frontier": [
+      "H03-ANL-001",
+      "H03-GRW-002"
+    ],
+    "dist_status": "WAITING_FOUNDER",
+    "json_parse": "PASS"
+  }
+}

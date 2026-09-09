@@ -1,0 +1,23 @@
+{
+  "schema_version": "die.h03.batch-receipt.v1",
+  "batch_id": "H03-ATTR001-GRW001-20260909",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "tasks_done": [
+    "H03-ATTR-001",
+    "H03-GRW-001"
+  ],
+  "validation": {
+    "targeted": "5/5 PASS",
+    "h03_regression": "134/134 PASS",
+    "ready_frontier": [
+      "H03-ANL-001",
+      "H03-GRW-002"
+    ]
+  },
+  "observed_event_count": 0,
+  "growth_atom_count": 7,
+  "paid_ads": false,
+  "external_publication": false,
+  "dist_status": "WAITING_FOUNDER"
+}

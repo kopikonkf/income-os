@@ -255,3 +255,14 @@ Current package includes Gumroad/Etsy drafts plus direct-download, book, aggrega
 Pricing remains `UNTESTED`, observed sales=false, Founder publication gate locked.
 
 New dependency-valid READY frontier: H03-ATTR-001, H03-GRW-001.
+
+
+---
+
+## H03 Batch — ATTR-001 + GRW-001 — DONE/PASS — 2026-09-09
+
+ATTR-001 adds the attribution spine from Problem Seed through product, commerce package, planned listing, campaign, creative and acquisition channel. Acquisition channel is explicitly separate from sales-listing channel; all current funnel states remain `UNOBSERVED` and observed-event count is 0. Revenue/refund cannot exist without evidence-bound order and money data.
+
+GRW-001 adds seven channel-native organic content surfaces (X, Threads, Instagram, TikTok, YouTube, Pinterest, Reddit), each backed by accepted Knowledge Package claim/evidence lineage and ATTR creative identity. One campaign fans out to seven creatives and seven planned commerce destinations. Paid ads=false; publication authorization=false; execution is non-live fixture cognition.
+
+New dependency-valid READY frontier: H03-GRW-002, H03-ANL-001. `H03-DIST-001` remains Founder-gated/high-risk even though its dependencies may now be green.

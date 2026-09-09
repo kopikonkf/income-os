@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.attribution-identity.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "holding_id",
+    "problem_seed_id",
+    "product_id",
+    "commerce_package_id",
+    "listing_id",
+    "listing_channel_id",
+    "campaign_id",
+    "creative_id",
+    "channel_id",
+    "utm",
+    "destination_state"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.h03.attribution-identity.v1"
+    },
+    "holding_id": {
+      "const": "H03"
+    },
+    "problem_seed_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "product_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "commerce_package_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "listing_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "campaign_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "creative_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "channel_id": {
+      "type": "string",
+      "minLength": 2
+    },
+    "utm": {
+      "type": "object",
+      "required": [
+        "utm_source",
+        "utm_medium",
+        "utm_campaign",
+        "utm_content"
+      ],
+      "properties": {
+        "utm_source": {
+          "type": "string"
+        },
+        "utm_medium": {
+          "type": "string"
+        },
+        "utm_campaign": {
+          "type": "string"
+        },
+        "utm_content": {
+          "type": "string"
+        }
+      }
+    },
+    "destination_state": {
+      "enum": [
+        "UNPUBLISHED",
+        "PUBLISHED_URL_KNOWN"
+      ]
+    },
+    "destination_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "listing_channel_id": {
+      "type": "string",
+      "minLength": 2
+    }
+  }
+}
