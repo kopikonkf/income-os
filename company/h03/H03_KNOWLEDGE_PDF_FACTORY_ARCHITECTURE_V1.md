@@ -110,7 +110,7 @@ Every bounded H03 product build carries:
 - artifact lineage
 - future listing/order/revenue identity
 
-Unknown values remain `UNKNOWN`, `PARTIAL`, or `UNPROVEN`; they are never coerced to zero. H03 does not append directly to `state/ECONOMICS.jsonl`. Canonical Company Truth remains owned by logical writer `die-state-manager`; current warning `W_ECONOMICS_WRITER_NOT_IMPLEMENTED_CURRENTLY` is preserved until a governed economics commit adapter exists.
+Unknown values remain `UNKNOWN`, `PARTIAL`, or `UNPROVEN`; they are never coerced to zero. H03 does not append directly to `state/ECONOMICS.jsonl`. Canonical Company Truth remains owned by logical writer `die-state-manager`. Company canon now includes `ECON-002A` State Manager commit semantics and `ECON-002B` shadow admission validation; H03 may prepare `validated_not_committed` candidates, while live canonical submit authority remains separately gated.
 
 ## 7. Determinism and portability
 
@@ -135,3 +135,8 @@ source/evidence packet
 ```
 
 No external sale, publication, credential change, spend, DNS change, Mission Control cutover or Company economics write is part of this proof.
+
+
+## 9. Production organism continuation
+
+The post-bootstrap opportunity, worker-runtime, research, product, commerce, growth and analytics architecture is canonicalized in `company/h03/H03_PRODUCTION_ORGANISM_V1.md`; executable dependency truth remains `company/h03/task-graph-v1.json`.

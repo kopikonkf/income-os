@@ -1,0 +1,40 @@
+{
+  "schema_version": "die.h03.canon-receipt.v1",
+  "task_id": "H03-CANON-ORGANISM-V1",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "base_origin_main": "fe9cfa22c14f96fd9128a48200cc02214272b467",
+  "artifacts": [
+    "company/h03/H03_PRODUCTION_ORGANISM_V1.md",
+    "company/h03/H03_ATOMIC_EXECUTION_PLAN_V1.md",
+    "company/h03/task-graph-v1.json",
+    "company/h03/LASTSTANDINGPOINT_H03_V1.md"
+  ],
+  "decisions": {
+    "worker_mcp_required": false,
+    "qwen_gemini_first_class_workers": true,
+    "continuity": "DURABLE_ARTIFACTS",
+    "initial_profile_policy": "ONE_SHARD_ALLOWED_UNTIL_MEASURED_NEED",
+    "mission_control_microjob_hot_path": false,
+    "paid_ads_authorized": false,
+    "external_publication_authorized": false,
+    "fixed_scale_target": false,
+    "economics_shadow_path": "ECON-002B_VALIDATED_NOT_COMMITTED"
+  },
+  "ready_frontier": [
+    "H03-OPP-001",
+    "H03-RT-001",
+    "H03-ECO-001"
+  ],
+  "validation": {
+    "graph_semantics": "PASS",
+    "task_count": 38,
+    "ready_frontier": [
+      "H03-OPP-001",
+      "H03-RT-001",
+      "H03-ECO-001"
+    ],
+    "h03_regression": "20/20 PASS",
+    "fresh_venv_from_lockfile": true
+  }
+}
