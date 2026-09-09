@@ -1,0 +1,28 @@
+{
+    "schema":  "die.northstar-planner.responsibility.v1",
+    "status":  "ACCEPTED_LOGICAL_FUNCTION_NO_NEW_PRINCIPAL",
+    "northstar_planner_kind":  "LOGICAL_PLANNING_RESPONSIBILITY",
+    "new_runtime_required":  false,
+    "new_privileged_principal_created":  false,
+    "roles":  {
+                  "founder":  "CONSTITUTIONAL_AND_CAPITAL_AUTHORITY",
+                  "aether_strategic_cognition":  "INTERPRET_AND_PROPOSE",
+                  "economic_observer_ledger_attribution":  "MEASURED_FACTS",
+                  "capital_governor":  "RESOURCE_FITNESS_SHADOW_ADVISORY",
+                  "reinvestment_engine":  "SHADOW_PROFIT_WATERFALL",
+                  "state_manager":  "CANONICAL_COMPANY_OPERATIONAL_TRUTH_WRITER",
+                  "mission_control":  "DETERMINISTIC_ENFORCEMENT_OF_AUTHORIZED_WORK",
+                  "workers_principals_executors":  "BOUNDED_EXECUTION",
+                  "aether_learning":  "GOVERNED_EVIDENCE_TO_PROPOSAL_LOOP"
+              },
+    "conflict_behavior":  "STOP_PRESERVE_EVIDENCE_FOUNDER_REVIEW",
+    "authority":  {
+                      "spend":  false,
+                      "capital_transfer":  false,
+                      "constitutional_amendment":  false,
+                      "mission_authority_invention":  false,
+                      "control_plane_promotion":  false,
+                      "aether_mutation":  false,
+                      "credentials":  false
+                  }
+}

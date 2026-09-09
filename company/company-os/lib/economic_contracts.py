@@ -269,3 +269,83 @@ def allocate_shadow_capital(decisions: list[dict], available_minor: int) -> list
         nd=dict(d); nd['simulated_allocation_minor']=allocations[d['decision_id']]
         validate_capital_governor_shadow_decision(nd); out.append(nd)
     return out
+
+
+def validate_reinvestment_waterfall(w: dict, governor_decisions: dict[str,dict] | None = None) -> dict:
+    req=['schema_version','waterfall_id','period','currency','profit_basis','set_asides','reinvestment_pool_minor','governor_decision_refs','simulated_reinvestment_allocations','infrastructure_scaling_recommendations','evidence_refs','authority_boundary']
+    for k in req:
+        if k not in w: raise EconomicContractError('E_REINV_REQUIRED',k)
+    if w['schema_version']!='die.reinvestment-waterfall.shadow.v1': raise EconomicContractError('E_REINV_SCHEMA')
+    auth=w['authority_boundary']
+    if auth.get('shadow_only') is not True: raise EconomicContractError('E_REINV_NOT_SHADOW')
+    for k in ['money_moved','spend_authorized','tax_payment_authorized','provider_plan_change','infrastructure_purchase','capital_transfer','new_vendor_commitment','credentials_embedded']:
+        if auth.get(k) is not False: raise EconomicContractError('E_REINV_AUTHORITY_BOUNDARY',k)
+    if not w.get('evidence_refs'): raise EconomicContractError('E_REINV_EVIDENCE_REQUIRED')
+    pb=w['profit_basis']; realized=pb.get('realized_profit_minor'); completeness=pb.get('completeness')
+    if pb.get('basis')!='CASH_OPERATING_PROFIT' or not isinstance(realized,int): raise EconomicContractError('E_REINV_PROFIT_BASIS')
+    if completeness not in {'YES','PARTIAL','NO'}: raise EconomicContractError('E_REINV_COMPLETENESS')
+    s=w['set_asides']; tax=s.get('tax_liability_minor'); reserve=s.get('reserve_topup_minor'); retained=s.get('retained_earnings_minor')
+    if reserve is None or reserve<0 or retained is None or retained<0: raise EconomicContractError('E_REINV_SET_ASIDE_VALUE')
+    if not s.get('reserve_basis_ref') or not s.get('retained_earnings_basis_ref'): raise EconomicContractError('E_REINV_SET_ASIDE_BASIS')
+    if tax is None:
+        if s.get('tax_basis_ref') is not None: raise EconomicContractError('E_REINV_TAX_UNKNOWN_HAS_BASIS')
+        expected_status='HOLD_INCOMPLETE_EVIDENCE'; expected_pool=0
+    else:
+        if tax<0 or not s.get('tax_basis_ref'): raise EconomicContractError('E_REINV_TAX_BASIS')
+        if completeness!='YES':
+            expected_status='HOLD_INCOMPLETE_EVIDENCE'; expected_pool=0
+        elif realized<=0:
+            expected_status='NO_POSITIVE_PROFIT_TO_REINVEST'; expected_pool=0
+        else:
+            expected_pool=max(realized-tax-reserve-retained,0)
+            expected_status='READY_FOR_SHADOW_ALLOCATION' if expected_pool>0 else 'NO_POSITIVE_PROFIT_TO_REINVEST'
+    if w.get('reinvestment_pool_minor')!=expected_pool: raise EconomicContractError('E_REINV_POOL_MATH')
+    if w.get('status')!=expected_status: raise EconomicContractError('E_REINV_STATUS_MISMATCH')
+    allocs=w.get('simulated_reinvestment_allocations') or []
+    if sum(a.get('simulated_amount_minor',0) for a in allocs)>expected_pool: raise EconomicContractError('E_REINV_OVERALLOCATED')
+    ids=[a.get('decision_id') for a in allocs]
+    if len(ids)!=len(set(ids)): raise EconomicContractError('E_REINV_DUPLICATE_DECISION')
+    refs=set(w.get('governor_decision_refs') or [])
+    if any(i not in refs for i in ids): raise EconomicContractError('E_REINV_ALLOCATION_DECISION_REF')
+    if expected_status!='READY_FOR_SHADOW_ALLOCATION' and any(a.get('simulated_amount_minor',0)>0 for a in allocs): raise EconomicContractError('E_REINV_HOLD_ALLOCATED')
+    gov=governor_decisions or {}
+    for a in allocs:
+        d=gov.get(a['decision_id'])
+        if d is not None:
+            validate_capital_governor_shadow_decision(d)
+            if d['recommendation'] not in {'SCALE','OPTIMIZE'}: raise EconomicContractError('E_REINV_NONELIGIBLE_GOVERNOR_DECISION')
+            if a['class']!=d['budget_envelope_class']: raise EconomicContractError('E_REINV_CLASS_MISMATCH')
+            if a['simulated_amount_minor']>d['allocation_cap_minor']: raise EconomicContractError('E_REINV_GOVERNOR_CAP_EXCEEDED')
+    for rec in w.get('infrastructure_scaling_recommendations') or []:
+        if rec.get('live_change_authorized') is not False: raise EconomicContractError('E_REINV_INFRA_LIVE_CHANGE')
+        if rec.get('recommendation') not in {'SCALE','OPTIMIZE'} or rec.get('simulated_amount_minor',0)<=0 or not rec.get('evidence_refs'):
+            raise EconomicContractError('E_REINV_INFRA_RECOMMENDATION')
+        d=gov.get(rec['decision_id'])
+        if d is not None and d['budget_envelope_class']!='INFRASTRUCTURE': raise EconomicContractError('E_REINV_INFRA_CLASS')
+    return w
+
+
+def validate_shadow_pilot_plan(p: dict) -> dict:
+    req=['schema_version','pilot_id','mode','flows','evidence_window_gate','authority_boundary']
+    for k in req:
+        if k not in p: raise EconomicContractError('E_PILOT_REQUIRED',k)
+    if p['schema_version']!='die.economic-shadow-pilot.v1': raise EconomicContractError('E_PILOT_SCHEMA')
+    if p.get('mode')!='READ_ONLY_SHADOW': raise EconomicContractError('E_PILOT_MODE')
+    flows=p.get('flows') or []
+    hs=[f.get('holding_id') for f in flows]
+    if hs!=['H01','H03']: raise EconomicContractError('E_PILOT_EXACT_H01_H03_ORDER')
+    if any(f.get('holding_id')=='H02' for f in flows): raise EconomicContractError('E_PILOT_H02_FORBIDDEN')
+    for f in flows:
+        if not f.get('flow_id') or not f.get('lineage') or not f.get('measurement_requirements') or not f.get('evidence_refs'):
+            raise EconomicContractError('E_PILOT_FLOW_EVIDENCE')
+        if f.get('live_revenue_assumed') is not False: raise EconomicContractError('E_PILOT_LIVE_REVENUE_ASSUMED')
+    gate=p['evidence_window_gate']
+    if gate.get('gate_id')!='SUFFICIENT_SHADOW_EVIDENCE_WINDOW': raise EconomicContractError('E_PILOT_GATE_ID')
+    if gate.get('satisfied') is not False: raise EconomicContractError('E_PILOT_GATE_PREMATURE')
+    if not gate.get('requirements'): raise EconomicContractError('E_PILOT_GATE_REQUIREMENTS')
+    auth=p['authority_boundary']
+    if auth.get('read_only') is not True:
+        raise EconomicContractError('E_PILOT_NOT_READ_ONLY')
+    for k in ['live_ingestion','spend_authorized','external_submission','payment_action','provider_plan_change','credential_mutation']:
+        if auth.get(k) is not False: raise EconomicContractError('E_PILOT_AUTHORITY_BOUNDARY',k)
+    return p

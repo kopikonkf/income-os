@@ -208,3 +208,59 @@ def test_zero_score_never_allocated():
     d=gov_decision(card='EWC-H03-ZERO0001',evidence=0,cap=5000)
     out=m.allocate_shadow_capital([d],5000)
     assert out[0]['simulated_allocation_minor']==0
+
+def reinv_auth():
+    return {'shadow_only':True,'money_moved':False,'spend_authorized':False,'tax_payment_authorized':False,'provider_plan_change':False,'infrastructure_purchase':False,'capital_transfer':False,'new_vendor_commitment':False,'credentials_embedded':False}
+
+def reinvestment_waterfall(realized=100000,tax=10000,reserve=20000,retained=30000,complete='YES',status='READY_FOR_SHADOW_ALLOCATION',pool=40000,allocs=None,infra=None):
+    return {'schema_version':'die.reinvestment-waterfall.shadow.v1','waterfall_id':'REINV-SHADOW-TEST0001','period':{'starts_at':'2026-09-01T00:00:00Z','ends_at':'2026-10-01T00:00:00Z'},'currency':'IDR','profit_basis':{'basis':'CASH_OPERATING_PROFIT','realized_profit_minor':realized,'completeness':complete},'set_asides':{'tax_liability_minor':tax,'reserve_topup_minor':reserve,'retained_earnings_minor':retained,'tax_basis_ref':None if tax is None else 'policy://tax-shadow','reserve_basis_ref':'policy://reserve-floor','retained_earnings_basis_ref':'policy://retained'},'reinvestment_pool_minor':pool,'governor_decision_refs':['CAP-SHADOW-H03-INFRA01','CAP-SHADOW-H01-PROD001'],'simulated_reinvestment_allocations':allocs or [],'infrastructure_scaling_recommendations':infra or [],'evidence_refs':['ledger://cash-operating-profit'],'status':status,'authority_boundary':reinv_auth()}
+
+def test_reinvestment_waterfall_math_and_shadow_authority():
+    w=reinvestment_waterfall(); assert m.validate_reinvestment_waterfall(w)['reinvestment_pool_minor']==40000
+
+def test_reinvestment_unknown_tax_holds_zero_pool():
+    w=reinvestment_waterfall(tax=None,status='HOLD_INCOMPLETE_EVIDENCE',pool=0)
+    assert m.validate_reinvestment_waterfall(w)['status']=='HOLD_INCOMPLETE_EVIDENCE'
+
+def test_reinvestment_incomplete_profit_holds_zero_pool():
+    w=reinvestment_waterfall(complete='PARTIAL',status='HOLD_INCOMPLETE_EVIDENCE',pool=0)
+    m.validate_reinvestment_waterfall(w)
+
+def test_reinvestment_nonpositive_profit_has_zero_pool():
+    w=reinvestment_waterfall(realized=0,status='NO_POSITIVE_PROFIT_TO_REINVEST',pool=0)
+    m.validate_reinvestment_waterfall(w)
+
+def test_reinvestment_rejects_overallocation():
+    w=reinvestment_waterfall(allocs=[{'decision_id':'CAP-SHADOW-H01-PROD001','class':'PRODUCTION','holding_id':'H01','simulated_amount_minor':40001}])
+    with pytest.raises(m.EconomicContractError) as x:m.validate_reinvestment_waterfall(w)
+    assert x.value.code=='E_REINV_OVERALLOCATED'
+
+def test_reinvestment_rejects_live_authority():
+    w=reinvestment_waterfall(); w['authority_boundary']['money_moved']=True
+    with pytest.raises(m.EconomicContractError) as x:m.validate_reinvestment_waterfall(w)
+    assert x.value.code=='E_REINV_AUTHORITY_BOUNDARY'
+
+def test_reinvestment_infra_recommendation_is_non_live():
+    infra=[{'decision_id':'CAP-SHADOW-H03-INFRA01','recommendation':'SCALE','simulated_amount_minor':10000,'evidence_refs':['capacity://queue-pressure','econ://positive'],'live_change_authorized':False}]
+    w=reinvestment_waterfall(infra=infra); m.validate_reinvestment_waterfall(w)
+
+def pilot_plan():
+    return {'schema_version':'die.economic-shadow-pilot.v1','pilot_id':'PILOT-H01-H03-E0-001','mode':'READ_ONLY_SHADOW','flows':[{'holding_id':'H01','flow_id':'H01-L0-ISOLATED-ASSET-LINEAGE-V1','lineage':['OPPORTUNITY_SEED','BLUEPRINT','PRODUCTION_JOB','PRODUCT_ASSET','PACKAGE_LISTING','ORDER_SALE','REVENUE_EVENT'],'measurement_requirements':['production-cost','resource-usage','founder-time','listing-sale-revenue-when-observed','attribution-completeness'],'evidence_refs':['canon://factory-asset','canon://production-runtime'],'live_revenue_assumed':False},{'holding_id':'H03','flow_id':'H03-KNOWLEDGE-PRODUCT-DIRECT-SALE-V1','lineage':['OPPORTUNITY','PRODUCT_HYPOTHESIS','KNOWLEDGE_PRODUCT','LISTING_PAGE','ORDER_SALE','REVENUE_EVENT'],'measurement_requirements':['build-cost','founder-time','product-lineage-readiness','order-revenue-only-when-observed'],'evidence_refs':['canon://econ003-h03-mapping'],'live_revenue_assumed':False}],'evidence_window_gate':{'gate_id':'SUFFICIENT_SHADOW_EVIDENCE_WINDOW','satisfied':False,'requirements':['H01 closed measurement window with required completeness','H03 closed measurement window with required completeness or explicit UNPROVEN revenue','Founder-time observed','cash-cost observed','no material unknown treated as zero','shadow recommendations compared with outcomes']},'authority_boundary':{'read_only':True,'live_ingestion':False,'spend_authorized':False,'external_submission':False,'payment_action':False,'provider_plan_change':False,'credential_mutation':False}}
+
+def test_pilot_plan_exact_h01_h03_and_gate_not_satisfied():
+    p=pilot_plan(); assert m.validate_shadow_pilot_plan(p)['evidence_window_gate']['satisfied'] is False
+
+def test_pilot_plan_h02_is_not_in_v1_pilot():
+    p=pilot_plan(); p['flows'][1]['holding_id']='H02'
+    with pytest.raises(m.EconomicContractError) as x:m.validate_shadow_pilot_plan(p)
+    assert x.value.code=='E_PILOT_EXACT_H01_H03_ORDER'
+
+def test_pilot_plan_cannot_assume_live_revenue():
+    p=pilot_plan(); p['flows'][1]['live_revenue_assumed']=True
+    with pytest.raises(m.EconomicContractError) as x:m.validate_shadow_pilot_plan(p)
+    assert x.value.code=='E_PILOT_LIVE_REVENUE_ASSUMED'
+
+def test_pilot_plan_cannot_prematurely_open_e1_gate():
+    p=pilot_plan(); p['evidence_window_gate']['satisfied']=True
+    with pytest.raises(m.EconomicContractError) as x:m.validate_shadow_pilot_plan(p)
+    assert x.value.code=='E_PILOT_GATE_PREMATURE'

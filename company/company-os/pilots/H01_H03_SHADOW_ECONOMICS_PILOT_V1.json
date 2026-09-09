@@ -1,0 +1,120 @@
+{
+    "schema_version":  "die.economic-shadow-pilot.v1",
+    "pilot_id":  "PILOT-H01-H03-E0-001",
+    "mode":  "READ_ONLY_SHADOW",
+    "flows":  [
+                  {
+                      "holding_id":  "H01",
+                      "flow_id":  "H01-L0-ISOLATED-ASSET-LINEAGE-V1",
+                      "selection_reason":  "Existing Factory Asset/Object-Human Atlas production lineage is already rich in canonical seed/concept/production/artifact/package/QA metadata and can accept downstream listing/sale/revenue evidence when observed.",
+                      "lineage":  [
+                                      "OPPORTUNITY_SEED",
+                                      "BLUEPRINT",
+                                      "PRODUCTION_JOB",
+                                      "PRODUCT_ASSET",
+                                      "PACKAGE_LISTING",
+                                      "ORDER_SALE",
+                                      "REVENUE_EVENT"
+                                  ],
+                      "canonical_mapping":  {
+                                                "opportunity_seed":  "Object/Human Atlas commercial candidate or seed noun",
+                                                "blueprint":  "accepted asset blueprint/product-expression contract",
+                                                "production_job":  "PRODSEED / Factory production job identity",
+                                                "product_asset":  "source-original plus governed derivatives/package artifacts",
+                                                "package_listing":  "metadata/QA/rights/submission package and platform listing identity when available",
+                                                "order_sale":  "platform sale/download/order evidence when exposed",
+                                                "revenue_event":  "realized marketplace revenue/payout under applicable policy"
+                                            },
+                      "measurement_requirements":  [
+                                                       "production-cost",
+                                                       "resource-usage",
+                                                       "founder-time",
+                                                       "incident-recovery-time",
+                                                       "package-listing-lineage",
+                                                       "sale-revenue-when-observed",
+                                                       "attribution-completeness"
+                                                   ],
+                      "minimum_shadow_outputs":  [
+                                                     "ECON-002 ledger events",
+                                                     "ECON-004 Economic Work Card",
+                                                     "ECON-006 Governor decision after measured window",
+                                                     "Founder intervention metrics"
+                                                 ],
+                      "evidence_refs":  [
+                                            "canon://company/factory-asset",
+                                            "canon://company/die-agents/hermes/production-runtime",
+                                            "canon://ECON-003-H01-mapping"
+                                        ],
+                      "live_revenue_assumed":  false,
+                      "current_readiness":  "LINEAGE_RICH_MEASUREMENT_READY_NO_REVENUE_ASSUMPTION"
+                  },
+                  {
+                      "holding_id":  "H03",
+                      "flow_id":  "H03-KNOWLEDGE-PRODUCT-DIRECT-SALE-V1",
+                      "selection_reason":  "Direct knowledge-product lineage is the canonical H03 economic model and is simpler to attribute than affiliate/media, but no live H03 product/checkout/revenue implementation is proven in current canon; pilot therefore begins as build-cost/Founder-time/lineage-readiness measurement until real order evidence exists.",
+                      "lineage":  [
+                                      "OPPORTUNITY",
+                                      "PRODUCT_HYPOTHESIS",
+                                      "KNOWLEDGE_PRODUCT",
+                                      "LISTING_PAGE",
+                                      "ORDER_SALE",
+                                      "REVENUE_EVENT"
+                                  ],
+                      "canonical_mapping":  {
+                                                "opportunity":  "human problem/pain/opportunity",
+                                                "product_hypothesis":  "bounded knowledge-product hypothesis/Economic Work Card",
+                                                "knowledge_product":  "PDF/tool/knowledge artifact when built",
+                                                "listing_page":  "product page/listing identity when implemented",
+                                                "order_sale":  "direct checkout/order evidence when implemented",
+                                                "revenue_event":  "realized direct-product revenue under applicable policy"
+                                            },
+                      "measurement_requirements":  [
+                                                       "build-cost",
+                                                       "resource-usage",
+                                                       "founder-time",
+                                                       "product-lineage-readiness",
+                                                       "listing-checkout-lineage-when-implemented",
+                                                       "order-revenue-only-when-observed"
+                                                   ],
+                      "minimum_shadow_outputs":  [
+                                                     "ECON-004 Economic Work Card",
+                                                     "build-cost and Founder-time Ledger events when observed",
+                                                     "explicit UNPROVEN revenue until order evidence",
+                                                     "Governor HOLD until complete measured economics"
+                                                 ],
+                      "evidence_refs":  [
+                                            "canon://ECON-003-H03-mapping",
+                                            "canon://ORG-001-H03-role"
+                                        ],
+                      "live_revenue_assumed":  false,
+                      "current_readiness":  "DESIGN_READY_LIVE_PRODUCT_REVENUE_NOT_PROVEN"
+                  }
+              ],
+    "h02_disposition":  {
+                            "status":  "DEFERRED_FROM_V1_PILOT",
+                            "reason":  "affiliate/media multi-touch attribution is materially harder; validate ledger/work-card/governor mechanics first on H01 and direct-product H03 paths before adding probabilistic/multi-system attribution pressure"
+                        },
+    "evidence_window_gate":  {
+                                 "gate_id":  "SUFFICIENT_SHADOW_EVIDENCE_WINDOW",
+                                 "satisfied":  false,
+                                 "requirements":  [
+                                                      "H01 has at least one closed Economic Work Card measurement window with required cash-cost/resource/Founder-time completeness and explicit revenue attribution status",
+                                                      "H03 has at least one closed Economic Work Card measurement window covering build-cost/resource/Founder-time and explicit revenue status; if no live order exists the verdict remains UNPROVEN rather than zero-revenue inference",
+                                                      "Founder-time completeness is not materially UNKNOWN for both pilot flows",
+                                                      "cash-cost completeness is sufficient for the claimed verdicts",
+                                                      "ATTRIBUTION_UNKNOWN is preserved and no material unknown is treated as zero",
+                                                      "Capital Governor shadow recommendations are recorded and later compared with observed outcome/evidence",
+                                                      "no shadow component has moved money, changed provider plans, submitted externally, or mutated credentials"
+                                                  ],
+                                 "evidence_packet_required":  "ECON-010 may be prepared only after a separate gate evaluation proves all requirements; elapsed time alone is insufficient"
+                             },
+    "authority_boundary":  {
+                               "read_only":  true,
+                               "live_ingestion":  false,
+                               "spend_authorized":  false,
+                               "external_submission":  false,
+                               "payment_action":  false,
+                               "provider_plan_change":  false,
+                               "credential_mutation":  false
+                           }
+}

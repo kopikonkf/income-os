@@ -1,0 +1,271 @@
+{
+    "$schema":  "https://json-schema.org/draft/2020-12/schema",
+    "$id":  "https://aethers.my.id/schemas/die.reinvestment-waterfall.shadow.v1.schema.json",
+    "title":  "DIE Reinvestment Waterfall Shadow v1",
+    "type":  "object",
+    "additionalProperties":  false,
+    "required":  [
+                     "schema_version",
+                     "waterfall_id",
+                     "period",
+                     "currency",
+                     "profit_basis",
+                     "set_asides",
+                     "reinvestment_pool_minor",
+                     "governor_decision_refs",
+                     "simulated_reinvestment_allocations",
+                     "infrastructure_scaling_recommendations",
+                     "evidence_refs",
+                     "authority_boundary"
+                 ],
+    "properties":  {
+                       "schema_version":  {
+                                              "const":  "die.reinvestment-waterfall.shadow.v1"
+                                          },
+                       "waterfall_id":  {
+                                            "type":  "string",
+                                            "pattern":  "^REINV-SHADOW-[A-Z0-9_-]{8,120}$"
+                                        },
+                       "period":  {
+                                      "type":  "object",
+                                      "additionalProperties":  false,
+                                      "required":  [
+                                                       "starts_at",
+                                                       "ends_at"
+                                                   ],
+                                      "properties":  {
+                                                         "starts_at":  {
+                                                                           "type":  "string",
+                                                                           "format":  "date-time"
+                                                                       },
+                                                         "ends_at":  {
+                                                                         "type":  "string",
+                                                                         "format":  "date-time"
+                                                                     }
+                                                     }
+                                  },
+                       "currency":  {
+                                        "type":  "string",
+                                        "pattern":  "^[A-Z]{3}$"
+                                    },
+                       "profit_basis":  {
+                                            "type":  "object",
+                                            "additionalProperties":  false,
+                                            "required":  [
+                                                             "basis",
+                                                             "realized_profit_minor",
+                                                             "completeness"
+                                                         ],
+                                            "properties":  {
+                                                               "basis":  {
+                                                                             "const":  "CASH_OPERATING_PROFIT"
+                                                                         },
+                                                               "realized_profit_minor":  {
+                                                                                             "type":  "integer"
+                                                                                         },
+                                                               "completeness":  {
+                                                                                    "enum":  [
+                                                                                                 "YES",
+                                                                                                 "PARTIAL",
+                                                                                                 "NO"
+                                                                                             ]
+                                                                                }
+                                                           }
+                                        },
+                       "set_asides":  {
+                                          "type":  "object",
+                                          "additionalProperties":  false,
+                                          "required":  [
+                                                           "tax_liability_minor",
+                                                           "reserve_topup_minor",
+                                                           "retained_earnings_minor",
+                                                           "tax_basis_ref",
+                                                           "reserve_basis_ref",
+                                                           "retained_earnings_basis_ref"
+                                                       ],
+                                          "properties":  {
+                                                             "tax_liability_minor":  {
+                                                                                         "type":  [
+                                                                                                      "integer",
+                                                                                                      "null"
+                                                                                                  ],
+                                                                                         "minimum":  0
+                                                                                     },
+                                                             "reserve_topup_minor":  {
+                                                                                         "type":  "integer",
+                                                                                         "minimum":  0
+                                                                                     },
+                                                             "retained_earnings_minor":  {
+                                                                                             "type":  "integer",
+                                                                                             "minimum":  0
+                                                                                         },
+                                                             "tax_basis_ref":  {
+                                                                                   "type":  [
+                                                                                                "string",
+                                                                                                "null"
+                                                                                            ],
+                                                                                   "maxLength":  800
+                                                                               },
+                                                             "reserve_basis_ref":  {
+                                                                                       "type":  "string",
+                                                                                       "minLength":  1,
+                                                                                       "maxLength":  800
+                                                                                   },
+                                                             "retained_earnings_basis_ref":  {
+                                                                                                 "type":  "string",
+                                                                                                 "minLength":  1,
+                                                                                                 "maxLength":  800
+                                                                                             }
+                                                         }
+                                      },
+                       "reinvestment_pool_minor":  {
+                                                       "type":  "integer",
+                                                       "minimum":  0
+                                                   },
+                       "governor_decision_refs":  {
+                                                      "type":  "array",
+                                                      "items":  {
+                                                                    "type":  "string",
+                                                                    "pattern":  "^CAP-SHADOW-[A-Z0-9_-]{8,120}$"
+                                                                }
+                                                  },
+                       "simulated_reinvestment_allocations":  {
+                                                                  "type":  "array",
+                                                                  "items":  {
+                                                                                "type":  "object",
+                                                                                "additionalProperties":  false,
+                                                                                "required":  [
+                                                                                                 "decision_id",
+                                                                                                 "class",
+                                                                                                 "holding_id",
+                                                                                                 "simulated_amount_minor"
+                                                                                             ],
+                                                                                "properties":  {
+                                                                                                   "decision_id":  {
+                                                                                                                       "type":  "string",
+                                                                                                                       "pattern":  "^CAP-SHADOW-[A-Z0-9_-]{8,120}$"
+                                                                                                                   },
+                                                                                                   "class":  {
+                                                                                                                 "enum":  [
+                                                                                                                              "INFRASTRUCTURE",
+                                                                                                                              "PRODUCTION",
+                                                                                                                              "EXPERIMENT"
+                                                                                                                          ]
+                                                                                                             },
+                                                                                                   "holding_id":  {
+                                                                                                                      "type":  [
+                                                                                                                                   "string",
+                                                                                                                                   "null"
+                                                                                                                               ],
+                                                                                                                      "maxLength":  80
+                                                                                                                  },
+                                                                                                   "simulated_amount_minor":  {
+                                                                                                                                  "type":  "integer",
+                                                                                                                                  "minimum":  0
+                                                                                                                              }
+                                                                                               }
+                                                                            }
+                                                              },
+                       "infrastructure_scaling_recommendations":  {
+                                                                      "type":  "array",
+                                                                      "items":  {
+                                                                                    "type":  "object",
+                                                                                    "additionalProperties":  false,
+                                                                                    "required":  [
+                                                                                                     "decision_id",
+                                                                                                     "recommendation",
+                                                                                                     "simulated_amount_minor",
+                                                                                                     "evidence_refs",
+                                                                                                     "live_change_authorized"
+                                                                                                 ],
+                                                                                    "properties":  {
+                                                                                                       "decision_id":  {
+                                                                                                                           "type":  "string",
+                                                                                                                           "pattern":  "^CAP-SHADOW-[A-Z0-9_-]{8,120}$"
+                                                                                                                       },
+                                                                                                       "recommendation":  {
+                                                                                                                              "enum":  [
+                                                                                                                                           "SCALE",
+                                                                                                                                           "OPTIMIZE"
+                                                                                                                                       ]
+                                                                                                                          },
+                                                                                                       "simulated_amount_minor":  {
+                                                                                                                                      "type":  "integer",
+                                                                                                                                      "minimum":  1
+                                                                                                                                  },
+                                                                                                       "evidence_refs":  {
+                                                                                                                             "type":  "array",
+                                                                                                                             "minItems":  1,
+                                                                                                                             "items":  {
+                                                                                                                                           "type":  "string",
+                                                                                                                                           "minLength":  1
+                                                                                                                                       }
+                                                                                                                         },
+                                                                                                       "live_change_authorized":  {
+                                                                                                                                      "const":  false
+                                                                                                                                  }
+                                                                                                   }
+                                                                                }
+                                                                  },
+                       "evidence_refs":  {
+                                             "type":  "array",
+                                             "minItems":  1,
+                                             "items":  {
+                                                           "type":  "string",
+                                                           "minLength":  1,
+                                                           "maxLength":  800
+                                                       }
+                                         },
+                       "status":  {
+                                      "enum":  [
+                                                   "READY_FOR_SHADOW_ALLOCATION",
+                                                   "HOLD_INCOMPLETE_EVIDENCE",
+                                                   "NO_POSITIVE_PROFIT_TO_REINVEST"
+                                               ]
+                                  },
+                       "authority_boundary":  {
+                                                  "type":  "object",
+                                                  "additionalProperties":  false,
+                                                  "required":  [
+                                                                   "shadow_only",
+                                                                   "money_moved",
+                                                                   "spend_authorized",
+                                                                   "tax_payment_authorized",
+                                                                   "provider_plan_change",
+                                                                   "infrastructure_purchase",
+                                                                   "capital_transfer",
+                                                                   "new_vendor_commitment",
+                                                                   "credentials_embedded"
+                                                               ],
+                                                  "properties":  {
+                                                                     "shadow_only":  {
+                                                                                         "const":  true
+                                                                                     },
+                                                                     "money_moved":  {
+                                                                                         "const":  false
+                                                                                     },
+                                                                     "spend_authorized":  {
+                                                                                              "const":  false
+                                                                                          },
+                                                                     "tax_payment_authorized":  {
+                                                                                                    "const":  false
+                                                                                                },
+                                                                     "provider_plan_change":  {
+                                                                                                  "const":  false
+                                                                                              },
+                                                                     "infrastructure_purchase":  {
+                                                                                                     "const":  false
+                                                                                                 },
+                                                                     "capital_transfer":  {
+                                                                                              "const":  false
+                                                                                          },
+                                                                     "new_vendor_commitment":  {
+                                                                                                   "const":  false
+                                                                                               },
+                                                                     "credentials_embedded":  {
+                                                                                                  "const":  false
+                                                                                              }
+                                                                 }
+                                              }
+                   }
+}

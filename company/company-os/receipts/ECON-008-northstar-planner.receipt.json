@@ -1,0 +1,42 @@
+{
+    "schema":  "die.company-os.econ008.northstar-planner.receipt.v1",
+    "task_id":  "ECON-008",
+    "status":  "PASS",
+    "observed_at":  "2026-09-09",
+    "source_main":  "8c29abf917aff748f3fa0be4d4d16927f597f528",
+    "artifacts":  [
+                      {
+                          "path":  "company/company-os/ECON-008_NORTHSTAR_PLANNER_RESPONSIBILITY_CONTRACT_V1.md",
+                          "sha256":  "2f77e7492f24995227d658aedbca27fe218603c607b36b0aadd741f420a3629c"
+                      },
+                      {
+                          "path":  "company/company-os/contracts/die.northstar-planner.responsibility.v1.json",
+                          "sha256":  "7666e5f5feec65dfb2b779ed254d0d9625e32cbbf89c36d60511a4e3a3143901"
+                      }
+                  ],
+    "aether":  {
+                   "repo":  "C:/aether/aether-ai-os",
+                   "head":  "f84dcc2cee4f33fbfa2f2660e94cf16b721118be",
+                   "origin_main":  "f84dcc2cee4f33fbfa2f2660e94cf16b721118be",
+                   "git_clean":  true,
+                   "mutation":  false
+               },
+    "responsibilities":  {
+                             "founder":  "CONSTITUTIONAL_AND_CAPITAL_AUTHORITY",
+                             "aether":  "INTERPRET_AND_PROPOSE",
+                             "economic_layer":  "MEASURED_FACTS",
+                             "capital_governor":  "RESOURCE_FITNESS_SHADOW",
+                             "reinvestment":  "SHADOW_WATERFALL",
+                             "state_manager":  "COMPANY_TRUTH_WRITER",
+                             "mission_control":  "AUTHORIZED_DETERMINISTIC_ENFORCEMENT"
+                         },
+    "authority":  {
+                      "new_principal":  false,
+                      "new_runtime":  false,
+                      "spend":  false,
+                      "capital_transfer":  false,
+                      "constitutional_amendment":  false,
+                      "control_plane_promotion":  false,
+                      "aether_mutation":  false
+                  }
+}
