@@ -1,0 +1,54 @@
+{
+  "schema_version": "die.h03.provider-worker-registry.v1",
+  "holding_id": "H03",
+  "providers": [
+    {
+      "provider_id": "qwen",
+      "model_route": "qwen/qwen3.8-max",
+      "roles": ["SEED_CURATOR","MARKET_RESEARCHER","KNOWLEDGE_RESEARCHER","SYNTHESIZER","PRODUCT_ARCHITECT","PRODUCER","REVIEWER"],
+      "capabilities": ["long_context","web_research","structured_output","text_generation"],
+      "transport_families": ["SESSION_API","BROWSER_CDP","OPENAI_COMPATIBLE"],
+      "priority": 100
+    },
+    {
+      "provider_id": "gemini",
+      "model_route": "gemini",
+      "roles": ["SEED_CURATOR","MARKET_RESEARCHER","KNOWLEDGE_RESEARCHER","SYNTHESIZER","PRODUCT_ARCHITECT","PRODUCER","REVIEWER"],
+      "capabilities": ["long_context","web_research","structured_output","text_generation","multimodal"],
+      "transport_families": ["BROWSER_CDP","OPENAI_COMPATIBLE"],
+      "priority": 95
+    },
+    {
+      "provider_id": "manus",
+      "model_route": "manus",
+      "roles": ["MARKET_RESEARCHER","KNOWLEDGE_RESEARCHER"],
+      "capabilities": ["autonomous_browse","web_research","text_generation"],
+      "transport_families": ["BROWSER_CDP"],
+      "priority": 90
+    },
+    {
+      "provider_id": "chatgpt",
+      "model_route": "chatgpt",
+      "roles": ["SEED_CURATOR","MARKET_RESEARCHER","KNOWLEDGE_RESEARCHER","SYNTHESIZER","PRODUCT_ARCHITECT","PRODUCER","REVIEWER","GROWTH_PRODUCER"],
+      "capabilities": ["structured_output","text_generation","reasoning"],
+      "transport_families": ["BROWSER_CDP","OPENAI_COMPATIBLE"],
+      "priority": 85
+    },
+    {
+      "provider_id": "claude",
+      "model_route": "claude",
+      "roles": ["MARKET_RESEARCHER","KNOWLEDGE_RESEARCHER","SYNTHESIZER","PRODUCT_ARCHITECT","PRODUCER","REVIEWER"],
+      "capabilities": ["long_context","text_generation","reasoning"],
+      "transport_families": ["BROWSER_CDP","OPENAI_COMPATIBLE"],
+      "priority": 82
+    },
+    {
+      "provider_id": "grok",
+      "model_route": "grok",
+      "roles": ["SEED_CURATOR","MARKET_RESEARCHER","GROWTH_PRODUCER"],
+      "capabilities": ["social_signals","text_generation"],
+      "transport_families": ["BROWSER_CDP"],
+      "priority": 75
+    }
+  ]
+}

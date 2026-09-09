@@ -250,7 +250,7 @@
       "id": "H03-OPP-002",
       "track": "OPPORTUNITY",
       "title": "Human need/pain seed discovery and curation engine",
-      "status": "READY",
+      "status": "DONE",
       "priority": 850,
       "depends_on": [
         "H03-OPP-001",
@@ -258,13 +258,20 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Produce deduplicated problem-seed candidates from governed signal inputs using role-separated web-AI workers; preserve candidate/source lineage and do not promote topic popularity to demand truth."
+      "acceptance": "Produce deduplicated problem-seed candidates from governed signal inputs using role-separated web-AI workers; preserve candidate/source lineage and do not promote topic popularity to demand truth.",
+      "artifact": "company/h03/lib/problem_discovery.py + company/h03/contracts/problem-seed-batch.v1.schema.json",
+      "result": {
+        "status": "PASS",
+        "role": "SEED_CURATOR",
+        "dedupe": "DETERMINISTIC",
+        "commercial_truth_after_curation": "UNKNOWN"
+      }
     },
     {
       "id": "H03-DMD-001",
       "track": "DEMAND",
       "title": "Demand and willingness-to-pay evidence contract + validator",
-      "status": "READY",
+      "status": "DONE",
       "priority": 848,
       "depends_on": [
         "H03-OPP-001",
@@ -272,13 +279,20 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Represent pain severity/frequency/urgency, buyer intent, existing spend/substitutes, marketplace/community/search evidence and WTP strength with UNKNOWN preserved when unobserved; distinguish revealed spend evidence from weak engagement signals."
+      "acceptance": "Represent pain severity/frequency/urgency, buyer intent, existing spend/substitutes, marketplace/community/search evidence and WTP strength with UNKNOWN preserved when unobserved; distinguish revealed spend evidence from weak engagement signals.",
+      "artifact": "company/h03/contracts/demand-wtp-evidence.v1.schema.json + company/h03/lib/demand_wtp.py",
+      "result": {
+        "status": "PASS",
+        "revealed_spend_strength": "STRONG",
+        "engagement_only_wtp": "UNKNOWN",
+        "unknown_preserved": true
+      }
     },
     {
       "id": "H03-OPP-003",
       "track": "OPPORTUNITY",
       "title": "Worth-Making and productability gate v1",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 846,
       "depends_on": [
         "H03-OPP-002",
@@ -286,14 +300,13 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "blocked_reason": "DEPENDENCIES_NOT_DONE",
       "acceptance": "Deterministically classify a problem seed as MAKE, RESEARCH_MORE or REJECT using bounded demand/WTP/productability evidence. Deep research/production must not start for REJECT."
     },
     {
       "id": "H03-RT-002",
       "track": "RUNTIME",
       "title": "Provider worker registry and role-routing policy",
-      "status": "READY",
+      "status": "DONE",
       "priority": 844,
       "depends_on": [
         "H03-RT-001",
@@ -301,20 +314,27 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Define provider-capability/role routing with Qwen 3.8 Max and Gemini as first-class curator/researcher/producer candidates, Manus as autonomous research candidate, and other healthy providers as pluggable alternatives. Routing is based on role/capability/health/capacity rather than fixed account identity."
+      "acceptance": "Define provider-capability/role routing with Qwen 3.8 Max and Gemini as first-class curator/researcher/producer candidates, Manus as autonomous research candidate, and other healthy providers as pluggable alternatives. Routing is based on role/capability/health/capacity rather than fixed account identity.",
+      "artifact": "company/h03/runtime/provider-worker-registry.v1.json + company/h03/lib/worker_router.py",
+      "result": {
+        "status": "PASS",
+        "qwen_first_class": true,
+        "gemini_first_class": true,
+        "manus_research_candidate": true,
+        "routing_basis": "ROLE_CAPABILITY_HEALTH_CAPACITY"
+      }
     },
     {
       "id": "H03-RT-003",
       "track": "RUNTIME",
       "title": "Persistent browser profile worker-pool and shard contract",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 842,
       "depends_on": [
         "H03-RT-002"
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "blocked_reason": "DEPENDENCIES_NOT_DONE",
       "acceptance": "Model persistent Brave profiles as runtime shards capable of multiple authenticated web-AI providers via SESSION_API or BROWSER_CDP. Allow one shard initially and alternate healthy shard fallback without copying credential/session bytes into H03 product truth."
     },
     {
@@ -617,7 +637,7 @@
       "acceptance": "Run a bounded internal batch sized by current safe capacity, not a fixed product-count target. Measure throughput, queue latency, terminal failure rate, retry count, fallback success, provider/profile bottlenecks and resource usage; no external publication."
     }
   ],
-  "revision": "2026-09-09 Batch A PASS: H03-OPP-001 + H03-RT-001 + H03-ECO-001; next OPP-002 + DMD-001 + RT-002 READY",
+  "revision": "2026-09-09 Batch B PASS: H03-OPP-002 + H03-DMD-001 + H03-RT-002; next OPP-003 + RT-003 READY",
   "production_organism": {
     "control_plane": "Mission Control supervises batches/products, recovery, gates and durable standing; it does not execute every prompt.",
     "worker_plane": "H03 role queues dispatch normalized cognition jobs through web-ai-adapter; MCP is not a worker hot-path requirement.",
@@ -656,9 +676,8 @@
   },
   "current_frontier": {
     "ready": [
-      "H03-OPP-002",
-      "H03-DMD-001",
-      "H03-RT-002"
+      "H03-OPP-003",
+      "H03-RT-003"
     ],
     "parallel_lanes": {
       "economic_intelligence": "H03-OPP-001 -> H03-OPP-002 + H03-DMD-001 -> H03-OPP-003 -> H03-RSCH-001",

@@ -1,0 +1,18 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-RT-002",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "qwen_first_class": true,
+    "gemini_first_class": true,
+    "manus_research_candidate": true,
+    "health_capacity_routing": true,
+    "provider_fallback": true,
+    "secret_material_registry": false
+  },
+  "validation": {
+    "h03_regression": "49/49 PASS",
+    "graph_frontier": "H03-OPP-003,H03-RT-003"
+  }
+}

@@ -136,3 +136,14 @@ External product listing and social publication remain Founder-gated. No paid-ad
 - `H03-ECO-001`: explicit H03 resource/founder-time/direct-cost observations can enter ECON-002B as `validated_not_committed`; unknown measurements never become zero and no H03 writer was created.
 
 New READY frontier: `H03-OPP-002`, `H03-DMD-001`, `H03-RT-002`. `H03-ECO-002` remains blocked on future Company-level live submit authority.
+
+
+---
+
+## H03 Batch B — OPP-002 + DMD-001 + RT-002 — DONE/PASS — 2026-09-09
+
+- `H03-OPP-002`: governed signal artifacts can be assigned to a `SEED_CURATOR`; discovered seeds are deduplicated and their commercial demand/WTP truth is reset to UNKNOWN pending DMD validation.
+- `H03-DMD-001`: typed demand/WTP evidence now distinguishes revealed spend, paid substitutes/marketplace proxies, purchase intent/pain, and engagement-only noise.
+- `H03-RT-002`: provider registry/router makes Qwen 3.8 Max and Gemini first-class workers and routes by role + capability + health + capacity with fallback.
+
+New READY frontier: `H03-OPP-003` Worth-Making gate and `H03-RT-003` persistent browser profile worker-pool/shard contract.

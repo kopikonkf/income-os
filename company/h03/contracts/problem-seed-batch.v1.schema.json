@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.problem-seed-batch.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","batch_id","holding_id","source_signal_refs","candidates","dedupe_count","truth_status"],
+  "properties": {
+    "schema_version": {"const":"die.h03.problem-seed-batch.v1"},
+    "batch_id": {"type":"string","minLength":6},
+    "holding_id": {"const":"H03"},
+    "source_signal_refs": {"type":"array","minItems":1,"items":{"type":"string","minLength":1},"uniqueItems":true},
+    "candidates": {"type":"array"},
+    "dedupe_count": {"type":"integer","minimum":0},
+    "truth_status": {"const":"CANDIDATE"}
+  }
+}
