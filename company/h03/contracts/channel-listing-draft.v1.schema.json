@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.channel-listing-draft.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","holding_id","product_id","channel_id","fit","content_readiness","account_gate","reason_codes","required_derivatives","listing_fields","publication_authorized"],
+  "properties": {
+    "schema_version":{"const":"die.h03.channel-listing-draft.v1"},
+    "holding_id":{"const":"H03"},
+    "product_id":{"type":"string","minLength":3},
+    "channel_id":{"type":"string","minLength":2},
+    "fit":{"enum":["HIGH","MEDIUM","LOW","NONE"]},
+    "content_readiness":{"enum":["CONTENT_READY","DERIVATIVE_REQUIRED","NOT_ELIGIBLE","PAUSED_INTAKE"]},
+    "account_gate":{"enum":["PREFLIGHT_REQUIRED","NOT_APPLICABLE"]},
+    "reason_codes":{"type":"array","items":{"type":"string"}},
+    "required_derivatives":{"type":"array","items":{"type":"string"}},
+    "listing_fields":{"type":"object"},
+    "publication_authorized":{"const":false}
+  }
+}

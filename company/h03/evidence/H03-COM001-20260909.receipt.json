@@ -1,0 +1,20 @@
+{
+  "schema_version": "die.h03.batch-receipt.v1",
+  "batch_id": "H03-COM001-20260909",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "tasks_done": [
+    "H03-COM-001"
+  ],
+  "validation": {
+    "targeted": "6/6 PASS",
+    "h03_regression": "129/129 PASS",
+    "ready_frontier": [
+      "H03-ATTR-001",
+      "H03-GRW-001"
+    ]
+  },
+  "channel_registry_count": 19,
+  "publication_authorized": false,
+  "observed_sales": false
+}

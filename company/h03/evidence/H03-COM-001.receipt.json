@@ -1,0 +1,53 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-COM-001",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "channel_neutral_master": true,
+    "registry_channels": 19,
+    "content_ready_channels": [
+      "google_play_books",
+      "gumroad",
+      "leanpub",
+      "fourthwall",
+      "ko_fi",
+      "lemon_squeezy",
+      "payhip",
+      "sellfy",
+      "shopify",
+      "woocommerce",
+      "etsy",
+      "creative_fabrica",
+      "creative_market"
+    ],
+    "derivative_required_channels": [
+      "amazon_kdp",
+      "apple_books",
+      "draft2digital",
+      "notion_marketplace"
+    ],
+    "route_state_counts": {
+      "CONTENT_READY": 13,
+      "DERIVATIVE_REQUIRED": 4,
+      "NOT_ELIGIBLE": 1,
+      "PAUSED_INTAKE": 1
+    },
+    "listing_drafts": 19,
+    "gumroad_draft": true,
+    "etsy_draft": true,
+    "pricing_state": "UNTESTED",
+    "observed_sales": false,
+    "founder_required": true,
+    "external_publication_authorized": false
+  },
+  "validation": {
+    "targeted_commerce_router": "6/6 PASS",
+    "h03_regression": "129/129 PASS",
+    "graph_frontier": [
+      "H03-ATTR-001",
+      "H03-GRW-001"
+    ],
+    "json_parse": "PASS"
+  }
+}

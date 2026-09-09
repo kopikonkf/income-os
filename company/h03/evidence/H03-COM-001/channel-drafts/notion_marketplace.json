@@ -1,0 +1,48 @@
+{
+  "account_gate": "PREFLIGHT_REQUIRED",
+  "channel_id": "notion_marketplace",
+  "content_readiness": "DERIVATIVE_REQUIRED",
+  "fit": "LOW",
+  "holding_id": "H03",
+  "listing_fields": {
+    "brief_description": "DIY People-Search Opt-Out Guide is a concise guide for privacy-conscious consumer who want a concise repeatable DIY sequence for finding, opting out, and rechecking people-search listings while understanding the limits of removal.",
+    "full_description": "DIY People-Search Opt-Out Guide turns a fragmented people-search opt-out task into a bounded sequence: find exposed listings, follow site opt-out instructions, repeat across relevant sites, and recheck periodically. It is designed as a practical execution aid rather than a promise of complete data erasure, and it preserves the product's evidence and rights lineage.",
+    "keywords": [
+      "diy",
+      "people",
+      "search",
+      "opt",
+      "out",
+      "guide",
+      "digital",
+      "download",
+      "find",
+      "your",
+      "exposed",
+      "listing",
+      "submit",
+      "the",
+      "repeat",
+      "across",
+      "sites",
+      "recheck",
+      "periodically",
+      "know",
+      "limits"
+    ],
+    "required_derivatives": [
+      "notion_template"
+    ],
+    "template_name": "DIY People-Search Opt-Out Guide"
+  },
+  "product_id": "H03-PROD-ORG001-001",
+  "publication_authorized": false,
+  "reason_codes": [
+    "FORM_REQUIRES_DERIVATIVE",
+    "CURRENT_ARTIFACT_INCOMPATIBLE"
+  ],
+  "required_derivatives": [
+    "notion_template"
+  ],
+  "schema_version": "die.h03.channel-listing-draft.v1"
+}

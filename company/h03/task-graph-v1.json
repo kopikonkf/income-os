@@ -622,21 +622,29 @@
     {
       "id": "H03-COM-001",
       "track": "COMMERCE",
-      "title": "Commerce Package contract for Gumroad/Etsy-ready listings",
-      "status": "READY",
+      "title": "Channel-neutral Commerce Package + multi-channel eligibility/router matrix",
+      "status": "DONE",
       "priority": 760,
       "depends_on": [
         "H03-REV-001"
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Generate platform-neutral offer identity plus Gumroad/Etsy package fields: title, promise, description, preview, files, tags/keywords, FAQ, pricing hypothesis, disclosure/rights metadata and listing lineage. No live publication."
+      "acceptance": "Generate one platform-neutral offer identity, pricing hypothesis, rights/disclosure and listing lineage; route by product form/artifact/vertical/platform state across a governed channel registry; emit platform listing drafts including Gumroad/Etsy without live publication; identify derivative-required surfaces instead of blindly broadcasting incompatible files.",
+      "artifact": "company/h03/contracts/commerce-package.v1.schema.json + channel-listing-draft.v1.schema.json + company/h03/runtime/commerce-channel-registry.v1.json + company/h03/lib/commerce_router.py + company/h03/evidence/H03-COM-001",
+      "result": {
+        "status": "PASS",
+        "registry_channels": 19,
+        "content_ready": 13,
+        "derivative_required": 4,
+        "publication_authorized": false
+      }
     },
     {
       "id": "H03-ATTR-001",
       "track": "ATTRIBUTION",
       "title": "Product/campaign/channel attribution event contract",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 758,
       "depends_on": [
         "H03-COM-001",
@@ -644,14 +652,13 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "blocked_reason": "DEPENDENCIES_NOT_DONE",
       "acceptance": "Define product_id/listing_id/campaign_id/creative_id/channel plus UTM/referrer identity so click/order/revenue observations can be joined back to the originating problem seed without inventing unobserved conversions."
     },
     {
       "id": "H03-GRW-001",
       "track": "GROWTH",
       "title": "Organic Growth Blueprint and channel-native content atomizer",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 750,
       "depends_on": [
         "H03-COM-001",
@@ -659,7 +666,6 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "blocked_reason": "DEPENDENCIES_NOT_DONE",
       "acceptance": "Transform accepted product knowledge into channel-native promotion briefs/atoms for X, Threads, Instagram, TikTok, YouTube, Pinterest and Reddit while retaining product/campaign lineage. Paid ads remain disabled."
     },
     {
@@ -746,7 +752,7 @@
       }
     }
   ],
-  "revision": "2026-09-09 REV-001 + SCALE-001 PASS; independent Founder Review Card and capacity-sized multi-product resilience soak complete",
+  "revision": "2026-09-09 COM-001 PASS: channel-neutral multi-channel commerce package/router; ATTR-001 + GRW-001 READY",
   "production_organism": {
     "control_plane": "Mission Control supervises batches/products, recovery, gates and durable standing; it does not execute every prompt.",
     "worker_plane": "H03 role queues dispatch normalized cognition jobs through web-ai-adapter; MCP is not a worker hot-path requirement.",
@@ -785,7 +791,8 @@
   },
   "current_frontier": {
     "ready": [
-      "H03-COM-001"
+      "H03-ATTR-001",
+      "H03-GRW-001"
     ],
     "parallel_lanes": {
       "economic_intelligence": "H03-OPP-001 -> H03-OPP-002 + H03-DMD-001 -> H03-OPP-003 -> H03-RSCH-001",

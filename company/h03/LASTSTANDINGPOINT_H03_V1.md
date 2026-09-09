@@ -242,3 +242,16 @@ New READY frontier: `H03-REV-001` independent product review + Founder Review Ca
 Validation: targeted review/scale `4/4 PASS`; full H03 regression `123/123 PASS`; graph/JSON validation PASS.
 
 New dependency-valid READY frontier: H03-COM-001.
+
+
+---
+
+## H03-COM-001 — Channel-neutral multi-channel Commerce — DONE/PASS — 2026-09-09
+
+Commerce truth is now channel-neutral instead of Gumroad/Etsy-primary. A 19-channel registry routes accepted products by form, available artifact type, vertical fit, platform intake state and discovery family. The ORG-001 guide currently has 13 content-ready surfaces and 4 derivative-required surfaces; all actionable account states remain preflight-required. Listing drafts are generated without publication authority.
+
+Current package includes Gumroad/Etsy drafts plus direct-download, book, aggregator, template/creative and owned-store routes. Derivative opportunities are deduplicated so one Knowledge Package can feed additional SKUs without repeating deep research.
+
+Pricing remains `UNTESTED`, observed sales=false, Founder publication gate locked.
+
+New dependency-valid READY frontier: H03-ATTR-001, H03-GRW-001.
