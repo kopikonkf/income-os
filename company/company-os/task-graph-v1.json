@@ -1,7 +1,7 @@
 {
   "schema": "die.company-os.task-graph.v1",
   "generated_at": "2026-09-08",
-  "revision": "2.0-econ009abc-evidence-window",
+  "revision": "2.1-cos002a-writer-domain-conformance",
   "status": "CANONICAL",
   "project": "DIE Company OS / Economic Layer",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -109,6 +109,31 @@
       }
     },
     {
+      "id": "COS-002A",
+      "track": "GOVERNANCE",
+      "title": "State Manager writer-domain conformance",
+      "status": "DONE",
+      "priority": 975,
+      "depends_on": ["COS-002"],
+      "execution_mode": "tool_native",
+      "risk": "LOW",
+      "acceptance": "Prove one logical die-state-manager remains the sole canonical Company Truth writer across current global and H01 Factory domains; mechanically reject competing writers; prove Mission Control internal state is not a direct Company Truth writer.",
+      "result": {
+        "status": "PASS",
+        "artifact": "company/company-os/COS-002A_STATE_MANAGER_WRITER_DOMAIN_CONFORMANCE_V1.md",
+        "machine_contract": "company/company-os/contracts/die.state-manager.writer-domain-conformance.v1.json",
+        "evidence": "company/company-os/evidence/COS-002A-writer-domain-conformance.json",
+        "checker": "bin/die_state_writer_conformance.py",
+        "tests": "company/company-os/tests/test_state_writer_conformance.py",
+        "receipt": "company/company-os/receipts/COS-002A-writer-domain-conformance.receipt.json",
+        "gate": "STATE_MANAGER_WRITER_DOMAIN_CONFORMANCE_PASS",
+        "canonical_state_writer": "die-state-manager",
+        "sole_physical_writer_count": 1,
+        "mission_control_company_truth_coupling": false,
+        "economics_live_writer_implemented": false
+      }
+    },
+    {
       "id": "COS-003",
       "track": "GOVERNANCE",
       "title": "Aether-DIE constitutional bridge contract",
@@ -136,11 +161,10 @@
       "title": "Mission Control constitutional promotion implementation",
       "status": "BLOCKED",
       "priority": 950,
-      "depends_on": ["COS-002"],
+      "depends_on": ["COS-002", "COS-002A"],
       "external_gates": [
         "MC-008J_FULLY_UNATTENDED_24X7_ACCEPTED",
         "MC-009D_DELEGATED_EXECUTION_ACCEPTED",
-        "STATE_MANAGER_WRITER_DOMAIN_CONFORMANCE_PASS",
         "FOUNDER_RATIFICATION_COS002_PACKET"
       ],
       "execution_mode": "tool_native",

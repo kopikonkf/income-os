@@ -1,0 +1,53 @@
+{
+  "schema": "die.state-manager.writer-domain-conformance.contract.v1",
+  "status": "PASS",
+  "gate": "STATE_MANAGER_WRITER_DOMAIN_CONFORMANCE_PASS",
+  "logical_writer": "die-state-manager",
+  "sole_physical_writer_count": 1,
+  "domains": {
+    "global_events": {
+      "store": "state/EVENTS.jsonl",
+      "adapter": "bin/die_event.py",
+      "writer": "die-state-manager"
+    },
+    "global_decisions": {
+      "store": "state/DECISIONS.jsonl",
+      "adapter": "bin/die_event.py",
+      "writer": "die-state-manager"
+    },
+    "global_economics": {
+      "store": "state/ECONOMICS.jsonl",
+      "adapter": null,
+      "writer_reserved_for": "die-state-manager",
+      "live_writer_implemented": false
+    },
+    "h01_factory_asset_registry": {
+      "store": "company/factory-asset/registries/governed-canary-assets.v1.json",
+      "adapter": "company/factory-asset/lib/factory_state_manager.py",
+      "writer_token": "DIE_STATE_MANAGER",
+      "logical_writer": "die-state-manager"
+    },
+    "mission_control_internal": {
+      "company_truth": false,
+      "audited_source_sha": "5557e3738cc11d82c53dfb68072b1f09a388e22a",
+      "forbidden_company_store_refs": 0
+    }
+  },
+  "guards": {
+    "checker": "bin/die_state_writer_conformance.py",
+    "negative_competing_writer_test": true,
+    "negative_second_sole_writer_test": true,
+    "decision_gateway_no_mutation_on_reject": true
+  },
+  "warnings": [
+    "W_ECONOMICS_WRITER_NOT_IMPLEMENTED_CURRENTLY"
+  ],
+  "authority": {
+    "constitutional_promotion": false,
+    "mission_control_company_truth_write": false,
+    "hermes_disposition": false,
+    "spend": false,
+    "red_zone": false,
+    "founder_ratification": false
+  }
+}

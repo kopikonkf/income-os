@@ -1,0 +1,53 @@
+{
+  "schema": "die.company-os.cos002a.writer-domain-conformance.receipt.v1",
+  "task_id": "COS-002A",
+  "status": "PASS",
+  "observed_at": "2026-09-09",
+  "source_main": "8a9751c0a0c6034680b7d97774ee4b4b5b53e3db",
+  "mission_control_audited_sha": "5557e3738cc11d82c53dfb68072b1f09a388e22a",
+  "artifacts": [
+    {
+      "path": "company/company-os/COS-002A_STATE_MANAGER_WRITER_DOMAIN_CONFORMANCE_V1.md",
+      "sha256": "4589c1413b354fa46cdd5368a547d3bcdbd5659dff47d8c7fa1fdb2e573a06df"
+    },
+    {
+      "path": "company/company-os/contracts/die.state-manager.writer-domain-conformance.v1.json",
+      "sha256": "fe7e3d71e7efb44af73842bb01719076bc35197d6851c2cb0e956c83b4b88845"
+    },
+    {
+      "path": "company/company-os/evidence/COS-002A-writer-domain-conformance.json",
+      "sha256": "3d7b048c28f2f167dbe9db8560003bd470a10d94fe2660075c146ac6b3ec2092"
+    },
+    {
+      "path": "bin/die_state_writer_conformance.py",
+      "sha256": "172fa17e6b5a29724e95b904a0d86d8e6c26aaedbb24b8105580bec8df197b81"
+    },
+    {
+      "path": "company/company-os/tests/test_state_writer_conformance.py",
+      "sha256": "d0e0f2ab86dd4ed2c971b9af78808f70e0b26cde66ea303b2b0613c1c6cb2ae2"
+    }
+  ],
+  "acceptance": {
+    "writer_conformance": "PASS",
+    "sole_physical_writer_count": 1,
+    "canonical_state_writer": "die-state-manager",
+    "unauthorized_global_store_writers": 0,
+    "mission_control_forbidden_company_store_refs": 0,
+    "decision_gateway_tests": "14_PASSED",
+    "factory_state_manager_tests": "11_PASSED",
+    "combined_targeted_tests": "29_PASSED",
+    "company_brain_check": "PASS",
+    "negative_competing_writer": "PASS_REJECTED",
+    "negative_second_sole_writer": "PASS_REJECTED"
+  },
+  "warning": "W_ECONOMICS_WRITER_NOT_IMPLEMENTED_CURRENTLY",
+  "gate": "STATE_MANAGER_WRITER_DOMAIN_CONFORMANCE_PASS",
+  "authority": {
+    "constitutional_promotion": false,
+    "mission_control_company_truth_write": false,
+    "hermes_disposition": false,
+    "spend": false,
+    "red_zone": false,
+    "founder_ratification": false
+  }
+}
