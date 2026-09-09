@@ -1,0 +1,14 @@
+{
+  "schema":"die.factory-asset.fa124-100-masters-day-receipt.v1",
+  "task_id":"FA-124",
+  "status":"DONE",
+  "result":"PASS",
+  "completed_at":"2026-09-09",
+  "authority":{"founder_live_load_authorized":true,"spend_usd":0,"marketplace_submission":false,"publication":false},
+  "acceptance":{"exactly_100_accepted_masters":true,"exactly_100_unique_sha256":true,"exactly_100_unique_seed_ids":true,"all_10_provider_cluster_routes_certified":true,"dispatch_commits_lte_120":true,"zero_exact_duplicate_hashes":true,"zero_object_confirmed_near_duplicate_pairs":true,"zero_secret_cookie_token_reads":true,"zero_observed_spend":true,"fa123_downstream_capacity_pass":true},
+  "throughput":{"accepted_masters":100,"unique_sha256":100,"dispatch_commits":113,"dispatch_commit_cap":120,"distribution_policy":"DYNAMIC_HEALTHY_CAPACITY_AFTER_ROUTE_CERTIFICATION","route_counts":{"chatgpt@cluster-a":10,"qwen@cluster-a":11,"gemini@cluster-a":11,"manus@cluster-a":11,"duckai@cluster-a":6,"chatgpt@cluster-b":11,"qwen@cluster-b":10,"gemini@cluster-b":11,"manus@cluster-b":11,"duckai@cluster-b":8}},
+  "soak_learning":{"deprecated_rule":"EXACTLY_10_SUCCESSES_PER_PROVIDER_CLUSTER_AS_THROUGHPUT_CAP","replacement":"CERTIFY_EACH_ROUTE_THEN_ALLOCATE_TO_ANY_HEALTHY_AVAILABLE_ROUTE_UNTIL_GLOBAL_TARGET","reason":"Duck.ai daily quota proved equal per-route throughput caps can strand healthy capacity. Route certification and production throughput are separate concerns.","duckai_daily_limit_observed":true,"healthy_capacity_reallocation_live_proven":"90_TO_94_TO_98_TO_100_WITHOUT_WAITING_FOR_DUCK_RESET"},
+  "distinctness":{"full_canvas_dhash_candidates":2,"object_confirmed_near_duplicate_pairs":0,"object_aware_gate":"FULL_CANVAS_DHASH_LE4_AND_OBJECT_CROP_DHASH_LE4_REQUIRED_TO_HARD_FAIL"},
+  "evidence":["company/factory-asset/fixtures/scale/FA-124-final-result.json","company/factory-asset/contracts/fa124-atomic-execution-plan.v1.json","company/factory-asset/fixtures/scale/FA-124-cartoon-watercolor-cohort.json","company/factory-asset/lib/fa124_cartoon_evaluator.py","company/factory-asset/bin/run_fa124_cluster_slot.mjs"],
+  "truth_boundaries":{"fa124_full_postprocessed_packages_created":false,"founder_qc_remains_100_percent_per_fa123":true,"orientation_mismatch_is_advisory":true,"style_semantic_output_compliance_not_proven_by_dimension_checks":true}
+}

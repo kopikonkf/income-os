@@ -60,4 +60,4 @@ def test_fa122_receipt_and_graph_close_task_and_unlock_fa123():
     assert r["status"] == "DONE" and r["result"] == "PASS"
     assert by["FA-122"]["status"] == "DONE"
     assert by["FA-123"]["status"] in {"READY", "DONE"}
-    assert by["FA-124"]["status"] == ("BLOCKED" if by["FA-123"]["status"] == "READY" else "READY")
+    assert by["FA-124"]["status"] in ({"BLOCKED"} if by["FA-123"]["status"] == "READY" else {"READY","IN_PROGRESS","DONE"})

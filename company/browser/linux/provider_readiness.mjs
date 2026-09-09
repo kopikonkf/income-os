@@ -66,13 +66,16 @@ export async function classifyProviderPage({ page, providerId, profile, observed
   try { origin = new URL(page.url()).origin; } catch {}
   const allowed = Array.isArray(profile.allowed_origins) && profile.allowed_origins.includes(origin);
   const authVisible = await anyVisible(page, profile.auth_selectors || []);
-  const checkpointVisible = await protectionChallengeVisible(page, profile.checkpoint_patterns || []);
   const composerVisible = await anyVisible(page, profile.composer_selectors || []);
   const composerWritable = composerVisible ? await anyUsableComposer(page, profile.composer_selectors || []) : false;
+  // Historical conversation text can contain old challenge phrases. If a writable
+  // composer is present, ignore body-text challenge phrases while still honoring
+  // challenge titles and explicit Cloudflare/challenge DOM controls.
+  const checkpointVisible = await protectionChallengeVisible(page, composerWritable ? [] : (profile.checkpoint_patterns || []));
   let state = 'DEGRADED'; let reasonCode = composerVisible ? 'COMPOSER_NOT_WRITABLE' : 'COMPOSER_NOT_READY';
   if (!allowed) { state = 'UNAVAILABLE'; reasonCode = 'ORIGIN_MISMATCH'; }
   else if (checkpointVisible) { state = 'CHECKPOINT'; reasonCode = 'PROTECTION_CHALLENGE'; }
-  else if (authVisible || /\/(login|signin|signup|auth)(?:\/|$)/i.test(new URL(page.url()).pathname)) { state = 'AUTH_REQUIRED'; reasonCode = 'AUTH_UI_VISIBLE'; }
+  else if ((authVisible || /\/(login|signin|signup|auth)(?:\/|$)/i.test(new URL(page.url()).pathname)) && !composerWritable) { state = 'AUTH_REQUIRED'; reasonCode = 'AUTH_UI_VISIBLE'; }
   else if (composerWritable) { state = 'HEALTHY'; reasonCode = 'COMPOSER_READY'; }
   return {
     schema: 'die.muxia.provider-readiness.v1', provider_id: providerId, state, reason_code: reasonCode,

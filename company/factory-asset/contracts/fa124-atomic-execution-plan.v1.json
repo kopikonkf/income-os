@@ -1,0 +1,41 @@
+{
+  "schema": "die.factory-asset.fa124-atomic-execution-plan.v1",
+  "task_id": "FA-124",
+  "revision": "1.1.0-dynamic-throughput-after-route-certification",
+  "founder_live_load_authorized": true,
+  "leaves": [
+    {
+      "id": "FA124-E1",
+      "title": "Freeze 100 approved single-subject seeds and fixed manifestation",
+      "status": "DONE",
+      "acceptance": "100 unique approved Atlas seeds; RASTER/ISOLATED_OBJECT/ISOLATED_CARTOON_WATERCOLOR/L0 frozen; no canary-extra seeds."
+    },
+    {
+      "id": "FA124-E2",
+      "title": "Transition ten provider@cluster routes to PRODUCTION_READY through live master proof",
+      "status": "IN_PROGRESS",
+      "acceptance": "Each of 10 provider@cluster routes demonstrates accepted live master proof and fresh readiness evidence; route certification is distinct from throughput allocation."
+    },
+    {
+      "id": "FA124-E3",
+      "title": "Run alternating cluster slots with dynamic healthy-capacity allocation until 100 unique accepted masters",
+      "status": "IN_PROGRESS",
+      "acceptance": "Cluster A/B retain one-generation-per-cluster safety and sequential provider attempts. After all ten routes are certified, providers are not capped at ten successes; healthy available routes absorb capacity from quota-limited/cooldown routes. Global target is exactly 100 accepted unique masters and no slot may overshoot it."
+    },
+    {
+      "id": "FA124-E4",
+      "title": "Evaluate 100-master QA distinctness distribution and economics",
+      "status": "BLOCKED_ON_E3",
+      "acceptance": "Exactly 100 unique successful masters, all 10 provider@cluster routes certified, QA/distinctness pass, package-capacity truth bound to FA-123, economics/storage reported without volume inflation. Equal 10-per-route distribution is not a production throughput requirement."
+    }
+  ],
+  "authority": {
+    "provider_calls": true,
+    "spend_usd": 0,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "account_actions_beyond_founder_login": false,
+    "marketplace_submission": false,
+    "publication": false
+  }
+}

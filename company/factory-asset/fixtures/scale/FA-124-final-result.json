@@ -1,0 +1,16 @@
+{
+  "schema":"die.factory-asset.fa124-final-result.v1",
+  "task_id":"FA-124",
+  "status":"DONE",
+  "result":"PASS",
+  "observed_at":"2026-09-09T13:44:00Z",
+  "manifestation_preset_id":"ISOLATED_CARTOON_WATERCOLOR_L0",
+  "throughput":{"accepted_masters":100,"unique_sha256":100,"unique_seed_ids":100,"dispatch_commits":113,"dispatch_commit_cap":120,"provider_failures_after_commit":13,"distribution_policy":"DYNAMIC_HEALTHY_CAPACITY_AFTER_ROUTE_CERTIFICATION"},
+  "route_counts":{"chatgpt@cluster-a":10,"qwen@cluster-a":11,"gemini@cluster-a":11,"manus@cluster-a":11,"duckai@cluster-a":6,"chatgpt@cluster-b":11,"qwen@cluster-b":10,"gemini@cluster-b":11,"manus@cluster-b":11,"duckai@cluster-b":8},
+  "route_certification":{"all_10_routes_certified":true,"equal_10_per_route_required":false,"certification_separated_from_throughput_allocation":true},
+  "distinctness":{"exact_duplicate_hashes":0,"full_canvas_dhash_candidates":2,"object_confirmed_near_duplicate_pairs":0,"candidate_evidence":[{"seed_a":"coffee grinder","seed_b":"pencil","full_canvas_dhash_hamming":2,"object_crop_dhash_hamming":33},{"seed_a":"coffee grinder","seed_b":"garden trowel","full_canvas_dhash_hamming":4,"object_crop_dhash_hamming":23}]},
+  "orientation":{"advisory_mismatches":21,"hard_gate":false},
+  "provider_policy":{"duckai_daily_limit_observed":true,"duckai_daily_limit_is_external_cooldown_not_global_factory_blocker":true,"healthy_routes_absorb_quota_limited_route_capacity":true},
+  "storage_economics":{"accepted_provider_artifact_bytes":73645657,"accepted_provider_artifact_gib":0.0686,"free_disk_gib_after":65.509,"observed_spend_usd":0.0},
+  "truth_boundaries":{"fa123_downstream_capacity_pass":true,"fa124_full_postprocessed_packages_created":false,"founder_qc_policy_changed":false,"credential_values_read":false,"cookies_or_tokens_read":false,"marketplace_submission_authorized":false,"publication_authorized":false}
+}

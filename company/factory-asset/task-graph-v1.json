@@ -1601,12 +1601,13 @@
       "depends_on": [
         "FA-123"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_LOAD",
       "artifact": "company/factory-asset/receipts/FA-124-100-masters-day.receipt.json",
       "acceptance": "100 unique masters are attempted under approved bounds; success/QA/distinctness/package/economics and provider-policy results are reported without volume inflation.",
-      "updated_at": "2026-09-08",
-      "result": "READY: FA-123 is DONE/PASS. Live 100-unique-master execution still requires explicit Founder live-load authority and must preserve FA-123 truth boundaries, including current 100% Founder QC policy unless separately changed."
+      "updated_at": "2026-09-09",
+      "result": "DONE/PASS: 100 accepted unique masters and 100 unique SHA completed within 113/120 committed provider calls. All 10 provider@cluster routes were certified. Soak disproved equal 10-per-route throughput caps: Duck.ai daily quota stranded healthy capacity, so throughput allocation was corrected to dynamic healthy-capacity routing after route certification. Final distribution was intentionally non-uniform; exact duplicates=0 and two full-canvas dHash candidates were rejected as false positives by object-aware crop dHash. E4 PASS; spend=$0; FA-123 downstream capacity truth preserved.",
+      "completed_at": "2026-09-09"
     },
     {
       "id": "FA-125",
@@ -1617,10 +1618,12 @@
       "depends_on": [
         "FA-124"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_DECISION_REQUIRED",
       "artifact": "docs/architecture/FACTORY_ASSET_SCALE_ECONOMICS_DECISION_V1.md",
-      "acceptance": "Cost per successful/QA-passed/accepted asset, marketplace acceptance, licensing, backlog and provider capacity support PROMOTE|HOLD|REPAIR|STOP decision."
+      "acceptance": "Cost per successful/QA-passed/accepted asset, marketplace acceptance, licensing, backlog and provider capacity support PROMOTE|HOLD|REPAIR|STOP decision.",
+      "updated_at": "2026-09-09",
+      "result": "READY: all canonical dependencies are DONE/PASS. Execution still requires the task-specific Founder authority and must preserve current production hold until Founder economics/storage decision."
     },
     {
       "id": "FA-126",
@@ -2001,13 +2004,13 @@
         "FA-C012",
         "FA-124"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_REQUIRED",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-C013-factory-console-production-acceptance.receipt.json",
       "acceptance": "Founder validates the GUI against the authorized 100-unique-master/day model: blueprint/batch controls, queue/recovery, provider capacity/routing, output lineage/QA and rollback all pass; marketplace publication remains outside Console authority.",
-      "updated_at": "2026-09-08",
-      "result": "BLOCKED: FA-C012 is DONE/PASS; remaining dependency FA-124 is not DONE. No FA-C013 Founder acceptance occurred in the FA-C012 run."
+      "updated_at": "2026-09-09",
+      "result": "READY: all canonical dependencies are DONE/PASS. Execution still requires the task-specific Founder authority and must preserve current production hold until Founder economics/storage decision."
     },
     {
       "id": "FA-129",
