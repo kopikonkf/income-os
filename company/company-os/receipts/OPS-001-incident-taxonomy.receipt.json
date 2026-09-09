@@ -1,0 +1,52 @@
+{
+    "schema":  "die.company-os.ops001.incident-taxonomy.receipt.v1",
+    "task_id":  "OPS-001",
+    "status":  "PASS",
+    "observed_at":  "2026-09-09",
+    "source_main":  "e849ef3502975929ee67543354c264a41f91c349",
+    "artifacts":  [
+                      {
+                          "path":  "company/company-os/OPS-001_COMPANY_INCIDENT_ESCALATION_TAXONOMY_V1.md",
+                          "sha256":  "b098e658a85b57858586e3fe3113f3145affa2282d692060bd6caa75759bfd2c"
+                      },
+                      {
+                          "path":  "company/company-os/contracts/die.company.incident-taxonomy.v1.json",
+                          "sha256":  "e3d59caa71194962393faf67f30770de652e82dde4f23c8bc22e794888d3d693"
+                      }
+                  ],
+    "evidence":  {
+                     "mission_control_retry_policy":  "D:/MISSION_CONTROL/src/retry-policy.ts",
+                     "mission_control_owner_failover":  "D:/MISSION_CONTROL/src/owner-failover.ts",
+                     "muxia_crash_recovery":  "docs/operations/MUXIA_CRASH_RECOVERY_V1.md",
+                     "submission_reconciliation":  "docs/operations/SUBMISSION_IDEMPOTENCY_RETRY_RECONCILIATION_V1.md",
+                     "factory_queue_timeout_source":  "company/die-agents/hermes/production-runtime/production_runtime_tick.py:E_MUXIA_QUEUE_TIMEOUT",
+                     "hermes_cognition_timeout_recovery":  "company/factory-asset/receipts/FA-HOTFIX-hermes-cognition-timeout-recovery.receipt.json"
+                 },
+    "taxonomy":  {
+                     "L0":  "TRANSIENT",
+                     "L1":  "OPERATIONAL_RECOVERY",
+                     "L2":  "ENGINEERING",
+                     "L3":  "AUTHORITY",
+                     "severity":  [
+                                      "S0_INFO",
+                                      "S1_DEGRADED",
+                                      "S2_BLOCKED",
+                                      "S3_MAJOR",
+                                      "S4_CRITICAL"
+                                  ],
+                     "l1_default_max_per_fingerprint":  2,
+                     "l1_default_recurrence_window_minutes":  60,
+                     "same_durable_work_resume_required":  true,
+                     "reconcile_before_external_retry":  true,
+                     "retry_budget_restart_persistent":  true
+                 },
+    "current_authority":  {
+                              "die_autonomy":  "A0",
+                              "runtime_implementation_performed":  false,
+                              "new_recovery_authority_granted":  false,
+                              "architect_unrestricted_auto_repair_authorized":  false,
+                              "spend_authorized":  false,
+                              "credential_mutation_authorized":  false,
+                              "external_submission_authorized":  false
+                          }
+}

@@ -1,7 +1,7 @@
 {
   "schema": "die.company-os.task-graph.v1",
   "generated_at": "2026-09-08",
-  "revision": "1.3-cos003-aether-die-bridge",
+  "revision": "1.4-ops001-incident-taxonomy",
   "status": "CANONICAL",
   "project": "DIE Company OS / Economic Layer",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -151,12 +151,21 @@
       "id": "OPS-001",
       "track": "SELF_HEALING",
       "title": "Company incident escalation taxonomy L0-L3",
-      "status": "READY",
+      "status": "DONE",
       "priority": 900,
       "depends_on": ["COS-002"],
       "execution_mode": "cognition_only",
       "risk": "LOW",
-      "acceptance": "Define L0 transient retry/backoff, L1 deterministic operational recovery, L2 Architect engineering escalation, and L3 Founder/authority escalation with evidence and anti-loop rules."
+      "acceptance": "Define L0 transient retry/backoff, L1 deterministic operational recovery, L2 Architect engineering escalation, and L3 Founder/authority escalation with evidence and anti-loop rules.",
+      "result": {
+        "status": "PASS",
+        "artifact": "company/company-os/OPS-001_COMPANY_INCIDENT_ESCALATION_TAXONOMY_V1.md",
+        "machine_contract": "company/company-os/contracts/die.company.incident-taxonomy.v1.json",
+        "receipt": "company/company-os/receipts/OPS-001-incident-taxonomy.receipt.json",
+        "runtime_implementation": "NOT_PERFORMED_DOCTRINE_ONLY",
+        "new_authority_granted": false,
+        "autonomous_l2_unrestricted_dev": false
+      }
     },
     {
       "id": "OPS-002",
