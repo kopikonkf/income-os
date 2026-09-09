@@ -1,0 +1,100 @@
+{
+    "schema":  "die.economic-observer.measurement-contract.v1",
+    "status":  "ACCEPTED_E0_SHADOW_NO_SPEND_AUTHORITY",
+    "maturity":  "E0_OBSERVE",
+    "money":  {
+                  "source_currency_preserved":  true,
+                  "minor_units_preferred":  true,
+                  "fx_requires_rate_timestamp_source":  true,
+                  "invent_fx_rate":  false
+              },
+    "pnl":  {
+                "net_realized_revenue":  "gross_realized_revenue - refunds - chargebacks_reversals",
+                "contribution_profit":  "net_realized_revenue - direct_variable_costs - shared_variable_usage_costs",
+                "cash_operating_profit":  "company_contribution_profit - global_fixed_operating_cash_costs - other_nonvariable_operating_cash_costs",
+                "founder_labor_cost":  "founder_active_minutes / 60 * founder_shadow_hourly_rate",
+                "economic_operating_profit":  "cash_operating_profit - founder_labor_cost - other_explicit_noncash_labor_cost"
+            },
+    "founder_time":  {
+                         "rate_default":  "UNSET",
+                         "invent_rate":  false,
+                         "unknown_time_is_zero":  false,
+                         "precision":  [
+                                           "MEASURED",
+                                           "ESTIMATED",
+                                           "UNKNOWN"
+                                       ],
+                         "categories":  [
+                                            "FOUNDER_AUTHORITY_DECISION",
+                                            "FOUNDER_MANUAL_PRODUCTION",
+                                            "FOUNDER_QC_REVIEW",
+                                            "FOUNDER_INCIDENT_RECOVERY",
+                                            "FOUNDER_REAUTH_ACCOUNT_SETUP",
+                                            "FOUNDER_ENGINEERING_ASSIST",
+                                            "FOUNDER_ADMIN_DISTRIBUTION",
+                                            "FOUNDER_STRATEGY_RESEARCH",
+                                            "FOUNDER_OTHER_ACTIVE"
+                                        ]
+                     },
+    "metrics":  {
+                    "zero_touch_rate":  "zero_touch_eligible_completed_with_zero_founder_minutes / completed_zero_touch_eligible",
+                    "founder_intervention_rate":  "completed_with_founder_minutes_gt_zero / completed_workflows",
+                    "automated_recovery_rate":  "L0_or_accepted_L1_resolved_without_founder / resolved_automatically_recoverable_incidents",
+                    "architect_escalation_rate":  "L2_entries / explicitly_reported_relevant_denominator",
+                    "founder_break_even_hourly_value":  "cash_operating_profit / (founder_active_minutes / 60)"
+                },
+    "economic_trace_minimum":  [
+                                   "economic_trace_id",
+                                   "holding_id",
+                                   "product_or_asset_id",
+                                   "production_job_id",
+                                   "mission_task_id_optional",
+                                   "listing_or_distribution_id_optional",
+                                   "order_or_sale_id_optional",
+                                   "revenue_event_id_optional",
+                                   "incident_id_optional"
+                               ],
+    "resource_usage_tags":  [
+                                "holding_id",
+                                "runtime_id",
+                                "principal_id_or_provider_id",
+                                "resource_class",
+                                "usage_quantity",
+                                "usage_unit",
+                                "cost_event_ref_if_paid",
+                                "parent_task_id",
+                                "economic_trace_id"
+                            ],
+    "cost_allocation":  {
+                            "direct":  "direct_trace",
+                            "shared_variable":  "measured_consumption",
+                            "global_fixed":  "company_overhead_by_default",
+                            "fully_allocated_holding_view_requires":  "allocation_policy_id"
+                        },
+    "verdicts":  {
+                     "CASH_POSITIVE":  "realized revenue and cash operating profit positive with no materially unbounded cash unknown",
+                     "ECONOMIC_POSITIVE":  "cash positive plus explicit founder rate plus economic operating profit positive plus sufficiently observed founder time",
+                     "NEGATIVE":  "corresponding measured profit \u003c= 0 with sufficiently complete data",
+                     "UNPROVEN":  "missing or ambiguous material data prevents conclusion"
+                 },
+    "completeness_flags":  [
+                               "revenue_complete",
+                               "cash_cost_complete",
+                               "variable_usage_complete",
+                               "founder_time_complete",
+                               "attribution_complete",
+                               "fx_complete"
+                           ],
+    "authority":  {
+                      "measure":  true,
+                      "report":  true,
+                      "shadow_analysis":  true,
+                      "spend":  false,
+                      "provider_plan_upgrade":  false,
+                      "infrastructure_purchase_or_termination":  false,
+                      "capital_allocation":  false,
+                      "reinvestment":  false,
+                      "credential_mutation":  false,
+                      "external_submission":  false
+                  }
+}

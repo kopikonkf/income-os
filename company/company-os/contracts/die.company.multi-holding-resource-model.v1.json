@@ -1,0 +1,95 @@
+{
+    "schema":  "die.company.multi-holding-resource-model.v1",
+    "status":  "ACCEPTED_MODEL_NO_PROVISIONING",
+    "logical_authorities":  {
+                                "mission_control":  {
+                                                        "count_by_holding":  false,
+                                                        "logical_count":  1
+                                                    },
+                                "state_manager":  {
+                                                      "count_by_holding":  false,
+                                                      "logical_count":  1
+                                                  },
+                                "universal_mcp":  {
+                                                      "count_by_holding":  false,
+                                                      "logical_count":  1
+                                                  },
+                                "economic_observer_ledger":  {
+                                                                 "count_by_holding":  false,
+                                                                 "logical_count":  1
+                                                             },
+                                "aether_external_domain":  {
+                                                               "count_by_holding":  false,
+                                                               "logical_count":  1,
+                                                               "boundary":  "KEEP_EXTERNAL"
+                                                           }
+                            },
+    "scaling_classes":  {
+                            "G0":  {
+                                       "name":  "GLOBAL_LOGICAL_SINGLETON",
+                                       "order":  "O(1)"
+                                   },
+                            "H1":  {
+                                       "name":  "HOLDING_NAMESPACE_AND_POLICY",
+                                       "order":  "O(H_active)"
+                                   },
+                            "H2":  {
+                                       "name":  "HOLDING_LOCAL_PRIVILEGED_EXECUTOR",
+                                       "order":  "O(H_exec)",
+                                       "constraint":  "H_exec \u003c= H_active"
+                                   },
+                            "P1":  {
+                                       "name":  "POOLED_COGNITION",
+                                       "order":  "O(cognitive_workload)"
+                                   },
+                            "P2":  {
+                                       "name":  "POOLED_GENERIC_CPU",
+                                       "order":  "O(cpu_workload)"
+                                   },
+                            "P3":  {
+                                       "name":  "POOLED_EXPENSIVE_MEDIA_API",
+                                       "order":  "O(expensive_accepted_workload)"
+                                   },
+                            "P4":  {
+                                       "name":  "POOLED_STORAGE_EGRESS",
+                                       "order":  "O(data_produced_plus_retention)"
+                                   },
+                            "A1":  {
+                                       "name":  "OBSERVABILITY_STATE_VOLUME",
+                                       "order":  "O(work_events)"
+                                   }
+                        },
+    "fifty_holding_reference":  {
+                                    "holding_namespaces":  50,
+                                    "mission_control_logical":  1,
+                                    "state_manager_logical":  1,
+                                    "universal_mcp_logical":  1,
+                                    "aether_external_logical":  1,
+                                    "global_principal_pool_copies":  1,
+                                    "logical_local_executors":  "0..50 based on privileged local work",
+                                    "physical_vps_count":  "NOT_DERIVED_FROM_HOLDING_COUNT",
+                                    "resident_hermes_opencode_stacks":  "NOT_MULTIPLIED_PER_HOLDING"
+                                },
+    "identity_dimensions":  [
+                                "holding_id",
+                                "principal_id",
+                                "runtime_id",
+                                "endpoint_id",
+                                "host_id"
+                            ],
+    "capacity_rule":  {
+                          "formula":  "required_slots \u003e= arrival_rate * average_service_time / target_utilization",
+                          "target_utilization":  "OBSERVED_POLICY_VALUE_NOT_HARDCODED_HERE",
+                          "scale_out_requires":  [
+                                                     "OPERATIONAL_CAPACITY_EVIDENCE",
+                                                     "ECONOMIC_JUSTIFICATION"
+                                                 ]
+                      },
+    "pooling_invariants":  [
+                               "principal_pool_above_holdings",
+                               "filesystem_endpoint_never_load_balances_across_hosts",
+                               "holding_attribution_preserved",
+                               "authority_gates_not_relaxed_for_capacity",
+                               "shared_compute_does_not_merge_holding_state_authority"
+                           ]
+}
