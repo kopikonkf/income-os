@@ -1,0 +1,23 @@
+{
+  "schema_version": "die.h03.typography-registry.v1",
+  "font_policy": "PDF_CORE_14_NO_EXTERNAL_FONT_FILE",
+  "roles": {
+    "body": {
+      "font": "Helvetica",
+      "source": "PDF_CORE_14",
+      "embedding": "NOT_REQUIRED"
+    },
+    "heading_bold": {
+      "font": "Helvetica-Bold",
+      "source": "PDF_CORE_14",
+      "embedding": "NOT_REQUIRED"
+    },
+    "display_bold": {
+      "font": "Helvetica-Bold",
+      "source": "PDF_CORE_14",
+      "embedding": "NOT_REQUIRED"
+    }
+  },
+  "external_font_files_allowed": false,
+  "notes": "v1 deliberately avoids machine-local font dependencies and font-file licensing cargo."
+}

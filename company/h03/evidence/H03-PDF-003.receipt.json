@@ -1,0 +1,22 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-PDF-003",
+  "status": "PASS",
+  "date": "2026-09-09",
+  "artifacts": [
+    "company/h03/templates/pdf-template-registry.v1.json",
+    "company/h03/templates/typography-registry.v1.json"
+  ],
+  "acceptance": {
+    "templates": 3,
+    "same_ast_multiple_templates": true,
+    "knowledge_mutation": false,
+    "external_font_files": false,
+    "legacy_mvp_hash": "8199048f4a9ee0f70a4e0b62c07c7617ab61b9077cf6700311192617c7eb20ee"
+  },
+  "validation": {
+    "h03_test_suite": "20/20 PASS",
+    "json_parse": "21+ contract/evidence JSON files PASS",
+    "python_compile": "PASS"
+  }
+}

@@ -76,3 +76,18 @@ H03-DIST-001 first external listing/sale canary
 ```
 
 No external publication, sale, spend, credential mutation, DNS change or global-control cutover has occurred.
+
+
+---
+
+## H03-KF-002 / H03-PDF-003 / H03-AI-001 - DONE/PASS - 2026-09-09
+
+Three independent post-MVP leaves are accepted.
+
+- `H03-KF-002`: external bytes normalize into immutable source/evidence hashes and remain `PENDING_REVIEW`; LLM/crawler/provider model cannot approve source truth; unknown rights fail closed.
+- `H03-PDF-003`: layout and typography are registry-driven. Three templates share the same AST. V1 uses PDF Core 14 fonts only. Default `guide.clean.v1` reproduces the original MVP PDF SHA-256 exactly.
+- `H03-AI-001`: H03 consumes web-ai-adapter canon `a654f823ce1027951c0204a7b141120ab8607faf` only through its OpenAI-compatible text facade. CURATOR and PRODUCER outputs remain `UNVERIFIED_MODEL_OUTPUT`; credential/session/profile material is mechanically rejected from the H03 capability request.
+
+Validation: H03 regression `20/20 PASS`; all three PDF templates render, reopen and pass PDFium raster QA; default template preserves the original MVP SHA-256.
+
+No provider live call, credential mutation, browser-profile copy, external publication, canonical Company Truth write, economics append, spend or Mission Control cutover occurred.

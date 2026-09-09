@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.external-source-snapshot.v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "source_id",
+    "source_uri",
+    "media_type",
+    "acquisition_method",
+    "raw_sha256",
+    "normalized_text_sha256",
+    "review_state",
+    "rights_policy",
+    "evidence_units"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.h03.external-source-snapshot.v1"
+    },
+    "source_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_uri": {
+      "type": "string",
+      "minLength": 1
+    },
+    "media_type": {
+      "enum": [
+        "text/plain",
+        "text/html"
+      ]
+    },
+    "acquisition_method": {
+      "enum": [
+        "WEB_TOOL_SNAPSHOT",
+        "BROWSER_EXPORT",
+        "HTTP_CLIENT",
+        "USER_FILE",
+        "CONNECTOR_EXPORT"
+      ]
+    },
+    "raw_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "normalized_text_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "review_state": {
+      "const": "PENDING_REVIEW"
+    },
+    "canonical_truth": {
+      "const": false
+    },
+    "rights_policy": {
+      "type": "object",
+      "required": [
+        "state",
+        "basis",
+        "verbatim_reuse_allowed"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "UNKNOWN",
+            "REVIEWED_REFERENCE_ONLY",
+            "REVIEWED_LICENSED_REUSE",
+            "USER_OWNED_ORIGINAL"
+          ]
+        },
+        "basis": {
+          "type": "string"
+        },
+        "verbatim_reuse_allowed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "evidence_units": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "evidence_id",
+          "text",
+          "sha256",
+          "source_raw_sha256"
+        ],
+        "properties": {
+          "evidence_id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "source_raw_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-KF-002",
+  "status": "PASS",
+  "date": "2026-09-09",
+  "artifacts": [
+    "company/h03/lib/source_ingestion.py",
+    "company/h03/contracts/external-source-snapshot.v1.schema.json"
+  ],
+  "acceptance": {
+    "source_identity": true,
+    "raw_hash": true,
+    "evidence_hashes": true,
+    "default_pending_review": true,
+    "crawler_llm_reviewer_forbidden": true,
+    "rights_unknown_fails_closed": true,
+    "canonical_truth_written": false
+  },
+  "validation": {
+    "h03_test_suite": "20/20 PASS",
+    "json_parse": "21+ contract/evidence JSON files PASS",
+    "python_compile": "PASS"
+  }
+}

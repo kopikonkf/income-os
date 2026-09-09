@@ -43,6 +43,17 @@ def validate_knowledge_package(kp: dict[str, Any]) -> None:
     if kp.get("rights_status") not in {"INTERNAL_ORIGINAL", "GOVERNED_EXTERNAL"}:
         raise ValueError("RIGHTS_STATUS_INVALID")
     source = kp.get("source_packet") or {}
+    if kp.get("rights_status") == "GOVERNED_EXTERNAL":
+        review = source.get("review") or {}
+        rights = source.get("rights_policy") or {}
+        if review.get("status") != "ACCEPTED_FOR_KNOWLEDGE" or review.get("crawler_or_llm_authority") is not False:
+            raise ValueError("EXTERNAL_SOURCE_REVIEW_REQUIRED")
+        if review.get("reviewer_kind") not in {"FOUNDER", "ARCHITECT", "GOVERNED_RULESET"}:
+            raise ValueError("EXTERNAL_SOURCE_REVIEWER_INVALID")
+        if rights.get("state") in {None, "UNKNOWN"}:
+            raise ValueError("EXTERNAL_SOURCE_RIGHTS_REQUIRED")
+        if not source.get("raw_sha256") or not source.get("normalized_text_sha256"):
+            raise ValueError("EXTERNAL_SOURCE_HASHES_REQUIRED")
     evidence = source.get("evidence_units") or []
     evidence_ids = {item.get("evidence_id") for item in evidence if item.get("evidence_id") and item.get("text")}
     if not evidence_ids:
@@ -111,55 +122,85 @@ def _wrap(text: str, font: str, size: float, max_width: float) -> list[str]:
     return lines
 
 
-def render_pdf(ast: dict[str, Any], out_path: Path) -> dict[str, Any]:
+
+def _registry_path(name: str) -> Path:
+    return Path(__file__).resolve().parents[1] / "templates" / name
+
+
+def load_render_profile(template_id: str | None = None) -> tuple[str, dict[str, Any], dict[str, Any]]:
+    templates = load_json(_registry_path("pdf-template-registry.v1.json"))
+    typography = load_json(_registry_path("typography-registry.v1.json"))
+    selected = template_id or templates["default_template_id"]
+    if selected not in templates["templates"]:
+        raise ValueError(f"TEMPLATE_NOT_FOUND:{selected}")
+    if typography.get("font_policy") != "PDF_CORE_14_NO_EXTERNAL_FONT_FILE" or typography.get("external_font_files_allowed") is not False:
+        raise ValueError("TYPOGRAPHY_POLICY_INVALID")
+    return selected, templates["templates"][selected], typography
+
+
+def _font(typography: dict[str, Any], role: str) -> str:
+    entry = (typography.get("roles") or {}).get(role)
+    if not entry or not entry.get("font"):
+        raise ValueError(f"TYPOGRAPHY_ROLE_MISSING:{role}")
+    return entry["font"]
+
+
+def render_pdf(ast: dict[str, Any], out_path: Path, template_id: str | None = None) -> dict[str, Any]:
     if ast.get("schema_version") != SCHEMA_AST:
         raise ValueError("AST_SCHEMA_INVALID")
     out_path.parent.mkdir(parents=True, exist_ok=True)
+    meta = ast.get("metadata") or {}
+    selected, profile, typography = load_render_profile(template_id or meta.get("template_id"))
+    if profile.get("page_size") != "A4":
+        raise ValueError("PAGE_SIZE_UNSUPPORTED")
     width, height = A4
     c = canvas.Canvas(str(out_path), pagesize=A4, invariant=1, pageCompression=0)
-    meta = ast.get("metadata") or {}
     c.setTitle(meta.get("title", "H03 Knowledge Product"))
     c.setAuthor(meta.get("author", "Digital Income Empire - H03"))
     c.setSubject(meta.get("subject", "H03 deterministic knowledge product"))
     c.setCreator("DIE H03 PDF Factory v1")
-    margin = 54
+    margin = profile["margin_pt"]
     usable = width - margin * 2
     page_no = 1
 
     def footer() -> None:
-        c.setFont("Helvetica", 8)
-        c.drawRightString(width - margin, 28, f"H03 internal proof | page {page_no}")
+        fp = profile["footer"]
+        c.setFont(_font(typography, fp["font_role"]), fp["size_pt"])
+        c.drawRightString(width - margin, profile["footer_y_pt"], f"{profile['footer_label']} | page {page_no}")
 
-    # Cover
-    c.setFont("Helvetica-Bold", 20)
-    y = height - 120
-    for line in _wrap(meta.get("title", "H03 Knowledge Product"), "Helvetica-Bold", 20, usable):
+    title_style = profile["cover_title"]
+    title_font = _font(typography, title_style["font_role"])
+    c.setFont(title_font, title_style["size_pt"])
+    y = height - profile["cover_top_pt"]
+    for line in _wrap(meta.get("title", "H03 Knowledge Product"), title_font, title_style["size_pt"], usable):
         c.drawString(margin, y, line)
-        y -= 27
+        y -= title_style["leading_pt"]
     subtitle = meta.get("subtitle", "")
     if subtitle:
         y -= 8
-        c.setFont("Helvetica", 11)
-        for line in _wrap(subtitle, "Helvetica", 11, usable):
+        sub = profile["cover_subtitle"]
+        sub_font = _font(typography, sub["font_role"])
+        c.setFont(sub_font, sub["size_pt"])
+        for line in _wrap(subtitle, sub_font, sub["size_pt"], usable):
             c.drawString(margin, y, line)
-            y -= 16
+            y -= sub["leading_pt"]
     y -= 28
-    c.setFont("Helvetica", 9)
+    cm = profile["cover_meta"]
+    c.setFont(_font(typography, cm["font_role"]), cm["size_pt"])
     c.drawString(margin, y, f"Product: {ast['product_id']}")
-    c.drawString(margin, y - 14, f"Knowledge package: {ast['knowledge_package_id']}")
+    c.drawString(margin, y - cm["leading_pt"], f"Knowledge package: {ast['knowledge_package_id']}")
     footer()
     c.showPage()
     page_no += 1
     y = height - margin
 
     for block in ast["blocks"]:
-        if block["type"] == "heading":
-            font, size, leading, gap = "Helvetica-Bold", 13, 17, 10
-        else:
-            font, size, leading, gap = "Helvetica", 10, 14, 8
+        style = profile["heading"] if block["type"] == "heading" else profile["paragraph"]
+        font = _font(typography, style["font_role"])
+        size, leading, gap = style["size_pt"], style["leading_pt"], style["gap_pt"]
         lines = _wrap(block["text"], font, size, usable)
         needed = len(lines) * leading + gap
-        if y - needed < 48:
+        if y - needed < profile["page_break_floor_pt"]:
             footer()
             c.showPage()
             page_no += 1
@@ -172,7 +213,7 @@ def render_pdf(ast: dict[str, Any], out_path: Path) -> dict[str, Any]:
 
     footer()
     c.save()
-    return {"page_count": page_no, "path": str(out_path)}
+    return {"page_count": page_no, "path": str(out_path), "template_id": selected}
 
 
 def validate_pdf(pdf_path: Path, expected_title: str, render_dir: Path) -> dict[str, Any]:

@@ -1,0 +1,141 @@
+{
+  "schema_version": "die.h03.pdf-template-registry.v1",
+  "default_template_id": "guide.clean.v1",
+  "templates": {
+    "guide.clean.v1": {
+      "supported_forms": [
+        "guide",
+        "ebook",
+        "handbook",
+        "playbook",
+        "research_brief"
+      ],
+      "page_size": "A4",
+      "margin_pt": 54,
+      "cover_top_pt": 120,
+      "page_break_floor_pt": 48,
+      "footer_y_pt": 28,
+      "footer_label": "H03 internal proof",
+      "cover_title": {
+        "font_role": "display_bold",
+        "size_pt": 20,
+        "leading_pt": 27
+      },
+      "cover_subtitle": {
+        "font_role": "body",
+        "size_pt": 11,
+        "leading_pt": 16
+      },
+      "cover_meta": {
+        "font_role": "body",
+        "size_pt": 9,
+        "leading_pt": 14
+      },
+      "heading": {
+        "font_role": "heading_bold",
+        "size_pt": 13,
+        "leading_pt": 17,
+        "gap_pt": 10
+      },
+      "paragraph": {
+        "font_role": "body",
+        "size_pt": 10,
+        "leading_pt": 14,
+        "gap_pt": 8
+      },
+      "footer": {
+        "font_role": "body",
+        "size_pt": 8
+      }
+    },
+    "report.compact.v1": {
+      "supported_forms": [
+        "report",
+        "research_brief",
+        "reference_sheet"
+      ],
+      "page_size": "A4",
+      "margin_pt": 42,
+      "cover_top_pt": 92,
+      "page_break_floor_pt": 42,
+      "footer_y_pt": 22,
+      "footer_label": "H03 report",
+      "cover_title": {
+        "font_role": "display_bold",
+        "size_pt": 18,
+        "leading_pt": 23
+      },
+      "cover_subtitle": {
+        "font_role": "body",
+        "size_pt": 10,
+        "leading_pt": 14
+      },
+      "cover_meta": {
+        "font_role": "body",
+        "size_pt": 8,
+        "leading_pt": 12
+      },
+      "heading": {
+        "font_role": "heading_bold",
+        "size_pt": 12,
+        "leading_pt": 15,
+        "gap_pt": 7
+      },
+      "paragraph": {
+        "font_role": "body",
+        "size_pt": 9,
+        "leading_pt": 12,
+        "gap_pt": 5
+      },
+      "footer": {
+        "font_role": "body",
+        "size_pt": 7
+      }
+    },
+    "worksheet.spacious.v1": {
+      "supported_forms": [
+        "worksheet",
+        "workbook",
+        "checklist",
+        "template"
+      ],
+      "page_size": "A4",
+      "margin_pt": 66,
+      "cover_top_pt": 132,
+      "page_break_floor_pt": 58,
+      "footer_y_pt": 30,
+      "footer_label": "H03 worksheet",
+      "cover_title": {
+        "font_role": "display_bold",
+        "size_pt": 19,
+        "leading_pt": 26
+      },
+      "cover_subtitle": {
+        "font_role": "body",
+        "size_pt": 11,
+        "leading_pt": 17
+      },
+      "cover_meta": {
+        "font_role": "body",
+        "size_pt": 9,
+        "leading_pt": 15
+      },
+      "heading": {
+        "font_role": "heading_bold",
+        "size_pt": 13,
+        "leading_pt": 19,
+        "gap_pt": 13
+      },
+      "paragraph": {
+        "font_role": "body",
+        "size_pt": 10,
+        "leading_pt": 16,
+        "gap_pt": 12
+      },
+      "footer": {
+        "font_role": "body",
+        "size_pt": 8
+      }
+    }
+  }
+}

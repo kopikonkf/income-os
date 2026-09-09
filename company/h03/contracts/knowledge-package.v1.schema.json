@@ -65,6 +65,29 @@
               }
             }
           }
+        },
+        "source_uri": {
+          "type": "string"
+        },
+        "raw_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "normalized_text_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "acquisition_method": {
+          "type": "string"
+        },
+        "rights_policy": {
+          "type": "object"
+        },
+        "review": {
+          "type": "object"
+        },
+        "canonical_truth": {
+          "type": "boolean"
         }
       }
     },
@@ -96,5 +119,32 @@
         }
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "rights_status": {
+            "const": "GOVERNED_EXTERNAL"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "source_packet": {
+            "required": [
+              "source_id",
+              "rights_status",
+              "source_uri",
+              "raw_sha256",
+              "normalized_text_sha256",
+              "rights_policy",
+              "review",
+              "evidence_units"
+            ]
+          }
+        }
+      }
+    }
+  ]
 }

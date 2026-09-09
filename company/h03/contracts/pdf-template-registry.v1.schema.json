@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.pdf-template-registry.v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "default_template_id",
+    "templates"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.h03.pdf-template-registry.v1"
+    },
+    "default_template_id": {
+      "type": "string"
+    },
+    "templates": {
+      "type": "object",
+      "minProperties": 1
+    }
+  }
+}
