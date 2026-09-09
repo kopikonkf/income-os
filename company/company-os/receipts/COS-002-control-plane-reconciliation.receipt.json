@@ -1,0 +1,42 @@
+{
+    "schema":  "die.company-os.cos002.control-plane-reconciliation.receipt.v1",
+    "task_id":  "COS-002",
+    "status":  "PASS",
+    "observed_at":  "2026-09-09",
+    "source_main":  "1e85fda915a4059e03f74985e18694a17d2f7587",
+    "artifacts":  [
+                      {
+                          "path":  "company/company-os/COS-002_OPERATIONAL_CONTROL_PLANE_RECONCILIATION_V1.md",
+                          "sha256":  "470acd4a895004ab5d87d96b3eba4966486d9c4b5fc1261020efdc454a7a8659"
+                      },
+                      {
+                          "path":  "company/company-os/COS-002_FOUNDER_RATIFICATION_PACKET_V1.md",
+                          "sha256":  "599db14da93aa16bbc50c6c55b256fd54a2d0e77d39ae18a0db33230db4eb582"
+                      }
+                  ],
+    "standing":  {
+                     "founder_sovereignty":  "PRESERVED",
+                     "autonomy_level":  "A0_UNCHANGED",
+                     "canonical_state_writer":  "die-state-manager_PRESERVED",
+                     "current_canonical_operational_control_plane":  "hermes-operator_UNCHANGED_PENDING_RATIFICATION",
+                     "mission_control":  "PROMOTION_CANDIDATE",
+                     "hermes_disposition":  "DEFER_TO_OPS-002",
+                     "architect_dev_runtime_separation":  "REQUIRED",
+                     "aether":  "OUT_OF_SCOPE_KEEP_EXTERNAL"
+                 },
+    "promotion_gates":  [
+                            "MC-008J_FULLY_UNATTENDED_24X7_ACCEPTED",
+                            "MC-009D_DELEGATED_EXECUTION_ACCEPTED",
+                            "STATE_MANAGER_WRITER_DOMAIN_CONFORMANCE_PASS",
+                            "FOUNDER_RATIFICATION_COS002_PACKET"
+                        ],
+    "authority":  {
+                      "constitutional_mutation":  false,
+                      "authority_transfer":  false,
+                      "autonomy_promotion":  false,
+                      "spend_authorized":  false,
+                      "external_submission_authorized":  false,
+                      "credential_mutation_authorized":  false,
+                      "hermes_retirement_authorized":  false
+                  }
+}
