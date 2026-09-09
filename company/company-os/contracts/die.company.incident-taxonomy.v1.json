@@ -1,0 +1,137 @@
+{
+    "schema":  "die.company.incident-taxonomy.v1",
+    "status":  "ACCEPTED_DOCTRINE_NO_NEW_RUNTIME_AUTHORITY",
+    "levels":  {
+                   "L0":  {
+                              "name":  "TRANSIENT",
+                              "handler":  "deterministic retry/backoff/failover policy",
+                              "engineering_mutation":  false,
+                              "authority_expansion":  false,
+                              "same_durable_work_required":  true
+                          },
+                   "L1":  {
+                              "name":  "OPERATIONAL_RECOVERY",
+                              "handler":  "allowlisted deterministic recovery playbook",
+                              "engineering_mutation":  false,
+                              "authority_expansion":  false,
+                              "default_max_playbook_executions_per_fingerprint":  2,
+                              "default_recurrence_window_minutes":  60,
+                              "functional_verification_required":  true
+                          },
+                   "L2":  {
+                              "name":  "ENGINEERING",
+                              "handler":  "architect cognition plus task-scoped delegated repair when authorized",
+                              "dedupe_repair_child":  true,
+                              "unrestricted_dev_inheritance":  false,
+                              "current_a0_unrestricted_auto_repair":  false,
+                              "parent_business_task_resumes_after_repair":  true
+                          },
+                   "L3":  {
+                              "name":  "AUTHORITY",
+                              "handler":  "Founder or explicitly ratified authority",
+                              "automatic_risky_side_effect_retry":  false,
+                              "silence_is_approval":  false
+                          }
+               },
+    "severity":  {
+                     "S0":  "INFO",
+                     "S1":  "DEGRADED",
+                     "S2":  "BLOCKED",
+                     "S3":  "MAJOR",
+                     "S4":  "CRITICAL"
+                 },
+    "lifecycle":  [
+                      "DETECTED",
+                      "CLASSIFIED",
+                      "CONTAINED",
+                      "RECOVERING",
+                      "WAITING_CAPACITY",
+                      "REPAIR_REQUIRED",
+                      "WAITING_AUTHORITY",
+                      "VERIFYING",
+                      "RESOLVED",
+                      "ESCALATED",
+                      "QUARANTINED"
+                  ],
+    "fingerprint_fields":  [
+                               "policy_version",
+                               "holding_runtime_component",
+                               "operation",
+                               "normalized_failure_class",
+                               "affected_resource_identity",
+                               "side_effect_class"
+                           ],
+    "anti_loop":  {
+                      "retry_budget_persists_across_restart":  true,
+                      "l1_budget_persists_across_restart":  true,
+                      "same_fingerprint_after_l1_within_window_promotes_to":  "L2",
+                      "failure_class_not_proven_retry_safe":  "L2_OR_L3",
+                      "attempt_budget_exhausted":  "ESCALATE",
+                      "compensating_business_task_for_recovery":  "FORBIDDEN"
+                  },
+    "external_side_effect_rule":  {
+                                      "reconciliation_before_retry":  true,
+                                      "ambiguous_or_unreachable":  "STOP_REVIEW",
+                                      "definitely_committed":  "RECONCILE_NO_DUPLICATE_ACTION",
+                                      "definitely_not_committed":  "NORMAL_BOUNDED_RETRY_POLICY_MAY_APPLY"
+                                  },
+    "stale_callback_rule":  {
+                                "attempt_bound_to":  [
+                                                         "task_id",
+                                                         "attempt_no",
+                                                         "owner_identity",
+                                                         "lease_or_capability_token"
+                                                     ],
+                                "late_superseded_callback":  "REJECT",
+                                "lease_mismatch":  "FAIL_CLOSED",
+                                "duplicate_finalization":  "IGNORE_AND_RECORD"
+                            },
+    "direct_l3_classes":  [
+                              "FOUNDER_OR_CONSTITUTIONAL_GATE",
+                              "SPEND_OR_VENDOR_COMMITMENT_OUTSIDE_RATIFIED_ENVELOPE",
+                              "CREDENTIAL_PERMISSION_ACCOUNT_MUTATION",
+                              "AMBIGUOUS_NON_IDEMPOTENT_EXTERNAL_SIDE_EFFECT",
+                              "UNAUTHORIZED_DESTRUCTIVE_OR_HISTORY_REWRITE",
+                              "IDENTITY_NORTHSTAR_MISSION_CONSTITUTION_AETHER_DNA_CHANGE",
+                              "AMBIGUOUS_RESOURCE_OWNERSHIP_WITH_CORRUPTION_RISK",
+                              "SECURITY_OR_SECRET_COMPROMISE",
+                              "DATA_LOSS_INTEGRITY_TRADEOFF",
+                              "LAST_CONTROL_OR_ROLLBACK_PATH_DISABLE",
+                              "AETHER_DIE_CONSTITUTIONAL_CONFLICT"
+                          ],
+    "incident_receipt_required_fields":  [
+                                             "incident_id",
+                                             "fingerprint",
+                                             "policy_version",
+                                             "first_seen_at",
+                                             "last_seen_at",
+                                             "holding_id",
+                                             "runtime_id",
+                                             "component",
+                                             "parent_task_id",
+                                             "error_code",
+                                             "normalized_failure_class",
+                                             "level",
+                                             "severity",
+                                             "authority_basis",
+                                             "side_effect_class",
+                                             "attempt_lineage",
+                                             "recovery_or_repair_ref",
+                                             "pre_recovery_observations",
+                                             "post_recovery_functional_verification",
+                                             "resume_point",
+                                             "evidence_refs",
+                                             "recurrence_count",
+                                             "resolution",
+                                             "resolved_at"
+                                         ],
+    "current_authority_boundary":  {
+                                       "die_autonomy":  "A0",
+                                       "architect_dev":  "FOUNDER_INVOKED_NON_RUNTIME",
+                                       "runtime_chatgpt_architect":  "COGNITION_NO_UNRESTRICTED_DEV_INHERITANCE",
+                                       "future_autonomous_l2_repair_requires":  [
+                                                                                    "MC-009D_ACCEPTED_TASK_SCOPED_DELEGATION",
+                                                                                    "APPLICABLE_RATIFIED_GOVERNANCE"
+                                                                                ]
+                                   }
+}
