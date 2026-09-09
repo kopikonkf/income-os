@@ -230,3 +230,15 @@ The canary found and fixed a hyphenated research-question ID parsing bug and exe
 Validation: targeted `9/9 PASS`; full H03 `119/119 PASS`.
 
 New READY frontier: `H03-REV-001` independent product review + Founder Review Card, and `H03-SCALE-001` bounded internal throughput/resilience soak.
+
+
+---
+
+## H03 Batch — REV-001 + SCALE-001 — DONE/PASS — 2026-09-09
+
+- `H03-REV-001`: independent reviewer fixture separated from dominant producer. Founder Review Card decision `PASS` permits commerce-package drafting only; Founder publication authority remains required and external publication authorization remains false.
+- `H03-SCALE-001`: capacity-sized non-live soak derived safe capacity 3 products from 6 fixture slots / 2 section jobs per product. Three local products (guide/checklist/reference sheet) completed; one injected rate-limit recovered through alternate-worker fallback; terminal failure rate 0; backpressure surfaced at the slot limit.
+
+Validation: targeted review/scale `4/4 PASS`; full H03 regression `123/123 PASS`; graph/JSON validation PASS.
+
+New dependency-valid READY frontier: H03-COM-001.

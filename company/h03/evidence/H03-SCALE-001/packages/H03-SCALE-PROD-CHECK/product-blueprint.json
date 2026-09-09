@@ -1,0 +1,37 @@
+{
+  "form": "checklist",
+  "knowledge_package_id": "H03-KP-ORG001-001",
+  "metadata": {
+    "desired_outcome": "reduce people-search exposure with a practical reusable reference",
+    "form_selection_reason_codes": [
+      "FAST_EXECUTION_VERIFICATION"
+    ],
+    "format_selection_policy": "OUTCOME_ORIENTED_V1",
+    "page_count_target": null,
+    "planning_profile_id": "PLAN-H03-SCALE-PROD-CHECK",
+    "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+    "template_id": "worksheet.spacious.v1"
+  },
+  "product_id": "H03-SCALE-PROD-CHECK",
+  "schema_version": "die.h03.product-blueprint.v1",
+  "sections": [
+    {
+      "claim_ids": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "heading": "Removal checklist"
+    },
+    {
+      "claim_ids": [
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "heading": "Follow-up checklist"
+    }
+  ],
+  "subtitle": "",
+  "title": "Scale Soak Opt-Out Checklist"
+}

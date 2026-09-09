@@ -1,0 +1,69 @@
+{
+  "buyer": "privacy-conscious consumer",
+  "decision": "PASS",
+  "decision_reasons": [
+    "Product promise and section content remain inside the governed FTC-backed claim set.",
+    "The guide states the important limitation that people-search opt-out reduces exposure but does not erase public records.",
+    "Demand/WTP is supported at MEDIUM by paid substitutes and usage proxies without being overstated as revealed individual spend.",
+    "Technical package QA passed and the product remains local/unpublished pending Founder action."
+  ],
+  "evidence_confidence": "HIGH",
+  "external_publication_authorized": false,
+  "founder_action_required": true,
+  "holding_id": "H03",
+  "market_wtp_basis": {
+    "evidence_ids": [
+      "DMD-PAID-SUBSTITUTE",
+      "DMD-USAGE-PROXY",
+      "DMD-REPEATED-PAIN"
+    ],
+    "wtp_assessment": "MEDIUM"
+  },
+  "problem": "manual opt-outs are fragmented across many sites and can be time-consuming to repeat and monitor",
+  "product_id": "H03-PROD-ORG001-001",
+  "product_preview": {
+    "form": "guide",
+    "package_status": "LOCAL_SALE_READY_UNREVIEWED",
+    "page_count": 2,
+    "sections": [
+      "1. Find your exposed listing",
+      "2. Submit the opt-out",
+      "3. Repeat across sites",
+      "4. Recheck periodically",
+      "5. Know the limits"
+    ],
+    "title": "DIY People-Search Opt-Out Guide"
+  },
+  "promise": "a concise repeatable DIY sequence for finding, opting out, and rechecking people-search listings while understanding the limits of removal",
+  "review_card_id": "H03-RC-H03-PROD-ORG001-001",
+  "reviewer_observation": {
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "provider_id": "fixture-reviewer-independent",
+    "separated_from_dominant_producer": true
+  },
+  "rights_flags": [
+    {
+      "code": "REFERENCE_ONLY_SOURCE",
+      "detail": "FTC source is governed reference-only; verbatim commercial reuse is not authorized.",
+      "severity": "LOW"
+    },
+    {
+      "code": "MARKET_SOURCES_NOT_PRODUCT_CONTENT",
+      "detail": "Incogni/DeleteMe evidence is restricted to market/WTP basis and excluded from product Knowledge Package.",
+      "severity": "LOW"
+    }
+  ],
+  "risk_flags": [
+    {
+      "code": "LIVE_WORKFORCE_NOT_PROVEN",
+      "detail": "ORG-001 cognition used NONLIVE_ROLE_FIXTURE workers; browser/provider workforce still requires future live preflight.",
+      "severity": "MEDIUM"
+    },
+    {
+      "code": "CATEGORY_SCOPE_LIMITED",
+      "detail": "Guide covers people-search opt-out workflow, not comprehensive identity/privacy remediation.",
+      "severity": "LOW"
+    }
+  ],
+  "schema_version": "die.h03.founder-review-card.v1"
+}

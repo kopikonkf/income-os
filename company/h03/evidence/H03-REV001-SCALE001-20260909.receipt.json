@@ -1,0 +1,22 @@
+{
+  "schema_version": "die.h03.batch-receipt.v1",
+  "batch_id": "H03-REV001-SCALE001-20260909",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "tasks_done": [
+    "H03-REV-001",
+    "H03-SCALE-001"
+  ],
+  "validation": {
+    "targeted": "4/4 PASS",
+    "h03_regression": "123/123 PASS",
+    "ready_frontier": [
+      "H03-COM-001"
+    ]
+  },
+  "review_decision": "PASS",
+  "founder_publication_authority_required": true,
+  "scale_execution_mode": "NONLIVE_ROLE_FIXTURE",
+  "external_publication": false,
+  "paid_ads": false
+}

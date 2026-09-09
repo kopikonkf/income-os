@@ -1,0 +1,100 @@
+[
+  {
+    "blocks": [
+      {
+        "block_id": "H03-SCALE-PROD-REF-B0101",
+        "claim_ids": [
+          "C1"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0208"
+        ],
+        "kind": "BULLET",
+        "text": "Start by searching a people-search site for your name or other identifying information such as a phone number or address."
+      },
+      {
+        "block_id": "H03-SCALE-PROD-REF-B0102",
+        "claim_ids": [
+          "C2"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0208"
+        ],
+        "kind": "BULLET",
+        "text": "When you find a report about yourself, locate the site's opt-out or removal instructions and follow them."
+      },
+      {
+        "block_id": "H03-SCALE-PROD-REF-B0103",
+        "claim_ids": [
+          "C3"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0206"
+        ],
+        "kind": "BULLET",
+        "text": "Repeat the opt-out process across other relevant people-search sites; doing this one by one can be time-consuming."
+      }
+    ],
+    "content_batch_id": "H03-CB-H03-SCALE-PROD-REF-001",
+    "holding_id": "H03",
+    "knowledge_package_id": "H03-KP-ORG001-001",
+    "producer_observation": {
+      "execution_mode": "NONLIVE_ROLE_FIXTURE",
+      "provider_id": "SCALE_FIXTURE"
+    },
+    "product_id": "H03-SCALE-PROD-REF",
+    "schema_version": "die.h03.content-block-batch.v1",
+    "section_heading": "Quick action reference",
+    "section_id": "SEC-001",
+    "truth_status": "DERIVED_SEMANTIC_CONTENT"
+  },
+  {
+    "blocks": [
+      {
+        "block_id": "H03-SCALE-PROD-REF-B0201",
+        "claim_ids": [
+          "C4"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0210"
+        ],
+        "kind": "BULLET",
+        "text": "Periodically recheck people-search sites and submit new opt-out requests if your information reappears."
+      },
+      {
+        "block_id": "H03-SCALE-PROD-REF-B0202",
+        "claim_ids": [
+          "C5"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0175"
+        ],
+        "kind": "BULLET",
+        "text": "Opting out of people-search sites does not delete information from public records, so the workflow reduces exposure rather than guaranteeing total deletion."
+      },
+      {
+        "block_id": "H03-SCALE-PROD-REF-B0203",
+        "claim_ids": [
+          "C6"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0199"
+        ],
+        "kind": "BULLET",
+        "text": "Consumers can perform people-search opt-outs themselves for free or pay a service to perform the work on their behalf."
+      }
+    ],
+    "content_batch_id": "H03-CB-H03-SCALE-PROD-REF-002",
+    "holding_id": "H03",
+    "knowledge_package_id": "H03-KP-ORG001-001",
+    "producer_observation": {
+      "execution_mode": "NONLIVE_ROLE_FIXTURE",
+      "provider_id": "SCALE_FIXTURE"
+    },
+    "product_id": "H03-SCALE-PROD-REF",
+    "schema_version": "die.h03.content-block-batch.v1",
+    "section_heading": "Limits and follow-up",
+    "section_id": "SEC-002",
+    "truth_status": "DERIVED_SEMANTIC_CONTENT"
+  }
+]

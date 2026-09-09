@@ -1,0 +1,21 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-REV-001",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "reviewer_separated": true,
+    "reviewer_provider_id": "fixture-reviewer-independent",
+    "dominant_producer_provider_id": "fixture-producer-a",
+    "decision": "PASS",
+    "evidence_confidence": "HIGH",
+    "founder_action_required": true,
+    "external_publication_authorized": false
+  },
+  "validation": {
+    "targeted_review_scale": "4/4 PASS",
+    "h03_regression": "123/123 PASS",
+    "graph_frontier": "H03-COM-001",
+    "json_parse": "PASS"
+  }
+}

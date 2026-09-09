@@ -603,27 +603,33 @@
       "id": "H03-REV-001",
       "track": "REVIEW",
       "title": "Independent product review + Founder Review Card",
-      "status": "READY",
+      "status": "DONE",
       "priority": 775,
       "depends_on": [
         "H03-ORG-001"
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Produce concise review card with buyer/problem/promise, product preview, evidence confidence, risk/rights flags, market/WTP basis and PASS/REVISE/REJECT decision surface. Prefer reviewer separation from dominant producer where capacity permits."
+      "acceptance": "Produce concise review card with buyer/problem/promise, product preview, evidence confidence, risk/rights flags, market/WTP basis and PASS/REVISE/REJECT decision surface. Prefer reviewer separation from dominant producer where capacity permits.",
+      "artifact": "company/h03/contracts/founder-review-card.v1.schema.json + company/h03/lib/review_engine.py + company/h03/evidence/H03-REV-001",
+      "result": {
+        "status": "PASS",
+        "decision": "PASS",
+        "reviewer_separated": true,
+        "external_publication_authorized": false
+      }
     },
     {
       "id": "H03-COM-001",
       "track": "COMMERCE",
       "title": "Commerce Package contract for Gumroad/Etsy-ready listings",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 760,
       "depends_on": [
         "H03-REV-001"
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "blocked_reason": "DEPENDENCIES_NOT_DONE",
       "acceptance": "Generate platform-neutral offer identity plus Gumroad/Etsy package fields: title, promise, description, preview, files, tags/keywords, FAQ, pricing hypothesis, disclosure/rights metadata and listing lineage. No live publication."
     },
     {
@@ -720,7 +726,7 @@
       "id": "H03-SCALE-001",
       "track": "SCALE",
       "title": "Bounded multi-product internal throughput and resilience soak",
-      "status": "READY",
+      "status": "DONE",
       "priority": 620,
       "depends_on": [
         "H03-ORG-001",
@@ -728,10 +734,19 @@
       ],
       "risk": "LOW",
       "execution_mode": "tool_native",
-      "acceptance": "Run a bounded internal batch sized by current safe capacity, not a fixed product-count target. Measure throughput, queue latency, terminal failure rate, retry count, fallback success, provider/profile bottlenecks and resource usage; no external publication."
+      "acceptance": "Run a bounded internal batch sized by current safe capacity, not a fixed product-count target. Measure throughput, queue latency, terminal failure rate, retry count, fallback success, provider/profile bottlenecks and resource usage; no external publication.",
+      "artifact": "company/h03/contracts/scale-soak-report.v1.schema.json + company/h03/lib/scale_soak.py + company/h03/evidence/H03-SCALE-001",
+      "result": {
+        "status": "PASS",
+        "safe_product_capacity": 3,
+        "product_count": 3,
+        "terminal_failure_rate": 0.0,
+        "fallback_success_count": 1,
+        "execution_mode": "NONLIVE_ROLE_FIXTURE"
+      }
     }
   ],
-  "revision": "2026-09-09 H03-ORG-001 PASS: first bounded real-evidence problem-to-package internal canary; REV-001 + SCALE-001 READY",
+  "revision": "2026-09-09 REV-001 + SCALE-001 PASS; independent Founder Review Card and capacity-sized multi-product resilience soak complete",
   "production_organism": {
     "control_plane": "Mission Control supervises batches/products, recovery, gates and durable standing; it does not execute every prompt.",
     "worker_plane": "H03 role queues dispatch normalized cognition jobs through web-ai-adapter; MCP is not a worker hot-path requirement.",
@@ -770,8 +785,7 @@
   },
   "current_frontier": {
     "ready": [
-      "H03-REV-001",
-      "H03-SCALE-001"
+      "H03-COM-001"
     ],
     "parallel_lanes": {
       "economic_intelligence": "H03-OPP-001 -> H03-OPP-002 + H03-DMD-001 -> H03-OPP-003 -> H03-RSCH-001",

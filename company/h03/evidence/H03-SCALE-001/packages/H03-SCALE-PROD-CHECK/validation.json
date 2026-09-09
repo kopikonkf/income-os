@@ -1,0 +1,33 @@
+{
+  "metadata_title": "Scale Soak Opt-Out Checklist",
+  "page_count": 2,
+  "text_chars": 928,
+  "visual_pages": [
+    {
+      "content_bbox": [
+        82,
+        147,
+        661,
+        1018
+      ],
+      "height": 1053,
+      "nonwhite_ratio": 0.007917,
+      "page": 1,
+      "png_sha256": "b2531fb468b75ea3bc760e7084ea236c421dee944a9da0906b2a00ac2549b758",
+      "width": 745
+    },
+    {
+      "content_bbox": [
+        82,
+        71,
+        662,
+        1018
+      ],
+      "height": 1053,
+      "nonwhite_ratio": 0.032435,
+      "page": 2,
+      "png_sha256": "b380a4bfb24102cf22ba321c0d7085e4bda4dd15db79012122bfd3dc56086021",
+      "width": 745
+    }
+  ]
+}

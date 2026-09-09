@@ -1,0 +1,115 @@
+{
+  "capacity_basis": {
+    "provider_slots": {
+      "fixture-producer-a": 4,
+      "fixture-producer-b": 2
+    },
+    "safe_product_capacity": 3,
+    "sections_per_product": 2,
+    "sizing_rule": "floor(total_slots/sections_per_product)",
+    "total_slots": 6
+  },
+  "execution_mode": "NONLIVE_ROLE_FIXTURE",
+  "external_publication": false,
+  "fallback_success_count": 1,
+  "holding_id": "H03",
+  "package_receipts": [
+    {
+      "content_batch_ids": [
+        "H03-CB-H03-SCALE-PROD-GUIDE-001",
+        "H03-CB-H03-SCALE-PROD-GUIDE-002"
+      ],
+      "external_publication": false,
+      "form": "guide",
+      "holding_id": "H03",
+      "knowledge_package_id": "H03-KP-ORG001-001",
+      "manifest_file": "manifest.json",
+      "page_count": 2,
+      "pdf_file": "scale-soak-diy-opt-out-guide.pdf",
+      "pdf_sha256": "36fda9c9178b510ceeb551ac9c27446be8c672ad8759655907e2f1e10ceecaf8",
+      "product_id": "H03-SCALE-PROD-GUIDE",
+      "schema_version": "die.h03.local-product-package.v1",
+      "status": "LOCAL_SALE_READY_UNREVIEWED",
+      "title": "Scale Soak DIY Opt-Out Guide",
+      "validation_file": "validation.json",
+      "zip_file": "scale-soak-diy-opt-out-guide.zip",
+      "zip_sha256": "b24a677ef1408405e431e5312e900b06d8b9a989380ab54494f6cd92cd81b1fa"
+    },
+    {
+      "content_batch_ids": [
+        "H03-CB-H03-SCALE-PROD-CHECK-001",
+        "H03-CB-H03-SCALE-PROD-CHECK-002"
+      ],
+      "external_publication": false,
+      "form": "checklist",
+      "holding_id": "H03",
+      "knowledge_package_id": "H03-KP-ORG001-001",
+      "manifest_file": "manifest.json",
+      "page_count": 2,
+      "pdf_file": "scale-soak-opt-out-checklist.pdf",
+      "pdf_sha256": "72adeddb52ec9286a2690ef0ac3f39f4f23c0dfa6bb44602a523488235247496",
+      "product_id": "H03-SCALE-PROD-CHECK",
+      "schema_version": "die.h03.local-product-package.v1",
+      "status": "LOCAL_SALE_READY_UNREVIEWED",
+      "title": "Scale Soak Opt-Out Checklist",
+      "validation_file": "validation.json",
+      "zip_file": "scale-soak-opt-out-checklist.zip",
+      "zip_sha256": "6d160e1762123eb007e843404918f099445de85c405504b6afd3041c595f53c5"
+    },
+    {
+      "content_batch_ids": [
+        "H03-CB-H03-SCALE-PROD-REF-001",
+        "H03-CB-H03-SCALE-PROD-REF-002"
+      ],
+      "external_publication": false,
+      "form": "reference_sheet",
+      "holding_id": "H03",
+      "knowledge_package_id": "H03-KP-ORG001-001",
+      "manifest_file": "manifest.json",
+      "page_count": 2,
+      "pdf_file": "scale-soak-opt-out-reference.pdf",
+      "pdf_sha256": "9142010922481906ff3f4d5f5c334bf8d91b8b44eb1d7947bfa001628581e920",
+      "product_id": "H03-SCALE-PROD-REF",
+      "schema_version": "die.h03.local-product-package.v1",
+      "status": "LOCAL_SALE_READY_UNREVIEWED",
+      "title": "Scale Soak Opt-Out Reference",
+      "validation_file": "validation.json",
+      "zip_file": "scale-soak-opt-out-reference.zip",
+      "zip_sha256": "ca18311b50d57e59d2c282b300b651324818a5fa872fff6fec32c523d5b6d46c"
+    }
+  ],
+  "product_count": 3,
+  "profile_bottlenecks": [
+    {
+      "backpressure_action": "PAUSE_NEW_DISPATCH",
+      "kind": "CAPACITY_LIMIT",
+      "observed_slots": 6,
+      "profile_shard_id": "fixture-scale-shard"
+    }
+  ],
+  "provider_bottlenecks": [
+    {
+      "kind": "RATE_LIMITED",
+      "provider_id": "fixture-producer-a",
+      "recovered_by": "fixture-producer-b"
+    }
+  ],
+  "queue_latency_ms": {
+    "max": 1.5237,
+    "mean": 1.328267,
+    "min": 1.1229
+  },
+  "resource_usage": {
+    "cpu_seconds": 0.34375,
+    "current_tracemalloc_bytes": 873650,
+    "peak_tracemalloc_bytes": 5592839,
+    "wall_seconds": 0.446124
+  },
+  "retry_count": 1,
+  "schema_version": "die.h03.scale-soak-report.v1",
+  "soak_id": "H03-SCALE-SOAK-001",
+  "status": "PASS",
+  "terminal_failure_rate": 0.0,
+  "throughput_products_per_second": 6.724582,
+  "worker_job_count": 6
+}
