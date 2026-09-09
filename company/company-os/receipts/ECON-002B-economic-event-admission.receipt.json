@@ -1,0 +1,41 @@
+{
+  "schema": "die.company-os.econ002b.economic-event-admission.receipt.v1",
+  "task_id": "ECON-002B",
+  "status": "PASS",
+  "observed_at": "2026-09-09",
+  "source_main": "70a88816707d01b91db69479b604862b0b9298cb",
+  "artifacts": [
+    {
+      "path": "company/company-os/ECON-002B_ECONOMIC_EVENT_ADMISSION_GATEWAY_V1.md",
+      "sha256": "21649035c7207d89940179e9ddc10adbec44ac6dbd725c51bf4a80aae84d5bfe"
+    },
+    {
+      "path": "company/company-os/contracts/die.economic-ledger.admission-gateway.v1.json",
+      "sha256": "98c002c8ae8a9bc7560547844fc65be72a83010c569e4974d31d866363cc7f23"
+    },
+    {
+      "path": "company/company-os/lib/economic_admission.py",
+      "sha256": "58402aadaf98583aef5b9fe0ca98e407a570ec8fd7ac463dfb6a3f3654e9729e"
+    },
+    {
+      "path": "company/company-os/tests/test_economic_admission.py",
+      "sha256": "b5deaaa09a3b62dac8df441ea42e8f3456744b8db6f365d79a320dca119e8fa7"
+    }
+  ],
+  "acceptance": {
+    "focused_tests": "8_PASSED",
+    "mode": "SHADOW_VALIDATION_ONLY",
+    "writer_coupling": false,
+    "filesystem_write": false,
+    "canonical_commit_authorized": false,
+    "live_ingestion_authorized": false,
+    "identity_registry_change": false
+  },
+  "authority": {
+    "spend": false,
+    "payment": false,
+    "capital_allocation": false,
+    "credential_access": false,
+    "external_submission": false
+  }
+}
