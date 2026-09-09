@@ -8,12 +8,14 @@
       "x",
       "threads",
       "instagram",
+      "facebook_page",
+      "facebook_group",
       "tiktok",
       "youtube",
       "pinterest",
       "reddit"
     ],
-    "atom_count": 7,
+    "atom_count": 9,
     "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
     "destination_listing_channels": [
       "google_play_books",
@@ -22,7 +24,9 @@
       "fourthwall",
       "ko_fi",
       "lemon_squeezy",
-      "payhip"
+      "payhip",
+      "sellfy",
+      "shopify"
     ],
     "evidence_bound": true,
     "paid_ads_enabled": false,
@@ -37,6 +41,9 @@
       "H03-GRW-002"
     ],
     "dist_status": "WAITING_FOUNDER",
-    "json_parse": "PASS"
-  }
+    "json_parse": "PASS",
+    "h03_regression_after_facebook_amendment": "141/141 PASS",
+    "growth_surface_count": 9
+  },
+  "amendment": "2026-09-09 Facebook added as separate facebook_page and facebook_group acquisition surfaces"
 }

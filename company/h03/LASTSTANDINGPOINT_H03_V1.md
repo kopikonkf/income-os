@@ -266,3 +266,18 @@ ATTR-001 adds the attribution spine from Problem Seed through product, commerce 
 GRW-001 adds seven channel-native organic content surfaces (X, Threads, Instagram, TikTok, YouTube, Pinterest, Reddit), each backed by accepted Knowledge Package claim/evidence lineage and ATTR creative identity. One campaign fans out to seven creatives and seven planned commerce destinations. Paid ads=false; publication authorization=false; execution is non-live fixture cognition.
 
 New dependency-valid READY frontier: H03-GRW-002, H03-ANL-001. `H03-DIST-001` remains Founder-gated/high-risk even though its dependencies may now be green.
+
+
+---
+
+## H03 Batch — GRW-002 + ANL-001 — DONE/PASS — 2026-09-09
+
+Facebook is now canonical as two separate growth/analytics surfaces: `facebook_page` and `facebook_group`, raising GRW-001 to 9 organic acquisition surfaces.
+
+GRW-002 defines a separate Growth browser-profile pool with BROWSER_CDP as initial transport and future official API/social-manager adapters. Current social accounts are not provisioned, so all 9 distribution intents remain `WAITING_ACCOUNT_PREFLIGHT`; publication remains Founder-gated.
+
+Destination architecture: GLOBAL_ENGLISH primary; INDONESIA_LOCAL_QRIS secondary; custom domain not required to start but recommended for scale. Hosted global checkout/payment-link/MoR routes and Lynk.id local QRIS are modeled without claiming account readiness.
+
+ANL-001 normalizes marketplace/social/hosted-checkout/local-link/owned-web observations. Current baseline has 22 observations with metrics UNKNOWN and zero live observed metrics. Aggregates by channel/listing/campaign/creative/product preserve UNKNOWN and derive conversion only from observed numerator+denominator.
+
+New dependency-valid READY frontier: H03-ANL-002. H03-GRW-003 remains WAITING_FOUNDER.

@@ -48,6 +48,37 @@
       "surface": "CAROUSEL_OR_REEL_BRIEF"
     },
     {
+      "atom_id": "H03-ATOM-H03-PROD-ORG001-001-facebook_page",
+      "channel_id": "facebook_page",
+      "claim_ids": [
+        "C1",
+        "C2",
+        "C4"
+      ],
+      "creative_id": "H03-CR-h03-prod-org001-001-facebook-page-facebook-page-post",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0208",
+        "ORG001-FTC-PEOPLESEARCH-E0210"
+      ],
+      "surface": "FACEBOOK_PAGE_POST"
+    },
+    {
+      "atom_id": "H03-ATOM-H03-PROD-ORG001-001-facebook_group",
+      "channel_id": "facebook_group",
+      "claim_ids": [
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "creative_id": "H03-CR-h03-prod-org001-001-facebook-group-facebook-group-post",
+      "evidence_refs": [
+        "ORG001-FTC-PEOPLESEARCH-E0206",
+        "ORG001-FTC-PEOPLESEARCH-E0210",
+        "ORG001-FTC-PEOPLESEARCH-E0175"
+      ],
+      "surface": "FACEBOOK_GROUP_POST"
+    },
+    {
       "atom_id": "H03-ATOM-H03-PROD-ORG001-001-tiktok",
       "channel_id": "tiktok",
       "claim_ids": [

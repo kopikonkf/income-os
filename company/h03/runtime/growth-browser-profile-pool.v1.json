@@ -1,0 +1,24 @@
+{
+  "schema_version":"die.h03.browser-profile-pool.v1",
+  "holding_id":"H03",
+  "pool_id":"h03-growth-social-pool-v1",
+  "purpose":"GROWTH_WORKFORCE",
+  "session_material_policy":"HOST_LOCAL_NOT_PRODUCT_TRUTH",
+  "shards":[
+    {
+      "shard_id":"growth-social-a",
+      "state":"UNKNOWN",
+      "providers":[
+        {"provider_id":"x","state":"UNKNOWN","available_slots":0,"transport_family":"BROWSER_CDP"},
+        {"provider_id":"threads","state":"UNKNOWN","available_slots":0,"transport_family":"BROWSER_CDP"},
+        {"provider_id":"instagram","state":"UNKNOWN","available_slots":0,"transport_family":"BROWSER_CDP"},
+        {"provider_id":"facebook_page","state":"UNKNOWN","available_slots":0,"transport_family":"BROWSER_CDP"},
+        {"provider_id":"facebook_group","state":"UNKNOWN","available_slots":0,"transport_family":"BROWSER_CDP"},
+        {"provider_id":"tiktok","state":"UNKNOWN","available_slots":0,"transport_family":"BROWSER_CDP"},
+        {"provider_id":"youtube","state":"UNKNOWN","available_slots":0,"transport_family":"BROWSER_CDP"},
+        {"provider_id":"pinterest","state":"UNKNOWN","available_slots":0,"transport_family":"BROWSER_CDP"},
+        {"provider_id":"reddit","state":"UNKNOWN","available_slots":0,"transport_family":"BROWSER_CDP"}
+      ]
+    }
+  ]
+}

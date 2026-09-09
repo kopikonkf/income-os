@@ -1,0 +1,31 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-GRW-002",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "growth_pool_id": "h03-growth-social-pool-v1",
+    "purpose": "GROWTH_WORKFORCE",
+    "separate_from_knowledge_pool": true,
+    "social_surface_count": 9,
+    "waiting_account_preflight": 9,
+    "initial_transport": "BROWSER_CDP",
+    "future_adapters": [
+      "OFFICIAL_API",
+      "SOCIAL_MANAGER"
+    ],
+    "custom_domain_required_to_start": false,
+    "global_english_primary": true,
+    "indonesia_qris_secondary": true,
+    "publication_authorized": false
+  },
+  "validation": {
+    "targeted_growth_distribution_analytics": "12/12 PASS",
+    "h03_regression": "141/141 PASS",
+    "graph_frontier": [
+      "H03-ANL-002"
+    ],
+    "grw003_status": "WAITING_FOUNDER",
+    "json_parse": "PASS"
+  }
+}

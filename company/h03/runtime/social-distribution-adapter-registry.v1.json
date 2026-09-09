@@ -1,0 +1,21 @@
+{
+  "schema_version": "die.h03.social-distribution-adapter-registry.v1",
+  "holding_id": "H03",
+  "policy": {
+    "initial_transport": "BROWSER_CDP",
+    "future_adapter_families": ["OFFICIAL_API", "SOCIAL_MANAGER"],
+    "credentials_session_material": "HOST_LOCAL_ONLY",
+    "publication_requires_founder": true
+  },
+  "adapters": [
+    {"channel_id":"x","initial_transport":"BROWSER_CDP","future_adapter_families":["OFFICIAL_API","SOCIAL_MANAGER"]},
+    {"channel_id":"threads","initial_transport":"BROWSER_CDP","future_adapter_families":["OFFICIAL_API","SOCIAL_MANAGER"]},
+    {"channel_id":"instagram","initial_transport":"BROWSER_CDP","future_adapter_families":["OFFICIAL_API","SOCIAL_MANAGER"]},
+    {"channel_id":"facebook_page","initial_transport":"BROWSER_CDP","future_adapter_families":["OFFICIAL_API","SOCIAL_MANAGER"]},
+    {"channel_id":"facebook_group","initial_transport":"BROWSER_CDP","future_adapter_families":["OFFICIAL_API","SOCIAL_MANAGER"]},
+    {"channel_id":"tiktok","initial_transport":"BROWSER_CDP","future_adapter_families":["OFFICIAL_API","SOCIAL_MANAGER"]},
+    {"channel_id":"youtube","initial_transport":"BROWSER_CDP","future_adapter_families":["OFFICIAL_API","SOCIAL_MANAGER"]},
+    {"channel_id":"pinterest","initial_transport":"BROWSER_CDP","future_adapter_families":["OFFICIAL_API","SOCIAL_MANAGER"]},
+    {"channel_id":"reddit","initial_transport":"BROWSER_CDP","future_adapter_families":["OFFICIAL_API","SOCIAL_MANAGER"]}
+  ]
+}

@@ -98,14 +98,78 @@
   {
     "identity": {
       "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "facebook_page",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-facebook-page-facebook-page-post",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "fourthwall",
+      "listing_id": "H03-LIST-h03-prod-org001-001-fourthwall",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-facebook-page-facebook-page-post",
+        "utm_medium": "organic",
+        "utm_source": "facebook_page"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "facebook_group",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-facebook-group-facebook-group-post",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "ko_fi",
+      "listing_id": "H03-LIST-h03-prod-org001-001-ko-fi",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-facebook-group-facebook-group-post",
+        "utm_medium": "organic",
+        "utm_source": "facebook_group"
+      }
+    },
+    "schema_version": "die.h03.unobserved-funnel-state.v1",
+    "states": {
+      "ADD_TO_CART": "UNOBSERVED",
+      "CLICK": "UNOBSERVED",
+      "IMPRESSION": "UNOBSERVED",
+      "ORDER": "UNOBSERVED",
+      "PRODUCT_VIEW": "UNOBSERVED",
+      "REFUND": "UNOBSERVED",
+      "REVENUE": "UNOBSERVED"
+    }
+  },
+  {
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
       "channel_id": "tiktok",
       "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
       "creative_id": "H03-CR-h03-prod-org001-001-tiktok-short-video-script",
       "destination_state": "UNPUBLISHED",
       "destination_url": null,
       "holding_id": "H03",
-      "listing_channel_id": "fourthwall",
-      "listing_id": "H03-LIST-h03-prod-org001-001-fourthwall",
+      "listing_channel_id": "lemon_squeezy",
+      "listing_id": "H03-LIST-h03-prod-org001-001-lemon-squeezy",
       "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
       "product_id": "H03-PROD-ORG001-001",
       "schema_version": "die.h03.attribution-identity.v1",
@@ -136,8 +200,8 @@
       "destination_state": "UNPUBLISHED",
       "destination_url": null,
       "holding_id": "H03",
-      "listing_channel_id": "ko_fi",
-      "listing_id": "H03-LIST-h03-prod-org001-001-ko-fi",
+      "listing_channel_id": "payhip",
+      "listing_id": "H03-LIST-h03-prod-org001-001-payhip",
       "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
       "product_id": "H03-PROD-ORG001-001",
       "schema_version": "die.h03.attribution-identity.v1",
@@ -168,8 +232,8 @@
       "destination_state": "UNPUBLISHED",
       "destination_url": null,
       "holding_id": "H03",
-      "listing_channel_id": "lemon_squeezy",
-      "listing_id": "H03-LIST-h03-prod-org001-001-lemon-squeezy",
+      "listing_channel_id": "sellfy",
+      "listing_id": "H03-LIST-h03-prod-org001-001-sellfy",
       "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
       "product_id": "H03-PROD-ORG001-001",
       "schema_version": "die.h03.attribution-identity.v1",
@@ -200,8 +264,8 @@
       "destination_state": "UNPUBLISHED",
       "destination_url": null,
       "holding_id": "H03",
-      "listing_channel_id": "payhip",
-      "listing_id": "H03-LIST-h03-prod-org001-001-payhip",
+      "listing_channel_id": "shopify",
+      "listing_id": "H03-LIST-h03-prod-org001-001-shopify",
       "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
       "product_id": "H03-PROD-ORG001-001",
       "schema_version": "die.h03.attribution-identity.v1",

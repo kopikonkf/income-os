@@ -1,0 +1,1718 @@
+[
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "google_play_books",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-google-play-books-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "google_play_books",
+      "listing_id": "H03-LIST-h03-prod-org001-001-google-play-books",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-google-play-books-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "google_play_books"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-FCEFBBE0DF8D88B1",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "MARKETPLACE",
+    "source_id": "google_play_books",
+    "source_record_ref": "google_play_books://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "gumroad",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-gumroad-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "gumroad",
+      "listing_id": "H03-LIST-h03-prod-org001-001-gumroad",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-gumroad-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "gumroad"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-B336A85B544D82C1",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "MARKETPLACE",
+    "source_id": "gumroad",
+    "source_record_ref": "gumroad://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "leanpub",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-leanpub-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "leanpub",
+      "listing_id": "H03-LIST-h03-prod-org001-001-leanpub",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-leanpub-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "leanpub"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-39FA08798E50D5C3",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "MARKETPLACE",
+    "source_id": "leanpub",
+    "source_record_ref": "leanpub://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "fourthwall",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-fourthwall-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "fourthwall",
+      "listing_id": "H03-LIST-h03-prod-org001-001-fourthwall",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-fourthwall-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "fourthwall"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-3EAFC5403A881091",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "MARKETPLACE",
+    "source_id": "fourthwall",
+    "source_record_ref": "fourthwall://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "ko_fi",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-ko-fi-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "ko_fi",
+      "listing_id": "H03-LIST-h03-prod-org001-001-ko-fi",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-ko-fi-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "ko_fi"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-A6043CCB056E9A2C",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "MARKETPLACE",
+    "source_id": "ko_fi",
+    "source_record_ref": "ko_fi://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "lemon_squeezy",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-lemon-squeezy-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "lemon_squeezy",
+      "listing_id": "H03-LIST-h03-prod-org001-001-lemon-squeezy",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-lemon-squeezy-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "lemon_squeezy"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-A28F645D7035EE37",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "HOSTED_CHECKOUT",
+    "source_id": "lemon_squeezy",
+    "source_record_ref": "lemon_squeezy://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "payhip",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-payhip-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "payhip",
+      "listing_id": "H03-LIST-h03-prod-org001-001-payhip",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-payhip-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "payhip"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-DD85D1CADE39CFE4",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "MARKETPLACE",
+    "source_id": "payhip",
+    "source_record_ref": "payhip://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "sellfy",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-sellfy-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "sellfy",
+      "listing_id": "H03-LIST-h03-prod-org001-001-sellfy",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-sellfy-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "sellfy"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-EFC4405F460198EF",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "MARKETPLACE",
+    "source_id": "sellfy",
+    "source_record_ref": "sellfy://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "shopify",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-shopify-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "shopify",
+      "listing_id": "H03-LIST-h03-prod-org001-001-shopify",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-shopify-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "shopify"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-E039E5735A6771A7",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "OWNED_WEB",
+    "source_id": "shopify",
+    "source_record_ref": "shopify://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "woocommerce",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-woocommerce-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "woocommerce",
+      "listing_id": "H03-LIST-h03-prod-org001-001-woocommerce",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-woocommerce-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "woocommerce"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-32DD1C61DA57A04A",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "OWNED_WEB",
+    "source_id": "woocommerce",
+    "source_record_ref": "woocommerce://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "etsy",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-etsy-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "etsy",
+      "listing_id": "H03-LIST-h03-prod-org001-001-etsy",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-etsy-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "etsy"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-CF4A39B82274A824",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "MARKETPLACE",
+    "source_id": "etsy",
+    "source_record_ref": "etsy://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "creative_fabrica",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-creative-fabrica-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "creative_fabrica",
+      "listing_id": "H03-LIST-h03-prod-org001-001-creative-fabrica",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-creative-fabrica-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "creative_fabrica"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-521BE095A7996A09",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "MARKETPLACE",
+    "source_id": "creative_fabrica",
+    "source_record_ref": "creative_fabrica://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+      "channel_id": "creative_market",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-creative-market-listing-draft-v1",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "creative_market",
+      "listing_id": "H03-LIST-h03-prod-org001-001-creative-market",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-commerce-organic-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-creative-market-listing-draft-v1",
+        "utm_medium": "organic",
+        "utm_source": "creative_market"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-55C17A42644EAB07",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "MARKETPLACE",
+    "source_id": "creative_market",
+    "source_record_ref": "creative_market://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "x",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-x-short-text",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "google_play_books",
+      "listing_id": "H03-LIST-h03-prod-org001-001-google-play-books",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-x-short-text",
+        "utm_medium": "organic",
+        "utm_source": "x"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-65744347E3AD8599",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "SOCIAL",
+    "source_id": "x",
+    "source_record_ref": "x://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "threads",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-threads-conversational-post",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "gumroad",
+      "listing_id": "H03-LIST-h03-prod-org001-001-gumroad",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-threads-conversational-post",
+        "utm_medium": "organic",
+        "utm_source": "threads"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-89712BF83BE8FCE1",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "SOCIAL",
+    "source_id": "threads",
+    "source_record_ref": "threads://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "instagram",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-instagram-carousel-or-reel-brief",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "leanpub",
+      "listing_id": "H03-LIST-h03-prod-org001-001-leanpub",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-instagram-carousel-or-reel-brief",
+        "utm_medium": "organic",
+        "utm_source": "instagram"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-09E1FF758624F36E",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "SOCIAL",
+    "source_id": "instagram",
+    "source_record_ref": "instagram://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "facebook_page",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-facebook-page-facebook-page-post",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "fourthwall",
+      "listing_id": "H03-LIST-h03-prod-org001-001-fourthwall",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-facebook-page-facebook-page-post",
+        "utm_medium": "organic",
+        "utm_source": "facebook_page"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-2E722CC2B2F70937",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "SOCIAL",
+    "source_id": "facebook_page",
+    "source_record_ref": "facebook_page://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "facebook_group",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-facebook-group-facebook-group-post",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "ko_fi",
+      "listing_id": "H03-LIST-h03-prod-org001-001-ko-fi",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-facebook-group-facebook-group-post",
+        "utm_medium": "organic",
+        "utm_source": "facebook_group"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-019D1D0EFE5C33D6",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "SOCIAL",
+    "source_id": "facebook_group",
+    "source_record_ref": "facebook_group://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "tiktok",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-tiktok-short-video-script",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "lemon_squeezy",
+      "listing_id": "H03-LIST-h03-prod-org001-001-lemon-squeezy",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-tiktok-short-video-script",
+        "utm_medium": "organic",
+        "utm_source": "tiktok"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-B41CA7C07D98B51E",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "SOCIAL",
+    "source_id": "tiktok",
+    "source_record_ref": "tiktok://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "youtube",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-youtube-short-video-or-long-outline",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "payhip",
+      "listing_id": "H03-LIST-h03-prod-org001-001-payhip",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-youtube-short-video-or-long-outline",
+        "utm_medium": "organic",
+        "utm_source": "youtube"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-76462A299B3B352F",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "SOCIAL",
+    "source_id": "youtube",
+    "source_record_ref": "youtube://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "pinterest",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-pinterest-pin-title-description",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "sellfy",
+      "listing_id": "H03-LIST-h03-prod-org001-001-sellfy",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-pinterest-pin-title-description",
+        "utm_medium": "organic",
+        "utm_source": "pinterest"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-87F1C3E4EB7EA64B",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "SOCIAL",
+    "source_id": "pinterest",
+    "source_record_ref": "pinterest://UNOBSERVED"
+  },
+  {
+    "holding_id": "H03",
+    "identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "reddit",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-reddit-community-post",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "shopify",
+      "listing_id": "H03-LIST-h03-prod-org001-001-shopify",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-reddit-community-post",
+        "utm_medium": "organic",
+        "utm_source": "reddit"
+      }
+    },
+    "metrics": {
+      "ADD_TO_CART": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "CLICK": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "IMPRESSION": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "ORDER": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "PRODUCT_VIEW": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REFUND": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "REVENUE": {
+        "currency": null,
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "observation_id": "H03-ANL-UNK-C8613A683A99B112",
+    "observed_at": "2026-09-09T17:20:00Z",
+    "referrer": {
+      "evidence_refs": [],
+      "state": "UNKNOWN",
+      "value": null
+    },
+    "schema_version": "die.h03.analytics-observation.v1",
+    "source_family": "SOCIAL",
+    "source_id": "reddit",
+    "source_record_ref": "reddit://UNOBSERVED"
+  }
+]

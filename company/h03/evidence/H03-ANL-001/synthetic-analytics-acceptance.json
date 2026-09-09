@@ -1,0 +1,385 @@
+{
+  "by_channel": [
+    {
+      "conversion": {
+        "denominator": null,
+        "numerator": "ORDER",
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "group_by": "channel_id",
+      "group_key": "facebook_group",
+      "holding_id": "H03",
+      "metrics": {
+        "ADD_TO_CART": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "CLICK": {
+          "currency": null,
+          "state": "OBSERVED",
+          "value": 8
+        },
+        "IMPRESSION": {
+          "currency": null,
+          "state": "OBSERVED",
+          "value": 100
+        },
+        "ORDER": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "PRODUCT_VIEW": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "REFUND": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "REVENUE": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        }
+      },
+      "record_count": 1,
+      "referrers": [],
+      "schema_version": "die.h03.analytics-aggregate.v1"
+    },
+    {
+      "conversion": {
+        "denominator": "PRODUCT_VIEW",
+        "numerator": "ORDER",
+        "state": "OBSERVED",
+        "value": 0.1
+      },
+      "group_by": "channel_id",
+      "group_key": "x",
+      "holding_id": "H03",
+      "metrics": {
+        "ADD_TO_CART": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "CLICK": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "IMPRESSION": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "ORDER": {
+          "currency": null,
+          "state": "OBSERVED",
+          "value": 2
+        },
+        "PRODUCT_VIEW": {
+          "currency": null,
+          "state": "OBSERVED",
+          "value": 20
+        },
+        "REFUND": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "REVENUE": {
+          "currency": "USD",
+          "state": "OBSERVED",
+          "value": 1800
+        }
+      },
+      "record_count": 1,
+      "referrers": [
+        "x"
+      ],
+      "schema_version": "die.h03.analytics-aggregate.v1"
+    }
+  ],
+  "by_listing": [
+    {
+      "conversion": {
+        "denominator": "PRODUCT_VIEW",
+        "numerator": "ORDER",
+        "state": "OBSERVED",
+        "value": 0.1
+      },
+      "group_by": "listing_channel_id",
+      "group_key": "gumroad",
+      "holding_id": "H03",
+      "metrics": {
+        "ADD_TO_CART": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "CLICK": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "IMPRESSION": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "ORDER": {
+          "currency": null,
+          "state": "OBSERVED",
+          "value": 2
+        },
+        "PRODUCT_VIEW": {
+          "currency": null,
+          "state": "OBSERVED",
+          "value": 20
+        },
+        "REFUND": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "REVENUE": {
+          "currency": "USD",
+          "state": "OBSERVED",
+          "value": 1800
+        }
+      },
+      "record_count": 1,
+      "referrers": [
+        "x"
+      ],
+      "schema_version": "die.h03.analytics-aggregate.v1"
+    },
+    {
+      "conversion": {
+        "denominator": null,
+        "numerator": "ORDER",
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "group_by": "listing_channel_id",
+      "group_key": "payhip",
+      "holding_id": "H03",
+      "metrics": {
+        "ADD_TO_CART": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "CLICK": {
+          "currency": null,
+          "state": "OBSERVED",
+          "value": 8
+        },
+        "IMPRESSION": {
+          "currency": null,
+          "state": "OBSERVED",
+          "value": 100
+        },
+        "ORDER": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "PRODUCT_VIEW": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "REFUND": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "REVENUE": {
+          "currency": null,
+          "state": "UNKNOWN",
+          "value": null
+        }
+      },
+      "record_count": 1,
+      "referrers": [],
+      "schema_version": "die.h03.analytics-aggregate.v1"
+    }
+  ],
+  "execution_mode": "SYNTHETIC_ACCEPTANCE_FIXTURE_NOT_LIVE",
+  "observations": [
+    {
+      "holding_id": "H03",
+      "identity": {
+        "campaign_id": "H03-CAMP-h03-prod-org001-001-analytics-fixture",
+        "channel_id": "x",
+        "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+        "creative_id": "H03-CR-h03-prod-org001-001-x-fixture",
+        "destination_state": "UNPUBLISHED",
+        "destination_url": null,
+        "holding_id": "H03",
+        "listing_channel_id": "gumroad",
+        "listing_id": "H03-LIST-h03-prod-org001-001-gumroad",
+        "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+        "product_id": "H03-PROD-ORG001-001",
+        "schema_version": "die.h03.attribution-identity.v1",
+        "utm": {
+          "utm_campaign": "H03-CAMP-h03-prod-org001-001-analytics-fixture",
+          "utm_content": "H03-CR-h03-prod-org001-001-x-fixture",
+          "utm_medium": "organic",
+          "utm_source": "x"
+        }
+      },
+      "metrics": {
+        "ADD_TO_CART": {
+          "currency": null,
+          "evidence_refs": [],
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "CLICK": {
+          "currency": null,
+          "evidence_refs": [],
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "IMPRESSION": {
+          "currency": null,
+          "evidence_refs": [],
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "ORDER": {
+          "currency": null,
+          "evidence_refs": [
+            "fixture://gumroad/1#orders"
+          ],
+          "state": "OBSERVED",
+          "value": 2
+        },
+        "PRODUCT_VIEW": {
+          "currency": null,
+          "evidence_refs": [
+            "fixture://gumroad/1#views"
+          ],
+          "state": "OBSERVED",
+          "value": 20
+        },
+        "REFUND": {
+          "currency": null,
+          "evidence_refs": [],
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "REVENUE": {
+          "currency": "USD",
+          "evidence_refs": [
+            "fixture://gumroad/1#revenue"
+          ],
+          "state": "OBSERVED",
+          "value": 1800
+        }
+      },
+      "observation_id": "H03-ANL-UNK-15C2A3FD5ECD7150",
+      "observed_at": "2026-09-09T17:21:00Z",
+      "referrer": {
+        "evidence_refs": [
+          "fixture://gumroad/1#referrer"
+        ],
+        "state": "OBSERVED",
+        "value": "x"
+      },
+      "schema_version": "die.h03.analytics-observation.v1",
+      "source_family": "MARKETPLACE",
+      "source_id": "gumroad",
+      "source_record_ref": "fixture://gumroad/1"
+    },
+    {
+      "holding_id": "H03",
+      "identity": {
+        "campaign_id": "H03-CAMP-h03-prod-org001-001-analytics-fixture",
+        "channel_id": "facebook_group",
+        "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+        "creative_id": "H03-CR-h03-prod-org001-001-facebook-group-fixture",
+        "destination_state": "UNPUBLISHED",
+        "destination_url": null,
+        "holding_id": "H03",
+        "listing_channel_id": "payhip",
+        "listing_id": "H03-LIST-h03-prod-org001-001-payhip",
+        "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+        "product_id": "H03-PROD-ORG001-001",
+        "schema_version": "die.h03.attribution-identity.v1",
+        "utm": {
+          "utm_campaign": "H03-CAMP-h03-prod-org001-001-analytics-fixture",
+          "utm_content": "H03-CR-h03-prod-org001-001-facebook-group-fixture",
+          "utm_medium": "organic",
+          "utm_source": "facebook_group"
+        }
+      },
+      "metrics": {
+        "ADD_TO_CART": {
+          "currency": null,
+          "evidence_refs": [],
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "CLICK": {
+          "currency": null,
+          "evidence_refs": [
+            "fixture://facebook/group/1#clicks"
+          ],
+          "state": "OBSERVED",
+          "value": 8
+        },
+        "IMPRESSION": {
+          "currency": null,
+          "evidence_refs": [
+            "fixture://facebook/group/1#impressions"
+          ],
+          "state": "OBSERVED",
+          "value": 100
+        },
+        "ORDER": {
+          "currency": null,
+          "evidence_refs": [],
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "PRODUCT_VIEW": {
+          "currency": null,
+          "evidence_refs": [],
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "REFUND": {
+          "currency": null,
+          "evidence_refs": [],
+          "state": "UNKNOWN",
+          "value": null
+        },
+        "REVENUE": {
+          "currency": null,
+          "evidence_refs": [],
+          "state": "UNKNOWN",
+          "value": null
+        }
+      },
+      "observation_id": "H03-ANL-UNK-54CAF54B7321F90D",
+      "observed_at": "2026-09-09T17:21:00Z",
+      "referrer": {
+        "evidence_refs": [],
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "schema_version": "die.h03.analytics-observation.v1",
+      "source_family": "SOCIAL",
+      "source_id": "facebook_group",
+      "source_record_ref": "fixture://facebook/group/1"
+    }
+  ]
+}

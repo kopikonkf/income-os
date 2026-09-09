@@ -1,13 +1,69 @@
 {
-  "schema_version":"die.h03.growth-channel-registry.v1",
-  "holding_id":"H03",
-  "channels":[
-    {"channel_id":"x","surface":"SHORT_TEXT","native_goal":"hook_plus_practical_takeaway","cta_style":"soft_link","paid_ads":false},
-    {"channel_id":"threads","surface":"CONVERSATIONAL_POST","native_goal":"conversation_plus_practical_takeaway","cta_style":"soft_link","paid_ads":false},
-    {"channel_id":"instagram","surface":"CAROUSEL_OR_REEL_BRIEF","native_goal":"visual_sequence_plus_saveable_steps","cta_style":"profile_or_link","paid_ads":false},
-    {"channel_id":"tiktok","surface":"SHORT_VIDEO_SCRIPT","native_goal":"fast_problem_hook_plus_steps","cta_style":"soft_link","paid_ads":false},
-    {"channel_id":"youtube","surface":"SHORT_VIDEO_OR_LONG_OUTLINE","native_goal":"searchable_explanation_plus_steps","cta_style":"description_link","paid_ads":false},
-    {"channel_id":"pinterest","surface":"PIN_TITLE_DESCRIPTION","native_goal":"searchable_evergreen_reference","cta_style":"destination_link","paid_ads":false},
-    {"channel_id":"reddit","surface":"COMMUNITY_POST","native_goal":"help_first_contextual_discussion","cta_style":"no_hard_sell","paid_ads":false}
+  "schema_version": "die.h03.growth-channel-registry.v1",
+  "holding_id": "H03",
+  "channels": [
+    {
+      "channel_id": "x",
+      "surface": "SHORT_TEXT",
+      "native_goal": "hook_plus_practical_takeaway",
+      "cta_style": "soft_link",
+      "paid_ads": false
+    },
+    {
+      "channel_id": "threads",
+      "surface": "CONVERSATIONAL_POST",
+      "native_goal": "conversation_plus_practical_takeaway",
+      "cta_style": "soft_link",
+      "paid_ads": false
+    },
+    {
+      "channel_id": "instagram",
+      "surface": "CAROUSEL_OR_REEL_BRIEF",
+      "native_goal": "visual_sequence_plus_saveable_steps",
+      "cta_style": "profile_or_link",
+      "paid_ads": false
+    },
+    {
+      "channel_id": "facebook_page",
+      "surface": "FACEBOOK_PAGE_POST",
+      "native_goal": "shareable_practical_education_plus_comment_conversation",
+      "cta_style": "soft_link",
+      "paid_ads": false
+    },
+    {
+      "channel_id": "facebook_group",
+      "surface": "FACEBOOK_GROUP_POST",
+      "native_goal": "community_help_first_discussion_plus_contextual_resource",
+      "cta_style": "no_hard_sell",
+      "paid_ads": false
+    },
+    {
+      "channel_id": "tiktok",
+      "surface": "SHORT_VIDEO_SCRIPT",
+      "native_goal": "fast_problem_hook_plus_steps",
+      "cta_style": "soft_link",
+      "paid_ads": false
+    },
+    {
+      "channel_id": "youtube",
+      "surface": "SHORT_VIDEO_OR_LONG_OUTLINE",
+      "native_goal": "searchable_explanation_plus_steps",
+      "cta_style": "description_link",
+      "paid_ads": false
+    },
+    {
+      "channel_id": "pinterest",
+      "surface": "PIN_TITLE_DESCRIPTION",
+      "native_goal": "searchable_evergreen_reference",
+      "cta_style": "destination_link",
+      "paid_ads": false
+    },
+    {
+      "channel_id": "reddit",
+      "surface": "COMMUNITY_POST",
+      "native_goal": "help_first_contextual_discussion",
+      "cta_style": "no_hard_sell",
+      "paid_ads": false
+    }
   ]
 }

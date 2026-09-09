@@ -147,6 +147,99 @@
     "surface": "CAROUSEL_OR_REEL_BRIEF"
   },
   {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-facebook_page",
+    "attribution_identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "facebook_page",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-facebook-page-facebook-page-post",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "fourthwall",
+      "listing_id": "H03-LIST-h03-prod-org001-001-fourthwall",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-facebook-page-facebook-page-post",
+        "utm_medium": "organic",
+        "utm_source": "facebook_page"
+      }
+    },
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "facebook_page",
+    "claim_ids": [
+      "C1",
+      "C2",
+      "C4"
+    ],
+    "content": {
+      "cta": "Keep the workflow handy for your next privacy cleanup.",
+      "post": "A practical people-search cleanup loop: find your listing, follow the site opt-out steps, and set a reminder to recheck later."
+    },
+    "creative_id": "H03-CR-h03-prod-org001-001-facebook-page-facebook-page-post",
+    "evidence_refs": [
+      "ORG001-FTC-PEOPLESEARCH-E0208",
+      "ORG001-FTC-PEOPLESEARCH-E0210"
+    ],
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "holding_id": "H03",
+    "paid_ads": false,
+    "product_id": "H03-PROD-ORG001-001",
+    "publication_authorized": false,
+    "schema_version": "die.h03.growth-content-atom.v1",
+    "surface": "FACEBOOK_PAGE_POST"
+  },
+  {
+    "atom_id": "H03-ATOM-H03-PROD-ORG001-001-facebook_group",
+    "attribution_identity": {
+      "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+      "channel_id": "facebook_group",
+      "commerce_package_id": "H03-COM-H03-PROD-ORG001-001",
+      "creative_id": "H03-CR-h03-prod-org001-001-facebook-group-facebook-group-post",
+      "destination_state": "UNPUBLISHED",
+      "destination_url": null,
+      "holding_id": "H03",
+      "listing_channel_id": "ko_fi",
+      "listing_id": "H03-LIST-h03-prod-org001-001-ko-fi",
+      "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+      "product_id": "H03-PROD-ORG001-001",
+      "schema_version": "die.h03.attribution-identity.v1",
+      "utm": {
+        "utm_campaign": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+        "utm_content": "H03-CR-h03-prod-org001-001-facebook-group-facebook-group-post",
+        "utm_medium": "organic",
+        "utm_source": "facebook_group"
+      }
+    },
+    "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
+    "channel_id": "facebook_group",
+    "claim_ids": [
+      "C3",
+      "C4",
+      "C5"
+    ],
+    "content": {
+      "cta": "NONE",
+      "post": "For anyone doing people-search opt-outs manually: expect repetitive site-by-site work and plan to recheck later. Also, treat removal as exposure reduction rather than permanent erasure of public records."
+    },
+    "creative_id": "H03-CR-h03-prod-org001-001-facebook-group-facebook-group-post",
+    "evidence_refs": [
+      "ORG001-FTC-PEOPLESEARCH-E0206",
+      "ORG001-FTC-PEOPLESEARCH-E0210",
+      "ORG001-FTC-PEOPLESEARCH-E0175"
+    ],
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "holding_id": "H03",
+    "paid_ads": false,
+    "product_id": "H03-PROD-ORG001-001",
+    "publication_authorized": false,
+    "schema_version": "die.h03.growth-content-atom.v1",
+    "surface": "FACEBOOK_GROUP_POST"
+  },
+  {
     "atom_id": "H03-ATOM-H03-PROD-ORG001-001-tiktok",
     "attribution_identity": {
       "campaign_id": "H03-CAMP-h03-prod-org001-001-organic-education-v1",
@@ -156,8 +249,8 @@
       "destination_state": "UNPUBLISHED",
       "destination_url": null,
       "holding_id": "H03",
-      "listing_channel_id": "fourthwall",
-      "listing_id": "H03-LIST-h03-prod-org001-001-fourthwall",
+      "listing_channel_id": "lemon_squeezy",
+      "listing_id": "H03-LIST-h03-prod-org001-001-lemon-squeezy",
       "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
       "product_id": "H03-PROD-ORG001-001",
       "schema_version": "die.h03.attribution-identity.v1",
@@ -207,8 +300,8 @@
       "destination_state": "UNPUBLISHED",
       "destination_url": null,
       "holding_id": "H03",
-      "listing_channel_id": "ko_fi",
-      "listing_id": "H03-LIST-h03-prod-org001-001-ko-fi",
+      "listing_channel_id": "payhip",
+      "listing_id": "H03-LIST-h03-prod-org001-001-payhip",
       "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
       "product_id": "H03-PROD-ORG001-001",
       "schema_version": "die.h03.attribution-identity.v1",
@@ -267,8 +360,8 @@
       "destination_state": "UNPUBLISHED",
       "destination_url": null,
       "holding_id": "H03",
-      "listing_channel_id": "lemon_squeezy",
-      "listing_id": "H03-LIST-h03-prod-org001-001-lemon-squeezy",
+      "listing_channel_id": "sellfy",
+      "listing_id": "H03-LIST-h03-prod-org001-001-sellfy",
       "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
       "product_id": "H03-PROD-ORG001-001",
       "schema_version": "die.h03.attribution-identity.v1",
@@ -314,8 +407,8 @@
       "destination_state": "UNPUBLISHED",
       "destination_url": null,
       "holding_id": "H03",
-      "listing_channel_id": "payhip",
-      "listing_id": "H03-LIST-h03-prod-org001-001-payhip",
+      "listing_channel_id": "shopify",
+      "listing_id": "H03-LIST-h03-prod-org001-001-shopify",
       "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
       "product_id": "H03-PROD-ORG001-001",
       "schema_version": "die.h03.attribution-identity.v1",

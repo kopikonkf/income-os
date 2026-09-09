@@ -127,6 +127,86 @@
       "web_ai": true
     },
     "holding_id": "H03",
+    "idempotency_key": "h03-growth:H03-PROD-ORG001-001:organic-education-v1:facebook_page",
+    "input_artifacts": [
+      {
+        "artifact_id": "H03-COM-H03-PROD-ORG001-001",
+        "kind": "commerce_package",
+        "ref": "artifact://commerce/H03-COM-H03-PROD-ORG001-001",
+        "sha256": null
+      },
+      {
+        "artifact_id": "H03-KP-ORG001-001",
+        "kind": "knowledge_package",
+        "ref": "artifact://knowledge/H03-KP-ORG001-001",
+        "sha256": null
+      }
+    ],
+    "output_contract": {
+      "artifact_kind": "growth_content_atom",
+      "schema_version": "die.h03.growth-content-atom.v1"
+    },
+    "queue": "growth",
+    "role": "GROWTH_PRODUCER",
+    "schema_version": "die.h03.cognition-work-card.v1",
+    "task_id": "H03-GRW-001",
+    "terminal_policy": {
+      "max_attempts": 2,
+      "retryable_failures": [
+        "PROVIDER_UNAVAILABLE",
+        "INVALID_OUTPUT"
+      ]
+    },
+    "work_card_id": "H03-WC-GRW-H03-PROD-ORG001-001-facebook_page"
+  },
+  {
+    "capability_requirements": {
+      "local_filesystem": false,
+      "mcp": false,
+      "shell": false,
+      "web_ai": true
+    },
+    "holding_id": "H03",
+    "idempotency_key": "h03-growth:H03-PROD-ORG001-001:organic-education-v1:facebook_group",
+    "input_artifacts": [
+      {
+        "artifact_id": "H03-COM-H03-PROD-ORG001-001",
+        "kind": "commerce_package",
+        "ref": "artifact://commerce/H03-COM-H03-PROD-ORG001-001",
+        "sha256": null
+      },
+      {
+        "artifact_id": "H03-KP-ORG001-001",
+        "kind": "knowledge_package",
+        "ref": "artifact://knowledge/H03-KP-ORG001-001",
+        "sha256": null
+      }
+    ],
+    "output_contract": {
+      "artifact_kind": "growth_content_atom",
+      "schema_version": "die.h03.growth-content-atom.v1"
+    },
+    "queue": "growth",
+    "role": "GROWTH_PRODUCER",
+    "schema_version": "die.h03.cognition-work-card.v1",
+    "task_id": "H03-GRW-001",
+    "terminal_policy": {
+      "max_attempts": 2,
+      "retryable_failures": [
+        "PROVIDER_UNAVAILABLE",
+        "INVALID_OUTPUT"
+      ]
+    },
+    "work_card_id": "H03-WC-GRW-H03-PROD-ORG001-001-facebook_group"
+  },
+  {
+    "capability_requirements": {
+      "local_filesystem": false,
+      "mcp": false,
+      "shell": false,
+      "web_ai": true
+    },
+    "holding_id": "H03",
     "idempotency_key": "h03-growth:H03-PROD-ORG001-001:organic-education-v1:tiktok",
     "input_artifacts": [
       {
