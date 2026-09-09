@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.product-blueprint.v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "product_id",
+    "knowledge_package_id",
+    "form",
+    "title",
+    "sections",
+    "metadata"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.h03.product-blueprint.v1"
+    },
+    "product_id": {
+      "type": "string"
+    },
+    "knowledge_package_id": {
+      "type": "string"
+    },
+    "form": {
+      "enum": [
+        "ebook",
+        "guide",
+        "handbook",
+        "report",
+        "checklist",
+        "worksheet",
+        "workbook",
+        "template",
+        "reference_sheet",
+        "playbook",
+        "research_brief"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "heading",
+          "claim_ids"
+        ],
+        "properties": {
+          "heading": {
+            "type": "string"
+          },
+          "claim_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object"
+    }
+  }
+}

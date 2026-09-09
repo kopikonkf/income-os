@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.document-ast.v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "product_id",
+    "knowledge_package_id",
+    "metadata",
+    "blocks"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.h03.document-ast.v1"
+    },
+    "product_id": {
+      "type": "string"
+    },
+    "knowledge_package_id": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "blocks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "text"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "heading",
+              "paragraph",
+              "bullet"
+            ]
+          },
+          "text": {
+            "type": "string"
+          },
+          "claim_id": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

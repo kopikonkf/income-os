@@ -1,0 +1,172 @@
+{
+  "schema": "die.h03.knowledge-document-factory.task-graph.v1",
+  "generated_at": "2026-09-09",
+  "status": "CANONICAL",
+  "holding_id": "H03",
+  "project": "H03 Knowledge Factory + PDF Factory",
+  "execution_policy": {
+    "ssot": "origin/main + company/h03/task-graph-v1.json",
+    "control_plane": "GLOBAL_MISSION_CONTROL",
+    "canonical_company_state_writer": "die-state-manager",
+    "economics_write": "DISABLED_UNTIL_GOVERNED_STATE_MANAGER_ADAPTER",
+    "web_ai": "OPTIONAL_CAPABILITY_NOT_PRODUCT_TRUTH",
+    "portable_only": true,
+    "publication": "FOUNDER_GATED"
+  },
+  "states": [
+    "READY",
+    "RUNNING",
+    "VERIFYING",
+    "DONE",
+    "BLOCKED",
+    "DEFERRED",
+    "WAITING_FOUNDER"
+  ],
+  "tasks": [
+    {
+      "id": "H03-000",
+      "track": "CANON",
+      "title": "H03 Knowledge/PDF Factory architecture canon",
+      "status": "DONE",
+      "priority": 1000,
+      "depends_on": [],
+      "risk": "LOW",
+      "execution_mode": "cognition_only",
+      "artifact": "company/h03/H03_KNOWLEDGE_PDF_FACTORY_ARCHITECTURE_V1.md"
+    },
+    {
+      "id": "H03-KF-001",
+      "track": "KNOWLEDGE",
+      "title": "Knowledge Package source/evidence/claim contract",
+      "status": "DONE",
+      "priority": 990,
+      "depends_on": [
+        "H03-000"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "artifact": "company/h03/contracts/knowledge-package.v1.schema.json"
+    },
+    {
+      "id": "H03-PDF-001",
+      "track": "DOCUMENT",
+      "title": "Product Blueprint and Document AST contracts",
+      "status": "DONE",
+      "priority": 980,
+      "depends_on": [
+        "H03-000",
+        "H03-KF-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "artifact": "company/h03/contracts/product-blueprint.v1.schema.json + document-ast.v1.schema.json"
+    },
+    {
+      "id": "H03-PDF-002",
+      "track": "RENDER",
+      "title": "Deterministic PDF renderer v1",
+      "status": "DONE",
+      "priority": 970,
+      "depends_on": [
+        "H03-PDF-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "artifact": "company/h03/lib/h03_factory.py"
+    },
+    {
+      "id": "H03-QA-001",
+      "track": "QA",
+      "title": "PDF reopen, metadata, page and raster visual QA",
+      "status": "DONE",
+      "priority": 960,
+      "depends_on": [
+        "H03-PDF-002"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "artifact": "company/h03/tests/test_h03_factory.py"
+    },
+    {
+      "id": "H03-MVP-001",
+      "track": "MVP",
+      "title": "First bounded Knowledge to PDF deterministic internal proof",
+      "status": "DONE",
+      "priority": 950,
+      "depends_on": [
+        "H03-KF-001",
+        "H03-QA-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "artifact": "company/h03/evidence/H03-MVP-001/"
+    },
+    {
+      "id": "H03-KF-002",
+      "track": "KNOWLEDGE",
+      "title": "Governed external source ingestion adapters",
+      "status": "READY",
+      "priority": 900,
+      "depends_on": [
+        "H03-MVP-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "acceptance": "Add source adapters without granting crawlers or LLMs canonical truth; preserve source identity, rights and evidence hashes."
+    },
+    {
+      "id": "H03-PDF-003",
+      "track": "RENDER",
+      "title": "Reusable template and typography registry",
+      "status": "READY",
+      "priority": 890,
+      "depends_on": [
+        "H03-MVP-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "acceptance": "Multiple document forms share one AST while template changes do not mutate Knowledge Packages."
+    },
+    {
+      "id": "H03-AI-001",
+      "track": "CAPABILITY",
+      "title": "web-ai-adapter text capability contract for curator/production roles",
+      "status": "READY",
+      "priority": 880,
+      "depends_on": [
+        "H03-MVP-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "acceptance": "H03 calls a normalized text capability contract; provider session/profile bytes remain outside product truth."
+    },
+    {
+      "id": "H03-ECO-001",
+      "track": "ECONOMICS",
+      "title": "H03 shadow economic observation adapter",
+      "status": "BLOCKED",
+      "priority": 870,
+      "depends_on": [
+        "H03-MVP-001"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "blocked_reason": "W_ECONOMICS_WRITER_NOT_IMPLEMENTED_CURRENTLY",
+      "acceptance": "Map build receipts to the single logical die-state-manager economics commit path after that governed adapter exists; no direct ECONOMICS.jsonl append."
+    },
+    {
+      "id": "H03-DIST-001",
+      "track": "DISTRIBUTION",
+      "title": "First external listing/sale canary",
+      "status": "WAITING_FOUNDER",
+      "priority": 800,
+      "depends_on": [
+        "H03-KF-002",
+        "H03-PDF-003"
+      ],
+      "risk": "HIGH",
+      "execution_mode": "tool_native",
+      "authority": "FOUNDER_EXTERNAL_PUBLICATION_REQUIRED"
+    }
+  ]
+}
