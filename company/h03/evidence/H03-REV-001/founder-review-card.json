@@ -1,6 +1,7 @@
 {
   "buyer": "privacy-conscious consumer",
   "decision": "PASS",
+  "decision_authority": "INDEPENDENT_REVIEWER_NOT_FOUNDER",
   "decision_reasons": [
     "Product promise and section content remain inside the governed FTC-backed claim set.",
     "The guide states the important limitation that people-search opt-out reduces exposure but does not erase public records.",
@@ -36,6 +37,7 @@
   },
   "promise": "a concise repeatable DIY sequence for finding, opting out, and rechecking people-search listings while understanding the limits of removal",
   "review_card_id": "H03-RC-H03-PROD-ORG001-001",
+  "review_layer": "INDEPENDENT_PRE_FOUNDER_REVIEW",
   "reviewer_observation": {
     "execution_mode": "NONLIVE_ROLE_FIXTURE",
     "provider_id": "fixture-reviewer-independent",

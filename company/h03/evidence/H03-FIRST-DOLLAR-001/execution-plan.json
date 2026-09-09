@@ -20,9 +20,9 @@
       "state": "DEFERRED_FOR_FIRST_CANARY"
     }
   ],
-  "current_state": "BLOCKED_ACCOUNT_PREFLIGHT",
+  "current_state": "BLOCKED_FOUNDER_QC",
   "custom_domain_required": false,
-  "founder_authorization_status": "GRANTED",
+  "founder_authorization_status": "PHASE_AUTHORIZED_PRODUCT_RELEASE_NOT_AUTHORIZED",
   "goal": {
     "currency": "USD",
     "metric": "evidence_backed_revenue_minor",
@@ -75,15 +75,18 @@
       "rank": 5
     }
   ],
+  "runtime_boundary": "H03_DEDICATED_OPERATIONAL_ONLY",
   "schema_version": "die.h03.first-dollar-execution-plan.v1",
   "sequence": [
-    "authenticate_and_complete_primary_seller_onboarding",
+    "founder_qc_actual_product_package",
+    "explicit_founder_product_release_authorization",
+    "provision_h03_dedicated_commerce_and_growth_profiles",
+    "seller_and_social_account_preflight",
     "publish_one_listing",
-    "capture_public_listing_url_and_update ATTR destination",
-    "authenticate_at_least_one_preferred_social_channel",
+    "capture_public_listing_url_and_update_ATTR_destination",
     "publish_bounded_organic_atom",
     "collect_read_only_analytics",
-    "feed observed outcomes to ANL-001 and ANL-002",
-    "declare first-dollar only after evidence-backed revenue >= USD 1"
+    "feed_observed_outcomes_to_ANL_001_and_ANL_002",
+    "declare_first_dollar_only_after_evidence_backed_revenue_ge_USD_1"
   ]
 }

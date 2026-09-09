@@ -1,0 +1,32 @@
+{
+  "schema_version": "die.h03.operational-browser-binding-registry.v1",
+  "holding_id": "H03",
+  "state": "NOT_PROVISIONED",
+  "bindings": [
+    {
+      "purpose": "KNOWLEDGE_WORKFORCE",
+      "pool_owner": "H03",
+      "profile_class": "H03_DEDICATED_OPERATIONAL",
+      "state": "NOT_PROVISIONED",
+      "transport_family": "BROWSER_CDP",
+      "session_material_policy": "HOST_LOCAL_NOT_PRODUCT_TRUTH"
+    },
+    {
+      "purpose": "GROWTH_WORKFORCE",
+      "pool_owner": "H03",
+      "profile_class": "H03_DEDICATED_OPERATIONAL",
+      "state": "NOT_PROVISIONED",
+      "transport_family": "BROWSER_CDP",
+      "session_material_policy": "HOST_LOCAL_NOT_PRODUCT_TRUTH"
+    },
+    {
+      "purpose": "COMMERCE_OPERATOR",
+      "pool_owner": "H03",
+      "profile_class": "H03_DEDICATED_OPERATIONAL",
+      "state": "NOT_PROVISIONED",
+      "transport_family": "BROWSER_CDP",
+      "session_material_policy": "HOST_LOCAL_NOT_PRODUCT_TRUTH"
+    }
+  ],
+  "foreign_profile_reuse": false
+}

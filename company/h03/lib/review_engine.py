@@ -40,5 +40,6 @@ def build_review_card(*, lineage:dict[str,Any], problem_seed:dict[str,Any], dema
         'evidence_confidence':reviewer_fixture.get('evidence_confidence','MEDIUM'),
         'market_wtp_basis':{'wtp_assessment':demand_packet['wtp_assessment'],'evidence_ids':[e['evidence_id'] for e in demand_packet['evidence']]},
         'risk_flags':risks,'rights_flags':rights,'decision':decision,'decision_reasons':reasons,
+        'review_layer':'INDEPENDENT_PRE_FOUNDER_REVIEW','decision_authority':'INDEPENDENT_REVIEWER_NOT_FOUNDER',
         'founder_action_required':True,'external_publication_authorized':False,
     }
