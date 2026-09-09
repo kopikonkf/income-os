@@ -1,7 +1,7 @@
 {
   "schema": "die.company-os.task-graph.v1",
   "generated_at": "2026-09-08",
-  "revision": "1.1-cos001-host-exit-map-accepted",
+  "revision": "1.2-cos002-control-plane-reconciliation",
   "status": "CANONICAL",
   "project": "DIE Company OS / Economic Layer",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -90,13 +90,23 @@
       "id": "COS-002",
       "track": "GOVERNANCE",
       "title": "Operational control-plane authority reconciliation",
-      "status": "READY",
+      "status": "DONE",
       "priority": 980,
       "depends_on": ["COS-000"],
       "execution_mode": "cognition_only",
       "risk": "LOW",
       "scope": "Compare CONSTITUTION/COMPANY_BRAIN/agency-contract/identity-registry Hermes authority with accepted Mission Control capabilities and boundaries.",
-      "acceptance": "Produce a no-mutation reconciliation matrix and exact Founder-ratification packet for any constitutional change; do not silently replace hermes-operator in canon."
+      "acceptance": "Produce a no-mutation reconciliation matrix and exact Founder-ratification packet for any constitutional change; do not silently replace hermes-operator in canon.",
+      "result": {
+        "status": "PASS",
+        "reconciliation": "company/company-os/COS-002_OPERATIONAL_CONTROL_PLANE_RECONCILIATION_V1.md",
+        "ratification_packet": "company/company-os/COS-002_FOUNDER_RATIFICATION_PACKET_V1.md",
+        "receipt": "company/company-os/receipts/COS-002-control-plane-reconciliation.receipt.json",
+        "ratification_status": "PREPARED_NOT_RATIFIED",
+        "recommended_current_decision": "DEFER_RATIFICATION_UNTIL_PROMOTION_GATES_PASS",
+        "constitutional_mutation": false,
+        "authority_transfer": false
+      }
     },
     {
       "id": "COS-003",
@@ -111,10 +121,27 @@
       "acceptance": "Contract separates propose/interpret, authorize, enforce, execute and learn responsibilities; Aether DNA remains byte-unchanged and KEEP_EXTERNAL."
     },
     {
+      "id": "COS-004",
+      "track": "GOVERNANCE",
+      "title": "Mission Control constitutional promotion implementation",
+      "status": "BLOCKED",
+      "priority": 950,
+      "depends_on": ["COS-002"],
+      "external_gates": [
+        "MC-008J_FULLY_UNATTENDED_24X7_ACCEPTED",
+        "MC-009D_DELEGATED_EXECUTION_ACCEPTED",
+        "STATE_MANAGER_WRITER_DOMAIN_CONFORMANCE_PASS",
+        "FOUNDER_RATIFICATION_COS002_PACKET"
+      ],
+      "execution_mode": "tool_native",
+      "risk": "HIGH",
+      "acceptance": "Apply only the exact Founder-ratified control-plane amendments across Constitution, Company Brain, Agency Contract and identity registry; preserve State Manager company-state sovereignty and Architect DEV/runtime separation; validate no new spend/red-zone authority; do not disposition Hermes beyond the ratified text."
+    },
+    {
       "id": "OPS-001",
       "track": "SELF_HEALING",
       "title": "Company incident escalation taxonomy L0-L3",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 900,
       "depends_on": ["COS-002"],
       "execution_mode": "cognition_only",
