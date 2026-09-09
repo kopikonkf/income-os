@@ -1,0 +1,49 @@
+{
+  "schema": "die.company-os.econ002a.state-manager-economic-ledger.receipt.v1",
+  "task_id": "ECON-002A",
+  "status": "PASS",
+  "observed_at": "2026-09-09",
+  "source_main": "ff4579935a2f92e45619087ca85b0489beed71e0",
+  "artifacts": [
+    {
+      "path": "company/company-os/ECON-002A_STATE_MANAGER_ECONOMIC_LEDGER_COMMIT_BOUNDARY_V1.md",
+      "sha256": "b742f6e1b21b7620fdda00c51ff2f6805f0a6dd41cf58ac4a94bae2be0b05775"
+    },
+    {
+      "path": "company/company-os/contracts/die.economic-ledger.state-manager-commit-boundary.v1.json",
+      "sha256": "6d746c42f4d50af17547ac3503c66f4c9b4fabd05603ed7a1100d5a352fe0ed9"
+    },
+    {
+      "path": "company/company-os/evidence/ECON-002A-post-writer-domain-conformance.json",
+      "sha256": "b7c5084065ddd704a28666918c02f18f38ebbb02abca4939db4986b24e4e599d"
+    },
+    {
+      "path": "bin/die_event.py",
+      "sha256": "81c2542bfe29de8c17810c851effabed90fc94c40a30943c3f397c4c8505b72b"
+    },
+    {
+      "path": "company/company-os/tests/test_economic_state_manager.py",
+      "sha256": "31ef60170710e02d36d941c5838af6192f0a6c55bdf5730ce857250625f07aad"
+    }
+  ],
+  "acceptance": {
+    "focused_tests": "8_PASSED",
+    "writer_domain_conformance": "PASS",
+    "global_store_writers": [
+      "state/EVENTS.jsonl",
+      "state/DECISIONS.jsonl",
+      "state/ECONOMICS.jsonl"
+    ],
+    "unauthorized_global_store_writers": 0,
+    "writer_domain_warnings": 0,
+    "live_ingestion": false
+  },
+  "authority": {
+    "spend": false,
+    "payment": false,
+    "capital_allocation": false,
+    "credential_access": false,
+    "provider_action": false,
+    "external_submission": false
+  }
+}

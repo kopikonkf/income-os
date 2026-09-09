@@ -11,7 +11,9 @@ import time
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "bridge"))
+sys.path.insert(0, str(ROOT / "company" / "company-os" / "lib"))
 from income_os_bridge import config as die_config
+import economic_contracts
 
 try:
     import msvcrt
@@ -221,6 +223,56 @@ def commit_normalized_decision(normalized):
         print_record=False,
     )
     return {"record": decision, "replayed": False}
+
+
+def commit_economic_event(event, writer_id="die-state-manager"):
+    """Commit one validated economic fact through the sole DIE State Manager writer.
+
+    This is a commit primitive only. It does not expose a CLI ingestion path or any
+    bank/payment/provider integration. Replays are idempotent; corrections append a
+    reference-only REVERSAL followed by a replacement event.
+    """
+    if writer_id != "die-state-manager":
+        raise ValueError("E_ECON_WRITER_ID_FORBIDDEN")
+    if not isinstance(event, dict):
+        raise ValueError("E_ECON_EVENT_OBJECT_REQUIRED")
+
+    normalized = dict(event)
+    economic_contracts.validate_ledger_event(normalized)
+    path = STATE / "ECONOMICS.jsonl"
+    rows = _json_lines(path)
+
+    for row in rows:
+        if row.get("idempotency_key") == normalized["idempotency_key"]:
+            if row != normalized:
+                raise ValueError("E_ECON_IDEMPOTENCY_CONFLICT")
+            return {
+                "record": row,
+                "replayed": True,
+                "committed_by": "die-state-manager",
+            }
+        if row.get("event_id") == normalized["event_id"]:
+            raise ValueError("E_ECON_EVENT_ID_CONFLICT")
+
+    if normalized["event_type"] == "REVERSAL":
+        target = normalized["reversal_of_event_id"]
+        original = next((row for row in rows if row.get("event_id") == target), None)
+        if original is None:
+            raise ValueError("E_ECON_REVERSAL_TARGET_NOT_FOUND")
+        economic_contracts.validate_reversal(original, normalized)
+        if any(
+            row.get("event_type") == "REVERSAL"
+            and row.get("reversal_of_event_id") == target
+            for row in rows
+        ):
+            raise ValueError("E_ECON_ALREADY_REVERSED")
+
+    _append(path, normalized)
+    return {
+        "record": normalized,
+        "replayed": False,
+        "committed_by": "die-state-manager",
+    }
 
 
 def main():

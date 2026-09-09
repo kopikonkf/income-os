@@ -1,0 +1,36 @@
+{
+  "schema": "die.economic-ledger.state-manager-commit-boundary.v1",
+  "status": "PASS",
+  "logical_writer": "die-state-manager",
+  "physical_writer": "bin/die_event.py",
+  "commit_function": "commit_economic_event",
+  "store": "state/ECONOMICS.jsonl",
+  "event_contract": "die.economic-ledger.event.v1",
+  "rules": {
+    "validate_before_append": true,
+    "exact_replay_idempotent": true,
+    "idempotency_conflict_rejected": true,
+    "event_id_conflict_rejected": true,
+    "reversal_target_required": true,
+    "cross_holding_reversal_rejected": true,
+    "second_reversal_rejected": true,
+    "update_allowed": false,
+    "delete_allowed": false
+  },
+  "live_ingestion": {
+    "enabled": false,
+    "cli_subcommand_added": false,
+    "bank": false,
+    "payment": false,
+    "marketplace_connector": false,
+    "mission_control_writer": false,
+    "hermes_direct_writer": false
+  },
+  "authority": {
+    "spend": false,
+    "capital_allocation": false,
+    "credential_access": false,
+    "provider_action": false,
+    "external_submission": false
+  }
+}
