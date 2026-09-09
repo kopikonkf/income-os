@@ -125,3 +125,55 @@ H03-ECO-001  H03 shadow economics mapper to ECON-002B admission
 `H03-ECO-001` is no longer blocked by the obsolete writer-not-implemented warning. `ECON-002A` and `ECON-002B` are now canonical, but live canonical economic submit authority remains unactivated; H03 shadow candidates therefore remain `validated_not_committed`.
 
 External product listing and social publication remain Founder-gated. No paid-ad spend or external publication is authorized by this graph update.
+
+
+---
+
+## H03 Batch A — OPP-001 + RT-001 + ECO-001 — DONE/PASS — 2026-09-09
+
+- `H03-OPP-001`: Human Problem Seed is now a machine contract; topic-only candidates fail, and demand/WTP remain UNKNOWN until evidenced.
+- `H03-RT-001`: role Work Cards and terminal worker results carry durable artifact handoffs. Standard web-AI workers require web-AI access but not MCP, shell or local filesystem.
+- `H03-ECO-001`: explicit H03 resource/founder-time/direct-cost observations can enter ECON-002B as `validated_not_committed`; unknown measurements never become zero and no H03 writer was created.
+
+New READY frontier: `H03-OPP-002`, `H03-DMD-001`, `H03-RT-002`. `H03-ECO-002` remains blocked on future Company-level live submit authority.
+
+
+---
+
+## H03 Batch B — OPP-002 + DMD-001 + RT-002 — DONE/PASS — 2026-09-09
+
+- `H03-OPP-002`: governed signal artifacts can be assigned to a `SEED_CURATOR`; discovered seeds are deduplicated and their commercial demand/WTP truth is reset to UNKNOWN pending DMD validation.
+- `H03-DMD-001`: typed demand/WTP evidence now distinguishes revealed spend, paid substitutes/marketplace proxies, purchase intent/pain, and engagement-only noise.
+- `H03-RT-002`: provider registry/router makes Qwen 3.8 Max and Gemini first-class workers and routes by role + capability + health + capacity with fallback.
+
+New READY frontier: `H03-OPP-003` Worth-Making gate and `H03-RT-003` persistent browser profile worker-pool/shard contract.
+
+
+---
+
+## H03 Batch C — OPP-003 + RT-003 — DONE/PASS — 2026-09-09
+
+- `H03-OPP-003`: deterministic Worth-Making gate now emits MAKE / RESEARCH_MORE / REJECT from demand/WTP/productability evidence without an opaque score.
+- `H03-RT-003`: persistent browser runtime is modeled as sanitized profile shards; one multi-provider shard is valid initially, with alternate-shard fallback when observed health/capacity requires it.
+
+New READY frontier: `H03-RSCH-001` Deep Research Work Card/stop-policy and `H03-RT-004` role queues + fan-out/fan-in continuity state machine.
+
+
+---
+
+## H03 Batch D — RSCH-001 + RT-004 — DONE/PASS — 2026-09-09
+
+- `H03-RSCH-001`: bounded research-plan contract now defines question lanes, source classes, independent-source minima, job/source budgets and stop conditions.
+- `H03-RT-004`: durable role queues support idempotent enqueue, explicit transitions, bounded fan-out, artifact-only fan-in readiness and typed terminal failure.
+
+New READY frontier: `H03-RSCH-002` parallel multi-provider research execution and `H03-RT-005` retry/backpressure/fallback anti-stall policy.
+
+
+---
+
+## H03 Batch E — RSCH-002 + RT-005 — DONE/PASS — 2026-09-09
+
+- `H03-RSCH-002`: bounded research jobs now allocate across observed Qwen/Gemini/Manus slots, create normalized web-AI requests, ingest returned source text through KF-002, and emit non-canonical research packets with evidence-unit lineage.
+- `H03-RT-005`: retry/fallback/circuit-break/backpressure behavior is deterministic and bounded; unhealthy slots can be bypassed and saturated queues visibly pause new dispatch.
+
+New READY frontier: `H03-KF-003` research synthesis fan-in and `H03-RT-006` Mission Control ↔ H03 batch-supervision boundary.

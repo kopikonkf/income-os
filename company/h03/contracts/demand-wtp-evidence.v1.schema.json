@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.demand-wtp-evidence.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","packet_id","holding_id","problem_seed_id","pain_observation","buyer_intent_state","evidence","wtp_assessment","truth_status"],
+  "properties": {
+    "schema_version": {"const":"die.h03.demand-wtp-evidence.v1"},
+    "packet_id": {"type":"string","minLength":6},
+    "holding_id": {"const":"H03"},
+    "problem_seed_id": {"type":"string","minLength":6},
+    "pain_observation": {
+      "type":"object","additionalProperties":false,"required":["severity","frequency","urgency"],
+      "properties":{"severity":{"enum":["UNKNOWN","LOW","MEDIUM","HIGH"]},"frequency":{"enum":["UNKNOWN","LOW","MEDIUM","HIGH"]},"urgency":{"enum":["UNKNOWN","LOW","MEDIUM","HIGH"]}}
+    },
+    "buyer_intent_state": {"enum":["UNKNOWN","WEAK","MEDIUM","STRONG"]},
+    "evidence": {
+      "type":"array",
+      "items": {
+        "type":"object","additionalProperties":false,"required":["evidence_id","signal_type","evidence_refs"],
+        "properties": {
+          "evidence_id":{"type":"string","minLength":3},
+          "signal_type":{"enum":["REVEALED_SPEND","PAID_SUBSTITUTE","MARKETPLACE_SALE_PROXY","PURCHASE_INTENT_SEARCH","REPEATED_PAIN","ENGAGEMENT_ONLY"]},
+          "evidence_refs":{"type":"array","minItems":1,"items":{"type":"string","minLength":1},"uniqueItems":true},
+          "money":{"type":["object","null"],"properties":{"currency":{"type":"string"},"amount_minor":{"type":"integer","minimum":0}}}
+        }
+      }
+    },
+    "wtp_assessment": {"enum":["UNKNOWN","WEAK","MEDIUM","STRONG"]},
+    "truth_status": {"enum":["CANDIDATE","VALIDATED"]}
+  }
+}

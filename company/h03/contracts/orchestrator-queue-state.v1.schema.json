@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.orchestrator-queue-state.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","holding_id","batch_id","jobs","fan_in_groups"],
+  "properties": {
+    "schema_version": {"const":"die.h03.orchestrator-queue-state.v1"},
+    "holding_id": {"const":"H03"},
+    "batch_id": {"type":"string","minLength":3},
+    "jobs": {"type":"object"},
+    "fan_in_groups": {"type":"array"}
+  }
+}

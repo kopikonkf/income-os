@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.cognition-work-card.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","work_card_id","holding_id","task_id","role","queue","idempotency_key","input_artifacts","output_contract","capability_requirements","terminal_policy"],
+  "properties": {
+    "schema_version": {"const":"die.h03.cognition-work-card.v1"},
+    "work_card_id": {"type":"string","minLength":6},
+    "holding_id": {"const":"H03"},
+    "task_id": {"type":"string","minLength":3},
+    "role": {"enum":["SEED_CURATOR","MARKET_RESEARCHER","KNOWLEDGE_RESEARCHER","SYNTHESIZER","PRODUCT_ARCHITECT","PRODUCER","REVIEWER","GROWTH_PRODUCER"]},
+    "queue": {"type":"string","minLength":2},
+    "idempotency_key": {"type":"string","minLength":8},
+    "input_artifacts": {"type":"array","items":{"$ref":"#/$defs/artifact_ref"}},
+    "output_contract": {
+      "type":"object","additionalProperties":false,"required":["artifact_kind","schema_version"],
+      "properties":{"artifact_kind":{"type":"string","minLength":2},"schema_version":{"type":"string","minLength":2}}
+    },
+    "capability_requirements": {
+      "type":"object","additionalProperties":false,"required":["web_ai","mcp","shell","local_filesystem"],
+      "properties":{"web_ai":{"type":"boolean"},"mcp":{"type":"boolean"},"shell":{"type":"boolean"},"local_filesystem":{"type":"boolean"}}
+    },
+    "terminal_policy": {
+      "type":"object","additionalProperties":false,"required":["max_attempts","retryable_failures"],
+      "properties":{"max_attempts":{"type":"integer","minimum":1,"maximum":20},"retryable_failures":{"type":"array","items":{"type":"string"}}}
+    }
+  },
+  "$defs": {
+    "artifact_ref": {
+      "type":"object","additionalProperties":false,"required":["artifact_id","kind","ref"],
+      "properties":{"artifact_id":{"type":"string","minLength":2},"kind":{"type":"string","minLength":2},"ref":{"type":"string","minLength":2},"sha256":{"type":["string","null"],"pattern":"^[0-9a-f]{64}$"}}
+    }
+  }
+}

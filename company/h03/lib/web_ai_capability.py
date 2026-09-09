@@ -7,7 +7,7 @@ from urllib.error import HTTPError, URLError
 
 REQUEST_SCHEMA = "die.h03.web-ai.text-capability-request.v1"
 RESPONSE_SCHEMA = "die.h03.web-ai.text-capability-response.v1"
-_ALLOWED_ROLES = {"CURATOR", "PRODUCER"}
+_ALLOWED_ROLES = {"CURATOR", "PRODUCER", "SEED_CURATOR", "MARKET_RESEARCHER", "KNOWLEDGE_RESEARCHER", "SYNTHESIZER", "PRODUCT_ARCHITECT", "REVIEWER", "GROWTH_PRODUCER"}
 _FORBIDDEN_KEYS = {"cookie", "cookies", "token", "tokens", "access_token", "refresh_token", "authorization", "browser_profile", "profile_path", "oauth", "session_bytes", "session_key", "credential", "credentials"}
 
 
@@ -37,11 +37,18 @@ def validate_capability_request(req: dict[str, Any]) -> None:
 
 def build_openai_payload(req: dict[str, Any]) -> dict[str, Any]:
     validate_capability_request(req)
-    role_instruction = (
-        "Act as H03 curator. Analyze, compare, classify, critique, or propose. Do not claim model output is evidence or canonical truth."
-        if req["role"] == "CURATOR"
-        else "Act as H03 semantic producer. Produce requested draft content only. Do not invent source provenance, rights, sales, costs, or canonical truth."
-    )
+    role_instructions = {
+        "CURATOR": "Act as H03 curator. Analyze, compare, classify, critique, or propose. Do not claim model output is evidence or canonical truth.",
+        "SEED_CURATOR": "Act as H03 seed curator. Identify and structure human problems; do not invent demand or willingness-to-pay evidence.",
+        "MARKET_RESEARCHER": "Act as H03 market researcher. Gather and analyze demand, pain and willingness-to-pay evidence; keep observed evidence distinct from inference.",
+        "KNOWLEDGE_RESEARCHER": "Act as H03 knowledge researcher. Investigate the assigned questions and return source-grounded findings; do not treat your own output as provenance.",
+        "SYNTHESIZER": "Act as H03 synthesizer. Consolidate supplied research packets, preserve contradictions and evidence refs, and mark unsupported gaps.",
+        "PRODUCT_ARCHITECT": "Act as H03 product architect. Convert accepted knowledge into an outcome-oriented product structure without inventing unsupported claims.",
+        "PRODUCER": "Act as H03 semantic producer. Produce requested draft content only. Do not invent source provenance, rights, sales, costs, or canonical truth.",
+        "REVIEWER": "Act as H03 independent reviewer. Critique usability, support, contradictions, risks and gaps without silently rewriting provenance.",
+        "GROWTH_PRODUCER": "Act as H03 growth producer. Create channel-native promotional drafts from accepted product knowledge without inventing performance or revenue claims.",
+    }
+    role_instruction = role_instructions[req["role"]]
     context = req.get("context") or {}
     user_text = req["prompt"]
     if context:

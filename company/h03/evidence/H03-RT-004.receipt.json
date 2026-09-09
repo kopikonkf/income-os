@@ -1,0 +1,17 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-RT-004",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "idempotent_queue": true,
+    "bounded_fanout": true,
+    "artifact_fanin": true,
+    "terminal_failure_blocks_fanin": true,
+    "same_chat_thread_required": false
+  },
+  "validation": {
+    "h03_regression": "67/67 PASS",
+    "graph_frontier": "H03-RSCH-002,H03-RT-005"
+  }
+}

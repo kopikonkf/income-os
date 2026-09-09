@@ -1,0 +1,17 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-RSCH-002",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "qwen_gemini_manus_slot_allocation": true,
+    "kf002_ingestion": true,
+    "source_pending_review": true,
+    "research_packet_noncanonical": true,
+    "unknown_source_ref_rejected": true
+  },
+  "validation": {
+    "h03_regression": "75/75 PASS",
+    "graph_frontier": "H03-KF-003,H03-RT-006"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-OPP-002",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "seed_curator_work_card": true,
+    "source_lineage_preserved": true,
+    "semantic_dedupe": true,
+    "curator_can_claim_demand": false
+  },
+  "validation": {
+    "h03_regression": "49/49 PASS",
+    "graph_frontier": "H03-OPP-003,H03-RT-003"
+  }
+}

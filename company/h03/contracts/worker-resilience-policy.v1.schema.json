@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.worker-resilience-policy.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","holding_id","queue_limit","failure_classes"],
+  "properties": {
+    "schema_version": {"const":"die.h03.worker-resilience-policy.v1"},
+    "holding_id": {"const":"H03"},
+    "queue_limit": {"type":"integer","minimum":1},
+    "failure_classes": {"type":"object"}
+  }
+}

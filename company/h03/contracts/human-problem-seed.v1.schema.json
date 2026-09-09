@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.human-problem-seed.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","problem_seed_id","holding_id","persona","context","trigger","job_to_be_done","pain","desired_outcome","commercial_signals","source_refs","truth_status"],
+  "properties": {
+    "schema_version": {"const": "die.h03.human-problem-seed.v1"},
+    "problem_seed_id": {"type": "string", "pattern": "^H03-PS-[A-Z0-9_-]{3,120}$"},
+    "holding_id": {"const": "H03"},
+    "persona": {
+      "type": "object", "additionalProperties": false,
+      "required": ["actor","qualifier"],
+      "properties": {"actor":{"type":"string","minLength":2},"qualifier":{"type":"string","minLength":1}}
+    },
+    "context": {"type":"string","minLength":3},
+    "trigger": {"type":"string","minLength":3},
+    "job_to_be_done": {"type":"string","minLength":3},
+    "pain": {
+      "type":"object","additionalProperties":false,
+      "required":["statement","severity_state","frequency_state","urgency_state"],
+      "properties": {
+        "statement":{"type":"string","minLength":3},
+        "severity_state":{"enum":["UNKNOWN","OBSERVED"]},
+        "frequency_state":{"enum":["UNKNOWN","OBSERVED"]},
+        "urgency_state":{"enum":["UNKNOWN","OBSERVED"]}
+      }
+    },
+    "desired_outcome": {"type":"string","minLength":3},
+    "commercial_signals": {
+      "type":"object","additionalProperties":false,"required":["demand","willingness_to_pay"],
+      "properties":{"demand":{"$ref":"#/$defs/signal"},"willingness_to_pay":{"$ref":"#/$defs/signal"}}
+    },
+    "source_refs":{"type":"array","items":{"type":"string","minLength":1},"uniqueItems":true},
+    "truth_status":{"enum":["CANDIDATE","VALIDATED"]}
+  },
+  "$defs": {
+    "signal": {
+      "type":"object","additionalProperties":false,"required":["state","evidence_refs"],
+      "properties": {
+        "state":{"enum":["UNKNOWN","PARTIAL","OBSERVED"]},
+        "evidence_refs":{"type":"array","items":{"type":"string","minLength":1},"uniqueItems":true}
+      }
+    }
+  }
+}

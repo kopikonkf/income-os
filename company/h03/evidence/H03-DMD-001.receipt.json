@@ -1,0 +1,16 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-DMD-001",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "revealed_spend_typed": true,
+    "engagement_not_wtp": true,
+    "unknown_preserved": true,
+    "wtp_assessment_deterministic": true
+  },
+  "validation": {
+    "h03_regression": "49/49 PASS",
+    "graph_frontier": "H03-OPP-003,H03-RT-003"
+  }
+}

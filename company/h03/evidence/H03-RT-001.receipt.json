@@ -1,0 +1,18 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-RT-001",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "durable_input_refs": true,
+    "durable_output_refs": true,
+    "standard_mcp_required": false,
+    "standard_shell_required": false,
+    "standard_local_filesystem_required": false,
+    "role_provider_separation": true
+  },
+  "validation": {
+    "h03_regression": "35/35 PASS",
+    "graph_frontier": "H03-OPP-002,H03-DMD-001,H03-RT-002"
+  }
+}
