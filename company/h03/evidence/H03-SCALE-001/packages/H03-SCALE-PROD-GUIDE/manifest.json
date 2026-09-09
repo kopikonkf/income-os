@@ -1,0 +1,26 @@
+{
+  "files": {
+    "content-block-batches.json": {
+      "bytes": 3273,
+      "sha256": "6267d80ba7a4e618f275d49af6a4b29a6f454b8fa264a403cfe531d82d863078"
+    },
+    "document-ast.json": {
+      "bytes": 3653,
+      "sha256": "eafb7d726f6a41e9297efc91846bbe8f501366b9408f9212c9c13562fec686f9"
+    },
+    "product-blueprint.json": {
+      "bytes": 947,
+      "sha256": "d4c90bedbe92c78ea153dad2408d7e03df352f63a9f932b89426badca2af14c8"
+    },
+    "scale-soak-diy-opt-out-guide.pdf": {
+      "bytes": 3654,
+      "sha256": "36fda9c9178b510ceeb551ac9c27446be8c672ad8759655907e2f1e10ceecaf8"
+    },
+    "validation.json": {
+      "bytes": 705,
+      "sha256": "18b174dbc876bfb4e45d6297cd33bc464615841e40b8f2c636a2068afe74b820"
+    }
+  },
+  "product_id": "H03-SCALE-PROD-GUIDE",
+  "schema_version": "die.h03.local-product-manifest.v1"
+}

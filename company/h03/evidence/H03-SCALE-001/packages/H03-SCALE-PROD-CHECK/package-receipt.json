@@ -1,0 +1,21 @@
+{
+  "content_batch_ids": [
+    "H03-CB-H03-SCALE-PROD-CHECK-001",
+    "H03-CB-H03-SCALE-PROD-CHECK-002"
+  ],
+  "external_publication": false,
+  "form": "checklist",
+  "holding_id": "H03",
+  "knowledge_package_id": "H03-KP-ORG001-001",
+  "manifest_file": "manifest.json",
+  "page_count": 2,
+  "pdf_file": "scale-soak-opt-out-checklist.pdf",
+  "pdf_sha256": "72adeddb52ec9286a2690ef0ac3f39f4f23c0dfa6bb44602a523488235247496",
+  "product_id": "H03-SCALE-PROD-CHECK",
+  "schema_version": "die.h03.local-product-package.v1",
+  "status": "LOCAL_SALE_READY_UNREVIEWED",
+  "title": "Scale Soak Opt-Out Checklist",
+  "validation_file": "validation.json",
+  "zip_file": "scale-soak-opt-out-checklist.zip",
+  "zip_sha256": "6d160e1762123eb007e843404918f099445de85c405504b6afd3041c595f53c5"
+}

@@ -1,0 +1,26 @@
+{
+  "files": {
+    "content-block-batches.json": {
+      "bytes": 3262,
+      "sha256": "b0a64768d26028117c69f4836e67e3a7e19fac0f5ef213e0bbcc1bfa0db7ef42"
+    },
+    "document-ast.json": {
+      "bytes": 3640,
+      "sha256": "024de25cc7ce50b78bf285d73f6d760034cc1240d93172d5872922c6828ac238"
+    },
+    "product-blueprint.json": {
+      "bytes": 956,
+      "sha256": "020f373acdfe0415dfa201a1c888fb38d9c7d556cdb2a434cc684c2eaaae6fae"
+    },
+    "scale-soak-opt-out-reference.pdf": {
+      "bytes": 3523,
+      "sha256": "9142010922481906ff3f4d5f5c334bf8d91b8b44eb1d7947bfa001628581e920"
+    },
+    "validation.json": {
+      "bytes": 704,
+      "sha256": "f07aacf221b8867a4332439392b53a291853971aad6121254da6b1bff76aebf0"
+    }
+  },
+  "product_id": "H03-SCALE-PROD-REF",
+  "schema_version": "die.h03.local-product-manifest.v1"
+}

@@ -1,0 +1,21 @@
+{
+  "content_batch_ids": [
+    "H03-CB-H03-SCALE-PROD-GUIDE-001",
+    "H03-CB-H03-SCALE-PROD-GUIDE-002"
+  ],
+  "external_publication": false,
+  "form": "guide",
+  "holding_id": "H03",
+  "knowledge_package_id": "H03-KP-ORG001-001",
+  "manifest_file": "manifest.json",
+  "page_count": 2,
+  "pdf_file": "scale-soak-diy-opt-out-guide.pdf",
+  "pdf_sha256": "36fda9c9178b510ceeb551ac9c27446be8c672ad8759655907e2f1e10ceecaf8",
+  "product_id": "H03-SCALE-PROD-GUIDE",
+  "schema_version": "die.h03.local-product-package.v1",
+  "status": "LOCAL_SALE_READY_UNREVIEWED",
+  "title": "Scale Soak DIY Opt-Out Guide",
+  "validation_file": "validation.json",
+  "zip_file": "scale-soak-diy-opt-out-guide.zip",
+  "zip_sha256": "b24a677ef1408405e431e5312e900b06d8b9a989380ab54494f6cd92cd81b1fa"
+}

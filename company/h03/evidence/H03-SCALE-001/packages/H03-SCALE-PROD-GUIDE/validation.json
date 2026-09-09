@@ -1,0 +1,33 @@
+{
+  "metadata_title": "Scale Soak DIY Opt-Out Guide",
+  "page_count": 2,
+  "text_chars": 941,
+  "visual_pages": [
+    {
+      "content_bbox": [
+        67,
+        131,
+        676,
+        1021
+      ],
+      "height": 1053,
+      "nonwhite_ratio": 0.008383,
+      "page": 1,
+      "png_sha256": "90d5faec83942ef4cba48a7e01bb7c1c03d50b9aabdbfe797a5f3160f07d32ea",
+      "width": 745
+    },
+    {
+      "content_bbox": [
+        67,
+        56,
+        677,
+        1021
+      ],
+      "height": 1053,
+      "nonwhite_ratio": 0.032948,
+      "page": 2,
+      "png_sha256": "01561a0266925b6eb595c6ee13e740dce1b464f03a5ea2a25d688d59e917975f",
+      "width": 745
+    }
+  ]
+}

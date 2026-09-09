@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.scale-soak-report.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "holding_id",
+    "soak_id",
+    "execution_mode",
+    "capacity_basis",
+    "product_count",
+    "worker_job_count",
+    "throughput_products_per_second",
+    "queue_latency_ms",
+    "terminal_failure_rate",
+    "retry_count",
+    "fallback_success_count",
+    "provider_bottlenecks",
+    "profile_bottlenecks",
+    "resource_usage",
+    "external_publication",
+    "status",
+    "package_receipts"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "die.h03.scale-soak-report.v1"
+    },
+    "holding_id": {
+      "const": "H03"
+    },
+    "soak_id": {
+      "type": "string",
+      "minLength": 6
+    },
+    "execution_mode": {
+      "const": "NONLIVE_ROLE_FIXTURE"
+    },
+    "capacity_basis": {
+      "type": "object"
+    },
+    "product_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "worker_job_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "throughput_products_per_second": {
+      "type": "number",
+      "minimum": 0
+    },
+    "queue_latency_ms": {
+      "type": "object"
+    },
+    "terminal_failure_rate": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "retry_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "fallback_success_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "provider_bottlenecks": {
+      "type": "array"
+    },
+    "profile_bottlenecks": {
+      "type": "array"
+    },
+    "resource_usage": {
+      "type": "object"
+    },
+    "external_publication": {
+      "const": false
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "package_receipts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

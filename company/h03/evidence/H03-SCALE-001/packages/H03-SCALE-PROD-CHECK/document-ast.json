@@ -1,0 +1,125 @@
+{
+  "blocks": [
+    {
+      "text": "Removal checklist",
+      "type": "heading"
+    },
+    {
+      "claim_id": "C1",
+      "text": "[ ] Start by searching a people-search site for your name or other identifying information such as a phone number or address.",
+      "type": "bullet"
+    },
+    {
+      "claim_id": "C2",
+      "text": "[ ] When you find a report about yourself, locate the site's opt-out or removal instructions and follow them.",
+      "type": "bullet"
+    },
+    {
+      "claim_id": "C3",
+      "text": "[ ] Repeat the opt-out process across other relevant people-search sites; doing this one by one can be time-consuming.",
+      "type": "bullet"
+    },
+    {
+      "text": "Follow-up checklist",
+      "type": "heading"
+    },
+    {
+      "claim_id": "C4",
+      "text": "[ ] Periodically recheck people-search sites and submit new opt-out requests if your information reappears.",
+      "type": "bullet"
+    },
+    {
+      "claim_id": "C5",
+      "text": "[ ] Opting out of people-search sites does not delete information from public records, so the workflow reduces exposure rather than guaranteeing total deletion.",
+      "type": "bullet"
+    },
+    {
+      "claim_id": "C6",
+      "text": "[ ] Consumers can perform people-search opt-outs themselves for free or pay a service to perform the work on their behalf.",
+      "type": "bullet"
+    }
+  ],
+  "knowledge_package_id": "H03-KP-ORG001-001",
+  "metadata": {
+    "content_batch_ids": [
+      "H03-CB-H03-SCALE-PROD-CHECK-001",
+      "H03-CB-H03-SCALE-PROD-CHECK-002"
+    ],
+    "content_lineage": [
+      {
+        "block_id": "H03-SCALE-PROD-CHECK-B0101",
+        "claim_ids": [
+          "C1"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0208"
+        ],
+        "section_id": "SEC-001"
+      },
+      {
+        "block_id": "H03-SCALE-PROD-CHECK-B0102",
+        "claim_ids": [
+          "C2"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0208"
+        ],
+        "section_id": "SEC-001"
+      },
+      {
+        "block_id": "H03-SCALE-PROD-CHECK-B0103",
+        "claim_ids": [
+          "C3"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0206"
+        ],
+        "section_id": "SEC-001"
+      },
+      {
+        "block_id": "H03-SCALE-PROD-CHECK-B0201",
+        "claim_ids": [
+          "C4"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0210"
+        ],
+        "section_id": "SEC-002"
+      },
+      {
+        "block_id": "H03-SCALE-PROD-CHECK-B0202",
+        "claim_ids": [
+          "C5"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0175"
+        ],
+        "section_id": "SEC-002"
+      },
+      {
+        "block_id": "H03-SCALE-PROD-CHECK-B0203",
+        "claim_ids": [
+          "C6"
+        ],
+        "evidence_refs": [
+          "ORG001-FTC-PEOPLESEARCH-E0199"
+        ],
+        "section_id": "SEC-002"
+      }
+    ],
+    "desired_outcome": "reduce people-search exposure with a practical reusable reference",
+    "form": "checklist",
+    "form_selection_reason_codes": [
+      "FAST_EXECUTION_VERIFICATION"
+    ],
+    "format_selection_policy": "OUTCOME_ORIENTED_V1",
+    "page_count_target": null,
+    "planning_profile_id": "PLAN-H03-SCALE-PROD-CHECK",
+    "problem_seed_id": "H03-PS-PEOPLESEARCH-DIY-001",
+    "subtitle": "",
+    "template_id": "worksheet.spacious.v1",
+    "title": "Scale Soak Opt-Out Checklist"
+  },
+  "product_id": "H03-SCALE-PROD-CHECK",
+  "schema_version": "die.h03.document-ast.v1"
+}

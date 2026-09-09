@@ -1,0 +1,33 @@
+{
+  "metadata_title": "Scale Soak Opt-Out Reference",
+  "page_count": 2,
+  "text_chars": 914,
+  "visual_pages": [
+    {
+      "content_bbox": [
+        52,
+        98,
+        691,
+        1027
+      ],
+      "height": 1053,
+      "nonwhite_ratio": 0.006834,
+      "page": 1,
+      "png_sha256": "c7096affec66fef57dacc04af4baf4f6751d6c5e78ed4e950b6f2c9ff9c91942",
+      "width": 745
+    },
+    {
+      "content_bbox": [
+        52,
+        42,
+        692,
+        1027
+      ],
+      "height": 1053,
+      "nonwhite_ratio": 0.026422,
+      "page": 2,
+      "png_sha256": "49770cd0555f094696afe38e97447d631ae0eb97adf46e9d359df62378b5a7f2",
+      "width": 745
+    }
+  ]
+}

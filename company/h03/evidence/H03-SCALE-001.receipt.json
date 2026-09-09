@@ -1,0 +1,23 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-SCALE-001",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "execution_mode": "NONLIVE_ROLE_FIXTURE",
+    "safe_product_capacity": 3,
+    "product_count": 3,
+    "worker_job_count": 6,
+    "retry_count": 1,
+    "fallback_success_count": 1,
+    "terminal_failure_rate": 0.0,
+    "backpressure_action": "PAUSE_NEW_DISPATCH",
+    "external_publication": false
+  },
+  "validation": {
+    "targeted_review_scale": "4/4 PASS",
+    "h03_regression": "123/123 PASS",
+    "graph_frontier": "H03-COM-001",
+    "json_parse": "PASS"
+  }
+}

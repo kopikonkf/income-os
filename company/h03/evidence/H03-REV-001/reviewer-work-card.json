@@ -1,0 +1,34 @@
+{
+  "capability_requirements": {
+    "local_filesystem": false,
+    "mcp": false,
+    "shell": false,
+    "web_ai": true
+  },
+  "holding_id": "H03",
+  "idempotency_key": "h03-review:H03-PROD-ORG001-001",
+  "input_artifacts": [
+    {
+      "artifact_id": "H03-PROD-ORG001-001",
+      "kind": "local_product_package",
+      "ref": "artifact://H03-ORG-001/package/H03-PROD-ORG001-001",
+      "sha256": null
+    }
+  ],
+  "output_contract": {
+    "artifact_kind": "founder_review_card",
+    "schema_version": "die.h03.founder-review-card.v1"
+  },
+  "queue": "review",
+  "role": "REVIEWER",
+  "schema_version": "die.h03.cognition-work-card.v1",
+  "task_id": "H03-REV-001",
+  "terminal_policy": {
+    "max_attempts": 2,
+    "retryable_failures": [
+      "PROVIDER_UNAVAILABLE",
+      "INVALID_OUTPUT"
+    ]
+  },
+  "work_card_id": "H03-WC-REV-H03-PROD-ORG001-001"
+}
