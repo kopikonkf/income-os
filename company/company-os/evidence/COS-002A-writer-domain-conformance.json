@@ -1,0 +1,35 @@
+{
+  "schema": "die.state-manager.writer-domain-conformance.v1",
+  "status": "PASS",
+  "canonical_state_writer": "die-state-manager",
+  "sole_physical_writer_count": 1,
+  "global_store_write_findings": [
+    {
+      "file": "bin/die_event.py",
+      "line": 109,
+      "store": "state/EVENTS.jsonl",
+      "kind": "append_helper"
+    },
+    {
+      "file": "bin/die_event.py",
+      "line": 181,
+      "store": "state/DECISIONS.jsonl",
+      "kind": "append_helper"
+    }
+  ],
+  "unauthorized_global_store_writers": [],
+  "factory_domain": {
+    "logical_writer": "die-state-manager",
+    "adapter": "company/factory-asset/lib/factory_state_manager.py",
+    "registry": "company/factory-asset/registries/governed-canary-assets.v1.json",
+    "writer_token": "DIE_STATE_MANAGER"
+  },
+  "mission_control": {
+    "audited": true,
+    "forbidden_company_store_refs": []
+  },
+  "warnings": [
+    "W_ECONOMICS_WRITER_NOT_IMPLEMENTED_CURRENTLY"
+  ],
+  "errors": []
+}
