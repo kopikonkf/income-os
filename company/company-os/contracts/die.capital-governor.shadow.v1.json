@@ -1,0 +1,48 @@
+{
+    "schema":  "die.capital-governor.shadow.v1",
+    "status":  "ACCEPTED_E0_SHADOW_NO_SPEND_AUTHORITY",
+    "decision_schema":  "company/company-os/schemas/die.capital-governor.shadow-decision.v1.schema.json",
+    "validator_allocator":  "company/company-os/lib/economic_contracts.py",
+    "tests":  "company/company-os/tests/test_economic_contracts.py",
+    "recommendations":  [
+                            "SCALE",
+                            "HOLD",
+                            "OPTIMIZE",
+                            "KILL"
+                        ],
+    "decision_lattice_precedes_score":  true,
+    "incomplete_evidence_default":  "HOLD",
+    "complete_nonpositive_contribution":  "KILL",
+    "priority_formula_version":  "capital-governor-v1-multiplicative-bps",
+    "priority_dimensions":  [
+                                "return_signal_bps",
+                                "evidence_strength_bps",
+                                "strategic_fit_bps",
+                                "learning_value_bps",
+                                "risk_retention_bps"
+                            ],
+    "dimension_evidence_required":  true,
+    "allocation_eligible":  [
+                                "SCALE",
+                                "OPTIMIZE"
+                            ],
+    "allocation_order":  [
+                             "SCALE_FIRST",
+                             "PRIORITY_SCORE_DESC",
+                             "ECONOMIC_WORK_CARD_ID_ASC"
+                         ],
+    "hold_kill_allocation_minor":  0,
+    "zero_score_allocation_minor":  0,
+    "reserve_allocatable":  false,
+    "authority":  {
+                      "shadow_only":  true,
+                      "spend":  false,
+                      "payment":  false,
+                      "capital_transfer":  false,
+                      "provider_plan_change":  false,
+                      "infrastructure_purchase":  false,
+                      "new_vendor":  false,
+                      "external_submission":  false,
+                      "credentials":  false
+                  }
+}

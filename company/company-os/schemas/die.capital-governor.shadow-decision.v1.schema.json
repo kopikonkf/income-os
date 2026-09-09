@@ -1,0 +1,296 @@
+{
+    "$schema":  "https://json-schema.org/draft/2020-12/schema",
+    "$id":  "https://aethers.my.id/schemas/die.capital-governor.shadow-decision.v1.schema.json",
+    "title":  "DIE Capital Governor Shadow Decision v1",
+    "type":  "object",
+    "additionalProperties":  false,
+    "required":  [
+                     "schema_version",
+                     "decision_id",
+                     "economic_work_card_id",
+                     "holding_id",
+                     "economic_trace_id",
+                     "budget_envelope_class",
+                     "evaluation",
+                     "recommendation",
+                     "score",
+                     "simulated_allocation_minor",
+                     "evidence_refs",
+                     "falsifier",
+                     "authority_boundary",
+                     "allocation_cap_minor",
+                     "dimension_evidence",
+                     "basis"
+                 ],
+    "properties":  {
+                       "schema_version":  {
+                                              "const":  "die.capital-governor.shadow-decision.v1"
+                                          },
+                       "decision_id":  {
+                                           "type":  "string",
+                                           "pattern":  "^CAP-SHADOW-[A-Z0-9_-]{8,120}$"
+                                       },
+                       "economic_work_card_id":  {
+                                                     "type":  "string",
+                                                     "pattern":  "^EWC-[A-Z0-9_-]{8,120}$"
+                                                 },
+                       "holding_id":  {
+                                          "type":  "string",
+                                          "minLength":  1,
+                                          "maxLength":  80
+                                      },
+                       "economic_trace_id":  {
+                                                 "type":  "string",
+                                                 "minLength":  1,
+                                                 "maxLength":  160
+                                             },
+                       "budget_envelope_class":  {
+                                                     "enum":  [
+                                                                  "INFRASTRUCTURE",
+                                                                  "PRODUCTION",
+                                                                  "EXPERIMENT"
+                                                              ]
+                                                 },
+                       "evaluation":  {
+                                          "type":  "object",
+                                          "additionalProperties":  false,
+                                          "required":  [
+                                                           "actual_status",
+                                                           "completeness",
+                                                           "kill_condition",
+                                                           "scale_condition",
+                                                           "hold_condition",
+                                                           "actual_contribution_profit_minor",
+                                                           "actual_roic_bps",
+                                                           "expected_roic_bps",
+                                                           "evidence_strength_bps",
+                                                           "strategic_fit_bps",
+                                                           "learning_value_bps",
+                                                           "risk_penalty_bps"
+                                                       ],
+                                          "properties":  {
+                                                             "actual_status":  {
+                                                                                   "enum":  [
+                                                                                                "NOT_MEASURED",
+                                                                                                "PARTIAL",
+                                                                                                "MEASURED"
+                                                                                            ]
+                                                                               },
+                                                             "completeness":  {
+                                                                                  "enum":  [
+                                                                                               "YES",
+                                                                                               "PARTIAL",
+                                                                                               "NO"
+                                                                                           ]
+                                                                              },
+                                                             "kill_condition":  {
+                                                                                    "enum":  [
+                                                                                                 "TRUE",
+                                                                                                 "FALSE",
+                                                                                                 "UNKNOWN"
+                                                                                             ]
+                                                                                },
+                                                             "scale_condition":  {
+                                                                                     "enum":  [
+                                                                                                  "TRUE",
+                                                                                                  "FALSE",
+                                                                                                  "UNKNOWN"
+                                                                                              ]
+                                                                                 },
+                                                             "hold_condition":  {
+                                                                                    "enum":  [
+                                                                                                 "TRUE",
+                                                                                                 "FALSE",
+                                                                                                 "UNKNOWN"
+                                                                                             ]
+                                                                                },
+                                                             "actual_contribution_profit_minor":  {
+                                                                                                      "type":  [
+                                                                                                                   "integer",
+                                                                                                                   "null"
+                                                                                                               ]
+                                                                                                  },
+                                                             "actual_roic_bps":  {
+                                                                                     "type":  [
+                                                                                                  "integer",
+                                                                                                  "null"
+                                                                                              ]
+                                                                                 },
+                                                             "expected_roic_bps":  {
+                                                                                       "type":  [
+                                                                                                    "integer",
+                                                                                                    "null"
+                                                                                                ]
+                                                                                   },
+                                                             "evidence_strength_bps":  {
+                                                                                           "type":  "integer",
+                                                                                           "minimum":  0,
+                                                                                           "maximum":  10000
+                                                                                       },
+                                                             "strategic_fit_bps":  {
+                                                                                       "type":  "integer",
+                                                                                       "minimum":  0,
+                                                                                       "maximum":  10000
+                                                                                   },
+                                                             "learning_value_bps":  {
+                                                                                        "type":  "integer",
+                                                                                        "minimum":  0,
+                                                                                        "maximum":  10000
+                                                                                    },
+                                                             "risk_penalty_bps":  {
+                                                                                      "type":  "integer",
+                                                                                      "minimum":  0,
+                                                                                      "maximum":  10000
+                                                                                  }
+                                                         }
+                                      },
+                       "recommendation":  {
+                                              "enum":  [
+                                                           "SCALE",
+                                                           "HOLD",
+                                                           "OPTIMIZE",
+                                                           "KILL"
+                                                       ]
+                                          },
+                       "score":  {
+                                     "type":  "object",
+                                     "additionalProperties":  false,
+                                     "required":  [
+                                                      "return_signal_bps",
+                                                      "risk_retention_bps",
+                                                      "priority_score",
+                                                      "formula_version"
+                                                  ],
+                                     "properties":  {
+                                                        "return_signal_bps":  {
+                                                                                  "type":  "integer"
+                                                                              },
+                                                        "risk_retention_bps":  {
+                                                                                   "type":  "integer",
+                                                                                   "minimum":  0,
+                                                                                   "maximum":  10000
+                                                                               },
+                                                        "priority_score":  {
+                                                                               "type":  "integer",
+                                                                               "minimum":  0
+                                                                           },
+                                                        "formula_version":  {
+                                                                                "const":  "capital-governor-v1-multiplicative-bps"
+                                                                            }
+                                                    }
+                                 },
+                       "allocation_cap_minor":  {
+                                                    "type":  "integer",
+                                                    "minimum":  0
+                                                },
+                       "simulated_allocation_minor":  {
+                                                          "type":  "integer",
+                                                          "minimum":  0
+                                                      },
+                       "evidence_refs":  {
+                                             "type":  "array",
+                                             "minItems":  1,
+                                             "items":  {
+                                                           "type":  "string",
+                                                           "minLength":  1,
+                                                           "maxLength":  800
+                                                       }
+                                         },
+                       "dimension_evidence":  {
+                                                  "type":  "object",
+                                                  "additionalProperties":  false,
+                                                  "required":  [
+                                                                   "evidence_strength",
+                                                                   "strategic_fit",
+                                                                   "learning_value",
+                                                                   "risk_penalty"
+                                                               ],
+                                                  "properties":  {
+                                                                     "evidence_strength":  {
+                                                                                               "type":  "array",
+                                                                                               "minItems":  1,
+                                                                                               "items":  {
+                                                                                                             "type":  "string",
+                                                                                                             "minLength":  1
+                                                                                                         }
+                                                                                           },
+                                                                     "strategic_fit":  {
+                                                                                           "type":  "array",
+                                                                                           "minItems":  1,
+                                                                                           "items":  {
+                                                                                                         "type":  "string",
+                                                                                                         "minLength":  1
+                                                                                                     }
+                                                                                       },
+                                                                     "learning_value":  {
+                                                                                            "type":  "array",
+                                                                                            "minItems":  1,
+                                                                                            "items":  {
+                                                                                                          "type":  "string",
+                                                                                                          "minLength":  1
+                                                                                                      }
+                                                                                        },
+                                                                     "risk_penalty":  {
+                                                                                          "type":  "array",
+                                                                                          "minItems":  1,
+                                                                                          "items":  {
+                                                                                                        "type":  "string",
+                                                                                                        "minLength":  1
+                                                                                                    }
+                                                                                      }
+                                                                 }
+                                              },
+                       "falsifier":  {
+                                         "type":  "string",
+                                         "minLength":  1
+                                     },
+                       "basis":  {
+                                     "type":  "string",
+                                     "minLength":  1
+                                 },
+                       "authority_boundary":  {
+                                                  "type":  "object",
+                                                  "additionalProperties":  false,
+                                                  "required":  [
+                                                                   "shadow_only",
+                                                                   "spend_authorized",
+                                                                   "payment_action",
+                                                                   "capital_transfer",
+                                                                   "provider_plan_change",
+                                                                   "infrastructure_purchase",
+                                                                   "new_vendor_commitment",
+                                                                   "external_submission",
+                                                                   "credentials_embedded"
+                                                               ],
+                                                  "properties":  {
+                                                                     "shadow_only":  {
+                                                                                         "const":  true
+                                                                                     },
+                                                                     "spend_authorized":  {
+                                                                                              "const":  false
+                                                                                          },
+                                                                     "payment_action":  {
+                                                                                            "const":  false
+                                                                                        },
+                                                                     "capital_transfer":  {
+                                                                                              "const":  false
+                                                                                          },
+                                                                     "provider_plan_change":  {
+                                                                                                  "const":  false
+                                                                                              },
+                                                                     "infrastructure_purchase":  {
+                                                                                                     "const":  false
+                                                                                                 },
+                                                                     "new_vendor_commitment":  {
+                                                                                                   "const":  false
+                                                                                               },
+                                                                     "external_submission":  {
+                                                                                                 "const":  false
+                                                                                             },
+                                                                     "credentials_embedded":  {
+                                                                                                  "const":  false
+                                                                                              }
+                                                                 }
+                                              }
+                   }
+}
