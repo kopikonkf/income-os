@@ -17,6 +17,13 @@
     providerError: null,
     outputGallery: null,
     outputError: null,
+    productionAcceptance: null,
+    productionAcceptanceError: null,
+    qcGallery: null,
+    qcError: null,
+    qcSearch: "",
+    qcSource: "ALL",
+    qcSelected: null,
     syntheticE2E: null,
     syntheticE2EError: null,
     notice: "Compile a Blueprint v2 before creating a batch intent."
@@ -218,9 +225,9 @@
       <article class="card" style="margin-bottom:16px"><div class="result-head"><div><h2>Provider Health / Capacity / Routing</h2><p class="muted">Core policy + capacity ledger + deterministic router</p></div>${d ? badge(d.evidence_mode) : badge('UNKNOWN')}</div>
         ${state.providerError ? `<p class="notice">${esc(state.providerError)}</p>` : ''}
         ${d ? `<dl class="kv"><dt>Evidence mode</dt><dd>${esc(d.evidence_mode)}</dd><dt>Observed at</dt><dd>${esc(d.observed_at)}</dd><dt>Route sample</dt><dd>${esc(d.route_asset_type)}</dd><dt>Selected profile</dt><dd>${esc(d.selected_profile_id || 'NONE')}</dd><dt>Guessed quota</dt><dd>${d.guessed_quota_present ? badge('INVALID') : badge('NONE')}</dd><dt>Provider dispatch</dt><dd>${d.provider_dispatch_performed ? badge('INVALID') : badge('LOCKED')}</dd></dl>` : '<p class="muted">Loading normalized provider state…</p>'}
-        <p class="notice">Capacity shown here is deterministic observed fixture evidence, not live quota polling. Optional/deferred Grok cannot block healthy eligible routes.</p>
+        <p class="notice">${d && d.evidence_mode==='LIVE_BROKER_SANITIZED' ? 'Live broker readiness/capacity is sanitized and read-only; no quota is guessed and no provider dispatch occurs.' : 'Fallback fixture evidence only; live broker state is unavailable.'}</p>
       </article>
-      <div class="provider-grid">${rows.map(p => `<article class="provider-card"><header><h3>${esc(p.provider_id.toUpperCase())}</h3>${badge(p.eligibility)}</header><dl class="kv"><dt>Profile</dt><dd>${esc(p.profile_id)}</dd><dt>Health</dt><dd>${badge(p.health)}</dd><dt>Transport</dt><dd>${esc(p.transport)}</dd><dt>Capacity</dt><dd>${badge(p.capacity)}</dd><dt>Policy</dt><dd>${badge(p.policy)}</dd><dt>Evidence</dt><dd>${esc(p.last_evidence || 'UNKNOWN')}</dd><dt>Retry after</dt><dd>${p.retry_after_seconds == null ? '—' : esc(p.retry_after_seconds + 's')}</dd></dl><p>${esc(p.routing_reason)}</p></article>`).join("")}</div>`;
+      <div class="provider-grid">${rows.map(p => `<article class="provider-card"><header><h3>${esc(p.provider_id.toUpperCase())}${p.cluster_id ? ' · '+esc(p.cluster_id) : ''}</h3>${badge(p.eligibility)}</header><dl class="kv"><dt>Profile</dt><dd>${esc(p.profile_id)}</dd>${p.accepted_in_fa124==null?'':`<dt>FA-124 accepted</dt><dd>${p.accepted_in_fa124}</dd>`}<dt>Health</dt><dd>${badge(p.health)}</dd><dt>Transport</dt><dd>${esc(p.transport)}</dd><dt>Capacity</dt><dd>${badge(p.capacity)}</dd><dt>Policy</dt><dd>${badge(p.policy)}</dd><dt>Evidence</dt><dd>${esc(p.last_evidence || 'UNKNOWN')}</dd><dt>Retry after</dt><dd>${p.retry_after_seconds == null ? '—' : esc(p.retry_after_seconds + 's')}</dd></dl><p>${esc(p.routing_reason)}</p></article>`).join("")}</div>`;
   }
   async function refreshOutputs() {
     try { state.outputGallery = await getLocal('/api/outputs'); state.outputError = null; }
@@ -242,7 +249,50 @@
       </article>`).join('')}</div>`;
   }
 
-  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); if(view==='providers') refreshProviders(); if(view==='output') refreshOutputs(); }
-  $$('.nav-item').forEach(button=>button.addEventListener('click',()=>activateView(button.dataset.view)));
-  renderMetrics();renderBlueprint();renderBatch();renderQueue();renderProviders();renderOutput();activateView('blueprint');refreshQueue();refreshProviders();refreshOutputs();
+
+  async function refreshQC() {
+    try { state.qcGallery = await getLocal('/api/qc-gallery'); state.qcError = null; }
+    catch(error) { state.qcError = `${error.code || 'ERROR'}: ${error.message || 'QC Gallery unavailable'}`; }
+    renderQC();
+  }
+  function qcItems() {
+    const rows=state.qcGallery ? state.qcGallery.items : [];
+    const q=state.qcSearch.trim().toLowerCase();
+    return rows.filter(x => (state.qcSource==='ALL'||x.source_group===state.qcSource) && (!q || [x.seed_name,x.seed_id,x.job_id,x.provider_route,x.qc_state].some(v=>String(v||'').toLowerCase().includes(q))));
+  }
+  function renderQC() {
+    const d=state.qcGallery,rows=qcItems(),selected=rows.find(x=>x.asset_id===state.qcSelected)||null;
+    $("#view-qc").innerHTML = `
+      <article class="card" style="margin-bottom:16px"><div class="result-head"><div><h2>Founder QC Gallery</h2><p class="muted">One review image per accepted canary/job; read-only bulk inspection</p></div>${d ? badge('READ ONLY') : badge('UNKNOWN')}</div>
+        ${state.qcError ? `<p class="notice">${esc(state.qcError)}</p>` : ''}
+        ${d ? `<div class="qc-toolbar"><input id="qc-search" placeholder="Search seed, job, provider…" value="${esc(state.qcSearch)}"><select id="qc-source"><option value="ALL" ${state.qcSource==='ALL'?'selected':''}>All (${d.asset_count})</option><option value="FA124_CANARY" ${state.qcSource==='FA124_CANARY'?'selected':''}>FA-124 (${d.source_counts.FA124_CANARY||0})</option><option value="PRODUCTION_WORKSPACE" ${state.qcSource==='PRODUCTION_WORKSPACE'?'selected':''}>Production Workspaces (${d.source_counts.PRODUCTION_WORKSPACE||0})</option></select><span class="badge violet">${rows.length} visible</span></div>` : ''}
+      </article>
+      <div class="qc-grid">${rows.map(x=>`<button class="qc-card" data-qc-id="${esc(x.asset_id)}"><img loading="lazy" src="${esc(x.thumb_url)}" alt="${esc(x.seed_name)}"><span class="qc-card-body"><strong>${esc(x.seed_name)}</strong><small>${esc(x.provider_route||'—')} · ${esc(x.review_kind)}</small><small>${esc(x.job_id)} · ${esc(x.qc_state)}</small></span></button>`).join('')}</div>
+      ${selected ? `<div class="qc-lightbox" id="qc-lightbox"><button class="qc-close" id="qc-close">×</button><div class="qc-stage"><img src="${esc(selected.full_url)}" alt="${esc(selected.seed_name)}"></div><aside class="qc-meta"><h2>${esc(selected.seed_name)}</h2><dl class="kv"><dt>Job</dt><dd>${esc(selected.job_id)}</dd><dt>Source</dt><dd>${esc(selected.source_group)}</dd><dt>Provider</dt><dd>${esc(selected.provider_route||'—')}</dd><dt>Review kind</dt><dd>${esc(selected.review_kind)}</dd><dt>QC state</dt><dd>${badge(selected.qc_state)}</dd><dt>Format</dt><dd>${esc(selected.format||'—')}</dd><dt>Dimensions</dt><dd>${selected.width_px&&selected.height_px?`${selected.width_px}×${selected.height_px}`:'—'}</dd><dt>Bytes</dt><dd>${Number(selected.bytes||0).toLocaleString()}</dd></dl><p class="notice">Read-only review. No Founder QC decision is written from this gallery yet.</p></aside></div>` : ''}`;
+    if ($('#qc-search')) $('#qc-search').addEventListener('input',e=>{state.qcSearch=e.target.value;renderQC();});
+    if ($('#qc-source')) $('#qc-source').addEventListener('change',e=>{state.qcSource=e.target.value;state.qcSelected=null;renderQC();});
+    $$('.qc-card').forEach(b=>b.addEventListener('click',()=>{state.qcSelected=b.dataset.qcId;renderQC();}));
+    if ($('#qc-close')) $('#qc-close').addEventListener('click',()=>{state.qcSelected=null;renderQC();});
+  }
+
+  async function refreshAcceptance() {
+    try { state.productionAcceptance = await getLocal('/api/production-acceptance'); state.productionAcceptanceError = null; }
+    catch(error) { state.productionAcceptanceError = `${error.code || 'ERROR'}: ${error.message || 'Production acceptance unavailable'}`; }
+    renderAcceptance();
+  }
+  function renderAcceptance() {
+    const d=state.productionAcceptance; const routes=d ? d.live_pool.routes : [];
+    $("#view-acceptance").innerHTML = `
+      <article class="card" style="margin-bottom:16px"><div class="result-head"><div><h2>100/day Production Acceptance</h2><p class="muted">FA-124 truth + live A/B broker state + queue/recovery evidence</p></div>${d ? badge(d.technical_result) : badge('UNKNOWN')}</div>
+      ${state.productionAcceptanceError ? `<p class="notice">${esc(state.productionAcceptanceError)}</p>` : ''}
+      ${d ? `<div class="count-split"><div class="count-box"><strong>${d.production_model.accepted_masters}</strong><span>accepted masters</span></div><div class="count-box"><strong>${d.production_model.unique_sha256}</strong><span>unique SHA</span></div></div>
+      <dl class="kv" style="margin-top:14px"><dt>Allocation</dt><dd>${esc(d.production_model.distribution_policy)}</dd><dt>Routes certified</dt><dd>${badge(d.production_model.all_10_routes_certified ? 'PASS':'FAIL')}</dd><dt>Live healthy routes</dt><dd>${d.live_pool.healthy_routes}/10</dd><dt>Queue/backpressure</dt><dd>${badge(d.batch_queue.fa_c011_result)} · worker limit ${d.batch_queue.worker_slot_limit}</dd><dt>Recovery</dt><dd>${badge(d.recovery.fa_c012_result)} · duplicate dispatch blocked=${d.recovery.duplicate_dispatch_blocked}</dd><dt>Distinctness</dt><dd>exact ${d.output_truth.exact_duplicate_hashes} · object-near ${d.output_truth.object_confirmed_near_duplicate_pairs}</dd><dt>Storage p95</dt><dd>${d.storage.estimated_100_per_day_gib} GiB/day · ${d.storage.estimated_30_day_gib} GiB/30d</dd><dt>Provider dispatch from Console</dt><dd>${d.provider_dispatch_authority ? badge('INVALID'):badge('LOCKED')}</dd><dt>Marketplace publication</dt><dd>${d.publication_authority ? badge('INVALID'):badge('LOCKED')}</dd><dt>Founder GUI validation</dt><dd>${d.founder_validation_required ? badge('REQUIRED'):badge('PASS')}</dd></dl>` : '<p class="muted">Loading production acceptance truth…</p>'}</article>
+      <div class="provider-grid">${routes.map(r => `<article class="provider-card"><header><h3>${esc(r.route_id)}</h3>${badge(r.health)}</header><dl class="kv"><dt>Capacity</dt><dd>${badge(r.capacity)}</dd><dt>FA-124 accepted</dt><dd>${r.accepted_in_fa124}</dd><dt>Cluster</dt><dd>${esc(r.cluster_id)}</dd></dl></article>`).join('')}</div>`;
+  }
+
+  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); if(view==='providers') refreshProviders(); if(view==='output') refreshOutputs(); if(view==='qc') refreshQC(); if(view==='acceptance') refreshAcceptance(); }
+  const validViews=new Set(['blueprint','batch','queue','providers','output','qc','acceptance']);
+  $$('.nav-item').forEach(button=>button.addEventListener('click',()=>{location.hash=button.dataset.view;activateView(button.dataset.view);}));
+  window.addEventListener('hashchange',()=>{const v=location.hash.slice(1);if(validViews.has(v))activateView(v);});
+  renderMetrics();renderBlueprint();renderBatch();renderQueue();renderProviders();renderOutput();renderQC();renderAcceptance();const initial=validViews.has(location.hash.slice(1))?location.hash.slice(1):'blueprint';activateView(initial);refreshQueue();refreshProviders();refreshOutputs();refreshQC();refreshAcceptance();
 })();

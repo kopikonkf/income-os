@@ -10,6 +10,7 @@ from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
+from urllib.parse import parse_qs,urlparse
 
 STATIC_ROOT = Path(__file__).resolve().parent
 
@@ -54,10 +55,13 @@ observability = _load_module("factory_console_observability", ROOT / "company/fa
 provider_dashboard = _load_module("factory_console_provider_dashboard", ROOT / "company/factory-asset/lib/provider_dashboard.py")
 factory_core_synthetic = _load_module("factory_console_core_synthetic", ROOT / "company/factory-asset/lib/factory_core_synthetic_acceptance.py")
 console_batch_acceptance = _load_module("factory_console_batch_acceptance", ROOT / "company/factory-asset/lib/console_batch_acceptance.py")
+production_acceptance = _load_module("factory_console_production_acceptance", ROOT / "company/factory-asset/lib/console_production_acceptance.py")
+founder_qc_gallery = _load_module("factory_console_founder_qc_gallery", ROOT / "company/factory-asset/lib/founder_qc_gallery.py")
 
 PROVIDER_POLICY_REGISTRY = json.loads((ROOT / "company/factory-asset/registries/provider-policy.v1.json").read_text(encoding="utf-8"))
 PROVIDER_DASHBOARD_FIXTURE = json.loads((ROOT / "company/factory-asset/fixtures/provider-dashboard/synthetic-observed.v1.json").read_text(encoding="utf-8"))
 OUTPUT_GALLERY_FIXTURE = json.loads((ROOT / "company/factory-asset/fixtures/output-gallery/fa029-actual-canary.v1.json").read_text(encoding="utf-8"))
+CLUSTER_REGISTRY = json.loads((ROOT / "company/factory-asset/registries/web-ai-clusters.v1.json").read_text(encoding="utf-8"))
 CORE_QUEUE = factory_queue.FactoryJobQueue()
 RECONCILIATION_REQUIRED_JOB_IDS: set[str] = set()
 
@@ -146,6 +150,22 @@ def _seed_queue() -> None:
 
 
 def provider_dashboard_state() -> dict[str, Any]:
+    try: live = production_acceptance_state()
+    except Exception: live = None
+    if live and any(row.get("reachable") for row in live["live_pool"]["clusters"]):
+        clusters = {row["cluster_id"]: row for row in CLUSTER_REGISTRY["clusters"]}
+        providers = []
+        for row in live["live_pool"]["routes"]:
+            cluster = clusters.get(row["cluster_id"], {})
+            healthy = row["health"] == "HEALTHY"
+            providers.append({
+                "provider_id": row["provider_id"], "cluster_id": row["cluster_id"], "profile_id": cluster.get("profile_id", "UNKNOWN"),
+                "eligibility": "ELIGIBLE" if healthy else "COOLDOWN_OR_DEGRADED", "health": row["health"], "capacity": row["capacity"],
+                "policy": "ALLOWED_EVIDENCED", "transport": "BROWSER_CDP", "last_evidence": live["observed_at"],
+                "routing_reason": "SCHEDULABLE" if healthy and row["capacity"] == "AVAILABLE" else "NOT_SCHEDULABLE_CURRENT_STATE",
+                "retry_after_seconds": None, "accepted_in_fa124": row["accepted_in_fa124"],
+            })
+        return {"schema":"die.factory-asset.provider-dashboard.v1","evidence_mode":"LIVE_BROKER_SANITIZED","observed_at":live["observed_at"],"route_asset_type":"RASTER","selected_profile_id":None,"providers":providers,"guessed_quota_present":False,"provider_dispatch_performed":False}
     return provider_dashboard.build_provider_dashboard(
         policy_registry=PROVIDER_POLICY_REGISTRY,
         fixture=PROVIDER_DASHBOARD_FIXTURE,
@@ -202,6 +222,14 @@ def run_console_synthetic_batch_acceptance() -> dict[str, Any]:
 
 def output_gallery_state() -> dict[str, Any]:
     return json.loads(json.dumps(OUTPUT_GALLERY_FIXTURE))
+
+
+def production_acceptance_state() -> dict[str, Any]:
+    return production_acceptance.build_production_acceptance(ROOT)
+
+
+def qc_gallery_state() -> dict[str, Any]:
+    return founder_qc_gallery.build_gallery(ROOT)
 
 
 def install_recovered_queue(queue: Any, *, reconciliation_required_job_ids: list[str] | tuple[str, ...] | set[str] = ()) -> None:
@@ -267,7 +295,23 @@ class Handler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def _bytes(self, status: int, body: bytes, content_type: str) -> None:
+        self.send_response(status)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Cache-Control", "private, max-age=300")
+        self.end_headers()
+        self.wfile.write(body)
+
     def do_GET(self) -> None:
+        parsed=urlparse(self.path)
+        if parsed.path == "/api/qc-image":
+            q=parse_qs(parsed.query);asset_id=(q.get("id") or [""])[0];variant=(q.get("variant") or ["thumb"])[0]
+            try: body,ctype=founder_qc_gallery.image_payload(ROOT,asset_id,variant)
+            except (KeyError,ValueError): self._json(HTTPStatus.NOT_FOUND,{"result":"FAIL","code":"QC_ASSET_NOT_FOUND"});return
+            self._bytes(HTTPStatus.OK,body,ctype);return
+        if parsed.path == "/api/qc-gallery":
+            self._json(HTTPStatus.OK,qc_gallery_state());return
         if self.path == "/api/queue/jobs":
             self._json(HTTPStatus.OK, queue_state())
             return
@@ -276,6 +320,9 @@ class Handler(SimpleHTTPRequestHandler):
             return
         if self.path == "/api/outputs":
             self._json(HTTPStatus.OK, output_gallery_state())
+            return
+        if self.path == "/api/production-acceptance":
+            self._json(HTTPStatus.OK, production_acceptance_state())
             return
         super().do_GET()
 

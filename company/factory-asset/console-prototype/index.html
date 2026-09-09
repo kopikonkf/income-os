@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Factory Asset Console — Synthetic Prototype</title>
+  <title>Factory Asset Console — Founder Control Plane</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,17 +13,19 @@
         <div class="brand-mark">FA</div>
         <div><strong>Factory Console</strong><span>Founder control plane</span></div>
       </div>
-      <div class="env-chip"><span class="pulse"></span> SYNTHETIC MODE</div>
+      <div class="env-chip"><span class="pulse"></span> GOVERNED CONTROL PLANE</div>
       <nav id="primary-nav" aria-label="Primary navigation">
         <button class="nav-item active" data-view="blueprint">Blueprint</button>
         <button class="nav-item" data-view="batch">Batch</button>
         <button class="nav-item" data-view="queue">Queue</button>
         <button class="nav-item" data-view="providers">Providers</button>
         <button class="nav-item" data-view="output">Output</button>
+        <button class="nav-item" data-view="qc">QC Gallery</button>
+        <button class="nav-item" data-view="acceptance">Acceptance</button>
       </nav>
       <div class="sidebar-note">
-        <strong>No live authority</strong>
-        <p>Provider calls, credentials, browser sessions and marketplace publication are disabled in this prototype.</p>
+        <strong>No live dispatch authority</strong>
+        <p>Console may read sanitized production evidence, but provider calls, credentials, browser sessions and marketplace publication remain outside GUI authority.</p>
       </div>
     </aside>
 
@@ -37,7 +39,7 @@
       </header>
 
       <div class="safety-banner">
-        <strong>Synthetic data only.</strong> UI state is demonstrative and never becomes Factory canonical truth.
+        <strong>Governed evidence.</strong> Queue controls remain non-dispatch; Production Acceptance reads sanitized live/canonical truth and never becomes marketplace authority.
       </div>
 
       <section id="view-blueprint" class="view active" data-view-panel="blueprint"></section>
@@ -45,6 +47,8 @@
       <section id="view-queue" class="view" data-view-panel="queue"></section>
       <section id="view-providers" class="view" data-view-panel="providers"></section>
       <section id="view-output" class="view" data-view-panel="output"></section>
+      <section id="view-qc" class="view" data-view-panel="qc"></section>
+      <section id="view-acceptance" class="view" data-view-panel="acceptance"></section>
     </main>
   </div>
   <script src="synthetic-data.js"></script>

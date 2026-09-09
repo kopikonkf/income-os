@@ -29,7 +29,7 @@ def test_console_has_exact_required_primary_navigation_and_panels():
     html = (CONSOLE / 'index.html').read_text(encoding='utf-8')
     nav = re.findall(r'data-view="([a-z]+)"', html)
     panels = re.findall(r'data-view-panel="([a-z]+)"', html)
-    expected = ['blueprint','batch','queue','providers','output']
+    expected = ['blueprint','batch','queue','providers','output','qc','acceptance']
     assert nav == expected
     assert panels == expected
 
