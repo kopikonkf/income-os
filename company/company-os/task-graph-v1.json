@@ -1,7 +1,7 @@
 {
   "schema": "die.company-os.task-graph.v1",
   "generated_at": "2026-09-08",
-  "revision": "1.9-econ007-econ009-shadow-batch",
+  "revision": "2.0-econ009abc-evidence-window",
   "status": "CANONICAL",
   "project": "DIE Company OS / Economic Layer",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -396,12 +396,72 @@
       }
     },
     {
+      "id": "ECON-009A",
+      "track": "PORTFOLIO_PILOT",
+      "title": "H01 shadow economics observation",
+      "status": "DONE",
+      "priority": 735,
+      "depends_on": ["ECON-009"],
+      "execution_mode": "tool_native",
+      "risk": "LOW",
+      "acceptance": "Produce a read-only H01 observation snapshot from canonical production evidence, explicitly separating observed lineage from missing cash-cost, Founder-time, Work Card, Governor and realized-revenue evidence.",
+      "result": {
+        "status": "PASS_OBSERVATION_WINDOW_OPEN",
+        "artifact": "company/company-os/ECON-009A_H01_SHADOW_ECONOMICS_OBSERVATION_V1.md",
+        "observation": "company/company-os/observations/ECON-009A_H01_SHADOW_OBSERVATION_V1.json",
+        "receipt": "company/company-os/receipts/ECON-009A-h01-shadow-observation.receipt.json",
+        "closed_measurement_window": false,
+        "lineage_state": "LINEAGE_RICH",
+        "revenue_state": "NO_REALIZED_REVENUE_EVIDENCE"
+      }
+    },
+    {
+      "id": "ECON-009B",
+      "track": "PORTFOLIO_PILOT",
+      "title": "H03 shadow economics observation",
+      "status": "DONE",
+      "priority": 730,
+      "depends_on": ["ECON-009"],
+      "execution_mode": "tool_native",
+      "risk": "LOW",
+      "acceptance": "Produce a read-only H03 observation snapshot without inventing a live product, checkout, Founder-time, cost or revenue path that current canon does not prove.",
+      "result": {
+        "status": "PASS_OBSERVATION_REVENUE_UNPROVEN",
+        "artifact": "company/company-os/ECON-009B_H03_SHADOW_ECONOMICS_OBSERVATION_V1.md",
+        "observation": "company/company-os/observations/ECON-009B_H03_SHADOW_OBSERVATION_V1.json",
+        "receipt": "company/company-os/receipts/ECON-009B-h03-shadow-observation.receipt.json",
+        "closed_measurement_window": false,
+        "lineage_state": "DESIGN_ONLY",
+        "revenue_state": "UNPROVEN_NO_LIVE_ORDER_PATH"
+      }
+    },
+    {
+      "id": "ECON-009C",
+      "track": "PORTFOLIO_PILOT",
+      "title": "Shadow evidence-window sufficiency evaluation",
+      "status": "BLOCKED",
+      "priority": 725,
+      "depends_on": ["ECON-009A", "ECON-009B", "ECON-006"],
+      "execution_mode": "tool_native",
+      "risk": "LOW",
+      "acceptance": "Mark SUFFICIENT_SHADOW_EVIDENCE_WINDOW satisfied only when both pilot flows have closed evidence windows with sufficient Founder-time/cost truth and Governor recommendation/outcome evidence; elapsed time alone is insufficient.",
+      "blocked_reason": "CURRENT_OBSERVATIONS_INSUFFICIENT",
+      "last_evaluation": {
+        "status": "NOT_SATISFIED",
+        "artifact": "company/company-os/ECON-009C_SHADOW_EVIDENCE_WINDOW_SUFFICIENCY_V1.md",
+        "evaluation": "company/company-os/observations/ECON-009C_SHADOW_EVIDENCE_WINDOW_EVALUATION_V1.json",
+        "receipt": "company/company-os/receipts/ECON-009C-shadow-evidence-window-evaluation.receipt.json",
+        "gate_satisfied": false,
+        "blocking_requirements": ["H01_CLOSED_MEASUREMENT_WINDOW", "H03_CLOSED_MEASUREMENT_WINDOW", "FOUNDER_TIME_SUFFICIENT", "CASH_COST_SUFFICIENT", "GOVERNOR_RECOMMENDATION_AND_OUTCOME"]
+      }
+    },
+    {
       "id": "ECON-010",
       "track": "AUTONOMY",
       "title": "Economic E1 advisory promotion packet",
       "status": "BLOCKED",
       "priority": 700,
-      "depends_on": ["ECON-007", "ECON-009"],
+      "depends_on": ["ECON-007", "ECON-009C"],
       "external_gates": ["SUFFICIENT_SHADOW_EVIDENCE_WINDOW"],
       "execution_mode": "cognition_only",
       "risk": "MEDIUM",

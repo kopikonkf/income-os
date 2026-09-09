@@ -1,0 +1,18 @@
+{
+    "schema":  "die.shadow-evidence-window.v1",
+    "status":  "CURRENTLY_NOT_SATISFIED",
+    "observation_schema":  "company/company-os/schemas/die.economic-shadow-observation.v1.schema.json",
+    "evaluation_schema":  "company/company-os/schemas/die.shadow-evidence-window-evaluation.v1.schema.json",
+    "h01_observation":  "company/company-os/observations/ECON-009A_H01_SHADOW_OBSERVATION_V1.json",
+    "h03_observation":  "company/company-os/observations/ECON-009B_H03_SHADOW_OBSERVATION_V1.json",
+    "current_evaluation":  "company/company-os/observations/ECON-009C_SHADOW_EVIDENCE_WINDOW_EVALUATION_V1.json",
+    "gate_id":  "SUFFICIENT_SHADOW_EVIDENCE_WINDOW",
+    "gate_satisfied":  false,
+    "reevaluate_only_on_new_material_evidence":  true,
+    "authority":  {
+                      "promotion_authorized":  false,
+                      "spend":  false,
+                      "autonomy_promoted":  false,
+                      "silence_is_approval":  false
+                  }
+}

@@ -1,0 +1,48 @@
+{
+    "schema":  "die.company-os.econ009a.h01-shadow-observation.receipt.v1",
+    "task_id":  "ECON-009A",
+    "status":  "PASS_OBSERVATION_WINDOW_OPEN",
+    "observed_at":  "2026-09-09",
+    "source_main":  "5e9daa368fd6b565056439b7b58a97a1cc3551e3",
+    "artifacts":  [
+                      {
+                          "path":  "company/company-os/ECON-009A_H01_SHADOW_ECONOMICS_OBSERVATION_V1.md",
+                          "sha256":  "46acb5eb055b1bd099e2e4cd228dfe906ce802a830a56cf3982637e4e2d15a54"
+                      },
+                      {
+                          "path":  "company/company-os/observations/ECON-009A_H01_SHADOW_OBSERVATION_V1.json",
+                          "sha256":  "4c6efab32f59725c45be77a9b0e8d9fd5da8c852a8dbbaac353adc8398f383db"
+                      },
+                      {
+                          "path":  "company/company-os/schemas/die.economic-shadow-observation.v1.schema.json",
+                          "sha256":  "e7332bb588c7e5e6486bd211cf296a96de6adcee0cf79b2cd68b038d3f585388"
+                      },
+                      {
+                          "path":  "company/company-os/lib/economic_contracts.py",
+                          "sha256":  "3e9ec796f7cf4eb2d48d2b63efdca735efbdc49f8285711d10b0cf1ee1dbe2e2"
+                      },
+                      {
+                          "path":  "company/company-os/tests/test_economic_contracts.py",
+                          "sha256":  "70507255de8e18c468deafd04e76622c55d9c45d43c215d359a6f0dc66f13138"
+                      }
+                  ],
+    "standing":  {
+                     "lineage_state":  "LINEAGE_RICH",
+                     "closed_measurement_window":  false,
+                     "cash_cost_complete":  "PARTIAL",
+                     "founder_time_complete":  "NO",
+                     "resource_usage_complete":  "PARTIAL",
+                     "revenue_state":  "NO_REALIZED_REVENUE_EVIDENCE",
+                     "ewc_present":  false,
+                     "governor_decision_present":  false
+                 },
+    "authority":  {
+                      "read_only":  true,
+                      "live_ingestion":  false,
+                      "spend":  false,
+                      "submission":  false,
+                      "payment":  false,
+                      "provider_plan_change":  false,
+                      "credential_mutation":  false
+                  }
+}

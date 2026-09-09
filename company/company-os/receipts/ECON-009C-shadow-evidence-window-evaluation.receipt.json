@@ -1,0 +1,55 @@
+{
+    "schema":  "die.company-os.econ009c.shadow-evidence-window-evaluation.receipt.v1",
+    "task_id":  "ECON-009C",
+    "status":  "NOT_SATISFIED",
+    "observed_at":  "2026-09-09",
+    "source_main":  "5e9daa368fd6b565056439b7b58a97a1cc3551e3",
+    "artifacts":  [
+                      {
+                          "path":  "company/company-os/ECON-009C_SHADOW_EVIDENCE_WINDOW_SUFFICIENCY_V1.md",
+                          "sha256":  "88ebdaacfbbe68b9439166ed5b7af378ea895687d275cec1c81a44e733bd5a4b"
+                      },
+                      {
+                          "path":  "company/company-os/observations/ECON-009C_SHADOW_EVIDENCE_WINDOW_EVALUATION_V1.json",
+                          "sha256":  "b9c87d43e8733e035b88403fa74ff5142e3acbde2635fffa1678fdc4a5ef7c7d"
+                      },
+                      {
+                          "path":  "company/company-os/schemas/die.shadow-evidence-window-evaluation.v1.schema.json",
+                          "sha256":  "dd7d5caa263be61d7a9dc0d69bf4e55d35da701fb82a03b4c26cd5929a3ba8d5"
+                      },
+                      {
+                          "path":  "company/company-os/contracts/die.shadow-evidence-window.v1.json",
+                          "sha256":  "1a141a5f85240fdf85fce48a002ba859027fed9b638c83423c3e8a61f5a739fd"
+                      },
+                      {
+                          "path":  "company/company-os/lib/economic_contracts.py",
+                          "sha256":  "3e9ec796f7cf4eb2d48d2b63efdca735efbdc49f8285711d10b0cf1ee1dbe2e2"
+                      },
+                      {
+                          "path":  "company/company-os/tests/test_economic_contracts.py",
+                          "sha256":  "70507255de8e18c468deafd04e76622c55d9c45d43c215d359a6f0dc66f13138"
+                      }
+                  ],
+    "evaluation":  {
+                       "pytest":  "48_PASSED",
+                       "gate_id":  "SUFFICIENT_SHADOW_EVIDENCE_WINDOW",
+                       "gate_satisfied":  false,
+                       "passed_requirements":  [
+                                                   "UNKNOWN_NOT_TREATED_AS_ZERO",
+                                                   "SHADOW_AUTHORITY_BOUNDARY_PRESERVED"
+                                               ],
+                       "blocking_requirements":  [
+                                                     "H01_CLOSED_MEASUREMENT_WINDOW",
+                                                     "H03_CLOSED_MEASUREMENT_WINDOW",
+                                                     "FOUNDER_TIME_SUFFICIENT",
+                                                     "CASH_COST_SUFFICIENT",
+                                                     "GOVERNOR_RECOMMENDATION_AND_OUTCOME"
+                                                 ]
+                   },
+    "authority":  {
+                      "promotion_authorized":  false,
+                      "spend":  false,
+                      "autonomy_promoted":  false,
+                      "silence_is_approval":  false
+                  }
+}

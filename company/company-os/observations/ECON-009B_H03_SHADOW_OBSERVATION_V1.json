@@ -1,0 +1,51 @@
+{
+    "schema_version":  "die.economic-shadow-observation.v1",
+    "observation_id":  "ECON-OBS-H03-DIRECTPRODUCT-001",
+    "holding_id":  "H03",
+    "flow_id":  "H03-KNOWLEDGE-PRODUCT-DIRECT-SALE-V1",
+    "observation_window":  {
+                               "starts_at":  "2026-09-09T05:38:51Z",
+                               "ends_at":  "2026-09-09T05:47:39Z"
+                           },
+    "source_refs":  [
+                        "company/company-os/ECON-003_REVENUE_ATTRIBUTION_LINEAGE_V1.md",
+                        "company/company-os/ECON-009_H01_H03_SHADOW_ECONOMICS_PILOT_V1.md",
+                        "company/company-os/pilots/H01_H03_SHADOW_ECONOMICS_PILOT_V1.json"
+                    ],
+    "lineage_state":  "DESIGN_ONLY",
+    "economic_evidence":  {
+                              "cash_cost_complete":  "NO",
+                              "founder_time_complete":  "NO",
+                              "resource_usage_complete":  "NO",
+                              "revenue_complete":  "NO",
+                              "attribution_complete":  "NOT_APPLICABLE",
+                              "economic_work_card_present":  false,
+                              "governor_decision_present":  false
+                          },
+    "closed_measurement_window":  false,
+    "economic_work_card_ref":  null,
+    "governor_decision_ref":  null,
+    "revenue_state":  "UNPROVEN_NO_LIVE_ORDER_PATH",
+    "observations":  [
+                         "Canon defines the H03 direct knowledge-product lineage opportunity -\u003e hypothesis -\u003e product -\u003e listing -\u003e checkout/order -\u003e realized sale.",
+                         "No H03-specific live product artifact, product-page/checkout implementation, order record, realized revenue event or closed Economic Work Card is proven in current canon.",
+                         "Factory PDF-preview capability is not treated as H03 product evidence because it belongs to Factory Asset tooling rather than an H03 commercial lineage."
+                     ],
+    "blocking_gaps":  [
+                          "No bounded H03 Economic Work Card has been opened and closed.",
+                          "No H03 build-cost/resource-usage Ledger observations exist.",
+                          "No H03 Founder active-time observation exists.",
+                          "No live H03 knowledge product/listing/checkout/order path is proven.",
+                          "No realized H03 revenue or attribution claim exists.",
+                          "No ECON-006 Governor decision exists for measured H03 economics."
+                      ],
+    "authority_boundary":  {
+                               "read_only":  true,
+                               "live_ingestion":  false,
+                               "spend_authorized":  false,
+                               "external_submission":  false,
+                               "payment_action":  false,
+                               "provider_plan_change":  false,
+                               "credential_mutation":  false
+                           }
+}

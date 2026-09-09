@@ -1,0 +1,87 @@
+{
+    "schema_version":  "die.shadow-evidence-window-evaluation.v1",
+    "evaluation_id":  "ECON-GATE-E0-H01H03-001",
+    "gate_id":  "SUFFICIENT_SHADOW_EVIDENCE_WINDOW",
+    "evaluated_at":  "2026-09-09T05:47:39Z",
+    "observation_refs":  [
+                             "company/company-os/observations/ECON-009A_H01_SHADOW_OBSERVATION_V1.json",
+                             "company/company-os/observations/ECON-009B_H03_SHADOW_OBSERVATION_V1.json"
+                         ],
+    "requirements":  [
+                         {
+                             "requirement_id":  "H01_CLOSED_MEASUREMENT_WINDOW",
+                             "status":  "FAIL",
+                             "evidence_refs":  [
+                                                   "ECON-OBS-H01-FA202206-001"
+                                               ],
+                             "detail":  "H01 lineage is strong, but no closed Economic Work Card with complete cost/resource/Founder-time evidence exists."
+                         },
+                         {
+                             "requirement_id":  "H03_CLOSED_MEASUREMENT_WINDOW",
+                             "status":  "FAIL",
+                             "evidence_refs":  [
+                                                   "ECON-OBS-H03-DIRECTPRODUCT-001"
+                                               ],
+                             "detail":  "H03 remains design-only; no closed Work Card or live product/order measurement window exists."
+                         },
+                         {
+                             "requirement_id":  "FOUNDER_TIME_SUFFICIENT",
+                             "status":  "FAIL",
+                             "evidence_refs":  [
+                                                   "ECON-OBS-H01-FA202206-001",
+                                                   "ECON-OBS-H03-DIRECTPRODUCT-001"
+                                               ],
+                             "detail":  "H01 Founder QC is observed without duration; H03 Founder active-time is unobserved."
+                         },
+                         {
+                             "requirement_id":  "CASH_COST_SUFFICIENT",
+                             "status":  "FAIL",
+                             "evidence_refs":  [
+                                                   "ECON-OBS-H01-FA202206-001",
+                                                   "ECON-OBS-H03-DIRECTPRODUCT-001"
+                                               ],
+                             "detail":  "H01 bounded canary spend is zero but shared/fixed cost attribution is incomplete; H03 build/cash cost is absent."
+                         },
+                         {
+                             "requirement_id":  "UNKNOWN_NOT_TREATED_AS_ZERO",
+                             "status":  "PASS",
+                             "evidence_refs":  [
+                                                   "ECON-OBS-H01-FA202206-001",
+                                                   "ECON-OBS-H03-DIRECTPRODUCT-001"
+                                               ],
+                             "detail":  "Missing revenue/cost/time are represented as NO/PARTIAL/UNPROVEN, not silently zeroed."
+                         },
+                         {
+                             "requirement_id":  "GOVERNOR_RECOMMENDATION_AND_OUTCOME",
+                             "status":  "FAIL",
+                             "evidence_refs":  [
+                                                   "ECON-OBS-H01-FA202206-001",
+                                                   "ECON-OBS-H03-DIRECTPRODUCT-001"
+                                               ],
+                             "detail":  "Neither pilot flow has a measured Work Card Governor recommendation available for later outcome comparison."
+                         },
+                         {
+                             "requirement_id":  "SHADOW_AUTHORITY_BOUNDARY_PRESERVED",
+                             "status":  "PASS",
+                             "evidence_refs":  [
+                                                   "ECON-OBS-H01-FA202206-001",
+                                                   "ECON-OBS-H03-DIRECTPRODUCT-001"
+                                               ],
+                             "detail":  "Observation was read-only; no spend, payment, submission, provider-plan, or credential mutation was authorized."
+                         }
+                     ],
+    "gate_satisfied":  false,
+    "blocking_requirements":  [
+                                  "H01_CLOSED_MEASUREMENT_WINDOW",
+                                  "H03_CLOSED_MEASUREMENT_WINDOW",
+                                  "FOUNDER_TIME_SUFFICIENT",
+                                  "CASH_COST_SUFFICIENT",
+                                  "GOVERNOR_RECOMMENDATION_AND_OUTCOME"
+                              ],
+    "authority_boundary":  {
+                               "promotion_authorized":  false,
+                               "spend_authorized":  false,
+                               "autonomy_promoted":  false,
+                               "silence_is_approval":  false
+                           }
+}

@@ -1,0 +1,48 @@
+{
+    "schema":  "die.company-os.econ009b.h03-shadow-observation.receipt.v1",
+    "task_id":  "ECON-009B",
+    "status":  "PASS_OBSERVATION_REVENUE_UNPROVEN",
+    "observed_at":  "2026-09-09",
+    "source_main":  "5e9daa368fd6b565056439b7b58a97a1cc3551e3",
+    "artifacts":  [
+                      {
+                          "path":  "company/company-os/ECON-009B_H03_SHADOW_ECONOMICS_OBSERVATION_V1.md",
+                          "sha256":  "fd83ba07b81ad11d15fd82a806bacec94c136bd642cb29032eb259333b54947c"
+                      },
+                      {
+                          "path":  "company/company-os/observations/ECON-009B_H03_SHADOW_OBSERVATION_V1.json",
+                          "sha256":  "cbd1bd2026e41b4c0f360a063dc456d735d11af1087c9237bbfb35457fe29c32"
+                      },
+                      {
+                          "path":  "company/company-os/schemas/die.economic-shadow-observation.v1.schema.json",
+                          "sha256":  "e7332bb588c7e5e6486bd211cf296a96de6adcee0cf79b2cd68b038d3f585388"
+                      },
+                      {
+                          "path":  "company/company-os/lib/economic_contracts.py",
+                          "sha256":  "3e9ec796f7cf4eb2d48d2b63efdca735efbdc49f8285711d10b0cf1ee1dbe2e2"
+                      },
+                      {
+                          "path":  "company/company-os/tests/test_economic_contracts.py",
+                          "sha256":  "70507255de8e18c468deafd04e76622c55d9c45d43c215d359a6f0dc66f13138"
+                      }
+                  ],
+    "standing":  {
+                     "lineage_state":  "DESIGN_ONLY",
+                     "closed_measurement_window":  false,
+                     "cash_cost_complete":  "NO",
+                     "founder_time_complete":  "NO",
+                     "resource_usage_complete":  "NO",
+                     "revenue_state":  "UNPROVEN_NO_LIVE_ORDER_PATH",
+                     "ewc_present":  false,
+                     "governor_decision_present":  false
+                 },
+    "authority":  {
+                      "read_only":  true,
+                      "live_ingestion":  false,
+                      "spend":  false,
+                      "submission":  false,
+                      "payment":  false,
+                      "provider_plan_change":  false,
+                      "credential_mutation":  false
+                  }
+}

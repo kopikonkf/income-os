@@ -46,7 +46,8 @@
                                             "canon://ECON-003-H01-mapping"
                                         ],
                       "live_revenue_assumed":  false,
-                      "current_readiness":  "LINEAGE_RICH_MEASUREMENT_READY_NO_REVENUE_ASSUMPTION"
+                      "current_readiness":  "OBSERVED_PARTIAL_WINDOW_OPEN",
+                      "observation_ref":  "company/company-os/observations/ECON-009A_H01_SHADOW_OBSERVATION_V1.json"
                   },
                   {
                       "holding_id":  "H03",
@@ -87,7 +88,8 @@
                                             "canon://ORG-001-H03-role"
                                         ],
                       "live_revenue_assumed":  false,
-                      "current_readiness":  "DESIGN_READY_LIVE_PRODUCT_REVENUE_NOT_PROVEN"
+                      "current_readiness":  "OBSERVED_DESIGN_ONLY_WINDOW_OPEN",
+                      "observation_ref":  "company/company-os/observations/ECON-009B_H03_SHADOW_OBSERVATION_V1.json"
                   }
               ],
     "h02_disposition":  {
@@ -106,7 +108,9 @@
                                                       "Capital Governor shadow recommendations are recorded and later compared with observed outcome/evidence",
                                                       "no shadow component has moved money, changed provider plans, submitted externally, or mutated credentials"
                                                   ],
-                                 "evidence_packet_required":  "ECON-010 may be prepared only after a separate gate evaluation proves all requirements; elapsed time alone is insufficient"
+                                 "evidence_packet_required":  "ECON-010 may be prepared only after a separate gate evaluation proves all requirements; elapsed time alone is insufficient",
+                                 "last_evaluation_ref":  "company/company-os/observations/ECON-009C_SHADOW_EVIDENCE_WINDOW_EVALUATION_V1.json",
+                                 "last_evaluation_status":  "NOT_SATISFIED"
                              },
     "authority_boundary":  {
                                "read_only":  true,
