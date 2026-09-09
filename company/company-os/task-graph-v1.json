@@ -1,7 +1,7 @@
 {
   "schema": "die.company-os.task-graph.v1",
   "generated_at": "2026-09-08",
-  "revision": "1.2-cos002-control-plane-reconciliation",
+  "revision": "1.3-cos003-aether-die-bridge",
   "status": "CANONICAL",
   "project": "DIE Company OS / Economic Layer",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -112,13 +112,23 @@
       "id": "COS-003",
       "track": "GOVERNANCE",
       "title": "Aether-DIE constitutional bridge contract",
-      "status": "READY",
+      "status": "DONE",
       "priority": 970,
       "depends_on": ["COS-000"],
       "execution_mode": "cognition_only",
       "risk": "LOW",
       "scope": "Define Aether as external strategic cognition/identity source candidate, Mission Control as deterministic enforcement/runtime candidate, and Founder as ultimate authority without absorbing Aether.",
-      "acceptance": "Contract separates propose/interpret, authorize, enforce, execute and learn responsibilities; Aether DNA remains byte-unchanged and KEEP_EXTERNAL."
+      "acceptance": "Contract separates propose/interpret, authorize, enforce, execute and learn responsibilities; Aether DNA remains byte-unchanged and KEEP_EXTERNAL.",
+      "result": {
+        "status": "PASS",
+        "artifact": "company/company-os/COS-003_AETHER_DIE_CONSTITUTIONAL_BRIDGE_V1.md",
+        "machine_contract": "company/company-os/contracts/die.aether.constitutional-bridge.v1.json",
+        "receipt": "company/company-os/receipts/COS-003-aether-die-bridge.receipt.json",
+        "aether_boundary": "KEEP_EXTERNAL",
+        "aether_dna_mutation": false,
+        "die_constitution_mutation": false,
+        "authority_transfer": false
+      }
     },
     {
       "id": "COS-004",
@@ -164,7 +174,7 @@
       "id": "ORG-001",
       "track": "MULTI_HOLDING",
       "title": "50-Holding shared-control-plane resource model",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 860,
       "depends_on": ["COS-002", "COS-003"],
       "execution_mode": "cognition_only",
@@ -175,7 +185,7 @@
       "id": "ECON-001",
       "track": "ECONOMIC_OBSERVER",
       "title": "Economic Observer v1 measurement contract",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 840,
       "depends_on": ["COS-003"],
       "execution_mode": "cognition_only",

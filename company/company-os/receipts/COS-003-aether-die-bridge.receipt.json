@@ -1,0 +1,78 @@
+{
+    "schema":  "die.company-os.cos003.aether-die-bridge.receipt.v1",
+    "task_id":  "COS-003",
+    "status":  "PASS",
+    "observed_at":  "2026-09-09",
+    "source_main":  "795af7291bf6599857b8d7496c3432e0d28174d2",
+    "artifacts":  [
+                      {
+                          "path":  "company/company-os/COS-003_AETHER_DIE_CONSTITUTIONAL_BRIDGE_V1.md",
+                          "sha256":  "a2b5cbf504943ca9dc1768d7fbc7ba0a8a89742059ad3bd26f7bc7fa47736d9c"
+                      },
+                      {
+                          "path":  "company/company-os/contracts/die.aether.constitutional-bridge.v1.json",
+                          "sha256":  "1a380c61d4675965fe820b8a1e9c1d13ab8c3183345d3f48c53a2058e543d3dd"
+                      }
+                  ],
+    "aether":  {
+                   "repo":  "C:/aether/aether-ai-os",
+                   "head":  "f84dcc2cee4f33fbfa2f2660e94cf16b721118be",
+                   "origin_main":  "f84dcc2cee4f33fbfa2f2660e94cf16b721118be",
+                   "git_clean":  true,
+                   "dna_integrity_ok":  true,
+                   "dna_before":  {
+                                      "north_star.yaml":  {
+                                                              "sha256":  "274ecf42906062246e70dc6490e64dc9e9e87a3c800e74610805195cdc1e8cf7",
+                                                              "bytes":  3821
+                                                          },
+                                      "Genome.md":  {
+                                                        "sha256":  "743ba1861c2ea42fb88d6674cc5a14ddacf533e4547ffb9cabc2ef0b1a5e5dfd",
+                                                        "bytes":  5350
+                                                    },
+                                      "aether.core.json":  {
+                                                               "sha256":  "8af281510dc002b86c0667e8cedcc6a5e676981e3535175acc8bb65a9eb98246",
+                                                               "bytes":  7262
+                                                           },
+                                      "integrity_manifest.json":  {
+                                                                      "sha256":  "56ab0c816418b3d28f119850ff50cae751e02ed445e05ad3e0d715bf6145e48d",
+                                                                      "bytes":  642
+                                                                  }
+                                  },
+                   "dna_after":  {
+                                     "north_star.yaml":  {
+                                                             "sha256":  "274ecf42906062246e70dc6490e64dc9e9e87a3c800e74610805195cdc1e8cf7",
+                                                             "bytes":  3821
+                                                         },
+                                     "Genome.md":  {
+                                                       "sha256":  "743ba1861c2ea42fb88d6674cc5a14ddacf533e4547ffb9cabc2ef0b1a5e5dfd",
+                                                       "bytes":  5350
+                                                   },
+                                     "aether.core.json":  {
+                                                              "sha256":  "8af281510dc002b86c0667e8cedcc6a5e676981e3535175acc8bb65a9eb98246",
+                                                              "bytes":  7262
+                                                          },
+                                     "integrity_manifest.json":  {
+                                                                     "sha256":  "56ab0c816418b3d28f119850ff50cae751e02ed445e05ad3e0d715bf6145e48d",
+                                                                     "bytes":  642
+                                                                 }
+                                 },
+                   "byte_unchanged":  true,
+                   "boundary":  "KEEP_EXTERNAL"
+               },
+    "role_separation":  {
+                            "interpret_propose":  "AETHER_STRATEGIC_COGNITION_CANDIDATE",
+                            "authorize":  "FOUNDER_OR_RATIFIED_DOMAIN_AUTHORITY",
+                            "enforce":  "MISSION_CONTROL_CANDIDATE_GATED_BY_COS002_COS004",
+                            "execute":  "REPLACEABLE_BOUNDED_PRINCIPALS_WORKERS_DELEGATED_EXECUTORS",
+                            "learn":  "GOVERNED_EVIDENCE_TO_AETHER_PROMOTION_LIFECYCLE"
+                        },
+    "authority":  {
+                      "aether_mutation":  false,
+                      "die_constitution_mutation":  false,
+                      "authority_transfer":  false,
+                      "autonomy_promotion":  false,
+                      "spend_authorized":  false,
+                      "external_submission_authorized":  false,
+                      "credential_mutation_authorized":  false
+                  }
+}
