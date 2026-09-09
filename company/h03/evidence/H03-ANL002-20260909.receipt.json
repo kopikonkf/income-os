@@ -1,0 +1,20 @@
+{
+  "schema_version": "die.h03.batch-receipt.v1",
+  "batch_id": "H03-ANL002-20260909",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "tasks_done": [
+    "H03-ANL-002"
+  ],
+  "validation": {
+    "targeted": "6/6 PASS",
+    "h03_regression": "147/147 PASS",
+    "ready_frontier": []
+  },
+  "current_live_calibration_state": "INSUFFICIENT_OBSERVED_OUTCOMES",
+  "current_live_wtp": "MEDIUM",
+  "live_candidate_created": false,
+  "causal_claim": false,
+  "canonical_mutation_authorized": false,
+  "external_publication": false
+}
