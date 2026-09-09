@@ -10,5 +10,6 @@ def test_gallery_uses_e4_accepted_truth_and_one_workspace_representative(tmp_pat
  m=load('qc_unit',LIB);d=m.build_gallery(repo,workspaces_root=work,fa124_root=fa);assert d['asset_count']==2 and d['source_counts']=={'FA124_CANARY':1,'PRODUCTION_WORKSPACE':1};assert all('_path' not in x for x in d['items']);a=d['items'][0];body,ctype=m.image_payload(repo,a['asset_id'],'full',workspaces_root=work,fa124_root=fa);assert body==b'PNGDATA' and ctype=='image/png'
 def test_live_gallery_indexes_exact_fa124_100_and_hides_paths():
  m=load('qc_live',LIB);d=m.build_gallery(ROOT);assert d['source_counts']['FA124_CANARY']==100;assert d['asset_count']>=100;txt=json.dumps(d);assert '/var/lib/die/' not in txt and d['founder_qc_mutation_enabled'] is False
+ row=next(x for x in d['items'] if x['asset_id']=='36542419fb05c512b6df40ca');assert row['provider_id']=='duckai' and row['cluster_id']=='cluster-b';assert row['model_name']=='Provider-managed image model' and row['model_version']=='NOT_DISCLOSED_OR_NOT_CAPTURED' and row['model_evidence']=='NOT_DISCLOSED_BY_PROVIDER'
 def test_console_has_qc_gallery_surface():
  html=(CONSOLE/'index.html').read_text();js=(CONSOLE/'app.js').read_text();assert 'data-view="qc"' in html and 'QC Gallery' in html;assert "getLocal('/api/qc-gallery')" in js and '/api/qc-image' not in js;assert 'Founder QC Gallery' in js and 'Read-only review' in js
