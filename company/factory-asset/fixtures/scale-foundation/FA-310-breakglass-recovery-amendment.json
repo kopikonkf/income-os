@@ -1,0 +1,14 @@
+{
+  "schema":"die.factory-asset.fa310-breakglass-recovery-amendment.v1",
+  "task_id":"FA-310",
+  "observed_at":"2026-09-09",
+  "reason":"Founder recovery topology has no independent provider/OOB console; password access for kopiko must remain available if Windows MCP/bridge is unavailable.",
+  "effective_sshd":{"permitrootlogin":"no","passwordauthentication":"yes","kbdinteractiveauthentication":"no","pubkeyauthentication":"yes","authenticationmethods":"any","allowusers":"kopiko","maxauthtries":6,"logingracetime_seconds":60,"maxstartups":"10:30:30"},
+  "password_account_state":"P",
+  "public_nat_port":25013,
+  "guest_sshd_port":22,
+  "root_login_allowed":false,
+  "browser_or_broker_ports_exposed":false,
+  "credential_values_read":false,
+  "private_key_values_read":false
+}

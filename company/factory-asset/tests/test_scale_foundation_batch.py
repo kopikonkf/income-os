@@ -31,8 +31,8 @@ def test_fa314_p95_storage_and_restore_integrity():
   m=A.build_manifest(provider_original=po,active_master=am,receipts=[rc]);archive=root/'archive';A.archive_files(m,{p.name:p for p in [po,am,rc]},archive);dest=root/'restore';out=A.restore(m,archive,dest);assert len(out)==3 and all(A.sha(p)==next(r['sha256'] for r in m['objects'] if r['name']==p.name) for p in out)
 
 def test_fa310_contract_is_rollback_first_and_keeps_browser_ports_off_tunnel():
- c=json.loads(C310.read_text());assert c['rollback']['automatic_local_timer_seconds']==180 and c['target_sshd']['password_authentication']=='no' and c['target_sshd']['permit_root_login']=='no';assert c['tunnel_boundary']['expose_browser_or_cdp_through_cloudflare'] is False
- s=(R/'company/factory-asset/bin/apply_fa310_ssh_hardening.sh').read_text();assert 'systemd-run' in s and 'systemctl reload ssh' in s and 'sshd -t' in s
+ c=json.loads(C310.read_text());assert c['rollback']['automatic_local_timer_seconds']==180 and c['target_sshd']['password_authentication']=='yes' and c['target_sshd']['permit_root_login']=='no';assert c['tunnel_boundary']['expose_browser_or_cdp_through_cloudflare'] is False
+ s=(R/'company/factory-asset/bin/apply_fa310_ssh_hardening.sh').read_text();assert 'systemd-run' in s and 'systemctl reload ssh' in s and 'sshd -t' in s;assert c['recovery_topology']['provider_password_is_breakglass_path'] is True and c['recovery_topology']['management_access_must_not_depend_on_windows_mcp'] is True
 
 def test_fa313_production_runtime_removes_hard_pinned_handoff_without_rewriting_blueprint():
  s=RUNTIME.read_text();assert "prod.get('engine') not in {'MUXIA/chatgpt-linux-a','MUXIA/governed-multi-cluster'}" in s

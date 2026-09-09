@@ -2722,9 +2722,9 @@
       "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_NETWORK_CUTOVER",
       "artifact": "Management-ingress hardening contract, upstream NAT evidence, SSH security/recovery receipt",
-      "acceptance": "Distinguish guest sshd health from upstream public NAT/filtering; establish repeatable reachability telemetry for public management ingress; move SSH to key-only non-root governance with bounded brute-force/rate-limit controls and a proven rollback/recovery channel before any lockout-prone mutation. Preserve Cloudflare linux-mcp as cognition/management MCP only: executive/division origins may be repaired, but CDP/browser/wake/Cluster A/Cluster B broker ports must remain loopback and never be exposed through the MCP tunnel.",
+      "acceptance": "Distinguish guest sshd health from upstream public NAT/filtering; establish repeatable reachability telemetry for public management ingress; enforce non-root governance while preserving two independent Founder recovery paths for kopiko: public-key auth plus provider-password break-glass because no independent provider/OOB console exists. Keep bounded brute-force/rate-limit controls and a proven rollback/recovery channel before lockout-prone mutation. Preserve Cloudflare linux-mcp as cognition/management MCP only; CDP/browser/wake/Cluster A/Cluster B broker ports must remain loopback and never be exposed through the MCP tunnel.",
       "updated_at": "2026-09-09",
-      "result": "DONE/PASS: rollback-first SSH cutover distinguishes guest :22 from public NAT :25013; new external key-only kopiko connection proven after reload; root/password auth disabled; bounded auth controls active; browser/CDP ports remain loopback and outside Cloudflare MCP tunnel."
+      "result": "DONE/PASS with recovery amendment: guest :22 vs public NAT :25013 remains proven; root login disabled; kopiko public-key auth remains enabled; provider-password auth restored and retained as break-glass because Founder has no independent provider/OOB console and management access must not depend on Windows MCP. MaxAuthTries=6, LoginGraceTime=60, MaxStartups bounded; browser/CDP ports remain loopback and outside Cloudflare MCP tunnel."
     },
     {
       "id": "FA-311",

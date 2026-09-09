@@ -18,21 +18,22 @@
   },
   "target_sshd": {
     "permit_root_login": "no",
-    "password_authentication": "no",
+    "password_authentication": "yes",
     "kbdinteractive_authentication": "no",
     "pubkey_authentication": "yes",
-    "authentication_methods": "publickey",
+    "authentication_methods": "any",
     "allow_users": [
       "kopiko"
     ],
-    "max_auth_tries": 3,
-    "login_grace_time_seconds": 30,
+    "max_auth_tries": 6,
+    "login_grace_time_seconds": 60,
     "max_startups": "10:30:30"
   },
   "rollback": {
     "automatic_local_timer_seconds": 180,
     "reload_not_restart": true,
-    "new_external_key_connection_required_before_commit": true
+    "new_external_key_connection_required_before_commit": false,
+    "management_recovery_validation_required_before_commit": true
   },
   "tunnel_boundary": {
     "cloudflare_linux_mcp_allowed_loopback_services": [
@@ -51,5 +52,12 @@
     "network_cutover": "FOUNDER",
     "spend_usd": 0,
     "credential_or_private_key_value_reads": false
+  },
+  "revision": "1.1.0-breakglass-recovery",
+  "recovery_topology": {
+    "independent_provider_console_available": false,
+    "provider_password_is_breakglass_path": true,
+    "management_access_must_not_depend_on_windows_mcp": true,
+    "policy": "PUBLICKEY_PREFERRED_PASSWORD_BREAKGLASS"
   }
 }
