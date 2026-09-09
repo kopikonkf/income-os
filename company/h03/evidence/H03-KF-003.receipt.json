@@ -1,0 +1,22 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-KF-003",
+  "date": "2026-09-09",
+  "status": "PASS",
+  "acceptance": {
+    "synthesizer_work_card": true,
+    "research_packet_fanin": true,
+    "knowledge_map_truth": "UNVERIFIED_SYNTHESIS",
+    "candidate_canonical_truth": false,
+    "unknown_evidence_ref_fails_closed": true,
+    "critical_gap_blocks_promotion": true,
+    "unresolved_contradiction_blocks_promotion": true,
+    "source_governance_required": true,
+    "governed_sources_only_make_candidate_validation_eligible": true
+  },
+  "validation": {
+    "h03_regression": "88/88 PASS",
+    "graph_frontier": "H03-PROD-001",
+    "json_parse": "PASS"
+  }
+}

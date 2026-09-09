@@ -1,0 +1,24 @@
+{
+  "schema_version": "die.h03.mission-control-boundary.v1",
+  "holding_id": "H03",
+  "mission_protocol": "mc-mission-v1",
+  "mission_control_reference_sha": "5557e3738cc11d82c53dfb68072b1f09a388e22a",
+  "universal_mcp_reference_sha": "07239a1ab00a9ad66f1e1b64c660c1f8e160d614",
+  "supported_methods": [
+    "mission.task.get",
+    "mission.task.checkpoint",
+    "mission.task.complete",
+    "mission.task.block",
+    "mission.review.submit",
+    "mission.founder.request"
+  ],
+  "h03_emitted_methods": [
+    "mission.task.checkpoint",
+    "mission.task.complete",
+    "mission.task.block",
+    "mission.founder.request"
+  ],
+  "microjob_protocol_required": false,
+  "lease_capability_persisted_by_h03": false,
+  "worker_prompt_payload_exported_to_mission_control": false
+}

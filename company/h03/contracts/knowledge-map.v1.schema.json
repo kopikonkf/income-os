@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.knowledge-map.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","knowledge_map_id","holding_id","research_packet_ids","supported_findings","contradictions","gaps","market_wtp_findings","truth_status"],
+  "properties": {
+    "schema_version": {"const":"die.h03.knowledge-map.v1"},
+    "knowledge_map_id": {"type":"string","minLength":6},
+    "holding_id": {"const":"H03"},
+    "research_packet_ids": {"type":"array","minItems":1,"items":{"type":"string","minLength":3},"uniqueItems":true},
+    "supported_findings": {
+      "type":"array",
+      "items": {
+        "type":"object","additionalProperties":false,
+        "required":["finding_id","text","evidence_refs"],
+        "properties":{"finding_id":{"type":"string","minLength":2},"text":{"type":"string","minLength":3},"evidence_refs":{"type":"array","minItems":1,"items":{"type":"string","minLength":1},"uniqueItems":true}}
+      }
+    },
+    "contradictions": {
+      "type":"array",
+      "items": {
+        "type":"object","additionalProperties":false,
+        "required":["contradiction_id","statement","evidence_refs","resolution_state"],
+        "properties":{"contradiction_id":{"type":"string","minLength":2},"statement":{"type":"string","minLength":3},"evidence_refs":{"type":"array","minItems":2,"items":{"type":"string","minLength":1},"uniqueItems":true},"resolution_state":{"enum":["UNRESOLVED","RESOLVED"]}}
+      }
+    },
+    "gaps": {
+      "type":"array",
+      "items": {
+        "type":"object","additionalProperties":false,
+        "required":["gap_id","question","critical"],
+        "properties":{"gap_id":{"type":"string","minLength":2},"question":{"type":"string","minLength":3},"critical":{"type":"boolean"}}
+      }
+    },
+    "market_wtp_findings": {
+      "type":"array",
+      "items": {
+        "type":"object","additionalProperties":false,
+        "required":["finding_id","text","evidence_refs","signal_type"],
+        "properties":{"finding_id":{"type":"string","minLength":2},"text":{"type":"string","minLength":3},"evidence_refs":{"type":"array","minItems":1,"items":{"type":"string","minLength":1},"uniqueItems":true},"signal_type":{"enum":["REVEALED_SPEND","PAID_SUBSTITUTE","MARKETPLACE_SALE_PROXY","PURCHASE_INTENT_SEARCH","REPEATED_PAIN","ENGAGEMENT_ONLY","OTHER"]}}
+      }
+    },
+    "truth_status": {"const":"UNVERIFIED_SYNTHESIS"}
+  }
+}

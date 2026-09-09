@@ -177,3 +177,13 @@ New READY frontier: `H03-RSCH-002` parallel multi-provider research execution an
 - `H03-RT-005`: retry/fallback/circuit-break/backpressure behavior is deterministic and bounded; unhealthy slots can be bypassed and saturated queues visibly pause new dispatch.
 
 New READY frontier: `H03-KF-003` research synthesis fan-in and `H03-RT-006` Mission Control ↔ H03 batch-supervision boundary.
+
+
+---
+
+## H03 Convergence Batch — KF-003 + RT-006 — DONE/PASS — 2026-09-09
+
+- `H03-KF-003`: multiple research packets now fan in through a `SYNTHESIZER` Work Card into an `UNVERIFIED_SYNTHESIS` Knowledge Map plus a non-canonical Knowledge Package Candidate. Claims/findings must resolve to packet evidence units; critical gaps, unresolved contradictions and source-governance state are explicit promotion gates.
+- `H03-RT-006`: H03 now has a coded Mission Control boundary that reuses `mc-mission-v1` for batch checkpoints, completion, block/escalation and Founder requests. Microjob prompts remain inside H03; persisted supervision state excludes credentials/session/profile material and Mission lease tokens. Recovery is surfaced as an aggregate checkpoint, not delegated retry-by-retry to Mission Control.
+
+New READY frontier: `H03-PROD-001` Useful Product Planner and format-selection engine.
