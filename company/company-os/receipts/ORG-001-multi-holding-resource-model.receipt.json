@@ -1,0 +1,34 @@
+{
+    "schema":  "die.company-os.org001.multi-holding-resource-model.receipt.v1",
+    "task_id":  "ORG-001",
+    "status":  "PASS",
+    "observed_at":  "2026-09-09",
+    "source_main":  "0242e8b0fa0de10babdc3729ade1e9cdb473b2df",
+    "artifacts":  [
+                      {
+                          "path":  "company/company-os/ORG-001_50_HOLDING_SHARED_RESOURCE_MODEL_V1.md",
+                          "sha256":  "8608a0c295c05aac0e62fa5911ef5202c6ec0df80e7d4d5cce51cd74d4def978"
+                      },
+                      {
+                          "path":  "company/company-os/contracts/die.company.multi-holding-resource-model.v1.json",
+                          "sha256":  "34674ff64b3a29384b9cd8f010c7de22de4b5e4ca69d3826e605e94574eece8f"
+                      }
+                  ],
+    "standing":  {
+                     "global_control_plane_logical_count":  1,
+                     "state_manager_logical_count":  1,
+                     "universal_mcp_logical_count":  1,
+                     "global_principal_pool_copies":  1,
+                     "holding_namespaces_at_50":  50,
+                     "logical_local_executors_at_50":  "0..50 according to privileged-local-work requirement",
+                     "physical_vps_count":  "WORKLOAD_DRIVEN_NOT_HOLDING_COUNT",
+                     "resident_hermes_opencode_per_holding":  false,
+                     "aether":  "KEEP_EXTERNAL"
+                 },
+    "authority":  {
+                      "infrastructure_provisioned":  false,
+                      "spend_authorized":  false,
+                      "provider_upgrade_authorized":  false,
+                      "runtime_mutation":  false
+                  }
+}

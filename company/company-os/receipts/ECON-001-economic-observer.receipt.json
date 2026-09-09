@@ -1,0 +1,40 @@
+{
+    "schema":  "die.company-os.econ001.economic-observer.receipt.v1",
+    "task_id":  "ECON-001",
+    "status":  "PASS",
+    "observed_at":  "2026-09-09",
+    "source_main":  "0242e8b0fa0de10babdc3729ade1e9cdb473b2df",
+    "artifacts":  [
+                      {
+                          "path":  "company/company-os/ECON-001_ECONOMIC_OBSERVER_MEASUREMENT_CONTRACT_V1.md",
+                          "sha256":  "ae471df929f62c140210ca5b5367f4a668e8e9c3e1ba66aafaa2bf4cb8f11636"
+                      },
+                      {
+                          "path":  "company/company-os/contracts/die.economic-observer.measurement-contract.v1.json",
+                          "sha256":  "469c35eb08021bdadf14b4cadfed7d13bce920bcb5a1e20592d6aa614501c5b8"
+                      }
+                  ],
+    "standing":  {
+                     "maturity":  "E0_OBSERVE",
+                     "founder_shadow_hourly_rate":  "UNSET",
+                     "invent_founder_rate":  false,
+                     "economic_positive_claim_without_founder_rate":  false,
+                     "unknown_time_is_zero":  false,
+                     "cash_pnl_defined":  true,
+                     "economic_pnl_defined":  true,
+                     "zero_touch_rate_defined":  true,
+                     "automated_recovery_rate_defined":  true,
+                     "minimum_economic_trace_id_defined":  true,
+                     "resource_usage_linked_to_org001":  true
+                 },
+    "authority":  {
+                      "measure":  true,
+                      "report":  true,
+                      "shadow_analysis":  true,
+                      "spend":  false,
+                      "capital_allocation":  false,
+                      "reinvestment":  false,
+                      "provider_upgrade":  false,
+                      "runtime_mutation":  false
+                  }
+}

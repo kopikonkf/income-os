@@ -1,7 +1,7 @@
 {
   "schema": "die.company-os.task-graph.v1",
   "generated_at": "2026-09-08",
-  "revision": "1.4-ops001-incident-taxonomy",
+  "revision": "1.5-org001-econ001-batch",
   "status": "CANONICAL",
   "project": "DIE Company OS / Economic Layer",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -183,29 +183,47 @@
       "id": "ORG-001",
       "track": "MULTI_HOLDING",
       "title": "50-Holding shared-control-plane resource model",
-      "status": "READY",
+      "status": "DONE",
       "priority": 860,
       "depends_on": ["COS-002", "COS-003"],
       "execution_mode": "cognition_only",
       "risk": "LOW",
-      "acceptance": "Model one global control plane, pooled principals/compute and holding-local executors; quantify which resources scale per Holding versus by actual workload."
+      "acceptance": "Model one global control plane, pooled principals/compute and holding-local executors; quantify which resources scale per Holding versus by actual workload.",
+      "result": {
+        "status": "PASS",
+        "artifact": "company/company-os/ORG-001_50_HOLDING_SHARED_RESOURCE_MODEL_V1.md",
+        "machine_contract": "company/company-os/contracts/die.company.multi-holding-resource-model.v1.json",
+        "receipt": "company/company-os/receipts/ORG-001-multi-holding-resource-model.receipt.json",
+        "physical_vps_count_from_holding_count": false,
+        "new_infrastructure_provisioned": false,
+        "new_spend_authority": false
+      }
     },
     {
       "id": "ECON-001",
       "track": "ECONOMIC_OBSERVER",
       "title": "Economic Observer v1 measurement contract",
-      "status": "READY",
+      "status": "DONE",
       "priority": 840,
       "depends_on": ["COS-003"],
       "execution_mode": "cognition_only",
       "risk": "LOW",
-      "acceptance": "Define cash P&L, economic P&L, Founder intervention minutes, zero-touch rate, automated recovery rate and attribution IDs without granting spend authority."
+      "acceptance": "Define cash P&L, economic P&L, Founder intervention minutes, zero-touch rate, automated recovery rate and attribution IDs without granting spend authority.",
+      "result": {
+        "status": "PASS",
+        "artifact": "company/company-os/ECON-001_ECONOMIC_OBSERVER_MEASUREMENT_CONTRACT_V1.md",
+        "machine_contract": "company/company-os/contracts/die.economic-observer.measurement-contract.v1.json",
+        "receipt": "company/company-os/receipts/ECON-001-economic-observer.receipt.json",
+        "maturity": "E0_OBSERVE",
+        "founder_shadow_rate": "UNSET",
+        "spend_authority": false
+      }
     },
     {
       "id": "ECON-002",
       "track": "ECONOMIC_LEDGER",
       "title": "Economic Ledger v1 schema and immutable event contract",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 830,
       "depends_on": ["ECON-001"],
       "execution_mode": "tool_native",
@@ -216,7 +234,7 @@
       "id": "ECON-003",
       "track": "ATTRIBUTION",
       "title": "Revenue Attribution lineage v1",
-      "status": "BLOCKED",
+      "status": "READY",
       "priority": 820,
       "depends_on": ["ECON-001"],
       "execution_mode": "cognition_only",
