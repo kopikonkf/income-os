@@ -1,0 +1,32 @@
+{
+  "schema": "die.factory-asset.console-v2-adr-receipt.v1",
+  "task_id": "FA-C014",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-09",
+  "decisions": {
+    "primary_surface": "WEB_FIRST_LOOPBACK_CONTROL_PLANE",
+    "frontend": "TYPESCRIPT_REACT_VITE",
+    "backend": "PYTHON_LOOPBACK_VERSIONED_JSON_CONTRACTS",
+    "visual_language": "CLEAN_ROOM_DENSE_DARK_OPERATOR_UI",
+    "persistent_left_navigation": true,
+    "cluster_provider_cards": true,
+    "canonical_status_pills": true,
+    "queue_usage_economics_views": true,
+    "desktop_wrapper": "OPTIONAL_TAURI_AFTER_FA-C020",
+    "electron": "REJECTED",
+    "frontend_secret_access": false,
+    "frontend_direct_cdp_access": false,
+    "marketplace_publication_authority": false
+  },
+  "clean_room": {
+    "founder_supplied_9router_reference_used_for_ergonomic_principles_only": true,
+    "copied_brand_assets": false,
+    "copied_source_code": false,
+    "copied_css_or_layout_measurements": false
+  },
+  "artifacts": [
+    "docs/architecture/FACTORY_CONSOLE_V2_ADR.md",
+    "company/factory-asset/docs/console/FACTORY_CONSOLE_V2_UI_SPEC.md"
+  ]
+}

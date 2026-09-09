@@ -2004,13 +2004,14 @@
         "FA-C012",
         "FA-124"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED",
       "acceptance_batch": true,
       "artifact": "company/factory-asset/receipts/FA-C013-factory-console-production-acceptance.receipt.json",
       "acceptance": "Founder validates the GUI against the authorized 100-unique-master/day model: blueprint/batch controls, queue/recovery, provider capacity/routing, output lineage/QA and rollback all pass; marketplace publication remains outside Console authority.",
       "updated_at": "2026-09-09",
-      "result": "READY: all canonical dependencies are DONE/PASS. Execution still requires the task-specific Founder authority and must preserve current production hold until Founder economics/storage decision."
+      "result": "DONE/PASS: Founder explicitly accepted the production-grade Factory Console after reviewing the live GUI, Founder QC Gallery, provider/model lineage, 100-master acceptance truth, queue/recovery and provider-capacity/routing surfaces. Marketplace publication, provider-dispatch authority, 100/day scale authorization and Founder QC mutation remain outside this acceptance.",
+      "completed_at": "2026-09-09"
     },
     {
       "id": "FA-129",
@@ -2488,10 +2489,13 @@
         "FA-C013",
         "FA-300"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "Factory Console v2 ADR and clean-room UI spec",
-      "acceptance": "9router-like dense operator ergonomics are translated clean-room into Factory concepts: left navigation, cluster/provider cards, status pills, queue/usage views and dark operational UI; implementation stack and desktop-wrapper boundary are decided."
+      "acceptance": "9router-like dense operator ergonomics are translated clean-room into Factory concepts: left navigation, cluster/provider cards, status pills, queue/usage views and dark operational UI; implementation stack and desktop-wrapper boundary are decided.",
+      "completed_at": "2026-09-09",
+      "updated_at": "2026-09-09",
+      "result": "PASS: Factory Console v2 is locked as a web-first loopback control plane using TypeScript+React+Vite frontend over a Python versioned-JSON backend. Clean-room dense dark operator ergonomics define persistent left navigation, cluster/provider cards, canonical status pills, queue/usage/economics views and explicit authority banners. Optional Tauri wrapper is deferred to FA-C021 after FA-C020; Electron and direct frontend CDP/secret access are rejected."
     },
     {
       "id": "FA-C015",
@@ -2503,10 +2507,12 @@
         "FA-C014",
         "FA-303"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "Factory Console cluster topology module",
-      "acceptance": "Console shows clusters, provider-session readiness, active tabs/jobs, profile lock owner, tab budget, health and safe auth-required state without exposing secret material."
+      "acceptance": "Console shows clusters, provider-session readiness, active tabs/jobs, profile lock owner, tab budget, health and safe auth-required state without exposing secret material.",
+      "updated_at": "2026-09-09",
+      "result": "READY: FA-C014 ADR and FA-303 provider-readiness dependencies are DONE/PASS; implement sanitized cluster topology, provider-session and tab-occupancy views."
     },
     {
       "id": "FA-C016",

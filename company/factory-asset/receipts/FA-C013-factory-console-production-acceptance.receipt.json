@@ -1,0 +1,32 @@
+{
+  "schema": "die.factory-asset.console-founder-acceptance.v1",
+  "task_id": "FA-C013",
+  "status": "DONE",
+  "result": "PASS",
+  "accepted_at": "2026-09-09",
+  "authority": "FOUNDER",
+  "acceptance_basis": {
+    "founder_explicit_acceptance": true,
+    "founder_reviewed_gui": true,
+    "founder_reviewed_qc_gallery": true,
+    "founder_verified_model_lineage_display": true,
+    "fa124_100_unique_master_model": "PASS",
+    "queue_and_recovery": "PASS",
+    "provider_capacity_and_routing": "PASS",
+    "output_lineage_and_qa": "PASS",
+    "rollback_and_recovery": "PASS"
+  },
+  "authority_boundaries": {
+    "marketplace_publication_inside_console": false,
+    "provider_dispatch_implied_by_acceptance": false,
+    "scale_100_per_day_authorized": false,
+    "founder_qc_mutation_enabled": false
+  },
+  "evidence": [
+    "company/factory-asset/receipts/FA-C011-console-batch-acceptance.receipt.json",
+    "company/factory-asset/receipts/FA-C012-console-recovery.receipt.json",
+    "company/factory-asset/fixtures/scale/FA-124-final-result.json",
+    "company/factory-asset/lib/console_production_acceptance.py",
+    "company/factory-asset/lib/founder_qc_gallery.py"
+  ]
+}
