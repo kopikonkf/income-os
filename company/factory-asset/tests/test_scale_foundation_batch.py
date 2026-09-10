@@ -43,7 +43,7 @@ def test_fa313_production_runtime_removes_hard_pinned_handoff_without_rewriting_
 def test_fa313_dispatch_uses_fa306_scheduler_live_capacity_and_actual_lineage():
  s=DISPATCH.read_text();assert 'MultiClusterScheduler' in s and 'generateConsoleProviderImage' in s
  for token in ('provider_states','active_leases','cluster_selection_counts','provider_circuits','cluster_circuits','E_RECONCILIATION_REQUIRED','dispatch_committed','provider_id:r.provider_id','cluster_id:r.cluster_id'):assert token in s
- assert "prompt=String(prod.master_prompt||'').trim()" in s and 'prompt,' in s
+ assert 'resolvePromptContract' in s and "prompt_authority:'TYPED_VISUAL_CONTRACT_V1'" in s and "prompt_authority:'LEGACY_MASTER_PROMPT'" in s and 'provider_prompt_sha256:pc.provider_prompt_sha256' in s and 'prompt,' in s
  w=WORKER.read_text();
  for provider in ('qwen','chatgpt','gemini','manus','duckai'):assert provider in w
  assert 'button[aria-label="Send"]' in w and 'provider_leased_strategies.mjs' in w

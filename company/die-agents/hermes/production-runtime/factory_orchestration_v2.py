@@ -23,6 +23,7 @@ rights=_load('fa139_rights','rights_signal_gate.py')
 ready=_load('fa139_ready','package_readiness.py')
 state=_load('fa139_state','postproduction_state.py')
 bmeta=_load('fa141_binary_metadata','binary_metadata.py')
+pregen=_load('fa318_pregen','pre_generation_contract.py')
 
 class FactoryOrchestrationError(RuntimeError):
     def __init__(self,code:str,message:str):super().__init__(f'{code}: {message}');self.code=code
@@ -73,6 +74,15 @@ def write_bridge_artifacts(workspace:Path,legacy_blueprint:dict[str,Any],lock:di
     atomic_json(root/'cognition-provenance.json',cognition)
     return {'root':root,'plan':plan,'blueprint':bp,'route':route,'cognition':cognition}
 
+def resolve_bridge_artifacts(workspace:Path,legacy_blueprint:dict[str,Any],lock:dict[str,Any])->dict[str,Any]:
+    prelock=workspace/'factory-v2'/'pre-generation-lock.json'
+    if not prelock.is_file():
+        return write_bridge_artifacts(workspace,legacy_blueprint,lock)
+    verified=pregen.verify_pre_generation_contract(workspace=workspace,legacy_blueprint=legacy_blueprint,legacy_blueprint_sha256=lock['blueprint_sha256'])
+    cognition={'schema':'die.factory-asset.cognition-provenance.v1','result':'TYPED_PRE_GENERATION_CONTRACT_ACCEPTED','legacy_blueprint_id':legacy_blueprint['blueprint_id'],'legacy_blueprint_sha256':lock['blueprint_sha256'],'asset_blueprint_id':verified['blueprint']['blueprint_id'],'prompt_authority':'TYPED_VISUAL_CONTRACT_V1','provider_prompt_sha256':verified['compiled_prompt']['provider_prompt_sha256'],'repeated_cognition_per_image':False,'division01_worker_authority':False,'executive_worker_authority':False}
+    atomic_json(verified['root']/'cognition-provenance.json',cognition)
+    return {'root':verified['root'],'plan':verified['plan'],'blueprint':verified['blueprint'],'route':verified['route'],'cognition':cognition}
+
 def telegram_event(workspace:Path,kind:str,payload:dict[str,Any],send_fn:Callable[[str],None]|None=None)->dict[str,Any]:
     allowed={'PRODUCTION_STARTED','ARTIFACT_CREATED','WAITING_FOUNDER_QC'}
     if kind not in allowed:raise FactoryOrchestrationError('TELEGRAM_KIND_INVALID',kind)
@@ -99,7 +109,7 @@ def _default_rights_observation(master_sha:str)->dict[str,Any]:
     return {'schema':'die.factory-asset.rights-observation.v1','master_sha256':master_sha,'detectors':{'text':{'state':'UNAVAILABLE','detected_strings':[],'confirmed_trademark_terms':[],'trademark_candidates':[],'unresolved_strings':[]},'logo':{'state':'UNAVAILABLE','candidates':[]},'watermark':{'state':'UNAVAILABLE','candidates':[]},'safety':{'state':'UNAVAILABLE','flags':[]}}}
 
 def postprocess_raster_workspace(*,workspace:Path,source_path:Path,provider_id:str,expected_source_sha256:str,upscale_fn:Callable[[Path,Path],dict[str,Any]],send_fn:Callable[[str],None]|None=None)->dict[str,Any]:
-    legacy=json.loads((workspace/'blueprint.json').read_text());lock=json.loads((workspace/'blueprint.lock.json').read_text());bridge=write_bridge_artifacts(workspace,legacy,lock);bp=bridge['blueprint'];root=bridge['root'];sid=bp['semantic_identity']['semantic_asset_id']
+    legacy=json.loads((workspace/'blueprint.json').read_text());lock=json.loads((workspace/'blueprint.lock.json').read_text());bridge=resolve_bridge_artifacts(workspace,legacy,lock);bp=bridge['blueprint'];root=bridge['root'];sid=bp['semantic_identity']['semantic_asset_id']
     if bridge['route']['route_kind']!='PROVIDER_ROUTER':raise FactoryOrchestrationError('LIVE_RASTER_ROUTE_EXPECTED',bridge['route']['route_kind'])
     ingest=intake.intake_provider_original(source_path=source_path,staging_root=root/'master-staging',attempt_id=workspace.name+'-provider-original',semantic_asset_id=sid,blueprint_id=bp['blueprint_id'],provider_id=provider_id,expected_sha256=expected_source_sha256)
     atomic_json(root/'provider-original-intake.json',ingest)

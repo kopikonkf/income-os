@@ -1,0 +1,37 @@
+{
+  "schema": "die.factory-asset.fa318-typed-pregeneration-authority-receipt.v1",
+  "task_id": "FA-318",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "artifacts": {
+    "prompt_policy_sha256": "d80028fa0be872e2da4306f1282b49e50e088d17923959d7828b59ccc4f0aa24",
+    "pre_generation_contract_sha256": "3e1fce127a0b71af3385d0253344f8a871886a36b6cee615f37c8e75be1a1e06",
+    "cognition_tick_sha256": "f6023bab76cc1f94b8dc6b1a3dba1335a1b58a9b9e9295d93294a0563c201006",
+    "cognition_validator_sha256": "1b53a043e751e24e7b1a2262ee44ae7722456e1ba51712c5789b509536eeabc9",
+    "dispatcher_sha256": "bb75eafd05486e21b6c950ee0e2152a6c9b41ad3889c05ab4f91a11ca9726c51",
+    "postproduction_orchestration_sha256": "d8fc7f86a78a57bf12bd69c6f09fca88d160ac50ff7b071348ce7aeb766d4c01"
+  },
+  "assertions": {
+    "new_card_prompt_authority": "TYPED_VISUAL_CONTRACT_V1",
+    "executive_no_veto_requires_subject_spec_before_ready": true,
+    "subject_spec_is_division01_authored_and_seed_bound": true,
+    "preset_candidate_not_live_by_default": true,
+    "compiled_prompt_hash_bound_before_dispatch": true,
+    "dispatcher_rejects_sidecar_hash_drift": true,
+    "idempotency_includes_provider_prompt_sha256": true,
+    "postproduction_reuses_pre_generation_asset_blueprint_v2": true,
+    "legacy_resume_fallback_when_pre_generation_lock_absent": true,
+    "provider_calls_performed": 0,
+    "live_runtime_mutations": 0,
+    "submission_actions": 0,
+    "publication_actions": 0,
+    "scale_actions": 0
+  },
+  "validation": {
+    "full_linux_factory_regression": "846 PASS, 1 existing PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded by canonical scope",
+    "linux_cognition_and_installer_suite": "13 PASS",
+    "linux_fa318_cross_contract_suite": "37 PASS, 1 existing PyPDF2 warning",
+    "pre_existing_bridge_failures_on_origin_main": 4
+  }
+}

@@ -8,6 +8,9 @@ def req(rid='COG-PROD_BP_AUTHOR_TASK0001_R00'):return {'schema':'die.cognition.o
 def blueprint(rid='COG-PROD_BP_AUTHOR_TASK0001_R00'):
  s=snapshot();return {'schema_version':'die.production.family-blueprint.v1','request_id':rid,'blueprint_id':'BP-PROD-TROPHY_0001','task_id':'TASK0001','mission_id':'M-001','repository_sha':'a'*40,'principal':{'principal_id':m.DIV,'role':'AUTHOR'},'seed':s['seed'],'family':{'family_id':'FAM-PROD-AWARD_001','family_thesis':'Commercially useful generic award trophy imagery for business recognition communications.','buyer_persona':['business marketer'],'use_cases':['employee recognition campaign'],'commercial_use_hypothesis':'A generic unbranded trophy can support business award and recognition communication needs.','evidence_status':'OBJECT_ATLAS_ONLY_HYPOTHESIS'},'production':{'asset_type':'RASTER_IMAGE','batch_size':1,'engine':'MUXIA/chatgpt-linux-a','master_prompt':'Create a realistic generic unbranded trophy award on a clean neutral business presentation surface with useful copy space, professional commercial lighting, no text or logos.','negative_constraints':['no logos','no trademarks','no watermark'],'semantic_variation_plan':[{'variation_id':'VAR-USECASE_001','dimension':'buyer_use_case','instruction':'Frame for an employee recognition communication use case.','commercial_rationale':'Tests generic business recognition utility.'}]},'metadata_direction':{'title_direction':'Generic trophy award for business recognition communication','primary_keywords':['trophy award','business recognition','achievement'],'category_direction':['business','awards']},'qa_requirements':{'required_checks':['artifact integrity','technical QA','visual commercial QC'],'forbidden_elements':['logos','trademarks','watermarks']},'lineage':{'seed_snapshot_sha256':m.csha(s),'source_kind':'OBJECT_ATLAS_SEED','external_market_evidence_claimed':False},'authority':{'effect':'NONE','existing_production_authority_unchanged':True,'submission_authorized':False,'publication_authorized':False,'spend_authorized':False}}
 def review(bp,rid='COG-PROD_BP_REVIEW_TASK0001_R00'):return {'schema_version':'die.production.family-blueprint-review.v1','request_id':rid,'review_id':'BP-REVIEW-PROD-TROPHY_0001','task_id':'TASK0001','repository_sha':'a'*40,'principal':{'principal_id':m.EXEC,'role':'REVIEWER'},'blueprint':{'blueprint_id':bp['blueprint_id'],'sha256':m.csha(bp)},'outcome':'NO_VETO','rationale':'The Blueprint is coherent, unbranded, bounded, and truthfully labels commercial utility as an Object-Atlas-only hypothesis.','required_actions':[],'review_mode':'READ_ONLY_CHALLENGE','semantic_content_authored':False,'authority_effect':'NONE'}
+
+def subject_spec(seed_id='SEED-000027',name='trophy',blueprint_id='BP-PROD-TROPHY_0001'):
+ return {'schema':'die.factory-asset.subject-spec.v1','subject_spec_id':'FASS-TROPHY_0001','seed_id':seed_id,'canonical_name':name,'subject_class':'DECOR','primary_form':'one complete generic award trophy with a recognizable cup, stem and stable base','essential_components':[{'name':'trophy cup','description':'generic symmetric award cup','placement':'above the stem'},{'name':'supporting stem','description':'simple centered support','placement':'between cup and base'},{'name':'stable base','description':'plain unbranded base','placement':'below the stem'}],'recognition_anchors':['award trophy cup silhouette','centered stem and stable base'],'natural_attributes':['generic unbranded proportions'],'spatial_relationships':['cup sits above stem and stem connects to base'],'forbidden_subject_mutations':['do not add readable engraving','do not crop the trophy'],'evidence':{'basis':'OBJECT_ATLAS_PLUS_COGNITION','refs':[seed_id,blueprint_id]}}
 def test_blueprint_schema_and_seed_binding():
  s=snapshot();r=req();b=blueprint();assert m.validation is not None
  # use validator module directly
@@ -35,6 +38,8 @@ def test_synthetic_author_review_no_veto_reaches_blueprint_ready(tmp_path, monke
         rq=json.load(open(reqp));cog=w/'cognition';trp=cog/'fake-transport'/f"{rq['request_id']}.json";trp.parent.mkdir(parents=True,exist_ok=True)
         if rq['action_type'] in {'PRODUCTION_BLUEPRINT_AUTHOR','PRODUCTION_BLUEPRINT_REVISE'}:
             snap=json.load(open(cog/'seed-snapshot.json'));b=blueprint(rq['request_id']);b['task_id']='TASK0001';b['repository_sha']=sha;b['seed']=snap['seed'];b['lineage']['seed_snapshot_sha256']=m.csha(snap);payload=b
+        elif rq['action_type']=='PRODUCTION_SUBJECT_SPEC_AUTHOR':
+            bp=json.load(open(cog/'blueprint.author.json'));snap=json.load(open(cog/'seed-snapshot.json'));payload=subject_spec(snap['seed']['id'],snap['seed']['canonical_name'],bp['blueprint_id'])
         else:
             bp=json.load(open(cog/'blueprint.author.json'));payload=review(bp,rq['request_id']);payload['task_id']='TASK0001';payload['repository_sha']=sha
         response.parent.mkdir(parents=True,exist_ok=True);response.write_text(json.dumps(payload)+'\n');tr={'schema':'die.cognition.roundtrip-receipt.v1','request_id':rq['request_id'],'response_sha256':m.csha(payload)};m.atomic_json(trp,tr);return {'receipt_ref':str(trp)}
@@ -42,11 +47,16 @@ def test_synthetic_author_review_no_veto_reaches_blueprint_ready(tmp_path, monke
     class A:pass
     a=A();a.workspaces=str(wsroot);a.db=str(dbp);a.repo=str(repo);a.state_root=str(tmp_path/'state');a.node='node';a.transport='fake';a.hermes_bin='hermes';a.hermes_home='home';a.production_job_id='job';a.no_resume=True
     first=m.tick(a);assert first['status']=='ADVANCED' and first['to']=='NEED_REVIEW'
-    second=m.tick(a);assert second['status']=='BLUEPRINT_READY'
+    second=m.tick(a);assert second['status']=='ADVANCED' and second['to']=='NEED_SUBJECT'
+    third=m.tick(a);assert third['status']=='BLUEPRINT_READY' and third['provider_prompt_sha256']
     assert json.load(open(w/'cognition/state.json'))['stage']=='READY'
     assert (w/'blueprint.json').is_file() and (w/'blueprint.lock.json').is_file()
-    text=(w/'PROGRESS.md').read_text();assert 'State: BLUEPRINT_READY' in text and 'Dispatch bounded Worker' in text
-    receipts=list((w/'cognition/receipts').glob('*.receipt.json'));assert len(receipts)==2
+    assert (w/'factory-v2/subject-spec.json').is_file() and (w/'factory-v2/visual-requirement-spec.json').is_file()
+    assert (w/'factory-v2/compiled-provider-prompt.json').is_file() and (w/'factory-v2/pre-generation-lock.json').is_file()
+    compiled=json.load(open(w/'factory-v2/compiled-provider-prompt.json'));assert compiled['provider_prompt_sha256']==third['provider_prompt_sha256']
+    assert 'office scene' not in compiled['provider_prompt'].casefold()
+    text=(w/'PROGRESS.md').read_text();assert 'State: BLUEPRINT_READY' in text and 'verified compiled provider prompt' in text
+    receipts=list((w/'cognition/receipts').glob('*.receipt.json'));assert len(receipts)==3
 
 
 def test_repo_sha_command_scopes_safe_directory_to_repo():

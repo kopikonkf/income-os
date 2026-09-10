@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, hashlib, json, re
+import argparse, hashlib, json, re, sys
 from pathlib import Path
 import jsonschema
 HERE=Path(__file__).resolve().parent
+ROOT=HERE.parents[3]
+sys.path.insert(0,str(ROOT/'company/factory-asset/lib'))
+import production_prompt_compiler as prompt_compiler
 BP_SCHEMA=HERE/'die.production.family-blueprint.v1.schema.json'; REVIEW_SCHEMA=HERE/'die.production.family-blueprint-review.v1.schema.json'
 
 def canonical_sha(v): return hashlib.sha256(json.dumps(v,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
@@ -24,6 +27,21 @@ def validate_blueprint(v, *, request, seed_snapshot):
  if len(ids)!=len(set(ids)): e.append('E_VARIATION_DUPLICATE')
  if len(v['production']['semantic_variation_plan'])>v['production']['batch_size']: e.append('E_VARIATION_BATCH')
  return e
+def validate_subject(v, *, request, seed_snapshot, blueprint):
+ e=[]
+ try: prompt_compiler.validate_subject_spec(v)
+ except Exception as exc: e.append('E_SUBJECT_SCHEMA:'+str(exc)[:500])
+ if e:return e
+ seed=seed_snapshot['seed']
+ if v.get('seed_id')!=seed['id']:e.append('E_SUBJECT_SEED_DRIFT:id')
+ if v.get('canonical_name')!=seed['canonical_name']:e.append('E_SUBJECT_SEED_DRIFT:canonical_name')
+ if v.get('evidence',{}).get('basis')!='OBJECT_ATLAS_PLUS_COGNITION':e.append('E_SUBJECT_EVIDENCE_BASIS')
+ refs=set(v.get('evidence',{}).get('refs') or [])
+ if seed['id'] not in refs:e.append('E_SUBJECT_SEED_REF')
+ if blueprint.get('blueprint_id') not in refs:e.append('E_SUBJECT_BLUEPRINT_REF')
+ if request.get('target_principal_id')!='die-lnx-division-001':e.append('E_SUBJECT_PRINCIPAL')
+ return e
+
 def validate_review(v, *, request, blueprint):
  e=['E_SCHEMA:'+x for x in _schema_errors(v,REVIEW_SCHEMA)]
  if e:return e
@@ -35,11 +53,15 @@ def validate_review(v, *, request, blueprint):
  return e
 
 def main():
- ap=argparse.ArgumentParser(); ap.add_argument('kind',choices=['blueprint','review']); ap.add_argument('artifact'); ap.add_argument('--request',required=True); ap.add_argument('--seed-snapshot'); ap.add_argument('--blueprint'); a=ap.parse_args(); v=json.load(open(a.artifact)); req=json.load(open(a.request))
+ ap=argparse.ArgumentParser(); ap.add_argument('kind',choices=['blueprint','subject','review']); ap.add_argument('artifact'); ap.add_argument('--request',required=True); ap.add_argument('--seed-snapshot'); ap.add_argument('--blueprint'); a=ap.parse_args(); v=json.load(open(a.artifact)); req=json.load(open(a.request))
  if a.kind=='blueprint':
   if not a.seed_snapshot:
    raise SystemExit('E_SEED_SNAPSHOT_REQUIRED')
   e=validate_blueprint(v,request=req,seed_snapshot=json.load(open(a.seed_snapshot)))
+ elif a.kind=='subject':
+  if not a.seed_snapshot or not a.blueprint:
+   raise SystemExit('E_SUBJECT_BINDINGS_REQUIRED')
+  e=validate_subject(v,request=req,seed_snapshot=json.load(open(a.seed_snapshot)),blueprint=json.load(open(a.blueprint)))
  else:
   if not a.blueprint:
    raise SystemExit('E_BLUEPRINT_REQUIRED')
