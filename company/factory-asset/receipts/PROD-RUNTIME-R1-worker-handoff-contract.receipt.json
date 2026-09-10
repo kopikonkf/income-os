@@ -1,0 +1,33 @@
+{
+  "schema": "die.production-runtime.worker-handoff-repair-receipt.v1",
+  "task_id": "PROD-RUNTIME-R1",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "incident": {
+    "active_card": "PRODSEED000116",
+    "observed_failure": "E_HANDOFF:MUXIA handoff required",
+    "failure_stage": "WORKER_JOB_ENVELOPE_VALIDATION_BEFORE_MUXIA_QUEUE",
+    "root_cause": "production_runtime_tick emitted handoff.scheduler_contract=FA-306 while worker-job-envelope.v1 schema and OpenCode runner exact-key validation did not allow scheduler_contract",
+    "muxia_service_state_observed": "RUNNING_WITH_CLUSTER_A_B_CONTROL_AND_CDP_PORTS_LISTENING"
+  },
+  "repair": {
+    "scheduler_contract": "OPTIONAL_BACKWARD_COMPATIBLE_HANDOFF_FIELD",
+    "validation": "SAFE_ID_BOUNDED",
+    "legacy_jobs_without_scheduler_contract": "SUPPORTED",
+    "unknown_handoff_fields": "FAIL_CLOSED"
+  },
+  "validation": {
+    "focused_contract_suite": "11/11 PASS",
+    "linux_factory_regression": "818/818 PASS; established FA-121 live-broker oneshot excluded from non-runtime suite",
+    "runner_pycompile": "PASS",
+    "schema_json_parse": "PASS"
+  },
+  "authority": {
+    "production_cadence_changed": false,
+    "scale_100_per_day_authorized": false,
+    "provider_call_performed_by_repair_validation": false,
+    "marketplace_action_performed": false,
+    "spend_usd": 0
+  }
+}
