@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-10",
-  "revision": "11.0-fa319-live-baseline-package-acceptance",
+  "revision": "11.1-vector-observability-dual-atlas-foundations",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2935,10 +2935,13 @@
         "FA-316",
         "FA-031"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "Claude native-vector producer request/receipt contract and adapter boundary",
-      "acceptance": "Define Claude as a candidate NATIVE_VECTOR producer for ICON/OUTLINE only when the provider returns genuine SVG/vector source. Raster tracing or raster embedded inside SVG cannot claim native-vector success. Contract must preserve idempotency, exact prompt/blueprint lineage, zero implicit submission/publication authority and typed failure states."
+      "acceptance": "Define Claude as a candidate NATIVE_VECTOR producer for ICON/OUTLINE only when the provider returns genuine SVG/vector source. Raster tracing or raster embedded inside SVG cannot claim native-vector success. Contract must preserve idempotency, exact prompt/blueprint lineage, zero implicit submission/publication authority and typed failure states.",
+      "completed_at": "2026-09-10",
+      "receipt": "company/factory-asset/receipts/FA-320-claude-native-svg-contract.receipt.json",
+      "result": "DONE/PASS: Claude is canonically defined as a candidate NATIVE_VECTOR provider for ICON/OUTLINE with hash-bound blueprint/prompt lineage and genuine-SVG-only output contract. Shared native-producer schema now recognizes NATIVE_VECTOR, but the route remains UNAVAILABLE_NOT_ACCEPTED pending FA-321/FA-322."
     },
     {
       "id": "FA-321",
@@ -2951,7 +2954,7 @@
         "FA-025",
         "FA-030"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "SVG validator, safety/editability QA, EPS export and PNG/JPEG preview receipts",
       "acceptance": "Reject scripts, external references, embedded-raster-only masquerades, invalid or out-of-bounds viewBox geometry, blank output, unsafe text/font dependencies and unbounded path complexity. Prove editable paths/shapes, independent raster render, deterministic lineage and governed SVG master -> EPS/PNG/JPEG derivative packaging without changing semantic asset count."
@@ -2981,10 +2984,13 @@
         "FA-301",
         "FA-316"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "Read-only browser-fleet display/observability contract and threat model",
-      "acceptance": "Define Founder visibility into actual production X displays and browser-owner state without exposing CDP, broker or debug ports publicly. Separate screenshot/status observation from interactive auth/recovery; require loopback/private transport, auditability and no credential extraction."
+      "acceptance": "Define Founder visibility into actual production X displays and browser-owner state without exposing CDP, broker or debug ports publicly. Separate screenshot/status observation from interactive auth/recovery; require loopback/private transport, auditability and no credential extraction.",
+      "completed_at": "2026-09-10",
+      "receipt": "company/factory-asset/receipts/FA-323-founder-display-observability.receipt.json",
+      "result": "DONE/PASS: Founder observability contract maps actual production Xvfb displays cluster-a :101 and cluster-b :102, preserves loopback-only CDP/broker boundaries, separates read-only observation from FA-325 interactive repair, and keeps VNC NOT_DEPLOYED until FA-324."
     },
     {
       "id": "FA-324",
@@ -2995,7 +3001,7 @@
       "depends_on": [
         "FA-323"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_DISPLAY_SERVICE_ACTIVATION",
       "artifact": "Loopback VNC services for production displays plus SSH-tunnel runbook and rollback",
       "acceptance": "Attach read-only/local-only VNC observation to the actual Cluster A/B Xvfb displays used by browser owners, not an unrelated XFCE desktop. Bind no VNC/CDP/broker endpoint to public interfaces; Founder access must traverse an authenticated private/SSH tunnel and preserve current browser sessions."
@@ -3070,10 +3076,13 @@
       "depends_on": [
         "FA-316"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "Dual-Atlas supply-first/demand-first retrieval contract and fixtures",
-      "acceptance": "Implement the canonical Object Primitive x Human Demand Context bridge without exhaustive Cartesian enumeration. Support supply-first seed -> compatible human contexts and demand-first human/problem/industry/intent -> compatible objects, with evidence labels, coherence constraints and no production authority."
+      "acceptance": "Implement the canonical Object Primitive x Human Demand Context bridge without exhaustive Cartesian enumeration. Support supply-first seed -> compatible human contexts and demand-first human/problem/industry/intent -> compatible objects, with evidence labels, coherence constraints and no production authority.",
+      "completed_at": "2026-09-10",
+      "receipt": "company/factory-asset/receipts/FA-329-dual-atlas-context-bridge.receipt.json",
+      "result": "DONE/PASS: deterministic bounded supply-first and demand-first Object Atlas x Human Demand Context bridge implemented with max 256 scanned candidates, max 12 outputs, coherence/evidence labels, no inherited demand, no exhaustive Cartesian enumeration and no production authority."
     },
     {
       "id": "FA-330",
@@ -3086,7 +3095,7 @@
         "FA-329",
         "FA-129"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "Evidence-bounded seed x mode x preset opportunity plan and scoring receipts",
       "acceptance": "Rank which seed nouns deserve which semantic modes and manifestation presets from Object Atlas evidence, Human Atlas demand/reuse context, commercial utility, platform fit, feasibility and differentiation. Preserve force_all_modes=false; the matrix generates bounded candidates and must never command exhaustive seed x mode x preset production."

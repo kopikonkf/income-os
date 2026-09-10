@@ -1,0 +1,36 @@
+{
+  "schema": "die.factory-asset.fa320-claude-native-svg-contract-receipt.v1",
+  "task_id": "FA-320",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "artifacts": {
+    "contract": "a09658090623936bedcd6b986c6126c3813375ef69c7e849264c677acc34e1ae",
+    "adapter_schema": "9af42dc8ff954ea5f2e859c56fe474e7cf35ec825a57900ceecb5539e1eb2210",
+    "adapter": "c962926bf495339ed9948832d5ae984ad2936afe53a2521057eb7158383e8b9b",
+    "native_producer_schema": "fa43ba319f9729d252555bd985fc8183b836cabae0416d45780f81c37b91d685",
+    "dispatch_registry": "61c3b7d1ab1d21573397cc0ac28e358704452fb4860ba28cd03db69f7763c0f8",
+    "doc": "4ba51fffd5bf5fdac89f313932129ed3b0dc01f6ca8ff606a7d4d28e4c49b778"
+  },
+  "assertions": {
+    "provider_id": "claude",
+    "producer_class": "NATIVE_VECTOR",
+    "eligible_asset_types": [
+      "ICON",
+      "OUTLINE"
+    ],
+    "master_format": "SVG",
+    "native_editable_required": true,
+    "conversion_from_raster": false,
+    "embedded_raster_only_allowed": false,
+    "route_state": "UNAVAILABLE_NOT_ACCEPTED",
+    "provider_calls_performed": 0,
+    "route_promotion_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false
+  },
+  "validation": {
+    "focused_cross_contract": "35 PASS before batch seal",
+    "full_linux_factory_regression": "867 PASS, 1 existing PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded by canonical scope"
+  }
+}

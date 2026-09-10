@@ -1,0 +1,43 @@
+{
+  "schema": "die.factory-asset.fa323-founder-display-observability-receipt.v1",
+  "task_id": "FA-323",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "artifacts": {
+    "contract": "fabdf55fae8e4daccd587e8c15e20b7d1b8d043865994707fcabac093934ed28",
+    "validator": "5dcec65c8e8e4a1b02c0e0c776eba1f197c65530a0401c083d216d7f2a467270",
+    "doc": "ce5e37ff450679b23d4ccc3eccab1646a29aa1b183dfdab0c4d98886e600a256"
+  },
+  "live_read_only_evidence": {
+    "cluster_a": {
+      "service": "die-muxia-cluster-a-browser.service",
+      "service_state": "active",
+      "owner_x_display": 101,
+      "xvfb_display": ":101",
+      "chrome_debug_address": "127.0.0.1",
+      "chrome_debug_port": 39221
+    },
+    "cluster_b": {
+      "service": "die-muxia-cluster-b-browser.service",
+      "service_state": "active",
+      "owner_x_display": 102,
+      "xvfb_display": ":102",
+      "chrome_debug_address": "127.0.0.1",
+      "chrome_debug_port": 39222
+    }
+  },
+  "assertions": {
+    "public_listener_allowed": false,
+    "default_access": "READ_ONLY",
+    "vnc_deployed": false,
+    "planned_vnc_bind_host": "127.0.0.1",
+    "planned_transport": "SSH_LOCAL_FORWARD",
+    "interactive_repair_authorized": false,
+    "credential_extraction_allowed": false,
+    "cookies_tokens_export_allowed": false
+  },
+  "validation": {
+    "full_linux_factory_regression": "867 PASS, 1 existing PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded by canonical scope"
+  }
+}

@@ -27,9 +27,12 @@ def test_phase7_frontier_after_prompt_foundation():
         assert by[tid]["status"] == "DONE"
     assert by["FA-318"]["status"] == "DONE"
     assert by["FA-319"]["status"] == "DONE"
-    assert by["FA-320"]["status"] == "READY"
-    assert by["FA-323"]["status"] == "READY"
-    assert by["FA-329"]["status"] == "READY"
+    assert by["FA-320"]["status"] == "DONE"
+    assert by["FA-321"]["status"] == "READY"
+    assert by["FA-323"]["status"] == "DONE"
+    assert by["FA-324"]["status"] == "READY"
+    assert by["FA-329"]["status"] == "DONE"
+    assert by["FA-330"]["status"] == "READY"
     assert "FA-336" in by["FA-318"]["depends_on"]
     assert by["FA-334"]["depends_on"] == ["FA-317", "FA-333"]
     assert by["FA-335"]["depends_on"] == ["FA-334"]
