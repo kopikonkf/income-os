@@ -1,0 +1,125 @@
+{
+  "schema": "die.factory-asset.fa319-baseline-package-acceptance-receipt.v1",
+  "task_id": "FA-319",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "scope": "BOUNDED_REAL_PROVIDER_CANARY",
+  "canonical_repo": {
+    "origin_main_sha": "f0b6abe81ca142921ede7be016459e77f7de91dc",
+    "fa318_merge_sha": "72750d01dd787cb5229e450dcd45feebb812e7d7",
+    "subject_transport_repair_pr": 342,
+    "subject_transport_repair_sha": "c0daf55e1b721c14b49d2428df7e933b6c88899a",
+    "rights_detector_calibration_pr": 343,
+    "rights_detector_calibration_sha": "f0b6abe81ca142921ede7be016459e77f7de91dc"
+  },
+  "canary": {
+    "task_id": "FA319GIFTBOX001",
+    "workspace": "/var/lib/die/state/fa319-acceptance-20260910/workspaces/FA319GIFTBOX001",
+    "seed_id": "SEED-000028",
+    "seed_noun": "gift box",
+    "demand_status": "validated_medium",
+    "asset_type": "ISOLATED_OBJECT",
+    "subject_spec_id": "FASS-GIFTBOX-001",
+    "asset_blueprint_v2_id": "FABP-SEED_000028_ISOLATED_OBJECT",
+    "prompt_authority": "TYPED_VISUAL_CONTRACT_V1",
+    "provider_prompt_chars": 2495,
+    "provider_prompt_sha256": "9b5a18efad70e2ead88826cdc13fafba78b85d25f79bf5bddfe8c5a323a1ab00",
+    "provider_id": "qwen",
+    "cluster_id": "cluster-a",
+    "profile_id": "chatgpt-linux-a",
+    "provider_attempt": 1,
+    "source_original_dimensions": [
+      807,
+      450
+    ],
+    "source_original_sha256": "6051afbfe3d7ad009b958172881a82e56286b32178883a431e4ef3f152041d41",
+    "active_master_sha256": "841d35b72db93a33cda401546f7099eeef2f1d39dfc17efa3e4a4eb3f473529c",
+    "derivatives": [
+      {
+        "derivative_id": "ADOBE_JPEG",
+        "sha256": "1777cd3617df7e2379ea32f7ce01f0f1f8b6f293ecbaaacc17f4f9a9b4a7bb6f"
+      },
+      {
+        "derivative_id": "WEB_PREVIEW",
+        "sha256": "70407fcf764d7791741c342e502f8e92e5cfa442850fff00dff7fb9e10c559bd"
+      }
+    ],
+    "metadata_sha256": "aa6abab99032fae7070fc4d97fd05e97fecc734b804fc44b6d08c30701d94dcf",
+    "package_plan_sha256": "bcc8be0b8e10e0e168514e374e087b95540e8dea9e46f90a1eb49935fdef5fe3",
+    "final_listing_filename": "gift-box-isolated-object__841d35b7.jpg",
+    "final_listing_sha256": "1777cd3617df7e2379ea32f7ce01f0f1f8b6f293ecbaaacc17f4f9a9b4a7bb6f",
+    "final_state": "WAITING_FOUNDER_QC",
+    "final_status": "PARKED_HUMAN_GATE",
+    "founder_qc": "PENDING"
+  },
+  "state_machine": {
+    "required_sequence": [
+      "ARTIFACT_CREATED",
+      "MASTER_VALIDATED",
+      "UPSCALE_DECIDED",
+      "DERIVATIVES_READY",
+      "TECHNICAL_QA_PASS",
+      "RIGHTS_SIGNAL_PASS_OR_REVIEW",
+      "METADATA_READY",
+      "PACKAGE_READY",
+      "WAITING_FOUNDER_QC"
+    ],
+    "durable_advance_sequence": [
+      "MASTER_VALIDATED",
+      "UPSCALE_DECIDED",
+      "DERIVATIVES_READY",
+      "TECHNICAL_QA_PASS",
+      "RIGHTS_SIGNAL_PASS_OR_REVIEW",
+      "METADATA_READY",
+      "PACKAGE_READY",
+      "WAITING_FOUNDER_QC"
+    ],
+    "final_revision": 9,
+    "rights_disposition": "PASS",
+    "package_result": "PACKAGE_READY"
+  },
+  "rights": {
+    "detector_revision": "1.2",
+    "cpu_only": true,
+    "self_test": "PASS",
+    "asset_type": "ISOLATED_OBJECT",
+    "ocr_detected_strings": [],
+    "logo": "CLEAR",
+    "watermark": "CLEAR",
+    "safety": "CLEAR",
+    "source_ip": "CLEAR",
+    "watermark_scoring": "MAX_RISK_MINUS_CLEAN",
+    "source_ip_scoring": "MAX_APPLICABLE_RISK_MINUS_CLEAN",
+    "source_ip_applicable_risk_indices": [
+      1,
+      2
+    ],
+    "detector_source_hashes": {
+      "run_visual_rights_detector.py": "75bfec0cd5d0fe82aca41160d114afffc6581266253170a308729584c214b1c6",
+      "visual_rights_detector.py": "7a9bbe8d7ddddd8fa5ec48afb2ae563ff749e144a750214d8eaf77857e884133",
+      "visual-rights-detector.v1.json": "77e31fd772e1b3d25f92d0bfdedca7b43ddadebc493a89b9bdbb0eb84c8f8a09"
+    }
+  },
+  "baseline_invariants": {
+    "production_cycle_name": "die-production-cycle-v1",
+    "production_cycle_state": "active",
+    "production_schedule": "0 */3 * * *",
+    "scale_100_per_day": false,
+    "fa125_status": "WAITING_FOUNDER",
+    "fa126_status": "DEFERRED",
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "marketplace_upload_performed": false,
+    "cluster_a_active_leases_after_canary": 0,
+    "cluster_b_active_leases_after_canary": 0,
+    "live_srv_die_dirty_tree_mutated_by_canary": false
+  },
+  "validation": {
+    "full_linux_factory_regression": "850 PASS, 1 existing PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded by canonical scope",
+    "final_path_assertions": "PASS",
+    "rights_self_test": "PASS",
+    "rights_actual_signal_gate": "PASS",
+    "canary_processes_cleaned": true
+  }
+}

@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-10",
-  "revision": "10.9-fa318-typed-pregeneration-authority",
+  "revision": "11.0-fa319-live-baseline-package-acceptance",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2917,10 +2917,13 @@
         "FA-318",
         "FA-141"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_BOUNDED_LIVE_PROVIDER_CANARY",
       "artifact": "Baseline end-to-end package-readiness acceptance receipt",
-      "acceptance": "Prove the exact canonical path ARTIFACT_CREATED -> MASTER_VALIDATED -> UPSCALE_DECIDED -> DERIVATIVES_READY -> TECHNICAL_QA_PASS -> RIGHTS_SIGNAL_PASS_OR_REVIEW -> METADATA_READY -> PACKAGE_READY -> WAITING_FOUNDER_QC on bounded real production evidence. Preserve cron 0 */3 * * *, scale_100_per_day=false, immutable masters, submission_eligible truth and no marketplace publication."
+      "acceptance": "Prove the exact canonical path ARTIFACT_CREATED -> MASTER_VALIDATED -> UPSCALE_DECIDED -> DERIVATIVES_READY -> TECHNICAL_QA_PASS -> RIGHTS_SIGNAL_PASS_OR_REVIEW -> METADATA_READY -> PACKAGE_READY -> WAITING_FOUNDER_QC on bounded real production evidence. Preserve cron 0 */3 * * *, scale_100_per_day=false, immutable masters, submission_eligible truth and no marketplace publication.",
+      "completed_at": "2026-09-10",
+      "receipt": "company/factory-asset/receipts/FA-319-baseline-package-acceptance.receipt.json",
+      "result": "DONE/PASS: bounded live gift-box canary proved typed pre-generation prompt authority through real Qwen provider-original acquisition and the exact durable postproduction sequence to PACKAGE_READY then WAITING_FOUNDER_QC. Rights detector self-test and actual signal gate passed after subject-agnostic calibration; submission/publication remained unauthorized; 3-hour baseline and scale hold were preserved."
     },
     {
       "id": "FA-320",
