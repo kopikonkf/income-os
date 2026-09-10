@@ -21,5 +21,9 @@
     "background_omission_fails_closed": true,
     "negative_omission_fails_closed": true,
     "rehash_does_not_hide_semantic_omission": true
+  },
+  "validation": {
+    "focused_windows_non_posix_suite": "52 PASS",
+    "full_linux_factory_regression": "836 PASS, 1 existing PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded by canonical scope"
   }
 }

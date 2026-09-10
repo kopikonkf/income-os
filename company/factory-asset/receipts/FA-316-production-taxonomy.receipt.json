@@ -17,5 +17,9 @@
     "production_preset_separate_from_derivative": true,
     "compiled_prompt_execution_artifact_not_semantic_truth": true,
     "derivatives_semantic_identity_effect_none_preserved": true
+  },
+  "validation": {
+    "focused_windows_non_posix_suite": "52 PASS",
+    "full_linux_factory_regression": "836 PASS, 1 existing PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded by canonical scope"
   }
 }

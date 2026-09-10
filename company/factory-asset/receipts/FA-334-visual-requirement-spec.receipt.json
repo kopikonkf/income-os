@@ -20,5 +20,9 @@
     "isolated_full_subject_required": true,
     "isolated_clean_silhouette_required": true,
     "negative_rights_markers_required": true
+  },
+  "validation": {
+    "focused_windows_non_posix_suite": "52 PASS",
+    "full_linux_factory_regression": "836 PASS, 1 existing PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded by canonical scope"
   }
 }

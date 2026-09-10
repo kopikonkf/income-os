@@ -28,5 +28,10 @@
     "deterministic_compile": true,
     "exact_prompt_hash_lineage": true,
     "provider_call_authorized": false
+  },
+  "validation": {
+    "focused_windows_non_posix_suite": "52 PASS",
+    "full_linux_factory_regression": "836 PASS, 1 existing PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded by canonical scope",
+    "cross_platform_prompt_determinism": "PASS: Linux exact fixture matched canonical prompt SHA b644dd32fc40c31e1a07c290c92cf5bf82f3d8b12c64b9d393bce25a0e48a457, 2566 chars"
   }
 }

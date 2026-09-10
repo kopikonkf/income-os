@@ -20,5 +20,9 @@
     "recognition_anchors_typed": true,
     "subject_mutations_typed": true,
     "compiler_must_not_invent_missing_subject_facts": true
+  },
+  "validation": {
+    "focused_windows_non_posix_suite": "52 PASS",
+    "full_linux_factory_regression": "836 PASS, 1 existing PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded by canonical scope"
   }
 }
