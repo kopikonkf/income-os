@@ -1618,12 +1618,12 @@
       "depends_on": [
         "FA-124"
       ],
-      "status": "READY",
+      "status": "WAITING_FOUNDER",
       "authority": "FOUNDER_DECISION_REQUIRED",
       "artifact": "docs/architecture/FACTORY_ASSET_SCALE_ECONOMICS_DECISION_V1.md",
       "acceptance": "Cost per successful/QA-passed/accepted asset, marketplace acceptance, licensing, backlog and provider capacity support PROMOTE|HOLD|REPAIR|STOP decision.",
-      "updated_at": "2026-09-09",
-      "result": "READY: all canonical dependencies are DONE/PASS. Execution still requires the task-specific Founder authority and must preserve current production hold until Founder economics/storage decision."
+      "updated_at": "2026-09-10",
+      "result": "WAITING_FOUNDER: Architect evidence packet recommends HOLD. Technical 100-master canary passes, but Factory marketplace acceptance/revenue and fully-loaded unit economics are unproven; Founder QC rate is unmeasured and current local storage covers about 13.6 p95 days at 100/day without archive. Baseline 3-hour production is preserved; scale_100_per_day remains false. Founder must ratify PROMOTE|HOLD|REPAIR|STOP."
     },
     {
       "id": "FA-126",
