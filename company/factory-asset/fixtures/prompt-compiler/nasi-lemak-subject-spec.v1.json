@@ -1,0 +1,60 @@
+{
+  "schema": "die.factory-asset.subject-spec.v1",
+  "subject_spec_id": "FASS-NASI_LEMAK_001",
+  "seed_id": null,
+  "canonical_name": "traditional Southeast Asian nasi lemak dish",
+  "subject_class": "PREPARED_FOOD",
+  "primary_form": "a neat dome of fluffy white steamed coconut rice centered on a fresh green banana leaf placed over a simple round white ceramic plate",
+  "essential_components": [
+    {
+      "name": "halved hard-boiled egg",
+      "description": "a clean half egg with a bright golden yellow yolk",
+      "placement": "arranged naturally around the central rice"
+    },
+    {
+      "name": "crispy fried anchovies",
+      "description": "small crisp ikan teri with recognizable natural shapes",
+      "placement": "arranged naturally around the central rice"
+    },
+    {
+      "name": "roasted peanuts",
+      "description": "whole roasted peanuts with natural brown color",
+      "placement": "arranged naturally around the central rice"
+    },
+    {
+      "name": "rich red sambal chili paste",
+      "description": "a generous portion of rich red sambal with appetizing texture",
+      "placement": "arranged naturally around the central rice"
+    },
+    {
+      "name": "thin fresh cucumber slices",
+      "description": "several thin green cucumber slices",
+      "placement": "arranged naturally around the central rice"
+    }
+  ],
+  "recognition_anchors": [
+    "central coconut-rice dome",
+    "banana leaf beneath the food",
+    "traditional nasi lemak side-dish assortment"
+  ],
+  "natural_attributes": [
+    "beautiful appetizing food presentation",
+    "natural ingredient shapes",
+    "realistic food colors"
+  ],
+  "spatial_relationships": [
+    "keep each ingredient clearly separated and visually legible",
+    "arrange side dishes around the central rice without merging them into one mass"
+  ],
+  "forbidden_subject_mutations": [
+    "do not omit any essential side dish",
+    "do not fuse distinct ingredients together",
+    "do not turn the dish into packaged or restaurant-served branding"
+  ],
+  "evidence": {
+    "basis": "FOUNDER_SPECIFIED",
+    "refs": [
+      "Founder-provided nasi lemak target prompt, 2026-09-10"
+    ]
+  }
+}

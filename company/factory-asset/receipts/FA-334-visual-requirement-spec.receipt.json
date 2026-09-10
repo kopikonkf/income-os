@@ -1,0 +1,28 @@
+{
+  "schema": "die.factory-asset.visual-requirement-spec-receipt.v1",
+  "task_id": "FA-334",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "provider_calls_performed": 0,
+  "live_runtime_mutations": 0,
+  "submission_actions": 0,
+  "publication_actions": 0,
+  "spend_usd": 0,
+  "artifacts": {
+    "schema": "5740e3d49af1a9971e1319e3a476b2bebc391c0e7596ad30f70fdc1c65aa5150",
+    "nasi_lemak_resolved_fixture": "a6e91851686b2724195b9af47fce0c63a6449dbf68ee944906ebd9fe9783de2a",
+    "resolver_implementation": "8570e157913c799d63d647d9d8f5d85734af9eae1dcf5d392d0cc7fded1082ac"
+  },
+  "assertions": {
+    "preset_background_override_fail_closed": true,
+    "custom_view_requires_instruction": true,
+    "isolated_full_subject_required": true,
+    "isolated_clean_silhouette_required": true,
+    "negative_rights_markers_required": true
+  },
+  "validation": {
+    "focused_windows_non_posix_suite": "52 PASS",
+    "full_linux_factory_regression": "836 PASS, 1 existing PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded by canonical scope"
+  }
+}

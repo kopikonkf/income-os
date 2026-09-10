@@ -1,0 +1,29 @@
+{
+  "schema": "die.factory-asset.prompt-contract-validator-receipt.v1",
+  "task_id": "FA-336",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "provider_calls_performed": 0,
+  "live_runtime_mutations": 0,
+  "submission_actions": 0,
+  "publication_actions": 0,
+  "spend_usd": 0,
+  "artifacts": {
+    "compiler_and_validator": "8570e157913c799d63d647d9d8f5d85734af9eae1dcf5d392d0cc7fded1082ac",
+    "tests": "9a762fc73c53d57501c8f6cf0a98224a92f0fe686b945cd6c49bddf452a3e1ce"
+  },
+  "assertions": {
+    "hash_drift_fails_closed": true,
+    "component_omission_fails_closed": true,
+    "recognition_anchor_omission_fails_closed": true,
+    "style_descriptor_omission_fails_closed": true,
+    "background_omission_fails_closed": true,
+    "negative_omission_fails_closed": true,
+    "rehash_does_not_hide_semantic_omission": true
+  },
+  "validation": {
+    "focused_windows_non_posix_suite": "52 PASS",
+    "full_linux_factory_regression": "836 PASS, 1 existing PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded by canonical scope"
+  }
+}

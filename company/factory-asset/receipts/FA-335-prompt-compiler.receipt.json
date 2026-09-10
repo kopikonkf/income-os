@@ -1,0 +1,37 @@
+{
+  "schema": "die.factory-asset.prompt-compiler-receipt.v1",
+  "task_id": "FA-335",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "provider_calls_performed": 0,
+  "live_runtime_mutations": 0,
+  "submission_actions": 0,
+  "publication_actions": 0,
+  "spend_usd": 0,
+  "artifacts": {
+    "compiler": "8570e157913c799d63d647d9d8f5d85734af9eae1dcf5d392d0cc7fded1082ac",
+    "cli": "72cf5b731adbad5413a0b0e43d9f006888b2fe85e493ed9688a05c6e68563b27",
+    "compiled_schema": "dfc732cbf58e3bdeaf4a612b8450fdc151d26c5bc394a3f50f68263accde61bf",
+    "acceptance_fixture": "58861fcfb62769bb1b234f340d348b61b8531b1d3eb4a557f6cad802bbd0759d",
+    "compiler_doc": "9e874d8053febc59b705b8c8d8d1659afea4d1289fe65b7018df086e3dbbf266"
+  },
+  "acceptance": {
+    "fixture": "nasi lemak",
+    "provider_prompt_chars": 2566,
+    "provider_prompt_sha256": "b644dd32fc40c31e1a07c290c92cf5bf82f3d8b12c64b9d393bce25a0e48a457",
+    "compiled_contract_sha256": "2d11d24d09d34a3ebda587d5d114a919fad0c6c3b9baea3f070465ac592cd5be",
+    "required_component_count": 5,
+    "required_recognition_anchor_count": 3
+  },
+  "assertions": {
+    "deterministic_compile": true,
+    "exact_prompt_hash_lineage": true,
+    "provider_call_authorized": false
+  },
+  "validation": {
+    "focused_windows_non_posix_suite": "52 PASS",
+    "full_linux_factory_regression": "836 PASS, 1 existing PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded by canonical scope",
+    "cross_platform_prompt_determinism": "PASS: Linux exact fixture matched canonical prompt SHA b644dd32fc40c31e1a07c290c92cf5bf82f3d8b12c64b9d393bce25a0e48a457, 2566 chars"
+  }
+}

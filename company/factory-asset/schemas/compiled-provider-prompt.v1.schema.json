@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/factory-asset/compiled-provider-prompt.v1.schema.json",
+  "title": "Factory Compiled Provider Prompt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "compiler_revision",
+    "visual_spec_id",
+    "subject_spec_sha256",
+    "visual_spec_sha256",
+    "preset_id",
+    "preset_revision",
+    "provider_prompt",
+    "negative_prompt",
+    "required_component_names",
+    "required_recognition_anchors",
+    "provider_prompt_sha256",
+    "compiled_contract_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "const": "die.factory-asset.compiled-provider-prompt.v1"
+    },
+    "compiler_revision": {
+      "const": "1.0.0"
+    },
+    "visual_spec_id": {
+      "type": "string",
+      "pattern": "^FAVS-"
+    },
+    "subject_spec_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "visual_spec_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "preset_id": {
+      "type": "string"
+    },
+    "preset_revision": {
+      "type": "string"
+    },
+    "provider_prompt": {
+      "type": "string",
+      "minLength": 120,
+      "maxLength": 8000
+    },
+    "negative_prompt": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 3000
+    },
+    "required_component_names": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_recognition_anchors": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "provider_prompt_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "compiled_contract_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

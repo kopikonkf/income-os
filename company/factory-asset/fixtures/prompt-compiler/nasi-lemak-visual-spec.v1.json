@@ -1,0 +1,120 @@
+{
+  "schema": "die.factory-asset.visual-requirement-spec.v1",
+  "visual_spec_id": "FAVS-FASA_NASI_LEMAK_001_ISOLATED_PREMIUM_SEMI_REALISTIC_ILLUSTRATION_L0",
+  "semantic_asset_id": "FASA-NASI_LEMAK_001",
+  "asset_type": "ISOLATED_OBJECT",
+  "subject_spec_id": "FASS-NASI_LEMAK_001",
+  "preset": {
+    "preset_id": "ISOLATED_PREMIUM_SEMI_REALISTIC_ILLUSTRATION_L0",
+    "revision": "1.0.0"
+  },
+  "subject": {
+    "canonical_name": "traditional Southeast Asian nasi lemak dish",
+    "subject_class": "PREPARED_FOOD",
+    "primary_form": "a neat dome of fluffy white steamed coconut rice centered on a fresh green banana leaf placed over a simple round white ceramic plate",
+    "essential_components": [
+      {
+        "name": "halved hard-boiled egg",
+        "description": "a clean half egg with a bright golden yellow yolk",
+        "placement": "arranged naturally around the central rice"
+      },
+      {
+        "name": "crispy fried anchovies",
+        "description": "small crisp ikan teri with recognizable natural shapes",
+        "placement": "arranged naturally around the central rice"
+      },
+      {
+        "name": "roasted peanuts",
+        "description": "whole roasted peanuts with natural brown color",
+        "placement": "arranged naturally around the central rice"
+      },
+      {
+        "name": "rich red sambal chili paste",
+        "description": "a generous portion of rich red sambal with appetizing texture",
+        "placement": "arranged naturally around the central rice"
+      },
+      {
+        "name": "thin fresh cucumber slices",
+        "description": "several thin green cucumber slices",
+        "placement": "arranged naturally around the central rice"
+      }
+    ],
+    "recognition_anchors": [
+      "central coconut-rice dome",
+      "banana leaf beneath the food",
+      "traditional nasi lemak side-dish assortment"
+    ],
+    "natural_attributes": [
+      "beautiful appetizing food presentation",
+      "natural ingredient shapes",
+      "realistic food colors"
+    ],
+    "spatial_relationships": [
+      "keep each ingredient clearly separated and visually legible",
+      "arrange side dishes around the central rice without merging them into one mass"
+    ],
+    "forbidden_subject_mutations": [
+      "do not omit any essential side dish",
+      "do not fuse distinct ingredients together",
+      "do not turn the dish into packaged or restaurant-served branding"
+    ]
+  },
+  "view": {
+    "viewpoint": "CUSTOM",
+    "instruction": "slightly elevated three-quarter angle"
+  },
+  "rendering": {
+    "render_language": "ILLUSTRATION",
+    "style_family": "ILLUSTRATIVE_CLIPART",
+    "style_variant": "PREMIUM_SEMI_REALISTIC_VECTOR_LIKE",
+    "medium": "DIGITAL_ILLUSTRATION",
+    "stylization": "LOW_MEDIUM",
+    "prompt_descriptors": [
+      "clean premium digital illustration",
+      "semi-realistic vector-like rendering",
+      "smooth natural shapes",
+      "slightly stylized but immediately recognizable subject",
+      "subtle highlights and shading",
+      "crisp contours",
+      "polished commercial stock illustration aesthetic"
+    ]
+  },
+  "fidelity": {
+    "proportions": "REALISTIC",
+    "recognizability": "VERY_HIGH",
+    "texture_detail": "DETAILED",
+    "color_behavior": "VIBRANT_REALISTIC",
+    "edge_character": "CRISP_CLEAN",
+    "shading": "SUBTLE"
+  },
+  "composition": {
+    "background_mode": "TRANSPARENT",
+    "centered": true,
+    "full_subject_visible": true,
+    "generous_whitespace": true,
+    "clean_silhouette": true,
+    "unrelated_props": false
+  },
+  "commercial": {
+    "stock_asset_quality": true,
+    "reusable_design_component": true,
+    "subject_separation": "VERY_CLEAR"
+  },
+  "negative_constraints": [
+    "people unless explicitly essential to the subject",
+    "readable text",
+    "logo",
+    "trademark",
+    "watermark",
+    "packaging unless explicitly essential",
+    "unrelated props",
+    "environmental scene",
+    "table or room background"
+  ],
+  "authority": {
+    "effect": "NONE",
+    "provider_call_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false
+  }
+}

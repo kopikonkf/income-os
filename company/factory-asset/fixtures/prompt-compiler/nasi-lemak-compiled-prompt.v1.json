@@ -1,0 +1,25 @@
+{
+  "schema": "die.factory-asset.compiled-provider-prompt.v1",
+  "compiler_revision": "1.0.0",
+  "visual_spec_id": "FAVS-FASA_NASI_LEMAK_001_ISOLATED_PREMIUM_SEMI_REALISTIC_ILLUSTRATION_L0",
+  "subject_spec_sha256": "ac95142b1bb13f6823d8d79957fb0226edd855df1470cb85ea84d6f6cdf04781",
+  "visual_spec_sha256": "152f89b72791d0e1c5ae8ada9edf4353c5500c077b0c06cb638379847b31ef62",
+  "preset_id": "ISOLATED_PREMIUM_SEMI_REALISTIC_ILLUSTRATION_L0",
+  "preset_revision": "1.0.0",
+  "provider_prompt": "Create exactly one standalone isolated traditional Southeast Asian nasi lemak dish as a polished commercial stock asset. Primary subject form: a neat dome of fluffy white steamed coconut rice centered on a fresh green banana leaf placed over a simple round white ceramic plate. Required visible components: halved hard-boiled egg - a clean half egg with a bright golden yellow yolk; arranged naturally around the central rice; crispy fried anchovies - small crisp ikan teri with recognizable natural shapes; arranged naturally around the central rice; roasted peanuts - whole roasted peanuts with natural brown color; arranged naturally around the central rice; rich red sambal chili paste - a generous portion of rich red sambal with appetizing texture; arranged naturally around the central rice; thin fresh cucumber slices - several thin green cucumber slices; arranged naturally around the central rice. Recognition anchors: central coconut-rice dome; banana leaf beneath the food; traditional nasi lemak side-dish assortment. Natural subject attributes: beautiful appetizing food presentation; natural ingredient shapes; realistic food colors. Spatial structure: keep each ingredient clearly separated and visually legible; arrange side dishes around the central rice without merging them into one mass. View: slightly elevated three-quarter angle. Rendering direction: clean premium digital illustration; semi-realistic vector-like rendering; smooth natural shapes; slightly stylized but immediately recognizable subject; subtle highlights and shading; crisp contours; polished commercial stock illustration aesthetic. Fidelity requirements: realistic proportions; immediately recognizable subject identity; detailed textures; vibrant but realistic colors; crisp clean edges; subtle soft highlights and shading. Composition requirements: centered composition; complete subject fully visible with no crop; generous usable whitespace; clean separable silhouette; transparent background with no background elements; no unrelated props. Commercial-use requirements: reusable standalone stock design component; very clear visual separation; production-ready stock asset quality. Preserve subject integrity: do not omit any essential side dish; do not fuse distinct ingredients together; do not turn the dish into packaged or restaurant-served branding. Do not include: people unless explicitly essential to the subject; readable text; logo; trademark; watermark; packaging unless explicitly essential; unrelated props; environmental scene; table or room background.",
+  "negative_prompt": "people unless explicitly essential to the subject; readable text; logo; trademark; watermark; packaging unless explicitly essential; unrelated props; environmental scene; table or room background",
+  "required_component_names": [
+    "halved hard-boiled egg",
+    "crispy fried anchovies",
+    "roasted peanuts",
+    "rich red sambal chili paste",
+    "thin fresh cucumber slices"
+  ],
+  "required_recognition_anchors": [
+    "central coconut-rice dome",
+    "banana leaf beneath the food",
+    "traditional nasi lemak side-dish assortment"
+  ],
+  "provider_prompt_sha256": "b644dd32fc40c31e1a07c290c92cf5bf82f3d8b12c64b9d393bce25a0e48a457",
+  "compiled_contract_sha256": "2d11d24d09d34a3ebda587d5d114a919fad0c6c3b9baea3f070465ac592cd5be"
+}

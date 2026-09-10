@@ -1,0 +1,26 @@
+{
+  "schema": "die.factory-asset.subject-spec.v1",
+  "subject_spec_id": "FASS-BOTTLE_001",
+  "seed_id": "SEED-999900",
+  "canonical_name": "generic unbranded bottle",
+  "subject_class": "CONTAINER",
+  "primary_form": "one complete upright generic bottle with a clearly readable bottle silhouette",
+  "essential_components": [],
+  "recognition_anchors": [
+    "distinct bottle body, shoulder, neck and opening or closure"
+  ],
+  "natural_attributes": [
+    "generic unbranded proportions"
+  ],
+  "spatial_relationships": [],
+  "forbidden_subject_mutations": [
+    "do not add labels or branding",
+    "do not crop the bottle"
+  ],
+  "evidence": {
+    "basis": "MANUAL_CANON",
+    "refs": [
+      "Factory prompt-compiler simple-object control fixture"
+    ]
+  }
+}

@@ -917,3 +917,14 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Profile-pool lane models 20-50 persistent authorized profiles as inventory, not 20-50 simultaneously running Chromium owners. The existing FA-312 active-owner ceiling remains authoritative until bounded remeasurement; FA-327 extends FA-306 with profile-aware health/fairness/circuit/backpressure scheduling rather than blind round-robin.
 - Production-intelligence lane implements the canonical Dual-Atlas doctrine: Object Primitive x bounded Human Demand Context x Product Expression, sparse seed x semantic-mode x preset opportunity planning, and semantic-expression-level reuse so one noun is not globally consumed after one raster manifestation. Exhaustive Cartesian production remains forbidden.
 - Validation after amendment: focused cross-contract suite 42/42 PASS; full Linux Factory regression 826/826 PASS with one expected PyPDF2 deprecation warning and only the canonical out-of-scope FA-121 live-broker oneshot test excluded.
+
+
+---
+
+## 2026-09-10 - Typed production specification and prompt compiler foundation PASS
+- FA-316 and FA-317 are DONE/PASS: production taxonomy and Production Preset Registry v1 are canonicalized. Historical `ISOLATED_CARTOON_WATERCOLOR_L0` remains historical compatibility truth; `ISOLATED_PREMIUM_SEMI_REALISTIC_ILLUSTRATION_L0` is a Founder design candidate and remains NOT_LIVE.
+- FA-333 through FA-336 are DONE/PASS: Subject Spec v1, Visual Requirement Spec v1, deterministic Prompt Compiler v1, and semantic prompt-contract validation are implemented.
+- The nasi lemak acceptance fixture compiles from typed requirements into a deterministic 2,566-character provider prompt containing all five required side components, recognition anchors, custom elevated three-quarter view, semi-realistic vector-like illustration direction, fidelity, isolated composition, transparent background, and negative constraints. Prompt SHA256: `b644dd32fc40c31e1a07c290c92cf5bf82f3d8b12c64b9d393bce25a0e48a457`.
+- Cross-platform determinism PASS: Linux reproduces the exact canonical prompt and SHA. Full Linux Factory regression: 836 PASS, one existing PyPDF2 deprecation warning.
+- Task graph revision is `10.8-typed-visual-spec-deterministic-prompt-compiler`. FA-318 is now the highest-priority READY convergence task; FA-320, FA-323 and FA-329 are also READY lower-priority parallel frontiers. FA-125 remains WAITING_FOUNDER and FA-126 remains DEFERRED.
+- No live production configuration or throughput scale was changed by this foundation batch.

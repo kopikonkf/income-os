@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-10",
-  "revision": "10.7-baseline-vector-observability-production-intelligence",
+  "revision": "10.8-typed-visual-spec-deterministic-prompt-compiler",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -123,7 +123,8 @@
     "NATIVE_VECTOR",
     "FOUNDER_OBSERVABILITY",
     "PROFILE_POOL",
-    "PRODUCTION_INTELLIGENCE"
+    "PRODUCTION_INTELLIGENCE",
+    "PROMPT_COMPILER"
   ],
   "tasks": [
     {
@@ -2861,24 +2862,30 @@
         "FA-206",
         "FA-133"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "Factory production taxonomy v1 and compatibility mapping",
-      "acceptance": "Define media_family separately from commercial family; define semantic mode separately from manifestation/style/composition/delivery presets; preserve canonical semantic identity rule that derivatives never create a new semantic asset. Map the current ISOLATED_CARTOON_WATERCOLOR_L0 contract without changing live production cadence or authority."
+      "acceptance": "Define media_family separately from commercial family; define semantic mode separately from manifestation/style/composition/delivery presets; preserve canonical semantic identity rule that derivatives never create a new semantic asset. Map the current ISOLATED_CARTOON_WATERCOLOR_L0 contract without changing live production cadence or authority.",
+      "completed_at": "2026-09-10",
+      "receipt": "company/factory-asset/receipts/FA-316-production-taxonomy.receipt.json",
+      "result": "DONE/PASS: media family, semantic mode, production preset, subject/visual specification, compiled prompt, master, derivative and package terminology are separated; historical derivative identity rules remain unchanged."
     },
     {
       "id": "FA-317",
       "phase": 7,
       "track": "PRODUCTION_BASELINE",
       "priority": 318,
-      "title": "Implement governed Production Preset Registry v1 with isolated-cartoon-white champion preset",
+      "title": "Implement governed Production Preset Registry v1 with historical FA-124 and source-aligned isolated-object presets",
       "depends_on": [
         "FA-316"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "Versioned production-preset registry, schema, validator and tests",
-      "acceptance": "Represent mode, style, composition/background, render language and delivery intent as separate typed axes while preserving ISOLATED_CARTOON_WATERCOLOR_L0 as the champion baseline. Presets must be reusable across eligible seed nouns, versioned, deterministic and unable to create semantic identity by packaging-only change."
+      "acceptance": "Provide a versioned typed Production Preset Registry for semantic mode, rendering language, style family/variant, medium, stylization, view defaults, composition/background, fidelity, commercial-use constraints and prompt descriptors. Preserve ISOLATED_CARTOON_WATERCOLOR_L0 as historical FA-124 acceptance truth without falsely treating it as the sole Founder-source style; add the Founder-specified premium semi-realistic illustrative isolated-object direction as NOT_LIVE until a later bounded acceptance. Packaging-only changes remain identity-neutral.",
+      "completed_at": "2026-09-10",
+      "receipt": "company/factory-asset/receipts/FA-317-production-preset-registry.receipt.json",
+      "result": "DONE/PASS: registry schema validates historical ISOLATED_CARTOON_WATERCOLOR_L0 as BASELINE_COMPATIBILITY_ONLY and adds ISOLATED_PREMIUM_SEMI_REALISTIC_ILLUSTRATION_L0 as FOUNDER_DESIGN_CANDIDATE/NOT_LIVE with transparent-or-white background allowance and typed visual defaults."
     },
     {
       "id": "FA-318",
@@ -2888,13 +2895,14 @@
       "title": "Converge Hermes production cognition to canonical Asset Blueprint v2 without changing baseline product line",
       "depends_on": [
         "FA-317",
+        "FA-336",
         "FA-133",
         "FA-313"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "Hermes seed-to-expression-to-Asset-Blueprint-v2 compatibility bridge",
-      "acceptance": "Remove the runtime-only generic RASTER_IMAGE semantic assumption. Current autonomous baseline must still select ISOLATED_OBJECT + ISOLATED_CARTOON_WATERCOLOR_L0 and route through governed multi-cluster raster production, while the emitted/frozen contract becomes compatible with canonical Asset Blueprint v2 and FA-133 semantic producer routing. No 100/day activation, provider call or live cutover is authorized."
+      "acceptance": "Remove the runtime-only generic RASTER_IMAGE semantic assumption and make canonical pre-generation Asset Blueprint v2/sidecar visual requirements authoritative before provider dispatch. Hermes must obtain/resolve Subject Spec + Production Preset + Visual Requirement Spec, compile and hash the exact provider prompt, then freeze that lineage before Web-AI generation. Preserve current isolated-object baseline behavior until governed cutover; no 100/day activation, provider call or live cutover is authorized by implementation alone."
     },
     {
       "id": "FA-319",
@@ -2921,7 +2929,7 @@
         "FA-316",
         "FA-031"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "Claude native-vector producer request/receipt contract and adapter boundary",
       "acceptance": "Define Claude as a candidate NATIVE_VECTOR producer for ICON/OUTLINE only when the provider returns genuine SVG/vector source. Raster tracing or raster embedded inside SVG cannot claim native-vector success. Contract must preserve idempotency, exact prompt/blueprint lineage, zero implicit submission/publication authority and typed failure states."
@@ -2967,7 +2975,7 @@
         "FA-301",
         "FA-316"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "Read-only browser-fleet display/observability contract and threat model",
       "acceptance": "Define Founder visibility into actual production X displays and browser-owner state without exposing CDP, broker or debug ports publicly. Separate screenshot/status observation from interactive auth/recovery; require loopback/private transport, auditability and no credential extraction."
@@ -3056,7 +3064,7 @@
       "depends_on": [
         "FA-316"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "Dual-Atlas supply-first/demand-first retrieval contract and fixtures",
       "acceptance": "Implement the canonical Object Primitive x Human Demand Context bridge without exhaustive Cartesian enumeration. Support supply-first seed -> compatible human contexts and demand-first human/problem/industry/intent -> compatible objects, with evidence labels, coherence constraints and no production authority."
@@ -3106,6 +3114,75 @@
       "authority": "ARCHITECT",
       "artifact": "Production Intelligence v2 acceptance and rollout recommendation",
       "acceptance": "Prove the current isolated cartoon/watercolor white-background product line remains a deterministic champion exploitation lane while alternate modes/presets stay evidence-bounded exploration candidates. Selector -> dual-Atlas context -> expression plan -> preset -> Asset Blueprint v2 -> producer route -> postproduction must be traceable end-to-end. No throughput scale or marketplace publication authority is granted."
+    },
+    {
+      "id": "FA-333",
+      "phase": 7,
+      "track": "PROMPT_COMPILER",
+      "priority": 318,
+      "title": "Define Subject Specification Contract v1 for recognizable complete asset subjects",
+      "depends_on": [
+        "FA-316"
+      ],
+      "status": "DONE",
+      "authority": "ARCHITECT",
+      "artifact": "Subject Spec schema, complex/simple fixtures and contract documentation",
+      "acceptance": "Represent canonical subject name/class, primary form, essential components, recognition anchors, natural attributes, spatial relationships and forbidden subject mutations as typed pre-generation truth. Compiler must never invent omitted subject facts; evidence basis remains explicit.",
+      "completed_at": "2026-09-10",
+      "receipt": "company/factory-asset/receipts/FA-333-subject-spec.receipt.json",
+      "result": "DONE/PASS: Subject Spec v1 validates both complex nasi lemak and simple bottle fixtures; essential components and recognition anchors are durable inputs rather than prose-only prompt content."
+    },
+    {
+      "id": "FA-334",
+      "phase": 7,
+      "track": "PROMPT_COMPILER",
+      "priority": 319,
+      "title": "Define Visual Requirement Spec v1 resolved from Subject Spec and Production Preset",
+      "depends_on": [
+        "FA-317",
+        "FA-333"
+      ],
+      "status": "DONE",
+      "authority": "ARCHITECT",
+      "artifact": "Visual Requirement Spec schema, deterministic resolver and acceptance fixture",
+      "acceptance": "Resolve one subject plus one versioned preset into typed view, rendering descriptors, fidelity, composition/background, commercial-use and negative constraints. ISOLATED_OBJECT requires full-subject visibility, clean silhouette, no unrelated props and explicit background. Overrides are bounded and must remain allowed by the preset.",
+      "completed_at": "2026-09-10",
+      "receipt": "company/factory-asset/receipts/FA-334-visual-requirement-spec.receipt.json",
+      "result": "DONE/PASS: deterministic resolver produces a hashable isolated-object Visual Requirement Spec; invalid background and incomplete custom-view overrides fail closed."
+    },
+    {
+      "id": "FA-335",
+      "phase": 7,
+      "track": "PROMPT_COMPILER",
+      "priority": 320,
+      "title": "Implement deterministic Production Prompt Compiler v1",
+      "depends_on": [
+        "FA-334"
+      ],
+      "status": "DONE",
+      "authority": "ARCHITECT",
+      "artifact": "production_prompt_compiler.py, CLI and compiled-provider-prompt schema",
+      "acceptance": "Compile typed subject and visual requirements into a stable natural-language provider prompt in deterministic order, preserving every essential component, recognition anchor, rendering descriptor, fidelity constraint, composition/background rule, commercial-use requirement, subject-integrity rule and negative constraint. Hash subject spec, visual spec and exact provider prompt. No provider call or live mutation.",
+      "completed_at": "2026-09-10",
+      "receipt": "company/factory-asset/receipts/FA-335-prompt-compiler.receipt.json",
+      "result": "DONE/PASS: nasi lemak fixture compiles deterministically to a 2,566-character rich provider prompt with stable prompt/contract SHA-256 and zero provider calls."
+    },
+    {
+      "id": "FA-336",
+      "phase": 7,
+      "track": "PROMPT_COMPILER",
+      "priority": 321,
+      "title": "Implement prompt completeness and contract validator v1",
+      "depends_on": [
+        "FA-335"
+      ],
+      "status": "DONE",
+      "authority": "ARCHITECT",
+      "artifact": "Compiled-prompt validation gates and semantic-coverage tests",
+      "acceptance": "Fail closed on schema/hash drift, omitted essential components, omitted recognition anchors, missing style descriptors, missing background contract, required negative omissions, invalid isolated-object composition or unresolved placeholders. Validation must detect semantic omission even when a tampered prompt is re-hashed.",
+      "completed_at": "2026-09-10",
+      "receipt": "company/factory-asset/receipts/FA-336-prompt-contract-validator.receipt.json",
+      "result": "DONE/PASS: semantic coverage validator detects component omission beyond simple hash checks and enforces the isolated-object prompt contract."
     }
   ],
   "windows_oauth_proof_levels": {
