@@ -1,0 +1,64 @@
+{
+  "schema": "die.production-runtime.worker-handoff-live-deploy-receipt.v1",
+  "task_id": "PROD-RUNTIME-R1",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "canonical_merge_sha": "bfffa63fc338477a6520ab1ddba6a84121faccca",
+  "deployment": {
+    "live_runner_path": "/srv/die/company/workers/opencode/runner.py",
+    "deployed_sha256": "c35ec31ae6cbfdb5a95c5c0d8d1156c8f57ffd3a231cea6baa9d639192ddf03a",
+    "rollback_backup_path": "/srv/die/company/workers/opencode/runner.py.pre-PROD-RUNTIME-R1-20260910",
+    "rollback_sha256": "da5e98d602e2f6b16d9ff5db05c1b917216c2bade58c24dcb4c573838fb336b1",
+    "service_restart_required": false,
+    "production_schedule": "0 */3 * * *",
+    "production_cadence_changed": false
+  },
+  "live_validation": {
+    "exact_prod116_envelope_validation": "PASS",
+    "scratch_worker_dispatch_accepted_status": "done",
+    "scratch_worker_exit_code": 0,
+    "scratch_artifacts_verified": [
+      "opencode-probe.json",
+      "muxia-job-request.json",
+      "PROGRESS.md"
+    ],
+    "provider_call_performed_by_scratch_canary": false,
+    "cluster_a": {
+      "state": "READY",
+      "tabs": "1/8",
+      "leases": 0,
+      "chatgpt": "HEALTHY",
+      "qwen": "HEALTHY",
+      "gemini": "HEALTHY",
+      "manus": "HEALTHY",
+      "duckai": "DEGRADED"
+    },
+    "cluster_b": {
+      "state": "READY",
+      "tabs": "1/8",
+      "leases": 0,
+      "chatgpt": "HEALTHY",
+      "qwen": "HEALTHY",
+      "gemini": "HEALTHY",
+      "manus": "HEALTHY",
+      "duckai": "DEGRADED"
+    },
+    "services_active": [
+      "die-hermes-gateway.service",
+      "die-muxia-dispatch.service",
+      "die-fa121-cluster-broker.service",
+      "die-muxia-cluster-b.service",
+      "die-muxia-cluster-a-browser.service",
+      "die-muxia-cluster-b-browser.service"
+    ]
+  },
+  "truth_boundaries": {
+    "manual_full_production_tick_as_service_principal_executed": false,
+    "reason": "interactive shell principal could not use die-hermes tick lock and privilege escalation was blocked; no lock permission was weakened",
+    "provider_generation_from_repair_canary": false,
+    "marketplace_action": false,
+    "scale_100_per_day_authorized": false,
+    "spend_usd": 0
+  }
+}
