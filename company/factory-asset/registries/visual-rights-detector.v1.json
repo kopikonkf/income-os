@@ -1,6 +1,6 @@
 {
   "schema": "die.factory-asset.visual-rights-detector-config.v1",
-  "revision": "1.1",
+  "revision": "1.2",
   "runtime": {
     "python": "/opt/die/factory-asset-rights/venv/bin/python",
     "tesseract": "/usr/bin/tesseract",
@@ -58,7 +58,9 @@
       1,
       2,
       3
-    ]
+    ],
+    "clean_index": 0,
+    "scoring": "MAX_RISK_MINUS_CLEAN"
   },
   "safety": {
     "review_unsafe_score": 0.05,
@@ -99,6 +101,44 @@
       2,
       3,
       4
-    ]
+    ],
+    "clean_index": 0,
+    "scoring": "MAX_APPLICABLE_RISK_MINUS_CLEAN",
+    "applicable_risk_indices_by_asset_type": {
+      "ISOLATED_OBJECT": [
+        1,
+        2
+      ],
+      "ICON": [
+        1,
+        2
+      ],
+      "OUTLINE": [
+        1,
+        2
+      ],
+      "PATTERN": [
+        1,
+        2
+      ],
+      "PHOTO": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "ANIMATION": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "UNKNOWN": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
   }
 }

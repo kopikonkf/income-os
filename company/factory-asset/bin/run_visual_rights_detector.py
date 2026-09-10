@@ -104,7 +104,7 @@ def _clip_scores(master: Path, cfg: dict[str, Any], model, preprocess, clip, tor
     return scores
 
 
-def _evaluate_image(master: Path, cfg: dict[str, Any], *, model, preprocess, clip, torch, scratch: Path, stock_terms: list[str]) -> dict[str, Any]:
+def _evaluate_image(master: Path, cfg: dict[str, Any], *, model, preprocess, clip, torch, scratch: Path, stock_terms: list[str], asset_type: str = 'UNKNOWN') -> dict[str, Any]:
     sha = core.sha256_file(master)
     rows = _ocr_rows(master, cfg, scratch / 'ocr')
     ocr = core.ocr_consensus(
@@ -117,7 +117,7 @@ def _evaluate_image(master: Path, cfg: dict[str, Any], *, model, preprocess, cli
     logo = core.classify_logo(full_scores=cs['logo']['full'], foreground_scores=cs['logo']['foreground'], cfg=cfg['logo'])
     watermark = core.classify_watermark(full_scores=cs['watermark']['full'], cfg=cfg['watermark'])
     safety = core.classify_safety(full_scores=cs['safety']['full'], foreground_scores=cs['safety']['foreground'], cfg=cfg['safety'])
-    source_ip = core.classify_source_ip(full_scores=cs['source_ip']['full'], foreground_scores=cs['source_ip']['foreground'], cfg=cfg['source_ip'])
+    source_ip = core.classify_source_ip(full_scores=cs['source_ip']['full'], foreground_scores=cs['source_ip']['foreground'], cfg=cfg['source_ip'], asset_type=asset_type)
     obs = core.build_rights_observation(master_sha256=sha, ocr=ocr, logo=logo, watermark=watermark, safety=safety, stock_watermark_terms=stock_terms)
     return {
         'schema': 'die.factory-asset.visual-rights-detector-run.v1',
@@ -150,9 +150,9 @@ def _make_controls(master: Path, target: Path):
     return {'watermark': target/'watermark.png', 'logo_text': target/'logo_text.png', 'logo_emblem': target/'logo_emblem.png', 'unsafe_knife': target/'unsafe_knife.png', 'branded_trade_dress': target/'branded_trade_dress.png', 'fictional_character': target/'fictional_character.png'}
 
 
-def _self_test(master: Path, cfg: dict[str, Any], *, model, preprocess, clip, torch, scratch: Path, stock_terms: list[str]) -> dict[str, Any]:
+def _self_test(master: Path, cfg: dict[str, Any], *, model, preprocess, clip, torch, scratch: Path, stock_terms: list[str], asset_type: str = 'UNKNOWN') -> dict[str, Any]:
     controls = _make_controls(master, scratch/'controls')
-    results = {name: _evaluate_image(path, cfg, model=model, preprocess=preprocess, clip=clip, torch=torch, scratch=scratch/f'control-{name}', stock_terms=stock_terms) for name, path in controls.items()}
+    results = {name: _evaluate_image(path, cfg, model=model, preprocess=preprocess, clip=clip, torch=torch, scratch=scratch/f'control-{name}', stock_terms=stock_terms, asset_type=asset_type) for name, path in controls.items()}
     failures = []
     wm = results['watermark']
     if not wm['observation']['detectors']['watermark']['candidates']:
@@ -183,6 +183,7 @@ def main() -> int:
     ap.add_argument('--output', type=Path, required=True)
     ap.add_argument('--self-test-output', type=Path)
     ap.add_argument('--scratch', type=Path, required=True)
+    ap.add_argument('--asset-type', choices=['PHOTO','ISOLATED_OBJECT','ICON','OUTLINE','PATTERN','ANIMATION','UNKNOWN'], default='UNKNOWN')
     args = ap.parse_args()
     cfg = core.load_config()
     master = args.master.resolve()
@@ -201,10 +202,10 @@ def main() -> int:
     model, preprocess = clip.load(str(checkpoint), device='cpu', jit=False)
     model.eval()
     rights_policy = json.loads((ROOT/'company/factory-asset/registries/rights-signal-policy.v1.json').read_text())
-    self_test = _self_test(master, cfg, model=model, preprocess=preprocess, clip=clip, torch=torch, scratch=args.scratch/'self-test', stock_terms=rights_policy['stock_watermark_terms'])
+    self_test = _self_test(master, cfg, model=model, preprocess=preprocess, clip=clip, torch=torch, scratch=args.scratch/'self-test', stock_terms=rights_policy['stock_watermark_terms'], asset_type=args.asset_type)
     if self_test['result'] != 'PASS':
         raise RuntimeError('E_VISUAL_RIGHTS_SELF_TEST:'+','.join(self_test['failures']))
-    actual = _evaluate_image(master, cfg, model=model, preprocess=preprocess, clip=clip, torch=torch, scratch=args.scratch/'actual', stock_terms=rights_policy['stock_watermark_terms'])
+    actual = _evaluate_image(master, cfg, model=model, preprocess=preprocess, clip=clip, torch=torch, scratch=args.scratch/'actual', stock_terms=rights_policy['stock_watermark_terms'], asset_type=args.asset_type)
     actual['runtime'] = {
         'tesseract_version': ver,
         'clip_model': cfg['clip']['model'],
@@ -212,6 +213,7 @@ def main() -> int:
         'torch_version': torch.__version__,
         'cpu_only': True,
         'self_test_result': self_test['result'],
+        'asset_type': args.asset_type,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(actual, indent=2)+'\n')
