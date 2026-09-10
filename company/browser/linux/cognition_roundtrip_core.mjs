@@ -67,7 +67,7 @@ export const PRINCIPALS = {
   },
 };
 const REQUEST_RE = /^COG-[A-Z0-9_-]{8,160}$/;
-const ALLOWED_ACTIONS = new Set(['PRODUCTION_BLUEPRINT_AUTHOR', 'PRODUCTION_BLUEPRINT_REVIEW', 'PRODUCTION_BLUEPRINT_REVISE', 'AUTONOMY_CANARY']);
+const ALLOWED_ACTIONS = new Set(['PRODUCTION_BLUEPRINT_AUTHOR', 'PRODUCTION_BLUEPRINT_REVIEW', 'PRODUCTION_BLUEPRINT_REVISE', 'PRODUCTION_SUBJECT_SPEC_AUTHOR', 'AUTONOMY_CANARY']);
 
 function sha256(text) { return crypto.createHash('sha256').update(text, 'utf8').digest('hex'); }
 function atomicJson(file, value) { fs.mkdirSync(path.dirname(file), { recursive: true, mode: 0o750 }); const tmp=`${file}.tmp-${process.pid}`; fs.writeFileSync(tmp, JSON.stringify(value,null,2)+'\n',{mode:0o640}); fs.renameSync(tmp,file); }
