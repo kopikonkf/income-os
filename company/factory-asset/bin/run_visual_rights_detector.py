@@ -104,7 +104,7 @@ def _clip_scores(master: Path, cfg: dict[str, Any], model, preprocess, clip, tor
     return scores
 
 
-def _evaluate_image(master: Path, cfg: dict[str, Any], *, model, preprocess, clip, torch, scratch: Path, stock_terms: list[str]) -> dict[str, Any]:
+def _evaluate_image(master: Path, cfg: dict[str, Any], *, model, preprocess, clip, torch, scratch: Path, stock_terms: list[str], asset_type: str = 'UNKNOWN') -> dict[str, Any]:
     sha = core.sha256_file(master)
     rows = _ocr_rows(master, cfg, scratch / 'ocr')
     ocr = core.ocr_consensus(
@@ -117,7 +117,7 @@ def _evaluate_image(master: Path, cfg: dict[str, Any], *, model, preprocess, cli
     logo = core.classify_logo(full_scores=cs['logo']['full'], foreground_scores=cs['logo']['foreground'], cfg=cfg['logo'])
     watermark = core.classify_watermark(full_scores=cs['watermark']['full'], cfg=cfg['watermark'])
     safety = core.classify_safety(full_scores=cs['safety']['full'], foreground_scores=cs['safety']['foreground'], cfg=cfg['safety'])
-    source_ip = core.classify_source_ip(full_scores=cs['source_ip']['full'], foreground_scores=cs['source_ip']['foreground'], cfg=cfg['source_ip'])
+    source_ip = core.classify_source_ip(full_scores=cs['source_ip']['full'], foreground_scores=cs['source_ip']['foreground'], cfg=cfg['source_ip'], asset_type=asset_type)
     obs = core.build_rights_observation(master_sha256=sha, ocr=ocr, logo=logo, watermark=watermark, safety=safety, stock_watermark_terms=stock_terms)
     return {
         'schema': 'die.factory-asset.visual-rights-detector-run.v1',
@@ -139,16 +139,20 @@ def _make_controls(master: Path, target: Path):
     d.text(((base.width-tw)//2, (base.height-th)//2), text, font=font, fill=(80,80,80,120)); wm.save(target/'watermark.png')
     logo = base.copy(); d = ImageDraw.Draw(logo); d.ellipse((1680,1700,2416,2436), fill=(190,25,35), outline=(20,20,20), width=30)
     font2 = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 170); d.text((1745,1920), 'ACME', font=font2, fill='white'); logo.save(target/'logo_text.png')
-    emblem = base.copy(); d = ImageDraw.Draw(emblem); d.ellipse((1680,1700,2416,2436), fill=(20,20,20)); d.polygon([(2048,1780),(2140,1980),(2360,2000),(2190,2140),(2250,2360),(2048,2240),(1846,2360),(1906,2140),(1736,2000),(1956,1980)], fill=(245,245,245)); emblem.save(target/'logo_emblem.png')
+    emblem = base.copy(); d = ImageDraw.Draw(emblem); w,h=emblem.size; cx,cy=w//2,h//2; r=max(120,min(w,h)//14)
+    d.ellipse((cx-r,cy-r,cx+r,cy+r), fill=(20,20,20), outline=(245,245,245), width=max(8,r//16))
+    d.polygon([(cx-int(r*.54),cy+int(r*.43)),(cx-int(r*.14),cy-int(r*.54)),(cx+int(r*.07),cy+int(r*.43))], fill=(245,245,245))
+    d.polygon([(cx-int(r*.07),cy+int(r*.43)),(cx+int(r*.32),cy-int(r*.54)),(cx+int(r*.54),cy+int(r*.43))], fill=(180,180,180))
+    emblem.save(target/'logo_emblem.png')
     knife = Image.new('RGB', base.size, 'white'); d = ImageDraw.Draw(knife); d.polygon([(650,2050),(2800,1450),(3300,1850),(1250,2350)], fill=(120,120,120), outline='black'); d.rounded_rectangle((900,2200,1800,2550), radius=80, fill=(60,35,20), outline='black', width=20); knife.save(target/'unsafe_knife.png')
     branded = Image.new('RGB', base.size, 'white'); d = ImageDraw.Draw(branded); d.rounded_rectangle((1500,700,2600,3400), radius=300, fill=(190,20,30), outline=(20,20,20), width=30); font3 = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 190); d.text((1580,1800), 'FAMOUS', font=font3, fill='white'); d.text((1620,2080), 'BRAND', font=font3, fill='white'); branded.save(target/'branded_trade_dress.png')
     character = Image.new('RGB', base.size, 'white'); d = ImageDraw.Draw(character); d.ellipse((1450,1200,2650,2400), fill='black'); d.ellipse((1150,900,1650,1400), fill='black'); d.ellipse((2450,900,2950,1400), fill='black'); font4 = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 160); d.text((1120,2750), 'FICTIONAL CHARACTER', font=font4, fill='black'); character.save(target/'fictional_character.png')
     return {'watermark': target/'watermark.png', 'logo_text': target/'logo_text.png', 'logo_emblem': target/'logo_emblem.png', 'unsafe_knife': target/'unsafe_knife.png', 'branded_trade_dress': target/'branded_trade_dress.png', 'fictional_character': target/'fictional_character.png'}
 
 
-def _self_test(master: Path, cfg: dict[str, Any], *, model, preprocess, clip, torch, scratch: Path, stock_terms: list[str]) -> dict[str, Any]:
+def _self_test(master: Path, cfg: dict[str, Any], *, model, preprocess, clip, torch, scratch: Path, stock_terms: list[str], asset_type: str = 'UNKNOWN') -> dict[str, Any]:
     controls = _make_controls(master, scratch/'controls')
-    results = {name: _evaluate_image(path, cfg, model=model, preprocess=preprocess, clip=clip, torch=torch, scratch=scratch/f'control-{name}', stock_terms=stock_terms) for name, path in controls.items()}
+    results = {name: _evaluate_image(path, cfg, model=model, preprocess=preprocess, clip=clip, torch=torch, scratch=scratch/f'control-{name}', stock_terms=stock_terms, asset_type=asset_type) for name, path in controls.items()}
     failures = []
     wm = results['watermark']
     if not wm['observation']['detectors']['watermark']['candidates']:
@@ -179,6 +183,7 @@ def main() -> int:
     ap.add_argument('--output', type=Path, required=True)
     ap.add_argument('--self-test-output', type=Path)
     ap.add_argument('--scratch', type=Path, required=True)
+    ap.add_argument('--asset-type', choices=['PHOTO','ISOLATED_OBJECT','ICON','OUTLINE','PATTERN','ANIMATION','UNKNOWN'], default='UNKNOWN')
     args = ap.parse_args()
     cfg = core.load_config()
     master = args.master.resolve()
@@ -197,10 +202,10 @@ def main() -> int:
     model, preprocess = clip.load(str(checkpoint), device='cpu', jit=False)
     model.eval()
     rights_policy = json.loads((ROOT/'company/factory-asset/registries/rights-signal-policy.v1.json').read_text())
-    self_test = _self_test(master, cfg, model=model, preprocess=preprocess, clip=clip, torch=torch, scratch=args.scratch/'self-test', stock_terms=rights_policy['stock_watermark_terms'])
+    self_test = _self_test(master, cfg, model=model, preprocess=preprocess, clip=clip, torch=torch, scratch=args.scratch/'self-test', stock_terms=rights_policy['stock_watermark_terms'], asset_type=args.asset_type)
     if self_test['result'] != 'PASS':
         raise RuntimeError('E_VISUAL_RIGHTS_SELF_TEST:'+','.join(self_test['failures']))
-    actual = _evaluate_image(master, cfg, model=model, preprocess=preprocess, clip=clip, torch=torch, scratch=args.scratch/'actual', stock_terms=rights_policy['stock_watermark_terms'])
+    actual = _evaluate_image(master, cfg, model=model, preprocess=preprocess, clip=clip, torch=torch, scratch=args.scratch/'actual', stock_terms=rights_policy['stock_watermark_terms'], asset_type=args.asset_type)
     actual['runtime'] = {
         'tesseract_version': ver,
         'clip_model': cfg['clip']['model'],
@@ -208,6 +213,7 @@ def main() -> int:
         'torch_version': torch.__version__,
         'cpu_only': True,
         'self_test_result': self_test['result'],
+        'asset_type': args.asset_type,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(actual, indent=2)+'\n')

@@ -74,7 +74,11 @@ def classify_logo(*, full_scores: list[float], foreground_scores: list[float], c
 
 
 def classify_watermark(*, full_scores: list[float], cfg: dict[str, Any]) -> dict[str, Any]:
-    positive = score_sum(full_scores, list(cfg['positive_indices']))
+    indices = list(cfg['positive_indices'])
+    clean_index = int(cfg.get('clean_index', 0))
+    clean_score = float(full_scores[clean_index])
+    max_risk_score = max(float(full_scores[i]) for i in indices)
+    positive = max(0.0, max_risk_score - clean_score)
     review = float(cfg['review_positive_score'])
     strong = float(cfg['strong_candidate_score'])
     if positive >= strong:
@@ -83,7 +87,7 @@ def classify_watermark(*, full_scores: list[float], cfg: dict[str, Any]) -> dict
         disposition = 'REVIEW_CANDIDATE'
     else:
         disposition = 'CLEAR'
-    return {'positive_score': round(positive, 6), 'disposition': disposition}
+    return {'positive_score': round(positive, 6), 'clean_score': round(clean_score, 6), 'max_risk_score': round(max_risk_score, 6), 'scoring': 'MAX_RISK_MINUS_CLEAN', 'disposition': disposition}
 
 
 def classify_safety(*, full_scores: list[float], foreground_scores: list[float], cfg: dict[str, Any]) -> dict[str, Any]:
@@ -101,10 +105,18 @@ def classify_safety(*, full_scores: list[float], foreground_scores: list[float],
 
 
 
-def classify_source_ip(*, full_scores: list[float], foreground_scores: list[float], cfg: dict[str, Any]) -> dict[str, Any]:
-    indices = list(cfg['risk_indices'])
-    full = score_sum(full_scores, indices)
-    fg = score_sum(foreground_scores, indices)
+def classify_source_ip(*, full_scores: list[float], foreground_scores: list[float], cfg: dict[str, Any], asset_type: str = 'UNKNOWN') -> dict[str, Any]:
+    applicability = cfg.get('applicable_risk_indices_by_asset_type') or {}
+    indices = list(applicability.get(asset_type, applicability.get('UNKNOWN', cfg['risk_indices'])))
+    if not indices:
+        raise ValueError(f'E_SOURCE_IP_NO_APPLICABLE_RISK_CLASSES:{asset_type}')
+    clean_index = int(cfg.get('clean_index', 0))
+    def margin(scores: list[float]) -> tuple[float, float, float]:
+        clean = float(scores[clean_index])
+        max_risk = max(float(scores[i]) for i in indices)
+        return max(0.0, max_risk-clean), clean, max_risk
+    full, full_clean, full_max = margin(full_scores)
+    fg, fg_clean, fg_max = margin(foreground_scores)
     risk = max(full, fg)
     if risk >= float(cfg['strong_risk_score']):
         disposition = 'STRONG_RISK'
@@ -112,7 +124,7 @@ def classify_source_ip(*, full_scores: list[float], foreground_scores: list[floa
         disposition = 'REVIEW'
     else:
         disposition = 'CLEAR'
-    return {'risk_score': round(risk, 6), 'full_risk_score': round(full, 6), 'foreground_risk_score': round(fg, 6), 'disposition': disposition}
+    return {'risk_score': round(risk, 6), 'full_risk_score': round(full, 6), 'foreground_risk_score': round(fg, 6), 'full_clean_score': round(full_clean, 6), 'foreground_clean_score': round(fg_clean, 6), 'full_max_risk_score': round(full_max, 6), 'foreground_max_risk_score': round(fg_max, 6), 'applicable_risk_indices': indices, 'asset_type': asset_type, 'scoring': 'MAX_APPLICABLE_RISK_MINUS_CLEAN', 'disposition': disposition}
 
 def build_rights_observation(*, master_sha256: str, ocr: dict[str, Any], logo: dict[str, Any], watermark: dict[str, Any], safety: dict[str, Any], stock_watermark_terms: list[str]) -> dict[str, Any]:
     detected = [x['text'] for x in ocr.get('consensus', [])]
