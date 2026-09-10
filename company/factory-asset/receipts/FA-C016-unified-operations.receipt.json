@@ -29,7 +29,7 @@
   },
   "validation": {
     "focused_windows": "PASS",
-    "linux_factory_regression": "804/804 PASS before final canonical-only receipt/status delta; FA-121 live-broker oneshot excluded by established non-runtime regression scope",
+    "linux_factory_regression": "805/805 PASS; FA-121 live-broker oneshot excluded by established non-runtime regression scope",
     "one_canon": "PRE_EXISTING_GLOBAL_DRIFT: 5/6 pytest and validator 10/11 because origin/main already contains company/h03/evidence/H03-ORG-001/sources/incogni-pricing.html flagged by the high-confidence secret scanner; FA-C016 changes do not touch H03 or validator policy",
     "node_syntax": "PASS",
     "python_compile": "PASS"
