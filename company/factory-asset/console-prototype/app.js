@@ -19,6 +19,8 @@
     providerError: null,
     clusterTopology: null,
     clusterError: null,
+    telemetry: null,
+    telemetryError: null,
     outputGallery: null,
     outputError: null,
     assetOperations: null,
@@ -282,6 +284,24 @@
       </article>`).join('')}</div>`;
   }
 
+
+  async function refreshTelemetry() {
+    try { state.telemetry = await getLocal('/api/telemetry'); state.telemetryError = null; }
+    catch(error) { state.telemetryError = `${error.code || 'ERROR'}: ${error.message || 'Telemetry unavailable'}`; }
+    renderTelemetry();
+  }
+  function metricValue(v,suffix='') { return v===null || v===undefined || v==='UNKNOWN' ? 'UNKNOWN' : `${v}${suffix}`; }
+  function renderTelemetry() {
+    const d=state.telemetry, routes=d ? d.routes : [], clusters=d ? d.clusters : [];
+    $("#view-telemetry").innerHTML = `
+      <article class="card" style="margin-bottom:16px"><div class="result-head"><div><h2>Capacity / Throughput / Economics Telemetry</h2><p class="muted">Live queue + cluster state joined with bounded FA-124/FA-307 acceptance evidence. UNKNOWN is deliberate when canon lacks a valid denominator or time window.</p></div>${d ? badge(d.mode) : badge('UNKNOWN')}</div>
+        ${state.telemetryError ? `<p class="notice">${esc(state.telemetryError)}</p>` : ''}
+        ${d ? `<div class="cluster-summary"><div><strong>${d.queue.depth}</strong><span>queue depth</span></div><div><strong>${metricValue(d.throughput.overall_success_rate_pct,'%')}</strong><span>overall success</span></div><div><strong>${metricValue(d.throughput.overall_reject_rate_pct,'%')}</strong><span>reject rate</span></div><div><strong>${metricValue(d.economics.observed_spend_usd,' USD')}</strong><span>observed spend</span></div></div><dl class="kv" style="margin-top:14px"><dt>Accepted masters</dt><dd>${d.throughput.acceptance_run_accepted_masters}</dd><dt>Dispatch commits</dt><dd>${d.throughput.acceptance_run_dispatch_commits}</dd><dt>Generated masters/day</dt><dd>${badge(metricValue(d.throughput.generated_masters_per_day))}</dd><dt>Masters/day evidence</dt><dd>${esc(d.throughput.generated_masters_per_day_reason)}</dd><dt>Cost / accepted master</dt><dd>${metricValue(d.economics.cost_per_accepted_master_usd,' USD')}</dd><dt>Accepted provider bytes</dt><dd>${metricValue(d.economics.accepted_provider_artifact_gib,' GiB')}</dd></dl>` : '<p class="muted">Loading telemetry.</p>'}
+      </article>
+      <div class="provider-grid">${clusters.map(c=>`<article class="provider-card"><header><h3>${esc(c.cluster_id)}</h3>${badge(c.health)}</header><dl class="kv"><dt>Broker</dt><dd>${badge(c.broker_state)}</dd><dt>Active tabs</dt><dd>${metricValue(c.active_tabs)} / ${metricValue(c.max_tabs)}</dd><dt>Active leases</dt><dd>${metricValue(c.active_leases)}</dd><dt>Generation slots</dt><dd>${metricValue(c.generation_slots_available)}</dd><dt>Live RAM RSS</dt><dd>${badge(metricValue(c.ram.live_rss_tree_mb))}</dd><dt>FA-307 RAM after</dt><dd>${metricValue(c.ram.historical_after_rss_tree_mb,' MB')}</dd><dt>RAM evidence</dt><dd>${esc(c.ram.evidence_freshness)}</dd></dl></article>`).join('')}</div>
+      <article class="card" style="margin-top:16px"><div class="result-head"><h2>Provider / Cluster Routes</h2><span class="badge violet">${routes.length} ROUTES</span></div><div class="derivatives">${routes.map(r=>`<div class="derivative" style="display:block"><div style="display:flex;justify-content:space-between;gap:10px"><strong>${esc(r.route_id)}</strong><span>${badge(r.health)} ${badge(r.capacity)}</span></div><dl class="kv"><dt>Accepted masters</dt><dd>${r.accepted_masters}</dd><dt>Success rate</dt><dd>${badge(metricValue(r.success_rate_pct,'%'))}</dd><dt>Reject rate</dt><dd>${badge(metricValue(r.reject_rate_pct,'%'))}</dd><dt>Attempt denominator</dt><dd>${badge(metricValue(r.attempt_denominator))}</dd><dt>Latency sample</dt><dd>${metricValue(r.latency_ms,' ms')}</dd><dt>Latency evidence</dt><dd>${esc(r.latency_evidence)}</dd><dt>Active jobs</dt><dd>${r.active_jobs}</dd><dt>Route cost</dt><dd>${badge(metricValue(r.cost_usd,' USD'))}</dd></dl></div>`).join('')}</div><p class="notice">Per-route success/reject rates remain UNKNOWN because FA-124 canon records accepted route counts but not a route-level attempt denominator. No quota or economics value is inferred.</p></article>`;
+  }
+
   async function refreshProviders() {
     try { state.providerDashboard = await getLocal('/api/providers'); state.providerError = null; }
     catch(error) { state.providerError = `${error.code || 'ERROR'}: ${error.message || 'Provider dashboard unavailable'}`; }
@@ -382,9 +402,9 @@
       <div class="provider-grid">${routes.map(r => `<article class="provider-card"><header><h3>${esc(r.route_id)}</h3>${badge(r.health)}</header><dl class="kv"><dt>Capacity</dt><dd>${badge(r.capacity)}</dd><dt>FA-124 accepted</dt><dd>${r.accepted_in_fa124}</dd><dt>Cluster</dt><dd>${esc(r.cluster_id)}</dd></dl></article>`).join('')}</div>`;
   }
 
-  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); if(view==='operations') refreshOperations(); if(view==='clusters') refreshClusters(); if(view==='providers') refreshProviders(); if(view==='output') refreshOutputs(); if(view==='assets') refreshAssets(); if(view==='qc') refreshQC(); if(view==='acceptance') refreshAcceptance(); }
-  const validViews=new Set(['blueprint','batch','operations','queue','clusters','providers','output','assets','qc','acceptance']);
+  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); if(view==='operations') refreshOperations(); if(view==='clusters') refreshClusters(); if(view==='telemetry') refreshTelemetry(); if(view==='providers') refreshProviders(); if(view==='output') refreshOutputs(); if(view==='assets') refreshAssets(); if(view==='qc') refreshQC(); if(view==='acceptance') refreshAcceptance(); }
+  const validViews=new Set(['blueprint','batch','operations','queue','clusters','telemetry','providers','output','assets','qc','acceptance']);
   $$('.nav-item').forEach(button=>button.addEventListener('click',()=>{location.hash=button.dataset.view;activateView(button.dataset.view);}));
   window.addEventListener('hashchange',()=>{const v=location.hash.slice(1);if(validViews.has(v))activateView(v);});
-  renderMetrics();renderBlueprint();renderBatch();renderOperations();renderQueue();renderClusters();renderProviders();renderOutput();renderAssets();renderQC();renderAcceptance();const initial=validViews.has(location.hash.slice(1))?location.hash.slice(1):'blueprint';activateView(initial);refreshQueue();refreshOperations();refreshClusters();refreshProviders();refreshOutputs();refreshAssets();refreshQC();refreshAcceptance();
+  renderMetrics();renderBlueprint();renderBatch();renderOperations();renderQueue();renderClusters();renderTelemetry();renderProviders();renderOutput();renderAssets();renderQC();renderAcceptance();const initial=validViews.has(location.hash.slice(1))?location.hash.slice(1):'blueprint';activateView(initial);refreshQueue();refreshOperations();refreshClusters();refreshTelemetry();refreshProviders();refreshOutputs();refreshAssets();refreshQC();refreshAcceptance();
 })();
