@@ -1,0 +1,48 @@
+{
+  "schema": "die.factory-asset.console-asset-operations-receipt.v1",
+  "task_id": "FA-C017",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "artifact": "Factory Console unified asset operations module",
+  "acceptance": {
+    "semantic_asset_lookup": "PASS",
+    "exact_content_hash_lookup": "PASS",
+    "provider_original_trace": "PASS",
+    "master_trace": "PASS",
+    "derivative_and_technical_qa_trace": "PASS",
+    "metadata_and_binary_readback_trace": "PASS",
+    "automated_rights_trace": "PASS",
+    "founder_exact_hash_qc_trace": "PASS",
+    "package_and_marketplace_readiness_trace": "PASS",
+    "private_workspace_paths_exposed": false,
+    "provider_dispatch_authority": false,
+    "submission_authority": false,
+    "publication_authority": false,
+    "marketplace_upload_authority": false
+  },
+  "evidence": {
+    "mode": "GOVERNED_CANARY_FA202_FA206",
+    "semantic_asset_id": "FASA-SHOPPING_BAG_FULFILLMENT_ISOLATED",
+    "provider_original_sha256": "f3aa28b40885e9a4a684a3836704aeab26f41aa4dc6c34ebc25e8e944f0959f7",
+    "master_sha256": "5630d1fd2c2591a5f6b3a99418a8af3b6d0154b206a78eff8101fbece3470a06",
+    "derivative_count": 3,
+    "metadata_sha256": "3a8d362ae8877a500d550988a72f800d00ee81a2cf76bd186f3b3c449633d27a",
+    "automated_rights_signal": "PASS",
+    "founder_qc_decision": "APPROVE",
+    "package_state": "PACKAGE_READY",
+    "package_plan_sha256": "e5912d1892f5faeedf0a931076ac8d34f7854e6ba12635f0c5840554a69a326b"
+  },
+  "validation": {
+    "focused_windows": "27/27 PASS",
+    "c017_specific": "4/4 PASS",
+    "linux_factory_regression": "810/810 PASS; established FA-121 live-broker oneshot excluded from non-runtime suite"
+  },
+  "production_boundary": {
+    "production_cadence_changed": false,
+    "scale_100_per_day_authorized": false,
+    "provider_calls_performed": false,
+    "marketplace_actions_performed": false,
+    "spend_usd": 0
+  }
+}
