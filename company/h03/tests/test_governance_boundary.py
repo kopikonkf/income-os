@@ -29,6 +29,10 @@ class GovernanceBoundaryTests(unittest.TestCase):
     def test_h03_dedicated_binding_is_allowed_without_machine_paths(self):
         good={'schema_version':'die.h03.operational-browser-binding.v1','holding_id':'H03','pool_owner':'H03','purpose':'GROWTH_WORKFORCE','profile_class':'H03_DEDICATED_OPERATIONAL','session_material_policy':'HOST_LOCAL_NOT_PRODUCT_TRUTH','transport_family':'BROWSER_CDP'}
         self.assertEqual(boundary.validate_operational_binding(good),good)
+    def test_independent_review_dedicated_binding_is_allowed(self):
+        good={'schema_version':'die.h03.operational-browser-binding.v1','holding_id':'H03','pool_owner':'H03','purpose':'INDEPENDENT_REVIEW_WORKFORCE','profile_class':'H03_DEDICATED_OPERATIONAL','session_material_policy':'HOST_LOCAL_NOT_PRODUCT_TRUTH','transport_family':'BROWSER_CDP'}
+        self.assertEqual(boundary.validate_operational_binding(good),good)
+
     def test_foreign_profile_preflight_is_invalidated(self):
         x=boundary.invalidate_foreign_preflight(source_profile_class='MISSION_CONTROL_PRINCIPAL_PRIMARY',observation_ref='company/h03/evidence/H03-FIRST-DOLLAR-001/live-readiness-preflight.json')
         self.assertFalse(x['valid_for_h03_runtime_readiness'])
