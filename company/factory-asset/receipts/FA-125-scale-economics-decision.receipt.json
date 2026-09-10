@@ -1,0 +1,57 @@
+{
+  "schema": "die.factory-asset.scale-economics-decision-receipt.v1",
+  "task_id": "FA-125",
+  "status": "WAITING_FOUNDER",
+  "architect_recommendation": "HOLD",
+  "founder_decision": "PENDING",
+  "updated_at": "2026-09-10",
+  "decision_authority": "FOUNDER_DECISION_REQUIRED",
+  "evidence": {
+    "fa124_accepted_unique_masters": 100,
+    "fa124_dispatch_commits": 113,
+    "bounded_provider_yield_pct": 88.5,
+    "fa124_post_commit_failure_rate_pct": 11.5,
+    "fa124_all_10_routes_certified": true,
+    "fa124_observed_provider_spend_usd": 0,
+    "factory_marketplace_acceptance_rate": "UNKNOWN",
+    "factory_realized_licensing_revenue": "UNKNOWN",
+    "fully_loaded_cost_per_marketplace_accepted_asset": "UNKNOWN",
+    "founder_qc_touches_per_day_at_100": 100,
+    "measured_founder_review_capacity_per_day": "UNKNOWN",
+    "p95_workspace_bytes": 50045853,
+    "p95_storage_gib_per_day_at_100": 4.661,
+    "p95_storage_gib_30_day_at_100": 139.826,
+    "live_free_disk_gib_observed": 63.395,
+    "unmanaged_local_storage_runway_days_at_p95_100_day": 13.6,
+    "active_browser_owner_ceiling": 8,
+    "runtime_worker_handoff_repair": "PASS",
+    "cluster_a_state": "READY",
+    "cluster_b_state": "READY"
+  },
+  "hold_reasons": [
+    "NO_CANONICAL_FACTORY_MARKETPLACE_ACCEPTANCE_OUTCOME",
+    "NO_FACTORY_ATTRIBUTED_REALIZED_LICENSING_REVENUE",
+    "FULLY_LOADED_UNIT_COST_UNKNOWN",
+    "FOUNDER_QC_SERVICE_RATE_UNMEASURED_AT_CURRENT_100_PERCENT_POLICY",
+    "CURRENT_LOCAL_STORAGE_BELOW_30_DAY_P95_100_PER_DAY_ENVELOPE_WITHOUT_ARCHIVE"
+  ],
+  "promotion_conditions": [
+    "AT_LEAST_TWO_DATED_ELIGIBLE_MARKETPLACE_CONTRACT_CAPTURES",
+    "BOUNDED_FOUNDER_AUTHORIZED_REAL_SUBMISSION_WITH_MODERATION_OUTCOMES",
+    "FACTORY_ATTRIBUTED_REALIZED_LICENSE_OR_EQUIVALENT_RATIFIED_ABSORPTION_SIGNAL",
+    "FULLY_LOADED_COST_PER_MARKETPLACE_ACCEPTED_ASSET_MEASURED",
+    "FOUNDER_QC_SERVICE_RATE_MEASURED_OR_GOVERNED_SAMPLING_POLICY_RATIFIED",
+    "THIRTY_DAY_STORAGE_HOT_ARCHIVE_ENVELOPE_FITS_OR_BUDGET_AUTHORIZED",
+    "AT_LEAST_TWO_HEALTHY_INDEPENDENT_PROVIDER_LANES"
+  ],
+  "authority": {
+    "continuous_100_per_day_authorized": false,
+    "fa126_500_per_day_unlocked": false,
+    "production_schedule_changed": false,
+    "baseline_schedule": "0 */3 * * *",
+    "scale_100_per_day": false,
+    "new_spend_authorized": false,
+    "marketplace_submission_authorized": false,
+    "publication_authorized": false
+  }
+}
