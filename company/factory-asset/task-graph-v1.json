@@ -2530,7 +2530,24 @@
       "artifact": "Factory Console unified production operations module",
       "acceptance": "Founder can inspect blueprint/batch intent, queue state, selected provider+cluster, retries, backpressure and bounded pause/resume/cancel actions from one operational surface.",
       "updated_at": "2026-09-10",
-      "result": "PASS: unified Operations surface joins Blueprint/batch intent, Factory Core queue, provider-cluster route preview, retries/backpressure and cluster capacity. Queue controls remain bounded and non-dispatch; sanitized payloads expose no secret/session endpoint material. Linux Factory regression PASS; global one-canon has pre-existing H03 drift outside FA-C016 scope.",
+      "result": "PASS: unified Operations surface joins Blueprint/batch intent, Factory Core queue, provider-cluster route preview, retries/backpressure and cluster capacity. Queue controls remain bounded and non-dispatch; sanitized payloads expose no secret/session endpoint material. Post-merge standalone fallback defect was repaired by FA-C016-R1; Linux Factory regression remains green.",
+      "completed_at": "2026-09-10"
+    },
+    {
+      "id": "FA-C016-R1",
+      "phase": 5,
+      "track": "UNIFIED_CONTROL_PLANE",
+      "priority": 322,
+      "title": "Repair standalone Console live provider-cluster route preview",
+      "depends_on": [
+        "FA-C016"
+      ],
+      "status": "DONE",
+      "authority": "ARCHITECT",
+      "artifact": "Factory Console Operations live route-preview repair",
+      "acceptance": "Live sanitized cluster topology remains authoritative for provider+cluster identity when provider-dashboard fallback rows are unclustered; degraded routes remain excluded and no dispatch authority is added.",
+      "updated_at": "2026-09-10",
+      "result": "PASS: post-merge standalone smoke bug repaired. Unclustered provider-dashboard fallback can no longer erase live provider+cluster routes; Qwen SESSION_API preview restores correctly, DEGRADED Duck remains unschedulable, and Linux Factory regression is 806/806 PASS with zero provider/browser/marketplace action.",
       "completed_at": "2026-09-10"
     },
     {

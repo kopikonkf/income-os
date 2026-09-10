@@ -145,3 +145,24 @@ def test_canonical_fa_c015_snapshot_maps_to_qwen_preview_and_nine_generation_slo
     assert data['routing']['selected_route']['transport'] == 'SESSION_API'
     assert data['backpressure']['browser_generation_slots_available'] == 9
     assert all(not r['schedulable'] for r in data['routing']['routes'] if r['provider_id'] == 'duckai')
+
+
+def test_unclustered_provider_dashboard_fallback_cannot_erase_live_cluster_routes():
+    module = load('c016_operations_unclustered_fallback', LIB)
+    queue, topology, _ = fixture_state()
+    fallback = {
+        'schema': 'die.factory-asset.provider-dashboard.v1',
+        'evidence_mode': 'SYNTHETIC_OBSERVED_FIXTURE',
+        'providers': [
+            {'provider_id': 'qwen', 'eligibility': 'ELIGIBLE', 'health': 'READY', 'capacity': 'AVAILABLE', 'transport': 'SESSION_API_OR_BROWSER_CDP'},
+            {'provider_id': 'chatgpt', 'eligibility': 'ELIGIBLE', 'health': 'READY', 'capacity': 'AVAILABLE', 'transport': 'BROWSER_CDP'},
+            {'provider_id': 'duckai', 'eligibility': 'ELIGIBLE', 'health': 'READY', 'capacity': 'AVAILABLE', 'transport': 'BROWSER_CDP'},
+        ],
+    }
+    data = module.build_operations_state(queue_state=queue, cluster_topology=topology, provider_dashboard=fallback)
+    assert data['routing']['candidate_count'] == 3
+    assert data['routing']['schedulable_route_count'] == 2
+    selected = data['routing']['selected_route']
+    assert selected['provider_id'] == 'qwen' and selected['cluster_id'] == 'cluster-a' and selected['transport'] == 'SESSION_API'
+    duck = next(x for x in data['routing']['routes'] if x['provider_id'] == 'duckai')
+    assert duck['schedulable'] is False and duck['readiness'] == 'DEGRADED'
