@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h03.runtime-event.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "holding_id", "run_id", "work_card_id", "task_id", "role", "queue", "state"],
+  "properties": {
+    "schema_version": {"const": "die.h03.runtime-event.v1"},
+    "holding_id": {"const": "H03"},
+    "run_id": {"type": "string", "pattern": "^[A-Za-z0-9._-]+$"},
+    "work_card_id": {"type": "string", "pattern": "^[A-Za-z0-9._-]+$"},
+    "task_id": {"type": "string", "minLength": 1},
+    "role": {"type": "string", "minLength": 1},
+    "queue": {"type": "string", "minLength": 1},
+    "state": {"enum": ["QUEUED", "DISPATCHED", "RUNNING", "OUTPUT_RECEIVED", "ARTIFACT_COMMITTED", "SUCCEEDED", "FAILED_RETRYABLE", "FAILED_TERMINAL", "CANCELLED"]},
+    "attempt": {"type": "integer", "minimum": 1},
+    "provider": {"type": ["string", "null"]},
+    "effective_model": {"type": ["string", "null"]},
+    "effective_mode": {"type": ["string", "null"]},
+    "route_attempts": {"type": "array"},
+    "artifact": {"type": "object"},
+    "output_artifacts": {"type": "array"},
+    "recovery": {"type": "string"},
+    "error": {"type": "string"}
+  }
+}
