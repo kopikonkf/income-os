@@ -928,3 +928,14 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Cross-platform determinism PASS: Linux reproduces the exact canonical prompt and SHA. Full Linux Factory regression: 836 PASS, one existing PyPDF2 deprecation warning.
 - Task graph revision is `10.8-typed-visual-spec-deterministic-prompt-compiler`. FA-318 is now the highest-priority READY convergence task; FA-320, FA-323 and FA-329 are also READY lower-priority parallel frontiers. FA-125 remains WAITING_FOUNDER and FA-126 remains DEFERRED.
 - No live production configuration or throughput scale was changed by this foundation batch.
+
+
+---
+
+## 2026-09-10 - FA-318 typed pre-generation prompt authority PASS
+- `FA-318 = DONE/PASS`. New production cards no longer become dispatch-ready immediately after Executive `NO_VETO`; cognition enters `NEED_SUBJECT`, obtains a seed-bound typed Subject Spec from Division01, resolves the active governed Production Preset, emits Visual Requirement Spec + deterministic compiled provider prompt, and writes a hash-bound `pre-generation-lock.json` before `BLUEPRINT_READY`.
+- The current live-compatibility preset remains `ISOLATED_CARTOON_WATERCOLOR_L0`. `ISOLATED_PREMIUM_SEMI_REALISTIC_ILLUSTRATION_L0` remains `NOT_LIVE` and cannot be selected by default until a separate canary/live acceptance.
+- Production dispatcher uses the compiled prompt when a typed pre-generation lock exists, verifies Subject/Visual/Compiled/Asset-Blueprint hashes, and includes provider-prompt SHA in exactly-once idempotency. Legacy cards without a pre-generation lock retain bounded `LEGACY_MASTER_PROMPT` resume compatibility.
+- Postproduction reuses and verifies the pre-generation Asset Blueprint v2 instead of deriving semantic mode by inspecting prose prompt when the typed lock is present.
+- Validation: full Linux Factory 846/846 PASS; Linux cognition/installer 13/13 PASS; focused FA-318 cross-contract 37/37 PASS. Four failures in one legacy bridge file reproduce unchanged on `origin/main` and assert superseded single-profile/runtime strings, so they are baseline stale tests rather than FA-318 regressions.
+- No provider generation, live deployment, cron/cadence change, marketplace action, or throughput-scale action occurred in FA-318. `FA-319` is now READY for bounded real baseline acceptance.

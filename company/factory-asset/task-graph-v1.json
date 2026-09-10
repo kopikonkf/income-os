@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-10",
-  "revision": "10.8-typed-visual-spec-deterministic-prompt-compiler",
+  "revision": "10.9-fa318-typed-pregeneration-authority",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2899,10 +2899,13 @@
         "FA-133",
         "FA-313"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "Hermes seed-to-expression-to-Asset-Blueprint-v2 compatibility bridge",
-      "acceptance": "Remove the runtime-only generic RASTER_IMAGE semantic assumption and make canonical pre-generation Asset Blueprint v2/sidecar visual requirements authoritative before provider dispatch. Hermes must obtain/resolve Subject Spec + Production Preset + Visual Requirement Spec, compile and hash the exact provider prompt, then freeze that lineage before Web-AI generation. Preserve current isolated-object baseline behavior until governed cutover; no 100/day activation, provider call or live cutover is authorized by implementation alone."
+      "acceptance": "Remove the runtime-only generic RASTER_IMAGE semantic assumption and make canonical pre-generation Asset Blueprint v2/sidecar visual requirements authoritative before provider dispatch. Hermes must obtain/resolve Subject Spec + Production Preset + Visual Requirement Spec, compile and hash the exact provider prompt, then freeze that lineage before Web-AI generation. Preserve current isolated-object baseline behavior until governed cutover; no 100/day activation, provider call or live cutover is authorized by implementation alone.",
+      "completed_at": "2026-09-10",
+      "receipt": "company/factory-asset/receipts/FA-318-typed-pregeneration-authority.receipt.json",
+      "result": "DONE/PASS: new production cards require reviewed Subject Spec -> Production Preset -> Visual Requirement Spec -> deterministic compiled provider prompt -> hash-bound pre-generation lock before dispatch. Dispatcher fails closed on typed sidecar/hash drift, while legacy cards without the pre-generation lock retain bounded resume compatibility. Postproduction reuses the pre-generation Asset Blueprint v2 instead of re-projecting prompt text."
     },
     {
       "id": "FA-319",
@@ -2914,7 +2917,7 @@
         "FA-318",
         "FA-141"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "FOUNDER_REQUIRED_FOR_BOUNDED_LIVE_PROVIDER_CANARY",
       "artifact": "Baseline end-to-end package-readiness acceptance receipt",
       "acceptance": "Prove the exact canonical path ARTIFACT_CREATED -> MASTER_VALIDATED -> UPSCALE_DECIDED -> DERIVATIVES_READY -> TECHNICAL_QA_PASS -> RIGHTS_SIGNAL_PASS_OR_REVIEW -> METADATA_READY -> PACKAGE_READY -> WAITING_FOUNDER_QC on bounded real production evidence. Preserve cron 0 */3 * * *, scale_100_per_day=false, immutable masters, submission_eligible truth and no marketplace publication."
