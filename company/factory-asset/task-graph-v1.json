@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
-  "generated_at": "2026-09-03",
-  "revision": "10.6-scale-foundation-discovery-before-fa308",
+  "generated_at": "2026-09-10",
+  "revision": "10.7-baseline-vector-observability-production-intelligence",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -95,7 +95,7 @@
     "existing_graph": "company/muxia-task-graph-v1.json",
     "existing_ready_at_design_time": "SUB-001C",
     "rule": "Factory Asset work must not silently preempt Chapter #4 work. Activation requires an explicit Factory schedule scope and shared global repo-write lease.",
-    "current_income_os_main_observed": "c32730dade2a7819156fb03d61b84e0c76fb9f00"
+    "current_income_os_main_observed": "528e2b89da93dfb80fce3bcc665145237e0d7539"
   },
   "states": [
     "READY",
@@ -118,7 +118,12 @@
     "PROVIDER_LANES",
     "SCALE_UNLOCKS",
     "GOVERNED_CANARY",
-    "FACTORY_CONSOLE"
+    "FACTORY_CONSOLE",
+    "PRODUCTION_BASELINE",
+    "NATIVE_VECTOR",
+    "FOUNDER_OBSERVABILITY",
+    "PROFILE_POOL",
+    "PRODUCTION_INTELLIGENCE"
   ],
   "tasks": [
     {
@@ -2845,6 +2850,262 @@
       "acceptance": "All five scale-foundation prerequisites pass together: resilient management ingress; persistent-profile storage lifecycle; measured active-browser RAM/sharding ceiling; Hermes multi-cluster production routing; and hot/archive storage retention. The gate must state measured capacity separately from planning assumptions and must not authorize spend or 1,000/day production by itself.",
       "updated_at": "2026-09-09",
       "result": "DONE/PASS: all five pre-1K scale-foundation prerequisites pass together. Measured capacity is explicitly separate from planning envelopes; this gate authorizes neither spend nor 1,000 masters/day production."
+    },
+    {
+      "id": "FA-316",
+      "phase": 7,
+      "track": "PRODUCTION_BASELINE",
+      "priority": 317,
+      "title": "Canonicalize Factory media family, semantic mode, preset, master, derivative and package taxonomy",
+      "depends_on": [
+        "FA-206",
+        "FA-133"
+      ],
+      "status": "READY",
+      "authority": "ARCHITECT",
+      "artifact": "Factory production taxonomy v1 and compatibility mapping",
+      "acceptance": "Define media_family separately from commercial family; define semantic mode separately from manifestation/style/composition/delivery presets; preserve canonical semantic identity rule that derivatives never create a new semantic asset. Map the current ISOLATED_CARTOON_WATERCOLOR_L0 contract without changing live production cadence or authority."
+    },
+    {
+      "id": "FA-317",
+      "phase": 7,
+      "track": "PRODUCTION_BASELINE",
+      "priority": 318,
+      "title": "Implement governed Production Preset Registry v1 with isolated-cartoon-white champion preset",
+      "depends_on": [
+        "FA-316"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Versioned production-preset registry, schema, validator and tests",
+      "acceptance": "Represent mode, style, composition/background, render language and delivery intent as separate typed axes while preserving ISOLATED_CARTOON_WATERCOLOR_L0 as the champion baseline. Presets must be reusable across eligible seed nouns, versioned, deterministic and unable to create semantic identity by packaging-only change."
+    },
+    {
+      "id": "FA-318",
+      "phase": 7,
+      "track": "PRODUCTION_BASELINE",
+      "priority": 319,
+      "title": "Converge Hermes production cognition to canonical Asset Blueprint v2 without changing baseline product line",
+      "depends_on": [
+        "FA-317",
+        "FA-133",
+        "FA-313"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Hermes seed-to-expression-to-Asset-Blueprint-v2 compatibility bridge",
+      "acceptance": "Remove the runtime-only generic RASTER_IMAGE semantic assumption. Current autonomous baseline must still select ISOLATED_OBJECT + ISOLATED_CARTOON_WATERCOLOR_L0 and route through governed multi-cluster raster production, while the emitted/frozen contract becomes compatible with canonical Asset Blueprint v2 and FA-133 semantic producer routing. No 100/day activation, provider call or live cutover is authorized."
+    },
+    {
+      "id": "FA-319",
+      "phase": 7,
+      "track": "PRODUCTION_BASELINE",
+      "priority": 320,
+      "title": "Accept stable baseline postproduction from provider original to real Founder-QC-ready package",
+      "depends_on": [
+        "FA-318",
+        "FA-141"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_BOUNDED_LIVE_PROVIDER_CANARY",
+      "artifact": "Baseline end-to-end package-readiness acceptance receipt",
+      "acceptance": "Prove the exact canonical path ARTIFACT_CREATED -> MASTER_VALIDATED -> UPSCALE_DECIDED -> DERIVATIVES_READY -> TECHNICAL_QA_PASS -> RIGHTS_SIGNAL_PASS_OR_REVIEW -> METADATA_READY -> PACKAGE_READY -> WAITING_FOUNDER_QC on bounded real production evidence. Preserve cron 0 */3 * * *, scale_100_per_day=false, immutable masters, submission_eligible truth and no marketplace publication."
+    },
+    {
+      "id": "FA-320",
+      "phase": 7,
+      "track": "NATIVE_VECTOR",
+      "priority": 321,
+      "title": "Define Claude native SVG producer adapter and governed contract",
+      "depends_on": [
+        "FA-316",
+        "FA-031"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Claude native-vector producer request/receipt contract and adapter boundary",
+      "acceptance": "Define Claude as a candidate NATIVE_VECTOR producer for ICON/OUTLINE only when the provider returns genuine SVG/vector source. Raster tracing or raster embedded inside SVG cannot claim native-vector success. Contract must preserve idempotency, exact prompt/blueprint lineage, zero implicit submission/publication authority and typed failure states."
+    },
+    {
+      "id": "FA-321",
+      "phase": 7,
+      "track": "NATIVE_VECTOR",
+      "priority": 322,
+      "title": "Implement native SVG safety, editability, render QA and vector derivative pipeline",
+      "depends_on": [
+        "FA-320",
+        "FA-025",
+        "FA-030"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "SVG validator, safety/editability QA, EPS export and PNG/JPEG preview receipts",
+      "acceptance": "Reject scripts, external references, embedded-raster-only masquerades, invalid or out-of-bounds viewBox geometry, blank output, unsafe text/font dependencies and unbounded path complexity. Prove editable paths/shapes, independent raster render, deterministic lineage and governed SVG master -> EPS/PNG/JPEG derivative packaging without changing semantic asset count."
+    },
+    {
+      "id": "FA-322",
+      "phase": 7,
+      "track": "NATIVE_VECTOR",
+      "priority": 323,
+      "title": "Run bounded live Claude ICON and OUTLINE native-vector acceptance",
+      "depends_on": [
+        "FA-321"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_BOUNDED_PROVIDER_CALL",
+      "artifact": "Claude native-vector live canary receipt and producer-registry decision",
+      "acceptance": "With Founder-authorized authenticated provider access, generate bounded genuine SVG ICON/OUTLINE masters from frozen blueprints, pass FA-321 safety/editability QA and derivative packaging, and only then promote the NATIVE_VECTOR ICON/OUTLINE route from UNAVAILABLE_NOT_ACCEPTED to ACCEPTED. No account multiplication, credential copying, submission or publication."
+    },
+    {
+      "id": "FA-323",
+      "phase": 7,
+      "track": "FOUNDER_OBSERVABILITY",
+      "priority": 324,
+      "title": "Define Founder-visible Linux production display observability contract",
+      "depends_on": [
+        "FA-310",
+        "FA-301",
+        "FA-316"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Read-only browser-fleet display/observability contract and threat model",
+      "acceptance": "Define Founder visibility into actual production X displays and browser-owner state without exposing CDP, broker or debug ports publicly. Separate screenshot/status observation from interactive auth/recovery; require loopback/private transport, auditability and no credential extraction."
+    },
+    {
+      "id": "FA-324",
+      "phase": 7,
+      "track": "FOUNDER_OBSERVABILITY",
+      "priority": 325,
+      "title": "Implement local-only VNC view for Cluster A and Cluster B production displays",
+      "depends_on": [
+        "FA-323"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_LIVE_DISPLAY_SERVICE_ACTIVATION",
+      "artifact": "Loopback VNC services for production displays plus SSH-tunnel runbook and rollback",
+      "acceptance": "Attach read-only/local-only VNC observation to the actual Cluster A/B Xvfb displays used by browser owners, not an unrelated XFCE desktop. Bind no VNC/CDP/broker endpoint to public interfaces; Founder access must traverse an authenticated private/SSH tunnel and preserve current browser sessions."
+    },
+    {
+      "id": "FA-325",
+      "phase": 7,
+      "track": "FOUNDER_OBSERVABILITY",
+      "priority": 326,
+      "title": "Implement temporary Founder interactive browser repair view",
+      "depends_on": [
+        "FA-324"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_INTERACTIVE_AUTH_OR_RECOVERY",
+      "artifact": "Bounded interactive display escalation/revocation workflow",
+      "acceptance": "Permit an explicitly Founder-opened temporary interactive view for login, checkpoint or browser repair against the correct production display, with exclusive repair lease, visible state, timeout/revocation and restoration to normal automation. Never read/copy credentials, cookies or tokens and never bypass CAPTCHA or platform protections."
+    },
+    {
+      "id": "FA-326",
+      "phase": 7,
+      "track": "PROFILE_POOL",
+      "priority": 327,
+      "title": "Define governed 20-to-50 persistent browser-profile pool registry and lifecycle",
+      "depends_on": [
+        "FA-311",
+        "FA-312",
+        "FA-323"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Persistent profile-pool registry, lifecycle states, storage budget and lease contract",
+      "acceptance": "Model 20-50 authorized persistent profiles as inventory states such as COLD, READY, ACTIVE, LEASED, DEGRADED and REPAIR_REQUIRED without equating profile count to simultaneous Chromium owners. Preserve per-profile session isolation, storage budget, provider eligibility, no credential copying/account farming and the current measured active-owner ceiling until separately re-proven."
+    },
+    {
+      "id": "FA-327",
+      "phase": 7,
+      "track": "PROFILE_POOL",
+      "priority": 328,
+      "title": "Implement profile-aware hierarchical scheduler above FA-306 multi-cluster routing",
+      "depends_on": [
+        "FA-326",
+        "FA-306",
+        "FA-304"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Profile-pool scheduler with health/fairness/circuit/backpressure receipts",
+      "acceptance": "Select eligible provider/profile/cluster routes from fresh readiness, capacity, quota, failure-circuit, cooldown, profile lease and cluster fairness evidence. Keep exactly-once dispatch. Do not use strict blind round-robin; unhealthy or capacity-blocked profiles/clusters must be skipped. Existing Cluster A/B routing remains backward-compatible."
+    },
+    {
+      "id": "FA-328",
+      "phase": 7,
+      "track": "PROFILE_POOL",
+      "priority": 329,
+      "title": "Run bounded profile-pool concurrency acceptance from current baseline toward eight active browser owners",
+      "depends_on": [
+        "FA-327",
+        "FA-312"
+      ],
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED_FOR_LIVE_CAPACITY_CANARY",
+      "artifact": "Measured multi-profile concurrency, RAM, storage, failure and rollback acceptance receipt",
+      "acceptance": "Increase active browser owners only through bounded measured stages up to the current FA-312 ceiling of eight, proving RAM headroom, browser/session stability, provider compliance, queue backpressure and rollback at each stage. Persistent inventory may reach 20-50 while cold/parked profiles remain non-running; this task does not authorize 100/day, 500/day or 1,000/day production."
+    },
+    {
+      "id": "FA-329",
+      "phase": 7,
+      "track": "PRODUCTION_INTELLIGENCE",
+      "priority": 330,
+      "title": "Bridge Object Atlas primitives to bounded Human Atlas demand contexts",
+      "depends_on": [
+        "FA-316"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Dual-Atlas supply-first/demand-first retrieval contract and fixtures",
+      "acceptance": "Implement the canonical Object Primitive x Human Demand Context bridge without exhaustive Cartesian enumeration. Support supply-first seed -> compatible human contexts and demand-first human/problem/industry/intent -> compatible objects, with evidence labels, coherence constraints and no production authority."
+    },
+    {
+      "id": "FA-330",
+      "phase": 7,
+      "track": "PRODUCTION_INTELLIGENCE",
+      "priority": 331,
+      "title": "Implement seed, semantic-mode and preset opportunity planner with sparse expansion",
+      "depends_on": [
+        "FA-317",
+        "FA-329",
+        "FA-129"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Evidence-bounded seed x mode x preset opportunity plan and scoring receipts",
+      "acceptance": "Rank which seed nouns deserve which semantic modes and manifestation presets from Object Atlas evidence, Human Atlas demand/reuse context, commercial utility, platform fit, feasibility and differentiation. Preserve force_all_modes=false; the matrix generates bounded candidates and must never command exhaustive seed x mode x preset production."
+    },
+    {
+      "id": "FA-331",
+      "phase": 7,
+      "track": "PRODUCTION_INTELLIGENCE",
+      "priority": 332,
+      "title": "Upgrade production consumption identity from noun-level to semantic-expression-level reuse",
+      "depends_on": [
+        "FA-330"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Semantic production ledger v2 and migration/compatibility receipt",
+      "acceptance": "A seed noun is not globally consumed after one raster manifestation. Consumption identity must bind seed + semantic mode + materially distinct commercial expression + production preset revision, while packaging derivatives remain identity-neutral and near-duplicate variants quarantine. Preserve legacy ledger replay and exactly-once semantics."
+    },
+    {
+      "id": "FA-332",
+      "phase": 7,
+      "track": "PRODUCTION_INTELLIGENCE",
+      "priority": 333,
+      "title": "Accept Production Intelligence v2 while preserving isolated-object champion exploitation lane",
+      "depends_on": [
+        "FA-319",
+        "FA-330",
+        "FA-331"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Production Intelligence v2 acceptance and rollout recommendation",
+      "acceptance": "Prove the current isolated cartoon/watercolor white-background product line remains a deterministic champion exploitation lane while alternate modes/presets stay evidence-bounded exploration candidates. Selector -> dual-Atlas context -> expression plan -> preset -> Asset Blueprint v2 -> producer route -> postproduction must be traceable end-to-end. No throughput scale or marketplace publication authority is granted."
     }
   ],
   "windows_oauth_proof_levels": {
