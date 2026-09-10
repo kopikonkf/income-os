@@ -29,14 +29,13 @@
       "instagram",
       "threads",
       "pinterest",
-      "x"
+      "x",
+      "reddit"
     ],
     "growth_auth_required": [
       "youtube"
     ],
-    "growth_unknown": [
-      "reddit"
-    ],
+    "growth_unknown": [],
     "growth_external_constraint": [
       "tiktok: India IP region block reported by Founder"
     ],
@@ -45,11 +44,19 @@
     "provider_tabs_ephemeral": true,
     "idle_profile_sleep_supported": true,
     "commerce_profile_provisioned": false,
-    "credentials_or_session_material_persisted": false
+    "credentials_or_session_material_persisted": false,
+    "idle_grace_seconds": 90,
+    "live_knowledge_dispatch_proven": true,
+    "live_independent_reviewer_fallback_proven": true,
+    "forced_failure_retry_fallback_proven": true
   },
   "mission_control_bridge": {
     "schema": "mission-control.h03-supervisor-bridge.v1",
-    "state": "IMPLEMENTED_PENDING_CANONICAL_MERGE_AND_ANTI_STALL_ACCEPTANCE"
+    "state": "CANONICAL_DEPLOYED_ACCEPTED_PRODUCTION_READY",
+    "canonical_commit": "9fb2dda645cdb0a39bbd1b611ab8933a878fa1e7",
+    "runtime_watchdog": "PASS",
+    "state_preserved": true,
+    "live_org_001_started": false
   },
   "validation": {
     "targeted_governance_boundary": "7/7 PASS",
