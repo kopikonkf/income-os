@@ -127,3 +127,21 @@ def test_console_has_unified_operations_surface_and_bounded_controls():
         assert marker in js
     for forbidden in ('profile_dir', 'debug_port', 'control_port', 'claim_url', 'lease_id', 'session_token', 'private_key'):
         assert forbidden not in js
+
+
+def test_canonical_fa_c015_snapshot_maps_to_qwen_preview_and_nine_generation_slots():
+    module = load('c016_operations_c015_fixture', LIB)
+    topology = json.loads((ROOT / 'company/factory-asset/fixtures/console-topology/FA-C015-live-cluster-topology.json').read_text(encoding='utf-8'))
+    providers = {'schema': 'die.factory-asset.provider-dashboard.v1', 'evidence_mode': 'LIVE_BROKER_SANITIZED', 'observed_at': topology['observed_at'], 'providers': []}
+    for cluster in topology['clusters']:
+        for session in cluster['provider_sessions']:
+            if session['membership'] != 'ACTIVE':
+                continue
+            healthy = session['readiness'] == 'HEALTHY' and session['capacity'] == 'AVAILABLE'
+            providers['providers'].append({'provider_id': session['provider_id'], 'cluster_id': cluster['cluster_id'], 'eligibility': 'ELIGIBLE' if healthy else 'COOLDOWN_OR_DEGRADED', 'health': session['readiness'], 'capacity': session['capacity'], 'transport': session['preferred_transport']})
+    queue = {'schema': 'die.factory-asset.console-queue-state.v1', 'provider_dispatch_performed': False, 'reconciliation_required_job_ids': [], 'events': []}
+    data = module.build_operations_state(queue_state=queue, cluster_topology=topology, provider_dashboard=providers)
+    assert data['routing']['selected_route']['provider_id'] == 'qwen'
+    assert data['routing']['selected_route']['transport'] == 'SESSION_API'
+    assert data['backpressure']['browser_generation_slots_available'] == 9
+    assert all(not r['schedulable'] for r in data['routing']['routes'] if r['provider_id'] == 'duckai')

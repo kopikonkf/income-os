@@ -2525,12 +2525,13 @@
         "FA-C015",
         "FA-304"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "Factory Console unified production operations module",
       "acceptance": "Founder can inspect blueprint/batch intent, queue state, selected provider+cluster, retries, backpressure and bounded pause/resume/cancel actions from one operational surface.",
-      "updated_at": "2026-09-09",
-      "result": "READY: all canonical dependencies are DONE/PASS."
+      "updated_at": "2026-09-10",
+      "result": "PASS: unified Operations surface joins Blueprint/batch intent, Factory Core queue, provider-cluster route preview, retries/backpressure and cluster capacity. Queue controls remain bounded and non-dispatch; sanitized payloads expose no secret/session endpoint material. Linux Factory regression PASS; global one-canon has pre-existing H03 drift outside FA-C016 scope.",
+      "completed_at": "2026-09-10"
     },
     {
       "id": "FA-C017",
@@ -2543,10 +2544,12 @@
         "FA-137",
         "FA-141"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "Factory Console asset operations module",
-      "acceptance": "Generated originals, masters, derivatives, metadata, QA/IP/rights state and package readiness are traceable by semantic asset and content hash from one UI."
+      "acceptance": "Generated originals, masters, derivatives, metadata, QA/IP/rights state and package readiness are traceable by semantic asset and content hash from one UI.",
+      "updated_at": "2026-09-10",
+      "result": "READY: FA-C016, FA-137 and FA-141 are DONE/PASS."
     },
     {
       "id": "FA-C018",
