@@ -1,0 +1,30 @@
+{
+  "schema": "die.factory-asset.console-unified-operations-repair-receipt.v1",
+  "task_id": "FA-C016-R1",
+  "parent_task_id": "FA-C016",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "finding": "Post-merge standalone Console smoke showed healthy live Cluster A/B topology but zero schedulable Operations routes because legacy provider-dashboard fallback rows omit cluster_id.",
+  "repair": "Route-preview identity is now derived from sanitized live cluster topology. Provider-dashboard rows enrich policy/health only when explicitly cluster-keyed, so unclustered fallback evidence cannot erase healthy provider+cluster routes.",
+  "acceptance": {
+    "live_cluster_identity_preserved": true,
+    "unclustered_provider_dashboard_cannot_erase_routes": true,
+    "qwen_session_api_preview_restored": true,
+    "duckai_degraded_remains_unschedulable": true,
+    "route_preview_is_not_dispatch_commit": true,
+    "provider_dispatch_performed": false,
+    "browser_owner_actions_performed": false,
+    "marketplace_actions_performed": false,
+    "secret_material_exposed": false
+  },
+  "validation": {
+    "focused_windows": "28/28 PASS",
+    "linux_factory_regression": "806/806 PASS; FA-121 live-broker oneshot excluded by established non-runtime regression scope",
+    "pre_merge_live_smoke": "PASS: qwen@cluster-a SESSION_API; 8/10 schedulable routes; CLEAR backpressure; 9 browser generation slots; dispatch/browser/marketplace/secret flags false"
+  },
+  "artifacts": [
+    "company/factory-asset/lib/console_operations.py",
+    "company/factory-asset/tests/test_console_operations_surface.py"
+  ]
+}

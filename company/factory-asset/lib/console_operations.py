@@ -49,42 +49,56 @@ def _cluster_index(topology: dict[str, Any]) -> tuple[dict[str, dict[str, Any]],
 
 
 def _routes(provider_dashboard: dict[str, Any], cluster_index: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
-    routes: list[dict[str, Any]] = []
+    """Build cluster-keyed route previews from sanitized live topology.
+
+    Provider dashboard rows are authoritative enrichments only when they carry an
+    explicit cluster_id. Standalone Console mirrors can legitimately fall back to
+    the older provider-level synthetic dashboard; those unclustered rows must never
+    erase healthy provider+cluster identity already proven by live broker topology.
+    """
+    dashboard_by_route: dict[tuple[str, str], dict[str, Any]] = {}
     for provider in provider_dashboard.get("providers", []):
-        provider_id = str(provider.get("provider_id") or "UNKNOWN")
-        cluster_id = str(provider.get("cluster_id") or "UNKNOWN")
-        cluster_entry = cluster_index.get(cluster_id) or {}
+        provider_id = str(provider.get("provider_id") or "")
+        cluster_id = str(provider.get("cluster_id") or "")
+        if provider_id and cluster_id and cluster_id != "UNKNOWN":
+            dashboard_by_route[(provider_id, cluster_id)] = provider
+
+    routes: list[dict[str, Any]] = []
+    for cluster_id, cluster_entry in cluster_index.items():
         cluster = cluster_entry.get("cluster") or {}
-        session = (cluster_entry.get("sessions") or {}).get(provider_id) or {}
-        readiness = str(session.get("readiness") or provider.get("health") or "UNKNOWN")
-        capacity = str(session.get("capacity") or provider.get("capacity") or "UNKNOWN")
-        transport = str(session.get("preferred_transport") or provider.get("transport") or "UNKNOWN")
-        reasons: list[str] = []
-        if cluster.get("health") != "HEALTHY":
-            reasons.append("CLUSTER_NOT_HEALTHY")
-        if session and session.get("membership") not in {None, "ACTIVE"}:
-            reasons.append("PROVIDER_NOT_ACTIVE")
-        if readiness not in SCHEDULABLE_READINESS:
-            reasons.append(f"READINESS_{readiness}")
-        if capacity not in SCHEDULABLE_CAPACITY:
-            reasons.append(f"CAPACITY_{capacity}")
-        if provider.get("eligibility") not in {None, "ELIGIBLE"}:
-            reasons.append("PROVIDER_DASHBOARD_NOT_ELIGIBLE")
-        if provider.get("health") not in {None, "HEALTHY"}:
-            reasons.append("PROVIDER_DASHBOARD_NOT_HEALTHY")
-        if provider.get("capacity") not in {None, "AVAILABLE"}:
-            reasons.append("PROVIDER_DASHBOARD_NO_CAPACITY")
-        routes.append(
-            {
-                "provider_id": provider_id,
-                "cluster_id": cluster_id,
-                "transport": transport,
-                "readiness": readiness,
-                "capacity": capacity,
-                "schedulable": not reasons,
-                "reasons": reasons,
-            }
-        )
+        sessions = cluster_entry.get("sessions") or {}
+        for provider_id, session in sessions.items():
+            if session.get("membership") != "ACTIVE":
+                continue
+            provider = dashboard_by_route.get((provider_id, cluster_id))
+            readiness = str(session.get("readiness") or "UNKNOWN")
+            capacity = str(session.get("capacity") or "UNKNOWN")
+            transport = str(session.get("preferred_transport") or "UNKNOWN")
+            reasons: list[str] = []
+            if cluster.get("health") != "HEALTHY":
+                reasons.append("CLUSTER_NOT_HEALTHY")
+            if readiness not in SCHEDULABLE_READINESS:
+                reasons.append(f"READINESS_{readiness}")
+            if capacity not in SCHEDULABLE_CAPACITY:
+                reasons.append(f"CAPACITY_{capacity}")
+            if provider is not None:
+                if provider.get("eligibility") not in {None, "ELIGIBLE"}:
+                    reasons.append("PROVIDER_DASHBOARD_NOT_ELIGIBLE")
+                if provider.get("health") not in {None, "HEALTHY"}:
+                    reasons.append("PROVIDER_DASHBOARD_NOT_HEALTHY")
+                if provider.get("capacity") not in {None, "AVAILABLE"}:
+                    reasons.append("PROVIDER_DASHBOARD_NO_CAPACITY")
+            routes.append(
+                {
+                    "provider_id": provider_id,
+                    "cluster_id": cluster_id,
+                    "transport": transport,
+                    "readiness": readiness,
+                    "capacity": capacity,
+                    "schedulable": not reasons,
+                    "reasons": reasons,
+                }
+            )
     routes.sort(
         key=lambda r: (
             0 if r["schedulable"] else 1,
