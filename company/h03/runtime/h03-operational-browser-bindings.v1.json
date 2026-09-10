@@ -60,7 +60,7 @@
         "pinterest": "READY",
         "x": "READY",
         "youtube": "AUTH_REQUIRED",
-        "reddit": "UNKNOWN",
+        "reddit": "READY",
         "tiktok": "REGION_CONSTRAINT_USER_REPORTED_INDIA"
       }
     },
@@ -75,7 +75,12 @@
   ],
   "mission_control_binding": {
     "bridge_id": "mission-control.h03-supervisor-bridge.v1",
-    "activation_state": "PENDING_MC_CANONICAL_MERGE_AND_ACCEPTANCE",
-    "machine_binding_owner": "MISSION_CONTROL_HOST_LOCAL"
+    "activation_state": "ACCEPTED_PRODUCTION_READY",
+    "machine_binding_owner": "MISSION_CONTROL_HOST_LOCAL",
+    "canonical_commit": "9fb2dda645cdb0a39bbd1b611ab8933a878fa1e7",
+    "live_release_verified": true,
+    "watchdog_acceptance": "PASS",
+    "anti_stall_fallback_acceptance": "PASS",
+    "state_preservation_verified": true
   }
 }

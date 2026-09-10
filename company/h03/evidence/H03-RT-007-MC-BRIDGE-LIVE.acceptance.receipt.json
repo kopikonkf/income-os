@@ -1,0 +1,109 @@
+{
+  "schema_version": "die.h03.live-runtime-acceptance.v1",
+  "task_id": "H03-RT-007-SEAL",
+  "date": "2026-09-10",
+  "status": "PASS",
+  "scope": "H03_ONLY",
+  "mission_control": {
+    "bridge_schema": "mission-control.h03-supervisor-bridge.v1",
+    "canonical_commit": "9fb2dda645cdb0a39bbd1b611ab8933a878fa1e7",
+    "live_endpoint": "127.0.0.1:8891",
+    "immutable_release_verified": true,
+    "watchdog_audit": "PASS",
+    "watchdog_recurring_cycle": "PASS",
+    "durable_state_preserved": {
+      "tasks": 123,
+      "owner_attempts": 155,
+      "leases_at_cutover": 0
+    }
+  },
+  "browser_boundary": {
+    "headful_only": true,
+    "foreign_profile_reuse": false,
+    "managed_pools": [
+      "H03-KNOWLEDGE-A",
+      "H03-REVIEW-A",
+      "H03-GROWTH-A"
+    ],
+    "idle_grace_seconds": 90,
+    "post_canary_ports_cold": [
+      9661,
+      9662,
+      9663
+    ]
+  },
+  "live_canaries": {
+    "knowledge": {
+      "role": "MARKET_RESEARCHER",
+      "provider": "qwen",
+      "effective_model": "Qwen3.8-Max",
+      "effective_mode": "Thinking",
+      "policy_verified": true,
+      "handoff_received": true,
+      "elapsed_ms": 16126,
+      "pool_returned_cold": true
+    },
+    "independent_review": {
+      "dominant_producer_provider": "claude",
+      "selected_reviewer_provider": "chatgpt",
+      "effective_model": "GPT-5.6 Luna",
+      "effective_mode": "Think",
+      "reviewer_separation_enforced": true,
+      "handoff_received": true,
+      "elapsed_ms": 10273,
+      "pool_returned_cold": true
+    },
+    "forced_failure_retry_fallback": {
+      "fixture_truth": "HOST_LOCAL_ACCEPTANCE_FIXTURE_NOT_PRODUCT_TRUTH",
+      "attempts": [
+        {
+          "ordinal": 1,
+          "provider": "qwen",
+          "result": "MODEL_POLICY_UNVERIFIED",
+          "expected_failure": true
+        },
+        {
+          "ordinal": 2,
+          "provider": "gemini",
+          "result": "OUTPUT_PROTOCOL_TIMEOUT",
+          "expected_failure": false
+        },
+        {
+          "ordinal": 3,
+          "provider": "manus",
+          "result": "PASS",
+          "handoff_received": true
+        }
+      ],
+      "bounded_attempts": 3,
+      "infinite_retry_observed": false,
+      "pool_returned_cold": true
+    }
+  },
+  "growth_readiness": {
+    "ready": [
+      "facebook",
+      "instagram",
+      "threads",
+      "x",
+      "pinterest",
+      "reddit"
+    ],
+    "auth_required": [
+      "youtube"
+    ],
+    "external_constraint": [
+      "tiktok: India IP region block reported by Founder"
+    ]
+  },
+  "governance": {
+    "social_publication_performed": false,
+    "product_publication_performed": false,
+    "live_org_001_started": false,
+    "credentials_or_session_material_persisted": false
+  },
+  "validation": {
+    "h03_regression": "160/160 PASS",
+    "json_parse": "PASS"
+  }
+}
