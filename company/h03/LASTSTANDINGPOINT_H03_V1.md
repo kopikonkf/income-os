@@ -316,3 +316,12 @@ Canon is corrected. `H03-REV-001` is explicitly `INDEPENDENT_PRE_FOUNDER_REVIEW`
 The prior browser preflight is invalidated as H03 runtime evidence. H03 operational browser use requires `H03_DEDICATED_OPERATIONAL` bindings owned by H03 for Knowledge, Growth, and Commerce. Mission Control principal/Architect profiles, Division01 profiles, and other-holding profiles are forbidden as H03 operational pools. Current dedicated H03 operational bindings are NOT_PROVISIONED.
 
 The DIY People-Search Opt-Out Guide remains an engineering organism canary: real external source bytes/evidence were used, but curator/research/synthesis/production/review cognition was NONLIVE_ROLE_FIXTURE. It is not approved for sale and Founder QC has not occurred.
+
+
+---
+
+## H03-RT-007 — Dedicated browser workforce persistence PASS — 2026-09-10
+
+Three H03-owned persistent profile identities are provisioned and controlled-restart tested: `H03-KNOWLEDGE-A`, `H03-REVIEW-A`, `H03-GROWTH-A`. All launches are headful in the interactive Windows session; provider tabs are ephemeral and profiles are demand-driven. Knowledge providers Qwen/Gemini/Manus/Claude/ChatGPT/Grok/Copilot and Review providers Claude/ChatGPT survived restart and returned authenticated composer readiness. Growth readiness after restart: Facebook/Instagram/Threads/Pinterest/X READY, YouTube AUTH_REQUIRED, Reddit UNKNOWN; Founder reports TikTok blocked on the current India IP.
+
+Mission Control supervisor bridge implementation exists in staging but is not yet canonical/activated. Next runtime gate is MC canonical merge + anti-stall/retry/fallback acceptance. No foreign Mission Control primary profile may satisfy H03 runtime readiness.

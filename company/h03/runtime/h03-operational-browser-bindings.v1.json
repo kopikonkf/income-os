@@ -1,23 +1,68 @@
 {
   "schema_version": "die.h03.operational-browser-binding-registry.v1",
   "holding_id": "H03",
-  "state": "NOT_PROVISIONED",
+  "state": "PROVISIONED_LIVE_COGNITION_READY",
+  "foreign_profile_reuse": false,
   "bindings": [
     {
+      "logical_profile_id": "H03-KNOWLEDGE-A",
       "purpose": "KNOWLEDGE_WORKFORCE",
       "pool_owner": "H03",
       "profile_class": "H03_DEDICATED_OPERATIONAL",
-      "state": "NOT_PROVISIONED",
+      "state": "READY",
       "transport_family": "BROWSER_CDP",
-      "session_material_policy": "HOST_LOCAL_NOT_PRODUCT_TRUTH"
+      "headful_only": true,
+      "session_material_policy": "HOST_LOCAL_NOT_PRODUCT_TRUTH",
+      "lifecycle": "DEMAND_DRIVEN",
+      "session_persistence_proven": true,
+      "providers": {
+        "qwen": "READY",
+        "gemini": "READY",
+        "manus": "READY",
+        "claude": "READY",
+        "chatgpt": "READY",
+        "grok": "READY",
+        "copilot": "READY"
+      }
     },
     {
+      "logical_profile_id": "H03-REVIEW-A",
+      "purpose": "INDEPENDENT_REVIEW_WORKFORCE",
+      "pool_owner": "H03",
+      "profile_class": "H03_DEDICATED_OPERATIONAL",
+      "state": "READY",
+      "transport_family": "BROWSER_CDP",
+      "headful_only": true,
+      "session_material_policy": "HOST_LOCAL_NOT_PRODUCT_TRUTH",
+      "lifecycle": "DEMAND_DRIVEN",
+      "session_persistence_proven": true,
+      "providers": {
+        "claude": "READY",
+        "chatgpt": "READY"
+      },
+      "reviewer_separation_required": true
+    },
+    {
+      "logical_profile_id": "H03-GROWTH-A",
       "purpose": "GROWTH_WORKFORCE",
       "pool_owner": "H03",
       "profile_class": "H03_DEDICATED_OPERATIONAL",
-      "state": "NOT_PROVISIONED",
+      "state": "PARTIAL_READY",
       "transport_family": "BROWSER_CDP",
-      "session_material_policy": "HOST_LOCAL_NOT_PRODUCT_TRUTH"
+      "headful_only": true,
+      "session_material_policy": "HOST_LOCAL_NOT_PRODUCT_TRUTH",
+      "lifecycle": "DEMAND_DRIVEN",
+      "session_persistence_proven": true,
+      "providers": {
+        "facebook": "READY",
+        "instagram": "READY",
+        "threads": "READY",
+        "pinterest": "READY",
+        "x": "READY",
+        "youtube": "AUTH_REQUIRED",
+        "reddit": "UNKNOWN",
+        "tiktok": "REGION_CONSTRAINT_USER_REPORTED_INDIA"
+      }
     },
     {
       "purpose": "COMMERCE_OPERATOR",
@@ -28,5 +73,9 @@
       "session_material_policy": "HOST_LOCAL_NOT_PRODUCT_TRUTH"
     }
   ],
-  "foreign_profile_reuse": false
+  "mission_control_binding": {
+    "bridge_id": "mission-control.h03-supervisor-bridge.v1",
+    "activation_state": "PENDING_MC_CANONICAL_MERGE_AND_ACCEPTANCE",
+    "machine_binding_owner": "MISSION_CONTROL_HOST_LOCAL"
+  }
 }

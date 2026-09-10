@@ -1,0 +1,60 @@
+{
+  "schema_version": "die.h03.task-receipt.v1",
+  "task_id": "H03-RT-007",
+  "date": "2026-09-10",
+  "status": "PASS",
+  "title": "Dedicated headful browser workforce provisioning and persistence acceptance",
+  "acceptance": {
+    "foreign_profile_reuse": false,
+    "headful_only": true,
+    "demand_driven_lifecycle": true,
+    "knowledge_profile": "H03-KNOWLEDGE-A",
+    "review_profile": "H03-REVIEW-A",
+    "growth_profile": "H03-GROWTH-A",
+    "knowledge_providers_ready": [
+      "qwen",
+      "gemini",
+      "manus",
+      "claude",
+      "chatgpt",
+      "grok",
+      "copilot"
+    ],
+    "review_providers_ready": [
+      "claude",
+      "chatgpt"
+    ],
+    "growth_ready": [
+      "facebook",
+      "instagram",
+      "threads",
+      "pinterest",
+      "x"
+    ],
+    "growth_auth_required": [
+      "youtube"
+    ],
+    "growth_unknown": [
+      "reddit"
+    ],
+    "growth_external_constraint": [
+      "tiktok: India IP region block reported by Founder"
+    ],
+    "controlled_restart_proven": true,
+    "session_persistence_proven": true,
+    "provider_tabs_ephemeral": true,
+    "idle_profile_sleep_supported": true,
+    "commerce_profile_provisioned": false,
+    "credentials_or_session_material_persisted": false
+  },
+  "mission_control_bridge": {
+    "schema": "mission-control.h03-supervisor-bridge.v1",
+    "state": "IMPLEMENTED_PENDING_CANONICAL_MERGE_AND_ANTI_STALL_ACCEPTANCE"
+  },
+  "validation": {
+    "targeted_governance_boundary": "7/7 PASS",
+    "h03_regression": "160/160 PASS",
+    "json_parse": "PASS",
+    "graph": "40 tasks / 36 DONE / 0 READY / H03-QC-001 WAITING_FOUNDER"
+  }
+}
