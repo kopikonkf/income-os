@@ -21,6 +21,9 @@
     clusterError: null,
     outputGallery: null,
     outputError: null,
+    assetOperations: null,
+    assetOperationsError: null,
+    assetSearch: "",
     productionAcceptance: null,
     productionAcceptanceError: null,
     qcGallery: null,
@@ -316,6 +319,29 @@
   }
 
 
+
+  async function refreshAssets() {
+    try { state.assetOperations = await getLocal('/api/assets'); state.assetOperationsError = null; }
+    catch(error) { state.assetOperationsError = `${error.code || 'ERROR'}: ${error.message || 'Asset trace unavailable'}`; }
+    renderAssets();
+  }
+  function renderAssets() {
+    const d=state.assetOperations, q=state.assetSearch.trim().toLowerCase();
+    const rows=d ? d.assets.filter(a => !q || [a.semantic_asset_id,a.blueprint_id,...Object.values(a.exact_hashes||{})].some(v=>String(v||'').toLowerCase().includes(q))) : [];
+    $("#view-assets").innerHTML = `
+      <article class="card" style="margin-bottom:16px"><div class="result-head"><div><h2>Asset Trace / Marketplace Readiness</h2><p class="muted">Canonical governed-canary chain from provider original through master, derivatives, metadata, rights and Founder QC.</p></div>${d ? badge(d.mode) : badge('UNKNOWN')}</div>
+        ${state.assetOperationsError ? `<p class="notice">${esc(state.assetOperationsError)}</p>` : ''}
+        ${d ? `<div class="qc-toolbar"><input id="asset-search" placeholder="Semantic asset ID or exact content SHA-256" value="${esc(state.assetSearch)}"><span class="badge violet">${rows.length}/${d.asset_count} assets</span></div><p class="notice">Read-only evidence. Exact hashes are lineage keys; no upload, publication or provider dispatch authority is granted here.</p>` : '<p class="muted">Loading canonical asset trace.</p>'}
+      </article>
+      <div class="output-grid">${rows.map(a=>`<article class="card"><div class="result-head"><div><span class="badge violet">CANONICAL ASSET</span><h3>${esc(a.metadata.title||a.semantic_asset_id)}</h3></div>${badge(a.package.state)}</div>
+        <dl class="kv"><dt>Semantic asset</dt><dd>${esc(a.semantic_asset_id)}</dd><dt>Blueprint</dt><dd>${esc(a.blueprint_id)}</dd><dt>Provider original SHA</dt><dd>${esc(a.provider_original.sha256)}</dd><dt>Provider route</dt><dd>${esc(a.provider_original.provider_id)}@${esc(a.provider_original.cluster_id)} ? ${esc(a.provider_original.transport)}</dd><dt>Master SHA</dt><dd>${esc(a.master.sha256)}</dd><dt>Master QA</dt><dd>${badge(a.master.technical_qa)}</dd><dt>Rights signal</dt><dd>${badge(a.qa_rights.automated_rights_signal)}</dd><dt>Human rights clearance</dt><dd>${a.qa_rights.human_rights_clearance?badge('YES'):badge('NO CLAIM')}</dd><dt>Founder QC</dt><dd>${badge(a.qa_rights.founder_qc_decision)}</dd><dt>Marketplace</dt><dd>${esc(a.package.marketplace||'UNKNOWN')}</dd><dt>Submission</dt><dd>${a.authority.submission_authorized?badge('AUTHORIZED'):badge('LOCKED')}</dd><dt>Publication</dt><dd>${a.authority.publication_authorized?badge('AUTHORIZED'):badge('LOCKED')}</dd></dl>
+        <details open style="margin-top:12px"><summary>Derivatives + QA</summary><div class="derivatives">${a.derivatives.map(x=>`<div class="derivative" style="display:block"><div style="display:flex;justify-content:space-between;gap:10px"><strong>${esc(x.derivative_id)} ? ${esc(x.format)}</strong><span>${badge(x.qa_state)} ${badge(x.compatibility_state)}</span></div><div class="muted">${esc(x.purpose)} ? ${esc(x.recipe_id||'-')}</div><div class="muted" style="overflow-wrap:anywhere">${esc(x.sha256)}</div></div>`).join('')}</div></details>
+        <details style="margin-top:12px"><summary>Metadata + binary readback</summary><dl class="kv" style="margin-top:10px"><dt>Title</dt><dd>${esc(a.metadata.title)}</dd><dt>Description</dt><dd>${esc(a.metadata.description)}</dd><dt>Keywords</dt><dd>${esc((a.metadata.keywords||[]).join(', '))}</dd><dt>AI disclosure</dt><dd>${badge(a.metadata.ai_disclosure)}</dd><dt>Metadata SHA</dt><dd>${esc(a.metadata.metadata_sha256)}</dd><dt>Listing filename</dt><dd>${esc(a.metadata.listing_filename)}</dd><dt>Listing SHA</dt><dd>${esc(a.metadata.listing_sha256)}</dd><dt>IPTC readback</dt><dd>${badge(a.metadata.iptc_readback)}</dd><dt>XMP readback</dt><dd>${badge(a.metadata.xmp_readback)}</dd></dl></details>
+        <details style="margin-top:12px"><summary>Rights / package / lineage</summary><dl class="kv" style="margin-top:10px"><dt>Detectors</dt><dd>${esc(Object.entries(a.qa_rights.detector_states||{}).map(([k,v])=>`${k}:${v}`).join(' ? '))}</dd><dt>Blockers</dt><dd>${esc((a.qa_rights.blocking_signals||[]).length ? JSON.stringify(a.qa_rights.blocking_signals) : 'NONE')}</dd><dt>Package blockers</dt><dd>${esc((a.package.blockers||[]).join(', ')||'NONE')}</dd><dt>Package plan SHA</dt><dd>${esc(a.package.package_plan_sha256)}</dd><dt>Registry revision</dt><dd>${esc(a.lineage.registry_revision)}</dd></dl></details>
+      </article>`).join('')}</div>`;
+    if ($('#asset-search')) $('#asset-search').addEventListener('input',e=>{state.assetSearch=e.target.value;renderAssets();});
+  }
+
   async function refreshQC() {
     try { state.qcGallery = await getLocal('/api/qc-gallery'); state.qcError = null; }
     catch(error) { state.qcError = `${error.code || 'ERROR'}: ${error.message || 'QC Gallery unavailable'}`; }
@@ -356,9 +382,9 @@
       <div class="provider-grid">${routes.map(r => `<article class="provider-card"><header><h3>${esc(r.route_id)}</h3>${badge(r.health)}</header><dl class="kv"><dt>Capacity</dt><dd>${badge(r.capacity)}</dd><dt>FA-124 accepted</dt><dd>${r.accepted_in_fa124}</dd><dt>Cluster</dt><dd>${esc(r.cluster_id)}</dd></dl></article>`).join('')}</div>`;
   }
 
-  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); if(view==='operations') refreshOperations(); if(view==='clusters') refreshClusters(); if(view==='providers') refreshProviders(); if(view==='output') refreshOutputs(); if(view==='qc') refreshQC(); if(view==='acceptance') refreshAcceptance(); }
-  const validViews=new Set(['blueprint','batch','operations','queue','clusters','providers','output','qc','acceptance']);
+  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); if(view==='operations') refreshOperations(); if(view==='clusters') refreshClusters(); if(view==='providers') refreshProviders(); if(view==='output') refreshOutputs(); if(view==='assets') refreshAssets(); if(view==='qc') refreshQC(); if(view==='acceptance') refreshAcceptance(); }
+  const validViews=new Set(['blueprint','batch','operations','queue','clusters','providers','output','assets','qc','acceptance']);
   $$('.nav-item').forEach(button=>button.addEventListener('click',()=>{location.hash=button.dataset.view;activateView(button.dataset.view);}));
   window.addEventListener('hashchange',()=>{const v=location.hash.slice(1);if(validViews.has(v))activateView(v);});
-  renderMetrics();renderBlueprint();renderBatch();renderOperations();renderQueue();renderClusters();renderProviders();renderOutput();renderQC();renderAcceptance();const initial=validViews.has(location.hash.slice(1))?location.hash.slice(1):'blueprint';activateView(initial);refreshQueue();refreshOperations();refreshClusters();refreshProviders();refreshOutputs();refreshQC();refreshAcceptance();
+  renderMetrics();renderBlueprint();renderBatch();renderOperations();renderQueue();renderClusters();renderProviders();renderOutput();renderAssets();renderQC();renderAcceptance();const initial=validViews.has(location.hash.slice(1))?location.hash.slice(1):'blueprint';activateView(initial);refreshQueue();refreshOperations();refreshClusters();refreshProviders();refreshOutputs();refreshAssets();refreshQC();refreshAcceptance();
 })();

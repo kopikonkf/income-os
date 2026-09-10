@@ -59,6 +59,7 @@ production_acceptance = _load_module("factory_console_production_acceptance", RO
 founder_qc_gallery = _load_module("factory_console_founder_qc_gallery", ROOT / "company/factory-asset/lib/founder_qc_gallery.py")
 cluster_topology = _load_module("factory_console_cluster_topology", ROOT / "company/factory-asset/lib/console_cluster_topology.py")
 console_operations = _load_module("factory_console_operations", ROOT / "company/factory-asset/lib/console_operations.py")
+console_asset_operations = _load_module("factory_console_asset_operations", ROOT / "company/factory-asset/lib/console_asset_operations.py")
 
 PROVIDER_POLICY_REGISTRY = json.loads((ROOT / "company/factory-asset/registries/provider-policy.v1.json").read_text(encoding="utf-8"))
 PROVIDER_DASHBOARD_FIXTURE = json.loads((ROOT / "company/factory-asset/fixtures/provider-dashboard/synthetic-observed.v1.json").read_text(encoding="utf-8"))
@@ -238,6 +239,10 @@ def cluster_topology_state() -> dict[str, Any]:
     return cluster_topology.build_cluster_topology(ROOT)
 
 
+def asset_operations_state() -> dict[str, Any]:
+    return console_asset_operations.build_asset_operations(ROOT)
+
+
 def operations_state() -> dict[str, Any]:
     return console_operations.build_operations_state(
         queue_state=queue_state(),
@@ -326,6 +331,9 @@ class Handler(SimpleHTTPRequestHandler):
             self._bytes(HTTPStatus.OK,body,ctype);return
         if parsed.path == "/api/qc-gallery":
             self._json(HTTPStatus.OK,qc_gallery_state());return
+        if self.path == "/api/assets":
+            self._json(HTTPStatus.OK, asset_operations_state())
+            return
         if self.path == "/api/operations":
             self._json(HTTPStatus.OK, operations_state())
             return
