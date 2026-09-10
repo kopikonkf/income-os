@@ -53,5 +53,10 @@
     "new_spend_authorized": false,
     "marketplace_submission_authorized": false,
     "publication_authorized": false
+  },
+  "validation": {
+    "focused_governance_telemetry_runtime": "12/12 PASS",
+    "linux_factory_regression": "822/822 PASS; established FA-121 live-broker oneshot excluded from non-runtime suite",
+    "decision_packet_state": "WAITING_FOUNDER"
   }
 }
