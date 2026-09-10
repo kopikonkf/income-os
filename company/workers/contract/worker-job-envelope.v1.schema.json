@@ -58,6 +58,7 @@
         "provider_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"},
         "required_capability": {"type": "string", "minLength": 1},
         "profile_selector": {"type": ["string", "null"]},
+        "scheduler_contract": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"},
         "timeout_ms": {"type": "integer", "minimum": 1000, "maximum": 3600000}
       }
     }

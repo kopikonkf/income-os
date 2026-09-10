@@ -103,8 +103,14 @@ def validate_job(job: dict[str, Any], workspace_root: Path) -> Path:
             fail("E_ACCEPTANCE", "criterion statement/verification missing")
 
     handoff = job["handoff"]
-    expected = {"kind", "provider_id", "required_capability", "profile_selector", "timeout_ms"}
-    if not isinstance(handoff, dict) or set(handoff) != expected or handoff["kind"] != "muxia_job":
+    required_handoff = {"kind", "provider_id", "required_capability", "profile_selector", "timeout_ms"}
+    optional_handoff = {"scheduler_contract"}
+    if (
+        not isinstance(handoff, dict)
+        or not required_handoff.issubset(handoff)
+        or (set(handoff) - required_handoff - optional_handoff)
+        or handoff["kind"] != "muxia_job"
+    ):
         fail("E_HANDOFF", "MUXIA handoff required")
     if not SAFE_ID.fullmatch(str(handoff["provider_id"])):
         fail("E_HANDOFF", "provider_id invalid")
@@ -113,6 +119,9 @@ def validate_job(job: dict[str, Any], workspace_root: Path) -> Path:
     selector = handoff["profile_selector"]
     if selector is not None and not SAFE_ID.fullmatch(str(selector)):
         fail("E_HANDOFF", "profile_selector invalid")
+    scheduler_contract = handoff.get("scheduler_contract")
+    if scheduler_contract is not None and not SAFE_ID.fullmatch(str(scheduler_contract)):
+        fail("E_HANDOFF", "scheduler_contract invalid")
     if not isinstance(handoff["timeout_ms"], int) or not (1000 <= handoff["timeout_ms"] <= 3600000):
         fail("E_HANDOFF", "timeout invalid")
     return workspace.resolve()
