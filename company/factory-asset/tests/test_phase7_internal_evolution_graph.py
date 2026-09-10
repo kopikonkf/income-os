@@ -26,7 +26,7 @@ def test_phase7_frontier_after_prompt_foundation():
     for tid in ["FA-316", "FA-317", "FA-333", "FA-334", "FA-335", "FA-336"]:
         assert by[tid]["status"] == "DONE"
     assert by["FA-318"]["status"] == "DONE"
-    assert by["FA-319"]["status"] == "READY"
+    assert by["FA-319"]["status"] == "DONE"
     assert by["FA-320"]["status"] == "READY"
     assert by["FA-323"]["status"] == "READY"
     assert by["FA-329"]["status"] == "READY"

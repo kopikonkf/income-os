@@ -939,3 +939,16 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Postproduction reuses and verifies the pre-generation Asset Blueprint v2 instead of deriving semantic mode by inspecting prose prompt when the typed lock is present.
 - Validation: full Linux Factory 846/846 PASS; Linux cognition/installer 13/13 PASS; focused FA-318 cross-contract 37/37 PASS. Four failures in one legacy bridge file reproduce unchanged on `origin/main` and assert superseded single-profile/runtime strings, so they are baseline stale tests rather than FA-318 regressions.
 - No provider generation, live deployment, cron/cadence change, marketplace action, or throughput-scale action occurred in FA-318. `FA-319` is now READY for bounded real baseline acceptance.
+
+
+---
+
+## 2026-09-10 - FA-319 real baseline package acceptance PASS
+- `FA-319 = DONE/PASS` on bounded live canary `FA319GIFTBOX001`, seed `SEED-000028` (`gift box`). The canary ran from a clean immutable checkout separate from dirty `/srv/die`; active production cron and throughput scale were not changed.
+- Typed pre-generation authority was proven live: Division01 family Blueprint -> Executive `NO_VETO` -> Division01 Subject Spec -> governed `ISOLATED_CARTOON_WATERCOLOR_L0` compatibility preset -> Visual Requirement Spec -> deterministic 2,495-character compiled provider prompt. Provider prompt SHA256 `9b5a18efad70e2ead88826cdc13fafba78b85d25f79bf5bddfe8c5a323a1ab00` survived into the actual dispatcher receipt.
+- Scheduler selected `qwen@cluster-a`; attempt 1 succeeded and saved provider-original PNG SHA256 `6051afbfe3d7ad009b958172881a82e56286b32178883a431e4ef3f152041d41` (807x450 observed provider image). Active postprocessed master SHA256 is `841d35b72db93a33cda401546f7099eeef2f1d39dfc17efa3e4a4eb3f473529c`.
+- Live canary exposed and repaired two bounded gaps: PR #342 added the missing `PRODUCTION_SUBJECT_SPEC_AUTHOR` cognition transport action; PR #343 generalized/calibrated the visual-rights detector without lowering thresholds, replacing class-count-biased watermark/source-IP sums with clean-reference risk margins and semantic applicability for `ISOLATED_OBJECT`.
+- Rights detector v1.2 acceptance: CPU-only synthetic self-test PASS; actual gift-box OCR text empty; logo CLEAR; watermark CLEAR; safety CLEAR; source-IP CLEAR.
+- Exact durable path PASS: `ARTIFACT_CREATED -> MASTER_VALIDATED -> UPSCALE_DECIDED -> DERIVATIVES_READY -> TECHNICAL_QA_PASS -> RIGHTS_SIGNAL_PASS_OR_REVIEW -> METADATA_READY -> PACKAGE_READY -> WAITING_FOUNDER_QC`. Final state revision 9, rights disposition PASS, package plan SHA256 `bcc8be0b8e10e0e168514e374e087b95540e8dea9e46f90a1eb49935fdef5fe3`.
+- Founder-QC-ready listing: `gift-box-isolated-object__841d35b7.jpg`, SHA256 `1777cd3617df7e2379ea32f7ce01f0f1f8b6f293ecbaaacc17f4f9a9b4a7bb6f`; binary metadata injected; Founder QC remains PENDING. Submission and publication authority remain false and no marketplace upload occurred.
+- Full Linux Factory regression after rights calibration: 850/850 PASS with one existing PyPDF2 deprecation warning. Cluster A/B active leases returned to zero. `die-production-cycle-v1` remains active at `0 */3 * * *`; `FA-125` remains WAITING_FOUNDER, `FA-126` remains DEFERRED, and `scale_100_per_day=false`.
