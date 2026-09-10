@@ -1,0 +1,62 @@
+{
+  "schema": "die.factory-asset.claude-native-svg-producer.v1",
+  "revision": "1.0",
+  "provider_id": "claude",
+  "producer_class": "NATIVE_VECTOR",
+  "engine_state": "CANDIDATE_UNACCEPTED",
+  "eligible_asset_types": [
+    "ICON",
+    "OUTLINE"
+  ],
+  "native_representation": "VECTOR_PATHS",
+  "master_format": "SVG",
+  "master_generation_mode": "DIRECT_FROM_BLUEPRINT",
+  "provider_output_contract": {
+    "required_payload_kind": "SVG_SOURCE_TEXT",
+    "must_begin_with_svg_root_after_normalization": true,
+    "markdown_fence_tolerated_by_adapter": true,
+    "raster_to_vector_trace_allowed": false,
+    "embedded_raster_only_allowed": false,
+    "native_editable_required": true,
+    "scripts_allowed": false,
+    "external_references_allowed": false,
+    "publication_action": "NONE"
+  },
+  "lineage": {
+    "required": [
+      "job_id",
+      "idempotency_key",
+      "blueprint_id",
+      "semantic_asset_id",
+      "frozen_blueprint_sha256",
+      "provider_prompt_sha256",
+      "producer_version"
+    ],
+    "idempotency_material": [
+      "provider_id",
+      "producer_class",
+      "producer_version",
+      "blueprint_id",
+      "semantic_asset_id",
+      "frozen_blueprint_sha256",
+      "provider_prompt_sha256"
+    ]
+  },
+  "typed_failures": [
+    "INVALID_INPUT",
+    "UNSUPPORTED_COMBINATION",
+    "PRODUCER_UNAVAILABLE",
+    "PROVIDER_RESPONSE_INVALID",
+    "OUTPUT_NOT_SVG",
+    "OUTPUT_VALIDATION_FAILED",
+    "CANCELLED",
+    "TIMEOUT"
+  ],
+  "authority": {
+    "provider_call_authorized": false,
+    "route_promotion_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false
+  },
+  "next_acceptance": "FA-321 safety/editability/render/derivative pipeline, then FA-322 bounded live Claude ICON+OUTLINE canary"
+}

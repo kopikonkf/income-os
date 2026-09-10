@@ -1,0 +1,79 @@
+{
+  "schema": "die.factory-asset.human-demand-context-catalog.v1",
+  "revision": "1.0",
+  "authority_effect": "NONE",
+  "contexts": [
+    {
+      "schema": "die.factory-asset.human-demand-context.v1",
+      "context_id": "HDC-SENIOR_MED_ROUTINE",
+      "human": "senior",
+      "activity": "medication routine",
+      "place": "home",
+      "time": "weekly routine",
+      "demographic": "senior adult",
+      "emotion": "organized reassurance",
+      "problem": "remember and organize medication doses",
+      "industry": "health and wellness",
+      "commercial_intent": "instructional and planning design utility",
+      "use_case": "weekly medication routine planning",
+      "object_hints": [
+        "pill organizer"
+      ],
+      "evidence": {
+        "label": "CANON_EXAMPLE_ONLY",
+        "refs": [
+          "company/atlas/human-centric/CROSSJOIN_OBJECT_ATLAS_COMPLEMENT_V1.md#long-tail-doctrine"
+        ],
+        "inherited_demand_allowed": false
+      }
+    },
+    {
+      "schema": "die.factory-asset.human-demand-context.v1",
+      "context_id": "HDC-INDOOR_HERB_BEGINNER",
+      "human": "beginner indoor gardener",
+      "activity": "checking soil moisture",
+      "place": "indoor herb garden",
+      "time": "routine plant care",
+      "demographic": "general adult",
+      "emotion": "confidence",
+      "problem": "avoid overwatering or underwatering herbs",
+      "industry": "home gardening",
+      "commercial_intent": "educational and ecommerce design utility",
+      "use_case": "indoor herb garden beginner guidance",
+      "object_hints": [
+        "soil moisture meter"
+      ],
+      "evidence": {
+        "label": "CANON_EXAMPLE_ONLY",
+        "refs": [
+          "company/atlas/human-centric/CROSSJOIN_OBJECT_ATLAS_COMPLEMENT_V1.md#long-tail-doctrine"
+        ],
+        "inherited_demand_allowed": false
+      }
+    },
+    {
+      "schema": "die.factory-asset.human-demand-context.v1",
+      "context_id": "HDC-REMOTE_DESK_CABLES",
+      "human": "remote worker",
+      "activity": "organizing desk cables",
+      "place": "home office desk",
+      "time": "daily work setup",
+      "demographic": "working adult",
+      "emotion": "focus",
+      "problem": "cable clutter around workstation",
+      "industry": "remote work and office productivity",
+      "commercial_intent": "workspace organization design utility",
+      "use_case": "remote work desk cable organization",
+      "object_hints": [
+        "cable organizer"
+      ],
+      "evidence": {
+        "label": "CANON_EXAMPLE_ONLY",
+        "refs": [
+          "company/atlas/human-centric/CROSSJOIN_OBJECT_ATLAS_COMPLEMENT_V1.md#long-tail-doctrine"
+        ],
+        "inherited_demand_allowed": false
+      }
+    }
+  ]
+}
