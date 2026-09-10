@@ -1,0 +1,91 @@
+{
+  "schema": "die.factory-asset.founder-display-observability.v1",
+  "revision": "1.0",
+  "implementation_state": "DEFINED_NOT_DEPLOYED",
+  "founder_role": "FOUNDER_OBSERVER",
+  "security": {
+    "public_listener_allowed": false,
+    "credential_extraction_allowed": false,
+    "cookie_token_export_allowed": false,
+    "default_access": "READ_ONLY",
+    "transport": "SSH_LOCAL_FORWARD_OR_PRIVATE_LOOPBACK",
+    "audit_required": true,
+    "interactive_repair": "FORBIDDEN_UNTIL_FA-325"
+  },
+  "observation_surfaces": [
+    "SANITIZED_STATUS",
+    "SCREENSHOT",
+    "READ_ONLY_VNC_FUTURE_FA-324"
+  ],
+  "clusters": [
+    {
+      "cluster_id": "cluster-a",
+      "production_display": 101,
+      "display_socket": ":101",
+      "browser_owner_service": "die-muxia-cluster-a-browser.service",
+      "broker_service": "die-fa121-cluster-broker.service",
+      "cdp": {
+        "host": "127.0.0.1",
+        "port": 39221,
+        "founder_direct_exposure": false
+      },
+      "broker": {
+        "host": "127.0.0.1",
+        "port": 39121,
+        "founder_direct_exposure": false
+      },
+      "vnc_plan": {
+        "state": "NOT_DEPLOYED",
+        "bind_host": "127.0.0.1",
+        "port": 59101,
+        "mode": "READ_ONLY",
+        "transport": "SSH_LOCAL_FORWARD"
+      }
+    },
+    {
+      "cluster_id": "cluster-b",
+      "production_display": 102,
+      "display_socket": ":102",
+      "browser_owner_service": "die-muxia-cluster-b-browser.service",
+      "broker_service": "die-muxia-cluster-b.service",
+      "cdp": {
+        "host": "127.0.0.1",
+        "port": 39222,
+        "founder_direct_exposure": false
+      },
+      "broker": {
+        "host": "127.0.0.1",
+        "port": 39122,
+        "founder_direct_exposure": false
+      },
+      "vnc_plan": {
+        "state": "NOT_DEPLOYED",
+        "bind_host": "127.0.0.1",
+        "port": 59102,
+        "mode": "READ_ONLY",
+        "transport": "SSH_LOCAL_FORWARD"
+      }
+    }
+  ],
+  "status_fields_allowed": [
+    "cluster_id",
+    "production_display",
+    "browser_owner_service",
+    "broker_service",
+    "owner_state",
+    "broker_state",
+    "provider_readiness",
+    "active_tab_lease_count",
+    "active_job_id",
+    "last_heartbeat_at"
+  ],
+  "status_fields_forbidden": [
+    "cookie_values",
+    "token_values",
+    "passwords",
+    "authorization_headers",
+    "raw_browser_storage",
+    "credential_files",
+    "raw_cdp_debug_payloads"
+  ]
+}

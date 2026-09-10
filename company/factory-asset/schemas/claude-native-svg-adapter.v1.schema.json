@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/factory-asset/claude-native-svg-adapter.v1.schema.json",
+  "title": "Claude Native SVG Adapter Request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "job_id",
+    "idempotency_key",
+    "provider_id",
+    "producer_class",
+    "producer_version",
+    "blueprint_id",
+    "semantic_asset_id",
+    "asset_type",
+    "native_representation",
+    "master_format",
+    "frozen_blueprint_sha256",
+    "provider_prompt",
+    "provider_prompt_sha256",
+    "output_contract",
+    "authority"
+  ],
+  "properties": {
+    "schema": {
+      "const": "die.factory-asset.claude-native-svg-adapter-request.v1"
+    },
+    "job_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "provider_id": {
+      "const": "claude"
+    },
+    "producer_class": {
+      "const": "NATIVE_VECTOR"
+    },
+    "producer_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "blueprint_id": {
+      "type": "string",
+      "pattern": "^FABP-"
+    },
+    "semantic_asset_id": {
+      "type": "string",
+      "pattern": "^FASA-"
+    },
+    "asset_type": {
+      "enum": [
+        "ICON",
+        "OUTLINE"
+      ]
+    },
+    "native_representation": {
+      "const": "VECTOR_PATHS"
+    },
+    "master_format": {
+      "const": "SVG"
+    },
+    "frozen_blueprint_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "provider_prompt": {
+      "type": "string",
+      "minLength": 40,
+      "maxLength": 12000
+    },
+    "provider_prompt_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "output_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "payload_kind",
+        "native_editable_required",
+        "conversion_from_raster",
+        "embedded_raster_only_allowed",
+        "scripts_allowed",
+        "external_references_allowed"
+      ],
+      "properties": {
+        "payload_kind": {
+          "const": "SVG_SOURCE_TEXT"
+        },
+        "native_editable_required": {
+          "const": true
+        },
+        "conversion_from_raster": {
+          "const": false
+        },
+        "embedded_raster_only_allowed": {
+          "const": false
+        },
+        "scripts_allowed": {
+          "const": false
+        },
+        "external_references_allowed": {
+          "const": false
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider_call_authorized",
+        "submission_authorized",
+        "publication_authorized"
+      ],
+      "properties": {
+        "provider_call_authorized": {
+          "const": false
+        },
+        "submission_authorized": {
+          "const": false
+        },
+        "publication_authorized": {
+          "const": false
+        }
+      }
+    }
+  }
+}

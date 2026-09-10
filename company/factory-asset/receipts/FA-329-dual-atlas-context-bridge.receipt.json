@@ -1,0 +1,38 @@
+{
+  "schema": "die.factory-asset.fa329-dual-atlas-context-bridge-receipt.v1",
+  "task_id": "FA-329",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "artifacts": {
+    "context_schema": "f82dc64783bab78f2de11f07c80ff3d245b9d1813af8d6ed232a8796e9f8c27e",
+    "foundation_contexts": "278e39d8a8ce7dad57eb35b730d929a5160a47b6401142da704624c24db27d3b",
+    "bridge": "75e766268feeea78f85f7e88f0bec789e7fc6eadd5daf89ac8f90d507b90fb02",
+    "doc": "c250a905a4bb7298e28e289037b70814b61189cd0c07ebaab7af9150e9f46e56"
+  },
+  "assertions": {
+    "directions": [
+      "SUPPLY_FIRST",
+      "DEMAND_FIRST"
+    ],
+    "max_scan": 256,
+    "max_results": 12,
+    "cartesian_enumeration": false,
+    "bounded_retrieval_required": true,
+    "inherited_demand_allowed": false,
+    "production_authorized": false,
+    "provider_dispatch_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "canon_examples_are_demand_evidence": false
+  },
+  "acceptance_examples": {
+    "supply_first": "cable organizer -> HDC-REMOTE_DESK_CABLES",
+    "demand_first": "HDC-SENIOR_MED_ROUTINE -> pill organizer",
+    "negative_coherence": "sailboat is not forced into senior medication context"
+  },
+  "production_db_observation": "Exact canon-example nouns cable organizer, pill organizer and soil moisture meter were not present in current production seeds table during read-only verification; no live-match claim was fabricated.",
+  "validation": {
+    "full_linux_factory_regression": "867 PASS, 1 existing PyPDF2 deprecation warning; FA-121 live-broker oneshot excluded by canonical scope"
+  }
+}
