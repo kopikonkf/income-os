@@ -35,3 +35,6 @@ The **Clusters** view calls `GET /api/cluster-topology` and renders sanitized li
 ## FA-C016 unified operations surface
 
 The **Operations** view calls `GET /api/operations` and joins the current browser-local compiled Blueprint/batch intent with sanitized Factory Core queue, provider-cluster route preview, retries, recovery state, cluster generation-slot pressure and bounded queue controls in one screen. `START`, `PAUSE`, `RESUME`, `CANCEL` and `RETRY` still act only on `FactoryJobQueue`; the selected provider+cluster is explicitly a readiness/capacity preview, not a dispatch commitment. Provider calls, browser-owner actions, secret/session material and marketplace actions remain outside Console authority.
+## FA-C017 unified asset trace
+
+The **Assets** view calls `GET /api/assets` and presents one read-only canonical trace keyed by `semantic_asset_id` and exact SHA-256: provider original, normalized master, packaging derivatives and technical QA, metadata plus IPTC/XMP readback, automated rights state, Founder exact-hash QC, and package/marketplace readiness. The surface is derived from governed-canary FA-202 through FA-206 evidence and the canonical asset registry. It exposes no workspace paths or session/credential material and grants no provider dispatch, marketplace upload, submission, or publication authority.

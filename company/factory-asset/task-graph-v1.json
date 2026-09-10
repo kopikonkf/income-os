@@ -2561,12 +2561,13 @@
         "FA-137",
         "FA-141"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "Factory Console asset operations module",
       "acceptance": "Generated originals, masters, derivatives, metadata, QA/IP/rights state and package readiness are traceable by semantic asset and content hash from one UI.",
       "updated_at": "2026-09-10",
-      "result": "READY: FA-C016, FA-137 and FA-141 are DONE/PASS."
+      "result": "PASS: Assets surface traces canonical governed-canary provider original, master, derivatives/technical QA, metadata plus binary readback, automated rights, Founder exact-hash QC and package/marketplace readiness by semantic asset ID and exact SHA-256. Read-only authority boundary preserved; Linux Factory regression 810/810 PASS.",
+      "completed_at": "2026-09-10"
     },
     {
       "id": "FA-C018",
