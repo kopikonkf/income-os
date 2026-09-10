@@ -60,6 +60,7 @@ founder_qc_gallery = _load_module("factory_console_founder_qc_gallery", ROOT / "
 cluster_topology = _load_module("factory_console_cluster_topology", ROOT / "company/factory-asset/lib/console_cluster_topology.py")
 console_operations = _load_module("factory_console_operations", ROOT / "company/factory-asset/lib/console_operations.py")
 console_asset_operations = _load_module("factory_console_asset_operations", ROOT / "company/factory-asset/lib/console_asset_operations.py")
+console_telemetry = _load_module("factory_console_telemetry", ROOT / "company/factory-asset/lib/console_telemetry.py")
 
 PROVIDER_POLICY_REGISTRY = json.loads((ROOT / "company/factory-asset/registries/provider-policy.v1.json").read_text(encoding="utf-8"))
 PROVIDER_DASHBOARD_FIXTURE = json.loads((ROOT / "company/factory-asset/fixtures/provider-dashboard/synthetic-observed.v1.json").read_text(encoding="utf-8"))
@@ -239,6 +240,10 @@ def cluster_topology_state() -> dict[str, Any]:
     return cluster_topology.build_cluster_topology(ROOT)
 
 
+def telemetry_state() -> dict[str, Any]:
+    return console_telemetry.build_telemetry(repo_root=ROOT, queue_state=queue_state(), cluster_topology=cluster_topology_state())
+
+
 def asset_operations_state() -> dict[str, Any]:
     return console_asset_operations.build_asset_operations(ROOT)
 
@@ -331,6 +336,9 @@ class Handler(SimpleHTTPRequestHandler):
             self._bytes(HTTPStatus.OK,body,ctype);return
         if parsed.path == "/api/qc-gallery":
             self._json(HTTPStatus.OK,qc_gallery_state());return
+        if self.path == "/api/telemetry":
+            self._json(HTTPStatus.OK, telemetry_state())
+            return
         if self.path == "/api/assets":
             self._json(HTTPStatus.OK, asset_operations_state())
             return
