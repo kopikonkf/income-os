@@ -1,0 +1,56 @@
+{
+  "schema": "die.factory-asset.console-telemetry-receipt.v1",
+  "task_id": "FA-C018",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "artifact": "Factory Console capacity throughput economics telemetry module",
+  "acceptance": {
+    "queue_depth_reported": "PASS",
+    "provider_cluster_route_rows_reported": "PASS",
+    "overall_success_rate_pct": 88.5,
+    "overall_reject_rate_pct": 11.5,
+    "active_tabs_reported_from_live_topology": "PASS",
+    "historical_ram_bound_reported": "PASS",
+    "latency_samples_reported_where_observable": "PASS",
+    "observed_spend_usd": 0.0,
+    "unknown_values_remain_explicit": "PASS",
+    "provider_dispatch_authority": false,
+    "browser_owner_action_authority": false,
+    "marketplace_action_authority": false
+  },
+  "unknown_truth": {
+    "generated_masters_per_day": "UNKNOWN",
+    "generated_masters_per_day_reason": "NO_BOUNDED_ELAPSED_TIME_WINDOW_IN_CANONICAL_FA124_RESULT",
+    "per_route_success_rate": "UNKNOWN",
+    "per_route_reject_rate": "UNKNOWN",
+    "per_route_attempt_denominator": "UNKNOWN",
+    "live_cluster_rss_tree_mb": "UNKNOWN",
+    "route_level_cost_usd": "UNKNOWN"
+  },
+  "evidence": {
+    "fa124_accepted_masters": 100,
+    "fa124_dispatch_commits": 113,
+    "fa124_provider_failures_after_commit": 13,
+    "fa124_observed_spend_usd": 0.0,
+    "fa124_accepted_provider_artifact_gib": 0.0686,
+    "fa307_qwen_cluster_a_latency_ms": 19865,
+    "fa307_gemini_cluster_b_latency_ms": 26372,
+    "fa307_max_combined_browser_tree_rss_mb": 4960.5599999999995,
+    "fa307_bounded_ram": true,
+    "fa307_bounded_tabs": true
+  },
+  "validation": {
+    "focused_windows": "24/24 PASS",
+    "c018_specific": "4/4 PASS",
+    "linux_factory_regression": "814/814 PASS; established FA-121 live-broker oneshot excluded from non-runtime suite"
+  },
+  "production_boundary": {
+    "production_cadence_changed": false,
+    "scale_100_per_day_authorized": false,
+    "provider_calls_performed": false,
+    "browser_owner_actions_performed": false,
+    "marketplace_actions_performed": false,
+    "spend_usd": 0
+  }
+}

@@ -38,3 +38,7 @@ The **Operations** view calls `GET /api/operations` and joins the current browse
 ## FA-C017 unified asset trace
 
 The **Assets** view calls `GET /api/assets` and presents one read-only canonical trace keyed by `semantic_asset_id` and exact SHA-256: provider original, normalized master, packaging derivatives and technical QA, metadata plus IPTC/XMP readback, automated rights state, Founder exact-hash QC, and package/marketplace readiness. The surface is derived from governed-canary FA-202 through FA-206 evidence and the canonical asset registry. It exposes no workspace paths or session/credential material and grants no provider dispatch, marketplace upload, submission, or publication authority.
+
+## FA-C018 capacity / throughput / economics telemetry
+
+The **Telemetry** view calls `GET /api/telemetry` and joins the current local queue plus sanitized live Cluster A/B tab/lease/capacity state with bounded FA-124 throughput/economics and FA-307 parallel-cluster evidence. It reports only observable values. Per-route success/reject rates, live cluster RSS, route-level cost, and generated masters/day remain `UNKNOWN` when canon lacks a valid route denominator, live memory sample, attributable cost, or bounded elapsed-time window. The view is read-only and does not alter production cadence, dispatch providers, operate browser owners, or authorize marketplace actions.

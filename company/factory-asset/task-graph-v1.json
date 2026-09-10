@@ -2579,12 +2579,13 @@
         "FA-C015",
         "FA-307"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "Factory Console telemetry module",
       "acceptance": "Console reports queue depth, provider/cluster success rate, latency, active tabs, RAM, generated masters/day, reject rate and cost where observable; UNKNOWN remains explicit.",
       "updated_at": "2026-09-09",
-      "result": "READY: all canonical dependencies are DONE/PASS."
+      "result": "PASS: Telemetry surface joins live queue and sanitized cluster tabs/leases/capacity with FA-124 throughput/economics and FA-307 latency/RAM acceptance evidence. Overall observed acceptance success=88.5%, reject=11.5%, spend=$0; per-route rates, live RSS and masters/day remain explicit UNKNOWN where canon lacks a valid denominator or time window. Linux Factory regression 814/814 PASS.",
+      "completed_at": "2026-09-10"
     },
     {
       "id": "FA-C019",
