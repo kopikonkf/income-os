@@ -1,6 +1,6 @@
 {
   "schema": "die.factory-asset.visual-rights-detector-config.v1",
-  "revision": "1.0",
+  "revision": "1.1",
   "runtime": {
     "python": "/opt/die/factory-asset-rights/venv/bin/python",
     "tesseract": "/usr/bin/tesseract",
@@ -35,10 +35,10 @@
     "review_positive_score": 0.2,
     "strong_candidate_score": 0.4,
     "prompts": [
-      "a clean generic unbranded shopping bag product image",
-      "a shopping bag with a visible text brand logo",
-      "a shopping bag with a prominent graphic brand emblem or logo",
-      "a plain shopping bag with no branding"
+      "a clean generic unbranded isolated stock object with no logo or text",
+      "an isolated stock object with a visible text brand logo",
+      "an isolated stock object with a prominent graphic brand emblem or logo",
+      "a plain generic isolated stock object with no branding"
     ],
     "positive_indices": [
       1,
@@ -64,7 +64,7 @@
     "review_unsafe_score": 0.05,
     "block_unsafe_score": 0.75,
     "prompts": [
-      "a safe ordinary retail shopping bag product image",
+      "a safe ordinary generic isolated stock object",
       "an image of a knife or weapon",
       "an image with blood or gore",
       "an image with nudity or sexual adult content",
@@ -88,7 +88,7 @@
     "review_risk_score": 0.05,
     "strong_risk_score": 0.3,
     "prompts": [
-      "a generic ordinary unbranded shopping bag with no distinctive brand design",
+      "a generic ordinary unbranded isolated stock object with no distinctive brand design",
       "a famous branded product with distinctive trade dress",
       "a copyrighted fictional character or character artwork",
       "a recognizable celebrity or real person likeness",
