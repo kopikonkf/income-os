@@ -1,0 +1,21 @@
+{
+  "schema": "die.factory-asset.production-taxonomy-receipt.v1",
+  "task_id": "FA-316",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "provider_calls_performed": 0,
+  "live_runtime_mutations": 0,
+  "submission_actions": 0,
+  "publication_actions": 0,
+  "spend_usd": 0,
+  "artifacts": {
+    "PRODUCTION_TAXONOMY_V1.md": "830414ec477734c2998b920f6786b65e319e216673bc526613fb17daf6130c3e"
+  },
+  "assertions": {
+    "media_family_separate_from_semantic_mode": true,
+    "production_preset_separate_from_derivative": true,
+    "compiled_prompt_execution_artifact_not_semantic_truth": true,
+    "derivatives_semantic_identity_effect_none_preserved": true
+  }
+}

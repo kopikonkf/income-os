@@ -1,0 +1,343 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/factory-asset/visual-requirement-spec.v1.schema.json",
+  "title": "Factory Visual Requirement Specification v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "visual_spec_id",
+    "semantic_asset_id",
+    "asset_type",
+    "subject_spec_id",
+    "preset",
+    "subject",
+    "view",
+    "rendering",
+    "fidelity",
+    "composition",
+    "commercial",
+    "negative_constraints",
+    "authority"
+  ],
+  "properties": {
+    "schema": {
+      "const": "die.factory-asset.visual-requirement-spec.v1"
+    },
+    "visual_spec_id": {
+      "type": "string",
+      "pattern": "^FAVS-[A-Z0-9][A-Z0-9_-]{5,80}$"
+    },
+    "semantic_asset_id": {
+      "type": "string",
+      "pattern": "^FASA-[A-Z0-9][A-Z0-9_-]{5,80}$"
+    },
+    "asset_type": {
+      "enum": [
+        "PHOTO",
+        "ISOLATED_OBJECT",
+        "ICON",
+        "OUTLINE",
+        "PATTERN",
+        "ANIMATION"
+      ]
+    },
+    "subject_spec_id": {
+      "type": "string",
+      "pattern": "^FASS-[A-Z0-9][A-Z0-9_-]{5,80}$"
+    },
+    "preset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "preset_id",
+        "revision"
+      ],
+      "properties": {
+        "preset_id": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_-]{5,96}$"
+        },
+        "revision": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        }
+      }
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_name",
+        "subject_class",
+        "primary_form",
+        "essential_components",
+        "recognition_anchors",
+        "natural_attributes",
+        "spatial_relationships",
+        "forbidden_subject_mutations"
+      ],
+      "properties": {
+        "canonical_name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 200
+        },
+        "subject_class": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 60
+        },
+        "primary_form": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 1000
+        },
+        "essential_components": {
+          "type": "array",
+          "maxItems": 24,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "description",
+              "placement"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "placement": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "recognition_anchors": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "natural_attributes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "spatial_relationships": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "forbidden_subject_mutations": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "view": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "viewpoint",
+        "instruction"
+      ],
+      "properties": {
+        "viewpoint": {
+          "enum": [
+            "SUBJECT_APPROPRIATE",
+            "FRONT",
+            "THREE_QUARTER",
+            "TOP_DOWN",
+            "SIDE",
+            "ISOMETRIC",
+            "CUSTOM"
+          ]
+        },
+        "instruction": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 300
+        }
+      }
+    },
+    "rendering": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "render_language",
+        "style_family",
+        "style_variant",
+        "medium",
+        "stylization",
+        "prompt_descriptors"
+      ],
+      "properties": {
+        "render_language": {
+          "type": "string"
+        },
+        "style_family": {
+          "type": "string"
+        },
+        "style_variant": {
+          "type": "string"
+        },
+        "medium": {
+          "type": "string"
+        },
+        "stylization": {
+          "type": "string"
+        },
+        "prompt_descriptors": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 180
+          }
+        }
+      }
+    },
+    "fidelity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "proportions",
+        "recognizability",
+        "texture_detail",
+        "color_behavior",
+        "edge_character",
+        "shading"
+      ],
+      "properties": {
+        "proportions": {
+          "type": "string"
+        },
+        "recognizability": {
+          "type": "string"
+        },
+        "texture_detail": {
+          "type": "string"
+        },
+        "color_behavior": {
+          "type": "string"
+        },
+        "edge_character": {
+          "type": "string"
+        },
+        "shading": {
+          "type": "string"
+        }
+      }
+    },
+    "composition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "background_mode",
+        "centered",
+        "full_subject_visible",
+        "generous_whitespace",
+        "clean_silhouette",
+        "unrelated_props"
+      ],
+      "properties": {
+        "background_mode": {
+          "enum": [
+            "TRANSPARENT",
+            "PURE_WHITE",
+            "SOLID_NEUTRAL"
+          ]
+        },
+        "centered": {
+          "type": "boolean"
+        },
+        "full_subject_visible": {
+          "type": "boolean"
+        },
+        "generous_whitespace": {
+          "type": "boolean"
+        },
+        "clean_silhouette": {
+          "type": "boolean"
+        },
+        "unrelated_props": {
+          "type": "boolean"
+        }
+      }
+    },
+    "commercial": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stock_asset_quality",
+        "reusable_design_component",
+        "subject_separation"
+      ],
+      "properties": {
+        "stock_asset_quality": {
+          "const": true
+        },
+        "reusable_design_component": {
+          "const": true
+        },
+        "subject_separation": {
+          "enum": [
+            "CLEAR",
+            "VERY_CLEAR"
+          ]
+        }
+      }
+    },
+    "negative_constraints": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 48,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 180
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "effect",
+        "provider_call_authorized",
+        "submission_authorized",
+        "publication_authorized"
+      ],
+      "properties": {
+        "effect": {
+          "const": "NONE"
+        },
+        "provider_call_authorized": {
+          "const": false
+        },
+        "submission_authorized": {
+          "const": false
+        },
+        "publication_authorized": {
+          "const": false
+        }
+      }
+    }
+  }
+}

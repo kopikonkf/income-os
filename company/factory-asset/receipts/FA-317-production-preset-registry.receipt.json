@@ -1,0 +1,23 @@
+{
+  "schema": "die.factory-asset.production-preset-registry-receipt.v1",
+  "task_id": "FA-317",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "provider_calls_performed": 0,
+  "live_runtime_mutations": 0,
+  "submission_actions": 0,
+  "publication_actions": 0,
+  "spend_usd": 0,
+  "artifacts": {
+    "schema": "2875663bf5d42642f6e9c13f37628f42505b8fc4153c5f8d2b4b58b3207262ff",
+    "registry": "a8598b58dfd280e0d07e40421ded5f7ad4374f843f6c8e166ffd83d4364bd4f2"
+  },
+  "assertions": {
+    "historical_fa124_preset_preserved": true,
+    "historical_preset_activation": "BASELINE_COMPATIBILITY_ONLY",
+    "source_aligned_candidate": "ISOLATED_PREMIUM_SEMI_REALISTIC_ILLUSTRATION_L0",
+    "candidate_activation": "NOT_LIVE",
+    "typed_style_and_composition_axes": true
+  }
+}

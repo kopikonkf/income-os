@@ -1,0 +1,144 @@
+{
+  "schema": "die.factory-asset.production-preset-registry.v1",
+  "revision": "1.0",
+  "presets": [
+    {
+      "preset_id": "ISOLATED_CARTOON_WATERCOLOR_L0",
+      "revision": "1.0.0",
+      "status": "HISTORICAL_ACCEPTED",
+      "activation": "BASELINE_COMPATIBILITY_ONLY",
+      "asset_type": "ISOLATED_OBJECT",
+      "media_family": "RASTER",
+      "render_language": "ILLUSTRATION",
+      "style": {
+        "family": "CARTOON",
+        "variant": "WATERCOLOR_CARTOON",
+        "medium": "WATERCOLOR",
+        "stylization": "MEDIUM_HIGH"
+      },
+      "view_defaults": {
+        "viewpoint": "SUBJECT_APPROPRIATE"
+      },
+      "composition_defaults": {
+        "background_mode": "PURE_WHITE",
+        "allowed_background_modes": [
+          "PURE_WHITE"
+        ],
+        "centered": true,
+        "full_subject_visible": true,
+        "generous_whitespace": true,
+        "clean_silhouette": true,
+        "unrelated_props": false
+      },
+      "fidelity_defaults": {
+        "proportions": "STYLIZED_RECOGNIZABLE",
+        "recognizability": "HIGH",
+        "texture_detail": "LIGHT",
+        "color_behavior": "FRIENDLY_STYLIZED",
+        "edge_character": "SOFT_HAND_PAINTED",
+        "shading": "GENTLE"
+      },
+      "commercial_defaults": {
+        "stock_asset_quality": true,
+        "reusable_design_component": true,
+        "subject_separation": "CLEAR"
+      },
+      "prompt_descriptors": [
+        "polished commercial stock illustration",
+        "charming watercolor-cartoon style",
+        "clean soft hand-painted edges",
+        "gentle shading",
+        "light watercolor texture",
+        "friendly versatile non-branded rendering"
+      ],
+      "negative_defaults": [
+        "people",
+        "readable text",
+        "logo",
+        "trademark",
+        "watermark",
+        "unrelated props",
+        "environmental scene",
+        "border",
+        "collage"
+      ],
+      "evidence": {
+        "basis": "HISTORICAL_ACCEPTANCE",
+        "refs": [
+          "company/factory-asset/contracts/fa124-manifestation.v1.json",
+          "FA-124 100-master accepted cohort"
+        ]
+      }
+    },
+    {
+      "preset_id": "ISOLATED_PREMIUM_SEMI_REALISTIC_ILLUSTRATION_L0",
+      "revision": "1.0.0",
+      "status": "FOUNDER_DESIGN_CANDIDATE",
+      "activation": "NOT_LIVE",
+      "asset_type": "ISOLATED_OBJECT",
+      "media_family": "RASTER",
+      "render_language": "ILLUSTRATION",
+      "style": {
+        "family": "ILLUSTRATIVE_CLIPART",
+        "variant": "PREMIUM_SEMI_REALISTIC_VECTOR_LIKE",
+        "medium": "DIGITAL_ILLUSTRATION",
+        "stylization": "LOW_MEDIUM"
+      },
+      "view_defaults": {
+        "viewpoint": "SUBJECT_APPROPRIATE"
+      },
+      "composition_defaults": {
+        "background_mode": "TRANSPARENT",
+        "allowed_background_modes": [
+          "TRANSPARENT",
+          "PURE_WHITE"
+        ],
+        "centered": true,
+        "full_subject_visible": true,
+        "generous_whitespace": true,
+        "clean_silhouette": true,
+        "unrelated_props": false
+      },
+      "fidelity_defaults": {
+        "proportions": "REALISTIC",
+        "recognizability": "VERY_HIGH",
+        "texture_detail": "DETAILED",
+        "color_behavior": "VIBRANT_REALISTIC",
+        "edge_character": "CRISP_CLEAN",
+        "shading": "SUBTLE"
+      },
+      "commercial_defaults": {
+        "stock_asset_quality": true,
+        "reusable_design_component": true,
+        "subject_separation": "VERY_CLEAR"
+      },
+      "prompt_descriptors": [
+        "clean premium digital illustration",
+        "semi-realistic vector-like rendering",
+        "smooth natural shapes",
+        "slightly stylized but immediately recognizable subject",
+        "subtle highlights and shading",
+        "crisp contours",
+        "polished commercial stock illustration aesthetic"
+      ],
+      "negative_defaults": [
+        "people unless explicitly essential to the subject",
+        "readable text",
+        "logo",
+        "trademark",
+        "watermark",
+        "packaging unless explicitly essential",
+        "unrelated props",
+        "environmental scene",
+        "table or room background"
+      ],
+      "evidence": {
+        "basis": "FOUNDER_SPECIFIED_DIRECTION",
+        "refs": [
+          "Founder 2026-09-10 isolated-object reference/prompt direction",
+          "actual_income_research_intelligence-isolated_asset(1).zip category/visual-direction basis"
+        ]
+      }
+    }
+  ]
+}

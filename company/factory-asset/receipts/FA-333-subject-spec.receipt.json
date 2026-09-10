@@ -1,0 +1,24 @@
+{
+  "schema": "die.factory-asset.subject-spec-receipt.v1",
+  "task_id": "FA-333",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "provider_calls_performed": 0,
+  "live_runtime_mutations": 0,
+  "submission_actions": 0,
+  "publication_actions": 0,
+  "spend_usd": 0,
+  "artifacts": {
+    "schema": "0f6f2e39604f213f22483d4e5c7f625479f8726de9a6cd79238968b3d6b6bea3",
+    "contract_doc": "7351ceb49c6138b6d4ba4796ffc08b722b262616b39b1e1b815b9363572fa864",
+    "nasi_lemak_fixture": "73e96da8d832550f69a6446b439c5592a22ee4a03a9eeaf44c853cc51e43d05d",
+    "simple_bottle_fixture": "86820edaa27addc28b0fa0e6a96b9968e0d6d577b5a1b567db4c49a15035dc5a"
+  },
+  "assertions": {
+    "essential_components_typed": true,
+    "recognition_anchors_typed": true,
+    "subject_mutations_typed": true,
+    "compiler_must_not_invent_missing_subject_facts": true
+  }
+}
