@@ -1,0 +1,46 @@
+{
+  "schema": "die.factory-asset.console-unified-operations-receipt.v1",
+  "task_id": "FA-C016",
+  "status": "DONE",
+  "result": "PASS",
+  "completed_at": "2026-09-10",
+  "acceptance": {
+    "unified_operations_surface": true,
+    "blueprint_and_batch_intent_visible": true,
+    "factory_core_queue_state_visible": true,
+    "selected_provider_and_cluster_visible": true,
+    "route_selection_is_preview_not_dispatch_commit": true,
+    "retry_state_visible": true,
+    "backpressure_visible": true,
+    "cluster_generation_capacity_visible": true,
+    "bounded_start_pause_resume_cancel_retry_controls": true,
+    "provider_dispatch_performed": false,
+    "browser_owner_actions_performed": false,
+    "marketplace_actions_performed": false,
+    "secret_material_exposed": false
+  },
+  "canonical_snapshot_proof": {
+    "source": "company/factory-asset/fixtures/console-topology/FA-C015-live-cluster-topology.json",
+    "cluster_a_health": "HEALTHY",
+    "cluster_b_health": "HEALTHY",
+    "browser_generation_slots_available": 9,
+    "qwen_route_preview_transport": "SESSION_API",
+    "duckai_degraded_is_not_schedulable": true
+  },
+  "validation": {
+    "focused_windows": "PASS",
+    "linux_factory_regression": "805/805 PASS; FA-121 live-broker oneshot excluded by established non-runtime regression scope",
+    "one_canon": "PRE_EXISTING_GLOBAL_DRIFT: 5/6 pytest and validator 10/11 because origin/main already contains company/h03/evidence/H03-ORG-001/sources/incogni-pricing.html flagged by the high-confidence secret scanner; FA-C016 changes do not touch H03 or validator policy",
+    "node_syntax": "PASS",
+    "python_compile": "PASS"
+  },
+  "artifacts": [
+    "company/factory-asset/lib/console_operations.py",
+    "company/factory-asset/console-prototype/server.py",
+    "company/factory-asset/console-prototype/app.js",
+    "company/factory-asset/console-prototype/index.html",
+    "company/factory-asset/console-prototype/README.md",
+    "company/factory-asset/tests/test_console_operations_surface.py",
+    "company/factory-asset/tests/test_factory_console_shell.py"
+  ]
+}

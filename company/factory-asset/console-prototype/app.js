@@ -11,6 +11,8 @@
     compilePreview: null,
     compileError: null,
     batchIntent: null,
+    operationsState: null,
+    operationsError: null,
     queueEvents: [],
     queueError: null,
     providerDashboard: null,
@@ -169,7 +171,7 @@
       renderBatch(); renderMetrics();
     });
     if ($("#queue-local-batch") && state.batchIntent) $("#queue-local-batch").addEventListener('click', async () => {
-      try { const result = await postLocal('/api/queue/submit', { batch_intent: state.batchIntent }); state.notice = `${result.created_or_reused} governed jobs created/reused. Provider dispatch: ${result.provider_dispatch_performed}.`; await refreshQueue(); activateView('queue'); }
+      try { const result = await postLocal('/api/queue/submit', { batch_intent: state.batchIntent }); state.notice = `${result.created_or_reused} governed jobs created/reused. Provider dispatch: ${result.provider_dispatch_performed}.`; await refreshQueue(); activateView('operations'); }
       catch(error) { state.notice = `${error.code || 'ERROR'}: ${error.message || 'Queue submit rejected'}`; renderBatch(); }
     });
   }
@@ -191,6 +193,7 @@
     try { await postLocal('/api/queue/action', command); state.queueError = null; }
     catch(error) { state.queueError = `${error.code || 'ERROR'}: ${error.message || 'Control rejected'}`; }
     await refreshQueue();
+    if (state.activeView === 'operations') await refreshOperations();
   }
   async function runSyntheticE2E() {
     state.syntheticE2EError = null;
@@ -213,6 +216,47 @@
       <p class="notice" style="margin-top:14px">START acquires local queue ownership only. Provider routing/dispatch is intentionally not invoked by governed queue controls.</p></article>`;
     $$('.queue-control').forEach(button => button.addEventListener('click', () => queueAction(button.dataset.jobId, button.dataset.coreAction)));
     if ($('#run-synthetic-e2e')) $('#run-synthetic-e2e').addEventListener('click', runSyntheticE2E);
+  }
+
+
+  async function refreshOperations() {
+    try { state.operationsState = await getLocal('/api/operations'); state.operationsError = null; }
+    catch(error) { state.operationsError = `${error.code || 'ERROR'}: ${error.message || 'Operations state unavailable'}`; }
+    renderOperations(); renderMetrics();
+  }
+  function renderOperations() {
+    const d=state.operationsState;
+    const q=d ? d.queue : null;
+    const route=d && d.routing ? d.routing.selected_route : null;
+    const jobs=q ? q.jobs : [];
+    const plan=state.compilePreview && state.compilePreview.plan;
+    const batch=state.batchIntent;
+    $('#view-operations').innerHTML = `
+      <div class="grid two" style="margin-bottom:16px">
+        <article class="card"><div class="result-head"><div><h2>Blueprint / Batch Intent</h2><p class="muted">Local Founder intent joined to durable Factory Core operations truth</p></div>${plan ? badge('VALID') : badge('UNKNOWN')}</div>
+          <dl class="kv"><dt>Blueprint</dt><dd>${esc(plan ? plan.blueprint_id : 'No compiled blueprint in this browser session')}</dd><dt>Semantic asset</dt><dd>${esc(plan ? plan.semantic_asset_id : '—')}</dd><dt>Master</dt><dd>${esc(plan ? plan.master.format : '—')}</dd><dt>Batch</dt><dd>${esc(batch ? batch.batch_id : 'No local batch intent')}</dd><dt>Batch quantity</dt><dd>${batch ? batch.quantity : 0}</dd><dt>Dispatch authority</dt><dd>${badge(batch ? batch.dispatch_authority : 'LOCKED')}</dd></dl>
+          <div class="button-row"><button class="action-btn operations-nav" data-target="blueprint">Open Blueprint</button><button class="action-btn operations-nav" data-target="batch">Open Batch</button><button class="action-btn" disabled>Live Dispatch Locked</button></div>
+        </article>
+        <article class="card"><div class="result-head"><div><h2>Selected Provider + Cluster</h2><p class="muted">Sanitized readiness/capacity preview; not a generation commit</p></div>${route ? badge('READY') : badge('BLOCKED')}</div>
+          ${route ? `<dl class="kv"><dt>Provider</dt><dd>${esc(route.provider_id)}</dd><dt>Cluster</dt><dd>${esc(route.cluster_id)}</dd><dt>Transport</dt><dd>${esc(route.transport)}</dd><dt>Readiness</dt><dd>${badge(route.readiness)}</dd><dt>Capacity</dt><dd>${badge(route.capacity)}</dd><dt>Selection basis</dt><dd>${esc(route.selection_basis)}</dd><dt>Dispatch committed</dt><dd>${route.dispatch_committed ? badge('INVALID') : badge('NONE')}</dd></dl>` : '<p class="notice">No schedulable provider+cluster route is currently visible. Operations fail closed.</p>'}
+          ${d ? `<p class="notice">${d.routing.schedulable_route_count}/${d.routing.candidate_count} route candidates schedulable · provider dispatch remains ${d.routing.dispatch_authority}.</p>` : ''}
+        </article>
+      </div>
+      <div class="grid two" style="margin-bottom:16px">
+        <article class="card"><div class="result-head"><div><h2>Queue / Retry / Backpressure</h2><p class="muted">Unified bounded operational pressure view</p></div>${d ? badge(d.backpressure.state) : badge('UNKNOWN')}</div>
+          ${state.operationsError ? `<p class="notice">${esc(state.operationsError)}</p>` : ''}
+          ${d ? `<div class="cluster-summary"><div><strong>${q.depth}</strong><span>queue depth</span></div><div><strong>${q.running}</strong><span>running</span></div><div><strong>${q.retry_wait}</strong><span>retry wait</span></div><div><strong>${d.backpressure.browser_generation_slots_available}</strong><span>generation slots</span></div></div><dl class="kv"><dt>Ready</dt><dd>${q.ready}</dd><dt>Paused</dt><dd>${q.paused}</dd><dt>Retries used</dt><dd>${q.retries_used}</dd><dt>Recovery reconciliation</dt><dd>${q.reconciliation_required}</dd><dt>Schedulable routes</dt><dd>${d.backpressure.schedulable_routes}</dd><dt>Blocked / busy routes</dt><dd>${d.backpressure.blocked_or_busy_routes}</dd></dl>` : '<p class="muted">Loading operations state…</p>'}
+        </article>
+        <article class="card"><div class="result-head"><div><h2>Cluster Capacity</h2><p class="muted">Sanitized A/B operational budget</p></div>${d ? badge(d.evidence_mode) : badge('UNKNOWN')}</div>
+          ${d ? `<div class="session-list">${d.clusters.map(c=>`<div class="session-row"><div><strong>${esc(c.cluster_id)}</strong><small>${c.open_pages}/${c.max_tabs} open tabs · ${c.active_leases} leases</small></div><div>${badge(c.health)} ${badge(c.broker_state)}</div><div class="session-jobs"><strong>${c.generation_slots_available}</strong> generation slots</div></div>`).join('')}</div>` : '<p class="muted">Loading cluster capacity…</p>'}
+        </article>
+      </div>
+      <article class="card"><div class="result-head"><div><h2>Unified Batch Queue Operations</h2><p class="muted">Retries, backpressure and bounded local START / PAUSE / RESUME / CANCEL controls</p></div><div>${badge('NO PROVIDER DISPATCH')}</div></div>
+        <table><thead><tr><th>Job</th><th>Semantic / Blueprint</th><th>State</th><th>Attempts</th><th>Retries</th><th>Recovery</th><th>Failure</th><th>Controls</th></tr></thead><tbody>${jobs.map(j=>`<tr><td><strong>${esc(j.job_id)}</strong><br><span class="muted">${esc(j.label)}</span></td><td>${esc(j.semantic_asset_id)}<br><span class="muted">${esc(j.blueprint_id)}</span></td><td>${badge(j.state)}</td><td>${j.attempts}</td><td>${j.retries}/2</td><td>${j.recovery_count}</td><td>${esc(j.failure_code||'—')}</td><td>${actionsFor(j).map(([label,action])=>`<button class="action-btn operations-control" data-job-id="${esc(j.job_id)}" data-core-action="${action}">${label}</button>`).join(' ')||'—'}</td></tr>`).join('')}</tbody></table>
+        <p class="notice" style="margin-top:14px">Controls mutate only Factory Core queue state. Route selection shown above is preview-only; provider calls, browser-owner actions and marketplace actions remain zero.</p>
+      </article>`;
+    $$('.operations-control').forEach(button=>button.addEventListener('click',()=>queueAction(button.dataset.jobId,button.dataset.coreAction)));
+    $$('.operations-nav').forEach(button=>button.addEventListener('click',()=>{location.hash=button.dataset.target;activateView(button.dataset.target);}));
   }
 
   async function refreshClusters() {
@@ -312,9 +356,9 @@
       <div class="provider-grid">${routes.map(r => `<article class="provider-card"><header><h3>${esc(r.route_id)}</h3>${badge(r.health)}</header><dl class="kv"><dt>Capacity</dt><dd>${badge(r.capacity)}</dd><dt>FA-124 accepted</dt><dd>${r.accepted_in_fa124}</dd><dt>Cluster</dt><dd>${esc(r.cluster_id)}</dd></dl></article>`).join('')}</div>`;
   }
 
-  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); if(view==='clusters') refreshClusters(); if(view==='providers') refreshProviders(); if(view==='output') refreshOutputs(); if(view==='qc') refreshQC(); if(view==='acceptance') refreshAcceptance(); }
-  const validViews=new Set(['blueprint','batch','queue','clusters','providers','output','qc','acceptance']);
+  function activateView(view) { state.activeView=view; $$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view)); $$('[data-view-panel]').forEach(x=>x.classList.toggle('active',x.dataset.viewPanel===view)); $('#view-title').textContent=view.charAt(0).toUpperCase()+view.slice(1); if(view==='queue') refreshQueue(); if(view==='operations') refreshOperations(); if(view==='clusters') refreshClusters(); if(view==='providers') refreshProviders(); if(view==='output') refreshOutputs(); if(view==='qc') refreshQC(); if(view==='acceptance') refreshAcceptance(); }
+  const validViews=new Set(['blueprint','batch','operations','queue','clusters','providers','output','qc','acceptance']);
   $$('.nav-item').forEach(button=>button.addEventListener('click',()=>{location.hash=button.dataset.view;activateView(button.dataset.view);}));
   window.addEventListener('hashchange',()=>{const v=location.hash.slice(1);if(validViews.has(v))activateView(v);});
-  renderMetrics();renderBlueprint();renderBatch();renderQueue();renderClusters();renderProviders();renderOutput();renderQC();renderAcceptance();const initial=validViews.has(location.hash.slice(1))?location.hash.slice(1):'blueprint';activateView(initial);refreshQueue();refreshClusters();refreshProviders();refreshOutputs();refreshQC();refreshAcceptance();
+  renderMetrics();renderBlueprint();renderBatch();renderOperations();renderQueue();renderClusters();renderProviders();renderOutput();renderQC();renderAcceptance();const initial=validViews.has(location.hash.slice(1))?location.hash.slice(1):'blueprint';activateView(initial);refreshQueue();refreshOperations();refreshClusters();refreshProviders();refreshOutputs();refreshQC();refreshAcceptance();
 })();

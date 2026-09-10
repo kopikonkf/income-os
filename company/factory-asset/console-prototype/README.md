@@ -31,3 +31,7 @@ The Queue view exposes **Run Synthetic E2E**. It calls `POST /api/synthetic/e2e`
 ## FA-C015 live cluster topology
 
 The **Clusters** view calls `GET /api/cluster-topology` and renders sanitized live Cluster A/B broker truth: profile/browser owner identity, tab budget, open pages, active leases/jobs and provider-session readiness/capacity. AUTH_REQUIRED/CHECKPOINT states are rendered as safe operator states without exposing cookies, tokens, OAuth material, profile directories, CDP/control endpoints or lease claim URLs. The view is read-only and does not change the baseline `0 */3 * * *` production cadence or authorize the 100/day scale lane.
+
+## FA-C016 unified operations surface
+
+The **Operations** view calls `GET /api/operations` and joins the current browser-local compiled Blueprint/batch intent with sanitized Factory Core queue, provider-cluster route preview, retries, recovery state, cluster generation-slot pressure and bounded queue controls in one screen. `START`, `PAUSE`, `RESUME`, `CANCEL` and `RETRY` still act only on `FactoryJobQueue`; the selected provider+cluster is explicitly a readiness/capacity preview, not a dispatch commitment. Provider calls, browser-owner actions, secret/session material and marketplace actions remain outside Console authority.
