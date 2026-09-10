@@ -904,3 +904,16 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Canonical evidence: `company/factory-asset/fixtures/scale/FA-123-downstream-capacity-evidence.json` (Linux source SHA256 `28afd9ab6ffc25ef7d0cefc88b77f584cd1aa3b894119763374303038fa843f9`). Receipt: `company/factory-asset/receipts/FA-123-downstream-capacity.receipt.json`.
 - Dependency reconciliation: `FA-124 = READY`, but remains `FOUNDER_REQUIRED_FOR_LIVE_LOAD`; FA-123 does not authorize the 100-live-master canary.
 - FA-123 final Linux validation: 761 Factory PASS, focused acceptance 10 PASS, one-canon 6 PASS, validator 11/11 PASS, secret hits 0.
+
+
+---
+
+## 2026-09-10 - Phase 7 internal-evolution roadmap added after FA-125 HOLD discussion
+- Founder authorized adding the discussed internal Factory work to the canonical atomic task graph while production scale remains held. This amendment does not ratify or alter FA-125; `FA-125` remains `WAITING_FOUNDER`, `FA-126` remains `DEFERRED`, baseline production cadence remains `0 */3 * * *`, and `scale_100_per_day=false`.
+- `FA-316` through `FA-332` define five bounded tracks: PRODUCTION_BASELINE, NATIVE_VECTOR, FOUNDER_OBSERVABILITY, PROFILE_POOL and PRODUCTION_INTELLIGENCE. Only `FA-316` is READY at publication; downstream work remains dependency-blocked.
+- Baseline lane first canonicalizes media-family/mode/preset/master/derivative/package terminology, then preserves `ISOLATED_CARTOON_WATERCOLOR_L0` as the champion isolated-object line while converging Hermes cognition to Asset Blueprint v2 and proving the exact provider-original -> package-ready -> Founder-QC state path.
+- Native-vector lane defines Claude as a candidate genuine SVG producer for ICON/OUTLINE, requires SVG safety/editability/render QA and derivatives, and keeps the route UNAVAILABLE_NOT_ACCEPTED until a separately Founder-authorized bounded live canary passes.
+- Founder-observability lane specifies local/private display visibility, then bounded VNC attachment to the actual production X displays and a temporary interactive auth/recovery view; CDP/broker/debug ports remain non-public and credential/cookie/token extraction is forbidden.
+- Profile-pool lane models 20-50 persistent authorized profiles as inventory, not 20-50 simultaneously running Chromium owners. The existing FA-312 active-owner ceiling remains authoritative until bounded remeasurement; FA-327 extends FA-306 with profile-aware health/fairness/circuit/backpressure scheduling rather than blind round-robin.
+- Production-intelligence lane implements the canonical Dual-Atlas doctrine: Object Primitive x bounded Human Demand Context x Product Expression, sparse seed x semantic-mode x preset opportunity planning, and semantic-expression-level reuse so one noun is not globally consumed after one raster manifestation. Exhaustive Cartesian production remains forbidden.
+- Validation after amendment: focused cross-contract suite 42/42 PASS; full Linux Factory regression 826/826 PASS with one expected PyPDF2 deprecation warning and only the canonical out-of-scope FA-121 live-broker oneshot test excluded.
