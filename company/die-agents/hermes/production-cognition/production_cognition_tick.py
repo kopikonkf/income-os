@@ -12,6 +12,9 @@ BP_SCHEMA=HERE/'die.production.family-blueprint.v1.schema.json'
 REVIEW_SCHEMA=HERE/'die.production.family-blueprint-review.v1.schema.json'
 RECEIPT_SCHEMA=HERE/'die.production.cognition-receipt.v1.schema.json'
 VALIDATOR=HERE/'validate_production_cognition.py'
+FACTORY_LIB=DIE_HOME/'company/factory-asset/lib'
+sys.path.insert(0,str(FACTORY_LIB))
+import pre_generation_contract as pregen
 DEFAULT_WORKSPACES=Path('/var/lib/die/workspaces')
 DEFAULT_DB=Path('/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db')
 DEFAULT_STATE_ROOT=Path('/var/lib/die/state/production-cognition')
@@ -93,6 +96,23 @@ def review_prompt(req_id:str,task:str,repo_sha:str,bp:dict[str,Any])->str:
  h=csha(bp)
  return f'''You are the bound DIE Linux Executive cognition principal `{EXEC}`. This is an authorized autonomous internal review request from Hermes. {_context_instruction(EXEC,req_id,repo_sha)}\n\nPerform READ_ONLY_CHALLENGE of this production family Blueprint. Do not edit or rewrite it. Check commercial coherence, obvious rights/safety risks, prompt/negative-constraint contradictions, family differentiation, and whether it stays truthful about OBJECT_ATLAS_ONLY_HYPOTHESIS evidence. This review grants no production, submission, publication or spend authority. For a usable routine Blueprint return NO_VETO; use REVISE only for material semantic defects; VETO_PENDING_EVIDENCE only when missing evidence makes production unsafe/misleading; ESCALATE_FOUNDER only for sovereignty/strategy decisions. Return exactly one JSON object, no markdown.\n\nREQUEST_ID={req_id}\nTASK_ID={task}\nREPOSITORY_SHA={repo_sha}\nBLUEPRINT_SHA256={h}\nBLUEPRINT={json.dumps(bp,separators=(',',':'))}\n\nResponse shape: {{"schema_version":"die.production.family-blueprint-review.v1","request_id":"{req_id}","review_id":"BP-REVIEW-PROD-<ID>","task_id":"{task}","repository_sha":"{repo_sha}","principal":{{"principal_id":"{EXEC}","role":"REVIEWER"}},"blueprint":{{"blueprint_id":"{bp['blueprint_id']}","sha256":"{h}"}},"outcome":"NO_VETO|REVISE|VETO_PENDING_EVIDENCE|ESCALATE_FOUNDER","rationale":"20+ chars","required_actions":[],"review_mode":"READ_ONLY_CHALLENGE","semantic_content_authored":false,"authority_effect":"NONE"}}'''
 
+def subject_prompt(req_id:str,task:str,repo_sha:str,snap:dict[str,Any],bp:dict[str,Any])->str:
+ seed=snap['seed']
+ return f'''You are the bound DIE Linux Division01 cognition principal `{DIV}`. This is an authorized internal subject-specification request from Hermes. {_context_instruction(DIV,req_id,repo_sha)}
+
+Author structured pre-generation subject truth for the exact Object Atlas seed and already Executive-reviewed family Blueprint below. This is NOT an image prompt and NOT style art direction. Describe only what the subject must visibly contain to remain recognizable and commercially useful. For simple objects, essential_components MAY be empty if recognition anchors and primary form are sufficient. For compound/prepared subjects, enumerate materially required visible components. Use generic, unbranded, rights-safe common-form knowledge; do not invent logos, trademarks, readable text, people, external market evidence, platform acceptance or seller claims. If the subject is materially ambiguous and a safe recognizable specification cannot be authored from the seed + reviewed Blueprint, return the standard blocked object instead. Return EXACTLY one JSON object, no markdown.
+
+REQUEST_ID={req_id}
+TASK_ID={task}
+REPOSITORY_SHA={repo_sha}
+SEED={json.dumps(seed,separators=(',',':'))}
+REVIEWED_BLUEPRINT_ID={bp['blueprint_id']}
+REVIEWED_BLUEPRINT_SHA256={csha(bp)}
+
+Required response shape:
+{{"schema":"die.factory-asset.subject-spec.v1","subject_spec_id":"FASS-<UPPERCASE_ID>","seed_id":"{seed['id']}","canonical_name":{json.dumps(seed['canonical_name'])},"subject_class":"SIMPLE_OBJECT|PREPARED_FOOD|PLANT|ANIMAL|TOOL|CONTAINER|FURNITURE|VEHICLE|DECOR|OTHER","primary_form":"8+ char recognizable generic form","essential_components":[{{"name":"...","description":"...","placement":"..."}}],"recognition_anchors":["..."],"natural_attributes":["..."],"spatial_relationships":["..."],"forbidden_subject_mutations":["..."],"evidence":{{"basis":"OBJECT_ATLAS_PLUS_COGNITION","refs":["{seed['id']}","{bp['blueprint_id']}"]}}}}'''
+
+
 def validate_blocked_response(v:dict[str,Any],req:dict[str,Any])->list[str]:
  e=[]
  if v.get('schema')!='die.cognition.blocked.v1':e.append('E_BLOCKED_SCHEMA')
@@ -129,7 +149,7 @@ def validation(kind:str,artifact:Path,req:Path,*,seed:Path|None=None,bp:Path|Non
 def write_receipt(workspace:Path,kind:str,req:dict,artifact:dict,transport_out:dict,validation_out:dict)->Path:
  cogn=workspace/'cognition'; recdir=cogn/'receipts'; recdir.mkdir(parents=True,exist_ok=True)
  tpath=Path(transport_out['receipt_ref']); vpath=recdir/f"{req['request_id']}.validation.json"; atomic_json(vpath,validation_out)
- artifact_id=artifact.get('blueprint_id') or artifact.get('review_id') or req['request_id']
+ artifact_id=artifact.get('blueprint_id') or artifact.get('review_id') or artifact.get('subject_spec_id') or req['request_id']
  rec={'schema':'die.production.cognition-receipt.v1','kind':kind,'task_id':req['task_id'],'request_id':req['request_id'],'principal_id':req['target_principal_id'],'artifact_id':artifact_id,'artifact_sha256':csha(artifact),'transport_receipt_ref':str(tpath),'transport_receipt_sha256':sha_bytes(tpath.read_bytes()),'validation_ref':str(vpath),'validation_sha256':sha_bytes(vpath.read_bytes()),'status':'VALID','authority_effect':'NONE','recorded_at':now()}
  schema=json.loads(RECEIPT_SCHEMA.read_text()); jsonschema.Draft202012Validator(schema,format_checker=jsonschema.FormatChecker()).validate(rec); p=recdir/f"{req['request_id']}.receipt.json"; atomic_json(p,rec); return p
 
@@ -177,6 +197,11 @@ def record_transport_timeout(state:dict[str,Any],*,stage:str,request_id:str,lane
   retryable=n<=MAX_CONTEXT_RETRIES;state['stage']='NEED_REVIEW' if retryable else 'WAITING_FOUNDER'
   state['history'].append({'at':now(),'event':'TRANSPORT_RESPONSE_TIMEOUT','request_id':request_id,'lane':'REVIEW','attempt':n,'retryable':retryable})
   return {'retryable':retryable,'attempt':n,'stage':state['stage']}
+ if lane=='SUBJECT':
+  n=int(state.get('subject_attempt',0))+1;state['subject_attempt']=n
+  retryable=n<MAX_SEMANTIC_ATTEMPTS;state['stage']='NEED_SUBJECT' if retryable else 'WAITING_FOUNDER'
+  state['history'].append({'at':now(),'event':'TRANSPORT_RESPONSE_TIMEOUT','request_id':request_id,'lane':'SUBJECT','attempt':n,'retryable':retryable})
+  return {'retryable':retryable,'attempt':n,'stage':state['stage']}
  raise RuntimeError('E_TIMEOUT_LANE')
 
 def repair_context_recovery_state(state:dict[str,Any],*,author_artifact_exists:bool)->bool:
@@ -218,11 +243,11 @@ def tick(args)->dict[str,Any]:
  if not m:raise RuntimeError('E_SEED_FIELD')
  seed_id=m.group(1); repo_sha=subprocess.check_output(['git','-c',f'safe.directory={args.repo}','-C',args.repo,'rev-parse','HEAD'],text=True).strip()
  cogn=workspace/'cognition'; outbox=cogn/'outbox'; responses=cogn/'responses'; outbox.mkdir(parents=True,exist_ok=True); responses.mkdir(parents=True,exist_ok=True)
- statep=cogn/'state.json'; state=read_json(statep) if statep.exists() else {'schema':'die.production.cognition-state.v1','task_id':task,'stage':'NEED_AUTHOR','author_attempt':0,'review_attempt':0,'revision':0,'history':[]}
+ statep=cogn/'state.json'; state=read_json(statep) if statep.exists() else {'schema':'die.production.cognition-state.v1','task_id':task,'stage':'NEED_AUTHOR','author_attempt':0,'review_attempt':0,'subject_attempt':0,'revision':0,'history':[]}
  snap_path=cogn/'seed-snapshot.json'
  if not snap_path.exists():atomic_json(snap_path,seed_snapshot(Path(args.db),seed_id,repo_sha))
  snap=read_json(snap_path)
- stage=state['stage']; revision=int(state.get('revision',0)); attempt=int(state.get('author_attempt',0)); review_attempt=int(state.get('review_attempt',0))
+ stage=state['stage']; revision=int(state.get('revision',0)); attempt=int(state.get('author_attempt',0)); review_attempt=int(state.get('review_attempt',0)); subject_attempt=int(state.get('subject_attempt',0))
  if repair_context_recovery_state(state,author_artifact_exists=(cogn/'blueprint.author.json').is_file()):
   atomic_json(statep,state);stage=state['stage'];attempt=int(state.get('author_attempt',0));review_attempt=int(state.get('review_attempt',0))
  if stage in {'BLOCKED_EVIDENCE','WAITING_FOUNDER','READY'}:return {'schema':'die.production.cognition-tick.v1','status':'IDLE','task_id':task,'stage':stage}
@@ -248,6 +273,36 @@ def tick(args)->dict[str,Any]:
   art=cogn/'blueprint.author.json'; atomic_json(art,parsed); val=validation('blueprint',art,reqp,seed=snap_path)
   if val['status']!='PASS': attempt+=1; state['author_attempt']=attempt; state['stage']='NEED_REVISION' if stage=='NEED_REVISION' else 'NEED_AUTHOR'; state['history'].append({'at':now(),'event':'AUTHOR_INVALID','request_id':rid,'errors':val['errors'][:10]}); atomic_json(statep,state); return {'schema':'die.production.cognition-tick.v1','status':'RETRY','task_id':task,'stage':state['stage'],'errors':val['errors'][:10]}
   rec=write_receipt(workspace,'BLUEPRINT_AUTHOR',req,parsed,tr,val); state['stage']='NEED_REVIEW'; state['author_attempt']=0; state['review_attempt']=0; state['latest_author_receipt']=str(rec); state['history'].append({'at':now(),'event':'AUTHOR_VALID','request_id':rid,'artifact_sha256':csha(parsed),'receipt':str(rec)}); atomic_json(statep,state); return {'schema':'die.production.cognition-tick.v1','status':'ADVANCED','task_id':task,'from':stage,'to':'NEED_REVIEW','request_id':rid}
+ if stage=='NEED_SUBJECT':
+  bp=read_json(cogn/'blueprint.author.json'); review=read_json(cogn/'blueprint.review.json')
+  if review.get('outcome')!='NO_VETO':raise RuntimeError('E_SUBJECT_WITHOUT_NO_VETO')
+  if subject_attempt>=MAX_SEMANTIC_ATTEMPTS:
+   state['stage']='WAITING_FOUNDER';state['history'].append({'at':now(),'event':'SUBJECT_ATTEMPTS_EXHAUSTED'});atomic_json(statep,state);return {'schema':'die.production.cognition-tick.v1','status':'BLOCKED','task_id':task,'reason':'E_SUBJECT_ATTEMPTS_EXHAUSTED'}
+  rid=request_id(task,'SUBJECT_SPEC',subject_attempt); prompt=subject_prompt(rid,task,repo_sha,snap,bp)
+  req=envelope(rid=rid,task=task,action='PRODUCTION_SUBJECT_SPEC_AUTHOR',target=DIV,prompt=prompt,response_schema='die.factory-asset.subject-spec.v1',repo_sha=repo_sha,evidence=[{'ref':str(snap_path),'sha256':csha(snap)},{'ref':str(cogn/'blueprint.author.json'),'sha256':csha(bp)},{'ref':str(cogn/'blueprint.review.json'),'sha256':csha(review)}]); reqp=outbox/f'{rid}.json'; resp=responses/f'{rid}.txt'; trp=principal_transport_receipt(req); req=ensure_request(reqp,req,response_path=resp,transport_receipt_path=trp)
+  try:tr=run_or_reuse_transport(args.node,Path(args.transport),reqp,resp,req)
+  except RuntimeError as e:
+   if not is_response_timeout_error(e):raise
+   timeout=record_transport_timeout(state,stage=stage,request_id=rid,lane='SUBJECT');atomic_json(statep,state);return {'schema':'die.production.cognition-tick.v1','status':'RETRY' if timeout['retryable'] else 'BLOCKED','task_id':task,'reason':'E_RESPONSE_TIMEOUT','subject_attempt':timeout['attempt'],'stage':timeout['stage']}
+  parsed=parse_response(resp.read_text(encoding='utf-8'))
+  if parsed.get('schema')=='die.cognition.blocked.v1':
+   be=validate_blocked_response(parsed,req)
+   if be:raise RuntimeError('E_BLOCKED_RESPONSE_BINDING:'+','.join(be))
+   subject_attempt+=1;retryable=parsed.get('reason_code')=='E_CONTEXT_CONVERGENCE' and subject_attempt<MAX_SEMANTIC_ATTEMPTS;state['subject_attempt']=subject_attempt;state['stage']='NEED_SUBJECT' if retryable else 'WAITING_FOUNDER';state['history'].append({'at':now(),'event':'SUBJECT_PRINCIPAL_BLOCKED','request_id':rid,'reason':parsed.get('reason_code'),'retryable':retryable});atomic_json(statep,state);return {'schema':'die.production.cognition-tick.v1','status':'RETRY' if retryable else 'BLOCKED','task_id':task,'reason':parsed.get('reason_code'),'subject_attempt':subject_attempt}
+  art=cogn/'subject-spec.author.json'; atomic_json(art,parsed); val=validation('subject',art,reqp,seed=snap_path,bp=cogn/'blueprint.author.json')
+  if val['status']!='PASS':
+   subject_attempt+=1;state['subject_attempt']=subject_attempt;state['stage']='NEED_SUBJECT' if subject_attempt<MAX_SEMANTIC_ATTEMPTS else 'WAITING_FOUNDER';state['history'].append({'at':now(),'event':'SUBJECT_INVALID','request_id':rid,'errors':val['errors'][:10]});atomic_json(statep,state);return {'schema':'die.production.cognition-tick.v1','status':'RETRY' if state['stage']=='NEED_SUBJECT' else 'BLOCKED','task_id':task,'stage':state['stage'],'errors':val['errors'][:10]}
+  subject_rec=write_receipt(workspace,'SUBJECT_SPEC_AUTHOR',req,parsed,tr,val)
+  pre=pregen.write_pre_generation_contract(workspace=workspace,legacy_blueprint=bp,legacy_blueprint_sha256=csha(bp),subject_spec=parsed)
+  author_rec=Path(state.get('latest_author_receipt','')); review_rec=Path(state.get('latest_review_receipt',''))
+  if not author_rec.is_file():raise RuntimeError('E_AUTHOR_RECEIPT_MISSING')
+  if not review_rec.is_file():raise RuntimeError('E_REVIEW_RECEIPT_MISSING')
+  final=workspace/'blueprint.json'; atomic_json(final,bp); lock=fixed_lock(workspace,bp,review,author_rec,review_rec)
+  lockv=read_json(lock); lockv.update({'subject_spec_id':parsed['subject_spec_id'],'subject_spec_sha256':csha(parsed),'subject_receipt_sha256':sha_bytes(subject_rec.read_bytes()),'pre_generation_lock_sha256':csha(pre['lock']),'provider_prompt_sha256':pre['compiled_prompt']['provider_prompt_sha256'],'asset_blueprint_v2_sha256':csha(pre['blueprint'])}); atomic_json(lock,lockv)
+  state['stage']='READY'; state['latest_subject_receipt']=str(subject_rec); state['history'].append({'at':now(),'event':'PRE_GENERATION_CONTRACT_LOCKED','subject_spec_sha256':csha(parsed),'provider_prompt_sha256':pre['compiled_prompt']['provider_prompt_sha256'],'asset_blueprint_v2_sha256':csha(pre['blueprint'])}); atomic_json(statep,state)
+  update_progress(workspace,state='BLUEPRINT_READY',blueprint_status=f"TYPED_PREGEN_LOCKED {pre['blueprint']['blueprint_id']} prompt_sha256={pre['compiled_prompt']['provider_prompt_sha256']}",next_action='Dispatch bounded Worker from verified compiled provider prompt; then MUXIA generation.')
+  resume=trigger_resume(args.hermes_bin,args.hermes_home,args.production_job_id,workspace) if not args.no_resume else {'triggered':False,'reason':'NO_RESUME_TEST_MODE'}
+  return {'schema':'die.production.cognition-tick.v1','status':'BLUEPRINT_READY','task_id':task,'blueprint_id':bp['blueprint_id'],'blueprint_sha256':csha(bp),'asset_blueprint_v2_id':pre['blueprint']['blueprint_id'],'provider_prompt_sha256':pre['compiled_prompt']['provider_prompt_sha256'],'pre_generation_lock_ref':str(pre['root']/'pre-generation-lock.json'),'lock_ref':str(lock),'resume':resume}
  if stage=='NEED_REVIEW':
   bp=read_json(cogn/'blueprint.author.json'); rid=request_id(task,'BP_REVIEW',revision*10+review_attempt); prompt=review_prompt(rid,task,repo_sha,bp); req=envelope(rid=rid,task=task,action='PRODUCTION_BLUEPRINT_REVIEW',target=EXEC,prompt=prompt,response_schema='die.production.family-blueprint-review.v1',repo_sha=repo_sha,evidence=[{'ref':str(cogn/'blueprint.author.json'),'sha256':csha(bp)}]); reqp=outbox/f'{rid}.json'; resp=responses/f'{rid}.txt'; trp=principal_transport_receipt(req); req=ensure_request(reqp,req,response_path=resp,transport_receipt_path=trp)
   try:tr=run_or_reuse_transport(args.node,Path(args.transport),reqp,resp,req)
@@ -267,9 +322,9 @@ def tick(args)->dict[str,Any]:
   if val['status']!='PASS': state['stage']='WAITING_FOUNDER'; state['history'].append({'at':now(),'event':'REVIEW_INVALID','request_id':rid,'errors':val['errors'][:10]}); atomic_json(statep,state); return {'schema':'die.production.cognition-tick.v1','status':'BLOCKED','task_id':task,'reason':'E_REVIEW_INVALID','errors':val['errors'][:10]}
   rec=write_receipt(workspace,'BLUEPRINT_EXEC_REVIEW',req,parsed,tr,val); outcome=parsed['outcome']; state['history'].append({'at':now(),'event':'REVIEW_VALID','request_id':rid,'outcome':outcome,'receipt':str(rec)})
   if outcome=='NO_VETO':
-   final=workspace/'blueprint.json'; atomic_json(final,bp); author_rec=Path(state.get('latest_author_receipt',''));
-   if not author_rec.is_file(): raise RuntimeError('E_AUTHOR_RECEIPT_MISSING')
-   lock=fixed_lock(workspace,bp,parsed,author_rec,rec); state['stage']='READY'; atomic_json(statep,state); update_progress(workspace,state='BLUEPRINT_READY',blueprint_status=f"FIXED {bp['blueprint_id']} sha256={csha(bp)}",next_action='Dispatch bounded Worker from fixed Blueprint; then MUXIA generation.'); resume=trigger_resume(args.hermes_bin,args.hermes_home,args.production_job_id,workspace) if not args.no_resume else {'triggered':False,'reason':'NO_RESUME_TEST_MODE'}; return {'schema':'die.production.cognition-tick.v1','status':'BLUEPRINT_READY','task_id':task,'blueprint_id':bp['blueprint_id'],'blueprint_sha256':csha(bp),'lock_ref':str(lock),'resume':resume}
+   state['stage']='NEED_SUBJECT'; state['subject_attempt']=0; state['latest_review_receipt']=str(rec); atomic_json(statep,state)
+   update_progress(workspace,state='BLUEPRINT_REQUIRED',blueprint_status=f"REVIEWED {bp['blueprint_id']} sha256={csha(bp)}; SUBJECT_SPEC_REQUIRED",next_action='Author typed Subject Spec, compile pre-generation visual contract, then freeze provider prompt.')
+   return {'schema':'die.production.cognition-tick.v1','status':'ADVANCED','task_id':task,'from':'NEED_REVIEW','to':'NEED_SUBJECT','request_id':rid}
   if outcome=='REVISE':
    revision+=1
    if revision>MAX_REVISIONS:state['stage']='WAITING_FOUNDER'; reason='E_REVISION_LIMIT'
