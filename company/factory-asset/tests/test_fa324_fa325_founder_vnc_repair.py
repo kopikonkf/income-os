@@ -37,7 +37,13 @@ def test_interactive_repair_is_idle_only_time_bound_and_restores_read_only_view(
  assert "'captcha_bypass_authorized':False" in s
  assert "credential_values_read':False" in s and "cookies_or_tokens_read':False" in s
  assert "systemctl','stop',cfg['view_service']" in s and "systemctl','start',cfg['view_service']" in s
- assert "mode','interactive'" in s
+ assert "systemctl','start',cfg['interactive_service']" in s
+ assert "systemctl','stop',cfg['interactive_service']" in s
+ for cid,display,port,browser in [('a',101,59201,'die-muxia-cluster-a-browser.service'),('b',102,59202,'die-muxia-cluster-b-browser.service')]:
+  unit=(ROOT/f'company/factory-asset/systemd/die-founder-repair-vnc-cluster-{cid}.service').read_text(encoding='utf-8')
+  assert f'--display {display} --port {port} --mode interactive' in unit
+  assert f'JoinsNamespaceOf={browser}' in unit
+  assert 'PrivateTmp=true' in unit
 
 def test_production_dispatch_skips_cluster_with_active_founder_repair_hold():
  s=DISPATCH.read_text(encoding='utf-8')
