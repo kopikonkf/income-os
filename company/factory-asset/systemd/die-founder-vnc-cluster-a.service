@@ -2,6 +2,7 @@
 Description=Founder read-only VNC mirror for Factory Cluster A production display
 Requires=die-muxia-cluster-a-browser.service
 After=die-muxia-cluster-a-browser.service
+JoinsNamespaceOf=die-muxia-cluster-a-browser.service
 
 [Service]
 Type=simple
@@ -12,7 +13,7 @@ ExecStart=/usr/bin/bash /opt/die/factory-asset-observability/founder_vnc_view.sh
 Restart=on-failure
 RestartSec=3
 NoNewPrivileges=true
-PrivateTmp=false
+PrivateTmp=true
 
 [Install]
 WantedBy=multi-user.target

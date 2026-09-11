@@ -19,6 +19,9 @@ def test_systemd_units_target_exact_production_displays_and_private_ports():
  assert '--display 101 --port 59101 --mode read-only' in a
  assert '--display 102 --port 59102 --mode read-only' in b
  assert 'die-muxia-cluster-a-browser.service' in a and 'die-muxia-cluster-b-browser.service' in b
+    assert 'JoinsNamespaceOf=die-muxia-cluster-a-browser.service' in a
+    assert 'JoinsNamespaceOf=die-muxia-cluster-b-browser.service' in b
+    assert 'PrivateTmp=true' in a and 'PrivateTmp=true' in b
  assert '/opt/die/factory-asset-observability/founder_vnc_view.sh' in a+b
 
 def test_installer_does_not_restart_browser_owner_or_expose_public_endpoint():
