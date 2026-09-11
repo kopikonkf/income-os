@@ -1,4 +1,4 @@
-# DIE Engineering Lease v1
+﻿# DIE Engineering Lease v1
 
 **Date:** 2026-09-03
 **Status:** CANONICAL OPERATIONAL COORDINATION PRIMITIVE after merge
@@ -37,7 +37,7 @@ Each resource is protected by a kernel-held guard lock. The guard is released au
 
 Lease records contain only non-secret coordination metadata: resource, random owner token, logical owner, task ID, host, PID, acquisition timestamp, expiry timestamp and TTL.
 
-Default TTL is 5,400 seconds (90 minutes), bounded by the helper to 300..7,200 seconds. A normally completed run must release both leases in `finally`. If a run crashes and leaves records behind, a later acquisition may reclaim them only after expiry while holding the resource guard. Corrupt or unparsable lease state fails closed.
+Default requested TTL is 900 seconds (15 minutes). Requests remain syntactically compatible with the historical 300..7,200 second range, but every acquire or renewal is capped to an effective 1,800 seconds (30 minutes). A normally completed run must release both leases in `finally`. If publication legitimately exceeds the effective TTL, the same token-bound pair must be renewed explicitly before expiry. Expired leases cannot be renewed. If a run crashes and leaves records behind, a later acquisition may reclaim them only after expiry while holding the resource guard. Corrupt or unparsable lease state fails closed.
 
 The release path verifies the random token. One runner cannot release another runner's active lease.
 
@@ -67,6 +67,22 @@ python bin/die_engineering_lease.py release-pair \
   --state-file "D:\mcp-architect\workspace\.engineering-leases\factory-asset-FA-001.run.json"
 ```
 
+
+Renew, only when an active publication legitimately needs more time:
+
+```text
+python bin/die_engineering_lease.py renew-pair \
+  --state-file "D:\mcp-architect\workspace\.engineering-leases\factory-asset-FA-001.run.json"
+```
+
+Expired coordination records may be garbage-collected safely without touching active leases:
+
+```text
+python bin/die_engineering_lease.py purge-expired \
+  --lease-root "D:\mcp-architect\workspace\.engineering-leases"
+```
+
+Acquire the pair immediately before the first remote repository mutation, not at chat/session start. This keeps the global writer lock short-lived even when research, tests, browsing, or local implementation takes a long time.
 Inspection is read-only:
 
 ```text

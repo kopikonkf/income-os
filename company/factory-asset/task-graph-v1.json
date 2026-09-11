@@ -10,7 +10,7 @@
   "execution_policy": {
     "selection_rule": "Execute exactly one eligible highest-priority READY atomic leaf, or one task explicitly marked acceptance_batch=true, per scheduled run; then STOP.",
     "ssot_rule": "Read current origin/main, LASTSTANDINGPOINT.md, this graph, relevant receipts, and all active engineering leases before selection.",
-    "lease_rule": "Before any remote repository mutation, acquire both income-os.repo-write and factory-asset.<task_id> through bin/die_engineering_lease.py using the shared Architect MCP coordination root D:\\mcp-architect\\workspace\\.engineering-leases; release both in finally. BUSY, corrupt, or token-mismatch states fail closed.",
+    "lease_rule": "Before any remote repository mutation, acquire both income-os.repo-write and factory-asset.<task_id> through bin/die_engineering_lease.py using the shared Architect MCP coordination root D:\\mcp-architect\\workspace\\.engineering-leases. Acquire late, default 15m, effective max 30m per renewal; renew explicitly if needed; release in finally. BUSY, corrupt, or token-mismatch states fail closed.",
     "dirty_tree_rule": "Do not mutate, reset, stash, clean, or repurpose the live dirty C:\\DIE or D:\\OAUTH trees.",
     "linux_rule": "Use a fresh Linux-native isolated worktree/check-out based on current origin/main for Linux-target implementation and tests; never build in or mutate the live /srv/die checkout.",
     "production_protection_rule": "The live Linux Production Organism and die-production-cycle-v1 at 0 */3 * * * are observation-only for this program: no deploy, restart, stop, reconfiguration, profile/credential/queue/database write, cron mutation, active-artifact mutation, or cutover.",
@@ -55,7 +55,7 @@
         "income-os.repo-write",
         "factory-asset.{task_id}"
       ],
-      "default_ttl_seconds": 5400,
+      "default_ttl_seconds": 900,
       "acquire_required_before": [
         "git push",
         "PR create/update",
@@ -63,7 +63,12 @@
         "canonical repository publication"
       ],
       "read_only_requires_lease": false,
-      "stale_recovery": "Expired records may be reclaimed only by the canonical helper while holding the kernel guard; corrupt state fails closed."
+      "stale_recovery": "Expired records may be purged/reclaimed only by the canonical helper while holding each resource kernel guard; active, corrupt, and token-mismatch states fail closed.",
+      "session_safe_max_ttl_seconds": 1800,
+      "renew_command": "bin/die_engineering_lease.py renew-pair --state-file <state> [--ttl-seconds N]",
+      "expired_record_gc": "bin/die_engineering_lease.py purge-expired --lease-root <coordination-root>",
+      "acquire_timing": "Acquire immediately before remote repository mutation, not at task/session start.",
+      "renewal_rule": "If publication legitimately exceeds the effective TTL, renew explicitly while the token-bound pair is still ACTIVE; expired leases cannot be renewed."
     }
   },
   "execution_lanes": {

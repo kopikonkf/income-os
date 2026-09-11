@@ -4026,3 +4026,15 @@ H01 now runs canonical `mcp-architect` v0.2.0 from `/srv/mcp-architect` at `1c3c
 ## 2026-09-08 - SUB-001 DONE/PASS via Mission Control reviewed canonical writeback
 
 Mission Control task `SUB-001` completed through automatic canonical intake, owner execution and independent review PASS. Canonical graph transitions: `SUB-001 READY->DONE`, `SUB-ADOBEA BLOCKED->READY`, `SUB-DREAMSTIMEA BLOCKED->READY`, `SUB-123RFA BLOCKED->READY`, `SUB-VECTEEZYA BLOCKED->READY`, `SUB-MOTIONELEMENTSA BLOCKED->READY`. Receipt: `company/muxia/receipts/SUB-001-mission-control-auto-acceptance.receipt.json`. No external marketplace submission, spend, credential mutation, or live-load authority was granted by this writeback.
+
+
+---
+
+## 2026-09-11 - Engineering lease lifecycle hardening
+
+- `FA-LEASE-002` hardens the shared `income-os.repo-write` protocol against chat/session termination leaving long-lived BUSY records.
+- Default TTL is now 900s; every acquire/renew is capped to an effective 1800s even if a legacy caller requests longer.
+- New `renew-pair` explicitly extends a still-live token-bound lease; expired leases cannot be renewed.
+- New `purge-expired` removes only expired records while holding the per-resource kernel guard; active/corrupt/token-mismatch state remains fail-closed.
+- Protocol doctrine: acquire immediately before publication, never at session start; release in `finally`.
+- Focused lease regression: 8/8 PASS.
