@@ -154,7 +154,9 @@ def select_seed(db_path: Path, workspaces_root: Path, *, ledger_path: Path | Non
         commercial_expression = commercial_expression_override or (expression or {}).get('commercial_expression') or f"isolated {row['canonical_name']} stock design component"
         identity = expression_identity(seed_id=seed_id,noun=str(row['canonical_name']),semantic_mode=semantic_mode,commercial_expression=commercial_expression,preset_id=preset_id,preset_revision=preset_revision)
         baseline_compat = semantic_mode == BASELINE_MODE and preset_id == BASELINE_PRESET_ID and preset_revision == BASELINE_PRESET_REVISION
-        # Legacy noun/seed history blocks only the historical baseline expression. It must not globally consume other modes/presets.
+        # Workspace/legacy noun history blocks only the historical baseline expression. It must not globally consume other modes/presets.
+        if baseline_compat and (seed_id in used or normalize_noun(str(row['canonical_name'])) in used_names):
+            continue
         if not expression_available(ledger_path,identity,legacy_baseline_compatibility=baseline_compat):
             continue
         return {
