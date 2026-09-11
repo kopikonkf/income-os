@@ -1,0 +1,27 @@
+{
+  "schema": "die.factory-asset.engineering-lease-lifecycle-hardening.receipt.v1",
+  "task": "FA-LEASE-002",
+  "date": "2026-09-11",
+  "status": "PASS",
+  "problem": "SESSION_TERMINAL_BUT_DURABLE_REPO_LEASE_REMAINS_BUSY_UNTIL_LONG_TTL_EXPIRY",
+  "resolution": {
+    "protocol": "die.engineering-lease.v1",
+    "implementation": "bin/die_engineering_lease.py",
+    "default_ttl_seconds": 900,
+    "effective_max_ttl_seconds_per_acquire_or_renew": 1800,
+    "legacy_requested_ttl_compatibility": "requests up to 7200 remain accepted but are capped to the session-safe effective maximum",
+    "renew_pair": true,
+    "purge_expired": true,
+    "release_in_finally_required": true,
+    "acquire_late_required": true,
+    "active_or_corrupt_record_policy": "FAIL_CLOSED"
+  },
+  "validation": {
+    "focused_tests": "8 passed",
+    "long_ttl_cap_test": "PASS",
+    "token_bound_renew_test": "PASS",
+    "expired_only_purge_test": "PASS"
+  },
+  "operational_effect": "A crashed/ended session can no longer reserve income-os.repo-write for more than 30 minutes from its last explicit acquire/renew. Normal publication uses a 15-minute default and may renew explicitly if genuinely necessary.",
+  "authority": "reversible engineering coordination hardening; no production runtime, marketplace, credential, or provider mutation."
+}

@@ -105,3 +105,40 @@ def test_corrupt_active_record_fails_closed(tmp_path):
 def test_resource_names_are_sanitized():
     assert lease._resource_filename("income-os:repo-write") == "income-os_repo-write"
     assert lease._resource_filename("factory-asset.FA-001") == "factory-asset.FA-001"
+
+
+def test_pair_ttl_is_short_lived_and_long_request_is_capped(tmp_path):
+    root = tmp_path / "leases"; state = tmp_path / "state.json"
+    args = _args(root,state); args.ttl_seconds = 7200
+    acquired = lease.acquire_pair(args)
+    assert acquired["requested_ttl_seconds"] == 7200
+    assert acquired["effective_ttl_seconds"] == lease.SESSION_SAFE_MAX_TTL_SECONDS == 1800
+    record = json.loads((root / "income-os.repo-write.lease.json").read_text())
+    assert record["ttl_seconds"] == 1800
+
+
+def test_renew_pair_extends_only_matching_live_token(tmp_path, monkeypatch):
+    root = tmp_path / "leases"; state = tmp_path / "state.json"
+    t0 = lease.dt.datetime(2026,9,11,0,0,0,tzinfo=lease.dt.timezone.utc)
+    monkeypatch.setattr(lease,"_utc_now",lambda:t0)
+    lease.acquire_pair(_args(root,state))
+    monkeypatch.setattr(lease,"_utc_now",lambda:t0+lease.dt.timedelta(minutes=5))
+    renewed = lease.renew_pair(argparse.Namespace(state_file=str(state), ttl_seconds=900))
+    assert renewed["status"] == "RENEWED"
+    record = json.loads((root / "income-os.repo-write.lease.json").read_text())
+    assert record["renewed_at"] == "2026-09-11T00:05:00Z"
+    assert record["expires_at"] == "2026-09-11T00:20:00Z"
+
+
+def test_purge_expired_removes_only_expired_records(tmp_path, monkeypatch):
+    root = tmp_path / "leases"; root.mkdir()
+    now = lease.dt.datetime(2026,9,11,1,0,0,tzinfo=lease.dt.timezone.utc)
+    monkeypatch.setattr(lease,"_utc_now",lambda:now)
+    expired={"schema":lease.SCHEMA,"resource":"old","token":"a","owner":"x","acquired_at":"2026-09-11T00:00:00Z","expires_at":"2026-09-11T00:30:00Z"}
+    active={"schema":lease.SCHEMA,"resource":"live","token":"b","owner":"y","acquired_at":"2026-09-11T00:30:00Z","expires_at":"2026-09-11T02:00:00Z"}
+    (root/"old.lease.json").write_text(json.dumps(expired));(root/"live.lease.json").write_text(json.dumps(active))
+    result=lease.purge_expired(root)
+    assert result["removed"]==["old"]
+    assert result["kept_active"]==["live"]
+    assert not (root/"old.lease.json").exists()
+    assert (root/"live.lease.json").exists()

@@ -20,9 +20,10 @@ from pathlib import Path
 from typing import Iterator
 
 SCHEMA = "die.engineering-lease.v1"
-DEFAULT_TTL_SECONDS = 5400
+DEFAULT_TTL_SECONDS = 900
 MIN_TTL_SECONDS = 300
 MAX_TTL_SECONDS = 7200
+SESSION_SAFE_MAX_TTL_SECONDS = 1800
 
 
 class LeaseError(RuntimeError):
@@ -183,9 +184,14 @@ def inspect_one(lock_root: Path, resource: str) -> dict:
         }
 
 
-def acquire_pair(args: argparse.Namespace) -> dict:
-    if not (MIN_TTL_SECONDS <= args.ttl_seconds <= MAX_TTL_SECONDS):
+def _effective_ttl(requested: int) -> int:
+    if not (MIN_TTL_SECONDS <= requested <= MAX_TTL_SECONDS):
         raise LeaseError(f"ttl_seconds must be within {MIN_TTL_SECONDS}..{MAX_TTL_SECONDS}")
+    return min(requested, SESSION_SAFE_MAX_TTL_SECONDS)
+
+
+def acquire_pair(args: argparse.Namespace) -> dict:
+    effective_ttl = _effective_ttl(args.ttl_seconds)
     lock_root = Path(args.lease_root).resolve()
     state_file = Path(args.state_file).resolve()
     if state_file.exists():
@@ -201,7 +207,7 @@ def acquire_pair(args: argparse.Namespace) -> dict:
                     resource,
                     owner=args.owner,
                     task_id=args.task_id,
-                    ttl_seconds=args.ttl_seconds,
+                    ttl_seconds=effective_ttl,
                     token=token,
                 )
             )
@@ -219,10 +225,65 @@ def acquire_pair(args: argparse.Namespace) -> dict:
         "task_id": args.task_id,
         "resources": [record["resource"] for record in acquired],
         "expires_at": min(record["expires_at"] for record in acquired),
+        "requested_ttl_seconds": args.ttl_seconds,
+        "effective_ttl_seconds": effective_ttl,
     }
     _write_json_atomic(state_file, state)
     return {**state, "status": "ACQUIRED"}
 
+
+
+def renew_one(lock_root: Path, resource: str, *, token: str, ttl_seconds: int) -> dict:
+    now = _utc_now()
+    effective_ttl = _effective_ttl(ttl_seconds)
+    path = lock_root / f"{_resource_filename(resource)}.lease.json"
+    with _guard(lock_root, resource):
+        if not path.exists():
+            raise LeaseError(f"LEASE_NOT_FOUND resource={resource}")
+        existing = _read_record(path)
+        if existing["token"] != token:
+            raise LeaseError(f"LEASE_TOKEN_MISMATCH resource={resource}")
+        if _parse_iso(existing["expires_at"]) <= now:
+            raise LeaseError(f"LEASE_ALREADY_EXPIRED resource={resource}")
+        existing["expires_at"] = _iso(now + dt.timedelta(seconds=effective_ttl))
+        existing["ttl_seconds"] = effective_ttl
+        existing["renewed_at"] = _iso(now)
+        _write_json_atomic(path, existing)
+        return {"resource": resource, "status": "RENEWED", "expires_at": existing["expires_at"]}
+
+
+def renew_pair(args: argparse.Namespace) -> dict:
+    state_file = Path(args.state_file).resolve()
+    state = json.loads(state_file.read_text(encoding="utf-8"))
+    if state.get("schema") != SCHEMA or not state.get("token") or not state.get("resources"):
+        raise LeaseError(f"invalid pair state file: {state_file}")
+    results = []
+    for resource in state["resources"]:
+        results.append(renew_one(Path(state["lease_root"]), resource, token=state["token"], ttl_seconds=args.ttl_seconds))
+    state["expires_at"] = min(result["expires_at"] for result in results)
+    state["requested_ttl_seconds"] = args.ttl_seconds
+    state["effective_ttl_seconds"] = _effective_ttl(args.ttl_seconds)
+    state["renewed_at"] = _iso(_utc_now())
+    _write_json_atomic(state_file, state)
+    return {"schema": SCHEMA, "status": "RENEWED", "expires_at": state["expires_at"], "results": results}
+
+
+def purge_expired(lock_root: Path) -> dict:
+    lock_root.mkdir(parents=True, exist_ok=True)
+    removed = []
+    kept = []
+    for path in sorted(lock_root.glob("*.lease.json")):
+        resource = path.name[:-len(".lease.json")]
+        with _guard(lock_root, resource):
+            if not path.exists():
+                continue
+            record = _read_record(path)
+            if _parse_iso(record["expires_at"]) <= _utc_now():
+                path.unlink()
+                removed.append(record["resource"])
+            else:
+                kept.append(record["resource"])
+    return {"schema": SCHEMA, "status": "PURGED", "removed": removed, "kept_active": kept}
 
 def release_pair(args: argparse.Namespace) -> dict:
     state_file = Path(args.state_file).resolve()
@@ -255,8 +316,15 @@ def build_parser() -> argparse.ArgumentParser:
     acquire.add_argument("--state-file", required=True)
     acquire.add_argument("--ttl-seconds", type=int, default=DEFAULT_TTL_SECONDS)
 
+    renew = sub.add_parser("renew-pair")
+    renew.add_argument("--state-file", required=True)
+    renew.add_argument("--ttl-seconds", type=int, default=DEFAULT_TTL_SECONDS)
+
     release = sub.add_parser("release-pair")
     release.add_argument("--state-file", required=True)
+
+    purge = sub.add_parser("purge-expired")
+    purge.add_argument("--lease-root", required=True)
 
     inspect = sub.add_parser("inspect")
     inspect.add_argument("--lease-root", required=True)
@@ -270,8 +338,12 @@ def main() -> int:
     try:
         if args.command == "acquire-pair":
             result = acquire_pair(args)
+        elif args.command == "renew-pair":
+            result = renew_pair(args)
         elif args.command == "release-pair":
             result = release_pair(args)
+        elif args.command == "purge-expired":
+            result = purge_expired(Path(args.lease_root).resolve())
         elif args.command == "inspect":
             result = inspect_one(Path(args.lease_root).resolve(), args.resource)
         else:  # pragma: no cover
