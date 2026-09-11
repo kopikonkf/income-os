@@ -151,7 +151,19 @@ def postprocess_raster_workspace(*,workspace:Path,source_path:Path,provider_id:s
     d=state.advance(sm_path,target_state='MASTER_VALIDATED',evidence={'result':'PASS','master_sha256':ingest['source_sha256'],'receipt_ref':'factory-v2/provider-original-intake.json'},event_id='MASTER-'+ingest['source_sha256'][:16],expected_revision=d['revision'])
     upscale_out=root/'upscale'/'active-master.png';upscale_out.parent.mkdir(parents=True,exist_ok=True);ur=upscale_fn(source_path,upscale_out)
     normalized={'schema':'die.factory-asset.upscale-recovery-receipt.v1','result':'NOOP' if ur['action']=='NO_OP' else 'PASS','decision_state':'NOOP_SUFFICIENT' if ur['action']=='NO_OP' else 'UPSCALE_REQUIRED','source_sha256':ur['source']['sha256'],'source_dimensions':[ur['source']['width'],ur['source']['height']],'final_sha256':ur['output']['sha256'],'final_dimensions':[ur['output']['width'],ur['output']['height']],'output_path':ur['output']['path'],'source_unchanged':True,'partial_output':False,'engine':ur.get('model')}
-    atomic_json(root/'upscale-normalized.json',normalized);d=state.advance(sm_path,target_state='UPSCALE_DECIDED',evidence=normalized,event_id='UPSCALE-'+csha(normalized)[:16],expected_revision=d['revision'])
+    atomic_json(root/'upscale-normalized.json',normalized)
+    current=state.load_state(sm_path)
+    if current['state']=='MASTER_VALIDATED':
+        d=state.advance(sm_path,target_state='UPSCALE_DECIDED',evidence=normalized,event_id='UPSCALE-'+csha(normalized)[:16],expected_revision=current['revision'])
+    elif current['state']=='UPSCALE_DECIDED':
+        if current['active_master_sha256']==normalized['final_sha256']:
+            d=current
+        else:
+            prior_sha=str((ur.get('x4_intermediate') or {}).get('sha256') or '')
+            repair_evidence={'repair_kind':'BOUNDED_MASTER_NORMALIZATION','prior_active_master_sha256':prior_sha,'new_active_master_sha256':normalized['final_sha256'],'source_master_sha256':normalized['source_sha256'],'source_dimensions':normalized['source_dimensions'],'prior_dimensions':(ur.get('x4_intermediate') or {}).get('width') and [(ur.get('x4_intermediate') or {})['width'],(ur.get('x4_intermediate') or {})['height']],'new_dimensions':normalized['final_dimensions'],'normalization_method':(ur.get('normalization') or {}).get('method'),'bounded_master_receipt':'factory-v2/upscale/bounded-master.receipt.json'}
+            d=state.repair_active_master(sm_path,expected_prior_sha256=prior_sha,new_active_master_sha256=normalized['final_sha256'],evidence=repair_evidence,event_id='ACTIVE-MASTER-REPAIR-'+csha(repair_evidence)[:16],expected_revision=current['revision'])
+    else:
+        raise FactoryOrchestrationError('POSTPROCESS_RESUME_STATE_UNSUPPORTED',current['state'])
     active=Path(normalized['output_path'])
     if not active.is_file() or sha(active)!=normalized['final_sha256']:raise FactoryOrchestrationError('UPSCALE_OUTPUT_HASH_MISMATCH',str(active))
     facts=_master_facts(active,semantic_asset_id=sid,blueprint_id=bp['blueprint_id'])

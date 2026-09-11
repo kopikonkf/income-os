@@ -1,7 +1,7 @@
 {
   "schema": "die.production.media-pixel-boundary-hotfix.receipt.v1",
   "date": "2026-09-11",
-  "status": "PASS_IMPLEMENTATION_PENDING_LIVE_CANARY",
+  "status": "PASS_LIVE_SAME_DURABLE_CARD",
   "incident": {
     "task_id": "PRODSEED000148",
     "seed": "shoe",
@@ -35,6 +35,34 @@
   "tests": {
     "windows_focused": "PASS: bounded-master 2/2; provider-original 57 passed, 2 skipped",
     "linux_clean_checkout": "PASS_DIRECT_RUNTIME_INTERPRETER: incident target 11264x6144 -> 4096x2235; provider MAX_PIXELS unchanged 40000000",
-    "live_same_durable_card": "PENDING"
+    "live_same_durable_card": "PASS: PRODSEED000148 resumed without provider regeneration; ACTIVE_MASTER_REPAIR rev3; derivatives/technical QA PASS; METADATA_READY; parked WAITING_FOUNDER_QC with rights REVIEW_REQUIRED/package BLOCKED"
+  },
+  "decision": "LIVE_RECOVERY_ACCEPTED_PENDING_CANONICAL_MERGE",
+  "live_acceptance": {
+    "task_id": "PRODSEED000148",
+    "seed": "shoe",
+    "provider_attempt_count": 1,
+    "provider_original_dimensions": [
+      2816,
+      1536
+    ],
+    "provider_original_sha256": "e4c99597dd9fe162166abcc58d97f7993fb2d7c05ae253baa26c93e01e4b7198",
+    "x4_intermediate_dimensions": [
+      11264,
+      6144
+    ],
+    "bounded_active_master_dimensions": [
+      4096,
+      2235
+    ],
+    "bounded_active_master_sha256": "f9c02441d76d00c29e4006baa053eea9264cc24f7bcd5f4b1e81e59ee3d09f6e",
+    "repair_event": "ACTIVE-MASTER-REPAIR-599dfd36be0bb100",
+    "postproduction_state": "METADATA_READY",
+    "runtime_result": "WAITING_FOUNDER_QC",
+    "rights": "REVIEW_REQUIRED",
+    "package": "PACKAGE_BLOCKED",
+    "submission_eligible": false,
+    "publication_authorized": false,
+    "compensating_seed": false
   }
 }

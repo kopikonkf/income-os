@@ -971,3 +971,8 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - The 40MP provider-original safety guard remains unchanged. Root cause was the untrusted-provider inspector being reused on the trusted internal x4 master and the raw x4 artifact being promoted directly as active master.
 - Production runtime now preserves the x4 intermediate/receipt but normalizes the active master with aspect-preserving Lanczos under the existing FA-202 doctrine `REALESRGAN_X4_THEN_LANCZOS_DOWNSAMPLE`; preferred max edge 4096, active-master max 40MP, technical minimums preserved.
 - A bounded-master receipt makes retries reuse the normalized output instead of rerunning Real-ESRGAN. No compensating seed, submission or publication authority is introduced.
+
+- Live same-card recovery accepted on `PRODSEED000148`: provider attempt count remained 1 and provider-original SHA stayed unchanged; x4 intermediate 11264x6144 was normalized to bounded active master 4096x2235.
+- Append-only `ACTIVE_MASTER_REPAIR` revision 3 preserved the original UPSCALE_DECIDED history and updated active-master lineage before downstream derivatives.
+- Retry completed through derivative QA and metadata; runtime parked at `WAITING_FOUNDER_QC` with rights `REVIEW_REQUIRED`, package `PACKAGE_BLOCKED`, submission/publication false.
+- PR #348 remains pending canonical merge only because `income-os.repo-write` is actively leased by `H03-LIVE-ORG-001`; do not override that lease.
