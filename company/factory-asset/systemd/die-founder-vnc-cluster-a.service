@@ -1,0 +1,18 @@
+[Unit]
+Description=Founder read-only VNC mirror for Factory Cluster A production display
+Requires=die-muxia-cluster-a-browser.service
+After=die-muxia-cluster-a-browser.service
+
+[Service]
+Type=simple
+User=kopiko
+Group=kopiko
+WorkingDirectory=/srv/die
+ExecStart=/usr/bin/bash /opt/die/factory-asset-observability/founder_vnc_view.sh --cluster-id cluster-a --display 101 --port 59101 --mode read-only
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=false
+
+[Install]
+WantedBy=multi-user.target
