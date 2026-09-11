@@ -118,6 +118,21 @@ class LiveWorkCardRunnerTests(unittest.TestCase):
         payload = mod.parse_json_worker_output('Thinking notes before output.\n```json\n{"draft":1}\n```\nFinal answer: {"status":"ok","items":[1,2]}')
         self.assertEqual(payload,{"status":"ok","items":[1,2]})
 
+    def test_bridge_http_timeout_outlives_bounded_route_fallback_budget(self):
+        seen = {}
+        def transport(url, payload, timeout):
+            seen["url"] = url
+            seen["payload"] = payload
+            seen["timeout"] = timeout
+            return {"ok": True}
+        client = mod.MissionControlH03Client(endpoint="http://127.0.0.1:8892", timeout_seconds=180, transport=transport)
+        response = client.dispatch(
+            role="MARKET_RESEARCHER", prompt="Evaluate.", max_routes=3, timeout_seconds=600
+        )
+        self.assertTrue(response["ok"])
+        self.assertEqual(seen["payload"]["timeoutSeconds"], 600)
+        self.assertEqual(seen["timeout"], 3720)
+
     def test_preferred_provider_is_forwarded_to_bridge_client(self):
         with tempfile.TemporaryDirectory() as td:
             courier = artifactmod.ArtifactCourier(td)

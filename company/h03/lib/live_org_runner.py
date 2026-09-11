@@ -365,6 +365,26 @@ def _independent_source_count(bundle: dict[str, Any]) -> int:
     return len({_source_host(source) for source in bundle.get("verified_sources") or [] if _source_host(source)})
 
 
+def _build_market_eligibility(bundle: dict[str, Any]) -> dict[str, Any]:
+    coverage = _market_candidate_coverage(bundle)
+    ready_ids = sorted(_market_ready_candidate_ids(bundle))
+    return {
+        "schema_version": "die.h03.live-market-eligibility.v1",
+        "holding_id": "H03",
+        "run_id": RUN_ID,
+        "eligible_candidates": [
+            {
+                "problem_seed_id": candidate_id,
+                "source_ids": coverage[candidate_id]["source_ids"],
+                "paid_source_ids": coverage[candidate_id]["paid_source_ids"],
+                "host_count": coverage[candidate_id]["host_count"],
+            }
+            for candidate_id in ready_ids
+        ],
+        "truth_status": "LOCAL_VERIFIED_MARKET_COVERAGE",
+    }
+
+
 def _validate_market_evaluation(payload: Any, *, seed_ids: set[str], source_bundle: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(payload, dict):
         raise ValueError("LIVE_MARKET_EVAL_INVALID")
@@ -994,24 +1014,36 @@ def run_live_org(
             f"coverage={json.dumps(coverage, sort_keys=True)}"
         )
 
+    eligibility_ref, market_eligibility, _ = _ensure_local_artifact(
+        courier=courier, client=client,
+        artifact_id="LIVE001-MARKET-ELIGIBILITY", kind="market_eligibility",
+        declared_schema="die.h03.live-market-eligibility.v1", stage_id="C00-ELIGIBILITY", queue="C-market-eligibility",
+        builder=lambda: _build_market_eligibility(market_sources),
+    )
+    eligible_seed_ids = {item["problem_seed_id"] for item in market_eligibility["eligible_candidates"]}
+    if not eligible_seed_ids:
+        raise RuntimeError("LIVE_ORG_NO_ELIGIBLE_MARKET_CANDIDATE")
+
     market_eval_card = _make_card(
-        work_card_id="H03-WC-LIVE001-C-MARKET-EVAL", role="MARKET_RESEARCHER", queue="C-demand-wtp-evaluation",
-        inputs=[seed_batch_ref, market_sources_ref], artifact_kind="market_evaluation",
+        work_card_id="H03-WC-LIVE001-C-R1-MARKET-EVAL", role="MARKET_RESEARCHER", queue="C-demand-wtp-evaluation-recovery",
+        inputs=[seed_batch_ref, market_sources_ref, eligibility_ref], artifact_kind="market_evaluation",
         output_schema="die.h03.live-market-evaluation.v1", max_attempts=3,
     )
+    eligible_text = ", ".join(sorted(eligible_seed_ids))
     market_eval_result = worker.run(
-        run_id=RUN_ID, card=market_eval_card, timeout_seconds=420,
+        run_id=RUN_ID, card=market_eval_card, timeout_seconds=600,
         instruction=(
-            "Evaluate the supplied problem seeds using ONLY the locally verified source snapshots. Select one candidate only if evidence "
-            "supports a plausible MAKE gate. Return JSON with selected_problem_seed_id; pain_observation {severity,frequency,urgency}; "
-            "buyer_intent_state; productability_state; productability_source_ids; evidence; selection_reasons. Each evidence item must contain "
-            "evidence_id, signal_type, source_ids, rationale. signal_type may be PAID_SUBSTITUTE, MARKETPLACE_SALE_PROXY, "
-            "PURCHASE_INTENT_SEARCH, REPEATED_PAIN, or ENGAGEMENT_ONLY. Do not use REVEALED_SPEND unless an actual transaction record was "
-            "supplied (none is supplied here). Reference source_id values exactly as present in the verified bundle. Select a candidate only when "
-            "it has at least two verified sources, at least one paid-substitute/marketplace signal, and MEDIUM/HIGH productability. If no candidate "
-            "honestly meets that bar, return {\"selected_problem_seed_id\":null,\"no_make_reason\":\"...\"}."
+            "Evaluate ONLY the candidates declared in the LOCAL market-eligibility artifact. The authoritative eligible problem_seed_id values are: "
+            f"{eligible_text}. Do not select any other seed even if the broader seed inventory contains it. Use ONLY the locally verified source "
+            "snapshots and cite source_id values assigned to the selected candidate in the eligibility artifact. Return JSON with "
+            "selected_problem_seed_id; pain_observation {severity,frequency,urgency}; buyer_intent_state; productability_state; "
+            "productability_source_ids; evidence; selection_reasons. Each evidence item must contain evidence_id, signal_type, source_ids, rationale. "
+            "signal_type may be PAID_SUBSTITUTE, MARKETPLACE_SALE_PROXY, PURCHASE_INTENT_SEARCH, REPEATED_PAIN, or ENGAGEMENT_ONLY. Do not use "
+            "REVEALED_SPEND unless an actual transaction record was supplied (none is supplied here). A paid-substitute/marketplace signal must be "
+            "grounded in the eligible candidate's locally verified paid_source_ids. If neither eligible candidate honestly supports a plausible MAKE "
+            "gate, return {\"selected_problem_seed_id\":null,\"no_make_reason\":\"...\"}."
         ),
-        payload_validator=lambda p: _validate_market_evaluation(p, seed_ids=seed_ids, source_bundle=market_sources),
+        payload_validator=lambda p: _validate_market_evaluation(p, seed_ids=eligible_seed_ids, source_bundle=market_sources),
     )
     market_eval = courier.resolve(market_eval_result["output_artifacts"][0])
     if market_eval.get("selected_problem_seed_id") is None:
