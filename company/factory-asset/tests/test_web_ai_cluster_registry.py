@@ -41,4 +41,14 @@ def test_cluster_a_initial_browser_concurrency_policy():
     assert c['max_active_browser_generations']==5
     assert c['reserved_recovery_tabs']==3
     assert c['lease_default_ttl_seconds']==300
-    assert c['provider_tab_limits']=={'chatgpt':1,'qwen':1,'gemini':1,'manus':1,'duckai':1}
+    assert c['provider_tab_limits']=={'chatgpt':1,'qwen':1,'gemini':1,'manus':1,'duckai':1,'claude':1}
+
+
+def test_claude_is_registered_preauth_but_not_active():
+ g=load()
+ for c in g['clusters']:
+  by={p['provider_id']:p for p in c['providers']}
+  assert by['claude']['membership']=='AUTH_REQUIRED'
+  assert by['claude']['preferred_transport']=='BROWSER_CDP'
+  assert by['claude']['readiness_profile']=='claude'
+  assert c['provider_tab_limits']['claude']==1
