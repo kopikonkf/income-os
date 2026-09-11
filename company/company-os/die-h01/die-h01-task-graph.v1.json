@@ -1,0 +1,692 @@
+{
+  "schema": "die.h01.task-graph.v1",
+  "generated_at": "2026-09-11",
+  "status": "DESIGN_CANDIDATE_NOT_CANONICAL",
+  "project": "DIE / H01 Factory Asset",
+  "source_sha": "83df35a6dda299b140d169989c89ac49a56a9ddd",
+  "doctrine": {
+    "global_control_plane": "die-control Windows VPS; one global Mission Control logical singleton",
+    "h01_scope": "die-h01 Linux Factory Asset execution plane",
+    "legacy_live": "/srv/die is LEGACY LIVE / ROLLBACK and must never be reset/pulled in place to catch origin/main",
+    "production_first": "Build -> Ship -> CUAN; 43,005 eligible nouns become standalone VECTOR_OBJECT/SINGLE assets before set/demand expansion",
+    "browser_topology": "20 UDD x 5 persistent profiles; max 1 active profile and 1 committed tab/job per UDD; close Brave after durable job result",
+    "provider_ingress": "web-ai-adapter default; native MCP optional",
+    "svg_lineage": "provider-original immutable -> canonical SVG master -> deterministic derivatives -> read-back QA",
+    "demand": "non-blocking later prioritization/family intelligence, never prerequisite for standalone noun production"
+  },
+  "execution_rules": [
+    "one fresh isolated engineering worktree per task/session",
+    "no engineering mutation of /srv/die",
+    "no irreversible legacy cutover before bounded acceptance",
+    "no credential/session copying between profiles",
+    "no marketplace publication without Founder authorization",
+    "Mission Control is durable task truth; browser chat text alone cannot mark DONE"
+  ],
+  "canonical_profile_naming": {
+    "udd": [
+      "h01-web-s01",
+      "...",
+      "h01-web-s20"
+    ],
+    "profile": [
+      "h01-web-p001",
+      "...",
+      "h01-web-p100"
+    ],
+    "mapping": "5 persistent profiles per UDD",
+    "active_invariant": "max 1 active profile + 1 committed tab/job per UDD",
+    "lifecycle": "IDLE -> round-robin eligible sibling -> spawn one Brave/profile -> one provider/job -> durable result -> close Brave -> IDLE"
+  },
+  "tasks": [
+    {
+      "id": "H01-001",
+      "track": "FOUNDATION",
+      "status": "DONE",
+      "authority": "ARCHITECT",
+      "depends_on": [],
+      "title": "Audit live H01 Linux disk, runtime, services, browser ownership and Git hygiene",
+      "acceptance": "Record filesystem capacity, runtime services, active browser paths, Git/worktree state and protected production data without mutating active production state."
+    },
+    {
+      "id": "H01-002",
+      "track": "FOUNDATION",
+      "status": "DONE",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-001"
+      ],
+      "title": "Consolidate historical engineering worktrees and regenerable caches",
+      "acceptance": "Leave /srv/die plus one current isolated session worktree; preserve unique dirty source evidence; remove stale worktree/clone copies and regenerable caches."
+    },
+    {
+      "id": "H01-003",
+      "track": "FOUNDATION",
+      "status": "READY",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-002"
+      ],
+      "title": "Implement enforced ephemeral worktree lifecycle",
+      "acceptance": "Provide helper/policy that creates one /home/kopiko/die-sessions/<task> worktree from current origin/main, refuses /srv/die mutation, and removes closed worktrees after closure."
+    },
+    {
+      "id": "H01-004",
+      "track": "FOUNDATION",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-003"
+      ],
+      "title": "Classify live /srv/die dirty state and create immutable migration snapshot",
+      "acceptance": "Capture source diff, deployed-unit references and runtime-only files without reset/stash/clean; freeze legacy live source for rollback before V2 cutover."
+    },
+    {
+      "id": "H01-005",
+      "track": "FOUNDATION",
+      "status": "READY",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-001"
+      ],
+      "title": "Classify H01 data retention and eliminate only proven disposable duplicates",
+      "acceptance": "For Atlas DBs/raw dumps, migration backups, production state, artifacts, logs and /opt staging classify ACTIVE, ROLLBACK, ARCHIVE, REGENERABLE or DISPOSABLE; delete only verified DISPOSABLE data."
+    },
+    {
+      "id": "H01-010",
+      "track": "CONTROL_PLANE",
+      "status": "DONE",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-001"
+      ],
+      "title": "Freeze one global Mission Control on separate Windows die-control failure domain",
+      "acceptance": "Mission Control remains one global singleton; die-h01 is an execution plane and does not own a second business scheduler."
+    },
+    {
+      "id": "H01-011",
+      "track": "CONTROL_PLANE",
+      "status": "READY",
+      "authority": "FOUNDER_GATED",
+      "depends_on": [
+        "H01-010"
+      ],
+      "title": "Inventory and accept target die-control Windows VPS",
+      "acceptance": "Verify Mission Control, Universal MCP, State Manager bridge, principal registry, durable state, backup/recovery and network ingress before cutover."
+    },
+    {
+      "id": "H01-012",
+      "track": "CONTROL_PLANE",
+      "status": "READY",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-010"
+      ],
+      "title": "Define narrow H01 Runtime Gateway contract",
+      "acceptance": "Authenticated durable Work Card dispatch/checkpoint/result across VPS boundary; browser/CDP/filesystem stay H01-local and no per-click WAN orchestration is allowed."
+    },
+    {
+      "id": "H01-013",
+      "track": "CONTROL_PLANE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-011"
+      ],
+      "title": "Rebind H03 supervision to the global Mission Control endpoint",
+      "acceptance": "H03 accepted supervision boundary continues logically while endpoint/host binding moves to the global Windows control plane; no H03-owned Mission Control instance."
+    },
+    {
+      "id": "H01-014",
+      "track": "CONTROL_PLANE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-011"
+      ],
+      "title": "Implement deterministic Canonical Feeder",
+      "acceptance": "When queue policy requires work, read accepted graph/policy and enqueue only dependency-, budget- and lease-eligible Work Cards; no LLM or autonomous scope expansion."
+    },
+    {
+      "id": "H01-015",
+      "track": "CONTROL_PLANE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-011",
+        "H01-012"
+      ],
+      "title": "Implement recovery-only Supervisor boundary",
+      "acceptance": "Observe MC/H01 services/browser owners/factories and execute only allowlisted bounded L0/L1 recovery; no business-work generation or hidden scheduler."
+    },
+    {
+      "id": "H01-016",
+      "track": "CONTROL_PLANE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-014",
+        "H01-015"
+      ],
+      "title": "Prove single business scheduler and anti-duplicate dispatch",
+      "acceptance": "Mission Control is the only business scheduler; legacy timers/agents cannot create competing work; same durable job cannot be committed twice."
+    },
+    {
+      "id": "H01-020",
+      "track": "BROWSER_FABRIC",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-003"
+      ],
+      "title": "Install Brave alongside legacy Chrome without cutover",
+      "acceptance": "Brave Stable is installed and observable while existing Chrome production owners remain untouched and rollback-capable."
+    },
+    {
+      "id": "H01-021",
+      "track": "BROWSER_FABRIC",
+      "status": "DONE",
+      "authority": "FOUNDER",
+      "depends_on": [
+        "H01-010"
+      ],
+      "title": "Lock browser topology: 20 UDD x 5 persistent profiles = 100 profiles",
+      "acceptance": "Map s01->p001..p005 through s20->p096..p100. Exactly one active profile and one committed tab/job per UDD; sibling profiles may never overlap."
+    },
+    {
+      "id": "H01-022",
+      "track": "BROWSER_FABRIC",
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED",
+      "depends_on": [
+        "H01-020",
+        "H01-021"
+      ],
+      "title": "Accept one master Brave profile baseline under real Web-AI use",
+      "acceptance": "Prove one profile first: persistence, restart, loopback CDP, download/output acquisition, provider completion behavior and RAM/renderer/disk telemetry. Founder provides manual authentication."
+    },
+    {
+      "id": "H01-023",
+      "track": "BROWSER_FABRIC",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-022"
+      ],
+      "title": "Implement safe 20-UDD / 100-profile provisioner",
+      "acceptance": "Clone browser configuration/layout only, not cookies/tokens/session secrets; create 20 UDDs with five mapped profile identities each."
+    },
+    {
+      "id": "H01-024",
+      "track": "BROWSER_FABRIC",
+      "status": "BLOCKED",
+      "authority": "FOUNDER_GATED",
+      "depends_on": [
+        "H01-021",
+        "H01-005"
+      ],
+      "title": "Implement Brave storage and janitor capacity gate",
+      "acceptance": "Measure populated-profile growth; clean only regenerable cache while UDD is closed; protect authentication/session stores; added storage may satisfy capacity without changing topology."
+    },
+    {
+      "id": "H01-025",
+      "track": "BROWSER_FABRIC",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-020",
+        "H01-021"
+      ],
+      "title": "Implement one-owner-per-UDD Brave runtime with loopback CDP",
+      "acceptance": "Each UDD starts exactly one selected sibling profile, exactly one committed provider tab/job, loopback CDP only, and closes Brave after durable success/failure receipt."
+    },
+    {
+      "id": "H01-026",
+      "track": "BROWSER_FABRIC",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-023",
+        "H01-025"
+      ],
+      "title": "Implement per-UDD round-robin profile/provider lease scheduler",
+      "acceptance": "Select eligible sibling profiles fairly inside each UDD; enforce UDD mutex, provider readiness/cooldown, exactly-once dispatch and no same-UDD sibling overlap."
+    },
+    {
+      "id": "H01-027",
+      "track": "BROWSER_FABRIC",
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED",
+      "depends_on": [
+        "H01-024",
+        "H01-026"
+      ],
+      "title": "Run staged multi-UDD concurrency acceptance",
+      "acceptance": "Measure 1->2->4->8->10 active UDD owners for RAM, renderer/process count, disk growth, provider stability and recovery; scale above 10 only from evidence, never beyond 20 UDD owners."
+    },
+    {
+      "id": "H01-100",
+      "track": "SVG_FIRST",
+      "status": "DONE",
+      "authority": "FOUNDER",
+      "depends_on": [
+        "H01-010"
+      ],
+      "title": "Lock supply-first standalone SVG MVP",
+      "acceptance": "Use exactly the 43,005 eligible Object Atlas nouns with media=VECTOR, mode=VECTOR_OBJECT, form=SINGLE, preset=CLEAN_STOCK_VECTOR_V1. Demand/set/Product Expression expansion is not a blocker."
+    },
+    {
+      "id": "H01-101",
+      "track": "SVG_FIRST",
+      "status": "READY",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-100"
+      ],
+      "title": "Export deterministic production queue from the 43,005 eligible Object Atlas nouns",
+      "acceptance": "Create stable IDs/order and basic rights/feasibility gates without mutating Atlas source truth; queue creation is idempotent."
+    },
+    {
+      "id": "H01-102",
+      "track": "SVG_FIRST",
+      "status": "READY",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-100"
+      ],
+      "title": "Upgrade Blueprint -> Master Instruction -> Prompt Composer v2",
+      "acceptance": "Compile sophisticated commercial/vector constraints into bounded provider prompts while Blueprint remains provider-independent WHAT and prompt logic remains HOW."
+    },
+    {
+      "id": "H01-103",
+      "track": "SVG_FIRST",
+      "status": "READY",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-100"
+      ],
+      "title": "Upgrade SVG safety/editability/geometry engine to production subset",
+      "acceptance": "Support safe shapes and curve commands demonstrated by real Claude SVG samples while forbidding script/external refs/embedded raster and enforcing complexity/render bounds."
+    },
+    {
+      "id": "H01-104",
+      "track": "SVG_FIRST",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-102",
+        "H01-103"
+      ],
+      "title": "Generalize provider-independent native-SVG request/receipt contract",
+      "acceptance": "web-ai-adapter is default ingress and native MCP optional; preserve blueprint/prompt hashes, provider result, exactly-once authority and no raster-trace success claims."
+    },
+    {
+      "id": "H01-105",
+      "track": "SVG_FIRST",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-103"
+      ],
+      "title": "Implement deterministic Vector Postproduction v1",
+      "acceptance": "Preserve immutable provider-original lineage; produce canonical SVG then optimized SVG, true vector PDF, validated EPS, PNG alpha, WebP and JPG; conditional TIFF/SVGZ/DXF; never rasterize through PNG for vector outputs."
+    },
+    {
+      "id": "H01-106",
+      "track": "SVG_FIRST",
+      "status": "DONE",
+      "authority": "FOUNDER",
+      "depends_on": [
+        "H01-100"
+      ],
+      "title": "Record Claude Sonnet 4.6 native-SVG capability proof",
+      "acceptance": "Founder-downloaded native SVG samples exist and visual QC passed; capability proof is DONE but complete stock technical acceptance remains downstream."
+    },
+    {
+      "id": "H01-107",
+      "track": "SVG_FIRST",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-104",
+        "H01-106",
+        "H01-025"
+      ],
+      "title": "Add provider-by-provider native-SVG canaries after Claude baseline",
+      "acceptance": "Canary additional eligible Web-AI providers one by one; record NATIVE_SVG, TEXT_SVG, UNSUPPORTED or DEFERRED honestly; no provider is promoted from model capability alone."
+    },
+    {
+      "id": "H01-108",
+      "track": "SVG_FIRST",
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED",
+      "depends_on": [
+        "H01-101",
+        "H01-104",
+        "H01-105",
+        "H01-107",
+        "H01-026"
+      ],
+      "title": "Prove first 100 standalone SVG nouns before larger rollout",
+      "acceptance": "Generate 100 unique semantic masters from eligible nouns with provider-original lineage, canonical master, read-back QA, derivatives, metadata/rights and honest resource telemetry; no duplicate semantic count."
+    },
+    {
+      "id": "H01-109",
+      "track": "SVG_FIRST",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-108"
+      ],
+      "title": "Accept Founder-QC-ready standalone SVG package and real upload path",
+      "acceptance": "Package preserves semantic-master/derivative/package counters and produces at least one real Founder-uploaded stock acceptance before scale-out."
+    },
+    {
+      "id": "H01-200",
+      "track": "CUTOVER",
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED",
+      "depends_on": [
+        "H01-016",
+        "H01-027",
+        "H01-109"
+      ],
+      "title": "Prove one complete V2 SVG production cycle from global Mission Control",
+      "acceptance": "Global MC to H01 Work Card to Brave/provider to SVG master to derivatives to QA/metadata/rights to package to durable completion is observable end-to-end without SSH spelunking."
+    },
+    {
+      "id": "H01-201",
+      "track": "CUTOVER",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-200"
+      ],
+      "title": "Run bounded shadow coexistence with legacy H01 organism",
+      "acceptance": "V2 and legacy paths coexist without duplicate business work; rollback remains available and receipts demonstrate equivalent required capabilities."
+    },
+    {
+      "id": "H01-202",
+      "track": "CUTOVER",
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED",
+      "depends_on": [
+        "H01-201"
+      ],
+      "title": "Cut business scheduling to global Mission Control only",
+      "acceptance": "Disable legacy business schedulers/timers only after accepted V2 coexistence; Supervisor remains health-only and no second work creator exists."
+    },
+    {
+      "id": "H01-203",
+      "track": "CUTOVER",
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED",
+      "depends_on": [
+        "H01-202"
+      ],
+      "title": "Retire Hermes and OpenCode from H01 production critical path",
+      "acceptance": "Stop/disable/remove production dependency only after no accepted V2 capability depends on them; keep OpenCode solely in engineering lane if still useful."
+    },
+    {
+      "id": "H01-204",
+      "track": "CUTOVER",
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED",
+      "depends_on": [
+        "H01-027",
+        "H01-202"
+      ],
+      "title": "Retire legacy Chrome cluster identities and stale runtime packages",
+      "acceptance": "After Brave equivalence and session migration/login completion, drain legacy cluster-a/b owners and compatibility names; remove only proven unused runtime packages/state under retention policy."
+    },
+    {
+      "id": "H01-205",
+      "track": "SCALE",
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED",
+      "depends_on": [
+        "H01-200"
+      ],
+      "title": "Scale beyond eight active owners only from measured throughput economics",
+      "acceptance": "Use queue wait, service time, RAM/storage, provider health, failure rate and unit economics to decide more active owners or additional H01 nodes; 100 configured profiles never implies 100 concurrent browsers."
+    },
+    {
+      "id": "H01-028",
+      "track": "BROWSER_FABRIC",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-023"
+      ],
+      "title": "Implement Brave cache janitor with auth-state protection",
+      "acceptance": "Clean only regenerable caches while the UDD is closed; protect Cookies/Local Storage/IndexedDB/session/preference stores; threshold and receipt every cleanup."
+    },
+    {
+      "id": "H01-029",
+      "track": "BROWSER_FABRIC",
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED",
+      "depends_on": [
+        "H01-024",
+        "H01-026",
+        "H01-028"
+      ],
+      "title": "Run staged multi-UDD concurrency acceptance",
+      "acceptance": "Measure 1->2->4->8->10 active UDD owners for renderer/process count, RAM, disk growth, provider stability and recovery; scale above 10 only from evidence up to the 20-UDD hard ceiling."
+    },
+    {
+      "id": "H01-110",
+      "track": "SVG_STANDALONE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-109"
+      ],
+      "title": "Run 10-noun standalone SVG pilot",
+      "acceptance": "10 unique semantic masters pass idempotency, resource telemetry, QA, metadata and packaging."
+    },
+    {
+      "id": "H01-111",
+      "track": "SVG_STANDALONE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-110"
+      ],
+      "title": "Run 100-noun standalone SVG acceptance",
+      "acceptance": "100 unique semantic masters with failure taxonomy, provider/profile telemetry and no duplicate semantic count."
+    },
+    {
+      "id": "H01-112",
+      "track": "SVG_STANDALONE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-111",
+        "H01-029"
+      ],
+      "title": "Run 1,000-noun production-scale batch",
+      "acceptance": "Demonstrate sustained multi-UDD throughput, bounded retries, storage janitor and observable Mission Control standing."
+    },
+    {
+      "id": "H01-113",
+      "track": "SVG_STANDALONE",
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED",
+      "depends_on": [
+        "H01-112"
+      ],
+      "title": "Open governed rollout across the 43,005 eligible noun queue",
+      "acceptance": "Run supply-first production under throughput/storage/rights/submission gates; preserve semantic master vs derivative vs package counters."
+    },
+    {
+      "id": "H01-120",
+      "track": "FAMILY_SET",
+      "status": "READY",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-100"
+      ],
+      "title": "Define semantic Family v1 schema and five family classes",
+      "acceptance": "TAXONOMIC/FUNCTIONAL/CONTEXTUAL/VARIANT/SYSTEM with family_id, members, source and rights_class; distinguish semantic family, design set, derivative bundle and listing package."
+    },
+    {
+      "id": "H01-121",
+      "track": "FAMILY_SET",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-120"
+      ],
+      "title": "Implement deterministic taxonomy-first family mapper over Object Atlas",
+      "acceptance": "Create candidate families without changing standalone noun identity; preserve evidence and duplicates/alias controls."
+    },
+    {
+      "id": "H01-122",
+      "track": "FAMILY_SET",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-120"
+      ],
+      "title": "Implement brand/trademark rights gate for family/set candidates",
+      "acceptance": "Brand-restricted systems may be discovered but cannot route silently to normal stock production."
+    },
+    {
+      "id": "H01-123",
+      "track": "FAMILY_SET",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-111",
+        "H01-121",
+        "H01-122"
+      ],
+      "title": "Implement Design Set composer v1",
+      "acceptance": "Build coherent set blueprints only after standalone factory is alive; set members are semantic members while format bundles remain derivatives."
+    },
+    {
+      "id": "H01-130",
+      "track": "DEMAND_INTELLIGENCE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-111"
+      ],
+      "title": "Define non-blocking Demand Signal Engine contract",
+      "acceptance": "External signals rank remaining nouns and help discover buyer/use-case/families; they never determine Object Atlas validity and never block standalone production."
+    },
+    {
+      "id": "H01-131",
+      "track": "DEMAND_INTELLIGENCE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-130"
+      ],
+      "title": "Add bounded official/ToS-safe market signal connectors",
+      "acceptance": "Prefer supported structured sources and accepted observation paths; no fragile autocomplete scraping as core dependency."
+    },
+    {
+      "id": "H01-132",
+      "track": "DEMAND_INTELLIGENCE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-130"
+      ],
+      "title": "Join Human Atlas demand context without Cartesian explosion",
+      "acceptance": "Bounded retrieval of buyer/activity/problem/industry/commercial-intent context; supply-first production remains independent."
+    },
+    {
+      "id": "H01-133",
+      "track": "DEMAND_INTELLIGENCE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-131",
+        "H01-132"
+      ],
+      "title": "Implement evidence-scored noun/family prioritization",
+      "acceptance": "Re-rank remaining production queue and family hypotheses from demand/competition/confidence evidence without invalidating already-produced masters."
+    },
+    {
+      "id": "H01-300",
+      "track": "ENGINEERING_WORKFORCE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-003",
+        "H01-010"
+      ],
+      "title": "Define ChatGPT Architect browser-worker session contract",
+      "acceptance": "Each worker gets one Mission Control task, principal/lease, one isolated worktree, exact constraints and machine-readable final marker/result; no chat-memory-only completion."
+    },
+    {
+      "id": "H01-301",
+      "track": "ENGINEERING_WORKFORCE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-300"
+      ],
+      "title": "Implement browser/CDP Architect worker dispatcher",
+      "acceptance": "Lease a dedicated engineering UDD/profile, open one ChatGPT Architect session, inject Mission Control bootstrap, observe durable result/checkpoint, then close browser."
+    },
+    {
+      "id": "H01-302",
+      "track": "ENGINEERING_WORKFORCE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-301"
+      ],
+      "title": "Implement progress-aware worker completion detector and result ingestion",
+      "acceptance": "No premature cuts; use durable Mission Control state/result marker, recover failed/stalled sessions and never infer DONE solely from rendered chat text."
+    },
+    {
+      "id": "H01-303",
+      "track": "ENGINEERING_WORKFORCE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-300"
+      ],
+      "title": "Enforce per-worker Git/worktree/lease isolation",
+      "acceptance": "Parallel Architect workers cannot share mutable worktrees or conflicting repo-write lease; dependency and merge gates stay canonical."
+    },
+    {
+      "id": "H01-304",
+      "track": "ENGINEERING_WORKFORCE",
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED",
+      "depends_on": [
+        "H01-302",
+        "H01-303"
+      ],
+      "title": "Run two-worker parallel Architect canary",
+      "acceptance": "Two independent dependency-safe tasks execute in separate browser workers, checkpoint durably, complete and return auditable artifacts without collision."
+    },
+    {
+      "id": "H01-305",
+      "track": "ENGINEERING_WORKFORCE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-304"
+      ],
+      "title": "Scale engineering workers only by dependency-ready graph width",
+      "acceptance": "Dispatcher schedules parallel tasks only when dependencies/resources/leases allow; Mission Control remains sole durable task truth."
+    },
+    {
+      "id": "H01-206",
+      "track": "SCALE",
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED",
+      "depends_on": [
+        "H01-205"
+      ],
+      "title": "Evaluate NNk/day expansion from measured economics and concurrency",
+      "acceptance": "Scale storage/CPU/UDD concurrency/nodes only when acceptance, cost, provider limits, janitor and marketplace throughput support it."
+    }
+  ]
+}
