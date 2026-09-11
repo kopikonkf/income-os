@@ -1,0 +1,24 @@
+{
+  "schema": "die.factory-asset.fa321-receipt.v1",
+  "task_id": "FA-321",
+  "status": "DONE",
+  "result": "PASS",
+  "artifacts": {
+    "pipeline": "57f7235c2f0790b051689473da6cf79ef0649b8ef9d13d7e16ec486c9fd8b9f3"
+  },
+  "assertions": {
+    "scripts_external_refs_embedded_raster_text_fonts_unsafe_style_rejected": true,
+    "viewbox_bounds_required": true,
+    "blank_output_rejected": true,
+    "bounded_complexity": true,
+    "native_editable": true,
+    "conversion_from_raster": false,
+    "derivatives": [
+      "EPS",
+      "PNG",
+      "JPEG"
+    ],
+    "semantic_asset_count": 1
+  },
+  "validation": "903/903 Linux Factory tests PASS; one existing PyPDF2 warning"
+}

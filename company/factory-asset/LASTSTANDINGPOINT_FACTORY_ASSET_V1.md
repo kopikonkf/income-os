@@ -976,3 +976,16 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Append-only `ACTIVE_MASTER_REPAIR` revision 3 preserved the original UPSCALE_DECIDED history and updated active-master lineage before downstream derivatives.
 - Retry completed through derivative QA and metadata; runtime parked at `WAITING_FOUNDER_QC` with rights `REVIEW_REQUIRED`, package `PACKAGE_BLOCKED`, submission/publication false.
 - PR #348 remains pending canonical merge only because `income-os.repo-write` is actively leased by `H03-LIVE-ORG-001`; do not override that lease.
+
+
+---
+
+## 2026-09-11 - FA-321/324/325/330/331/332 seal; FA-322 Claude Web waiting Founder login
+- `FA-321 = DONE/PASS`: governed genuine-native SVG safety/editability/render/derivative pipeline accepted; SVG master deterministically yields EPS/PNG/JPEG and derivatives remain semantic-identity neutral.
+- `FA-322 = WAITING_FOUNDER`: corrected provider surface is Claude Web AI over Factory Cluster A/B `BROWSER_CDP`, not Claude CLI. Claude is registered `AUTH_REQUIRED`; raw SVG extraction and FA-321 postproduction are prewired. Founder login then bounded ICON+OUTLINE live acceptance remains. Route is not promoted before that evidence.
+- `FA-324 = DONE/PASS`: read-only VNC on real production Xvfb A `:101` and B `:102`, loopback 59101/59102, browser/broker sessions preserved.
+- `FA-325 = DONE/PASS`: idle-only temporary interactive repair canary proved loopback 59201, 30-second hold, automatic revocation and read-only restoration; no secret reads or checkpoint bypass.
+- `FA-330 = DONE/PASS`: sparse evidence-bounded seed x mode x preset planner, no exhaustive Cartesian expansion.
+- `FA-331 = DONE/PASS`: runtime consumption identity is semantic-expression level, with legacy baseline replay compatibility and near-duplicate quarantine.
+- `FA-332 = DONE/PASS`: Production Intelligence v2 trace accepted end-to-end while isolated cartoon/watercolor stays champion exploitation and alternate expressions remain bounded exploration.
+- Final pre-seal Linux Factory regression on `a3f377e...`: 903/903 PASS, one existing PyPDF2 deprecation warning. No throughput-scale, submission or publication authority changed.
