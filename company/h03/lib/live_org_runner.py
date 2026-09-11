@@ -284,7 +284,7 @@ def _source_host(source: dict[str, Any]) -> str:
 
 def _source_has_paid_marker(source: dict[str, Any]) -> bool:
     text = _source_text(source).lower()
-    return bool(re.search(r"(?:[$£€]\s?\d|\bprice\b|\bpricing\b|\bplans?\b|\bsubscription\b|\bbilling\b|\bmonthly\b|\bannual\b|\byearly\b|\bper month\b|\bper year\b|\bcheckout\b)", text))
+    return bool(re.search(r"(?:[$Â£â‚¬]\s?\d|\bprice\b|\bpricing\b|\bplans?\b|\bsubscription\b|\bbilling\b|\bmonthly\b|\bannual\b|\byearly\b|\bper month\b|\bper year\b|\bcheckout\b)", text))
 
 
 def _source_has_marketplace_proxy_marker(source: dict[str, Any]) -> bool:
@@ -940,7 +940,7 @@ def run_live_org(
     market_ready_ids = _market_ready_candidate_ids(market_sources)
     if not market_ready_ids:
         recovery_card = _make_card(
-            work_card_id="H03-WC-LIVE001-B2-MARKET-RECOVERY", role="MARKET_RESEARCHER", queue="B2-market-source-recovery",
+            work_card_id="H03-WC-LIVE001-B2R1-MARKET-RECOVERY", role="MARKET_RESEARCHER", queue="B2-market-source-recovery",
             inputs=[seed_batch_ref, market_scout_result["output_artifacts"][0], market_sources_ref],
             artifact_kind="market_source_scout",
             output_schema="die.h03.live-market-source-scout.v1", max_attempts=3,

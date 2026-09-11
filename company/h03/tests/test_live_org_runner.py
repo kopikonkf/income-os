@@ -63,7 +63,7 @@ class FakeWorker:
                     ],
                 })
 
-        elif wc.endswith("B2-MARKET-RECOVERY"):
+        elif wc.endswith("B2R1-MARKET-RECOVERY"):
             seeds = inputs[0]["candidates"][:2]
             payload = {"candidate_sources": []}
             for idx, seed in enumerate(seeds, 1):
@@ -328,7 +328,7 @@ class LiveOrgRunnerTests(unittest.TestCase):
                 courier=courier, client=client, worker=worker,
             )
             self.assertEqual(result["status"], "WAITING_FOUNDER_QC")
-            self.assertIn("H03-WC-LIVE001-B2-MARKET-RECOVERY", worker.calls)
+            self.assertIn("H03-WC-LIVE001-B2R1-MARKET-RECOVERY", worker.calls)
             ref = courier.existing_ref(
                 run_id="LIVE-ORG-001", artifact_id="LIVE001-MARKET-VERIFIED-SOURCES-R2", kind="verified_source_bundle"
             )
