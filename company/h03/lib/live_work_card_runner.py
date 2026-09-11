@@ -112,7 +112,13 @@ class MissionControlH03Client:
             payload["dominantProducerProvider"] = dominant_producer_provider
         if preferred_provider:
             payload["preferredProvider"] = preferred_provider
-        return self.transport(self.endpoint + "/api/h03/bridge/dispatch", payload, self.timeout_seconds + 30)
+        effective_timeout = int(timeout_seconds or self.timeout_seconds)
+        per_route_hard_timeout = min(max(effective_timeout * 2, effective_timeout + 300), 1800)
+        transport_timeout = max(
+            self.timeout_seconds + 30,
+            ((per_route_hard_timeout + 30) * max_routes) + 30,
+        )
+        return self.transport(self.endpoint + "/api/h03/bridge/dispatch", payload, transport_timeout)
 
     def emit(self, event: dict[str, Any]) -> dict[str, Any]:
         return self.transport(self.endpoint + "/api/h03/runtime/event", event, 20.0)

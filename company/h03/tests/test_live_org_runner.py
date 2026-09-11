@@ -75,9 +75,9 @@ class FakeWorker:
                     ],
                 })
 
-        elif wc.endswith("C-MARKET-EVAL"):
-            seed_batch, bundle = inputs[0], inputs[1]
-            pid = seed_batch["candidates"][0]["problem_seed_id"]
+        elif wc.endswith("C-R1-MARKET-EVAL"):
+            seed_batch, bundle, eligibility = inputs[0], inputs[1], inputs[2]
+            pid = eligibility["eligible_candidates"][0]["problem_seed_id"]
             candidate_sources = [s for s in bundle["verified_sources"] if s.get("candidate_id") == pid]
             source_ids = [s["source_id"] for s in candidate_sources]
             paid_id = next(s["source_id"] for s in candidate_sources if s.get("signal_hint") == "PAID_SUBSTITUTE")
@@ -329,6 +329,14 @@ class LiveOrgRunnerTests(unittest.TestCase):
             )
             self.assertEqual(result["status"], "WAITING_FOUNDER_QC")
             self.assertIn("H03-WC-LIVE001-B2R1-MARKET-RECOVERY", worker.calls)
+            self.assertIn("H03-WC-LIVE001-C-R1-MARKET-EVAL", worker.calls)
+            eligibility_ref = courier.existing_ref(
+                run_id="LIVE-ORG-001", artifact_id="LIVE001-MARKET-ELIGIBILITY", kind="market_eligibility"
+            )
+            self.assertIsNotNone(eligibility_ref)
+            eligibility = courier.resolve(eligibility_ref)
+            self.assertTrue(eligibility["eligible_candidates"])
+            self.assertTrue(all(item["paid_source_ids"] for item in eligibility["eligible_candidates"]))
             ref = courier.existing_ref(
                 run_id="LIVE-ORG-001", artifact_id="LIVE001-MARKET-VERIFIED-SOURCES-R2", kind="verified_source_bundle"
             )
