@@ -49,7 +49,7 @@ def test_cluster_services_split_browser_owner_from_broker():
  assert 'xvfb-run' not in a.lower() and 'xvfb-run' not in b.lower()
 
 def test_registry_normalizes_both_clusters_to_external_attach_only():
- d=json.loads(REG.read_text());assert d['revision']=='1.3.0-external-persistent-browser-attach-only'
+ d=json.loads(REG.read_text());assert d['revision']=='1.4.0-claude-web-preauth'
  assert 'ATTACH_ONLY' in d['rules']['browser_owner_model']
  for c in d['clusters']:
   assert c['browser_owner_model']=='EXTERNAL_PERSISTENT_CHROME_CDP_ATTACH_ONLY'

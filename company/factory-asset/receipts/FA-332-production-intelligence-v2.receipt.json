@@ -1,0 +1,26 @@
+{
+  "schema": "die.factory-asset.fa332-receipt.v1",
+  "task_id": "FA-332",
+  "status": "DONE",
+  "result": "PASS",
+  "artifact": "d4f1c68b9e9f086d861086fafae5f324e97600f602aaf67932fb38963869f3f6",
+  "trace": [
+    "seed",
+    "dual-atlas-context",
+    "opportunity-plan",
+    "expression-plan",
+    "production-preset",
+    "asset-blueprint-v2",
+    "producer-route",
+    "production-plan",
+    "FA-319-postproduction"
+  ],
+  "assertions": {
+    "isolated_cartoon_watercolor_champion_lane_preserved": true,
+    "alternate_modes_presets_evidence_bounded": true,
+    "throughput_scale_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false
+  },
+  "validation": "903/903 Linux Factory tests PASS; one existing PyPDF2 warning"
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "die.factory-asset.fa324-receipt.v1",
+  "task_id": "FA-324",
+  "status": "DONE",
+  "result": "PASS",
+  "live": {
+    "cluster-a": {
+      "display": ":101",
+      "listener": "127.0.0.1:59101",
+      "rfb": "003.008"
+    },
+    "cluster-b": {
+      "display": ":102",
+      "listener": "127.0.0.1:59102",
+      "rfb": "003.008"
+    }
+  },
+  "assertions": {
+    "view_only": true,
+    "browser_owner_restart": false,
+    "broker_restart": false,
+    "public_listener": false,
+    "ssh_private_tunnel_required": true
+  },
+  "runbook": "company/factory-asset/FOUNDER_VNC_RUNBOOK_V1.md"
+}

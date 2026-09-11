@@ -1,6 +1,6 @@
 {
   "schema": "die.factory-asset.provider-readiness-profiles.v1",
-  "revision": "1.0.0",
+  "revision": "1.1.0-claude-web-preauth",
   "providers": {
     "chatgpt": {
       "allowed_origins": [
@@ -102,6 +102,30 @@
         "please complete the following challenge",
         "confirm this prompt was made by a human",
         "unfortunately, bots use duckduckgo too"
+      ]
+    },
+    "claude": {
+      "allowed_origins": [
+        "https://claude.ai"
+      ],
+      "composer_selectors": [
+        "div[contenteditable=\"true\"][role=\"textbox\"]",
+        "[contenteditable=\"true\"][data-testid*=\"composer\" i]",
+        "[contenteditable=\"true\"]",
+        "textarea[placeholder*=\"message\" i]",
+        "textarea"
+      ],
+      "auth_selectors": [
+        "button:has-text(\"Log in\")",
+        "a:has-text(\"Log in\")",
+        "button:has-text(\"Sign in\")",
+        "a:has-text(\"Sign in\")"
+      ],
+      "checkpoint_patterns": [
+        "verify you are human",
+        "security check",
+        "unusual activity",
+        "captcha"
       ]
     }
   }

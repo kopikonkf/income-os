@@ -1,0 +1,18 @@
+{
+  "schema": "die.factory-asset.fa330-receipt.v1",
+  "task_id": "FA-330",
+  "status": "DONE",
+  "result": "PASS",
+  "artifacts": {
+    "planner": "f9ebc8c64169a90b2453a624349ec6bf79e2d75440c7cf1b20c91fd0c1fb4e14",
+    "signals": "03a03f422da09c319afb18340e67c65c5c7160bc260c8793a42ab7f9e4e7f337"
+  },
+  "assertions": {
+    "force_all_modes": false,
+    "cartesian_enumeration": false,
+    "max_candidates_per_seed": 12,
+    "champion_exploitation_preserved": true,
+    "founder_candidate_preset_not_live": true,
+    "production_authority_effect": "NONE"
+  }
+}

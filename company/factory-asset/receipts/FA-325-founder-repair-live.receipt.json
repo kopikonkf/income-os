@@ -1,0 +1,23 @@
+{
+  "schema": "die.factory-asset.fa325-receipt.v1",
+  "task_id": "FA-325",
+  "status": "DONE",
+  "result": "PASS",
+  "canary": {
+    "cluster": "cluster-a",
+    "timeout_seconds": 30,
+    "interactive_listener": "127.0.0.1:59201",
+    "rfb": "003.008",
+    "final_state": "CLOSED",
+    "read_only_restored": "127.0.0.1:59101"
+  },
+  "assertions": {
+    "idle_only": true,
+    "repair_hold_visible": true,
+    "dispatcher_hold_guard": true,
+    "timeout_revoke": true,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "captcha_bypass_authorized": false
+  }
+}

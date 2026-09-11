@@ -43,18 +43,21 @@ def write_progress(w:Path,lines:list[str]):(w/'PROGRESS.md').write_text('# '+w.n
 def start_seed()->dict:
  from production_seed_replenisher import replenish_seed_pool
  from production_seed_selector import select_seed
- from production_seed_ledger import bootstrap_seed_ledger, claim_workspace_seed
+ from production_seed_ledger import bootstrap_seed_ledger, bootstrap_expression_legacy_replay, claim_workspace_seed, claim_expression
  import factory_orchestration_v2 as factory_v2
  ledger=bootstrap_seed_ledger(WORKSPACES,ledger_path=SEED_LEDGER,fa124_e4=FA124_E4)
+ expression_replay=bootstrap_expression_legacy_replay(SEED_LEDGER)
  replenishment=replenish_seed_pool(DB,WORKSPACES,policy_path=REPLENISH_POLICY,state_root=REPLENISH_STATE,ledger_path=SEED_LEDGER)
  s=select_seed(DB,WORKSPACES,ledger_path=SEED_LEDGER)
  if s['status']!='SELECTED':
   return {'status':'IDLE','reason':s['status'],'replenishment':{k:replenishment.get(k) for k in ('status','remaining_before','remaining_after','promoted_count','next_action') if k in replenishment},'next_action':replenishment.get('next_action','REPLENISH_APPROVED_U1_VALIDATED_SEED_POOL')}
- seed=s['seed'];task='PROD'+seed['id'].replace('-','')
+ seed=s['seed'];identity=s['expression_identity'];task='PROD'+seed['id'].replace('-','')+'-'+identity['expression_fingerprint'][:8].upper()
  w=WORKSPACES/task;w.mkdir(mode=0o2770,parents=True,exist_ok=False);ensure_shared_workspace(w)
  selection={**s,'replenishment':{k:replenishment.get(k) for k in ('status','policy_revision','remaining_before','remaining_after','promoted_count','receipt_path') if k in replenishment}}
  (w/'seed-selection.json').write_text(json.dumps(selection,indent=2)+'\n')
  claim=claim_workspace_seed(SEED_LEDGER,selection,task)
+ expression_claim=claim_expression(SEED_LEDGER,identity,source_scope='PRODUCTION_WORKSPACE_EXPRESSION',source_ref=task,status='CLAIMED')
+ if expression_claim['status'] not in {'CLAIMED','ALREADY_CLAIMED'}:raise RuntimeError('E_EXPRESSION_CLAIM:'+expression_claim['status'])
  fam=f"{seed['category_path']} (object_class: {seed['object_class']})"
  expr=s.get('commercial_expression') or {}
  rows=[f"Seed: {seed['id']} ({seed['canonical_name']})",f"Family: {fam}"]
@@ -65,7 +68,7 @@ def start_seed()->dict:
  event={'seed':seed['canonical_name'],'seed_id':seed['id'],'family':fam,'blueprint':'REQUIRED','provider':'GOVERNED_MULTI_CLUSTER_BROWSER_POOL'}
  if expr:event.update({'expression_id':expr.get('expression_id'),'commercial_expression':expr.get('commercial_expression'),'opportunity_evidence':expr.get('evidence_level')})
  factory_v2.telegram_event(w,'PRODUCTION_STARTED',event,send)
- return {'status':'STARTED','task_id':task,'seed':seed['canonical_name'],'seed_id':seed['id'],'commercial_expression':expr or None,'provider_call_performed':False,'replenishment':selection['replenishment'],'seed_ledger':{'status':claim['status'],'normalized_noun':claim['normalized_noun'],'bootstrap_consumed_nouns':ledger['consumed_nouns']}}
+ return {'status':'STARTED','task_id':task,'seed':seed['canonical_name'],'seed_id':seed['id'],'commercial_expression':expr or None,'provider_call_performed':False,'replenishment':selection['replenishment'],'seed_ledger':{'status':claim['status'],'normalized_noun':claim['normalized_noun'],'bootstrap_consumed_nouns':ledger['consumed_nouns'],'legacy_expression_replay':expression_replay['legacy_rows'],'expression_claim':expression_claim}}
 
 def build_worker(w:Path,bp:dict,lock:dict):
  if lock.get('blueprint_sha256')!=csha(bp):raise RuntimeError('E_BLUEPRINT_LOCK_HASH')

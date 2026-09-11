@@ -1,0 +1,18 @@
+[Unit]
+Description=Founder temporary interactive VNC repair for Factory Cluster B
+Requires=die-muxia-cluster-b-browser.service
+After=die-muxia-cluster-b-browser.service
+JoinsNamespaceOf=die-muxia-cluster-b-browser.service
+
+[Service]
+Type=simple
+User=kopiko
+Group=kopiko
+WorkingDirectory=/opt/die/factory-asset-observability
+ExecStart=/usr/bin/bash /opt/die/factory-asset-observability/founder_vnc_view.sh --cluster-id cluster-b --display 102 --port 59202 --mode interactive
+Restart=no
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

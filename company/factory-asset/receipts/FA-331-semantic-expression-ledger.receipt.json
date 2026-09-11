@@ -1,0 +1,21 @@
+{
+  "schema": "die.factory-asset.fa331-receipt.v1",
+  "task_id": "FA-331",
+  "status": "DONE",
+  "result": "PASS",
+  "assertions": {
+    "identity_fields": [
+      "seed_id",
+      "semantic_mode",
+      "normalized_commercial_expression",
+      "preset_id",
+      "preset_revision"
+    ],
+    "packaging_derivatives_identity_neutral": true,
+    "exact_replay_idempotent": true,
+    "near_duplicate_action": "QUARANTINE",
+    "legacy_noun_history_scope": "BASELINE_COMPATIBILITY_ONLY",
+    "same_noun_alternate_mode_allowed": true,
+    "runtime_selector_cutover": true
+  }
+}

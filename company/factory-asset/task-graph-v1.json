@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
-  "generated_at": "2026-09-10",
-  "revision": "11.1-vector-observability-dual-atlas-foundations",
+  "generated_at": "2026-09-11",
+  "revision": "11.2-native-vector-observability-production-intelligence-seal",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2959,10 +2959,14 @@
         "FA-025",
         "FA-030"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "SVG validator, safety/editability QA, EPS export and PNG/JPEG preview receipts",
-      "acceptance": "Reject scripts, external references, embedded-raster-only masquerades, invalid or out-of-bounds viewBox geometry, blank output, unsafe text/font dependencies and unbounded path complexity. Prove editable paths/shapes, independent raster render, deterministic lineage and governed SVG master -> EPS/PNG/JPEG derivative packaging without changing semantic asset count."
+      "acceptance": "Reject scripts, external references, embedded-raster-only masquerades, invalid or out-of-bounds viewBox geometry, blank output, unsafe text/font dependencies and unbounded path complexity. Prove editable paths/shapes, independent raster render, deterministic lineage and governed SVG master -> EPS/PNG/JPEG derivative packaging without changing semantic asset count.",
+      "updated_at": "2026-09-11",
+      "receipt": "company/factory-asset/receipts/FA-321-native-svg-pipeline.receipt.json",
+      "result": "DONE/PASS: native SVG sanitizer/editability/render QA and deterministic SVG->EPS/PNG/JPEG derivative pipeline accepted; unsafe/non-editable SVG fails closed and derivatives do not change semantic asset identity.",
+      "completed_at": "2026-09-11"
     },
     {
       "id": "FA-322",
@@ -2973,10 +2977,13 @@
       "depends_on": [
         "FA-321"
       ],
-      "status": "BLOCKED",
+      "status": "WAITING_FOUNDER",
       "authority": "FOUNDER_REQUIRED_FOR_BOUNDED_PROVIDER_CALL",
       "artifact": "Claude native-vector live canary receipt and producer-registry decision",
-      "acceptance": "With Founder-authorized authenticated provider access, generate bounded genuine SVG ICON/OUTLINE masters from frozen blueprints, pass FA-321 safety/editability QA and derivative packaging, and only then promote the NATIVE_VECTOR ICON/OUTLINE route from UNAVAILABLE_NOT_ACCEPTED to ACCEPTED. No account multiplication, credential copying, submission or publication."
+      "acceptance": "With Founder-authorized authenticated provider access, generate bounded genuine SVG ICON/OUTLINE masters from frozen blueprints, pass FA-321 safety/editability QA and derivative packaging, and only then promote the NATIVE_VECTOR ICON/OUTLINE route from UNAVAILABLE_NOT_ACCEPTED to ACCEPTED. No account multiplication, credential copying, submission or publication.",
+      "updated_at": "2026-09-11",
+      "receipt": "company/factory-asset/receipts/FA-322-claude-web-preauth.receipt.json",
+      "result": "WAITING_FOUNDER: Claude Web AI is prewired as AUTH_REQUIRED on Cluster A/B with BROWSER_CDP readiness, raw SVG extraction and FA-321 postproduction. Founder login is the only remaining prerequisite before bounded live ICON+OUTLINE acceptance; route remains UNAVAILABLE_NOT_ACCEPTED."
     },
     {
       "id": "FA-323",
@@ -3006,10 +3013,14 @@
       "depends_on": [
         "FA-323"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_DISPLAY_SERVICE_ACTIVATION",
       "artifact": "Loopback VNC services for production displays plus SSH-tunnel runbook and rollback",
-      "acceptance": "Attach read-only/local-only VNC observation to the actual Cluster A/B Xvfb displays used by browser owners, not an unrelated XFCE desktop. Bind no VNC/CDP/broker endpoint to public interfaces; Founder access must traverse an authenticated private/SSH tunnel and preserve current browser sessions."
+      "acceptance": "Attach read-only/local-only VNC observation to the actual Cluster A/B Xvfb displays used by browser owners, not an unrelated XFCE desktop. Bind no VNC/CDP/broker endpoint to public interfaces; Founder access must traverse an authenticated private/SSH tunnel and preserve current browser sessions.",
+      "updated_at": "2026-09-11",
+      "receipt": "company/factory-asset/receipts/FA-324-founder-vnc-live.receipt.json",
+      "result": "DONE/PASS: read-only VNC mirrors attach to the actual production Xvfb :101/:102 through browser-owner namespaces, bind only to loopback 59101/59102, preserve browser/broker PIDs and require SSH/private tunneling.",
+      "completed_at": "2026-09-11"
     },
     {
       "id": "FA-325",
@@ -3020,10 +3031,14 @@
       "depends_on": [
         "FA-324"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_INTERACTIVE_AUTH_OR_RECOVERY",
       "artifact": "Bounded interactive display escalation/revocation workflow",
-      "acceptance": "Permit an explicitly Founder-opened temporary interactive view for login, checkpoint or browser repair against the correct production display, with exclusive repair lease, visible state, timeout/revocation and restoration to normal automation. Never read/copy credentials, cookies or tokens and never bypass CAPTCHA or platform protections."
+      "acceptance": "Permit an explicitly Founder-opened temporary interactive view for login, checkpoint or browser repair against the correct production display, with exclusive repair lease, visible state, timeout/revocation and restoration to normal automation. Never read/copy credentials, cookies or tokens and never bypass CAPTCHA or platform protections.",
+      "updated_at": "2026-09-11",
+      "receipt": "company/factory-asset/receipts/FA-325-founder-repair-live.receipt.json",
+      "result": "DONE/PASS: temporary interactive repair uses an idle-only time-bound repair hold and loopback transient VNC, excludes the cluster from new dispatch while ACTIVE, then revokes/restores normal read-only observation without credential/cookie/token reads or CAPTCHA bypass.",
+      "completed_at": "2026-09-11"
     },
     {
       "id": "FA-326",
@@ -3100,10 +3115,14 @@
         "FA-329",
         "FA-129"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "Evidence-bounded seed x mode x preset opportunity plan and scoring receipts",
-      "acceptance": "Rank which seed nouns deserve which semantic modes and manifestation presets from Object Atlas evidence, Human Atlas demand/reuse context, commercial utility, platform fit, feasibility and differentiation. Preserve force_all_modes=false; the matrix generates bounded candidates and must never command exhaustive seed x mode x preset production."
+      "acceptance": "Rank which seed nouns deserve which semantic modes and manifestation presets from Object Atlas evidence, Human Atlas demand/reuse context, commercial utility, platform fit, feasibility and differentiation. Preserve force_all_modes=false; the matrix generates bounded candidates and must never command exhaustive seed x mode x preset production.",
+      "updated_at": "2026-09-11",
+      "receipt": "company/factory-asset/receipts/FA-330-sparse-opportunity-planner.receipt.json",
+      "result": "DONE/PASS: sparse evidence-bounded seed x semantic-mode x preset planner accepted with force_all_modes=false, max 12 outputs, no Cartesian enumeration, champion exploitation preserved and alternate modes/presets research-bounded.",
+      "completed_at": "2026-09-11"
     },
     {
       "id": "FA-331",
@@ -3114,10 +3133,14 @@
       "depends_on": [
         "FA-330"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "Semantic production ledger v2 and migration/compatibility receipt",
-      "acceptance": "A seed noun is not globally consumed after one raster manifestation. Consumption identity must bind seed + semantic mode + materially distinct commercial expression + production preset revision, while packaging derivatives remain identity-neutral and near-duplicate variants quarantine. Preserve legacy ledger replay and exactly-once semantics."
+      "acceptance": "A seed noun is not globally consumed after one raster manifestation. Consumption identity must bind seed + semantic mode + materially distinct commercial expression + production preset revision, while packaging derivatives remain identity-neutral and near-duplicate variants quarantine. Preserve legacy ledger replay and exactly-once semantics.",
+      "updated_at": "2026-09-11",
+      "receipt": "company/factory-asset/receipts/FA-331-semantic-expression-ledger.receipt.json",
+      "result": "DONE/PASS: production consumption identity upgraded to seed + semantic mode + commercial expression + preset revision; runtime selector/claim path is expression-aware, legacy baseline replay preserved, derivatives identity-neutral and near-duplicates quarantine.",
+      "completed_at": "2026-09-11"
     },
     {
       "id": "FA-332",
@@ -3130,10 +3153,14 @@
         "FA-330",
         "FA-331"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "Production Intelligence v2 acceptance and rollout recommendation",
-      "acceptance": "Prove the current isolated cartoon/watercolor white-background product line remains a deterministic champion exploitation lane while alternate modes/presets stay evidence-bounded exploration candidates. Selector -> dual-Atlas context -> expression plan -> preset -> Asset Blueprint v2 -> producer route -> postproduction must be traceable end-to-end. No throughput scale or marketplace publication authority is granted."
+      "acceptance": "Prove the current isolated cartoon/watercolor white-background product line remains a deterministic champion exploitation lane while alternate modes/presets stay evidence-bounded exploration candidates. Selector -> dual-Atlas context -> expression plan -> preset -> Asset Blueprint v2 -> producer route -> postproduction must be traceable end-to-end. No throughput scale or marketplace publication authority is granted.",
+      "updated_at": "2026-09-11",
+      "receipt": "company/factory-asset/receipts/FA-332-production-intelligence-v2.receipt.json",
+      "result": "DONE/PASS: end-to-end Production Intelligence v2 trace accepted from seed through Dual Atlas, opportunity planning, expression plan, preset, Asset Blueprint v2, producer route and FA-319 postproduction while champion exploitation remains deterministic and exploration remains bounded. No throughput/publication authority granted.",
+      "completed_at": "2026-09-11"
     },
     {
       "id": "FA-333",

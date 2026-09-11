@@ -1,0 +1,92 @@
+{
+  "schema": "die.factory-asset.opportunity-mode-signals.v1",
+  "revision": "1.0",
+  "authority_effect": "NONE",
+  "modes": {
+    "ISOLATED_OBJECT": {
+      "producer_class": "RASTER_GENERATIVE",
+      "signal_terms": [
+        "reusable",
+        "component",
+        "composition",
+        "ecommerce",
+        "e-commerce",
+        "packaging",
+        "retail",
+        "gifting",
+        "stock",
+        "design utility"
+      ],
+      "minimum_signal_hits": 1
+    },
+    "PHOTO": {
+      "producer_class": "RASTER_GENERATIVE",
+      "signal_terms": [
+        "lifestyle",
+        "editorial",
+        "campaign",
+        "photograph",
+        "photo",
+        "realistic scene"
+      ],
+      "minimum_signal_hits": 1
+    },
+    "ICON": {
+      "producer_class": "NATIVE_VECTOR",
+      "signal_terms": [
+        "interface",
+        "ui",
+        "navigation",
+        "checkout",
+        "symbol",
+        "icon",
+        "app"
+      ],
+      "minimum_signal_hits": 1
+    },
+    "OUTLINE": {
+      "producer_class": "NATIVE_VECTOR",
+      "signal_terms": [
+        "instruction",
+        "instructional",
+        "diagram",
+        "signage",
+        "outline",
+        "manual"
+      ],
+      "minimum_signal_hits": 1
+    },
+    "PATTERN": {
+      "producer_class": "PROCEDURAL_VECTOR",
+      "signal_terms": [
+        "wrapping",
+        "repeat",
+        "repeating",
+        "pattern",
+        "textile",
+        "background",
+        "wallpaper"
+      ],
+      "minimum_signal_hits": 1
+    },
+    "ANIMATION": {
+      "producer_class": "MOTION_RENDERER",
+      "signal_terms": [
+        "motion",
+        "animation",
+        "animated",
+        "loop",
+        "video",
+        "status transition",
+        "completion state"
+      ],
+      "minimum_signal_hits": 1
+    }
+  },
+  "policy": {
+    "force_all_modes": false,
+    "context_inference_is_observed_demand": false,
+    "preset_not_live_is_production_authority": false,
+    "max_candidates_per_seed": 12
+  }
+}
