@@ -126,6 +126,24 @@ class LiveWorkCardRunnerTests(unittest.TestCase):
             payload = courier.resolve(result["output_artifacts"][0])
             self.assertEqual(payload["finding"], "retry-pass")
 
+    def test_semantic_validator_retries_before_artifact_commit(self):
+        with tempfile.TemporaryDirectory() as td:
+            courier = artifactmod.ArtifactCourier(td)
+            client = FakeClient([success_response('{"status":"bad"}'), success_response('{"status":"good"}', provider="gemini")])
+            c = card(max_attempts=2)
+
+            def validate(payload):
+                if payload.get("status") != "good":
+                    raise ValueError("SEMANTIC_OUTPUT_INVALID")
+                return payload
+
+            result = mod.LiveWorkCardRunner(courier, client).run(
+                run_id="RUN-SEMANTIC", card=c, instruction="Return governed JSON.", payload_validator=validate
+            )
+            self.assertEqual(result["attempt"], 2)
+            self.assertEqual(len(client.dispatch_calls), 2)
+            self.assertEqual(courier.resolve(result["output_artifacts"][0])["status"], "good")
+
     def test_input_artifact_is_expanded_into_next_worker_prompt(self):
         with tempfile.TemporaryDirectory() as td:
             courier = artifactmod.ArtifactCourier(td)

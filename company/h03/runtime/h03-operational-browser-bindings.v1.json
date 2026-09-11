@@ -81,6 +81,11 @@
     "live_release_verified": true,
     "watchdog_acceptance": "PASS",
     "anti_stall_fallback_acceptance": "PASS",
-    "state_preservation_verified": true
+    "state_preservation_verified": true,
+    "live_release_commit": "5ee7e377b6a1ae23c6c3a7745b254012ae6b5290",
+    "live_release_version": "0.8.27",
+    "runtime_cockpit_acceptance": "PASS",
+    "cross_process_artifact_continuity_acceptance": "PASS",
+    "release_self_healing_acceptance": "PASS"
   }
 }

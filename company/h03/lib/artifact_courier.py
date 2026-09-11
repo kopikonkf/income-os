@@ -151,6 +151,29 @@ class ArtifactCourier:
             "sha256": digest,
         }
 
+    def existing_ref(self, *, run_id: str, artifact_id: str, kind: str | None = None) -> dict[str, Any] | None:
+        path = self._artifact_path(run_id, artifact_id)
+        if not path.exists():
+            return None
+        raw = path.read_bytes()
+        envelope = json.loads(raw.decode("utf-8"))
+        if (
+            envelope.get("schema_version") != ARTIFACT_SCHEMA
+            or envelope.get("holding_id") != "H03"
+            or envelope.get("run_id") != run_id
+            or envelope.get("artifact_id") != artifact_id
+        ):
+            raise ValueError("ARTIFACT_ENVELOPE_INVALID")
+        if kind is not None and envelope.get("kind") != kind:
+            raise ValueError("ARTIFACT_KIND_MISMATCH")
+        _scan(envelope)
+        return {
+            "artifact_id": artifact_id,
+            "kind": envelope["kind"],
+            "ref": f"artifact://h03/{run_id}/{artifact_id}",
+            "sha256": _sha256(raw),
+        }
+
     def resolve(self, artifact_ref: dict[str, Any]) -> Any:
         if not isinstance(artifact_ref, dict):
             raise ValueError("ARTIFACT_REF_INVALID")

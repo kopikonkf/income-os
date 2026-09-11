@@ -442,6 +442,67 @@
       "acceptance": "Provision H03-owned Knowledge/Review/Growth persistent profiles, prove controlled restart/session persistence, enforce headful demand-driven lifecycle and foreign-profile prohibition, and bind by logical identity to Mission Control supervisor bridge without persisting session material."
     },
     {
+      "id": "H03-RT-008",
+      "track": "RUNTIME",
+      "title": "Restart-safe Artifact Courier and cross-process semantic continuity",
+      "status": "DONE",
+      "priority": 741,
+      "depends_on": [
+        "H03-RT-007"
+      ],
+      "risk": "LOW",
+      "execution_mode": "tool_native",
+      "acceptance": "Persist every accepted Web-AI handoff as a content-addressed H03 artifact plus result receipt and queue checkpoint; prove a downstream role can reload and consume the artifact after the upstream process exits, without shared chat memory or worker filesystem access.",
+      "artifact": "company/h03/lib/artifact_courier.py + company/h03/lib/live_work_card_runner.py + company/h03/tests/test_artifact_courier.py + company/h03/tests/test_live_work_card_runner.py",
+      "result": {
+        "status": "PASS",
+        "cross_process_continuity": "PASS",
+        "cross_provider_handoff": "QWEN_TO_GEMINI_LIVE_PASS",
+        "semantic_validation_before_commit": true,
+        "duplicate_dispatch_after_receipt_replay": false
+      }
+    },
+    {
+      "id": "H03-RT-009",
+      "track": "RUNTIME",
+      "title": "Live public-source gate and production organism runner readiness",
+      "status": "DONE",
+      "priority": 740,
+      "depends_on": [
+        "H03-RT-008"
+      ],
+      "risk": "MEDIUM",
+      "execution_mode": "tool_native",
+      "acceptance": "Verify public research URLs independently with bounded HTTP(S) fetching, SSRF/private-network rejection, source hashing, evidence-unit extraction and reference-only rights governance; exercise the complete A-K organism DAG with fake cognition but real deterministic Demand/WTP, Worth-Making, synthesis normalization, product planning, PDF render/QA/package and Founder QC gate.",
+      "artifact": "company/h03/lib/live_source_verifier.py + company/h03/lib/live_org_runner.py + bin/h03_live_org.py + company/h03/tests/test_live_source_verifier.py + company/h03/tests/test_live_org_runner.py",
+      "result": {
+        "status": "PASS",
+        "full_h03_regression": "179/179",
+        "mocked_full_dag": "WAITING_FOUNDER_QC",
+        "real_pdf_package_in_acceptance": true,
+        "publication_side_effect": false,
+        "spend_side_effect": false
+      }
+    },
+    {
+      "id": "H03-LIVE-ORG-001",
+      "track": "CANARY",
+      "title": "First live Web-AI problem-to-package organism",
+      "status": "READY",
+      "priority": 739,
+      "depends_on": [
+        "H03-RT-009",
+        "H03-PROD-003",
+        "H03-REV-001"
+      ],
+      "risk": "MEDIUM",
+      "execution_mode": "tool_native",
+      "authority": "INTERNAL_LIVE_COGNITION_ONLY_NO_PUBLICATION_NO_SPEND",
+      "acceptance": "Run one bounded live A-K organism from opportunity brief through seed curation, verified market evidence, Demand/WTP, Worth-Making, deep research, synthesis, Knowledge Package, Product Architecture, semantic production, deterministic PDF package and independent review. Stop honestly if Worth-Making or evidence gates fail. If review passes, stop at WAITING_FOUNDER_QC. No listing, social publication, paid ads or spend.",
+      "artifact": "company/h03/evidence/H03-LIVE-ORG-001",
+      "next_action": "Execute bin/h03_live_org.py against H03 dedicated operational profiles and Mission Control H03 supervisor bridge."
+    },
+    {
       "id": "H03-ECO-002",
       "track": "ECONOMICS",
       "title": "H03 live canonical economics commit activation boundary",
@@ -834,7 +895,7 @@
       }
     }
   ],
-  "revision": "2026-09-10 H03-RT-007 dedicated headful browser workforce persistence PASS; Mission Control bridge implementation pending canonical merge/anti-stall acceptance",
+  "revision": "2026-09-11 H03-RT-008 artifact continuity PASS; H03-RT-009 live-source/full-DAG readiness PASS; Mission Control H03 bridge accepted production-ready; H03-LIVE-ORG-001 READY.",
   "production_organism": {
     "control_plane": "Mission Control supervises batches/products, recovery, gates and durable standing; it does not execute every prompt.",
     "worker_plane": "H03 role queues dispatch normalized cognition jobs through web-ai-adapter; MCP is not a worker hot-path requirement.",
@@ -872,10 +933,12 @@
     ]
   },
   "current_frontier": {
-    "ready": [],
+    "ready": [
+      "H03-LIVE-ORG-001"
+    ],
     "parallel_lanes": {
       "economic_intelligence": "H03-OPP-001 -> H03-OPP-002 + H03-DMD-001 -> H03-OPP-003 -> H03-RSCH-001",
-      "factory_runtime": "H03-RT-001 -> H03-RT-002 -> H03-RT-003 -> H03-RT-004 -> H03-RT-005 -> H03-RT-006",
+      "factory_runtime": "H03-RT-001 -> H03-RT-002 -> H03-RT-003 -> H03-RT-004 -> H03-RT-005 -> H03-RT-006 -> H03-RT-007 -> H03-RT-008 -> H03-RT-009 -> H03-LIVE-ORG-001",
       "product_convergence": "H03-RSCH-002 -> H03-KF-003 -> H03-PROD-001 -> H03-PROD-002 -> H03-PROD-003 -> H03-ORG-001",
       "postproduction": "H03-REV-001 -> H03-COM-001 -> H03-ATTR-001 + H03-GRW-001 -> distribution/growth/analytics"
     },

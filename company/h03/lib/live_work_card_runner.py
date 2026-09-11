@@ -77,6 +77,7 @@ class MissionControlH03Client:
         max_routes: int = 3,
         timeout_seconds: int | None = None,
         dominant_producer_provider: str | None = None,
+        payload_validator: Callable[[Any], Any] | None = None,
     ) -> dict[str, Any]:
         payload: dict[str, Any] = {
             "role": role,
@@ -175,6 +176,7 @@ class LiveWorkCardRunner:
         max_routes: int = 3,
         timeout_seconds: int = 180,
         dominant_producer_provider: str | None = None,
+        payload_validator: Callable[[Any], Any] | None = None,
     ) -> dict[str, Any]:
         cognition_work_card.validate_work_card(card)
         if card["role"] not in MC_ROLE_MAP:
@@ -247,6 +249,8 @@ class LiveWorkCardRunner:
                 if not response.get("ok"):
                     raise RuntimeError("MC_BRIDGE_DISPATCH_FAILED")
                 payload = parse_json_worker_output(response.get("response_text") or "")
+                if payload_validator is not None:
+                    payload = payload_validator(payload)
                 artifact_id = f"{card['work_card_id']}-OUT"
                 artifact_ref = self.courier.commit_payload(
                     run_id=run_id,
