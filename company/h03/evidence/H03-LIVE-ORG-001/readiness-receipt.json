@@ -1,0 +1,38 @@
+{
+  "schema_version": "die.h03.live-organism-readiness-receipt.v1",
+  "holding_id": "H03",
+  "task_id": "H03-LIVE-ORG-001",
+  "status": "READY",
+  "mission_control": {
+    "bridge_state": "ACCEPTED_PRODUCTION_READY",
+    "live_release_commit": "5ee7e377b6a1ae23c6c3a7745b254012ae6b5290",
+    "version": "0.8.27",
+    "watchdog": "PASS",
+    "cockpit": "PASS",
+    "release_self_healing": "PASS"
+  },
+  "artifact_continuity": {
+    "cross_process": "PASS",
+    "cross_provider": "QWEN_TO_GEMINI_LIVE_PASS",
+    "semantic_validation_before_commit": true
+  },
+  "source_governance": {
+    "public_http_verifier": true,
+    "private_network_rejected": true,
+    "bounded_fetch": true,
+    "hash_and_evidence_units": true,
+    "rights_state": "REVIEWED_REFERENCE_ONLY",
+    "web_ai_review_authority": false
+  },
+  "organism_acceptance": {
+    "mocked_full_dag": "PASS",
+    "terminal_state": "WAITING_FOUNDER_QC",
+    "real_pdf_package": true,
+    "external_publication": false,
+    "spend": false
+  },
+  "regression": {
+    "h03_unittest": "179/179 PASS"
+  },
+  "live_org_started": false
+}

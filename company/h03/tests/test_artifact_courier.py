@@ -39,6 +39,18 @@ class ArtifactCourierTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "ARTIFACT_ID_CONFLICT"):
                 courier.commit_payload(payload={"x": 2}, **kw)
 
+    def test_existing_ref_is_restart_safe_and_kind_checked(self):
+        with tempfile.TemporaryDirectory() as td:
+            courier = mod.ArtifactCourier(td)
+            committed = courier.commit_payload(
+                run_id="R-EXIST", artifact_id="A-EXIST", kind="packet", declared_schema="packet.v1",
+                producer_work_card_id="WC-EXIST", payload={"x":1},
+            )
+            recovered = courier.existing_ref(run_id="R-EXIST", artifact_id="A-EXIST", kind="packet")
+            self.assertEqual(recovered, committed)
+            with self.assertRaisesRegex(ValueError,"ARTIFACT_KIND_MISMATCH"):
+                courier.existing_ref(run_id="R-EXIST", artifact_id="A-EXIST", kind="wrong")
+
     def test_secret_material_is_rejected(self):
         with tempfile.TemporaryDirectory() as td:
             courier = mod.ArtifactCourier(td)
