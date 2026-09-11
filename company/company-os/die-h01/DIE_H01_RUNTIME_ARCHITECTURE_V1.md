@@ -1,6 +1,6 @@
 # DIE-H01 Factory Runtime Architecture v1
 
-Status: FOUNDER-DIRECTED DESIGN CANDIDATE / NOT LIVE
+Status: FOUNDER-APPROVED CANONICAL DESIGN / NOT LIVE
 Date: 2026-09-11
 Scope: H01 Factory Asset runtime only. DIE is global; `die-control` is the separate global control plane.
 

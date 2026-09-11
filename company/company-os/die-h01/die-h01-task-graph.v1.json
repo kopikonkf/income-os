@@ -1,7 +1,7 @@
 {
   "schema": "die.h01.task-graph.v1",
   "generated_at": "2026-09-11",
-  "status": "DESIGN_CANDIDATE_NOT_CANONICAL",
+  "status": "FOUNDER_APPROVED_CANONICAL_DESIGN_NOT_LIVE",
   "project": "DIE / H01 Factory Asset",
   "source_sha": "83df35a6dda299b140d169989c89ac49a56a9ddd",
   "doctrine": {
@@ -688,5 +688,10 @@
       "title": "Evaluate NNk/day expansion from measured economics and concurrency",
       "acceptance": "Scale storage/CPU/UDD concurrency/nodes only when acceptance, cost, provider limits, janitor and marketplace throughput support it."
     }
-  ]
+  ],
+  "approval": {
+    "authority": "FOUNDER",
+    "approved_at": "2026-09-11",
+    "effect": "DESIGN_CANON_ONLY_NO_RUNTIME_CUTOVER"
+  }
 }
