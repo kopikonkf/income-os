@@ -40,3 +40,15 @@ def test_fa124_seed_id_is_evidence_not_object_atlas_identity(tmp_path):
 
 def test_bootstrap_reads_legacy_progress_when_selection_missing(tmp_path):
  ws=tmp_path/'w';w=ws/'PRODSEED000022';w.mkdir(parents=True);(w/'PROGRESS.md').write_text('# x\n\n- Seed: SEED-000022 (candle)\n- State: WAITING_FOUNDER_QC\n');led=tmp_path/'l.db';r=bootstrap_seed_ledger(ws,ledger_path=led,fa124_e4=tmp_path/'missing');ids,names=consumed(led);assert 'SEED-000022' in ids and 'candle' in names and r['evidence_rows']==1
+
+
+def test_selector_allows_same_legacy_noun_for_distinct_semantic_expression(tmp_path):
+ from production_seed_selector import select_seed
+ db=tmp_path/'a.db';c=make_db(db);c.executemany('INSERT INTO seeds VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)',[('SEED-000001','bottle','concrete_visual','real_world','x',.9,'validated_high','U1-raster',0,'approved','x',None,'x'),('SEED-000002','candle','concrete_visual','real_world','x',.8,'validated_high','U1-raster',0,'approved','x',None,'x')]);c.commit();c.close()
+ ws=tmp_path/'w';w=ws/'OLD';w.mkdir(parents=True);(w/'seed-selection.json').write_text(json.dumps({'seed':{'id':'SEED-000001','canonical_name':'bottle'}}));led=tmp_path/'ledger.db';bootstrap_seed_ledger(ws,ledger_path=led,fa124_e4=tmp_path/'missing')
+ # Baseline compatibility remains blocked by legacy noun history.
+ baseline=select_seed(db,ws,ledger_path=led);assert baseline['seed']['id']=='SEED-000002'
+ # A materially different semantic mode/preset may reuse the same primitive.
+ alt=select_seed(db,ws,ledger_path=led,semantic_mode='ICON',preset_id='ICON_CLEAN_V1',preset_revision='1.0.0',commercial_expression_override='editable bottle icon for product interface')
+ assert alt['seed']['id']=='SEED-000001' and alt['semantic_mode']=='ICON' and alt['preset_id']=='ICON_CLEAN_V1'
+ assert alt['expression_identity']['semantic_mode']=='ICON'

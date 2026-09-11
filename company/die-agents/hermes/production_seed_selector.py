@@ -9,7 +9,7 @@ import re
 import sqlite3
 from pathlib import Path
 from typing import Any
-from production_seed_ledger import DEFAULT_LEDGER, consumed, normalize_noun
+from production_seed_ledger import DEFAULT_LEDGER, consumed, normalize_noun, expression_identity, expression_available
 
 SCHEMA = "die.production-seed-selection.v1"
 DEFAULT_DB = Path("/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db")
@@ -17,7 +17,10 @@ DEFAULT_WORKSPACES = Path("/var/lib/die/workspaces")
 ELIGIBLE_DEMAND = ("validated_high", "validated_medium")
 SEED_RE = re.compile(r"^SEED-\d{6}$")
 SEED_ANY_RE = re.compile(r"\bSEED-\d{6}\b")
-SELECTION_POLICY = "APPROVED_U1_DEMAND_RANKED_UNUSED_WITH_EXPRESSION_V2"
+SELECTION_POLICY = "APPROVED_U1_DEMAND_RANKED_SEMANTIC_EXPRESSION_V3"
+BASELINE_MODE="ISOLATED_OBJECT"
+BASELINE_PRESET_ID="ISOLATED_CARTOON_WATERCOLOR_L0"
+BASELINE_PRESET_REVISION="1.0.0"
 
 
 def _collect_seed_ids(value: Any, out: set[str]) -> None:
@@ -110,7 +113,7 @@ def _expressions(connection: sqlite3.Connection) -> dict[str, dict[str, Any]]:
     }
 
 
-def select_seed(db_path: Path, workspaces_root: Path, *, ledger_path: Path | None = None) -> dict[str, Any]:
+def select_seed(db_path: Path, workspaces_root: Path, *, ledger_path: Path | None = None, semantic_mode: str = BASELINE_MODE, preset_id: str = BASELINE_PRESET_ID, preset_revision: str = BASELINE_PRESET_REVISION, commercial_expression_override: str | None = None) -> dict[str, Any]:
     if not db_path.is_file():
         raise FileNotFoundError(f"object atlas database unavailable: {db_path}")
 
@@ -147,7 +150,12 @@ def select_seed(db_path: Path, workspaces_root: Path, *, ledger_path: Path | Non
 
     for row in rows:
         seed_id = str(row["id"])
-        if seed_id in used or normalize_noun(str(row['canonical_name'])) in used_names:
+        expression = expressions.get(seed_id)
+        commercial_expression = commercial_expression_override or (expression or {}).get('commercial_expression') or f"isolated {row['canonical_name']} stock design component"
+        identity = expression_identity(seed_id=seed_id,noun=str(row['canonical_name']),semantic_mode=semantic_mode,commercial_expression=commercial_expression,preset_id=preset_id,preset_revision=preset_revision)
+        baseline_compat = semantic_mode == BASELINE_MODE and preset_id == BASELINE_PRESET_ID and preset_revision == BASELINE_PRESET_REVISION
+        # Legacy noun/seed history blocks only the historical baseline expression. It must not globally consume other modes/presets.
+        if not expression_available(ledger_path,identity,legacy_baseline_compatibility=baseline_compat):
             continue
         return {
             "schema": SCHEMA,
@@ -168,7 +176,11 @@ def select_seed(db_path: Path, workspaces_root: Path, *, ledger_path: Path | Non
                 "master_source_id": row["master_source_id"],
                 "demand_signal": row["demand_signal"],
             },
-            "commercial_expression": expressions.get(seed_id),
+            "commercial_expression": expression,
+            "expression_identity": identity,
+            "semantic_mode": semantic_mode,
+            "preset_id": preset_id,
+            "preset_revision": preset_revision,
             "excluded_used_seed_count": len(used),
             "excluded_used_noun_count": len(used_names),
             "used_seed_ids": sorted(used),

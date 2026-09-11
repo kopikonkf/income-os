@@ -47,3 +47,17 @@ def test_identity_normalization_is_stable():
  b=m.expression_identity(seed_id='SEED-000028',noun='gift box',semantic_mode='ISOLATED_OBJECT',commercial_expression='reusable gift box component',preset_id='P',preset_revision='1')
  assert a['expression_fingerprint']==b['expression_fingerprint']
  assert a['normalized_noun']=='gift box' and a['normalized_commercial_expression']=='reusable gift box component'
+
+
+def test_runtime_start_seed_uses_expression_claim_and_expression_suffixed_workspace_id():
+ src=(ROOT/'company/die-agents/hermes/production-runtime/production_runtime_tick.py').read_text(encoding='utf-8')
+ assert 'bootstrap_expression_legacy_replay' in src
+ assert 'claim_expression(SEED_LEDGER,identity' in src
+ assert "identity['expression_fingerprint'][:8].upper()" in src
+ assert "E_EXPRESSION_CLAIM" in src
+
+def test_selector_no_longer_globally_skips_seed_id_or_noun_before_expression_identity():
+ src=(ROOT/'company/die-agents/hermes/production_seed_selector.py').read_text(encoding='utf-8')
+ assert 'APPROVED_U1_DEMAND_RANKED_SEMANTIC_EXPRESSION_V3' in src
+ assert 'expression_available(ledger_path,identity,legacy_baseline_compatibility=baseline_compat)' in src
+ assert "if seed_id in used or normalize_noun" not in src

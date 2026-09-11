@@ -136,3 +136,19 @@ def bootstrap_expression_legacy_replay(ledger_path:Path)->dict[str,Any]:
   c.commit();return {'schema':'die.production-expression-legacy-replay.v1','status':'PASS','legacy_rows':len(rows),'added':added,'identity_scope':'LEGACY_NOUN_ONLY','blocks_new_semantic_expressions':False}
  except Exception:c.rollback();raise
  finally:c.close()
+
+
+def legacy_noun_consumed(ledger_path:Path|None,noun:str)->bool:
+ if ledger_path is None or not Path(ledger_path).is_file():return False
+ n=normalize_noun(noun)
+ c=_connect(Path(ledger_path))
+ try:
+  if c.execute('SELECT 1 FROM production_expression_legacy_replay WHERE normalized_noun=?',(n,)).fetchone() is not None:return True
+  return c.execute('SELECT 1 FROM production_seed_consumption WHERE normalized_noun=?',(n,)).fetchone() is not None
+ finally:c.close()
+
+def expression_available(ledger_path:Path|None,identity:dict[str,str],*,legacy_baseline_compatibility:bool=False)->bool:
+ if ledger_path is None or not Path(ledger_path).is_file():return True
+ if expression_consumed(Path(ledger_path),identity):return False
+ if legacy_baseline_compatibility and legacy_noun_consumed(Path(ledger_path),identity['normalized_noun']):return False
+ return True
