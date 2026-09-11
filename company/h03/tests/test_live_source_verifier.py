@@ -39,6 +39,22 @@ class LiveSourceVerifierTests(unittest.TestCase):
         selected=mod._select_evidence_units(units,['pricing'],2)
         self.assertEqual([x['evidence_id'] for x in selected],['E2','E3'])
 
+    def test_evidence_selection_rejects_successful_but_irrelevant_redirect_content(self):
+        units=[
+            {"evidence_id":"E1","text":"generic learning portal navigation"},
+            {"evidence_id":"E2","text":"courses and account login"},
+        ]
+        with self.assertRaisesRegex(ValueError,"RELEVANCE_NOT_OBSERVED"):
+            mod._select_evidence_units(units,["book launch checklist"],2)
+
+    def test_token_overlap_can_select_relevant_units_without_exact_phrase_match(self):
+        units=[
+            {"evidence_id":"E1","text":"generic intro"},
+            {"evidence_id":"E2","text":"computer workstation evaluation checklist for chair and monitor setup"},
+        ]
+        selected=mod._select_evidence_units(units,["ergonomic workstation tool"],1)
+        self.assertEqual(selected[0]["evidence_id"],"E2")
+
     def test_bundle_is_bounded_deduplicated_and_records_failures(self):
         calls=[]
         def fake_fetcher(**kwargs):

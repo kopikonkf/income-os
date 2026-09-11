@@ -36,10 +36,32 @@ def _strip_json_fence(text: str) -> str:
 def parse_json_worker_output(text: str) -> Any:
     if not isinstance(text, str) or not text.strip():
         raise ValueError("WORKER_OUTPUT_EMPTY")
+    value = text.strip()
+    full_candidate = _strip_json_fence(value)
     try:
-        return json.loads(_strip_json_fence(text))
-    except json.JSONDecodeError as exc:
-        raise ValueError("WORKER_OUTPUT_JSON_INVALID") from exc
+        return json.loads(full_candidate)
+    except json.JSONDecodeError:
+        pass
+
+    decoded: list[tuple[int, Any]] = []
+    for match in re.finditer(r"```(?:json)?\s*(.*?)\s*```", value, flags=re.IGNORECASE | re.DOTALL):
+        try:
+            decoded.append((match.end(), json.loads(match.group(1).strip())))
+        except json.JSONDecodeError:
+            pass
+
+    decoder = json.JSONDecoder()
+    for match in re.finditer(r"[\{\[]", value):
+        fragment = value[match.start():]
+        try:
+            parsed, end = decoder.raw_decode(fragment)
+            decoded.append((match.start() + end, parsed))
+        except json.JSONDecodeError:
+            continue
+    if decoded:
+        decoded.sort(key=lambda item: item[0])
+        return decoded[-1][1]
+    raise ValueError("WORKER_OUTPUT_JSON_INVALID")
 
 
 class MissionControlH03Client:
@@ -77,6 +99,7 @@ class MissionControlH03Client:
         max_routes: int = 3,
         timeout_seconds: int | None = None,
         dominant_producer_provider: str | None = None,
+        preferred_provider: str | None = None,
         payload_validator: Callable[[Any], Any] | None = None,
     ) -> dict[str, Any]:
         payload: dict[str, Any] = {
@@ -87,6 +110,8 @@ class MissionControlH03Client:
         }
         if dominant_producer_provider:
             payload["dominantProducerProvider"] = dominant_producer_provider
+        if preferred_provider:
+            payload["preferredProvider"] = preferred_provider
         return self.transport(self.endpoint + "/api/h03/bridge/dispatch", payload, self.timeout_seconds + 30)
 
     def emit(self, event: dict[str, Any]) -> dict[str, Any]:
@@ -176,6 +201,7 @@ class LiveWorkCardRunner:
         max_routes: int = 3,
         timeout_seconds: int = 180,
         dominant_producer_provider: str | None = None,
+        preferred_provider: str | None = None,
         payload_validator: Callable[[Any], Any] | None = None,
     ) -> dict[str, Any]:
         cognition_work_card.validate_work_card(card)
@@ -235,6 +261,7 @@ class LiveWorkCardRunner:
                     max_routes=max_routes,
                     timeout_seconds=timeout_seconds,
                     dominant_producer_provider=dominant_producer_provider,
+                    preferred_provider=preferred_provider,
                 )
                 self._emit(
                     run_id=run_id,
