@@ -28,7 +28,7 @@ class FakeWorker:
         return out
 
     def run(self, *, run_id, card, instruction, max_routes=3, timeout_seconds=180,
-            dominant_producer_provider=None, payload_validator=None):
+            dominant_producer_provider=None, preferred_provider=None, payload_validator=None):
         self.calls.append(card["work_card_id"])
         wc = card["work_card_id"]
         inputs = self._resolve_inputs(card)
@@ -63,19 +63,34 @@ class FakeWorker:
                     ],
                 })
 
+        elif wc.endswith("B2-MARKET-RECOVERY"):
+            seeds = inputs[0]["candidates"][:2]
+            payload = {"candidate_sources": []}
+            for idx, seed in enumerate(seeds, 1):
+                payload["candidate_sources"].append({
+                    "problem_seed_id": seed["problem_seed_id"],
+                    "source_requests": [
+                        {"url": f"https://recovery.example/{idx}/pricing", "source_class": "COMPETITOR_PRODUCT", "signal_hint": "PAID_SUBSTITUTE", "relevance_terms": ["pricing", "plans", "workflow"]},
+                        {"url": f"https://authority.example/{idx}/pain", "source_class": "SPECIALIST_PUBLICATION", "signal_hint": "REPEATED_PAIN", "relevance_terms": ["manual", "rework", "workflow"]},
+                    ],
+                })
+
         elif wc.endswith("C-MARKET-EVAL"):
             seed_batch, bundle = inputs[0], inputs[1]
             pid = seed_batch["candidates"][0]["problem_seed_id"]
-            source_ids = [s["source_id"] for s in bundle["verified_sources"] if s.get("candidate_id") == pid]
+            candidate_sources = [s for s in bundle["verified_sources"] if s.get("candidate_id") == pid]
+            source_ids = [s["source_id"] for s in candidate_sources]
+            paid_id = next(s["source_id"] for s in candidate_sources if s.get("signal_hint") == "PAID_SUBSTITUTE")
+            pain_id = next(s["source_id"] for s in candidate_sources if s["source_id"] != paid_id)
             payload = {
                 "selected_problem_seed_id": pid,
                 "pain_observation": {"severity": "MEDIUM", "frequency": "HIGH", "urgency": "MEDIUM"},
                 "buyer_intent_state": "MEDIUM",
                 "productability_state": "HIGH",
-                "productability_source_ids": source_ids[:2],
+                "productability_source_ids": [pain_id],
                 "evidence": [
-                    {"evidence_id": "MKT-E1", "signal_type": "PAID_SUBSTITUTE", "source_ids": [source_ids[0]], "rationale": "A paid structured substitute exists."},
-                    {"evidence_id": "MKT-E2", "signal_type": "REPEATED_PAIN", "source_ids": [source_ids[1]], "rationale": "The workflow pain is repeated and operationally costly."},
+                    {"evidence_id": "MKT-E1", "signal_type": "PAID_SUBSTITUTE", "source_ids": [paid_id], "rationale": "A paid structured substitute exists."},
+                    {"evidence_id": "MKT-E2", "signal_type": "REPEATED_PAIN", "source_ids": [pain_id], "rationale": "The workflow pain is repeated and operationally costly."},
                 ],
                 "selection_reasons": [
                     "Recurring operational friction is documented.",
@@ -206,6 +221,10 @@ def fake_source_verifier(*, run_id, source_requests, max_sources=12, **kwargs):
             f"Verified public reference {sid}: recurring workflow friction, structured checklists, "
             "and practical review steps are discussed for this bounded problem."
         )
+        if req.get("signal_hint") == "PAID_SUBSTITUTE":
+            text += " Pricing plans include a paid subscription at $12 per month."
+        if req.get("signal_hint") == "MARKETPLACE_SALE_PROXY":
+            text += " The marketplace listing displays customer reviews and ratings."
         verified.append({
             "source_id": sid,
             "source_uri": req["url"],
@@ -268,8 +287,8 @@ class LiveOrgRunnerTests(unittest.TestCase):
         bundle = fake_source_verifier(
             run_id="R",
             source_requests=[
-                {"source_id": "S1", "url": "https://example.com/1", "source_class": "SPECIALIST_PUBLICATION", "candidate_id": "P1"},
-                {"source_id": "S2", "url": "https://example.com/2", "source_class": "SEARCH_DEMAND", "candidate_id": "P1"},
+                {"source_id": "S1", "url": "https://example.com/1", "source_class": "COMPETITOR_PRODUCT", "candidate_id": "P1", "signal_hint": "PAID_SUBSTITUTE"},
+                {"source_id": "S2", "url": "https://example.org/2", "source_class": "SPECIALIST_PUBLICATION", "candidate_id": "P1", "signal_hint": "REPEATED_PAIN"},
             ],
         )
         payload = {
@@ -279,13 +298,44 @@ class LiveOrgRunnerTests(unittest.TestCase):
             "productability_state": "HIGH",
             "productability_source_ids": ["S1"],
             "evidence": [
-                {"evidence_id": "E1", "signal_type": "REPEATED_PAIN", "source_ids": ["S1"], "rationale": "Repeated pain exists."},
-                {"evidence_id": "E2", "signal_type": "PURCHASE_INTENT_SEARCH", "source_ids": ["S2"], "rationale": "Search intent exists but no paid signal is present."},
+                {"evidence_id": "E1", "signal_type": "REPEATED_PAIN", "source_ids": ["S2"], "rationale": "Repeated pain exists."},
+                {"evidence_id": "E2", "signal_type": "ENGAGEMENT_ONLY", "source_ids": ["S2"], "rationale": "Engagement exists but no paid evidence item is selected."},
             ],
             "selection_reasons": ["reason"],
         }
         with self.assertRaisesRegex(ValueError, "WTP_SIGNAL_REQUIRED"):
             mod._validate_market_evaluation(payload, seed_ids={"P1"}, source_bundle=bundle)
+
+
+    def test_market_source_recovery_r2_resumes_from_existing_a_b_and_reaches_qc(self):
+        calls = {"count": 0}
+
+        def recovering_verifier(*, run_id, source_requests, max_sources=12, **kwargs):
+            calls["count"] += 1
+            if calls["count"] == 1:
+                subset = [r for r in source_requests if r.get("signal_hint") != "PAID_SUBSTITUTE"][:1]
+                return fake_source_verifier(run_id=run_id, source_requests=subset, max_sources=max_sources)
+            return fake_source_verifier(run_id=run_id, source_requests=source_requests, max_sources=max_sources)
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            courier = artifact_courier.ArtifactCourier(root / "artifacts")
+            client = FakeClient()
+            worker = FakeWorker(courier)
+            result = mod.run_live_org(
+                artifact_root=root / "artifacts", output_root=root / "products",
+                founder_qc_root=root / "founder-qc", source_verifier=recovering_verifier,
+                courier=courier, client=client, worker=worker,
+            )
+            self.assertEqual(result["status"], "WAITING_FOUNDER_QC")
+            self.assertIn("H03-WC-LIVE001-B2-MARKET-RECOVERY", worker.calls)
+            ref = courier.existing_ref(
+                run_id="LIVE-ORG-001", artifact_id="LIVE001-MARKET-VERIFIED-SOURCES-R2", kind="verified_source_bundle"
+            )
+            self.assertIsNotNone(ref)
+            merged = courier.resolve(ref)
+            self.assertTrue(mod._market_ready_candidate_ids(merged))
+            self.assertGreaterEqual(calls["count"], 2)
 
 
 if __name__ == "__main__":

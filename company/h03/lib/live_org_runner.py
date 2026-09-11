@@ -4,6 +4,7 @@ import copy
 import hashlib
 import json
 import shutil
+import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -240,15 +241,24 @@ def _validate_scout_payload(payload: Any, *, seed_ids: set[str]) -> dict[str, An
     return {"candidate_sources": clean_groups}
 
 
-def _flatten_market_source_requests(scout: dict[str, Any]) -> list[dict[str, Any]]:
+def _flatten_market_source_requests(
+    scout: dict[str, Any],
+    *,
+    prefix: str = "LIVE001-MKT",
+    exclude_urls: set[str] | None = None,
+) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
+    excluded = set(exclude_urls or set())
     counter = 0
     for group in scout["candidate_sources"]:
         for req in group["source_requests"]:
+            url = req["url"]
+            if url in excluded:
+                continue
             counter += 1
             out.append({
-                "source_id": f"LIVE001-MKT-S{counter:03d}",
-                "url": req["url"],
+                "source_id": f"{prefix}-S{counter:03d}",
+                "url": url,
                 "source_class": req["source_class"],
                 "signal_hint": req["signal_hint"],
                 "relevance_terms": req["relevance_terms"],
@@ -259,6 +269,100 @@ def _flatten_market_source_requests(scout: dict[str, Any]) -> list[dict[str, Any
 
 def _source_index(bundle: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {s["source_id"]: s for s in bundle.get("verified_sources") or []}
+
+
+def _source_text(source: dict[str, Any]) -> str:
+    return " ".join(str(unit.get("text", "")) for unit in source.get("evidence_units") or [])
+
+
+def _source_host(source: dict[str, Any]) -> str:
+    try:
+        return (urlparse(str(source.get("source_uri") or "")).hostname or "").lower()
+    except Exception:
+        return ""
+
+
+def _source_has_paid_marker(source: dict[str, Any]) -> bool:
+    text = _source_text(source).lower()
+    return bool(re.search(r"(?:[$£€]\s?\d|\bprice\b|\bpricing\b|\bplans?\b|\bsubscription\b|\bbilling\b|\bmonthly\b|\bannual\b|\byearly\b|\bper month\b|\bper year\b|\bcheckout\b)", text))
+
+
+def _source_has_marketplace_proxy_marker(source: dict[str, Any]) -> bool:
+    text = _source_text(source).lower()
+    return bool(re.search(r"\b(?:reviews?|ratings?|sold|sales|downloads?|customers?|purchases?|orders?)\b", text))
+
+
+def _market_candidate_coverage(bundle: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    coverage: dict[str, dict[str, Any]] = {}
+    for source in bundle.get("verified_sources") or []:
+        candidate_id = str(source.get("candidate_id") or "").strip()
+        if not candidate_id:
+            continue
+        row = coverage.setdefault(candidate_id, {"source_ids": [], "hosts": set(), "paid_source_ids": []})
+        row["source_ids"].append(source["source_id"])
+        host = _source_host(source)
+        if host:
+            row["hosts"].add(host)
+        if source.get("signal_hint") == "PAID_SUBSTITUTE" and _source_has_paid_marker(source):
+            row["paid_source_ids"].append(source["source_id"])
+        if (
+            source.get("signal_hint") == "MARKETPLACE_SALE_PROXY"
+            and source.get("source_class") == "MARKETPLACE_LISTING"
+            and _source_has_marketplace_proxy_marker(source)
+        ):
+            row["paid_source_ids"].append(source["source_id"])
+    out: dict[str, dict[str, Any]] = {}
+    for candidate_id, row in coverage.items():
+        out[candidate_id] = {
+            "source_ids": list(dict.fromkeys(row["source_ids"])),
+            "host_count": len(row["hosts"]),
+            "paid_source_ids": list(dict.fromkeys(row["paid_source_ids"])),
+        }
+    return out
+
+
+def _market_ready_candidate_ids(bundle: dict[str, Any]) -> set[str]:
+    return {
+        candidate_id
+        for candidate_id, row in _market_candidate_coverage(bundle).items()
+        if len(row["source_ids"]) >= 2 and row["host_count"] >= 2 and bool(row["paid_source_ids"])
+    }
+
+
+def _bundle_urls(bundle: dict[str, Any]) -> set[str]:
+    urls = {str(source.get("source_uri") or "") for source in bundle.get("verified_sources") or []}
+    urls.update(str(item.get("url") or "") for item in bundle.get("failures") or [])
+    return {url for url in urls if url}
+
+
+def _merge_source_bundles(*bundles: dict[str, Any]) -> dict[str, Any]:
+    if not bundles:
+        raise ValueError("LIVE_SOURCE_BUNDLE_MERGE_REQUIRED")
+    verified_by_url: dict[str, dict[str, Any]] = {}
+    failures: list[dict[str, Any]] = []
+    requested = 0
+    for bundle in bundles:
+        if bundle.get("schema_version") != live_source_verifier.BUNDLE_SCHEMA:
+            raise ValueError("LIVE_SOURCE_BUNDLE_MERGE_SCHEMA")
+        requested += int(bundle.get("requested_count") or 0)
+        for source in bundle.get("verified_sources") or []:
+            verified_by_url.setdefault(str(source.get("source_uri") or source.get("source_id")), copy.deepcopy(source))
+        failures.extend(copy.deepcopy(bundle.get("failures") or []))
+    verified = list(verified_by_url.values())
+    return {
+        "schema_version": live_source_verifier.BUNDLE_SCHEMA,
+        "holding_id": "H03",
+        "run_id": RUN_ID,
+        "verified_sources": verified,
+        "failures": failures,
+        "verified_count": len(verified),
+        "requested_count": requested,
+        "truth_status": "VERIFIED_PUBLIC_REFERENCE_SNAPSHOTS",
+    }
+
+
+def _independent_source_count(bundle: dict[str, Any]) -> int:
+    return len({_source_host(source) for source in bundle.get("verified_sources") or [] if _source_host(source)})
 
 
 def _validate_market_evaluation(payload: Any, *, seed_ids: set[str], source_bundle: dict[str, Any]) -> dict[str, Any]:
@@ -272,7 +376,7 @@ def _validate_market_evaluation(payload: Any, *, seed_ids: set[str], source_bund
         raise ValueError("LIVE_MARKET_EVAL_SEED_UNKNOWN")
     sources = _source_index(source_bundle)
     eligible_source_ids = {sid for sid, s in sources.items() if s.get("candidate_id") == selected}
-    if len(eligible_source_ids) < 2:
+    if selected not in _market_ready_candidate_ids(source_bundle):
         raise ValueError("LIVE_MARKET_EVAL_VERIFIED_SOURCE_COVERAGE_LOW")
 
     pain = payload.get("pain_observation")
@@ -303,6 +407,13 @@ def _validate_market_evaluation(payload: Any, *, seed_ids: set[str], source_bund
         source_ids = item.get("source_ids")
         if not isinstance(source_ids, list) or not source_ids or not set(source_ids).issubset(eligible_source_ids):
             raise ValueError("LIVE_MARKET_EVAL_SOURCE_REF_INVALID")
+        if signal == "PAID_SUBSTITUTE" and not any(_source_has_paid_marker(sources[sid]) for sid in source_ids):
+            raise ValueError("LIVE_MARKET_EVAL_PAID_SIGNAL_UNVERIFIED")
+        if signal == "MARKETPLACE_SALE_PROXY" and not any(
+            sources[sid].get("source_class") == "MARKETPLACE_LISTING" and _source_has_marketplace_proxy_marker(sources[sid])
+            for sid in source_ids
+        ):
+            raise ValueError("LIVE_MARKET_EVAL_MARKETPLACE_PROXY_UNVERIFIED")
         clean_evidence.append({
             "evidence_id": eid,
             "signal_type": signal,
@@ -826,8 +937,62 @@ def run_live_org(
             max_sources=14,
         ),
     )
-    if market_sources["verified_count"] < 4:
-        raise RuntimeError(f"LIVE_ORG_MARKET_SOURCE_COVERAGE_LOW:{market_sources['verified_count']}")
+    market_ready_ids = _market_ready_candidate_ids(market_sources)
+    if not market_ready_ids:
+        recovery_card = _make_card(
+            work_card_id="H03-WC-LIVE001-B2-MARKET-RECOVERY", role="MARKET_RESEARCHER", queue="B2-market-source-recovery",
+            inputs=[seed_batch_ref, market_scout_result["output_artifacts"][0], market_sources_ref],
+            artifact_kind="market_source_scout",
+            output_schema="die.h03.live-market-source-scout.v1", max_attempts=3,
+        )
+        recovery_result = worker.run(
+            run_id=RUN_ID, card=recovery_card, timeout_seconds=600, preferred_provider="copilot",
+            instruction=(
+                "Recover the market-source shortlist after the local verifier rejected or could not fetch enough earlier URLs. "
+                "Use web/search to propose replacement DIRECT public HTML pages for up to 4 supplied problem seeds. The input includes the "
+                "original scout output and a verified-source bundle containing both accepted sources and failed attempted URLs. Do NOT repeat "
+                "any attempted URL. Return exactly JSON {\"candidate_sources\":[{\"problem_seed_id\":...,\"source_requests\":[...]}]}. "
+                "Each request must contain url, source_class, signal_hint, relevance_terms. Prioritize sources likely to be fetchable without "
+                "login/paywall/JavaScript-only rendering. For each candidate, seek two independent hosts: one source that visibly demonstrates a "
+                "paid substitute or marketplace demand signal (pricing/plans/reviews/sales where actually observable), and one authority/pain source "
+                "that substantiates recurring friction or productability. Prefer official vendor pricing/product pages, government/recognized authority "
+                "guidance, and substantive specialist publications. Do not invent URLs or facts; local code will fetch, hash, relevance-check, and "
+                "govern every page before it becomes evidence."
+            ),
+            payload_validator=lambda p: _validate_scout_payload(p, seed_ids=seed_ids),
+        )
+        recovery_scout = courier.resolve(recovery_result["output_artifacts"][0])
+        attempted_urls = _bundle_urls(market_sources)
+        recovery_requests = _flatten_market_source_requests(
+            recovery_scout, prefix="LIVE001-MKT-R2", exclude_urls=attempted_urls
+        )
+        if not recovery_requests:
+            raise RuntimeError("LIVE_ORG_MARKET_RECOVERY_R2_NO_NEW_URLS")
+        recovery_sources_ref, recovery_sources, _ = _ensure_local_artifact(
+            courier=courier, client=client,
+            artifact_id="LIVE001-MARKET-RECOVERY-R2-SOURCES", kind="verified_source_bundle",
+            declared_schema=live_source_verifier.BUNDLE_SCHEMA, stage_id="B20-MARKET-RECOVERY-VERIFY",
+            queue="B2-market-source-recovery-verify",
+            builder=lambda: source_verifier(
+                run_id=RUN_ID, source_requests=recovery_requests, max_sources=14
+            ),
+        )
+        market_sources_ref, market_sources, _ = _ensure_local_artifact(
+            courier=courier, client=client,
+            artifact_id="LIVE001-MARKET-VERIFIED-SOURCES-R2", kind="verified_source_bundle",
+            declared_schema=live_source_verifier.BUNDLE_SCHEMA, stage_id="B30-MARKET-RECOVERY-MERGE",
+            queue="B2-market-source-recovery-merge",
+            builder=lambda: _merge_source_bundles(market_sources, recovery_sources),
+        )
+        market_ready_ids = _market_ready_candidate_ids(market_sources)
+
+    if not market_ready_ids:
+        coverage = _market_candidate_coverage(market_sources)
+        raise RuntimeError(
+            "LIVE_ORG_MARKET_RECOVERY_R2_EXHAUSTED:"
+            f"verified={market_sources['verified_count']}:independent_hosts={_independent_source_count(market_sources)}:"
+            f"coverage={json.dumps(coverage, sort_keys=True)}"
+        )
 
     market_eval_card = _make_card(
         work_card_id="H03-WC-LIVE001-C-MARKET-EVAL", role="MARKET_RESEARCHER", queue="C-demand-wtp-evaluation",

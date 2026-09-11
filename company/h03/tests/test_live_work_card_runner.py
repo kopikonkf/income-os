@@ -114,6 +114,18 @@ class LiveWorkCardRunnerTests(unittest.TestCase):
             state = courier.create_or_load_queue("RUN-CRASH")
             self.assertEqual(state["jobs"][c["work_card_id"]]["state"], "SUCCEEDED")
 
+    def test_parser_extracts_last_json_object_from_thinking_or_prose(self):
+        payload = mod.parse_json_worker_output('Thinking notes before output.\n```json\n{"draft":1}\n```\nFinal answer: {"status":"ok","items":[1,2]}')
+        self.assertEqual(payload,{"status":"ok","items":[1,2]})
+
+    def test_preferred_provider_is_forwarded_to_bridge_client(self):
+        with tempfile.TemporaryDirectory() as td:
+            courier = artifactmod.ArtifactCourier(td)
+            client = FakeClient([success_response()])
+            c = card()
+            mod.LiveWorkCardRunner(courier, client).run(run_id="RUN-PREF", card=c, instruction="Discover sources.", preferred_provider="copilot")
+            self.assertEqual(client.dispatch_calls[0]["preferred_provider"],"copilot")
+
     def test_invalid_json_retries_bounded_then_succeeds(self):
         with tempfile.TemporaryDirectory() as td:
             courier = artifactmod.ArtifactCourier(td)

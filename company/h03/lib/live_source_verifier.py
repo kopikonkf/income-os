@@ -3,6 +3,7 @@ from __future__ import annotations
 import ipaddress
 import socket
 import sys
+import re
 from pathlib import Path
 from typing import Any, Callable
 from urllib.parse import urlparse
@@ -55,19 +56,28 @@ class _SafeRedirectHandler(HTTPRedirectHandler):
         return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 
+def _relevance_score(text: str, relevance_terms: list[str]) -> int:
+    normalized = " ".join(str(text).lower().split())
+    phrases = [" ".join(str(term).lower().split()) for term in relevance_terms if str(term).strip()]
+    tokens = {token for phrase in phrases for token in re.findall(r"[a-z0-9]{3,}", phrase)}
+    phrase_score = sum(4 for phrase in phrases if phrase and phrase in normalized)
+    token_score = sum(1 for token in tokens if token in normalized)
+    return phrase_score + token_score
+
+
 def _select_evidence_units(units: list[dict[str, Any]], relevance_terms: list[str], max_units: int) -> list[dict[str, Any]]:
     if max_units < 1:
         raise ValueError("LIVE_SOURCE_MAX_UNITS_INVALID")
-    terms = [" ".join(str(term).lower().split()) for term in relevance_terms if str(term).strip()]
     scored: list[tuple[int, int, dict[str, Any]]] = []
     for index, unit in enumerate(units):
-        text = " ".join(str(unit.get("text", "")).lower().split())
-        score = sum(1 for term in terms if term and term in text)
+        score = _relevance_score(str(unit.get("text", "")), relevance_terms)
         scored.append((score, -index, unit))
-    if terms:
+    if relevance_terms:
+        best = max((row[0] for row in scored), default=0)
+        if best <= 0:
+            raise ValueError("LIVE_SOURCE_RELEVANCE_NOT_OBSERVED")
         ranked = [row[2] for row in sorted(scored, key=lambda row: (row[0], row[1]), reverse=True)]
         chosen = ranked[:max_units]
-        # Restore source order for readable downstream context.
         order = {unit.get("evidence_id"): i for i, unit in enumerate(units)}
         return sorted(chosen, key=lambda unit: order.get(unit.get("evidence_id"), 10**9))
     return list(units[:max_units])
@@ -80,7 +90,7 @@ def fetch_public_reference(
     source_class: str,
     relevance_terms: list[str] | None = None,
     timeout_seconds: float = 15.0,
-    max_bytes: int = 250_000,
+    max_bytes: int = 1_000_000,
     max_evidence_units: int = 5,
     opener: Any | None = None,
 ) -> dict[str, Any]:
