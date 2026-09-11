@@ -104,7 +104,8 @@ def validate_and_normalize(svg_text:str,*,max_bytes:int=1_048_576,max_paths:int=
     canonical=f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{minx:g} {miny:g} {w:g} {h:g}">{body}</svg>'
     result={'schema':'die.factory-asset.native-svg-safe.v1','viewbox':[minx,miny,w,h],'paths':normalized,'path_count':len(normalized),'total_points':total_points,'canonical_svg':canonical,'canonical_svg_sha256':sha256_bytes(canonical.encode()),'native_editable':True,'generated_by_native_producer':True,'conversion_from_raster':False}
     img=render_png_image(result,size=512)
-    ink=sum(1 for px in img.getdata() if px[:3]!=(255,255,255))
+    pixels=img.get_flattened_data() if hasattr(img,'get_flattened_data') else img.getdata()
+    ink=sum(1 for px in pixels if px[:3]!=(255,255,255))
     if ink<16:raise NativeSvgPipelineError('BLANK_OR_NEAR_BLANK_OUTPUT',str(ink))
     result['render_ink_pixels_512']=ink
     return result
