@@ -1,0 +1,40 @@
+{
+  "schema": "die.production.media-pixel-boundary-hotfix.receipt.v1",
+  "date": "2026-09-11",
+  "status": "PASS_IMPLEMENTATION_PENDING_LIVE_CANARY",
+  "incident": {
+    "task_id": "PRODSEED000148",
+    "seed": "shoe",
+    "provider": "gemini",
+    "provider_original_dimensions": [
+      2816,
+      1536
+    ],
+    "realesrgan_x4_dimensions": [
+      11264,
+      6144
+    ],
+    "error": "ProviderOriginalError:MEDIA_PIXEL_LIMIT: (11264, 6144)"
+  },
+  "root_cause": "Factory v2 reused provider_original.sniff_media() with its 40MP untrusted-input guard when validating a trusted internal Real-ESRGAN x4 master. The production runtime also exposed the raw x4 output directly as the active master.",
+  "fix": {
+    "provider_original_max_pixels_unchanged": 40000000,
+    "method": "REALESRGAN_X4_THEN_LANCZOS_DOWNSAMPLE",
+    "preferred_max_edge": 4096,
+    "active_master_max_pixels": 40000000,
+    "aspect_preserving": true,
+    "x4_intermediate_receipted": true,
+    "bounded_master_receipt": "factory-v2/upscale/bounded-master.receipt.json",
+    "retry_reuse": true
+  },
+  "authority": {
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "compensating_seed": false
+  },
+  "tests": {
+    "windows_focused": "PASS: bounded-master 2/2; provider-original 57 passed, 2 skipped",
+    "linux_clean_checkout": "PASS_DIRECT_RUNTIME_INTERPRETER: incident target 11264x6144 -> 4096x2235; provider MAX_PIXELS unchanged 40000000",
+    "live_same_durable_card": "PENDING"
+  }
+}
