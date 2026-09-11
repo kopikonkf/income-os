@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import hashlib, importlib.util, json, os, re, shutil, sys
+import hashlib, importlib.util, json, math, os, re, shutil, sys
 from pathlib import Path
 from typing import Any, Callable
+from PIL import Image
 
 HERE=Path(__file__).resolve().parent
 REPO_ROOT=HERE.parents[3]
@@ -98,6 +99,39 @@ def telegram_event(workspace:Path,kind:str,payload:dict[str,Any],send_fn:Callabl
     with ledger.open('a',encoding='utf-8',newline='\n') as f:f.write(json.dumps({**event,'message':message,'delivery':delivery},sort_keys=True)+'\n')
     return {**event,'message':message,'delivery':delivery}
 
+BOUNDED_MASTER_PREFERRED_MAX_EDGE=4096
+BOUNDED_MASTER_MAX_PIXELS=40_000_000
+
+def bounded_master_dimensions(width:int,height:int,*,min_width:int=2000,min_height:int=2000,min_megapixels:float=4.0,preferred_max_edge:int=BOUNDED_MASTER_PREFERRED_MAX_EDGE,max_pixels:int=BOUNDED_MASTER_MAX_PIXELS)->tuple[int,int]:
+    if width<=0 or height<=0:raise FactoryOrchestrationError('BOUNDED_MASTER_DIMENSIONS_INVALID',f'{width}x{height}')
+    preferred_scale=1.0 if max(width,height)<=preferred_max_edge else preferred_max_edge/max(width,height)
+    required_scale=max(min_width/width,min_height/height,math.sqrt((min_megapixels*1_000_000)/(width*height)) if min_megapixels>0 else 0.0)
+    scale=min(1.0,max(preferred_scale,required_scale))
+    tw=max(1,int(math.ceil(width*scale)));th=max(1,int(math.ceil(height*scale)))
+    if tw<min_width or th<min_height or (tw*th)/1_000_000<min_megapixels:
+        raise FactoryOrchestrationError('BOUNDED_MASTER_REQUIREMENT_UNSATISFIED',f'{width}x{height}->{tw}x{th}')
+    if tw*th>max_pixels:
+        raise FactoryOrchestrationError('BOUNDED_MASTER_PIXEL_LIMIT',f'{tw}x{th}>{max_pixels}')
+    return tw,th
+
+def normalize_upscaled_master(*,x4_path:Path,active_path:Path,min_width:int=2000,min_height:int=2000,min_megapixels:float=4.0,preferred_max_edge:int=BOUNDED_MASTER_PREFERRED_MAX_EDGE,max_pixels:int=BOUNDED_MASTER_MAX_PIXELS)->dict[str,Any]:
+    x4_path=x4_path.resolve();active_path=active_path.resolve()
+    if not x4_path.is_file():raise FactoryOrchestrationError('X4_INTERMEDIATE_MISSING',str(x4_path))
+    input_sha=sha(x4_path)
+    with Image.open(x4_path) as im:
+        im.load();iw,ih=im.size;target=bounded_master_dimensions(iw,ih,min_width=min_width,min_height=min_height,min_megapixels=min_megapixels,preferred_max_edge=preferred_max_edge,max_pixels=max_pixels)
+        active_path.parent.mkdir(parents=True,exist_ok=True);tmp=active_path.with_name(active_path.name+f'.tmp-{os.getpid()}')
+        try:
+            out=im.copy() if target==(iw,ih) else im.resize(target,Image.Resampling.LANCZOS)
+            out.save(tmp,format='PNG',compress_level=9)
+            with Image.open(tmp) as check:check.load();ow,oh=check.size;fmt=check.format
+            if (ow,oh)!=target or fmt!='PNG':raise FactoryOrchestrationError('BOUNDED_MASTER_REOPEN_FAILED',f'{fmt}:{ow}x{oh}')
+            os.replace(tmp,active_path)
+        finally:
+            if tmp.exists():tmp.unlink()
+    output_sha=sha(active_path)
+    return {'schema':'die.factory-asset.bounded-master-normalization.v1','method':'REALESRGAN_X4_THEN_LANCZOS_DOWNSAMPLE' if target!=(iw,ih) else 'REALESRGAN_X4_BOUNDED_NOOP','input_path':str(x4_path),'input_sha256':input_sha,'input_dimensions':[iw,ih],'output_path':str(active_path),'output_sha256':output_sha,'output_dimensions':[target[0],target[1]],'output_format':'PNG','preferred_max_edge':preferred_max_edge,'max_pixels':max_pixels,'technical_requirement':{'min_width':min_width,'min_height':min_height,'min_megapixels':min_megapixels},'aspect_ratio_preserved':abs((target[0]/target[1])-(iw/ih))/(iw/ih)<=0.01,'semantic_identity_effect':'NONE'}
+
 def _master_facts(path:Path,*,semantic_asset_id:str,blueprint_id:str,source_kind:str='POSTPROCESS_MASTER')->dict[str,Any]:
     data=path.read_bytes();media=intake.sniff_media(data,filename=path.name)
     return {'schema':'die.factory-asset.master-facts.v1','source_kind':source_kind,'provider_id':None,'semantic_asset_id':semantic_asset_id,'blueprint_id':blueprint_id,'sha256':hashlib.sha256(data).hexdigest(),'format':media['format'],'width_px':media['width_px'],'height_px':media['height_px'],'has_alpha_channel':media['has_alpha_channel'],'has_transparency_metadata':media['has_transparency_metadata'],'has_transparency':media['has_transparency'],'provider_original_lineage':None}
@@ -117,7 +151,19 @@ def postprocess_raster_workspace(*,workspace:Path,source_path:Path,provider_id:s
     d=state.advance(sm_path,target_state='MASTER_VALIDATED',evidence={'result':'PASS','master_sha256':ingest['source_sha256'],'receipt_ref':'factory-v2/provider-original-intake.json'},event_id='MASTER-'+ingest['source_sha256'][:16],expected_revision=d['revision'])
     upscale_out=root/'upscale'/'active-master.png';upscale_out.parent.mkdir(parents=True,exist_ok=True);ur=upscale_fn(source_path,upscale_out)
     normalized={'schema':'die.factory-asset.upscale-recovery-receipt.v1','result':'NOOP' if ur['action']=='NO_OP' else 'PASS','decision_state':'NOOP_SUFFICIENT' if ur['action']=='NO_OP' else 'UPSCALE_REQUIRED','source_sha256':ur['source']['sha256'],'source_dimensions':[ur['source']['width'],ur['source']['height']],'final_sha256':ur['output']['sha256'],'final_dimensions':[ur['output']['width'],ur['output']['height']],'output_path':ur['output']['path'],'source_unchanged':True,'partial_output':False,'engine':ur.get('model')}
-    atomic_json(root/'upscale-normalized.json',normalized);d=state.advance(sm_path,target_state='UPSCALE_DECIDED',evidence=normalized,event_id='UPSCALE-'+csha(normalized)[:16],expected_revision=d['revision'])
+    atomic_json(root/'upscale-normalized.json',normalized)
+    current=state.load_state(sm_path)
+    if current['state']=='MASTER_VALIDATED':
+        d=state.advance(sm_path,target_state='UPSCALE_DECIDED',evidence=normalized,event_id='UPSCALE-'+csha(normalized)[:16],expected_revision=current['revision'])
+    elif current['state']=='UPSCALE_DECIDED':
+        if current['active_master_sha256']==normalized['final_sha256']:
+            d=current
+        else:
+            prior_sha=str((ur.get('x4_intermediate') or {}).get('sha256') or '')
+            repair_evidence={'repair_kind':'BOUNDED_MASTER_NORMALIZATION','prior_active_master_sha256':prior_sha,'new_active_master_sha256':normalized['final_sha256'],'source_master_sha256':normalized['source_sha256'],'source_dimensions':normalized['source_dimensions'],'prior_dimensions':(ur.get('x4_intermediate') or {}).get('width') and [(ur.get('x4_intermediate') or {})['width'],(ur.get('x4_intermediate') or {})['height']],'new_dimensions':normalized['final_dimensions'],'normalization_method':(ur.get('normalization') or {}).get('method'),'bounded_master_receipt':'factory-v2/upscale/bounded-master.receipt.json'}
+            d=state.repair_active_master(sm_path,expected_prior_sha256=prior_sha,new_active_master_sha256=normalized['final_sha256'],evidence=repair_evidence,event_id='ACTIVE-MASTER-REPAIR-'+csha(repair_evidence)[:16],expected_revision=current['revision'])
+    else:
+        raise FactoryOrchestrationError('POSTPROCESS_RESUME_STATE_UNSUPPORTED',current['state'])
     active=Path(normalized['output_path'])
     if not active.is_file() or sha(active)!=normalized['final_sha256']:raise FactoryOrchestrationError('UPSCALE_OUTPUT_HASH_MISMATCH',str(active))
     facts=_master_facts(active,semantic_asset_id=sid,blueprint_id=bp['blueprint_id'])

@@ -1,4 +1,5 @@
 import importlib.util,json,sys
+from PIL import Image
 from pathlib import Path
 R=Path(__file__).resolve().parents[3]
 def load():
@@ -14,3 +15,19 @@ def test_listing_slug_is_human_readable_and_collision_bounded():
 
 def test_founder_facing_alias_is_group_readable_but_not_world_readable(tmp_path):
  p=tmp_path/'listing.jpg';p.write_bytes(b'jpeg');p.chmod(0o600);m.make_founder_readable(p);assert (p.stat().st_mode & 0o777)==0o640
+
+
+def test_bounded_master_normalization_preserves_aspect_and_caps_oversized_x4(tmp_path):
+ x4=tmp_path/'x4.png';active=tmp_path/'active.png';Image.new('RGB',(112,64),(10,20,30)).save(x4)
+ before=m.sha(x4);rec=m.normalize_upscaled_master(x4_path=x4,active_path=active,min_width=20,min_height=20,min_megapixels=0.0004,preferred_max_edge=40,max_pixels=1600)
+ assert rec['method']=='REALESRGAN_X4_THEN_LANCZOS_DOWNSAMPLE'
+ assert rec['input_dimensions']==[112,64] and rec['output_dimensions']==[40,23]
+ assert rec['aspect_ratio_preserved'] is True and m.sha(x4)==before and active.is_file()
+ with Image.open(active) as im:assert im.size==(40,23) and im.format=='PNG'
+
+def test_bounded_master_dimension_policy_keeps_sane_x4_and_fails_closed_on_impossible_extreme():
+ assert m.bounded_master_dimensions(4096,4096)==(4096,4096)
+ assert m.bounded_master_dimensions(11264,6144)==(4096,2235)
+ try:m.bounded_master_dimensions(80000,4000)
+ except m.FactoryOrchestrationError as exc:assert exc.code=='BOUNDED_MASTER_PIXEL_LIMIT'
+ else:raise AssertionError('extreme aspect must fail closed')

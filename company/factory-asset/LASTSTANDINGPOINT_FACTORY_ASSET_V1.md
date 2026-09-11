@@ -961,3 +961,18 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - `FA-323 = DONE/PASS`: Founder display observability contract binds to the real production browser owners: Cluster A Xvfb `:101` / CDP `127.0.0.1:39221`, Cluster B Xvfb `:102` / CDP `127.0.0.1:39222`. Read-only status/screenshot observation is separate from interactive repair; VNC remains `NOT_DEPLOYED`, loopback/private-only is mandatory, and credential/cookie/token extraction is forbidden. `FA-324` is READY.
 - `FA-329 = DONE/PASS`: bounded dual-Atlas bridge implements both supply-first and demand-first directions with deterministic coherence ranking, evidence labels, max 256 scanned candidates, max 12 outputs, no inherited demand and no production authority. Canon examples (`pill organizer`, `soil moisture meter`, `cable organizer`) remain `CANON_EXAMPLE_ONLY`; read-only production DB verification found no exact seed rows for those names, so no false live-demand claim was made. `FA-330` is READY.
 - Batch full Linux Factory regression before seal: 867/867 PASS with one existing PyPDF2 deprecation warning. No live production, browser owner, VNC, provider, marketplace, cadence or scale mutation was performed.
+
+
+---
+
+## PROD-RUNTIME media pixel boundary hotfix - 2026-09-11
+
+- Live durable card `PRODSEED000148` (shoe) exposed `ProviderOriginalError:MEDIA_PIXEL_LIMIT` after a valid Gemini 2816x1536 provider original was Real-ESRGAN x4 upscaled to 11264x6144.
+- The 40MP provider-original safety guard remains unchanged. Root cause was the untrusted-provider inspector being reused on the trusted internal x4 master and the raw x4 artifact being promoted directly as active master.
+- Production runtime now preserves the x4 intermediate/receipt but normalizes the active master with aspect-preserving Lanczos under the existing FA-202 doctrine `REALESRGAN_X4_THEN_LANCZOS_DOWNSAMPLE`; preferred max edge 4096, active-master max 40MP, technical minimums preserved.
+- A bounded-master receipt makes retries reuse the normalized output instead of rerunning Real-ESRGAN. No compensating seed, submission or publication authority is introduced.
+
+- Live same-card recovery accepted on `PRODSEED000148`: provider attempt count remained 1 and provider-original SHA stayed unchanged; x4 intermediate 11264x6144 was normalized to bounded active master 4096x2235.
+- Append-only `ACTIVE_MASTER_REPAIR` revision 3 preserved the original UPSCALE_DECIDED history and updated active-master lineage before downstream derivatives.
+- Retry completed through derivative QA and metadata; runtime parked at `WAITING_FOUNDER_QC` with rights `REVIEW_REQUIRED`, package `PACKAGE_BLOCKED`, submission/publication false.
+- PR #348 remains pending canonical merge only because `income-os.repo-write` is actively leased by `H03-LIVE-ORG-001`; do not override that lease.

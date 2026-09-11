@@ -29,6 +29,12 @@ def test_runtime_stops_at_founder_qc_after_upscale():
  assert 'asset_qc' not in s and 'rights_preflight' not in s
 
 
+def test_runtime_normalizes_realesrgan_x4_before_factory_master_validation():
+ s=(ROOT/'company/die-agents/hermes/production-runtime/production_runtime_tick.py').read_text();o=(ROOT/'company/die-agents/hermes/production-runtime/factory_orchestration_v2.py').read_text()
+ for token in ['realesrgan-x4.png','bounded-master.receipt.json','normalize_upscaled_master','UPSCALE_X4_THEN_LANCZOS_DOWNSAMPLE']:assert token in s or token in o
+ assert 'MAX_PIXELS = 40_000_000' in (ROOT/'company/factory-asset/lib/provider_original.py').read_text()
+
+
 def test_gateway_sandbox_allows_only_cognition_receipt_write_paths():
     unit=(ROOT/'company/die-agents/hermes/linux/die-hermes-gateway.service').read_text()
     rw=next(line for line in unit.splitlines() if line.startswith('ReadWritePaths='))

@@ -118,12 +118,32 @@ def source_for(w:Path)->Path:
  if len(rows)!=1:raise RuntimeError('E_PROVIDER_SOURCE_COUNT')
  return rows[0]
 def _legacy_upscale_adapter(src:Path,out:Path)->dict:
- receipt=out.parent/'legacy-upscale.receipt.json';out.parent.mkdir(parents=True,exist_ok=True)
- cp=subprocess.run(['/usr/bin/python3',str(UPSCALE),'--source',str(src),'--output',str(out),'--policy',str(UPSCALE_POLICY),'--receipt',str(receipt),'--min-width','2000','--min-height','2000','--min-megapixels','4','--rights-state','PENDING_HUMAN_REVIEW','--safety-state','PENDING_HUMAN_REVIEW'],text=True,capture_output=True,timeout=1200,check=False)
- if cp.returncode!=0:raise RuntimeError('E_UPSCALE:'+(cp.stderr or cp.stdout)[-1000:])
- ur=json.loads(receipt.read_text())
+ import factory_orchestration_v2 as factory_v2
+ raw_receipt=out.parent/'legacy-upscale.receipt.json';bounded_receipt=out.parent/'bounded-master.receipt.json';x4=out.parent/'realesrgan-x4.png';out.parent.mkdir(parents=True,exist_ok=True);source_sha=sha(src)
+ if bounded_receipt.is_file() and out.is_file():
+  cached=json.loads(bounded_receipt.read_text())
+  if cached.get('source',{}).get('sha256')==source_sha and cached.get('output',{}).get('sha256')==sha(out):return cached
+  raise RuntimeError('E_BOUNDED_MASTER_REUSE_CONFLICT')
+ ur=None
+ if raw_receipt.is_file():
+  candidate=json.loads(raw_receipt.read_text())
+  if candidate.get('source',{}).get('sha256')==source_sha and candidate.get('status')=='PASS':
+   if candidate.get('action')=='NO_OP':return candidate
+   expected=candidate.get('output',{}).get('sha256')
+   if x4.is_file() and expected==sha(x4):ur=candidate
+   elif out.is_file() and expected==sha(out):
+    tmp=x4.with_name(x4.name+f'.tmp-{os.getpid()}');shutil.copy2(out,tmp);os.replace(tmp,x4);ur=candidate
+ if ur is None:
+  cp=subprocess.run(['/usr/bin/python3',str(UPSCALE),'--source',str(src),'--output',str(x4),'--policy',str(UPSCALE_POLICY),'--receipt',str(raw_receipt),'--min-width','2000','--min-height','2000','--min-megapixels','4','--rights-state','PENDING_HUMAN_REVIEW','--safety-state','PENDING_HUMAN_REVIEW'],text=True,capture_output=True,timeout=1200,check=False)
+  if cp.returncode!=0:raise RuntimeError('E_UPSCALE:'+(cp.stderr or cp.stdout)[-1000:])
+  ur=json.loads(raw_receipt.read_text())
  if ur.get('status')!='PASS':raise RuntimeError('E_UPSCALE_STATUS:'+str(ur.get('status')))
- return ur
+ if ur.get('action')=='NO_OP':return ur
+ if not x4.is_file() or ur.get('output',{}).get('sha256')!=sha(x4):raise RuntimeError('E_X4_REUSE_CONFLICT')
+ norm=factory_v2.normalize_upscaled_master(x4_path=x4,active_path=out,min_width=2000,min_height=2000,min_megapixels=4.0)
+ final={**ur,'schema':'die.production.bounded-upscale.v1','action':'UPSCALE_X4_THEN_LANCZOS_DOWNSAMPLE' if norm['method'].endswith('DOWNSAMPLE') else 'UPSCALE_X4_BOUNDED_NOOP','output':{'path':str(out),'sha256':norm['output_sha256'],'width':norm['output_dimensions'][0],'height':norm['output_dimensions'][1],'format':'PNG'},'x4_intermediate':{'path':str(x4),'sha256':norm['input_sha256'],'width':norm['input_dimensions'][0],'height':norm['input_dimensions'][1]},'normalization':norm,'checks':{**ur.get('checks',{}),'bounded_active_master':True,'provider_original_unchanged':sha(src)==source_sha}}
+ tmp=bounded_receipt.with_name(bounded_receipt.name+f'.tmp-{os.getpid()}');tmp.write_text(json.dumps(final,indent=2)+'\n');os.replace(tmp,bounded_receipt)
+ return final
 
 def _progress_from_v2(w:Path,result:dict)->None:
  bp=json.loads((w/'blueprint.json').read_text());lock=json.loads((w/'blueprint.lock.json').read_text());seed=bp['seed'];fam=f"{seed['category_path']} (object_class: {seed['object_class']})"

@@ -136,6 +136,20 @@ def advance(path:str|Path,*,target_state:str,evidence:dict[str,Any],event_id:str
     new['history'].append({'kind':'ADVANCE','event_id':event_id,'from':d['state'],'to':target_state,'revision':new['revision'],'evidence_sha256':evidence_sha,'evidence':evidence})
     _atomic_write(p,new);return new
 
+def repair_active_master(path:str|Path,*,expected_prior_sha256:str,new_active_master_sha256:str,evidence:dict[str,Any],event_id:str,expected_revision:int)->dict[str,Any]:
+    p=Path(path);d=load_state(p);esha=_sha(evidence)
+    prior=_existing_event(d,event_id,d['state'],esha)
+    if prior is not None:return prior
+    _require_revision(d,expected_revision)
+    if d.get('status')!='ACTIVE' or d.get('state')!='UPSCALE_DECIDED': raise PostproductionStateError('ACTIVE_MASTER_REPAIR_STATE_INVALID',f"{d.get('status')}:{d.get('state')}")
+    if d.get('derivatives') or d.get('metadata_sha256') or d.get('package_plan_sha256'): raise PostproductionStateError('ACTIVE_MASTER_REPAIR_TOO_LATE','downstream evidence exists')
+    if d.get('active_master_sha256')!=expected_prior_sha256: raise PostproductionStateError('ACTIVE_MASTER_REPAIR_PRIOR_HASH_MISMATCH',str(d.get('active_master_sha256')))
+    if not _valid_sha(new_active_master_sha256) or new_active_master_sha256==expected_prior_sha256: raise PostproductionStateError('ACTIVE_MASTER_REPAIR_NEW_HASH_INVALID',str(new_active_master_sha256))
+    if evidence.get('repair_kind')!='BOUNDED_MASTER_NORMALIZATION' or evidence.get('prior_active_master_sha256')!=expected_prior_sha256 or evidence.get('new_active_master_sha256')!=new_active_master_sha256: raise PostproductionStateError('ACTIVE_MASTER_REPAIR_EVIDENCE_INVALID',event_id)
+    new=json.loads(json.dumps(d));new['active_master_sha256']=new_active_master_sha256;new['revision']=d['revision']+1
+    new['history'].append({'kind':'ACTIVE_MASTER_REPAIR','event_id':event_id,'from':d['state'],'to':d['state'],'revision':new['revision'],'evidence_sha256':esha,'evidence':evidence})
+    _atomic_write(p,new);return new
+
 def record_failure(path:str|Path,*,code:str,retryable:bool,stage:str,evidence:dict[str,Any],event_id:str,expected_revision:int)->dict[str,Any]:
     p=Path(path);d=load_state(p);payload={'code':code,'retryable':retryable,'stage':stage,'evidence':evidence};esha=_sha(payload)
     prior=_existing_event(d,event_id,d['state'],esha)
