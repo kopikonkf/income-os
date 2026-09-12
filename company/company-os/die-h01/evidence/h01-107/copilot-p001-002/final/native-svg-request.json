@@ -1,0 +1,45 @@
+{
+  "authority": {
+    "dispatch_commit_required": true,
+    "dispatch_semantics": "EXACTLY_ONCE",
+    "publication_authorized": false,
+    "submission_authorized": false
+  },
+  "blueprint": {
+    "blueprint_id": "H01BP-BOOK_CLEAN_001",
+    "sha256": "80db21752781a9801341a7a734b95f6f73592e35706fb4235c37b836577e975a"
+  },
+  "contract_revision": "1.0.0",
+  "idempotency_key": "e6bc7c99bfab1ccfe8377fdfbe21981ce2a17469de2ee54f7a9e8f396d58a4ab",
+  "ingress_policy": {
+    "allowed": [
+      "WEB_AI_ADAPTER",
+      "NATIVE_MCP"
+    ],
+    "native_mcp_required": false,
+    "preferred": "WEB_AI_ADAPTER"
+  },
+  "master_instruction_sha256": "0706de509001cc3fc7b679620d497957766486dac48e89e88116899d2b33a4fc",
+  "output_contract": {
+    "conversion_from_raster_allowed": false,
+    "embedded_raster_allowed": false,
+    "h01_103_validation_required": true,
+    "master_format": "SVG",
+    "native_editable_required": true,
+    "payload_kind": "SVG_SOURCE_TEXT"
+  },
+  "prompt": {
+    "chars": 3439,
+    "sha256": "a731e040172358f26245ad8f849e1c97b7ddd5156f14f5fe84d5371f8988bc5c",
+    "text": "Create exactly one native editable SVG stock asset that satisfies every requirement below.\nFollow every requirement. Do not silently simplify, substitute, or omit constraints.\n[SUBJECT]\n- One standalone book\n- Recognition anchors: rectangular closed-book silhouette; visible page block separated from the cover; clearly defined spine edge\n- Essential components: front cover; back cover; spine; page block\n- Proportions: credible everyday book proportions; page block slightly inset inside the cover edges\n- Materials: paper page block; plain unbranded cover material\n- Colors: limited harmonious stock-friendly palette; clear cover-to-page contrast\n- Textures: minimal texture; clean flat vector surfaces without noisy grain\n[COMMERCIAL]\n- Primary use: editable isolated book vector for education, publishing, library, ecommerce and presentation design\n- Buyer value: clean reusable object that can be recolored, resized and composed into many layouts\n- Stock suitability: generic unbranded universally recognizable object with broad design utility and no contextual dependency\n- Reusable contexts: education graphics; publishing layouts; library interfaces; ecommerce compositions; presentation diagrams\n[COMPOSITION]\n- Viewpoint: slight three-quarter view that clearly shows cover, spine and page block\n- Composition: single object only; centered with generous transparent margin; complete silhouette fully visible with no crop; no scene or unrelated props\n- Visual hierarchy: book silhouette reads first; spine and page block remain distinct at thumbnail size\n[VECTOR_STYLE]\n- Style system: clean contemporary stock vector; simple editable shapes; crisp geometry; subtle dimensional separation without photorealism\n- Shape language: few purposeful paths and primitive shapes; closed clean contours; avoid microscopic decorative geometry\n- Stroke policy: use no stroke unless a small structural edge requires one; keep any stroke simple and consistent\n- Fill policy: use solid fills only with a compact palette and no bitmap textures\n- Depth policy: express depth through overlapping shapes and restrained flat color separation, not filters or raster effects\n- Native editable vector geometry is mandatory\n[COMPLEXITY]\n- SVG bytes <= 524288\n- Geometry elements <= 256\n- Total sampled points <= 4096\n- Characters in any path d <= 16384\n- Group depth <= 32\n[RIGHTS_AND_STOCK]\n- No logos or trademarks\n- No copyrighted character/style imitation\n- No readable text\n- No watermark\n- Additional forbidden content: logos; publisher marks; ISBN/barcode; branded cover art; copyrighted character imagery\n[SVG_OUTPUT]\n- Return genuine SVG source, not a traced/wrapped raster\n- Transparent background; no background rectangle\n- Allowed geometry elements: g; path; rect; circle; ellipse; line; polyline; polygon\n- Allowed path commands: M; L; H; V; C; S; Q; T; A; Z\n- Forbidden SVG features: script; external references; embedded raster image; foreignObject; text; style; defs; symbol; use\n- Root svg must have a finite viewBox and contain editable visible geometry\n[INVARIANTS]\n- Every Blueprint requirement remains semantically binding downstream\n- Master Instruction contains no provider/model/transport choice\n- Provider prompt may change phrasing but may not weaken or omit a clause\n- Mission/provider/submission/publication authority is not granted by compilation\nOutput only the complete raw <svg>...</svg> source, with no prose or Markdown."
+  },
+  "provider_target": {
+    "provider_id": "copilot",
+    "provider_profile": "COPILOT_WEB_P001"
+  },
+  "queue_item_id": "H01-SVGQ-CAND-0829866",
+  "request_id": "H01SVGREQ-H01-107G-COPILOT-P001-002",
+  "schema": "die.h01.native-svg-request.v1",
+  "semantic_asset_id": "H01SVG-CAND-0829866",
+  "source_candidate_id": "CAND-0829866"
+}

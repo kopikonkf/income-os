@@ -1,0 +1,43 @@
+{
+  "schema": "die.h01.brave-udd-runtime-receipt.v1",
+  "status": "PASS",
+  "job_id": "H01-107F-MANUS-001",
+  "provider_id": "manus",
+  "profile_id": "h01-web-p006",
+  "udd_id": "h01-web-s02",
+  "started_at": "2026-09-12T16:45:23.949Z",
+  "completed_at": "2026-09-12T16:46:14.112Z",
+  "mode": "wait-result",
+  "ownership": {
+    "launcher_udd_mutex": true,
+    "max_active_per_udd": 1,
+    "lock_path": "/run/user/1000/die-h01-brave/h01-web-s02.lock",
+    "lock_released": true
+  },
+  "browser": {
+    "launcher": "/opt/die/h01/bin/h01-brave-profile",
+    "cdp_host": "127.0.0.1",
+    "cdp_port": 9206,
+    "loopback_only": true,
+    "provider_origin": "https://manus.im",
+    "page_count_after_enforcement": 1,
+    "browser_close_sent": true,
+    "process_exited": true,
+    "cdp_closed": true
+  },
+  "durable_result": {
+    "path": "/home/kopiko/die-sessions/H01-107/company/company-os/die-h01/evidence/h01-107/manus-001/browser-job-result.json",
+    "sha256": "eb69fb442256f32984e175c740453813573ea5421f820e66735ee7d91447bbda",
+    "terminal_state": "CANCELLED",
+    "present": true
+  },
+  "error": null,
+  "safety": {
+    "cookies_read": false,
+    "tokens_read": false,
+    "session_bytes_read": false,
+    "browser_profile_copied": false,
+    "mission_control_mutated": false,
+    "scheduler_owned": false
+  }
+}

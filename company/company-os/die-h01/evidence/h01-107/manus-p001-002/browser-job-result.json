@@ -1,0 +1,19 @@
+{
+  "authority": {
+    "provider_generation_dispatched": true,
+    "publication_authorized": false,
+    "submission_authorized": false
+  },
+  "canary_receipt": "/home/kopiko/die-sessions/H01-107/company/company-os/die-h01/evidence/h01-107/manus-p001-002/final/H01-107F-manus-canary.receipt.json",
+  "classification": "TEXT_SVG",
+  "completed_at": "2026-09-12T17:59:21.395652Z",
+  "h01_103_status": "PASS",
+  "job_id": "H01-107F-MANUS-P001-002",
+  "job_kind": "H01_107_PROVIDER_CANARY",
+  "profile_id": "h01-web-p001",
+  "provider_id": "manus",
+  "provider_original_sha256": "4134bd72d6fc2533b2daa19b633093b6714d7fb6ad4d8c4349f4dc83fc31fb5a",
+  "schema": "die.h01.browser-job-result.v1",
+  "terminal_state": "SUCCEEDED",
+  "udd_id": "h01-web-s01"
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "die.h01.brave-udd-runtime-receipt.v1",
+  "status": "PASS",
+  "job_id": "H01-107E-GROK-001",
+  "provider_id": "grok",
+  "profile_id": "h01-web-p005",
+  "udd_id": "h01-web-s01",
+  "started_at": "2026-09-12T16:44:51.228Z",
+  "completed_at": "2026-09-12T16:45:15.725Z",
+  "mode": "wait-result",
+  "ownership": {
+    "launcher_udd_mutex": true,
+    "max_active_per_udd": 1,
+    "lock_path": "/run/user/1000/die-h01-brave/h01-web-s01.lock",
+    "lock_released": true
+  },
+  "browser": {
+    "launcher": "/opt/die/h01/bin/h01-brave-profile",
+    "cdp_host": "127.0.0.1",
+    "cdp_port": 9205,
+    "loopback_only": true,
+    "provider_origin": "https://grok.com",
+    "page_count_after_enforcement": 1,
+    "browser_close_sent": true,
+    "process_exited": true,
+    "cdp_closed": true
+  },
+  "durable_result": {
+    "path": "/home/kopiko/die-sessions/H01-107/company/company-os/die-h01/evidence/h01-107/grok-001/browser-job-result.json",
+    "sha256": "970f4bb9b5e499059a00a7b38b36cc24dd56375be04686cc19d02298fa2081c3",
+    "terminal_state": "CANCELLED",
+    "present": true
+  },
+  "error": null,
+  "safety": {
+    "cookies_read": false,
+    "tokens_read": false,
+    "session_bytes_read": false,
+    "browser_profile_copied": false,
+    "mission_control_mutated": false,
+    "scheduler_owned": false
+  }
+}

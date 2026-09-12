@@ -53,12 +53,21 @@ async function getJson(url,timeout=4000){const r=await fetch(url,{signal:AbortSi
 async function waitCdp(b,child,ms){const end=Date.now()+ms,u=`http://${b.cdp_host}:${b.cdp_port}/json/version`;while(Date.now()<end){if(!running(child))throw new RuntimeError(child.exitCode===73?'E_UDD_BUSY':'E_BROWSER_EXIT',String(child.exitCode??child.signalCode));try{const v=await getJson(u,1200);if(v.webSocketDebuggerUrl)return v}catch{}await sleep(200)}throw new RuntimeError('E_CDP_START_TIMEOUT')}
 async function targets(b){return await getJson(`http://${b.cdp_host}:${b.cdp_port}/json/list`)}
 async function closeTarget(b,id){const r=await fetch(`http://${b.cdp_host}:${b.cdp_port}/json/close/${encodeURIComponent(id)}`,{signal:AbortSignal.timeout(4000)});if(!r.ok)throw new RuntimeError('E_TARGET_CLOSE',String(r.status))}
+function targetOrigin(url){try{return new URL(String(url||'')).origin}catch{return null}}
 async function enforceOnePage(b,providerUrl){
   const wanted=new URL(providerUrl).origin;let pages=(await targets(b)).filter(x=>x.type==='page');
-  let keep=pages.find(x=>{try{return new URL(x.url).origin===wanted}catch{return false}});if(!keep)throw new RuntimeError('E_PROVIDER_TARGET_MISSING',wanted);
-  for(const p of pages)if(p.id!==keep.id)await closeTarget(b,p.id);await sleep(400);
-  pages=(await targets(b)).filter(x=>x.type==='page');if(pages.length!==1)throw new RuntimeError('E_PAGE_CARDINALITY',String(pages.length));
-  keep=pages[0];if(new URL(keep.url).origin!==wanted)throw new RuntimeError('E_PROVIDER_ORIGIN_MISMATCH');return keep;
+  let keep=pages.find(x=>targetOrigin(x.url)===wanted);if(!keep)throw new RuntimeError('E_PROVIDER_TARGET_MISSING',wanted);
+  for(const p of pages)if(p.id!==keep.id)await closeTarget(b,p.id);
+  const end=Date.now()+5000;
+  while(Date.now()<end){
+    pages=(await targets(b)).filter(x=>x.type==='page');
+    if(pages.length===1){keep=pages[0];const origin=targetOrigin(keep.url);if(origin===wanted)return keep;if(origin&&origin!==wanted)throw new RuntimeError('E_PROVIDER_ORIGIN_MISMATCH',origin)}
+    else if(pages.length>1){for(const p of pages)if(targetOrigin(p.url)!==wanted)await closeTarget(b,p.id).catch(()=>{})}
+    await sleep(150);
+  }
+  pages=(await targets(b)).filter(x=>x.type==='page');
+  if(pages.length!==1)throw new RuntimeError('E_PAGE_CARDINALITY',String(pages.length));
+  throw new RuntimeError('E_PROVIDER_ORIGIN_MISMATCH',String(pages[0]?.url||''));
 }
 async function observePage(t,wantedOrigin){const c=new Cdp(t.webSocketDebuggerUrl);await c.connect();try{const end=Date.now()+15000;while(Date.now()<end){const r=await c.send('Runtime.evaluate',{expression:`(()=>({readyState:document.readyState,title:(document.title||'').slice(0,120),origin:location.origin,path:location.pathname}))()`,returnByValue:true});const v=r.result?.value||{};if(v.origin===wantedOrigin&&['interactive','complete'].includes(v.readyState))return v;await sleep(250)}throw new RuntimeError('E_PROVIDER_PAGE_NOT_READY',wantedOrigin)}finally{c.close()}}
 async function browserClose(b){const v=await getJson(`http://${b.cdp_host}:${b.cdp_port}/json/version`);const c=new Cdp(v.webSocketDebuggerUrl);await c.connect();try{await c.send('Browser.close')}finally{c.close()}}

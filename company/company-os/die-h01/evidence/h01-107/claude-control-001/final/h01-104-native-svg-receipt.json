@@ -1,0 +1,44 @@
+{
+  "authority": {
+    "dispatch_commit_id": "H01-107A-CLAUDE-001-CDP",
+    "dispatch_semantics": "EXACTLY_ONCE",
+    "publication_authorized": false,
+    "submission_authorized": false
+  },
+  "contract_revision": "1.0.0",
+  "idempotency_key": "b4bb78f0eace82edcae7bf179d273ad81c1630e842c895d602da31fe014ae84f",
+  "ingress": "WEB_AI_ADAPTER",
+  "lineage": {
+    "blueprint_sha256": "80db21752781a9801341a7a734b95f6f73592e35706fb4235c37b836577e975a",
+    "master_instruction_sha256": "0706de509001cc3fc7b679620d497957766486dac48e89e88116899d2b33a4fc",
+    "prompt_sha256": "a731e040172358f26245ad8f849e1c97b7ddd5156f14f5fe84d5371f8988bc5c"
+  },
+  "native_svg_claim": {
+    "conversion_from_raster": false,
+    "embedded_raster": false,
+    "native_editable": true,
+    "source_kind": "DIRECT_PROVIDER_SVG_SOURCE",
+    "success_claim_allowed": true
+  },
+  "provider_id": "claude",
+  "provider_result": {
+    "candidate_svg_sha256": "1a8caf6b3e286443283350a270ecfbc392a25e0b122f1d224a33d71ec9f91868",
+    "error_code": null,
+    "error_detail": null,
+    "finish_reason": "PROVIDER_UI_TERMINAL",
+    "payload_kind": "SVG_SOURCE_TEXT",
+    "provider_request_id": null,
+    "provider_response_sha256": "1a8caf6b3e286443283350a270ecfbc392a25e0b122f1d224a33d71ec9f91868",
+    "provider_status": "COMPLETED"
+  },
+  "queue_item_id": "H01-SVGQ-CAND-0829866",
+  "request_id": "H01SVGREQ-H01-107A-CLAUDE-001",
+  "schema": "die.h01.native-svg-receipt.v1",
+  "semantic_asset_id": "H01SVG-CAND-0829866",
+  "status": "SUCCEEDED",
+  "validation": {
+    "canonical_svg_sha256": "32340140a6af96070fecc4eebb65b6db004ab24f30afced5944c2766094628a3",
+    "engine": "H01-103",
+    "status": "PASS"
+  }
+}

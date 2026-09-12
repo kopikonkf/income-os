@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <!-- Scalable isolated book in 3/4 perspective -->
+  <g id="standalone-book" transform="translate(0, 0)">
+    
+    <!-- Cast Shadow -->
+    <g id="drop-shadow">
+      <path d="M 170 590 C 270 655 460 665 640 575 C 670 560 630 540 550 540 C 420 540 250 550 170 590 Z" fill="#0f172a" fill-opacity="0.12"/>
+      <path d="M 210 580 C 300 625 450 635 600 565 C 620 555 580 545 520 545 C 410 545 280 550 210 580 Z" fill="#0f172a" fill-opacity="0.08"/>
+    </g>
+
+    <!-- Back Cover (Visible overhang at top and right) -->
+    <g id="back-cover">
+      <path d="M 228 222 L 498 122 L 610 174 L 340 274 Z" fill="#1e293b"/>
+      <path d="M 606 172 L 614 176 L 614 534 L 606 530 Z" fill="#0f172a"/>
+      <path d="M 336 272 L 344 276 L 614 176 L 606 172 Z" fill="#334155"/>
+    </g>
+
+    <!-- Page Block Body -->
+    <g id="page-block">
+      <!-- Main Page Block Volume (Paper Base) -->
+      <path d="M 238 238 L 492 144 L 596 192 L 342 286 Z" fill="#f8fafc"/>
+      
+      <!-- Right Side Page Edge Thick Face -->
+      <path d="M 596 192 L 342 286 L 342 546 L 596 452 Z" fill="#e2e8f0"/>
+      
+      <!-- Front Side Page Edge Thick Face -->
+      <path d="M 238 238 L 342 286 L 342 546 L 238 498 Z" fill="#cbd5e1"/>
+
+      <!-- Page Block Corner / Bottom Edge Alignment -->
+      <path d="M 238 498 L 342 546 L 596 452 L 592 449 L 342 541 L 238 493 Z" fill="#94a3b8"/>
+
+      <!-- Page Texture / Sheet Layering Lines (Front Facing Block) -->
+      <path d="M 246 248 L 336 289 L 336 541 L 246 500 Z" fill="#f1f5f9"/>
+      <path d="M 258 260 L 330 293 L 330 535 L 258 502 Z" fill="#e2e8f0" fill-opacity="0.5"/>
+      <path d="M 270 272 L 324 297 L 324 529 L 270 504 Z" fill="#cbd5e1" fill-opacity="0.3"/>
+
+      <!-- Linear Page Edge Details (Right Side Block) -->
+      <path d="M 352 284 L 586 198 M 352 294 L 586 208 M 352 304 L 586 218 M 352 314 L 586 228 M 352 324 L 586 238 M 352 334 L 586 248 M 352 344 L 586 258 M 352 354 L 586 268 M 352 364 L 586 278 M 352 374 L 586 288 M 352 384 L 586 298 M 352 394 L 586 308 M 352 404 L 586 318 M 352 414 L 586 328 M 352 424 L 586 338 M 352 434 L 586 348 M 352 444 L 586 358 M 352 454 L 586 368 M 352 464 L 586 378 M 352 474 L 586 388 M 352 484 L 586 398 M 352 494 L 586 408 M 352 504 L 586 418 M 352 514 L 586 428 M 352 524 L 586 438 M 352 534 L 586 448" stroke="#cbd5e1" stroke-width="1" stroke-linecap="round"/>
+
+      <!-- Linear Page Edge Details (Front Side Block) -->
+      <path d="M 244 243 L 336 285 M 244 253 L 336 295 M 244 263 L 336 305 M 244 273 L 336 315 M 244 283 L 336 325 M 244 293 L 336 335 M 244 303 L 336 345 M 244 313 L 336 355 M 244 323 L 336 365 M 244 333 L 336 375 M 244 343 L 336 385 M 244 353 L 336 395 M 244 363 L 336 405 M 244 373 L 336 415 M 244 383 L 336 425 M 244 393 L 336 435 M 244 403 L 336 445 M 244 413 L 336 455 M 244 423 L 336 465 M 244 433 L 336 475 M 244 443 L 336 485 M 244 453 L 336 495 M 244 463 L 336 505 M 244 473 L 336 515 M 244 483 L 336 525 M 244 493 L 336 535" stroke="#94a3b8" stroke-width="0.75" stroke-opacity="0.6" stroke-linecap="round"/>
+    </g>
+
+    <!-- Page Corner Shadow overlay -->
+    <path d="M 342 286 L 342 546 L 365 537 L 365 277 Z" fill="#0f172a" fill-opacity="0.06"/>
+
+    <!-- Spine Structure -->
+    <g id="book-spine">
+      <!-- Curved Top Spine Cap -->
+      <path d="M 220 220 C 210 224 200 232 196 242 C 194 246 194 250 196 254 L 196 524 C 194 528 194 532 196 536 C 200 546 210 554 220 558 L 226 555 C 214 550 206 542 204 532 C 202 528 202 524 204 520 L 204 250 C 202 246 202 242 204 238 C 206 228 214 220 226 215 Z" fill="#1d4ed8"/>
+      
+      <!-- Main Outer Spine Surface -->
+      <path d="M 220 220 C 208 225 198 236 196 250 L 196 520 C 198 534 208 545 220 550 L 230 554 L 230 224 Z" fill="#2563eb"/>
+
+      <!-- Spine 3D Shading & Highlights -->
+      <path d="M 220 220 C 208 225 198 236 196 250 L 196 520 C 198 534 208 545 220 550 L 208 545 C 198 538 192 528 192 516 L 192 246 C 192 234 198 224 208 217 Z" fill="#1e40af"/>
+      <path d="M 214 222 C 208 226 204 234 203 244 L 203 514 C 204 524 208 532 214 536 L 217 534 C 212 530 208 523 207 514 L 207 244 C 208 235 212 228 217 224 Z" fill="#60a5fa" fill-opacity="0.4"/>
+
+      <!-- Decorative Raised Bands on Spine -->
+      <path d="M 196 290 C 204 294 216 296 230 294 L 230 288 C 216 290 204 288 196 284 Z" fill="#1e3a8a"/>
+      <path d="M 196 288 C 204 292 216 294 230 292 L 230 290 C 216 292 204 290 196 286 Z" fill="#93c5fd" fill-opacity="0.5"/>
+
+      <path d="M 196 370 C 204 374 216 376 230 374 L 230 368 C 216 370 204 368 196 364 Z" fill="#1e3a8a"/>
+      <path d="M 196 368 C 204 372 216 374 230 372 L 230 370 C 216 372 204 370 196 366 Z" fill="#93c5fd" fill-opacity="0.5"/>
+
+      <path d="M 196 450 C 204 454 216 456 230 454 L 230 448 C 216 450 204 448 196 444 Z" fill="#1e3a8a"/>
+      <path d="M 196 448 C 204 452 216 454 230 452 L 230 450 C 216 452 204 450 196 446 Z" fill="#93c5fd" fill-opacity="0.5"/>
+    </g>
+
+    <!-- Front Cover -->
+    <g id="front-cover">
+      <!-- Main Front Cover Plane -->
+      <path d="M 226 224 L 498 122 L 618 178 L 344 282 Z" fill="#3b82f6"/>
+      
+      <!-- Front Cover Edge Thickness (Bottom Rim) -->
+      <path d="M 344 282 L 618 178 L 618 186 L 344 290 Z" fill="#1d4ed8"/>
+      
+      <!-- Front Cover Edge Thickness (Spine Side Joint Rim) -->
+      <path d="M 226 224 L 344 282 L 344 290 L 226 232 Z" fill="#2563eb"/>
+
+      <!-- Cover Surface Design (Plain Stock Geometric Accent Panels - Unbranded) -->
+      <!-- Outer Framing Groove -->
+      <path d="M 250 222 L 488 133 L 594 182 L 354 274 Z" fill="none" stroke="#60a5fa" stroke-width="2" stroke-opacity="0.5"/>
+      <path d="M 258 223 L 484 138 L 584 184 L 358 271 Z" fill="none" stroke="#1d4ed8" stroke-width="1" stroke-opacity="0.4"/>
+
+      <!-- Elegant Central Geometric Inset -->
+      <path d="M 340 200 L 440 162 L 510 195 L 410 233 Z" fill="#2563eb" fill-opacity="0.6" stroke="#93c5fd" stroke-width="1.5" stroke-opacity="0.8"/>
+      <path d="M 365 200 L 440 172 L 485 195 L 410 223 Z" fill="none" stroke="#bfdbfe" stroke-width="1" stroke-opacity="0.6"/>
+
+      <!-- Cover Specular Glare / Soft Gradient Simulation -->
+      <path d="M 226 224 L 380 166 L 470 234 L 344 282 Z" fill="#ffffff" fill-opacity="0.08"/>
+      <path d="M 498 122 L 618 178 L 530 212 L 420 151 Z" fill="#ffffff" fill-opacity="0.05"/>
+
+      <!-- Hinge Joint Indentation (Crease parallel to spine) -->
+      <path d="M 238 220 L 356 278" stroke="#1e40af" stroke-width="3" stroke-opacity="0.4" stroke-linecap="round"/>
+      <path d="M 240 219 L 358 277" stroke="#93c5fd" stroke-width="1.5" stroke-opacity="0.6" stroke-linecap="round"/>
+    </g>
+
+    <!-- Corner Protectors / Accent Caps (Adds stock usability & polished structure) -->
+    <g id="cover-accents">
+      <!-- Top Right Metal Corner -->
+      <path d="M 598 168 L 618 178 L 596 186 L 582 174 Z" fill="#d97706"/>
+      <path d="M 598 168 L 618 178 L 604 172 Z" fill="#f59e0b"/>
+      
+      <!-- Bottom Right Metal Corner -->
+      <path d="M 330 276 L 344 282 L 358 276 L 344 270 Z" fill="#d97706"/>
+      <path d="M 330 276 L 344 282 L 338 277 Z" fill="#bbb106" fill-opacity="0.5"/>
+
+      <!-- Top Left Metal Corner -->
+      <path d="M 486 126 L 498 122 L 510 128 L 498 132 Z" fill="#d97706"/>
+      <path d="M 486 126 L 498 122 L 494 125 Z" fill="#f59e0b"/>
+    </g>
+
+    <!-- Bookmark Ribbon (Elegant functional publishing element) -->
+    <g id="bookmark-ribbon">
+      <!-- Ribbon Emerging from Page Block -->
+      <path d="M 440 230 C 450 270 430 350 460 410 C 470 430 490 450 500 480 L 470 470 C 460 440 440 420 430 390 C 410 330 430 260 420 220 Z" fill="#dc2626"/>
+      <!-- Ribbon Fold Shadow -->
+      <path d="M 460 410 C 470 430 490 450 500 480 L 485 475 C 475 448 455 430 445 405 Z" fill="#991b1b"/>
+      <!-- Ribbon Cut Tail Accent -->
+      <path d="M 500 480 L 515 465 L 485 462 L 470 470 Z" fill="#b91c1c"/>
+    </g>
+
+  </g>
+</svg>

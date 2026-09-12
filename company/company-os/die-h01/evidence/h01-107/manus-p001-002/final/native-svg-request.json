@@ -1,0 +1,45 @@
+{
+  "authority": {
+    "dispatch_commit_required": true,
+    "dispatch_semantics": "EXACTLY_ONCE",
+    "publication_authorized": false,
+    "submission_authorized": false
+  },
+  "blueprint": {
+    "blueprint_id": "H01BP-BOOK_CLEAN_001",
+    "sha256": "80db21752781a9801341a7a734b95f6f73592e35706fb4235c37b836577e975a"
+  },
+  "contract_revision": "1.0.0",
+  "idempotency_key": "6e35ac787ce23e6e629bfd26705721bd1165e9d1784529636f0dc55fba0618a0",
+  "ingress_policy": {
+    "allowed": [
+      "WEB_AI_ADAPTER",
+      "NATIVE_MCP"
+    ],
+    "native_mcp_required": false,
+    "preferred": "WEB_AI_ADAPTER"
+  },
+  "master_instruction_sha256": "0706de509001cc3fc7b679620d497957766486dac48e89e88116899d2b33a4fc",
+  "output_contract": {
+    "conversion_from_raster_allowed": false,
+    "embedded_raster_allowed": false,
+    "h01_103_validation_required": true,
+    "master_format": "SVG",
+    "native_editable_required": true,
+    "payload_kind": "SVG_SOURCE_TEXT"
+  },
+  "prompt": {
+    "chars": 2109,
+    "sha256": "5038630f0c58c14c2d452bdc865fa712ab3adba18f8b88e2e82f50bb1470c3c2",
+    "text": "Return exactly one complete raw <svg>...</svg> document and nothing else. Do not omit or weaken any requirement.\nSUBJECT: one standalone closed book. It must clearly read as a rectangular closed-book silhouette with visible inset page block and defined spine; include front cover, back cover, spine, page block; credible everyday proportions; paper pages; plain unbranded cover; limited harmonious palette with clear cover/page contrast; minimal clean flat surfaces, no noisy texture.\nCOMMERCIAL: reusable editable stock vector for education, publishing, library, ecommerce, presentations; generic/unbranded and context-independent.\nCOMPOSITION: slight 3/4 view showing cover, spine and pages; single object, centered, generous transparent margin, complete silhouette, no crop, no scene or unrelated props; readable at thumbnail size.\nVECTOR STYLE: clean contemporary stock vector, native editable geometry, crisp simple shapes, few purposeful paths/primitives, closed clean contours, no microscopic decoration. Use solid fills only. No bitmap texture. Avoid photorealism, filters and raster effects. Express depth only with overlap and restrained flat color separation. No stroke unless structurally needed; any stroke simple and consistent.\nCOMPLEXITY: SVG <=524288 bytes; <=256 geometry elements; <=4096 sampled points; each path d <=16384 chars; group depth <=32.\nRIGHTS: no logos, trademarks, copyrighted-character/style imitation, readable text, watermark, publisher marks, ISBN/barcode, branded cover art, copyrighted character imagery.\nSVG: genuine native SVG, never traced/wrapped raster. Transparent background; no background rectangle. Allowed geometry only: g,path,rect,circle,ellipse,line,polyline,polygon. Allowed path commands only M,L,H,V,C,S,Q,T,A,Z. Forbidden: script, external refs, embedded raster image, foreignObject, text, style, defs, symbol, use. Root svg must have finite viewBox and visible editable geometry.\nINVARIANTS: all Blueprint semantics remain binding; no provider/model/transport choice is inferred from this prompt; no mission/submission/publication authority is granted."
+  },
+  "provider_target": {
+    "provider_id": "manus",
+    "provider_profile": "MANUS_WEB_P001"
+  },
+  "queue_item_id": "H01-SVGQ-CAND-0829866",
+  "request_id": "H01SVGREQ-H01-107F-MANUS-P001-002",
+  "schema": "die.h01.native-svg-request.v1",
+  "semantic_asset_id": "H01SVG-CAND-0829866",
+  "source_candidate_id": "CAND-0829866"
+}

@@ -1,0 +1,45 @@
+{
+  "cdp_canary": "engineering/provider_text_svg_cdp_canary.mjs",
+  "classifications": [
+    "NATIVE_SVG",
+    "TEXT_SVG",
+    "UNSUPPORTED",
+    "DEFERRED"
+  ],
+  "controller": "engineering/brave_udd_runtime.mjs",
+  "finalizer": "engineering/provider_svg_canary_finalize.py",
+  "native_file_acquisition": {
+    "h01_104a_text_extractor_not_falsely_claimed": true,
+    "method": "UI_DOWNLOAD_SVG",
+    "preserve_exact_provider_bytes": true,
+    "provider": "gemini"
+  },
+  "output_acquisition": "engineering/provider_output_acquisition.py",
+  "profile_policy": {
+    "cdp_host": "127.0.0.1",
+    "cdp_port": 9201,
+    "profile_id": "h01-web-p001",
+    "sequential_only": true,
+    "udd_id": "h01-web-s01"
+  },
+  "promotion_from_capability_claim_forbidden": true,
+  "provider_order": [
+    "claude",
+    "chatgpt",
+    "qwen",
+    "gemini",
+    "grok",
+    "manus",
+    "copilot",
+    "duckai"
+  ],
+  "revision": "2.0.0",
+  "schema": "die.h01.provider-native-svg-canaries.runtime.v2",
+  "status": "ACCEPTED",
+  "task_id": "H01-107",
+  "timeout_notes": {
+    "duckai": "10-minute active-generation bound produced DEFERRED, not UNSUPPORTED.",
+    "qwen": "Late completion may exceed observer bound; exact-conversation recheck required before final timeout verdict."
+  },
+  "validator": "company/factory-asset/lib/native_svg_pipeline.py"
+}

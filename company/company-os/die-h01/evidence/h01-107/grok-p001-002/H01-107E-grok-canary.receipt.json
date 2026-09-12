@@ -1,0 +1,21 @@
+{
+  "canary_id": "H01-107E",
+  "cdp": "127.0.0.1:9201",
+  "classification": "UNSUPPORTED",
+  "completed_at": "2026-09-12T17:56:54.685180Z",
+  "cookies_or_tokens_read": false,
+  "evidence": "Grok Fast terminal assistant body contained only Worked for 7s; no complete SVG source, SVG file, blob/.svg link, or SVG download artifact was present after bounded recheck.",
+  "model_surface_observed": "Fast",
+  "profile_id": "h01-web-p001",
+  "provider_id": "grok",
+  "provider_promoted": false,
+  "provider_prompt_dispatched": true,
+  "publication_authorized": false,
+  "reason_code": "EMPTY_FINAL_RESPONSE",
+  "schema": "die.h01.provider-native-svg-canary.v1",
+  "session_bytes_read": false,
+  "status": "UNSUPPORTED",
+  "submission_authorized": false,
+  "task_id": "H01-107",
+  "udd_id": "h01-web-s01"
+}
