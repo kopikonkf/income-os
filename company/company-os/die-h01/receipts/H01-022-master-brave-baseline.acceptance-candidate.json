@@ -1,0 +1,99 @@
+{
+  "acceptance": {
+    "browser_profile_copied": false,
+    "cookies_or_tokens_read": false,
+    "download_output_acquisition": "PASS",
+    "loopback_cdp": "PASS",
+    "persistence": "PASS",
+    "provider_completion_behavior": "PASS",
+    "ram_renderer_disk_telemetry": "PASS",
+    "restart": "PASS",
+    "session_bytes_read": false,
+    "single_committed_page": "PASS"
+  },
+  "baseline": {
+    "cdp": "127.0.0.1:9201",
+    "manual_authentication": "FOUNDER_PROVIDED",
+    "preauthenticate_all_profiles": false,
+    "profile_id": "h01-web-p001",
+    "udd_id": "h01-web-s01"
+  },
+  "date": "2026-09-12",
+  "founder_gate": {
+    "accepted": false,
+    "required": true,
+    "task_graph_must_remain_blocked_until_acceptance": true
+  },
+  "live_telemetry": {
+    "auth_readiness": {
+      "composer_present": true,
+      "cookies_or_tokens_read": false,
+      "document_ready_state": "complete",
+      "login_prompt_visible": false,
+      "manual_auth_provided_by_founder": true,
+      "page_title": "ChatGPT",
+      "session_bytes_read": false
+    },
+    "captured_at": "2026-09-12T18:31:40.066757Z",
+    "cdp": {
+      "host": "127.0.0.1",
+      "loopback_only": true,
+      "page_count": 1,
+      "port": 9201
+    },
+    "disk": {
+      "filesystem_available_bytes": 82488520704,
+      "filesystem_total_bytes": 133569777664,
+      "filesystem_used_bytes": 44248997888,
+      "filesystem_used_percent": 35,
+      "p001_bytes": 66876367,
+      "udd_s01_bytes": 204035628
+    },
+    "process": {
+      "gpu_count": 2,
+      "process_count": 13,
+      "renderer_count": 3,
+      "rss_kib_total": 1262516,
+      "rss_mib_total": 1232.93,
+      "utility_count": 3
+    },
+    "profile_id": "h01-web-p001",
+    "provider_generation_dispatched": false,
+    "provider_id": "chatgpt",
+    "provider_url": "https://chatgpt.com/",
+    "schema": "die.h01.h01-022.live-baseline-telemetry.v1",
+    "udd_id": "h01-web-s01"
+  },
+  "real_web_ai_proof": {
+    "h01_107_status": "PASS",
+    "native_svg_count": 1,
+    "provider_count": 8,
+    "receipt_path": "company/company-os/die-h01/receipts/H01-107-provider-native-svg-canaries.receipt.json",
+    "text_svg_count": 5,
+    "validated_svg_count": 6
+  },
+  "runtime": {
+    "browser_close_sent": true,
+    "cdp_closed": true,
+    "lock_released": true,
+    "loopback_only": true,
+    "page_count_after_enforcement": 1,
+    "process_exited": true,
+    "status": "PASS"
+  },
+  "safety": {
+    "provider_generation_dispatched_for_fresh_telemetry": false,
+    "publication_authorized": false,
+    "submission_authorized": false
+  },
+  "schema": "die.h01.h01-022.master-brave-baseline.acceptance-candidate.v1",
+  "status": "READY_FOR_FOUNDER_ACCEPTANCE",
+  "storage_capacity_proof": {
+    "auth_session_stores_protected": true,
+    "free_bytes_after": 82504069120,
+    "h01_024_status": "PASS",
+    "janitor_reclaimed_bytes": 258408448,
+    "receipt_path": "company/company-os/die-h01/receipts/H01-024-brave-storage-janitor.receipt.json"
+  },
+  "task_id": "H01-022"
+}

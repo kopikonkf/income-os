@@ -1,0 +1,16 @@
+{
+  "authority": {
+    "provider_generation_dispatched": false,
+    "publication_authorized": false,
+    "submission_authorized": false
+  },
+  "completed_at": "2026-09-12T18:31:48.647451Z",
+  "job_id": "H01-022-P001-BASELINE-001",
+  "job_kind": "H01_022_BASELINE_TELEMETRY",
+  "profile_id": "h01-web-p001",
+  "provider_id": "chatgpt",
+  "schema": "die.h01.browser-job-result.v1",
+  "telemetry_path": "/home/kopiko/die-sessions/H01-022/company/company-os/die-h01/evidence/h01-022/live-baseline/live-baseline-telemetry.json",
+  "terminal_state": "SUCCEEDED",
+  "udd_id": "h01-web-s01"
+}
