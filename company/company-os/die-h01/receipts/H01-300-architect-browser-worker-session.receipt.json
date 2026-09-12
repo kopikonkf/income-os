@@ -1,0 +1,71 @@
+{
+  "artifacts": [
+    "company/company-os/die-h01/DIE_H01_ARCHITECT_BROWSER_WORKER_SESSION_V1.md",
+    "company/company-os/die-h01/contracts/h01-architect-browser-worker-session.v1.schema.json",
+    "company/company-os/die-h01/runtime/h01-architect-browser-worker-session.v1.json",
+    "bridge/tests/test_h01_architect_browser_worker_session_v1.py"
+  ],
+  "contract": {
+    "chat_memory_can_mark_done": false,
+    "completion_marker_can_mark_done_alone": false,
+    "current_canon_reconciliation_required": true,
+    "dispatch_attempts_per_session": 1,
+    "mission_control_is_scheduler": true,
+    "mission_task_get_required_before_execution": true,
+    "mutable_worktrees_per_task": 1,
+    "owner_leases_per_session": 1,
+    "principals_per_session": 1,
+    "project_context_recovery_required": true,
+    "tasks_per_session": 1,
+    "worker_is_scheduler": false,
+    "worker_kind": "CHATGPT_ARCHITECT_BROWSER_WORKER"
+  },
+  "downstream": {
+    "H01-301": "READY_AFTER_H01_300",
+    "H01-302": "BLOCKED_ON_H01_301",
+    "H01-303": "READY_AFTER_H01_300",
+    "H01-304": "BLOCKED_ON_H01_302_AND_H01_303",
+    "H01-305": "BLOCKED_ON_H01_304"
+  },
+  "marker": {
+    "authority": "CORRELATION_ONLY",
+    "emit_only_after_mission_task_complete_ok": true,
+    "final_non_whitespace_line": true,
+    "template": "MC005_ARCHITECT_RESULT_<dispatch_id>"
+  },
+  "observed_at": "2026-09-12T04:59:00Z",
+  "origin_main_at_start": "503b56a511ad7695d0e831339f514906f5e7fdad",
+  "publication": {
+    "acquire_immediately_before_remote_mutation": true,
+    "mission_owner_lease_is_repo_write_permission": false,
+    "release_in_finally": true,
+    "resources": [
+      "income-os.repo-write",
+      "company-os.<task_id>"
+    ]
+  },
+  "result": "PASS",
+  "schema": "die.h01.h01-300.architect-browser-worker-session.receipt.v1",
+  "scope": {
+    "browser_runtime_changed": false,
+    "completion_detector_implemented": false,
+    "dispatcher_implemented": false,
+    "parallel_enforcement_implemented": false,
+    "srv_die_mutated": false
+  },
+  "secrets": {
+    "mission_lease_token_ephemeral": true,
+    "mission_lease_token_persisted": false,
+    "provider_or_browser_session_material_persisted": false
+  },
+  "task_id": "H01-300",
+  "validation": {
+    "contract_tests": "7/7 PASS"
+  },
+  "workspace": {
+    "helper": "bin/die_h01_worktree.py",
+    "path_template": "/home/kopiko/die-sessions/<task_id>",
+    "protected_root": "/srv/die",
+    "shared_mutable_worktree_allowed": false
+  }
+}
