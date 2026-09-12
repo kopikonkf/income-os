@@ -1,0 +1,76 @@
+{
+  "bootstrap": {
+    "builder": "build_bootstrap",
+    "mission_lease_token_ephemeral": true,
+    "mission_lease_token_persisted": false,
+    "source_contract": "die.h01.architect-browser-worker-session.v1",
+    "submit_count_per_dispatch": 1
+  },
+  "browser_resource": {
+    "binding_policy": "HOST_LOCAL_NOT_CANONICAL",
+    "dedicated_engineering_resource_required": true,
+    "logical_resource_id": "h01-eng-architect-a",
+    "profile_reuse_across_simultaneous_tasks": false,
+    "session_material_policy": "HOST_LOCAL_NEVER_READ_BY_DISPATCHER"
+  },
+  "cleanup": {
+    "browser_close_in_finally": true,
+    "mission_timeout_closes_browser": true,
+    "profile_lease_release_in_finally": true,
+    "submit_failure_closes_browser": true
+  },
+  "dispatcher_is_scheduler": false,
+  "downstream": {
+    "completion_detector": "H01-302",
+    "parallel_isolation": "H01-303",
+    "two_worker_canary": "H01-304"
+  },
+  "durable_observation": {
+    "accepted_h01_301_canary_evidence": [
+      "owned checkpoint",
+      "terminal DONE",
+      "terminal BLOCKED",
+      "terminal VERIFYING"
+    ],
+    "progress_aware_terminal_detection_owner": "H01-302",
+    "rendered_chat_is_completion_authority": false,
+    "source": "Mission Control task state only"
+  },
+  "forbidden": [
+    "cookie read",
+    "token/session extraction",
+    "private ChatGPT backend API",
+    "remote CDP bind",
+    "second business scheduler",
+    "chat-text-only DONE"
+  ],
+  "holding_id": "H01",
+  "implementation": {
+    "cdp_driver": "company/company-os/die-h01/engineering/architect_browser_cdp_driver.mjs",
+    "dispatcher": "company/company-os/die-h01/engineering/architect_browser_dispatcher.py",
+    "tests": "bridge/tests/test_h01_architect_browser_dispatcher_v1.py"
+  },
+  "lifecycle": [
+    "LEASE_PROFILE",
+    "SPAWN_BROWSER",
+    "ATTACH_LOOPBACK_CDP",
+    "VERIFY_COMPOSER",
+    "INJECT_BOOTSTRAP_ONCE",
+    "OBSERVE_DURABLE_MISSION_CHECKPOINT_OR_RESULT",
+    "CLOSE_BROWSER",
+    "RELEASE_PROFILE"
+  ],
+  "mission_control_scheduler_authority": true,
+  "role": "ENGINEERING_BROWSER_WORKER_DISPATCHER",
+  "schema_version": "die.h01.architect-browser-dispatcher.v1",
+  "state": "CANARY_ONLY_UNTIL_H01_302",
+  "transport": {
+    "browser_target": "https://chatgpt.com/",
+    "cdp_host": "127.0.0.1",
+    "direct_spawn": true,
+    "family": "BROWSER_CDP",
+    "fixture_headless_only_when_env_gate": "DIE_H01_CDP_FIXTURE=1",
+    "headful_production": true,
+    "remote_cdp_allowed": false
+  }
+}
