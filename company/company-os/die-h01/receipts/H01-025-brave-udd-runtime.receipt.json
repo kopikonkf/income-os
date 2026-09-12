@@ -1,0 +1,70 @@
+{
+  "schema": "die.h01.h01-025.brave-udd-runtime.acceptance.v1",
+  "task_id": "H01-025",
+  "date": "2026-09-12",
+  "status": "PASS",
+  "origin_main_at_start": "79aca67918d6b3358579e41ff1c5a94f35ce97cc",
+  "acceptance": {
+    "one_active_profile_per_udd": true,
+    "sibling_overlap_rejected": true,
+    "sibling_rejection_exit_code": 73,
+    "exactly_one_provider_page": true,
+    "loopback_cdp_only": true,
+    "durable_result_before_browser_close": true,
+    "browser_closed_after_terminal_result": true,
+    "cdp_closed_after_job": true,
+    "udd_lock_released_after_job": true,
+    "wait_result_mode_proven": true
+  },
+  "live_canaries": {
+    "probe": {
+      "job_id": "H01-025-CANARY-002",
+      "profile_id": "h01-web-p001",
+      "udd_id": "h01-web-s01",
+      "provider_id": "chatgpt",
+      "cdp": "127.0.0.1:9201",
+      "runtime_status": "PASS",
+      "result_state": "SUCCEEDED"
+    },
+    "wait_result": {
+      "job_id": "H01-025-CANARY-003",
+      "profile_id": "h01-web-p001",
+      "udd_id": "h01-web-s01",
+      "provider_id": "chatgpt",
+      "runtime_status": "PASS",
+      "external_terminal_receipt_consumed": true
+    }
+  },
+  "safety": {
+    "cookies_read": false,
+    "tokens_read": false,
+    "session_bytes_read": false,
+    "browser_profile_copied": false,
+    "mission_control_code_changed": false,
+    "mission_control_mutated": false,
+    "scheduler_changed": false,
+    "srv_die_mutated": false,
+    "provider_generation_dispatched": false
+  },
+  "graph": {
+    "h01_025": "DONE",
+    "h01_026": "BLOCKED pending H01-023",
+    "h01_107": "READY"
+  },
+  "rejected_attempt": {
+    "job_id": "H01-025-CANARY-001",
+    "accepted": false,
+    "reason": "startup observation and UDD-lock release timing races were detected; implementation was fixed and the canary was rerun as H01-025-CANARY-002/003 before acceptance"
+  },
+  "validation": {
+    "focused_runtime_tests": "6/6 PASS",
+    "broader_h01_suite": "158/160 PASS; 2 pre-existing stale-status assertions already inconsistent with origin/main at task start (H01-013 and H01-305 are DONE)",
+    "schema_meta_validation": "PASS",
+    "live_receipt_schema_validation": "PASS",
+    "graph_integrity": "PASS / 58 unique tasks / all dependencies resolve",
+    "node_syntax_check": "PASS",
+    "git_diff_check": "PASS",
+    "mission_control_path_changes": "NONE",
+    "secret_literal_scan": "PASS"
+  }
+}

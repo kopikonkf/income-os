@@ -1,0 +1,21 @@
+{
+  "schema": "die.h01.browser-job-result.v1",
+  "job_id": "H01-025-CANARY-002",
+  "job_kind": "RUNTIME_READINESS_PROBE",
+  "provider_id": "chatgpt",
+  "profile_id": "h01-web-p001",
+  "udd_id": "h01-web-s01",
+  "terminal_state": "SUCCEEDED",
+  "completed_at": "2026-09-12T15:58:40.522Z",
+  "provider_page": {
+    "origin": "https://chatgpt.com",
+    "path": "/",
+    "ready_state": "interactive",
+    "title": "ChatGPT: Chat, Work, Create & Code with AI"
+  },
+  "authority": {
+    "provider_generation_dispatched": false,
+    "submission_authorized": false,
+    "publication_authorized": false
+  }
+}

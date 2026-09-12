@@ -57,6 +57,8 @@ UDD IDLE
 
 Therefore 100 persistent profiles do not mean 100 live browsers. Maximum topology is 20 UDD owners; accepted concurrency is increased only from measured evidence. Founder performs provider logins; automation never copies cookies/tokens/session secrets between profiles.
 
+H01-025 implements this envelope with `engineering/brave_udd_runtime.mjs` over the existing host launcher and fabric manifest. The runtime enforces one provider page, accepts a durable terminal result before closure, sends `Browser.close`, verifies loopback CDP disappearance and UDD lock release, and has no Mission Control/scheduler mutation authority.
+
 ## 5. Brave anti-macet and resource policy
 
 First prove one profile stable, then clone the safe baseline. Disable nonessential consumer features by managed policy where practical, retain security boundaries, and clean only regenerable caches while the UDD is closed. Authentication/session stores remain protected. Provider completion timing is provider-specific; long-thinking providers must not be cut by a generic short timeout.

@@ -230,14 +230,15 @@
     {
       "id": "H01-025",
       "track": "BROWSER_FABRIC",
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-020",
         "H01-021"
       ],
       "title": "Implement one-owner-per-UDD Brave runtime with loopback CDP",
-      "acceptance": "Each UDD starts exactly one selected sibling profile, exactly one committed provider tab/job, loopback CDP only, and closes Brave after durable success/failure receipt."
+      "acceptance": "Each UDD starts exactly one selected sibling profile, exactly one committed provider tab/job, loopback CDP only, and closes Brave after durable success/failure receipt.",
+      "result": "PASS: one-owner-per-UDD Brave runtime live-accepted on p001/s01; sibling p005 rejected RC=73 while active, exactly one ChatGPT page enforced, loopback CDP 9201 only, durable terminal result precedes Browser.close, process/CDP disappear and UDD lock releases. Production wait-result mode also accepted against external terminal receipt. No Mission Control mutation or session-secret access."
     },
     {
       "id": "H01-026",
@@ -356,7 +357,7 @@
     {
       "id": "H01-107",
       "track": "SVG_FIRST",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-104A",
