@@ -195,7 +195,7 @@
     {
       "id": "H01-022",
       "track": "BROWSER_FABRIC",
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED",
       "depends_on": [
         "H01-020",
@@ -204,7 +204,8 @@
       ],
       "title": "Accept one master Brave profile baseline under real Web-AI use",
       "acceptance": "Prove one profile first: persistence, restart, loopback CDP, download/output acquisition, provider completion behavior and RAM/renderer/disk telemetry. Founder provides manual authentication.",
-      "founder_policy": "After H01-107 completes, use the already-authenticated Brave master profile for the one-profile baseline acceptance. Do not pre-authenticate all 100 configured profiles; authentication remains incremental/on-demand."
+      "founder_policy": "After H01-107 completes, use the already-authenticated Brave master profile for the one-profile baseline acceptance. Do not pre-authenticate all 100 configured profiles; authentication remains incremental/on-demand.",
+      "result": "PASS: Founder accepted the authenticated p001 master Brave baseline after Architect proof of persistence, restart, loopback CDP, single-page enforcement, real Web-AI output acquisition/provider completion, RAM/renderer/disk telemetry, and clean H01-025 shutdown. Authentication remains incremental/on-demand; no pre-authentication of all 100 profiles."
     },
     {
       "id": "H01-023",

@@ -20,7 +20,9 @@
   },
   "date": "2026-09-12",
   "founder_gate": {
-    "accepted": false,
+    "acceptance_basis": "Founder explicitly authorized seal after reviewing six-provider H01-107 results and Architect production-fitness assessment.",
+    "accepted": true,
+    "accepted_at": "2026-09-12",
     "required": true,
     "task_graph_must_remain_blocked_until_acceptance": true
   },
@@ -87,7 +89,7 @@
     "submission_authorized": false
   },
   "schema": "die.h01.h01-022.master-brave-baseline.acceptance-candidate.v1",
-  "status": "READY_FOR_FOUNDER_ACCEPTANCE",
+  "status": "PASS",
   "storage_capacity_proof": {
     "auth_session_stores_protected": true,
     "free_bytes_after": 82504069120,
