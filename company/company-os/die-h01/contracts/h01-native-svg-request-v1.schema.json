@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authority": {
+      "additionalProperties": false,
+      "properties": {
+        "dispatch_commit_required": {
+          "const": true
+        },
+        "dispatch_semantics": {
+          "const": "EXACTLY_ONCE"
+        },
+        "publication_authorized": {
+          "const": false
+        },
+        "submission_authorized": {
+          "const": false
+        }
+      },
+      "required": [
+        "dispatch_semantics",
+        "dispatch_commit_required",
+        "submission_authorized",
+        "publication_authorized"
+      ],
+      "type": "object"
+    },
+    "blueprint": {
+      "additionalProperties": false,
+      "properties": {
+        "blueprint_id": {
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "blueprint_id",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "contract_revision": {
+      "const": "1.0.0"
+    },
+    "idempotency_key": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "ingress_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed": {
+          "const": [
+            "WEB_AI_ADAPTER",
+            "NATIVE_MCP"
+          ]
+        },
+        "native_mcp_required": {
+          "const": false
+        },
+        "preferred": {
+          "const": "WEB_AI_ADAPTER"
+        }
+      },
+      "required": [
+        "preferred",
+        "allowed",
+        "native_mcp_required"
+      ],
+      "type": "object"
+    },
+    "master_instruction_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "output_contract": {
+      "additionalProperties": false,
+      "properties": {
+        "conversion_from_raster_allowed": {
+          "const": false
+        },
+        "embedded_raster_allowed": {
+          "const": false
+        },
+        "h01_103_validation_required": {
+          "const": true
+        },
+        "master_format": {
+          "const": "SVG"
+        },
+        "native_editable_required": {
+          "const": true
+        },
+        "payload_kind": {
+          "const": "SVG_SOURCE_TEXT"
+        }
+      },
+      "required": [
+        "payload_kind",
+        "master_format",
+        "native_editable_required",
+        "conversion_from_raster_allowed",
+        "embedded_raster_allowed",
+        "h01_103_validation_required"
+      ],
+      "type": "object"
+    },
+    "prompt": {
+      "additionalProperties": false,
+      "properties": {
+        "chars": {
+          "maximum": 8000,
+          "minimum": 200,
+          "type": "integer"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "text": {
+          "maxLength": 8000,
+          "minLength": 200,
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "sha256",
+        "chars"
+      ],
+      "type": "object"
+    },
+    "provider_target": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "pattern": "^[a-z0-9][a-z0-9._-]{1,63}$",
+          "type": "string"
+        },
+        "provider_profile": {
+          "pattern": "^[A-Z0-9][A-Z0-9_-]{2,63}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider_id",
+        "provider_profile"
+      ],
+      "type": "object"
+    },
+    "queue_item_id": {
+      "maxLength": 120,
+      "minLength": 8,
+      "type": "string"
+    },
+    "request_id": {
+      "pattern": "^H01SVGREQ-[A-Z0-9][A-Z0-9_-]{5,95}$",
+      "type": "string"
+    },
+    "schema": {
+      "const": "die.h01.native-svg-request.v1"
+    },
+    "semantic_asset_id": {
+      "maxLength": 120,
+      "minLength": 8,
+      "type": "string"
+    },
+    "source_candidate_id": {
+      "maxLength": 120,
+      "minLength": 3,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "contract_revision",
+    "request_id",
+    "idempotency_key",
+    "queue_item_id",
+    "source_candidate_id",
+    "semantic_asset_id",
+    "provider_target",
+    "ingress_policy",
+    "blueprint",
+    "master_instruction_sha256",
+    "prompt",
+    "output_contract",
+    "authority"
+  ],
+  "title": "H01 Provider-Independent Native SVG Request v1",
+  "type": "object"
+}

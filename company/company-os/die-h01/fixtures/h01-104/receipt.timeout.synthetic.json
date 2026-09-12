@@ -1,0 +1,44 @@
+{
+  "authority": {
+    "dispatch_commit_id": "H01SVGDISPATCH-BOOK_002",
+    "dispatch_semantics": "EXACTLY_ONCE",
+    "publication_authorized": false,
+    "submission_authorized": false
+  },
+  "contract_revision": "1.0.0",
+  "idempotency_key": "5f0bd08d51ed7f7fc8f39981ed3aa8afbdf21dc73a5238b9445c2509f132e3a0",
+  "ingress": "WEB_AI_ADAPTER",
+  "lineage": {
+    "blueprint_sha256": "80db21752781a9801341a7a734b95f6f73592e35706fb4235c37b836577e975a",
+    "master_instruction_sha256": "0706de509001cc3fc7b679620d497957766486dac48e89e88116899d2b33a4fc",
+    "prompt_sha256": "a731e040172358f26245ad8f849e1c97b7ddd5156f14f5fe84d5371f8988bc5c"
+  },
+  "native_svg_claim": {
+    "conversion_from_raster": false,
+    "embedded_raster": false,
+    "native_editable": false,
+    "source_kind": "NONE",
+    "success_claim_allowed": false
+  },
+  "provider_id": "claude",
+  "provider_result": {
+    "candidate_svg_sha256": null,
+    "error_code": "PROVIDER_TIMEOUT",
+    "error_detail": "synthetic contract fixture only; no live provider call made",
+    "finish_reason": null,
+    "payload_kind": null,
+    "provider_request_id": null,
+    "provider_response_sha256": null,
+    "provider_status": "TIMED_OUT"
+  },
+  "queue_item_id": "H01-SVGQ-CAND-0829866",
+  "request_id": "H01SVGREQ-BOOK_001",
+  "schema": "die.h01.native-svg-receipt.v1",
+  "semantic_asset_id": "H01SVG-CAND-0829866",
+  "status": "TIMEOUT",
+  "validation": {
+    "canonical_svg_sha256": null,
+    "engine": "H01-103",
+    "status": "NOT_RUN"
+  }
+}
