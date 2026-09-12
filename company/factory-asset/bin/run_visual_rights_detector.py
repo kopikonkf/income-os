@@ -137,8 +137,17 @@ def _make_controls(master: Path, target: Path):
     font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 220)
     wm = base.copy(); d = ImageDraw.Draw(wm, 'RGBA'); text = 'STOCK WATERMARK'; bb = d.textbbox((0, 0), text, font=font); tw, th = bb[2]-bb[0], bb[3]-bb[1]
     d.text(((base.width-tw)//2, (base.height-th)//2), text, font=font, fill=(80,80,80,120)); wm.save(target/'watermark.png')
-    logo = base.copy(); d = ImageDraw.Draw(logo); d.ellipse((1680,1700,2416,2436), fill=(190,25,35), outline=(20,20,20), width=30)
-    font2 = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 170); d.text((1745,1920), 'ACME', font=font2, fill='white'); logo.save(target/'logo_text.png')
+    logo = base.copy(); d = ImageDraw.Draw(logo); w,h=logo.size
+    # OCR-positive synthetic logo/text control. PSM 11 is intentionally kept;
+    # use moderate multiline text inside a high-contrast panel so the control
+    # validates the configured OCR path instead of depending on sparse giant text.
+    panel_w=min(2400,max(1200,w-1000)); panel_h=min(1300,max(800,h//3)); x0=(w-panel_w)//2; y0=(h-panel_h)//2
+    d.rectangle((x0,y0,x0+panel_w,y0+panel_h),fill='white',outline='black',width=12)
+    font2=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',min(160,max(96,min(w,h)//25)))
+    y=y0+140
+    for text in ('ACME','BRAND','LOGO'):
+        d.text((x0+220,y),text,font=font2,fill='black'); y+=font2.size+90
+    logo.save(target/'logo_text.png')
     emblem = base.copy(); d = ImageDraw.Draw(emblem); w,h=emblem.size; cx,cy=w//2,h//2; r=max(120,min(w,h)//14)
     d.ellipse((cx-r,cy-r,cx+r,cy+r), fill=(20,20,20), outline=(245,245,245), width=max(8,r//16))
     d.polygon([(cx-int(r*.54),cy+int(r*.43)),(cx-int(r*.14),cy-int(r*.54)),(cx+int(r*.07),cy+int(r*.43))], fill=(245,245,245))
