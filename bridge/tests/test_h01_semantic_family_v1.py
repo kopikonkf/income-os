@@ -152,8 +152,8 @@ class SemanticFamilyV1Tests(unittest.TestCase):
         graph = json.loads(TASK_GRAPH.read_text(encoding='utf-8'))
         tasks = {x['id']: x for x in graph['tasks']}
         self.assertEqual(tasks['H01-120']['status'], 'DONE')
-        self.assertEqual(tasks['H01-121']['status'], 'READY')
-        self.assertEqual(tasks['H01-122']['status'], 'READY')
+        self.assertIn(tasks['H01-121']['status'], {'READY', 'DONE'})
+        self.assertIn(tasks['H01-122']['status'], {'READY', 'DONE'})
         self.assertEqual(tasks['H01-123']['status'], 'BLOCKED')
         self.assertEqual(tasks['H01-123']['depends_on'], ['H01-111', 'H01-121', 'H01-122'])
 

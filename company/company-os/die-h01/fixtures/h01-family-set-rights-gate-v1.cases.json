@@ -1,0 +1,106 @@
+{
+  "schema": "die.h01.family-set-rights-gate-fixtures.v1",
+  "task_id": "H01-122",
+  "cases": [
+    {
+      "name": "generic-family-normal-stock-candidate",
+      "candidate": {
+        "schema": "die.h01.family-set-rights-candidate.v1",
+        "schema_version": "1.0.0",
+        "candidate_kind": "SEMANTIC_FAMILY",
+        "candidate_id": "FAM-V1-TAXONOMIC-FIXTURE",
+        "declared_rights_class": "GENERIC_UNRESTRICTED",
+        "constituents": [
+          {"ref_id": "OA-FIX-CUP", "ref_kind": "CANONICAL_SEMANTIC_MEMBER", "rights_class": "GENERIC_UNRESTRICTED", "evidence_refs": ["EVID-GENERIC-001"]},
+          {"ref_id": "OA-FIX-MUG", "ref_kind": "CANONICAL_SEMANTIC_MEMBER", "rights_class": "GENERIC_UNRESTRICTED", "evidence_refs": ["EVID-GENERIC-001"]}
+        ],
+        "evidence": [
+          {"evidence_id": "EVID-GENERIC-001", "kind": "OBJECT_ATLAS_TAXONOMY", "ref": "fixture://h01-122/generic-family"}
+        ],
+        "requested_route": "NORMAL_STOCK_PRODUCTION"
+      },
+      "expected_decision": "PASS_TO_NEXT_GATE",
+      "expected_route": "NORMAL_STOCK_CANDIDATE"
+    },
+    {
+      "name": "brand-restricted-system-blocked-from-normal-stock",
+      "candidate": {
+        "schema": "die.h01.family-set-rights-candidate.v1",
+        "schema_version": "1.0.0",
+        "candidate_kind": "SEMANTIC_FAMILY",
+        "candidate_id": "FAM-V1-SYSTEM-RESTRICTED-FIXTURE",
+        "declared_rights_class": "BRAND_RESTRICTED",
+        "constituents": [
+          {"ref_id": "OA-FIX-EXAMPLEBRAND-CHARGER", "ref_kind": "CANONICAL_SEMANTIC_MEMBER", "rights_class": "BRAND_RESTRICTED", "evidence_refs": ["EVID-BRAND-001"]},
+          {"ref_id": "OA-FIX-EXAMPLEBRAND-PHONE", "ref_kind": "CANONICAL_SEMANTIC_MEMBER", "rights_class": "BRAND_RESTRICTED", "evidence_refs": ["EVID-BRAND-001"]}
+        ],
+        "evidence": [
+          {"evidence_id": "EVID-BRAND-001", "kind": "RIGHTS_EVIDENCE", "ref": "fixture://h01-122/examplebrand-restricted"}
+        ],
+        "requested_route": "NORMAL_STOCK_PRODUCTION"
+      },
+      "expected_decision": "BLOCK_NORMAL_STOCK",
+      "expected_route": "RESTRICTED_RIGHTS_REVIEW"
+    },
+    {
+      "name": "review-required-family-held",
+      "candidate": {
+        "schema": "die.h01.family-set-rights-candidate.v1",
+        "schema_version": "1.0.0",
+        "candidate_kind": "SEMANTIC_FAMILY",
+        "candidate_id": "FAM-V1-CONTEXTUAL-REVIEW-FIXTURE",
+        "declared_rights_class": "REVIEW_REQUIRED",
+        "constituents": [
+          {"ref_id": "OA-FIX-UNCERTAIN-A", "ref_kind": "CANONICAL_SEMANTIC_MEMBER", "rights_class": "REVIEW_REQUIRED", "evidence_refs": ["EVID-REVIEW-001"]},
+          {"ref_id": "OA-FIX-GENERIC-B", "ref_kind": "CANONICAL_SEMANTIC_MEMBER", "rights_class": "GENERIC_UNRESTRICTED", "evidence_refs": ["EVID-REVIEW-001"]}
+        ],
+        "evidence": [
+          {"evidence_id": "EVID-REVIEW-001", "kind": "RIGHTS_EVIDENCE", "ref": "fixture://h01-122/review-required"}
+        ],
+        "requested_route": "NORMAL_STOCK_PRODUCTION"
+      },
+      "expected_decision": "REVIEW_REQUIRED",
+      "expected_route": "RIGHTS_REVIEW_HOLD"
+    },
+    {
+      "name": "design-set-with-brand-family-blocked",
+      "candidate": {
+        "schema": "die.h01.family-set-rights-candidate.v1",
+        "schema_version": "1.0.0",
+        "candidate_kind": "DESIGN_SET",
+        "candidate_id": "SET-FIX-MIXED-001",
+        "declared_rights_class": "BRAND_RESTRICTED",
+        "constituents": [
+          {"ref_id": "FAM-V1-TAXONOMIC-GENERIC", "ref_kind": "SEMANTIC_FAMILY", "rights_class": "GENERIC_UNRESTRICTED", "evidence_refs": ["EVID-SET-GENERIC"]},
+          {"ref_id": "FAM-V1-SYSTEM-BRAND", "ref_kind": "SEMANTIC_FAMILY", "rights_class": "BRAND_RESTRICTED", "evidence_refs": ["EVID-SET-BRAND"]}
+        ],
+        "evidence": [
+          {"evidence_id": "EVID-SET-GENERIC", "kind": "OBJECT_ATLAS_TAXONOMY", "ref": "fixture://h01-122/set-generic"},
+          {"evidence_id": "EVID-SET-BRAND", "kind": "RIGHTS_EVIDENCE", "ref": "fixture://h01-122/set-brand"}
+        ],
+        "requested_route": "NORMAL_STOCK_PRODUCTION"
+      },
+      "expected_decision": "BLOCK_NORMAL_STOCK",
+      "expected_route": "RESTRICTED_RIGHTS_REVIEW"
+    },
+    {
+      "name": "unknown-rights-held",
+      "candidate": {
+        "schema": "die.h01.family-set-rights-candidate.v1",
+        "schema_version": "1.0.0",
+        "candidate_kind": "DESIGN_SET",
+        "candidate_id": "SET-FIX-UNKNOWN-001",
+        "declared_rights_class": "UNKNOWN",
+        "constituents": [
+          {"ref_id": "FAM-V1-SYSTEM-UNKNOWN", "ref_kind": "SEMANTIC_FAMILY", "rights_class": "UNKNOWN", "evidence_refs": ["EVID-UNKNOWN"]}
+        ],
+        "evidence": [
+          {"evidence_id": "EVID-UNKNOWN", "kind": "RIGHTS_EVIDENCE", "ref": "fixture://h01-122/unknown"}
+        ],
+        "requested_route": "NORMAL_STOCK_PRODUCTION"
+      },
+      "expected_decision": "REVIEW_REQUIRED",
+      "expected_route": "RIGHTS_REVIEW_HOLD"
+    }
+  ]
+}

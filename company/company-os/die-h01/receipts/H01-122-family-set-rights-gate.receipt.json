@@ -1,0 +1,89 @@
+{
+  "schema": "die.h01.h01-122.family-set-rights-gate.receipt.v1",
+  "task_id": "H01-122",
+  "result": "PASS",
+  "observed_at": "2026-09-12T08:41:40Z",
+  "canonical_base_sha": "27430f3f9c92dc67878a2034220e4a1ba1ec34bb",
+  "parallel_canary": {
+    "id": "H01-304",
+    "attempt": 2,
+    "worker": "B",
+    "browser_resource_scope": "HOLDING_LOCAL",
+    "browser_resource_id": "h01-display12-cdp9100",
+    "worktree": "/home/kopiko/die-sessions/H01-122",
+    "branch": "canary/h01-122-parallel-20260912",
+    "mission_checkpoint_ids": [
+      300,
+      301,
+      302,
+      303
+    ]
+  },
+  "deliverables": {
+    "contract": "company/company-os/die-h01/contracts/h01-family-set-rights-candidate.v1.schema.json",
+    "doctrine": "company/company-os/die-h01/DIE_H01_FAMILY_SET_RIGHTS_GATE_V1.md",
+    "implementation": "company/company-os/die-h01/lib/family_set_rights_gate.py",
+    "fixtures": "company/company-os/die-h01/fixtures/h01-family-set-rights-gate-v1.cases.json",
+    "tests": "bridge/tests/test_h01_family_set_rights_gate_v1.py"
+  },
+  "acceptance": [
+    {
+      "clause": "Brand-restricted systems may be discovered but cannot route silently to normal stock production.",
+      "status": "PASS",
+      "evidence": [
+        "BRAND_RESTRICTED remains representable and returns discovery_preserved=true.",
+        "BRAND_RESTRICTED deterministically routes BLOCK_NORMAL_STOCK -> RESTRICTED_RIGHTS_REVIEW.",
+        "A caller cannot downgrade a BRAND_RESTRICTED constituent through declared-rights drift; the gate fails closed.",
+        "A BRAND_RESTRICTED aggregate requires explicit RIGHTS_EVIDENCE.",
+        "REVIEW_REQUIRED and UNKNOWN route to RIGHTS_REVIEW_HOLD.",
+        "Only all-GENERIC_UNRESTRICTED candidates can PASS_TO_NEXT_GATE, which still grants no production, submission, publication, legal-clearance, or bypass authority."
+      ]
+    },
+    {
+      "clause": "Family/set candidate coverage",
+      "status": "PASS",
+      "evidence": [
+        "Semantic Family v1 adapts without rewriting family or Object Atlas identity.",
+        "Future Design Set candidates use the same constituent aggregation envelope.",
+        "Derivative bundles and listing packages are rejected by schema."
+      ]
+    },
+    {
+      "clause": "Preserve existing rights controls",
+      "status": "PASS",
+      "evidence": "H01-122 is explicitly pre-production and complements FA-136 post-artifact rights detection; existing FA-136 fixtures remain 9/9 PASS."
+    }
+  ],
+  "validation": {
+    "focused_h01_122": "14/14 PASS",
+    "h01_120_semantic_family_regression": "15/15 PASS",
+    "h01_303_worker_isolation_regression": "10/10 PASS",
+    "fa136_rights_signal_fixtures": "9/9 PASS",
+    "h01_120_family_fixture_validation": "5/5 PASS",
+    "python_compile": "PASS",
+    "json_validation": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "graph": {
+    "H01-120": "DONE",
+    "H01-121": "READY_UNCHANGED",
+    "H01-122": "DONE",
+    "H01-123": "BLOCKED",
+    "h01_123_reason": "H01-111 and H01-121 are not DONE in current canon."
+  },
+  "isolation": {
+    "worktree_top_level": "/home/kopiko/die-sessions/H01-122",
+    "lifecycle_status": "OPEN",
+    "git_common_dir": "/home/kopiko/.local/state/die-engineering/income-os.git",
+    "protected_srv_die_used": false,
+    "h01_121_worktree_touched": false,
+    "remote_publication_performed": false,
+    "repo_write_lease_required_for_local_commit": false
+  },
+  "authority": {
+    "production_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "legal_clearance_claimed": false
+  }
+}

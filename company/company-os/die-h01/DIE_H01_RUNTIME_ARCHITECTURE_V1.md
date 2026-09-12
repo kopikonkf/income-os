@@ -238,3 +238,13 @@ The contract explicitly separates `SEMANTIC FAMILY -> DESIGN SET -> DERIVATIVE B
 Family identity is deterministic: `FAM-V1-<CLASS>-<24 uppercase SHA-256 hex>` is derived from family version, class, semantic key and sorted canonical Object Atlas subject IDs. Source evidence is mandatory and auditable. Rights classification is one of `GENERIC_UNRESTRICTED`, `REVIEW_REQUIRED`, or `BRAND_RESTRICTED`; the Family artifact itself grants no production/submission/publication authority, and restricted systems cannot auto-qualify for production.
 
 Legacy Division01/production-cognition `family_id` fields remain historical commercial/candidate grouping evidence and are not silently reinterpreted as Semantic Family v1. H01-121 and H01-122 become READY from H01-120 completion; H01-123 remains dependency-blocked until H01-111, H01-121, and H01-122 are DONE.
+
+## 26. H01-122 Family / Set rights-routing gate standing
+
+H01-122 adds `DIE_H01_FAMILY_SET_RIGHTS_GATE_V1.md`, `contracts/h01-family-set-rights-candidate.v1.schema.json`, and `lib/family_set_rights_gate.py` as the pre-production semantic rights-routing boundary for Semantic Family and future Design Set candidates. It complements the existing FA-136 post-artifact OCR/logo/watermark signal gate; passing H01-122 never bypasses downstream artifact rights/QA controls or Founder-controlled submission authority.
+
+The gate aggregates constituent rights fail-closed across `GENERIC_UNRESTRICTED < REVIEW_REQUIRED < UNKNOWN < BRAND_RESTRICTED`. The declared candidate class must equal the strongest constituent class, every constituent must point to present evidence, and brand-restricted aggregates require explicit `RIGHTS_EVIDENCE`. A caller therefore cannot downgrade a set containing a restricted family to a normal generic candidate.
+
+`BRAND_RESTRICTED` preserves discovery but deterministically returns `BLOCK_NORMAL_STOCK -> RESTRICTED_RIGHTS_REVIEW`; `REVIEW_REQUIRED` and `UNKNOWN` return `RIGHTS_REVIEW_HOLD`; only fully generic candidates may return `PASS_TO_NEXT_GATE -> NORMAL_STOCK_CANDIDATE`. Even that pass grants no production, submission, publication, legal-clearance, or gate-bypass authority. Derivative bundles and listing packages are outside the candidate schema.
+
+H01-120 Semantic Family v1 adapts directly without rewriting family/Object Atlas identity, while the same envelope can later be produced by H01-123 Design Set composition. H01-122 does not start H01-123. With H01-122 DONE, H01-123 remains blocked because H01-111 and H01-121 are not DONE in current canon.
