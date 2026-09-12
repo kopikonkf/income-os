@@ -1,0 +1,14 @@
+{
+  "canonical_svg_sha256": "37e6b195397aa3687c47cd7b3415818e7b933cd5747a988ff51d39c214c5782a",
+  "conversion_from_raster": false,
+  "geometry_count": 13,
+  "input_sha256": "3047b15c4ff96d001623cc973bbb0d64aca75c8d9995edc9365beb4bf54347ca",
+  "native_editable": true,
+  "path_count": 8,
+  "render_ink_pixels_512": 96620,
+  "schema": "die.h01.h01-103.live-validation.v1",
+  "shape_count": 5,
+  "status": "PASS",
+  "task_id": "H01-103",
+  "total_points": 65
+}

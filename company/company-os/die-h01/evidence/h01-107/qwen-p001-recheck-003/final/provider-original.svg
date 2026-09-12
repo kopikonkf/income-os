@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+<g id="book">
+<g id="spine">
+<path id="spine-face" d="M263.4 198.8 L180.28 172.55 L180.28 672.55 L263.4 698.8 Z" fill="#215F7A"/>
+</g>
+<g id="top">
+<path id="top-recess-shadow" d="M263.4 198.8 L619.65 127.55 L536.53 101.3 L180.28 172.55 Z" fill="#1B4F66"/>
+<path id="spine-top-edge" d="M263.4 198.8 L272.15 197.05 L189.03 170.8 L180.28 172.55 Z" fill="#46A0C0"/>
+<path id="front-cover-top-edge" d="M263.4 198.8 L619.65 127.55 L611.34 124.93 L255.09 196.18 Z" fill="#46A0C0"/>
+<path id="back-cover-top-edge" d="M188.59 175.18 L544.84 103.93 L536.53 101.3 L180.28 172.55 Z" fill="#46A0C0"/>
+<path id="page-block-top" d="M263.84 203.18 L602.59 135.43 L536.09 114.43 L197.34 182.18 Z" fill="#FCF8EE"/>
+<g id="page-edges" fill="#E2D6BC">
+<polygon points="258.09,199.43 589.34,133.18 587.68,132.65 256.43,198.9"/>
+<polygon points="246.21,195.68 577.46,129.43 575.8,128.9 244.55,195.15"/>
+<polygon points="234.34,191.93 565.59,125.68 563.93,125.15 232.68,191.4"/>
+<polygon points="222.46,188.18 553.71,121.93 552.05,121.4 220.8,187.65"/>
+<polygon points="210.59,184.43 541.84,118.18 540.18,117.65 208.93,183.9"/>
+</g>
+</g>
+<g id="front-cover">
+<path id="front-cover-face" d="M263.4 198.8 L619.65 127.55 L619.65 627.55 L263.4 698.8 Z" fill="#2E7FA0"/>
+<path id="cover-hinge-groove" d="M290.9 193.3 L295.9 192.3 L295.9 692.3 L290.9 693.3 Z" fill="#25708C"/>
+</g>
+</g>
+</svg>

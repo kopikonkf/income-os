@@ -1,0 +1,19 @@
+{
+  "authority": {
+    "provider_generation_dispatched": true,
+    "publication_authorized": false,
+    "submission_authorized": false
+  },
+  "canary_receipt": "/home/kopiko/die-sessions/H01-107/company/company-os/die-h01/evidence/h01-107/claude-control-001/final/H01-107A-claude-canary.receipt.json",
+  "classification": "TEXT_SVG",
+  "completed_at": "2026-09-12T16:38:02.648Z",
+  "h01_103_status": "PASS",
+  "job_id": "H01-107A-CLAUDE-001",
+  "job_kind": "H01_107_PROVIDER_CANARY",
+  "profile_id": "h01-web-p001",
+  "provider_id": "claude",
+  "provider_original_sha256": "1a8caf6b3e286443283350a270ecfbc392a25e0b122f1d224a33d71ec9f91868",
+  "schema": "die.h01.browser-job-result.v1",
+  "terminal_state": "SUCCEEDED",
+  "udd_id": "h01-web-s01"
+}

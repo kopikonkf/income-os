@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160">
+  <g>
+    <!-- Back cover -->
+    <polygon points="40,30 140,20 200,40 100,50" fill="#4A6FA5"/>
+    <!-- Page block -->
+    <polygon points="100,50 200,40 200,120 100,130" fill="#F2E9D8"/>
+    <!-- Front cover -->
+    <polygon points="40,30 100,50 100,130 40,110" fill="#5B84B1"/>
+    <!-- Spine -->
+    <polygon points="40,30 100,50 100,130 40,110" fill="#3E5C7A" opacity="0.6"/>
+    <!-- Spine edge highlight -->
+    <polygon points="40,30 45,32 45,112 40,110" fill="#2C445E"/>
+    <!-- Page block inset shadow -->
+    <polygon points="100,50 200,40 200,120 100,130" fill="#E6DCC8" opacity="0.4"/>
+  </g>
+</svg>

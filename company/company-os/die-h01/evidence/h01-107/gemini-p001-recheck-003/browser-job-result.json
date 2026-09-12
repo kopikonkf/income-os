@@ -1,0 +1,19 @@
+{
+  "authority": {
+    "provider_generation_dispatched": true,
+    "publication_authorized": false,
+    "submission_authorized": false
+  },
+  "canary_receipt": "/home/kopiko/die-sessions/H01-107/company/company-os/die-h01/evidence/h01-107/gemini-p001-recheck-003/final/H01-107D-gemini-canary.receipt.json",
+  "classification": "NATIVE_SVG",
+  "completed_at": "2026-09-12T17:53:04.370303Z",
+  "h01_103_status": "PASS",
+  "job_id": "H01-107D-GEMINI-P001-RECHECK-003",
+  "job_kind": "H01_107_PROVIDER_CANARY",
+  "profile_id": "h01-web-p001",
+  "provider_id": "gemini",
+  "provider_original_sha256": "b1c4872e96872a101adedd5a4f5f1129c639ce06fbd74d6f2d98b9bcb7e9f0b1",
+  "schema": "die.h01.browser-job-result.v1",
+  "terminal_state": "SUCCEEDED",
+  "udd_id": "h01-web-s01"
+}

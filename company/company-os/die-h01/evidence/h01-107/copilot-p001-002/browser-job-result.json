@@ -1,0 +1,19 @@
+{
+  "authority": {
+    "provider_generation_dispatched": true,
+    "publication_authorized": false,
+    "submission_authorized": false
+  },
+  "canary_receipt": "/home/kopiko/die-sessions/H01-107/company/company-os/die-h01/evidence/h01-107/copilot-p001-002/final/H01-107G-copilot-canary.receipt.json",
+  "classification": "TEXT_SVG",
+  "completed_at": "2026-09-12T18:01:48.101357Z",
+  "h01_103_status": "PASS",
+  "job_id": "H01-107G-COPILOT-P001-002",
+  "job_kind": "H01_107_PROVIDER_CANARY",
+  "profile_id": "h01-web-p001",
+  "provider_id": "copilot",
+  "provider_original_sha256": "ac89f3c63dd8820ef53b1ab230ea2b7caa396b93d0b1f00cc66d23bd063485ad",
+  "schema": "die.h01.browser-job-result.v1",
+  "terminal_state": "SUCCEEDED",
+  "udd_id": "h01-web-s01"
+}

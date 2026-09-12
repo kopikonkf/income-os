@@ -1,0 +1,98 @@
+{
+  "status": "SUCCEEDED",
+  "provider": "manus",
+  "origin": "https://manus.im",
+  "started_at": "2026-09-12T17:58:46.334Z",
+  "completed_at": "2026-09-12T17:59:03.339Z",
+  "submit_method": "ENTER_AFTER_SETTLE",
+  "prompt_sha256": "5038630f0c58c14c2d452bdc865fa712ab3adba18f8b88e2e82f50bb1470c3c2",
+  "response_sha256": "4134bd72d6fc2533b2daa19b633093b6714d7fb6ad4d8c4349f4dc83fc31fb5a",
+  "response_chars": 684,
+  "completion_signal": "SVG_COMPLETE_STABLE_NO_STOP",
+  "observations": [
+    {
+      "at": "2026-09-12T17:58:46.439Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://manus.im/app/Bn8Lynt1HnBTObKO3cdpL2"
+    },
+    {
+      "at": "2026-09-12T17:58:47.946Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://manus.im/app/Bn8Lynt1HnBTObKO3cdpL2"
+    },
+    {
+      "at": "2026-09-12T17:58:49.458Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://manus.im/app/Bn8Lynt1HnBTObKO3cdpL2"
+    },
+    {
+      "at": "2026-09-12T17:58:50.966Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://manus.im/app/Bn8Lynt1HnBTObKO3cdpL2"
+    },
+    {
+      "at": "2026-09-12T17:58:52.479Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://manus.im/app/Bn8Lynt1HnBTObKO3cdpL2"
+    },
+    {
+      "at": "2026-09-12T17:58:53.989Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://manus.im/app/Bn8Lynt1HnBTObKO3cdpL2"
+    },
+    {
+      "at": "2026-09-12T17:58:55.501Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://manus.im/app/Bn8Lynt1HnBTObKO3cdpL2"
+    },
+    {
+      "at": "2026-09-12T17:58:57.076Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://manus.im/app/Bn8Lynt1HnBTObKO3cdpL2"
+    },
+    {
+      "at": "2026-09-12T17:58:58.677Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://manus.im/app/Bn8Lynt1HnBTObKO3cdpL2"
+    },
+    {
+      "at": "2026-09-12T17:59:00.306Z",
+      "svg_chars": 684,
+      "candidates": 1,
+      "stop_visible": false,
+      "url": "https://manus.im/app/Bn8Lynt1HnBTObKO3cdpL2"
+    },
+    {
+      "at": "2026-09-12T17:59:01.823Z",
+      "svg_chars": 684,
+      "candidates": 1,
+      "stop_visible": false,
+      "url": "https://manus.im/app/Bn8Lynt1HnBTObKO3cdpL2"
+    },
+    {
+      "at": "2026-09-12T17:59:03.338Z",
+      "svg_chars": 684,
+      "candidates": 1,
+      "stop_visible": false,
+      "url": "https://manus.im/app/Bn8Lynt1HnBTObKO3cdpL2"
+    }
+  ]
+}

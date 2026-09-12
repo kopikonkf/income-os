@@ -1,0 +1,41 @@
+{
+  "artifact": {
+    "bytes": 793,
+    "immutable_provider_original": true,
+    "path": "/home/kopiko/die-sessions/H01-107/company/company-os/die-h01/evidence/h01-107/chatgpt-p001-003/final/provider-original.svg",
+    "sha256": "74fe4e9757c1f69fe9bffafd0554baf074a62bad258cea48a86332631b4f369b"
+  },
+  "completion": {
+    "completed_at": "2026-09-12T17:05:00Z",
+    "signal": "SVG_COMPLETE_STABLE_NO_STOP"
+  },
+  "downstream": {
+    "h01_103_validation_required": true,
+    "h01_104_receipt_compatible": true,
+    "h01_105_postproduction_after_validation": true
+  },
+  "job_id": "H01-107B-CHATGPT-P001-003",
+  "output_kind": "SVG_SOURCE_TEXT",
+  "profile_id": "h01-web-p001",
+  "provider_id": "chatgpt",
+  "provider_result": {
+    "finish_reason": "PROVIDER_UI_TERMINAL",
+    "mime": "image/svg+xml",
+    "native_svg_source_kind": "DIRECT_PROVIDER_SVG_SOURCE",
+    "payload_bytes": 793,
+    "payload_sha256": "74fe4e9757c1f69fe9bffafd0554baf074a62bad258cea48a86332631b4f369b",
+    "provider_response_sha256": "74fe4e9757c1f69fe9bffafd0554baf074a62bad258cea48a86332631b4f369b",
+    "provider_status": "COMPLETED"
+  },
+  "request_id": "H01SVGREQ-H01-107B-CHATGPT-P001-003",
+  "revision": "1.0.0",
+  "safety": {
+    "browser_profile_copied": false,
+    "cookies_read": false,
+    "session_bytes_read": false,
+    "tokens_read": false
+  },
+  "schema": "die.h01.provider-output-acquisition.v1",
+  "source_kind": "ASSISTANT_DOM",
+  "terminal_state": "SUCCEEDED"
+}

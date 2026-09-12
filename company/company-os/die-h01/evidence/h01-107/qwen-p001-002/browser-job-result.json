@@ -1,0 +1,18 @@
+{
+  "authority": {
+    "provider_generation_dispatched": true,
+    "publication_authorized": false,
+    "submission_authorized": false
+  },
+  "canary_receipt": "/home/kopiko/die-sessions/H01-107/company/company-os/die-h01/evidence/h01-107/qwen-p001-002/H01-107C-qwen-canary.receipt.json",
+  "classification": "DEFERRED",
+  "completed_at": "2026-09-12T17:23:57.671121Z",
+  "job_id": "H01-107C-QWEN-P001-002",
+  "job_kind": "H01_107_PROVIDER_CANARY",
+  "profile_id": "h01-web-p001",
+  "provider_id": "qwen",
+  "reason_code": "PROVIDER_TIMEOUT",
+  "schema": "die.h01.browser-job-result.v1",
+  "terminal_state": "TIMEOUT",
+  "udd_id": "h01-web-s01"
+}

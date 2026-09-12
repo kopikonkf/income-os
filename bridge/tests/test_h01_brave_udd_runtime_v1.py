@@ -45,6 +45,13 @@ for(const bad of [{{...good,job_id:'x'}},{{...good,provider_id:'x'}},{{...good,p
         self.assertIn('mission_control_mutated:false',s)
         self.assertIn('scheduler_owned:false',s)
 
+    def test_transient_target_url_is_reconciled_boundedly(self):
+        s=MOD.read_text()
+        self.assertIn('function targetOrigin',s)
+        self.assertIn('const end=Date.now()+5000',s)
+        self.assertIn("if(origin===wanted)return keep",s)
+        self.assertNotIn("if(new URL(keep.url).origin!==wanted)",s)
+
     def test_live_receipts_and_sibling_exclusion_are_canonical(self):
         h=ROOT/'company/company-os/die-h01'
         rs=json.loads((h/'contracts/h01-brave-udd-runtime-receipt-v1.schema.json').read_text())
@@ -58,7 +65,7 @@ for(const bad of [{{...good,job_id:'x'}},{{...good,provider_id:'x'}},{{...good,p
     def test_graph_opens_h01_107_after_h01_025(self):
         g=json.loads((ROOT/'company/company-os/die-h01/die-h01-task-graph.v1.json').read_text()); by={x['id']:x for x in g['tasks']}
         self.assertEqual(by['H01-025']['status'],'DONE')
-        self.assertEqual(by['H01-107']['status'],'READY')
+        self.assertEqual(by['H01-107']['status'],'DONE')
         self.assertEqual(by['H01-107']['depends_on'],['H01-104A','H01-106','H01-025'])
         self.assertEqual(by['H01-026']['status'],'BLOCKED')
 

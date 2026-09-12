@@ -1,0 +1,43 @@
+{
+  "schema": "die.h01.brave-udd-runtime-receipt.v1",
+  "status": "PASS",
+  "job_id": "H01-107B-CHATGPT-P001-003",
+  "provider_id": "chatgpt",
+  "profile_id": "h01-web-p001",
+  "udd_id": "h01-web-s01",
+  "started_at": "2026-09-12T17:03:29.879Z",
+  "completed_at": "2026-09-12T17:07:54.256Z",
+  "mode": "wait-result",
+  "ownership": {
+    "launcher_udd_mutex": true,
+    "max_active_per_udd": 1,
+    "lock_path": "/run/user/1000/die-h01-brave/h01-web-s01.lock",
+    "lock_released": true
+  },
+  "browser": {
+    "launcher": "/opt/die/h01/bin/h01-brave-profile",
+    "cdp_host": "127.0.0.1",
+    "cdp_port": 9201,
+    "loopback_only": true,
+    "provider_origin": "https://chatgpt.com",
+    "page_count_after_enforcement": 1,
+    "browser_close_sent": true,
+    "process_exited": true,
+    "cdp_closed": true
+  },
+  "durable_result": {
+    "path": "/home/kopiko/die-sessions/H01-107/company/company-os/die-h01/evidence/h01-107/chatgpt-p001-003/browser-job-result.json",
+    "sha256": "4163c5777d2eab9d25213ca2d7a1e5a13b9aae2d29dd1403730ff278fbb4de21",
+    "terminal_state": "SUCCEEDED",
+    "present": true
+  },
+  "error": null,
+  "safety": {
+    "cookies_read": false,
+    "tokens_read": false,
+    "session_bytes_read": false,
+    "browser_profile_copied": false,
+    "mission_control_mutated": false,
+    "scheduler_owned": false
+  }
+}

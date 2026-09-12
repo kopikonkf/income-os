@@ -1,0 +1,315 @@
+{
+  "status": "SUCCEEDED",
+  "provider": "copilot",
+  "origin": "https://copilot.microsoft.com",
+  "started_at": "2026-09-12T18:00:20.388Z",
+  "completed_at": "2026-09-12T18:01:24.177Z",
+  "submit_method": "ENTER_AFTER_SETTLE",
+  "prompt_sha256": "a731e040172358f26245ad8f849e1c97b7ddd5156f14f5fe84d5371f8988bc5c",
+  "response_sha256": "ac89f3c63dd8820ef53b1ab230ea2b7caa396b93d0b1f00cc66d23bd063485ad",
+  "response_chars": 676,
+  "completion_signal": "SVG_COMPLETE_STABLE_NO_STOP",
+  "observations": [
+    {
+      "at": "2026-09-12T18:00:20.398Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:21.906Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:23.415Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:24.927Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:26.440Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:27.949Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:29.458Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:30.969Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:32.480Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:33.988Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:35.497Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:37.006Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:38.515Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:40.023Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:41.533Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:43.041Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:44.551Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:46.060Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:47.567Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:49.076Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:50.588Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:52.094Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:53.602Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:55.111Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:56.623Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:58.132Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:00:59.640Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:01:01.151Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:01:02.659Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:01:04.169Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:01:05.678Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:01:07.186Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:01:08.693Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:01:10.202Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:01:11.711Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:01:13.218Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:01:14.728Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/"
+    },
+    {
+      "at": "2026-09-12T18:01:16.419Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/chats/5ssjmwiywvVNTVAFBqiqq"
+    },
+    {
+      "at": "2026-09-12T18:01:17.956Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/chats/5ssjmwiywvVNTVAFBqiqq"
+    },
+    {
+      "at": "2026-09-12T18:01:19.493Z",
+      "svg_chars": 0,
+      "candidates": 0,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/chats/5ssjmwiywvVNTVAFBqiqq"
+    },
+    {
+      "at": "2026-09-12T18:01:21.069Z",
+      "svg_chars": 676,
+      "candidates": 3,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/chats/5ssjmwiywvVNTVAFBqiqq"
+    },
+    {
+      "at": "2026-09-12T18:01:22.660Z",
+      "svg_chars": 676,
+      "candidates": 3,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/chats/5ssjmwiywvVNTVAFBqiqq"
+    },
+    {
+      "at": "2026-09-12T18:01:24.176Z",
+      "svg_chars": 676,
+      "candidates": 3,
+      "stop_visible": false,
+      "url": "https://copilot.microsoft.com/chats/5ssjmwiywvVNTVAFBqiqq"
+    }
+  ]
+}

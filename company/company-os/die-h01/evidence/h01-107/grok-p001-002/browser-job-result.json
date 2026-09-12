@@ -1,0 +1,18 @@
+{
+  "authority": {
+    "provider_generation_dispatched": true,
+    "publication_authorized": false,
+    "submission_authorized": false
+  },
+  "canary_receipt": "/home/kopiko/die-sessions/H01-107/company/company-os/die-h01/evidence/h01-107/grok-p001-002/H01-107E-grok-canary.receipt.json",
+  "classification": "UNSUPPORTED",
+  "completed_at": "2026-09-12T17:56:54.685180Z",
+  "job_id": "H01-107E-GROK-P001-002",
+  "job_kind": "H01_107_PROVIDER_CANARY",
+  "profile_id": "h01-web-p001",
+  "provider_id": "grok",
+  "reason_code": "EMPTY_FINAL_RESPONSE",
+  "schema": "die.h01.browser-job-result.v1",
+  "terminal_state": "UNSUPPORTED",
+  "udd_id": "h01-web-s01"
+}

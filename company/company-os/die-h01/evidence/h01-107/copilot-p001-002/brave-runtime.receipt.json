@@ -1,0 +1,43 @@
+{
+  "schema": "die.h01.brave-udd-runtime-receipt.v1",
+  "status": "PASS",
+  "job_id": "H01-107G-COPILOT-P001-002",
+  "provider_id": "copilot",
+  "profile_id": "h01-web-p001",
+  "udd_id": "h01-web-s01",
+  "started_at": "2026-09-12T17:59:40.346Z",
+  "completed_at": "2026-09-12T18:01:48.756Z",
+  "mode": "wait-result",
+  "ownership": {
+    "launcher_udd_mutex": true,
+    "max_active_per_udd": 1,
+    "lock_path": "/run/user/1000/die-h01-brave/h01-web-s01.lock",
+    "lock_released": true
+  },
+  "browser": {
+    "launcher": "/opt/die/h01/bin/h01-brave-profile",
+    "cdp_host": "127.0.0.1",
+    "cdp_port": 9201,
+    "loopback_only": true,
+    "provider_origin": "https://copilot.microsoft.com",
+    "page_count_after_enforcement": 1,
+    "browser_close_sent": true,
+    "process_exited": true,
+    "cdp_closed": true
+  },
+  "durable_result": {
+    "path": "/home/kopiko/die-sessions/H01-107/company/company-os/die-h01/evidence/h01-107/copilot-p001-002/browser-job-result.json",
+    "sha256": "7c7faa1e4f27957655db7753a2c16f9c4702461d21be014fd7e3792e50b9e0f9",
+    "terminal_state": "SUCCEEDED",
+    "present": true
+  },
+  "error": null,
+  "safety": {
+    "cookies_read": false,
+    "tokens_read": false,
+    "session_bytes_read": false,
+    "browser_profile_copied": false,
+    "mission_control_mutated": false,
+    "scheduler_owned": false
+  }
+}

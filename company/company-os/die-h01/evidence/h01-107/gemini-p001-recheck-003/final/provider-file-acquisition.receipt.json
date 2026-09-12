@@ -1,0 +1,23 @@
+{
+  "acquisition_method": "UI_DOWNLOAD_SVG",
+  "artifact": {
+    "bytes": 7987,
+    "immutable_provider_original": true,
+    "path": "/home/kopiko/die-sessions/H01-107/company/company-os/die-h01/evidence/h01-107/gemini-p001-recheck-003/final/provider-original.svg",
+    "sha256": "b1c4872e96872a101adedd5a4f5f1129c639ce06fbd74d6f2d98b9bcb7e9f0b1"
+  },
+  "completed_at": "2026-09-12T17:53:04.370303Z",
+  "cookies_or_tokens_read": false,
+  "h01_104a_text_acquisition": "NOT_APPLICABLE_NATIVE_FILE",
+  "job_id": "H01-107D-GEMINI-P001-RECHECK-003",
+  "mime": "image/svg+xml",
+  "profile_id": "h01-web-p001",
+  "provider_artifact_control": "Download SVG",
+  "provider_id": "gemini",
+  "provider_surface": "https://gemini.google.com",
+  "schema": "die.h01.provider-native-svg-file-acquisition.v1",
+  "session_bytes_read": false,
+  "source_kind": "PROVIDER_FILE_DOWNLOAD",
+  "status": "SUCCEEDED",
+  "udd_id": "h01-web-s01"
+}

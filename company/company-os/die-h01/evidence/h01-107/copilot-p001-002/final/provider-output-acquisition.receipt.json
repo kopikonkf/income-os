@@ -1,0 +1,41 @@
+{
+  "artifact": {
+    "bytes": 676,
+    "immutable_provider_original": true,
+    "path": "/home/kopiko/die-sessions/H01-107/company/company-os/die-h01/evidence/h01-107/copilot-p001-002/final/provider-original.svg",
+    "sha256": "ac89f3c63dd8820ef53b1ab230ea2b7caa396b93d0b1f00cc66d23bd063485ad"
+  },
+  "completion": {
+    "completed_at": "2026-09-12T18:01:48.101357Z",
+    "signal": "SVG_COMPLETE_STABLE_NO_STOP"
+  },
+  "downstream": {
+    "h01_103_validation_required": true,
+    "h01_104_receipt_compatible": true,
+    "h01_105_postproduction_after_validation": true
+  },
+  "job_id": "H01-107G-COPILOT-P001-002",
+  "output_kind": "SVG_SOURCE_TEXT",
+  "profile_id": "h01-web-p001",
+  "provider_id": "copilot",
+  "provider_result": {
+    "finish_reason": "PROVIDER_UI_TERMINAL",
+    "mime": "image/svg+xml",
+    "native_svg_source_kind": "DIRECT_PROVIDER_SVG_SOURCE",
+    "payload_bytes": 676,
+    "payload_sha256": "ac89f3c63dd8820ef53b1ab230ea2b7caa396b93d0b1f00cc66d23bd063485ad",
+    "provider_response_sha256": "ac89f3c63dd8820ef53b1ab230ea2b7caa396b93d0b1f00cc66d23bd063485ad",
+    "provider_status": "COMPLETED"
+  },
+  "request_id": "H01SVGREQ-H01-107G-COPILOT-P001-002",
+  "revision": "1.0.0",
+  "safety": {
+    "browser_profile_copied": false,
+    "cookies_read": false,
+    "session_bytes_read": false,
+    "tokens_read": false
+  },
+  "schema": "die.h01.provider-output-acquisition.v1",
+  "source_kind": "ASSISTANT_DOM",
+  "terminal_state": "SUCCEEDED"
+}

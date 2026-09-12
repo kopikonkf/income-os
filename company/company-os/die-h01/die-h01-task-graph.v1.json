@@ -360,7 +360,7 @@
     {
       "id": "H01-107",
       "track": "SVG_FIRST",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-104A",
@@ -368,7 +368,8 @@
         "H01-025"
       ],
       "title": "Add provider-by-provider native-SVG canaries after Claude baseline",
-      "acceptance": "Canary additional eligible Web-AI providers one by one; record NATIVE_SVG, TEXT_SVG, UNSUPPORTED or DEFERRED honestly; no provider is promoted from model capability alone."
+      "acceptance": "Canary additional eligible Web-AI providers one by one; record NATIVE_SVG, TEXT_SVG, UNSUPPORTED or DEFERRED honestly; no provider is promoted from model capability alone.",
+      "result": "PASS: eight live provider canaries ran sequentially on h01-web-p001. Claude, ChatGPT, Qwen, Manus and Copilot returned TEXT_SVG and passed H01-103; Gemini returned a provider-downloadable NATIVE_SVG file and passed H01-103; Grok Fast was UNSUPPORTED/EMPTY_FINAL_RESPONSE for this bounded request; Duck.ai 5.6 Luna/Fast was DEFERRED/PROVIDER_TIMEOUT after 10 minutes of active generation. Qwen late completion was recovered by exact-conversation recheck. No provider was promoted."
     },
     {
       "id": "H01-108",

@@ -1,0 +1,19 @@
+{
+  "authority": {
+    "provider_generation_dispatched": true,
+    "publication_authorized": false,
+    "submission_authorized": false
+  },
+  "canary_receipt": "/home/kopiko/die-sessions/H01-107/company/company-os/die-h01/evidence/h01-107/chatgpt-p001-003/final/H01-107B-chatgpt-canary.receipt.json",
+  "classification": "TEXT_SVG",
+  "completed_at": "2026-09-12T17:07:53.908103Z",
+  "h01_103_status": "PASS",
+  "job_id": "H01-107B-CHATGPT-P001-003",
+  "job_kind": "H01_107_PROVIDER_CANARY",
+  "profile_id": "h01-web-p001",
+  "provider_id": "chatgpt",
+  "provider_original_sha256": "74fe4e9757c1f69fe9bffafd0554baf074a62bad258cea48a86332631b4f369b",
+  "schema": "die.h01.browser-job-result.v1",
+  "terminal_state": "SUCCEEDED",
+  "udd_id": "h01-web-s01"
+}
