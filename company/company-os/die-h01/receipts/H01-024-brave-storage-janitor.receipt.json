@@ -46,7 +46,7 @@
   },
   "host_deployment": {
     "gate_path": "/opt/die/h01/bin/h01-brave-storage-gate",
-    "gate_sha256": "557e1d16c98d308c0f271a6339d9d967f006ffa04d6c18e7d32b35c20bf27402",
+    "gate_sha256": "1464b1a7f86a3ae485c73a102e6620ef271134049f33ec2ff137d145745840f4",
     "launcher_admit_integration": "PASS",
     "launcher_path": "/opt/die/h01/bin/h01-brave-profile",
     "launcher_sha256_after": "bf39f66b86e57889f9f0c6d98202612733ea90965488b5a203720ca73fae3d14",
@@ -87,8 +87,9 @@
     "focused": "10/10 PASS",
     "git_diff_check": "PASS",
     "host_gate_sha_parity": "PASS",
-    "relevant_browser_storage": "38/38 PASS",
+    "relevant_browser_storage": "39/39 PASS",
     "rollback_launcher_sha_parity": "PASS",
-    "secret_scan": "PASS"
+    "secret_scan": "PASS",
+    "windows_publication": "39/39 PASS on corrective branch"
   }
 }

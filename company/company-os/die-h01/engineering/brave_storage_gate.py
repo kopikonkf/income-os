@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, fcntl, json, os, shutil, subprocess, sys
+import argparse, json, os, shutil, subprocess, sys
+try:
+    import fcntl  # POSIX
+except ImportError:
+    fcntl = None
+try:
+    import msvcrt  # Windows test/publication portability
+except ImportError:
+    msvcrt = None
 from pathlib import Path
 
 SCHEMA='die.h01.brave-storage-gate.v1'
@@ -48,10 +56,23 @@ def try_lock(udd_id:str,runtime_root:Path):
  runtime_root.mkdir(parents=True,exist_ok=True)
  p=lock_path(udd_id,runtime_root); f=open(p,'a+')
  try:
-  fcntl.flock(f,fcntl.LOCK_EX|fcntl.LOCK_NB)
- except BlockingIOError:
+  if fcntl is not None:
+   fcntl.flock(f,fcntl.LOCK_EX|fcntl.LOCK_NB)
+  elif msvcrt is not None:
+   f.seek(0,os.SEEK_END)
+   if f.tell()==0: f.write('0'); f.flush()
+   f.seek(0); msvcrt.locking(f.fileno(),msvcrt.LK_NBLCK,1)
+  else: raise GateError('E_LOCK_BACKEND')
+ except (BlockingIOError,OSError):
   f.close(); raise GateError('E_UDD_LOCKED')
  return f
+
+def release_lock(f):
+ if fcntl is not None:
+  fcntl.flock(f,fcntl.LOCK_UN)
+ elif msvcrt is not None:
+  f.seek(0); msvcrt.locking(f.fileno(),msvcrt.LK_UNLCK,1)
+ f.close()
 
 def live_h01_profiles(m:dict)->list[str]:
  r=subprocess.run(['ps','-eo','args='],capture_output=True,text=True,check=True)
@@ -103,7 +124,7 @@ def janitor(m:dict,profile_id:str,runtime_root:Path,execute:bool)->dict:
     else:p.unlink()
   return {'udd_id':b['udd_id'],'profile_id':profile_id,'udd_closed':True,'lock_acquired':True,'mode':'EXECUTE' if execute else 'DRY_RUN','candidates':items,'reclaimable_bytes':sum(x['bytes'] for x in items),'protected_root_entries_present':protected_present,'protected_entries_touched':False}
  finally:
-  fcntl.flock(lk,fcntl.LOCK_UN);lk.close()
+  release_lock(lk)
 
 def main()->int:
  ap=argparse.ArgumentParser(); ap.add_argument('command',choices=['measure','admit','janitor']); ap.add_argument('--manifest',default=str(DEFAULT_MANIFEST)); ap.add_argument('--root',default=str(DEFAULT_ROOT)); ap.add_argument('--runtime-root',default=str(DEFAULT_RUNTIME)); ap.add_argument('--profile-id'); ap.add_argument('--execute',action='store_true'); ns=ap.parse_args()
