@@ -105,7 +105,7 @@
     {
       "id": "H01-011",
       "track": "CONTROL_PLANE",
-      "status": "READY",
+      "status": "DONE",
       "authority": "FOUNDER_GATED",
       "depends_on": [
         "H01-010"
@@ -127,7 +127,7 @@
     {
       "id": "H01-013",
       "track": "CONTROL_PLANE",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-011"
@@ -138,7 +138,7 @@
     {
       "id": "H01-014",
       "track": "CONTROL_PLANE",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-011"
@@ -149,7 +149,7 @@
     {
       "id": "H01-015",
       "track": "CONTROL_PLANE",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-011",
