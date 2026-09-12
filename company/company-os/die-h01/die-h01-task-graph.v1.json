@@ -299,7 +299,7 @@
     {
       "id": "H01-103",
       "track": "SVG_FIRST",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-100"
@@ -322,7 +322,7 @@
     {
       "id": "H01-105",
       "track": "SVG_FIRST",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-103"
