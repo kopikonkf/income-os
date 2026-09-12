@@ -1,0 +1,103 @@
+{
+  "schema": "die.h01.single-scheduler-proof.v1",
+  "task_id": "H01-016",
+  "observed_at": "2026-09-12T17:30:00Z",
+  "canonical_origin_main_at_start": "7bd176a82d9fbf68f7b8413886dabb5ba22f7103",
+  "control_plane": {
+    "business_scheduler": "die-control/Mission Control",
+    "mission_control": {
+      "version": "0.8.49",
+      "release_head": "a2e113e5f5717cfd236209f7e0ee95831189f713",
+      "listen": "127.0.0.1:8891",
+      "health_ok": true
+    },
+    "canonical_feeder": {
+      "enabled": true,
+      "interval_ms": 60000,
+      "max_cards_per_run": 1,
+      "deterministic": true,
+      "last_tick_status": "PASS",
+      "last_tick_created_count": 0,
+      "h01_016_dedupe_reason": "SOURCE_NODE_ALREADY_INGESTED"
+    },
+    "live_db": {
+      "sqlite_quick_check": "ok",
+      "source_key_duplicates": 0,
+      "task_id_duplicates": 0,
+      "active_source_node_duplicates": 0,
+      "active_task_multi_lease": 0,
+      "active_task_duplicate_open_owner_attempts": 0,
+      "historical_nonactive_anomalies": [
+        {
+          "task_id": "MC004C-LIVE-QWEN",
+          "task_status": "CANCELLED",
+          "legacy_open_attempt_rows": 2,
+          "active_lease": false,
+          "classification": "HISTORICAL_MIGRATION_ONLY_NOT_ACTIVE_DISPATCH"
+        }
+      ]
+    }
+  },
+  "legacy_linux": {
+    "die_business_cron_entries": 0,
+    "enabled_business_timers": [],
+    "active_business_timers": [],
+    "disabled_legacy_timers": [
+      "die-fa124-cluster-a.timer",
+      "die-fa124-cluster-b.timer"
+    ],
+    "timer_unit_files_retained_for_rollback": true,
+    "hermes_scheduled_jobs": 0,
+    "srv_die_mutated": false
+  },
+  "legacy_windows": {
+    "default_profile_kanban_dispatch_in_gateway": false,
+    "income_operator_kanban_dispatch_in_gateway": false,
+    "proactive_operator_job_id": "da0e4bcbcbb9",
+    "proactive_operator_job_name": "die-proactive-operator-v1",
+    "proactive_operator_job_status": "paused",
+    "legacy_ready_card_id": "t_3d062e86",
+    "legacy_ready_card_status": "ready",
+    "legacy_ready_card_runs": 0,
+    "active_observability_jobs": [
+      "die-heartbeat",
+      "die-briefing",
+      "die-summary",
+      "die-audit"
+    ],
+    "observability_jobs_create_or_dispatch_business_work": false,
+    "business_scheduler_scheduled_tasks": [],
+    "runtime_bootstrap_tasks": [
+      "DIE Wake Brave CDP",
+      "Hermes_Gateway",
+      "Hermes_Gateway_income-operator",
+      "Mission Control Runtime Boot",
+      "Mission Control Runtime Watchdog"
+    ],
+    "income_operator_gateway_running": true,
+    "income_operator_gateway_log_confirms_kanban_dispatcher_disabled": true
+  },
+  "anti_duplicate_tests": {
+    "mission_control_targeted": "35/35 PASS",
+    "mission_control_release": "0.8.49",
+    "coverage": [
+      "canonical feeder second-tick dedupe",
+      "stable source_key unique ingestion",
+      "active owner attempt rejects concurrent second attempt",
+      "late callback cannot mutate newer attempt",
+      "duplicate settled callback is idempotent",
+      "failover preserves one logical task",
+      "attempt budget fails closed"
+    ]
+  },
+  "canonical_boundaries": {
+    "runtime_gateway_manifest": "company/company-os/die-h01/runtime/h01-runtime-gateway-boundary.v1.json",
+    "recovery_supervisor_manifest": "company/company-os/die-h01/runtime/h01-recovery-supervisor.v1.json",
+    "gateway_same_dispatch_same_digest": "RETURN_EXISTING_EXECUTION",
+    "gateway_same_dispatch_different_digest": "E_IDEMPOTENCY_CONFLICT",
+    "gateway_terminal_result_immutable": true,
+    "gateway_wan_loss_starts_new_execution": false,
+    "supervisor_is_scheduler": false
+  },
+  "result": "PASS"
+}

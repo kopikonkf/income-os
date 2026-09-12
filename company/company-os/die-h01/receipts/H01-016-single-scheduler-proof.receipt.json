@@ -1,0 +1,111 @@
+{
+  "gateway_replay": {
+    "same_dispatch_different_digest": "E_IDEMPOTENCY_CONFLICT",
+    "same_dispatch_same_digest": "RETURN_EXISTING_EXECUTION",
+    "store_before_ack": true,
+    "terminal_result_immutable": true,
+    "terminal_result_store_before_send": true,
+    "wan_loss_starts_new_execution": false
+  },
+  "graph": {
+    "H01-016": "DONE",
+    "H01-027": "BLOCKED",
+    "H01-109": "BLOCKED",
+    "H01-200": "BLOCKED"
+  },
+  "historical_exception": {
+    "accepted_as_active_duplicate_path": false,
+    "active_lease": false,
+    "classification": "HISTORICAL_MIGRATION_ONLY_NOT_ACTIVE_DISPATCH",
+    "legacy_open_attempt_rows": 2,
+    "task_id": "MC004C-LIVE-QWEN",
+    "task_status": "CANCELLED"
+  },
+  "legacy_linux_quarantine": {
+    "die_business_cron_entries": 0,
+    "disabled_timers": [
+      "die-fa124-cluster-a.timer",
+      "die-fa124-cluster-b.timer"
+    ],
+    "linux_hermes_scheduled_jobs": 0,
+    "post_active_states": [
+      "inactive",
+      "inactive"
+    ],
+    "post_enabled_states": [
+      "disabled",
+      "disabled"
+    ],
+    "unit_files_retained": true
+  },
+  "legacy_windows_quarantine": {
+    "default_profile_kanban_dispatch_in_gateway": false,
+    "gateway_log_dispatcher_disabled": true,
+    "income_operator_gateway_restarted": true,
+    "income_operator_kanban_dispatch_in_gateway": false,
+    "legacy_ready_card_id": "t_3d062e86",
+    "legacy_ready_card_runs": 0,
+    "observability_jobs_preserved": [
+      "die-heartbeat",
+      "die-briefing",
+      "die-summary",
+      "die-audit"
+    ],
+    "proactive_operator_job_id": "da0e4bcbcbb9",
+    "proactive_operator_job_status": "paused"
+  },
+  "mission_control": {
+    "active_source_node_duplicates": 0,
+    "active_task_duplicate_open_owner_attempts": 0,
+    "active_task_multi_lease": 0,
+    "health": "PASS",
+    "release_head": "a2e113e5f5717cfd236209f7e0ee95831189f713",
+    "source_key_duplicates": 0,
+    "sqlite_quick_check": "ok",
+    "targeted_anti_duplicate_tests": "35/35 PASS",
+    "task_id_duplicates": 0,
+    "version": "0.8.49"
+  },
+  "mutations": {
+    "income_operator_gateway_restarted_to_apply_config": true,
+    "linux_legacy_fa124_timers_disabled": true,
+    "windows_default_kanban_dispatch_disabled": true,
+    "windows_income_operator_kanban_dispatch_disabled": true,
+    "windows_proactive_operator_paused": true
+  },
+  "non_actions": {
+    "business_work_created_by_acceptance": false,
+    "credential_mutation": false,
+    "legacy_kanban_card_deleted": false,
+    "legacy_unit_files_deleted": false,
+    "marketplace_submission": false,
+    "provider_generation_dispatched": false,
+    "spend": false,
+    "srv_die_mutated": false
+  },
+  "origin_main_at_start": "7bd176a82d9fbf68f7b8413886dabb5ba22f7103",
+  "result": "PASS",
+  "scheduler": {
+    "business_scheduler": "die-control/Mission Control",
+    "canonical_feeder_enabled": true,
+    "canonical_feeder_interval_ms": 60000,
+    "competing_business_schedulers": 0,
+    "h01_016_live_dedupe": "SOURCE_NODE_ALREADY_INGESTED",
+    "max_cards_per_run": 1
+  },
+  "schema": "die.h01.h01-016.single-scheduler.acceptance.v1",
+  "supervisor": {
+    "background_poll_loop": false,
+    "graph_reader": false,
+    "queue_feeder": false,
+    "supervisor_is_scheduler": false
+  },
+  "task_id": "H01-016",
+  "validation": {
+    "broad_h01_suite": "187/188 PASS; same sole pre-existing stale H01-303 assertion",
+    "focused_single_scheduler": "12/12 PASS",
+    "git_diff_check": "PASS",
+    "relevant_cross_contract": "59/60 PASS; sole failure is pre-existing stale H01-303 assertion expecting H01-305 READY while canonical H01-305 is DONE",
+    "single_scheduler_guard": "PASS; active_duplicate_dispatch_paths=0; competing_business_schedulers=0"
+  }
+}
