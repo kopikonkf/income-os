@@ -298,3 +298,8 @@ DIE State Manager sovereignty remains intact: current writer-domain conformance 
 Backup/recovery evidence also passes: six retained pre-v0.8.x Mission Control SQLite snapshots each return `quick_check=ok`, and MC-008I already proved real controlled Windows reboot recovery with durable task/review continuity. Runtime Boot/Watchdog remain installed and the watchdog reports successful runs. No raw active-WAL copy is promoted as a valid backup.
 
 H01-011 performed no H03 rebind, Runtime Gateway deployment, Canonical Feeder start, Supervisor start, scheduler cutover, legacy retirement or `/srv/die` mutation. With H01-011 DONE and H01-012 already DONE, H01-013, H01-014 and H01-015 become READY but are not started by this task.
+
+
+## 2026-09-12 - H01-013 DONE/PASS via Mission Control reviewed canonical writeback
+
+Mission Control task `H01-013` completed through automatic canonical intake, owner execution and no-review completion. Canonical graph transitions: `H01-013 READY->DONE`. Receipt: `company/company-os/die-h01/receipts/H01-013-mission-control-auto-acceptance.receipt.json`. No external marketplace submission, spend, credential mutation, or live-load authority was granted by this writeback.
