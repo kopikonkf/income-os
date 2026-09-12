@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aethers.my.id/schemas/die-h01/h01-semantic-family.v1.schema.json",
+  "title": "DIE H01 Semantic Family v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "schema_version", "family_version", "artifact_kind", "family_id",
+    "family_class", "semantic_identity", "members", "source", "rights_class",
+    "authority", "boundary", "determinism"
+  ],
+  "properties": {
+    "schema": {"const": "die.h01.semantic-family.v1"},
+    "schema_version": {"const": "1.0.0"},
+    "family_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "artifact_kind": {"const": "SEMANTIC_FAMILY"},
+    "family_id": {
+      "type": "string",
+      "pattern": "^FAM-V1-(TAXONOMIC|FUNCTIONAL|CONTEXTUAL|VARIANT|SYSTEM)-[0-9A-F]{24}$"
+    },
+    "family_class": {
+      "enum": ["TAXONOMIC", "FUNCTIONAL", "CONTEXTUAL", "VARIANT", "SYSTEM"]
+    },
+    "semantic_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["semantic_key", "definition", "member_identity_policy", "family_membership_creates_new_asset_identity"],
+      "properties": {
+        "semantic_key": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{2,119}$"},
+        "definition": {"type": "string", "minLength": 12, "maxLength": 1000},
+        "member_identity_policy": {"const": "PRESERVE_CANONICAL_SUBJECT"},
+        "family_membership_creates_new_asset_identity": {"const": false}
+      }
+    },
+    "members": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 500,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/member"}
+    },
+    "source": {"$ref": "#/$defs/source"},
+    "rights_class": {
+      "enum": ["GENERIC_UNRESTRICTED", "REVIEW_REQUIRED", "BRAND_RESTRICTED"]
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["production_authorized", "submission_authorized", "publication_authorized", "restricted_family_auto_eligible"],
+      "properties": {
+        "production_authorized": {"const": false},
+        "submission_authorized": {"const": false},
+        "publication_authorized": {"const": false},
+        "restricted_family_auto_eligible": {"const": false}
+      }
+    },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["is_design_set", "is_derivative_bundle", "is_listing_package", "derivatives_create_family_members"],
+      "properties": {
+        "is_design_set": {"const": false},
+        "is_derivative_bundle": {"const": false},
+        "is_listing_package": {"const": false},
+        "derivatives_create_family_members": {"const": false}
+      }
+    },
+    "determinism": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["family_id_algorithm", "family_id_hex_chars", "member_order", "key_material"],
+      "properties": {
+        "family_id_algorithm": {"const": "SHA256"},
+        "family_id_hex_chars": {"const": 24},
+        "member_order": {"const": "CANONICAL_SUBJECT_ID_ASC"},
+        "key_material": {
+          "const": ["family_version", "family_class", "semantic_identity.semantic_key", "members[].canonical_subject_ref.subject_id"]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "member": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["member_id", "member_kind", "canonical_subject_ref", "semantic_label", "identity_effect"],
+      "properties": {
+        "member_id": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9._:-]{2,199}$"},
+        "member_kind": {"const": "CANONICAL_SEMANTIC_MEMBER"},
+        "canonical_subject_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source", "subject_id", "canonical_name"],
+          "properties": {
+            "source": {"const": "OBJECT_ATLAS"},
+            "subject_id": {"type": "string", "minLength": 1, "maxLength": 240},
+            "canonical_name": {"type": "string", "minLength": 1, "maxLength": 240}
+          }
+        },
+        "semantic_label": {"type": "string", "minLength": 1, "maxLength": 240},
+        "identity_effect": {"const": "NONE"}
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["environment", "derivation", "evidence"],
+      "properties": {
+        "environment": {"enum": ["CANONICAL", "TEST_FIXTURE"]},
+        "derivation": {"enum": ["DETERMINISTIC", "CURATED_WITH_EVIDENCE"]},
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["evidence_id", "kind", "ref"],
+            "properties": {
+              "evidence_id": {"type": "string", "minLength": 3, "maxLength": 160},
+              "kind": {"enum": ["OBJECT_ATLAS_RECORD", "OBJECT_ATLAS_TAXONOMY", "CANONICAL_POLICY", "RIGHTS_EVIDENCE", "CURATED_RELATION"]},
+              "ref": {"type": "string", "minLength": 3, "maxLength": 500},
+              "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

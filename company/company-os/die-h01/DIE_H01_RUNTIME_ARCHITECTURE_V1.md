@@ -228,3 +228,13 @@ H01-303 adds `architect_worker_isolation.py` as the fail-closed parallel enginee
 Dependency and merge readiness are checked against `refs/remotes/origin/main`, never the worker branch. This prevents an unmerged local task-graph edit from unlocking downstream work and keeps Mission Control plus canonical Git as graph authority. The isolation layer does not schedule work, mutate Mission state, or change Founder authority.
 
 Remote repository mutation continues to use the existing control-plane `bin/die_engineering_lease.py` pair `income-os.repo-write + company-os.<task_id>`, acquired immediately before publication and released in `finally`. A conflicting global repo-write lease fails closed. H01-303 explicitly forbids a Linux shadow publication lease root because split coordination would permit concurrent writers. With H01-302 and H01-303 both DONE, H01-304 becomes READY but retains `FOUNDER_REQUIRED`; H01-303 does not start that canary.
+
+## 25. H01-120 Semantic Family v1 standing
+
+H01-120 freezes `DIE_H01_SEMANTIC_FAMILY_V1.md` plus `contracts/h01-semantic-family.v1.schema.json` as the canonical semantic grouping boundary. A Family is a grouping of at least two canonical semantic members and uses exactly one class: `TAXONOMIC`, `FUNCTIONAL`, `CONTEXTUAL`, `VARIANT`, or `SYSTEM`. Every member preserves its canonical Object Atlas subject linkage and carries `identity_effect=NONE`; family membership does not rewrite standalone noun/object identity.
+
+The contract explicitly separates `SEMANTIC FAMILY -> DESIGN SET -> DERIVATIVE BUNDLE -> LISTING PACKAGE`. File-format/size exports such as SVG/PNG/JPEG/WebP therefore remain derivatives of one semantic asset and cannot manufacture a multi-member Family. The schema hard-codes these boundaries and the acceptance suite rejects conflation cases.
+
+Family identity is deterministic: `FAM-V1-<CLASS>-<24 uppercase SHA-256 hex>` is derived from family version, class, semantic key and sorted canonical Object Atlas subject IDs. Source evidence is mandatory and auditable. Rights classification is one of `GENERIC_UNRESTRICTED`, `REVIEW_REQUIRED`, or `BRAND_RESTRICTED`; the Family artifact itself grants no production/submission/publication authority, and restricted systems cannot auto-qualify for production.
+
+Legacy Division01/production-cognition `family_id` fields remain historical commercial/candidate grouping evidence and are not silently reinterpreted as Semantic Family v1. H01-121 and H01-122 become READY from H01-120 completion; H01-123 remains dependency-blocked until H01-111, H01-121, and H01-122 are DONE.

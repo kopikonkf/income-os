@@ -1,0 +1,120 @@
+{
+  "schema": "die.h01.h01-120.semantic-family-v1.receipt.v1",
+  "task_id": "H01-120",
+  "result": "PASS",
+  "observed_at": "2026-09-12T06:21:10Z",
+  "base_sha": "bf6330a7a9b3c3015f7f5a1848b98f29a8a193c9",
+  "deliverables": {
+    "schema": "company/company-os/die-h01/contracts/h01-semantic-family.v1.schema.json",
+    "doctrine": "company/company-os/die-h01/DIE_H01_SEMANTIC_FAMILY_V1.md",
+    "validator": "company/company-os/die-h01/lib/semantic_family_v1.py",
+    "fixtures": "company/company-os/die-h01/fixtures/h01-semantic-family-v1.examples.json",
+    "tests": "bridge/tests/test_h01_semantic_family_v1.py"
+  },
+  "acceptance": [
+    {
+      "clause": "Exactly five family classes: TAXONOMIC/FUNCTIONAL/CONTEXTUAL/VARIANT/SYSTEM",
+      "status": "PASS",
+      "evidence": "Schema enum is exact; one valid fixture exists for each class; focused test verifies set equality and count=5."
+    },
+    {
+      "clause": "Include family_id, members, source/provenance, rights_class, deterministic schema/version identity",
+      "status": "PASS",
+      "evidence": "All are required schema fields. family_id is recomputed from family_version + class + semantic_key + sorted canonical Object Atlas subject IDs using SHA-256/24 uppercase hex."
+    },
+    {
+      "clause": "Semantic identity / canonical subject linkage",
+      "status": "PASS",
+      "evidence": "semantic_identity is required; every member requires canonical_subject_ref.source=OBJECT_ATLAS, subject_id, canonical_name, with identity_effect=NONE."
+    },
+    {
+      "clause": "Distinguish Semantic Family, Design Set, Derivative Bundle, Listing Package",
+      "status": "PASS",
+      "evidence": "Doctrine defines all four separately; schema artifact_kind=SEMANTIC_FAMILY and boundary constants force is_design_set/is_derivative_bundle/is_listing_package=false. Negative tests reject each conflation."
+    },
+    {
+      "clause": "Standalone Object Atlas identity remains canonical; family membership must not rewrite it",
+      "status": "PASS",
+      "evidence": "member_identity_policy=PRESERVE_CANONICAL_SUBJECT; family_membership_creates_new_asset_identity=false; validator requires member_id == canonical Object Atlas subject_id."
+    },
+    {
+      "clause": "One semantic asset with PNG/JPEG/WebP/SVG derivatives is not a multi-member family",
+      "status": "PASS",
+      "evidence": "members.minItems=2, derivatives_create_family_members=false, derivative member/bundle conflation negative tests fail closed."
+    },
+    {
+      "clause": "Family membership deterministic and auditable",
+      "status": "PASS",
+      "evidence": "Canonical subject IDs must be sorted, unique, and identity-stable; validator rejects order drift, duplicates, member ID drift, duplicate evidence, and family_id mismatch."
+    },
+    {
+      "clause": "Preserve source evidence and rights classification for H01-121/H01-122",
+      "status": "PASS",
+      "evidence": "source.evidence is mandatory with typed evidence records/ref/hash support; rights_class is mandatory and canonical."
+    },
+    {
+      "clause": "Brand/trademark/restricted families representable without silently becoming production-eligible",
+      "status": "PASS",
+      "evidence": "BRAND_RESTRICTED is a valid rights_class; SYSTEM fixture proves representation; production/submission/publication authorization are all const false and restricted_family_auto_eligible=false."
+    },
+    {
+      "clause": "Reuse canon and avoid competing legacy concepts",
+      "status": "PASS",
+      "evidence": "Existing production-cognition/Division01 family_id artifacts remain historical and are not rewritten. Family v1 requires its own schema/artifact_kind and reuses derivative identity-neutral + Founder-controlled authority principles."
+    },
+    {
+      "clause": "Validate examples for all five classes and reject family/derivative/listing conflation",
+      "status": "PASS",
+      "evidence": "Focused suite 15/15 PASS, including five-class fixtures, derivative bundle, listing package, design set, single-member, rights/source, deterministic-ID and identity-negative cases."
+    },
+    {
+      "clause": "Open only canonically justified direct descendants",
+      "status": "PASS",
+      "evidence": "H01-120=DONE; H01-121=READY; H01-122=READY; H01-123 remains BLOCKED on H01-111/H01-121/H01-122. H01-121/H01-122 were not started."
+    }
+  ],
+  "validation": {
+    "focused": {
+      "command": "python3 -m unittest -q bridge.tests.test_h01_semantic_family_v1",
+      "result": "15/15 PASS"
+    },
+    "existing_asset_contract_harness": {
+      "scope": [
+        "company/factory-asset/tests/test_asset_type_registry_schema.py",
+        "company/factory-asset/tests/test_asset_blueprint_v2_schema.py"
+      ],
+      "result": "12/12 PASS"
+    },
+    "semantic_expression_ledger_harness": {
+      "scope": "company/factory-asset/tests/test_fa331_expression_consumption_ledger.py",
+      "result": "8/8 PASS"
+    },
+    "existing_fixture_and_schema_checks": {
+      "asset_expression_fixtures": "3/3 PASS",
+      "existing_draft202012_schemas": "4/4 PASS"
+    },
+    "pytest_attempt": {
+      "result": "NOT_RUN_TO_COMPLETION",
+      "reason": "Host has no pytest module; no dependency was installed or environment mutated."
+    },
+    "python_compile": "PASS",
+    "json_parse": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "safety": {
+    "worktree": "/home/kopiko/die-sessions/H01-120",
+    "srv_die_mutated": false,
+    "h01_102_mutated": false,
+    "h01_105_mutated": false,
+    "h01_303_mutated": false,
+    "other_session_worktree_mutated": false,
+    "live_provider_calls": false,
+    "credentials_mutated": false,
+    "paid_api_used": false,
+    "publication_performed": false,
+    "main_merged": false,
+    "h01_121_started": false,
+    "h01_122_started": false,
+    "h01_123_started": false
+  }
+}
