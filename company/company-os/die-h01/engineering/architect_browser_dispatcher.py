@@ -127,6 +127,9 @@ class NodeCdpSession:
         self.binding = binding
         self.startup_timeout = startup_timeout
         self.proc: subprocess.Popen[str] | None = None
+        self._latest_observation: dict[str, Any] | None = None
+        self._observation_lock = threading.Lock()
+        self._reader_thread: threading.Thread | None = None
 
     def open_and_submit(self, bootstrap: str) -> dict[str, Any]:
         cmd = [
@@ -153,7 +156,29 @@ class NodeCdpSession:
             raise DispatchError("E_CDP_STATUS_JSON", line[:500]) from exc
         if status.get("status") != "SUBMITTED":
             raise DispatchError(str(status.get("error") or "E_CDP_SUBMIT"))
+        self._reader_thread = threading.Thread(target=self._read_observations, daemon=True)
+        self._reader_thread.start()
         return status
+
+    def _read_observations(self) -> None:
+        if not self.proc or self.proc.stdout is None:
+            return
+        for line in self.proc.stdout:
+            try:
+                value = json.loads(line)
+            except Exception:
+                continue
+            if value.get("status") != "OBSERVATION":
+                continue
+            with self._observation_lock:
+                self._latest_observation = value
+
+    def poll_observation(self) -> dict[str, Any] | None:
+        with self._observation_lock:
+            return dict(self._latest_observation) if self._latest_observation else None
+
+    def is_alive(self) -> bool:
+        return bool(self.proc and self.proc.poll() is None)
 
     @staticmethod
     def _readline_timeout(stream: Any, timeout: float) -> str:

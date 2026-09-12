@@ -111,6 +111,31 @@ async function waitReady(cdp) {
   throw new Error('E_COMPOSER_NOT_READY');
 }
 
+async function observeProgress(cdp, expectedMarker) {
+  const marker = JSON.stringify(expectedMarker || '');
+  return await evaluate(cdp, `(() => {
+    const expected=${marker};
+    const assistants=[...document.querySelectorAll('[data-message-author-role=\"assistant\"], [role=\"article\"]')];
+    const last=assistants.length ? String(assistants[assistants.length-1].innerText || assistants[assistants.length-1].textContent || '') : '';
+    const markerCandidates=[...new Set((last.match(/MC005_ARCHITECT_RESULT_[A-Za-z0-9_-]+/g)||[]))].slice(-4);
+    const buttons=[...document.querySelectorAll('button')];
+    const stopVisible=buttons.some(b => /stop( generating| response)?/i.test(String(b.getAttribute('aria-label')||b.innerText||b.textContent||'')) && !b.disabled);
+    const composer=document.querySelector('#prompt-textarea, textarea, [contenteditable=\"true\"]');
+    const login=[...document.querySelectorAll('button,a')].some(e => /^(log in|sign in)$/i.test((e.innerText||e.textContent||'').trim()));
+    return {
+      assistant_nodes:assistants.length, assistant_chars:last.length, stop_visible:stopVisible,
+      marker_found:!!expected && last.includes(expected), marker_candidates:markerCandidates,
+      composer_ready:!!composer && !login, auth_required:login || /auth|login|signup/i.test(location.href),
+      url_origin:location.origin
+    };
+  })()`);
+}
+
+function expectedMarkerFromBootstrap(bootstrap) {
+  const found=String(bootstrap||'').match(/MC005_ARCHITECT_RESULT_[A-Za-z0-9_-]+/g) || [];
+  return found.length ? found[found.length-1] : '';
+}
+
 async function injectAndSubmit(cdp, bootstrap) {
   const payload = JSON.stringify(bootstrap);
   const result = await evaluate(cdp, `(() => {
@@ -189,8 +214,21 @@ if (!browserExecutable || !userDataDir || !profileDirectory) {
     await cdp.send('Runtime.enable'); await cdp.send('Page.enable');
     const ready = await waitReady(cdp);
     const method = await injectAndSubmit(cdp, bootstrap);
+    const expectedMarker = expectedMarkerFromBootstrap(bootstrap);
     process.stdout.write(JSON.stringify({ status:'SUBMITTED', browser_pid:child.pid, debug_host:'127.0.0.1', debug_port:port, url:new URL(ready.url).origin, submit_method:method })+'\n');
     child.once('exit', () => process.exit(0));
+    const emitObservation = async () => {
+      if (closing || !running(child)) return;
+      try {
+        const obs = await observeProgress(cdp, expectedMarker);
+        process.stdout.write(JSON.stringify({ status:'OBSERVATION', observed_at:new Date().toISOString(), ...obs })+'\n');
+      } catch {
+        process.stdout.write(JSON.stringify({ status:'OBSERVATION', observed_at:new Date().toISOString(), observation_error:true })+'\n');
+      }
+    };
+    await emitObservation();
+    const timer=setInterval(() => { void emitObservation(); }, fixtureUrl ? 250 : 2000);
+    timer.unref?.();
     setInterval(() => {}, 1000);
   } catch (e) {
     await closeAll();
