@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse,hashlib,json,os,subprocess,sys,time
 from pathlib import Path
 HERE=Path(__file__).resolve();H01=HERE.parents[1];ROOT=HERE.parents[4]
-FACTORY_PY='/opt/die/factory-asset/venv/bin/python';RIGHTS_PY='/opt/die/factory-asset-rights/venv/bin/python';SCHED='/opt/die/h01/bin/h01-brave-scheduler';NODE='/usr/bin/node'
+FACTORY_PY='/opt/die/factory-asset/venv/bin/python';RIGHTS_PY='/opt/die/factory-asset-rights/venv/bin/python';SCHED='/opt/die/h01/bin/h01-brave-scheduler';NODE='/usr/local/bin/node'
 ORIGIN={'claude':'https://claude.ai','chatgpt':'https://chatgpt.com','qwen':'https://chat.qwen.ai','gemini':'https://gemini.google.com','manus':'https://manus.im','copilot':'https://copilot.microsoft.com'}
 TEXT={'claude','chatgpt','qwen','manus','copilot'}
 TIMEOUT={'qwen':1200000,'claude':600000,'chatgpt':600000,'manus':600000,'copilot':600000,'gemini':600000}
@@ -17,12 +17,12 @@ def sha_file(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def fail_result(w,job,provider,profile,udd,code):
  dump(w/'browser-job-result.json',{'schema':'die.h01.browser-job-result.v1','job_id':job,'job_kind':'H01_108_PRODUCTION','provider_id':provider,'profile_id':profile,'udd_id':udd,'terminal_state':'FAILED','completed_at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'error_code':code,'authority':{'provider_generation_dispatched':None,'provider_generation_dispatch_state':'UNKNOWN_AFTER_PROVIDER_DRIVER_ERROR','submission_authorized':False,'publication_authorized':False}})
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--manifest',required=True);ap.add_argument('--position',type=int,required=True);ap.add_argument('--provider',default='');ap.add_argument('--runs-root',default='/var/lib/die/h01/runs/H01-108');ns=ap.parse_args()
+ ap=argparse.ArgumentParser();ap.add_argument('--manifest',required=True);ap.add_argument('--position',type=int,required=True);ap.add_argument('--provider',default='');ap.add_argument('--runs-root',default='/var/lib/die/h01/runs/H01-108');ap.add_argument('--attempt',type=int,default=1);ns=ap.parse_args()
  m=json.loads(Path(ns.manifest).read_text());it=next((x for x in m['items'] if x['batch_position']==ns.position),None)
  if not it:raise SystemExit('E_POSITION')
  provider=ns.provider or it['planned_provider']
  if provider not in ORIGIN:raise SystemExit('E_PROVIDER')
- job=f"H01-108-P{ns.position:03d}-{it['source_candidate_id']}";w=Path(ns.runs_root)/f"{ns.position:03d}-{it['canonical_name'].replace(' ','-')}-{provider}"
+ job=f"H01-108-P{ns.position:03d}-{it['source_candidate_id']}-A{ns.attempt}";w=Path(ns.runs_root)/f"{ns.position:03d}-{it['canonical_name'].replace(' ','-')}-{provider}-a{ns.attempt}"
  if (w/'asset-receipt.json').exists():
   old=json.loads((w/'asset-receipt.json').read_text());print(json.dumps({'status':'REPLAY','workspace':str(w),'receipt':old}));return
  w.mkdir(parents=True,exist_ok=False)
