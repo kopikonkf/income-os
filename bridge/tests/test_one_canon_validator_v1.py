@@ -157,3 +157,13 @@ def test_die104_fails_closed_on_snapshot_tamper(tmp_path: pathlib.Path) -> None:
     payload = validator.validate(root)
     assert payload["status"] == "FAIL"
     assert "oauth_snapshot" in _failed_names(payload)
+
+
+def test_die104_secret_pattern_ignores_embedded_sk_feature_flag_names() -> None:
+    text = 'drp-risk-assessment-enabled user-data-retention:core-be-enable-risk-assessment'
+    assert not any(pattern.search(text) for pattern in validator.SECRET_PATTERNS)
+
+
+def test_die104_secret_pattern_still_detects_standalone_openai_style_key() -> None:
+    text = 'token=sk-abcdefghijklmnopqrstuvwxyz123456'
+    assert any(pattern.search(text) for pattern in validator.SECRET_PATTERNS)
