@@ -1,0 +1,40 @@
+{
+  "auth_readiness": {
+    "composer_present": true,
+    "cookies_or_tokens_read": false,
+    "document_ready_state": "complete",
+    "login_prompt_visible": false,
+    "manual_auth_provided_by_founder": true,
+    "page_title": "ChatGPT",
+    "session_bytes_read": false
+  },
+  "captured_at": "2026-09-12T18:31:40.066757Z",
+  "cdp": {
+    "host": "127.0.0.1",
+    "loopback_only": true,
+    "page_count": 1,
+    "port": 9201
+  },
+  "disk": {
+    "filesystem_available_bytes": 82488520704,
+    "filesystem_total_bytes": 133569777664,
+    "filesystem_used_bytes": 44248997888,
+    "filesystem_used_percent": 35,
+    "p001_bytes": 66876367,
+    "udd_s01_bytes": 204035628
+  },
+  "process": {
+    "gpu_count": 2,
+    "process_count": 13,
+    "renderer_count": 3,
+    "rss_kib_total": 1262516,
+    "rss_mib_total": 1232.93,
+    "utility_count": 3
+  },
+  "profile_id": "h01-web-p001",
+  "provider_generation_dispatched": false,
+  "provider_id": "chatgpt",
+  "provider_url": "https://chatgpt.com/",
+  "schema": "die.h01.h01-022.live-baseline-telemetry.v1",
+  "udd_id": "h01-web-s01"
+}
