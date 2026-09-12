@@ -134,3 +134,11 @@ This worker plane is an execution mechanism, not a second scheduler. Mission Con
 ## 13. Cutover
 
 Legacy `/srv/die`, Chrome/MUXIA browser runtime, Hermes and OpenCode remain rollback until clean H01 deployment proves: global MC -> H01 durable dispatch, visible Brave execution, native SVG generation, postproduction/read-back QA, Founder-QC-ready package, idempotent receipts and bounded shadow coexistence. Only then may legacy critical-path services be retired.
+
+## 14. H01-003 engineering worktree lifecycle standing
+
+H01-003 implements the foundation guardrail in `bin/die_h01_worktree.py`, with policy in `docs/operations/DIE_H01_EPHEMERAL_WORKTREE_V1.md` and regression coverage in `bridge/tests/test_h01_worktree_lifecycle.py`.
+
+The helper deliberately does **not** attach engineering worktrees to `/srv/die/.git`. It maintains a separate bare anchor under `/home/kopiko/.local/state/die-engineering`, fetches current `origin/main` there, materializes exactly `/home/kopiko/die-sessions/<task>`, and keeps lifecycle receipts outside the worktree. This preserves `/srv/die` as legacy live / rollback while still allowing clean canon-based engineering.
+
+Closure is destructive only to the ephemeral worktree and therefore fails closed unless the worktree is clean and its HEAD is already visible on a fetched remote ref. Remote publication remains separately serialized by the canonical engineering lease protocol. H01-003 completion does not itself deploy or cut over any runtime service.
