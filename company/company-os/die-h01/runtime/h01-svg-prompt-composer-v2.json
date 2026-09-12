@@ -1,0 +1,77 @@
+{
+  "authority": {
+    "blueprint": "PROVIDER_INDEPENDENT_WHAT",
+    "master_instruction": "PROVIDER_INDEPENDENT_NORMALIZED_CONTRACT",
+    "provider_call_authorized": false,
+    "provider_prompt": "PROVIDER_SPECIFIC_HOW",
+    "publication_authorized": false,
+    "submission_authorized": false
+  },
+  "budget_policy": {
+    "budget_is_vendor_maximum": false,
+    "overflow": "FAIL_CLOSED_NO_TRUNCATION",
+    "semantic_omission_allowed": false
+  },
+  "default_ingress": "web-ai-adapter",
+  "fixed_production_contract": {
+    "form": "SINGLE",
+    "media": "VECTOR",
+    "mode": "VECTOR_OBJECT",
+    "preset": "CLEAN_STOCK_VECTOR_V1"
+  },
+  "h01_103_alignment": {
+    "allowed_elements": [
+      "g",
+      "path",
+      "rect",
+      "circle",
+      "ellipse",
+      "line",
+      "polyline",
+      "polygon"
+    ],
+    "allowed_path_command_families": [
+      "M",
+      "L",
+      "H",
+      "V",
+      "C",
+      "S",
+      "Q",
+      "T",
+      "A",
+      "Z"
+    ],
+    "max_geometry_elements": 512,
+    "max_group_depth": 64,
+    "max_path_chars": 32768,
+    "max_svg_bytes": 1048576,
+    "max_total_points": 8192
+  },
+  "lineage": [
+    "blueprint_sha256",
+    "master_instruction_sha256",
+    "provider_profile",
+    "prompt_sha256"
+  ],
+  "master_sections": [
+    "SUBJECT",
+    "COMMERCIAL",
+    "COMPOSITION",
+    "VECTOR_STYLE",
+    "COMPLEXITY",
+    "RIGHTS_AND_STOCK",
+    "SVG_OUTPUT"
+  ],
+  "native_mcp": "OPTIONAL_TRANSPORT_NOT_DEPENDENCY",
+  "next_contract_owner": "H01-104",
+  "pipeline": [
+    "SVG_BLUEPRINT_V2",
+    "MASTER_INSTRUCTION_V2",
+    "PROMPT_COMPOSER_V2"
+  ],
+  "provider_profiles_path": "company/company-os/die-h01/runtime/h01-svg-prompt-profiles.v2.json",
+  "revision": "2.0.0",
+  "schema": "die.h01.svg-prompt-composer-runtime.v2",
+  "task_id": "H01-102"
+}

@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authority": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_call_authorized": {
+          "const": false
+        },
+        "publication_authorized": {
+          "const": false
+        },
+        "submission_authorized": {
+          "const": false
+        }
+      },
+      "required": [
+        "provider_call_authorized",
+        "submission_authorized",
+        "publication_authorized"
+      ],
+      "type": "object"
+    },
+    "blueprint_id": {
+      "type": "string"
+    },
+    "blueprint_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "composer_revision": {
+      "const": "2.0.0"
+    },
+    "master_instruction_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "prompt": {
+      "maxLength": 8000,
+      "minLength": 200,
+      "type": "string"
+    },
+    "prompt_budget_chars": {
+      "maximum": 8000,
+      "minimum": 1000,
+      "type": "integer"
+    },
+    "prompt_chars": {
+      "maximum": 8000,
+      "minimum": 200,
+      "type": "integer"
+    },
+    "prompt_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "provider_profile": {
+      "type": "string"
+    },
+    "schema": {
+      "const": "die.h01.svg-provider-prompt.v2"
+    },
+    "semantic_omission_count": {
+      "const": 0
+    }
+  },
+  "required": [
+    "schema",
+    "composer_revision",
+    "provider_profile",
+    "blueprint_id",
+    "blueprint_sha256",
+    "master_instruction_sha256",
+    "prompt",
+    "prompt_chars",
+    "prompt_budget_chars",
+    "prompt_sha256",
+    "semantic_omission_count",
+    "authority"
+  ],
+  "title": "H01 SVG Provider Prompt v2",
+  "type": "object"
+}

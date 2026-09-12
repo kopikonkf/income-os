@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "blueprint_id": {
+      "type": "string"
+    },
+    "blueprint_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "compiler_revision": {
+      "const": "2.0.0"
+    },
+    "invariants": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 4,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "master_instruction_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema": {
+      "const": "die.h01.svg-master-instruction.v2"
+    },
+    "sections": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "clauses": {
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "clauses"
+        ],
+        "type": "object"
+      },
+      "maxItems": 16,
+      "minItems": 6,
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema",
+    "compiler_revision",
+    "blueprint_id",
+    "blueprint_sha256",
+    "sections",
+    "invariants",
+    "master_instruction_sha256"
+  ],
+  "title": "H01 SVG Master Instruction v2",
+  "type": "object"
+}

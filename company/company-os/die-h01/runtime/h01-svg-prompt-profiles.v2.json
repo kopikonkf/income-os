@@ -1,0 +1,43 @@
+{
+  "budget_semantics": "DIE_INTERNAL_BOUND_NOT_VENDOR_MAXIMUM",
+  "profiles": [
+    {
+      "closing": "Return raw SVG source only. No Markdown fence, explanation, or extra text.",
+      "opening": "Produce one commercial stock-ready native SVG vector asset from this instruction.",
+      "prompt_budget_chars": 6000,
+      "provider_profile": "GENERIC_WEB_AI"
+    },
+    {
+      "closing": "Output only the complete raw <svg>...</svg> source, with no prose or Markdown.",
+      "opening": "Create exactly one native editable SVG stock asset that satisfies every requirement below.",
+      "prompt_budget_chars": 7000,
+      "provider_profile": "CLAUDE_WEB"
+    },
+    {
+      "closing": "Return only raw SVG source. Do not wrap it in Markdown and do not explain it.",
+      "opening": "Generate exactly one native editable SVG stock asset. Preserve all constraints below.",
+      "prompt_budget_chars": 6000,
+      "provider_profile": "QWEN_WEB"
+    },
+    {
+      "closing": "Respond only with raw SVG source beginning with <svg and ending with </svg>.",
+      "opening": "Create exactly one clean native editable SVG vector stock asset using the requirements below.",
+      "prompt_budget_chars": 6000,
+      "provider_profile": "CHATGPT_WEB"
+    },
+    {
+      "closing": "Output only raw SVG source; no code fence or commentary.",
+      "opening": "Generate one native editable SVG commercial vector asset and satisfy every listed constraint.",
+      "prompt_budget_chars": 6000,
+      "provider_profile": "GEMINI_WEB"
+    },
+    {
+      "closing": "Return raw SVG source only, with no surrounding explanation.",
+      "opening": "Build exactly one native editable SVG commercial stock asset from these bounded requirements.",
+      "prompt_budget_chars": 5000,
+      "provider_profile": "MANUS_WEB"
+    }
+  ],
+  "revision": "2.0.0",
+  "schema": "die.h01.svg-prompt-profiles.v2"
+}

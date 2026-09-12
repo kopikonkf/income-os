@@ -288,7 +288,7 @@
     {
       "id": "H01-102",
       "track": "SVG_FIRST",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-100"
@@ -310,7 +310,7 @@
     {
       "id": "H01-104",
       "track": "SVG_FIRST",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-102",
