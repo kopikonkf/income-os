@@ -1,0 +1,48 @@
+{
+  "authority": {
+    "publication_authorized": false,
+    "spend_authorized": false,
+    "submission_authorized": false
+  },
+  "authorized_at": "2026-09-12",
+  "counters": {
+    "accepted_semantic_masters_at_kickoff": 0,
+    "target": 100
+  },
+  "founder_authorized": true,
+  "manifest": {
+    "buckets": {
+      "EVERGREEN": 60,
+      "MOMENTUM": 30,
+      "SEASONAL_Q4": 10
+    },
+    "items": 100,
+    "path": "company/company-os/die-h01/fixtures/h01-108/market-informed-100.json",
+    "sha256": "7fbdedae0a724dcf86dd311a5566bd83eb31171e95a2e76eadbba2db0676cce2"
+  },
+  "preflight": {
+    "blueprint_prompt_compile": "PASS 100/100",
+    "max_manus_prompt_chars": 1866,
+    "max_prompt_chars": 3668,
+    "postproduction_wiring": "PASS using accepted H01-107 Claude SVG",
+    "visual_rights_self_test_4k": "PASS"
+  },
+  "provider_targets": {
+    "chatgpt": 12,
+    "claude": 20,
+    "copilot": 12,
+    "gemini": 24,
+    "manus": 12,
+    "qwen": 20
+  },
+  "runtime": {
+    "current_execution_shape": "single UDD sequential",
+    "provider_cooldown_seconds": 180,
+    "ready_profiles": [
+      "h01-web-p001"
+    ]
+  },
+  "schema": "die.h01.h01-108-kickoff-receipt.v1",
+  "status": "RUNNING",
+  "task_id": "H01-108"
+}

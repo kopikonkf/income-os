@@ -99,7 +99,7 @@ class Scheduler:
 
     def _inputs(self): return load_manifest(self.manifest_path),load_policy(self.policy_path),load_readiness(self.readiness_path)
 
-    def acquire(self,*,dispatch_id:str,job_id:str,now:float|None=None)->dict[str,Any]:
+    def acquire(self,*,dispatch_id:str,job_id:str,preferred_provider:str|None=None,now:float|None=None)->dict[str,Any]:
         if not dispatch_id or not job_id: raise SchedulerError('E_JOB_ID')
         now=time.time() if now is None else now; key=dispatch_key(dispatch_id); lock=state_lock(self.state_path)
         try:
@@ -123,8 +123,16 @@ class Scheduler:
                 if profile_ready(ready,row['profile_id']): pr=(pi,row); break
             if not pr: raise SchedulerError('E_NO_READY_PROFILE')
             pi,row=pr; providers=policy['providers']; vc=int(s['provider_cursor_by_udd'].get(udd,-1)); pv=None
-            for vi,p in ordered_after(providers,vc):
-                if provider_ready(policy,s,p['provider_id'],now): pv=(vi,p); break
+            if preferred_provider:
+                for vi,p in enumerate(providers):
+                    if p.get('provider_id')==preferred_provider:
+                        if provider_ready(policy,s,preferred_provider,now): pv=(vi,p)
+                        else: raise SchedulerError('E_PROVIDER_NOT_ELIGIBLE',preferred_provider)
+                        break
+                if pv is None: raise SchedulerError('E_PROVIDER_UNKNOWN',preferred_provider)
+            else:
+                for vi,p in ordered_after(providers,vc):
+                    if provider_ready(policy,s,p['provider_id'],now): pv=(vi,p); break
             if not pv: raise SchedulerError('E_NO_READY_PROVIDER')
             vi,pvrow=pv; lid=secrets.token_hex(16); token=secrets.token_urlsafe(24)
             lease={'lease_id':lid,'lease_token':token,'dispatch_key':key,'dispatch_id':dispatch_id,'job_id':job_id,'udd_id':udd,'profile_id':row['profile_id'],'profile_slot':row['slot'],'provider_id':pvrow['provider_id'],'cdp_host':row['cdp_host'],'cdp_port':row['cdp_port'],'user_data_dir':row['user_data_dir'],'profile_directory':row['profile_directory'],'state':'LEASED','dispatch_claimed':False,'acquired_epoch':now}
@@ -176,12 +184,12 @@ def build_scheduler(ns)->Scheduler:
 def main()->int:
     ap=argparse.ArgumentParser(); ap.add_argument('--manifest',default=str(DEFAULT_MANIFEST)); ap.add_argument('--policy',default=str(DEFAULT_POLICY)); ap.add_argument('--readiness',default=str(DEFAULT_READINESS)); ap.add_argument('--state',default=str(DEFAULT_STATE)); ap.add_argument('--runtime-root',default=str(DEFAULT_RUNTIME))
     sub=ap.add_subparsers(dest='command',required=True)
-    a=sub.add_parser('acquire'); a.add_argument('--dispatch-id',required=True); a.add_argument('--job-id',required=True)
+    a=sub.add_parser('acquire'); a.add_argument('--dispatch-id',required=True); a.add_argument('--job-id',required=True); a.add_argument('--preferred-provider',default='')
     c=sub.add_parser('claim-dispatch'); c.add_argument('--lease-id',required=True); c.add_argument('--lease-token',required=True)
     d=sub.add_parser('complete'); d.add_argument('--lease-id',required=True); d.add_argument('--lease-token',required=True); d.add_argument('--terminal-state',required=True); d.add_argument('--provider-cooldown-seconds',type=int,default=0)
     sub.add_parser('status')
     ns=ap.parse_args(); s=build_scheduler(ns)
-    if ns.command=='acquire': out=s.acquire(dispatch_id=ns.dispatch_id,job_id=ns.job_id)
+    if ns.command=='acquire': out=s.acquire(dispatch_id=ns.dispatch_id,job_id=ns.job_id,preferred_provider=ns.preferred_provider or None)
     elif ns.command=='claim-dispatch': out=s.claim_dispatch(ns.lease_id,ns.lease_token)
     elif ns.command=='complete': out=s.complete(ns.lease_id,ns.lease_token,ns.terminal_state,ns.provider_cooldown_seconds)
     else: out=s.status()
