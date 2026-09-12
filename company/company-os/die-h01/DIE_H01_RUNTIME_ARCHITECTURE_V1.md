@@ -156,3 +156,11 @@ The immutable source snapshot is `/home/kopiko/die-archive/legacy-live-snapshots
 H01-005 establishes `ACTIVE`, `ROLLBACK`, `ARCHIVE`, `REGENERABLE` and `DISPOSABLE` retention classes in `DIE_H01_DATA_RETENTION_V1.md`. The policy is intentionally conservative: a path being reconstructible does not authorize deletion; `DISPOSABLE` requires exact duplicate proof plus absence of live references.
 
 The only deletion in H01-005 removed 2,044,108,449 bytes of proven DIE-203 duplicates: reconstructed transport chunks and one uncompressed migration staging DB that is exactly recoverable from its retained gzip archive. Post-delete SQLite quick checks passed, the 475,560-object seed library remained intact, and Object Atlas still exposes 43,005 Wave-3 eligible candidates. Production state, workspaces, artifacts, logs, rollback snapshots, raw source provenance, active staging and uncertain historical staging copies were retained.
+
+## 17. H01-012 narrow Runtime Gateway standing
+
+H01-012 freezes `DIE_H01_RUNTIME_GATEWAY_V1.md` as the logical cross-VPS boundary. The gateway is not a scheduler or general RPC surface. Exactly three business message classes cross the boundary: `WORK_DISPATCH`, `WORK_CHECKPOINT`, and terminal `WORK_RESULT`. Mission Control remains the one global scheduler and durable task authority on `die-control`.
+
+Dispatch is store-before-ack and replay-safe by dispatch/idempotency/digest identity; H01 journals execution and outbound events locally, and transient WAN failure may not create a second execution. Checkpoint/result events are projected by a privileged control-side bridge onto canonical `mc-mission-v1` methods, while Mission lease/review capabilities remain ephemeral control-side authority and are not persisted on H01.
+
+Brave lifecycle, CDP, UDD/profile paths, provider sessions/waits/retries, shell/filesystem operations, downloads, SVG bytes, QA/conversion, artifact bytes and cache operations remain H01-local. Per-click WAN orchestration is forbidden. H01-012 is contract-only: no gateway daemon, port, tunnel, browser or runtime cutover was changed.

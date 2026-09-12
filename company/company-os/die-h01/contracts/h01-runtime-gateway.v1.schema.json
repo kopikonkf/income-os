@@ -1,0 +1,258 @@
+{
+  "$defs": {
+    "artifact_ref": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "maxLength": 240,
+          "minLength": 1,
+          "type": "string"
+        },
+        "bytes": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "media_type": {
+          "maxLength": 200,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "artifact_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "die.h01.runtime-gateway-message.v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Narrow cross-VPS dispatch/checkpoint/result envelope. Secrets, browser/CDP operations and raw artifact bytes are prohibited by the normative boundary contract.",
+  "oneOf": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "attempt_no": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "dispatch_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "type": "string"
+        },
+        "execution_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "type": "string"
+        },
+        "idempotency_key": {
+          "maxLength": 256,
+          "minLength": 16,
+          "type": "string"
+        },
+        "issued_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "message_type": {
+          "const": "WORK_DISPATCH"
+        },
+        "mission_task_id": {
+          "maxLength": 120,
+          "minLength": 1,
+          "type": "string"
+        },
+        "principal_id": {
+          "maxLength": 120,
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "die.h01.runtime-gateway-message.v1"
+        },
+        "work_card": {
+          "type": "object"
+        },
+        "work_card_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "message_type",
+        "mission_task_id",
+        "dispatch_id",
+        "attempt_no",
+        "principal_id",
+        "idempotency_key",
+        "work_card_sha256",
+        "issued_at",
+        "work_card"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_refs": {
+          "items": {
+            "$ref": "#/$defs/artifact_ref"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "dispatch_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "type": "string"
+        },
+        "event_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "type": "string"
+        },
+        "execution_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "type": "string"
+        },
+        "issued_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "message_type": {
+          "const": "WORK_CHECKPOINT"
+        },
+        "mission_task_id": {
+          "maxLength": 120,
+          "minLength": 1,
+          "type": "string"
+        },
+        "payload": {
+          "type": "object"
+        },
+        "progress": {
+          "maximum": 100,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "die.h01.runtime-gateway-message.v1"
+        },
+        "sequence": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "summary": {
+          "maxLength": 8000,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "message_type",
+        "mission_task_id",
+        "dispatch_id",
+        "execution_id",
+        "event_id",
+        "sequence",
+        "progress",
+        "summary",
+        "issued_at",
+        "payload",
+        "artifact_refs"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_refs": {
+          "items": {
+            "$ref": "#/$defs/artifact_ref"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "dispatch_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "type": "string"
+        },
+        "event_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "type": "string"
+        },
+        "execution_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "type": "string"
+        },
+        "issued_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "message_type": {
+          "const": "WORK_RESULT"
+        },
+        "mission_task_id": {
+          "maxLength": 120,
+          "minLength": 1,
+          "type": "string"
+        },
+        "outcome": {
+          "enum": [
+            "COMPLETED",
+            "BLOCKED"
+          ]
+        },
+        "result": {
+          "type": "object"
+        },
+        "schema_version": {
+          "const": "die.h01.runtime-gateway-message.v1"
+        },
+        "sequence": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "summary": {
+          "maxLength": 8000,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "message_type",
+        "mission_task_id",
+        "dispatch_id",
+        "execution_id",
+        "event_id",
+        "sequence",
+        "outcome",
+        "summary",
+        "issued_at",
+        "result",
+        "artifact_refs"
+      ],
+      "type": "object"
+    }
+  ],
+  "title": "DIE H01 Runtime Gateway Message v1"
+}
