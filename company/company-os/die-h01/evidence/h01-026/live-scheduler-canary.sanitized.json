@@ -1,0 +1,155 @@
+{
+  "acquire": {
+    "dispatch_authorized": false,
+    "lease": {
+      "acquired_epoch": 1789239721.680563,
+      "cdp_host": "127.0.0.1",
+      "cdp_port": 9201,
+      "dispatch_claimed": false,
+      "dispatch_id": "H01-026-CANARY-001",
+      "dispatch_key": "ebec17e15ce1da75e0ab060e76ed4939028bbe18d733cfbab3da54b48d88202c",
+      "job_id": "H01-026-CANARY-JOB-001",
+      "lease_id": "8a62b26bf18075ed55899f25f6d460ad",
+      "profile_directory": "h01-web-p001",
+      "profile_id": "h01-web-p001",
+      "profile_slot": 1,
+      "provider_id": "claude",
+      "state": "LEASED",
+      "udd_id": "h01-web-s01",
+      "user_data_dir": "/var/lib/die/h01/browser/h01-web-s01"
+    },
+    "schema": "die.h01.brave-round-robin-scheduler.v1",
+    "status": "LEASED"
+  },
+  "browser_started": false,
+  "claim1": {
+    "dispatch_authorized": true,
+    "lease": {
+      "acquired_epoch": 1789239721.680563,
+      "cdp_host": "127.0.0.1",
+      "cdp_port": 9201,
+      "dispatch_claimed": true,
+      "dispatch_claimed_epoch": 1789239721.9757416,
+      "dispatch_id": "H01-026-CANARY-001",
+      "dispatch_key": "ebec17e15ce1da75e0ab060e76ed4939028bbe18d733cfbab3da54b48d88202c",
+      "job_id": "H01-026-CANARY-JOB-001",
+      "lease_id": "8a62b26bf18075ed55899f25f6d460ad",
+      "profile_directory": "h01-web-p001",
+      "profile_id": "h01-web-p001",
+      "profile_slot": 1,
+      "provider_id": "claude",
+      "state": "DISPATCH_CLAIMED",
+      "udd_id": "h01-web-s01",
+      "user_data_dir": "/var/lib/die/h01/browser/h01-web-s01"
+    },
+    "schema": "die.h01.brave-round-robin-scheduler.v1",
+    "status": "DISPATCH_CLAIMED"
+  },
+  "claim2": {
+    "dispatch_authorized": false,
+    "lease": {
+      "acquired_epoch": 1789239721.680563,
+      "cdp_host": "127.0.0.1",
+      "cdp_port": 9201,
+      "dispatch_claimed": true,
+      "dispatch_claimed_epoch": 1789239721.9757416,
+      "dispatch_id": "H01-026-CANARY-001",
+      "dispatch_key": "ebec17e15ce1da75e0ab060e76ed4939028bbe18d733cfbab3da54b48d88202c",
+      "job_id": "H01-026-CANARY-JOB-001",
+      "lease_id": "8a62b26bf18075ed55899f25f6d460ad",
+      "profile_directory": "h01-web-p001",
+      "profile_id": "h01-web-p001",
+      "profile_slot": 1,
+      "provider_id": "claude",
+      "state": "DISPATCH_CLAIMED",
+      "udd_id": "h01-web-s01",
+      "user_data_dir": "/var/lib/die/h01/browser/h01-web-s01"
+    },
+    "schema": "die.h01.brave-round-robin-scheduler.v1",
+    "status": "ALREADY_DISPATCHED"
+  },
+  "complete": {
+    "provider_cooldown_until": 0,
+    "record": {
+      "completed_epoch": 1789239722.220854,
+      "dispatch_claimed": true,
+      "dispatch_id": "H01-026-CANARY-001",
+      "job_id": "H01-026-CANARY-JOB-001",
+      "lease_id": "8a62b26bf18075ed55899f25f6d460ad",
+      "profile_id": "h01-web-p001",
+      "provider_id": "claude",
+      "terminal_state": "CANCELLED",
+      "udd_id": "h01-web-s01"
+    },
+    "schema": "die.h01.brave-round-robin-scheduler.v1",
+    "status": "TERMINAL"
+  },
+  "cookies_or_tokens_read": false,
+  "dedupe": {
+    "dispatch_authorized": false,
+    "record": {
+      "completed_epoch": 1789239722.220854,
+      "dispatch_claimed": true,
+      "dispatch_id": "H01-026-CANARY-001",
+      "job_id": "H01-026-CANARY-JOB-001",
+      "lease_id": "8a62b26bf18075ed55899f25f6d460ad",
+      "profile_id": "h01-web-p001",
+      "provider_id": "claude",
+      "terminal_state": "CANCELLED",
+      "udd_id": "h01-web-s01"
+    },
+    "schema": "die.h01.brave-round-robin-scheduler.v1",
+    "status": "ALREADY_TERMINAL"
+  },
+  "locked": {
+    "detail": "",
+    "error": "E_NO_ELIGIBLE_UDD",
+    "schema": "die.h01.brave-round-robin-scheduler.v1",
+    "status": "ERROR"
+  },
+  "locked_rc": 74,
+  "provider_prompt_dispatched": false,
+  "session_bytes_read": false,
+  "status-final": {
+    "absolute_max_udd_owners": 20,
+    "active_lease_count": 0,
+    "active_udd_ids": [],
+    "founder_approved_max_live_udd_owners": 5,
+    "global_max_live_udd_owners": 5,
+    "ready_profiles_by_udd": {
+      "h01-web-s01": [
+        "h01-web-p001"
+      ],
+      "h01-web-s02": [],
+      "h01-web-s03": [],
+      "h01-web-s04": [],
+      "h01-web-s05": [],
+      "h01-web-s06": [],
+      "h01-web-s07": [],
+      "h01-web-s08": [],
+      "h01-web-s09": [],
+      "h01-web-s10": [],
+      "h01-web-s11": [],
+      "h01-web-s12": [],
+      "h01-web-s13": [],
+      "h01-web-s14": [],
+      "h01-web-s15": [],
+      "h01-web-s16": [],
+      "h01-web-s17": [],
+      "h01-web-s18": [],
+      "h01-web-s19": [],
+      "h01-web-s20": []
+    },
+    "ready_provider_ids": [
+      "claude",
+      "chatgpt",
+      "qwen",
+      "gemini",
+      "manus",
+      "copilot"
+    ],
+    "schema": "die.h01.brave-round-robin-scheduler.v1",
+    "state_revision": 4,
+    "status": "PASS"
+  }
+}

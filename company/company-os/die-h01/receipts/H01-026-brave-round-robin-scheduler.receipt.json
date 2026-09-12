@@ -1,0 +1,79 @@
+{
+  "architecture": {
+    "absolute_topology_max_udd_owners": 20,
+    "founder_approved_max_live_udd_owners": 5,
+    "global_max_live_udd_owners": 5,
+    "max_active_profile_per_udd": 1,
+    "max_committed_tab_job_per_udd": 1,
+    "runtime_owner": "H01-025 brave_udd_runtime.mjs",
+    "scheduling": "global multi-UDD admission + per-UDD profile/provider round-robin"
+  },
+  "date": "2026-09-12",
+  "host_deployment": {
+    "policy_path": "/etc/die/h01/brave/scheduler-policy-v1.json",
+    "policy_sha256": "99aa7d9892ab3cdeed28983bf299ee7d0fcfc55f24d83760cc037925e89d04b3",
+    "readiness_path": "/var/lib/die/h01/browser/profile-readiness-v1.json",
+    "readiness_sha256": "99540ee7149e36f2a3400311b9c416430e3e1460c2863dfb0733552f8df06d8b",
+    "repo_policy_sha256": "99aa7d9892ab3cdeed28983bf299ee7d0fcfc55f24d83760cc037925e89d04b3",
+    "repo_readiness_sha256": "99540ee7149e36f2a3400311b9c416430e3e1460c2863dfb0733552f8df06d8b",
+    "repo_scheduler_sha256": "91e2960527ca31a7b84d0629582aa298fa336c9c46ef0aea9ea0cd9952930bd3",
+    "scheduler_path": "/opt/die/h01/bin/h01-brave-scheduler",
+    "scheduler_sha256": "91e2960527ca31a7b84d0629582aa298fa336c9c46ef0aea9ea0cd9952930bd3"
+  },
+  "live_canary": {
+    "active_leases_after": 0,
+    "browser_started": false,
+    "duplicate_dispatch_claim_authorized": false,
+    "first_dispatch_claim_authorized": true,
+    "lease_selection": "h01-web-s01/h01-web-p001/claude",
+    "locked_attempt_rc": 74,
+    "provider_prompt_dispatched": false,
+    "runtime_udd_lock_denial": "E_NO_ELIGIBLE_UDD",
+    "terminal_dedupe": "ALREADY_TERMINAL"
+  },
+  "profile_readiness": {
+    "live_ready": [
+      "h01-web-p001"
+    ],
+    "not_falsely_promoted": 99,
+    "policy": "Founder manual authentication; incremental/on-demand"
+  },
+  "providers": {
+    "disabled": {
+      "duckai": "H01-107 DEFERRED",
+      "grok": "H01-107 UNSUPPORTED"
+    },
+    "ready": [
+      "claude",
+      "chatgpt",
+      "qwen",
+      "gemini",
+      "manus",
+      "copilot"
+    ]
+  },
+  "result": "PASS",
+  "safety": {
+    "cap_above_founder_policy_allowed": false,
+    "cookies_or_tokens_read": false,
+    "exactly_once_dispatch_claim": true,
+    "multi_udd_parallelism_supported": true,
+    "provider_cooldown_enforced": true,
+    "provider_prompt_dispatched_in_live_canary": false,
+    "publication_authorized": false,
+    "same_udd_sibling_overlap_allowed": false,
+    "session_bytes_read": false,
+    "submission_authorized": false
+  },
+  "schema": "die.h01.h01-026.brave-round-robin-scheduler.acceptance.v1",
+  "task_id": "H01-026",
+  "tests": {
+    "broader_h01": "226/227 PASS; sole failure is pre-existing stale H01-304/H01-305 status assertion unrelated to H01-026",
+    "broader_h01_regression_attributed_to_h01_026": false,
+    "company_secret_scan": "PASS; high_confidence_secret_hits=0",
+    "focused": "PASS 10/10",
+    "git_diff_check": "PASS",
+    "one_canon": "PASS 11/11",
+    "related_regression": "PASS 22/22 (H01-023 5/5; H01-024 10/10; H01-025 7/7)"
+  }
+}

@@ -62,11 +62,11 @@ for(const bad of [{{...good,job_id:'x'}},{{...good,provider_id:'x'}},{{...good,p
         probe=json.loads((h/'fixtures/h01-025/live-probe.job-result.json').read_text()); jsonschema.Draft202012Validator(js).validate(probe)
         sib=json.loads((h/'fixtures/h01-025/sibling-exclusion.json').read_text()); self.assertEqual(sib['attempt_exit_code'],73); self.assertEqual(sib['page_count_during_probe'],1)
 
-    def test_graph_opens_h01_107_after_h01_025(self):
+    def test_graph_progression_after_h01_025(self):
         g=json.loads((ROOT/'company/company-os/die-h01/die-h01-task-graph.v1.json').read_text()); by={x['id']:x for x in g['tasks']}
         self.assertEqual(by['H01-025']['status'],'DONE')
         self.assertEqual(by['H01-107']['status'],'DONE')
         self.assertEqual(by['H01-107']['depends_on'],['H01-104A','H01-106','H01-025'])
-        self.assertEqual(by['H01-026']['status'],'BLOCKED')
+        self.assertEqual(by['H01-026']['status'],'DONE')
 
 if __name__=='__main__': unittest.main()
