@@ -1,0 +1,371 @@
+{
+  "schema": "die.h01.semantic-family-examples.v1",
+  "task_id": "H01-120",
+  "examples": [
+    {
+      "schema": "die.h01.semantic-family.v1",
+      "schema_version": "1.0.0",
+      "family_version": "1.0.0",
+      "artifact_kind": "SEMANTIC_FAMILY",
+      "family_id": "FAM-V1-TAXONOMIC-A08BF5EB43A1B478F7AB856B",
+      "family_class": "TAXONOMIC",
+      "semantic_identity": {
+        "semantic_key": "drinkware-vessels",
+        "definition": "Objects grouped by a stable generic drinkware taxonomy relationship.",
+        "member_identity_policy": "PRESERVE_CANONICAL_SUBJECT",
+        "family_membership_creates_new_asset_identity": false
+      },
+      "members": [
+        {
+          "member_id": "OA-FIX-CUP",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "canonical_subject_ref": {
+            "source": "OBJECT_ATLAS",
+            "subject_id": "OA-FIX-CUP",
+            "canonical_name": "cup"
+          },
+          "semantic_label": "cup",
+          "identity_effect": "NONE"
+        },
+        {
+          "member_id": "OA-FIX-MUG",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "canonical_subject_ref": {
+            "source": "OBJECT_ATLAS",
+            "subject_id": "OA-FIX-MUG",
+            "canonical_name": "mug"
+          },
+          "semantic_label": "mug",
+          "identity_effect": "NONE"
+        }
+      ],
+      "source": {
+        "environment": "TEST_FIXTURE",
+        "derivation": "DETERMINISTIC",
+        "evidence": [
+          {
+            "evidence_id": "EVID-TAXONOMIC-001",
+            "kind": "OBJECT_ATLAS_TAXONOMY",
+            "ref": "fixture://h01-120/drinkware-vessels"
+          }
+        ]
+      },
+      "rights_class": "GENERIC_UNRESTRICTED",
+      "authority": {
+        "production_authorized": false,
+        "submission_authorized": false,
+        "publication_authorized": false,
+        "restricted_family_auto_eligible": false
+      },
+      "boundary": {
+        "is_design_set": false,
+        "is_derivative_bundle": false,
+        "is_listing_package": false,
+        "derivatives_create_family_members": false
+      },
+      "determinism": {
+        "family_id_algorithm": "SHA256",
+        "family_id_hex_chars": 24,
+        "member_order": "CANONICAL_SUBJECT_ID_ASC",
+        "key_material": [
+          "family_version",
+          "family_class",
+          "semantic_identity.semantic_key",
+          "members[].canonical_subject_ref.subject_id"
+        ]
+      }
+    },
+    {
+      "schema": "die.h01.semantic-family.v1",
+      "schema_version": "1.0.0",
+      "family_version": "1.0.0",
+      "artifact_kind": "SEMANTIC_FAMILY",
+      "family_id": "FAM-V1-FUNCTIONAL-AB91BBB0F21269697016AAB9",
+      "family_class": "FUNCTIONAL",
+      "semantic_identity": {
+        "semantic_key": "manual-cutting-tools",
+        "definition": "Generic objects grouped because they perform the same practical cutting function.",
+        "member_identity_policy": "PRESERVE_CANONICAL_SUBJECT",
+        "family_membership_creates_new_asset_identity": false
+      },
+      "members": [
+        {
+          "member_id": "OA-FIX-SCISSORS",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "canonical_subject_ref": {
+            "source": "OBJECT_ATLAS",
+            "subject_id": "OA-FIX-SCISSORS",
+            "canonical_name": "scissors"
+          },
+          "semantic_label": "scissors",
+          "identity_effect": "NONE"
+        },
+        {
+          "member_id": "OA-FIX-UTILITY-KNIFE",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "canonical_subject_ref": {
+            "source": "OBJECT_ATLAS",
+            "subject_id": "OA-FIX-UTILITY-KNIFE",
+            "canonical_name": "utility knife"
+          },
+          "semantic_label": "utility knife",
+          "identity_effect": "NONE"
+        }
+      ],
+      "source": {
+        "environment": "TEST_FIXTURE",
+        "derivation": "DETERMINISTIC",
+        "evidence": [
+          {
+            "evidence_id": "EVID-FUNCTIONAL-001",
+            "kind": "OBJECT_ATLAS_TAXONOMY",
+            "ref": "fixture://h01-120/manual-cutting-tools"
+          }
+        ]
+      },
+      "rights_class": "GENERIC_UNRESTRICTED",
+      "authority": {
+        "production_authorized": false,
+        "submission_authorized": false,
+        "publication_authorized": false,
+        "restricted_family_auto_eligible": false
+      },
+      "boundary": {
+        "is_design_set": false,
+        "is_derivative_bundle": false,
+        "is_listing_package": false,
+        "derivatives_create_family_members": false
+      },
+      "determinism": {
+        "family_id_algorithm": "SHA256",
+        "family_id_hex_chars": 24,
+        "member_order": "CANONICAL_SUBJECT_ID_ASC",
+        "key_material": [
+          "family_version",
+          "family_class",
+          "semantic_identity.semantic_key",
+          "members[].canonical_subject_ref.subject_id"
+        ]
+      }
+    },
+    {
+      "schema": "die.h01.semantic-family.v1",
+      "schema_version": "1.0.0",
+      "family_version": "1.0.0",
+      "artifact_kind": "SEMANTIC_FAMILY",
+      "family_id": "FAM-V1-CONTEXTUAL-8756C7A66298D5E123518278",
+      "family_class": "CONTEXTUAL",
+      "semantic_identity": {
+        "semantic_key": "remote-work-desk-objects",
+        "definition": "Generic objects related by a reusable remote-work desk context rather than taxonomy.",
+        "member_identity_policy": "PRESERVE_CANONICAL_SUBJECT",
+        "family_membership_creates_new_asset_identity": false
+      },
+      "members": [
+        {
+          "member_id": "OA-FIX-DESK-LAMP",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "canonical_subject_ref": {
+            "source": "OBJECT_ATLAS",
+            "subject_id": "OA-FIX-DESK-LAMP",
+            "canonical_name": "desk lamp"
+          },
+          "semantic_label": "desk lamp",
+          "identity_effect": "NONE"
+        },
+        {
+          "member_id": "OA-FIX-LAPTOP-STAND",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "canonical_subject_ref": {
+            "source": "OBJECT_ATLAS",
+            "subject_id": "OA-FIX-LAPTOP-STAND",
+            "canonical_name": "laptop stand"
+          },
+          "semantic_label": "laptop stand",
+          "identity_effect": "NONE"
+        }
+      ],
+      "source": {
+        "environment": "TEST_FIXTURE",
+        "derivation": "CURATED_WITH_EVIDENCE",
+        "evidence": [
+          {
+            "evidence_id": "EVID-CONTEXTUAL-001",
+            "kind": "CURATED_RELATION",
+            "ref": "fixture://h01-120/remote-work-desk-objects"
+          }
+        ]
+      },
+      "rights_class": "GENERIC_UNRESTRICTED",
+      "authority": {
+        "production_authorized": false,
+        "submission_authorized": false,
+        "publication_authorized": false,
+        "restricted_family_auto_eligible": false
+      },
+      "boundary": {
+        "is_design_set": false,
+        "is_derivative_bundle": false,
+        "is_listing_package": false,
+        "derivatives_create_family_members": false
+      },
+      "determinism": {
+        "family_id_algorithm": "SHA256",
+        "family_id_hex_chars": 24,
+        "member_order": "CANONICAL_SUBJECT_ID_ASC",
+        "key_material": [
+          "family_version",
+          "family_class",
+          "semantic_identity.semantic_key",
+          "members[].canonical_subject_ref.subject_id"
+        ]
+      }
+    },
+    {
+      "schema": "die.h01.semantic-family.v1",
+      "schema_version": "1.0.0",
+      "family_version": "1.0.0",
+      "artifact_kind": "SEMANTIC_FAMILY",
+      "family_id": "FAM-V1-VARIANT-846E4D09D56C30433B4F3E8C",
+      "family_class": "VARIANT",
+      "semantic_identity": {
+        "semantic_key": "generic-storage-box-variants",
+        "definition": "Canonical object variants grouped while each underlying Object Atlas subject identity remains unchanged.",
+        "member_identity_policy": "PRESERVE_CANONICAL_SUBJECT",
+        "family_membership_creates_new_asset_identity": false
+      },
+      "members": [
+        {
+          "member_id": "OA-FIX-HINGED-STORAGE-BOX",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "canonical_subject_ref": {
+            "source": "OBJECT_ATLAS",
+            "subject_id": "OA-FIX-HINGED-STORAGE-BOX",
+            "canonical_name": "hinged storage box"
+          },
+          "semantic_label": "hinged storage box",
+          "identity_effect": "NONE"
+        },
+        {
+          "member_id": "OA-FIX-STACKABLE-STORAGE-BOX",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "canonical_subject_ref": {
+            "source": "OBJECT_ATLAS",
+            "subject_id": "OA-FIX-STACKABLE-STORAGE-BOX",
+            "canonical_name": "stackable storage box"
+          },
+          "semantic_label": "stackable storage box",
+          "identity_effect": "NONE"
+        }
+      ],
+      "source": {
+        "environment": "TEST_FIXTURE",
+        "derivation": "DETERMINISTIC",
+        "evidence": [
+          {
+            "evidence_id": "EVID-VARIANT-001",
+            "kind": "OBJECT_ATLAS_TAXONOMY",
+            "ref": "fixture://h01-120/generic-storage-box-variants"
+          }
+        ]
+      },
+      "rights_class": "GENERIC_UNRESTRICTED",
+      "authority": {
+        "production_authorized": false,
+        "submission_authorized": false,
+        "publication_authorized": false,
+        "restricted_family_auto_eligible": false
+      },
+      "boundary": {
+        "is_design_set": false,
+        "is_derivative_bundle": false,
+        "is_listing_package": false,
+        "derivatives_create_family_members": false
+      },
+      "determinism": {
+        "family_id_algorithm": "SHA256",
+        "family_id_hex_chars": 24,
+        "member_order": "CANONICAL_SUBJECT_ID_ASC",
+        "key_material": [
+          "family_version",
+          "family_class",
+          "semantic_identity.semantic_key",
+          "members[].canonical_subject_ref.subject_id"
+        ]
+      }
+    },
+    {
+      "schema": "die.h01.semantic-family.v1",
+      "schema_version": "1.0.0",
+      "family_version": "1.0.0",
+      "artifact_kind": "SEMANTIC_FAMILY",
+      "family_id": "FAM-V1-SYSTEM-6A4D848B53C65E50A9F2FF35",
+      "family_class": "SYSTEM",
+      "semantic_identity": {
+        "semantic_key": "examplebrand-device-system",
+        "definition": "Synthetic restricted fixture proving a discovered branded system can be represented without production authorization.",
+        "member_identity_policy": "PRESERVE_CANONICAL_SUBJECT",
+        "family_membership_creates_new_asset_identity": false
+      },
+      "members": [
+        {
+          "member_id": "OA-FIX-EXAMPLEBRAND-CHARGER",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "canonical_subject_ref": {
+            "source": "OBJECT_ATLAS",
+            "subject_id": "OA-FIX-EXAMPLEBRAND-CHARGER",
+            "canonical_name": "ExampleBrand charger"
+          },
+          "semantic_label": "ExampleBrand charger",
+          "identity_effect": "NONE"
+        },
+        {
+          "member_id": "OA-FIX-EXAMPLEBRAND-PHONE",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "canonical_subject_ref": {
+            "source": "OBJECT_ATLAS",
+            "subject_id": "OA-FIX-EXAMPLEBRAND-PHONE",
+            "canonical_name": "ExampleBrand phone"
+          },
+          "semantic_label": "ExampleBrand phone",
+          "identity_effect": "NONE"
+        }
+      ],
+      "source": {
+        "environment": "TEST_FIXTURE",
+        "derivation": "CURATED_WITH_EVIDENCE",
+        "evidence": [
+          {
+            "evidence_id": "EVID-SYSTEM-001",
+            "kind": "RIGHTS_EVIDENCE",
+            "ref": "fixture://h01-120/examplebrand-device-system"
+          }
+        ]
+      },
+      "rights_class": "BRAND_RESTRICTED",
+      "authority": {
+        "production_authorized": false,
+        "submission_authorized": false,
+        "publication_authorized": false,
+        "restricted_family_auto_eligible": false
+      },
+      "boundary": {
+        "is_design_set": false,
+        "is_derivative_bundle": false,
+        "is_listing_package": false,
+        "derivatives_create_family_members": false
+      },
+      "determinism": {
+        "family_id_algorithm": "SHA256",
+        "family_id_hex_chars": 24,
+        "member_order": "CANONICAL_SUBJECT_ID_ASC",
+        "key_material": [
+          "family_version",
+          "family_class",
+          "semantic_identity.semantic_key",
+          "members[].canonical_subject_ref.subject_id"
+        ]
+      }
+    }
+  ]
+}
