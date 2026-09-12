@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "component_id": {
+      "maxLength": 120,
+      "minLength": 3,
+      "type": "string"
+    },
+    "evidence_refs": {
+      "items": {
+        "maxLength": 300,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 50,
+      "type": "array"
+    },
+    "fingerprint": {
+      "maxLength": 240,
+      "minLength": 3,
+      "type": "string"
+    },
+    "incident_id": {
+      "maxLength": 160,
+      "minLength": 5,
+      "type": "string"
+    },
+    "level": {
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ]
+    },
+    "ownership": {
+      "additionalProperties": false,
+      "properties": {
+        "owner_ref": {
+          "maxLength": 240,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "enum": [
+            "UNAMBIGUOUS",
+            "AMBIGUOUS",
+            "UNKNOWN"
+          ]
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "type": "object"
+    },
+    "reconciliation": {
+      "additionalProperties": false,
+      "properties": {
+        "active_business_work": {
+          "type": "boolean"
+        },
+        "ambiguous_external_side_effect": {
+          "type": "boolean"
+        },
+        "browser_job_active": {
+          "type": "boolean"
+        },
+        "same_work_reconciled_safe": {
+          "type": "boolean"
+        },
+        "udd_lock_held": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "active_business_work",
+        "same_work_reconciled_safe",
+        "ambiguous_external_side_effect",
+        "browser_job_active",
+        "udd_lock_held"
+      ],
+      "type": "object"
+    },
+    "requested_playbook": {
+      "enum": [
+        "L0_REOBSERVE",
+        "L0_RECONCILE_SAME_WORK",
+        "L0_WAIT_BACKOFF",
+        "L1_RESTART_ALLOWLISTED_SYSTEMD"
+      ]
+    },
+    "schema": {
+      "const": "die.h01.recovery-incident.v1"
+    }
+  },
+  "required": [
+    "schema",
+    "incident_id",
+    "fingerprint",
+    "level",
+    "component_id",
+    "requested_playbook",
+    "ownership",
+    "reconciliation"
+  ],
+  "title": "H01 Recovery-only Supervisor Incident v1",
+  "type": "object"
+}

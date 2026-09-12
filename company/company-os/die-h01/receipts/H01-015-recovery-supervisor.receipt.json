@@ -1,0 +1,84 @@
+{
+  "boundary": {
+    "business_work_generation_authorized": false,
+    "explicit_incident_only": true,
+    "mission_control_remote_restart_authorized": false,
+    "mission_control_single_scheduler": true,
+    "provider_selection_authorized": false,
+    "supervisor_is_scheduler": false,
+    "task_selection_authorized": false
+  },
+  "l0": {
+    "live_canary": "L0_REOBSERVE PASS",
+    "live_mutation_performed": false,
+    "mutation_authorized": false,
+    "playbooks": [
+      "L0_REOBSERVE",
+      "L0_RECONCILE_SAME_WORK",
+      "L0_WAIT_BACKOFF"
+    ]
+  },
+  "l0_canary": {
+    "business_work_generated": false,
+    "decision": "ALLOW_L0",
+    "decision_sha256": "2099af600b13262275befdbb6fc48a640410efe73817a478cdb6148ba37b81a9",
+    "incident_sha256": "e581be0e07a4db544e3b130df5c5356e74ee93daca19166bb3edcba9d2457c52",
+    "mutation_performed": false,
+    "result_sha256": "5698c17c903914694ffec0e7dfca61fe15a1d8530048bf7ab544116742bb3e98",
+    "status": "PASS"
+  },
+  "l1": {
+    "allowlisted_unit_count": 8,
+    "browser_active_job_or_udd_lock_blocks_recovery": true,
+    "durable_attempt_written_before_mutation": true,
+    "external_side_effect_must_be_unambiguous": true,
+    "max_attempts_per_fingerprint_60m": 2,
+    "ownership_precondition": "UNAMBIGUOUS",
+    "playbook": "L1_RESTART_ALLOWLISTED_SYSTEMD",
+    "postcondition": "systemctl is-active == active",
+    "recur_after_success": "ESCALATE_L2",
+    "same_work_reconciliation_required_when_active": true
+  },
+  "live_observation": {
+    "all_allowlisted_services_active": true,
+    "cluster_a_active_leases": 0,
+    "cluster_a_browser_owner_active": true,
+    "cluster_a_state": "READY",
+    "cluster_b_active_leases": 0,
+    "cluster_b_browser_owner_active": true,
+    "cluster_b_state": "READY",
+    "cookies_read": false,
+    "observation_sha256": "eec4048d765786043ade3a29c50ce2e5c6edb44d948d55a4438590e22d349f42",
+    "session_bytes_read": false,
+    "tokens_read": false
+  },
+  "non_actions": {
+    "business_task_created": false,
+    "credential_or_login_mutation": false,
+    "legacy_hermes_restarted": false,
+    "live_l1_restart": false,
+    "opencode_restarted": false,
+    "provider_selected": false,
+    "queue_fed": false,
+    "source_or_config_repair_executed": false,
+    "spend": false,
+    "srv_die_mutated": false,
+    "submission_or_publication": false
+  },
+  "origin_main_at_start": "15dc757263699c156641a6a23423928fe6c85675",
+  "result": "PASS",
+  "schema": "die.h01.h01-015.recovery-supervisor.acceptance.v1",
+  "task_id": "H01-015",
+  "validation": {
+    "broad_h01_suite": "175/176 PASS; 1 pre-existing stale H01-303 assertion expects H01-305 READY although current canon has H01-305 DONE",
+    "combined_relevant": "47/47 PASS",
+    "focused_supervisor": "16/16 PASS",
+    "git_diff_check": "PASS",
+    "graph": "PASS H01-015 DONE / H01-016 READY",
+    "incident_fixture_schema": "PASS",
+    "mission_lease_secret_scan": "PASS",
+    "nonstale_worker_isolation": "9/9 PASS",
+    "relevant_acceptance_gateway_lifecycle": "38/38 PASS",
+    "schema_meta_validation": "PASS"
+  }
+}

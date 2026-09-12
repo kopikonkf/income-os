@@ -1,0 +1,79 @@
+{
+  "browser_owners": {
+    "browser.cluster-a-owner": {
+      "state": "active",
+      "unit": "die-muxia-cluster-a-browser.service"
+    },
+    "browser.cluster-b-owner": {
+      "state": "active",
+      "unit": "die-muxia-cluster-b-browser.service"
+    }
+  },
+  "control_plane": {
+    "mission_protocol": "mc-mission-v1",
+    "mission_task_id": "H01-015",
+    "origin_main": "15dc757263699c156641a6a23423928fe6c85675",
+    "scheduler_authority": "die-control/Mission Control",
+    "source": "MISSION_CONTROL_WORK_CARD_AND_H01_011_ACCEPTANCE",
+    "status": "HEALTHY"
+  },
+  "factories": {
+    "cluster-a": {
+      "active_leases": 0,
+      "browser_owner_pid": 957066,
+      "open_pages": 1,
+      "reachable": true,
+      "state": "READY"
+    },
+    "cluster-b": {
+      "active_leases": 0,
+      "browser_owner_pid": 957062,
+      "open_pages": 1,
+      "reachable": true,
+      "state": "READY"
+    }
+  },
+  "observed_at": 1789232243,
+  "safety": {
+    "business_graph_read": false,
+    "business_work_generated": false,
+    "cookies_read": false,
+    "session_bytes_read": false,
+    "tokens_read": false
+  },
+  "schema": "die.h01.recovery-observation.v1",
+  "services": {
+    "browser.cluster-a-owner": {
+      "state": "active",
+      "unit": "die-muxia-cluster-a-browser.service"
+    },
+    "browser.cluster-b-owner": {
+      "state": "active",
+      "unit": "die-muxia-cluster-b-browser.service"
+    },
+    "factory.cluster-a-broker": {
+      "state": "active",
+      "unit": "die-fa121-cluster-broker.service"
+    },
+    "factory.cluster-b-broker": {
+      "state": "active",
+      "unit": "die-muxia-cluster-b.service"
+    },
+    "factory.dispatch": {
+      "state": "active",
+      "unit": "die-muxia-dispatch.service"
+    },
+    "h01.division01-runtime-mcp": {
+      "state": "active",
+      "unit": "die-division01-runtime-mcp.service"
+    },
+    "h01.executive-runtime-mcp": {
+      "state": "active",
+      "unit": "die-executive-runtime-mcp.service"
+    },
+    "h01.runtime-mcp-ingress": {
+      "state": "active",
+      "unit": "die-runtime-mcp-cloudflared.service"
+    }
+  }
+}

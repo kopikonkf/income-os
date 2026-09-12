@@ -1,0 +1,87 @@
+{
+  "authority": {
+    "business_work_generation_authorized": false,
+    "provider_selection_authorized": false,
+    "remote_mission_control_restart_authorized": false,
+    "scheduler_owner": "die-control/Mission Control",
+    "scope_expansion_authorized": false,
+    "supervisor_is_scheduler": false,
+    "task_selection_authorized": false
+  },
+  "durable_ledger": "/var/lib/die/h01/supervisor/recovery-ledger.json",
+  "execution_model": {
+    "background_poll_loop": false,
+    "graph_reader": false,
+    "one_incident_per_invocation": true,
+    "queue_feeder": false,
+    "timer_scheduler": false,
+    "trigger": "EXPLICIT_INCIDENT_ONLY"
+  },
+  "forbidden": [
+    "business task creation",
+    "queue feeding",
+    "provider/task selection",
+    "prompt/seed generation",
+    "credential/login mutation",
+    "spend",
+    "submission/publication",
+    "Git/source edits as recovery",
+    "destructive cleanup",
+    "remote shell/API generalization",
+    "restart of legacy Hermes/OpenCode",
+    "/srv/die mutation"
+  ],
+  "l1_preconditions": [
+    "ownership UNAMBIGUOUS",
+    "no ambiguous external side effect",
+    "active durable work absent or reconciled safe",
+    "browser owner has no active browser job and no held UDD lock",
+    "anti-loop budget available"
+  ],
+  "l1_systemd_allowlist": {
+    "browser.cluster-a-owner": "die-muxia-cluster-a-browser.service",
+    "browser.cluster-b-owner": "die-muxia-cluster-b-browser.service",
+    "factory.cluster-a-broker": "die-fa121-cluster-broker.service",
+    "factory.cluster-b-broker": "die-muxia-cluster-b.service",
+    "factory.dispatch": "die-muxia-dispatch.service",
+    "h01.division01-runtime-mcp": "die-division01-runtime-mcp.service",
+    "h01.executive-runtime-mcp": "die-executive-runtime-mcp.service",
+    "h01.runtime-mcp-ingress": "die-runtime-mcp-cloudflared.service"
+  },
+  "levels": {
+    "L0": {
+      "mutation": false,
+      "playbooks": [
+        "L0_REOBSERVE",
+        "L0_RECONCILE_SAME_WORK",
+        "L0_WAIT_BACKOFF"
+      ]
+    },
+    "L1": {
+      "max_attempts_per_fingerprint_60m": 2,
+      "mutation": "EXACT_ALLOWLIST_ONLY",
+      "playbook": "L1_RESTART_ALLOWLISTED_SYSTEMD",
+      "recur_after_success": "ESCALATE_L2"
+    },
+    "L2": "ESCALATE_ENGINEERING",
+    "L3": "ESCALATE_FOUNDER"
+  },
+  "local_observation": {
+    "browser_owner_observation": "systemd owner status + broker sanitized status",
+    "cookies_tokens_session_bytes_read": false,
+    "factory_endpoints": [
+      "http://127.0.0.1:39121/v1/status",
+      "http://127.0.0.1:39122/v1/status"
+    ],
+    "fixed_systemd_units": 8
+  },
+  "observe_only": [
+    "mission-control",
+    "universal-mcp"
+  ],
+  "postcondition": "systemctl is-active == active",
+  "revision": "1.0.0",
+  "schema": "die.h01.recovery-supervisor-runtime.v1",
+  "state": "IMPLEMENTED_NOT_DAEMONIZED",
+  "task_id": "H01-015"
+}

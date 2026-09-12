@@ -315,3 +315,13 @@ Mission Control task `H01-013` completed through automatic canonical intake, own
 ## 2026-09-12 - H01-014 DONE/PASS via Mission Control reviewed canonical writeback
 
 Mission Control task `H01-014` completed through automatic canonical intake, owner execution and no-review completion. Canonical graph transitions: `H01-014 READY->DONE`. Receipt: `company/company-os/die-h01/receipts/H01-014-mission-control-auto-acceptance.receipt.json`. No external marketplace submission, spend, credential mutation, or live-load authority was granted by this writeback.
+
+## 30. H01-015 recovery-only Supervisor standing
+
+H01-015 implements `recovery_supervisor.py` as an explicit-incident recovery executor, not a business scheduler. Mission Control on `die-control` remains the sole scheduler. The Supervisor has no feeder, task-graph intake loop, provider/task selection, prompt/seed generation, business-work creation, or scope-expansion authority. It handles one supplied incident per invocation.
+
+L0 is non-mutating and admits only re-observation, same-durable-work reconciliation, and bounded wait/backoff. L1 admits only one exact playbook: restart an allowlisted local systemd component, followed by `systemctl is-active` functional verification. The local allowlist covers H01 runtime MCP/ingress, Factory A/B brokers/dispatch, and Cluster A/B browser-owner services. Mission Control and Universal MCP are observe-only from H01; legacy Hermes/OpenCode are excluded.
+
+L1 fails closed unless ownership is unambiguous, external side effects are non-ambiguous, active durable work is absent or reconciled safe, and browser-owner recovery has no active browser job or held UDD lock. A durable local ledger records attempts before mutation, limits one fingerprint to at most two L1 attempts in 60 minutes, and escalates a recurrence after successful L1 recovery to L2 rather than restart-looping. L2/L3 never execute local recovery.
+
+A live read-only acceptance observation found all eight allowlisted H01 units active; Factory Cluster A/B both `READY` with zero active leases and active browser owners. The acceptance canary executed only `L0_REOBSERVE`, proving the execution path without mutating any service/browser/job. No live L1 restart was justified. Cookies, tokens, session bytes, business graph scheduling, `/srv/die`, external submission, spend and credentials remained untouched. With H01-014 and H01-015 DONE, H01-016 becomes READY to prove single-scheduler/anti-duplicate dispatch.
