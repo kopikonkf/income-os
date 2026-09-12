@@ -543,7 +543,7 @@
     {
       "id": "H01-122",
       "track": "FAMILY_SET",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-120"
