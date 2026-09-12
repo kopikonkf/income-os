@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authority": {
+      "additionalProperties": false,
+      "properties": {
+        "dispatch_commit_id": {
+          "maxLength": 160,
+          "minLength": 8,
+          "type": "string"
+        },
+        "dispatch_semantics": {
+          "const": "EXACTLY_ONCE"
+        },
+        "publication_authorized": {
+          "const": false
+        },
+        "submission_authorized": {
+          "const": false
+        }
+      },
+      "required": [
+        "dispatch_semantics",
+        "dispatch_commit_id",
+        "submission_authorized",
+        "publication_authorized"
+      ],
+      "type": "object"
+    },
+    "contract_revision": {
+      "const": "1.0.0"
+    },
+    "idempotency_key": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "ingress": {
+      "enum": [
+        "WEB_AI_ADAPTER",
+        "NATIVE_MCP"
+      ]
+    },
+    "lineage": {
+      "additionalProperties": false,
+      "properties": {
+        "blueprint_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "master_instruction_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "prompt_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "blueprint_sha256",
+        "master_instruction_sha256",
+        "prompt_sha256"
+      ],
+      "type": "object"
+    },
+    "native_svg_claim": {
+      "additionalProperties": false,
+      "properties": {
+        "conversion_from_raster": {
+          "type": "boolean"
+        },
+        "embedded_raster": {
+          "type": "boolean"
+        },
+        "native_editable": {
+          "type": "boolean"
+        },
+        "source_kind": {
+          "enum": [
+            "DIRECT_PROVIDER_SVG_SOURCE",
+            "NONE"
+          ]
+        },
+        "success_claim_allowed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "source_kind",
+        "native_editable",
+        "conversion_from_raster",
+        "embedded_raster",
+        "success_claim_allowed"
+      ],
+      "type": "object"
+    },
+    "provider_id": {
+      "type": "string"
+    },
+    "provider_result": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_svg_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "error_code": {
+          "maxLength": 120,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "error_detail": {
+          "maxLength": 1000,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "finish_reason": {
+          "maxLength": 240,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "payload_kind": {
+          "enum": [
+            "SVG_SOURCE_TEXT",
+            null
+          ],
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "provider_request_id": {
+          "maxLength": 240,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "provider_response_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "provider_status": {
+          "maxLength": 120,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider_status",
+        "provider_request_id",
+        "finish_reason",
+        "error_code",
+        "error_detail",
+        "provider_response_sha256",
+        "payload_kind",
+        "candidate_svg_sha256"
+      ],
+      "type": "object"
+    },
+    "queue_item_id": {
+      "type": "string"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "schema": {
+      "const": "die.h01.native-svg-receipt.v1"
+    },
+    "semantic_asset_id": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "SUCCEEDED",
+        "FAILED",
+        "BLOCKED",
+        "TIMEOUT",
+        "CANCELLED"
+      ]
+    },
+    "validation": {
+      "additionalProperties": false,
+      "properties": {
+        "canonical_svg_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "engine": {
+          "const": "H01-103"
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_RUN"
+          ]
+        }
+      },
+      "required": [
+        "engine",
+        "status",
+        "canonical_svg_sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "contract_revision",
+    "request_id",
+    "idempotency_key",
+    "queue_item_id",
+    "semantic_asset_id",
+    "provider_id",
+    "ingress",
+    "status",
+    "lineage",
+    "provider_result",
+    "native_svg_claim",
+    "validation",
+    "authority"
+  ],
+  "title": "H01 Provider-Independent Native SVG Receipt v1",
+  "type": "object"
+}

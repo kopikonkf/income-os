@@ -1,0 +1,43 @@
+{
+  "acceptance": {
+    "blueprint_hash_preserved": true,
+    "exactly_once_dispatch_guard": true,
+    "h01_103_pass_required_for_success": true,
+    "master_instruction_hash_preserved": true,
+    "native_mcp_optional": true,
+    "prompt_hash_preserved": true,
+    "provider_result_preserved": true,
+    "raster_trace_success_forbidden": true,
+    "web_ai_adapter_default": true
+  },
+  "fixture": {
+    "candidate_svg_sha256": "5be66398af81d4b640a1a26acec79a6440d924edbad97328250796a005630d8b",
+    "canonical_name": "book",
+    "canonical_svg_sha256": "2fd3eff13af373475f72cc55d040c53aae8383825e78cf89fcca1970a1e4678c",
+    "idempotency_key": "5f0bd08d51ed7f7fc8f39981ed3aa8afbdf21dc73a5238b9445c2509f132e3a0",
+    "ingress": "WEB_AI_ADAPTER",
+    "live_provider_call_made": false,
+    "provider_id": "claude",
+    "queue_item_id": "H01-SVGQ-CAND-0829866",
+    "source_candidate_id": "CAND-0829866"
+  },
+  "origin_main_at_start": "68b809876b64242a915d7b944148c07c5af0d38b",
+  "result": "PASS",
+  "safety": {
+    "atlas_mutated": false,
+    "credentials_or_cookies_persisted": false,
+    "provider_call_made": false,
+    "second_scheduler_created": false,
+    "srv_die_mutated": false
+  },
+  "schema": "die.h01.h01-104.native-svg-request-receipt.acceptance.v1",
+  "task_id": "H01-104",
+  "validation": {
+    "combined_h01_101_102_104_worktree_tests": "37/37 PASS",
+    "focused_tests": "15/15 PASS",
+    "git_diff_check": "PASS",
+    "h01_103_runtime_fixture": "PASS",
+    "schema_meta_validation": "PASS",
+    "secret_literal_scan": "PASS"
+  }
+}
