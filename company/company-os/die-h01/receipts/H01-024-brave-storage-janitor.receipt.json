@@ -1,0 +1,94 @@
+{
+  "capacity_gate_before": {
+    "admit": true,
+    "forecast_per_additional_live_profile_bytes": 536870912,
+    "max_live_profiles": 5,
+    "minimum_free_reserve_bytes": 21474836480,
+    "required_free_bytes": 24159191040
+  },
+  "fabric_measurement_after": {
+    "capacity_admit": true,
+    "live_brave_profiles": 0,
+    "p001_bytes": 59359232,
+    "p006_bytes": 31272960,
+    "populated_count": 2
+  },
+  "fabric_measurement_before": {
+    "largest_profiles": [
+      {
+        "bytes": 317739008,
+        "profile_id": "h01-web-p001",
+        "udd_id": "h01-web-s01"
+      },
+      {
+        "bytes": 31272960,
+        "profile_id": "h01-web-p006",
+        "udd_id": "h01-web-s02"
+      }
+    ],
+    "live_brave_profiles": 0,
+    "populated_count": 2,
+    "populated_threshold_bytes": 16777216,
+    "profile_count": 100,
+    "udd_count": 20
+  },
+  "filesystem_after": {
+    "free_bytes": 82504069120,
+    "free_bytes_delta": 258404352,
+    "total_bytes": 133569777664,
+    "used_bytes": 44233449472
+  },
+  "filesystem_before": {
+    "free_bytes": 82245664768,
+    "total_bytes": 133569777664,
+    "used_bytes": 44491853824,
+    "used_percent": 36
+  },
+  "host_deployment": {
+    "gate_path": "/opt/die/h01/bin/h01-brave-storage-gate",
+    "gate_sha256": "557e1d16c98d308c0f271a6339d9d967f006ffa04d6c18e7d32b35c20bf27402",
+    "launcher_admit_integration": "PASS",
+    "launcher_path": "/opt/die/h01/bin/h01-brave-profile",
+    "launcher_sha256_after": "bf39f66b86e57889f9f0c6d98202612733ea90965488b5a203720ca73fae3d14",
+    "launcher_sha256_before": "74027d4abe7e1d986bfbd7308fd10f8e85920e56d8db32110d528e6bfb023cf1",
+    "rollback_path": "/var/lib/die/h01/rollback/H01-024/h01-brave-profile.pre-h01-024",
+    "rollback_sha256": "74027d4abe7e1d986bfbd7308fd10f8e85920e56d8db32110d528e6bfb023cf1"
+  },
+  "janitor": {
+    "allowlisted_paths_only": true,
+    "cookies_or_tokens_read": false,
+    "credential_values_read": false,
+    "dry_run_reclaimable_bytes": 258408448,
+    "executed": true,
+    "profile_id": "h01-web-p001",
+    "protected_entries_touched": false,
+    "session_bytes_read": false,
+    "udd_closed": true,
+    "udd_id": "h01-web-s01",
+    "udd_lock_acquired": true
+  },
+  "origin_main_at_start": "a2cbcc80b26f9cfb9d9e064e9c814a1fb3d47b51",
+  "result": "PASS",
+  "safety": {
+    "authentication_store_deleted": false,
+    "profiles_deleted": false,
+    "provider_generation_dispatched": false,
+    "publication_authorized": false,
+    "session_store_deleted": false,
+    "srv_die_mutated": false,
+    "storage_purchase_authorized": false,
+    "submission_authorized": false,
+    "topology_changed": false
+  },
+  "schema": "die.h01.h01-024.brave-storage-janitor.acceptance.v1",
+  "task_id": "H01-024",
+  "tests": {
+    "broad_h01": "197/198 PASS; sole failure is the pre-existing stale H01-303 assertion expecting H01-305 READY although canon has H01-305 DONE",
+    "focused": "10/10 PASS",
+    "git_diff_check": "PASS",
+    "host_gate_sha_parity": "PASS",
+    "relevant_browser_storage": "38/38 PASS",
+    "rollback_launcher_sha_parity": "PASS",
+    "secret_scan": "PASS"
+  }
+}

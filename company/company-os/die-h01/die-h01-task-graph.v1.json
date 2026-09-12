@@ -220,7 +220,7 @@
     {
       "id": "H01-024",
       "track": "BROWSER_FABRIC",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-021",
@@ -228,7 +228,8 @@
       ],
       "title": "Implement Brave storage and janitor capacity gate",
       "acceptance": "Measure populated-profile growth; clean only regenerable cache while UDD is closed; protect authentication/session stores; added storage may satisfy capacity without changing topology.",
-      "founder_policy": "Founder approved bounded execution on 2026-09-12: current 125 GiB filesystem with ~77 GiB free is adequate for the present stage; 100 Brave profile launchers are provisioned but profiles are activated/authenticated incrementally; hard cap is at most 5 live Brave profiles; storage expansion is planned next week and is not an automatic spend authority. Janitor may remove only regenerable cache while the UDD is closed and must protect authentication/session stores."
+      "founder_policy": "Founder approved bounded execution on 2026-09-12: current 125 GiB filesystem with ~77 GiB free is adequate for the present stage; 100 Brave profile launchers are provisioned but profiles are activated/authenticated incrementally; hard cap is at most 5 live Brave profiles; storage expansion is planned next week and is not an automatic spend authority. Janitor may remove only regenerable cache while the UDD is closed and must protect authentication/session stores.",
+      "result": "PASS: live Brave storage/capacity gate installed and launcher-integrated; 100-profile topology unchanged, <=5 live cap enforced, 20 GiB reserve + conservative profile-growth forecast; closed s01/p001 janitor reclaimed ~258.4 MB from cache allowlist only while auth/session stores remained protected. Added storage can satisfy capacity without topology change."
     },
     {
       "id": "H01-025",
