@@ -1,0 +1,127 @@
+{
+  "$defs": {
+    "bootstrap": {
+      "additionalProperties": false,
+      "properties": {
+        "completion_marker": {
+          "pattern": "^MC005_ARCHITECT_RESULT_.+$",
+          "type": "string"
+        },
+        "dispatch_id": {
+          "maxLength": 160,
+          "minLength": 3,
+          "type": "string"
+        },
+        "mission_lease_token": {
+          "maxLength": 300,
+          "minLength": 10,
+          "type": "string",
+          "writeOnly": true
+        },
+        "mission_principal_id": {
+          "maxLength": 120,
+          "minLength": 1,
+          "type": "string"
+        },
+        "project_name": {
+          "maxLength": 240,
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "die.h01.architect-browser-worker-bootstrap.v1"
+        },
+        "task_id": {
+          "pattern": "^H01-[A-Z0-9-]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "project_name",
+        "task_id",
+        "mission_principal_id",
+        "mission_lease_token",
+        "dispatch_id",
+        "completion_marker"
+      ],
+      "type": "object"
+    },
+    "durable_result": {
+      "additionalProperties": false,
+      "properties": {
+        "artifacts": {
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "dispatch_id": {
+          "maxLength": 160,
+          "minLength": 3,
+          "type": "string"
+        },
+        "origin_main": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "repo_write_lease_released": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "schema_version": {
+          "const": "die.h01.architect-browser-worker-result.v1"
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "BLOCKED"
+          ]
+        },
+        "summary": {
+          "maxLength": 8000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "task_id": {
+          "pattern": "^H01-[A-Z0-9-]+$",
+          "type": "string"
+        },
+        "validation": {
+          "type": "object"
+        },
+        "worktree_closed": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "status",
+        "task_id",
+        "dispatch_id",
+        "summary",
+        "artifacts"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "die.h01.architect-browser-worker-session-envelope.v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/bootstrap"
+    },
+    {
+      "$ref": "#/$defs/durable_result"
+    }
+  ],
+  "title": "DIE H01 Architect Browser Worker Session Envelope v1"
+}

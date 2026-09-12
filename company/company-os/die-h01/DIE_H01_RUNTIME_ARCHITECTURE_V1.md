@@ -172,3 +172,13 @@ H01-101 exports the Founder-locked 43,005 `candidate_seeds.wave3_status=eligible
 H01-101 does not rewrite or re-rank Atlas. Wave-3 eligibility remains the source rights/isolated-object feasibility authority: all 43,005 exported rows have `ip_risk=none` and accepted suitability evidence. The 338 rows whose earlier Wave-2 source tier was `review` remain dispatch-eligible because Wave-3 explicitly promoted them to `eligible`; that lineage is preserved rather than overwritten.
 
 The accepted queue contains 43,005 unique queue IDs and 43,005 unique idempotency keys. Its SHA-256 is `0f0ec826a81d888a2be3f0b4bd11d6327f7202963d70add639f2092cdf46beeb`; the source-selection fingerprint is `dd366a552e906a1bb626a2af2d24790a4dcc371b12a3cc8db506973d0d707086`. First export returned `CREATED`; repeated exports returned `UNCHANGED`. Object Atlas was opened read-only and its DB SHA/metadata remained unchanged.
+
+## 19. H01-300 Architect browser-worker session standing
+
+H01-300 freezes `DIE_H01_ARCHITECT_BROWSER_WORKER_SESSION_V1.md` as the engineering browser-worker boundary. One authenticated ChatGPT Architect browser session owns exactly one Mission Control task attempt, one principal, one task-scoped owner lease capability and one dispatch identity. Project context is recovered first for continuity, but current `mission.task.get` plus current canon remain authority; chat memory and rendered prose never mark a task DONE.
+
+Repository engineering uses exactly one H01-003 isolated worktree at `/home/kopiko/die-sessions/<task_id>`, never `/srv/die`. Remote Git mutation remains separately serialized by `income-os.repo-write + company-os.<task_id>` acquired immediately before publication and released in `finally`; the Mission owner lease does not itself grant repository-write coordination.
+
+The browser completion marker is exactly `MC005_ARCHITECT_RESULT_<dispatch_id>` and is correlation evidence only. It is emitted as the final non-whitespace line only after `mission.task.complete` returns durable success. Blocked work, owner-lease loss, browser closure, local commits or ordinary assistant claims must not emit a success marker or be interpreted as completion. Mission lease/review capabilities remain ephemeral and are forbidden from canonical receipts/results.
+
+H01-300 is contract-only. Browser/CDP dispatch remains H01-301, progress-aware durable completion ingestion remains H01-302, and parallel worktree/Git/lease enforcement remains H01-303. Therefore H01-301 and H01-303 become READY after this contract; deeper canary/scaling tasks remain dependency-blocked.

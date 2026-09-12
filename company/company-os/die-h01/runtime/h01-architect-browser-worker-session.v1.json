@@ -1,0 +1,94 @@
+{
+  "bootstrap": {
+    "bootstrap_is_task_truth": false,
+    "completion_marker_template": "MC005_ARCHITECT_RESULT_<dispatch_id>",
+    "lease_token_ephemeral": true,
+    "lease_token_persisted": false,
+    "must_call_mission_task_get_before_execution": true,
+    "must_reconcile_current_canon": true,
+    "must_recover_project_context_first": true,
+    "required_ephemeral_fields": [
+      "project_name",
+      "task_id",
+      "mission_principal_id",
+      "mission_lease_token",
+      "dispatch_id",
+      "completion_marker"
+    ]
+  },
+  "cardinality": {
+    "dispatch_attempts_per_session": 1,
+    "mutable_worktrees_per_task": 1,
+    "owner_leases_per_session": 1,
+    "principals_per_session": 1,
+    "tasks_per_session": 1
+  },
+  "completion_marker": {
+    "authority": "CORRELATION_ONLY",
+    "bound_to": "dispatch_id",
+    "emit_on_block": false,
+    "emit_on_lease_loss": false,
+    "emit_only_after_mission_complete_ok": true,
+    "must_be_final_non_whitespace_line": true,
+    "prefix": "MC005_ARCHITECT_RESULT_"
+  },
+  "downstream_tasks": {
+    "completion_detector": "H01-302",
+    "dispatcher": "H01-301",
+    "graph_width_scaling": "H01-305",
+    "parallel_isolation": "H01-303",
+    "two_worker_canary": "H01-304"
+  },
+  "durable_authority": {
+    "block_method": "mission.task.block",
+    "chat_text_can_mark_done": false,
+    "checkpoint_method": "mission.task.checkpoint",
+    "complete_method": "mission.task.complete",
+    "marker_can_mark_done_alone": false,
+    "task_truth": "Mission Control Work Card + current canon"
+  },
+  "forbidden_persisted_keys": [
+    "mission_lease_token",
+    "leaseToken",
+    "review_token",
+    "reviewToken",
+    "cookie",
+    "cookies",
+    "access_token",
+    "refresh_token",
+    "authorization",
+    "credential",
+    "credentials",
+    "session_bytes"
+  ],
+  "holding_id": "H01",
+  "implementation_status": "CONTRACT_ONLY_NOT_DISPATCHER_IMPLEMENTATION",
+  "mission_control_is_scheduler": true,
+  "non_goals": [
+    "browser_cdp_dispatch_implementation",
+    "completion_detector_implementation",
+    "parallel_worker_enforcement",
+    "udd_profile_leasing",
+    "production_asset_generation"
+  ],
+  "publication": {
+    "acquire_immediately_before_remote_mutation": true,
+    "lease_root": "D:\\mcp-architect\\workspace\\.engineering-leases",
+    "release_in_finally": true,
+    "resources": [
+      "income-os.repo-write",
+      "company-os.<task_id>"
+    ],
+    "session_owner_lease_is_repo_write_permission": false
+  },
+  "schema_version": "die.h01.architect-browser-worker-session.v1",
+  "worker_is_scheduler": false,
+  "worker_kind": "CHATGPT_ARCHITECT_BROWSER_WORKER",
+  "workspace": {
+    "lifecycle_helper": "bin/die_h01_worktree.py",
+    "path_template": "/home/kopiko/die-sessions/<task_id>",
+    "protected_root": "/srv/die",
+    "protected_root_engineering_mutation_allowed": false,
+    "shared_mutable_worktree_allowed": false
+  }
+}
