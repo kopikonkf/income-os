@@ -1,0 +1,76 @@
+{
+  "gates": {
+    "feasibility": {
+      "PASS": 43005
+    },
+    "rights": {
+      "PASS": 43005
+    },
+    "wave2_review_rows_preserved_as_wave3_eligible": 338
+  },
+  "idempotency": {
+    "existing_conflict_fails_closed": true,
+    "first_run": "CREATED",
+    "second_run": "UNCHANGED",
+    "third_run_after_readonly_lock": "UNCHANGED",
+    "unique_idempotency_keys": 43005
+  },
+  "observed_at": "2026-09-12T04:50:00Z",
+  "origin_main_at_start": "d7b74ba524cbf19d606411af3fe2841ee3c59453",
+  "production": {
+    "form": "SINGLE",
+    "media": "VECTOR",
+    "mode": "VECTOR_OBJECT",
+    "preset": "CLEAN_STOCK_VECTOR_V1"
+  },
+  "queue": {
+    "dispatch_eligible": 43005,
+    "manifest_path": "/var/lib/die/h01/queues/svg-standalone-v1/manifest.json",
+    "mode": "0444",
+    "ordering": [
+      "raw_noun_id ASC",
+      "id ASC"
+    ],
+    "queue_bytes": 23726240,
+    "queue_id_contract": "H01-SVGQ-<candidate_seed_id>",
+    "queue_path": "/var/lib/die/h01/queues/svg-standalone-v1/queue.jsonl",
+    "queue_sha256": "0f0ec826a81d888a2be3f0b4bd11d6327f7202963d70add639f2092cdf46beeb",
+    "root": "/var/lib/die/h01/queues/svg-standalone-v1",
+    "rows": 43005
+  },
+  "result": "PASS",
+  "safety": {
+    "atlas_write": false,
+    "demand_ranking_added": false,
+    "runtime_cutover": false,
+    "service_restart": false,
+    "srv_die_mutated": false
+  },
+  "schema": "die.h01.h01-101.svg-production-queue.receipt.v1",
+  "source": {
+    "db": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db",
+    "db_bytes": 1210916864,
+    "db_sha256": "e56bdbbba1e70cca74f5f1b59439802d929f66a9fcb730278bc67d637901bf2e",
+    "eligible_rows": 43005,
+    "ip_risk_counts": {
+      "none": 43005
+    },
+    "mutated": false,
+    "quick_check": "ok",
+    "selection": "candidate_seeds.wave3_status='eligible'",
+    "source_selection_sha256": "dd366a552e906a1bb626a2af2d24790a4dcc371b12a3cc8db506973d0d707086",
+    "source_tier_counts": {
+      "pass": 42667,
+      "review": 338
+    },
+    "unique_candidate_ids": 43005,
+    "unique_normalized_names": 43005,
+    "unique_raw_noun_ids": 43005
+  },
+  "task_id": "H01-101",
+  "validation": {
+    "independent_live_queue_validation": "PASS",
+    "source_hash_before_equals_after": true,
+    "unit_tests": "6/6 PASS"
+  }
+}

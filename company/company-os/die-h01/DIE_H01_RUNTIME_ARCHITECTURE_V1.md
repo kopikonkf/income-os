@@ -164,3 +164,11 @@ H01-012 freezes `DIE_H01_RUNTIME_GATEWAY_V1.md` as the logical cross-VPS boundar
 Dispatch is store-before-ack and replay-safe by dispatch/idempotency/digest identity; H01 journals execution and outbound events locally, and transient WAN failure may not create a second execution. Checkpoint/result events are projected by a privileged control-side bridge onto canonical `mc-mission-v1` methods, while Mission lease/review capabilities remain ephemeral control-side authority and are not persisted on H01.
 
 Brave lifecycle, CDP, UDD/profile paths, provider sessions/waits/retries, shell/filesystem operations, downloads, SVG bytes, QA/conversion, artifact bytes and cache operations remain H01-local. Per-click WAN orchestration is forbidden. H01-012 is contract-only: no gateway daemon, port, tunnel, browser or runtime cutover was changed.
+
+## 18. H01-101 deterministic SVG production queue standing
+
+H01-101 exports the Founder-locked 43,005 `candidate_seeds.wave3_status=eligible` rows into a deterministic read-only queue under `/var/lib/die/h01/queues/svg-standalone-v1`. Queue identity derives from the stable Atlas candidate ID, ordering is `raw_noun_id ASC, id ASC`, and the idempotency key binds candidate identity to the fixed `VECTOR / VECTOR_OBJECT / SINGLE / CLEAN_STOCK_VECTOR_V1` production contract.
+
+H01-101 does not rewrite or re-rank Atlas. Wave-3 eligibility remains the source rights/isolated-object feasibility authority: all 43,005 exported rows have `ip_risk=none` and accepted suitability evidence. The 338 rows whose earlier Wave-2 source tier was `review` remain dispatch-eligible because Wave-3 explicitly promoted them to `eligible`; that lineage is preserved rather than overwritten.
+
+The accepted queue contains 43,005 unique queue IDs and 43,005 unique idempotency keys. Its SHA-256 is `0f0ec826a81d888a2be3f0b4bd11d6327f7202963d70add639f2092cdf46beeb`; the source-selection fingerprint is `dd366a552e906a1bb626a2af2d24790a4dcc371b12a3cc8db506973d0d707086`. First export returned `CREATED`; repeated exports returned `UNCHANGED`. Object Atlas was opened read-only and its DB SHA/metadata remained unchanged.
