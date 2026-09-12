@@ -149,7 +149,7 @@
     {
       "id": "H01-015",
       "track": "CONTROL_PLANE",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-011",
@@ -161,7 +161,7 @@
     {
       "id": "H01-016",
       "track": "CONTROL_PLANE",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-014",

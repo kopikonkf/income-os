@@ -1,0 +1,13 @@
+{
+  "business_work_generation_authorized": false,
+  "component_id": "factory.cluster-a-broker",
+  "decision": "ALLOW_L0",
+  "fingerprint": "h01-015:acceptance:healthy-reobserve",
+  "incident_id": "H01-015-L0-CANARY-001",
+  "level": "L0",
+  "mutation_authorized": false,
+  "reason": "BOUNDED_NONMUTATING_RECOVERY",
+  "requested_playbook": "L0_REOBSERVE",
+  "scheduler_authorized": false,
+  "schema": "die.h01.recovery-decision.v1"
+}

@@ -58,9 +58,9 @@ class H011DieControlAcceptanceTests(unittest.TestCase):
         by={t['id']:t for t in GRAPH['tasks']}
         self.assertEqual(by['H01-011']['status'],'DONE')
         self.assertEqual(by['H01-012']['status'],'DONE')
-        self.assertEqual(by['H01-013']['status'],'READY')
-        self.assertEqual(by['H01-014']['status'],'READY')
-        self.assertEqual(by['H01-015']['status'],'READY')
+        self.assertIn(by['H01-013']['status'],('READY','DONE'))
+        self.assertIn(by['H01-014']['status'],('READY','DONE'))
+        self.assertIn(by['H01-015']['status'],('READY','DONE'))
 
     def test_receipt_contains_no_mission_owner_capability(self):
         raw=json.dumps(RECEIPT)

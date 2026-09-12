@@ -1,0 +1,11 @@
+{
+  "schema":"die.h01.recovery-incident.v1",
+  "incident_id":"H01-015-L0-CANARY-001",
+  "fingerprint":"h01-015:acceptance:healthy-reobserve",
+  "level":"L0",
+  "component_id":"factory.cluster-a-broker",
+  "requested_playbook":"L0_REOBSERVE",
+  "ownership":{"status":"UNAMBIGUOUS","owner_ref":"die-fa121-cluster-broker.service"},
+  "reconciliation":{"active_business_work":false,"same_work_reconciled_safe":true,"ambiguous_external_side_effect":false,"browser_job_active":false,"udd_lock_held":false},
+  "evidence_refs":["company/company-os/die-h01/fixtures/h01-015/live-observation.sanitized.json"]
+}
