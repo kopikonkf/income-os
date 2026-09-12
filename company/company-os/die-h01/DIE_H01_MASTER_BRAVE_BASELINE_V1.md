@@ -1,6 +1,6 @@
 # DIE H01 Master Brave Profile Baseline v1
 
-Status: **READY FOR FOUNDER ACCEPTANCE**
+Status: **DONE / PASS — FOUNDER ACCEPTED**
 Task: `H01-022`
 Date: 2026-09-12
 
@@ -55,4 +55,4 @@ H01-024 additionally measured populated-profile growth and accepted the storage/
 
 ## Founder boundary
 
-Architect evidence is complete. This document does **not** self-authorize H01-022 DONE. The task remains `FOUNDER_REQUIRED` until the Founder accepts this baseline. No pre-authentication of all 100 profiles is requested or implied.
+Architect evidence is complete and the Founder accepted this baseline on 2026-09-12. H01-022 is DONE. No pre-authentication of all 100 profiles is requested or implied; authentication remains incremental/on-demand.
