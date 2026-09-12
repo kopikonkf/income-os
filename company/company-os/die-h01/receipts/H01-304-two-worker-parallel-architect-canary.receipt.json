@@ -1,0 +1,75 @@
+{
+  "schema": "die.h01.parallel-architect-canary.acceptance.v1",
+  "task_id": "H01-304",
+  "status": "PASS",
+  "date": "2026-09-12",
+  "founder_authorization": "Founder explicitly instructed Architect to continue after all three lanes completed and assign new lane work.",
+  "acceptance": "Two independent dependency-safe tasks executed in separate browser workers, checkpointed durably, completed and returned auditable artifacts without mutable-worktree collision.",
+  "workers": [
+    {
+      "task_id": "H01-121",
+      "resource": "architect-primary",
+      "browser_scope": "GLOBAL",
+      "worktree": "/home/kopiko/die-sessions/H01-121",
+      "branch": "canary/h01-121-parallel-20260912",
+      "checkpoint_progress": [
+        5,
+        70,
+        100
+      ],
+      "terminal": "DONE",
+      "owner_attempt_terminal": "SUCCESS_PROTOCOL",
+      "implementation_pr": 371,
+      "merge_commit": "3d7044b1eefd61d379b171bedee6fb9f586e1a8d"
+    },
+    {
+      "task_id": "H01-122",
+      "resource": "h01-display12-cdp9100",
+      "browser_scope": "HOLDING_LOCAL",
+      "worktree": "/home/kopiko/die-sessions/H01-122",
+      "branch": "canary/h01-122-parallel-20260912",
+      "checkpoint_progress": [
+        10,
+        25,
+        60,
+        80,
+        95,
+        95,
+        100
+      ],
+      "terminal": "DONE",
+      "owner_attempt_terminal": "SUCCESS_PROTOCOL",
+      "implementation_pr": 370,
+      "merge_commit": "4deda4a02b34a7da8ef23ce0cb3cd54067f07ea7"
+    }
+  ],
+  "canary_findings": [
+    "Principal identity and browser resource identity must be separate; HOLDING_LOCAL H01 browser work must not consume the Windows architect-primary pool.",
+    "Lease expiry must terminalize the active owner attempt as LEASE_EXPIRED before retry.",
+    "Browser submit acceptance must be proven after send; composer mutation alone is insufficient.",
+    "Durable Mission Control terminal state is authority; exact rendered chat marker is supplemental evidence and must not be required to recognize BLOCKED/DONE."
+  ],
+  "mission_control_fixes": [
+    {
+      "version": "0.8.44",
+      "pr": 69,
+      "purpose": "separate principal/browser-resource scope"
+    },
+    {
+      "version": "0.8.45",
+      "pr": 70,
+      "purpose": "reconcile owner attempt on lease expiry"
+    }
+  ],
+  "collision_controls": {
+    "separate_worktrees": true,
+    "separate_branches": true,
+    "distinct_browser_resources": true,
+    "shared_mutable_worktree": false,
+    "live_srv_die_mutated": false
+  },
+  "resulting_graph_transition": [
+    "H01-304 READY->DONE",
+    "H01-305 BLOCKED->READY"
+  ]
+}
