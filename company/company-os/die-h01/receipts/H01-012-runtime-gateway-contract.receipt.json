@@ -1,0 +1,74 @@
+{
+  "artifacts": [
+    "company/company-os/die-h01/DIE_H01_RUNTIME_GATEWAY_V1.md",
+    "company/company-os/die-h01/contracts/h01-runtime-gateway.v1.schema.json",
+    "company/company-os/die-h01/runtime/h01-runtime-gateway-boundary.v1.json",
+    "bridge/tests/test_h01_runtime_gateway_contract_v1.py"
+  ],
+  "auth_contract": {
+    "concrete_carrier_deferred_to_h01_011_or_implementation": true,
+    "encrypted_transport_required": true,
+    "peer_authentication_required": true,
+    "replay_resistance_required": true,
+    "service_credentials_host_local": true
+  },
+  "authority": {
+    "gateway_is_scheduler": false,
+    "global_mission_control_singleton": true,
+    "h01_role": "execution plane",
+    "scheduler_owner": "die-control/Mission Control"
+  },
+  "gateway": {
+    "cross_vps_messages": [
+      "WORK_DISPATCH",
+      "WORK_CHECKPOINT",
+      "WORK_RESULT"
+    ],
+    "mission_capability_owner": "control-side privileged Mission bridge",
+    "mission_capability_persisted_on_h01": false,
+    "mission_mapping": {
+      "RECONCILE": "mission.task.get",
+      "WORK_CHECKPOINT": "mission.task.checkpoint",
+      "WORK_RESULT_BLOCKED": "mission.task.block",
+      "WORK_RESULT_COMPLETED": "mission.task.complete"
+    },
+    "replay_safe_dispatch": true,
+    "store_before_ack": true,
+    "terminal_result_immutable": true,
+    "wan_loss_may_start_duplicate_execution": false
+  },
+  "locality": {
+    "artifact_bytes_local": true,
+    "browser_local": true,
+    "cdp_local": true,
+    "downloads_local": true,
+    "filesystem_local": true,
+    "per_click_wan_orchestration_allowed": false,
+    "provider_sessions_local": true,
+    "qa_conversion_local": true
+  },
+  "mutations": {
+    "browser_restarted": false,
+    "gateway_service_deployed": false,
+    "port_exposed": false,
+    "runtime_cutover": false,
+    "srv_die_mutated": false,
+    "tunnel_changed": false
+  },
+  "observed_at": "2026-09-12T04:38:00Z",
+  "origin_main_at_start": "ff4eb57a28210c1df4c71fd4c7acd0998844c18a",
+  "result": "PASS",
+  "schema": "die.h01.h01-012.runtime-gateway-contract.receipt.v1",
+  "scope": "CONTRACT_ONLY_NOT_DEPLOYED",
+  "task_id": "H01-012",
+  "validation": {
+    "h03_precedent_reused": "mc-mission-v1 batch-level boundary, no microjob/per-click Mission orchestration",
+    "targeted_contract_tests": "7/7 PASS",
+    "universal_mcp_methods_observed": [
+      "mission.task.get",
+      "mission.task.checkpoint",
+      "mission.task.complete",
+      "mission.task.block"
+    ]
+  }
+}
