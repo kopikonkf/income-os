@@ -258,3 +258,8 @@ The live read-only canary produced 14,718 candidate families containing 41,658 m
 Every family retains one taxonomy evidence record plus one Object Atlas record per member, defaults to `rights_class=REVIEW_REQUIRED`, and grants no production/submission/publication authority. Duplicate subject/raw IDs and normalized canonical-name collisions fail closed. Alias collisions are observations only with `merge_authorized=false`; shared synset evidence never authorizes canonical noun collapse. H01-122 remains independent and owns the brand/trademark rights gate.
 
 This execution is Worker A of Founder-authorized H01-304 parallel canary attempt #2. It is isolated to browser resource `architect-primary`, branch `canary/h01-121-parallel-20260912` and `/home/kopiko/die-sessions/H01-121` under H01-303 mutable-worktree claim. Worker B's canonical H01-122 merge was preserved during publication reconciliation; H01-122 and `/srv/die` remained outside Worker A's mutation boundary.
+
+
+## 2026-09-12 - H01-105 DONE/PASS via Mission Control reviewed canonical writeback
+
+Mission Control task `H01-105` completed through automatic canonical intake, owner execution and no-review completion. Canonical graph transitions: `H01-105 READY->DONE`. Receipt: `company/company-os/die-h01/receipts/H01-105-mission-control-auto-acceptance.receipt.json`. No external marketplace submission, spend, credential mutation, or live-load authority was granted by this writeback.
