@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-12",
+  "live_validation": {
+    "cdp_range": "9201-9300",
+    "errors": [],
+    "profile_count": 100,
+    "status": "PASS",
+    "udd_count": 20
+  },
+  "result": "PASS",
+  "result_summary": "PASS: live provisioner validates 20 UDDs x 5 mapped profile identities = 100 profiles, CDP 9201-9300, zero validation errors. Repository source and stateless preference template are byte-identical to live host files. Provisioner creates layout/preferences only and contains no secret-store cloning surface.",
+  "safety": {
+    "authenticated_profile_clone_performed": false,
+    "browser_profile_copied": false,
+    "cookies_or_tokens_read": false,
+    "provider_generation_dispatched": false,
+    "publication_authorized": false,
+    "session_bytes_read": false,
+    "submission_authorized": false
+  },
+  "schema": "die.h01.h01-023.safe-provisioner.acceptance.v1",
+  "source_parity": {
+    "host_path": "/opt/die/h01/bin/h01-brave-provision",
+    "host_sha256": "c3b1078ff8d84686b59b974613995aa75d6078d1fd2baa4a111f3daa1e33ad23",
+    "repo_path": "company/company-os/die-h01/engineering/brave_fabric_provision.py",
+    "repo_sha256": "c3b1078ff8d84686b59b974613995aa75d6078d1fd2baa4a111f3daa1e33ad23"
+  },
+  "task_id": "H01-023",
+  "template_parity": {
+    "host_path": "/etc/die/h01/brave/profile-preferences-template.json",
+    "host_sha256": "8a29094c1d9d0894963f0cc26965475f3cd72c41646403c6e0e56e3d5f337498",
+    "repo_path": "company/company-os/die-h01/fixtures/h01-023/profile-preferences-template.json",
+    "repo_sha256": "8a29094c1d9d0894963f0cc26965475f3cd72c41646403c6e0e56e3d5f337498"
+  },
+  "topology": {
+    "authentication_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+    "cdp_end": 9300,
+    "cdp_start": 9201,
+    "max_active_per_udd": 1,
+    "profile_count": 100,
+    "profiles_per_udd": 5,
+    "udd_count": 20
+  }
+}

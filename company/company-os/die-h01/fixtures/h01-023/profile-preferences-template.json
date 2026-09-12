@@ -1,0 +1,27 @@
+{
+  "bookmark_bar": {
+    "show_on_all_tabs": true
+  },
+  "brave": {
+    "always_show_bookmark_bar_on_ntp": false,
+    "brave_search": {
+      "show-ntp-search": false
+    },
+    "new_tab_page": {
+      "show_background_image": false,
+      "show_brave_news": false,
+      "show_rewards": false,
+      "show_stats": false,
+      "show_together": false
+    },
+    "today": {
+      "opted_in": false
+    }
+  },
+  "ntp": {
+    "shortcust_visible": false
+  },
+  "translate": {
+    "enabled": false
+  }
+}
