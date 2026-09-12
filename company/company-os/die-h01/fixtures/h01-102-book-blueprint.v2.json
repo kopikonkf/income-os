@@ -1,0 +1,143 @@
+{
+  "blueprint_id": "H01BP-BOOK_CLEAN_001",
+  "commercial": {
+    "buyer_value": "clean reusable object that can be recolored, resized and composed into many layouts",
+    "primary_use_case": "editable isolated book vector for education, publishing, library, ecommerce and presentation design",
+    "reuse_contexts": [
+      "education graphics",
+      "publishing layouts",
+      "library interfaces",
+      "ecommerce compositions",
+      "presentation diagrams"
+    ],
+    "stock_suitability": "generic unbranded universally recognizable object with broad design utility and no contextual dependency"
+  },
+  "complexity": {
+    "max_geometry_elements": 256,
+    "max_group_depth": 32,
+    "max_path_chars": 16384,
+    "max_svg_bytes": 524288,
+    "max_total_points": 4096
+  },
+  "output_contract": {
+    "allowed_elements": [
+      "g",
+      "path",
+      "rect",
+      "circle",
+      "ellipse",
+      "line",
+      "polyline",
+      "polygon"
+    ],
+    "allowed_path_commands": [
+      "M",
+      "L",
+      "H",
+      "V",
+      "C",
+      "S",
+      "Q",
+      "T",
+      "A",
+      "Z"
+    ],
+    "forbidden_svg_features": [
+      "script",
+      "external references",
+      "embedded raster image",
+      "foreignObject",
+      "text",
+      "style",
+      "defs",
+      "symbol",
+      "use"
+    ],
+    "format": "SVG",
+    "native_vector_required": true,
+    "transparent_background": true
+  },
+  "production_contract": {
+    "form": "SINGLE",
+    "media": "VECTOR",
+    "mode": "VECTOR_OBJECT",
+    "preset": "CLEAN_STOCK_VECTOR_V1"
+  },
+  "queue_id": "H01-SVGQ-CAND-0829866",
+  "rights": {
+    "copyright_safe": true,
+    "forbidden_content": [
+      "logos",
+      "publisher marks",
+      "ISBN/barcode",
+      "branded cover art",
+      "copyrighted character imagery"
+    ],
+    "no_readable_text": true,
+    "no_watermark": true,
+    "trademark_free": true
+  },
+  "schema": "die.h01.svg-blueprint.v2",
+  "semantic_asset_id": "H01SVG-CAND-0829866",
+  "source_candidate_id": "CAND-0829866",
+  "subject": {
+    "canonical_name": "book",
+    "color_notes": [
+      "limited harmonious stock-friendly palette",
+      "clear cover-to-page contrast"
+    ],
+    "essential_components": [
+      "front cover",
+      "back cover",
+      "spine",
+      "page block"
+    ],
+    "material_notes": [
+      "paper page block",
+      "plain unbranded cover material"
+    ],
+    "proportion_notes": [
+      "credible everyday book proportions",
+      "page block slightly inset inside the cover edges"
+    ],
+    "recognition_anchors": [
+      "rectangular closed-book silhouette",
+      "visible page block separated from the cover",
+      "clearly defined spine edge"
+    ],
+    "texture_notes": [
+      "minimal texture",
+      "clean flat vector surfaces without noisy grain"
+    ]
+  },
+  "vector": {
+    "depth_policy": "express depth through overlapping shapes and restrained flat color separation, not filters or raster effects",
+    "editability": "NATIVE_EDITABLE_VECTOR",
+    "fill_policy": "use solid fills only with a compact palette and no bitmap textures",
+    "shape_language": [
+      "few purposeful paths and primitive shapes",
+      "closed clean contours",
+      "avoid microscopic decorative geometry"
+    ],
+    "stroke_policy": "use no stroke unless a small structural edge requires one; keep any stroke simple and consistent"
+  },
+  "visual": {
+    "composition": [
+      "single object only",
+      "centered with generous transparent margin",
+      "complete silhouette fully visible with no crop",
+      "no scene or unrelated props"
+    ],
+    "style_system": [
+      "clean contemporary stock vector",
+      "simple editable shapes",
+      "crisp geometry",
+      "subtle dimensional separation without photorealism"
+    ],
+    "viewpoint": "slight three-quarter view that clearly shows cover, spine and page block",
+    "visual_hierarchy": [
+      "book silhouette reads first",
+      "spine and page block remain distinct at thumbnail size"
+    ]
+  }
+}

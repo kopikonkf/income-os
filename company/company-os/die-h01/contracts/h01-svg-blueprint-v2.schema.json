@@ -1,0 +1,415 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "blueprint_id": {
+      "pattern": "^H01BP-[A-Z0-9][A-Z0-9_-]{5,63}$",
+      "type": "string"
+    },
+    "commercial": {
+      "additionalProperties": false,
+      "properties": {
+        "buyer_value": {
+          "maxLength": 240,
+          "minLength": 8,
+          "type": "string"
+        },
+        "primary_use_case": {
+          "maxLength": 240,
+          "minLength": 8,
+          "type": "string"
+        },
+        "reuse_contexts": {
+          "items": {
+            "maxLength": 120,
+            "minLength": 2,
+            "type": "string"
+          },
+          "maxItems": 8,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "stock_suitability": {
+          "maxLength": 240,
+          "minLength": 8,
+          "type": "string"
+        }
+      },
+      "required": [
+        "primary_use_case",
+        "buyer_value",
+        "stock_suitability",
+        "reuse_contexts"
+      ],
+      "type": "object"
+    },
+    "complexity": {
+      "additionalProperties": false,
+      "properties": {
+        "max_geometry_elements": {
+          "maximum": 512,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "max_group_depth": {
+          "maximum": 64,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "max_path_chars": {
+          "maximum": 32768,
+          "minimum": 256,
+          "type": "integer"
+        },
+        "max_svg_bytes": {
+          "maximum": 1048576,
+          "minimum": 4096,
+          "type": "integer"
+        },
+        "max_total_points": {
+          "maximum": 8192,
+          "minimum": 16,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "max_svg_bytes",
+        "max_geometry_elements",
+        "max_total_points",
+        "max_path_chars",
+        "max_group_depth"
+      ],
+      "type": "object"
+    },
+    "output_contract": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_elements": {
+          "const": [
+            "g",
+            "path",
+            "rect",
+            "circle",
+            "ellipse",
+            "line",
+            "polyline",
+            "polygon"
+          ]
+        },
+        "allowed_path_commands": {
+          "const": [
+            "M",
+            "L",
+            "H",
+            "V",
+            "C",
+            "S",
+            "Q",
+            "T",
+            "A",
+            "Z"
+          ]
+        },
+        "forbidden_svg_features": {
+          "const": [
+            "script",
+            "external references",
+            "embedded raster image",
+            "foreignObject",
+            "text",
+            "style",
+            "defs",
+            "symbol",
+            "use"
+          ]
+        },
+        "format": {
+          "const": "SVG"
+        },
+        "native_vector_required": {
+          "const": true
+        },
+        "transparent_background": {
+          "const": true
+        }
+      },
+      "required": [
+        "format",
+        "native_vector_required",
+        "transparent_background",
+        "allowed_elements",
+        "allowed_path_commands",
+        "forbidden_svg_features"
+      ],
+      "type": "object"
+    },
+    "production_contract": {
+      "additionalProperties": false,
+      "properties": {
+        "form": {
+          "const": "SINGLE"
+        },
+        "media": {
+          "const": "VECTOR"
+        },
+        "mode": {
+          "const": "VECTOR_OBJECT"
+        },
+        "preset": {
+          "const": "CLEAN_STOCK_VECTOR_V1"
+        }
+      },
+      "required": [
+        "media",
+        "mode",
+        "form",
+        "preset"
+      ],
+      "type": "object"
+    },
+    "queue_id": {
+      "maxLength": 120,
+      "minLength": 8,
+      "type": "string"
+    },
+    "rights": {
+      "additionalProperties": false,
+      "properties": {
+        "copyright_safe": {
+          "const": true
+        },
+        "forbidden_content": {
+          "items": {
+            "maxLength": 160,
+            "minLength": 2,
+            "type": "string"
+          },
+          "maxItems": 12,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "no_readable_text": {
+          "const": true
+        },
+        "no_watermark": {
+          "const": true
+        },
+        "trademark_free": {
+          "const": true
+        }
+      },
+      "required": [
+        "trademark_free",
+        "copyright_safe",
+        "no_readable_text",
+        "no_watermark",
+        "forbidden_content"
+      ],
+      "type": "object"
+    },
+    "schema": {
+      "const": "die.h01.svg-blueprint.v2"
+    },
+    "semantic_asset_id": {
+      "maxLength": 120,
+      "minLength": 8,
+      "type": "string"
+    },
+    "source_candidate_id": {
+      "maxLength": 120,
+      "minLength": 3,
+      "type": "string"
+    },
+    "subject": {
+      "additionalProperties": false,
+      "properties": {
+        "canonical_name": {
+          "maxLength": 160,
+          "minLength": 2,
+          "type": "string"
+        },
+        "color_notes": {
+          "items": {
+            "maxLength": 180,
+            "minLength": 2,
+            "type": "string"
+          },
+          "maxItems": 8,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "essential_components": {
+          "items": {
+            "maxLength": 160,
+            "minLength": 2,
+            "type": "string"
+          },
+          "maxItems": 12,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "material_notes": {
+          "items": {
+            "maxLength": 180,
+            "minLength": 2,
+            "type": "string"
+          },
+          "maxItems": 8,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "proportion_notes": {
+          "items": {
+            "maxLength": 180,
+            "minLength": 2,
+            "type": "string"
+          },
+          "maxItems": 8,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "recognition_anchors": {
+          "items": {
+            "maxLength": 160,
+            "minLength": 2,
+            "type": "string"
+          },
+          "maxItems": 8,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "texture_notes": {
+          "items": {
+            "maxLength": 180,
+            "minLength": 2,
+            "type": "string"
+          },
+          "maxItems": 8,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "canonical_name",
+        "recognition_anchors",
+        "essential_components",
+        "proportion_notes",
+        "material_notes",
+        "color_notes",
+        "texture_notes"
+      ],
+      "type": "object"
+    },
+    "vector": {
+      "additionalProperties": false,
+      "properties": {
+        "depth_policy": {
+          "maxLength": 200,
+          "minLength": 2,
+          "type": "string"
+        },
+        "editability": {
+          "const": "NATIVE_EDITABLE_VECTOR"
+        },
+        "fill_policy": {
+          "maxLength": 200,
+          "minLength": 2,
+          "type": "string"
+        },
+        "shape_language": {
+          "items": {
+            "maxLength": 160,
+            "minLength": 2,
+            "type": "string"
+          },
+          "maxItems": 8,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "stroke_policy": {
+          "maxLength": 200,
+          "minLength": 2,
+          "type": "string"
+        }
+      },
+      "required": [
+        "editability",
+        "shape_language",
+        "stroke_policy",
+        "fill_policy",
+        "depth_policy"
+      ],
+      "type": "object"
+    },
+    "visual": {
+      "additionalProperties": false,
+      "properties": {
+        "composition": {
+          "items": {
+            "maxLength": 160,
+            "minLength": 2,
+            "type": "string"
+          },
+          "maxItems": 10,
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "style_system": {
+          "items": {
+            "maxLength": 160,
+            "minLength": 2,
+            "type": "string"
+          },
+          "maxItems": 10,
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "viewpoint": {
+          "maxLength": 180,
+          "minLength": 2,
+          "type": "string"
+        },
+        "visual_hierarchy": {
+          "items": {
+            "maxLength": 160,
+            "minLength": 2,
+            "type": "string"
+          },
+          "maxItems": 8,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "viewpoint",
+        "composition",
+        "visual_hierarchy",
+        "style_system"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "blueprint_id",
+    "queue_id",
+    "semantic_asset_id",
+    "source_candidate_id",
+    "production_contract",
+    "subject",
+    "commercial",
+    "visual",
+    "vector",
+    "complexity",
+    "rights",
+    "output_contract"
+  ],
+  "title": "H01 SVG Blueprint v2",
+  "type": "object"
+}
