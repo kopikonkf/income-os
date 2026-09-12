@@ -378,7 +378,7 @@
     {
       "id": "H01-108",
       "track": "SVG_FIRST",
-      "status": "BLOCKED",
+      "status": "RUNNING",
       "authority": "FOUNDER_REQUIRED",
       "depends_on": [
         "H01-101",
@@ -388,7 +388,8 @@
         "H01-026"
       ],
       "title": "Prove first 100 standalone SVG nouns before larger rollout",
-      "acceptance": "Generate 100 unique semantic masters from eligible nouns with provider-original lineage, canonical master, read-back QA, derivatives, metadata/rights and honest resource telemetry; no duplicate semantic count."
+      "acceptance": "Generate 100 unique semantic masters from eligible nouns with provider-original lineage, canonical master, read-back QA, derivatives, metadata/rights and honest resource telemetry; no duplicate semantic count.",
+      "founder_policy": "Founder authorized H01-108 start on 2026-09-12 with a frozen 100-noun market-informed batch: 60 evergreen, 30 momentum/opportunity, 10 Christmas/holiday/New-Year seasonal; weighted provider targets Gemini 24, Qwen 20, Claude 20, ChatGPT 12, Manus 12, Copilot 12; adaptive redistribution only among READY providers; no submission/publication/spend authority."
     },
     {
       "id": "H01-109",

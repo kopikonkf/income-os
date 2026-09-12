@@ -67,6 +67,12 @@ class SchedulerTests(unittest.TestCase):
         s.complete(x['lease_id'],x['lease_token'],'SUCCEEDED')
         again=s.acquire(dispatch_id='stable-d',job_id='j'); self.assertEqual(again['status'],'ALREADY_TERMINAL'); self.assertFalse(again['dispatch_authorized'])
 
+    def test_preferred_provider_is_honored_and_fail_closed(self):
+        self.set_ready(['h01-web-p001']); s=self.s()
+        x=s.acquire(dispatch_id='pref-b',job_id='j',preferred_provider='b')['lease']; self.assertEqual(x['provider_id'],'b'); self.complete(s,x,60)
+        with self.assertRaisesRegex(rr.SchedulerError,'E_PROVIDER_NOT_ELIGIBLE'): s.acquire(dispatch_id='pref-b2',job_id='j2',preferred_provider='b')
+        with self.assertRaisesRegex(rr.SchedulerError,'E_PROVIDER_UNKNOWN'): s.acquire(dispatch_id='pref-x',job_id='j3',preferred_provider='x')
+
     def test_provider_cooldown_skips_provider_until_eligible(self):
         self.set_ready(['h01-web-p001']); s=self.s(); a=s.acquire(dispatch_id='d1',job_id='j1')['lease']; self.assertEqual(a['provider_id'],'a'); self.complete(s,a,60)
         b=s.acquire(dispatch_id='d2',job_id='j2')['lease']; self.assertEqual(b['provider_id'],'b'); self.complete(s,b)

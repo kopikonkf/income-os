@@ -1,0 +1,67 @@
+{
+  "schema": "die.h01.market-evidence-snapshot.v1",
+  "observed_at": "2026-09-12",
+  "purpose": "H01-108 bounded first-100 batch prioritization only; does not implement or replace H01-130..133 Demand Intelligence",
+  "sources": [
+    {
+      "id": "SHUTTERSTOCK_TRENDS_20260912",
+      "marketplace": "Shutterstock",
+      "url": "https://www.shutterstock.com/trends",
+      "kind": "CURRENT_TREND_SEARCH",
+      "notes": "Current trending-search surface exposes result count, demand label and growth. Demand labels observed are generally LOW; growth is treated as momentum, never sales proof.",
+      "signals": {
+        "capacitor": {"growth_pct": 102, "results": 66920},
+        "ice cube": {"query": "ice cube drawing", "growth_pct": 13, "results": 9951},
+        "coffee": {"query": "coffee drawing", "growth_pct": 16, "results": 453182},
+        "rabbit": {"query": "kawaii rabbit", "growth_pct": 22, "results": 42936},
+        "breadboard": {"growth_pct": 98, "results": 14177},
+        "zebra": {"query": "zebra cartoon", "growth_pct": 63, "results": 60366},
+        "toilet": {"query": "toilet symbol", "growth_pct": 42, "results": 280745},
+        "microphone": {"query": "microphone drawing", "growth_pct": 249, "results": 48326},
+        "bacteria": {"query": "cartoon bacteria", "growth_pct": 121, "results": 96155},
+        "cactus": {"query": "cactus silhouette", "growth_pct": 263, "results": 56467},
+        "car": {"query": "car origami", "growth_pct": 283, "results": 21660},
+        "ladder": {"query": "cartoon ladder", "growth_pct": 92, "results": 41413},
+        "moon": {"query": "full moon icon", "growth_pct": 1329, "results": 45490},
+        "apple": {"query": "apple sticker", "growth_pct": 155, "results": 46257},
+        "new year 2027": {"growth_pct": 112, "results": 28638}
+      }
+    },
+    {
+      "id": "VECTEEZY_POPULAR_SVG_20260912",
+      "marketplace": "Vecteezy",
+      "url": "https://www.vecteezy.com/popular-svgs",
+      "kind": "POPULAR_SVG_SEARCH",
+      "notes": "Top SVG search surface currently ranks flower #2, christmas #4, arrow #7, fire #8, tree #12, money #13. Only eligible standalone nouns from H01-101 may be selected."
+    },
+    {
+      "id": "123RF_POPULAR_YEARLY_20260912",
+      "marketplace": "123RF",
+      "url": "https://www.123rf.com/explore/",
+      "kind": "EVERGREEN_POPULAR_SEARCH",
+      "notes": "123RF describes these as popular searches seen every year; relevant recurring categories include aircraft, animals, balloon, banana, bees, bicycle, books, brain, bread, buildings, butterflies, cactus, candles, car, cats, chair, christmas, clock, clouds, coffee, bacteria/viruses, dogs, elephants, fish, flowers, frames, gifts, lemon, mirror, moon, motorcycle, pizza, rabbit, rose, sharks, shopping, snowmen, sofa, table, technology, trees, trucks, tulip, windows and winter."
+    },
+    {
+      "id": "SHUTTERSTOCK_SEASONAL_20260912",
+      "marketplace": "Shutterstock",
+      "url": "https://www.shutterstock.com/search/digital-marketing-christmas?image_type=vector",
+      "kind": "SEASONAL_Q4_VECTOR",
+      "notes": "Current Christmas/New Year vector results prominently feature Christmas trees, gift boxes, ornaments/baubles, snowflakes, stockings, reindeer, snowmen and festive New Year elements."
+    },
+    {
+      "id": "VECTEEZY_GIFTBOX_20260912",
+      "marketplace": "Vecteezy",
+      "url": "https://www.vecteezy.com/free-svg/gift-box",
+      "kind": "SEASONAL_SVG_SUPPLY",
+      "notes": "Gift Box SVG page currently reports 14,780 SVGs and related searches include holiday, christmas, xmas, bow, ribbon and present. Used only as seasonal relevance/competition evidence."
+    }
+  ],
+  "scoring": {
+    "cross_market_recurrence_max": 35,
+    "current_search_momentum_max": 25,
+    "competition_opportunity_max": 20,
+    "commercial_reuse_max": 15,
+    "portfolio_diversity_max": 5,
+    "warning": "Search result counts are competition/supply proxies, not demand or sales counts."
+  }
+}

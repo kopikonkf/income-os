@@ -1,0 +1,2552 @@
+{
+  "authority": {
+    "founder_approved_h01_108_start": true,
+    "publication_authorized": false,
+    "spend_authorized": false,
+    "submission_authorized": false
+  },
+  "items": [
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 1,
+      "bucket": "EVERGREEN",
+      "canonical_name": "book",
+      "idempotency_key": "16bf7f8faf3c46f7c26d04b19c0e30d7835f3b5139e0b1009a02b9e36b4222fb",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0829866",
+      "queue_position": 2,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0829866",
+      "source_tier": "review",
+      "suitability": "physical_entity_path"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 2,
+      "bucket": "EVERGREEN",
+      "canonical_name": "chair",
+      "idempotency_key": "57f64aa4e53362fae01ab75c8efb7126afc55c928196e6be2dd7501d6362750c",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0831895",
+      "queue_position": 252,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831895",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 3,
+      "bucket": "EVERGREEN",
+      "canonical_name": "lamp",
+      "idempotency_key": "7cfe6c4e3e36d704432c6d5dc7ba4bd5cb2757196d658b632a60714721357794",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0853146",
+      "queue_position": 3615,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0853146",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 4,
+      "bucket": "EVERGREEN",
+      "canonical_name": "clock",
+      "idempotency_key": "c8b78686ccff55367bbc15c6fa2d64a1e0099ac4f3b7767ab2e02163a13fa3ce",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "chatgpt",
+      "queue_item_id": "H01-SVGQ-CAND-0830462",
+      "queue_position": 50,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0830462",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 5,
+      "bucket": "EVERGREEN",
+      "canonical_name": "cup",
+      "idempotency_key": "8f23d56156adfee3a4c871043d958820714185a74a20a033807ba1946724a9a2",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "manus",
+      "queue_item_id": "H01-SVGQ-CAND-0838622",
+      "queue_position": 1359,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0838622",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 6,
+      "bucket": "EVERGREEN",
+      "canonical_name": "bottle",
+      "idempotency_key": "5c2bce0045c4187d1ccfbba7b35bdacfe5a4f60174a97c3c373b44d6584ca6b8",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "copilot",
+      "queue_item_id": "H01-SVGQ-CAND-0833466",
+      "queue_position": 510,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0833466",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 7,
+      "bucket": "EVERGREEN",
+      "canonical_name": "pen",
+      "idempotency_key": "7360e3184d6e3235f0a4e3a1f737edabffbc217064a8dcc3de3ca2ebe8ead505",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0831886",
+      "queue_position": 251,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831886",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 8,
+      "bucket": "EVERGREEN",
+      "canonical_name": "pencil",
+      "idempotency_key": "110ae4127430018cf843e4220411b10ca7aab5dbb194a091a0b9df459a03f2a3",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0830606",
+      "queue_position": 65,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0830606",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 9,
+      "bucket": "EVERGREEN",
+      "canonical_name": "scissors",
+      "idempotency_key": "a8e1ac632390a0a0d0301dd5f5e3a364fe5c0f1015674047f6f81d11f2af3a78",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0833139",
+      "queue_position": 451,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0833139",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 10,
+      "bucket": "EVERGREEN",
+      "canonical_name": "key",
+      "idempotency_key": "b7840c1b13b2460e0aa71f2f36208a79e13aa91c9d0cf4d149be3961c6e8c3bf",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0833932",
+      "queue_position": 638,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0833932",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 11,
+      "bucket": "EVERGREEN",
+      "canonical_name": "lock",
+      "idempotency_key": "52c2867e80ae7432c1b7f0331780942ab418ab412e5dbbad770e0f4cbf2809f6",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0837235",
+      "queue_position": 1062,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0837235",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 12,
+      "bucket": "EVERGREEN",
+      "canonical_name": "hammer",
+      "idempotency_key": "e62db5dc225270729d69b5c1e2621d1ddd27878573ca04675da6c89ac8e0ac5b",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0834159",
+      "queue_position": 678,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0834159",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 13,
+      "bucket": "EVERGREEN",
+      "canonical_name": "screwdriver",
+      "idempotency_key": "3261bea333815e1d2e2cd17a5cc621014a5bc05424df004147a43ccc5cabff89",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "chatgpt",
+      "queue_item_id": "H01-SVGQ-CAND-0834085",
+      "queue_position": 655,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0834085",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 14,
+      "bucket": "EVERGREEN",
+      "canonical_name": "keyboard",
+      "idempotency_key": "9e41f86be017e453370858970dd4ebb96ba2fcdcd64f140a19c59a2966684f54",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "manus",
+      "queue_item_id": "H01-SVGQ-CAND-0831193",
+      "queue_position": 130,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831193",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 15,
+      "bucket": "EVERGREEN",
+      "canonical_name": "umbrella",
+      "idempotency_key": "1385729f30d2844ae640a23e9818da48b741b9378b73a6e013fd32284a663838",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "copilot",
+      "queue_item_id": "H01-SVGQ-CAND-0830480",
+      "queue_position": 53,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0830480",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 16,
+      "bucket": "EVERGREEN",
+      "canonical_name": "shoe",
+      "idempotency_key": "08136772b854cfbc1c4ab65078ae82ab310146575719d1b9a697a1161159be3b",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0833069",
+      "queue_position": 437,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0833069",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 17,
+      "bucket": "EVERGREEN",
+      "canonical_name": "shirt",
+      "idempotency_key": "b87bebeaeb70c9f5e8ce087849b3b3fc7a8b31f13e2db5db075b5fb8b7d9e160",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0833067",
+      "queue_position": 436,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0833067",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 18,
+      "bucket": "EVERGREEN",
+      "canonical_name": "dress",
+      "idempotency_key": "aa980d3747da3387fe3f30c59417e074f8d699e7e3d5d5188b7cf037550ac1ea",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0838155",
+      "queue_position": 1255,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0838155",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 19,
+      "bucket": "EVERGREEN",
+      "canonical_name": "watch",
+      "idempotency_key": "49239f1da0d48170eebd419b6d65194ee9609c0d43fae2794a4fa88e9b666549",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0837019",
+      "queue_position": 1022,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0837019",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 20,
+      "bucket": "EVERGREEN",
+      "canonical_name": "toothbrush",
+      "idempotency_key": "2bae0866d9771963d4fa5299181bd0d80eb8cd860a6cb184f72895001260b7ee",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0854932",
+      "queue_position": 3903,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0854932",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 21,
+      "bucket": "EVERGREEN",
+      "canonical_name": "mirror",
+      "idempotency_key": "192fb5593fff01c131540ba4b77d5dae7d1ee4afe7dc59014947d0760ccc5732",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0842776",
+      "queue_position": 1934,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0842776",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 22,
+      "bucket": "EVERGREEN",
+      "canonical_name": "soap",
+      "idempotency_key": "c44a24d862f2de5138dff9060a43d6b74339f635a68adbd81d16b467618fc4fe",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "chatgpt",
+      "queue_item_id": "H01-SVGQ-CAND-0843778",
+      "queue_position": 2129,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0843778",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 23,
+      "bucket": "EVERGREEN",
+      "canonical_name": "towel",
+      "idempotency_key": "396ecf4370f4bd4ed6ff38348edade9076b310d29c9f71bf435b63cac00ec9fd",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "manus",
+      "queue_item_id": "H01-SVGQ-CAND-0848474",
+      "queue_position": 2913,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0848474",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 24,
+      "bucket": "EVERGREEN",
+      "canonical_name": "bucket",
+      "idempotency_key": "74661da8de5ae74dd0c04241206aab4b538334b43b98307588f6891cdbc465a4",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "copilot",
+      "queue_item_id": "H01-SVGQ-CAND-0832069",
+      "queue_position": 309,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0832069",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 25,
+      "bucket": "EVERGREEN",
+      "canonical_name": "broom",
+      "idempotency_key": "6e85a7797368898ed33131a64dcecf94e3ba3674389f619ef6f254d53114897b",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0840656",
+      "queue_position": 1666,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0840656",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 26,
+      "bucket": "EVERGREEN",
+      "canonical_name": "mop",
+      "idempotency_key": "5bd76515496c12deb260cd21b67689bff5ffc96c156c477431271b896868d9ea",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0834407",
+      "queue_position": 716,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0834407",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 27,
+      "bucket": "EVERGREEN",
+      "canonical_name": "vacuum cleaner",
+      "idempotency_key": "688978b95557348d82be0b94b1ac0c91b084b29229c93e11ecfd28978e91aa5f",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0849821",
+      "queue_position": 3077,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0849821",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 28,
+      "bucket": "EVERGREEN",
+      "canonical_name": "box",
+      "idempotency_key": "392e24a273f4c874852d2cf8c7ac63f11959a5fcb54d596c528ab760874a25f7",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0833478",
+      "queue_position": 513,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0833478",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 29,
+      "bucket": "EVERGREEN",
+      "canonical_name": "envelope",
+      "idempotency_key": "9c7a60d54fb1be79222bf0d37af86322bd265315b5552ac5f2a3db2bba15e9fd",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "chatgpt",
+      "queue_item_id": "H01-SVGQ-CAND-0838118",
+      "queue_position": 1246,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0838118",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 30,
+      "bucket": "EVERGREEN",
+      "canonical_name": "clipboard",
+      "idempotency_key": "35d5e911b0b0f382bd0f78019b7e4b8564cc08560e212677ace2a0be8a15d0ee",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "manus",
+      "queue_item_id": "H01-SVGQ-CAND-0850481",
+      "queue_position": 3146,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0850481",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 31,
+      "bucket": "EVERGREEN",
+      "canonical_name": "apple",
+      "idempotency_key": "27f68fa262790c7419f40b037d88ae05abd0b52fd3177b1335ceb5560826f9f8",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 81,
+      "planned_provider": "copilot",
+      "queue_item_id": "H01-SVGQ-CAND-0830667",
+      "queue_position": 68,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 21,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0830667",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.food"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 32,
+      "bucket": "EVERGREEN",
+      "canonical_name": "orange",
+      "idempotency_key": "0a901641f572b293345c38a9cb5852097814a24246866250a09c0e44fc7ccfb2",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0830354",
+      "queue_position": 40,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0830354",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.food"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 33,
+      "bucket": "EVERGREEN",
+      "canonical_name": "lemon",
+      "idempotency_key": "e5fb711fd30d7902b29fb6a71e688ef69e66b52ebf930ac5097a0e572013fb7c",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0831962",
+      "queue_position": 271,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831962",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.food"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 34,
+      "bucket": "EVERGREEN",
+      "canonical_name": "strawberry",
+      "idempotency_key": "ae69d3f90f00d2c5386a2cb22a6cc9791f66ead5c153f21df832ef986472288a",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0831959",
+      "queue_position": 270,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831959",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.food"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 35,
+      "bucket": "EVERGREEN",
+      "canonical_name": "banana",
+      "idempotency_key": "09ef94e9485b0def2d2d67cdb0b51440dceeeefaccf3847f2358580e70cfa535",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0831061",
+      "queue_position": 105,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831061",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.plant"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 36,
+      "bucket": "EVERGREEN",
+      "canonical_name": "bread",
+      "idempotency_key": "0266ada651ccb83941f4b09e7b3db5d0133888dc05aeb86bb27d00181473f981",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0833186",
+      "queue_position": 465,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0833186",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.food"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 37,
+      "bucket": "EVERGREEN",
+      "canonical_name": "building",
+      "idempotency_key": "0bc559952c363ecc6a4c8fd8c53e3f3b292547277752b6d5f7d3eb1a97790e9e",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0833144",
+      "queue_position": 453,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0833144",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 38,
+      "bucket": "EVERGREEN",
+      "canonical_name": "airplane",
+      "idempotency_key": "c6189f3a43561af09be506bd3644f2add4be1b433503c82b91e2721308883e65",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "chatgpt",
+      "queue_item_id": "H01-SVGQ-CAND-0834791",
+      "queue_position": 765,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0834791",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 39,
+      "bucket": "EVERGREEN",
+      "canonical_name": "phone",
+      "idempotency_key": "b032d4a75bb410b6d721c56fd095183741d024234bf2bdc95166043fb6eb9ee9",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "manus",
+      "queue_item_id": "H01-SVGQ-CAND-0836174",
+      "queue_position": 927,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0836174",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 40,
+      "bucket": "EVERGREEN",
+      "canonical_name": "wallet",
+      "idempotency_key": "b3aa8c33066022e7a1fc5764a9b1b222e370f43cd7e8ff94e6b3fce3c3be99a2",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "copilot",
+      "queue_item_id": "H01-SVGQ-CAND-0856363",
+      "queue_position": 4084,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0856363",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 41,
+      "bucket": "EVERGREEN",
+      "canonical_name": "suitcase",
+      "idempotency_key": "47315298575e4c546c808ba6135ce16f5bc9a889f9127b7ebfb88e6d7a52d407",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0838185",
+      "queue_position": 1260,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0838185",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 42,
+      "bucket": "EVERGREEN",
+      "canonical_name": "briefcase",
+      "idempotency_key": "2feb6f3df732321630b7d0f14b3f824258a386d31ac6940f6cdd29a20328fd8a",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0882015",
+      "queue_position": 7585,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0882015",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 43,
+      "bucket": "EVERGREEN",
+      "canonical_name": "refrigerator",
+      "idempotency_key": "56c969f8d0d562eea3616901cf082de363697d1461b58ac1d9178ceb20effa97",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0842801",
+      "queue_position": 1941,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0842801",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 44,
+      "bucket": "EVERGREEN",
+      "canonical_name": "oven",
+      "idempotency_key": "d5f6f3d0112d51997255e0039df241ecee60271ce0348cc8a1770c6b71d2dc4f",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0839682",
+      "queue_position": 1534,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0839682",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 45,
+      "bucket": "EVERGREEN",
+      "canonical_name": "blender",
+      "idempotency_key": "86bec455c9a048d510bc43dd56a4eac13396953f4fd66585a275addc92c70cff",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0868643",
+      "queue_position": 5668,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0868643",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 46,
+      "bucket": "EVERGREEN",
+      "canonical_name": "flashlight",
+      "idempotency_key": "13026d2bbe962d60cd5f5e02bb2789e97cf94e501a0d18d645640f01d7f1bc97",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0838665",
+      "queue_position": 1372,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0838665",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 47,
+      "bucket": "EVERGREEN",
+      "canonical_name": "compass",
+      "idempotency_key": "70b8b49698abd73fce6fa8ee7712d3fa5ff72a6dad3e9f0a9079839c260dfbc6",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "chatgpt",
+      "queue_item_id": "H01-SVGQ-CAND-0831301",
+      "queue_position": 136,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831301",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 48,
+      "bucket": "EVERGREEN",
+      "canonical_name": "globe",
+      "idempotency_key": "b5faac483c02813f6dcdb440764ff126849799ec4cfa2e8aa7e2acc0add4770b",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "manus",
+      "queue_item_id": "H01-SVGQ-CAND-0838664",
+      "queue_position": 1371,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0838664",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.object"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 49,
+      "bucket": "EVERGREEN",
+      "canonical_name": "stapler",
+      "idempotency_key": "49cccc1723abde32392cc40ce12048f323660db0f891209104c6c2bee2704109",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "copilot",
+      "queue_item_id": "H01-SVGQ-CAND-0844644",
+      "queue_position": 2296,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0844644",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 50,
+      "bucket": "EVERGREEN",
+      "canonical_name": "mouse",
+      "idempotency_key": "93bbc87f6d207da2e11e18682ee6c60cc5366f5d49c631c530fb1834690243ac",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0831187",
+      "queue_position": 129,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831187",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.animal"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 51,
+      "bucket": "EVERGREEN",
+      "canonical_name": "drill",
+      "idempotency_key": "ef282cb23326967912dcdb5aab69bea7aa9eb2f700fdac0cba9a5beb59a5f08f",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0834089",
+      "queue_position": 657,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0834089",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 52,
+      "bucket": "EVERGREEN",
+      "canonical_name": "pliers",
+      "idempotency_key": "4a0b457674602099244b3154fecda9f2cc4212759ade473f730c0f2af7e9d9d9",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0837061",
+      "queue_position": 1030,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0837061",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 53,
+      "bucket": "EVERGREEN",
+      "canonical_name": "paintbrush",
+      "idempotency_key": "3260cdc27625de6e371b9bf556605477e52daa65d7e8eb33a9719f60d529b04f",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0853802",
+      "queue_position": 3722,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0853802",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 54,
+      "bucket": "EVERGREEN",
+      "canonical_name": "shovel",
+      "idempotency_key": "6ffacdf54ec4338e4fe01a20571383c1f68e0a730bb57e52035e149a77130896",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "chatgpt",
+      "queue_item_id": "H01-SVGQ-CAND-0840476",
+      "queue_position": 1634,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0840476",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 55,
+      "bucket": "EVERGREEN",
+      "canonical_name": "sunflower",
+      "idempotency_key": "7f921c330c3ea355bf5b7697033434d98e30f898d602da8097a0d607528d9034",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "manus",
+      "queue_item_id": "H01-SVGQ-CAND-0848398",
+      "queue_position": 2901,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0848398",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.plant"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 56,
+      "bucket": "EVERGREEN",
+      "canonical_name": "rose",
+      "idempotency_key": "edec8dd8db63ffe22c75974a53367803bef9929751991861a6eda37be25511a8",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "copilot",
+      "queue_item_id": "H01-SVGQ-CAND-0831900",
+      "queue_position": 255,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831900",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.plant"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 57,
+      "bucket": "EVERGREEN",
+      "canonical_name": "fish",
+      "idempotency_key": "2986c210017bbccd20a951c38455bea1e77356131c132646c5e856e0d432ec63",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0831562",
+      "queue_position": 183,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831562",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.animal"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 58,
+      "bucket": "EVERGREEN",
+      "canonical_name": "turtle",
+      "idempotency_key": "9a90c8eb4a2237cfb2e1305e9b4cdf40519265d45da057936bc89aa0cc95be6c",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0831851",
+      "queue_position": 236,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831851",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 59,
+      "bucket": "EVERGREEN",
+      "canonical_name": "stethoscope",
+      "idempotency_key": "6ef15f1f0e76da273369a4d968c30e3e8ad1f2451c3397fe883d0f6ff73ebb57",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0853164",
+      "queue_position": 3616,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0853164",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 60,
+      "bucket": "EVERGREEN",
+      "canonical_name": "robot",
+      "idempotency_key": "5e221265a623328b537cf47f352a5f7ec880402a20f3ba0603bb622fa35dd170",
+      "market_evidence_refs": [
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 66,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0830179",
+      "queue_position": 31,
+      "score_components": {
+        "commercial_reuse": 15,
+        "competition_opportunity": 13,
+        "cross_market_recurrence": 27,
+        "current_search_momentum": 6,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0830179",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 61,
+      "bucket": "MOMENTUM",
+      "canonical_name": "capacitor",
+      "idempotency_key": "17cfa8aff57779c17762cf590e742b406ab54be09f80afd4236ac04fb9171795",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 77,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0840290",
+      "queue_position": 1608,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 21,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0840290",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 62,
+      "bucket": "MOMENTUM",
+      "canonical_name": "breadboard",
+      "idempotency_key": "e303bf1fd0a06450cf2860fe78f6b6c2e3d7130d1abf2ef7c4100b2a41663286",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 77,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0899434",
+      "queue_position": 9857,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 21,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0899434",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 63,
+      "bucket": "MOMENTUM",
+      "canonical_name": "ice cube",
+      "idempotency_key": "7dd65c8478831666a4a9a659af96d2a79f985598e69ccc81d5c574f3129dff99",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 72,
+      "planned_provider": "chatgpt",
+      "queue_item_id": "H01-SVGQ-CAND-0840363",
+      "queue_position": 1619,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 16,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0840363",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 64,
+      "bucket": "MOMENTUM",
+      "canonical_name": "cactus",
+      "idempotency_key": "642ec908f79ee435d009932426146e573ce479562c7eac173becd492fb12d070",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 86,
+      "planned_provider": "manus",
+      "queue_item_id": "H01-SVGQ-CAND-0855454",
+      "queue_position": 3967,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 28,
+        "current_search_momentum": 25,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0855454",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.plant"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 65,
+      "bucket": "MOMENTUM",
+      "canonical_name": "microphone",
+      "idempotency_key": "a993c0fcb06acba094c6d7fc8694e4fc31cdffef4a6adaacadc7e0615bfbf9ec",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 81,
+      "planned_provider": "copilot",
+      "queue_item_id": "H01-SVGQ-CAND-0868701",
+      "queue_position": 5674,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 25,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0868701",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 66,
+      "bucket": "MOMENTUM",
+      "canonical_name": "ladder",
+      "idempotency_key": "6eab7f661c125a519dc27331b22285a2929de93271396a72f9f5fec825e16af6",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 77,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0847893",
+      "queue_position": 2821,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 21,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0847893",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 67,
+      "bucket": "MOMENTUM",
+      "canonical_name": "zebra",
+      "idempotency_key": "381085d842492d7f2718b506c18b83f092596c4fc3f667c96277328795711302",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 72,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0831359",
+      "queue_position": 147,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 16,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831359",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.animal"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 68,
+      "bucket": "MOMENTUM",
+      "canonical_name": "bacteria",
+      "idempotency_key": "35509b517abf7916aefc4269de6f4acda45074e6c16252e9f3d4279a1a800769",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 77,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0833551",
+      "queue_position": 539,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 21,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0833551",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.animal"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 69,
+      "bucket": "MOMENTUM",
+      "canonical_name": "toilet",
+      "idempotency_key": "a6aac9a97ff197a627136cd6fdac43c0a9d45d900ba929ef87f6c744f19fd57e",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 72,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0832068",
+      "queue_position": 308,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 16,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0832068",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 70,
+      "bucket": "MOMENTUM",
+      "canonical_name": "moon",
+      "idempotency_key": "67e1e293364f792c988b4db6553b99bcfffd586b5a8b18614732524449fb348d",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 81,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0831609",
+      "queue_position": 192,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 25,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831609",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.object"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 71,
+      "bucket": "MOMENTUM",
+      "canonical_name": "flower",
+      "idempotency_key": "f1f3018cbe090e486ac104ee2f5a679812a5eb38034d80f037db684e3f7b4115",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912",
+        "VECTEEZY_POPULAR_SVG_20260912"
+      ],
+      "market_score": 73,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0831715",
+      "queue_position": 205,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 28,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831715",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.plant"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 72,
+      "bucket": "MOMENTUM",
+      "canonical_name": "tree",
+      "idempotency_key": "61101c3b948f7591ccc0805262de35bb57e33e5ab609dca10a8e3f47162034aa",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912",
+        "VECTEEZY_POPULAR_SVG_20260912"
+      ],
+      "market_score": 73,
+      "planned_provider": "chatgpt",
+      "queue_item_id": "H01-SVGQ-CAND-0831417",
+      "queue_position": 168,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 28,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831417",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.plant"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 73,
+      "bucket": "MOMENTUM",
+      "canonical_name": "car",
+      "idempotency_key": "67072b8cfeacaed8b61e8c65bfa6bc25c4db31508f5d4e720351303e6853fd57",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 86,
+      "planned_provider": "manus",
+      "queue_item_id": "H01-SVGQ-CAND-0831683",
+      "queue_position": 200,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 28,
+        "current_search_momentum": 25,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831683",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 74,
+      "bucket": "MOMENTUM",
+      "canonical_name": "cloud",
+      "idempotency_key": "3d99d8f6937affa23916e3957f8a253ba66c298154bc79659e285eb782970116",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 73,
+      "planned_provider": "copilot",
+      "queue_item_id": "H01-SVGQ-CAND-0833482",
+      "queue_position": 514,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 28,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0833482",
+      "source_tier": "review",
+      "suitability": "physical_entity_path"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 75,
+      "bucket": "MOMENTUM",
+      "canonical_name": "coffee",
+      "idempotency_key": "912e95ac1740b461b90f2bf528af36e89dafac70cb83b8c3d10aa05d83c211ae",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 77,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0834474",
+      "queue_position": 726,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 28,
+        "current_search_momentum": 16,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0834474",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.food"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 76,
+      "bucket": "MOMENTUM",
+      "canonical_name": "dog",
+      "idempotency_key": "403e5408a71ab85aa845d5b7d2b1f9b8e18f6645708ef4cce2b97b4d7439efd0",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 73,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-1149165",
+      "queue_position": 29412,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 28,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-1149165",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.animal"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 77,
+      "bucket": "MOMENTUM",
+      "canonical_name": "cat",
+      "idempotency_key": "7fceb4bb557e53d7df35c5a0f849ee71ab32266553eda1732b5ef10201f12350",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 73,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0829861",
+      "queue_position": 1,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 28,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0829861",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.animal"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 78,
+      "bucket": "MOMENTUM",
+      "canonical_name": "pizza",
+      "idempotency_key": "b92d526d787d67aa798cd57cf6d217d346b0ee77d9b16a04c419118f36891d34",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 68,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0832430",
+      "queue_position": 345,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0832430",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.food"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 79,
+      "bucket": "MOMENTUM",
+      "canonical_name": "rabbit",
+      "idempotency_key": "ea82b76a472622b493cfef328f5e368a904d93609e854deed5d1981f191e758d",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 77,
+      "planned_provider": "chatgpt",
+      "queue_item_id": "H01-SVGQ-CAND-0833719",
+      "queue_position": 605,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 28,
+        "current_search_momentum": 16,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0833719",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.animal"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 80,
+      "bucket": "MOMENTUM",
+      "canonical_name": "camera",
+      "idempotency_key": "a2b4f81eb128b2559416fcaff92ba1a72ff510f93850428626aa0428497c1adc",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 68,
+      "planned_provider": "manus",
+      "queue_item_id": "H01-SVGQ-CAND-0833147",
+      "queue_position": 454,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0833147",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 81,
+      "bucket": "MOMENTUM",
+      "canonical_name": "balloon",
+      "idempotency_key": "5d4f0574bda09ee841929bb514453147e1852bcfab0254c1b45e981022742685",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 68,
+      "planned_provider": "copilot",
+      "queue_item_id": "H01-SVGQ-CAND-0845249",
+      "queue_position": 2373,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0845249",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 82,
+      "bucket": "MOMENTUM",
+      "canonical_name": "butterfly",
+      "idempotency_key": "9ee03618da68b281143fb9ea8b4753ff8729690e2ae2018729ad88d9cd69d5f6",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 73,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0833654",
+      "queue_position": 574,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 28,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0833654",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.animal"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 83,
+      "bucket": "MOMENTUM",
+      "canonical_name": "brain",
+      "idempotency_key": "65105b7a5af1cedf10363edfb0d679efc91207dfa4869d414430825280b10354",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 73,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0833483",
+      "queue_position": 515,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 28,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0833483",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.body"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 84,
+      "bucket": "MOMENTUM",
+      "canonical_name": "bicycle",
+      "idempotency_key": "230a6268ab2e1e7a08f167793d853ed098074ef6970b473a8f4b246a939e2972",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 73,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0835196",
+      "queue_position": 812,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 28,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0835196",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 85,
+      "bucket": "MOMENTUM",
+      "canonical_name": "shopping bag",
+      "idempotency_key": "4f0665405d10c2f7c9e1134e81d5392a2164b9a1bf95026020004fedcead8fbd",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 68,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0936056",
+      "queue_position": 15283,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0936056",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 86,
+      "bucket": "MOMENTUM",
+      "canonical_name": "shopping cart",
+      "idempotency_key": "88e0a9c426514c1fbd77b0bb603e9842a0388dc159988705f7dce71f872ee1a7",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 68,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0835553",
+      "queue_position": 835,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0835553",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 87,
+      "bucket": "MOMENTUM",
+      "canonical_name": "headphones",
+      "idempotency_key": "282d80bd35d962b9ede60259278ab3c4b7bc8f19953f0cca5cc7ecf9609a0ce9",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 68,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0838812",
+      "queue_position": 1398,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0838812",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 88,
+      "bucket": "MOMENTUM",
+      "canonical_name": "backpack",
+      "idempotency_key": "ab48570f355c631baa8f69fa2dec3229e42a9b1803f709acc31d4fdae2dfbc19",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 68,
+      "planned_provider": "chatgpt",
+      "queue_item_id": "H01-SVGQ-CAND-0851225",
+      "queue_position": 3293,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0851225",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 89,
+      "bucket": "MOMENTUM",
+      "canonical_name": "notebook",
+      "idempotency_key": "1f7b8b84a8cabfda48d13b5f6ff905c889b5baf63c6631142d841e9df9705d6b",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 68,
+      "planned_provider": "manus",
+      "queue_item_id": "H01-SVGQ-CAND-0848008",
+      "queue_position": 2844,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0848008",
+      "source_tier": "review",
+      "suitability": "physical_entity_path"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 90,
+      "bucket": "MOMENTUM",
+      "canonical_name": "houseplant",
+      "idempotency_key": "2f5d5c7cfb2076608f151a149b7005bb7d06f6e1a451cbe9fba4c458e0522d09",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_TRENDS_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 68,
+      "planned_provider": "copilot",
+      "queue_item_id": "H01-SVGQ-CAND-0873210",
+      "queue_position": 6401,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 15,
+        "cross_market_recurrence": 23,
+        "current_search_momentum": 12,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0873210",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.plant"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 91,
+      "bucket": "SEASONAL_Q4",
+      "canonical_name": "snowman",
+      "idempotency_key": "98bef7d2267e290761eefd8d5af28cf58f95fe4754b116619e2f7f4516e0d6b7",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_SEASONAL_20260912",
+        "VECTEEZY_POPULAR_SVG_20260912",
+        "VECTEEZY_GIFTBOX_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 87,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0837569",
+      "queue_position": 1144,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 12,
+        "cross_market_recurrence": 32,
+        "current_search_momentum": 25,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0837569",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 92,
+      "bucket": "SEASONAL_Q4",
+      "canonical_name": "reindeer",
+      "idempotency_key": "310da4b1b361a3b6a111badeef7f406a7fcf874663ced6eb0177ba05ab919ffd",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_SEASONAL_20260912",
+        "VECTEEZY_POPULAR_SVG_20260912",
+        "VECTEEZY_GIFTBOX_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 87,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0831357",
+      "queue_position": 145,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 12,
+        "cross_market_recurrence": 32,
+        "current_search_momentum": 25,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0831357",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.animal"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 93,
+      "bucket": "SEASONAL_Q4",
+      "canonical_name": "stocking",
+      "idempotency_key": "94fd312779e174a3cd8a757ecf54384f11b8d0a80dde11a5d89a8a25af0ceaf1",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_SEASONAL_20260912",
+        "VECTEEZY_POPULAR_SVG_20260912",
+        "VECTEEZY_GIFTBOX_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 87,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0844065",
+      "queue_position": 2183,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 12,
+        "cross_market_recurrence": 32,
+        "current_search_momentum": 25,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0844065",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 94,
+      "bucket": "SEASONAL_Q4",
+      "canonical_name": "ornament",
+      "idempotency_key": "a87ffba395d3d4ae30166f9684a567e4a86623629aed86423024f9524efe989d",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_SEASONAL_20260912",
+        "VECTEEZY_POPULAR_SVG_20260912",
+        "VECTEEZY_GIFTBOX_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 87,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0839654",
+      "queue_position": 1522,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 12,
+        "cross_market_recurrence": 32,
+        "current_search_momentum": 25,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0839654",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 95,
+      "bucket": "SEASONAL_Q4",
+      "canonical_name": "snowflake",
+      "idempotency_key": "8ecd57bad2ffa4e8340528413f63ed2ca8ee28a9948440050fe9535e507ccfca",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_SEASONAL_20260912",
+        "VECTEEZY_POPULAR_SVG_20260912",
+        "VECTEEZY_GIFTBOX_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 87,
+      "planned_provider": "qwen",
+      "queue_item_id": "H01-SVGQ-CAND-0836683",
+      "queue_position": 1004,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 12,
+        "cross_market_recurrence": 32,
+        "current_search_momentum": 25,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0836683",
+      "source_tier": "review",
+      "suitability": "physical_entity_path"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 96,
+      "bucket": "SEASONAL_Q4",
+      "canonical_name": "sleigh",
+      "idempotency_key": "598a8213d02dbb62282bbd1a4549c7326190577446e543b324287669948c0832",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_SEASONAL_20260912",
+        "VECTEEZY_POPULAR_SVG_20260912",
+        "VECTEEZY_GIFTBOX_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 87,
+      "planned_provider": "claude",
+      "queue_item_id": "H01-SVGQ-CAND-0848305",
+      "queue_position": 2880,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 12,
+        "cross_market_recurrence": 32,
+        "current_search_momentum": 25,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0848305",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 97,
+      "bucket": "SEASONAL_Q4",
+      "canonical_name": "holly",
+      "idempotency_key": "89a0eb9516e6a5eea5ef8dbc24346b6744312598f617bf51ebea61aff4c433c5",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_SEASONAL_20260912",
+        "VECTEEZY_POPULAR_SVG_20260912",
+        "VECTEEZY_GIFTBOX_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 87,
+      "planned_provider": "chatgpt",
+      "queue_item_id": "H01-SVGQ-CAND-0850858",
+      "queue_position": 3231,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 12,
+        "cross_market_recurrence": 32,
+        "current_search_momentum": 25,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0850858",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.plant"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 98,
+      "bucket": "SEASONAL_Q4",
+      "canonical_name": "mistletoe",
+      "idempotency_key": "de4ef6f96a067a6e1e44367a86bffdaabf3c24bee03ba75c1a37bf3236684909",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_SEASONAL_20260912",
+        "VECTEEZY_POPULAR_SVG_20260912",
+        "VECTEEZY_GIFTBOX_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 87,
+      "planned_provider": "manus",
+      "queue_item_id": "H01-SVGQ-CAND-0866264",
+      "queue_position": 5277,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 12,
+        "cross_market_recurrence": 32,
+        "current_search_momentum": 25,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0866264",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.plant"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 99,
+      "bucket": "SEASONAL_Q4",
+      "canonical_name": "candy cane",
+      "idempotency_key": "34396621a56975527b6e7b0405d28c8b487864141d591c2295496a19a7871859",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_SEASONAL_20260912",
+        "VECTEEZY_POPULAR_SVG_20260912",
+        "VECTEEZY_GIFTBOX_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 87,
+      "planned_provider": "copilot",
+      "queue_item_id": "H01-SVGQ-CAND-0919925",
+      "queue_position": 13188,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 12,
+        "cross_market_recurrence": 32,
+        "current_search_momentum": 25,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0919925",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.food"
+    },
+    {
+      "adaptive_provider_redistribution_allowed": true,
+      "batch_position": 100,
+      "bucket": "SEASONAL_Q4",
+      "canonical_name": "firework",
+      "idempotency_key": "64bea009665d75b9ebc764ee2451c11a9ce7171af576e1f15ebd6b7b23b77a5a",
+      "market_evidence_refs": [
+        "SHUTTERSTOCK_SEASONAL_20260912",
+        "VECTEEZY_POPULAR_SVG_20260912",
+        "VECTEEZY_GIFTBOX_20260912",
+        "123RF_POPULAR_YEARLY_20260912"
+      ],
+      "market_score": 87,
+      "planned_provider": "gemini",
+      "queue_item_id": "H01-SVGQ-CAND-0844570",
+      "queue_position": 2285,
+      "score_components": {
+        "commercial_reuse": 13,
+        "competition_opportunity": 12,
+        "cross_market_recurrence": 32,
+        "current_search_momentum": 25,
+        "portfolio_diversity": 5
+      },
+      "source_candidate_id": "CAND-0844570",
+      "source_tier": "pass",
+      "suitability": "lexname=noun.artifact"
+    }
+  ],
+  "market_evidence": {
+    "observed_at": "2026-09-12",
+    "path": "company/company-os/die-h01/runtime/h01-108-market-evidence.v1.json",
+    "schema": "die.h01.market-evidence-snapshot.v1"
+  },
+  "provider_plan": {
+    "adaptive_redistribution": true,
+    "cooldown_seconds_default": 180,
+    "cycle": [
+      "gemini",
+      "qwen",
+      "claude",
+      "chatgpt",
+      "manus",
+      "copilot",
+      "gemini",
+      "qwen",
+      "claude",
+      "gemini",
+      "qwen",
+      "claude",
+      "chatgpt",
+      "manus",
+      "copilot",
+      "gemini",
+      "qwen",
+      "claude",
+      "gemini",
+      "qwen",
+      "claude",
+      "chatgpt",
+      "manus",
+      "copilot",
+      "gemini"
+    ],
+    "excluded": [
+      "grok",
+      "duckai"
+    ],
+    "planned_counts": {
+      "chatgpt": 12,
+      "claude": 20,
+      "copilot": 12,
+      "gemini": 24,
+      "manus": 12,
+      "qwen": 20
+    },
+    "qwen_completion_policy": "LONG_PROGRESS_AWARE_WAIT_PLUS_LATE_COMPLETION_RECHECK"
+  },
+  "queue": {
+    "path": "/var/lib/die/h01/queues/svg-standalone-v1/queue.jsonl",
+    "sha256": "0f0ec826a81d888a2be3f0b4bd11d6327f7202963d70add639f2092cdf46beeb",
+    "source_rows": 43005
+  },
+  "schema": "die.h01.h01-108-market-batch.v1",
+  "selection_policy": {
+    "bucket_counts": {
+      "EVERGREEN": 60,
+      "MOMENTUM": 30,
+      "SEASONAL_Q4": 10
+    },
+    "hard_gates": [
+      "H01-101 dispatch_eligible=true",
+      "feasibility=PASS",
+      "rights=PASS",
+      "unique canonical noun",
+      "standalone VECTOR/VECTOR_OBJECT/SINGLE/CLEAN_STOCK_VECTOR_V1"
+    ],
+    "scoring": {
+      "commercial_reuse_max": 15,
+      "competition_opportunity_max": 20,
+      "cross_market_recurrence_max": 35,
+      "current_search_momentum_max": 25,
+      "portfolio_diversity_max": 5,
+      "warning": "Search result counts are competition/supply proxies, not demand or sales counts."
+    }
+  },
+  "status": "FROZEN",
+  "task_id": "H01-108"
+}
