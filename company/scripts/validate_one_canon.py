@@ -19,7 +19,7 @@ from typing import Iterable
 
 SECRET_PATTERNS = [
     re.compile(r"BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY"),
-    re.compile(r"sk-[A-Za-z0-9_-]{20,}"),
+    re.compile(r"(?<![A-Za-z0-9_-])sk-[A-Za-z0-9_-]{20,}"),
     re.compile(r"gh[pousr]_[A-Za-z0-9]{20,}"),
     re.compile(r"AKIA[0-9A-Z]{16}"),
 ]
