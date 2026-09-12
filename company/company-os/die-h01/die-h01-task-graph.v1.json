@@ -138,7 +138,7 @@
     {
       "id": "H01-014",
       "track": "CONTROL_PLANE",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-011"
