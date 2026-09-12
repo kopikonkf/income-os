@@ -1,0 +1,100 @@
+{
+  "atlas_health": {
+    "candidate_seeds": 714268,
+    "object_asset_engine_quick_check": "ok",
+    "seed_library_objects": 475560,
+    "seed_library_quick_check": "ok",
+    "wave3_eligible": 43005
+  },
+  "classes": [
+    "ACTIVE",
+    "ROLLBACK",
+    "ARCHIVE",
+    "REGENERABLE",
+    "DISPOSABLE"
+  ],
+  "deleted": [
+    {
+      "bytes": 241852380,
+      "chunks": 8,
+      "delete": "/var/lib/die/atlas/object-asset-engine/incoming/die203/chunks/object_asset_engine.db.gz.part*",
+      "parent": "/var/lib/die/atlas/object-asset-engine/incoming/die203/object_asset_engine.db.gz",
+      "reason": "transport chunks exactly reconstruct retained parent archive",
+      "sha256": "1442b4f32ff0776a8357d8587b4058550687b53e693cfcf81956c6bc0d1dcf94"
+    },
+    {
+      "bytes": 13498281,
+      "chunks": 1,
+      "delete": "/var/lib/die/atlas/object-asset-engine/incoming/die203/chunks/seed_library.db.gz.part*",
+      "parent": "/var/lib/die/atlas/object-asset-engine/incoming/die203/seed_library.db.gz",
+      "reason": "transport chunks exactly reconstruct retained parent archive",
+      "sha256": "e3ced03b26e031bbe677e1bbbc74f3624a565bd50fe5a216713e894cded46475"
+    },
+    {
+      "bytes": 577885980,
+      "chunks": 18,
+      "delete": "/var/lib/die/atlas/object-asset-engine/incoming/die203/chunks/data.tar.gz.part*",
+      "parent": "/var/lib/die/atlas/object-asset-engine/incoming/die203/data.tar.gz",
+      "reason": "transport chunks exactly reconstruct retained parent archive",
+      "sha256": "0de86a5c127126acd814ae6167ac2e7d675585e9f3071c51e3e98f04d3f140d5"
+    },
+    {
+      "bytes": 1210871808,
+      "delete": "/var/lib/die/atlas/object-asset-engine/incoming/object_asset_engine.db.final",
+      "parent": "/var/lib/die/atlas/object-asset-engine/incoming/object_asset_engine.db.final.gz",
+      "reason": "uncompressed staging duplicate exactly reconstructible from retained gzip archive",
+      "sha256": "e6e43fbd4bbee712de651c31a159bb66872a91b1b555f809d0177ba856eeb891"
+    }
+  ],
+  "deleted_bytes_total": 2044108449,
+  "filesystem": {
+    "available_bytes_after": 85340659712,
+    "used_percent_after": 33,
+    "used_percent_before": 35
+  },
+  "observed_at": "2026-09-12T04:29:34Z",
+  "origin_main_at_start": "27fc8610256ba8c044902b125654175f8e429a01",
+  "result": "PASS",
+  "retained": {
+    "ACTIVE": [
+      "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db",
+      "/var/lib/die/atlas/object-asset-engine/db/seed_library.db",
+      "/var/lib/die/state",
+      "/var/lib/die/workspaces",
+      "/var/lib/muxia",
+      "/opt/die/staging/income-os",
+      "/var/log"
+    ],
+    "ARCHIVE": [
+      "/var/lib/die/atlas/object-asset-engine/data/raw/enwiktionary_dump.jsonl",
+      "/var/lib/die/atlas/object-asset-engine/incoming/die203",
+      "/var/lib/die/atlas/object-asset-engine/incoming/object_asset_engine.db.final.gz",
+      "/var/lib/die/atlas/object-asset-engine/incoming/seed_library_final.db.gz",
+      "/opt/die/staging/income-os-pre-rekey-f5eb720",
+      "/home/kopiko/die-archive/worktree-rescue-20260911"
+    ],
+    "REGENERABLE": [
+      "/opt/die/staging/division-browser-source-e1503cb",
+      "/opt/die/staging/exec-browser-source-6372a93",
+      "/opt/die/staging/mcp002-source"
+    ],
+    "ROLLBACK": [
+      "/var/lib/die/atlas/object-asset-engine/state/pre-die203-final-20260830T0929Z",
+      "/var/lib/die/postprocess",
+      "/var/lib/die/manual-publish",
+      "/opt/factory-asset/fa124-runtime",
+      "/home/kopiko/die-archive/legacy-live-snapshots"
+    ]
+  },
+  "safety": {
+    "artifacts_deleted": false,
+    "logs_deleted": false,
+    "production_state_deleted": false,
+    "regenerable_deleted_without_duplicate_proof": false,
+    "runtime_cutover": false,
+    "services_restarted": false,
+    "srv_die_mutated": false
+  },
+  "schema": "die.h01.h01-005.data-retention.receipt.v1",
+  "task_id": "H01-005"
+}
