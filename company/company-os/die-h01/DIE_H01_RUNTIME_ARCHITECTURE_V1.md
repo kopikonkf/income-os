@@ -48,7 +48,8 @@ UDD IDLE
  -> spawn one Brave/profile
  -> one provider + one committed tab + one job
  -> provider-specific wait/completion detection
- -> acquire output + durable receipt
+ -> H01-104A normalized output acquisition
+ -> immutable provider-original + durable acquisition receipt
  -> close Brave
  -> optional safe cache janitor
  -> UDD IDLE
@@ -82,12 +83,16 @@ Blueprint is provider-independent WHAT. Master instruction/prompt logic is HOW. 
 
 `web-ai-adapter` is default ingress. Native MCP is optional transport, not a Vector Factory dependency.
 
+H01-104A is the deterministic provider-output acquisition core between runtime completion and H01-103/H01-104. It consumes sanitized final provider output supplied by the browser/runtime boundary, extracts exactly one SVG payload for the SVG-first lane, persists immutable provider-original bytes and hashes, and never reads cookies/tokens/session bytes. Live provider/CDP canaries remain H01-107.
+
 ## 8. Native SVG intake and lineage
 
 Founder Claude Sonnet 4.6 samples under `D:\\Dee_Workspace\\Claude_SVG` prove real native SVG generation and also prove current FA-321 parsing is too narrow. Real samples use shapes and geometry beyond `svg/g/path` plus M/L/H/V/Z.
 
 ```text
-provider-original.svg  immutable + provenance/hash
+provider final response
+        -> H01-104A exactly-one-SVG extraction + immutable write
+provider-original.svg  immutable + raw-response/payload provenance/hash
         -> canonicalization / safety / geometry / render QA
 canonical-master.svg   governed production master
 ```

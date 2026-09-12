@@ -1,0 +1,35 @@
+{
+  "schema": "die.h01.provider-output-acquisition-runtime.v1",
+  "revision": "1.0.0",
+  "task_id": "H01-104A",
+  "state": "CORE_READY_LIVE_CANARY_DOWNSTREAM",
+  "implementation": "company/company-os/die-h01/engineering/provider_output_acquisition.py",
+  "receipt_schema": "company/company-os/die-h01/contracts/h01-provider-output-acquisition-v1.schema.json",
+  "input_boundary": {
+    "owner": "H01-025",
+    "kind": "SANITIZED_FINAL_PROVIDER_PAYLOAD",
+    "loopback_cdp_owned_upstream": true,
+    "provider_call_performed_by_h01_104a": false
+  },
+  "svg_first": {
+    "output_kind": "SVG_SOURCE_TEXT",
+    "artifact_name": "provider-original.svg",
+    "exactly_one_svg_required": true,
+    "immutable_original": true,
+    "raw_provider_response_hash_preserved": true,
+    "extracted_candidate_hash_preserved": true,
+    "h01_103_validation_required": true
+  },
+  "safety": {
+    "cookies_read": false,
+    "tokens_read": false,
+    "session_bytes_read": false,
+    "browser_profile_copied": false,
+    "raster_trace_allowed": false
+  },
+  "downstream": {
+    "live_provider_canaries": "H01-107",
+    "native_svg_contract": "H01-104",
+    "postproduction": "H01-105"
+  }
+}

@@ -6,6 +6,7 @@
     "submission_authorized": false
   },
   "downstream": {
+    "output_acquisition": "H01-104A",
     "postproduction": "H01-105",
     "provider_canaries": "H01-107"
   },

@@ -1,0 +1,41 @@
+{
+  "artifact": {
+    "bytes": 106,
+    "immutable_provider_original": true,
+    "path": "company/company-os/die-h01/fixtures/h01-104a/synthetic-output/provider-original.svg",
+    "sha256": "23661e462f48c48ac7f6ba526785be3426a0336fafac30597100256f81985348"
+  },
+  "completion": {
+    "completed_at": "2026-09-12T15:00:00Z",
+    "signal": "SYNTHETIC_STABLE_FINAL"
+  },
+  "downstream": {
+    "h01_103_validation_required": true,
+    "h01_104_receipt_compatible": true,
+    "h01_105_postproduction_after_validation": true
+  },
+  "job_id": "H01-104A-SYNTHETIC-001",
+  "output_kind": "SVG_SOURCE_TEXT",
+  "profile_id": "h01-web-p001",
+  "provider_id": "claude",
+  "provider_result": {
+    "finish_reason": "STOP",
+    "mime": "image/svg+xml",
+    "native_svg_source_kind": "DIRECT_PROVIDER_SVG_SOURCE",
+    "payload_bytes": 106,
+    "payload_sha256": "23661e462f48c48ac7f6ba526785be3426a0336fafac30597100256f81985348",
+    "provider_response_sha256": "f29277941c7700d68749aca0e139ddedac4354feea8d109eb2401ac3bef4da73",
+    "provider_status": "COMPLETED"
+  },
+  "request_id": "H01SVGREQ-BOOK_001",
+  "revision": "1.0.0",
+  "safety": {
+    "browser_profile_copied": false,
+    "cookies_read": false,
+    "session_bytes_read": false,
+    "tokens_read": false
+  },
+  "schema": "die.h01.provider-output-acquisition.v1",
+  "source_kind": "ASSISTANT_DOM",
+  "terminal_state": "SUCCEEDED"
+}

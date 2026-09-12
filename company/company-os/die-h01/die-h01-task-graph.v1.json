@@ -320,6 +320,18 @@
       "acceptance": "web-ai-adapter is default ingress and native MCP optional; preserve blueprint/prompt hashes, provider result, exactly-once authority and no raster-trace success claims."
     },
     {
+      "id": "H01-104A",
+      "track": "SVG_FIRST",
+      "status": "DONE",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-104"
+      ],
+      "title": "Implement normalized provider output acquisition core v1",
+      "acceptance": "Consume sanitized final provider output from the runtime boundary; for SVG extract exactly one complete provider SVG payload, persist immutable provider-original bytes with raw-response and candidate SHA-256 lineage, emit schema-valid H01-104-compatible acquisition metadata, and fail closed on empty, ambiguous, unsafe or conflicting output without reading cookies/tokens/session bytes. Live CDP/provider canaries remain H01-107.",
+      "result": "PASS: deterministic SVG-first provider output acquisition core implemented; immutable provider-original.svg persistence, raw-response/candidate hash preservation, H01-104 integration, fail-closed ambiguity/safety/conflict handling and zero session-secret access are covered by focused regression tests."
+    },
+    {
       "id": "H01-105",
       "track": "SVG_FIRST",
       "status": "DONE",
@@ -347,7 +359,7 @@
       "status": "BLOCKED",
       "authority": "ARCHITECT",
       "depends_on": [
-        "H01-104",
+        "H01-104A",
         "H01-106",
         "H01-025"
       ],
