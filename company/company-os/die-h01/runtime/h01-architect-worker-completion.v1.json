@@ -1,0 +1,93 @@
+{
+  "cdp_observation": {
+    "cdp_host": "127.0.0.1",
+    "driver": "company/company-os/die-h01/engineering/architect_browser_cdp_driver.mjs",
+    "session_reader": "company/company-os/die-h01/engineering/architect_browser_dispatcher.py::NodeCdpSession",
+    "transport": "JSONL_STDOUT_METADATA_ONLY"
+  },
+  "completion_authority": "MISSION_CONTROL_DURABLE_STATE",
+  "durable_terminal": {
+    "failure_or_recovery": [
+      "BLOCKED",
+      "READY",
+      "FAILED",
+      "CANCELLED"
+    ],
+    "success": [
+      "DONE",
+      "VERIFYING"
+    ],
+    "success_requires_final_checkpoint_progress": 100,
+    "success_requires_payload_keys": [
+      "result",
+      "artifacts"
+    ]
+  },
+  "holding_id": "H01",
+  "integration": {
+    "dispatcher_state": "PROGRESS_AWARE_COMPLETION_READY",
+    "h01_301_dispatch_canary_retained": true,
+    "next_parallel_gate": "H01-303 then H01-304",
+    "production_entrypoint": "architect_worker_completion.monitor_worker"
+  },
+  "marker": {
+    "authority": "CORRELATION_ONLY",
+    "marker_before_protocol": "WAIT_MARKER_AHEAD_OF_PROTOCOL",
+    "missing_after_durable_completion": "NON_FATAL_DIAGNOSTIC",
+    "prefix": "MC005_ARCHITECT_RESULT_"
+  },
+  "policy": {
+    "absolute_rendered_chat_done_timeout": null,
+    "marker_reconcile_seconds": 30,
+    "minimum_stall_seconds": 300,
+    "mission_error_grace_seconds": 300,
+    "poll_seconds": 2,
+    "stall_seconds": 5400
+  },
+  "progress_sources": {
+    "durable": [
+      "checkpoint_id",
+      "checkpoint_progress",
+      "lease_heartbeat",
+      "lease_expiry",
+      "owner_attempt_status",
+      "owner_attempt_updated_at"
+    ],
+    "raw_response_text_persisted": false,
+    "ui_metadata": [
+      "assistant_nodes",
+      "assistant_chars",
+      "stop_visible",
+      "composer_ready",
+      "marker_found",
+      "marker_candidates",
+      "auth_required"
+    ]
+  },
+  "recovery": {
+    "browser_close_in_finally": true,
+    "completion_inferred": false,
+    "profile_lease_release_in_finally": true,
+    "reasons": [
+      "BROWSER_EXITED",
+      "ACTIVE_WITHOUT_LEASE",
+      "LEASE_EXPIRED",
+      "OWNER_ATTEMPT_ENDED_WHILE_ACTIVE",
+      "AUTH_REQUIRED",
+      "STALLED_NO_DURABLE_OR_UI_PROGRESS",
+      "MISSION_OBSERVER_UNAVAILABLE",
+      "UNKNOWN_DURABLE_STATUS"
+    ],
+    "scheduler_action_taken_by_supervisor": false
+  },
+  "rendered_chat_is_completion_authority": false,
+  "result_ingestion": {
+    "conflicting_replay": "FAIL_CLOSED",
+    "idempotent": true,
+    "journal_authority": "CACHE_ONLY_MISSION_CONTROL_REMAINS_AUTHORITY",
+    "module": "company/company-os/die-h01/engineering/architect_worker_completion.py",
+    "secret_fields_rejected": true
+  },
+  "role": "PROGRESS_AWARE_COMPLETION_SUPERVISOR",
+  "schema_version": "die.h01.architect-worker-completion.v1"
+}

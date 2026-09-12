@@ -19,6 +19,8 @@
     "profile_lease_release_in_finally": true,
     "submit_failure_closes_browser": true
   },
+  "completion_contract": "die.h01.architect-worker-completion.v1",
+  "completion_supervisor": "company/company-os/die-h01/engineering/architect_worker_completion.py",
   "dispatcher_is_scheduler": false,
   "downstream": {
     "completion_detector": "H01-302",
@@ -63,7 +65,7 @@
   "mission_control_scheduler_authority": true,
   "role": "ENGINEERING_BROWSER_WORKER_DISPATCHER",
   "schema_version": "die.h01.architect-browser-dispatcher.v1",
-  "state": "CANARY_ONLY_UNTIL_H01_302",
+  "state": "PROGRESS_AWARE_COMPLETION_READY",
   "transport": {
     "browser_target": "https://chatgpt.com/",
     "cdp_host": "127.0.0.1",
