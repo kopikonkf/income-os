@@ -1,6 +1,6 @@
 {
   "schema": "die.h01.task-graph.v1",
-  "generated_at": "2026-09-11",
+  "generated_at": "2026-09-12",
   "status": "FOUNDER_APPROVED_CANONICAL_DESIGN_NOT_LIVE",
   "project": "DIE / H01 Factory Asset",
   "source_sha": "83df35a6dda299b140d169989c89ac49a56a9ddd",
@@ -61,7 +61,7 @@
     {
       "id": "H01-003",
       "track": "FOUNDATION",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-002"
@@ -72,7 +72,7 @@
     {
       "id": "H01-004",
       "track": "FOUNDATION",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-003"
@@ -173,7 +173,7 @@
     {
       "id": "H01-020",
       "track": "BROWSER_FABRIC",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-003"
@@ -612,7 +612,7 @@
     {
       "id": "H01-300",
       "track": "ENGINEERING_WORKFORCE",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-003",
