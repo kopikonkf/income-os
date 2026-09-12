@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h01.provider-output-acquisition.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "revision",
+    "job_id",
+    "request_id",
+    "provider_id",
+    "profile_id",
+    "terminal_state",
+    "output_kind",
+    "source_kind",
+    "provider_result",
+    "artifact",
+    "completion",
+    "safety",
+    "downstream"
+  ],
+  "properties": {
+    "schema": {
+      "const": "die.h01.provider-output-acquisition.v1"
+    },
+    "revision": {
+      "const": "1.0.0"
+    },
+    "job_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "provider_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "profile_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "terminal_state": {
+      "const": "SUCCEEDED"
+    },
+    "output_kind": {
+      "const": "SVG_SOURCE_TEXT"
+    },
+    "source_kind": {
+      "enum": [
+        "ASSISTANT_DOM",
+        "CODE_BLOCK"
+      ]
+    },
+    "provider_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider_status",
+        "finish_reason",
+        "provider_response_sha256",
+        "payload_sha256",
+        "payload_bytes",
+        "mime",
+        "native_svg_source_kind"
+      ],
+      "properties": {
+        "provider_status": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "finish_reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200
+        },
+        "provider_response_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "payload_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "payload_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1048576
+        },
+        "mime": {
+          "const": "image/svg+xml"
+        },
+        "native_svg_source_kind": {
+          "const": "DIRECT_PROVIDER_SVG_SOURCE"
+        }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "bytes",
+        "immutable_provider_original"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1048576
+        },
+        "immutable_provider_original": {
+          "const": true
+        }
+      }
+    },
+    "completion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "signal",
+        "completed_at"
+      ],
+      "properties": {
+        "signal": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "completed_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cookies_read",
+        "tokens_read",
+        "session_bytes_read",
+        "browser_profile_copied"
+      ],
+      "properties": {
+        "cookies_read": {
+          "const": false
+        },
+        "tokens_read": {
+          "const": false
+        },
+        "session_bytes_read": {
+          "const": false
+        },
+        "browser_profile_copied": {
+          "const": false
+        }
+      }
+    },
+    "downstream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "h01_103_validation_required",
+        "h01_104_receipt_compatible",
+        "h01_105_postproduction_after_validation"
+      ],
+      "properties": {
+        "h01_103_validation_required": {
+          "const": true
+        },
+        "h01_104_receipt_compatible": {
+          "const": true
+        },
+        "h01_105_postproduction_after_validation": {
+          "const": true
+        }
+      }
+    }
+  }
+}

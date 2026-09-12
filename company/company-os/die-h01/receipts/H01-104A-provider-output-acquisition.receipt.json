@@ -1,0 +1,57 @@
+{
+  "schema": "die.h01.h01-104a.provider-output-acquisition.acceptance.v1",
+  "task_id": "H01-104A",
+  "date": "2026-09-12",
+  "status": "PASS",
+  "origin_main_at_start": "166046d3c0e9ef6cd24fa68ccdbaad09c8ba6c03",
+  "acceptance": {
+    "svg_first_only": true,
+    "exactly_one_svg_required": true,
+    "raw_provider_response_hash_preserved": true,
+    "extracted_candidate_hash_preserved": true,
+    "immutable_provider_original": true,
+    "h01_104_receipt_integration": true,
+    "ambiguous_output_fails_closed": true,
+    "forbidden_svg_intake_fails_closed": true,
+    "artifact_conflict_fails_closed": true,
+    "cookies_or_tokens_read": false,
+    "session_bytes_read": false,
+    "browser_profile_copied": false,
+    "live_provider_call_made": false,
+    "live_cdp_canary_owner": "H01-107"
+  },
+  "fixture": {
+    "kind": "SYNTHETIC_NONLIVE",
+    "provider_id": "claude",
+    "profile_id": "h01-web-p001",
+    "artifact": "company/company-os/die-h01/fixtures/h01-104a/synthetic-output/provider-original.svg",
+    "artifact_bytes": 106,
+    "artifact_sha256": "23661e462f48c48ac7f6ba526785be3426a0336fafac30597100256f81985348",
+    "provider_response_sha256": "f29277941c7700d68749aca0e139ddedac4354feea8d109eb2401ac3bef4da73"
+  },
+  "graph": {
+    "h01_104a_status": "DONE",
+    "h01_104a_depends_on": ["H01-104"],
+    "h01_107_depends_on": ["H01-104A", "H01-106", "H01-025"],
+    "h01_107_status": "BLOCKED",
+    "reason_h01_107_remains_blocked": "H01-025 live Brave runtime is still canonical dependency"
+  },
+  "validation": {
+    "focused_and_h01_104_regression": "26/26 PASS",
+    "json_parse": "PASS",
+    "schema_meta_validation": "PASS",
+    "synthetic_receipt_schema": "PASS",
+    "graph_integrity": "PASS / 58 unique tasks / all dependencies resolve",
+    "git_diff_check": "PASS",
+    "secret_literal_scan": "PASS",
+    "broader_h01_suite": "152/154 PASS; 2 pre-existing stale-status assertions already inconsistent with origin/main (H01-013 and H01-305 now DONE)"
+  },
+  "authority": {
+    "provider_dispatch_performed": false,
+    "browser_mutation_performed": false,
+    "mission_scheduler_changed": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "srv_die_mutated": false
+  }
+}

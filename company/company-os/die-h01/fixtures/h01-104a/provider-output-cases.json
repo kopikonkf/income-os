@@ -1,0 +1,8 @@
+{
+  "plain": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><rect x=\"8\" y=\"8\" width=\"48\" height=\"48\" fill=\"#345678\"/></svg>",
+  "code_block": "```svg\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><circle cx=\"32\" cy=\"32\" r=\"20\" fill=\"#345678\"/></svg>\n```",
+  "prose_wrapped": "Here is the requested vector:\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><path d=\"M8 8H56V56H8Z\" fill=\"#345678\"/></svg>\nDone.",
+  "ambiguous": "<svg viewBox=\"0 0 10 10\"><rect width=\"10\" height=\"10\"/></svg> and <svg viewBox=\"0 0 10 10\"><circle cx=\"5\" cy=\"5\" r=\"4\"/></svg>",
+  "forbidden": "<svg viewBox=\"0 0 10 10\"><image href=\"x.png\" width=\"10\" height=\"10\"/></svg>",
+  "missing_dimensions": "<svg xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"10\" height=\"10\"/></svg>"
+}

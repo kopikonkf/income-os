@@ -90,4 +90,4 @@ This proves contract compatibility only. It does not promote Claude or any other
 
 ## Authority exclusions
 
-H01-104 performs no provider call, submission, publication, route promotion, browser mutation, `/srv/die` mutation, or Atlas mutation. `web-ai-adapter` remains default ingress; native MCP remains optional. H01-105 owns deterministic postproduction, and H01-107 owns provider-by-provider live canaries.
+H01-104 performs no provider call, submission, publication, route promotion, browser mutation, `/srv/die` mutation, or Atlas mutation. `web-ai-adapter` remains default ingress; native MCP remains optional. H01-104A owns deterministic normalized provider-output acquisition, H01-105 owns deterministic postproduction, and H01-107 owns provider-by-provider live canaries.
