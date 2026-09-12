@@ -1,0 +1,46 @@
+{
+  "schema_version": "die.h01.architect-worker-isolation.v1",
+  "holding_id": "H01",
+  "implementation_task": "H01-303",
+  "mission_control_is_scheduler": true,
+  "worker_is_scheduler": false,
+  "dependency_gate": {
+    "canonical_ref": "refs/remotes/origin/main",
+    "task_graph_path": "company/company-os/die-h01/die-h01-task-graph.v1.json",
+    "dependency_status_required": "DONE",
+    "dispatchable_canonical_statuses": ["READY", "LEASED", "RUNNING"],
+    "unmerged_worker_branch_can_unlock_downstream": false,
+    "mutates_task_graph": false
+  },
+  "workspace": {
+    "path_template": "/home/kopiko/die-sessions/<task_id>",
+    "lifecycle_schema": "die.h01.ephemeral-worktree.v1",
+    "lifecycle_status_required": "OPEN",
+    "claim_root": "/home/kopiko/.local/state/die-engineering/worker-claims",
+    "shared_mutable_worktree_allowed": false,
+    "claim_auto_expiry": false,
+    "stale_claim_recovery_requires_durable_mission_reconciliation": true,
+    "protected_root": "/srv/die",
+    "protected_root_git_metadata_allowed": false
+  },
+  "publication": {
+    "helper": "bin/die_engineering_lease.py",
+    "control_plane_lease_root": "D:\\mcp-architect\\workspace\\.engineering-leases",
+    "resources": ["income-os.repo-write", "company-os.<task_id>"],
+    "acquire_immediately_before_remote_mutation": true,
+    "release_in_finally": true,
+    "busy_is_fail_closed": true,
+    "linux_shadow_lease_allowed": false,
+    "mission_owner_lease_grants_repo_write": false
+  },
+  "parallelism": {
+    "different_tasks_may_share_git_common_dir": true,
+    "different_tasks_may_share_mutable_worktree": false,
+    "same_task_parallel_mutation_allowed": false,
+    "concurrent_remote_git_mutation_allowed": false
+  },
+  "downstream": {
+    "two_worker_canary": "H01-304",
+    "graph_width_scaling": "H01-305"
+  }
+}
