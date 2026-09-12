@@ -1,0 +1,89 @@
+{
+  "browser_close_evidence": {
+    "current_authenticated_session_close": "EXTERNAL_RUNTIME_AFTER_DURABLE_TERMINAL_NOT_SELF_OBSERVABLE",
+    "implementation_close_in_finally": true,
+    "real_cdp_fixture": {
+      "browser_close_rc": 0,
+      "browser_root_gone": true,
+      "debug_host": "127.0.0.1",
+      "driver_status": "SUBMITTED",
+      "fixture_mode": true,
+      "schema": "die.h01.h01-301.real-cdp-fixture-proof.v1",
+      "session_material_read": false,
+      "status": "PASS",
+      "submit_method": "button"
+    },
+    "unit_tests_cover_success_timeout_and_submit_failure": true
+  },
+  "downstream": {
+    "H01-302": "READY_AFTER_H01_301",
+    "H01-303": "READY",
+    "H01-304": "BLOCKED_ON_H01_302_AND_H01_303"
+  },
+  "implementation": {
+    "cdp_driver": "company/company-os/die-h01/engineering/architect_browser_cdp_driver.mjs",
+    "cdp_host": "127.0.0.1",
+    "dispatcher": "company/company-os/die-h01/engineering/architect_browser_dispatcher.py",
+    "host_binding_policy": "HOST_LOCAL_NOT_CANONICAL",
+    "logical_browser_resource": "h01-eng-architect-a",
+    "production_browser_mode": "HEADFUL",
+    "state": "CANARY_ONLY_UNTIL_H01_302"
+  },
+  "live_mission_dispatch_evidence": {
+    "adapter": "architect-browser-cdp-python",
+    "bootstrap_delivered_to_current_architect_session": true,
+    "checkpoint_id": 272,
+    "checkpoint_progress": 5,
+    "dispatch_id": "AD-MTXX60OV-4289E7",
+    "durable_checkpoint_ids": [
+      272,
+      273
+    ],
+    "durable_checkpoint_observed": true,
+    "execution_path": "architect-browser-cdp-python",
+    "latest_checkpoint_id": 273,
+    "latest_checkpoint_progress": 65,
+    "principal_id": "chatgpt-architect",
+    "second_same_task_session_opened": false,
+    "task_id": "H01-301",
+    "wake_id": "WK-MTXX5WOB-F19E63"
+  },
+  "observed_at": "2026-09-12T05:12:00Z",
+  "origin_main_at_start": "97037886d5ab5f9a41244480c6ed3cf0332257e7",
+  "result": "PASS",
+  "schema": "die.h01.h01-301.architect-browser-dispatcher.receipt.v1",
+  "scope": {
+    "completion_detector_implemented": false,
+    "parallel_git_isolation_implemented": false,
+    "srv_die_mutated": false,
+    "two_worker_canary_run": false
+  },
+  "security": {
+    "cookies_read": false,
+    "mission_lease_token_persisted": false,
+    "private_chatgpt_backend_api_used": false,
+    "provider_tokens_read": false,
+    "remote_cdp_bind": false,
+    "session_bytes_read": false
+  },
+  "semantics": {
+    "bootstrap_submit_count": 1,
+    "durable_mission_evidence_required": true,
+    "profile_lease_exclusive": true,
+    "profile_lease_release_in_finally": true,
+    "profile_lease_secret_free": true,
+    "progress_aware_completion_owner": "H01-302",
+    "rendered_chat_completion_authority": false
+  },
+  "task_id": "H01-301",
+  "validation": {
+    "combined_dispatcher_contract_worktree_tests": "22/22 PASS",
+    "dispatcher_unit_tests": "8/8 PASS",
+    "git_diff_check": "PASS",
+    "graph_readiness": "PASS",
+    "node_syntax": "PASS",
+    "python_compile": "PASS",
+    "real_browser_cdp_fixture": "PASS",
+    "secret_literal_scan": "PASS"
+  }
+}

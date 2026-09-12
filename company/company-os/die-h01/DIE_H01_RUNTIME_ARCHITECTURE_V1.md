@@ -182,3 +182,11 @@ Repository engineering uses exactly one H01-003 isolated worktree at `/home/kopi
 The browser completion marker is exactly `MC005_ARCHITECT_RESULT_<dispatch_id>` and is correlation evidence only. It is emitted as the final non-whitespace line only after `mission.task.complete` returns durable success. Blocked work, owner-lease loss, browser closure, local commits or ordinary assistant claims must not emit a success marker or be interpreted as completion. Mission lease/review capabilities remain ephemeral and are forbidden from canonical receipts/results.
 
 H01-300 is contract-only. Browser/CDP dispatch remains H01-301, progress-aware durable completion ingestion remains H01-302, and parallel worktree/Git/lease enforcement remains H01-303. Therefore H01-301 and H01-303 become READY after this contract; deeper canary/scaling tasks remain dependency-blocked.
+
+## 20. H01-301 Architect browser/CDP dispatcher standing
+
+H01-301 implements the bounded dispatcher under `company/company-os/die-h01/engineering/`. It leases one dedicated logical engineering browser resource, direct-spawns a headful browser with loopback-only CDP, injects the exact H01-300 Mission bootstrap once through the visible ChatGPT composer, observes only durable Mission task evidence, and closes the browser plus profile lease in `finally`. Browser executable/UDD/profile paths remain host-local bindings; cookies, tokens and session bytes are not read or promoted to canon.
+
+The current H01-301 attempt itself provides live control-plane evidence: Mission Control delivered this session through `architect-browser-cdp-python` with dispatch `AD-MTXX60OV-4289E7`, and durable checkpoint `272` was written after bootstrap intake. A duplicate authenticated session for the same owner lease was intentionally not launched. Separately, the new CDP driver passed a real Chrome fixture proving spawn → loopback CDP → composer injection → submit → `Browser.close`, with browser root exit code 0 and no retained fixture UDD.
+
+H01-301 is intentionally `CANARY_ONLY_UNTIL_H01_302`: observing one owned checkpoint is sufficient only for this dispatcher acceptance canary. Production-safe progress-aware terminal detection, stall recovery and result ingestion belong to H01-302. H01-303 remains independently READY for parallel Git/worktree/lease isolation.
