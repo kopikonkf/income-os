@@ -1,0 +1,63 @@
+{
+  "controls": {
+    "alias_merge_authorized": false,
+    "duplicate_normalized_canonical_name_allowed": false,
+    "duplicate_raw_noun_id_allowed": false,
+    "duplicate_subject_id_allowed": false,
+    "member_evidence_required": true,
+    "production_authorized": false,
+    "shared_primary_synset_is_alias_merge_authority": false,
+    "standalone_identity_preserved": true
+  },
+  "live_canary": {
+    "alias_observation_count": 0,
+    "alias_observations_jsonl_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "eligible_subject_count": 43005,
+    "families_jsonl_sha256": "d89fb71efa3fb8d791712b2b7c0c513f4392bd8fa68422599f114b102095d0e8",
+    "family_count": 14718,
+    "family_member_count": 41658,
+    "max_family_size": 34,
+    "source_fingerprint_sha256": "0e6996366d5201f11163af36b9c49ab6fd36e1b08854b88942216416cc933a56",
+    "standalone_singleton_count": 1347
+  },
+  "mapping": {
+    "family_class": "TAXONOMIC",
+    "family_schema": "die.h01.semantic-family.v1",
+    "member_identity": "candidate_seeds.id",
+    "minimum_members": 2,
+    "rights_class_default": "REVIEW_REQUIRED",
+    "singleton_behavior": "PRESERVE_STANDALONE_NO_FAMILY",
+    "taxonomy_key": "wordnet_synsets[0]"
+  },
+  "object_atlas_db_sha256_after": "e56bdbbba1e70cca74f5f1b59439802d929f66a9fcb730278bc67d637901bf2e",
+  "object_atlas_db_sha256_before": "e56bdbbba1e70cca74f5f1b59439802d929f66a9fcb730278bc67d637901bf2e",
+  "parallel_canary": {
+    "attempt": 2,
+    "branch": "canary/h01-121-parallel-20260912",
+    "browser_resource_id": "architect-primary",
+    "browser_resource_scope": "GLOBAL",
+    "concurrent_worker_b_h01_122_merge_preserved": true,
+    "do_not_touch": [
+      "H01-122",
+      "/srv/die"
+    ],
+    "h01_303_mutable_worktree_claim": true,
+    "parent": "H01-304",
+    "publication_reconciled_origin_main": "4deda4a02b34a7da8ef23ce0cb3cd54067f07ea7",
+    "worker": "A",
+    "worker_b_h01_122_canonical_status": "DONE",
+    "worktree": "/home/kopiko/die-sessions/H01-121"
+  },
+  "revision": "1.0.0",
+  "schema": "die.h01.taxonomy-family-mapper-runtime.v1",
+  "source": {
+    "category_path_available_count": 0,
+    "db": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db",
+    "eligible_subject_count": 43005,
+    "open_mode": "SQLITE_URI_MODE_RO_QUERY_ONLY",
+    "primary_synset_required": true,
+    "selection": "candidate_seeds.wave3_status='eligible'"
+  },
+  "state": "ACCEPTANCE_CANDIDATE",
+  "task_id": "H01-121"
+}

@@ -1,0 +1,534 @@
+{
+  "families": [
+    {
+      "artifact_kind": "SEMANTIC_FAMILY",
+      "authority": {
+        "production_authorized": false,
+        "publication_authorized": false,
+        "restricted_family_auto_eligible": false,
+        "submission_authorized": false
+      },
+      "boundary": {
+        "derivatives_create_family_members": false,
+        "is_derivative_bundle": false,
+        "is_design_set": false,
+        "is_listing_package": false
+      },
+      "determinism": {
+        "family_id_algorithm": "SHA256",
+        "family_id_hex_chars": 24,
+        "key_material": [
+          "family_version",
+          "family_class",
+          "semantic_identity.semantic_key",
+          "members[].canonical_subject_ref.subject_id"
+        ],
+        "member_order": "CANONICAL_SUBJECT_ID_ASC"
+      },
+      "family_class": "TAXONOMIC",
+      "family_id": "FAM-V1-TAXONOMIC-F8F4382EF6924820FA65CC6B",
+      "family_version": "1.0.0",
+      "members": [
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "book",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0829866"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0829866",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "book"
+        },
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "books",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0874017"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0874017",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "books"
+        }
+      ],
+      "rights_class": "REVIEW_REQUIRED",
+      "schema": "die.h01.semantic-family.v1",
+      "schema_version": "1.0.0",
+      "semantic_identity": {
+        "definition": "Object Atlas members sharing exact stored primary WordNet noun synset book.n.01.",
+        "family_membership_creates_new_asset_identity": false,
+        "member_identity_policy": "PRESERVE_CANONICAL_SUBJECT",
+        "semantic_key": "wordnet.primary.book.n.01"
+      },
+      "source": {
+        "derivation": "DETERMINISTIC",
+        "environment": "CANONICAL",
+        "evidence": [
+          {
+            "evidence_id": "taxonomy:book.n.01",
+            "kind": "OBJECT_ATLAS_TAXONOMY",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.wordnet_synsets[0]=book.n.01",
+            "sha256": "0e6996366d5201f11163af36b9c49ab6fd36e1b08854b88942216416cc933a56"
+          },
+          {
+            "evidence_id": "record:CAND-0829866",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0829866;raw_noun_id=829866"
+          },
+          {
+            "evidence_id": "record:CAND-0874017",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0874017;raw_noun_id=874017"
+          }
+        ]
+      }
+    },
+    {
+      "artifact_kind": "SEMANTIC_FAMILY",
+      "authority": {
+        "production_authorized": false,
+        "publication_authorized": false,
+        "restricted_family_auto_eligible": false,
+        "submission_authorized": false
+      },
+      "boundary": {
+        "derivatives_create_family_members": false,
+        "is_derivative_bundle": false,
+        "is_design_set": false,
+        "is_listing_package": false
+      },
+      "determinism": {
+        "family_id_algorithm": "SHA256",
+        "family_id_hex_chars": 24,
+        "key_material": [
+          "family_version",
+          "family_class",
+          "semantic_identity.semantic_key",
+          "members[].canonical_subject_ref.subject_id"
+        ],
+        "member_order": "CANONICAL_SUBJECT_ID_ASC"
+      },
+      "family_class": "TAXONOMIC",
+      "family_id": "FAM-V1-TAXONOMIC-5EC920CE41F5FE493A4EA9D1",
+      "family_version": "1.0.0",
+      "members": [
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "cat",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0829861"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0829861",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "cat"
+        },
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "cats",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0852861"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0852861",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "cats"
+        }
+      ],
+      "rights_class": "REVIEW_REQUIRED",
+      "schema": "die.h01.semantic-family.v1",
+      "schema_version": "1.0.0",
+      "semantic_identity": {
+        "definition": "Object Atlas members sharing exact stored primary WordNet noun synset cat.n.01.",
+        "family_membership_creates_new_asset_identity": false,
+        "member_identity_policy": "PRESERVE_CANONICAL_SUBJECT",
+        "semantic_key": "wordnet.primary.cat.n.01"
+      },
+      "source": {
+        "derivation": "DETERMINISTIC",
+        "environment": "CANONICAL",
+        "evidence": [
+          {
+            "evidence_id": "taxonomy:cat.n.01",
+            "kind": "OBJECT_ATLAS_TAXONOMY",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.wordnet_synsets[0]=cat.n.01",
+            "sha256": "0e6996366d5201f11163af36b9c49ab6fd36e1b08854b88942216416cc933a56"
+          },
+          {
+            "evidence_id": "record:CAND-0829861",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0829861;raw_noun_id=829861"
+          },
+          {
+            "evidence_id": "record:CAND-0852861",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0852861;raw_noun_id=852861"
+          }
+        ]
+      }
+    },
+    {
+      "artifact_kind": "SEMANTIC_FAMILY",
+      "authority": {
+        "production_authorized": false,
+        "publication_authorized": false,
+        "restricted_family_auto_eligible": false,
+        "submission_authorized": false
+      },
+      "boundary": {
+        "derivatives_create_family_members": false,
+        "is_derivative_bundle": false,
+        "is_design_set": false,
+        "is_listing_package": false
+      },
+      "determinism": {
+        "family_id_algorithm": "SHA256",
+        "family_id_hex_chars": 24,
+        "key_material": [
+          "family_version",
+          "family_class",
+          "semantic_identity.semantic_key",
+          "members[].canonical_subject_ref.subject_id"
+        ],
+        "member_order": "CANONICAL_SUBJECT_ID_ASC"
+      },
+      "family_class": "TAXONOMIC",
+      "family_id": "FAM-V1-TAXONOMIC-BB7228FBBFBBD6F524E743D9",
+      "family_version": "1.0.0",
+      "members": [
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "merchandise",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0829940"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0829940",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "merchandise"
+        },
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "product",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0829943"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0829943",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "product"
+        },
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "products",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0879824"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0879824",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "products"
+        },
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "merchandises",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0946297"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0946297",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "merchandises"
+        }
+      ],
+      "rights_class": "REVIEW_REQUIRED",
+      "schema": "die.h01.semantic-family.v1",
+      "schema_version": "1.0.0",
+      "semantic_identity": {
+        "definition": "Object Atlas members sharing exact stored primary WordNet noun synset merchandise.n.01.",
+        "family_membership_creates_new_asset_identity": false,
+        "member_identity_policy": "PRESERVE_CANONICAL_SUBJECT",
+        "semantic_key": "wordnet.primary.merchandise.n.01"
+      },
+      "source": {
+        "derivation": "DETERMINISTIC",
+        "environment": "CANONICAL",
+        "evidence": [
+          {
+            "evidence_id": "taxonomy:merchandise.n.01",
+            "kind": "OBJECT_ATLAS_TAXONOMY",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.wordnet_synsets[0]=merchandise.n.01",
+            "sha256": "0e6996366d5201f11163af36b9c49ab6fd36e1b08854b88942216416cc933a56"
+          },
+          {
+            "evidence_id": "record:CAND-0829940",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0829940;raw_noun_id=829940"
+          },
+          {
+            "evidence_id": "record:CAND-0829943",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0829943;raw_noun_id=829943"
+          },
+          {
+            "evidence_id": "record:CAND-0879824",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0879824;raw_noun_id=879824"
+          },
+          {
+            "evidence_id": "record:CAND-0946297",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0946297;raw_noun_id=946297"
+          }
+        ]
+      }
+    },
+    {
+      "artifact_kind": "SEMANTIC_FAMILY",
+      "authority": {
+        "production_authorized": false,
+        "publication_authorized": false,
+        "restricted_family_auto_eligible": false,
+        "submission_authorized": false
+      },
+      "boundary": {
+        "derivatives_create_family_members": false,
+        "is_derivative_bundle": false,
+        "is_design_set": false,
+        "is_listing_package": false
+      },
+      "determinism": {
+        "family_id_algorithm": "SHA256",
+        "family_id_hex_chars": 24,
+        "key_material": [
+          "family_version",
+          "family_class",
+          "semantic_identity.semantic_key",
+          "members[].canonical_subject_ref.subject_id"
+        ],
+        "member_order": "CANONICAL_SUBJECT_ID_ASC"
+      },
+      "family_class": "TAXONOMIC",
+      "family_id": "FAM-V1-TAXONOMIC-DFA0ED929FB82F10A6A0C2D8",
+      "family_version": "1.0.0",
+      "members": [
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "knapsack",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0847888"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0847888",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "knapsack"
+        },
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "rucksack",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0851080"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0851080",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "rucksack"
+        },
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "backpack",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0851225"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0851225",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "backpack"
+        },
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "haversacks",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0899730"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0899730",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "haversacks"
+        },
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "rucksacks",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0904103"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0904103",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "rucksacks"
+        },
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "knapsacks",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0911481"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0911481",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "knapsacks"
+        },
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "backpacks",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0911510"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0911510",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "backpacks"
+        },
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "haversack",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0917421"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0917421",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "haversack"
+        },
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "packsack",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0952042"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0952042",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "packsack"
+        },
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "packsacks",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-0959110"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-0959110",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "packsacks"
+        },
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "back pack",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-1560772"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-1560772",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "back pack"
+        },
+        {
+          "canonical_subject_ref": {
+            "canonical_name": "back packs",
+            "source": "OBJECT_ATLAS",
+            "subject_id": "CAND-1560773"
+          },
+          "identity_effect": "NONE",
+          "member_id": "CAND-1560773",
+          "member_kind": "CANONICAL_SEMANTIC_MEMBER",
+          "semantic_label": "back packs"
+        }
+      ],
+      "rights_class": "REVIEW_REQUIRED",
+      "schema": "die.h01.semantic-family.v1",
+      "schema_version": "1.0.0",
+      "semantic_identity": {
+        "definition": "Object Atlas members sharing exact stored primary WordNet noun synset backpack.n.01.",
+        "family_membership_creates_new_asset_identity": false,
+        "member_identity_policy": "PRESERVE_CANONICAL_SUBJECT",
+        "semantic_key": "wordnet.primary.backpack.n.01"
+      },
+      "source": {
+        "derivation": "DETERMINISTIC",
+        "environment": "CANONICAL",
+        "evidence": [
+          {
+            "evidence_id": "taxonomy:backpack.n.01",
+            "kind": "OBJECT_ATLAS_TAXONOMY",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.wordnet_synsets[0]=backpack.n.01",
+            "sha256": "0e6996366d5201f11163af36b9c49ab6fd36e1b08854b88942216416cc933a56"
+          },
+          {
+            "evidence_id": "record:CAND-0847888",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0847888;raw_noun_id=847888"
+          },
+          {
+            "evidence_id": "record:CAND-0851080",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0851080;raw_noun_id=851080"
+          },
+          {
+            "evidence_id": "record:CAND-0851225",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0851225;raw_noun_id=851225"
+          },
+          {
+            "evidence_id": "record:CAND-0899730",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0899730;raw_noun_id=899730"
+          },
+          {
+            "evidence_id": "record:CAND-0904103",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0904103;raw_noun_id=904103"
+          },
+          {
+            "evidence_id": "record:CAND-0911481",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0911481;raw_noun_id=911481"
+          },
+          {
+            "evidence_id": "record:CAND-0911510",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0911510;raw_noun_id=911510"
+          },
+          {
+            "evidence_id": "record:CAND-0917421",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0917421;raw_noun_id=917421"
+          },
+          {
+            "evidence_id": "record:CAND-0952042",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0952042;raw_noun_id=952042"
+          },
+          {
+            "evidence_id": "record:CAND-0959110",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-0959110;raw_noun_id=959110"
+          },
+          {
+            "evidence_id": "record:CAND-1560772",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-1560772;raw_noun_id=1560772"
+          },
+          {
+            "evidence_id": "record:CAND-1560773",
+            "kind": "OBJECT_ATLAS_RECORD",
+            "ref": "/var/lib/die/atlas/object-asset-engine/db/object_asset_engine.db#candidate_seeds.id=CAND-1560773;raw_noun_id=1560773"
+          }
+        ]
+      }
+    }
+  ],
+  "schema": "die.h01.taxonomy-family-map.sample.v1",
+  "source": "LIVE_OBJECT_ATLAS_CANARY"
+}
