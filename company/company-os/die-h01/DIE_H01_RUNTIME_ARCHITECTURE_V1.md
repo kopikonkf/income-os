@@ -267,3 +267,12 @@ Mission Control task `H01-105` completed through automatic canonical intake, own
 ## H01-304 two-worker parallel Architect canary acceptance
 
 H01-304 is DONE/PASS. The live canary used H01-121 on the Windows `architect-primary` global browser resource and H01-122 on the H01-local `h01-display12-cdp9100` resource, with isolated worktrees and branches. Both workers wrote durable Mission Control checkpoints and reached durable terminal completion without sharing a mutable worktree or mutating `/srv/die`. The canary also exposed and remediated browser-resource identity, lease-attempt reconciliation, and browser-submit acceptance defects. Durable Mission Control terminal state is authoritative; an exact rendered chat marker is supplemental evidence rather than a completion prerequisite. Receipt: `company/company-os/die-h01/receipts/H01-304-two-worker-parallel-architect-canary.receipt.json`. H01-305 is now READY to scale engineering workers only by dependency-ready graph width.
+
+
+## 29. H01-305 dependency-ready graph-width planning standing
+
+H01-305 adds the read-only `graph_width_planner.py` preflight plus its machine-readable runtime contract. It reads the canonical graph at `refs/remotes/origin/main`, admits only `READY` tasks whose declared dependencies are canonically `DONE`, applies exact Founder authorization to Founder-gated nodes, and orders candidates deterministically by priority descending then task ID ascending. Unknown dependency state fails closed.
+
+The planner consumes observed active browser/resource leases and mutable-worktree claims, excluding conflicts with active coordination or with already-selected tasks. Mutable repository writers must declare an unambiguous owner; the canonical shared `income-os.repo-write` resource prevents two such writers from entering the same plan. It does not acquire leases, claim worktrees, create tasks, transition tasks, or write the graph. Its output is a proposal that Mission Control must durably schedule and lease under the existing H01-300 through H01-304 contracts.
+
+Regression coverage proves dependency width, active resource/lease exclusion, worktree and shared repo-write collision, Founder-gate exclusion, deterministic ordering, malformed coordination fail-closed behavior and no durable-state mutation. Receipt: `company/company-os/die-h01/receipts/H01-305-architect-graph-width-scaling.receipt.json`. H01-305 does not mark any unrelated task complete or alter Mission Control durable truth.

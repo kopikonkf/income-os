@@ -1,0 +1,45 @@
+{
+  "schema": "die.h01.architect-graph-width-planner.acceptance.v1",
+  "task_id": "H01-305",
+  "status": "PASS",
+  "date": "2026-09-12",
+  "acceptance": "A deterministic read-only planner selects only dependency-ready, resource-safe engineering tasks and leaves Mission Control as durable scheduler and task truth.",
+  "implementation": {
+    "helper": "company/company-os/die-h01/engineering/graph_width_planner.py",
+    "runtime_contract": "company/company-os/die-h01/runtime/h01-architect-graph-width-planner.v1.json",
+    "schema": "company/company-os/die-h01/contracts/h01-architect-graph-width-planner.v1.schema.json",
+    "tests": "bridge/tests/test_h01_architect_graph_width_planner_v1.py"
+  },
+  "controls": {
+    "canonical_dependency_gate": "refs/remotes/origin/main + dependency status DONE",
+    "unknown_dependency_state": "FAIL_CLOSED",
+    "active_lease_conflict": "EXCLUDED",
+    "active_worktree_conflict": "EXCLUDED",
+    "same_plan_resource_collision": "EXCLUDED",
+    "same_plan_worktree_collision": "EXCLUDED",
+    "mutable_repo_write_owner_ambiguity": "FAIL_CLOSED",
+    "founder_gate_without_exact_authorization": "EXCLUDED",
+    "ordering": "priority descending, task_id ascending",
+    "mission_control_is_scheduler": true,
+    "planner_acquires_leases": false,
+    "planner_claims_worktrees": false,
+    "planner_mutates_durable_state": false
+  },
+  "composition": {
+    "browser_worker_session": "H01-300",
+    "browser_dispatcher": "H01-301",
+    "completion_and_result": "H01-302",
+    "worker_isolation": "H01-303",
+    "parallel_canary": "H01-304",
+    "unrelated_tasks_marked_done": false
+  },
+  "regression": {
+    "dependency_width": "PASS",
+    "resource_collision": "PASS",
+    "active_lease_exclusion": "PASS",
+    "worktree_repo_write_collision": "PASS",
+    "founder_gate_exclusion": "PASS",
+    "deterministic_ordering": "PASS",
+    "no_durable_state_mutation": "PASS"
+  }
+}

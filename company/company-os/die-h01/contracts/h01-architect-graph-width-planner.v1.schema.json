@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h01.architect-graph-width-planner.v1",
+  "title": "H01 read-only graph-width worker plan",
+  "type": "object",
+  "required": [
+    "schema",
+    "status",
+    "canonical_ref",
+    "graph_sha256",
+    "selected_task_ids",
+    "excluded",
+    "mission_control_is_scheduler",
+    "read_only",
+    "scheduler_action_taken",
+    "durable_state_mutated",
+    "canonical_graph_mutated"
+  ],
+  "properties": {
+    "schema": {"const": "die.h01.architect-graph-width-planner.v1"},
+    "status": {"enum": ["PLANNED", "EMPTY"]},
+    "canonical_ref": {"type": "string", "const": "refs/remotes/origin/main"},
+    "canonical_ref_sha": {"type": ["string", "null"]},
+    "graph_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "ordered_candidate_task_ids": {"type": "array", "items": {"type": "string"}},
+    "dependency_ready_task_ids": {"type": "array", "items": {"type": "string"}},
+    "selected_task_ids": {"type": "array", "items": {"type": "string"}},
+    "selected": {"type": "array", "items": {"$ref": "#/$defs/selected_task"}},
+    "excluded": {"type": "object", "additionalProperties": {"$ref": "#/$defs/exclusion"}},
+    "max_workers": {"type": ["integer", "null"], "minimum": 0},
+    "mission_control_is_scheduler": {"const": true},
+    "read_only": {"const": true},
+    "scheduler_action_taken": {"const": false},
+    "durable_state_mutated": {"const": false},
+    "canonical_graph_mutated": {"const": false}
+  },
+  "$defs": {
+    "selected_task": {
+      "type": "object",
+      "required": ["task_id", "dependencies", "dependency_status", "resources", "worktree", "mutable_repo_write", "repo_write_owner"],
+      "properties": {
+        "task_id": {"type": "string"},
+        "priority": {"type": "integer"},
+        "dependencies": {"type": "array", "items": {"type": "string"}},
+        "dependency_status": {"type": "object", "additionalProperties": {"type": "string"}},
+        "authority": {"type": "string"},
+        "resources": {"type": "array", "items": {"type": "string"}},
+        "worktree": {"type": "string"},
+        "mutable_repo_write": {"type": "boolean"},
+        "repo_write_owner": {"type": ["string", "null"]}
+      }
+    },
+    "exclusion": {
+      "type": "object",
+      "required": ["code"],
+      "properties": {
+        "code": {"type": "string"},
+        "detail": {"type": "string"}
+      }
+    }
+  }
+}
