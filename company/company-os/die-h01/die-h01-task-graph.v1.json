@@ -249,14 +249,15 @@
     {
       "id": "H01-026",
       "track": "BROWSER_FABRIC",
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-023",
         "H01-025"
       ],
       "title": "Implement per-UDD round-robin profile/provider lease scheduler",
-      "acceptance": "Select eligible sibling profiles fairly inside each UDD; enforce UDD mutex, provider readiness/cooldown, exactly-once dispatch and no same-UDD sibling overlap."
+      "acceptance": "Select eligible sibling profiles fairly inside each UDD; enforce UDD mutex, provider readiness/cooldown, exactly-once dispatch and no same-UDD sibling overlap.",
+      "result": "PASS: implemented live multi-UDD admission plus per-UDD sibling profile/provider round-robin scheduler. Current Founder-approved global ceiling is 5 UDD owners; one active profile and one committed job per UDD remain hard invariants through H01-025. Profile readiness is auth-aware (only p001 live-ready), provider readiness/cooldown is enforced, dispatch claim is exactly-once, duplicate terminal dispatch IDs are deduped, and the real UDD mutex fails closed. No provider prompt was dispatched by the acceptance canary."
     },
     {
       "id": "H01-027",

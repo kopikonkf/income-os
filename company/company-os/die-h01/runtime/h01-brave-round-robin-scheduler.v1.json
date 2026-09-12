@@ -1,0 +1,21 @@
+{
+  "schema": "die.h01.brave-round-robin-policy.v1",
+  "revision": "1.0.0",
+  "task_id": "H01-026",
+  "global_max_live_udd_owners": 5,
+  "founder_approved_max_live_udd_owners": 5,
+  "absolute_max_udd_owners": 20,
+  "owner_boundary": "one active profile + one committed provider tab/job per UDD",
+  "concurrency_model": "multi-UDD; per-UDD profile/provider round-robin",
+  "runtime_owner": "H01-025 brave_udd_runtime.mjs",
+  "providers": [
+    {"provider_id": "claude", "state": "READY", "h01_107_classification": "TEXT_SVG"},
+    {"provider_id": "chatgpt", "state": "READY", "h01_107_classification": "TEXT_SVG"},
+    {"provider_id": "qwen", "state": "READY", "h01_107_classification": "TEXT_SVG"},
+    {"provider_id": "gemini", "state": "READY", "h01_107_classification": "NATIVE_SVG"},
+    {"provider_id": "manus", "state": "READY", "h01_107_classification": "TEXT_SVG"},
+    {"provider_id": "copilot", "state": "READY", "h01_107_classification": "TEXT_SVG"},
+    {"provider_id": "grok", "state": "DISABLED", "h01_107_classification": "UNSUPPORTED"},
+    {"provider_id": "duckai", "state": "DISABLED", "h01_107_classification": "DEFERRED"}
+  ]
+}

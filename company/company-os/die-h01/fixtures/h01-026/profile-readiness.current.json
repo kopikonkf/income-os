@@ -1,0 +1,407 @@
+{
+  "note": "Only p001 is live-proven authenticated at H01-026 acceptance; later profiles become READY only after Founder/manual-auth acceptance.",
+  "profiles": {
+    "h01-web-p001": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "READY"
+    },
+    "h01-web-p002": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p003": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p004": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p005": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p006": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p007": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p008": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p009": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p010": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p011": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p012": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p013": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p014": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p015": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p016": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p017": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p018": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p019": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p020": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p021": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p022": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p023": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p024": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p025": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p026": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p027": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p028": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p029": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p030": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p031": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p032": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p033": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p034": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p035": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p036": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p037": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p038": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p039": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p040": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p041": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p042": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p043": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p044": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p045": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p046": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p047": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p048": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p049": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p050": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p051": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p052": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p053": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p054": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p055": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p056": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p057": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p058": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p059": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p060": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p061": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p062": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p063": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p064": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p065": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p066": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p067": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p068": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p069": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p070": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p071": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p072": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p073": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p074": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p075": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p076": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p077": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p078": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p079": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p080": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p081": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p082": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p083": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p084": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p085": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p086": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p087": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p088": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p089": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p090": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p091": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p092": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p093": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p094": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p095": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p096": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p097": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p098": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p099": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    },
+    "h01-web-p100": {
+      "auth_policy": "FOUNDER_MANUAL_INCREMENTAL_ON_DEMAND",
+      "state": "NOT_READY"
+    }
+  },
+  "revision": 1,
+  "schema": "die.h01.brave-profile-readiness.v1"
+}
