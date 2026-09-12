@@ -1,0 +1,32 @@
+{
+  "schema": "mission-control.canonical-writeback.acceptance-receipt.v1",
+  "created_at": "2026-09-12T13:57:56.651Z",
+  "task_id": "H01-014",
+  "source_node_id": "H01-014",
+  "source_repo": "kopikonkf/income-os",
+  "source_ref": "origin/main",
+  "observed_source_sha": "003bd73126be250ef56c90288bd1421a5973a128",
+  "writeback_base_sha": "36a648624e81c78d041b9cc4a6e16605d7dae3e9",
+  "owner_principal_id": "chatgpt-architect",
+  "actor_principal_id": "chatgpt-architect",
+  "decision": "OWNER_COMPLETION_NO_REVIEW",
+  "review_summary": "H01-014 DONE/PASS by acceptance of the already-live deterministic Canonical Feeder in global Mission Control v0.8.45. The feeder reads canonical Git source snapshots through a dedicated bare mirror, admits only READY atomic tasks whose source dependencies are DONE, rejects explicit source leases/active duplicate nodes, enforces source-key dedupe and deterministic authority gates, and performs no LLM reasoning or autonomous scope expansion. Intake budget is bounded by max_cards_per_run=1 on the live runtime. Fresh isolated worktree validation passed 19/19 targeted intake/feeder tests. A live forced feeder tick against current die-h01 origin/main commit 36a648624e81c78d041b9cc4a6e16605d7dae3e9 returned PASS with zero source errors and zero unintended creations; H01-014 and H01-015 were correctly deduped as already ingested. No Mission Control code mutation was required.",
+  "findings": [],
+  "transitions": [
+    {
+      "id": "H01-014",
+      "from": "READY",
+      "to": "DONE"
+    }
+  ],
+  "authority": {
+    "external_submission_authorized": false,
+    "spend_authorized": false,
+    "credential_mutation_authorized": false
+  },
+  "mission_control": {
+    "canonical_writeback_enabled": true,
+    "isolated_checkout": true,
+    "live_tree_mutated": false
+  }
+}
