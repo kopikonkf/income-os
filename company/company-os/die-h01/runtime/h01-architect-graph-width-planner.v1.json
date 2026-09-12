@@ -1,0 +1,50 @@
+{
+  "schema_version": "die.h01.architect-graph-width-planner.v1",
+  "implementation_task": "H01-305",
+  "role": "READ_ONLY_DEPENDENCY_READY_GRAPH_WIDTH_PLANNER",
+  "mission_control_is_scheduler": true,
+  "worker_is_scheduler": false,
+  "cardinality": {
+    "tasks_per_worker": 1,
+    "mutable_worktrees_per_task": 1,
+    "shared_mutable_worktree_allowed": false
+  },
+  "canonical_source": {
+    "ref": "refs/remotes/origin/main",
+    "task_graph_path": "company/company-os/die-h01/die-h01-task-graph.v1.json",
+    "unmerged_worker_branch_can_unlock_downstream": false
+  },
+  "selection": {
+    "candidate_status": "READY",
+    "dependency_status_required": "DONE",
+    "founder_authorization_required_for": ["FOUNDER", "FOUNDER_GATED", "FOUNDER_REQUIRED"],
+    "ordering": "priority descending, task_id ascending",
+    "width_limit_optional": true,
+    "resource_conflicts_excluded": true,
+    "active_lease_conflicts_excluded": true,
+    "active_worktree_conflicts_excluded": true,
+    "same_plan_resource_conflicts_excluded": true,
+    "same_plan_worktree_conflicts_excluded": true,
+    "ambiguous_mutable_repo_write_ownership_excluded": true
+  },
+  "coordination": {
+    "active_leases_are_observations_only": true,
+    "active_worktrees_are_observations_only": true,
+    "repo_write_resource": "income-os.repo-write",
+    "repo_write_owner_required_when_mutable": true,
+    "shared_mutable_worktree_allowed": false,
+    "lease_acquisition_by_planner": false,
+    "worktree_claim_by_planner": false
+  },
+  "output": {
+    "submit_to_mission_control_for_durable_dispatch": true,
+    "scheduler_action_taken": false,
+    "durable_state_mutated": false,
+    "canonical_graph_mutated": false
+  },
+  "implementation": {
+    "helper": "company/company-os/die-h01/engineering/graph_width_planner.py",
+    "schema": "company/company-os/die-h01/contracts/h01-architect-graph-width-planner.v1.schema.json",
+    "regression_tests": "bridge/tests/test_h01_architect_graph_width_planner_v1.py"
+  }
+}
