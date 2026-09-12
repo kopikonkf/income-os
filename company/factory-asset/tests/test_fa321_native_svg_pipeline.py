@@ -31,13 +31,14 @@ def test_script_external_embedded_raster_text_and_style_are_rejected():
       '<svg viewBox="0 0 10 10"><text>brand</text><path d="M0 0 L1 1"/></svg>',
       '<svg viewBox="0 0 10 10"><path d="M0 0 L1 1" style="fill:url(http://x)"/></svg>',
       '<svg viewBox="0 0 10 10"><use href="https://x/y.svg#z"/></svg>',
+      '<svg viewBox="0 0 10 10">prose<path d="M0 0 L1 1"/></svg>',
     ]
     for x in bad:
       with pytest.raises(m.NativeSvgPipelineError):m.validate_and_normalize(x)
 
-def test_unsupported_curves_fonts_out_of_bounds_and_complexity_fail_closed():
+def test_curves_are_supported_while_unsupported_commands_and_unsafe_geometry_fail_closed():
     cases=[
-      ('<svg viewBox="0 0 100 100"><path d="M0 0 C10 10 20 20 30 30"/></svg>','PATH_COMMAND_UNSUPPORTED'),
+      ('<svg viewBox="0 0 100 100"><path d="M0 0 R10 10"/></svg>','PATH_COMMAND_UNSUPPORTED'),
       ('<svg viewBox="0 0 100 100"><path d="M0 0 L200 1"/></svg>','PATH_OUT_OF_BOUNDS'),
       ('<svg viewBox="0 0 100 100"><path d="M0 0 L1 1" font-family="Arial"/></svg>','SVG_EXTERNAL_OR_STYLE_FORBIDDEN'),
     ]
@@ -46,6 +47,46 @@ def test_unsupported_curves_fonts_out_of_bounds_and_complexity_fail_closed():
       assert e.value.code==code
     many='<svg viewBox="0 0 100 100">'+''.join('<path d="M0 0 L1 1"/>' for _ in range(4))+'</svg>'
     with pytest.raises(m.NativeSvgPipelineError,match='PATH_COUNT_EXCEEDED'):m.validate_and_normalize(many,max_paths=3)
+
+def test_cubic_quadratic_smooth_and_arc_curves_render_and_remain_editable():
+    samples=[
+      '<svg viewBox="0 0 100 100"><path d="M20 50 C20 20 80 20 80 50 S70 80 50 80 Q30 80 20 50 Z" fill="#336699"/></svg>',
+      '<svg viewBox="0 0 100 100"><path d="M20 50 Q50 10 80 50 T20 50 Z" fill="#336699"/></svg>',
+      '<svg viewBox="0 0 100 100"><path d="M20 50 A30 30 0 1 1 80 50 A30 30 0 1 1 20 50 Z" fill="#336699"/></svg>',
+    ]
+    for svg in samples:
+      normalized=m.validate_and_normalize(svg)
+      assert normalized['native_editable'] is True
+      assert normalized['total_points'] > 4
+      assert normalized['render_ink_pixels_512'] > 16
+      assert '<path' in normalized['canonical_svg']
+
+def test_safe_shapes_are_supported_with_inherited_flat_style():
+    svg='''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <g fill="#336699" stroke="none">
+        <rect x="5" y="5" width="20" height="20" rx="4"/>
+        <circle cx="45" cy="15" r="10"/>
+        <ellipse cx="75" cy="15" rx="12" ry="8"/>
+        <polygon points="5,40 25,40 15,60"/>
+        <polyline points="35,40 45,60 55,40"/>
+      </g>
+      <line x1="65" y1="45" x2="95" y2="65" fill="none" stroke="#000000" stroke-width="2"/>
+    </svg>'''
+    normalized=m.validate_and_normalize(svg)
+    assert normalized['path_count']==0
+    assert normalized['geometry_count']==6
+    assert normalized['shape_count']==6
+    assert {element['kind'] for element in normalized['shapes']} == {'rect','circle','ellipse','polygon','polyline','line'}
+    assert all(tag in normalized['canonical_svg'] for tag in ('<rect','<circle','<ellipse','<polygon','<polyline','<line'))
+    assert normalized['render_ink_pixels_512'] > 16
+    assert b'setrgbcolor' in m.eps_bytes(normalized)
+
+def test_render_and_geometry_bounds_are_explicitly_capped():
+    normalized=m.validate_and_normalize('<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="20" fill="#000000"/></svg>')
+    with pytest.raises(m.NativeSvgPipelineError,match='RENDER_SIZE_INVALID'):
+      m.render_png_image(normalized,size=4097)
+    with pytest.raises(m.NativeSvgPipelineError,match='PATH_COMPLEXITY_EXCEEDED'):
+      m.validate_and_normalize('<svg viewBox="0 0 100 100"><path d="M20 50 C20 20 80 20 80 50"/></svg>',max_total_points=8)
 
 def test_blank_invisible_and_doctype_are_rejected():
     with pytest.raises(m.NativeSvgPipelineError,match='INVISIBLE_PATH'):
