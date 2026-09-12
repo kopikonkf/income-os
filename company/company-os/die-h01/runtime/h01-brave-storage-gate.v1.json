@@ -1,0 +1,39 @@
+{
+  "schema": "die.h01.brave-storage-gate.runtime.v1",
+  "revision": "1.0.0",
+  "task_id": "H01-024",
+  "state": "LIVE_ACCEPTED",
+  "implementation": "company/company-os/die-h01/engineering/brave_storage_gate.py",
+  "host_executable": "/opt/die/h01/bin/h01-brave-storage-gate",
+  "launcher": "/opt/die/h01/bin/h01-brave-profile",
+  "fabric_manifest": "/var/lib/die/h01/browser/fabric-manifest-v1.json",
+  "topology": {
+    "udd_count": 20,
+    "profiles_per_udd": 5,
+    "profile_count": 100,
+    "max_live_profiles": 5,
+    "topology_mutated_by_capacity": false
+  },
+  "capacity": {
+    "minimum_free_reserve_bytes": 21474836480,
+    "populated_profile_threshold_bytes": 16777216,
+    "forecast_floor_per_additional_live_profile_bytes": 536870912,
+    "formula": "minimum_free_reserve + remaining_live_slots * max(largest_populated_profile, forecast_floor)",
+    "added_storage_can_satisfy_without_topology_change": true
+  },
+  "janitor": {
+    "udd_must_be_closed": true,
+    "udd_mutex_required": true,
+    "profile_cache_allowlist": ["Cache", "Code Cache", "GPUCache", "DawnGraphiteCache", "DawnWebGPUCache"],
+    "udd_cache_allowlist": ["GPUPersistentCache/GPUCache"],
+    "protected_root_names": ["Cookies", "Cookies-journal", "Local Storage", "IndexedDB", "WebStorage", "Session Storage", "Sessions", "Service Worker", "Login Data", "Login Data For Account", "Preferences", "Secure Preferences", "Network", "GCM Store", "Sync Data", "BraveWallet", "Extension State", "File System", "ClientCertificates"],
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "session_bytes_read": false
+  },
+  "launcher_integration": {
+    "admit_before_browser_start": true,
+    "missing_gate_fails_closed": true,
+    "capacity_denial_fails_closed": true
+  }
+}
