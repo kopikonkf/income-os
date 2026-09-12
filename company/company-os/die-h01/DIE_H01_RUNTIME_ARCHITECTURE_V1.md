@@ -337,3 +337,12 @@ H01-012 remains the anti-duplicate H01 execution boundary: replaying the same di
 One historical cancelled Mission Control migration task (`MC004C-LIVE-QWEN`) retains two unended imported owner-attempt rows. It has no active lease and no active task authority, so it is recorded as historical migration residue rather than hidden. Any equivalent state on an active/leased task is rejected by H01-016.
 
 H01-016 DONE does not open full cutover: H01-200 remains BLOCKED because H01-027 and H01-109 remain BLOCKED. No provider generation, marketplace action, spend, credential mutation or `/srv/die` mutation was performed.
+
+
+## 32. Founder browser-capacity policy — 2026-09-12
+
+Founder clarified the near-term Brave rollout boundary. H01 currently exposes 100 profile desktop launchers under `/home/kopiko/Desktop/H01 Brave Profiles` and launch tooling under `/opt/die/h01/bin`, but configured profile capacity is not equivalent to authenticated or concurrently running browsers. Authentication is incremental/on-demand; only the master profile is currently authenticated and the remaining profiles must not be pre-authenticated or left idle merely because they are provisioned.
+
+H01-022 is intentionally sequenced after H01-107. The provider-by-provider native-SVG canary comparison should finish first, then H01-022 uses the already-authenticated Brave master profile for the one-profile persistence/restart/CDP/output/provider-completion/telemetry baseline. This adds H01-107 as an explicit dependency of H01-022 and avoids an early Founder prompt while comparative provider evidence is still being collected.
+
+For H01-024 the Founder gate is resolved for bounded Architect execution. Live verification on 2026-09-12 observed `/dev/sda2` at approximately 125 GiB total, 42 GiB used and 77 GiB free (36% used), 100 `.desktop` profile launchers, and the canonical H01 launchers present under `/opt/die/h01/bin`. The current stage is therefore not storage-blocked. The operating ceiling is at most five live Brave profiles; profiles remain incremental rather than all authenticated/idle. Additional disk capacity is planned for the following week but this grants no automatic spend or infrastructure-purchase authority. H01-024 may measure populated-profile growth and implement the auth-safe janitor now, removing only regenerable cache while a UDD is closed and protecting Cookies, Local Storage, IndexedDB, session and preference stores.
