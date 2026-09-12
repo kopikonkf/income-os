@@ -199,10 +199,12 @@
       "authority": "FOUNDER_REQUIRED",
       "depends_on": [
         "H01-020",
-        "H01-021"
+        "H01-021",
+        "H01-107"
       ],
       "title": "Accept one master Brave profile baseline under real Web-AI use",
-      "acceptance": "Prove one profile first: persistence, restart, loopback CDP, download/output acquisition, provider completion behavior and RAM/renderer/disk telemetry. Founder provides manual authentication."
+      "acceptance": "Prove one profile first: persistence, restart, loopback CDP, download/output acquisition, provider completion behavior and RAM/renderer/disk telemetry. Founder provides manual authentication.",
+      "founder_policy": "After H01-107 completes, use the already-authenticated Brave master profile for the one-profile baseline acceptance. Do not pre-authenticate all 100 configured profiles; authentication remains incremental/on-demand."
     },
     {
       "id": "H01-023",
@@ -218,14 +220,15 @@
     {
       "id": "H01-024",
       "track": "BROWSER_FABRIC",
-      "status": "BLOCKED",
-      "authority": "FOUNDER_GATED",
+      "status": "READY",
+      "authority": "ARCHITECT",
       "depends_on": [
         "H01-021",
         "H01-005"
       ],
       "title": "Implement Brave storage and janitor capacity gate",
-      "acceptance": "Measure populated-profile growth; clean only regenerable cache while UDD is closed; protect authentication/session stores; added storage may satisfy capacity without changing topology."
+      "acceptance": "Measure populated-profile growth; clean only regenerable cache while UDD is closed; protect authentication/session stores; added storage may satisfy capacity without changing topology.",
+      "founder_policy": "Founder approved bounded execution on 2026-09-12: current 125 GiB filesystem with ~77 GiB free is adequate for the present stage; 100 Brave profile launchers are provisioned but profiles are activated/authenticated incrementally; hard cap is at most 5 live Brave profiles; storage expansion is planned next week and is not an automatic spend authority. Janitor may remove only regenerable cache while the UDD is closed and must protect authentication/session stores."
     },
     {
       "id": "H01-025",
