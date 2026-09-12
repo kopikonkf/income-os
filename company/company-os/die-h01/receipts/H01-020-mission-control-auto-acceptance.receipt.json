@@ -1,0 +1,32 @@
+{
+  "schema": "mission-control.canonical-writeback.acceptance-receipt.v1",
+  "created_at": "2026-09-12T11:51:18.282Z",
+  "task_id": "H01-020",
+  "source_node_id": "H01-020",
+  "source_repo": "kopikonkf/income-os",
+  "source_ref": "origin/main",
+  "observed_source_sha": "13399dd511fb649a41a94369c730315fc8fdb012",
+  "writeback_base_sha": "ff35f95ee1cb7a77d21eb388a0299e609c49be6c",
+  "owner_principal_id": "chatgpt-architect",
+  "actor_principal_id": "chatgpt-architect",
+  "decision": "OWNER_COMPLETION_NO_REVIEW",
+  "review_summary": "H01-020 DONE/PASS. Brave Stable is installed and live-observable alongside legacy Chrome without cutover. Host evidence: brave-browser 1.95.101 / Brave Browser 153.1.95.101, visible on display :12 and loopback CDP 9201. Legacy Chrome remains rollback-capable and untouched: google-chrome-stable 152.0.7977.64-1 still installed; Cluster A/B browser services remained active/running with stable MainPIDs 957066/957062 and CDP 39221/39222; Division01 PID 466235 and Executive PID 466236 remained alive. No reinstall, Chrome restart/kill, profile migration, owner rebinding, provider route change, credential/session read, or /srv/die mutation. Local commit c51d1a2076480b9bb521b1965c52269ad2d8aa54. Post-commit live probe PASS and One-Canon validation 11/11 PASS. H01-022 (FOUNDER_REQUIRED) and H01-025 are opened to READY only and were not started.",
+  "findings": [],
+  "transitions": [
+    {
+      "id": "H01-020",
+      "from": "READY",
+      "to": "DONE"
+    }
+  ],
+  "authority": {
+    "external_submission_authorized": false,
+    "spend_authorized": false,
+    "credential_mutation_authorized": false
+  },
+  "mission_control": {
+    "canonical_writeback_enabled": true,
+    "isolated_checkout": true,
+    "live_tree_mutated": false
+  }
+}
