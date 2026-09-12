@@ -1,0 +1,12 @@
+{
+  "schema":"die.h01.udd-sibling-exclusion-proof.v1",
+  "active_profile":"h01-web-p001",
+  "active_udd":"h01-web-s01",
+  "active_cdp":"127.0.0.1:9201",
+  "attempted_sibling":"h01-web-p005",
+  "attempt_exit_code":73,
+  "attempt_stderr":"UDD_BUSY h01-web-s01",
+  "page_count_during_probe":1,
+  "provider_origin":"https://chatgpt.com",
+  "result":"PASS"
+}

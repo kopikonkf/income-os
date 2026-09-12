@@ -1,0 +1,14 @@
+{
+  "schema":"die.h01.brave-udd-runtime.v1",
+  "revision":"1.0.0",
+  "task_id":"H01-025",
+  "state":"LIVE_ACCEPTED",
+  "implementation":"company/company-os/die-h01/engineering/brave_udd_runtime.mjs",
+  "host_manifest":"/var/lib/die/h01/browser/fabric-manifest-v1.json",
+  "launcher":"/opt/die/h01/bin/h01-brave-profile",
+  "topology":{"udd_count":20,"profiles_per_udd":5,"profile_count":100,"max_active_per_udd":1,"cdp_host":"127.0.0.1","cdp_ports":"9201-9300"},
+  "lifecycle":["SELECTED_PROFILE","UDD_LOCKED","BROWSER_STARTED","ONE_PROVIDER_PAGE","DURABLE_TERMINAL_RESULT","BROWSER_CLOSED","UDD_RELEASED"],
+  "modes":{"probe":"H01-025 acceptance only","wait-result":"production handoff for H01-107/H01-104A"},
+  "safety":{"cookies_read":false,"tokens_read":false,"session_bytes_read":false,"browser_profile_copied":false,"mission_control_mutated":false,"scheduler_owned":false},
+  "downstream":{"profile_scheduler":"H01-026","provider_svg_canaries":"H01-107","output_acquisition":"H01-104A"}
+}

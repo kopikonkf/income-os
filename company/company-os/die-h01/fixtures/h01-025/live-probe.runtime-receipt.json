@@ -1,0 +1,43 @@
+{
+  "schema": "die.h01.brave-udd-runtime-receipt.v1",
+  "status": "PASS",
+  "job_id": "H01-025-CANARY-002",
+  "provider_id": "chatgpt",
+  "profile_id": "h01-web-p001",
+  "udd_id": "h01-web-s01",
+  "started_at": "2026-09-12T15:58:21.201Z",
+  "completed_at": "2026-09-12T15:58:41.077Z",
+  "mode": "probe",
+  "ownership": {
+    "launcher_udd_mutex": true,
+    "max_active_per_udd": 1,
+    "lock_path": "/run/user/1000/die-h01-brave/h01-web-s01.lock",
+    "lock_released": true
+  },
+  "browser": {
+    "launcher": "/opt/die/h01/bin/h01-brave-profile",
+    "cdp_host": "127.0.0.1",
+    "cdp_port": 9201,
+    "loopback_only": true,
+    "provider_origin": "https://chatgpt.com",
+    "page_count_after_enforcement": 1,
+    "browser_close_sent": true,
+    "process_exited": true,
+    "cdp_closed": true
+  },
+  "durable_result": {
+    "path": "/var/lib/die/h01/acceptance/H01-025/run-002/job-result.json",
+    "sha256": "c5ee781645c72b981a6a16cf22eea18b741c0c0873b81e1a6767a5225593a440",
+    "terminal_state": "SUCCEEDED",
+    "present": true
+  },
+  "error": null,
+  "safety": {
+    "cookies_read": false,
+    "tokens_read": false,
+    "session_bytes_read": false,
+    "browser_profile_copied": false,
+    "mission_control_mutated": false,
+    "scheduler_owned": false
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "schema": "die.h01.provider-output-acquisition.v1",
+  "job_id": "H01-025-CANARY-003",
+  "provider_id": "chatgpt",
+  "profile_id": "h01-web-p001",
+  "terminal_state": "SUCCEEDED",
+  "output_kind": "SVG_SOURCE_TEXT",
+  "completed_at": "2026-09-12T16:00:00Z",
+  "note": "synthetic external terminal receipt for H01-025 wait-result lifecycle proof"
+}

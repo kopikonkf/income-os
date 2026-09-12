@@ -1,0 +1,13 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"die.h01.browser-job-result.v1",
+  "type":"object","additionalProperties":true,
+  "required":["schema","job_id","provider_id","profile_id","udd_id","terminal_state","completed_at"],
+  "properties":{
+    "schema":{"const":"die.h01.browser-job-result.v1"},
+    "job_id":{"type":"string","minLength":1},"provider_id":{"type":"string","minLength":1},
+    "profile_id":{"pattern":"^h01-web-p[0-9]{3}$"},"udd_id":{"pattern":"^h01-web-s[0-9]{2}$"},
+    "terminal_state":{"enum":["SUCCEEDED","FAILED","TIMEOUT","CANCELLED","UNSUPPORTED","AMBIGUOUS","EMPTY"]},
+    "completed_at":{"type":"string","format":"date-time"}
+  }
+}
