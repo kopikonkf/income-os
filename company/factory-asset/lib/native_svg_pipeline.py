@@ -913,10 +913,19 @@ def _opaque_rgb(color: str, opacity: float) -> tuple[int, int, int]:
     return tuple(max(0, min(255, int(round(255 - (255 - channel) * opacity)))) for channel in rgb)
 
 
-def render_png_image(norm: dict[str, Any], *, size: int = 1024) -> Image.Image:
+def _paint_rgba(color: str, opacity: float) -> tuple[int, int, int, int]:
+    return (*_rgb(color), max(0, min(255, int(round(255 * opacity)))))
+
+
+def render_png_image(norm: dict[str, Any], *, size: int = 1024, background: str | None = "white") -> Image.Image:
     scale, output_width, output_height = _render_dimensions(norm["viewbox"], size)
     minx, miny, _, _ = norm["viewbox"]
-    image = Image.new("RGB", (output_width, output_height), "white")
+    if background is None:
+        image = Image.new("RGBA", (output_width, output_height), (0, 0, 0, 0))
+        paint = _paint_rgba
+    else:
+        image = Image.new("RGB", (output_width, output_height), background)
+        paint = _opaque_rgb
     draw = ImageDraw.Draw(image)
     for element in _flattened_elements(norm):
         fill_opacity = element.get("fill_opacity", 1.0) * element.get("opacity", 1.0)
@@ -928,10 +937,10 @@ def render_png_image(norm: dict[str, Any], *, size: int = 1024) -> Image.Image:
             if len(points) < 2:
                 continue
             if fill != "none" and fill_opacity > 0 and len(points) >= 3:
-                draw.polygon(points, fill=_opaque_rgb(fill, fill_opacity))
+                draw.polygon(points, fill=paint(fill, fill_opacity))
             if stroke != "none" and stroke_opacity > 0:
                 width = max(1, int(round(element.get("stroke_width", 1) * scale)))
-                draw.line(points, fill=_opaque_rgb(stroke, stroke_opacity), width=width, joint=element.get("stroke_linejoin", "curve"))
+                draw.line(points, fill=paint(stroke, stroke_opacity), width=width, joint=element.get("stroke_linejoin", "curve"))
     return image
 
 
