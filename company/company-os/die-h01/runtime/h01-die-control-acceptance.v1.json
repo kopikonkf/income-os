@@ -1,0 +1,48 @@
+{
+  "schema": "die.h01.die-control-acceptance.v1",
+  "task_id": "H01-011",
+  "status": "PASS",
+  "observed_at_date": "2026-09-12",
+  "canonical_origin_main_at_start": "2808c449185f9b55ba539674f28faa79c64bd07b",
+  "target": {"platform": "win32", "os": "Windows Server 2025 Datacenter 10.0.26100", "hostname": "Variable", "role": "GLOBAL_DIE_CONTROL_PLANE"},
+  "mission_control": {
+    "status": "PASS", "version": "0.8.45", "listen": "127.0.0.1:8891", "health_http": 200,
+    "protocol": "mc-mission-v1", "release_head": "0844f813122d390f822ad6dc252cd197178e95f2",
+    "runtime_script": "D:\\tmp\\mission-control-release-global-0844f81\\dist\\src\\server.js", "proactive_runtime_enabled": false
+  },
+  "universal_mcp": {
+    "status": "PASS", "version": "0.1.0", "listen": "127.0.0.1:8793", "tool_count": 46,
+    "service_state": "RUNNING_AUTOMATIC", "local_health_http": 200, "public_health_http": 200,
+    "public_mcp": "https://universal-mcp.aethers.web.id/mcp", "github_broker": "PASS", "ssh_broker": "PASS"
+  },
+  "state_manager_bridge": {
+    "status": "PASS", "canonical_state_writer": "die-state-manager", "sole_physical_writer_count": 1,
+    "unauthorized_global_store_writers": 0, "factory_writer_token": "DIE_STATE_MANAGER",
+    "live_mission_control_forbidden_company_store_refs": 0,
+    "boundary": "MISSION_CONTROL_OPERATIONAL_STATE_IS_NOT_COMPANY_TRUTH"
+  },
+  "principal_registry": {
+    "status": "PASS", "configured_principal_count": 8,
+    "configured_principals": ["chatgpt-architect", "chatgpt-web-02", "claude-web-01", "manus-web-01", "qwen-studio-01", "grok-web-01", "gemini-web-01", "qwen-web-01"],
+    "deferred_surfaces_remain_explicit": true
+  },
+  "durable_state": {
+    "status": "PASS", "db": "D:\\MISSION_CONTROL\\state\\mission-control.db", "sqlite_quick_check": "ok", "journal_mode": "wal",
+    "tasks_observed": 165, "reviews_observed": 70, "owner_attempts_observed": 203, "wake_queue_observed": 245,
+    "h01_011_checkpoints_persisted": [314, 315]
+  },
+  "backup_recovery": {
+    "status": "PASS", "verified_snapshot_count": 6, "all_snapshot_quick_checks": "ok",
+    "real_windows_reboot_acceptance": "MC-008I PASS", "runtime_boot_task_last_result": 0,
+    "runtime_watchdog_last_result": 0, "raw_active_wal_copy_claimed_as_backup": false
+  },
+  "network_ingress": {
+    "status": "PASS", "cloudflared": "RUNNING_AUTOMATIC", "public_hostname": "universal-mcp.aethers.web.id",
+    "upstream": "http://localhost:8793", "external_https_health": 200,
+    "mission_control_direct_public_exposure": false, "mission_control_loopback_only": true
+  },
+  "authority": {
+    "founder_authorized_for_h01_011": true, "business_scheduler_cutover_performed": false,
+    "legacy_services_retired": false, "srv_die_mutated": false, "h03_rebound": false, "runtime_gateway_deployed": false
+  }
+}

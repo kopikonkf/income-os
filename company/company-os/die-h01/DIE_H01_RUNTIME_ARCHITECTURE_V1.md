@@ -286,3 +286,15 @@ Mission Control task `H01-305` completed through automatic canonical intake, own
 ## 2026-09-12 - H01-020 DONE/PASS via Mission Control reviewed canonical writeback
 
 Mission Control task `H01-020` completed through automatic canonical intake, owner execution and no-review completion. Canonical graph transitions: `H01-020 READY->DONE`. Receipt: `company/company-os/die-h01/receipts/H01-020-mission-control-auto-acceptance.receipt.json`. No external marketplace submission, spend, credential mutation, or live-load authority was granted by this writeback.
+
+## H01-011 die-control Windows acceptance standing
+
+H01-011 accepts the target Windows `die-control` failure domain for downstream control-plane work without performing cutover. Live Mission Control 0.8.45 is healthy on loopback `127.0.0.1:8891` from pinned runtime release `0844f813122d390f822ad6dc252cd197178e95f2`; `mc-mission-v1` is live and H01-011 checkpoints were observed directly in the WAL-backed SQLite database with `PRAGMA quick_check=ok`.
+
+Universal MCP 0.1.0 is healthy on `127.0.0.1:8793` with 46 exposed tools and active GitHub/SSH broker paths. Cloudflare Tunnel exposes `universal-mcp.aethers.web.id` and external HTTPS health returned 200, while Mission Control remains loopback-only rather than directly public. The live configured principal registry contains eight explicit accepted/deferred principals.
+
+DIE State Manager sovereignty remains intact: current writer-domain conformance returns one logical `die-state-manager`, one sole physical writer and zero unauthorized global-store writers; a live deployed-Mission-Control scan found zero forbidden Company Truth store references. Mission Control SQLite remains control-plane state, not Company Truth.
+
+Backup/recovery evidence also passes: six retained pre-v0.8.x Mission Control SQLite snapshots each return `quick_check=ok`, and MC-008I already proved real controlled Windows reboot recovery with durable task/review continuity. Runtime Boot/Watchdog remain installed and the watchdog reports successful runs. No raw active-WAL copy is promoted as a valid backup.
+
+H01-011 performed no H03 rebind, Runtime Gateway deployment, Canonical Feeder start, Supervisor start, scheduler cutover, legacy retirement or `/srv/die` mutation. With H01-011 DONE and H01-012 already DONE, H01-013, H01-014 and H01-015 become READY but are not started by this task.

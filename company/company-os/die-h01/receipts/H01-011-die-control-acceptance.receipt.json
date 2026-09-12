@@ -1,0 +1,74 @@
+{
+  "dimensions": {
+    "backup_recovery": "PASS",
+    "durable_state": "PASS",
+    "mission_control": "PASS",
+    "network_ingress": "PASS",
+    "principal_registry": "PASS",
+    "state_manager_bridge": "PASS",
+    "universal_mcp": "PASS"
+  },
+  "durable_checkpoint_evidence": [
+    314,
+    315,
+    316,
+    324
+  ],
+  "founder_authorized": true,
+  "key_evidence": {
+    "mission_control_company_truth_forbidden_refs": 0,
+    "mission_control_health_http": 200,
+    "mission_control_release_head": "0844f813122d390f822ad6dc252cd197178e95f2",
+    "mission_control_version": "0.8.45",
+    "mission_protocol": "mc-mission-v1",
+    "principal_registry_count": 8,
+    "public_ingress_health_http": 200,
+    "real_reboot_recovery": "MC-008I PASS",
+    "sqlite_journal_mode": "wal",
+    "sqlite_quick_check": "ok",
+    "state_manager_sole_physical_writer_count": 1,
+    "state_manager_writer": "die-state-manager",
+    "universal_external_health_http": 200,
+    "universal_mcp_tool_count": 46,
+    "universal_mcp_version": "0.1.0",
+    "verified_backup_snapshot_count": 6,
+    "verified_backup_snapshots_quick_check": "ok",
+    "watchdog_last_result": 0
+  },
+  "non_actions": {
+    "business_scheduler_cutover": false,
+    "canonical_feeder_start": false,
+    "h03_rebind": false,
+    "legacy_retirement": false,
+    "runtime_gateway_deploy": false,
+    "srv_die_mutated": false,
+    "supervisor_start": false
+  },
+  "origin_main_at_start": "2808c449185f9b55ba539674f28faa79c64bd07b",
+  "publication_reconciliation": {
+    "focused_acceptance_plus_worktree_lifecycle": "15/15 PASS",
+    "h01_011_caused_stale_test": false,
+    "nonstale_h01_303_isolation_tests": "9/9 PASS",
+    "origin_main": "0108464966c9f98bcd0496312891acde7c912fd0",
+    "preexisting_stale_test": "test_canonical_task_graph_opens_h01_304_only_after_both_dependencies_done expects H01-305 READY although current origin/main already has H01-305 DONE",
+    "preserved_concurrent_canon": [
+      "H01-020=DONE",
+      "H01-305=DONE"
+    ]
+  },
+  "result": "PASS",
+  "schema": "die.h01.h01-011.die-control-acceptance.receipt.v1",
+  "task_id": "H01-011",
+  "validation": {
+    "git_diff_check": "PASS",
+    "h01_011_acceptance_plus_isolation_lifecycle": "25/25 PASS",
+    "mission_lease_secret_scan": "PASS",
+    "state_manager_writer_domain_conformance": "PASS"
+  },
+  "worktree": {
+    "branch": "architect/h01-011-die-control-acceptance-20260912",
+    "h01_003_lifecycle": "OPEN",
+    "h01_303_mutable_claim": "ACQUIRED",
+    "path": "/home/kopiko/die-sessions/H01-011"
+  }
+}
