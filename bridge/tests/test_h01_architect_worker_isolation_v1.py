@@ -104,8 +104,9 @@ class WorkerIsolationTests(unittest.TestCase):
     def test_canonical_task_graph_opens_h01_304_only_after_both_dependencies_done(self):
         graph=json.loads(TASK_GRAPH.read_text()); tasks={x['id']:x for x in graph['tasks']}
         self.assertEqual(tasks['H01-302']['status'],'DONE'); self.assertEqual(tasks['H01-303']['status'],'DONE')
-        self.assertEqual(tasks['H01-304']['depends_on'],['H01-302','H01-303']); self.assertEqual(tasks['H01-304']['status'],'READY')
+        self.assertEqual(tasks['H01-304']['depends_on'],['H01-302','H01-303']); self.assertIn(tasks['H01-304']['status'],{'READY','DONE'})
         self.assertEqual(tasks['H01-304']['authority'],'FOUNDER_REQUIRED')
+        if tasks['H01-304']['status']=='DONE': self.assertEqual(tasks['H01-305']['status'],'READY')
 
     def test_runtime_contract_forbids_linux_shadow_publication_lease(self):
         runtime=json.loads(RUNTIME.read_text())

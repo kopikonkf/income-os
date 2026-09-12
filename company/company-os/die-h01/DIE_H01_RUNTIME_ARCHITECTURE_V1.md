@@ -263,3 +263,7 @@ This execution is Worker A of Founder-authorized H01-304 parallel canary attempt
 ## 2026-09-12 - H01-105 DONE/PASS via Mission Control reviewed canonical writeback
 
 Mission Control task `H01-105` completed through automatic canonical intake, owner execution and no-review completion. Canonical graph transitions: `H01-105 READY->DONE`. Receipt: `company/company-os/die-h01/receipts/H01-105-mission-control-auto-acceptance.receipt.json`. No external marketplace submission, spend, credential mutation, or live-load authority was granted by this writeback.
+
+## H01-304 two-worker parallel Architect canary acceptance
+
+H01-304 is DONE/PASS. The live canary used H01-121 on the Windows `architect-primary` global browser resource and H01-122 on the H01-local `h01-display12-cdp9100` resource, with isolated worktrees and branches. Both workers wrote durable Mission Control checkpoints and reached durable terminal completion without sharing a mutable worktree or mutating `/srv/die`. The canary also exposed and remediated browser-resource identity, lease-attempt reconciliation, and browser-submit acceptance defects. Durable Mission Control terminal state is authoritative; an exact rendered chat marker is supplemental evidence rather than a completion prerequisite. Receipt: `company/company-os/die-h01/receipts/H01-304-two-worker-parallel-architect-canary.receipt.json`. H01-305 is now READY to scale engineering workers only by dependency-ready graph width.

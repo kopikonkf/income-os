@@ -657,7 +657,7 @@
     {
       "id": "H01-304",
       "track": "ENGINEERING_WORKFORCE",
-      "status": "READY",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED",
       "depends_on": [
         "H01-302",
@@ -669,7 +669,7 @@
     {
       "id": "H01-305",
       "track": "ENGINEERING_WORKFORCE",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-304"
