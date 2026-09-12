@@ -31,7 +31,7 @@ def main():
  completed=False
  try:
   run([FACTORY_PY,str(H01/'engineering/h01_108_blueprint.py'),'--manifest',ns.manifest,'--position',str(ns.position),'--provider',provider,'--out-dir',str(w)])
-  claim=jrun([SCHED,'claim-dispatch','--lease-id',lid,'--lease-token',token]);
+  claim=jrun([SCHED,'claim-dispatch','--lease-id',lid,f'--lease-token={token}']);
   if claim.get('dispatch_authorized') is not True:raise RuntimeError('E_DISPATCH_NOT_AUTHORIZED')
   dump(w/'scheduler-dispatch-claim.sanitized.json',{k:v for k,v in claim.items() if k!='lease_token'})
   runtime_cmd=[NODE,str(H01/'engineering/brave_udd_runtime.mjs'),'--profile-id',profile,'--provider-id',provider,'--provider-url',ORIGIN[provider],'--job-id',job,'--mode','wait-result','--result-receipt',str(w/'browser-job-result.json'),'--runtime-receipt',str(w/'brave-runtime.receipt.json'),'--result-timeout-ms',str(TIMEOUT[provider]+120000)]
@@ -51,13 +51,13 @@ def main():
    except subprocess.TimeoutExpired:runtime.terminate();out,err=runtime.communicate(timeout=20)
    dump(w/'runtime-process.json',{'returncode':runtime.returncode,'stdout':out[-4000:],'stderr':err[-4000:]})
   if runtime.returncode!=0:raise RuntimeError('E_H01_025_RUNTIME')
-  terminal=jrun([SCHED,'complete','--lease-id',lid,'--lease-token',token,'--terminal-state','SUCCEEDED','--provider-cooldown-seconds','180']);completed=True;dump(w/'scheduler-terminal.json',terminal)
+  terminal=jrun([SCHED,'complete','--lease-id',lid,f'--lease-token={token}','--terminal-state','SUCCEEDED','--provider-cooldown-seconds','180']);completed=True;dump(w/'scheduler-terminal.json',terminal)
   img=w/'postproduction/preview.jpg';ish=sha_file(img);det=w/'visual-rights-detector.json';selftest=w/'visual-rights-self-test.json';scratch=w/'rights-scratch'
   run([RIGHTS_PY,str(ROOT/'company/factory-asset/bin/run_visual_rights_detector.py'),'--master',str(img),'--expected-sha256',ish,'--output',str(det),'--self-test-output',str(selftest),'--scratch',str(scratch),'--asset-type','ISOLATED_OBJECT'],timeout=600)
   r=run([FACTORY_PY,str(H01/'engineering/h01_108_rights_finalize.py'),'--workspace',str(w)],timeout=60);final=json.loads(r.stdout);dump(w/'run-one.receipt.json',{'schema':'die.h01.h01-108-run-one.v1','status':final['status'],'job_id':job,'batch_position':ns.position,'noun':it['canonical_name'],'provider_id':provider,'profile_id':profile,'udd_id':udd,'workspace':str(w),'rights':final['rights'],'provider_original_sha256':json.loads((w/'asset-receipt.json').read_text())['provider_original_sha256'],'submission_authorized':False,'publication_authorized':False});print(json.dumps({'status':final['status'],'job_id':job,'position':ns.position,'noun':it['canonical_name'],'provider':provider,'workspace':str(w),'rights':final['rights']}))
  except Exception as e:
   if not completed:
-   try:jrun([SCHED,'complete','--lease-id',lid,'--lease-token',token,'--terminal-state','FAILED','--provider-cooldown-seconds','180'])
+   try:jrun([SCHED,'complete','--lease-id',lid,f'--lease-token={token}','--terminal-state','FAILED','--provider-cooldown-seconds','180'])
    except Exception:pass
   dump(w/'run-one.failure.json',{'status':'FAILED','error':type(e).__name__,'detail':str(e)[:2000]});raise
 if __name__=='__main__':main()
