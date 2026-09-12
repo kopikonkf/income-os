@@ -1,0 +1,72 @@
+{
+  "schema": "die.h01.h01-303.architect-worker-isolation.receipt.v1",
+  "task_id": "H01-303",
+  "result": "PASS",
+  "observed_at": "2026-09-12T06:00:00Z",
+  "workspace": {
+    "path": "/home/kopiko/die-sessions/H01-303",
+    "branch": "manual/h01-303-worker-isolation-20260912",
+    "bootstrap_base_sha": "ec40aefbac9248403d29b9482fd98744d04bfe28",
+    "canonical_base_after_reconcile": "bf6330a",
+    "protected_live_root": "/srv/die",
+    "protected_live_mutated": false
+  },
+  "canon_reconciliation": {
+    "initial_h01_302_merge_observed": "ecb188a390ff1cc55a8ef5e52511f4378ff721ef",
+    "latest_origin_main_before_final_validation": "bf6330a",
+    "latest_upstream_change_class": "H01-103 merge plus task-graph update",
+    "h01_103_files_modified_by_h01_303": false,
+    "h01_302_implementation_files_modified_by_h01_303": false,
+    "branch_rebased_onto_latest_origin_main": true
+  },
+  "implementation": {
+    "module": "company/company-os/die-h01/engineering/architect_worker_isolation.py",
+    "runtime_contract": "company/company-os/die-h01/runtime/h01-architect-worker-isolation.v1.json",
+    "design_doc": "company/company-os/die-h01/DIE_H01_ARCHITECT_WORKER_ISOLATION_V1.md",
+    "workspace_claim_auto_expiry": false,
+    "canonical_dependency_ref": "refs/remotes/origin/main",
+    "publication_lease_helper": "bin/die_engineering_lease.py",
+    "publication_resources": [
+      "income-os.repo-write",
+      "company-os.<task_id>"
+    ],
+    "linux_shadow_publication_lease_allowed": false
+  },
+  "acceptance_evidence": {
+    "same_mutable_worktree_parallel_claim": "FAIL_CLOSED_E_MUTABLE_WORKTREE_BUSY",
+    "distinct_task_worktrees_parallel_claim": "PASS",
+    "corrupt_claim_state": "FAIL_CLOSED_E_MUTABLE_WORKTREE_BUSY_CORRUPT",
+    "exact_task_worktree_and_open_lifecycle_required": "PASS",
+    "protected_live_git_metadata": "FAIL_CLOSED_E_PROTECTED_LIVE_GIT_METADATA",
+    "unmerged_worker_branch_unlocks_downstream": false,
+    "canonical_dependency_source": "origin/main task graph",
+    "conflicting_repo_write_lease": "FAIL_CLOSED_LeaseBusy",
+    "second_writer_after_release": "PASS",
+    "h01_304_status_after_h01_302_and_h01_303_done": "READY",
+    "h01_304_authority": "FOUNDER_REQUIRED",
+    "h01_304_started_by_h01_303": false
+  },
+  "validation": {
+    "focused_command": "python3 -m unittest -v bridge.tests.test_h01_architect_worker_isolation_v1",
+    "focused_result": "10/10 PASS",
+    "regression_command": "python3 -m unittest -v bridge.tests.test_h01_worktree_lifecycle bridge.tests.test_h01_architect_browser_worker_session_v1 bridge.tests.test_h01_architect_browser_dispatcher_v1 bridge.tests.test_h01_architect_worker_completion_v1",
+    "regression_result": "37/37 PASS",
+    "post_rebase_combined_command": "python3 -m unittest -q bridge.tests.test_h01_architect_worker_isolation_v1 bridge.tests.test_h01_worktree_lifecycle bridge.tests.test_h01_architect_browser_worker_session_v1 bridge.tests.test_h01_architect_browser_dispatcher_v1 bridge.tests.test_h01_architect_worker_completion_v1",
+    "post_rebase_combined_result": "47/47 PASS",
+    "python_compile": "PASS",
+    "runtime_json_parse": "PASS",
+    "task_graph_json_parse": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "safety": {
+    "srv_die_mutated": false,
+    "h01_302_lane_mutated": false,
+    "h01_103_lane_mutated": false,
+    "credentials_mutated": false,
+    "paid_api_used": false,
+    "publication_performed": false,
+    "push_performed": false,
+    "main_merged_by_h01_303": false,
+    "h01_304_started": false
+  }
+}
