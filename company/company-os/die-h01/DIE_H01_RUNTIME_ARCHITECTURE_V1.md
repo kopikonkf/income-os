@@ -142,3 +142,11 @@ H01-003 implements the foundation guardrail in `bin/die_h01_worktree.py`, with p
 The helper deliberately does **not** attach engineering worktrees to `/srv/die/.git`. It maintains a separate bare anchor under `/home/kopiko/.local/state/die-engineering`, fetches current `origin/main` there, materializes exactly `/home/kopiko/die-sessions/<task>`, and keeps lifecycle receipts outside the worktree. This preserves `/srv/die` as legacy live / rollback while still allowing clean canon-based engineering.
 
 Closure is destructive only to the ephemeral worktree and therefore fails closed unless the worktree is clean and its HEAD is already visible on a fetched remote ref. Remote publication remains separately serialized by the canonical engineering lease protocol. H01-003 completion does not itself deploy or cut over any runtime service.
+
+## 15. H01-004 legacy-live rollback freeze
+
+H01-004 classifies and freezes the protected `/srv/die` source state before V2 cutover. The legacy checkout remains pinned at `5fc0646a1cb395d2be7dfaa7903c0bf31ef8ddd4`; capture observed 17 tracked modifications and 11 non-ignored untracked files without reset, stash, clean, pull, service restart or source overwrite.
+
+Relative to current canon `13399dd511fb649a41a94369c730315fc8fdb012`, 15 dirty/non-ignored files are already byte-identical to canon, 12 retain live-local divergence, and one OpenCode backup exists only in the legacy tree. Twelve systemd unit files reference `/srv/die`; 11 were active at capture. In particular, the active Cluster A/B brokers read the live `web-ai-clusters.v1.json`, whose live bytes diverge from current canon, so the dirty state is rollback evidence and must not be cleaned away.
+
+The immutable source snapshot is `/home/kopiko/die-archive/legacy-live-snapshots/H01-004-legacy-live-20260912T041238Z.tar.gz` with SHA-256 `9f92ea28cdcbbb68ee730e0574e37ec91899b913d6f1d2ac68a1df2fed2a5422`. It is mode `0444` and filesystem-immutable. Its internal manifest and point-in-time consistency checks passed. Generated `node_modules`, build outputs, Python caches and test caches are recorded by hash/size manifest but are not promoted to source authority. The durable receipt is `company/company-os/die-h01/receipts/H01-004-legacy-live-snapshot.receipt.json`.

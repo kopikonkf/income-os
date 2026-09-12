@@ -72,7 +72,7 @@
     {
       "id": "H01-004",
       "track": "FOUNDATION",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-003"
