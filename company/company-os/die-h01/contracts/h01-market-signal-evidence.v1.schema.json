@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h01.market-signal-evidence.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "connector_id",
+    "evidence_id",
+    "evidence_sha256",
+    "signal_class",
+    "freshness",
+    "query",
+    "retrieved_at",
+    "source_locator",
+    "normalized_metrics",
+    "policy"
+  ],
+  "properties": {
+    "schema": {"const": "die.h01.market-signal-evidence.v1"},
+    "connector_id": {"enum": ["wikimedia_pageviews_v1", "google_ads_keyword_historical_v1"]},
+    "evidence_id": {"type": "string", "pattern": "^H01-SIG-[0-9A-F]{24}$"},
+    "evidence_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "signal_class": {"enum": ["DEMAND", "TREND"]},
+    "freshness": {"enum": ["FRESH", "STALE", "UNKNOWN"]},
+    "query": {"type": "string", "minLength": 1},
+    "retrieved_at": {"type": "string", "minLength": 1},
+    "source_locator": {"type": "string", "minLength": 1},
+    "normalized_metrics": {"type": "object"},
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "official_source",
+        "structured_source",
+        "auth_required",
+        "autocomplete_used",
+        "dom_scraping_used",
+        "object_atlas_validity_effect",
+        "standalone_production_blocking_effect",
+        "production_authorized",
+        "submission_authorized",
+        "publication_authorized",
+        "spend_authorized"
+      ],
+      "properties": {
+        "official_source": {"const": true},
+        "structured_source": {"const": true},
+        "auth_required": {"type": "boolean"},
+        "autocomplete_used": {"const": false},
+        "dom_scraping_used": {"const": false},
+        "object_atlas_validity_effect": {"const": "NONE"},
+        "standalone_production_blocking_effect": {"const": "NONE"},
+        "production_authorized": {"const": false},
+        "submission_authorized": {"const": false},
+        "publication_authorized": {"const": false},
+        "spend_authorized": {"const": false}
+      }
+    }
+  }
+}

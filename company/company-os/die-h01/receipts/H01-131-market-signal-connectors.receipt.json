@@ -1,0 +1,24 @@
+{
+    "schema":  "die.h01.h01-131.market-signal-connectors.acceptance.v1",
+    "task_id":  "H01-131",
+    "status":  "PASS",
+    "origin_main_at_start":  "6388fde4954202900d300e21633102d295e2459a",
+    "connectors":  [
+                       "wikimedia_pageviews_v1",
+                       "google_ads_keyword_historical_v1"
+                   ],
+    "acceptance":  {
+                       "official_structured_sources":  true,
+                       "bounded_requests":  true,
+                       "autocomplete_core_dependency":  false,
+                       "dom_scraping_core_dependency":  false,
+                       "h01_130_projection":  true,
+                       "object_atlas_validity_effect":  "NONE",
+                       "standalone_production_blocking_effect":  "NONE"
+                   },
+    "tests":  {
+                  "focused":  "6/6 PASS",
+                  "relevant":  "32/32 PASS",
+                  "h01_130_progression":  "6/7; sole stale assertion expected H01-131 READY after canonical progression to DONE"
+              }
+}

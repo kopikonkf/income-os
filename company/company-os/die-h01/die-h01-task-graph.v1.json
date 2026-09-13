@@ -692,13 +692,14 @@
     {
       "id": "H01-131",
       "track": "DEMAND_INTELLIGENCE",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-130"
       ],
       "title": "Add bounded official/ToS-safe market signal connectors",
-      "acceptance": "Prefer supported structured sources and accepted observation paths; no fragile autocomplete scraping as core dependency."
+      "acceptance": "Prefer supported structured sources and accepted observation paths; no fragile autocomplete scraping as core dependency.",
+      "result": "PASS: added bounded official structured market-signal connectors for Wikimedia Analytics pageviews and Google Ads historical keyword metrics; deterministic evidence normalization feeds H01-130 while autocomplete/DOM scraping are not core dependencies and supply-first production remains non-blocking."
     },
     {
       "id": "H01-132",
@@ -715,7 +716,7 @@
     {
       "id": "H01-133",
       "track": "DEMAND_INTELLIGENCE",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131",
