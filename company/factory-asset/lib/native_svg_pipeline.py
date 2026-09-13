@@ -57,6 +57,9 @@ MAX_RENDER_SIZE = 4096
 MAX_RENDER_PIXELS = 16_777_216
 MAX_XML_NODES = 4096
 MAX_GROUP_DEPTH = 64
+EPS_MARKETPLACE_TARGET_AREA = 16_000_000
+EPS_MARKETPLACE_MIN_AREA = 15_000_000
+EPS_MARKETPLACE_MAX_AREA = 25_000_000
 IDENTITY_MATRIX = (1.0, 0.0, 0.0, 1.0, 0.0, 0.0)
 
 STYLE_ATTRS = {
@@ -956,11 +959,18 @@ def jpeg_bytes(norm: dict[str, Any], *, size: int = 1024) -> bytes:
     return buffer.getvalue()
 
 
-def _eps_subpath_lines(subpath: list[tuple[float, float]], *, minx: float, miny: float, height: float) -> list[str]:
+def _eps_marketplace_scale(width: float, height: float, *, target_area: int = EPS_MARKETPLACE_TARGET_AREA) -> tuple[float, float, float]:
+    if width <= 0 or height <= 0:
+        raise ValueError("EPS_VIEWBOX_INVALID")
+    scale = math.sqrt(float(target_area) / (width * height))
+    return scale, width * scale, height * scale
+
+
+def _eps_subpath_lines(subpath: list[tuple[float, float]], *, minx: float, miny: float, height: float, scale: float) -> list[str]:
     x0, y0 = subpath[0]
-    lines = ["newpath", f"{x0 - minx:.3f} {height - (y0 - miny):.3f} moveto"]
+    lines = ["newpath", f"{(x0 - minx) * scale:.3f} {(height - (y0 - miny)) * scale:.3f} moveto"]
     for x, y in subpath[1:]:
-        lines.append(f"{x - minx:.3f} {height - (y - miny):.3f} lineto")
+        lines.append(f"{(x - minx) * scale:.3f} {(height - (y - miny)) * scale:.3f} lineto")
     if len(subpath) >= 3 and subpath[-1] == subpath[0]:
         lines.append("closepath")
     return lines
@@ -968,9 +978,17 @@ def _eps_subpath_lines(subpath: list[tuple[float, float]], *, minx: float, miny:
 
 def eps_bytes(norm: dict[str, Any]) -> bytes:
     minx, miny, width, height = norm["viewbox"]
+    scale, out_width, out_height = _eps_marketplace_scale(width, height)
     lines = [
         "%!PS-Adobe-3.0 EPSF-3.0",
-        f"%%BoundingBox: 0 0 {int(math.ceil(width))} {int(math.ceil(height))}",
+        "%%Creator: DIE H01 Vector Postproduction",
+        "%%Title: Marketplace-compatible vector derivative",
+        "%%LanguageLevel: 2",
+        "%%DocumentData: Clean7Bit",
+        "%%Pages: 1",
+        f"%%BoundingBox: 0 0 {int(math.ceil(out_width))} {int(math.ceil(out_height))}",
+        f"%%HiResBoundingBox: 0 0 {out_width:.3f} {out_height:.3f}",
+        "%%EndComments",
         "1 setlinejoin",
         "1 setlinecap",
     ]
@@ -978,7 +996,7 @@ def eps_bytes(norm: dict[str, Any]) -> bytes:
         for subpath in element.get("subpaths", [element.get("points", [])]):
             if len(subpath) < 2:
                 continue
-            path_lines = _eps_subpath_lines(subpath, minx=minx, miny=miny, height=height)
+            path_lines = _eps_subpath_lines(subpath, minx=minx, miny=miny, height=height, scale=scale)
             if element.get("fill", "none") != "none" and len(subpath) >= 3:
                 r, g, b = _rgb(element["fill"])
                 lines.extend(path_lines)
@@ -987,7 +1005,7 @@ def eps_bytes(norm: dict[str, Any]) -> bytes:
                 r, g, b = _rgb(element["stroke"])
                 lines.extend(path_lines)
                 lines.extend([
-                    f"{element.get('stroke_width', 1):.3f} setlinewidth",
+                    f"{element.get('stroke_width', 1) * scale:.3f} setlinewidth",
                     f"{r / 255:.6f} {g / 255:.6f} {b / 255:.6f} setrgbcolor",
                     "stroke",
                 ])

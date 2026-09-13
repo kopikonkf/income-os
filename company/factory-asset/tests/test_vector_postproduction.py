@@ -124,3 +124,24 @@ def test_unsupported_conditional_conversion_fails_closed(tmp_path):
             capabilities={"AI"},
         )
     assert error.value.code == "OPTIONAL_FORMAT_UNSUPPORTED"
+
+def test_eps_marketplace_profile_uses_common_15_to_25_mp_window_and_simple_level2_paths(tmp_path):
+    receipt = MODULE.postprocess_vector(GOOD_SVG, tmp_path, "FASA-H01-EPS-MARKET")
+    eps = (tmp_path / "master.eps").read_bytes()
+    evidence = receipt["acceptance_evidence"]["validated_eps"]
+    assert evidence["result"] == "PASS"
+    assert evidence["marketplace_area_pass"] is True
+    assert 15_000_000 <= evidence["bounding_box_area"] <= 25_000_000
+    assert evidence["language_level_2"] is True
+    assert evidence["clean_7bit"] is True
+    assert evidence["hires_bounding_box"] is True
+    assert evidence["rgb_only"] is True
+    assert evidence["contains_raster_operator"] is False
+    assert evidence["contains_live_font_operator"] is False
+    assert evidence["contains_transparency_operator"] is False
+    assert evidence["legacy_illustrator_structural_profile"] == "POSTSCRIPT_LEVEL_2_SIMPLE_PATHS"
+    assert evidence["native_illustrator_save_certified"] is False
+    assert b"%%Creator: DIE H01 Vector Postproduction" in eps
+    assert b"%%LanguageLevel: 2" in eps
+    assert b"%%DocumentData: Clean7Bit" in eps
+    assert b"%%HiResBoundingBox:" in eps
