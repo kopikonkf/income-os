@@ -1,0 +1,458 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h01.marketplace-transport-receipt.v1",
+  "title": "H01-136 Marketplace Transport Receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "contract_version",
+    "receipt_id",
+    "idempotency_key",
+    "duplicate_scope_key",
+    "source",
+    "state",
+    "state_history",
+    "attempt_count",
+    "retry",
+    "remote",
+    "moderation",
+    "failure",
+    "authority",
+    "actions",
+    "prepared_at",
+    "updated_at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "die.h01.marketplace-transport-receipt.v1"
+    },
+    "contract_version": {
+      "const": "1.0.0"
+    },
+    "receipt_id": {
+      "type": "string",
+      "pattern": "^H01-136-[0-9a-f]{32}$"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "duplicate_scope_key": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_kind",
+        "marketplace",
+        "semantic_asset_id",
+        "package_digest",
+        "source_manifest_sha256",
+        "files"
+      ],
+      "properties": {
+        "source_kind": {
+          "enum": [
+            "H01_134_MANIFEST",
+            "H01_135_ENTRY"
+          ]
+        },
+        "marketplace": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_-]{1,63}$"
+        },
+        "semantic_asset_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+        },
+        "package_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_manifest_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "files": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "sha256",
+              "bytes"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096,
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "bytes": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "state": {
+      "enum": [
+        "PREPARED",
+        "DISPATCHING",
+        "REMOTE_ACCEPTED",
+        "MODERATION_PENDING",
+        "ACCEPTED",
+        "REJECTED",
+        "RETRYABLE_FAILED",
+        "TERMINAL_FAILED"
+      ]
+    },
+    "state_history": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "from",
+          "to",
+          "at",
+          "reason"
+        ],
+        "properties": {
+          "from": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              null,
+              "PREPARED",
+              "DISPATCHING",
+              "REMOTE_ACCEPTED",
+              "MODERATION_PENDING",
+              "ACCEPTED",
+              "REJECTED",
+              "RETRYABLE_FAILED",
+              "TERMINAL_FAILED"
+            ]
+          },
+          "to": {
+            "enum": [
+              "PREPARED",
+              "DISPATCHING",
+              "REMOTE_ACCEPTED",
+              "MODERATION_PENDING",
+              "ACCEPTED",
+              "REJECTED",
+              "RETRYABLE_FAILED",
+              "TERMINAL_FAILED"
+            ]
+          },
+          "at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          }
+        }
+      }
+    },
+    "attempt_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3
+    },
+    "retry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "classification",
+        "retryable",
+        "retry_count",
+        "max_retries",
+        "backoff_seconds",
+        "next_retry_at"
+      ],
+      "properties": {
+        "classification": {
+          "enum": [
+            "NOT_ATTEMPTED",
+            "NONE",
+            "TRANSIENT_TIMEOUT",
+            "RATE_LIMITED",
+            "TEMPORARY_UNAVAILABLE",
+            "REMOTE_5XX",
+            "NO_RETRY",
+            "RETRIES_EXHAUSTED"
+          ]
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "retry_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "max_retries": {
+          "const": 2
+        },
+        "backoff_seconds": {
+          "const": [
+            120,
+            480
+          ]
+        },
+        "next_retry_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      }
+    },
+    "remote": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "remote_reference",
+        "remote_reference_kind",
+        "remote_status",
+        "received_at"
+      ],
+      "properties": {
+        "remote_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 512
+        },
+        "remote_reference_kind": {
+          "const": "OPAQUE"
+        },
+        "remote_status": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 120
+        },
+        "received_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      }
+    },
+    "moderation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "moderation_reference",
+        "feedback",
+        "observed_at"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "NOT_STARTED",
+            "PENDING",
+            "ACCEPTED",
+            "REJECTED"
+          ]
+        },
+        "moderation_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 512
+        },
+        "feedback": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "code",
+              "detail",
+              "learning_target"
+            ],
+            "properties": {
+              "code": {
+                "enum": [
+                  "CONTENT_POLICY",
+                  "METADATA_INVALID",
+                  "RIGHTS_UNCLEAR",
+                  "QUALITY_REVIEW",
+                  "DUPLICATE_CONTENT",
+                  "ACCOUNT_POLICY",
+                  "PROVIDER_POLICY",
+                  "UNKNOWN_REJECTION"
+                ]
+              },
+              "detail": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 2000
+              },
+              "learning_target": {
+                "enum": [
+                  "PACKAGE_POLICY",
+                  "METADATA",
+                  "RIGHTS",
+                  "QUALITY",
+                  "DISTINCTNESS",
+                  "ACCOUNT",
+                  "MARKETPLACE_POLICY",
+                  "HUMAN_REVIEW"
+                ]
+              }
+            }
+          }
+        },
+        "observed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      }
+    },
+    "failure": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "detail"
+      ],
+      "properties": {
+        "code": {
+          "enum": [
+            "DISPATCH_TIMEOUT",
+            "DISPATCH_RATE_LIMITED",
+            "DISPATCH_TEMPORARY_UNAVAILABLE",
+            "DISPATCH_REMOTE_5XX",
+            "INVALID_PACKAGE",
+            "INELIGIBLE_PACKAGE",
+            "PROVIDER_POLICY_REJECTED",
+            "RIGHTS_REJECTED",
+            "FOUNDER_AUTHORITY_REQUIRED",
+            "REMOTE_DUPLICATE",
+            "RETRIES_EXHAUSTED"
+          ]
+        },
+        "detail": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 2000
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gate",
+        "founder_authorized",
+        "submission_authorized",
+        "publication_authorized",
+        "external_action_performed",
+        "credential_accessed"
+      ],
+      "properties": {
+        "gate": {
+          "const": "FOUNDER_APPROVAL_REQUIRED_BEFORE_EXTERNAL_ACTION"
+        },
+        "founder_authorized": {
+          "const": false
+        },
+        "submission_authorized": {
+          "const": false
+        },
+        "publication_authorized": {
+          "const": false
+        },
+        "external_action_performed": {
+          "const": false
+        },
+        "credential_accessed": {
+          "const": false
+        }
+      }
+    },
+    "actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "login",
+        "upload",
+        "submission",
+        "publication",
+        "spend"
+      ],
+      "properties": {
+        "login": {
+          "const": "NONE"
+        },
+        "upload": {
+          "const": "NONE"
+        },
+        "submission": {
+          "const": "NONE"
+        },
+        "publication": {
+          "const": "NONE"
+        },
+        "spend": {
+          "const": "NONE"
+        }
+      }
+    },
+    "prepared_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
