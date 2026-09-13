@@ -5,6 +5,8 @@ import json
 import os
 import re
 import tempfile
+import math
+import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Any
 
@@ -13,9 +15,14 @@ import jsonschema
 ROOT = Path(__file__).resolve().parents[4]
 H01 = ROOT / 'company/company-os/die-h01'
 SCHEMA = H01 / 'contracts/h01-provider-output-acquisition-v1.schema.json'
-REVISION = '1.0.0'
+REVISION = '1.1.0'
 SVG_RE = re.compile(r'<svg\b[\s\S]*?</svg>', re.IGNORECASE)
 FENCE_RE = re.compile(r'^```(?:svg|xml)?\s*([\s\S]*?)\s*```$', re.IGNORECASE)
+NUMBER_RE = re.compile(r'[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?')
+GEOMETRY_TAGS = {'path','polygon','polyline','rect','circle','ellipse','line'}
+ALLOWED_FRAGMENT_TAGS = GEOMETRY_TAGS | {'g'}
+GEOMETRY_NUMERIC_ATTRS = {'d','points','x','y','x1','y1','x2','y2','cx','cy','r','rx','ry','width','height','transform'}
+
 FORBIDDEN_SVG = (
     re.compile(r'<\s*script\b', re.I),
     re.compile(r'<\s*foreignObject\b', re.I),
@@ -65,35 +72,121 @@ def _source_method(text: str, svg: str) -> str:
     return 'ASSISTANT_DOM'
 
 
-def extract_single_svg(provider_response_text: str) -> tuple[str, str]:
-    """Extract exactly one complete SVG candidate from a final provider response.
+def _unwrap_surface_text(text: str) -> str:
+    stripped = text.strip()
+    fence = FENCE_RE.fullmatch(stripped)
+    return fence.group(1).strip() if fence else stripped
 
-    Prose/Markdown outside one SVG is tolerated by acquisition because provider UIs
-    are inconsistent. Ambiguous multi-SVG output fails closed. H01-103 remains the
-    authoritative SVG safety/editability/geometry validator downstream.
-    """
+def _local_name(tag: str) -> str:
+    return tag.rsplit('}', 1)[-1] if '}' in tag else tag
+
+def _normalize_alpha_hex(root: ET.Element) -> int:
+    count = 0
+    for el in root.iter():
+        for attr, opacity_attr in (('fill','fill-opacity'),('stroke','stroke-opacity')):
+            value = el.attrib.get(attr)
+            if not value or not value.startswith('#'):
+                continue
+            h = value[1:]
+            if len(h) == 8 and re.fullmatch(r'[0-9a-fA-F]{8}', h):
+                rgb, alpha = h[:6], int(h[6:8], 16) / 255.0
+            elif len(h) == 4 and re.fullmatch(r'[0-9a-fA-F]{4}', h):
+                rgb, alpha = ''.join(ch*2 for ch in h[:3]), int(h[3]*2, 16) / 255.0
+            else:
+                continue
+            try:
+                previous = float(el.attrib.get(opacity_attr, '1'))
+            except ValueError as exc:
+                raise ProviderOutputError('SVG_FRAGMENT_OPACITY_INVALID', el.attrib.get(opacity_attr, '')) from exc
+            el.set(attr, '#'+rgb.lower())
+            el.set(opacity_attr, format(previous * alpha, '.12g'))
+            count += 1
+    return count
+
+def _derive_fragment_viewbox(root: ET.Element) -> tuple[float,float,float,float]:
+    nums: list[float] = []
+    allowed = ALLOWED_FRAGMENT_TAGS | {'svg'}
+    for el in root.iter():
+        local = _local_name(el.tag)
+        if local not in allowed:
+            raise ProviderOutputError('SVG_FRAGMENT_UNSUPPORTED_ELEMENT', local)
+        for key, value in el.attrib.items():
+            if _local_name(key) not in GEOMETRY_NUMERIC_ATTRS:
+                continue
+            for token in NUMBER_RE.findall(value):
+                number = float(token)
+                if math.isfinite(number):
+                    nums.append(number)
+    if len(nums) < 2:
+        raise ProviderOutputError('SVG_FRAGMENT_BOUNDS_MISSING')
+    lo, hi = min(nums), max(nums)
+    span = max(1.0, hi - lo)
+    margin = max(8.0, span * 0.10)
+    return lo - margin, lo - margin, span + 2*margin, span + 2*margin
+
+def _normalize_geometry_fragment(provider_response_text: str) -> tuple[str, dict[str, Any]]:
+    fragment = _unwrap_surface_text(provider_response_text)
+    if '<svg' in fragment.lower() or '</svg>' in fragment.lower():
+        raise ProviderOutputError('OUTPUT_NOT_SVG', 'incomplete SVG root is not a geometry fragment')
+    geometry_count = sum(len(re.findall(fr'<{tag}\b', fragment, re.I)) for tag in GEOMETRY_TAGS)
+    if geometry_count < 1:
+        raise ProviderOutputError('OUTPUT_NOT_SVG', 'no complete SVG rocument or SVG geometry fragment')
+    for pat in FORBIDDEN_SVG:
+        if pat.search(fragment):
+            raise ProviderOutputError('SVG_FORBIDDEN_FEATURE', pat.pattern)
+    try:
+        root = ET.fromstring(f'<svg xmlns="http://www.w3.org/2000/svg">{fragment}</svg>')
+    except ET.ParseError as exc:
+        raise ProviderOutputError('SVG_FRAGMENT_XML_INVALID', str(exc)) from exc
+    alpha_count = _normalize_alpha_hex(root)
+    x, y, w, h = _derive_fragment_viewbox(root)
+    root.set('viewBox', f'{x:.12g} {y:.12g} {w:.12g} {h:.12g}')
+    ET.register_namespace('', 'http://www.w3.org/2000/svg')
+    candidate = ET.tostring(root, encoding='unicode')
+    if len(candidate.encode('utf-8')) > 1_048_576:
+        raise ProviderOutputError('SVG_TOO_LARGE')
+    normalization = {
+        'method': 'SVG_GEOMETRY_FRAGMENT_ENVELOPE_V1',
+        'provider_reprompted': False,
+        'geometry_preserved': True,
+        'raw_surface_sha256': sha256_text(provider_response_text),
+        'geometry_fragment_sha256': sha256_text(fragment),
+        'normalized_candidate_sha256': sha256_text(candidate),
+        'geometry_tag_count': geometry_count,
+        'alpha_hex_normalizations': alpha_count,
+        'derived_viewbox': [x, y, w, h],
+    }
+    return candidate, normalization
+
+def extract_svg_surface(provider_response_text: str) -> dict[str, Any]:
     if not isinstance(provider_response_text, str) or not provider_response_text.strip():
         raise ProviderOutputError('EMPTY_PROVIDER_OUTPUT')
     matches = [m.group(0).strip() for m in SVG_RE.finditer(provider_response_text)]
-    if not matches:
-        raise ProviderOutputError('OUTPUT_NOT_SVG', 'no complete <svg>...</svg> payload')
-    if len(matches) != 1:
+    if len(matches) > 1:
         raise ProviderOutputError('AMBIGUOUS_PROVIDER_OUTPUT', f'{len(matches)} SVG candidates')
-    svg = matches[0]
-    root = re.match(r'<svg\b([^>]*)>', svg, re.I)
-    if not root:
-        raise ProviderOutputError('SVG_ROOT_INVALID')
-    attrs = root.group(1)
-    has_viewbox = bool(re.search(r'\bviewBox\s*=\s*["\'][^"\']+["\']', attrs, re.I))
-    has_width_height = bool(re.search(r'\bwidth\s*=\s*["\'][^"\']+["\']', attrs, re.I) and re.search(r'\bheight\s*=\s*["\'][^"\']+["\']', attrs, re.I))
-    if not (has_viewbox or has_width_height):
-        raise ProviderOutputError('SVG_DIMENSIONS_MISSING')
-    for pat in FORBIDDEN_SVG:
-        if pat.search(svg):
-            raise ProviderOutputError('SVG_FORBIDDEN_FEATURE', pat.pattern)
-    if len(svg.encode('utf-8')) > 1_048_576:
-        raise ProviderOutputError('SVG_TOO_LARGE')
-    return svg, _source_method(provider_response_text, svg)
+    if len(matches) == 1:
+        svg = matches[0]
+        root = re.match(r'<svg\b([^>]*)>', svg, re.I)
+        if not root:
+            raise ProviderOutputError('SVG_ROOT_INVALID')
+        attrs = root.group(1)
+        has_viewbox = bool(re.search(r'\bviewBox\s*=\s*["\'][^"\']+["\']', attrs, re.I))
+        has_width_height = bool(re.search(r'\bwidth\s*=\s*["\'][^"\']+["\']', attrs, re.I) and re.search(r'\bheight\s*=\s*["\'][^"\']+["\']', attrs, re.I))
+        if not (has_viewbox or has_width_height):
+            raise ProviderOutputError('SVG_DIMENSIONS_MISSING')
+        for pat in FORBIDDEN_SVG:
+            if pat.search(svg):
+                raise ProviderOutputError('SVG_FORBIDDEN_FEATURE', pat.pattern)
+        if len(svg.encode('utf-8')) > 1_048_576:
+            raise ProviderOutputError('SVG_TOO_LARGE')
+        return {'candidate_svg': svg, 'source_kind': _source_method(provider_response_text, svg), 'normalization': None}
+    candidate, normalization = _normalize_geometry_fragment(provider_response_text)
+    return {'candidate_svg': candidate, 'source_kind': 'SVG_GEOMETRY_FRAGMENT', 'normalization': normalization}
+
+
+def extract_single_svg(provider_response_text: str) -> tuple[str, str]:
+    surface = extract_svg_surface(provider_response_text)
+    return surface['candidate_svg'], surface['source_kind']
 
 
 def _atomic_bytes(path: Path, data: bytes) -> str:
@@ -137,6 +230,8 @@ def build_svg_receipt(
     completion_signal: str,
     completed_at: str,
     finish_reason: str | None = None,
+    provider_surface_path: Path | None = None,
+    normalization: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     data = candidate_svg.encode('utf-8')
     receipt = {
@@ -180,6 +275,17 @@ def build_svg_receipt(
             'h01_105_postproduction_after_validation': True,
         },
     }
+    if provider_surface_path is not None:
+        raw = provider_response_text.encode('utf-8')
+        receipt['provider_surface'] = {
+            'path': str(provider_surface_path),
+            'sha256': sha256_bytes(raw),
+            'bytes': len(raw),
+            'immutable_raw_provider_surface': True,
+        }
+    if normalization is not None:
+        receipt['normalization'] = normalization
+        receipt['artifact']['immutable_provider_original'] = False
     _validate_schema(receipt)
     return receipt
 
@@ -197,8 +303,13 @@ def acquire_svg_text(
     completed_at: str,
     finish_reason: str | None = None,
 ) -> tuple[dict[str, Any], str]:
-    candidate, method = extract_single_svg(provider_response_text)
+    surface = extract_svg_surface(provider_response_text)
+    candidate = surface['candidate_svg']
+    method = surface['source_kind']
+    normalization = surface['normalization']
     out = Path(output_dir)
+    raw_surface = out / 'provider-surface.raw.txt'
+    raw_state = _atomic_bytes(raw_surface, provider_response_text.encode('utf-8'))
     artifact = out / 'provider-original.svg'
     artifact_state = _atomic_bytes(artifact, candidate.encode('utf-8'))
     receipt = build_svg_receipt(
@@ -214,9 +325,11 @@ def acquire_svg_text(
         completion_signal=completion_signal,
         completed_at=completed_at,
         finish_reason=finish_reason,
+        provider_surface_path=raw_surface,
+        normalization=normalization,
     )
     receipt_state = _atomic_json(out / 'provider-output-acquisition.receipt.json', receipt)
-    return receipt, f'{artifact_state}/{receipt_state}'
+    return receipt, f'{raw_state}/{artifact_state}/{receipt_state}'
 
 
 def validate_receipt(receipt: dict[str, Any]) -> None:

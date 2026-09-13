@@ -5,7 +5,7 @@ from pathlib import Path
 HERE=Path(__file__).resolve();H01=HERE.parents[1];ROOT=HERE.parents[4]
 FACTORY_PY='/opt/die/factory-asset/venv/bin/python';RIGHTS_PY='/opt/die/factory-asset-rights/venv/bin/python';SCHED='/opt/die/h01/bin/h01-brave-scheduler';NODE='/usr/local/bin/node'
 ORIGIN={'claude':'https://claude.ai','chatgpt':'https://chatgpt.com','qwen':'https://chat.qwen.ai','gemini':'https://gemini.google.com','manus':'https://manus.im','copilot':'https://copilot.microsoft.com'}
-TEXT={'claude','chatgpt','qwen','manus','copilot'}
+TEXT={'claude','qwen','manus'};PLAYWRIGHT={'gemini','chatgpt','copilot'}
 TIMEOUT={'qwen':1200000,'claude':600000,'chatgpt':600000,'manus':600000,'copilot':600000,'gemini':600000}
 def run(cmd,**kw):
  r=subprocess.run(cmd,text=True,capture_output=True,**kw)
@@ -38,10 +38,11 @@ def main():
   runtime=subprocess.Popen(runtime_cmd,text=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
   time.sleep(2)
   try:
-   if provider in TEXT:
+   if provider in PLAYWRIGHT:
+    src=w/'provider-output.svg';obs=w/'provider-observation.json';dld=w/'downloads';driver=[NODE,str(H01/'engineering/provider_svg_playwright_strategy.mjs'),'--provider',provider,'--cdp-port',port,'--prompt-file',str(w/'prompt.txt'),'--output-file',str(src),'--download-dir',str(dld),'--observation-file',str(obs),'--timeout-ms',str(TIMEOUT[provider])];run(driver,timeout=TIMEOUT[provider]/1000+90);pobs=json.loads(obs.read_text());kind='FILE' if pobs.get('source_kind')=='PROVIDER_FILE_DOWNLOAD' else 'TEXT'
+   elif provider in TEXT:
     src=w/'raw-provider-response.txt';obs=w/'provider-observation.json';driver=[NODE,str(H01/'engineering/provider_text_svg_cdp_canary.mjs'),'--provider',provider,'--cdp-port',port,'--prompt-file',str(w/'prompt.txt'),'--response-file',str(src),'--observation-file',str(obs),'--timeout-ms',str(TIMEOUT[provider])];run(driver,timeout=TIMEOUT[provider]/1000+90);kind='TEXT'
-   else:
-    src=w/'provider-native.svg';obs=w/'provider-observation.json';dld=w/'downloads';driver=[NODE,str(H01/'engineering/provider_gemini_svg_download_cdp.mjs'),'--cdp-port',port,'--prompt-file',str(w/'prompt.txt'),'--output-file',str(src),'--download-dir',str(dld),'--observation-file',str(obs),'--timeout-ms',str(TIMEOUT[provider])];run(driver,timeout=TIMEOUT[provider]/1000+90);gobs=json.loads(obs.read_text());kind='TEXT' if gobs.get('acquisition_method')=='DOM_TEXT_SVG_FALLBACK' else 'FILE'
+   else: raise RuntimeError('E_PROVIDER_STRATEGY')
    run([FACTORY_PY,str(H01/'engineering/h01_108_capture.py'),'--workspace',str(w),'--provider',provider,'--source-kind',kind,'--source',str(src),'--job-id',job,'--profile-id',profile,'--udd-id',udd],timeout=120)
   except Exception as e:
    if not (w/'browser-job-result.json').exists():fail_result(w,job,provider,profile,udd,type(e).__name__+':'+str(e)[:400])

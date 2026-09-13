@@ -24,7 +24,10 @@
       "const": "die.h01.provider-output-acquisition.v1"
     },
     "revision": {
-      "const": "1.0.0"
+      "enum": [
+        "1.0.0",
+        "1.1.0"
+      ]
     },
     "job_id": {
       "type": "string",
@@ -55,7 +58,8 @@
     "source_kind": {
       "enum": [
         "ASSISTANT_DOM",
-        "CODE_BLOCK"
+        "CODE_BLOCK",
+        "SVG_GEOMETRY_FRAGMENT"
       ]
     },
     "provider_result": {
@@ -129,7 +133,7 @@
           "maximum": 1048576
         },
         "immutable_provider_original": {
-          "const": true
+          "type": "boolean"
         }
       }
     },
@@ -193,6 +197,89 @@
         },
         "h01_105_postproduction_after_validation": {
           "const": true
+        }
+      }
+    },
+    "provider_surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "bytes",
+        "immutable_raw_provider_surface"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1048576
+        },
+        "immutable_raw_provider_surface": {
+          "const": true
+        }
+      }
+    },
+    "normalization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "provider_reprompted",
+        "geometry_preserved",
+        "raw_surface_sha256",
+        "geometry_fragment_sha256",
+        "normalized_candidate_sha256",
+        "geometry_tag_count",
+        "alpha_hex_normalizations",
+        "derived_viewbox"
+      ],
+      "properties": {
+        "method": {
+          "const": "SVG_GEOMETRY_FRAGMENT_ENVELOPE_V1"
+        },
+        "provider_reprompted": {
+          "const": false
+        },
+        "geometry_preserved": {
+          "const": true
+        },
+        "raw_surface_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "geometry_fragment_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "normalized_candidate_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "geometry_tag_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "alpha_hex_normalizations": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "derived_viewbox": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "number"
+          }
         }
       }
     }

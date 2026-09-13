@@ -1,0 +1,83 @@
+{
+  "adopted_invariants": [
+    "H01-025 remains browser lifecycle owner; provider strategy attaches over loopback CDP only",
+    "provider readiness requires a visible writable composer and no auth/challenge state",
+    "dispatch commit is distinct from prompt fill",
+    "completion detection is provider-specific and bounded",
+    "Gemini baselines provider Download SVG controls before dispatch and accepts only a new control or complete SVG text",
+    "ChatGPT uses Playwright locator fill plus composer Enter semantics from the proven web-ai-adapter path",
+    "Copilot requires route/composer commit evidence and complete stable SVG response",
+    "provider terminal failure is classified instead of being disguised as a generic long timeout"
+  ],
+  "authority": {
+    "publication_authorized": false,
+    "spend_authorized": false,
+    "submission_authorized": false
+  },
+  "live_results": {
+    "chatgpt_clock_attempt_6": {
+      "generation_seconds_approx": 24,
+      "provider_original_sha256": "89669a398b9a65f0c21405a0cf7232b1691c13159d882c7939f644481a73fd1b",
+      "status": "ARTIFACT_CREATED",
+      "submit_method": "composer-enter",
+      "transport": "PLAYWRIGHT_CDP_ATTACH"
+    },
+    "copilot_bottle_attempt_3": {
+      "generation_seconds_approx": 34,
+      "provider_original_sha256": "7ad32059cca6f081982887d63998f84bdcc73953fcf52198206d937eb9e9ddfc",
+      "status": "ARTIFACT_CREATED",
+      "submit_method": "button[aria-label*=\"Submit\" i]",
+      "transport": "PLAYWRIGHT_CDP_ATTACH"
+    },
+    "gemini_book": {
+      "canonical_blueprint_sha256": "80db21752781a9801341a7a734b95f6f73592e35706fb4235c37b836577e975a",
+      "canonical_prompt_sha256": "3e6925ca7eaf93174105e90f2399968411c0d3588aaef4947338e96ea491a1e3",
+      "canonical_svg_sha256": "c37f4718167eda465e917515beb4530374c767ce31b1af952c103615d6b977a2",
+      "h01_107_native_svg_pass_sha256": "b1c4872e96872a101adedd5a4f5f1129c639ce06fbd74d6f2d98b9bcb7e9f0b1",
+      "provider_original_sha256": "00dd4e1c8defae574bca8defa4cae79df955382b0cc796db898b8b9c029888d1",
+      "provider_reprompted": false,
+      "status": "ARTIFACT_CREATED",
+      "transport_normalization": "SVG_GEOMETRY_FRAGMENT_ENVELOPE_V1"
+    }
+  },
+  "reference_sources": {
+    "factory_asset_h03": [
+      "company/factory-asset/providers/chatgpt/linux/chatgpt_leased_strategy.mjs",
+      "company/factory-asset/providers/gemini/linux/gemini_leased_strategy.mjs",
+      "company/factory-asset/lib/console_broker_provider_worker.mjs",
+      "company/browser/linux/external_cdp_attach_driver.mjs",
+      "company/browser/linux/provider_readiness.mjs"
+    ],
+    "h01_107_live_evidence": [
+      "company/company-os/die-h01/evidence/h01-107/chatgpt-p001-003",
+      "company/company-os/die-h01/evidence/h01-107/gemini-p001-recheck-003",
+      "company/company-os/die-h01/evidence/h01-107/copilot-p001-002"
+    ],
+    "web_ai_adapter_reference": {
+      "files": [
+        "src/providers/chatgpt_image.py",
+        "src/providers/gemini_image.py",
+        "src/utils/browser_runtime.py"
+      ],
+      "reference_commit": "a654f823ce1027951c0204a7b141120ab8607faf",
+      "repository": "https://github.com/kopikonkf/web-ai-adapter.git"
+    }
+  },
+  "round_acceptance": {
+    "postproduction_not_required_to_release_generation": true,
+    "provider_ids": [
+      "chatgpt",
+      "claude",
+      "copilot",
+      "gemini",
+      "manus",
+      "qwen"
+    ],
+    "providers_artifact_created": 6,
+    "providers_expected": 6,
+    "result": "PASS"
+  },
+  "schema": "die.h01.h01-108-provider-strategy-reuse.v1",
+  "status": "PASS",
+  "task_id": "H01-108"
+}
