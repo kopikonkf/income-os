@@ -399,7 +399,8 @@
       "status": "BLOCKED",
       "authority": "ARCHITECT",
       "depends_on": [
-        "H01-108"
+        "H01-135",
+        "H01-136"
       ],
       "title": "Accept Founder-QC-ready standalone SVG package and real upload path",
       "acceptance": "Package preserves semantic-master/derivative/package counters and produces at least one real Founder-uploaded stock acceptance before scale-out."
@@ -571,6 +572,62 @@
       "result": "PASS: deterministic Marketplace Delivery Adapter v1 implemented for six marketplaces. Focused tests 13/13 PASS. Real read-only proof on H01-108 run 055-sunflower-manus-a1 produced all six COMPATIBLE packages, Adobe 16MP SVG delivery, VectorStock EPS-only ZIP, MotionElements EPS+JPG ZIP, 31 stable files with exact rerun hash parity, and all login/upload/submission/publication/spend actions NONE. Actual rights remained REVIEW_REQUIRED so every real-proof package correctly stayed submission_eligible=false."
     },
     {
+      "id": "H01-135",
+      "track": "SVG_STANDALONE",
+      "status": "READY",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-134"
+      ],
+      "title": "Materialize submission-ready projection v1",
+      "acceptance": "Project only packages whose compatibility, rights and Founder QC gates all pass into a rebuildable hash-bound /var/lib/die/h01/submission-ready/<marketplace>/<semantic_asset_id>/ tree; non-eligible packages never enter that tree and source artifacts remain immutable."
+    },
+    {
+      "id": "H01-136",
+      "track": "SVG_STANDALONE",
+      "status": "READY",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-134"
+      ],
+      "title": "Define marketplace transport and durable submission receipt contract v1",
+      "acceptance": "Define a provider-neutral local/synthetic transport contract with deterministic idempotency keys, retry taxonomy, duplicate prevention, opaque remote-reference fields, moderation-status receipt shapes and Founder authority gates; no real external marketplace action occurs in this task."
+    },
+    {
+      "id": "H01-140",
+      "track": "FOUNDER_CONSOLE",
+      "status": "READY",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-114",
+        "H01-134"
+      ],
+      "title": "Prove 9router-based Founder Console architecture spike",
+      "acceptance": "Evaluate a 9router fork as the Founder-facing UI/router shell while Mission Control remains global control-plane truth. Produce fork/update/topology/integration plan and a bounded isolated spike; preserve existing H01 runtime and localhost:8876."
+    },
+    {
+      "id": "H01-141",
+      "track": "FOUNDER_CONSOLE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-140"
+      ],
+      "title": "Implement Founder Console shell v1",
+      "acceptance": "Implement centralized Founder Console menus for Overview, Production, Providers/BYOK, QC Gallery, Submission Ready, Demand Intelligence, Tasks/Mission Control, System Health and Settings using bounded DIE integration APIs while preserving existing localhost:8876 until replacement acceptance."
+    },
+    {
+      "id": "H01-142",
+      "track": "FOUNDER_CONSOLE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-140"
+      ],
+      "title": "Implement optional BYOK/API provider bridge v1",
+      "acceptance": "Expose optional API-provider connections through the Founder Console/router layer without replacing existing H01 browser-native provider lanes. Extra capacity remains opportunistic, capability and health are observable, and production roles are explicitly enabled."
+    },
+    {
       "id": "H01-120",
       "track": "FAMILY_SET",
       "status": "DONE",
@@ -619,10 +676,11 @@
     {
       "id": "H01-130",
       "track": "DEMAND_INTELLIGENCE",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
-        "H01-111"
+        "H01-101",
+        "H01-120"
       ],
       "title": "Define non-blocking Demand Signal Engine contract",
       "acceptance": "External signals rank remaining nouns and help discover buyer/use-case/families; they never determine Object Atlas validity and never block standalone production."
