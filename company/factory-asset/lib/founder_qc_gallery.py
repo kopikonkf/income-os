@@ -3,7 +3,7 @@ import hashlib,json,mimetypes,re
 from pathlib import Path
 from typing import Any
 EXT={'.png','.jpg','.jpeg','.webp','.tif','.tiff'}
-WORK=Path('/var/lib/die/workspaces'); FA124=Path('/var/lib/die/state/fa124-cartoon-watercolor-100-r1'); THUMBS=Path('/var/tmp/die-founder-qc-gallery/thumbs')
+WORK=Path('/var/lib/die/workspaces'); FA124=Path('/var/lib/die/state/fa124-cartoon-watercolor-100-r1'); H01_108=Path('/var/lib/die/h01/runs/H01-108'); THUMBS=Path('/var/tmp/die-founder-qc-gallery/thumbs')
 def j(p):
  try:return json.loads(Path(p).read_text())
  except:return {}
@@ -69,19 +69,36 @@ def ws_items(root):
   sid,name=ws_seed(ws);w,h,fmt=meta(p);route=ws_provider(ws)
   out.append({'asset_id':aid('PRODUCTION_WORKSPACE',ws.name,p),'source_group':'PRODUCTION_WORKSPACE','job_id':ws.name,'seed_id':sid,'seed_name':name or ws.name,'provider_id':route,'cluster_id':None,'provider_route':route,'model_name':'NOT_RECORDED','model_version':'NOT_RECORDED','model_evidence':'LEGACY_WORKSPACE_NO_MODEL_RECEIPT','review_kind':kind,'qc_state':ws_state(ws),'width_px':w,'height_px':h,'format':fmt,'bytes':p.stat().st_size,'orientation_result':None,'created_at':None,'_path':str(p)})
  return out
-def internal(repo,work=WORK,fa124=FA124):
+def h01_108_items(root):
+ out=[]
+ root=Path(root)
+ if not root.is_dir():return out
+ for run in sorted(root.iterdir()):
+  if not run.is_dir():continue
+  p=run/'postproduction'/'preview.webp'
+  if not ok(p):continue
+  item=j(run/'batch-item.json'); asset=j(run/'asset-receipt.json'); rights=j(run/'rights-signal.json'); post=j(run/'postproduction-state.json'); result=j(run/'postproduction-result.json')
+  noun=item.get('canonical_name') or asset.get('noun') or run.name
+  provider=asset.get('provider_id') or post.get('provider_id') or result.get('provider_id') or 'UNKNOWN'
+  asset_status=asset.get('status') or result.get('status') or post.get('status') or 'POSTPRODUCTION_PREVIEW_READY'
+  rights_state=rights.get('result') or post.get('rights') or asset.get('rights') or 'NOT_RECORDED'
+  created=post.get('updated_at') or asset.get('completed_at') or result.get('completed_at')
+  out.append({'asset_id':aid('H01_108_VECTOR_SOAK',run.name,p),'source_group':'H01_108_VECTOR_SOAK','job_id':run.name,'seed_id':item.get('source_candidate_id') or item.get('queue_item_id'),'seed_name':noun,'provider_id':provider,'cluster_id':None,'provider_route':provider,'model_name':'Provider-managed vector model','model_version':'NOT_DISCLOSED_OR_NOT_CAPTURED','model_evidence':'H01_108_PROVIDER_LINEAGE','review_kind':'POSTPRODUCTION_PREVIEW','qc_state':asset_status,'rights_state':rights_state,'postproduction_state':post.get('status') or result.get('status') or 'PREVIEW_READY','width_px':None,'height_px':None,'format':'WEBP','bytes':p.stat().st_size,'orientation_result':None,'created_at':created,'_path':str(p)})
+ return out
+
+def internal(repo,work=WORK,fa124=FA124,h01_108=H01_108):
  cohort=Path(repo)/'company/factory-asset/fixtures/scale/FA-124-cartoon-watercolor-cohort.json'
- return fa_items(Path(fa124),cohort)+ws_items(Path(work))
-def build_gallery(repo_root:Path,*,workspaces_root:Path=WORK,fa124_root:Path=FA124)->dict[str,Any]:
- xs=internal(repo_root,workspaces_root,fa124_root);xs.sort(key=lambda x:(0 if x['source_group']=='FA124_CANARY' else 1,str(x.get('seed_name') or ''),x['job_id']));pub=[];counts={}
+ return fa_items(Path(fa124),cohort)+ws_items(Path(work))+h01_108_items(Path(h01_108))
+def build_gallery(repo_root:Path,*,workspaces_root:Path=WORK,fa124_root:Path=FA124,h01_108_root:Path=H01_108)->dict[str,Any]:
+ xs=internal(repo_root,workspaces_root,fa124_root,h01_108_root);order={'H01_108_VECTOR_SOAK':0,'FA124_CANARY':1,'PRODUCTION_WORKSPACE':2};xs.sort(key=lambda x:(order.get(x['source_group'],9),str(x.get('seed_name') or ''),x['job_id']));pub=[];counts={}
  for x in xs:
   y={k:v for k,v in x.items() if not k.startswith('_')};y['thumb_url']=f"/api/qc-image?id={x['asset_id']}&variant=thumb";y['full_url']=f"/api/qc-image?id={x['asset_id']}&variant=full";pub.append(y);counts[y['source_group']]=counts.get(y['source_group'],0)+1
  return {'schema':'die.factory-asset.founder-qc-gallery.v1','mode':'READ_ONLY_REVIEW','asset_count':len(pub),'source_counts':counts,'items':pub,'founder_qc_mutation_enabled':False}
-def resolve(repo,asset_id,work=WORK,fa124=FA124):
- for x in internal(repo,work,fa124):
+def resolve(repo,asset_id,work=WORK,fa124=FA124,h01_108=H01_108):
+ for x in internal(repo,work,fa124,h01_108):
   if x['asset_id']==asset_id:return Path(x['_path'])
  raise KeyError('ASSET_NOT_FOUND')
-def image_payload(repo_root:Path,asset_id:str,variant='full',*,workspaces_root:Path=WORK,fa124_root:Path=FA124):
- p=resolve(repo_root,asset_id,workspaces_root,fa124_root)
+def image_payload(repo_root:Path,asset_id:str,variant='full',*,workspaces_root:Path=WORK,fa124_root:Path=FA124,h01_108_root:Path=H01_108):
+ p=resolve(repo_root,asset_id,workspaces_root,fa124_root,h01_108_root)
  if variant not in {'full','thumb'}:raise ValueError('INVALID_VARIANT')
  return p.read_bytes(),mimetypes.guess_type(p.name)[0] or 'application/octet-stream'
