@@ -612,13 +612,14 @@
     {
       "id": "H01-141",
       "track": "FOUNDER_CONSOLE",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-140"
       ],
       "title": "Implement Founder Console shell v1",
-      "acceptance": "Implement centralized Founder Console menus for Overview, Production, Providers/BYOK, QC Gallery, Submission Ready, Demand Intelligence, Tasks/Mission Control, System Health and Settings using bounded DIE integration APIs while preserving existing localhost:8876 until replacement acceptance."
+      "acceptance": "Implement centralized Founder Console menus for Overview, Production, Providers/BYOK, QC Gallery, Submission Ready, Demand Intelligence, Tasks/Mission Control, System Health and Settings using bounded DIE integration APIs while preserving existing localhost:8876 until replacement acceptance.",
+      "result": "PASS: Founder Console shell v1 centralizes nine Founder menus through bounded GET-only DIE read models, reuses legacy 8876 read surfaces without write authority, integrates H01-142 optional provider state, and runs as loopback shadow on 20128. Focused/contract tests 14/14 PASS; live canary observed 208 QC assets with both 8876 and 20128 listening, then closed 20128 while 8876 remained LISTEN. No cutover or legacy restart occurred."
     },
     {
       "id": "H01-142",
