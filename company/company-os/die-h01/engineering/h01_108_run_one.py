@@ -42,7 +42,7 @@ def main():
     src=w/'raw-provider-response.txt';obs=w/'provider-observation.json';driver=[NODE,str(H01/'engineering/provider_text_svg_cdp_canary.mjs'),'--provider',provider,'--cdp-port',port,'--prompt-file',str(w/'prompt.txt'),'--response-file',str(src),'--observation-file',str(obs),'--timeout-ms',str(TIMEOUT[provider])];run(driver,timeout=TIMEOUT[provider]/1000+90);kind='TEXT'
    else:
     src=w/'provider-native.svg';obs=w/'provider-observation.json';dld=w/'downloads';driver=[NODE,str(H01/'engineering/provider_gemini_svg_download_cdp.mjs'),'--cdp-port',port,'--prompt-file',str(w/'prompt.txt'),'--output-file',str(src),'--download-dir',str(dld),'--observation-file',str(obs),'--timeout-ms',str(TIMEOUT[provider])];run(driver,timeout=TIMEOUT[provider]/1000+90);gobs=json.loads(obs.read_text());kind='TEXT' if gobs.get('acquisition_method')=='DOM_TEXT_SVG_FALLBACK' else 'FILE'
-   run([FACTORY_PY,str(H01/'engineering/h01_108_finalize.py'),'--workspace',str(w),'--provider',provider,'--source-kind',kind,'--source',str(src),'--job-id',job,'--profile-id',profile,'--udd-id',udd],timeout=300)
+   run([FACTORY_PY,str(H01/'engineering/h01_108_capture.py'),'--workspace',str(w),'--provider',provider,'--source-kind',kind,'--source',str(src),'--job-id',job,'--profile-id',profile,'--udd-id',udd],timeout=120)
   except Exception as e:
    if not (w/'browser-job-result.json').exists():fail_result(w,job,provider,profile,udd,type(e).__name__+':'+str(e)[:400])
    raise
@@ -52,9 +52,7 @@ def main():
    dump(w/'runtime-process.json',{'returncode':runtime.returncode,'stdout':out[-4000:],'stderr':err[-4000:]})
   if runtime.returncode!=0:raise RuntimeError('E_H01_025_RUNTIME')
   terminal=jrun([SCHED,'complete','--lease-id',lid,f'--lease-token={token}','--terminal-state','SUCCEEDED','--provider-cooldown-seconds','180']);completed=True;dump(w/'scheduler-terminal.json',terminal)
-  img=w/'postproduction/preview.jpg';ish=sha_file(img);det=w/'visual-rights-detector.json';selftest=w/'visual-rights-self-test.json';scratch=w/'rights-scratch'
-  run([RIGHTS_PY,str(ROOT/'company/factory-asset/bin/run_visual_rights_detector.py'),'--master',str(img),'--expected-sha256',ish,'--output',str(det),'--self-test-output',str(selftest),'--scratch',str(scratch),'--asset-type','ISOLATED_OBJECT'],timeout=600)
-  r=run([FACTORY_PY,str(H01/'engineering/h01_108_rights_finalize.py'),'--workspace',str(w)],timeout=60);final=json.loads(r.stdout);dump(w/'run-one.receipt.json',{'schema':'die.h01.h01-108-run-one.v1','status':final['status'],'job_id':job,'batch_position':ns.position,'noun':it['canonical_name'],'provider_id':provider,'profile_id':profile,'udd_id':udd,'workspace':str(w),'rights':final['rights'],'provider_original_sha256':json.loads((w/'asset-receipt.json').read_text())['provider_original_sha256'],'submission_authorized':False,'publication_authorized':False});print(json.dumps({'status':final['status'],'job_id':job,'position':ns.position,'noun':it['canonical_name'],'provider':provider,'workspace':str(w),'rights':final['rights']}))
+  created=json.loads((w/'artifact-created.receipt.json').read_text());dump(w/'run-one.receipt.json',{'schema':'die.h01.h01-108-run-one.v2','status':'ARTIFACT_CREATED','job_id':job,'batch_position':ns.position,'noun':it['canonical_name'],'provider_id':provider,'profile_id':profile,'udd_id':udd,'workspace':str(w),'provider_original_sha256':created['provider_original_sha256'],'postproduction_state':'PENDING','submission_authorized':False,'publication_authorized':False});print(json.dumps({'status':'ARTIFACT_CREATED','job_id':job,'position':ns.position,'noun':it['canonical_name'],'provider':provider,'workspace':str(w),'provider_original_sha256':created['provider_original_sha256']}))
  except Exception as e:
   if not completed:
    try:jrun([SCHED,'complete','--lease-id',lid,f'--lease-token={token}','--terminal-state','FAILED','--provider-cooldown-seconds','180'])

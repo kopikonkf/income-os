@@ -134,9 +134,16 @@ def _make_controls(master: Path, target: Path):
     _, _, _, Image, ImageDraw, ImageFont, _ = _load_runtime()
     target.mkdir(parents=True, exist_ok=True)
     base = Image.open(master).convert('RGB')
-    font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 220)
-    wm = base.copy(); d = ImageDraw.Draw(wm, 'RGBA'); text = 'STOCK WATERMARK'; bb = d.textbbox((0, 0), text, font=font); tw, th = bb[2]-bb[0], bb[3]-bb[1]
-    d.text(((base.width-tw)//2, (base.height-th)//2), text, font=font, fill=(80,80,80,120)); wm.save(target/'watermark.png')
+    # Deterministic watermark positive control: isolate the synthetic signal from
+    # arbitrary master artwork while preserving the master's exact dimensions.
+    # This validates OCR/CLIP thresholds rather than background-dependent contrast.
+    wm = Image.new('RGB', base.size, 'white'); d = ImageDraw.Draw(wm)
+    font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', min(180, max(96, min(base.size)//24)))
+    lines=('STOCK WATERMARK','STOCK WATERMARK','STOCK WATERMARK'); gap=font.size+90; total=gap*len(lines)-90; y=(base.height-total)//2
+    for text in lines:
+        bb=d.textbbox((0,0),text,font=font);tw=bb[2]-bb[0]
+        d.text(((base.width-tw)//2,y),text,font=font,fill=(80,80,80));y+=gap
+    wm.save(target/'watermark.png')
     logo = base.copy(); d = ImageDraw.Draw(logo); w,h=logo.size
     # OCR-positive synthetic logo/text control. PSM 11 is intentionally kept;
     # use moderate multiline text inside a high-contrast panel so the control
