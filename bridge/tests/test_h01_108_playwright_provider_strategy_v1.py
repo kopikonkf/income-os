@@ -114,5 +114,7 @@ def test_raw_cdp_daily_thread_uses_only_post_baseline_svg_delta():
 
 def test_raw_cdp_svg_surface_is_complete_document_scoped_not_history_blob():
  s=(H/'provider_text_svg_cdp_canary.mjs').read_text()
- assert "t.matchAll(/<svg\\b[\\s\\S]*?<\\/svg>/gi)" in s
+ assert "const SVG_DOC_PATTERN='<svg\\\\b[\\\\s\\\\S]*?</svg>'" in s
+ assert "new RegExp(${JSON.stringify(SVG_DOC_PATTERN)},'gi')" in s
+ assert 't.matchAll(re)' in s
  assert "t.lastIndexOf('</svg>')" not in s
