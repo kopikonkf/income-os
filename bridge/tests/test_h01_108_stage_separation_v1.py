@@ -36,3 +36,9 @@ def test_generation_cycle_does_not_read_postproduction_status():
 def test_all_new_python_sources_parse():
  for name in ['h01_108_capture.py','h01_108_run_one.py','h01_108_finalize.py','h01_108_postprocess_one.py','h01_108_postprocess_queue.py','h01_108_generation_cycle.py']:
   ast.parse((H/name).read_text())
+
+def test_postproduction_consumes_immutable_provider_original_without_reacquisition():
+ s=(H/'h01_108_postprocess_one.py').read_text(); f=(H/'h01_108_finalize.py').read_text()
+ assert "kind='PROVIDER_ORIGINAL'" in s
+ assert "choices=['TEXT','FILE','PROVIDER_ORIGINAL']" in f
+ assert "E_PROVIDER_ORIGINAL_PATH" in f
