@@ -474,7 +474,7 @@
     {
       "id": "H01-028",
       "track": "BROWSER_FABRIC",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-023"
