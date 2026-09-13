@@ -354,3 +354,8 @@ H01-024 is DONE/PASS. The canonical 20 UDD x 5 persistent-profile topology remai
 Live baseline measured 133,569,777,664 total bytes with 82,245,664,768 bytes free. All 100 profile identities exist; only p001 (317,739,008 B) and p006 (31,272,960 B) exceeded the 16 MiB populated-growth threshold. A closed/unlocked p001 janitor run removed only `Cache`, `Code Cache`, GPU/Dawn caches and `GPUPersistentCache/GPUCache`, reclaiming approximately 258.4 MB. Protected authentication/session roots such as Cookies, Local Storage, IndexedDB, Sessions, Service Worker, Login Data, Preferences, Secure Preferences, GCM Store, Sync Data and BraveWallet remained present; their values/bytes were not read. Free space rose to 82,504,069,120 bytes and admission remained PASS.
 
 The previous launcher is retained at `/var/lib/die/h01/rollback/H01-024/h01-brave-profile.pre-h01-024` with exact pre-change SHA parity. Missing storage gate, insufficient free capacity, UDD-active state, held UDD mutex, or a sixth live profile fail closed. No `/srv/die` mutation, topology change, profile deletion, storage purchase, provider generation, submission or publication authority occurred. H01-027 remains BLOCKED because H01-026 remains BLOCKED.
+
+
+## 2026-09-13 - H01-029 DONE/PASS via Mission Control reviewed canonical writeback
+
+Mission Control task `H01-029` completed through automatic canonical intake, owner execution and no-review completion. Canonical graph transitions: `H01-029 READY->DONE`. Receipt: `company/company-os/die-h01/receipts/H01-029-mission-control-auto-acceptance.receipt.json`. No external marketplace submission, spend, credential mutation, or live-load authority was granted by this writeback.
