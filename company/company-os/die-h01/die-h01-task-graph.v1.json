@@ -262,14 +262,16 @@
     {
       "id": "H01-027",
       "track": "BROWSER_FABRIC",
-      "status": "BLOCKED",
-      "authority": "FOUNDER_REQUIRED",
+      "status": "DONE",
+      "authority": "ARCHITECT",
       "depends_on": [
         "H01-024",
         "H01-026"
       ],
       "title": "Run staged multi-UDD concurrency acceptance",
-      "acceptance": "Measure 1->2->4->8->10 active UDD owners for RAM, renderer/process count, disk growth, provider stability and recovery; scale above 10 only from evidence, never beyond 20 UDD owners."
+      "acceptance": "Measure 1->2->4->8->10 active UDD owners for RAM, renderer/process count, disk growth, provider stability and recovery; scale above 10 only from evidence, never beyond 20 UDD owners.",
+      "result": "SUPERSEDED: Founder narrowed concurrency acceptance to exactly five simultaneous Brave profiles from five distinct UDDs. H01-029 completed that acceptance with live browsing/CDP and hard-cap evidence; the older 1->2->4->8->10 acceptance is retired and must not be executed.",
+      "superseded_by": "H01-029"
     },
     {
       "id": "H01-100",
@@ -409,7 +411,7 @@
       "authority": "FOUNDER_REQUIRED",
       "depends_on": [
         "H01-016",
-        "H01-027",
+        "H01-029",
         "H01-109"
       ],
       "title": "Prove one complete V2 SVG production cycle from global Mission Control",
@@ -454,7 +456,7 @@
       "status": "BLOCKED",
       "authority": "FOUNDER_REQUIRED",
       "depends_on": [
-        "H01-027",
+        "H01-029",
         "H01-202"
       ],
       "title": "Retire legacy Chrome cluster identities and stale runtime packages",
