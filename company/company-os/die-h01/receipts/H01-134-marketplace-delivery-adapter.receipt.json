@@ -1,0 +1,115 @@
+{
+  "accepted_at": "2026-09-13T13:36:00Z",
+  "authority": {
+    "credentials_read": false,
+    "h01_108_runtime_mutated": false,
+    "login_action": "NONE",
+    "publication_action": "NONE",
+    "spend_action": "NONE",
+    "submission_action": "NONE",
+    "upload_action": "NONE"
+  },
+  "eligibility_policy": "submission_eligible iff compatibility PASS AND rights PASS AND Founder QC PASS",
+  "focused_tests": {
+    "count": "13/13",
+    "result": "PASS",
+    "test_file": "bridge/tests/test_h01_134_marketplace_delivery_adapter_v1.py"
+  },
+  "implementation": {
+    "adapter": "company/company-os/die-h01/engineering/marketplace_delivery_adapter.py",
+    "profiles": "company/company-os/die-h01/marketplace/marketplace-delivery-profiles.v1.json"
+  },
+  "real_proof": {
+    "adobe_delivery_area": 16000000.0,
+    "founder_qc": "NOT_RECORDED",
+    "idempotent_hash_parity": true,
+    "motionelements_zip_members": [
+      "asset.eps",
+      "asset.jpg"
+    ],
+    "noun": "sunflower",
+    "package_files": 31,
+    "profiles": [
+      {
+        "artifact_hashes": {
+          "asset.svg": "e2b029d6e37635ddfd1d2257d069bee56e70b192f8541c3c90f19fe88032859a"
+        },
+        "compatibility": "COMPATIBLE",
+        "manifest_file_sha256": "ec781a1cc55054580a4858469b1923a5da5ff2a1b36b194bd8d935666f6fb814",
+        "marketplace": "ADOBE",
+        "rights_result": "REVIEW_REQUIRED",
+        "submission_eligible": false,
+        "zip_sha256": null
+      },
+      {
+        "artifact_hashes": {
+          "asset.eps": "217b536190ab19ff55f1b075d85c7125d3869b22b82ce1526cd72523e16de544",
+          "preview.jpg": "10c1422614111f6251552d295d951f2fa2c10c97c4eb8e91ac233ae38b425ff7"
+        },
+        "compatibility": "COMPATIBLE",
+        "manifest_file_sha256": "bcb2f983e31cd72b0653c3cb252a419e319077b3b764f173f42223fc6ed5e0c2",
+        "marketplace": "VECTEEZY",
+        "rights_result": "REVIEW_REQUIRED",
+        "submission_eligible": false,
+        "zip_sha256": null
+      },
+      {
+        "artifact_hashes": {
+          "asset.eps": "217b536190ab19ff55f1b075d85c7125d3869b22b82ce1526cd72523e16de544",
+          "asset.jpg": "10c1422614111f6251552d295d951f2fa2c10c97c4eb8e91ac233ae38b425ff7"
+        },
+        "compatibility": "COMPATIBLE",
+        "manifest_file_sha256": "435c126857247fdd3a48de6549b31480cfffdebbf4152de164526f495efe758f",
+        "marketplace": "123RF",
+        "rights_result": "REVIEW_REQUIRED",
+        "submission_eligible": false,
+        "zip_sha256": null
+      },
+      {
+        "artifact_hashes": {
+          "asset.jpg": "10c1422614111f6251552d295d951f2fa2c10c97c4eb8e91ac233ae38b425ff7",
+          "asset.svg": "afa8f79958afd194cb3c9771a81b77942fdf525de8edae6b3f8158b490beb9dd"
+        },
+        "compatibility": "COMPATIBLE",
+        "manifest_file_sha256": "c5faadaf8b090921e0d4a0896ee2c657569b0dffa48a419d75efc830113b2cad",
+        "marketplace": "DREAMSTIME",
+        "rights_result": "REVIEW_REQUIRED",
+        "submission_eligible": false,
+        "zip_sha256": null
+      },
+      {
+        "artifact_hashes": {
+          "asset.eps": "217b536190ab19ff55f1b075d85c7125d3869b22b82ce1526cd72523e16de544",
+          "asset.jpg": "ff76467a04671bddedd26c9da3e1b38ec51277ce15b3ed8fcf38480dd44cc4b6"
+        },
+        "compatibility": "COMPATIBLE",
+        "manifest_file_sha256": "e29db1545b0e03ad408da5d74dfbaa79ec4cbe6f3290f85ccb8353b7a38c0947",
+        "marketplace": "VECTORSTOCK",
+        "rights_result": "REVIEW_REQUIRED",
+        "submission_eligible": false,
+        "zip_sha256": "bb4e4f7052927c70f6bb22b2cf5989c837c63f0371a95a7a1d38fb4138a7da0a"
+      },
+      {
+        "artifact_hashes": {
+          "asset.eps": "217b536190ab19ff55f1b075d85c7125d3869b22b82ce1526cd72523e16de544",
+          "asset.jpg": "10c1422614111f6251552d295d951f2fa2c10c97c4eb8e91ac233ae38b425ff7"
+        },
+        "compatibility": "COMPATIBLE",
+        "manifest_file_sha256": "e0a9098118353c432a562c7454f643ef5e722a6bd724c733fbc7862a3c08b0a6",
+        "marketplace": "MOTIONELEMENTS",
+        "rights_result": "REVIEW_REQUIRED",
+        "submission_eligible": false,
+        "zip_sha256": "40d01890cf414e63ef45c96e8f60c19872cfa62f4a2daacc7f81d6f3e42cf88c"
+      }
+    ],
+    "provider": "manus",
+    "source_rights_result": "REVIEW_REQUIRED",
+    "vectorstock_zip_members": [
+      "asset.eps"
+    ],
+    "workspace": "/var/lib/die/h01/runs/H01-108/055-sunflower-manus-a1"
+  },
+  "schema": "die.h01.marketplace-delivery-adapter-acceptance.v1",
+  "status": "PASS",
+  "task_id": "H01-134"
+}

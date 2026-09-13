@@ -1,0 +1,203 @@
+{
+  "policy_date": "2026-09-13",
+  "profiles": {
+    "123RF": {
+      "ai_disclosure_required": true,
+      "constraints": {
+        "jpg_min_height": 1600,
+        "jpg_min_quality_percent": 80,
+        "jpg_min_width": 1600
+      },
+      "delivery": [
+        {
+          "format": "EPS",
+          "role": "MARKETPLACE_DELIVERY",
+          "source": "master.eps",
+          "target": "asset.eps"
+        },
+        {
+          "format": "JPG",
+          "role": "MARKETPLACE_PREVIEW",
+          "source": "preview.jpg",
+          "target": "asset.jpg"
+        }
+      ],
+      "metadata_fields": [
+        "title",
+        "description",
+        "keywords",
+        "ai_generated",
+        "ai_disclosure"
+      ],
+      "package_container": "DIRECT_FILES",
+      "same_basename_required": true
+    },
+    "ADOBE": {
+      "ai_disclosure_required": true,
+      "constraints": {
+        "artboard_max_mp": 65,
+        "artboard_min_mp": 15,
+        "max_file_mb": 45,
+        "origin_0_0_required": true,
+        "rgb_required": true
+      },
+      "delivery": [
+        {
+          "fallback": "canonical-master.svg",
+          "format": "SVG",
+          "role": "MARKETPLACE_DELIVERY",
+          "source": "optimized-master.svg",
+          "target": "asset.svg"
+        }
+      ],
+      "metadata_fields": [
+        "title",
+        "description",
+        "keywords",
+        "ai_generated",
+        "ai_disclosure"
+      ],
+      "package_container": "DIRECT_FILES"
+    },
+    "DREAMSTIME": {
+      "ai_disclosure_required": true,
+      "constraints": {
+        "additional_formats": [
+          "AI",
+          "PNG",
+          "CDR",
+          "SVG",
+          "EPS"
+        ],
+        "ai_category_required": true,
+        "jpg_high_resolution_required": true
+      },
+      "delivery": [
+        {
+          "format": "JPG",
+          "role": "PRIMARY_REVIEW_FILE",
+          "source": "preview.jpg",
+          "target": "asset.jpg"
+        },
+        {
+          "fallback": "master.eps",
+          "fallback_format": "EPS",
+          "fallback_target": "asset.eps",
+          "format": "SVG",
+          "role": "ADDITIONAL_VECTOR",
+          "source": "optimized-master.svg",
+          "target": "asset.svg"
+        }
+      ],
+      "metadata_fields": [
+        "title",
+        "description",
+        "keywords",
+        "ai_generated",
+        "ai_disclosure"
+      ],
+      "package_container": "DIRECT_FILES",
+      "same_basename_required": true
+    },
+    "MOTIONELEMENTS": {
+      "ai_disclosure_required": true,
+      "constraints": {
+        "ai_generated_account_required": true,
+        "ai_generated_flag_required": true,
+        "jpg_metadata_import_supported": true
+      },
+      "delivery": [
+        {
+          "format": "EPS",
+          "role": "MARKETPLACE_DELIVERY",
+          "source": "master.eps",
+          "target": "asset.eps"
+        },
+        {
+          "format": "JPG",
+          "role": "METADATA_PREVIEW",
+          "source": "preview.jpg",
+          "target": "asset.jpg"
+        }
+      ],
+      "metadata_fields": [
+        "title",
+        "description",
+        "keywords",
+        "ai_generated",
+        "ai_disclosure"
+      ],
+      "package_container": "ZIP_EPS_AND_JPG_SUPPORTED",
+      "same_basename_required": true
+    },
+    "VECTEEZY": {
+      "ai_disclosure_required": true,
+      "constraints": {
+        "artboard_max_mp": 25,
+        "artboard_min_mp": 4,
+        "color_modes": [
+          "RGB",
+          "CMYK"
+        ],
+        "max_file_mb": 50
+      },
+      "delivery": [
+        {
+          "format": "EPS",
+          "role": "MARKETPLACE_DELIVERY",
+          "source": "master.eps",
+          "target": "asset.eps"
+        },
+        {
+          "format": "JPG",
+          "role": "LOCAL_PREVIEW",
+          "source": "preview.jpg",
+          "target": "preview.jpg"
+        }
+      ],
+      "eps_compatibility": "ILLUSTRATOR_10_COMPATIBLE_TARGET",
+      "metadata_fields": [
+        "title",
+        "description",
+        "keywords",
+        "ai_generated",
+        "ai_disclosure"
+      ],
+      "package_container": "DIRECT_FILES"
+    },
+    "VECTORSTOCK": {
+      "ai_disclosure_required": true,
+      "constraints": {
+        "ai_checkbox_required": true,
+        "jpg_max_height": 3000,
+        "jpg_max_width": 3000,
+        "jpg_min_edge": 1000,
+        "keywords_max": 60
+      },
+      "delivery": [
+        {
+          "format": "EPS",
+          "role": "MARKETPLACE_DELIVERY",
+          "source": "master.eps",
+          "target": "asset.eps"
+        },
+        {
+          "format": "JPG",
+          "role": "MARKETPLACE_PREVIEW",
+          "source": "preview.jpg",
+          "target": "asset.jpg"
+        }
+      ],
+      "metadata_fields": [
+        "title",
+        "description",
+        "keywords",
+        "ai_generated",
+        "ai_disclosure"
+      ],
+      "package_container": "ZIP_EPS_STANDARD_32BIT_PLUS_JPG_PREVIEW",
+      "same_basename_required": true
+    }
+  },
+  "schema": "die.h01.marketplace-delivery-profiles.v1"
+}
