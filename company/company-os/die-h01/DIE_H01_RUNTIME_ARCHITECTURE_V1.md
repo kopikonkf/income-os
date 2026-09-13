@@ -364,3 +364,10 @@ Mission Control task `H01-029` completed through automatic canonical intake, own
 ## 2026-09-13 - H01-027 retired after H01-029 five-UDD acceptance
 
 H01-027 is retained only as historical graph evidence and is canonically DONE/SUPERSEDED by H01-029. Founder narrowed concurrency acceptance to exactly five simultaneous Brave profiles from five distinct UDDs; H01-029 proved that scope with healthy browsing/CDP at the hard cap of five. Downstream H01-200 and H01-204 now depend on H01-029 rather than the retired 8/10-owner acceptance. No 8/10-owner test is authorized by this cleanup.
+
+### H01-114 concurrent read-only execution clarification — 2026-09-13
+Founder subsequently authorized H01-114 to execute while H01-108 remains RUNNING because the gallery only observes already-written `postproduction/preview.webp` artifacts. Canonical dependency is therefore H01-105 (the vector postproduction contract), not H01-108 completion. The existing Founder QC Gallery now exposes a dynamic `H01_108_VECTOR_SOAK` source and refreshes that view every 15 seconds while open; new completed previews become visible without restarting H01-108 or creating a separate vector viewer.
+
+
+### H01-114 concurrent read-only execution clarification - 2026-09-13
+Founder subsequently authorized H01-114 to execute while H01-108 remains RUNNING because the gallery only observes already-written postproduction/preview.webp artifacts. Canonical dependency is H01-105, not H01-108 completion. The existing Founder QC Gallery exposes a dynamic H01_108_VECTOR_SOAK source and refreshes every 15 seconds while open; new completed previews become visible without restarting H01-108 or creating a separate vector viewer.
