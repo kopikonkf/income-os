@@ -1,0 +1,101 @@
+{
+  "actions": {
+    "login": "NONE",
+    "publication": "NONE",
+    "spend": "NONE",
+    "submission": "NONE",
+    "upload": "NONE"
+  },
+  "attempt_count": 1,
+  "authority": {
+    "credential_accessed": false,
+    "external_action_performed": false,
+    "founder_authorized": false,
+    "gate": "FOUNDER_APPROVAL_REQUIRED_BEFORE_EXTERNAL_ACTION",
+    "publication_authorized": false,
+    "submission_authorized": false
+  },
+  "contract_version": "1.0.0",
+  "duplicate_scope_key": "5eaca482dcb8fa8402798580fbee583bee0ba9415c0c97ea4bb98d0064221a56",
+  "failure": null,
+  "idempotency_key": "bb3056dda0a7a0dca0367ec7c0255bc0f0b352d229734eaa1d8ffda78b2b4ba0",
+  "moderation": {
+    "feedback": [],
+    "moderation_reference": "opaque-moderation-ref-001",
+    "observed_at": "2026-09-13T16:05:00Z",
+    "status": "ACCEPTED"
+  },
+  "prepared_at": "2026-09-13T16:00:00Z",
+  "receipt_id": "H01-136-bb3056dda0a7a0dca0367ec7c0255bc0",
+  "remote": {
+    "received_at": "2026-09-13T16:00:00Z",
+    "remote_reference": "opaque-remote-ref-001",
+    "remote_reference_kind": "OPAQUE",
+    "remote_status": "received"
+  },
+  "retry": {
+    "backoff_seconds": [
+      120,
+      480
+    ],
+    "classification": "NONE",
+    "max_retries": 2,
+    "next_retry_at": null,
+    "retry_count": 0,
+    "retryable": false
+  },
+  "schema": "die.h01.marketplace-transport-receipt.v1",
+  "source": {
+    "files": [
+      {
+        "bytes": 128,
+        "path": "asset.svg",
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      {
+        "bytes": 96,
+        "path": "metadata.json",
+        "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    ],
+    "marketplace": "ADOBE",
+    "package_digest": "36e6d6d3d89baa058be4f4f3490550448cea21958de6df2ae323529f709fe9cb",
+    "semantic_asset_id": "SEM-H01-136-001",
+    "source_kind": "H01_135_ENTRY",
+    "source_manifest_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "state": "ACCEPTED",
+  "state_history": [
+    {
+      "at": "2026-09-13T16:00:00Z",
+      "from": null,
+      "reason": "LOCAL_PACKAGE_VALIDATED",
+      "to": "PREPARED"
+    },
+    {
+      "at": "2026-09-13T16:00:00Z",
+      "from": "PREPARED",
+      "reason": "SYNTHETIC_DISPATCH_STARTED",
+      "to": "DISPATCHING"
+    },
+    {
+      "at": "2026-09-13T16:00:00Z",
+      "from": "DISPATCHING",
+      "reason": "SYNTHETIC_REMOTE_ACCEPTED",
+      "to": "REMOTE_ACCEPTED"
+    },
+    {
+      "at": "2026-09-13T16:05:00Z",
+      "from": "REMOTE_ACCEPTED",
+      "reason": "SYNTHETIC_MODERATION_OBSERVED",
+      "to": "MODERATION_PENDING"
+    },
+    {
+      "at": "2026-09-13T16:05:00Z",
+      "from": "MODERATION_PENDING",
+      "reason": "SYNTHETIC_MODERATION_ACCEPTED",
+      "to": "ACCEPTED"
+    }
+  ],
+  "updated_at": "2026-09-13T16:05:00Z"
+}

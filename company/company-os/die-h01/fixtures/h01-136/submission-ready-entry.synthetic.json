@@ -1,0 +1,25 @@
+{
+  "schema": "die.h01.submission-ready-entry.v1",
+  "marketplace": "ADOBE",
+  "semantic_asset_id": "SEM-H01-136-001",
+  "source_manifest_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "files": [
+    {
+      "path": "asset.svg",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "bytes": 128
+    },
+    {
+      "path": "metadata.json",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "bytes": 96
+    }
+  ],
+  "eligibility": {
+    "compatibility": "PASS",
+    "rights": "PASS",
+    "founder_qc": "PASS",
+    "submission_eligible": true
+  },
+  "action": "NONE"
+}

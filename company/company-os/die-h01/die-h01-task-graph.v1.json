@@ -586,13 +586,15 @@
     {
       "id": "H01-136",
       "track": "SVG_STANDALONE",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
-        "H01-134"
+        "H01-134",
+        "H01-135"
       ],
       "title": "Define marketplace transport and durable submission receipt contract v1",
-      "acceptance": "Define a provider-neutral local/synthetic transport contract with deterministic idempotency keys, retry taxonomy, duplicate prevention, opaque remote-reference fields, moderation-status receipt shapes and Founder authority gates; no real external marketplace action occurs in this task."
+      "acceptance": "Define a provider-neutral local/synthetic transport contract with deterministic idempotency keys, retry taxonomy, duplicate prevention, opaque remote-reference fields, moderation-status receipt shapes and Founder authority gates; no real external marketplace action occurs in this task.",
+      "result": "PASS: H01-136 local-only transport contract implemented for H01-134 manifests and H01-135 submission-ready entries. Focused harness 11/11 and scoped H01-134/135/136 regression 30/30 PASS, including cross-source identity parity, atomic exact-replay idempotency and duplicate-scope blocking, 120s/480s bounded retry exhaustion, moderation/learning-feedback receipts, schema/deterministic serialization, terminal immutability, strict source/secret/action-lock rejection, and no external transport callable/import surface. No marketplace, credential, upload, submission, publication, or spend action occurred."
     },
     {
       "id": "H01-140",

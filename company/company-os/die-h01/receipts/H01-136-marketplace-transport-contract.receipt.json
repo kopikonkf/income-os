@@ -1,0 +1,61 @@
+{
+  "accepted_at": "2026-09-13T16:16:02Z",
+  "authority": {
+    "credentials_read": false,
+    "founder_approval_recorded": false,
+    "external_action_performed": false,
+    "login_action": "NONE",
+    "publication_action": "NONE",
+    "spend_action": "NONE",
+    "submission_action": "NONE",
+    "upload_action": "NONE"
+  },
+  "contract": {
+    "backoff_seconds": [
+      120,
+      480
+    ],
+    "max_attempts": 3,
+    "max_retries": 2,
+    "state_machine": [
+      "PREPARED",
+      "DISPATCHING",
+      "REMOTE_ACCEPTED",
+      "MODERATION_PENDING",
+      "ACCEPTED",
+      "REJECTED",
+      "RETRYABLE_FAILED",
+      "TERMINAL_FAILED"
+    ],
+    "transport_mode": "LOCAL_SYNTHETIC_ONLY"
+  },
+  "deliverables": [
+    "company/company-os/die-h01/DIE_H01_MARKETPLACE_TRANSPORT_CONTRACT_V1.md",
+    "company/company-os/die-h01/contracts/h01-marketplace-transport.v1.schema.json",
+    "company/company-os/die-h01/engineering/marketplace_transport_contract.py",
+    "company/company-os/die-h01/fixtures/h01-136/submission-ready-entry.synthetic.json",
+    "company/company-os/die-h01/fixtures/h01-136/transport-receipt.synthetic.json",
+    "bridge/tests/test_h01_136_marketplace_transport_contract_v1.py"
+  ],
+  "focused_tests": {
+    "count": "11/11",
+    "result": "PASS",
+    "test_file": "bridge/tests/test_h01_136_marketplace_transport_contract_v1.py"
+  },
+  "proof": {
+    "cross_source_identity": "H01-134 manifest and H01-135 entry normalize to the same package digest and idempotency key",
+    "duplicate_policy": "exact replay returns the existing receipt; changed payload in the same marketplace/asset scope is blocked; concurrent preparation has one durable winner under an exclusive local store lock",
+    "durable_receipt_fixture": "transport-receipt.synthetic.json matches fixed-timestamp local state history byte-for-byte",
+    "moderation_feedback": "opaque remote and moderation references plus deterministic rejection learning targets are schema-valid",
+    "retry_policy": "TIMEOUT then RATE_LIMITED then REMOTE_5XX ends TERMINAL_FAILED after three attempts",
+    "external_action": "NONE"
+  },
+  "regression_tests": {
+    "count": "30/30",
+    "result": "PASS",
+    "scope": "H01-134 adapter and graph, H01-135 projection, H01-136 transport"
+  },
+  "schema": "die.h01.marketplace-transport-contract.acceptance.v1",
+  "status": "PASS",
+  "task_id": "H01-136"
+}
