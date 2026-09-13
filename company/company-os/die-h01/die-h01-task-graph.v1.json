@@ -574,13 +574,14 @@
     {
       "id": "H01-135",
       "track": "SVG_STANDALONE",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-134"
       ],
       "title": "Materialize submission-ready projection v1",
-      "acceptance": "Project only packages whose compatibility, rights and Founder QC gates all pass into a rebuildable hash-bound /var/lib/die/h01/submission-ready/<marketplace>/<semantic_asset_id>/ tree; non-eligible packages never enter that tree and source artifacts remain immutable."
+      "acceptance": "Project only packages whose compatibility, rights and Founder QC gates all pass into a rebuildable hash-bound /var/lib/die/h01/submission-ready/<marketplace>/<semantic_asset_id>/ tree; non-eligible packages never enter that tree and source artifacts remain immutable.",
+      "result": "PASS: deterministic submission-ready projection implemented. Focused tests 5/5 PASS; real H01-108 sunflower proof projected 0/6 marketplace packages because rights remained REVIEW_REQUIRED and Founder QC was not PASS, proving fail-closed gating. Projection is hash-bound, idempotent, stale-reconciling, source-immutable and managed-root protected."
     },
     {
       "id": "H01-136",
