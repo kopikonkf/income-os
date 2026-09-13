@@ -2,6 +2,7 @@
 from __future__ import annotations
 import argparse,hashlib,json,os,subprocess,sys,time
 from pathlib import Path
+from h01_daily_thread_policy import resolve as resolve_daily_thread,record_dispatch as record_daily_dispatch,mark_success as mark_daily_success
 HERE=Path(__file__).resolve();H01=HERE.parents[1];ROOT=HERE.parents[4]
 FACTORY_PY='/opt/die/factory-asset/venv/bin/python';RIGHTS_PY='/opt/die/factory-asset-rights/venv/bin/python';SCHED='/opt/die/h01/bin/h01-brave-scheduler';NODE='/usr/local/bin/node'
 ORIGIN={'claude':'https://claude.ai','chatgpt':'https://chatgpt.com','qwen':'https://chat.qwen.ai','gemini':'https://gemini.google.com','manus':'https://manus.im','copilot':'https://copilot.microsoft.com'}
@@ -34,20 +35,32 @@ def main():
   claim=jrun([SCHED,'claim-dispatch','--lease-id',lid,f'--lease-token={token}']);
   if claim.get('dispatch_authorized') is not True:raise RuntimeError('E_DISPATCH_NOT_AUTHORIZED')
   dump(w/'scheduler-dispatch-claim.sanitized.json',{k:v for k,v in claim.items() if k!='lease_token'})
-  runtime_cmd=[NODE,str(H01/'engineering/brave_udd_runtime.mjs'),'--profile-id',profile,'--provider-id',provider,'--provider-url',ORIGIN[provider],'--job-id',job,'--mode','wait-result','--result-receipt',str(w/'browser-job-result.json'),'--runtime-receipt',str(w/'brave-runtime.receipt.json'),'--result-timeout-ms',str(TIMEOUT[provider]+120000)]
+  daily=resolve_daily_thread(provider,profile,ns.runs_root);thread_url=daily.get('conversation_url','');dump(w/'daily-thread-resolution.json',daily)
+  provider_url=thread_url or ORIGIN[provider]
+  runtime_cmd=[NODE,str(H01/'engineering/brave_udd_runtime.mjs'),'--profile-id',profile,'--provider-id',provider,'--provider-url',provider_url,'--job-id',job,'--mode','wait-result','--result-receipt',str(w/'browser-job-result.json'),'--runtime-receipt',str(w/'brave-runtime.receipt.json'),'--result-timeout-ms',str(TIMEOUT[provider]+120000)]
   runtime=subprocess.Popen(runtime_cmd,text=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
   time.sleep(2)
+  def sync_daily_dispatch():
+   dp=w/'provider-dispatch.receipt.json'
+   if not dp.exists():return None
+   dj=json.loads(dp.read_text())
+   return record_daily_dispatch(provider,profile,dj['conversation_url'],dj['prompt_sha256'],job,dj['committed_at'],ns.runs_root)
   try:
    if provider in PLAYWRIGHT:
-    src=w/'provider-output.svg';obs=w/'provider-observation.json';dld=w/'downloads';driver=[NODE,str(H01/'engineering/provider_svg_playwright_strategy.mjs'),'--provider',provider,'--cdp-port',port,'--prompt-file',str(w/'prompt.txt'),'--output-file',str(src),'--download-dir',str(dld),'--observation-file',str(obs),'--dispatch-receipt',str(w/'provider-dispatch.receipt.json'),'--timeout-ms',str(TIMEOUT[provider])];run(driver,timeout=TIMEOUT[provider]/1000+90);pobs=json.loads(obs.read_text());kind='FILE' if pobs.get('source_kind')=='PROVIDER_FILE_DOWNLOAD' else 'TEXT'
+    src=w/'provider-output.svg';obs=w/'provider-observation.json';dld=w/'downloads';driver=[NODE,str(H01/'engineering/provider_svg_playwright_strategy.mjs'),'--provider',provider,'--cdp-port',port,'--prompt-file',str(w/'prompt.txt'),'--output-file',str(src),'--download-dir',str(dld),'--observation-file',str(obs),'--dispatch-receipt',str(w/'provider-dispatch.receipt.json'),'--thread-url',thread_url,'--timeout-ms',str(TIMEOUT[provider])];run(driver,timeout=TIMEOUT[provider]/1000+90);pobs=json.loads(obs.read_text());kind='FILE' if pobs.get('source_kind')=='PROVIDER_FILE_DOWNLOAD' else 'TEXT'
    elif provider in TEXT:
-    src=w/'raw-provider-response.txt';obs=w/'provider-observation.json';driver=[NODE,str(H01/'engineering/provider_text_svg_cdp_canary.mjs'),'--provider',provider,'--cdp-port',port,'--prompt-file',str(w/'prompt.txt'),'--response-file',str(src),'--observation-file',str(obs),'--dispatch-receipt',str(w/'provider-dispatch.receipt.json'),'--timeout-ms',str(TIMEOUT[provider])];run(driver,timeout=TIMEOUT[provider]/1000+90);kind='TEXT'
+    src=w/'raw-provider-response.txt';obs=w/'provider-observation.json';driver=[NODE,str(H01/'engineering/provider_text_svg_cdp_canary.mjs'),'--provider',provider,'--cdp-port',port,'--prompt-file',str(w/'prompt.txt'),'--response-file',str(src),'--observation-file',str(obs),'--dispatch-receipt',str(w/'provider-dispatch.receipt.json'),'--thread-url',thread_url,'--timeout-ms',str(TIMEOUT[provider])];run(driver,timeout=TIMEOUT[provider]/1000+90);kind='TEXT'
    else: raise RuntimeError('E_PROVIDER_STRATEGY')
-   run([FACTORY_PY,str(H01/'engineering/h01_108_capture.py'),'--workspace',str(w),'--provider',provider,'--source-kind',kind,'--source',str(src),'--job-id',job,'--profile-id',profile,'--udd-id',udd],timeout=120)
+   sync_daily_dispatch()
+   run([FACTORY_PY,str(H01/'engineering/h01_108_capture.py'),'--workspace',str(w),'--provider',provider,'--source-kind',kind,'--source',str(src),'--job-id',job,'--profile-id',profile,'--udd-id',udd],timeout=120);mark_daily_success(provider,profile,job)
   except Exception as e:
    if not (w/'browser-job-result.json').exists():fail_result(w,job,provider,profile,udd,type(e).__name__+':'+str(e)[:400])
    raise
   finally:
+   try:sync_daily_dispatch()
+   except Exception as sync_error:
+    dump(w/'daily-thread-sync.failure.json',{'status':'FAILED','error':type(sync_error).__name__,'detail':str(sync_error)[:800]})
+    raise
    try:out,err=runtime.communicate(timeout=90)
    except subprocess.TimeoutExpired:runtime.terminate();out,err=runtime.communicate(timeout=20)
    dump(w/'runtime-process.json',{'returncode':runtime.returncode,'stdout':out[-4000:],'stderr':err[-4000:]})
