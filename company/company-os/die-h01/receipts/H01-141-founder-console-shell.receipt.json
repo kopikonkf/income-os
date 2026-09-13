@@ -1,0 +1,16 @@
+{
+  "schema": "die.h01.h01-141.founder-console-shell.acceptance.v1",
+  "task_id": "H01-141",
+  "status": "PASS",
+  "tests": "14/14 PASS",
+  "shadow_port": 20128,
+  "legacy_port": 8876,
+  "legacy_preserved": true,
+  "cutover": false,
+  "live_qc_assets": 208,
+  "api_provider_count": 0,
+  "mission_control_authority": "GLOBAL_BRAIN",
+  "write_actions_enabled": false,
+  "canary_terminated": true,
+  "shadow_port_closed_after_canary": true
+}

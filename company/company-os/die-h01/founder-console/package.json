@@ -1,0 +1,1 @@
+{"name":"die-h01-founder-console-v1","private":true,"version":"1.0.0","type":"module","scripts":{"start":"node server.mjs","test":"node --test test/*.test.mjs"},"engines":{"node":">=20"}}
