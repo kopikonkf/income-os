@@ -1,0 +1,13 @@
+{
+  "schema":"die.h01.byok-api-provider-bridge.v1",
+  "task_id":"H01-142",
+  "policy":{
+    "browser_native_primary":true,
+    "browser_native_replacement_allowed":false,
+    "capacity_mode":"OPPORTUNISTIC_SUPPLEMENTAL_ONLY",
+    "scheduling_authority":"MISSION_CONTROL",
+    "direct_routing_authority":false,
+    "production_role_default":"DISABLED"
+  },
+  "providers":[]
+}

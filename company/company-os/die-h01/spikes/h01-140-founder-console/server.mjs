@@ -2,6 +2,7 @@ import http from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import {buildProviderBridgeReadModel, DEFAULT_RUNTIME} from './byok_bridge.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 export const HOST = process.env.H01_140_HOST || '127.0.0.1';
@@ -13,7 +14,7 @@ const envelope = (source, data) => ({schema:'die.h01.founder-console.read.v1', r
 const routes = new Map([
   ['/api/die/v1/overview', envelope('mission-control+h01', {mission_control:'GLOBAL_BRAIN', h01_runtime:'EXECUTION_PLANE', legacy_8876:'PRESERVED', console_mode:'SPIKE_READ_ONLY'})],
   ['/api/die/v1/production', envelope('h01-production-read-model', {lane:'VECTOR', mode:'VECTOR_OBJECT', form:'SINGLE', preset:'CLEAN_STOCK_VECTOR_V1', mutation:false})],
-  ['/api/die/v1/providers', envelope('brave-fabric+provider-health', {credential_values_exposed:false, live_connections_performed:false, profiles:'inventory-only'})],
+  ['/api/die/v1/providers', envelope('brave-fabric+provider-health+optional-api-bridge', {credential_values_exposed:false, live_connections_performed:false, profiles:'inventory-only', api_bridge:buildProviderBridgeReadModel(DEFAULT_RUNTIME)})],
   ['/api/die/v1/qc/gallery', envelope('h01-qc-read-model', {gallery:'read-only', generation_mutation:false, founder_qc_authority:'EXTERNAL'})],
   ['/api/die/v1/submission-ready', envelope('rights+qa+package-gates', {submission_action:'NONE', publication_action:'NONE', authority:'MISSION_CONTROL/FOUNDER'})],
   ['/api/die/v1/demand', envelope('demand-intelligence-read-model', {status:'read-only', can_reorder_live_queue:false})],
