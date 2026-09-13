@@ -1,0 +1,48 @@
+{
+  "schema": "die.h01.market-signal-connectors.runtime.v1",
+  "revision": "1.0.0",
+  "task_id": "H01-131",
+  "state": "CONTRACT_AND_NORMALIZERS_ACCEPTED",
+  "implementation": "company/company-os/die-h01/lib/market_signal_connectors.py",
+  "evidence_schema": "company/company-os/die-h01/contracts/h01-market-signal-evidence.v1.schema.json",
+  "connectors": {
+    "wikimedia_pageviews_v1": {
+      "source": "Wikimedia Analytics API",
+      "access_mode": "OFFICIAL_OPEN_API",
+      "signal_classes": ["TREND"],
+      "auth_required": false,
+      "max_requests_per_run": 12,
+      "min_interval_seconds": 1.0,
+      "cache_ttl_seconds": 86400
+    },
+    "google_ads_keyword_historical_v1": {
+      "source": "Google Ads KeywordPlanIdeaService.GenerateKeywordHistoricalMetrics",
+      "access_mode": "OFFICIAL_AUTH_REQUIRED_API",
+      "signal_classes": ["DEMAND", "COMPETITION", "COMMERCIAL_INTENT"],
+      "auth_required": true,
+      "credentials_provisioned_by_task": false,
+      "max_requests_per_run": 12,
+      "min_interval_seconds": 1.0,
+      "cache_ttl_seconds": 2592000
+    }
+  },
+  "forbidden_core_dependencies": [
+    "AUTOCOMPLETE_SCRAPING",
+    "SEARCH_RESULT_DOM_SCRAPING",
+    "MARKETPLACE_DOM_SCRAPING",
+    "UNDOCUMENTED_ENDPOINTS"
+  ],
+  "non_blocking": {
+    "object_atlas_validity_effect": "NONE",
+    "standalone_production_blocking_effect": "NONE",
+    "connector_outage_means_zero_demand": false,
+    "missing_auth_blocks_supply_first_production": false
+  },
+  "authority": {
+    "credential_read_authorized": false,
+    "production_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false
+  }
+}
