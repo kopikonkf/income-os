@@ -1,0 +1,16 @@
+{
+  "schema": "die.h01.brave-cache-janitor-acceptance.v1",
+  "task_id": "H01-028",
+  "status": "PASS",
+  "threshold_bytes": 67108864,
+  "threshold_met": true,
+  "profile_id": "h01-web-p001",
+  "udd_id": "h01-web-s01",
+  "before_reclaimable_bytes": 84316160,
+  "after_reclaimable_bytes": 0,
+  "reclaimed_bytes": 84316160,
+  "udd_closed": true,
+  "lock_acquired": true,
+  "protected_entries_touched": false,
+  "receipt_required_for_each_accepted_cleanup": true
+}

@@ -474,13 +474,14 @@
     {
       "id": "H01-028",
       "track": "BROWSER_FABRIC",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-023"
       ],
       "title": "Implement Brave cache janitor with auth-state protection",
-      "acceptance": "Clean only regenerable caches while the UDD is closed; protect Cookies/Local Storage/IndexedDB/session/preference stores; threshold and receipt every cleanup."
+      "acceptance": "Clean only regenerable caches while the UDD is closed; protect Cookies/Local Storage/IndexedDB/session/preference stores; threshold and receipt every cleanup.",
+      "result": "PASS: H01-024 janitor remains the cleanup engine; H01-028 freezes a 64 MiB reclaimable-cache threshold plus mandatory receipt policy. Live p001 canary observed 84,316,160 bytes reclaimable, UDD closed and lock acquired, then reached 0 reclaimable bytes with protected entries untouched. Focused browser/janitor regression passed."
     },
     {
       "id": "H01-029",

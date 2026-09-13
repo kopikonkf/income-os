@@ -1,0 +1,17 @@
+{
+  "schema": "die.h01.brave-cache-janitor-policy.v1",
+  "task_id": "H01-028",
+  "threshold": {
+    "kind": "reclaimable_cache_bytes_at_or_above",
+    "bytes": 67108864
+  },
+  "requirements": {
+    "udd_closed": true,
+    "udd_mutex_required": true,
+    "receipt_required_for_cleanup": true,
+    "protected_entries_touched": false
+  },
+  "receipt_schema": "die.h01.brave-cache-janitor-receipt.v1",
+  "cleanup_engine": "H01-024 brave_storage_gate janitor",
+  "protected_roots_inherited_from_h01_024": true
+}
