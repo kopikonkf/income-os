@@ -91,3 +91,28 @@ def test_daily_thread_extractor_selects_latest_complete_svg_not_first_to_last_bl
  assert "matchAll(/<svg\\b[\\s\\S]*?<\\/svg>/gi)" in s
  assert 'for(let i=xs.length-1;i>=0;i--)' in s
  assert "t.lastIndexOf('</svg>')" not in s
+
+def test_playwright_daily_thread_stabilizes_baseline_before_submit():
+ s=(H/'provider_svg_playwright_strategy.mjs').read_text()
+ assert "threadUrl=arg('--thread-url','')" in s
+ assert 'async function settleThreadBaseline()' in s
+ assert 'if(threadUrl&&!recheckOnly)await settleThreadBaseline()' in s
+ assert 'const baseCandidates=' in s
+ assert '.filter(x=>!baseCandidates.has(sha(x)))' in s
+ assert 'E_DAILY_THREAD_DRIFT' in s
+
+def test_raw_cdp_daily_thread_uses_only_post_baseline_svg_delta():
+ s=(H/'provider_text_svg_cdp_canary.mjs').read_text()
+ assert "threadUrl=arg('--thread-url','')" in s
+ assert 'async function responseSnapshot' in s
+ assert 'async function settleThreadBaseline' in s
+ assert 'const baselineSvgHashes=await settleThreadBaseline(cdp,cfg,threadUrl)' in s
+ assert "fresh=(snap.svgs||[]).filter(x=>!baselineSvgHashes.has(sha(x)))" in s
+ assert "candidate=fresh.length?fresh[fresh.length-1]:''" in s
+ assert 'E_DAILY_THREAD_DRIFT_PRE_SUBMIT' in s
+ assert 'E_DAILY_THREAD_DRIFT' in s
+
+def test_raw_cdp_svg_surface_is_complete_document_scoped_not_history_blob():
+ s=(H/'provider_text_svg_cdp_canary.mjs').read_text()
+ assert "t.matchAll(/<svg\\b[\\s\\S]*?<\\/svg>/gi)" in s
+ assert "t.lastIndexOf('</svg>')" not in s
