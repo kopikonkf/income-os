@@ -45,13 +45,14 @@ def test_workspace_is_created_only_after_scheduler_lease():
  s=(H/'h01_108_run_one.py').read_text()
  assert s.index("lease=jrun([SCHED,'acquire'") < s.index("w.mkdir(parents=True,exist_ok=False)")
 
-def test_generation_acceptance_requires_artifact_created_only():
+def test_generation_acceptance_requires_h01_103_pass_semantic_master():
  s=(H/'h01_108_autonomous_supervisor.py').read_text()
- start=s.index('def generated('); end=s.index('def next_attempt_id',start)
+ start=s.index('def semantic_master_valid('); end=s.index('def next_attempt_id',start)
  block=s[start:end]
- assert "artifact-created.receipt.json" in block
+ assert "final/h01-103-validation.json" in block
+ assert "artifact-created.receipt.json" not in block
  assert "browser-job-result.json" not in block
- assert "generation_acceptance_boundary':'ARTIFACT_CREATED_ONLY'" in s
+ assert "generation_acceptance_boundary':'H01_103_PASS_SEMANTIC_MASTER'" in s
 
 def test_legacy_provider_success_is_recovery_pending_not_resubmitted():
  s=(H/'h01_108_autonomous_supervisor.py').read_text()
