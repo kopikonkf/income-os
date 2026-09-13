@@ -558,6 +558,19 @@
       "result": "PASS: Existing Founder QC Gallery now dynamically indexes H01-108 postproduction preview.webp artifacts as H01_108_VECTOR_SOAK cards with noun, provider, asset/QC state, rights state and postproduction state. The QC view auto-refreshes every 15 seconds while open. Synthetic read-only roundtrip PASS; live scan observed 23 vector-soak previews during acceptance, proving dynamic visibility while H01-108 remained RUNNING."
     },
     {
+      "id": "H01-134",
+      "track": "SVG_STANDALONE",
+      "status": "DONE",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-105"
+      ],
+      "title": "Implement Marketplace Delivery Adapter v1",
+      "acceptance": "Given an H01 vector postproduction workspace, deterministically build local marketplace-specific delivery packages for Adobe, Vecteezy, 123RF, Dreamstime, VectorStock and MotionElements with file selection/transforms, sidecar metadata, generative-AI disclosure, compatibility gates, rights/Founder-QC eligibility gating and stable manifests/receipts. No login, credential access, upload, submission, publication or spend action is permitted.",
+      "founder_policy": "Founder authorized H01-134 on 2026-09-13 as a non-publishing preparation layer. Adobe uses a postprocessed SVG delivery derivative; EPS remains marketplace-specific. Packages may be prepared before Founder QC, but submission_eligible must remain false unless compatibility PASS, rights PASS and Founder QC PASS. No marketplace account action is authorized.",
+      "result": "PASS: deterministic Marketplace Delivery Adapter v1 implemented for six marketplaces. Focused tests 13/13 PASS. Real read-only proof on H01-108 run 055-sunflower-manus-a1 produced all six COMPATIBLE packages, Adobe 16MP SVG delivery, VectorStock EPS-only ZIP, MotionElements EPS+JPG ZIP, 31 stable files with exact rerun hash parity, and all login/upload/submission/publication/spend actions NONE. Actual rights remained REVIEW_REQUIRED so every real-proof package correctly stayed submission_eligible=false."
+    },
+    {
       "id": "H01-120",
       "track": "FAMILY_SET",
       "status": "DONE",
