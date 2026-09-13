@@ -1,0 +1,62 @@
+{
+  "schema": "die.h01.demand-signal-ranking.examples.v1",
+  "records": [
+    {
+      "schema": "die.h01.demand-signal-ranking.v1",
+      "queue_item_id": "H01-SVGQ-CAND-000001",
+      "signal_state": "NO_EVIDENCE",
+      "rank_state": "UNRANKED",
+      "rank_score": null,
+      "confidence": "NONE",
+      "evidence_refs": [],
+      "discoveries": {"buyers": [], "use_cases": [], "family_hypotheses": []},
+      "effects": {
+        "queue_identity_effect": "NONE",
+        "object_atlas_validity_effect": "NONE",
+        "rights_effect": "NONE",
+        "feasibility_effect": "NONE",
+        "standalone_production_blocking_effect": "NONE"
+      },
+      "authority": {
+        "production_authorized": false,
+        "submission_authorized": false,
+        "publication_authorized": false,
+        "spend_authorized": false
+      }
+    },
+    {
+      "schema": "die.h01.demand-signal-ranking.v1",
+      "queue_item_id": "H01-SVGQ-CAND-000002",
+      "signal_state": "PARTIAL",
+      "rank_state": "RANKED",
+      "rank_score": 0.72,
+      "confidence": "MEDIUM",
+      "evidence_refs": [
+        {
+          "evidence_id": "SIG-DEMAND-001",
+          "evidence_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+          "signal_class": "DEMAND",
+          "freshness": "FRESH"
+        }
+      ],
+      "discoveries": {
+        "buyers": [{"kind": "BUYER", "label": "small-business seller", "status": "HYPOTHESIS", "evidence_ids": ["SIG-DEMAND-001"]}],
+        "use_cases": [{"kind": "USE_CASE", "label": "customer-order fulfillment", "status": "HYPOTHESIS", "evidence_ids": ["SIG-DEMAND-001"]}],
+        "family_hypotheses": [{"kind": "FAMILY", "label": "order packing supplies", "status": "HYPOTHESIS", "evidence_ids": ["SIG-DEMAND-001"]}]
+      },
+      "effects": {
+        "queue_identity_effect": "NONE",
+        "object_atlas_validity_effect": "NONE",
+        "rights_effect": "NONE",
+        "feasibility_effect": "NONE",
+        "standalone_production_blocking_effect": "NONE"
+      },
+      "authority": {
+        "production_authorized": false,
+        "submission_authorized": false,
+        "publication_authorized": false,
+        "spend_authorized": false
+      }
+    }
+  ]
+}
