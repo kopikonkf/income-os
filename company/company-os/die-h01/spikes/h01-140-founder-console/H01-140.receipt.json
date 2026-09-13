@@ -1,0 +1,34 @@
+{
+  "schema": "die.h01.founder-console-spike.receipt.v1",
+  "task_id": "H01-140",
+  "status": "PASS",
+  "date": "2026-09-13",
+  "decision": "THIN_PRESENTATION_FORK_PLUS_READ_ONLY_DIE_ADAPTER",
+  "upstream": {
+    "repository": "decolua/9router",
+    "version": "0.5.75",
+    "commit": "17c4cc76877bd1755030a8414f8d0083f48dcccf",
+    "license": "MIT"
+  },
+  "runtime": {
+    "host": "127.0.0.1",
+    "spike_port": 20128,
+    "legacy_8876_observed_listening": true,
+    "spike_canary_persistent": false
+  },
+  "tests": {"command": "npm test", "total": 3, "pass": 3, "fail": 0},
+  "authority": {
+    "mission_control_brain": true,
+    "h01_task_truth_replaced": false,
+    "brave_session_ownership_replaced": false,
+    "rights_qa_replaced": false,
+    "publication_authority_replaced": false
+  },
+  "negative_actions": {
+    "live_provider_accounts_connected": false,
+    "byok_secrets_accessed": false,
+    "marketplace_actions": false,
+    "h01_108_mutated": false,
+    "legacy_8876_retired": false
+  }
+}

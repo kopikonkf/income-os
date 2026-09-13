@@ -599,19 +599,20 @@
     {
       "id": "H01-140",
       "track": "FOUNDER_CONSOLE",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-114",
         "H01-134"
       ],
       "title": "Prove 9router-based Founder Console architecture spike",
-      "acceptance": "Evaluate a 9router fork as the Founder-facing UI/router shell while Mission Control remains global control-plane truth. Produce fork/update/topology/integration plan and a bounded isolated spike; preserve existing H01 runtime and localhost:8876."
+      "acceptance": "Evaluate a 9router fork as the Founder-facing UI/router shell while Mission Control remains global control-plane truth. Produce fork/update/topology/integration plan and a bounded isolated spike; preserve existing H01 runtime and localhost:8876.",
+      "result": "PASS: independently audited 9router 0.5.75/MIT and proved a bounded loopback Founder Console architecture spike. Decision is thin 9router presentation fork plus independent GET-only DIE adapter; Mission Control remains global scheduler/lease/authority brain. Nine requested menu/read models and mutation rejection passed 3/3 focused tests; live canary served on 127.0.0.1:20128 while 127.0.0.1:8876 remained LISTEN. No provider/BYOK connection, marketplace/submission/publication action, H01-108 mutation or 8876 cutover occurred."
     },
     {
       "id": "H01-141",
       "track": "FOUNDER_CONSOLE",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-140"
@@ -622,7 +623,7 @@
     {
       "id": "H01-142",
       "track": "FOUNDER_CONSOLE",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-140"

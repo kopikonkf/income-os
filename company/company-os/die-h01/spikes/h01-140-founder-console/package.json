@@ -1,0 +1,11 @@
+{
+  "name": "die-h01-140-founder-console-spike",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "engines": {"node": ">=20"}
+}
