@@ -2,8 +2,8 @@ from pathlib import Path
 R=Path(__file__).resolve().parents[2];H=R/'company/company-os/die-h01/engineering'
 def test_only_problem_providers_route_to_playwright_strategy():
  s=(H/'h01_108_run_one.py').read_text()
- assert "PLAYWRIGHT={'gemini','chatgpt','copilot'}" in s
- assert "TEXT={'claude','qwen','manus'}" in s
+ assert "PLAYWRIGHT={'gemini','chatgpt','copilot','qwen'}" in s
+ assert "TEXT={'claude','manus'}" in s
  assert 'provider_svg_playwright_strategy.mjs' in s
 def test_strategy_attaches_to_existing_loopback_cdp_without_browser_close():
  s=(H/'provider_svg_playwright_strategy.mjs').read_text()
@@ -52,3 +52,12 @@ def test_gemini_fragment_is_acquired_without_reprompt_and_normalized_downstream(
  assert 'repairPrompt' not in s
  assert 'GEMINI_SVG_ROOT_REPAIR_DISPATCHED' not in s
  assert 'E_GEMINI_REPAIR_DRIFT' not in s
+
+
+def test_qwen_reuses_playwright_and_requires_strong_dispatch_commit():
+ s=(H/'provider_svg_playwright_strategy.mjs').read_text()
+ assert "qwen:{origin:'https://chat.qwen.ai'" in s
+ assert "provider==='qwen'" in s
+ assert "url!==beforeUrl||responses>beforeResponses" in s
+ assert "textarea[placeholder*=\"Ask Qwen\" i]" in s
+ assert "provider==='gemini'||provider==='qwen'" in s

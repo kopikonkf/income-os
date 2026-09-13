@@ -5,7 +5,7 @@ from pathlib import Path
 HERE=Path(__file__).resolve();H01=HERE.parents[1];ROOT=HERE.parents[4]
 FACTORY_PY='/opt/die/factory-asset/venv/bin/python';RIGHTS_PY='/opt/die/factory-asset-rights/venv/bin/python';SCHED='/opt/die/h01/bin/h01-brave-scheduler';NODE='/usr/local/bin/node'
 ORIGIN={'claude':'https://claude.ai','chatgpt':'https://chatgpt.com','qwen':'https://chat.qwen.ai','gemini':'https://gemini.google.com','manus':'https://manus.im','copilot':'https://copilot.microsoft.com'}
-TEXT={'claude','qwen','manus'};PLAYWRIGHT={'gemini','chatgpt','copilot'}
+TEXT={'claude','manus'};PLAYWRIGHT={'gemini','chatgpt','copilot','qwen'}
 TIMEOUT={'qwen':1200000,'claude':600000,'chatgpt':600000,'manus':600000,'copilot':600000,'gemini':600000}
 def run(cmd,**kw):
  r=subprocess.run(cmd,text=True,capture_output=True,**kw)
