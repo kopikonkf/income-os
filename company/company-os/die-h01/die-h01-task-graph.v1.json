@@ -486,15 +486,16 @@
     {
       "id": "H01-029",
       "track": "BROWSER_FABRIC",
-      "status": "BLOCKED",
-      "authority": "FOUNDER_REQUIRED",
+      "status": "READY",
+      "authority": "ARCHITECT",
       "depends_on": [
         "H01-024",
         "H01-026",
         "H01-028"
       ],
       "title": "Run staged multi-UDD concurrency acceptance",
-      "acceptance": "Measure 1->2->4->8->10 active UDD owners for renderer/process count, RAM, disk growth, provider stability and recovery; scale above 10 only from evidence up to the 20-UDD hard ceiling."
+      "acceptance": "Prove exactly five live Brave profiles from five distinct UDDs can run concurrently and remain healthy for normal browsing/CDP operation within the Founder-approved hard cap of five. Authentication, provider generation, output extraction, and 8/10-owner scale are explicitly out of scope.",
+      "founder_policy": "Founder clarified and authorized H01-029 on 2026-09-13: acceptance is limited to five simultaneously live Brave profiles from five distinct UDDs. Profiles do not need provider authentication for this task; normal browsing and loopback CDP health are sufficient. Do not require provider output extraction. Keep the existing hard cap at five live profiles; do not test 8 or 10 owners under this task."
     },
     {
       "id": "H01-110",
