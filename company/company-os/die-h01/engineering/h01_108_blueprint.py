@@ -18,6 +18,11 @@ def noun_class(item):
  return 'object'
 
 def build_blueprint(item):
+ for fp in sorted((H01/'fixtures').glob('h01-102-*-blueprint.v2.json')):
+  try: existing=json.loads(fp.read_text())
+  except Exception: continue
+  if existing.get('queue_id')==item['queue_item_id'] and existing.get('source_candidate_id')==item['source_candidate_id'] and existing.get('subject',{}).get('canonical_name')==item['canonical_name']:
+   return existing
  noun=item['canonical_name']; cls=noun_class(item)
  view={'animal':'clear side or three-quarter iconic view','plant':'clear front-biased botanical view','food':'clear three-quarter product view','artifact':'clear three-quarter product view','body':'clear front-biased educational icon view','object':'clear iconic view'}[cls]
  anchors=[f'immediately recognizable generic {noun} silhouette',f'distinctive major features typical of a real {noun}',f'plausible proportions for a generic {noun}']

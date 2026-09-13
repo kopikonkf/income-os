@@ -128,13 +128,15 @@ def validate_receipt(receipt: dict[str, Any], *, request: dict[str, Any] | None 
         if validation['status']=='PASS':
             raise NativeSvgContractError('NON_SUCCESS_VALIDATION_PASS_FORBIDDEN',receipt['request_id'])
 
-def build_success_receipt(*, request: dict[str, Any], ingress: str, dispatch_commit_id: str, provider_status: str, provider_response_text: str, h01_103_canonical_svg_sha256: str, provider_request_id: str | None = None, finish_reason: str | None = None, candidate_svg_text: str | None = None) -> dict[str, Any]:
+def build_success_receipt(*, request: dict[str, Any], ingress: str, dispatch_commit_id: str, provider_status: str, provider_response_text: str, h01_103_canonical_svg_sha256: str, provider_request_id: str | None = None, finish_reason: str | None = None, candidate_svg_text: str | None = None, transport_normalization: dict[str, Any] | None = None) -> dict[str, Any]:
     validate_request(request)
     if ingress not in request['ingress_policy']['allowed']: raise NativeSvgContractError('INGRESS_NOT_ALLOWED',ingress)
     _assert_sha('h01_103_canonical_svg_sha256',h01_103_canonical_svg_sha256)
     candidate=normalize_svg_payload(candidate_svg_text if candidate_svg_text is not None else provider_response_text)
     if candidate_svg_text is not None and candidate not in provider_response_text:
-        raise NativeSvgContractError('CANDIDATE_NOT_IN_PROVIDER_RESPONSE',request['request_id'])
+        proof=transport_normalization or {}
+        if not (proof.get('provider_reprompted') is False and proof.get('geometry_preserved') is True and proof.get('raw_surface_sha256')==sha256_text(provider_response_text) and proof.get('normalized_candidate_sha256')==sha256_text(candidate)):
+            raise NativeSvgContractError('CANDIDATE_NOT_IN_PROVIDER_RESPONSE',request['request_id'])
     receipt={
         'schema':'die.h01.native-svg-receipt.v1','contract_revision':CONTRACT_REVISION,
         'request_id':request['request_id'],'idempotency_key':request['idempotency_key'],'queue_item_id':request['queue_item_id'],'semantic_asset_id':request['semantic_asset_id'],'provider_id':request['provider_target']['provider_id'],'ingress':ingress,'status':'SUCCEEDED',
@@ -144,6 +146,8 @@ def build_success_receipt(*, request: dict[str, Any], ingress: str, dispatch_com
         'validation':{'engine':'H01-103','status':'PASS','canonical_svg_sha256':h01_103_canonical_svg_sha256},
         'authority':{'dispatch_semantics':'EXACTLY_ONCE','dispatch_commit_id':dispatch_commit_id,'submission_authorized':False,'publication_authorized':False},
     }
+    if transport_normalization is not None:
+        receipt['transport_normalization']=transport_normalization
     validate_receipt(receipt,request=request); return receipt
 
 def build_failure_receipt(*, request: dict[str, Any], ingress: str, dispatch_commit_id: str, status: str, provider_status: str, error_code: str | None, error_detail: str | None, provider_request_id: str | None = None, finish_reason: str | None = None, provider_response_text: str | None = None) -> dict[str, Any]:

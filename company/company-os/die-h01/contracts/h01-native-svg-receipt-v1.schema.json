@@ -231,6 +231,60 @@
         "canonical_svg_sha256"
       ],
       "type": "object"
+    },
+    "transport_normalization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "provider_reprompted",
+        "geometry_preserved",
+        "raw_surface_sha256",
+        "geometry_fragment_sha256",
+        "normalized_candidate_sha256",
+        "geometry_tag_count",
+        "alpha_hex_normalizations",
+        "derived_viewbox"
+      ],
+      "properties": {
+        "method": {
+          "const": "SVG_GEOMETRY_FRAGMENT_ENVELOPE_V1"
+        },
+        "provider_reprompted": {
+          "const": false
+        },
+        "geometry_preserved": {
+          "const": true
+        },
+        "raw_surface_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "geometry_fragment_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "normalized_candidate_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "geometry_tag_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "alpha_hex_normalizations": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "derived_viewbox": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "number"
+          }
+        }
+      }
     }
   },
   "required": [
