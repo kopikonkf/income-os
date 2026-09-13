@@ -25,7 +25,7 @@ def test_gemini_uses_baseline_new_download_control_and_expect_download():
  assert "acquisition_method:'DOM_SVG_GEOMETRY_FRAGMENT'" in s
 def test_copilot_enter_primary_and_commit_evidence():
  s=(H/'provider_svg_playwright_strategy.mjs').read_text()
- assert "else{await comp.press('Enter');submitMethod='composer-enter'" in s
+ assert "submitMethod='composer-enter';await comp.press('Enter')" in s
  assert 'commitEvidence' in s
  assert 'E_SUBMIT_NOT_COMMITTED' in s
 def test_complete_svg_required_for_text_fallback():
@@ -61,3 +61,27 @@ def test_qwen_reuses_playwright_and_requires_strong_dispatch_commit():
  assert "url!==beforeUrl||responses>beforeResponses" in s
  assert "textarea[placeholder*=\"Ask Qwen\" i]" in s
  assert "provider==='gemini'||provider==='qwen'" in s
+
+def test_dispatch_receipt_is_written_immediately_after_strong_commit():
+ s=(H/'provider_svg_playwright_strategy.mjs').read_text()
+ assert "dispatchReceiptFile=arg('--dispatch-receipt','')" in s
+ assert 'function writeDispatch' in s
+ assert "status:'COMMITTED'" in s
+ assert 'writeDispatch(commit,submitMethod)' in s
+ assert "provider_reprompted:false" in s
+
+def test_playwright_supports_read_only_same_conversation_recheck():
+ s=(H/'provider_svg_playwright_strategy.mjs').read_text()
+ assert "recheckUrl=arg('--recheck-url','')" in s
+ assert 'const recheckOnly=!!recheckUrl' in s
+ assert "submitMethod='READ_ONLY_RECHECK'" in s
+ assert 'if(!recheckOnly)' in s
+
+def test_all_provider_paths_emit_durable_dispatch_commit_receipt():
+ run=(H/'h01_108_run_one.py').read_text()
+ text=(H/'provider_text_svg_cdp_canary.mjs').read_text()
+ assert run.count("'--dispatch-receipt'") >= 2
+ assert "dispatchReceiptFile=arg('--dispatch-receipt','')" in text
+ assert "status:'COMMITTED'" in text
+ assert 'commitEnd=Date.now()+15000' in text
+ assert "if(!commit?.committed)throw new Error(`E_SUBMIT_NOT_COMMITTED" in text

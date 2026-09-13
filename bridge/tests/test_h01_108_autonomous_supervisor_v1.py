@@ -21,3 +21,17 @@ def test_supervisor_never_authorizes_submission_or_publication():
  s=(H/'h01_108_autonomous_supervisor.py').read_text()
  assert "'submission_authorized':False" in s
  assert "'publication_authorized':False" in s
+
+def test_supervisor_never_auto_resubmits_after_committed_dispatch():
+ s=(H/'h01_108_autonomous_supervisor.py').read_text()
+ assert 'def committed_pending' in s
+ assert 'provider-dispatch.receipt.json' in s
+ assert 'if committed_pending(root,item,provider):continue' in s
+ assert "'duplicate_retry_policy':'NO_AUTO_RESUBMIT_AFTER_COMMIT'" in s
+
+def test_supervisor_recovers_local_provider_output_before_new_dispatch():
+ s=(H/'h01_108_autonomous_supervisor.py').read_text()
+ assert 'def recover_local_output' in s
+ assert "obs.get('status')!='SUCCEEDED'" in s
+ assert "h01_108_capture.py" in s
+ assert "provider_generation_dispatched':False" in s

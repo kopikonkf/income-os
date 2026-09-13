@@ -39,9 +39,9 @@ def main():
   time.sleep(2)
   try:
    if provider in PLAYWRIGHT:
-    src=w/'provider-output.svg';obs=w/'provider-observation.json';dld=w/'downloads';driver=[NODE,str(H01/'engineering/provider_svg_playwright_strategy.mjs'),'--provider',provider,'--cdp-port',port,'--prompt-file',str(w/'prompt.txt'),'--output-file',str(src),'--download-dir',str(dld),'--observation-file',str(obs),'--timeout-ms',str(TIMEOUT[provider])];run(driver,timeout=TIMEOUT[provider]/1000+90);pobs=json.loads(obs.read_text());kind='FILE' if pobs.get('source_kind')=='PROVIDER_FILE_DOWNLOAD' else 'TEXT'
+    src=w/'provider-output.svg';obs=w/'provider-observation.json';dld=w/'downloads';driver=[NODE,str(H01/'engineering/provider_svg_playwright_strategy.mjs'),'--provider',provider,'--cdp-port',port,'--prompt-file',str(w/'prompt.txt'),'--output-file',str(src),'--download-dir',str(dld),'--observation-file',str(obs),'--dispatch-receipt',str(w/'provider-dispatch.receipt.json'),'--timeout-ms',str(TIMEOUT[provider])];run(driver,timeout=TIMEOUT[provider]/1000+90);pobs=json.loads(obs.read_text());kind='FILE' if pobs.get('source_kind')=='PROVIDER_FILE_DOWNLOAD' else 'TEXT'
    elif provider in TEXT:
-    src=w/'raw-provider-response.txt';obs=w/'provider-observation.json';driver=[NODE,str(H01/'engineering/provider_text_svg_cdp_canary.mjs'),'--provider',provider,'--cdp-port',port,'--prompt-file',str(w/'prompt.txt'),'--response-file',str(src),'--observation-file',str(obs),'--timeout-ms',str(TIMEOUT[provider])];run(driver,timeout=TIMEOUT[provider]/1000+90);kind='TEXT'
+    src=w/'raw-provider-response.txt';obs=w/'provider-observation.json';driver=[NODE,str(H01/'engineering/provider_text_svg_cdp_canary.mjs'),'--provider',provider,'--cdp-port',port,'--prompt-file',str(w/'prompt.txt'),'--response-file',str(src),'--observation-file',str(obs),'--dispatch-receipt',str(w/'provider-dispatch.receipt.json'),'--timeout-ms',str(TIMEOUT[provider])];run(driver,timeout=TIMEOUT[provider]/1000+90);kind='TEXT'
    else: raise RuntimeError('E_PROVIDER_STRATEGY')
    run([FACTORY_PY,str(H01/'engineering/h01_108_capture.py'),'--workspace',str(w),'--provider',provider,'--source-kind',kind,'--source',str(src),'--job-id',job,'--profile-id',profile,'--udd-id',udd],timeout=120)
   except Exception as e:
