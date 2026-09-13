@@ -1,0 +1,26 @@
+{
+  "schema": "die.h01.h01-133.evidence-prioritization.acceptance.v1",
+  "task_id": "H01-133",
+  "status": "PASS",
+  "origin_main_at_start": "c82ec10684c0de445596c3e27da45cd3f58f06af",
+  "policy": {
+    "demand_weight": 0.6,
+    "competition_opportunity_weight": 0.25,
+    "confidence_weight": 0.15,
+    "source_queue_mutated": false,
+    "already_produced_masters_invalidated": false,
+    "unranked_items_remain_production_valid": true,
+    "family_hypotheses_are_canonical_families": false
+  },
+  "effects": {
+    "queue_identity_effect": "NONE",
+    "object_atlas_validity_effect": "NONE",
+    "rights_effect": "NONE",
+    "feasibility_effect": "NONE",
+    "produced_master_validity_effect": "NONE"
+  },
+  "tests": {
+    "focused": "3/3 PASS",
+    "cross_regression": "42/42 PASS"
+  }
+}

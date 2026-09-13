@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h01.evidence-prioritization.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "policy_version",
+    "projection_id",
+    "source_queue_item_count",
+    "remaining_count",
+    "produced_preserved_count",
+    "remaining_ranked",
+    "produced_preserved",
+    "family_rankings",
+    "policy",
+    "authority"
+  ],
+  "properties": {
+    "schema": {"const": "die.h01.evidence-prioritization.v1"},
+    "policy_version": {"const": "H01-133-V1"},
+    "projection_id": {"type": "string", "pattern": "^H01-PRIO-[0-9A-F]{24}$"},
+    "source_queue_item_count": {"type": "integer", "minimum": 0},
+    "remaining_count": {"type": "integer", "minimum": 0},
+    "produced_preserved_count": {"type": "integer", "minimum": 0},
+    "remaining_ranked": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/remaining"}
+    },
+    "produced_preserved": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/produced"}
+    },
+    "family_rankings": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/family"}
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_queue_mutated",
+        "already_produced_masters_invalidated",
+        "unranked_items_remain_production_valid",
+        "family_hypotheses_are_canonical_families",
+        "supply_first_independent"
+      ],
+      "properties": {
+        "source_queue_mutated": {"const": false},
+        "already_produced_masters_invalidated": {"const": false},
+        "unranked_items_remain_production_valid": {"const": true},
+        "family_hypotheses_are_canonical_families": {"const": false},
+        "supply_first_independent": {"const": true}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["production_authorized", "submission_authorized", "publication_authorized", "spend_authorized"],
+      "properties": {
+        "production_authorized": {"const": false},
+        "submission_authorized": {"const": false},
+        "publication_authorized": {"const": false},
+        "spend_authorized": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["queue_identity_effect", "object_atlas_validity_effect", "rights_effect", "feasibility_effect", "produced_master_validity_effect"],
+      "properties": {
+        "queue_identity_effect": {"const": "NONE"},
+        "object_atlas_validity_effect": {"const": "NONE"},
+        "rights_effect": {"const": "NONE"},
+        "feasibility_effect": {"const": "NONE"},
+        "produced_master_validity_effect": {"const": "NONE"}
+      }
+    },
+    "base": {
+      "type": "object",
+      "required": ["queue_item_id", "canonical_name", "source_position", "dispatch_eligible", "effects"],
+      "properties": {
+        "queue_item_id": {"type": "string", "pattern": "^H01-SVGQ-.+"},
+        "canonical_name": {"type": "string", "minLength": 1},
+        "source_position": {"type": "integer", "minimum": 0},
+        "dispatch_eligible": {"type": "boolean"},
+        "effects": {"$ref": "#/$defs/effects"}
+      }
+    },
+    "remaining": {
+      "allOf": [
+        {"$ref": "#/$defs/base"},
+        {
+          "type": "object",
+          "additionalProperties": true,
+          "required": ["projection_state", "priority_score", "rank_state", "components", "family_hypotheses", "priority_rank"],
+          "properties": {
+            "projection_state": {"const": "REMAINING"},
+            "priority_score": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+            "rank_state": {"enum": ["RANKED", "UNRANKED"]},
+            "priority_rank": {"type": ["integer", "null"], "minimum": 1},
+            "components": {"type": "object"},
+            "family_hypotheses": {"type": "array"}
+          }
+        }
+      ]
+    },
+    "produced": {
+      "allOf": [
+        {"$ref": "#/$defs/base"},
+        {
+          "type": "object",
+          "additionalProperties": true,
+          "required": ["projection_state", "priority_score", "rank_state"],
+          "properties": {
+            "projection_state": {"const": "PRESERVED_PRODUCED"},
+            "priority_score": {"const": null},
+            "rank_state": {"const": "NOT_RERANKED"}
+          }
+        }
+      ]
+    },
+    "family": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "status", "rank_state", "priority_score", "member_queue_item_ids", "evidence_ids", "canonical_family_promotion_authorized", "priority_rank"],
+      "properties": {
+        "label": {"type": "string", "minLength": 1},
+        "status": {"const": "HYPOTHESIS"},
+        "rank_state": {"enum": ["RANKED", "UNRANKED"]},
+        "priority_score": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "member_queue_item_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^H01-SVGQ-.+"}},
+        "evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "canonical_family_promotion_authorized": {"const": false},
+        "priority_rank": {"type": ["integer", "null"], "minimum": 1}
+      }
+    }
+  }
+}
