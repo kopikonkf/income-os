@@ -26,8 +26,8 @@ def main():
  job=f"H01-108-P{ns.position:03d}-{it['source_candidate_id']}-A{ns.attempt}";w=Path(ns.runs_root)/f"{ns.position:03d}-{it['canonical_name'].replace(' ','-')}-{provider}-a{ns.attempt}"
  if (w/'asset-receipt.json').exists():
   old=json.loads((w/'asset-receipt.json').read_text());print(json.dumps({'status':'REPLAY','workspace':str(w),'receipt':old}));return
- w.mkdir(parents=True,exist_ok=False)
  lease=jrun([SCHED,'acquire','--dispatch-id',job,'--job-id',job,'--preferred-provider',provider])['lease'];lid=lease['lease_id'];token=lease['lease_token'];profile=lease['profile_id'];udd=lease['udd_id'];port=str(lease['cdp_port'])
+ w.mkdir(parents=True,exist_ok=False)
  safe_lease={k:v for k,v in lease.items() if k!='lease_token'};dump(w/'scheduler-lease.sanitized.json',safe_lease)
  completed=False
  try:
