@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h01.demand-signal-ranking.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "queue_item_id", "signal_state", "rank_state", "rank_score", "confidence", "evidence_refs", "discoveries", "effects", "authority"],
+  "properties": {
+    "schema": {"const": "die.h01.demand-signal-ranking.v1"},
+    "queue_item_id": {"type": "string", "pattern": "^H01-SVGQ-.+"},
+    "signal_state": {"enum": ["NO_EVIDENCE", "PARTIAL", "COMPLETE", "STALE"]},
+    "rank_state": {"enum": ["RANKED", "UNRANKED"]},
+    "rank_score": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "confidence": {"enum": ["NONE", "LOW", "MEDIUM", "HIGH"]},
+    "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+    "discoveries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["buyers", "use_cases", "family_hypotheses"],
+      "properties": {
+        "buyers": {"type": "array", "items": {"$ref": "#/$defs/hypothesis"}},
+        "use_cases": {"type": "array", "items": {"$ref": "#/$defs/hypothesis"}},
+        "family_hypotheses": {"type": "array", "items": {"$ref": "#/$defs/hypothesis"}}
+      }
+    },
+    "effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["queue_identity_effect", "object_atlas_validity_effect", "rights_effect", "feasibility_effect", "standalone_production_blocking_effect"],
+      "properties": {
+        "queue_identity_effect": {"const": "NONE"},
+        "object_atlas_validity_effect": {"const": "NONE"},
+        "rights_effect": {"const": "NONE"},
+        "feasibility_effect": {"const": "NONE"},
+        "standalone_production_blocking_effect": {"const": "NONE"}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["production_authorized", "submission_authorized", "publication_authorized", "spend_authorized"],
+      "properties": {
+        "production_authorized": {"const": false},
+        "submission_authorized": {"const": false},
+        "publication_authorized": {"const": false},
+        "spend_authorized": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_id", "evidence_sha256", "signal_class", "freshness"],
+      "properties": {
+        "evidence_id": {"type": "string", "minLength": 1},
+        "evidence_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "signal_class": {"enum": ["DEMAND", "SUPPLY", "COMPETITION", "COMMERCIAL_INTENT", "TREND", "PLATFORM_FIT"]},
+        "freshness": {"enum": ["FRESH", "STALE", "UNKNOWN"]}
+      }
+    },
+    "hypothesis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "label", "status", "evidence_ids"],
+      "properties": {
+        "kind": {"enum": ["BUYER", "USE_CASE", "FAMILY"]},
+        "label": {"type": "string", "minLength": 1, "maxLength": 240},
+        "status": {"const": "HYPOTHESIS"},
+        "evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    }
+  }
+}

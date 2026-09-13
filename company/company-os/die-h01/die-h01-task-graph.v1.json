@@ -1,6 +1,6 @@
 {
   "schema": "die.h01.task-graph.v1",
-  "generated_at": "2026-09-12",
+  "generated_at": "2026-09-13",
   "status": "FOUNDER_APPROVED_CANONICAL_DESIGN_NOT_LIVE",
   "project": "DIE / H01 Factory Asset",
   "source_sha": "83df35a6dda299b140d169989c89ac49a56a9ddd",
@@ -677,19 +677,20 @@
     {
       "id": "H01-130",
       "track": "DEMAND_INTELLIGENCE",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-101",
         "H01-120"
       ],
       "title": "Define non-blocking Demand Signal Engine contract",
-      "acceptance": "External signals rank remaining nouns and help discover buyer/use-case/families; they never determine Object Atlas validity and never block standalone production."
+      "acceptance": "External signals rank remaining nouns and help discover buyer/use-case/families; they never determine Object Atlas validity and never block standalone production.",
+      "result": "PASS: defined a non-blocking demand-signal ranking/discovery overlay on H01-101. External evidence may rank remaining nouns and propose buyer/use-case/family hypotheses, but has zero authority over Object Atlas validity, queue identity, rights/feasibility, or standalone production eligibility."
     },
     {
       "id": "H01-131",
       "track": "DEMAND_INTELLIGENCE",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-130"
@@ -700,7 +701,7 @@
     {
       "id": "H01-132",
       "track": "DEMAND_INTELLIGENCE",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-130"

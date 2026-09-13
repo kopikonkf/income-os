@@ -1,0 +1,32 @@
+{
+  "schema": "die.h01.h01-130.demand-signal-engine.acceptance.v1",
+  "task_id": "H01-130",
+  "result": "PASS",
+  "origin_main_at_start": "e9e49f99a623f7ed023ace0de1cfa5cee657adce",
+  "contract": "company/company-os/die-h01/DIE_H01_DEMAND_SIGNAL_ENGINE_V1.md",
+  "ranking_schema": "company/company-os/die-h01/contracts/h01-demand-signal-ranking.v1.schema.json",
+  "validator": "company/company-os/die-h01/lib/demand_signal_contract.py",
+  "fixtures": "company/company-os/die-h01/fixtures/h01-demand-signal-ranking.examples.json",
+  "acceptance": {
+    "external_signals_can_rank_remaining_nouns": true,
+    "buyer_use_case_family_discovery_supported": true,
+    "object_atlas_validity_effect": "NONE",
+    "queue_identity_effect": "NONE",
+    "rights_effect": "NONE",
+    "feasibility_effect": "NONE",
+    "standalone_production_blocking_effect": "NONE",
+    "no_evidence_remains_non_blocking": true,
+    "stale_evidence_remains_non_blocking": true,
+    "family_discoveries_are_hypotheses_only": true,
+    "connector_authority_granted": false,
+    "production_authority_granted": false
+  },
+  "tests": {
+    "focused": "7/7 PASS"
+  },
+  "graph": {
+    "H01-130": "DONE",
+    "H01-131": "READY",
+    "H01-132": "READY"
+  }
+}
