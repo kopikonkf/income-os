@@ -1,0 +1,46 @@
+{
+  "accepted_at": "2026-09-13T16:22:00Z",
+  "authority": {
+    "production_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false,
+    "submission_authorized": false
+  },
+  "effects": {
+    "feasibility_effect": "NONE",
+    "object_atlas_validity_effect": "NONE",
+    "queue_identity_effect": "NONE",
+    "rights_effect": "NONE",
+    "standalone_production_blocking_effect": "NONE"
+  },
+  "focused_tests": {
+    "count": "5/5",
+    "result": "PASS",
+    "test_file": "bridge/tests/test_h01_132_human_atlas_demand_join_v1.py"
+  },
+  "implementation": {
+    "module": "company/company-os/die-h01/lib/human_atlas_demand_join.py",
+    "reuses": "company/division/division001/engines/longtail/retrieve_human_contexts.py",
+    "schema": "company/company-os/die-h01/contracts/h01-human-atlas-demand-context.v1.schema.json"
+  },
+  "policy": {
+    "exhaustive_cartesian": false,
+    "market_evidence": false,
+    "max_contexts": 12,
+    "rank_authority": "NONE",
+    "supply_first_independent": true
+  },
+  "real_proof": {
+    "canonical_name": "shopping bag",
+    "compatibility_score": 1.0,
+    "context_count": 1,
+    "join_id": "H01-HCTXJ-3B10856B0DD1701667B7D20A",
+    "join_state": "CONTEXT_AVAILABLE",
+    "queue_item_id": "H01-SVGQ-CAND-0936056",
+    "registry_sha256": "95287b4e4201f51e1ef27471859f3b37c169fadbe827b3625187a89404b71a4c",
+    "top_context_id": "HCTX-SMALL-BUSINESS-PACKAGING-001"
+  },
+  "schema": "die.h01.human-atlas-demand-join.acceptance.v1",
+  "status": "PASS",
+  "task_id": "H01-132"
+}
