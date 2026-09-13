@@ -1,0 +1,28 @@
+{
+  "accepted_at": "2026-09-13T15:45:00Z",
+  "focused_tests": "5/5 PASS",
+  "implementation": "company/company-os/die-h01/engineering/submission_ready_projection.py",
+  "policy": {
+    "eligibility": [
+      "manifest submission_eligible=true",
+      "compatibility PASS",
+      "rights PASS",
+      "Founder QC PASS"
+    ],
+    "external_action": "NONE",
+    "source_mutation": false,
+    "stale_reconciliation": true,
+    "unmanaged_root_protection": true
+  },
+  "real_proof": {
+    "eligible_projected": 0,
+    "index_sha256": "ca8d4f36f0492f16d1aab21862a9f72347bd76dd231254eb52999ded6694730e",
+    "reason": "rights REVIEW_REQUIRED and Founder QC not PASS",
+    "skipped": 6,
+    "source_packages": 6,
+    "workspace": "/var/lib/die/h01/runs/H01-108/055-sunflower-manus-a1"
+  },
+  "schema": "die.h01.submission-ready-projection.acceptance.v1",
+  "status": "PASS",
+  "task_id": "H01-135"
+}
