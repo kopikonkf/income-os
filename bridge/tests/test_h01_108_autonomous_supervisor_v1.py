@@ -35,3 +35,13 @@ def test_supervisor_recovers_local_provider_output_before_new_dispatch():
  assert "obs.get('status')!='SUCCEEDED'" in s
  assert "h01_108_capture.py" in s
  assert "provider_generation_dispatched':False" in s
+
+def test_attempt_budget_counts_committed_dispatches_not_workspace_dirs():
+ s=(H/'h01_108_autonomous_supervisor.py').read_text()
+ assert 'def committed_attempt_count' in s
+ assert "attempt_budget_policy':'COMMITTED_PROVIDER_DISPATCHES_ONLY'" in s
+ assert 'next_attempt_id(root,item,provider)' in s
+
+def test_workspace_is_created_only_after_scheduler_lease():
+ s=(H/'h01_108_run_one.py').read_text()
+ assert s.index("lease=jrun([SCHED,'acquire'") < s.index("w.mkdir(parents=True,exist_ok=False)")
