@@ -1,0 +1,45 @@
+{
+  "architectural_boundary": {
+    "global_invariant": "postproduction failure/review never blocks later independent provider generation",
+    "postproduction": "H01-103/H01-104/H01-105 + metadata + visual rights + Founder QC parking",
+    "preproduction": "H01-026 scheduler readiness + H01-025 browser/provider readiness",
+    "production_terminal": "ARTIFACT_CREATED"
+  },
+  "authority": {
+    "publication_authorized": false,
+    "spend_authorized": false,
+    "submission_authorized": false
+  },
+  "factory_precedent": {
+    "resolver_parked_states": [
+      "WAITING_FOUNDER_QC",
+      "WAITING_FOUNDER_RIGHTS_REVIEW"
+    ],
+    "runtime_behavior": "NO_ACTIVE_CARD may start later independent seed while prior card remains parked"
+  },
+  "live_evidence": {
+    "manus_cup": "ACCEPTED_SEMANTIC_MASTER / REVIEW_REQUIRED / no blockers",
+    "qwen_chair": "ACCEPTED_SEMANTIC_MASTER / REVIEW_REQUIRED / no blockers after deterministic watermark-control fix",
+    "qwen_generation_duration": "~19m06s",
+    "watermark_self_test": "PASS on real qwen/chair 4096 preview"
+  },
+  "schema": "die.h01.h01-108-stage-separation.receipt.v1",
+  "status": "PASS",
+  "synthetic_generation_boundary": {
+    "artifact_created": true,
+    "browser_terminal_succeeded": true,
+    "h01_103_absent_after_generation": true,
+    "postproduction_absent_after_generation": true,
+    "result": "PASS",
+    "rights_absent_after_generation": true
+  },
+  "task_id": "H01-108",
+  "tests": {
+    "h01_108_batch": "8/8 PASS",
+    "high_confidence_secret_hits": 0,
+    "one_canon": "11/11 PASS",
+    "rights_detector": "5/5 PASS",
+    "scheduler": "11/11 PASS",
+    "stage_separation": "6/6 PASS"
+  }
+}
