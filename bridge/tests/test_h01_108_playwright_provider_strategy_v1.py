@@ -30,7 +30,7 @@ def test_copilot_enter_primary_and_commit_evidence():
  assert 'E_SUBMIT_NOT_COMMITTED' in s
 def test_complete_svg_required_for_text_fallback():
  s=(H/'provider_svg_playwright_strategy.mjs').read_text()
- assert "t.indexOf('<svg')" in s and "t.lastIndexOf('</svg>')" in s
+ assert "matchAll(/<svg\\b[\\s\\S]*?<\\/svg>/gi)" in s
  assert "source_kind:'PROVIDER_RESPONSE_TEXT'" in s
 
 def test_h01_108_prefers_existing_canonical_h01_102_blueprint():
@@ -85,3 +85,9 @@ def test_all_provider_paths_emit_durable_dispatch_commit_receipt():
  assert "status:'COMMITTED'" in text
  assert 'commitEnd=Date.now()+15000' in text
  assert "if(!commit?.committed)throw new Error(`E_SUBMIT_NOT_COMMITTED" in text
+
+def test_daily_thread_extractor_selects_latest_complete_svg_not_first_to_last_blob():
+ s=(H/'provider_svg_playwright_strategy.mjs').read_text()
+ assert "matchAll(/<svg\\b[\\s\\S]*?<\\/svg>/gi)" in s
+ assert 'for(let i=xs.length-1;i>=0;i--)' in s
+ assert "t.lastIndexOf('</svg>')" not in s
