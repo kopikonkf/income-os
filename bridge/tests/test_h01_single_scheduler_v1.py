@@ -43,7 +43,7 @@ class SingleSchedulerProofTests(unittest.TestCase):
   with self.assertRaisesRegex(G.GuardError,'E_SUPERVISOR_SCHEDULER'): self.ev(s=s)
  def test_graph_marks_h01_016_done_but_h01_200_stays_blocked_until_other_dependencies(self):
   graph=json.loads((H01/'die-h01-task-graph.v1.json').read_text()); by={t['id']:t for t in graph['tasks']}
-  self.assertEqual(by['H01-016']['status'],'DONE'); self.assertEqual(by['H01-027']['status'],'BLOCKED'); self.assertEqual(by['H01-109']['status'],'BLOCKED'); self.assertEqual(by['H01-200']['status'],'BLOCKED')
+  self.assertEqual(by['H01-016']['status'],'DONE'); self.assertEqual(by['H01-027']['status'],'DONE'); self.assertEqual(by['H01-109']['status'],'BLOCKED'); self.assertEqual(by['H01-200']['status'],'BLOCKED')
  def test_proof_contains_no_mission_lease_capability(self):
   raw=json.dumps(PROOF); self.assertNotIn('mission_lease_token',raw)
   def values(v):

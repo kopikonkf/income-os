@@ -43,7 +43,7 @@ The scheduler keeps its own durable lease ledger while H01-025 remains the sole 
 
 ## Concurrency policy
 
-The policy contains both `global_max_live_udd_owners` and `founder_approved_max_live_udd_owners`. The scheduler rejects a configured live cap above the Founder-approved ceiling. Today both are 5. H01-027 may later raise the approved ceiling through explicit Founder acceptance while keeping this scheduler implementation unchanged; absolute topology remains 20 UDD owners.
+The policy contains both `global_max_live_udd_owners` and `founder_approved_max_live_udd_owners`. The scheduler rejects a configured live cap above the Founder-approved ceiling. Today both are 5. H01-029 later accepted exactly five simultaneous UDD owners under Founder policy. H01-027's older 8/10-owner expansion acceptance is superseded and must not be executed; any future ceiling increase requires a new explicit Founder-governed scale task. Absolute topology remains 20 UDD owners.
 
 ## Live canary
 

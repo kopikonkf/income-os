@@ -359,3 +359,8 @@ The previous launcher is retained at `/var/lib/die/h01/rollback/H01-024/h01-brav
 ## 2026-09-13 - H01-029 DONE/PASS via Mission Control reviewed canonical writeback
 
 Mission Control task `H01-029` completed through automatic canonical intake, owner execution and no-review completion. Canonical graph transitions: `H01-029 READY->DONE`. Receipt: `company/company-os/die-h01/receipts/H01-029-mission-control-auto-acceptance.receipt.json`. No external marketplace submission, spend, credential mutation, or live-load authority was granted by this writeback.
+
+
+## 2026-09-13 - H01-027 retired after H01-029 five-UDD acceptance
+
+H01-027 is retained only as historical graph evidence and is canonically DONE/SUPERSEDED by H01-029. Founder narrowed concurrency acceptance to exactly five simultaneous Brave profiles from five distinct UDDs; H01-029 proved that scope with healthy browsing/CDP at the hard cap of five. Downstream H01-200 and H01-204 now depend on H01-029 rather than the retired 8/10-owner acceptance. No 8/10-owner test is authorized by this cleanup.
