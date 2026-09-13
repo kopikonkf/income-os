@@ -545,6 +545,18 @@
       "acceptance": "Run supply-first production under throughput/storage/rights/submission gates; preserve semantic master vs derivative vs package counters."
     },
     {
+      "id": "H01-114",
+      "track": "SVG_STANDALONE",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-108"
+      ],
+      "title": "Expose H01-108 postproduction previews in Founder QC Gallery",
+      "acceptance": "Reuse the existing read-only Founder QC Gallery and index each available /var/lib/die/h01/runs/H01-108/*/postproduction/preview.webp as one H01-108 vector-soak card with noun, provider, run/asset status and rights state. The gallery must dynamically reflect completed postproduction artifacts without requiring folder traversal. No complex SVG/vector viewer, no generation/runtime mutation, and no submission/publication action.",
+      "founder_policy": "Founder authorized this task on 2026-09-13. Keep the first implementation deliberately simple: display the existing postproduction preview.webp for each H01-108 artifact in one consolidated read-only gallery surface. Reuse the current Factory Console/Founder QC Gallery rather than creating a separate vector viewer. Do not touch H01-108 while it is RUNNING; execute after H01-108 reaches DONE."
+    },
+    {
       "id": "H01-120",
       "track": "FAMILY_SET",
       "status": "DONE",
