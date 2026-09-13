@@ -5,7 +5,6 @@ def test_supervisor_is_generation_only():
  assert 'postprocess' not in s.lower()
  assert 'rights' not in s.lower()
  assert "artifact-created.receipt.json" in s
- assert "browser-job-result.json" in s
 def test_supervisor_gates_dispatch_by_scheduler_readiness():
  s=(H/'h01_108_autonomous_supervisor.py').read_text()
  assert "ready=set(sched.get('ready_provider_ids',[]))" in s
@@ -45,3 +44,18 @@ def test_attempt_budget_counts_committed_dispatches_not_workspace_dirs():
 def test_workspace_is_created_only_after_scheduler_lease():
  s=(H/'h01_108_run_one.py').read_text()
  assert s.index("lease=jrun([SCHED,'acquire'") < s.index("w.mkdir(parents=True,exist_ok=False)")
+
+def test_generation_acceptance_requires_artifact_created_only():
+ s=(H/'h01_108_autonomous_supervisor.py').read_text()
+ start=s.index('def generated('); end=s.index('def next_attempt_id',start)
+ block=s[start:end]
+ assert "artifact-created.receipt.json" in block
+ assert "browser-job-result.json" not in block
+ assert "generation_acceptance_boundary':'ARTIFACT_CREATED_ONLY'" in s
+
+def test_legacy_provider_success_is_recovery_pending_not_resubmitted():
+ s=(H/'h01_108_autonomous_supervisor.py').read_text()
+ start=s.index('def committed_pending('); end=s.index('def atomic_json',start)
+ block=s[start:end]
+ assert "o.get('status')=='SUCCEEDED'" in block
+ assert "legacy_commit_evidence" in block

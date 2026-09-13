@@ -12,8 +12,6 @@ def generated(root,item):
  prefix=f"{item['batch_position']:03d}-{slug(item['canonical_name'])}-"
  for w in root.glob(prefix+'*'):
   if load(w/'artifact-created.receipt.json').get('status')=='ARTIFACT_CREATED':return True
-  b=load(w/'browser-job-result.json')
-  if b.get('terminal_state')=='SUCCEEDED' and (w/'final/provider-original.svg').is_file():return True
  return False
 def next_attempt_id(root,item,provider):
  prefix=f"{item['batch_position']:03d}-{slug(item['canonical_name'])}-{provider}-a";vals=[]
@@ -53,8 +51,9 @@ def recover_local_output(root,item,provider):
 def committed_pending(root,item,provider):
  for w in reversed(workspaces(root,item,provider)):
   if load(w/'artifact-created.receipt.json').get('status')=='ARTIFACT_CREATED':return None
-  d=load(w/'provider-dispatch.receipt.json')
-  if d.get('status')=='COMMITTED':return {'workspace':str(w),'conversation_url':d.get('conversation_url'),'prompt_sha256':d.get('prompt_sha256'),'provider':provider}
+  d=load(w/'provider-dispatch.receipt.json');o=load(w/'provider-observation.json');ce=o.get('dispatch_commit_evidence') or {}
+  committed=d.get('status')=='COMMITTED' or o.get('status')=='SUCCEEDED' or ce.get('committed') is True
+  if committed:return {'workspace':str(w),'conversation_url':d.get('conversation_url') or ce.get('url') or o.get('conversation_url'),'prompt_sha256':d.get('prompt_sha256') or o.get('prompt_sha256'),'provider':provider,'legacy_commit_evidence':d.get('status')!='COMMITTED'}
  return None
 
 def atomic_json(path,value):
@@ -77,7 +76,7 @@ def main():
    if not generated(root,item):recover_local_output(root,item,item['planned_provider'])
   done=[i for i in items if generated(root,i)];remaining=[i for i in items if not generated(root,i)]
   pending_committed={str(i['batch_position']):committed_pending(root,i,i['planned_provider']) for i in remaining};pending_committed={k:v for k,v in pending_committed.items() if v}
-  state={'schema':'die.h01.h01-108-autonomous-supervisor.v1','task_id':'H01-108','status':'RUNNING' if remaining else 'COMPLETE_PASS','generated_count':len(done),'remaining_count':len(remaining),'total_count':len(items),'updated_at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'current':None,'failures':failures,'committed_recovery_pending':pending_committed,'duplicate_retry_policy':'NO_AUTO_RESUBMIT_AFTER_COMMIT','attempt_budget_policy':'COMMITTED_PROVIDER_DISPATCHES_ONLY','submission_authorized':False,'publication_authorized':False}
+  state={'schema':'die.h01.h01-108-autonomous-supervisor.v1','task_id':'H01-108','status':'RUNNING' if remaining else 'COMPLETE_PASS','generated_count':len(done),'remaining_count':len(remaining),'total_count':len(items),'updated_at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'current':None,'failures':failures,'committed_recovery_pending':pending_committed,'duplicate_retry_policy':'NO_AUTO_RESUBMIT_AFTER_COMMIT','attempt_budget_policy':'COMMITTED_PROVIDER_DISPATCHES_ONLY','generation_acceptance_boundary':'ARTIFACT_CREATED_ONLY','submission_authorized':False,'publication_authorized':False}
   atomic_json(progress,state);print(json.dumps(state,sort_keys=True),flush=True)
   if not remaining:return 0
   sched=scheduler_status();ready=set(sched.get('ready_provider_ids',[]));candidate=None
