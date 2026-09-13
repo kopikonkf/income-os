@@ -1,0 +1,25 @@
+{
+  "schema": "die.h01.evidence-prioritization.runtime.v1",
+  "revision": "1.0.0",
+  "task_id": "H01-133",
+  "implementation": "company/company-os/die-h01/lib/evidence_prioritization.py",
+  "output_schema": "company/company-os/die-h01/contracts/h01-evidence-prioritization.v1.schema.json",
+  "inputs": ["H01-101 queue", "H01-130 demand overlays", "H01-131 connector evidence", "produced queue-item IDs"],
+  "weights": {"demand": 0.60, "competition_opportunity": 0.25, "confidence": 0.15},
+  "produced_policy": "PRESERVED_PRODUCED_NOT_RERANKED",
+  "unranked_policy": "VALID_KEEP_SOURCE_ORDER_AFTER_RANKED",
+  "family_policy": "HYPOTHESIS_ONLY_NO_CANONICAL_PROMOTION",
+  "effects": {
+    "queue_identity_effect": "NONE",
+    "object_atlas_validity_effect": "NONE",
+    "rights_effect": "NONE",
+    "feasibility_effect": "NONE",
+    "produced_master_validity_effect": "NONE"
+  },
+  "authority": {
+    "production_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false
+  }
+}

@@ -70,5 +70,5 @@ def test_graph_progression():
     graph = json.loads(GRAPH.read_text(encoding="utf-8"))
     by = {row["id"]: row for row in graph["tasks"]}
     assert by["H01-130"]["status"] == "DONE"
-    assert by["H01-131"]["status"] == "READY"
-    assert by["H01-132"]["status"] == "READY"
+    assert by["H01-131"]["status"] in {"READY", "DONE"}
+    assert by["H01-132"]["status"] in {"READY", "DONE"}
