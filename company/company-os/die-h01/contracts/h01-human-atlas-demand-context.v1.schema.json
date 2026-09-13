@@ -1,0 +1,19 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"die.h01.human-atlas-demand-context.v1.schema.json",
+  "type":"object","additionalProperties":false,
+  "required":["schema","join_id","queue_item_id","canonical_name","join_state","retrieval","contexts","policy","effects","authority"],
+  "properties":{
+    "schema":{"const":"die.h01.human-atlas-demand-context.v1"},
+    "join_id":{"type":"string","pattern":"^H01-HCTXJ-[A-F0-9]{24}$"},
+    "queue_item_id":{"type":"string","pattern":"^H01-SVGQ-.+"},
+    "canonical_name":{"type":"string","minLength":1,"maxLength":240},
+    "source_candidate_id":{"type":["string","null"]},
+    "join_state":{"enum":["NO_CONTEXT","CONTEXT_AVAILABLE"]},
+    "retrieval":{"type":"object","additionalProperties":false,"required":["receipt_id","registry_sha256","registry_version","query","result_count"],"properties":{"receipt_id":{"type":"string"},"registry_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},"registry_version":{"type":"string"},"query":{"type":"object"},"result_count":{"type":"integer","minimum":0,"maximum":12}}},
+    "contexts":{"type":"array","maxItems":12,"items":{"type":"object","additionalProperties":false,"required":["context_id","compatibility_score","context_sha256","human","activity","problem","industry","commercial_intent","target_buyers","buyer_jobs","product_expression_hints"],"properties":{"context_id":{"type":"string"},"compatibility_score":{"type":"number","minimum":0,"maximum":1},"context_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},"human":{"type":"string"},"activity":{"type":"string"},"problem":{"type":"string"},"industry":{"type":"string"},"commercial_intent":{"type":"string"},"target_buyers":{"type":"array","items":{"type":"string"}},"buyer_jobs":{"type":"array","items":{"type":"string"}},"product_expression_hints":{"type":"array","items":{"type":"string"}}}}},
+    "policy":{"type":"object","additionalProperties":false,"required":["max_contexts","exhaustive_cartesian","market_evidence","supply_first_independent","rank_authority"],"properties":{"max_contexts":{"const":12},"exhaustive_cartesian":{"const":false},"market_evidence":{"const":false},"supply_first_independent":{"const":true},"rank_authority":{"const":"NONE"}}},
+    "effects":{"type":"object","additionalProperties":false,"required":["queue_identity_effect","object_atlas_validity_effect","rights_effect","feasibility_effect","standalone_production_blocking_effect"],"properties":{"queue_identity_effect":{"const":"NONE"},"object_atlas_validity_effect":{"const":"NONE"},"rights_effect":{"const":"NONE"},"feasibility_effect":{"const":"NONE"},"standalone_production_blocking_effect":{"const":"NONE"}}},
+    "authority":{"type":"object","additionalProperties":false,"required":["production_authorized","submission_authorized","publication_authorized","spend_authorized"],"properties":{"production_authorized":{"const":false},"submission_authorized":{"const":false},"publication_authorized":{"const":false},"spend_authorized":{"const":false}}}
+  }
+}
