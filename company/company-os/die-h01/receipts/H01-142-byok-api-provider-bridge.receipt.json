@@ -1,0 +1,13 @@
+﻿{
+    "schema":  "die.h01.h01-142.byok-api-provider-bridge.acceptance.v1",
+    "task_id":  "H01-142",
+    "status":  "PASS",
+    "origin_main_at_start":  "f146d9d9c7fbb36be64c7f83fee3de50407458d8",
+    "browser_native_primary":  true,
+    "replacement_allowed":  false,
+    "capacity_mode":  "OPPORTUNISTIC_SUPPLEMENTAL_ONLY",
+    "tests":  {
+                  "console_bridge":  "8/8 PASS",
+                  "schema_runtime":  "PASS"
+              }
+}

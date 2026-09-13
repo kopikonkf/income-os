@@ -623,13 +623,13 @@
     {
       "id": "H01-142",
       "track": "FOUNDER_CONSOLE",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-140"
       ],
       "title": "Implement optional BYOK/API provider bridge v1",
-      "acceptance": "Expose optional API-provider connections through the Founder Console/router layer without replacing existing H01 browser-native provider lanes. Extra capacity remains opportunistic, capability and health are observable, and production roles are explicitly enabled."
+      "acceptance": "Expose optional API-provider connections through the Founder Console/router layer without replacing existing H01 browser-native provider lanes. Extra capacity remains opportunistic, capability and health are observable, and production roles are explicitly enabled.",`n      "result": "PASS: optional API-provider bridge v1 exposes non-sensitive connection, capability and health state through Founder Console while browser-native H01 lanes remain primary. Supplemental capacity requires configured healthy state, external authorization reference, compatible SVG capability and explicit H01_SVG_GENERATION enablement. Mission Control retains scheduling authority; canonical runtime has zero live API providers."
     },
     {
       "id": "H01-120",
