@@ -180,17 +180,58 @@ def _vector_pdf_bytes(norm: dict[str, Any]) -> bytes:
     return bytes(output)
 
 
-def _eps_is_valid(data: bytes) -> tuple[bool, str]:
+def _eps_marketplace_facts(data: bytes) -> dict[str, Any]:
     lowered = data.lower()
     forbidden = [marker.decode("ascii") for marker in _RASTER_MARKERS if marker in lowered]
-    if not data.startswith(b"%!PS-Adobe-3.0 EPSF-3.0"):
+    text = data.decode("ascii", errors="ignore")
+    bbox = re.search(r"^%%BoundingBox:\s+0\s+0\s+(\d+)\s+(\d+)\s*$", text, re.MULTILINE)
+    width = int(bbox.group(1)) if bbox else 0
+    height = int(bbox.group(2)) if bbox else 0
+    area = width * height
+    font_ops = bool(re.search(rb"\b(?:findfont|selectfont|glyphshow|ashow)\b", lowered))
+    transparency_ops = bool(re.search(rb"(?:opacity|transparen|setalpha|setopacity)", lowered))
+    min_area = int(getattr(_NATIVE, "EPS_MARKETPLACE_MIN_AREA", 15_000_000))
+    max_area = int(getattr(_NATIVE, "EPS_MARKETPLACE_MAX_AREA", 25_000_000))
+    return {
+        "header_epsf_3": data.startswith(b"%!PS-Adobe-3.0 EPSF-3.0"),
+        "bounding_box_width": width,
+        "bounding_box_height": height,
+        "bounding_box_area": area,
+        "marketplace_area_min": min_area,
+        "marketplace_area_max": max_area,
+        "marketplace_area_pass": min_area <= area <= max_area,
+        "language_level_2": b"%%LanguageLevel: 2" in data,
+        "clean_7bit": b"%%DocumentData: Clean7Bit" in data,
+        "hires_bounding_box": b"%%HiResBoundingBox:" in data,
+        "rgb_only": b"setrgbcolor" in data and b"setcmykcolor" not in data,
+        "contains_raster_operator": bool(forbidden),
+        "raster_markers": forbidden,
+        "contains_live_font_operator": font_ops,
+        "contains_transparency_operator": transparency_ops,
+        "path_operators": b"moveto" in data and b"lineto" in data,
+        "legacy_illustrator_structural_profile": "POSTSCRIPT_LEVEL_2_SIMPLE_PATHS",
+        "native_illustrator_save_certified": False,
+    }
+
+
+def _eps_is_valid(data: bytes) -> tuple[bool, str]:
+    facts = _eps_marketplace_facts(data)
+    if not facts["header_epsf_3"]:
         return False, "EPS_HEADER_MISSING"
-    if b"%%BoundingBox:" not in data:
+    if not facts["bounding_box_width"] or not facts["bounding_box_height"]:
         return False, "EPS_BOUNDING_BOX_MISSING"
-    if b"moveto" not in data or b"lineto" not in data:
+    if not facts["path_operators"]:
         return False, "EPS_VECTOR_PATH_MISSING"
-    if forbidden:
-        return False, "EPS_RASTER_MARKER:" + ",".join(forbidden)
+    if facts["contains_raster_operator"]:
+        return False, "EPS_RASTER_MARKER:" + ",".join(facts["raster_markers"])
+    if facts["contains_live_font_operator"]:
+        return False, "EPS_LIVE_FONT_OPERATOR"
+    if facts["contains_transparency_operator"]:
+        return False, "EPS_TRANSPARENCY_OPERATOR"
+    if not facts["language_level_2"] or not facts["clean_7bit"] or not facts["hires_bounding_box"]:
+        return False, "EPS_DSC_MARKETPLACE_PROFILE_MISSING"
+    if not facts["marketplace_area_pass"]:
+        return False, f"EPS_BOUNDING_BOX_AREA:{facts['bounding_box_area']}"
     try:
         data.decode("ascii")
     except UnicodeDecodeError:
@@ -483,9 +524,10 @@ def postprocess_vector(
             "provider_original_sha256": original_sha,
             "canonical_svg_sha256": canonical_sha,
         }
+    eps_facts = _eps_marketplace_facts(eps)
     vector_evidence = {
         "pdf": {"result": "PASS", "validated": pdf_valid, "reason": pdf_reason, "contains_image_object": False, "path_operators": True},
-        "eps": {"result": "PASS", "validated": eps_valid, "reason": eps_reason, "contains_raster_operator": False, "path_operators": True},
+        "eps": {"result": "PASS", "validated": eps_valid, "reason": eps_reason, **eps_facts},
         "forbidden_rasterization_markers": [],
     }
     receipt: dict[str, Any] = {
