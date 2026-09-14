@@ -1,0 +1,59 @@
+{
+  "authority": {
+    "browser_auth_used": false,
+    "cookies_or_tokens_read": false,
+    "credential_values_read": false,
+    "marketplace_account_automation_used": false,
+    "production_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false,
+    "submission_authorized": false
+  },
+  "base_sha": "11e7915106b0c3c5308e899ff68b103a8c057a77",
+  "closure": "Do not mark DONE. Keep H01-131E BLOCKED/RUNNING until a compliant first-party trending-search-term acquisition mechanism is available and acceptance can be proven with real immutable evidence.",
+  "compliance": {
+    "automated_public_page_extraction_allowed": false,
+    "block_reason_code": "E_FREEPIK_AUTOMATED_TREND_ACQUISITION_NOT_COMPLIANT",
+    "documented_api_requires_api_key": true,
+    "documented_trending_query_endpoint_found": false,
+    "policy_reference": "https://www.magnific.com/in/legal/acceptable-use-policy",
+    "resource_search_is_equivalent_to_trending_query_telemetry": false
+  },
+  "implementation": {
+    "capability": "company/company-os/die-h01/runtime/market-signal-sources/freepik_trending_vector_searches_v1.json",
+    "cli": "company/company-os/die-h01/engineering/h01_freepik_trending_vector_acquire.py",
+    "design": "company/company-os/die-h01/DIE_H01_FREEPIK_TRENDING_VECTOR_SIGNAL_ADAPTER_V1.md",
+    "shared_acquisition_core_changed": false,
+    "shared_evidence_schema_changed": false,
+    "source_module": "company/company-os/die-h01/lib/market_signal_freepik.py",
+    "tests": "bridge/tests/test_h01_131e_freepik_trending_vector_adapter_v1.py"
+  },
+  "proof": {
+    "compliant_real_first_party_evidence": false,
+    "fail_soft_acquisition_id": "H01-ACQ-DB3792B3B4D356522D01FF4B",
+    "fail_soft_status": "DEGRADED_ADAPTER_UNAVAILABLE",
+    "network_request_performed_by_fail_soft_proof": false,
+    "normalized_evidence_count": 0,
+    "reason": "No documented compliant first-party trending-query machine endpoint was found. Diagnostic HTML extraction was rejected as acceptance evidence and its task-local raw/evidence state was deleted."
+  },
+  "schema": "die.h01.h01-131e.freepik-trending-vector-signal-adapter.v1",
+  "source": {
+    "evidence_class": "MARKETPLACE_POPULAR_QUERY",
+    "first_party_surface": "https://www.magnific.com/vectors",
+    "media_type": "VECTOR",
+    "query_volume_available": false,
+    "source_id": "freepik_trending_vector_searches_v1",
+    "source_name": "Freepik/Magnific Trending Vector Searches",
+    "target_section": "Trending Vector Searches",
+    "visitor_query_count_available": false
+  },
+  "status": "BLOCKED_COMPLIANCE",
+  "task_id": "H01-131E",
+  "tests": {
+    "broad_h01_collection": "NOT_GREEN_ENVIRONMENT",
+    "broad_h01_collection_detail": "Collection stops on unrelated missing runtime dependencies: PIL and websocket; no H01-131E test failure.",
+    "git_diff_check": "PASS",
+    "python_compile": "PASS",
+    "targeted_h01_131_regression": "21/21 PASS"
+  }
+}
