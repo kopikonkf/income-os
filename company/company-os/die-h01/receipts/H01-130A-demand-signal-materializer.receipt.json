@@ -1,0 +1,114 @@
+{
+  "authority": {
+    "production_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false,
+    "submission_authorized": false
+  },
+  "candidate_commit": "e28816742949d3ca130b8f9bfa5f5f702a30ab6c",
+  "downstream_selector_proof": {
+    "fallback_selected": 96,
+    "h01_133_priority_score": 0.525,
+    "path": "/var/lib/die/h01/plans/daily-selector/2026-09-14-h01-130a-proof.json",
+    "produced_excluded": 100,
+    "ranked_names": [
+      "food",
+      "transportation",
+      "vintage",
+      "animals"
+    ],
+    "ranked_selected": 4,
+    "selected": 100,
+    "selection_id": "H01-DAILY-52BA25C07ED0E582F7D47BFB"
+  },
+  "implementation": {
+    "cli": "company/company-os/die-h01/engineering/h01_130a_demand_signal_materialize.py",
+    "design": "company/company-os/die-h01/DIE_H01_DEMAND_SIGNAL_MATERIALIZER_V1.md",
+    "materializer": "company/company-os/die-h01/lib/demand_signal_materializer.py",
+    "tests": "bridge/tests/test_h01_130a_demand_signal_materializer_v1.py"
+  },
+  "linux_live_acceptance": {
+    "connector_ids": [
+      "123rf_trending_search_v1",
+      "wikimedia_pageviews_v1"
+    ],
+    "deterministic_replay_sha256": "bc5c6ea7a58d939e32c596154e2cd9010a59bf608094aefcb53ff6e108c0823a",
+    "evidence_records": 2,
+    "materialization_id": "H01-DMAT-0C0EC82F559033508AE086E1",
+    "output_path": "/var/lib/die/h01/demand-intelligence/materialized/demand-signal-ranking.v1.json",
+    "output_sha256": "bc5c6ea7a58d939e32c596154e2cd9010a59bf608094aefcb53ff6e108c0823a",
+    "queue_items": 43005,
+    "queue_path": "/var/lib/die/h01/queues/svg-standalone-v1/queue.jsonl",
+    "queue_sha256": "0f0ec826a81d888a2be3f0b4bd11d6327f7202963d70add639f2092cdf46beeb",
+    "ranked_count": 5,
+    "ranked_records": [
+      {
+        "canonical_name": "cat",
+        "confidence": "LOW",
+        "queue_item_id": "H01-SVGQ-CAND-0829861",
+        "rank_score": 0.122697,
+        "tier": "ATTENTION_PROXY"
+      },
+      {
+        "canonical_name": "food",
+        "confidence": "MEDIUM",
+        "queue_item_id": "H01-SVGQ-CAND-0830701",
+        "rank_score": 0.50625,
+        "tier": "MARKETPLACE_POPULAR_QUERY"
+      },
+      {
+        "canonical_name": "transportation",
+        "confidence": "MEDIUM",
+        "queue_item_id": "H01-SVGQ-CAND-0852928",
+        "rank_score": 0.50625,
+        "tier": "MARKETPLACE_POPULAR_QUERY"
+      },
+      {
+        "canonical_name": "vintage",
+        "confidence": "MEDIUM",
+        "queue_item_id": "H01-SVGQ-CAND-0856685",
+        "rank_score": 0.50625,
+        "tier": "MARKETPLACE_POPULAR_QUERY"
+      },
+      {
+        "canonical_name": "animals",
+        "confidence": "MEDIUM",
+        "queue_item_id": "H01-SVGQ-CAND-0874342",
+        "rank_score": 0.50625,
+        "tier": "MARKETPLACE_POPULAR_QUERY"
+      }
+    ],
+    "schema_invalid_records": 0,
+    "unranked_count": 43000
+  },
+  "policy": {
+    "buyer_use_case_family_discovery_authorized": false,
+    "deterministic_python_only": true,
+    "disabled_or_adapter_pending_sources_contribute": false,
+    "evidence_semantics_may_downgrade_source_tier": true,
+    "evidence_semantics_may_promote_source_tier": false,
+    "fuzzy_matching": false,
+    "llm_used": false,
+    "matching": "EXACT_NORMALIZED_TEXT_ONLY",
+    "missing_evidence_blocks_production": false,
+    "presentation_order_inferred_as_volume_or_rank": false,
+    "tier_order": [
+      "DIRECT_MARKETPLACE_QUERY",
+      "MARKETPLACE_POPULAR_QUERY",
+      "MARKETPLACE_POPULARITY_PROXY",
+      "MACRO_SEARCH",
+      "ATTENTION_PROXY",
+      "LEGACY_PRIOR"
+    ]
+  },
+  "schema": "die.h01.h01-130a.demand-signal-materializer.acceptance.v1",
+  "status": "DONE_PASS",
+  "task_id": "H01-130A",
+  "tests": {
+    "all_43005_json_schema_records": "PASS",
+    "focused_materializer_and_regression": "22/22 PASS",
+    "linux_focused": "22/22 PASS",
+    "one_canon": "targeted 40/40 PASS; validator 11/11 PASS; secret hits 0",
+    "python_compile": "PASS"
+  }
+}
