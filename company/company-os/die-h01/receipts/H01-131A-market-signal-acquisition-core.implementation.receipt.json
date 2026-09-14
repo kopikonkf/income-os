@@ -1,7 +1,7 @@
 {
   "schema": "die.h01.h01-131a.market-signal-acquisition-core.implementation.v1",
   "task_id": "H01-131A",
-  "status": "IMPLEMENTATION_PASS_LINUX_ACTIVATION_PENDING",
+  "status": "DONE_PASS",
   "implementation": {
     "core": "company/company-os/die-h01/lib/market_signal_acquisition.py",
     "cli": "company/company-os/die-h01/engineering/h01_market_signal_acquire.py",
@@ -50,9 +50,21 @@
   },
   "linux_activation": {
     "required_state_root": "/var/lib/die/h01/demand-intelligence/signals",
-    "status": "PENDING",
-    "reason": "Mission Control SSH broker exposed zero allowlisted nodes in this session; die-prod-01 could not be addressed. No direct credential/IP bypass attempted.",
-    "closure_required": "Run the same public acquisition on Linux state root, prove immutable state plus cache replay, then mark H01-131A DONE and release H01-131B..H01-131H to READY."
+    "status": "PASS",
+    "transport": "ChatGPT Architect MCP exec -> authenticated SSH CLI as Variable\\aethers -> die-prod-01",
+    "first_status": "ACQUIRED",
+    "first_acquisition_id": "H01-ACQ-8534B42ADB4605F93B4B097C",
+    "replay_status": "CACHE_HIT_FRESH",
+    "replay_acquisition_id": "H01-ACQ-457A7D41CC5C6BF6CFC43D70",
+    "raw_sha256": "200f18580d33b561693372ec8bc5c6be5aacd925f0cce10ad47c873ae9ee87db",
+    "raw_bytes": 997,
+    "evidence_id": "H01-SIG-CB25A29BDDBFFA3B36AC578F",
+    "normalized_record_sha256": "f1c1262ebcfa0fad8c398a764481585688551575acdf39a756c642ae2226f536",
+    "effective_freshness": "FRESH",
+    "production_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false
   },
   "authority": {
     "credential_values_read": false,
@@ -61,5 +73,6 @@
     "submission_authorized": false,
     "publication_authorized": false,
     "spend_authorized": false
-  }
+  },
+  "closure": "H01-131A is operationally complete. H01-131B..H01-131H may execute in parallel against the merged per-source capability/acquisition-core contract."
 }
