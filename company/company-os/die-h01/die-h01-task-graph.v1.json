@@ -1,9 +1,9 @@
 {
   "schema": "die.h01.task-graph.v1",
-  "generated_at": "2026-09-13",
+  "generated_at": "2026-09-14T12:10:31.628Z",
   "status": "FOUNDER_APPROVED_CANONICAL_DESIGN_NOT_LIVE",
   "project": "DIE / H01 Factory Asset",
-  "source_sha": "83df35a6dda299b140d169989c89ac49a56a9ddd",
+  "source_sha": "88e36bc559b77e8c2498cef5f1aa56107e3df47e",
   "doctrine": {
     "global_control_plane": "die-control Windows VPS; one global Mission Control logical singleton",
     "h01_scope": "die-h01 Linux Factory Asset execution plane",
@@ -589,14 +589,15 @@
     {
       "id": "H01-115",
       "track": "SVG_STANDALONE",
-      "status": "RUNNING",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-108",
         "H01-105"
       ],
       "title": "Finalize first-100 SVG postproduction classification",
-      "acceptance": "Process the 100 technical masters through downstream postproduction and record terminal classification without changing H01-108 generation completion."
+      "acceptance": "Process the 100 technical masters through downstream postproduction and record terminal classification without changing H01-108 generation completion.",
+      "result": "PASS: first-100 downstream classification is terminal for all 100 technical masters without changing H01-108 generation truth. Live final state: 2 PASS, 54 REVIEW_REQUIRED, 44 BLOCKED_RIGHTS, 0 nonterminal; all 100 generation receipts remain GENERATION_COMPLETE/H01-103 PASS. die-h01-115-postproduction.service is active and idle with no provider-generation child process."
     },
     {
       "id": "H01-134",
@@ -769,6 +770,179 @@
       "title": "Implement evidence-scored noun/family prioritization",
       "acceptance": "Re-rank remaining production queue and family hypotheses from demand/competition/confidence evidence without invalidating already-produced masters.",
       "result": "PASS: deterministic evidence-scored prioritization ranks remaining queue items and family hypotheses while preserving queue identity, unranked production validity, and already-produced semantic masters."
+    },
+    {
+      "id": "H01-131A",
+      "track": "DEMAND_INTELLIGENCE",
+      "title": "Implement first-party market signal acquisition core v1",
+      "status": "READY",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-131"
+      ],
+      "acceptance": "Build a bounded fail-soft acquisition runtime under H01-131 with source capability registry, rate limits, cache TTL, freshness, immutable raw/normalized evidence hashes and persistent /var/lib/die/h01 demand-signal state. Prove at least one live first-party public source. No credentials/session bytes, marketplace submission/publication/spend or production blocking; optional public-market observations may fail independently without stopping supply-first production."
+    },
+    {
+      "id": "H01-131B",
+      "track": "DEMAND_INTELLIGENCE",
+      "title": "Add Shutterstock first-party Search Trends signal adapter v1",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-131A"
+      ],
+      "acceptance": "Acquire and normalize first-party Shutterstock Search Trends observations including search term, result count, demand band and growth where publicly exposed; persist source locator, observed_at, raw hash and freshness. Treat as optional high-confidence marketplace-native commercial-intent evidence; fail soft on source/layout/access changes and never require authenticated scraping."
+    },
+    {
+      "id": "H01-131C",
+      "track": "DEMAND_INTELLIGENCE",
+      "title": "Add Pond5 customer-search Data & Trends signal adapter v1",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-131A"
+      ],
+      "acceptance": "Acquire and normalize Pond5 first-party Data & Trends signals, prioritizing Illustrations for H01 SVG: top customer search terms plus trending-up/down percentages relative to prior weeks and observation period. Persist immutable evidence/provenance and treat explicit customer-search telemetry as high-confidence marketplace demand evidence. Source failure is non-blocking."
+    },
+    {
+      "id": "H01-130A",
+      "track": "DEMAND_INTELLIGENCE",
+      "title": "Implement live Demand Signal Materializer v1",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-131B",
+        "H01-131C"
+      ],
+      "acceptance": "Produce real die.h01.demand-signal-ranking.v1 records for H01-101 queue items from normalized evidence. Calibrate source confidence so direct marketplace customer-search telemetry outranks first-party popular-query lists, popularity/content-needs proxies, macro attention proxies and legacy heuristic priors. Emit NO_EVIDENCE/UNRANKED honestly when evidence is absent; prove real queue rank_score>0 without mutating eligibility, rights or production authority."
+    },
+    {
+      "id": "H01-133A",
+      "track": "DEMAND_INTELLIGENCE",
+      "title": "Implement operational Daily Demand Intelligence Cycle v1",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-130A",
+        "H01-133"
+      ],
+      "acceptance": "Orchestrate evidence refresh/cache -> H01-130 materialization -> H01-133 prioritization -> frozen daily selector manifest with durable receipts. Prove live ranked_selected>0 from real evidence and separately prove source-order fallback when all evidence is unavailable. Connector outages must never block standalone production."
+    },
+    {
+      "id": "H01-131D",
+      "track": "DEMAND_INTELLIGENCE",
+      "title": "Add Vecteezy popular/trending search signal adapter v1",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-131A"
+      ],
+      "acceptance": "Normalize first-party Vecteezy Top/Popular SVG and vector search observations, trending-search categories and observation timestamp into H01-131 evidence. Classify as marketplace-native popular-query evidence below explicit quantitative customer-search telemetry. Keep source optional and fail soft."
+    },
+    {
+      "id": "H01-131E",
+      "track": "DEMAND_INTELLIGENCE",
+      "title": "Add Freepik first-party trending vector search signal adapter v1",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-131A"
+      ],
+      "acceptance": "Normalize current first-party Freepik/Magnific trending vector search terms into immutable H01-131 evidence with source, observation time, media type and freshness. Treat as marketplace-native popular-query evidence, not fabricated query volume; source failure remains non-blocking."
+    },
+    {
+      "id": "H01-131F",
+      "track": "DEMAND_INTELLIGENCE",
+      "title": "Add 123RF first-party trending search signal adapter v1",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-131A"
+      ],
+      "acceptance": "Normalize current first-party 123RF trending search observations for commercially relevant media into immutable H01-131 evidence with provenance/freshness. Do not infer hidden visitor-query counts when the source exposes only ranked/category terms; source failure remains non-blocking."
+    },
+    {
+      "id": "H01-131G",
+      "track": "DEMAND_INTELLIGENCE",
+      "title": "Add Adobe Stock demand-observation adapter v1",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-131A"
+      ],
+      "acceptance": "Normalize first-party Adobe Stock demand observations from supported public surfaces such as real-time popular-content views, popular related searches, Contributor Insights/content-needs/creative-trend calls when available. Keep the evidence class distinct from raw customer-query telemetry and persist provenance/freshness without account automation."
+    },
+    {
+      "id": "H01-131H",
+      "track": "DEMAND_INTELLIGENCE",
+      "title": "Operationalize macro search/trend connectors v1",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-131A"
+      ],
+      "acceptance": "Execute/cache the existing Wikimedia attention proxy and an auth-aware Google Ads historical-metrics path when an authorized context exists. Any Google Trends observation may be admitted only through a compliant bounded public/import path and must remain a macro-trend proxy, not marketplace purchase intent. Missing auth/source must degrade to no evidence without blocking production."
+    },
+    {
+      "id": "H01-132A",
+      "track": "DEMAND_INTELLIGENCE",
+      "title": "Phase 0: enrich demand-selected standalone nouns with bounded Human Atlas context",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-133A",
+        "H01-132"
+      ],
+      "acceptance": "For only the bounded nouns selected by the daily Phase-0 standalone selector, materialize H01-132 Human Atlas buyer/activity/problem/industry/commercial-intent context and attach it to the frozen manifest/Blueprint input. No exhaustive Object Atlas x Human Atlas Cartesian expansion and no independent rank authority."
+    },
+    {
+      "id": "H01-102A",
+      "track": "SVG_FIRST",
+      "title": "Implement demand-aware Commercial Blueprint v3 deterministic baseline",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-130A",
+        "H01-132A",
+        "H01-102"
+      ],
+      "acceptance": "Upgrade deterministic Blueprint construction so commercial/use-case/buyer requirements are derived from hash-bound H01-130/H01-132 evidence rather than generic template text while noun identity, rights, vector style/preset and provider independence remain deterministic and reproducible. Same evidence must yield byte-stable semantic requirements."
+    },
+    {
+      "id": "H01-102B",
+      "track": "SVG_FIRST",
+      "title": "Evaluate optional LLM commercial-synthesis enrichment behind deterministic Blueprint guards",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-102A"
+      ],
+      "acceptance": "Run a bounded A/B evaluation of deterministic Blueprint v3 versus optional LLM semantic synthesis for buyer/use-case phrasing. LLM output must be schema-constrained, evidence-grounded, hash-recorded, non-authoritative for noun/rights/routing and have deterministic fallback. Promote only if measured semantic value exceeds variance/cost/latency risk."
+    },
+    {
+      "id": "H01-141A",
+      "track": "FOUNDER_CONSOLE",
+      "title": "Expose live Demand Intelligence telemetry in Founder Console",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-133A",
+        "H01-141"
+      ],
+      "acceptance": "Replace status-only Demand Intelligence read model with live read-only telemetry: source health/freshness, evidence counts, queue coverage, ranked/unranked counts, confidence distribution, top ranked nouns, daily selection reason and last refresh. Console remains read-only and must make zero-evidence/fallback state explicit."
+    },
+    {
+      "id": "H01-132B",
+      "track": "FAMILY_SET",
+      "title": "Phase 1: implement bounded F1 Object Atlas x Human Atlas cross-join candidate generator",
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-112",
+        "H01-132A",
+        "H01-130A"
+      ],
+      "acceptance": "After Phase-0 standalone scale proof, implement the bounded F1 Object Atlas x Human Atlas candidate layer: pin an eligible object plus compatible Human Atlas context, preserve object/context identities and evidence, and emit cross-join candidates for downstream longtail/Worth-Making evaluation. The World-Atlas cross-product is a candidate generator only, never an automatic production queue; exhaustive Cartesian expansion is forbidden."
     },
     {
       "id": "H01-300",
