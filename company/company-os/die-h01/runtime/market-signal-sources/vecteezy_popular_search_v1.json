@@ -1,0 +1,25 @@
+{
+  "schema": "die.h01.market-signal-source-capability.v1",
+  "source_id": "vecteezy_popular_search_v1",
+  "source_name": "Vecteezy public popular/trending search pages",
+  "adapter_state": "ACTIVE",
+  "acquisition_mode": "PUBLIC_HTTPS_TEXT",
+  "first_party": true,
+  "allowed_hosts": ["vecteezy.com"],
+  "auth_mode": "NONE",
+  "signal_classes": ["DEMAND", "TREND"],
+  "max_requests_per_run": 4,
+  "min_interval_seconds": 5.0,
+  "cache_ttl_seconds": 86400,
+  "max_response_bytes": 1048576,
+  "allowed_content_types": ["text/html"],
+  "commercial_intent_tier": "MARKETPLACE_POPULAR_QUERY",
+  "production_blocking": false,
+  "authority": {
+    "credential_read_authorized": false,
+    "production_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false
+  }
+}

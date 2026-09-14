@@ -1,0 +1,262 @@
+{
+  "cache_replay": {
+    "cache": {
+      "age_seconds": 19.219363,
+      "hit": true,
+      "latest_receipt": "sources/vecteezy_popular_search_v1/queries/0d8c67a94fd5779f6acdff99/acquisitions/H01-ACQ-2EE66CE678726FFB226D9E0A.json",
+      "ttl_seconds": 86400
+    },
+    "evidence": [
+      {
+        "evidence_id": "H01-SIG-6131AA74BC3514AB1BEDEB2E",
+        "relative_path": "sources/vecteezy_popular_search_v1/queries/0d8c67a94fd5779f6acdff99/evidence/H01-SIG-6131AA74BC3514AB1BEDEB2E.json",
+        "sha256": "0dfb2195531360e718b2aea121fe7d29cb01d41b6318d8a864af3daecc6290be"
+      }
+    ],
+    "raw_sha256": "f30c5f0f1dffa50253ccd67af97c3560d666e13d13806b99fe8030ad514d45be",
+    "receipt_relative_path": "sources/vecteezy_popular_search_v1/queries/0d8c67a94fd5779f6acdff99/acquisitions/H01-ACQ-D0625E576AA136E8865A1FA9.json",
+    "status": "CACHE_HIT_FRESH"
+  },
+  "classification": {
+    "commercial_intent_tier": "MARKETPLACE_POPULAR_QUERY",
+    "direct_customer_search_telemetry": false,
+    "fabricated_search_volume": false,
+    "macro_trend": false,
+    "popular_query_ranking": true,
+    "popular_rank_confidence": "MEDIUM_HIGH",
+    "popularity_content_needs_proxy": false,
+    "trending_category_confidence": "MEDIUM"
+  },
+  "live_proofs": [
+    {
+      "evidence": [
+        {
+          "evidence_id": "H01-SIG-6131AA74BC3514AB1BEDEB2E",
+          "relative_path": "sources/vecteezy_popular_search_v1/queries/0d8c67a94fd5779f6acdff99/evidence/H01-SIG-6131AA74BC3514AB1BEDEB2E.json",
+          "sha256": "0dfb2195531360e718b2aea121fe7d29cb01d41b6318d8a864af3daecc6290be"
+        }
+      ],
+      "ranked_term_count": 64,
+      "raw": {
+        "bytes": 534598,
+        "content_type": "text/html",
+        "relative_path": "sources/vecteezy_popular_search_v1/queries/0d8c67a94fd5779f6acdff99/raw/f30c5f0f1dffa50253ccd67af97c3560d666e13d13806b99fe8030ad514d45be.bin",
+        "sha256": "f30c5f0f1dffa50253ccd67af97c3560d666e13d13806b99fe8030ad514d45be"
+      },
+      "receipt_relative_path": "sources/vecteezy_popular_search_v1/queries/0d8c67a94fd5779f6acdff99/acquisitions/H01-ACQ-2EE66CE678726FFB226D9E0A.json",
+      "retrieved_at": "2026-09-14T15:39:29.621320Z",
+      "source_locator": "https://www.vecteezy.com/popular-svgs",
+      "status": "ACQUIRED",
+      "surface": "svg",
+      "top_terms": [
+        {
+          "path": "/free-svg/background",
+          "rank": 1,
+          "term": "background"
+        },
+        {
+          "path": "/free-svg/flower",
+          "rank": 2,
+          "term": "flower"
+        },
+        {
+          "path": "/free-svg/logo",
+          "rank": 3,
+          "term": "logo"
+        },
+        {
+          "path": "/free-svg/christmas",
+          "rank": 4,
+          "term": "christmas"
+        },
+        {
+          "path": "/free-svg/nature",
+          "rank": 5,
+          "term": "nature"
+        },
+        {
+          "path": "/free-svg/pattern",
+          "rank": 6,
+          "term": "pattern"
+        },
+        {
+          "path": "/free-svg/arrow",
+          "rank": 7,
+          "term": "arrow"
+        },
+        {
+          "path": "/free-svg/fire",
+          "rank": 8,
+          "term": "fire"
+        },
+        {
+          "path": "/free-svg/business-card",
+          "rank": 9,
+          "term": "business card"
+        },
+        {
+          "path": "/free-svg/business",
+          "rank": 10,
+          "term": "business"
+        },
+        {
+          "path": "/free-svg/banner",
+          "rank": 11,
+          "term": "banner"
+        },
+        {
+          "path": "/free-svg/tree",
+          "rank": 12,
+          "term": "tree"
+        }
+      ]
+    },
+    {
+      "evidence": [
+        {
+          "evidence_id": "H01-SIG-55277FDBCAB3ECBBA7615084",
+          "relative_path": "sources/vecteezy_popular_search_v1/queries/b08430e3a4f85c3325c6d12e/evidence/H01-SIG-55277FDBCAB3ECBBA7615084.json",
+          "sha256": "e4de99d7780977fc78e59e67af720c8d02e9768ccadd1a5ef3dcfb16a340900a"
+        },
+        {
+          "evidence_id": "H01-SIG-9F199C252EA52181A244A88F",
+          "relative_path": "sources/vecteezy_popular_search_v1/queries/b08430e3a4f85c3325c6d12e/evidence/H01-SIG-9F199C252EA52181A244A88F.json",
+          "sha256": "9e2475ae5ef90a63301223d66c2261f3dc84311bcea3abf73e8a916b6f94a821"
+        }
+      ],
+      "ranked_term_count": 64,
+      "raw": {
+        "bytes": 535224,
+        "content_type": "text/html",
+        "relative_path": "sources/vecteezy_popular_search_v1/queries/b08430e3a4f85c3325c6d12e/raw/144679b55a0be7b012ad51715e192a5db46e78b96e20cf0ad29d30c421409aff.bin",
+        "sha256": "144679b55a0be7b012ad51715e192a5db46e78b96e20cf0ad29d30c421409aff"
+      },
+      "receipt_relative_path": "sources/vecteezy_popular_search_v1/queries/b08430e3a4f85c3325c6d12e/acquisitions/H01-ACQ-DC0A8C70337FAFA7E127B89E.json",
+      "retrieved_at": "2026-09-14T15:39:38.531661Z",
+      "source_locator": "https://www.vecteezy.com/popular-vectors",
+      "status": "ACQUIRED",
+      "surface": "vector",
+      "top_terms": [
+        {
+          "path": "/free-vector/background",
+          "rank": 1,
+          "term": "background"
+        },
+        {
+          "path": "/free-vector/flower",
+          "rank": 2,
+          "term": "flower"
+        },
+        {
+          "path": "/free-vector/logo",
+          "rank": 3,
+          "term": "logo"
+        },
+        {
+          "path": "/free-vector/christmas",
+          "rank": 4,
+          "term": "christmas"
+        },
+        {
+          "path": "/free-vector/nature",
+          "rank": 5,
+          "term": "nature"
+        },
+        {
+          "path": "/free-vector/pattern",
+          "rank": 6,
+          "term": "pattern"
+        },
+        {
+          "path": "/free-vector/arrow",
+          "rank": 7,
+          "term": "arrow"
+        },
+        {
+          "path": "/free-vector/fire",
+          "rank": 8,
+          "term": "fire"
+        },
+        {
+          "path": "/free-vector/business-card",
+          "rank": 9,
+          "term": "business card"
+        },
+        {
+          "path": "/free-vector/business",
+          "rank": 10,
+          "term": "business"
+        },
+        {
+          "path": "/free-vector/banner",
+          "rank": 11,
+          "term": "banner"
+        },
+        {
+          "path": "/free-vector/tree",
+          "rank": 12,
+          "term": "tree"
+        }
+      ],
+      "trending_categories": [
+        {
+          "label": "Backgrounds",
+          "path": "/free-vector/background",
+          "term": "background"
+        },
+        {
+          "label": "Banners",
+          "path": "/free-vector/banners",
+          "term": "banners"
+        },
+        {
+          "label": "Plants",
+          "path": "/free-vector/plant",
+          "term": "plant"
+        },
+        {
+          "label": "Flowers",
+          "path": "/free-vector/flowers",
+          "term": "flowers"
+        },
+        {
+          "label": "Pattern",
+          "path": "/free-vector/pattern",
+          "term": "pattern"
+        },
+        {
+          "label": "Wedding",
+          "path": "/free-vector/wedding",
+          "term": "wedding"
+        },
+        {
+          "label": "People",
+          "path": "/free-vector/people",
+          "term": "people"
+        },
+        {
+          "label": "Landscape",
+          "path": "/free-vector/landscape",
+          "term": "landscape"
+        }
+      ]
+    }
+  ],
+  "non_quantitative_fields": {
+    "search_volume": null,
+    "trend_percentage": null,
+    "visitor_query_count": null
+  },
+  "policy": {
+    "cookies_or_tokens_read": false,
+    "credential_values_read": false,
+    "production_authorized": false,
+    "publication_authorized": false,
+    "source_failure_blocks_production": false,
+    "spend_authorized": false,
+    "submission_authorized": false
+  },
+  "schema": "die.h01.vecteezy-popular-search-live-proof.v1",
+  "source_id": "vecteezy_popular_search_v1",
+  "task_id": "H01-131D"
+}

@@ -1,0 +1,76 @@
+{
+  "authority": {
+    "cookies_or_tokens_read": false,
+    "credential_values_read": false,
+    "production_authorized": false,
+    "publication_authorized": false,
+    "source_failure_blocks_production": false,
+    "spend_authorized": false,
+    "submission_authorized": false
+  },
+  "classification": {
+    "commercial_intent_tier": "MARKETPLACE_POPULAR_QUERY",
+    "direct_customer_search_telemetry": false,
+    "fabricated_search_volume": false,
+    "macro_trend": false,
+    "popular_query_ranking": true,
+    "popular_rank_confidence": "MEDIUM_HIGH",
+    "popularity_content_needs_proxy": false,
+    "trending_category_confidence": "MEDIUM"
+  },
+  "closure": "Vecteezy public Top SVG/Vector rankings and vector Trending Searches categories are optional MARKETPLACE_POPULAR_QUERY evidence. No hidden search volume or visitor-query counts are inferred; source/layout/outage failure remains fail-soft.",
+  "implementation": {
+    "adapter": "company/company-os/die-h01/lib/vecteezy_market_signal.py",
+    "capability": "company/company-os/die-h01/runtime/market-signal-sources/vecteezy_popular_search_v1.json",
+    "cli": "company/company-os/die-h01/engineering/h01_vecteezy_signal_acquire.py",
+    "live_proof": "company/company-os/die-h01/evidence/H01-131D-vecteezy-first-party-proof.json",
+    "source_tests": "company/company-os/die-h01/engineering/test_h01_131d_vecteezy.py"
+  },
+  "live_acceptance": {
+    "cache_replay_status": "CACHE_HIT_FRESH",
+    "svg_raw_sha256": "f30c5f0f1dffa50253ccd67af97c3560d666e13d13806b99fe8030ad514d45be",
+    "svg_retrieved_at": "2026-09-14T15:39:29.621320Z",
+    "svg_status": "ACQUIRED",
+    "vector_raw_sha256": "144679b55a0be7b012ad51715e192a5db46e78b96e20cf0ad29d30c421409aff",
+    "vector_retrieved_at": "2026-09-14T15:39:38.531661Z",
+    "vector_status": "ACQUIRED"
+  },
+  "origin_main_at_start": "11e7915106b0c3c5308e899ff68b103a8c057a77",
+  "schema": "die.h01.h01-131d.vecteezy-popular-search-adapter.implementation.v1",
+  "shared_contract_compatibility_extension": {
+    "change": "add vecteezy_popular_search_v1 to connector_id enum only",
+    "file": "company/company-os/die-h01/contracts/h01-market-signal-evidence.v1.schema.json",
+    "semantic_change": false
+  },
+  "source_truth": {
+    "auth_required": false,
+    "first_party_public_https": true,
+    "search_volume_exposed": false,
+    "top_svg_ranked_terms": 64,
+    "top_vector_ranked_terms": 64,
+    "trend_percentage_exposed": false,
+    "trending_vector_categories": [
+      "Backgrounds",
+      "Banners",
+      "Plants",
+      "Flowers",
+      "Pattern",
+      "Wedding",
+      "People",
+      "Landscape"
+    ],
+    "visitor_query_count_exposed": false
+  },
+  "status": "DONE_PASS",
+  "task_id": "H01-131D",
+  "tests": {
+    "capability_registry": "3/3 PASS",
+    "git_diff_check": "PASS",
+    "live_evidence_schema_refs": "4/4 PASS",
+    "live_receipt_schema": "3/3 PASS",
+    "partial_layout_popular_salvage": "PASS",
+    "python_compile": "PASS",
+    "shared_h01_131a_core_semantic_change": false,
+    "source_specific": "8/8 PASS"
+  }
+}

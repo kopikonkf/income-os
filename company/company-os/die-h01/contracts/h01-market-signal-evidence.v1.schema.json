@@ -18,7 +18,7 @@
   ],
   "properties": {
     "schema": {"const": "die.h01.market-signal-evidence.v1"},
-    "connector_id": {"enum": ["wikimedia_pageviews_v1", "google_ads_keyword_historical_v1"]},
+    "connector_id": {"enum": ["wikimedia_pageviews_v1", "google_ads_keyword_historical_v1", "vecteezy_popular_search_v1"]},
     "evidence_id": {"type": "string", "pattern": "^H01-SIG-[0-9A-F]{24}$"},
     "evidence_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "signal_class": {"enum": ["DEMAND", "TREND"]},
