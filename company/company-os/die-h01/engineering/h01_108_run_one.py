@@ -18,7 +18,7 @@ def sha_file(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def fail_result(w,job,provider,profile,udd,code):
  dump(w/'browser-job-result.json',{'schema':'die.h01.browser-job-result.v1','job_id':job,'job_kind':'H01_108_PRODUCTION','provider_id':provider,'profile_id':profile,'udd_id':udd,'terminal_state':'FAILED','completed_at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'error_code':code,'authority':{'provider_generation_dispatched':None,'provider_generation_dispatch_state':'UNKNOWN_AFTER_PROVIDER_DRIVER_ERROR','submission_authorized':False,'publication_authorized':False}})
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--manifest',required=True);ap.add_argument('--position',type=int,required=True);ap.add_argument('--provider',default='');ap.add_argument('--runs-root',default='/var/lib/die/h01/runs/H01-108');ap.add_argument('--attempt',type=int,default=1);ns=ap.parse_args()
+ ap=argparse.ArgumentParser();ap.add_argument('--manifest',required=True);ap.add_argument('--position',type=int,required=True);ap.add_argument('--provider',default='');ap.add_argument('--runs-root',default='/var/lib/die/h01/runs/H01-108');ap.add_argument('--attempt',type=int,default=1);ap.add_argument('--intent-manifest',default='');ns=ap.parse_args()
  m=json.loads(Path(ns.manifest).read_text());it=next((x for x in m['items'] if x['batch_position']==ns.position),None)
  if not it:raise SystemExit('E_POSITION')
  provider=ns.provider or it['planned_provider']
@@ -31,7 +31,9 @@ def main():
  safe_lease={k:v for k,v in lease.items() if k!='lease_token'};dump(w/'scheduler-lease.sanitized.json',safe_lease)
  completed=False
  try:
-  run([FACTORY_PY,str(H01/'engineering/h01_108_blueprint.py'),'--manifest',ns.manifest,'--position',str(ns.position),'--provider',provider,'--out-dir',str(w)])
+  blueprint_cmd=[FACTORY_PY,str(H01/'engineering/h01_108_blueprint.py'),'--manifest',ns.manifest,'--position',str(ns.position),'--provider',provider,'--out-dir',str(w)]
+  if ns.intent_manifest:blueprint_cmd += ['--intent-manifest',ns.intent_manifest]
+  run(blueprint_cmd)
   claim=jrun([SCHED,'claim-dispatch','--lease-id',lid,f'--lease-token={token}']);
   if claim.get('dispatch_authorized') is not True:raise RuntimeError('E_DISPATCH_NOT_AUTHORIZED')
   dump(w/'scheduler-dispatch-claim.sanitized.json',{k:v for k,v in claim.items() if k!='lease_token'})

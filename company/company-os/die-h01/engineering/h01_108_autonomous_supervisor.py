@@ -119,7 +119,7 @@ def scheduler_status():
  return json.loads(cp.stdout)
 
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--manifest',required=True);ap.add_argument('--runs-root',default='/var/lib/die/h01/runs/H01-108');ap.add_argument('--poll-seconds',type=int,default=15);ap.add_argument('--max-attempts-per-item',type=int,default=12);ap.add_argument('--max-provider-redistributions-per-item',type=int,default=1);ap.add_argument('--progress-file',default='/var/lib/die/h01/runs/H01-108/autonomous-progress.json');ns=ap.parse_args()
+ ap=argparse.ArgumentParser();ap.add_argument('--manifest',required=True);ap.add_argument('--runs-root',default='/var/lib/die/h01/runs/H01-108');ap.add_argument('--poll-seconds',type=int,default=15);ap.add_argument('--max-attempts-per-item',type=int,default=12);ap.add_argument('--max-provider-redistributions-per-item',type=int,default=1);ap.add_argument('--progress-file',default='/var/lib/die/h01/runs/H01-108/autonomous-progress.json');ap.add_argument('--intent-manifest',default='');ns=ap.parse_args()
  manifest=json.loads(Path(ns.manifest).read_text());items=manifest['items'];root=Path(ns.runs_root);root.mkdir(parents=True,exist_ok=True);progress=Path(ns.progress_file);failures={}
  while True:
   for item in items:
@@ -152,7 +152,9 @@ def main():
     state['status']='BLOCKED_MAX_ATTEMPTS';state['exhausted_positions']=[i['batch_position'] for i in exhausted];atomic_json(progress,state);print(json.dumps(state,sort_keys=True),flush=True);return 2
    time.sleep(ns.poll_seconds);continue
   item,provider,attempt,route=candidate;state['current']={'position':item['batch_position'],'noun':item['canonical_name'],'provider':provider,'planned_provider':item['planned_provider'],'provider_route':route,'attempt':attempt};atomic_json(progress,state)
-  cp=subprocess.run([PYTHON,str(H01/'engineering/h01_108_run_one.py'),'--manifest',ns.manifest,'--position',str(item['batch_position']),'--provider',provider,'--attempt',str(attempt)],text=True,capture_output=True)
+  cmd=[PYTHON,str(H01/'engineering/h01_108_run_one.py'),'--manifest',ns.manifest,'--position',str(item['batch_position']),'--provider',provider,'--attempt',str(attempt)]
+  if ns.intent_manifest:cmd += ['--intent-manifest',ns.intent_manifest]
+  cp=subprocess.run(cmd,text=True,capture_output=True)
   key=str(item['batch_position'])
   if cp.returncode:failures[key]={'provider':provider,'attempt':attempt,'stderr':cp.stderr[-600:],'stdout':cp.stdout[-600:]}
   else:failures.pop(key,None)

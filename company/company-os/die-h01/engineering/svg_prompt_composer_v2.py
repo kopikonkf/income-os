@@ -10,6 +10,7 @@ import jsonschema
 ROOT = Path(__file__).resolve().parents[4]
 H01 = ROOT / 'company/company-os/die-h01'
 BLUEPRINT_SCHEMA = H01 / 'contracts/h01-svg-blueprint-v2.schema.json'
+BLUEPRINT_V3_SCHEMA = H01 / 'contracts/h01-svg-blueprint-v3.schema.json'
 MASTER_SCHEMA = H01 / 'contracts/h01-svg-master-instruction-v2.schema.json'
 PROMPT_SCHEMA = H01 / 'contracts/h01-svg-provider-prompt-v2.schema.json'
 PROFILE_PATH = H01 / 'runtime/h01-svg-prompt-profiles.v2.json'
@@ -48,7 +49,9 @@ def _list_clause(label: str, items: list[str]) -> str | None:
     return f'{label}: ' + '; '.join(vals) if vals else None
 
 def validate_blueprint(blueprint: dict[str, Any]) -> None:
-    _validate(blueprint, BLUEPRINT_SCHEMA, 'BLUEPRINT_SCHEMA_INVALID')
+    schema_name = blueprint.get('schema')
+    schema_path = BLUEPRINT_V3_SCHEMA if schema_name == 'die.h01.svg-blueprint.v3' else BLUEPRINT_SCHEMA
+    _validate(blueprint, schema_path, 'BLUEPRINT_SCHEMA_INVALID')
     encoded = _bytes(blueprint)
     if len(encoded) > 32_768:
         raise SvgPromptError('BLUEPRINT_TOO_LARGE', str(len(encoded)))

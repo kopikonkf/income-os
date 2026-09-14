@@ -4,8 +4,9 @@ import argparse, json, re, sys
 from pathlib import Path
 
 HERE=Path(__file__).resolve(); H01=HERE.parents[1]
-sys.path.insert(0,str(H01/'engineering'))
+sys.path.insert(0,str(H01/'engineering')); sys.path.insert(0,str(H01/'lib'))
 from svg_prompt_composer_v2 import compile_master_instruction, compile_provider_prompt, sha256_value, sha256_text
+from commercial_blueprint_v3 import build_blueprint_v3
 
 PROFILE={'claude':'CLAUDE_WEB','chatgpt':'CHATGPT_WEB','qwen':'QWEN_WEB','gemini':'GEMINI_WEB','manus':'MANUS_WEB','copilot':'GENERIC_WEB_AI'}
 
@@ -54,13 +55,25 @@ def compact_manus(bp,master):
  return {'schema':'die.h01.svg-provider-prompt.v2','composer_revision':'H01-108-COMPACT-1','provider_profile':'MANUS_WEB','blueprint_id':bp['blueprint_id'],'blueprint_sha256':sha256_value(bp),'master_instruction_sha256':master['master_instruction_sha256'],'prompt':text,'prompt_chars':len(text),'prompt_budget_chars':3000,'prompt_sha256':sha256_text(text),'semantic_omission_count':0,'authority':{'provider_call_authorized':False,'submission_authorized':False,'publication_authorized':False},'prompt_variant':'COMPACT_SEMANTIC_EQUIVALENT_UI_3000_CHAR_LIMIT'}
 
 def main():
- ap=argparse.ArgumentParser(); ap.add_argument('--manifest',required=True); ap.add_argument('--position',type=int,required=True); ap.add_argument('--provider',required=True); ap.add_argument('--out-dir',required=True); ns=ap.parse_args()
+ ap=argparse.ArgumentParser(); ap.add_argument('--manifest',required=True); ap.add_argument('--position',type=int,required=True); ap.add_argument('--provider',required=True); ap.add_argument('--out-dir',required=True); ap.add_argument('--intent-manifest',default=''); ns=ap.parse_args()
  m=json.loads(Path(ns.manifest).read_text()); item=next((x for x in m['items'] if x['batch_position']==ns.position),None)
  if not item: raise SystemExit('E_POSITION')
- bp=build_blueprint(item); master=compile_master_instruction(bp); profile=PROFILE[ns.provider]
+ intent=None
+ if ns.intent_manifest:
+  im=json.loads(Path(ns.intent_manifest).read_text())
+  ref=next((x for x in im.get('intents',[]) if x.get('batch_position')==ns.position and x.get('queue_item_id')==item['queue_item_id']),None)
+  if not ref: raise SystemExit('E_PRODUCTION_INTENT_REF')
+  intent=json.loads(Path(ref['path']).read_text())
+  if intent.get('intent_id')!=ref.get('intent_id') or sha256_value(intent)!=ref.get('intent_sha256') or intent.get('queue_identity',{}).get('queue_item_id')!=item['queue_item_id'] or intent.get('queue_identity',{}).get('canonical_name')!=item['canonical_name'] or intent.get('selection',{}).get('batch_position')!=ns.position: raise SystemExit('E_PRODUCTION_INTENT_IDENTITY')
+  bp=build_blueprint_v3(intent)
+ else:
+  bp=build_blueprint(item)
+ master=compile_master_instruction(bp); profile=PROFILE[ns.provider]
  prompt=compact_manus(bp,master) if ns.provider=='manus' else compile_provider_prompt(blueprint=bp,master=master,provider_profile=profile)
  out=Path(ns.out_dir); out.mkdir(parents=True,exist_ok=True)
- for name,val in [('blueprint.json',bp),('master-instruction.json',master),('provider-prompt.json',prompt),('batch-item.json',item)]: (out/name).write_text(json.dumps(val,indent=2,sort_keys=True)+'\n')
+ outputs=[('blueprint.json',bp),('master-instruction.json',master),('provider-prompt.json',prompt),('batch-item.json',item)]
+ if intent is not None: outputs.append(('production-intent.json',intent))
+ for name,val in outputs: (out/name).write_text(json.dumps(val,indent=2,sort_keys=True)+'\n')
  (out/'prompt.txt').write_text(prompt['prompt']+'\n')
  print(json.dumps({'status':'PASS','position':ns.position,'noun':item['canonical_name'],'provider':ns.provider,'blueprint_sha256':sha256_value(bp),'master_sha256':master['master_instruction_sha256'],'prompt_sha256':prompt['prompt_sha256'],'prompt_chars':prompt['prompt_chars']}))
 if __name__=='__main__':main()

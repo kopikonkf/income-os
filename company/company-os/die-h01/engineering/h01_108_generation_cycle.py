@@ -22,14 +22,16 @@ def next_attempt(root:Path,item:dict)->int:
   if m:vals.append(int(m.group(1)))
  return max(vals,default=0)+1
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--manifest',required=True);ap.add_argument('--runs-root',default='/var/lib/die/h01/runs/H01-108');ap.add_argument('--positions',default='');ap.add_argument('--max-new-attempts',type=int,default=1);ns=ap.parse_args();m=json.loads(Path(ns.manifest).read_text());root=Path(ns.runs_root);wanted={int(x) for x in ns.positions.split(',') if x.strip()} if ns.positions else None
+ ap=argparse.ArgumentParser();ap.add_argument('--manifest',required=True);ap.add_argument('--runs-root',default='/var/lib/die/h01/runs/H01-108');ap.add_argument('--positions',default='');ap.add_argument('--max-new-attempts',type=int,default=1);ap.add_argument('--intent-manifest',default='');ns=ap.parse_args();m=json.loads(Path(ns.manifest).read_text());root=Path(ns.runs_root);wanted={int(x) for x in ns.positions.split(',') if x.strip()} if ns.positions else None
  summary=[]
  for item in m['items']:
   if wanted is not None and item['batch_position'] not in wanted:continue
   if generated(root,item):summary.append({'position':item['batch_position'],'status':'ALREADY_GENERATION_COMPLETE'});continue
   success=False
   for _ in range(ns.max_new_attempts):
-   a=next_attempt(root,item);cp=subprocess.run([PYTHON,str(H01/'engineering/h01_108_run_one.py'),'--manifest',ns.manifest,'--position',str(item['batch_position']),'--attempt',str(a)],text=True,capture_output=True)
+   a=next_attempt(root,item);cmd=[PYTHON,str(H01/'engineering/h01_108_run_one.py'),'--manifest',ns.manifest,'--position',str(item['batch_position']),'--attempt',str(a)]
+   if ns.intent_manifest:cmd += ['--intent-manifest',ns.intent_manifest]
+   cp=subprocess.run(cmd,text=True,capture_output=True)
    row={'position':item['batch_position'],'noun':item['canonical_name'],'provider':item['planned_provider'],'attempt':a,'returncode':cp.returncode,'stdout':cp.stdout[-800:],'stderr':cp.stderr[-800:]};summary.append(row);print(json.dumps(row),flush=True)
    if cp.returncode==0:success=True;break
    time.sleep(1)
