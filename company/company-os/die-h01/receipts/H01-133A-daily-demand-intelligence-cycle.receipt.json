@@ -1,0 +1,79 @@
+{
+  "authority": {
+    "production_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false,
+    "submission_authorized": false
+  },
+  "candidate_commit": "cf8cddacb4352a96bad8dbc76554736be37efd5d",
+  "implementation": {
+    "cli": "company/company-os/die-h01/engineering/h01_133a_daily_demand_cycle.py",
+    "cycle_lib": "company/company-os/die-h01/lib/daily_demand_cycle.py",
+    "design": "company/company-os/die-h01/DIE_H01_DAILY_DEMAND_INTELLIGENCE_CYCLE_V1.md",
+    "tests": "bridge/tests/test_h01_133a_daily_demand_cycle_v1.py"
+  },
+  "no_evidence_acceptance": {
+    "cycle_id": "H01-DCYCLE-6C23E6BF801CF91113F27365",
+    "fallback_selected": 100,
+    "materialization_id": "H01-DMAT-137EC61189A67C9BCD8238BC",
+    "ranked_materialized": 0,
+    "ranked_selected": 0,
+    "refresh_skipped": true,
+    "selection_id": "H01-DAILY-AE6001AE68881004255CAF53",
+    "signals_root": "isolated-empty-store",
+    "status": "PASS",
+    "unranked_materialized": 43005
+  },
+  "operational_live_acceptance": {
+    "cycle_id": "H01-DCYCLE-AC9AEEDEA79D6F52BA60FF98",
+    "cycle_receipt": "/var/lib/die/h01/demand-intelligence/daily/2026-09-14/H01-DCYCLE-AC9AEEDEA79D6F52BA60FF98/cycle.receipt.json",
+    "day_key": "2026-09-14",
+    "fallback_selected": 96,
+    "materialization_id": "H01-DMAT-0C0EC82F559033508AE086E1",
+    "materialization_sha256": "bc5c6ea7a58d939e32c596154e2cd9010a59bf608094aefcb53ff6e108c0823a",
+    "queue_items": 43005,
+    "ranked_materialized": 5,
+    "ranked_selected": 4,
+    "refresh_attempt_id": "H01-DREFRESH-E69F0CC702DC21161F675FAB",
+    "refresh_attempt_receipts_are_separate": true,
+    "refresh_status": "PASS_WITH_DEGRADED_SOURCES",
+    "replay_same_cycle_id": true,
+    "replay_same_selection_id": true,
+    "selection_id": "H01-DAILY-52BA25C07ED0E582F7D47BFB",
+    "selector_sha256": "077e966cfb9ec6859231386537c965b977e1ce12fd5feb8646b01ffc7910b9ef",
+    "source_statuses": {
+      "123rf_trending_search_v1": "CACHE_HIT_FRESH",
+      "google_ads_keyword_historical_v1": "DEGRADED_AUTH_REQUIRED",
+      "wikimedia_pageviews_v1": "CACHE_HIT_FRESH"
+    },
+    "unranked_materialized": 43000
+  },
+  "policy": {
+    "feasibility_mutated": false,
+    "frozen_cycle_is_content_addressed": true,
+    "generation_validity_mutated": false,
+    "missing_evidence_blocks_standalone_production": false,
+    "no_evidence_selector_policy": "SOURCE_ORDER_FALLBACK",
+    "object_atlas_validity_mutated": false,
+    "queue_identity_mutated": false,
+    "refresh_history_is_separate_from_cycle_identity": true,
+    "rights_mutated": false,
+    "source_refresh_failure_blocks_cycle": false
+  },
+  "scheduler_boundary": {
+    "business_scheduler": "MISSION_CONTROL_ONLY",
+    "competing_scheduler_added": false,
+    "cron_added": false,
+    "systemd_timer_added": false
+  },
+  "schema": "die.h01.h01-133a.daily-demand-intelligence-cycle.acceptance.v1",
+  "status": "DONE_PASS",
+  "task_id": "H01-133A",
+  "tests": {
+    "final_targeted": "59/59 PASS",
+    "focused_linux_final_candidate": "30/30 PASS",
+    "focused_windows_before_final_seal": "30/30 PASS",
+    "one_canon": "validator 11/11 PASS; secret hits 0",
+    "python_compile": "PASS"
+  }
+}
