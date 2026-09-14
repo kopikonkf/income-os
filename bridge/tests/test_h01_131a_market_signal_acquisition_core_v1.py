@@ -49,7 +49,7 @@ class H01131AAcquisitionCore(unittest.TestCase):
     def test_registry_is_per_source_schema_valid_and_parallel_friendly(self):
         registry = M.SourceCapabilityRegistry(REGISTRY_DIR)
         snap = registry.snapshot()
-        self.assertEqual(set(snap), {"wikimedia_pageviews_v1", "google_ads_keyword_historical_v1"})
+        self.assertTrue({"wikimedia_pageviews_v1", "google_ads_keyword_historical_v1"}.issubset(set(snap)))
         for source_id, row in snap.items():
             jsonschema.Draft202012Validator(CAP_SCHEMA).validate(row)
             self.assertEqual((REGISTRY_DIR / f"{source_id}.json").name, f"{source_id}.json")

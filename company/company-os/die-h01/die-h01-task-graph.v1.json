@@ -787,12 +787,13 @@
       "id": "H01-131B",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Add Shutterstock first-party Search Trends signal adapter v1",
-      "status": "READY",
+      "status": "BLOCKED",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131A"
       ],
-      "acceptance": "Acquire and normalize first-party Shutterstock Search Trends observations including search term, result count, demand band and growth where publicly exposed; persist source locator, observed_at, raw hash and freshness. Treat as optional high-confidence marketplace-native commercial-intent evidence; fail soft on source/layout/access changes and never require authenticated scraping."
+      "acceptance": "Acquire and normalize first-party Shutterstock Search Trends observations including search term, result count, demand band and growth where publicly exposed; persist source locator, observed_at, raw hash and freshness. Treat as optional high-confidence marketplace-native commercial-intent evidence; fail soft on source/layout/access changes and never require authenticated scraping.",
+      "result": "IMPLEMENTED/BLOCKED: Shutterstock Search Trends v1 capability, bounded static-HTML parser/normalizer, H01-131A immutable raw/evidence integration tests, cache/freshness and fail-soft behavior implemented. 24 focused H01-131/H01-131A/H01-131B tests PASS. Current Shutterstock Terms of Use prohibit data-mining/robot extraction, and unauthenticated DIE Linux probes to https://www.shutterstock.com/trends return HTTP 403. Canonical capability therefore remains DISABLED; no credentials/cookies/browser auth were used and no search volume/query counts were fabricated. Activation requires a compliant official/authorized programmatic access path."
     },
     {
       "id": "H01-131C",

@@ -1,0 +1,25 @@
+{
+  "schema": "die.h01.market-signal-source-capability.v1",
+  "source_id": "shutterstock_search_trends_v1",
+  "source_name": "Shutterstock Search Trends",
+  "adapter_state": "DISABLED",
+  "acquisition_mode": "PUBLIC_HTTPS_TEXT",
+  "first_party": true,
+  "allowed_hosts": ["www.shutterstock.com"],
+  "auth_mode": "NONE",
+  "signal_classes": ["DEMAND", "COMPETITION", "COMMERCIAL_INTENT"],
+  "max_requests_per_run": 1,
+  "min_interval_seconds": 3600.0,
+  "cache_ttl_seconds": 21600,
+  "max_response_bytes": 4194304,
+  "allowed_content_types": ["text/html"],
+  "commercial_intent_tier": "DIRECT_MARKETPLACE_QUERY",
+  "production_blocking": false,
+  "authority": {
+    "credential_read_authorized": false,
+    "production_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false
+  }
+}
