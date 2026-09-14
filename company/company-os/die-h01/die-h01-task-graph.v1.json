@@ -1,6 +1,6 @@
 {
   "schema": "die.h01.task-graph.v1",
-  "generated_at": "2026-09-14T12:10:31.628Z",
+  "generated_at": "2026-09-14T12:51:20.487Z",
   "status": "FOUNDER_APPROVED_CANONICAL_DESIGN_NOT_LIVE",
   "project": "DIE / H01 Factory Asset",
   "source_sha": "88e36bc559b77e8c2498cef5f1aa56107e3df47e",
@@ -775,12 +775,13 @@
       "id": "H01-131A",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Implement first-party market signal acquisition core v1",
-      "status": "READY",
+      "status": "RUNNING",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131"
       ],
-      "acceptance": "Build a bounded fail-soft acquisition runtime under H01-131 with source capability registry, rate limits, cache TTL, freshness, immutable raw/normalized evidence hashes and persistent /var/lib/die/h01 demand-signal state. Prove at least one live first-party public source. No credentials/session bytes, marketplace submission/publication/spend or production blocking; optional public-market observations may fail independently without stopping supply-first production."
+      "acceptance": "Build a bounded fail-soft acquisition runtime under H01-131 with source capability registry, rate limits, cache TTL, freshness, immutable raw/normalized evidence hashes and persistent /var/lib/die/h01 demand-signal state. Prove at least one live first-party public source. No credentials/session bytes, marketplace submission/publication/spend or production blocking; optional public-market observations may fail independently without stopping supply-first production.",
+      "result": "IMPLEMENTATION PASS: shared first-party signal acquisition core implemented with per-source capability files, HTTPS/domain guard, secret-header rejection, persistent source lease/minimum interval, bounded request/response policy, immutable raw+normalized evidence, fresh cache and stale-cache fail-soft fallback. Live Windows first-party Wikimedia proof acquired 7-day Cat evidence (80,887 pageviews) and replayed CACHE_HIT_FRESH. Linux /var/lib/die/h01 activation remains pending because Mission Control SSH broker exposed zero allowlisted nodes in this session."
     },
     {
       "id": "H01-131B",
@@ -911,12 +912,13 @@
       "id": "H01-102B",
       "track": "SVG_FIRST",
       "title": "Evaluate optional LLM commercial-synthesis enrichment behind deterministic Blueprint guards",
-      "status": "BLOCKED",
+      "status": "DEFERRED",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-102A"
       ],
-      "acceptance": "Run a bounded A/B evaluation of deterministic Blueprint v3 versus optional LLM semantic synthesis for buyer/use-case phrasing. LLM output must be schema-constrained, evidence-grounded, hash-recorded, non-authoritative for noun/rights/routing and have deterministic fallback. Promote only if measured semantic value exceeds variance/cost/latency risk."
+      "acceptance": "Run a bounded A/B evaluation of deterministic Blueprint v3 versus optional LLM semantic synthesis for buyer/use-case phrasing. LLM output must be schema-constrained, evidence-grounded, hash-recorded, non-authoritative for noun/rights/routing and have deterministic fallback. Promote only if measured semantic value exceeds variance/cost/latency risk.",
+      "result": "FOUNDER DIRECTIVE: keep Blueprint/Master Prompt deterministic Python only as the Phase-0 baseline. Revisit optional LLM commercial-synthesis enrichment only after the deterministic demand -> blueprint -> artifact baseline is operationally stable."
     },
     {
       "id": "H01-141A",
