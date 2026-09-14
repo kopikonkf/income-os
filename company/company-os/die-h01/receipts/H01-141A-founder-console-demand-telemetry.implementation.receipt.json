@@ -1,0 +1,62 @@
+{
+  "authority": {
+    "production_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false,
+    "submission_authorized": false
+  },
+  "implementation": {
+    "design": "company/company-os/die-h01/DIE_H01_FOUNDER_CONSOLE_DEMAND_TELEMETRY_V1.md",
+    "live_proof": "company/company-os/die-h01/evidence/H01-141A-founder-console-demand-telemetry-live-proof.json",
+    "runtime_adapter": "company/company-os/die-h01/founder-console/adapter.mjs",
+    "secondary_read_model": "company/company-os/die-h01/founder-console/read_models.mjs",
+    "telemetry_projection": "company/company-os/die-h01/founder-console/demand_telemetry.mjs",
+    "tests": "company/company-os/die-h01/founder-console/test/demand-telemetry.test.mjs",
+    "ui": "company/company-os/die-h01/founder-console/public/index.html"
+  },
+  "live_acceptance": {
+    "canary_terminated": true,
+    "cycle_id": "H01-DCYCLE-AC9AEEDEA79D6F52BA60FF98",
+    "evidence_records": 2,
+    "existing_20128_preserved": true,
+    "fallback_selected": 96,
+    "last_refresh": "2026-09-14T17:33:19.899299Z",
+    "legacy_8876_preserved": true,
+    "post_status": 405,
+    "queue_items": 43005,
+    "ranked_count": 5,
+    "refresh_status": "PASS_WITH_DEGRADED_SOURCES",
+    "top_ranked_nouns": [
+      "food",
+      "transportation",
+      "vintage",
+      "animals"
+    ],
+    "unranked_count": 43000
+  },
+  "origin_main_at_start": "fbe1e2e57c4b16ad87e614f51148d7a57539776f",
+  "schema": "die.h01.h01-141a.founder-console-demand-telemetry.implementation.v1",
+  "semantics": {
+    "console_read_only": true,
+    "demand_engine_changed": false,
+    "fallback_explicit": true,
+    "materializer_changed": false,
+    "refresh_triggered_by_console": false,
+    "selector_changed": false,
+    "top_rank_source": "FROZEN_SELECTOR_PRIORITY_RANK",
+    "zero_evidence_explicit": true
+  },
+  "status": "DONE_PASS",
+  "task_id": "H01-141A",
+  "tests": {
+    "canonical_materialization_hash_unchanged": "PASS",
+    "canonical_selector_hash_unchanged": "PASS",
+    "founder_console": "17/17 PASS",
+    "git_diff_check": "PASS",
+    "inline_ui_syntax": "PASS",
+    "json_artifacts": "PASS",
+    "live_get_read_only": "PASS",
+    "live_post_rejected": "405 PASS",
+    "node_module_syntax": "PASS"
+  }
+}

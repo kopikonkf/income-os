@@ -932,13 +932,14 @@
       "id": "H01-141A",
       "track": "FOUNDER_CONSOLE",
       "title": "Expose live Demand Intelligence telemetry in Founder Console",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-133A",
         "H01-141"
       ],
-      "acceptance": "Replace status-only Demand Intelligence read model with live read-only telemetry: source health/freshness, evidence counts, queue coverage, ranked/unranked counts, confidence distribution, top ranked nouns, daily selection reason and last refresh. Console remains read-only and must make zero-evidence/fallback state explicit."
+      "acceptance": "Replace status-only Demand Intelligence read model with live read-only telemetry: source health/freshness, evidence counts, queue coverage, ranked/unranked counts, confidence distribution, top ranked nouns, daily selection reason and last refresh. Console remains read-only and must make zero-evidence/fallback state explicit.",
+      "result": "PASS: Founder Console Demand Intelligence now projects canonical H01-133A daily telemetry read-only: source health/freshness, evidence counts, queue/materialization coverage, ranked/unranked counts, confidence distribution, top ranked nouns, daily selection-reason distribution, explicit zero-evidence/fallback state, and last refresh provenance. Demand Engine/materializer/selector semantics are unchanged; Console triggers no refresh or mutation and write methods remain rejected."
     },
     {
       "id": "H01-132B",

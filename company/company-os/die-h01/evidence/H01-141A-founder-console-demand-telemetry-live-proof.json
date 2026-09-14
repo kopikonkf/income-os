@@ -1,0 +1,168 @@
+{
+  "canonical_daily_state": {
+    "artifact_hash_checks": {
+      "materialization": {
+        "actual_sha256": "bc5c6ea7a58d939e32c596154e2cd9010a59bf608094aefcb53ff6e108c0823a",
+        "expected_sha256": "bc5c6ea7a58d939e32c596154e2cd9010a59bf608094aefcb53ff6e108c0823a",
+        "match": true,
+        "path": "/var/lib/die/h01/demand-intelligence/daily/2026-09-14/H01-DCYCLE-AC9AEEDEA79D6F52BA60FF98/demand-signal-ranking.v1.json"
+      },
+      "selector": {
+        "actual_sha256": "077e966cfb9ec6859231386537c965b977e1ce12fd5feb8646b01ffc7910b9ef",
+        "expected_sha256": "077e966cfb9ec6859231386537c965b977e1ce12fd5feb8646b01ffc7910b9ef",
+        "match": true,
+        "path": "/var/lib/die/h01/demand-intelligence/daily/2026-09-14/H01-DCYCLE-AC9AEEDEA79D6F52BA60FF98/daily-selector.frozen.json"
+      }
+    },
+    "cycle_id": "H01-DCYCLE-AC9AEEDEA79D6F52BA60FF98",
+    "day_key": "2026-09-14",
+    "selection_id": "H01-DAILY-52BA25C07ED0E582F7D47BFB"
+  },
+  "endpoint": "http://127.0.0.1:20129/api/die/v1/demand",
+  "observed_at": "2026-09-14T17:58:58.741Z",
+  "origin_main_at_start": "fbe1e2e57c4b16ad87e614f51148d7a57539776f",
+  "read_only": true,
+  "schema": "die.h01.h01-141a.founder-console-demand-telemetry.live-proof.v1",
+  "shadow_canary": {
+    "canary_port": 20129,
+    "canary_port_closed": true,
+    "canary_terminated": true,
+    "existing_shadow_port": 20128,
+    "existing_shadow_preserved": true,
+    "legacy_factory_port": 8876,
+    "legacy_preserved": true
+  },
+  "source": "demand",
+  "task_id": "H01-141A",
+  "telemetry": {
+    "authority": {
+      "production_authorized": false,
+      "publication_authorized": false,
+      "spend_authorized": false,
+      "submission_authorized": false
+    },
+    "confidence_distribution": {
+      "LOW": 1,
+      "MEDIUM": 4,
+      "NONE": 43000
+    },
+    "daily_selection": {
+      "fallback_selected": 96,
+      "ranked_selected": 4,
+      "reason_distribution": {
+        "EVIDENCE_RANKED": 4,
+        "SOURCE_ORDER_FALLBACK": 96
+      },
+      "selected": 100
+    },
+    "evidence": {
+      "connector_distribution": {
+        "123rf_trending_search_v1": 1,
+        "wikimedia_pageviews_v1": 1
+      },
+      "record_count": 2
+    },
+    "fallback": {
+      "explicit_reason": "SOURCE_ORDER_FALLBACK",
+      "policy": "SOURCE_ORDER_FALLBACK",
+      "selected": 96,
+      "state": "ACTIVE"
+    },
+    "last_refresh": {
+      "attempt_id": "H01-DREFRESH-E523A604A943925BC90C14AD",
+      "basis": "SOURCE_ACQUISITION_RECEIPT",
+      "observed_at": "2026-09-14T17:33:19.899299Z",
+      "status": "PASS_WITH_DEGRADED_SOURCES"
+    },
+    "queue_coverage": {
+      "materialized_pct": 100,
+      "materialized_records": 43005,
+      "queue_items": 43005,
+      "ranked_count": 5,
+      "ranked_pct": 0.0116,
+      "unranked_count": 43000
+    },
+    "signal_state_distribution": {
+      "NO_EVIDENCE": 43000,
+      "PARTIAL": 5
+    },
+    "source_health": [
+      {
+        "error_code": null,
+        "evidence_count": 1,
+        "freshness": "FRESH",
+        "health": "HEALTHY",
+        "retrieved_at": "2026-09-14T17:33:19.892029Z",
+        "source": "123rf_trending_search_v1",
+        "status": "CACHE_HIT_FRESH"
+      },
+      {
+        "error_code": null,
+        "evidence_count": 1,
+        "freshness": "FRESH",
+        "health": "HEALTHY",
+        "retrieved_at": "2026-09-14T17:33:19.897193Z",
+        "source": "wikimedia_pageviews_v1",
+        "status": "CACHE_HIT_FRESH"
+      },
+      {
+        "error_code": "E_AUTH_CONTEXT_REQUIRED",
+        "evidence_count": 0,
+        "freshness": "UNKNOWN",
+        "health": "DEGRADED",
+        "retrieved_at": "2026-09-14T17:33:19.899299Z",
+        "source": "google_ads_keyword_historical_v1",
+        "status": "DEGRADED_AUTH_REQUIRED"
+      }
+    ],
+    "state": "EVIDENCE_PRESENT",
+    "top_ranked_nouns": [
+      {
+        "canonical_name": "food",
+        "confidence": 0.6,
+        "evidence_count": 1,
+        "priority_score": 0.525,
+        "queue_item_id": "H01-SVGQ-CAND-0830701",
+        "rank": 1,
+        "selection_reason": "EVIDENCE_RANKED"
+      },
+      {
+        "canonical_name": "transportation",
+        "confidence": 0.6,
+        "evidence_count": 1,
+        "priority_score": 0.525,
+        "queue_item_id": "H01-SVGQ-CAND-0852928",
+        "rank": 2,
+        "selection_reason": "EVIDENCE_RANKED"
+      },
+      {
+        "canonical_name": "vintage",
+        "confidence": 0.6,
+        "evidence_count": 1,
+        "priority_score": 0.525,
+        "queue_item_id": "H01-SVGQ-CAND-0856685",
+        "rank": 3,
+        "selection_reason": "EVIDENCE_RANKED"
+      },
+      {
+        "canonical_name": "animals",
+        "confidence": 0.6,
+        "evidence_count": 1,
+        "priority_score": 0.525,
+        "queue_item_id": "H01-SVGQ-CAND-0874342",
+        "rank": 4,
+        "selection_reason": "EVIDENCE_RANKED"
+      }
+    ],
+    "zero_evidence": false
+  },
+  "write_boundary": {
+    "post_response": {
+      "allowed": [
+        "GET"
+      ],
+      "error": "READ_ONLY_CONTRACT"
+    },
+    "post_status": 405
+  }
+}
