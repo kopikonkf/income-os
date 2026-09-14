@@ -886,14 +886,13 @@
     {
       "id": "H01-132A",
       "track": "DEMAND_INTELLIGENCE",
-      "title": "Phase 0: enrich demand-selected standalone nouns with bounded Human Atlas context",
+      "title": "Phase 0: bind demand-selected standalone nouns to production intent",
       "status": "BLOCKED",
       "authority": "ARCHITECT",
       "depends_on": [
-        "H01-133A",
-        "H01-132"
+        "H01-133A"
       ],
-      "acceptance": "For only the bounded nouns selected by the daily Phase-0 standalone selector, materialize H01-132 Human Atlas buyer/activity/problem/industry/commercial-intent context and attach it to the frozen manifest/Blueprint input. No exhaustive Object Atlas x Human Atlas Cartesian expansion and no independent rank authority."
+      "acceptance": "Keep Phase-0 production strictly standalone-noun first: take only the nouns selected by the operational daily Demand Intelligence cycle, preserve each H01-101 queue identity, and bind the frozen demand evidence/selection reason into the production intent/Blueprint input. Do not join Human Atlas, do not create longtails, and do not perform Object Atlas x Human Atlas expansion in Phase 0."
     },
     {
       "id": "H01-102A",
@@ -940,9 +939,10 @@
       "depends_on": [
         "H01-112",
         "H01-132A",
-        "H01-130A"
+        "H01-130A",
+        "H01-132"
       ],
-      "acceptance": "After Phase-0 standalone scale proof, implement the bounded F1 Object Atlas x Human Atlas candidate layer: pin an eligible object plus compatible Human Atlas context, preserve object/context identities and evidence, and emit cross-join candidates for downstream longtail/Worth-Making evaluation. The World-Atlas cross-product is a candidate generator only, never an automatic production queue; exhaustive Cartesian expansion is forbidden."
+      "acceptance": "After Phase-0 standalone scale proof, implement the bounded F1 Object Atlas x Human Atlas candidate layer: pin an eligible Object Atlas noun plus compatible Human Atlas context, preserve both identities and evidence, and emit cross-join candidates for downstream longtail -> Worth-Making -> Blueprint evaluation. The World-Atlas cross-product is a candidate generator only, never an automatic production queue; exhaustive Cartesian expansion is forbidden."
     },
     {
       "id": "H01-300",
