@@ -1,0 +1,83 @@
+{
+  "schema": "die.h01.adobe-stock-demand-observation-live-proof.v1",
+  "task_id": "H01-131G",
+  "source_id": "adobe_stock_demand_observation_v1",
+  "classification": {
+    "commercial_intent_tier": "MARKETPLACE_POPULARITY_PROXY",
+    "evidence_class": "MACRO_TREND",
+    "confidence": "MEDIUM_HIGH",
+    "direct_customer_search_telemetry": false,
+    "popular_query_ranking": false,
+    "popularity_content_needs_proxy": false,
+    "macro_trend": true,
+    "reason": "The public first-party Adobe article is Adobe Stock-tagged creative-trend guidance and explicitly describes aggregate methodology using customer feedback and search history. It does not expose per-query customer counts, marketplace rank, or keyword search volume."
+  },
+  "source_truth": {
+    "surface": "https://blog.adobe.com/en/publish/2026/01/08/how-creators-leveraging-adobe-2026-creative-trends",
+    "first_party_public_https": true,
+    "auth_required": false,
+    "article_publication_date": "2026-01-08",
+    "trend_count": 4,
+    "trends": [
+      "All the Feels",
+      "Connectioneering",
+      "Surreal Silliness",
+      "Local Flavor"
+    ],
+    "aggregate_search_history_growth_percent": 150.0,
+    "aggregate_search_history_growth_since_year": 2024,
+    "search_volume_exposed": false,
+    "visitor_query_count_exposed": false,
+    "numeric_popular_query_rank_exposed": false
+  },
+  "live_proof": {
+    "status": "ACQUIRED",
+    "retrieved_at": "2026-09-14T16:13:31.214736Z",
+    "source_locator": "https://blog.adobe.com/en/publish/2026/01/08/how-creators-leveraging-adobe-2026-creative-trends",
+    "receipt_relative_path": "sources/adobe_stock_demand_observation_v1/queries/87f79f94bc37beb27dfe70cd/acquisitions/H01-ACQ-008D6FA3EEFC40AD3168E3FF.json",
+    "raw": {
+      "bytes": 26340,
+      "content_type": "text/html",
+      "sha256": "d2ce269d825ac99bb2fb7d2d0cf5439eedd79fe3092d527f09ff69d6a3e675d6",
+      "relative_path": "sources/adobe_stock_demand_observation_v1/queries/87f79f94bc37beb27dfe70cd/raw/d2ce269d825ac99bb2fb7d2d0cf5439eedd79fe3092d527f09ff69d6a3e675d6.bin"
+    },
+    "evidence": [
+      {
+        "evidence_id": "H01-SIG-CE6005601A0675FEFB839B96",
+        "sha256": "dc14792b3b2ee86fde0471acc79a961961b925d02cb921549f2ef46f52eda0ee",
+        "relative_path": "sources/adobe_stock_demand_observation_v1/queries/87f79f94bc37beb27dfe70cd/evidence/H01-SIG-CE6005601A0675FEFB839B96.json"
+      }
+    ]
+  },
+  "cache_replay": {
+    "status": "CACHE_HIT_FRESH",
+    "raw_sha256": "d2ce269d825ac99bb2fb7d2d0cf5439eedd79fe3092d527f09ff69d6a3e675d6",
+    "evidence_id": "H01-SIG-CE6005601A0675FEFB839B96",
+    "cache": {
+      "hit": true,
+      "age_seconds": 12.234335,
+      "ttl_seconds": 604800,
+      "latest_receipt": "sources/adobe_stock_demand_observation_v1/queries/87f79f94bc37beb27dfe70cd/acquisitions/H01-ACQ-008D6FA3EEFC40AD3168E3FF.json"
+    }
+  },
+  "non_quantitative_fields": {
+    "search_volume": null,
+    "visitor_query_count": null,
+    "popular_query_rank": null
+  },
+  "access_gap": {
+    "stock_adobe_public_pages_bounded_http": "HTTP_403_FROM_CURRENT_RUNTIME",
+    "account_automation_attempted": false,
+    "credential_or_cookie_fallback_attempted": false,
+    "effect": "No account-only Contributor Insights, real-time blank-search DOM, or related-search account/browser surface is claimed by this v1 proof."
+  },
+  "policy": {
+    "source_failure_blocks_production": false,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "production_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false
+  }
+}
