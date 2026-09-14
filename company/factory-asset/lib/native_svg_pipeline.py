@@ -728,6 +728,57 @@ def _render_dimensions(viewbox: list[float], size: int) -> tuple[float, int, int
     return scale, output_width, output_height
 
 
+def _repair_transport_geometry(root: ET.Element) -> dict[str, int]:
+    """Bounded transport cleanup for observed UI labels and straight-line dash syntax."""
+    changes = {"ui_labels_removed": 0, "dash_paths_expanded": 0, "invisible_geometry_removed": 0}
+    for element in list(root.iter()):
+        for field in ("text", "tail"):
+            if (getattr(element, field) or "").strip() == "Plain Text":
+                setattr(element, field, None)
+                changes["ui_labels_removed"] += 1
+    for parent in list(root.iter()):
+        for child in list(parent):
+            dash = child.attrib.get("stroke-dasharray")
+            if dash is None:
+                continue
+            nums = r"([-+]?(?:\d+(?:\.\d*)?|\.\d+))"
+            match = re.fullmatch(r"\s*M\s*"+nums+r"[ ,]+"+nums+r"\s*L\s*"+nums+r"[ ,]+"+nums+r"\s*", child.attrib.get("d", ""))
+            if _local(child.tag) != "path" or len(child) or not match or "stroke-dashoffset" in child.attrib:
+                raise NativeSvgPipelineError("DASH_REPAIR_UNSUPPORTED", _local(child.tag))
+            pattern = [float(x) for x in re.split(r"[ ,]+", dash.strip())]
+            if not pattern or any(not math.isfinite(x) or x <= 0 for x in pattern):
+                raise NativeSvgPipelineError("DASH_REPAIR_UNSUPPORTED", "pattern")
+            if len(pattern) % 2:
+                pattern *= 2
+            x1, y1, x2, y2 = map(float, match.groups())
+            length = math.hypot(x2-x1, y2-y1)
+            if not math.isfinite(length) or length <= 0:
+                raise NativeSvgPipelineError("DASH_REPAIR_UNSUPPORTED", "length")
+            pos = 0.0
+            index = 0
+            pieces = []
+            while pos < length:
+                end = min(length, pos + pattern[index % len(pattern)])
+                if index % 2 == 0:
+                    attrs = dict(child.attrib)
+                    attrs.pop("stroke-dasharray")
+                    attrs.pop("id", None)
+                    attrs["d"] = f"M{x1+(x2-x1)*pos/length:.12g} {y1+(y2-y1)*pos/length:.12g} L{x1+(x2-x1)*end/length:.12g} {y1+(y2-y1)*end/length:.12g}"
+                    pieces.append(ET.Element(child.tag, attrs))
+                pos = end
+                index += 1
+                if index > 512:
+                    raise NativeSvgPipelineError("DASH_REPAIR_UNSUPPORTED", "complexity")
+            pieces[0].text = child.text
+            pieces[-1].tail = child.tail
+            offset = list(parent).index(child)
+            parent.remove(child)
+            for i, piece in enumerate(pieces):
+                parent.insert(offset+i, piece)
+            changes["dash_paths_expanded"] += 1
+    return changes
+
+
 def validate_and_normalize(
     svg_text: str,
     *,
@@ -735,6 +786,7 @@ def validate_and_normalize(
     max_paths: int = 512,
     max_total_points: int = 8192,
     max_path_chars: int = 32768,
+    repair_transport_geometry: bool = False,
 ) -> dict[str, Any]:
     raw = svg_text.encode("utf-8")
     if not raw or len(raw) > max_bytes:
@@ -761,6 +813,7 @@ def validate_and_normalize(
         raise NativeSvgPipelineError("VIEWBOX_INVALID", viewbox)
     _render_dimensions([minx, miny, width, height], 1024)
 
+    repairs = _repair_transport_geometry(root) if repair_transport_geometry else {}
     xml_nodes = 0
     for element in root.iter():
         xml_nodes += 1
@@ -823,6 +876,9 @@ def validate_and_normalize(
             painted_stroke = style["stroke"] != "none" and style["stroke_opacity"] > 0
             visible = style["opacity"] > 0 and (painted_stroke if tag == "line" else painted_fill or painted_stroke)
             if not visible:
+                if repair_transport_geometry:
+                    repairs["invisible_geometry_removed"] += 1
+                    return
                 raise NativeSvgPipelineError("INVISIBLE_PATH", tag)
             geometry: dict[str, float] = {}
             source_points: list[tuple[float, float]] = []
@@ -881,6 +937,7 @@ def validate_and_normalize(
     canonical_body = "".join(_canonical_element(element) for element in elements)
     canonical = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{_format_number(minx)} {_format_number(miny)} {_format_number(width)} {_format_number(height)}">{canonical_body}</svg>'
     result: dict[str, Any] = {
+        "source_repairs": repairs,
         "schema": "die.factory-asset.native-svg-safe.v1",
         "viewbox": [minx, miny, width, height],
         "elements": elements,

@@ -24,8 +24,8 @@ def main():
  provider=ns.provider or it['planned_provider']
  if provider not in ORIGIN:raise SystemExit('E_PROVIDER')
  job=f"H01-108-P{ns.position:03d}-{it['source_candidate_id']}-A{ns.attempt}";w=Path(ns.runs_root)/f"{ns.position:03d}-{it['canonical_name'].replace(' ','-')}-{provider}-a{ns.attempt}"
- if (w/'asset-receipt.json').exists():
-  old=json.loads((w/'asset-receipt.json').read_text());print(json.dumps({'status':'REPLAY','workspace':str(w),'receipt':old}));return
+ if (w/'generation-complete.receipt.json').exists():
+  old=json.loads((w/'generation-complete.receipt.json').read_text());print(json.dumps({'status':'REPLAY_GENERATION_COMPLETE','workspace':str(w),'receipt':old}));return
  lease=jrun([SCHED,'acquire','--dispatch-id',job,'--job-id',job,'--preferred-provider',provider])['lease'];lid=lease['lease_id'];token=lease['lease_token'];profile=lease['profile_id'];udd=lease['udd_id'];port=str(lease['cdp_port'])
  w.mkdir(parents=True,exist_ok=False)
  safe_lease={k:v for k,v in lease.items() if k!='lease_token'};dump(w/'scheduler-lease.sanitized.json',safe_lease)
@@ -54,7 +54,12 @@ def main():
    sync_daily_dispatch()
    run([FACTORY_PY,str(H01/'engineering/h01_108_capture.py'),'--workspace',str(w),'--provider',provider,'--source-kind',kind,'--source',str(src),'--job-id',job,'--profile-id',profile,'--udd-id',udd],timeout=120);mark_daily_success(provider,profile,job)
   except Exception as e:
-   if not (w/'browser-job-result.json').exists():fail_result(w,job,provider,profile,udd,type(e).__name__+':'+str(e)[:400])
+   detail=type(e).__name__+':'+str(e)[:400]
+   if 'E_PROVIDER_OUTPUT_WRONG_MODALITY_RASTER' in str(e):
+    dispatch=json.loads((w/'provider-dispatch.receipt.json').read_text()) if (w/'provider-dispatch.receipt.json').exists() else {}
+    if dispatch.get('status')=='COMMITTED':
+     dump(w/'committed-output-recovery.receipt.json',{'schema':'die.h01.committed-output-recovery.v1','status':'PROVIDER_OUTPUT_WRONG_MODALITY_RASTER','provider_generation_dispatched':False,'conversation_url':dispatch.get('conversation_url'),'prompt_sha256':dispatch.get('prompt_sha256'),'provider_output_kind':'RASTER_IMAGE','next_action':'BOUNDED_NATIVE_SVG_REGENERATION_REQUIRED_OR_FOUNDER_DISPOSITION','do_not_acquire_other_turn_svg':True})
+   if not (w/'browser-job-result.json').exists():fail_result(w,job,provider,profile,udd,detail)
    raise
   finally:
    try:sync_daily_dispatch()
@@ -65,8 +70,11 @@ def main():
    except subprocess.TimeoutExpired:runtime.terminate();out,err=runtime.communicate(timeout=20)
    dump(w/'runtime-process.json',{'returncode':runtime.returncode,'stdout':out[-4000:],'stderr':err[-4000:]})
   if runtime.returncode!=0:raise RuntimeError('E_H01_025_RUNTIME')
+  run([FACTORY_PY,str(H01/'engineering/h01_108_technical_finalize.py'),'--workspace',str(w)],timeout=180)
+  generation=json.loads((w/'generation-complete.receipt.json').read_text())
+  if generation.get('status')!='GENERATION_COMPLETE':raise RuntimeError('E_GENERATION_NOT_COMPLETE')
   terminal=jrun([SCHED,'complete','--lease-id',lid,f'--lease-token={token}','--terminal-state','SUCCEEDED','--provider-cooldown-seconds','180']);completed=True;dump(w/'scheduler-terminal.json',terminal)
-  created=json.loads((w/'artifact-created.receipt.json').read_text());dump(w/'run-one.receipt.json',{'schema':'die.h01.h01-108-run-one.v2','status':'ARTIFACT_CREATED','job_id':job,'batch_position':ns.position,'noun':it['canonical_name'],'provider_id':provider,'profile_id':profile,'udd_id':udd,'workspace':str(w),'provider_original_sha256':created['provider_original_sha256'],'postproduction_state':'PENDING','submission_authorized':False,'publication_authorized':False});print(json.dumps({'status':'ARTIFACT_CREATED','job_id':job,'position':ns.position,'noun':it['canonical_name'],'provider':provider,'workspace':str(w),'provider_original_sha256':created['provider_original_sha256']}))
+  dump(w/'run-one.receipt.json',{'schema':'die.h01.h01-108-run-one.v3','status':'GENERATION_COMPLETE','job_id':job,'batch_position':ns.position,'noun':it['canonical_name'],'provider_id':provider,'profile_id':profile,'udd_id':udd,'workspace':str(w),'provider_original_sha256':generation['provider_original_sha256'],'canonical_svg_sha256':generation['canonical_svg_sha256'],'h01_103_status':'PASS','postproduction_state':'PENDING','submission_authorized':False,'publication_authorized':False});print(json.dumps({'status':'GENERATION_COMPLETE','job_id':job,'position':ns.position,'noun':it['canonical_name'],'provider':provider,'workspace':str(w),'provider_original_sha256':generation['provider_original_sha256'],'canonical_svg_sha256':generation['canonical_svg_sha256']}))
  except Exception as e:
   if not completed:
    try:jrun([SCHED,'complete','--lease-id',lid,f'--lease-token={token}','--terminal-state','FAILED','--provider-cooldown-seconds','180'])

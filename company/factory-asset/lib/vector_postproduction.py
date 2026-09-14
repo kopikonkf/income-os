@@ -399,6 +399,7 @@ def postprocess_vector(
     optional_formats: Iterable[str] = (),
     capabilities: Iterable[str] = (),
     render_size: int = 1024,
+    repair_transport_geometry: bool = False,
 ) -> dict[str, Any]:
     """Build and verify the deterministic H01-105 vector delivery package."""
     if not isinstance(semantic_asset_id, str) or not semantic_asset_id.strip():
@@ -412,7 +413,7 @@ def postprocess_vector(
     except UnicodeDecodeError as exc:
         raise VectorPostproductionError("PROVIDER_ORIGINAL_NOT_UTF8", str(exc)) from exc
     try:
-        norm = _NATIVE.validate_and_normalize(svg_text)
+        norm = _NATIVE.validate_and_normalize(svg_text, repair_transport_geometry=repair_transport_geometry)
     except Exception as exc:
         code = getattr(exc, "code", "NATIVE_SVG_VALIDATION_FAILED")
         raise VectorPostproductionError(code, str(exc)) from exc

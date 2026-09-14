@@ -53,14 +53,31 @@ def test_gemini_fragment_is_acquired_without_reprompt_and_normalized_downstream(
  assert 'GEMINI_SVG_ROOT_REPAIR_DISPATCHED' not in s
  assert 'E_GEMINI_REPAIR_DRIFT' not in s
 
-
-def test_qwen_reuses_playwright_and_requires_strong_dispatch_commit():
+def test_qwen_recheck_is_exact_committed_turn_scoped_and_not_rootless_fragment():
  s=(H/'provider_svg_playwright_strategy.mjs').read_text()
  assert "qwen:{origin:'https://chat.qwen.ai'" in s
- assert "provider==='qwen'" in s
- assert "url!==beforeUrl||responses>beforeResponses" in s
- assert "textarea[placeholder*=\"Ask Qwen\" i]" in s
- assert "provider==='gemini'||provider==='qwen'" in s
+ assert "import {selectCommittedAnswer} from './committed_turn_selection.mjs'" in s
+ assert "provider==='qwen'&&recheckUrl" in s
+ assert ".qwen-chat-message" in s
+ assert ".phase-answer" in s
+ assert 'selectCommittedAnswer(turns,prompt)' in s
+ assert "if(!recheckOnly&&provider==='gemini'&&!stop)" in s
+ assert "provider==='gemini'||provider==='qwen'" not in s
+
+def test_recheck_binds_exact_committed_dispatch_receipt():
+ s=(H/'provider_svg_playwright_strategy.mjs').read_text()
+ assert 'E_RECHECK_DISPATCH_RECEIPT_REQUIRED' in s
+ assert "d.status!=='COMMITTED'" in s
+ assert 'd.conversation_url!==recheckUrl' in s
+ assert 'E_RECHECK_DISPATCH_BINDING' in s
+
+def test_copilot_wrong_modality_raster_is_terminal_generation_taxonomy():
+ s=(H/'provider_svg_playwright_strategy.mjs').read_text();run=(H/'h01_108_run_one.py').read_text()
+ assert 'async function rasterCandidates()' in s
+ assert "provider!=='copilot'" in s
+ assert 'E_PROVIDER_OUTPUT_WRONG_MODALITY_RASTER' in s
+ assert "status':'PROVIDER_OUTPUT_WRONG_MODALITY_RASTER'" in run
+ assert "do_not_acquire_other_turn_svg':True" in run
 
 def test_dispatch_receipt_is_written_immediately_after_strong_commit():
  s=(H/'provider_svg_playwright_strategy.mjs').read_text()

@@ -9,11 +9,10 @@ def load(p):
  except Exception:return {}
 def slug(s):return s.replace(' ','-')
 def generated(root:Path,item:dict)->bool:
- prefix=f"{item['batch_position']:03d}-{slug(item['canonical_name'])}-{item['planned_provider']}"
+ prefix=f"{item['batch_position']:03d}-{slug(item['canonical_name'])}-"
  for w in root.glob(prefix+'*'):
-  if load(w/'artifact-created.receipt.json').get('status')=='ARTIFACT_CREATED':return True
-  b=load(w/'browser-job-result.json')
-  if b.get('terminal_state')=='SUCCEEDED' and (w/'final/provider-original.svg').is_file():return True
+  g=load(w/'generation-complete.receipt.json');v=load(w/'final/h01-103-validation.json')
+  if g.get('status')=='GENERATION_COMPLETE' and v.get('status')=='PASS' and g.get('canonical_svg_sha256')==v.get('canonical_svg_sha256'):return True
  return False
 def next_attempt(root:Path,item:dict)->int:
  prefix=f"{item['batch_position']:03d}-{slug(item['canonical_name'])}-{item['planned_provider']}-a"
@@ -27,7 +26,7 @@ def main():
  summary=[]
  for item in m['items']:
   if wanted is not None and item['batch_position'] not in wanted:continue
-  if generated(root,item):summary.append({'position':item['batch_position'],'status':'ALREADY_ARTIFACT_CREATED'});continue
+  if generated(root,item):summary.append({'position':item['batch_position'],'status':'ALREADY_GENERATION_COMPLETE'});continue
   success=False
   for _ in range(ns.max_new_attempts):
    a=next_attempt(root,item);cp=subprocess.run([PYTHON,str(H01/'engineering/h01_108_run_one.py'),'--manifest',ns.manifest,'--position',str(item['batch_position']),'--attempt',str(a)],text=True,capture_output=True)
