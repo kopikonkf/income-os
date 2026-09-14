@@ -787,7 +787,8 @@
       "id": "H01-131B",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Add Shutterstock first-party Search Trends signal adapter v1",
-      "status": "READY",
+      "status": "BLOCKED",
+      "result": "BLOCKED_COMPLIANCE: implementation branch exists, but automated Shutterstock Search Trends acquisition is not accepted because current source terms prohibit automated data gathering/extraction; optional source remains non-blocking.",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131A"
@@ -798,7 +799,8 @@
       "id": "H01-131C",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Add Pond5 customer-search Data & Trends signal adapter v1",
-      "status": "READY",
+      "status": "RUNNING",
+      "result": "IMPLEMENTATION_PASS_LIVE_EVIDENCE_PENDING: Pond5 parser/core path and controlled ACQUIRED proof pass; compliant live public acquisition currently degrades to no evidence because the endpoint returns a robot/cookie challenge. No credential/session bypass is authorized.",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131A"
@@ -809,11 +811,11 @@
       "id": "H01-130A",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Implement live Demand Signal Materializer v1",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
-        "H01-131B",
-        "H01-131C"
+        "H01-131F",
+        "H01-131H"
       ],
       "acceptance": "Produce real die.h01.demand-signal-ranking.v1 records for H01-101 queue items from normalized evidence. Calibrate source confidence so direct marketplace customer-search telemetry outranks first-party popular-query lists, popularity/content-needs proxies, macro attention proxies and legacy heuristic priors. Emit NO_EVIDENCE/UNRANKED honestly when evidence is absent; prove real queue rank_score>0 without mutating eligibility, rights or production authority."
     },
@@ -845,7 +847,8 @@
       "id": "H01-131E",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Add Freepik first-party trending vector search signal adapter v1",
-      "status": "READY",
+      "status": "BLOCKED",
+      "result": "BLOCKED_COMPLIANCE: Magnific/Freepik trending terms exist on first-party surfaces, but current acceptable-use terms prohibit automated extraction; implementation branch is preserved as audit trail and source remains optional/non-blocking.",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131A"
