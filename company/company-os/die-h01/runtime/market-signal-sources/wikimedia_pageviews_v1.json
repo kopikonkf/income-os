@@ -1,0 +1,25 @@
+{
+  "schema": "die.h01.market-signal-source-capability.v1",
+  "source_id": "wikimedia_pageviews_v1",
+  "source_name": "Wikimedia Analytics API",
+  "adapter_state": "ACTIVE",
+  "acquisition_mode": "PUBLIC_HTTPS_JSON",
+  "first_party": true,
+  "allowed_hosts": ["wikimedia.org"],
+  "auth_mode": "NONE",
+  "signal_classes": ["TREND"],
+  "max_requests_per_run": 12,
+  "min_interval_seconds": 1.0,
+  "cache_ttl_seconds": 86400,
+  "max_response_bytes": 2097152,
+  "allowed_content_types": ["application/json", "application/problem+json"],
+  "commercial_intent_tier": "ATTENTION_PROXY",
+  "production_blocking": false,
+  "authority": {
+    "credential_read_authorized": false,
+    "production_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false
+  }
+}

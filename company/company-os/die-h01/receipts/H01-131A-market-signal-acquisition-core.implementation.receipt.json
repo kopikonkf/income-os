@@ -1,0 +1,65 @@
+{
+  "schema": "die.h01.h01-131a.market-signal-acquisition-core.implementation.v1",
+  "task_id": "H01-131A",
+  "status": "IMPLEMENTATION_PASS_LINUX_ACTIVATION_PENDING",
+  "implementation": {
+    "core": "company/company-os/die-h01/lib/market_signal_acquisition.py",
+    "cli": "company/company-os/die-h01/engineering/h01_market_signal_acquire.py",
+    "capability_schema": "company/company-os/die-h01/contracts/h01-market-signal-source-capability.v1.schema.json",
+    "acquisition_receipt_schema": "company/company-os/die-h01/contracts/h01-market-signal-acquisition-receipt.v1.schema.json",
+    "source_registry_directory": "company/company-os/die-h01/runtime/market-signal-sources",
+    "design": "company/company-os/die-h01/DIE_H01_MARKET_SIGNAL_ACQUISITION_CORE_V1.md"
+  },
+  "capabilities": {
+    "per_source_files_for_parallel_adapters": true,
+    "https_allowlist": true,
+    "secret_header_rejection": true,
+    "redirect_scope_recheck": true,
+    "persistent_source_lease": true,
+    "persistent_min_interval": true,
+    "bounded_request_budget": true,
+    "bounded_response_bytes": true,
+    "immutable_raw_snapshots": true,
+    "immutable_normalized_evidence": true,
+    "fresh_cache_hit": true,
+    "stale_cache_fallback": true,
+    "source_failure_non_blocking": true,
+    "authorized_external_context_without_credential_read": true
+  },
+  "live_public_proof": {
+    "environment": "Windows Architect execution host",
+    "source_id": "wikimedia_pageviews_v1",
+    "query": "Cat",
+    "period_count": 7,
+    "period_end_utc": "2026-09-13",
+    "pageviews_total": 80887,
+    "first_status": "ACQUIRED",
+    "first_acquisition_id": "H01-ACQ-1BE19C2119581F5B71F57213",
+    "raw_sha256": "200f18580d33b561693372ec8bc5c6be5aacd925f0cce10ad47c873ae9ee87db",
+    "raw_bytes": 997,
+    "evidence_id": "H01-SIG-CB25A29BDDBFFA3B36AC578F",
+    "normalized_record_sha256": "b8602340f6bafc4ef5cf4d68d5091a5d3d9f3ad21fb0ca40779de367228931e8",
+    "replay_status": "CACHE_HIT_FRESH",
+    "replay_acquisition_id": "H01-ACQ-887AAF3721418273107957E2"
+  },
+  "tests": {
+    "acquisition_core": "10/10 PASS",
+    "h01_131_regression": "6/6 PASS",
+    "one_canon_pytest": "8/8 PASS",
+    "python_compile": "PASS"
+  },
+  "linux_activation": {
+    "required_state_root": "/var/lib/die/h01/demand-intelligence/signals",
+    "status": "PENDING",
+    "reason": "Mission Control SSH broker exposed zero allowlisted nodes in this session; die-prod-01 could not be addressed. No direct credential/IP bypass attempted.",
+    "closure_required": "Run the same public acquisition on Linux state root, prove immutable state plus cache replay, then mark H01-131A DONE and release H01-131B..H01-131H to READY."
+  },
+  "authority": {
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "production_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false
+  }
+}

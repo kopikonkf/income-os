@@ -1,0 +1,25 @@
+{
+  "schema": "die.h01.market-signal-source-capability.v1",
+  "source_id": "google_ads_keyword_historical_v1",
+  "source_name": "Google Ads KeywordPlanIdeaService.GenerateKeywordHistoricalMetrics",
+  "adapter_state": "AUTH_CONTEXT_REQUIRED",
+  "acquisition_mode": "AUTHORIZED_EXTERNAL_IMPORT",
+  "first_party": true,
+  "allowed_hosts": ["googleads.googleapis.com"],
+  "auth_mode": "EXTERNAL_AUTHORIZED_CONTEXT",
+  "signal_classes": ["DEMAND", "COMPETITION", "COMMERCIAL_INTENT"],
+  "max_requests_per_run": 12,
+  "min_interval_seconds": 1.0,
+  "cache_ttl_seconds": 2592000,
+  "max_response_bytes": 2097152,
+  "allowed_content_types": ["application/json"],
+  "commercial_intent_tier": "MACRO_SEARCH",
+  "production_blocking": false,
+  "authority": {
+    "credential_read_authorized": false,
+    "production_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false
+  }
+}
