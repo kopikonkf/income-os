@@ -1,45 +1,45 @@
 {
+  "schema": "die.h01.h01-108-stage-separation.receipt.v2",
+  "task_id": "H01-108",
+  "status": "PASS",
   "architectural_boundary": {
-    "global_invariant": "postproduction failure/review never blocks later independent provider generation",
-    "postproduction": "H01-103/H01-104/H01-105 + metadata + visual rights + Founder QC parking",
     "preproduction": "H01-026 scheduler readiness + H01-025 browser/provider readiness",
-    "production_terminal": "ARTIFACT_CREATED"
+    "acquisition_checkpoint": "ARTIFACT_CREATED with immutable provider-original bytes/hash",
+    "production_terminal": "GENERATION_COMPLETE after H01-103 PASS",
+    "postproduction": "H01-105 derivatives/read-back QA + metadata + visual/IP/rights + Founder QC parking",
+    "global_invariant": "postproduction failure/review/block has generation_validity_effect=NONE and cannot cause automatic provider regeneration"
+  },
+  "generation_acceptance": {
+    "required_receipt": "generation-complete.receipt.json",
+    "required_status": "GENERATION_COMPLETE",
+    "h01_103_required": "PASS",
+    "native_editable_required": true,
+    "conversion_from_raster_required": false,
+    "rights_required": false,
+    "postproduction_required_for_generation": false
+  },
+  "postproduction_classifications": [
+    "PASS",
+    "REVIEW_REQUIRED",
+    "BLOCKED_RIGHTS"
+  ],
+  "recovery": {
+    "committed_result_resubmission": "FORBIDDEN",
+    "qwen_scope": "EXACT_NORMALIZED_USER_PROMPT_AND_FOLLOWING_ASSISTANT",
+    "later_turn_svg_reuse": "FORBIDDEN",
+    "wrong_modality_raster": "GENERATION_FAILURE_TAXONOMY",
+    "bounded_provider_redistribution": "AT_MOST_ONE_WHEN_FROZEN_POLICY_PERMITS"
+  },
+  "daily_selector": {
+    "source_queue": "H01-101 43,005 eligible nouns",
+    "priority_projection": "H01-133",
+    "produced_exclusion": "GENERATION_COMPLETE_ONLY",
+    "no_evidence_policy": "SOURCE_ORDER_FALLBACK",
+    "market_evidence_blocking": false
   },
   "authority": {
+    "submission_authorized": false,
     "publication_authorized": false,
-    "spend_authorized": false,
-    "submission_authorized": false
-  },
-  "factory_precedent": {
-    "resolver_parked_states": [
-      "WAITING_FOUNDER_QC",
-      "WAITING_FOUNDER_RIGHTS_REVIEW"
-    ],
-    "runtime_behavior": "NO_ACTIVE_CARD may start later independent seed while prior card remains parked"
-  },
-  "live_evidence": {
-    "manus_cup": "ACCEPTED_SEMANTIC_MASTER / REVIEW_REQUIRED / no blockers",
-    "qwen_chair": "ACCEPTED_SEMANTIC_MASTER / REVIEW_REQUIRED / no blockers after deterministic watermark-control fix",
-    "qwen_generation_duration": "~19m06s",
-    "watermark_self_test": "PASS on real qwen/chair 4096 preview"
-  },
-  "schema": "die.h01.h01-108-stage-separation.receipt.v1",
-  "status": "PASS",
-  "synthetic_generation_boundary": {
-    "artifact_created": true,
-    "browser_terminal_succeeded": true,
-    "h01_103_absent_after_generation": true,
-    "postproduction_absent_after_generation": true,
-    "result": "PASS",
-    "rights_absent_after_generation": true
-  },
-  "task_id": "H01-108",
-  "tests": {
-    "h01_108_batch": "8/8 PASS",
-    "high_confidence_secret_hits": 0,
-    "one_canon": "11/11 PASS",
-    "rights_detector": "5/5 PASS",
-    "scheduler": "11/11 PASS",
-    "stage_separation": "6/6 PASS"
+    "spend_authorized": false
   }
 }

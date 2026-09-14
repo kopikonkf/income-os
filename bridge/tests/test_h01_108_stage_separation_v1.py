@@ -1,44 +1,63 @@
 from pathlib import Path
 import ast
 R=Path(__file__).resolve().parents[2];H=R/'company/company-os/die-h01/engineering'
-def test_generation_runner_ends_at_artifact_created_without_postproduction():
+
+def test_generation_runner_requires_technical_finalize_before_success():
  s=(H/'h01_108_run_one.py').read_text()
  assert 'h01_108_capture.py' in s
+ assert 'h01_108_technical_finalize.py' in s
+ assert s.index('h01_108_capture.py') < s.index('h01_108_technical_finalize.py')
+ assert "'status':'GENERATION_COMPLETE'" in s
  assert 'h01_108_finalize.py' not in s
  assert 'run_visual_rights_detector.py' not in s
- assert "'status':'ARTIFACT_CREATED'" in s
- assert "'postproduction_state':'PENDING'" in s
-def test_capture_is_generation_boundary_and_writes_browser_terminal():
+
+def test_capture_is_acquisition_boundary_only():
  s=(H/'h01_108_capture.py').read_text()
  assert "'status':'ARTIFACT_CREATED'" in s
  assert "'production_boundary':'ARTIFACT_CREATED'" in s
- assert "'postproduction_required':True" in s
  assert 'validate_and_normalize' not in s
  assert 'postprocess_vector' not in s
  assert 'run_visual_rights_detector' not in s
-def test_postproduction_is_separate_and_parks_retry_instead_of_generation_failure():
- s=(H/'h01_108_postprocess_one.py').read_text()
- assert 'h01_108_finalize.py' in s
- assert 'run_visual_rights_detector.py' in s
- assert "'PARKED_POSTPRODUCTION_RETRY'" in s
- assert 'h01_108_rights_finalize.py' in s
-def test_postproduction_queue_continues_across_parked_failures():
+
+def test_technical_finalize_is_generation_terminal_without_postproduction():
+ s=(H/'h01_108_technical_finalize.py').read_text()
+ assert 'validate_and_normalize' in s
+ assert "'status': 'GENERATION_COMPLETE'" in s
+ assert "'h01_103_status': 'PASS'" in s
+ assert 'postprocess_vector' not in s
+ assert 'run_visual_rights_detector' not in s
+ assert 'rights_signal' not in s
+
+def test_postproduction_requires_generation_complete_and_never_calls_provider():
+ s=(H/'h01_108_postprocess_one.py').read_text();q=(H/'h01_108_postprocess_queue.py').read_text();f=(H/'h01_108_finalize.py').read_text()
+ assert "E_GENERATION_COMPLETE_REQUIRED" in s
+ assert "generation-complete.receipt.json" in s
+ assert 'h01_108_capture.py' not in s
+ assert 'h01_108_run_one.py' not in s
+ assert 'provider_svg_playwright_strategy' not in s
+ assert 'brave_udd_runtime' not in s
+ assert "'provider_generation_dispatched':False" in q
+ assert "generation_validity_effect':'NONE'" in s
+ assert 'validate_and_normalize' not in f
+ assert 'generation-complete.receipt.json' in f
+
+def test_postproduction_queue_requires_h01_103_generation_terminal():
  s=(H/'h01_108_postprocess_queue.py').read_text()
- assert "TERMINAL={'PARKED_FOUNDER_QC','PARKED_RIGHTS_BLOCK'}" in s
- assert "status=='PARKED_POSTPRODUCTION_RETRY' and not retry_parked" in s
- assert 'for w in rows:' in s
- assert "ACCEPTED_SEMANTIC_MASTER" in s
-def test_generation_cycle_does_not_read_postproduction_status():
+ assert "generation-complete.receipt.json" in s
+ assert "final/h01-103-validation.json" in s
+ assert "MAX_TWO_LOCAL_RETRIES_NO_GENERATION" in s
+ assert "PARKED_POSTPRODUCTION_RETRY" in s
+
+def test_generation_cycle_counts_only_generation_complete_h01_103():
  s=(H/'h01_108_generation_cycle.py').read_text()
- assert 'artifact-created.receipt.json' in s
+ start=s.index('def generated(');end=s.index('def next_attempt',start);block=s[start:end]
+ assert 'generation-complete.receipt.json' in block
+ assert 'h01-103-validation.json' in block
+ assert 'artifact-created.receipt.json' not in block
+ assert 'browser-job-result.json' not in block
  assert 'postproduction-state.json' not in s
  assert 'asset-receipt.json' not in s
-def test_all_new_python_sources_parse():
- for name in ['h01_108_capture.py','h01_108_run_one.py','h01_108_finalize.py','h01_108_postprocess_one.py','h01_108_postprocess_queue.py','h01_108_generation_cycle.py']:
-  ast.parse((H/name).read_text())
 
-def test_postproduction_consumes_immutable_provider_original_without_reacquisition():
- s=(H/'h01_108_postprocess_one.py').read_text(); f=(H/'h01_108_finalize.py').read_text()
- assert "kind='PROVIDER_ORIGINAL'" in s
- assert "choices=['TEXT','FILE','PROVIDER_ORIGINAL']" in f
- assert "E_PROVIDER_ORIGINAL_PATH" in f
+def test_all_generation_and_postproduction_sources_parse():
+ for name in ['h01_108_capture.py','h01_108_technical_finalize.py','h01_108_run_one.py','h01_108_finalize.py','h01_108_postprocess_one.py','h01_108_postprocess_queue.py','h01_108_generation_cycle.py','h01_108_seal_generation.py','h01_daily_selector.py']:
+  ast.parse((H/name).read_text())
