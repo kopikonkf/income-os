@@ -896,7 +896,7 @@
       "id": "H01-132A",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Phase 0: bind demand-selected standalone nouns to production intent",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-133A"
@@ -932,7 +932,7 @@
       "id": "H01-141A",
       "track": "FOUNDER_CONSOLE",
       "title": "Expose live Demand Intelligence telemetry in Founder Console",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-133A",
