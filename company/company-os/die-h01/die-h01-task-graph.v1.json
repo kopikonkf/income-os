@@ -380,7 +380,7 @@
     {
       "id": "H01-108",
       "track": "SVG_FIRST",
-      "status": "RUNNING",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED",
       "depends_on": [
         "H01-101",
@@ -553,11 +553,10 @@
     {
       "id": "H01-112",
       "track": "SVG_STANDALONE",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-108",
-        "H01-109",
         "H01-029"
       ],
       "title": "Run 1,000-noun production-scale batch",
@@ -586,6 +585,18 @@
       "acceptance": "Reuse the existing read-only Founder QC Gallery and index each available /var/lib/die/h01/runs/H01-108/*/postproduction/preview.webp as one H01-108 vector-soak card with noun, provider, run/asset status and rights state. The gallery must dynamically reflect completed postproduction artifacts without requiring folder traversal. No complex SVG/vector viewer, no generation/runtime mutation, and no submission/publication action.",
       "founder_policy": "Founder authorized concurrent read-only implementation on 2026-09-13. Reuse the current Factory Console/Founder QC Gallery and dynamically display each existing H01-108 postproduction/preview.webp. The gallery may run while H01-108 is RUNNING because it only observes completed postproduction files; it must never mutate H01-108 generation/runtime state, credentials, submission or publication authority.",
       "result": "PASS: Existing Founder QC Gallery now dynamically indexes H01-108 postproduction preview.webp artifacts as H01_108_VECTOR_SOAK cards with noun, provider, asset/QC state, rights state and postproduction state. The QC view auto-refreshes every 15 seconds while open. Synthetic read-only roundtrip PASS; live scan observed 23 vector-soak previews during acceptance, proving dynamic visibility while H01-108 remained RUNNING."
+    },
+    {
+      "id": "H01-115",
+      "track": "SVG_STANDALONE",
+      "status": "RUNNING",
+      "authority": "ARCHITECT",
+      "depends_on": [
+        "H01-108",
+        "H01-105"
+      ],
+      "title": "Finalize first-100 SVG postproduction classification",
+      "acceptance": "Process the 100 technical masters through downstream postproduction and record terminal classification without changing H01-108 generation completion."
     },
     {
       "id": "H01-134",
@@ -698,11 +709,10 @@
     {
       "id": "H01-123",
       "track": "FAMILY_SET",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-108",
-        "H01-109",
         "H01-121",
         "H01-122"
       ],
