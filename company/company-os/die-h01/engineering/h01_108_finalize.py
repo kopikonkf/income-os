@@ -25,6 +25,27 @@ def load(p):
 def dump(p,v):
  p=Path(p);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(v,indent=2,sort_keys=True)+'\n')
 
+def verified_existing_postproduction(w:Path,generation:dict,validation:dict,bp:dict):
+ """Reuse an immutable prior package only when receipt lineage and every artifact hash verify."""
+ pdir=w/'postproduction';receipt_path=pdir/'postproduction.receipt.json'
+ if not receipt_path.is_file():return None
+ post=load(receipt_path)
+ if post.get('result')!='PASS':raise SystemExit('E_EXISTING_POSTPRODUCTION_NOT_PASS')
+ lineage=post.get('lineage') or {}
+ if lineage.get('provider_original_sha256')!=generation.get('provider_original_sha256'):raise SystemExit('E_EXISTING_POSTPRODUCTION_PROVIDER_LINEAGE')
+ if lineage.get('canonical_svg_sha256')!=validation.get('canonical_svg_sha256'):raise SystemExit('E_EXISTING_POSTPRODUCTION_CANONICAL_LINEAGE')
+ if post.get('semantic_asset_id')!=bp.get('semantic_asset_id'):raise SystemExit('E_EXISTING_POSTPRODUCTION_SEMANTIC_ID')
+ artifacts=post.get('artifacts') or []
+ if not artifacts:raise SystemExit('E_EXISTING_POSTPRODUCTION_ARTIFACTS')
+ for artifact in artifacts:
+  rel=artifact.get('path');expected=artifact.get('sha256')
+  if not rel or not expected:raise SystemExit('E_EXISTING_POSTPRODUCTION_ARTIFACT_RECEIPT')
+  path=pdir/rel
+  if not path.is_file():raise SystemExit('E_EXISTING_POSTPRODUCTION_ARTIFACT_MISSING')
+  if sha(path.read_bytes())!=expected:raise SystemExit('E_EXISTING_POSTPRODUCTION_ARTIFACT_HASH')
+ dump(w/'postproduction-resume.receipt.json',{'schema':'die.h01.h01-115-postproduction-resume.v1','status':'REUSED_VERIFIED_IMMUTABLE_PACKAGE','provider_original_sha256':generation['provider_original_sha256'],'canonical_svg_sha256':validation['canonical_svg_sha256'],'artifact_count':len(artifacts),'provider_generation_dispatched':False,'generation_validity_effect':'NONE','verified_at':now()})
+ return post
+
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--workspace',required=True);ns=ap.parse_args();w=Path(ns.workspace);f=w/'final'
  generation=load(w/'generation-complete.receipt.json');validation=load(f/'h01-103-validation.json')
@@ -35,7 +56,9 @@ def main():
  original=source.read_bytes()
  if sha(original)!=generation.get('provider_original_sha256') or sha(original)!=validation.get('input_sha256'):raise SystemExit('E_GENERATION_LINEAGE_MISMATCH')
  bp=json.loads((w/'blueprint.json').read_text());pp=json.loads((w/'provider-prompt.json').read_text());bph=sha256_value(bp)
- post=postprocess_vector(source,w/'postproduction',bp['semantic_asset_id'],provider_original_sha256=sha(original),blueprint_sha256=bph,provider_prompt_sha256=pp['prompt_sha256'],render_size=4096,repair_transport_geometry=True)
+ post=verified_existing_postproduction(w,generation,validation,bp)
+ if post is None:
+  post=postprocess_vector(source,w/'postproduction',bp['semantic_asset_id'],provider_original_sha256=sha(original),blueprint_sha256=bph,provider_prompt_sha256=pp['prompt_sha256'],render_size=4096,repair_transport_geometry=True)
  if post['lineage']['canonical_svg_sha256']!=validation.get('canonical_svg_sha256'):raise SystemExit('E_POSTPRODUCTION_CANONICAL_DRIFT')
  deriv=[]
  for a in post['artifacts']:
