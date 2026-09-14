@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "die.h01.market-signal-source-capability.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "source_id", "source_name", "adapter_state", "acquisition_mode",
+    "first_party", "allowed_hosts", "auth_mode", "signal_classes",
+    "max_requests_per_run", "min_interval_seconds", "cache_ttl_seconds",
+    "max_response_bytes", "allowed_content_types", "commercial_intent_tier",
+    "production_blocking", "authority"
+  ],
+  "properties": {
+    "schema": {"const": "die.h01.market-signal-source-capability.v1"},
+    "source_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{2,80}$"},
+    "source_name": {"type": "string", "minLength": 1},
+    "adapter_state": {"enum": ["ACTIVE", "ADAPTER_PENDING", "AUTH_CONTEXT_REQUIRED", "DISABLED"]},
+    "acquisition_mode": {"enum": ["PUBLIC_HTTPS_JSON", "PUBLIC_HTTPS_TEXT", "AUTHORIZED_EXTERNAL_IMPORT"]},
+    "first_party": {"const": true},
+    "allowed_hosts": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "auth_mode": {"enum": ["NONE", "EXTERNAL_AUTHORIZED_CONTEXT"]},
+    "signal_classes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["DEMAND", "TREND", "COMPETITION", "COMMERCIAL_INTENT", "PLATFORM_FIT"]}},
+    "max_requests_per_run": {"type": "integer", "minimum": 1, "maximum": 100},
+    "min_interval_seconds": {"type": "number", "minimum": 0},
+    "cache_ttl_seconds": {"type": "integer", "minimum": 1},
+    "max_response_bytes": {"type": "integer", "minimum": 1024, "maximum": 10485760},
+    "allowed_content_types": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "commercial_intent_tier": {"enum": ["DIRECT_MARKETPLACE_QUERY", "MARKETPLACE_POPULAR_QUERY", "MARKETPLACE_POPULARITY_PROXY", "MACRO_SEARCH", "ATTENTION_PROXY", "LEGACY_PRIOR"]},
+    "production_blocking": {"const": false},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["credential_read_authorized", "production_authorized", "submission_authorized", "publication_authorized", "spend_authorized"],
+      "properties": {
+        "credential_read_authorized": {"const": false},
+        "production_authorized": {"const": false},
+        "submission_authorized": {"const": false},
+        "publication_authorized": {"const": false},
+        "spend_authorized": {"const": false}
+      }
+    }
+  }
+}
