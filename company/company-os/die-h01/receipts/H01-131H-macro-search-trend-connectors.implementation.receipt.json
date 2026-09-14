@@ -1,0 +1,62 @@
+{
+  "schema": "die.h01.h01-131h.macro-search-trend-connectors.implementation.v1",
+  "task_id": "H01-131H",
+  "status": "DONE_PASS",
+  "origin_main_at_start": "b213b5740f607716024f7df81191faf5f30839f8",
+  "implementation": {
+    "adapter": "company/company-os/die-h01/lib/macro_search_trend_signal.py",
+    "cli": "company/company-os/die-h01/engineering/h01_131h_macro_search_trend_acquire.py",
+    "source_tests": "company/company-os/die-h01/engineering/test_h01_131h_macro_search_trend.py",
+    "capabilities": [
+      "company/company-os/die-h01/runtime/market-signal-sources/wikimedia_pageviews_v1.json",
+      "company/company-os/die-h01/runtime/market-signal-sources/google_ads_keyword_historical_v1.json",
+      "company/company-os/die-h01/runtime/market-signal-sources/google_trends_macro_v1.json"
+    ],
+    "live_proof": "company/company-os/die-h01/evidence/H01-131H-macro-search-trend-first-party-proof.json"
+  },
+  "classification": {
+    "wikimedia": {
+      "evidence_class": "ATTENTION_PROXY",
+      "commercial_intent_tier": "ATTENTION_PROXY",
+      "confidence": "LOW"
+    },
+    "google_ads": {
+      "evidence_class": "MACRO_TREND",
+      "commercial_intent_tier": "MACRO_SEARCH",
+      "confidence": "HIGH",
+      "requires_authorized_context": true
+    },
+    "google_trends": {
+      "evidence_class": "MACRO_TREND",
+      "commercial_intent_tier": "MACRO_SEARCH",
+      "confidence": "MEDIUM",
+      "import_only": true
+    }
+  },
+  "shared_contract_compatibility_extension": {
+    "file": "company/company-os/die-h01/contracts/h01-market-signal-evidence.v1.schema.json",
+    "change": "add google_trends_macro_v1 to connector_id enum only",
+    "h01_131a_core_semantic_change": false
+  },
+  "acceptance": {
+    "live_wikimedia_acquired": true,
+    "live_wikimedia_cache_hit_fresh": true,
+    "google_ads_missing_auth_non_blocking": true,
+    "google_trends_public_scraping": false,
+    "search_volume_fabricated": false,
+    "visitor_query_count_fabricated": false,
+    "source_specific_tests": "10/10 PASS",
+    "regression_tests": "50/50 PASS",
+    "python_compile": "PASS",
+    "shared_h01_131a_core_semantic_change": false
+  },
+  "policy": {
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "production_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false,
+    "source_failure_blocks_production": false
+  }
+}

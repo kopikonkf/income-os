@@ -1,0 +1,25 @@
+{
+  "schema": "die.h01.market-signal-source-capability.v1",
+  "source_id": "google_trends_macro_v1",
+  "source_name": "Google Trends bounded authorized/public import",
+  "adapter_state": "AUTH_CONTEXT_REQUIRED",
+  "acquisition_mode": "AUTHORIZED_EXTERNAL_IMPORT",
+  "first_party": true,
+  "allowed_hosts": ["trends.google.com"],
+  "auth_mode": "EXTERNAL_AUTHORIZED_CONTEXT",
+  "signal_classes": ["TREND"],
+  "max_requests_per_run": 4,
+  "min_interval_seconds": 1.0,
+  "cache_ttl_seconds": 86400,
+  "max_response_bytes": 2097152,
+  "allowed_content_types": ["application/json"],
+  "commercial_intent_tier": "MACRO_SEARCH",
+  "production_blocking": false,
+  "authority": {
+    "credential_read_authorized": false,
+    "production_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false
+  }
+}
