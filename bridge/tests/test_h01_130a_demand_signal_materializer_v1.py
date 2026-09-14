@@ -189,3 +189,38 @@ def test_discoveries_are_empty_until_a_separate_evidence_grounded_context_stage_
     rec, _ = record_for(manifest, "food")
     assert rec["discoveries"] == {"buyers": [], "use_cases": [], "family_hypotheses": []}
     assert manifest["policy"]["buyer_use_case_family_discovery_authorized"] is False
+
+
+def test_evidence_semantics_can_downgrade_broad_source_capability_but_never_promote_it():
+    adobe = ev(
+        "adobe", "H01-SIG-000000000000000000000013", "texture", confidence="MEDIUM_HIGH",
+        metrics={"confidence": "MEDIUM_HIGH", "evidence_class": "MACRO_TREND", "macro_trend": True},
+    )
+    direct_claim_on_attention_source = ev(
+        "attention", "H01-SIG-000000000000000000000014", "cat", confidence="HIGH",
+        metrics={"confidence": "HIGH", "direct_customer_search_telemetry": True},
+    )
+    manifest = M.materialize(
+        [q("texture", 1), q("cat", 2)],
+        [adobe, direct_claim_on_attention_source],
+        {
+            "adobe": cap("adobe", "MARKETPLACE_POPULARITY_PROXY"),
+            "attention": cap("attention", "ATTENTION_PROXY"),
+        },
+    )
+    _, adobe_ex = record_for(manifest, "texture")
+    _, attention_ex = record_for(manifest, "cat")
+    assert adobe_ex["contributions"][0]["tier"] == "MACRO_SEARCH"
+    assert attention_ex["contributions"][0]["tier"] == "ATTENTION_PROXY"
+
+
+def test_adapter_pending_connector_is_ignored_even_if_diagnostic_evidence_file_exists():
+    row = ev("pending", "H01-SIG-000000000000000000000015", "cat", confidence="HIGH")
+    manifest = M.materialize(
+        [q("cat", 1)],
+        [row],
+        {"pending": cap("pending", "DIRECT_MARKETPLACE_QUERY", state="ADAPTER_PENDING")},
+    )
+    rec, _ = record_for(manifest, "cat")
+    assert rec["signal_state"] == "NO_EVIDENCE"
+    assert rec["rank_score"] is None

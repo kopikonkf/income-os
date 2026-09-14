@@ -176,15 +176,55 @@ def _evidence_confidence(row: dict[str, Any]) -> str:
 
 def _capability_tier(connector_id: str, capabilities: dict[str, dict[str, Any]]) -> str | None:
     cap = capabilities.get(connector_id) or {}
-    if cap.get("adapter_state") == "DISABLED":
+    if cap.get("adapter_state") not in {"ACTIVE", "AUTH_CONTEXT_REQUIRED"}:
         return None
     tier = str(cap.get("commercial_intent_tier") or "")
     return tier if tier in TIER_WEIGHT else None
 
 
+def _evidence_semantic_tier(row: dict[str, Any]) -> str | None:
+    metrics = row.get("normalized_metrics") or {}
+    if not isinstance(metrics, dict):
+        return None
+    evidence_class = str(metrics.get("evidence_class") or "").upper()
+    if metrics.get("direct_customer_search_telemetry") is True or "DIRECT_CUSTOMER_SEARCH" in evidence_class:
+        return "DIRECT_MARKETPLACE_QUERY"
+    if metrics.get("popular_query_ranking") is True or "POPULAR_QUERY" in evidence_class or "TRENDING_SEARCH_LABEL" in evidence_class:
+        return "MARKETPLACE_POPULAR_QUERY"
+    if metrics.get("popularity_content_needs_proxy") is True or "CONTENT_NEEDS" in evidence_class or "POPULARITY_PROXY" in evidence_class:
+        return "MARKETPLACE_POPULARITY_PROXY"
+    if metrics.get("macro_trend") is True or evidence_class in {"MACRO_TREND", "MACRO_SEARCH"}:
+        return "MACRO_SEARCH"
+    if evidence_class == "ATTENTION_PROXY":
+        return "ATTENTION_PROXY"
+    if evidence_class == "LEGACY_PRIOR":
+        return "LEGACY_PRIOR"
+    return None
+
+
+def _effective_tier(row: dict[str, Any], capabilities: dict[str, dict[str, Any]]) -> str | None:
+    connector_id = str(row.get("connector_id") or "")
+    cap_tier = _capability_tier(connector_id, capabilities)
+    if cap_tier is None:
+        return None
+    semantic_tier = _evidence_semantic_tier(row)
+    if semantic_tier is None:
+        return cap_tier
+    # Evidence may downgrade a broad source capability but may never promote above it.
+    ordered = [
+        "DIRECT_MARKETPLACE_QUERY",
+        "MARKETPLACE_POPULAR_QUERY",
+        "MARKETPLACE_POPULARITY_PROXY",
+        "MACRO_SEARCH",
+        "ATTENTION_PROXY",
+        "LEGACY_PRIOR",
+    ]
+    return ordered[max(ordered.index(cap_tier), ordered.index(semantic_tier))]
+
+
 def contribution(row: dict[str, Any], match_type: str, capabilities: dict[str, dict[str, Any]]) -> dict[str, Any] | None:
     connector_id = str(row.get("connector_id") or "")
-    tier = _capability_tier(connector_id, capabilities)
+    tier = _effective_tier(row, capabilities)
     if tier is None:
         return None
     freshness = str(row.get("freshness") or "UNKNOWN")
