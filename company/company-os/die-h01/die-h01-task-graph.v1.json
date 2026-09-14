@@ -1,6 +1,6 @@
 {
   "schema": "die.h01.task-graph.v1",
-  "generated_at": "2026-09-14T12:51:20.487Z",
+  "generated_at": "2026-09-14T14:08:33.140Z",
   "status": "FOUNDER_APPROVED_CANONICAL_DESIGN_NOT_LIVE",
   "project": "DIE / H01 Factory Asset",
   "source_sha": "88e36bc559b77e8c2498cef5f1aa56107e3df47e",
@@ -775,19 +775,19 @@
       "id": "H01-131A",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Implement first-party market signal acquisition core v1",
-      "status": "RUNNING",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131"
       ],
       "acceptance": "Build a bounded fail-soft acquisition runtime under H01-131 with source capability registry, rate limits, cache TTL, freshness, immutable raw/normalized evidence hashes and persistent /var/lib/die/h01 demand-signal state. Prove at least one live first-party public source. No credentials/session bytes, marketplace submission/publication/spend or production blocking; optional public-market observations may fail independently without stopping supply-first production.",
-      "result": "IMPLEMENTATION PASS: shared first-party signal acquisition core implemented with per-source capability files, HTTPS/domain guard, secret-header rejection, persistent source lease/minimum interval, bounded request/response policy, immutable raw+normalized evidence, fresh cache and stale-cache fail-soft fallback. Live Windows first-party Wikimedia proof acquired 7-day Cat evidence (80,887 pageviews) and replayed CACHE_HIT_FRESH. Linux /var/lib/die/h01 activation remains pending because Mission Control SSH broker exposed zero allowlisted nodes in this session."
+      "result": "PASS: shared first-party market signal acquisition core implemented and operationally proven on Windows and Linux. Linux canonical state root /var/lib/die/h01/demand-intelligence/signals recorded Wikimedia Cat 7-day acquisition as ACQUIRED then CACHE_HIT_FRESH using the same immutable raw/evidence hashes. Source failures remain non-blocking; no credential/cookie values or production/submission/publication/spend authority were used."
     },
     {
       "id": "H01-131B",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Add Shutterstock first-party Search Trends signal adapter v1",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131A"
@@ -798,7 +798,7 @@
       "id": "H01-131C",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Add Pond5 customer-search Data & Trends signal adapter v1",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131A"
@@ -833,7 +833,7 @@
       "id": "H01-131D",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Add Vecteezy popular/trending search signal adapter v1",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131A"
@@ -844,7 +844,7 @@
       "id": "H01-131E",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Add Freepik first-party trending vector search signal adapter v1",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131A"
@@ -855,7 +855,7 @@
       "id": "H01-131F",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Add 123RF first-party trending search signal adapter v1",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131A"
@@ -866,7 +866,7 @@
       "id": "H01-131G",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Add Adobe Stock demand-observation adapter v1",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131A"
@@ -877,7 +877,7 @@
       "id": "H01-131H",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Operationalize macro search/trend connectors v1",
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131A"
