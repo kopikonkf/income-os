@@ -1,0 +1,49 @@
+{
+  "schema": "die.h01.h01-132a.phase0-production-intent.acceptance.v1",
+  "task_id": "H01-132A",
+  "status": "DONE_PASS",
+  "candidate_commit": "6e0113347c97a2d46d5dc43c55920b840ffe3d80",
+  "live_acceptance": {
+    "day_key": "2026-09-14",
+    "cycle_id": "H01-DCYCLE-AC9AEEDEA79D6F52BA60FF98",
+    "selection_id": "H01-DAILY-52BA25C07ED0E582F7D47BFB",
+    "queue_sha256": "0f0ec826a81d888a2be3f0b4bd11d6327f7202963d70add639f2092cdf46beeb",
+    "selector_sha256": "077e966cfb9ec6859231386537c965b977e1ce12fd5feb8646b01ffc7910b9ef",
+    "demand_materialization_id": "H01-DMAT-0C0EC82F559033508AE086E1",
+    "demand_materialization_sha256": "bc5c6ea7a58d939e32c596154e2cd9010a59bf608094aefcb53ff6e108c0823a",
+    "manifest_id": "H01-P0MAN-6267BB795752A51868B0EEE0",
+    "manifest_sha256": "ae2a130a954c6b07775a987d670896d40965e55ff671938b31335b37d267d6f6",
+    "selected_count": 100,
+    "evidence_ranked_count": 4,
+    "fallback_count": 96,
+    "identity_drift_count": 0,
+    "human_context_count": 0,
+    "family_hypothesis_count": 0,
+    "longtail_count": 0,
+    "object_human_cross_join_count": 0,
+    "provider_semantic_leak_count": 0,
+    "replay_same_manifest_id": true,
+    "replay_same_manifest_sha256": true
+  },
+  "policy": {
+    "standalone_noun_only": true,
+    "human_atlas_join": false,
+    "longtail_generation": false,
+    "object_human_cross_join": false,
+    "provider_independent_semantic_intent": true,
+    "unsupported_buyer_segments_forbidden": true,
+    "fallback_demand_claim_forbidden": true
+  },
+  "tests": {
+    "unit": "8/8 PASS",
+    "targeted_regression": "26/26 PASS",
+    "linux_targeted": "26/26 PASS",
+    "python_compile": "PASS"
+  },
+  "authority": {
+    "production_dispatch_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false
+  }
+}

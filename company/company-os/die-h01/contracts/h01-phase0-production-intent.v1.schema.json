@@ -1,0 +1,21 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","intent_id","phase","day_key","cycle_id","selection_id","lineage","queue_identity","selection","demand","commercial_basis","phase0_guard","authority"],
+  "properties":{
+    "schema":{"const":"die.h01.phase0-production-intent.v1"},
+    "intent_id":{"type":"string"},
+    "phase":{"const":"PHASE_0_STANDALONE_NOUN"},
+    "day_key":{"type":"string"},
+    "cycle_id":{"type":"string"},
+    "selection_id":{"type":"string"},
+    "lineage":{"type":"object"},
+    "queue_identity":{"type":"object"},
+    "selection":{"type":"object"},
+    "demand":{"type":"object"},
+    "commercial_basis":{"type":"object"},
+    "phase0_guard":{"type":"object"},
+    "authority":{"type":"object"}
+  }
+}
