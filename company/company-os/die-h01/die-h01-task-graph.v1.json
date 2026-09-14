@@ -409,14 +409,15 @@
     {
       "id": "H01-109A",
       "track": "SVG_FIRST",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-135",
         "H01-136"
       ],
       "title": "Prove marketplace real-upload technical preflight",
-      "acceptance": "Without login, submission, publication or spend, prove the Founder handoff path from an H01 postproduction workspace through marketplace delivery package, submission-ready gating/eligibility diagnostics, deterministic transport/idempotency contract, upload runbook and durable preflight receipt. Zero currently eligible submission-ready assets is an honest preflight result, not a task failure."
+      "acceptance": "Without login, submission, publication or spend, prove the Founder handoff path from an H01 postproduction workspace through marketplace delivery package, submission-ready gating/eligibility diagnostics, deterministic transport/idempotency contract, upload runbook and durable preflight receipt. Zero currently eligible submission-ready assets is an honest preflight result, not a task failure.",
+      "result": "PASS: real-upload technical preflight proved the H01-134 package -> H01-135 eligibility -> H01-136 idempotency handoff on the real H01-108 sunflower workspace. Six marketplace packages were COMPATIBLE but 0 were submission-ready because rights remained REVIEW_REQUIRED and Founder QC NOT_RECORDED; live submission-ready eligible_count also remained 0. Source hashes were immutable, exact replay produced one durable transport receipt, duplicate-scope mutation was blocked, and all login/upload/submission/publication/spend actions were NONE. H01-109B remains blocked until eligibility exists."
     },
     {
       "id": "H01-109B",

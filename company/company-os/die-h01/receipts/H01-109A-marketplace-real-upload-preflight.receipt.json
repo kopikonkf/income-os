@@ -1,0 +1,224 @@
+{
+  "acceptance_note": "Zero eligible submission-ready assets is an honest technical-preflight result and does not fail H01-109A.",
+  "founder_handoff": {
+    "login_performed": false,
+    "publication_performed": false,
+    "real_upload_authority": "FOUNDER_REQUIRED",
+    "real_upload_task": "H01-109B",
+    "spend_performed": false,
+    "state": "WAITING_ELIGIBILITY",
+    "submission_performed": false,
+    "upload_performed": false
+  },
+  "isolated_submission_ready": {
+    "eligible_count": 0,
+    "external_action": "NONE",
+    "index_file_sha256": "c8d806af05bb2b5e568798c57829ef616fce9e9373652b4e316d55be79bd1160",
+    "skipped": [
+      {
+        "key": "123rf/H01SVG-CAND-0848398",
+        "manifest": "/var/lib/die/h01/preflight/H01-109A/delivery/123rf/manifest.json",
+        "reasons": [
+          "MANIFEST_NOT_ELIGIBLE",
+          "RIGHTS_NOT_PASS",
+          "FOUNDER_QC_NOT_PASS"
+        ]
+      },
+      {
+        "key": "adobe/H01SVG-CAND-0848398",
+        "manifest": "/var/lib/die/h01/preflight/H01-109A/delivery/adobe/manifest.json",
+        "reasons": [
+          "MANIFEST_NOT_ELIGIBLE",
+          "RIGHTS_NOT_PASS",
+          "FOUNDER_QC_NOT_PASS"
+        ]
+      },
+      {
+        "key": "dreamstime/H01SVG-CAND-0848398",
+        "manifest": "/var/lib/die/h01/preflight/H01-109A/delivery/dreamstime/manifest.json",
+        "reasons": [
+          "MANIFEST_NOT_ELIGIBLE",
+          "RIGHTS_NOT_PASS",
+          "FOUNDER_QC_NOT_PASS"
+        ]
+      },
+      {
+        "key": "motionelements/H01SVG-CAND-0848398",
+        "manifest": "/var/lib/die/h01/preflight/H01-109A/delivery/motionelements/manifest.json",
+        "reasons": [
+          "MANIFEST_NOT_ELIGIBLE",
+          "RIGHTS_NOT_PASS",
+          "FOUNDER_QC_NOT_PASS"
+        ]
+      },
+      {
+        "key": "vecteezy/H01SVG-CAND-0848398",
+        "manifest": "/var/lib/die/h01/preflight/H01-109A/delivery/vecteezy/manifest.json",
+        "reasons": [
+          "MANIFEST_NOT_ELIGIBLE",
+          "RIGHTS_NOT_PASS",
+          "FOUNDER_QC_NOT_PASS"
+        ]
+      },
+      {
+        "key": "vectorstock/H01SVG-CAND-0848398",
+        "manifest": "/var/lib/die/h01/preflight/H01-109A/delivery/vectorstock/manifest.json",
+        "reasons": [
+          "MANIFEST_NOT_ELIGIBLE",
+          "RIGHTS_NOT_PASS",
+          "FOUNDER_QC_NOT_PASS"
+        ]
+      }
+    ],
+    "skipped_count": 6
+  },
+  "live_submission_ready": {
+    "eligible_count": 0,
+    "entry_count": 0,
+    "external_action": "NONE",
+    "index_sha256": "50aaef434b0dfa0124da18c6aacee03507d366af8adcf98d1321f3f2007fd632",
+    "root": "/var/lib/die/h01/submission-ready",
+    "root_exists": true
+  },
+  "marketplace_package_count": 6,
+  "marketplaces": {
+    "123RF": {
+      "actions": {
+        "login": "NONE",
+        "publication": "NONE",
+        "spend": "NONE",
+        "submission": "NONE",
+        "upload": "NONE"
+      },
+      "compatibility": "COMPATIBLE",
+      "compatibility_blockers": [],
+      "founder_qc": "NOT_RECORDED",
+      "manifest_path": "/var/lib/die/h01/preflight/H01-109A/delivery/123rf/manifest.json",
+      "manifest_sha256": "a8676a0eee8c826e4e4a7b42185c1f981e89db87beac6f956ad9d67e2b3c0d58",
+      "rights": "REVIEW_REQUIRED",
+      "submission_eligible": false
+    },
+    "ADOBE": {
+      "actions": {
+        "login": "NONE",
+        "publication": "NONE",
+        "spend": "NONE",
+        "submission": "NONE",
+        "upload": "NONE"
+      },
+      "compatibility": "COMPATIBLE",
+      "compatibility_blockers": [],
+      "founder_qc": "NOT_RECORDED",
+      "manifest_path": "/var/lib/die/h01/preflight/H01-109A/delivery/adobe/manifest.json",
+      "manifest_sha256": "f8ad4f843bc1084ae94b6db24d8db4d27275d90507b3d3d430c183e02a915c90",
+      "rights": "REVIEW_REQUIRED",
+      "submission_eligible": false
+    },
+    "DREAMSTIME": {
+      "actions": {
+        "login": "NONE",
+        "publication": "NONE",
+        "spend": "NONE",
+        "submission": "NONE",
+        "upload": "NONE"
+      },
+      "compatibility": "COMPATIBLE",
+      "compatibility_blockers": [],
+      "founder_qc": "NOT_RECORDED",
+      "manifest_path": "/var/lib/die/h01/preflight/H01-109A/delivery/dreamstime/manifest.json",
+      "manifest_sha256": "f4977b83c2aacef68d5e483d1c79fe5b1fa2cdef2d105f0621bdc87dcfb90bf7",
+      "rights": "REVIEW_REQUIRED",
+      "submission_eligible": false
+    },
+    "MOTIONELEMENTS": {
+      "actions": {
+        "login": "NONE",
+        "publication": "NONE",
+        "spend": "NONE",
+        "submission": "NONE",
+        "upload": "NONE"
+      },
+      "compatibility": "COMPATIBLE",
+      "compatibility_blockers": [],
+      "founder_qc": "NOT_RECORDED",
+      "manifest_path": "/var/lib/die/h01/preflight/H01-109A/delivery/motionelements/manifest.json",
+      "manifest_sha256": "d48c2ef5713a18b92a702b80a37c375ea13569484e034a7e725940d6f0a28ed4",
+      "rights": "REVIEW_REQUIRED",
+      "submission_eligible": false
+    },
+    "VECTEEZY": {
+      "actions": {
+        "login": "NONE",
+        "publication": "NONE",
+        "spend": "NONE",
+        "submission": "NONE",
+        "upload": "NONE"
+      },
+      "compatibility": "COMPATIBLE",
+      "compatibility_blockers": [],
+      "founder_qc": "NOT_RECORDED",
+      "manifest_path": "/var/lib/die/h01/preflight/H01-109A/delivery/vecteezy/manifest.json",
+      "manifest_sha256": "03512b97b2ce817bb6d0cda33d13fa049f50ae07d04301e22b6f60d07c64d196",
+      "rights": "REVIEW_REQUIRED",
+      "submission_eligible": false
+    },
+    "VECTORSTOCK": {
+      "actions": {
+        "login": "NONE",
+        "publication": "NONE",
+        "spend": "NONE",
+        "submission": "NONE",
+        "upload": "NONE"
+      },
+      "compatibility": "COMPATIBLE",
+      "compatibility_blockers": [],
+      "founder_qc": "NOT_RECORDED",
+      "manifest_path": "/var/lib/die/h01/preflight/H01-109A/delivery/vectorstock/manifest.json",
+      "manifest_sha256": "69bc9da3ca24e80c5058d747350effe5d33fbd349373015c2cac90374b449db4",
+      "rights": "REVIEW_REQUIRED",
+      "submission_eligible": false
+    }
+  },
+  "observed_at": "2026-09-14T05:22:00Z",
+  "schema": "die.h01.h01-109a.marketplace-real-upload-preflight.v1",
+  "source_hashes_after": {
+    "metadata.json": "92184c2117d54ed15458d7b787319e06e33c20050fec67bfec67a10449910868",
+    "postproduction/canonical-master.svg": "a1c1584de4a4ca7ba79d78d577cbeb599615251facd15873f2ba856daab427c3",
+    "postproduction/master.eps": "217b536190ab19ff55f1b075d85c7125d3869b22b82ce1526cd72523e16de544",
+    "postproduction/optimized-master.svg": "afa8f79958afd194cb3c9771a81b77942fdf525de8edae6b3f8158b490beb9dd",
+    "postproduction/preview.jpg": "10c1422614111f6251552d295d951f2fa2c10c97c4eb8e91ac233ae38b425ff7",
+    "rights-signal.json": "7325e7c64b29f79313765d75efb7ed2845f6f698d0eec96191b55e6ceaf9a07e"
+  },
+  "source_hashes_before": {
+    "metadata.json": "92184c2117d54ed15458d7b787319e06e33c20050fec67bfec67a10449910868",
+    "postproduction/canonical-master.svg": "a1c1584de4a4ca7ba79d78d577cbeb599615251facd15873f2ba856daab427c3",
+    "postproduction/master.eps": "217b536190ab19ff55f1b075d85c7125d3869b22b82ce1526cd72523e16de544",
+    "postproduction/optimized-master.svg": "afa8f79958afd194cb3c9771a81b77942fdf525de8edae6b3f8158b490beb9dd",
+    "postproduction/preview.jpg": "10c1422614111f6251552d295d951f2fa2c10c97c4eb8e91ac233ae38b425ff7",
+    "rights-signal.json": "7325e7c64b29f79313765d75efb7ed2845f6f698d0eec96191b55e6ceaf9a07e"
+  },
+  "source_immutable": true,
+  "status": "PASS",
+  "task_id": "H01-109A",
+  "transport_idempotency": {
+    "actions": {
+      "login": "NONE",
+      "publication": "NONE",
+      "spend": "NONE",
+      "submission": "NONE",
+      "upload": "NONE"
+    },
+    "authority_gate": "FOUNDER_APPROVAL_REQUIRED_BEFORE_EXTERNAL_ACTION",
+    "credential_accessed": false,
+    "duplicate_scope_conflict_blocked": true,
+    "duplicate_scope_key": "5eaca482dcb8fa8402798580fbee583bee0ba9415c0c97ea4bb98d0064221a56",
+    "durable_receipt_count": 1,
+    "exact_replay_same_receipt": true,
+    "external_action_performed": false,
+    "fixture": "company/company-os/die-h01/fixtures/h01-136/submission-ready-entry.synthetic.json",
+    "founder_authorized": false,
+    "idempotency_key": "bb3056dda0a7a0dca0367ec7c0255bc0f0b352d229734eaa1d8ffda78b2b4ba0",
+    "receipt_id": "H01-136-bb3056dda0a7a0dca0367ec7c0255bc0"
+  },
+  "workspace": "/var/lib/die/h01/runs/H01-108/055-sunflower-manus-a1"
+}
