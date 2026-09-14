@@ -1,0 +1,80 @@
+{
+  "schema": "die.h01.h01-131g.adobe-stock-demand-observation-adapter.implementation.v1",
+  "task_id": "H01-131G",
+  "status": "DONE_PASS",
+  "origin_main_at_start": "b213b5740f607716024f7df81191faf5f30839f8",
+  "classification": {
+    "commercial_intent_tier": "MARKETPLACE_POPULARITY_PROXY",
+    "evidence_class": "MACRO_TREND",
+    "confidence": "MEDIUM_HIGH",
+    "direct_customer_search_telemetry": false,
+    "popular_query_ranking": false,
+    "popularity_content_needs_proxy": false,
+    "macro_trend": true,
+    "reason": "The accessible public first-party Adobe surface is an Adobe Stock-tagged creative-trend synthesis. Adobe explicitly describes aggregate methodology using customer feedback and search history, but does not expose per-query marketplace counts, keyword search volume, or popular-query rank on this surface."
+  },
+  "source_truth": {
+    "public_surface": "https://blog.adobe.com/en/publish/2026/01/08/how-creators-leveraging-adobe-2026-creative-trends",
+    "auth_required": false,
+    "first_party_public_https": true,
+    "article_publication_date": "2026-01-08",
+    "trend_count": 4,
+    "aggregate_search_history_growth_percent": 150.0,
+    "aggregate_search_history_growth_since_year": 2024,
+    "search_volume_exposed": false,
+    "visitor_query_count_exposed": false,
+    "popular_query_rank_exposed": false,
+    "stock_adobe_bounded_http_result": "HTTP_403_FROM_CURRENT_RUNTIME",
+    "account_automation_attempted": false
+  },
+  "implementation": {
+    "adapter": "company/company-os/die-h01/lib/adobe_stock_market_signal.py",
+    "capability": "company/company-os/die-h01/runtime/market-signal-sources/adobe_stock_demand_observation_v1.json",
+    "cli": "company/company-os/die-h01/engineering/h01_adobe_stock_signal_acquire.py",
+    "source_tests": "company/company-os/die-h01/engineering/test_h01_131g_adobe_stock.py",
+    "live_proof": "company/company-os/die-h01/evidence/H01-131G-adobe-stock-first-party-proof.json"
+  },
+  "live_acceptance": {
+    "status": "ACQUIRED",
+    "retrieved_at": "2026-09-14T16:13:31.214736Z",
+    "raw_bytes": 26340,
+    "raw_sha256": "d2ce269d825ac99bb2fb7d2d0cf5439eedd79fe3092d527f09ff69d6a3e675d6",
+    "evidence_id": "H01-SIG-CE6005601A0675FEFB839B96",
+    "cache_replay_status": "CACHE_HIT_FRESH",
+    "cache_replay_raw_sha256": "d2ce269d825ac99bb2fb7d2d0cf5439eedd79fe3092d527f09ff69d6a3e675d6"
+  },
+  "shared_contract_compatibility_extension": {
+    "file": "company/company-os/die-h01/contracts/h01-market-signal-evidence.v1.schema.json",
+    "change": "add adobe_stock_demand_observation_v1 to connector_id enum only",
+    "semantic_change": false
+  },
+  "proven_shared_test_bug_fix": {
+    "file": "bridge/tests/test_h01_131a_market_signal_acquisition_core_v1.py",
+    "problem": "The parallel-friendly registry test still asserted exactly two source IDs after Vecteezy and 123RF source capability files had already merged, making current origin/main red before H01-131G.",
+    "fix": "Require the original H01-131A baseline sources to be a subset while continuing to schema-validate every registered source.",
+    "shared_core_implementation_changed": false
+  },
+  "tests": {
+    "source_specific": "8/8 PASS",
+    "h01_131a_regression": "10/10 PASS",
+    "h01_131d_regression": "8/8 PASS",
+    "h01_131f_regression": "7/7 PASS",
+    "h01_131_connector_contract": "6/6 PASS",
+    "relevant_total": "39/39 PASS",
+    "python_compile": "PASS",
+    "live_receipt_schema": "PASS",
+    "live_evidence_schema": "PASS",
+    "live_proof_json": "PASS",
+    "shared_h01_131a_core_semantic_change": false
+  },
+  "authority": {
+    "source_failure_blocks_production": false,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "production_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false
+  },
+  "closure": "Adobe Stock v1 contributes optional first-party macro creative-trend evidence through the H01-131A acquisition core. It does not claim direct customer-search telemetry, popular-query ranking, per-query search volume, or visitor-query counts, and it performs no marketplace account automation."
+}

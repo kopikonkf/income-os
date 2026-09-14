@@ -868,7 +868,7 @@
       "id": "H01-131G",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Add Adobe Stock demand-observation adapter v1",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131A"
