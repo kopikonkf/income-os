@@ -833,12 +833,13 @@
       "id": "H01-131D",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Add Vecteezy popular/trending search signal adapter v1",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131A"
       ],
-      "acceptance": "Normalize first-party Vecteezy Top/Popular SVG and vector search observations, trending-search categories and observation timestamp into H01-131 evidence. Classify as marketplace-native popular-query evidence below explicit quantitative customer-search telemetry. Keep source optional and fail soft."
+      "acceptance": "Normalize first-party Vecteezy Top/Popular SVG and vector search observations, trending-search categories and observation timestamp into H01-131 evidence. Classify as marketplace-native popular-query evidence below explicit quantitative customer-search telemetry. Keep source optional and fail soft.",
+      "result": "PASS: bounded public first-party Vecteezy adapter acquires Top SVG/Vector ranked popular-search observations plus vector Trending Searches categories through H01-131A immutable evidence/cache semantics. Classified MARKETPLACE_POPULAR_QUERY below quantitative customer-search telemetry; search volume/visitor-query counts are not inferred; outage/layout failures fail soft and standalone production remains non-blocking."
     },
     {
       "id": "H01-131E",
