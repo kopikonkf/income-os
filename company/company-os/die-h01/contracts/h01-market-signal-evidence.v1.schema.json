@@ -18,10 +18,15 @@
   ],
   "properties": {
     "schema": {"const": "die.h01.market-signal-evidence.v1"},
-    "connector_id": {"enum": ["wikimedia_pageviews_v1", "google_ads_keyword_historical_v1", "vecteezy_popular_search_v1", "123rf_trending_search_v1", "google_trends_macro_v1"]},
+    "connector_id": {"enum": ["wikimedia_pageviews_v1", "google_ads_keyword_historical_v1", "vecteezy_popular_search_v1", "123rf_trending_search_v1", "pond5_customer_search_data_trends_v1", "google_trends_macro_v1"]},
     "evidence_id": {"type": "string", "pattern": "^H01-SIG-[0-9A-F]{24}$"},
     "evidence_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "signal_class": {"enum": ["DEMAND", "TREND"]},
+    "confidence": {"enum": ["LOW", "MEDIUM", "HIGH"]},
+    "evidence_class": {"enum": ["DIRECT_CUSTOMER_SEARCH_TELEMETRY", "MARKETPLACE_POPULAR_QUERY_RANKING", "MARKETPLACE_POPULARITY_CONTENT_NEEDS_PROXY", "MACRO_TREND", "ATTENTION_PROXY"]},
+    "commercial_intent_tier": {"enum": ["DIRECT_MARKETPLACE_QUERY", "MARKETPLACE_POPULAR_QUERY", "MARKETPLACE_POPULARITY_PROXY", "MACRO_SEARCH", "ATTENTION_PROXY", "LEGACY_PRIOR"]},
+    "media_type": {"type": "string", "minLength": 1},
+    "observation_period": {"type": ["string", "null"]},
     "freshness": {"enum": ["FRESH", "STALE", "UNKNOWN"]},
     "query": {"type": "string", "minLength": 1},
     "retrieved_at": {"type": "string", "minLength": 1},
@@ -57,5 +62,11 @@
         "spend_authorized": {"const": false}
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"connector_id": {"const": "pond5_customer_search_data_trends_v1"}}},
+      "then": {"required": ["evidence_class", "commercial_intent_tier", "media_type", "observation_period"]}
+    }
+  ]
 }

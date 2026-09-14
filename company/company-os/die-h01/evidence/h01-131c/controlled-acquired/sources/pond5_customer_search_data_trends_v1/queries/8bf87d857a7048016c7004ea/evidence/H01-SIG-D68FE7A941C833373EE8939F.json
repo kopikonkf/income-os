@@ -1,0 +1,72 @@
+{
+  "commercial_intent_tier": "DIRECT_MARKETPLACE_QUERY",
+  "confidence": "HIGH",
+  "connector_id": "pond5_customer_search_data_trends_v1",
+  "evidence_class": "DIRECT_CUSTOMER_SEARCH_TELEMETRY",
+  "evidence_id": "H01-SIG-D68FE7A941C833373EE8939F",
+  "evidence_sha256": "1821fb95be0d506b9cac2c816f9f3849ee683261cdd3dadb31d913a45547ef38",
+  "freshness": "FRESH",
+  "media_type": "illustrations",
+  "normalized_metrics": {
+    "commercial_intent_tier": "DIRECT_MARKETPLACE_QUERY",
+    "evidence_class": "DIRECT_CUSTOMER_SEARCH_TELEMETRY",
+    "media_type": "illustrations",
+    "observation_period": "August 2026",
+    "quantitative_counts_provided": false,
+    "search_volume": null,
+    "source_payload_sha256": "1821fb95be0d506b9cac2c816f9f3849ee683261cdd3dadb31d913a45547ef38",
+    "top_search_terms": [
+      {
+        "rank": 1,
+        "term": "computer"
+      },
+      {
+        "rank": 2,
+        "term": "abstract"
+      },
+      {
+        "rank": 3,
+        "term": "calendar"
+      }
+    ],
+    "trend_comparison_period": "prior_weeks",
+    "trending_down": [
+      {
+        "change_percent": -12.0,
+        "comparison_period": "prior_weeks",
+        "direction": "DOWN",
+        "rank": 1,
+        "term": "winter sale"
+      }
+    ],
+    "trending_up": [
+      {
+        "change_percent": 27.0,
+        "comparison_period": "prior_weeks",
+        "direction": "UP",
+        "rank": 1,
+        "term": "back to school"
+      }
+    ],
+    "visitor_query_count": null
+  },
+  "observation_period": "August 2026",
+  "policy": {
+    "auth_required": false,
+    "autocomplete_used": false,
+    "dom_scraping_used": false,
+    "object_atlas_validity_effect": "NONE",
+    "official_source": true,
+    "production_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false,
+    "standalone_production_blocking_effect": "NONE",
+    "structured_source": true,
+    "submission_authorized": false
+  },
+  "query": "illustrations",
+  "retrieved_at": "2026-09-14T16:27:28.445151Z",
+  "schema": "die.h01.market-signal-evidence.v1",
+  "signal_class": "DEMAND",
+  "source_locator": "https://contributor.pond5.com/data-trends/illustrations/"
+}

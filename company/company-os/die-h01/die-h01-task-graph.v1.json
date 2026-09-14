@@ -798,7 +798,7 @@
       "id": "H01-131C",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Add Pond5 customer-search Data & Trends signal adapter v1",
-      "status": "READY",
+      "status": "RUNNING",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131A"

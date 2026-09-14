@@ -1,0 +1,25 @@
+{
+  "schema": "die.h01.market-signal-source-capability.v1",
+  "source_id": "pond5_customer_search_data_trends_v1",
+  "source_name": "Pond5 Contributor Portal Data & Trends",
+  "adapter_state": "ACTIVE",
+  "acquisition_mode": "PUBLIC_HTTPS_TEXT",
+  "first_party": true,
+  "allowed_hosts": ["contributor.pond5.com"],
+  "auth_mode": "NONE",
+  "signal_classes": ["DEMAND", "TREND", "COMMERCIAL_INTENT"],
+  "max_requests_per_run": 1,
+  "min_interval_seconds": 2.0,
+  "cache_ttl_seconds": 86400,
+  "max_response_bytes": 2097152,
+  "allowed_content_types": ["application/json", "text/html", "application/xhtml+xml"],
+  "commercial_intent_tier": "DIRECT_MARKETPLACE_QUERY",
+  "production_blocking": false,
+  "authority": {
+    "credential_read_authorized": false,
+    "production_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false
+  }
+}

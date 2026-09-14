@@ -1,0 +1,39 @@
+{
+  "acquisition_id": "H01-ACQ-330E858FD311116EACBD3C22",
+  "cache": {
+    "age_seconds": null,
+    "hit": false,
+    "latest_receipt": null,
+    "ttl_seconds": 86400
+  },
+  "effective_freshness": "UNKNOWN",
+  "error": {
+    "code": "E_SOURCE_UNAVAILABLE",
+    "detail": "E_POND5_NO_SUPPORTED_DATA",
+    "type": "Pond5ParseError"
+  },
+  "evidence": [],
+  "policy": {
+    "cookies_or_tokens_read": false,
+    "credential_values_read": false,
+    "production_authorized": false,
+    "publication_authorized": false,
+    "source_failure_blocks_production": false,
+    "spend_authorized": false,
+    "submission_authorized": false
+  },
+  "query_key": "pond5:illustrations:live-probe:20260914",
+  "raw": {
+    "bytes": null,
+    "content_type": null,
+    "relative_path": null,
+    "sha256": null
+  },
+  "request_sha256": "463603e4140d5d7cf2f3bf0866e9f4f3a827b0a8022fa43a939e7f5a966a9f9a",
+  "retrieved_at": "2026-09-14T16:27:44.214100Z",
+  "schema": "die.h01.market-signal-acquisition-receipt.v1",
+  "source_id": "pond5_customer_search_data_trends_v1",
+  "source_locator": "https://contributor.pond5.com/data-trends/illustrations/",
+  "status": "DEGRADED_NO_EVIDENCE",
+  "task_id": "H01-131A"
+}

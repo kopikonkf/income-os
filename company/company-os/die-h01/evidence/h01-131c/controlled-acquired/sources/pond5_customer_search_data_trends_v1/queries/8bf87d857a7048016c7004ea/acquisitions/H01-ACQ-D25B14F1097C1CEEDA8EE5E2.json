@@ -1,0 +1,41 @@
+{
+  "acquisition_id": "H01-ACQ-D25B14F1097C1CEEDA8EE5E2",
+  "cache": {
+    "age_seconds": null,
+    "hit": false,
+    "latest_receipt": null,
+    "ttl_seconds": 86400
+  },
+  "effective_freshness": "FRESH",
+  "error": null,
+  "evidence": [
+    {
+      "evidence_id": "H01-SIG-D68FE7A941C833373EE8939F",
+      "relative_path": "sources/pond5_customer_search_data_trends_v1/queries/8bf87d857a7048016c7004ea/evidence/H01-SIG-D68FE7A941C833373EE8939F.json",
+      "sha256": "f625aa241fd45cf0ddc9cce28174b79a4cec2536ae5ab7fffed5b45aeece4f03"
+    }
+  ],
+  "policy": {
+    "cookies_or_tokens_read": false,
+    "credential_values_read": false,
+    "production_authorized": false,
+    "publication_authorized": false,
+    "source_failure_blocks_production": false,
+    "spend_authorized": false,
+    "submission_authorized": false
+  },
+  "query_key": "pond5:illustrations:controlled-smoke:20260914",
+  "raw": {
+    "bytes": 783,
+    "content_type": "text/html",
+    "relative_path": "sources/pond5_customer_search_data_trends_v1/queries/8bf87d857a7048016c7004ea/raw/1821fb95be0d506b9cac2c816f9f3849ee683261cdd3dadb31d913a45547ef38.bin",
+    "sha256": "1821fb95be0d506b9cac2c816f9f3849ee683261cdd3dadb31d913a45547ef38"
+  },
+  "request_sha256": "463603e4140d5d7cf2f3bf0866e9f4f3a827b0a8022fa43a939e7f5a966a9f9a",
+  "retrieved_at": "2026-09-14T16:27:28.445151Z",
+  "schema": "die.h01.market-signal-acquisition-receipt.v1",
+  "source_id": "pond5_customer_search_data_trends_v1",
+  "source_locator": "https://contributor.pond5.com/data-trends/illustrations/",
+  "status": "ACQUIRED",
+  "task_id": "H01-131A"
+}
