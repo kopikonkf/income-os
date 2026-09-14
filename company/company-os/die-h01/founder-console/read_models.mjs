@@ -3,6 +3,7 @@ import net from 'node:net';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {buildProviderBridgeReadModel, DEFAULT_RUNTIME} from './byok_bridge.mjs';
+import {buildDemandTelemetry} from './demand_telemetry.mjs';
 
 const ROOT=path.dirname(fileURLToPath(import.meta.url));
 const DEFAULTS=Object.freeze({
@@ -10,7 +11,8 @@ const DEFAULTS=Object.freeze({
   h01_108_root:'/var/lib/die/h01/runs/H01-108',
   submissionReadyRoot:'/var/lib/die/h01/submission-ready',
   graphPath:path.join(ROOT,'..','die-h01-task-graph.v1.json'),
-  legacyHost:'127.0.0.1', legacyPort:8876
+  legacyHost:'127.0.0.1', legacyPort:8876,
+  dataRoot:'/var/lib/die/h01'
 });
 
 async function entries(p){try{return await readdir(p,{withFileTypes:true})}catch{return []}}
@@ -28,7 +30,7 @@ export function createReadModels(options={}){
     async providers(){return {browser_native_primary:true,credential_values_exposed:false,api_bridge:buildProviderBridgeReadModel(DEFAULT_RUNTIME)}},
     async qcGallery(){return {gallery:'read-only',preview_count:await countNamed(cfg.h01_108_root,'preview.webp'),legacy_url:'http://127.0.0.1:8876/#qc',legacy_8876:await portOpen(cfg.legacyHost,cfg.legacyPort)?'LISTENING':'UNAVAILABLE',founder_qc_authority:'FOUNDER'}},
     async submissionReady(){const rows=(await entries(cfg.submissionReadyRoot)).filter(e=>e.isDirectory()||e.isFile());return {root:cfg.submissionReadyRoot,root_exists:await exists(cfg.submissionReadyRoot),entry_count:rows.length,submission_action:'NONE',publication_action:'NONE'}},
-    async demand(){const g=await graph(cfg.graphPath);const ids=new Set(['H01-130','H01-131','H01-132','H01-133']);return {engines:(g.tasks||[]).filter(t=>ids.has(t.id)).map(t=>({id:t.id,status:t.status,title:t.title,result:t.result||null})),queue_mutation:false}},
+    async demand(){return {mode:'NON_BLOCKING_PRIORITY_OVERLAY',queue_mutation:false,telemetry:await buildDemandTelemetry({dataRoot:cfg.dataRoot})}},
     async tasks(){return {scheduler:'MISSION_CONTROL',graph_authority:'MISSION_CONTROL',local_canonical_snapshot:summarizeGraph(await graph(cfg.graphPath)),lease_mutation:false}},
     async systemHealth(){return {console:'PASS',adapter:'PASS',upstream_9router_pin:'0.5.75',legacy_8876:await portOpen(cfg.legacyHost,cfg.legacyPort)?'LISTENING':'UNAVAILABLE',h01_run_root_exists:await exists(cfg.runRoot)}},
     async settings(){return {secret_values_exposed:false,mutation:false,upstream_mode:'UI_SHELL_ONLY',run_root:cfg.runRoot,submission_ready_root:cfg.submissionReadyRoot,legacy_8876_port:cfg.legacyPort}}
