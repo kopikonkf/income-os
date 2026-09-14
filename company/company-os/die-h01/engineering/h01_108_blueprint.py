@@ -64,7 +64,7 @@ def main():
   ref=next((x for x in im.get('intents',[]) if x.get('batch_position')==ns.position and x.get('queue_item_id')==item['queue_item_id']),None)
   if not ref: raise SystemExit('E_PRODUCTION_INTENT_REF')
   intent=json.loads(Path(ref['path']).read_text())
-  if intent.get('intent_id')!=ref.get('intent_id') or intent.get('queue_identity',{}).get('queue_item_id')!=item['queue_item_id'] or intent.get('queue_identity',{}).get('canonical_name')!=item['canonical_name']: raise SystemExit('E_PRODUCTION_INTENT_IDENTITY')
+  if intent.get('intent_id')!=ref.get('intent_id') or sha256_value(intent)!=ref.get('intent_sha256') or intent.get('queue_identity',{}).get('queue_item_id')!=item['queue_item_id'] or intent.get('queue_identity',{}).get('canonical_name')!=item['canonical_name'] or intent.get('selection',{}).get('batch_position')!=ns.position: raise SystemExit('E_PRODUCTION_INTENT_IDENTITY')
   bp=build_blueprint_v3(intent)
  else:
   bp=build_blueprint(item)

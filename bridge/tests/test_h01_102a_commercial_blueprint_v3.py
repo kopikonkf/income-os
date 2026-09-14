@@ -85,7 +85,7 @@ def test_phase0_guard_and_queue_gates_fail_closed():
 def test_h01_108_blueprint_runtime_accepts_explicit_intent_manifest_and_emits_v3():
     i=intent(); item={'batch_position':1,'queue_item_id':i['queue_identity']['queue_item_id'],'source_candidate_id':i['queue_identity']['source_candidate_id'],'canonical_name':i['queue_identity']['canonical_name'],'suitability':i['queue_identity']['suitability']}
     with tempfile.TemporaryDirectory() as td:
-        td=Path(td); ip=td/'intent.json'; ip.write_text(json.dumps(i)); im=td/'intent-manifest.json'; im.write_text(json.dumps({'intents':[{'batch_position':1,'queue_item_id':item['queue_item_id'],'intent_id':i['intent_id'],'path':str(ip)}]})); dm=td/'daily.json'; dm.write_text(json.dumps({'items':[item]})); out=td/'out'
+        td=Path(td); ip=td/'intent.json'; ip.write_text(json.dumps(i)); im=td/'intent-manifest.json'; im.write_text(json.dumps({'intents':[{'batch_position':1,'queue_item_id':item['queue_item_id'],'intent_id':i['intent_id'],'intent_sha256':sha256_value(i),'path':str(ip)}]})); dm=td/'daily.json'; dm.write_text(json.dumps({'items':[item]})); out=td/'out'
         subprocess.run([sys.executable,str(H01/'engineering/h01_108_blueprint.py'),'--manifest',str(dm),'--position','1','--provider','gemini','--out-dir',str(out),'--intent-manifest',str(im)],check=True,capture_output=True,text=True)
         bp=json.loads((out/'blueprint.json').read_text()); saved=json.loads((out/'production-intent.json').read_text())
         assert bp['schema']=='die.h01.svg-blueprint.v3'
