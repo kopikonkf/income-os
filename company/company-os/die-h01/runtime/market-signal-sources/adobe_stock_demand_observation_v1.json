@@ -1,0 +1,25 @@
+{
+  "schema": "die.h01.market-signal-source-capability.v1",
+  "source_id": "adobe_stock_demand_observation_v1",
+  "source_name": "Adobe Stock / Adobe public Creative Trends demand observations",
+  "adapter_state": "ACTIVE",
+  "acquisition_mode": "PUBLIC_HTTPS_TEXT",
+  "first_party": true,
+  "allowed_hosts": ["blog.adobe.com"],
+  "auth_mode": "NONE",
+  "signal_classes": ["TREND"],
+  "max_requests_per_run": 2,
+  "min_interval_seconds": 10.0,
+  "cache_ttl_seconds": 604800,
+  "max_response_bytes": 524288,
+  "allowed_content_types": ["text/html"],
+  "commercial_intent_tier": "MARKETPLACE_POPULARITY_PROXY",
+  "production_blocking": false,
+  "authority": {
+    "credential_read_authorized": false,
+    "production_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_authorized": false
+  }
+}
