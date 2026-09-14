@@ -399,11 +399,36 @@
       "status": "BLOCKED",
       "authority": "ARCHITECT",
       "depends_on": [
+        "H01-109A",
+        "H01-109B"
+      ],
+      "title": "Close standalone SVG real-upload acceptance umbrella",
+      "acceptance": "H01-109A technical marketplace preflight is DONE and H01-109B Founder real-upload/moderation acceptance is DONE; preserve semantic-master/derivative/package counters and durable receipts before scale-out.",
+      "result": "SPLIT: legacy mixed-authority H01-109 was decomposed into H01-109A Architect technical preflight and H01-109B Founder real-upload acceptance. This umbrella must not perform duplicate upload work."
+    },
+    {
+      "id": "H01-109A",
+      "track": "SVG_FIRST",
+      "status": "READY",
+      "authority": "ARCHITECT",
+      "depends_on": [
         "H01-135",
         "H01-136"
       ],
-      "title": "Accept Founder-QC-ready standalone SVG package and real upload path",
-      "acceptance": "Package preserves semantic-master/derivative/package counters and produces at least one real Founder-uploaded stock acceptance before scale-out."
+      "title": "Prove marketplace real-upload technical preflight",
+      "acceptance": "Without login, submission, publication or spend, prove the Founder handoff path from an H01 postproduction workspace through marketplace delivery package, submission-ready gating/eligibility diagnostics, deterministic transport/idempotency contract, upload runbook and durable preflight receipt. Zero currently eligible submission-ready assets is an honest preflight result, not a task failure."
+    },
+    {
+      "id": "H01-109B",
+      "track": "SVG_FIRST",
+      "status": "BLOCKED",
+      "authority": "FOUNDER_REQUIRED",
+      "depends_on": [
+        "H01-109A"
+      ],
+      "title": "Obtain first Founder real marketplace acceptance",
+      "acceptance": "After H01-109A is DONE and at least one asset has rights PASS plus Founder QC PASS and appears in submission-ready, Founder performs the real marketplace upload/account interaction. Record at least one real remote acceptance or moderation-pending acknowledgement with durable receipt; no credential values are captured by automation.",
+      "founder_policy": "Founder-only gate: account/KYC/tax/authentication, final visual QC, real upload/submit action and any platform-specific acknowledgement. When H01-109A is DONE and a submission-ready asset exists, transition this node to WAITING_FOUNDER rather than asking Architect to bypass the gate."
     },
     {
       "id": "H01-200",
@@ -503,24 +528,26 @@
     {
       "id": "H01-110",
       "track": "SVG_STANDALONE",
-      "status": "BLOCKED",
+      "status": "DEFERRED",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-109"
       ],
       "title": "Run 10-noun standalone SVG pilot",
-      "acceptance": "10 unique semantic masters pass idempotency, resource telemetry, QA, metadata and packaging."
+      "acceptance": "10 unique semantic masters pass idempotency, resource telemetry, QA, metadata and packaging.",
+      "result": "SUPERSEDED: no separate 10-noun production run is authorized. H01-108 is the canonical standalone production proof and already exceeds the old pilot scope in live artifacts. Pilot-specific evidence, if needed, must be sampled from H01-108 rather than regenerated."
     },
     {
       "id": "H01-111",
       "track": "SVG_STANDALONE",
-      "status": "BLOCKED",
+      "status": "DEFERRED",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-110"
       ],
       "title": "Run 100-noun standalone SVG acceptance",
-      "acceptance": "100 unique semantic masters with failure taxonomy, provider/profile telemetry and no duplicate semantic count."
+      "acceptance": "100 unique semantic masters with failure taxonomy, provider/profile telemetry and no duplicate semantic count.",
+      "result": "SUPERSEDED: no second 100-noun production run is authorized. H01-108 is the canonical 100-noun standalone SVG acceptance. Downstream gates now depend directly on H01-108 plus H01-109 where real-upload proof was historically inherited."
     },
     {
       "id": "H01-112",
@@ -528,7 +555,8 @@
       "status": "BLOCKED",
       "authority": "ARCHITECT",
       "depends_on": [
-        "H01-111",
+        "H01-108",
+        "H01-109",
         "H01-029"
       ],
       "title": "Run 1,000-noun production-scale batch",
@@ -672,7 +700,8 @@
       "status": "BLOCKED",
       "authority": "ARCHITECT",
       "depends_on": [
-        "H01-111",
+        "H01-108",
+        "H01-109",
         "H01-121",
         "H01-122"
       ],
