@@ -1,0 +1,16 @@
+{
+  "authority": {
+    "production_authorized": false,
+    "publication_authorized": false,
+    "submission_authorized": false
+  },
+  "derivatives_create_set_members": false,
+  "example_member_count": 6,
+  "example_set_id": "DSET-V1-AD85DDC6D86EE22DB351C9BC",
+  "family_rights_regression": "48/48 PASS",
+  "focused_tests": "5/5 PASS",
+  "rights_decision": "REVIEW_REQUIRED",
+  "schema": "die.h01.design-set-composer.acceptance.v1",
+  "status": "PASS",
+  "task_id": "H01-123"
+}

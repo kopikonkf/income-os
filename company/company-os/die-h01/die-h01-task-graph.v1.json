@@ -709,7 +709,7 @@
     {
       "id": "H01-123",
       "track": "FAMILY_SET",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-108",
@@ -717,7 +717,8 @@
         "H01-122"
       ],
       "title": "Implement Design Set composer v1",
-      "acceptance": "Build coherent set blueprints only after standalone factory is alive; set members are semantic members while format bundles remain derivatives."
+      "acceptance": "Build coherent set blueprints only after standalone factory is alive; set members are semantic members while format bundles remain derivatives.",
+      "result": "PASS: deterministic Design Set composer v1 implemented over validated Semantic Family v1 input. Members remain canonical semantic members, derivative formats never create set membership, H01-122 rights routing is preserved, all production/submission/publication authority remains false. Focused H01-123 tests 5/5 PASS; H01-120/121/122+123 regression 48/48 PASS; canonical six-member example DSET-V1-AD85DDC6D86EE22DB351C9BC routes REVIEW_REQUIRED to RIGHTS_REVIEW_HOLD."
     },
     {
       "id": "H01-130",

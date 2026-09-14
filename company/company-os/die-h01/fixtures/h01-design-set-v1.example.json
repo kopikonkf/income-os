@@ -1,0 +1,150 @@
+{
+  "design_set": {
+    "authority": {
+      "production_authorized": false,
+      "publication_authorized": false,
+      "submission_authorized": false
+    },
+    "boundary": {
+      "derivatives_create_set_members": false,
+      "is_derivative_bundle": false,
+      "is_design_set": true,
+      "is_listing_package": false,
+      "set_members_are_semantic_members": true
+    },
+    "coherence": {
+      "basis": "SOURCE_SEMANTIC_FAMILY",
+      "layout_policy": "ISOLATED_SINGLE_OBJECT_PER_MEMBER",
+      "palette_consistency": "REQUIRED_WITHIN_SET",
+      "style_consistency": "REQUIRED_WITHIN_SET",
+      "viewpoint_consistency": "REQUIRED_WITHIN_SET",
+      "visual_profile": "CLEAN_STOCK_VECTOR_V1"
+    },
+    "members": [
+      {
+        "blueprint": {
+          "background_policy": "TRANSPARENT_OR_WHITE",
+          "composition": "ISOLATED_SINGLE_OBJECT",
+          "form": "SINGLE",
+          "media": "VECTOR",
+          "mode": "VECTOR_OBJECT",
+          "preset": "CLEAN_STOCK_VECTOR_V1"
+        },
+        "canonical_subject_ref": {
+          "canonical_name": "knapsack",
+          "source": "OBJECT_ATLAS",
+          "subject_id": "CAND-0847888"
+        },
+        "identity_effect": "NONE",
+        "member_id": "CAND-0847888",
+        "semantic_label": "knapsack"
+      },
+      {
+        "blueprint": {
+          "background_policy": "TRANSPARENT_OR_WHITE",
+          "composition": "ISOLATED_SINGLE_OBJECT",
+          "form": "SINGLE",
+          "media": "VECTOR",
+          "mode": "VECTOR_OBJECT",
+          "preset": "CLEAN_STOCK_VECTOR_V1"
+        },
+        "canonical_subject_ref": {
+          "canonical_name": "rucksack",
+          "source": "OBJECT_ATLAS",
+          "subject_id": "CAND-0851080"
+        },
+        "identity_effect": "NONE",
+        "member_id": "CAND-0851080",
+        "semantic_label": "rucksack"
+      },
+      {
+        "blueprint": {
+          "background_policy": "TRANSPARENT_OR_WHITE",
+          "composition": "ISOLATED_SINGLE_OBJECT",
+          "form": "SINGLE",
+          "media": "VECTOR",
+          "mode": "VECTOR_OBJECT",
+          "preset": "CLEAN_STOCK_VECTOR_V1"
+        },
+        "canonical_subject_ref": {
+          "canonical_name": "backpack",
+          "source": "OBJECT_ATLAS",
+          "subject_id": "CAND-0851225"
+        },
+        "identity_effect": "NONE",
+        "member_id": "CAND-0851225",
+        "semantic_label": "backpack"
+      },
+      {
+        "blueprint": {
+          "background_policy": "TRANSPARENT_OR_WHITE",
+          "composition": "ISOLATED_SINGLE_OBJECT",
+          "form": "SINGLE",
+          "media": "VECTOR",
+          "mode": "VECTOR_OBJECT",
+          "preset": "CLEAN_STOCK_VECTOR_V1"
+        },
+        "canonical_subject_ref": {
+          "canonical_name": "haversacks",
+          "source": "OBJECT_ATLAS",
+          "subject_id": "CAND-0899730"
+        },
+        "identity_effect": "NONE",
+        "member_id": "CAND-0899730",
+        "semantic_label": "haversacks"
+      },
+      {
+        "blueprint": {
+          "background_policy": "TRANSPARENT_OR_WHITE",
+          "composition": "ISOLATED_SINGLE_OBJECT",
+          "form": "SINGLE",
+          "media": "VECTOR",
+          "mode": "VECTOR_OBJECT",
+          "preset": "CLEAN_STOCK_VECTOR_V1"
+        },
+        "canonical_subject_ref": {
+          "canonical_name": "rucksacks",
+          "source": "OBJECT_ATLAS",
+          "subject_id": "CAND-0904103"
+        },
+        "identity_effect": "NONE",
+        "member_id": "CAND-0904103",
+        "semantic_label": "rucksacks"
+      },
+      {
+        "blueprint": {
+          "background_policy": "TRANSPARENT_OR_WHITE",
+          "composition": "ISOLATED_SINGLE_OBJECT",
+          "form": "SINGLE",
+          "media": "VECTOR",
+          "mode": "VECTOR_OBJECT",
+          "preset": "CLEAN_STOCK_VECTOR_V1"
+        },
+        "canonical_subject_ref": {
+          "canonical_name": "knapsacks",
+          "source": "OBJECT_ATLAS",
+          "subject_id": "CAND-0911481"
+        },
+        "identity_effect": "NONE",
+        "member_id": "CAND-0911481",
+        "semantic_label": "knapsacks"
+      }
+    ],
+    "rights_class": "REVIEW_REQUIRED",
+    "rights_gate": {
+      "decision": "REVIEW_REQUIRED",
+      "legal_clearance_claimed": false,
+      "next_route": "RIGHTS_REVIEW_HOLD",
+      "normal_stock_route_allowed": false
+    },
+    "schema": "die.h01.design-set.v1",
+    "set_id": "DSET-V1-AD85DDC6D86EE22DB351C9BC",
+    "source_family": {
+      "family_class": "TAXONOMIC",
+      "family_id": "FAM-V1-TAXONOMIC-DFA0ED929FB82F10A6A0C2D8",
+      "semantic_key": "wordnet.primary.backpack.n.01"
+    }
+  },
+  "schema": "die.h01.design-set-v1.examples",
+  "source_family_id": "FAM-V1-TAXONOMIC-DFA0ED929FB82F10A6A0C2D8"
+}

@@ -154,8 +154,8 @@ class SemanticFamilyV1Tests(unittest.TestCase):
         self.assertEqual(tasks['H01-120']['status'], 'DONE')
         self.assertIn(tasks['H01-121']['status'], {'READY', 'DONE'})
         self.assertIn(tasks['H01-122']['status'], {'READY', 'DONE'})
-        self.assertEqual(tasks['H01-123']['status'], 'BLOCKED')
-        self.assertEqual(tasks['H01-123']['depends_on'], ['H01-111', 'H01-121', 'H01-122'])
+        self.assertIn(tasks['H01-123']['status'], {'READY', 'DONE'})
+        self.assertEqual(tasks['H01-123']['depends_on'], ['H01-108', 'H01-121', 'H01-122'])
 
 if __name__ == '__main__':
     unittest.main()
