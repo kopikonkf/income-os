@@ -246,11 +246,18 @@ def persist_cycle(
     }
     _write_immutable_json(receipt_path, receipt)
 
+    refresh_statuses = [str(row.get("status") or "") for row in refresh_results]
+    if any(status == "DEGRADED_REFRESH_EXCEPTION" for status in refresh_statuses):
+        refresh_status = "DEGRADED"
+    elif any(status.startswith("DEGRADED_") for status in refresh_statuses):
+        refresh_status = "PASS_WITH_DEGRADED_SOURCES"
+    else:
+        refresh_status = "PASS"
     refresh_receipt = {
         "schema": REFRESH_RECEIPT_SCHEMA,
         "cycle_id": cycle["cycle_id"],
         "day_key": cycle["day_key"],
-        "status": "PASS" if all(not str(row.get("status") or "").startswith("DEGRADED_REFRESH_EXCEPTION") for row in refresh_results) else "DEGRADED",
+        "status": refresh_status,
         "source_results": refresh_results,
         "source_failure_blocks_cycle": False,
         "authority": dict(AUTHORITY_FALSE),

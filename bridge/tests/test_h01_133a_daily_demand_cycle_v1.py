@@ -101,3 +101,18 @@ def test_persist_cycle_writes_immutable_cycle_and_separate_refresh_attempt_recei
 def test_refresh_success_summary_preserves_acquisition_and_evidence_ids():
     result=M._safe_refresh("source",lambda:{"status":"CACHE_HIT_FRESH","acquisition_id":"A1","evidence":[{"evidence_id":"E1"}]})
     assert result=={"source":"source","status":"CACHE_HIT_FRESH","acquisition_id":"A1","evidence_ids":["E1"],"error":None}
+
+
+def test_all_refresh_connectors_can_fail_without_raising_cycle_level_error(monkeypatch, tmp_path):
+    def boom(*args, **kwargs):
+        raise RuntimeError("source offline")
+    monkeypatch.setattr(M, "run_123rf", boom)
+    monkeypatch.setattr(M, "run_wikimedia_attention", boom)
+    monkeypatch.setattr(M, "run_google_ads_historical", boom)
+    rows=M.refresh_default_sources(state_root=tmp_path/"signals",registry_dir=H01/"runtime/market-signal-sources",day_key="2026-09-14",core=object())
+    assert len(rows)==3
+    assert all(row["status"]=="DEGRADED_REFRESH_EXCEPTION" for row in rows)
+    cycle=M.build_cycle(queue_rows=queue_rows(120),produced=set(),evidence_rows=[],capabilities={},day_key="2026-09-14",selector_builder=build_manifest,limit=100,providers=("gemini",))
+    assert cycle["selector"]["selection"]["ranked_selected"]==0
+    assert cycle["selector"]["selection"]["fallback_selected"]==100
+    assert cycle["policy"]["source_refresh_failure_blocks_cycle"] is False
