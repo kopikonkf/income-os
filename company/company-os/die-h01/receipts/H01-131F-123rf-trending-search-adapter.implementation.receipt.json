@@ -1,0 +1,69 @@
+{
+  "authority": {
+    "cookies_or_tokens_read": false,
+    "credential_values_read": false,
+    "production_authorized": false,
+    "publication_authorized": false,
+    "source_failure_blocks_production": false,
+    "spend_authorized": false,
+    "submission_authorized": false
+  },
+  "classification": {
+    "commercial_intent_tier": "MARKETPLACE_POPULAR_QUERY",
+    "confidence": "MEDIUM",
+    "direct_customer_search_telemetry": false,
+    "evidence_class": "MARKETPLACE_TRENDING_SEARCH_LABELS",
+    "macro_trend": false,
+    "popular_query_ranking": false,
+    "popularity_content_needs_proxy": false,
+    "reason": "123RF explicitly labels the first-party block Trending Searches, but exposes no query counts or rank numbers."
+  },
+  "closure": "123RF public Trending Searches labels are captured as optional first-party TREND evidence with observation-time provenance. Presentation order is not promoted to rank, and no hidden search volume or visitor-query count is inferred.",
+  "implementation": {
+    "adapter": "company/company-os/die-h01/lib/rf123_market_signal.py",
+    "capability": "company/company-os/die-h01/runtime/market-signal-sources/123rf_trending_search_v1.json",
+    "cli": "company/company-os/die-h01/engineering/h01_123rf_signal_acquire.py",
+    "live_proof": "company/company-os/die-h01/evidence/H01-131F-123rf-first-party-proof.json",
+    "source_tests": "company/company-os/die-h01/engineering/test_h01_131f_123rf.py"
+  },
+  "live_acceptance": {
+    "cache_replay_raw_sha256": "639e0324f5b2dd5df745b4eb8e4bad84f57f7b1ec71ac89d04e0387638fda241",
+    "cache_replay_status": "CACHE_HIT_FRESH",
+    "evidence_id": "H01-SIG-F03DAF81E7CFDF91CD55A4BE",
+    "raw_bytes": 165523,
+    "raw_sha256": "639e0324f5b2dd5df745b4eb8e4bad84f57f7b1ec71ac89d04e0387638fda241",
+    "retrieved_at": "2026-09-14T15:52:40.418243Z",
+    "status": "ACQUIRED"
+  },
+  "origin_main_at_start": "f7206697902b599f1b07ced8443922dc758fea46",
+  "schema": "die.h01.h01-131f.123rf-trending-search-adapter.implementation.v1",
+  "shared_contract_compatibility_extension": {
+    "change": "add 123rf_trending_search_v1 to connector_id enum only",
+    "file": "company/company-os/die-h01/contracts/h01-market-signal-evidence.v1.schema.json",
+    "semantic_change": false
+  },
+  "source_truth": {
+    "auth_required": false,
+    "first_party_public_https": true,
+    "numeric_rank_exposed": false,
+    "search_volume_exposed": false,
+    "source_label": "Trending Searches",
+    "source_timestamp_exposed": false,
+    "surface": "https://www.123rf.com/free-images/",
+    "term_count": 24,
+    "visitor_query_count_exposed": false
+  },
+  "status": "DONE_PASS",
+  "task_id": "H01-131F",
+  "tests": {
+    "capability_registry": "4/4 PASS",
+    "git_diff_check": "PASS",
+    "h01_131d_regression": "8/8 PASS",
+    "live_evidence_schema_refs": "2/2 PASS",
+    "live_receipt_schema": "2/2 PASS",
+    "python_compile": "PASS",
+    "relevant_total": "15/15 PASS",
+    "shared_h01_131a_core_semantic_change": false,
+    "source_specific": "7/7 PASS"
+  }
+}

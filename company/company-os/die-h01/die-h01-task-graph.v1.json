@@ -856,12 +856,13 @@
       "id": "H01-131F",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Add 123RF first-party trending search signal adapter v1",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131A"
       ],
-      "acceptance": "Normalize current first-party 123RF trending search observations for commercially relevant media into immutable H01-131 evidence with provenance/freshness. Do not infer hidden visitor-query counts when the source exposes only ranked/category terms; source failure remains non-blocking."
+      "acceptance": "Normalize current first-party 123RF trending search observations for commercially relevant media into immutable H01-131 evidence with provenance/freshness. Do not infer hidden visitor-query counts when the source exposes only ranked/category terms; source failure remains non-blocking.",
+      "result": "PASS: bounded public first-party 123RF Free Images Trending Searches adapter stores current marketplace-native trending-search labels through H01-131A immutable raw/evidence/cache semantics. Source exposes labels in presentation order but no numeric rank, search volume, visitor-query counts, or source timestamp; those fields are not inferred. Outage/layout failures remain fail-soft and standalone production remains non-blocking."
     },
     {
       "id": "H01-131G",

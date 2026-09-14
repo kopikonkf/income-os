@@ -1,0 +1,190 @@
+{
+  "cache_replay": {
+    "cache": {
+      "age_seconds": 13.610431,
+      "hit": true,
+      "latest_receipt": "sources/123rf_trending_search_v1/queries/71072eb98fec594adb081fde/acquisitions/H01-ACQ-9BDA8E811A058C232394C308.json",
+      "ttl_seconds": 86400
+    },
+    "evidence": [
+      {
+        "evidence_id": "H01-SIG-F03DAF81E7CFDF91CD55A4BE",
+        "relative_path": "sources/123rf_trending_search_v1/queries/71072eb98fec594adb081fde/evidence/H01-SIG-F03DAF81E7CFDF91CD55A4BE.json",
+        "sha256": "555ee65c42899d4748e80e304c0f21b94297b030d851ba6726c0950c050d2001"
+      }
+    ],
+    "raw_sha256": "639e0324f5b2dd5df745b4eb8e4bad84f57f7b1ec71ac89d04e0387638fda241",
+    "receipt_relative_path": "sources/123rf_trending_search_v1/queries/71072eb98fec594adb081fde/acquisitions/H01-ACQ-0EA047E6404D5A838AB68C9F.json",
+    "status": "CACHE_HIT_FRESH"
+  },
+  "classification": {
+    "commercial_intent_tier": "MARKETPLACE_POPULAR_QUERY",
+    "confidence": "MEDIUM",
+    "direct_customer_search_telemetry": false,
+    "evidence_class": "MARKETPLACE_TRENDING_SEARCH_LABELS",
+    "macro_trend": false,
+    "popular_query_ranking": false,
+    "popularity_content_needs_proxy": false,
+    "reason": "123RF explicitly labels the first-party block Trending Searches, but exposes no query counts or rank numbers."
+  },
+  "live_proof": {
+    "evidence": [
+      {
+        "evidence_id": "H01-SIG-F03DAF81E7CFDF91CD55A4BE",
+        "relative_path": "sources/123rf_trending_search_v1/queries/71072eb98fec594adb081fde/evidence/H01-SIG-F03DAF81E7CFDF91CD55A4BE.json",
+        "sha256": "555ee65c42899d4748e80e304c0f21b94297b030d851ba6726c0950c050d2001"
+      }
+    ],
+    "rank_semantics": "UNRANKED_PRESENTATION_ORDER",
+    "raw": {
+      "bytes": 165523,
+      "content_type": "text/html",
+      "relative_path": "sources/123rf_trending_search_v1/queries/71072eb98fec594adb081fde/raw/639e0324f5b2dd5df745b4eb8e4bad84f57f7b1ec71ac89d04e0387638fda241.bin",
+      "sha256": "639e0324f5b2dd5df745b4eb8e4bad84f57f7b1ec71ac89d04e0387638fda241"
+    },
+    "receipt_relative_path": "sources/123rf_trending_search_v1/queries/71072eb98fec594adb081fde/acquisitions/H01-ACQ-9BDA8E811A058C232394C308.json",
+    "retrieved_at": "2026-09-14T15:52:40.418243Z",
+    "source_locator": "https://www.123rf.com/free-images/",
+    "status": "ACQUIRED",
+    "term_count": 24,
+    "terms": [
+      {
+        "path": "/free-stock-images/abstract.html",
+        "presentation_position": 1,
+        "term": "Abstract"
+      },
+      {
+        "path": "/free-stock-images/animals.html",
+        "presentation_position": 2,
+        "term": "Animals"
+      },
+      {
+        "path": "/free-stock-images/babies.html",
+        "presentation_position": 3,
+        "term": "Babies"
+      },
+      {
+        "path": "/free-stock-images/beauty.html",
+        "presentation_position": 4,
+        "term": "Beauty"
+      },
+      {
+        "path": "/free-stock-images/business.html",
+        "presentation_position": 5,
+        "term": "Business"
+      },
+      {
+        "path": "/free-stock-images/celebration.html",
+        "presentation_position": 6,
+        "term": "Celebration"
+      },
+      {
+        "path": "/free-stock-images/communication.html",
+        "presentation_position": 7,
+        "term": "Communication"
+      },
+      {
+        "path": "/free-stock-images/concept.html",
+        "presentation_position": 8,
+        "term": "Concept"
+      },
+      {
+        "path": "/free-stock-images/education.html",
+        "presentation_position": 9,
+        "term": "Education"
+      },
+      {
+        "path": "/free-stock-images/family.html",
+        "presentation_position": 10,
+        "term": "Family"
+      },
+      {
+        "path": "/free-stock-images/fashion.html",
+        "presentation_position": 11,
+        "term": "Fashion"
+      },
+      {
+        "path": "/free-stock-images/fitness.html",
+        "presentation_position": 12,
+        "term": "Fitness"
+      },
+      {
+        "path": "/free-stock-images/food.html",
+        "presentation_position": 13,
+        "term": "Food"
+      },
+      {
+        "path": "/free-stock-images/healthcare.html",
+        "presentation_position": 14,
+        "term": "Healthcare"
+      },
+      {
+        "path": "/free-stock-images/landscape.html",
+        "presentation_position": 15,
+        "term": "Landscape"
+      },
+      {
+        "path": "/free-stock-images/lifestyle.html",
+        "presentation_position": 16,
+        "term": "Lifestyle"
+      },
+      {
+        "path": "/free-stock-images/people.html",
+        "presentation_position": 17,
+        "term": "People"
+      },
+      {
+        "path": "/free-stock-images/romance.html",
+        "presentation_position": 18,
+        "term": "Romance"
+      },
+      {
+        "path": "/free-stock-images/technology.html",
+        "presentation_position": 19,
+        "term": "Technology"
+      },
+      {
+        "path": "/free-stock-images/texture.html",
+        "presentation_position": 20,
+        "term": "Texture"
+      },
+      {
+        "path": "/free-stock-images/transportation.html",
+        "presentation_position": 21,
+        "term": "Transportation"
+      },
+      {
+        "path": "/free-stock-images/travel.html",
+        "presentation_position": 22,
+        "term": "Travel"
+      },
+      {
+        "path": "/free-stock-images/vintage.html",
+        "presentation_position": 23,
+        "term": "Vintage"
+      },
+      {
+        "path": "/free-stock-images/wedding.html",
+        "presentation_position": 24,
+        "term": "Wedding"
+      }
+    ]
+  },
+  "non_quantitative_fields": {
+    "search_volume": null,
+    "source_timestamp": null,
+    "visitor_query_count": null
+  },
+  "policy": {
+    "cookies_or_tokens_read": false,
+    "credential_values_read": false,
+    "production_authorized": false,
+    "publication_authorized": false,
+    "source_failure_blocks_production": false,
+    "spend_authorized": false,
+    "submission_authorized": false
+  },
+  "schema": "die.h01.123rf-trending-search-live-proof.v1",
+  "source_id": "123rf_trending_search_v1",
+  "task_id": "H01-131F"
+}
