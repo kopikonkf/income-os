@@ -879,12 +879,13 @@
       "id": "H01-131H",
       "track": "DEMAND_INTELLIGENCE",
       "title": "Operationalize macro search/trend connectors v1",
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "depends_on": [
         "H01-131A"
       ],
-      "acceptance": "Execute/cache the existing Wikimedia attention proxy and an auth-aware Google Ads historical-metrics path when an authorized context exists. Any Google Trends observation may be admitted only through a compliant bounded public/import path and must remain a macro-trend proxy, not marketplace purchase intent. Missing auth/source must degrade to no evidence without blocking production."
+      "acceptance": "Execute/cache the existing Wikimedia attention proxy and an auth-aware Google Ads historical-metrics path when an authorized context exists. Any Google Trends observation may be admitted only through a compliant bounded public/import path and must remain a macro-trend proxy, not marketplace purchase intent. Missing auth/source must degrade to no evidence without blocking production.",
+      "result": "PASS: added bounded H01-131H execution for Wikimedia pageview attention evidence, authorized-context-only Google Ads historical metrics import, and Google Trends interest-index import guard. Wikimedia live proof acquired 7 periods/80,887 pageviews and replayed CACHE_HIT_FRESH with immutable hashes. Missing Google Ads auth performs no network call and degrades to no evidence; Google Trends never scrapes public pages or fabricates search volume/visitor-query counts; all source failures remain non-blocking."
     },
     {
       "id": "H01-132A",
