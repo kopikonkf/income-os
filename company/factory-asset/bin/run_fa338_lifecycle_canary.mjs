@@ -37,7 +37,7 @@ for(let i=1;i<=2;i++){
   throw new Error(`E_FA338_READINESS:${state}`);
  }
 }
-if(rounds[0].profile_id!==rounds[1].profile_id)throw new Error('E_FA338_PROFILE_IDENTITY_DRIFT');
+if(rounds.length>1&&rounds.some(x=>x.profile_id!==rounds[0].profile_id))throw new Error('E_FA338_PROFILE_IDENTITY_DRIFT');
 const after=runtimeIdleSnapshot({registry:REG});
 const out={schema:'die.factory-asset.fa338-live-canary.v1',task_id:'FA-338',status:failClosed?'PASS_FAIL_CLOSED':'PASS',owner_model:'JOB_SCOPED_HEADFUL_BROWSER_CDP',cluster_id:clusterId,provider_id:providerId,before,rounds,after,same_persistent_profile_reopened:rounds.length>1&&rounds.every(x=>x.profile_id===rounds[0].profile_id),fail_closed:failClosed,provider_generation_calls_performed:0,credential_values_read:false,cookies_or_tokens_read:false,submission_authorized:false,publication_authorized:false,spend_usd:0,completed_at:new Date().toISOString()};
 atomic(path.join(ROOT,'FA-338-live-canary.receipt.json'),out);
