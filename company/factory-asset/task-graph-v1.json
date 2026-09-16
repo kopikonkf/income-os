@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
-  "generated_at": "2026-09-16",
-  "revision": "11.4-v1-browser-lifecycle-and-founder-operability",
+  "generated_at": "2026-09-17",
+  "revision": "11.5-fa337-v1-job-scoped-browser-contract",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -3260,10 +3260,12 @@
         "FA-313",
         "FA-325"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
-      "artifact": "V1 demand-driven browser lifecycle contract and migration plan",
-      "acceptance": "Port the proven Factory Asset V2 lifecycle semantics without merging the two production engines: persistent profile state on disk, zero always-on browser owners when no job is active, one headful browser spawn per admitted V1 job, loopback CDP only for the bounded automated work phase, durable terminal receipt before Browser.close, process/CDP/lease closure after completion, and a no-CDP Founder auth-repair mode for protection challenges. Preserve current MUXIA/Hermes provider behavior and V1 product-line semantics."
+      "artifact": "company/factory-asset/contracts/fa337-v1-job-scoped-browser-lifecycle.v1.json; company/factory-asset/docs/V1_JOB_SCOPED_BROWSER_LIFECYCLE_V1.md; company/factory-asset/receipts/FA-337-v1-job-scoped-browser-lifecycle.receipt.json",
+      "acceptance": "Port the proven Factory Asset V2 lifecycle semantics without merging the two production engines: persistent profile state on disk, zero always-on browser owners when no job is active, one headful browser spawn per admitted V1 job, loopback CDP only for the bounded automated work phase, durable terminal receipt before Browser.close, process/CDP/lease closure after completion, and a no-CDP Founder auth-repair mode for protection challenges. Preserve current MUXIA/Hermes provider behavior and V1 product-line semantics.",
+      "completed_at": "2026-09-17",
+      "result": "DONE/PASS: V1 contract imports proven H01-025/H01-026 lifecycle semantics without merging V1/V2 engines. Persistent profile identity is separated from job-scoped headful browser ownership; idle owns zero governed browser roots/CDP, automated CDP is loopback/bounded, durable terminal or committed-unresolved evidence precedes closure, process/CDP/lease release is mandatory, exactly-once commit truth is preserved, and protection challenges fail closed to exclusive same-profile no-CDP Founder repair. Runtime migration is intentionally deferred to FA-338."
     },
     {
       "id": "FA-338",
@@ -3274,7 +3276,7 @@
       "depends_on": [
         "FA-337"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "Job-scoped V1 browser runtime, Hermes wiring and lifecycle regression receipts",
       "acceptance": "Replace EXTERNAL_PERSISTENT_CHROME_CDP ownership in V1 with COLD -> SPAWN_HEADFUL -> WORK -> DURABLE_TERMINAL -> CLOSE -> COLD semantics. A new queued job may spawn a fresh browser from the same persistent profile; queue-empty state owns no Chrome/Brave renderer. Executive and Division01 cognition browser use must follow the same bounded ownership principle where applicable. Cloudflare/protection challenge must fail closed into no-CDP Founder repair rather than looping automated verification. No provider credential/session bytes are copied or read."
