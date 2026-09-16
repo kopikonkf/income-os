@@ -47,8 +47,8 @@ PRINCIPAL_DEFAULT_PORTS = {
 PRINCIPAL_PUBLIC_BASE_URLS = {
     "chatgpt-plus-executive": "https://executive-mcp.aethers.web.id",
     "division-head-division01": "https://division01-mcp.aethers.web.id",
-    "die-lnx-executive-001": "https://executive-mcp.aethers.biz.id",
-    "die-lnx-division-001": "https://division01-mcp.aethers.biz.id",
+    "die-lnx-executive-001": "https://executive-h01-mcp.aethers.web.id",
+    "die-lnx-division-001": "https://division01-h01-mcp.aethers.web.id",
 }
 PRINCIPAL_OAUTH_CLIENT_IDS = {
     "chatgpt-plus-executive": "chatgpt-executive",

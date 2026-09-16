@@ -45,8 +45,8 @@
         "division01": "die-lnx-division-001"
       },
       "mcp": {
-        "executive": "https://executive-mcp.aethers.biz.id/mcp",
-        "division01": "https://division01-mcp.aethers.biz.id/mcp"
+        "executive": "https://executive-h01-mcp.aethers.web.id/mcp",
+        "division01": "https://division01-h01-mcp.aethers.web.id/mcp"
       },
       "browser_profiles": {
         "executive": "/var/lib/die/executive/browser-profile",

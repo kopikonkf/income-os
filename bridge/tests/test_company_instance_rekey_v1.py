@@ -57,8 +57,8 @@ def test_linux_runtime_bindings_are_distinct_from_windows_and_preserve_tool_coun
     assert runtime_mcp_server.runtime_port("division-head-division01") == 8792
     assert runtime_mcp_server.runtime_port("die-lnx-executive-001") == 8891
     assert runtime_mcp_server.runtime_port("die-lnx-division-001") == 8892
-    assert runtime_mcp_server.runtime_public_base_url("die-lnx-executive-001") == "https://executive-mcp.aethers.biz.id"
-    assert runtime_mcp_server.runtime_public_base_url("die-lnx-division-001") == "https://division01-mcp.aethers.biz.id"
+    assert runtime_mcp_server.runtime_public_base_url("die-lnx-executive-001") == "https://executive-h01-mcp.aethers.web.id"
+    assert runtime_mcp_server.runtime_public_base_url("die-lnx-division-001") == "https://division01-h01-mcp.aethers.web.id"
     assert len(_tools("die-lnx-executive-001")) == 18
     assert len(_tools("die-lnx-division-001")) == 6
 

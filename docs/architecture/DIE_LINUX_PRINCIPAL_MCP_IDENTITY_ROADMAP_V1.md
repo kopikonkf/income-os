@@ -76,7 +76,7 @@ DEV/control plane only. Founder amendment 2026-09-08: Architect Linux staging ma
 
 ## 6. Cloudflare staging boundary
 
-Staging domains already reserved: `executive-mcp.aethers.biz.id` and `division01-mcp.aethers.biz.id`. Tunnel `linux-mcp` exists but has no active connector. Linux staging ports `8891/8892` were observed free. Windows tunnel `aethers` and its `*.aethers.web.id` production endpoints remain untouched. Browser CDP and wake endpoints must never be routed through Cloudflare.
+Staging domains already reserved: `executive-h01-mcp.aethers.web.id` and `division01-h01-mcp.aethers.web.id`. Tunnel `linux-mcp` exists but has no active connector. Linux staging ports `8891/8892` were observed free. Windows tunnel `aethers` and its `*.aethers.web.id` production endpoints remain untouched. Browser CDP and wake endpoints must never be routed through Cloudflare.
 
 ## 7. Parallelism with MX-062
 

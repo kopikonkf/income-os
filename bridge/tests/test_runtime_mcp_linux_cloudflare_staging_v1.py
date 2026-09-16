@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[2]
@@ -11,10 +11,10 @@ RUNBOOK=ROOT/'docs'/'operations'/'RUNTIME_MCP_LINUX_CLOUDFLARE_STAGING_V1.md'
 def test_ingress_is_exact_two_principal_allowlist_plus_terminal_404() -> None:
     text=CONFIG.read_text(encoding='utf-8')
     assert text.count('hostname:')==2
-    assert 'executive-mcp.aethers.biz.id' in text and 'http://127.0.0.1:8891' in text
-    assert 'division01-mcp.aethers.biz.id' in text and 'http://127.0.0.1:8892' in text
+    assert 'executive-h01-mcp.aethers.web.id' in text and 'http://127.0.0.1:8891' in text
+    assert 'division01-h01-mcp.aethers.web.id' in text and 'http://127.0.0.1:8892' in text
     assert text.rstrip().endswith('- service: http_status:404')
-    for forbidden in ['9110','9333','8790','aethers.web.id','architect','DevTools','wake']:
+    for forbidden in ['9110','9333','8790','executive-mcp.aethers.web.id','division01-mcp.aethers.web.id','architect','DevTools','wake']:
         assert forbidden.lower() not in text.lower()
 
 def test_unit_uses_systemd_credentials_and_never_places_token_in_argv() -> None:

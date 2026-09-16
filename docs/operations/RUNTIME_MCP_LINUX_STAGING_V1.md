@@ -8,8 +8,8 @@
 
 | Principal | Existing Linux | Staging | Public staging origin |
 | --- | ---: | ---: | --- |
-| Executive | `127.0.0.1:8791` | `127.0.0.1:8891` | `https://executive-mcp.aethers.biz.id` |
-| Division01 | `127.0.0.1:8792` | `127.0.0.1:8892` | `https://division01-mcp.aethers.biz.id` |
+| Executive | `127.0.0.1:8791` | `127.0.0.1:8891` | `https://executive-h01-mcp.aethers.web.id` |
+| Division01 | `127.0.0.1:8792` | `127.0.0.1:8892` | `https://division01-h01-mcp.aethers.web.id` |
 
 Staging source is a separate clean checkout at `/opt/die/staging/income-os`. `/srv/die` is not pulled, rebuilt, or restarted while MX-062 is active.
 
