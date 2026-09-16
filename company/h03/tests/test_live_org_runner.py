@@ -75,7 +75,7 @@ class FakeWorker:
                     ],
                 })
 
-        elif wc.endswith("C-R1-MARKET-EVAL"):
+        elif wc.endswith("C-R2-MARKET-EVAL"):
             seed_batch, bundle, eligibility = inputs[0], inputs[1], inputs[2]
             pid = eligibility["eligible_candidates"][0]["problem_seed_id"]
             candidate_sources = [s for s in bundle["verified_sources"] if s.get("candidate_id") == pid]
@@ -307,6 +307,30 @@ class LiveOrgRunnerTests(unittest.TestCase):
             mod._validate_market_evaluation(payload, seed_ids={"P1"}, source_bundle=bundle)
 
 
+    def test_superseded_running_market_eval_is_terminalized_before_successor(self):
+        with tempfile.TemporaryDirectory() as td:
+            courier = artifact_courier.ArtifactCourier(Path(td) / "artifacts")
+            client = FakeClient()
+            stale = mod._make_card(
+                work_card_id="H03-WC-LIVE001-C-R1-MARKET-EVAL", role="MARKET_RESEARCHER",
+                queue="C-demand-wtp-evaluation-recovery", inputs=[], artifact_kind="market_evaluation",
+                output_schema="die.h03.live-market-evaluation.v1", max_attempts=3,
+            )
+            state = courier.create_or_load_queue("LIVE-ORG-001")
+            mod.orchestrator_queue.enqueue(state, stale)
+            mod.orchestrator_queue.transition(state, stale["work_card_id"], "DISPATCHED")
+            mod.orchestrator_queue.transition(state, stale["work_card_id"], "RUNNING")
+            courier.save_queue("LIVE-ORG-001", state)
+            changed = mod._supersede_stale_job(
+                courier=courier, client=client, work_card_id=stale["work_card_id"],
+                successor_work_card_id="H03-WC-LIVE001-C-R2-MARKET-EVAL",
+            )
+            self.assertTrue(changed)
+            final = courier.create_or_load_queue("LIVE-ORG-001")
+            self.assertEqual(final["jobs"][stale["work_card_id"]]["state"], "FAILED_TERMINAL")
+            self.assertEqual(client.events[-1]["state"], "FAILED_TERMINAL")
+            self.assertIn("C-R2-MARKET-EVAL", client.events[-1]["error"])
+
     def test_market_source_recovery_r2_resumes_from_existing_a_b_and_reaches_qc(self):
         calls = {"count": 0}
 
@@ -329,7 +353,7 @@ class LiveOrgRunnerTests(unittest.TestCase):
             )
             self.assertEqual(result["status"], "WAITING_FOUNDER_QC")
             self.assertIn("H03-WC-LIVE001-B2R1-MARKET-RECOVERY", worker.calls)
-            self.assertIn("H03-WC-LIVE001-C-R1-MARKET-EVAL", worker.calls)
+            self.assertIn("H03-WC-LIVE001-C-R2-MARKET-EVAL", worker.calls)
             eligibility_ref = courier.existing_ref(
                 run_id="LIVE-ORG-001", artifact_id="LIVE001-MARKET-ELIGIBILITY", kind="market_eligibility"
             )

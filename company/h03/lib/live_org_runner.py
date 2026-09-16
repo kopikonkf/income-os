@@ -21,6 +21,7 @@ import demand_wtp
 import h03_factory
 import knowledge_synthesis
 import live_source_verifier
+import orchestrator_queue
 import problem_discovery
 import problem_seed
 import product_packager
@@ -128,6 +129,46 @@ def _emit_local(
         client.emit(event)
     except Exception:
         pass
+
+
+def _supersede_stale_job(
+    *,
+    courier: artifact_courier.ArtifactCourier,
+    client: MissionControlH03Client,
+    work_card_id: str,
+    successor_work_card_id: str,
+) -> bool:
+    state = courier.create_or_load_queue(RUN_ID)
+    job = state.get("jobs", {}).get(work_card_id)
+    if not job or job.get("state") in {"SUCCEEDED", "FAILED_TERMINAL", "CANCELLED"}:
+        return False
+    current = job.get("state")
+    if current in {"DISPATCHED", "RUNNING", "FAILED_RETRYABLE"}:
+        orchestrator_queue.transition(state, work_card_id, "FAILED_TERMINAL")
+        target = "FAILED_TERMINAL"
+    elif current == "QUEUED":
+        orchestrator_queue.transition(state, work_card_id, "CANCELLED")
+        target = "CANCELLED"
+    else:
+        raise ValueError(f"LIVE_SUPERSEDE_STATE_INVALID:{current}")
+    courier.save_queue(RUN_ID, state)
+    event = {
+        "schema_version": "die.h03.runtime-event.v1",
+        "holding_id": "H03",
+        "run_id": RUN_ID,
+        "work_card_id": work_card_id,
+        "task_id": TASK_ID,
+        "role": job.get("role", "MARKET_RESEARCHER"),
+        "queue": job.get("queue", "live-cognition"),
+        "state": target,
+        "attempt": job.get("attempt", 0),
+        "error": f"SUPERSEDED_BY:{successor_work_card_id}",
+    }
+    try:
+        client.emit(event)
+    except Exception:
+        pass
+    return True
 
 
 def _ensure_local_artifact(
@@ -1024,8 +1065,14 @@ def run_live_org(
     if not eligible_seed_ids:
         raise RuntimeError("LIVE_ORG_NO_ELIGIBLE_MARKET_CANDIDATE")
 
+    market_eval_work_card_id = "H03-WC-LIVE001-C-R2-MARKET-EVAL"
+    _supersede_stale_job(
+        courier=courier, client=client,
+        work_card_id="H03-WC-LIVE001-C-R1-MARKET-EVAL",
+        successor_work_card_id=market_eval_work_card_id,
+    )
     market_eval_card = _make_card(
-        work_card_id="H03-WC-LIVE001-C-R1-MARKET-EVAL", role="MARKET_RESEARCHER", queue="C-demand-wtp-evaluation-recovery",
+        work_card_id=market_eval_work_card_id, role="MARKET_RESEARCHER", queue="C-demand-wtp-evaluation-recovery-r2",
         inputs=[seed_batch_ref, market_sources_ref, eligibility_ref], artifact_kind="market_evaluation",
         output_schema="die.h03.live-market-evaluation.v1", max_attempts=3,
     )
@@ -1035,13 +1082,16 @@ def run_live_org(
         instruction=(
             "Evaluate ONLY the candidates declared in the LOCAL market-eligibility artifact. The authoritative eligible problem_seed_id values are: "
             f"{eligible_text}. Do not select any other seed even if the broader seed inventory contains it. Use ONLY the locally verified source "
-            "snapshots and cite source_id values assigned to the selected candidate in the eligibility artifact. Return JSON with "
-            "selected_problem_seed_id; pain_observation {severity,frequency,urgency}; buyer_intent_state; productability_state; "
-            "productability_source_ids; evidence; selection_reasons. Each evidence item must contain evidence_id, signal_type, source_ids, rationale. "
-            "signal_type may be PAID_SUBSTITUTE, MARKETPLACE_SALE_PROXY, PURCHASE_INTENT_SEARCH, REPEATED_PAIN, or ENGAGEMENT_ONLY. Do not use "
-            "REVEALED_SPEND unless an actual transaction record was supplied (none is supplied here). A paid-substitute/marketplace signal must be "
-            "grounded in the eligible candidate's locally verified paid_source_ids. If neither eligible candidate honestly supports a plausible MAKE "
-            "gate, return {\"selected_problem_seed_id\":null,\"no_make_reason\":\"...\"}."
+            "snapshots and cite source_id values assigned to the selected candidate in the eligibility artifact. Return ONE JSON object with EXACTLY "
+            "this semantic contract: selected_problem_seed_id is one eligible ID or null; pain_observation is an object whose severity, frequency, and "
+            "urgency values are each exactly one of UNKNOWN, LOW, MEDIUM, HIGH; buyer_intent_state is exactly one of UNKNOWN, WEAK, MEDIUM, STRONG; "
+            "productability_state is exactly MEDIUM or HIGH; productability_source_ids is a non-empty JSON array of source_id strings assigned to "
+            "the selected candidate; evidence is a JSON array of 2-8 objects with evidence_id, signal_type, source_ids, rationale; selection_reasons "
+            "is a non-empty JSON ARRAY of strings, never a single string. signal_type is exactly one of PAID_SUBSTITUTE, MARKETPLACE_SALE_PROXY, "
+            "PURCHASE_INTENT_SEARCH, REPEATED_PAIN, ENGAGEMENT_ONLY. Do not emit ACTIVE_SEARCH, VIABLE, or any synonym not in those enums. Do not "
+            "use REVEALED_SPEND because no transaction record is supplied. At least one evidence item must be PAID_SUBSTITUTE or "
+            "MARKETPLACE_SALE_PROXY and must cite the selected candidate's locally verified paid_source_ids. If neither eligible candidate honestly "
+            "meets the bar, return only {\"selected_problem_seed_id\":null,\"no_make_reason\":\"...\"}."
         ),
         payload_validator=lambda p: _validate_market_evaluation(p, seed_ids=eligible_seed_ids, source_bundle=market_sources),
     )
