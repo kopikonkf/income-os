@@ -51,6 +51,8 @@ def test_cognition_is_wrapped_in_bounded_principal_browser():
     assert 'withPrincipalJobBrowser' in c and 'withPrincipalJobBrowser' in s
     assert 'E_AUTH_REPAIR_REQUIRED' in s
     assert 'profile_process_gone' in s
+    assert '/cognition-receipts' in s and 'job-browser-receipts' not in s
+    assert 'browser-lifecycle-${safeJob}' in s
     assert 'readRepairHold' in s and 'writeAuthRepairHold' in s
     assert "spawn('/usr/bin/Xvfb'" in s
 

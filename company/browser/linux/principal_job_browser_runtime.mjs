@@ -6,8 +6,8 @@ import { spawn } from 'node:child_process';
 import { readRepairHold, writeAuthRepairHold } from './auth_repair_hold.mjs';
 
 const CFG={
-  'die-lnx-executive-001':{profile:'/var/lib/die/executive/browser-profile',status:'/var/lib/die/executive/browser-status.json',script:'/srv/die/company/executive/linux/operator_browser.mjs',display:103,receiptDir:'/var/lib/die/executive/job-browser-receipts'},
-  'die-lnx-division-001':{profile:'/var/lib/die/division01/browser-profile',status:'/var/lib/die/division01/browser-status.json',script:'/srv/die/company/division/division001/linux/operator_browser.mjs',display:104,receiptDir:'/var/lib/die/division01/job-browser-receipts'},
+  'die-lnx-executive-001':{profile:'/var/lib/die/executive/browser-profile',status:'/var/lib/die/executive/browser-status.json',script:'/srv/die/company/executive/linux/operator_browser.mjs',display:103,receiptDir:'/var/lib/die/executive/cognition-receipts'},
+  'die-lnx-division-001':{profile:'/var/lib/die/division01/browser-profile',status:'/var/lib/die/division01/browser-status.json',script:'/srv/die/company/division/division001/linux/operator_browser.mjs',display:104,receiptDir:'/var/lib/die/division01/cognition-receipts'},
 };
 const HOLD_ROOT='/var/lib/die/state/principal-auth-repair';
 const sleep=(ms)=>new Promise((r)=>setTimeout(r,ms));
@@ -35,7 +35,7 @@ export async function withPrincipalJobBrowser({principalId,jobId,work,terminalEv
   if(readRepairHold(holdPath))throw new Error(`E_AUTH_REPAIR_REQUIRED_HELD:${principalId}`);
   if(procProfile(cfg.profile))throw new Error('E_PRINCIPAL_PROFILE_BUSY');
   const safeJob=String(jobId).replace(/[^A-Za-z0-9_.-]/g,'_');
-  const receipt=path.join(cfg.receiptDir,`${safeJob}.json`),started=Date.now();
+  const receipt=path.join(cfg.receiptDir,`browser-lifecycle-${safeJob}.json`),started=Date.now();
   let xvfb=null,owner=null,status=null,workError=null,result=null;
   const base={schema:'die.cognition.job-browser-runtime.v1',principal_id:principalId,job_id:jobId,profile:cfg.profile,headful:true,virtual_display:cfg.display,credential_values_read:false,cookies_or_tokens_read:false,started_at:new Date(started).toISOString(),status:'SPAWNING'};
   atomic(receipt,base);
@@ -52,11 +52,11 @@ export async function withPrincipalJobBrowser({principalId,jobId,work,terminalEv
     }catch(error){workError=error}
     if(workError){
       const fail={schema:'die.cognition.job-browser-terminal.v1',status:'FAILED',principal_id:principalId,job_id:jobId,error:String(workError?.message||workError).slice(0,800),completed_at:new Date().toISOString()};
-      terminalEvidencePath=path.join(cfg.receiptDir,`${safeJob}.terminal.json`);atomic(terminalEvidencePath,fail);
+      terminalEvidencePath=path.join(cfg.receiptDir,`browser-lifecycle-${safeJob}.terminal.json`);atomic(terminalEvidencePath,fail);
     }
     if(!terminalEvidencePath||!fs.existsSync(terminalEvidencePath)){
       const fail={schema:'die.cognition.job-browser-terminal.v1',status:'FAILED',principal_id:principalId,job_id:jobId,error:'E_TERMINAL_EVIDENCE_MISSING',completed_at:new Date().toISOString()};
-      terminalEvidencePath=path.join(cfg.receiptDir,`${safeJob}.terminal.json`);atomic(terminalEvidencePath,fail);
+      terminalEvidencePath=path.join(cfg.receiptDir,`browser-lifecycle-${safeJob}.terminal.json`);atomic(terminalEvidencePath,fail);
       if(!workError)workError=new Error('E_TERMINAL_EVIDENCE_MISSING');
     }
     if(owner&&owner.exitCode===null){owner.kill('SIGTERM');if(!await waitExit(owner,10000)){owner.kill('SIGKILL');await waitExit(owner,2000)}}
