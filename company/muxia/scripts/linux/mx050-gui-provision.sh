@@ -35,6 +35,16 @@ OPERATOR_HOME="$(getent passwd "$OPERATOR_USER" | cut -d: -f6)"
 OPERATOR_GROUP="$(id -gn "$OPERATOR_USER")"
 install -o "$OPERATOR_USER" -g "$OPERATOR_GROUP" -m 0755 "$SOURCE_DIR/config/linux/xrdp/xsession" "$OPERATOR_HOME/.xsession"
 install -o "$OPERATOR_USER" -g "$OPERATOR_GROUP" -m 0644 "$SOURCE_DIR/config/linux/xrdp/xsessionrc" "$OPERATOR_HOME/.xsessionrc"
+install -o root -g root -m 0755 "$SOURCE_DIR/config/linux/xrdp/reconnectwm.sh" /etc/xrdp/reconnectwm.sh
+
+# Clipboard/drive redirection must remain enabled. Persistent Xorg sessions can
+# outlive the xrdp daemon, so reconnectwm self-heals a stale chansrv listener.
+grep -q '^allow_channels=true$' "$XRDP_CONFIG"
+grep -q '^cliprdr=true$' "$XRDP_CONFIG"
+grep -q '^rdpdr=true$' "$XRDP_CONFIG"
+grep -q '^drdynvc=true$' "$XRDP_CONFIG"
+grep -q '^RestrictInboundClipboard=none$' /etc/xrdp/sesman.ini
+grep -q '^RestrictOutboundClipboard=none$' /etc/xrdp/sesman.ini
 
 systemctl enable xrdp xrdp-sesman >/dev/null
 systemctl restart xrdp-sesman xrdp
