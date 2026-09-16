@@ -1014,3 +1014,12 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Root cause of the post-cognition `E_NO_ELIGIBLE_ROUTE` stall: both V1 brokers were READY with zero active leases, but restart-local `provider_states={}`; production dispatcher incorrectly treated a missing explicit state as `UNAVAILABLE` while the broker lease contract itself defaults an absent provider state to `HEALTHY`.
 - Dispatcher now matches broker semantics for the bootstrap state. This does **not** bypass provider readiness: `generateConsoleProviderImage` still navigates the selected provider, classifies live readiness, persists the resulting provider state, and fails closed before prompt dispatch unless the observed state is `HEALTHY`.
 - Plan-only after the fix reported 10 eligible routes with zero provider calls/browser actions/leases. Live PRODSEED000127 then passed readiness on Gemini in V1 Runtime 02 and persisted a 1408x768, 498,982-byte provider-original JPEG SHA-256 `a144d2b356943e0a8f14eead30f5cf0b90c807152d0b4f6684f191e0b8ed353d`; progress advanced to `ARTIFACT_CREATED`.
+
+## 2026-09-17 - FA-337 V1 job-scoped browser lifecycle contract
+
+- `FA-337 = DONE/PASS`; `FA-338 = READY`. No live browser/systemd/provider runtime was changed by FA-337.
+- V1 imports only V2 H01-025/H01-026 lifecycle semantics, not V2 engine/profile identities. Persistent V1 profile state stays on disk while browser ownership becomes per admitted job.
+- Contract invariant: queue-empty/COLD owns zero governed V1 browser roots, browser contexts and CDP listeners; lightweight scheduler/control daemons may remain resident.
+- Automated path: `ADMITTED -> SPAWN_HEADFUL -> AUTOMATED_WORK -> DURABLE_TERMINAL or COMMITTED_UNRESOLVED -> Browser.close -> prove process/CDP/lease release -> COLD`.
+- Protection/auth challenge before dispatch fails closed to exclusive same-profile Founder repair with CDP OFF. A challenge/error after dispatch commit may not trigger automatic resubmission; durable reconciliation truth precedes closure.
+- FA-338 now owns runtime implementation/migration from `EXTERNAL_PERSISTENT_CHROME_CDP`; FA-339 remains responsible for permanent DISPLAY `:12` workspace mapping/handoff.

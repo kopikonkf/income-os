@@ -1,0 +1,227 @@
+{
+  "schema": "die.factory-asset.v1-job-scoped-browser-lifecycle.v1",
+  "task_id": "FA-337",
+  "revision": "1.0.0",
+  "status": "ACCEPTED_CONTRACT",
+  "scope": {
+    "product_line": "Factory Asset V1",
+    "reference_only": "Factory Asset V2 H01-025/H01-026 lifecycle semantics",
+    "engine_merge": false,
+    "implementation_task": "FA-338",
+    "display_workspace_task": "FA-339",
+    "filesystem_operability_task": "FA-340"
+  },
+  "objective": "Replace always-on V1 browser ownership with job-scoped headful ownership while preserving persistent authenticated profiles, MUXIA/Hermes provider behavior, exactly-once dispatch and V1 product semantics.",
+  "state_machine": [
+    {
+      "state": "COLD",
+      "browser_process": false,
+      "cdp_listener": false,
+      "active_browser_context": false,
+      "profile_on_disk": true,
+      "allowed_next": [
+        "ADMITTED",
+        "FOUNDER_REPAIR"
+      ]
+    },
+    {
+      "state": "ADMITTED",
+      "browser_process": false,
+      "cdp_listener": false,
+      "lease_required": true,
+      "allowed_next": [
+        "SPAWNING",
+        "COLD"
+      ]
+    },
+    {
+      "state": "SPAWNING",
+      "browser_process": true,
+      "headful": true,
+      "cdp_host": "127.0.0.1",
+      "allowed_next": [
+        "AUTOMATED_WORK",
+        "AUTH_REPAIR_REQUIRED",
+        "TERMINAL_FAILURE"
+      ]
+    },
+    {
+      "state": "AUTOMATED_WORK",
+      "browser_process": true,
+      "headful": true,
+      "cdp_host": "127.0.0.1",
+      "bounded_to_one_admitted_job": true,
+      "allowed_next": [
+        "DURABLE_TERMINAL",
+        "COMMITTED_UNRESOLVED",
+        "AUTH_REPAIR_REQUIRED"
+      ]
+    },
+    {
+      "state": "DURABLE_TERMINAL",
+      "durable_receipt_required": true,
+      "allowed_next": [
+        "CLOSING"
+      ]
+    },
+    {
+      "state": "COMMITTED_UNRESOLVED",
+      "dispatch_committed": true,
+      "automatic_redispatch_forbidden": true,
+      "durable_reconciliation_required": true,
+      "allowed_next": [
+        "CLOSING"
+      ]
+    },
+    {
+      "state": "AUTH_REPAIR_REQUIRED",
+      "automated_cdp_work_forbidden": true,
+      "automatic_challenge_bypass_forbidden": true,
+      "allowed_next": [
+        "CLOSING",
+        "FOUNDER_REPAIR"
+      ]
+    },
+    {
+      "state": "CLOSING",
+      "browser_close_required": true,
+      "allowed_next": [
+        "COLD"
+      ]
+    },
+    {
+      "state": "FOUNDER_REPAIR",
+      "cdp_listener": false,
+      "exclusive_profile_repair_lease": true,
+      "headful": true,
+      "founder_interactive": true,
+      "allowed_next": [
+        "COLD"
+      ]
+    }
+  ],
+  "hard_invariants": {
+    "persistent_profile_identity": "Profile/session state remains on disk across jobs; profile directories are never copied into per-job temporary identities.",
+    "idle_zero_browser_owners": "When no admitted job or Founder repair lease exists, V1 owns zero Chrome/Brave renderer roots for governed production profiles and exposes no browser CDP listener.",
+    "one_spawn_per_job": "Each admitted V1 job gets one bounded headful browser owner from its selected persistent profile; browser owners are not shared between concurrent jobs.",
+    "exclusive_profile_owner": "A governed persistent profile may have at most one browser owner or Founder repair owner at a time.",
+    "loopback_cdp": "Automated work may expose CDP only on 127.0.0.1 and only for the bounded automated phase.",
+    "terminal_before_close": "A durable terminal or committed-unresolved reconciliation receipt must exist before normal Browser.close.",
+    "closure_proof": "Completion requires browser root exit, CDP disappearance and release of profile/browser lease or mutex.",
+    "profile_secret_boundary": "No lifecycle component reads, exports or copies cookie/token/session credential bytes.",
+    "provider_behavior_preserved": "Existing V1 provider adapters/readiness classification/output acquisition/lineage remain semantically unchanged unless FA-338 explicitly migrates an ownership boundary.",
+    "exactly_once_preserved": "A committed provider dispatch may never be automatically repeated because a browser closed, crashed, timed out or entered protection challenge.",
+    "lightweight_control_plane_allowed": "Scheduler/broker/control processes may remain resident while idle if they own no browser process/context/CDP and do not hold a job lease.",
+    "v2_identity_separation": "FA-337 does not reuse h01-web-pNNN/h01-web-sNN identities and does not merge V1 with the V2 SVG engine."
+  },
+  "protection_challenge_policy": {
+    "pre_dispatch": "Classify protection/auth challenge before provider commit, emit durable AUTH_REPAIR_REQUIRED disposition, close automated CDP browser, release job/profile browser ownership, and require Founder no-CDP repair on the same persistent profile before future automated admission.",
+    "post_dispatch": "If dispatch may already be committed, emit COMMITTED_UNRESOLVED/reconciliation state and forbid automatic resubmission. Close the browser only after durable uncertainty/reconciliation evidence is written.",
+    "founder_repair": "Founder repair uses the same persistent profile, headful browser and no CDP; automation is paused/excluded for that profile for the entire repair lease. CAPTCHA/protection is solved only by the Founder/platform flow, never automated bypass.",
+    "repair_release": "Founder closes/releases the repair browser; only then may readiness be re-probed by a fresh automated job."
+  },
+  "ownership_split": {
+    "scheduler": "Admit job, select eligible V1 profile/provider/route, own durable job/dispatch lease and exactly-once state; must not itself own browser profile bytes.",
+    "job_browser_runtime": "Spawn one headful browser from selected persistent profile, expose loopback CDP during work, enforce job/profile exclusivity, wait for durable terminal/reconciliation, close and prove process/CDP/lease release.",
+    "provider_worker": "Attach only to the admitted job browser, perform live readiness before dispatch, submit at most once after authority claim, acquire provider-original output, write durable result.",
+    "founder_repair_runtime": "Own exclusive no-CDP repair lease and interactive browser for authentication/checkpoint repair only.",
+    "postproduction": "Consumes durable provider result/artifact and remains independent of browser ownership."
+  },
+  "idle_acceptance": {
+    "queue_empty_expected": {
+      "active_job_leases": 0,
+      "governed_browser_roots": 0,
+      "governed_cdp_listeners": 0,
+      "active_browser_contexts": 0
+    },
+    "persistent_disk_profiles_may_exist": true,
+    "control_daemons_may_exist": true
+  },
+  "job_acceptance": {
+    "required_sequence": [
+      "ADMITTED",
+      "SPAWNING",
+      "AUTOMATED_WORK",
+      "DURABLE_TERMINAL_OR_COMMITTED_UNRESOLVED",
+      "CLOSING",
+      "COLD"
+    ],
+    "required_evidence": [
+      "job/profile/provider identity",
+      "profile lease/mutex identity",
+      "browser root PID",
+      "loopback CDP endpoint",
+      "dispatch claim/commit state",
+      "durable terminal or reconciliation receipt hash",
+      "Browser.close attempt",
+      "browser root exited",
+      "CDP closed",
+      "lease/mutex released"
+    ]
+  },
+  "failure_semantics": {
+    "pre_dispatch_failure": "Safe to close and release; scheduler may choose another eligible route only under existing governed reroute rules.",
+    "post_dispatch_failure": "No automatic retry; durable reconciliation required.",
+    "browser_crash": "Write durable lifecycle failure; preserve dispatch-commit truth; release ownership only after process/CDP absence is proven.",
+    "close_timeout": "Escalate bounded SIGTERM/kill only after durable result/reconciliation exists; record forced closure in lifecycle receipt.",
+    "profile_busy": "Fail closed; never attach a second owner to same persistent profile."
+  },
+  "migration_plan": [
+    {
+      "step": 1,
+      "task": "FA-338",
+      "action": "Introduce V1 job-browser runtime and lifecycle receipt around existing persistent V1 profiles without changing provider prompt/output semantics."
+    },
+    {
+      "step": 2,
+      "task": "FA-338",
+      "action": "Move broker/provider workers from externally persistent browser attachment to per-job browser attachment; keep scheduler/control API stable where practical."
+    },
+    {
+      "step": 3,
+      "task": "FA-338",
+      "action": "Wire Hermes production scheduling so browser spawn occurs only after admission and browser closure occurs after durable terminal/reconciliation."
+    },
+    {
+      "step": 4,
+      "task": "FA-338",
+      "action": "Migrate applicable Executive/Division01 cognition ownership to bounded demand-driven semantics while preserving no-CDP Founder protection repair."
+    },
+    {
+      "step": 5,
+      "task": "FA-338",
+      "action": "Acceptance gate: queue empty proves zero governed V1 browser roots/CDP listeners; a fresh job respawns from same persistent profile and retains authenticated state without credential-byte access."
+    },
+    {
+      "step": 6,
+      "task": "FA-339",
+      "action": "Move governed headful browser surfaces to Founder-visible DISPLAY :12 workspace mapping and exclusive Founder handoff."
+    },
+    {
+      "step": 7,
+      "task": "FA-340",
+      "action": "Finalize Founder filesystem operability/permission normalization independently of browser lifecycle ownership."
+    }
+  ],
+  "rollback": {
+    "during_FA_338": "Retain current external persistent owner units/config as disabled rollback material until demand-driven canary acceptance passes; do not delete persistent profiles.",
+    "rollback_trigger": "Lifecycle canary cannot prove durable-result-before-close, session persistence, exactly-once behavior, or clean process/CDP/lease release.",
+    "no_destructive_profile_migration": true
+  },
+  "reference_evidence": [
+    "company/company-os/die-h01/DIE_H01_BRAVE_UDD_RUNTIME_V1.md",
+    "company/company-os/die-h01/DIE_H01_BRAVE_ROUND_ROBIN_SCHEDULER_V1.md",
+    "company/company-os/die-h01/receipts/H01-025-brave-udd-runtime.receipt.json",
+    "company/company-os/die-h01/receipts/H01-026-brave-round-robin-scheduler.receipt.json",
+    "company/factory-asset/receipts/FA-301-cluster-broker.receipt.json",
+    "company/factory-asset/contracts/fa313-hermes-multi-cluster-production.v1.json",
+    "company/factory-asset/receipts/FA-325-founder-repair-live.receipt.json"
+  ],
+  "authority": {
+    "runtime_mutation_authorized": false,
+    "provider_call_performed": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_usd": 0
+  }
+}
