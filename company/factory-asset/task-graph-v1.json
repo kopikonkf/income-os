@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
-  "generated_at": "2026-09-11",
-  "revision": "11.2-native-vector-observability-production-intelligence-seal",
+  "generated_at": "2026-09-16",
+  "revision": "11.4-v1-browser-lifecycle-and-founder-operability",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -129,7 +129,9 @@
     "FOUNDER_OBSERVABILITY",
     "PROFILE_POOL",
     "PRODUCTION_INTELLIGENCE",
-    "PROMPT_COMPILER"
+    "PROMPT_COMPILER",
+    "V1_BROWSER_LIFECYCLE",
+    "FOUNDER_OPERABILITY"
   ],
   "tasks": [
     {
@@ -2667,11 +2669,12 @@
       "depends_on": [
         "FA-206"
       ],
-      "status": "DEFERRED",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "Claude native SVG provider contract and capability truth matrix",
-      "acceptance": "Define a text/code-output native-vector provider boundary for Claude SVG Artifacts without claiming raster image generation; pin supported SVG artifact extraction, model/surface truth, zero-spend authority and no Cluster A login requirement before canary.",
-      "defer_reason": "Founder approved as future work only; do not execute during FA-305/FA-306 scale-up."
+      "acceptance": "Define a text/code-output native-vector provider boundary for Claude SVG Artifacts without claiming raster image generation; pin supported SVG artifact extraction, model/surface truth, zero-spend authority and no production-profile login requirement before canary.",
+      "result": "SUPERSEDED: Contract scope absorbed by FA-320; this older phase-6 roadmap node is retired and must not be scheduled independently.",
+      "superseded_by": "FA-320"
     },
     {
       "id": "FA-V002",
@@ -2682,10 +2685,12 @@
       "depends_on": [
         "FA-V001"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "SVG sanitizer, parser and structural QA tests",
-      "acceptance": "Fail closed on scripts, external references, embedded raster, malformed XML, unsafe fonts/text and non-editable structure; preserve deterministic native vector geometry and lineage."
+      "acceptance": "Fail closed on scripts, external references, embedded raster, malformed XML, unsafe fonts/text and non-editable structure; preserve deterministic native vector geometry and lineage.",
+      "result": "SUPERSEDED: Sanitizer, safety, editability, render QA and vector derivative scope absorbed by FA-321; this older roadmap node is retired.",
+      "superseded_by": "FA-321"
     },
     {
       "id": "FA-V003",
@@ -2696,10 +2701,12 @@
       "depends_on": [
         "FA-V002"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "artifact": "Claude bounded SVG canary receipt and original SVG bytes",
-      "acceptance": "One Founder-authorized Claude attempt produces extractable original SVG bytes that pass sanitizer/structural QA and are stored with exact hash lineage; no raster-image-generation claim, no publication, no spend."
+      "acceptance": "One Founder-authorized Claude attempt produces extractable original SVG bytes that pass sanitizer/structural QA and are stored with exact hash lineage; no raster-image-generation claim, no publication, no spend.",
+      "result": "SUPERSEDED: Claude SVG capability is already accepted in the separate Factory Asset V2 SVG engine through H01-107/H01-108; this older V1 canary node is retired and must not trigger a duplicate provider proof.",
+      "superseded_by": "H01-107,H01-108"
     },
     {
       "id": "FA-V004",
@@ -2710,10 +2717,12 @@
       "depends_on": [
         "FA-V003"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "SVG master to EPS/PNG/JPEG/WEBP/PDF derivative pipeline",
-      "acceptance": "Native SVG master deterministically yields marketplace EPS plus preview derivatives while preserving editability, dimensions/viewBox and exact lineage; raster-to-vector fabrication remains forbidden."
+      "acceptance": "Native SVG master deterministically yields marketplace EPS plus preview derivatives while preserving editability, dimensions/viewBox and exact lineage; raster-to-vector fabrication remains forbidden.",
+      "result": "SUPERSEDED: SVG-to-EPS and preview derivative scope absorbed by FA-321; this older roadmap node is retired.",
+      "superseded_by": "FA-321"
     },
     {
       "id": "FA-V005",
@@ -2724,10 +2733,12 @@
       "depends_on": [
         "FA-V004"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "vector metadata, trademark/IP, structural distinctness and rights gates",
-      "acceptance": "Vector-native assets receive metadata/disclosure plus duplicate, trademark/logo, text/font and rights checks with explicit UNKNOWN/REVIEW_REQUIRED states."
+      "acceptance": "Vector-native assets receive metadata/disclosure plus duplicate, trademark/logo, text/font and rights checks with explicit UNKNOWN/REVIEW_REQUIRED states.",
+      "result": "SUPERSEDED: Rights classification and marketplace metadata/disclosure gating moved to the current H01 SVG Factory postproduction and delivery tasks; this older roadmap node is retired.",
+      "superseded_by": "H01-115,H01-134"
     },
     {
       "id": "FA-V006",
@@ -2738,10 +2749,12 @@
       "depends_on": [
         "FA-V005"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_ACCEPTANCE",
       "artifact": "Adobe Stock vector PACKAGE_READY canary receipt",
-      "acceptance": "One sanitized editable SVG vector package satisfies current Adobe-specific delivery evidence, metadata and Founder QC without marketplace submission/publication."
+      "acceptance": "One sanitized editable SVG vector package satisfies current Adobe-specific delivery evidence, metadata and Founder QC without marketplace submission/publication.",
+      "result": "SUPERSEDED: Adobe delivery packaging and submission-ready gating moved to the current H01 SVG Factory delivery chain; this older roadmap node is retired and does not claim Founder marketplace acceptance.",
+      "superseded_by": "H01-134,H01-135"
     },
     {
       "id": "FA-V007",
@@ -2752,10 +2765,12 @@
       "depends_on": [
         "FA-V006"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "multi-market vector packaging acceptance receipt",
-      "acceptance": "One native vector semantic asset compiles into evidence-supported per-market SVG/EPS/preview packages with unsupported or stale format rules explicit; no marketplace upload is performed."
+      "acceptance": "One native vector semantic asset compiles into evidence-supported per-market SVG/EPS/preview packages with unsupported or stale format rules explicit; no marketplace upload is performed.",
+      "result": "SUPERSEDED: Multi-market vector packaging is owned by H01-134 Marketplace Delivery Adapter v1; this older roadmap node is retired.",
+      "superseded_by": "H01-134"
     },
     {
       "id": "FA-310",
@@ -2977,13 +2992,15 @@
       "depends_on": [
         "FA-321"
       ],
-      "status": "WAITING_FOUNDER",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_BOUNDED_PROVIDER_CALL",
       "artifact": "Claude native-vector live canary receipt and producer-registry decision",
       "acceptance": "With Founder-authorized authenticated provider access, generate bounded genuine SVG ICON/OUTLINE masters from frozen blueprints, pass FA-321 safety/editability QA and derivative packaging, and only then promote the NATIVE_VECTOR ICON/OUTLINE route from UNAVAILABLE_NOT_ACCEPTED to ACCEPTED. No account multiplication, credential copying, submission or publication.",
-      "updated_at": "2026-09-11",
-      "receipt": "company/factory-asset/receipts/FA-322-claude-web-preauth.receipt.json",
-      "result": "WAITING_FOUNDER: Claude Web AI is prewired as AUTH_REQUIRED on Cluster A/B with BROWSER_CDP readiness, raw SVG extraction and FA-321 postproduction. Founder login is the only remaining prerequisite before bounded live ICON+OUTLINE acceptance; route remains UNAVAILABLE_NOT_ACCEPTED."
+      "updated_at": "2026-09-16",
+      "completed_at": "2026-09-16",
+      "receipt": "company/factory-asset/receipts/FA-322-superseded-by-h01-v2-svg-evidence.receipt.json",
+      "result": "DONE/SUPERSEDED: Factory Asset V2 owns the SVG production engine. Claude SVG capability is already proven more broadly by H01-107 live provider-original SVG acceptance and 21 H01-108 Claude production runs observed on 2026-09-16, including 068-bacteria-claude-a1 with provider-original, canonical and postproduction SVG lineage. V1 must not require a duplicate Founder login or duplicate ICON/OUTLINE canary merely to re-prove Claude SVG capability, and V1 does not promote or take ownership of the separate V2 route.",
+      "superseded_by": "H01-107,H01-108"
     },
     {
       "id": "FA-323",
@@ -3230,6 +3247,65 @@
       "completed_at": "2026-09-10",
       "receipt": "company/factory-asset/receipts/FA-336-prompt-contract-validator.receipt.json",
       "result": "DONE/PASS: semantic coverage validator detects component omission beyond simple hash checks and enforces the isolated-object prompt contract."
+    },
+    {
+      "id": "FA-337",
+      "phase": 7,
+      "track": "V1_BROWSER_LIFECYCLE",
+      "priority": 334,
+      "title": "Define V1 job-scoped browser lifecycle parity contract",
+      "depends_on": [
+        "FA-301",
+        "FA-311",
+        "FA-313",
+        "FA-325"
+      ],
+      "status": "READY",
+      "authority": "ARCHITECT",
+      "artifact": "V1 demand-driven browser lifecycle contract and migration plan",
+      "acceptance": "Port the proven Factory Asset V2 lifecycle semantics without merging the two production engines: persistent profile state on disk, zero always-on browser owners when no job is active, one headful browser spawn per admitted V1 job, loopback CDP only for the bounded automated work phase, durable terminal receipt before Browser.close, process/CDP/lease closure after completion, and a no-CDP Founder auth-repair mode for protection challenges. Preserve current MUXIA/Hermes provider behavior and V1 product-line semantics."
+    },
+    {
+      "id": "FA-338",
+      "phase": 7,
+      "track": "V1_BROWSER_LIFECYCLE",
+      "priority": 335,
+      "title": "Implement demand-driven V1 MUXIA and Hermes browser ownership",
+      "depends_on": [
+        "FA-337"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Job-scoped V1 browser runtime, Hermes wiring and lifecycle regression receipts",
+      "acceptance": "Replace EXTERNAL_PERSISTENT_CHROME_CDP ownership in V1 with COLD -> SPAWN_HEADFUL -> WORK -> DURABLE_TERMINAL -> CLOSE -> COLD semantics. A new queued job may spawn a fresh browser from the same persistent profile; queue-empty state owns no Chrome/Brave renderer. Executive and Division01 cognition browser use must follow the same bounded ownership principle where applicable. Cloudflare/protection challenge must fail closed into no-CDP Founder repair rather than looping automated verification. No provider credential/session bytes are copied or read."
+    },
+    {
+      "id": "FA-339",
+      "phase": 7,
+      "track": "FOUNDER_OPERABILITY",
+      "priority": 336,
+      "title": "Move V1 browser operability to Founder-visible DISPLAY :12 workspaces",
+      "depends_on": [
+        "FA-338"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Founder-visible workspace mapping, exclusive-control handoff and recovery runbook",
+      "acceptance": "V1 authenticated production and cognition browsers open on the persistent Founder XFCE DISPLAY :12 in dedicated workspaces instead of hidden Xvfb as the primary operating surface. Founder may take interactive control at any time through an explicit handoff that pauses dispatch for that profile; automation resumes only after Founder releases/closes the browser. Read-only VNC remains optional observation/fallback, not a barrier preventing Founder repair. Existing profile state persists and no public CDP exposure is introduced."
+    },
+    {
+      "id": "FA-340",
+      "phase": 7,
+      "track": "FOUNDER_OPERABILITY",
+      "priority": 337,
+      "title": "Normalize Founder filesystem access without changing service ownership",
+      "depends_on": [
+        "FA-339"
+      ],
+      "status": "BLOCKED",
+      "authority": "ARCHITECT",
+      "artifact": "Founder access audit and governed runtime-root permission contract",
+      "acceptance": "User kopiko can read and traverse governed /var/lib/die, /srv/die and /opt/die operational roots without Permission denied surprises while service users remain canonical owners. Intentional repair writes use direct owner/group access where appropriate or Founder sudo for root-managed service files. Stability is enforced by explicit warnings, active-job/lease checks, backups and rollback rather than treating Founder as a guest. Secrets remain non-public and no network exposure is widened."
     }
   ],
   "windows_oauth_proof_levels": {

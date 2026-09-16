@@ -980,20 +980,31 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 
 ---
 
-## 2026-09-11 - FA-321/324/325/330/331/332 seal; FA-322 Claude Web waiting Founder login
+## 2026-09-11 - FA-321/324/325/330/331/332 seal; historical FA-322 preauth state
 - `FA-321 = DONE/PASS`: governed genuine-native SVG safety/editability/render/derivative pipeline accepted; SVG master deterministically yields EPS/PNG/JPEG and derivatives remain semantic-identity neutral.
-- `FA-322 = WAITING_FOUNDER`: corrected provider surface is Claude Web AI over Factory Cluster A/B `BROWSER_CDP`, not Claude CLI. Claude is registered `AUTH_REQUIRED`; raw SVG extraction and FA-321 postproduction are prewired. Founder login then bounded ICON+OUTLINE live acceptance remains. Route is not promoted before that evidence.
-- `FA-324 = DONE/PASS`: read-only VNC on real production Xvfb A `:101` and B `:102`, loopback 59101/59102, browser/broker sessions preserved.
+- Historical note: FA-322 was originally left WAITING_FOUNDER for a duplicate Claude ICON/OUTLINE canary before the separate Factory Asset V2 SVG engine accumulated broader live evidence. This historical state is superseded by the 2026-09-16 reconciliation below.
+- `FA-324 = DONE/PASS`: historical read-only VNC observability on two V1 production browser displays was accepted; this is no longer the preferred Founder operating surface after the 2026-09-16 operability correction.
 - `FA-325 = DONE/PASS`: idle-only temporary interactive repair canary proved loopback 59201, 30-second hold, automatic revocation and read-only restoration; no secret reads or checkpoint bypass.
 - `FA-330 = DONE/PASS`: sparse evidence-bounded seed x mode x preset planner, no exhaustive Cartesian expansion.
 - `FA-331 = DONE/PASS`: runtime consumption identity is semantic-expression level, with legacy baseline replay compatibility and near-duplicate quarantine.
 - `FA-332 = DONE/PASS`: Production Intelligence v2 trace accepted end-to-end while isolated cartoon/watercolor stays champion exploitation and alternate expressions remain bounded exploration.
 - Final pre-seal Linux Factory regression on `a3f377e...`: 903/903 PASS, one existing PyPDF2 deprecation warning. No throughput-scale, submission or publication authority changed.
 
-## 2026-09-16 - V1 + V2 product-line coexistence clarification
+## 2026-09-16 - V1 + V2 product-line coexistence and SVG ownership clarification
 
-- **Factory Asset V1 remains ACTIVE and is not a legacy/sunset line.** V1 is the broader multi-variant production line and retains its accepted raster, derivative, pattern, motion, provider-pool, QA/QC, postproduction and packaging capabilities.
-- **Factory Asset V2 product-line scope is native SVG/vector.** It closes the genuine SVG creator gap while reusing governed shared Factory infrastructure where appropriate. FA-320 and FA-321 are DONE; FA-322 is the live Claude ICON/OUTLINE acceptance frontier.
-- V1 and V2 are intended to **coexist in the same DIE H01 Linux Factory home**. Neither product line supersedes the other.
-- Internal version names such as `Asset Blueprint v2`, `Factory orchestration v2`, and `Production Intelligence v2` are contract/orchestration versions; they do **not** mean that the Factory Asset V1 product line is retired or replaced.
-- Canon interpretations or future documentation that describe V1 as retired merely because a `v2` internal contract exists are misleading and must be reconciled to this coexistence boundary.
+- **Factory Asset V1 remains ACTIVE and is not a legacy/sunset line.** V1 is the broader MUXIA/Hermes multi-variant production line and retains its raster, derivative, pattern, motion, provider-pool, QA/QC, postproduction and packaging capabilities.
+- **Factory Asset V2 is the separate native SVG/vector production engine.** It owns `h01-web-p001..p100`, the Brave job-scoped browser runtime, and its own supervisor/orchestrator. V1 and V2 coexist in the same DIE H01 Linux Factory home; neither retires the other.
+- Internal names such as `Asset Blueprint v2`, `Factory orchestration v2`, and `Production Intelligence v2` are contract/orchestration versions and do not imply Factory Asset V1 retirement.
+- `FA-V001..FA-V007` are closed as `DONE/SUPERSEDED`; they are historical duplicate V1 vector-roadmap nodes and must not remain executable blockers.
+- `FA-322 = DONE/SUPERSEDED`: H01-107 plus 21 observed H01-108 Claude production runs already prove real Claude SVG generation and lineage. No duplicate Founder login or ICON/OUTLINE canary is required inside V1 solely to re-prove Claude SVG capability.
+- Alphabetic browser-group labels are historical implementation identifiers only. User-facing V1 naming is `V1 Runtime 01`, `V1 Runtime 02`, etc.; V2 keeps canonical `h01-web-pNNN` / `h01-web-sNN` identities.
+
+## 2026-09-16 - V1 demand-driven browser and Founder-operability correction
+
+- V1 adapts the **lifecycle semantics** proven by V2 without merging production engines.
+- `FA-337 = READY`: define a V1-only job-scoped browser lifecycle contract.
+- `FA-338 = BLOCKED`: implement V1 MUXIA/Hermes and applicable cognition browser ownership as `COLD -> SPAWN_HEADFUL -> WORK -> DURABLE_TERMINAL -> CLOSE -> COLD`, with no-CDP Founder auth repair for protection challenges.
+- `FA-339 = BLOCKED`: move V1 authenticated browser operability to Founder-visible DISPLAY `:12` workspaces with explicit Founder handoff/preemption; read-only VNC becomes optional fallback rather than the primary repair path.
+- `FA-340 = BLOCKED`: normalize Founder filesystem access so `kopiko` is not unexpectedly denied within governed DIE operational roots; stability relies on warnings, leases, backups and rollback instead of treating Founder as a guest.
+- Live 2026-09-16 repair state: Executive and Division01 were opened on DISPLAY `:12` in separate workspaces with CDP OFF for manual protection/auth inspection.
+- Durable Founder traversal correction: Hermes itself was reapplying `0700` through both `hermes_cli/config.py` and `cron/jobs.py`. Live gateway now declares `HERMES_HOME_MODE=0770`; the pinned cron directory helper honors that override while cron files remain owner-private `0600`. Gateway restart plus `hermes cron list` preserved directory mode `0770`, and a bounded Founder directory rescan of `/var/lib/die`, `/srv/die`, and `/opt/die` returned `denied_count=0`.
