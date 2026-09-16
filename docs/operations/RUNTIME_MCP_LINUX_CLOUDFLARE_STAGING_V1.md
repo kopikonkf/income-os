@@ -7,8 +7,8 @@
 ## Ingress allowlist
 
 ```text
-executive-mcp.aethers.biz.id  -> http://127.0.0.1:8891
-division01-mcp.aethers.biz.id -> http://127.0.0.1:8892
+executive-h01-mcp.aethers.web.id  -> http://127.0.0.1:8891
+division01-h01-mcp.aethers.web.id -> http://127.0.0.1:8892
 all other host/path traffic    -> http_status:404
 ```
 

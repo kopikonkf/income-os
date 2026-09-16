@@ -36,8 +36,8 @@ Instance principal bindings are:
 | --- | --- | --- | --- |
 | DIE-WINDOWS | Executive | `chatgpt-plus-executive` | `executive-mcp.aethers.web.id` |
 | DIE-WINDOWS | Division01 | `division-head-division01` | `division01-mcp.aethers.web.id` |
-| DIE-LINUX | Executive | `die-lnx-executive-001` | `executive-mcp.aethers.biz.id` |
-| DIE-LINUX | Division01 | `die-lnx-division-001` | `division01-mcp.aethers.biz.id` |
+| DIE-LINUX | Executive | `die-lnx-executive-001` | `executive-h01-mcp.aethers.web.id` |
+| DIE-LINUX | Division01 | `die-lnx-division-001` | `division01-h01-mcp.aethers.web.id` |
 
 The two Linux principals reuse the shared semantic role anchors and capability contracts, but authority is resolved against their own server-pinned principal IDs.
 

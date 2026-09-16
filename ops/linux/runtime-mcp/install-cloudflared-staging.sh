@@ -34,9 +34,9 @@ chmod 0600 "$TOKEN_FILE"
 install -o root -g "$SERVICE_GROUP" -m 0640 "$CONFIG_SRC" "$CONFIG_DST"
 cloudflared tunnel ingress validate --config "$CONFIG_DST" >/dev/null
 # Exact ingress boundary: two MCP staging origins plus terminal deny/default 404.
-grep -qx '  - hostname: executive-mcp.aethers.biz.id' "$CONFIG_DST"
+grep -qx '  - hostname: executive-h01-mcp.aethers.web.id' "$CONFIG_DST"
 grep -qx '    service: http://127.0.0.1:8891' "$CONFIG_DST"
-grep -qx '  - hostname: division01-mcp.aethers.biz.id' "$CONFIG_DST"
+grep -qx '  - hostname: division01-h01-mcp.aethers.web.id' "$CONFIG_DST"
 grep -qx '    service: http://127.0.0.1:8892' "$CONFIG_DST"
 grep -qx '  - service: http_status:404' "$CONFIG_DST"
 ! grep -Eiq '9110|9333|DevTools|browser|wake|aethers\.web\.id|8790|architect' "$CONFIG_DST"

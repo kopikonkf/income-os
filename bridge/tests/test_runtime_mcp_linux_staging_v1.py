@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from pathlib import Path
 
@@ -162,8 +162,8 @@ def test_staging_units_are_isolated_read_only_and_do_not_replace_existing_ports(
 
 def test_staging_installers_pin_domains_generate_private_secrets_and_never_start() -> None:
     expected = [
-        (EXEC_INSTALL, "https://executive-mcp.aethers.biz.id", "die-executive-runtime-mcp-staging.service"),
-        (DIV_INSTALL, "https://division01-mcp.aethers.biz.id", "die-division01-runtime-mcp-staging.service"),
+        (EXEC_INSTALL, "https://executive-h01-mcp.aethers.web.id", "die-executive-runtime-mcp-staging.service"),
+        (DIV_INSTALL, "https://division01-h01-mcp.aethers.web.id", "die-division01-runtime-mcp-staging.service"),
     ]
     for path, base_url, service in expected:
         text = path.read_text(encoding="utf-8")

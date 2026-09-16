@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 from pathlib import Path
@@ -61,5 +61,5 @@ def test_roadmap_preserves_two_lines_and_architect_safe_coexistence() -> None:
     assert "Wake may trigger cognition but never substitutes for `context_snapshot`" in text
     assert "Architect Linux staging may proceed before CUT-005" in text
     assert "CUT-006 remains blocked on both MX-054 and CUT-005" in text
-    assert "executive-mcp.aethers.biz.id" in text
-    assert "division01-mcp.aethers.biz.id" in text
+    assert "executive-h01-mcp.aethers.web.id" in text
+    assert "division01-h01-mcp.aethers.web.id" in text

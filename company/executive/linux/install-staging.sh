@@ -31,7 +31,7 @@ if [[ ! -f "$ENV_FILE" ]]; then
   cat > "$ENV_FILE" <<EOF
 DIE_MCP_TOKEN=$token
 DIE_MCP_LOGIN_PASSWORD=$login
-DIE_MCP_BASE_URL=https://executive-mcp.aethers.biz.id
+DIE_MCP_BASE_URL=https://executive-h01-mcp.aethers.web.id
 DIE_MCP_OAUTH_CLIENT_ID=chatgpt-die-lnx-executive-001
 DIE_MCP_OAUTH_REDIRECT_HOSTS="chatgpt.com;openai.com"
 DIE_MCP_CONTROL_POLICY=staging-read-only
@@ -42,7 +42,7 @@ chown root:root "$ENV_FILE"
 chmod 0600 "$ENV_FILE"
 
 # Refuse a stale or accidentally production-bound staging config without reading secrets.
-grep -qx 'DIE_MCP_BASE_URL=https://executive-mcp.aethers.biz.id' "$ENV_FILE" || { echo "E_STAGING_BASE_URL_MISMATCH" >&2; exit 2; }
+grep -qx 'DIE_MCP_BASE_URL=https://executive-h01-mcp.aethers.web.id' "$ENV_FILE" || { echo "E_STAGING_BASE_URL_MISMATCH" >&2; exit 2; }
 grep -qx 'DIE_MCP_CONTROL_POLICY=staging-read-only' "$ENV_FILE" || { echo "E_STAGING_CONTROL_POLICY" >&2; exit 2; }
 
 install -m 0644 "$UNIT_SRC" "$UNIT_DST"
