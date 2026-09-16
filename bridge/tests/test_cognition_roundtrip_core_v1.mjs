@@ -1,5 +1,5 @@
 import test from 'node:test'; import assert from 'node:assert/strict'; import fs from 'node:fs';
-import {validateRequest,requestMarker,requestFingerprint,chooseRecoveredTurn,choosePriorRequestVersion} from '../../company/browser/linux/cognition_roundtrip_core.mjs';
+import {validateRequest,requestMarker,requestFingerprint,chooseRecoveredTurn,choosePriorRequestVersion,isInternalCognitionDraft} from '../../company/browser/linux/cognition_roundtrip_core.mjs';
 function req(){const now=Date.now();return {schema:'die.cognition.outbox-request.v1',company_instance_id:'DIE-LINUX',request_id:'COG-B04_CANARY_0001',task_id:'T1',action_type:'AUTONOMY_CANARY',target_principal_id:'die-lnx-division-001',thread_generation:1,prompt:'hello',expected_response_schema:'die.cognition.canary.v1',evidence_refs:[],created_at:new Date(now-1000).toISOString(),expires_at:new Date(now+60000).toISOString()};}
 test('valid request passes',()=>assert.equal(validateRequest(req()).request_id,'COG-B04_CANARY_0001'));
 test('cross-principal unknown target fails',()=>{const x=req();x.target_principal_id='wrong';assert.throws(()=>validateRequest(x),/E_TARGET_PRINCIPAL/)});
@@ -46,3 +46,17 @@ test('cognition staging rejects disabled fallback composers and can recover same
 });
 
 test('stale prior request version is stopped before current version submission',()=>{const text=fs.readFileSync(new URL('../../company/browser/linux/cognition_roundtrip_core.mjs',import.meta.url),'utf8');assert.match(text,/choosePriorRequestVersion/);assert.match(text,/stalePriorVersionStopped/);assert.match(text,/await stop\.click/);assert.match(text,/request_fingerprint:fingerprint/);});
+
+
+test('only system-owned production cognition drafts are eligible for stale composer recovery',()=>{
+  assert.equal(isInternalCognitionDraft('[DIE-COGNITION-REQUEST:COG-PROD_BP_REVIEW_PRODSEED000127_R00:50c92c5be20b]\ninternal request'),true);
+  assert.equal(isInternalCognitionDraft('[DIE-COGNITION-REQUEST:COG-B04_CANARY_0001:50c92c5be20b]\ncanary'),false);
+  assert.equal(isInternalCognitionDraft('human draft that must never be cleared'),false);
+});
+
+test('composer recovery clears only a stale internal cognition draft before restaging',()=>{
+  const text=fs.readFileSync(new URL('../../company/browser/linux/cognition_roundtrip_core.mjs',import.meta.url),'utf8');
+  assert.match(text,/if\(!isInternalCognitionDraft\(existing\)\) throw new Error\('E_COMPOSER_NOT_EMPTY'\)/);
+  assert.match(text,/E_STALE_COGNITION_DRAFT_CLEAR/);
+  assert.match(text,/stale_cognition_draft_cleared/);
+});

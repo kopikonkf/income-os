@@ -63,9 +63,42 @@ def test_roundtrip_stops_expired_or_timed_out_stale_generating_turn():
     assert text.count('E_RESPONSE_TIMEOUT_STALE_TURN_STOPPED') >= 2
 
 
-def test_cognition_tick_converts_transport_timeout_to_durable_retry_state():
+def test_request_expired_advances_versioned_review_attempt_instead_of_livelock():
+    s = _state(stage='NEED_REVIEW')
+    err = RuntimeError('E_TRANSPORT:E_REQUEST_EXPIRED')
+    assert m.retryable_transport_reason(err) == 'E_REQUEST_EXPIRED'
+    r = m.record_transport_retry(
+        s,
+        stage='NEED_REVIEW',
+        request_id='COG-PROD_BP_REVIEW_PRODSEED000113_R00',
+        lane='REVIEW',
+        reason='E_REQUEST_EXPIRED',
+    )
+    assert r == {'retryable': True, 'attempt': 1, 'stage': 'NEED_REVIEW'}
+    assert s['review_attempt'] == 1
+    assert s['history'][-1]['event'] == 'TRANSPORT_REQUEST_EXPIRED'
+    assert s['history'][-1]['reason'] == 'E_REQUEST_EXPIRED'
+    assert m.request_id('PRODSEED000113', 'BP_REVIEW', s['review_attempt']).endswith('_R01')
+
+
+def test_request_expired_is_bounded_and_fails_closed_after_review_retry_budget():
+    s = _state(stage='NEED_REVIEW', review_attempt=m.MAX_CONTEXT_RETRIES)
+    r = m.record_transport_retry(
+        s,
+        stage='NEED_REVIEW',
+        request_id='COG-PROD_BP_REVIEW_PRODSEED000113_R03',
+        lane='REVIEW',
+        reason='E_REQUEST_EXPIRED',
+    )
+    assert r['retryable'] is False
+    assert r['attempt'] == m.MAX_CONTEXT_RETRIES + 1
+    assert s['stage'] == 'WAITING_FOUNDER'
+
+
+def test_cognition_tick_converts_timeout_or_expiry_to_durable_retry_state():
     text = COG.read_text(encoding='utf-8')
-    assert "if not is_response_timeout_error(e):raise" in text
-    assert "record_transport_timeout(state,stage=stage,request_id=rid,lane='AUTHOR')" in text
-    assert "record_transport_timeout(state,stage=stage,request_id=rid,lane='REVIEW')" in text
-    assert "'reason':'E_RESPONSE_TIMEOUT'" in text
+    assert "for reason in ('E_RESPONSE_TIMEOUT','E_REQUEST_EXPIRED')" in text
+    assert text.count('reason=retryable_transport_reason(e)') >= 3
+    assert "record_transport_retry(state,stage=stage,request_id=rid,lane='AUTHOR',reason=reason)" in text
+    assert "record_transport_retry(state,stage=stage,request_id=rid,lane='REVIEW',reason=reason)" in text
+    assert "record_transport_retry(state,stage=stage,request_id=rid,lane='SUBJECT',reason=reason)" in text
