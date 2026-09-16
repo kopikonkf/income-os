@@ -48,6 +48,39 @@ git -C "$SOURCE_ROOT" checkout --detach --force FETCH_HEAD >/dev/null
 test "$(git -C "$SOURCE_ROOT" rev-parse HEAD)" = "$HERMES_COMMIT"
 test -z "$(git -C "$SOURCE_ROOT" status --porcelain)"
 
+# DIE is a single-tenant Founder-operated host. Hermes CLI already supports
+# HERMES_HOME_MODE for its home/subdirectories, but pinned cron/jobs.py has a
+# separate hard-coded 0700 directory helper. Make only that directory helper
+# honor the same override; cron files remain owner-private 0600.
+python3 - "$SOURCE_ROOT/cron/jobs.py" <<'PY'
+from pathlib import Path
+import sys
+p = Path(sys.argv[1])
+s = p.read_text(encoding="utf-8")
+old = '''def _secure_dir(path: Path):
+    """Set directory to owner-only access (0700). No-op on Windows."""
+    try:
+        os.chmod(path, 0o700)
+    except (OSError, NotImplementedError):
+        pass  # Windows or other platforms where chmod is not supported
+'''
+new = '''def _secure_dir(path: Path):
+    """Set cron directory mode; DIE may override with HERMES_HOME_MODE."""
+    try:
+        mode_str = os.environ.get("HERMES_HOME_MODE", "").strip()
+        mode = int(mode_str, 8) if mode_str else 0o700
+    except ValueError:
+        mode = 0o700
+    try:
+        os.chmod(path, mode)
+    except (OSError, NotImplementedError):
+        pass
+'''
+if old not in s:
+    raise SystemExit("E_HERMES_CRON_SECURE_DIR_PATCH_DRIFT")
+p.write_text(s.replace(old, new, 1), encoding="utf-8")
+PY
+
 if [[ ! -x "$VENV/bin/python" ]] || ! "$VENV/bin/python" -m pip --version >/dev/null 2>&1; then
   rm -rf "$VENV"
   python3 -m venv "$VENV"
@@ -89,6 +122,8 @@ windows_auth_copied=false
 windows_state_db_copied=false
 service_ready_gate=$ENV_DIR/READY
 terminal_cwd=$DIE_HOME/company/die-agents/hermes
+founder_directory_mode=0770
+cron_files_remain_owner_private=true
 root_agents_sha256=$root_agents_sha256
 hermes_agents_sha256=$hermes_agents_sha256
 hermes_soul_sha256=$hermes_soul_sha256
