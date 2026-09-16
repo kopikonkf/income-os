@@ -20,8 +20,11 @@ const COGNITION_SEND_SELECTORS = [
   'button[aria-label="Send prompt"]',
   'button[aria-label*="Send" i]',
 ];
+export function isInternalCognitionDraft(text){
+  return /^\[DIE-COGNITION-REQUEST:COG-PROD_[A-Z0-9_-]+(?::[0-9a-f]{12})?\](?:\s|$)/.test(String(text||'').trim());
+}
 async function stagePrompt(page, fullPrompt, marker, attempts=8){
-  let lastError='E_COMPOSER_NOT_EDITABLE';
+  let lastError='E_COMPOSER_NOT_EDITABLE', staleCognitionDraftCleared=false;
   for(let attempt=1;attempt<=attempts;attempt++){
     for(const selector of COGNITION_COMPOSER_SELECTORS){
       const box=page.locator(selector).first();
@@ -30,14 +33,17 @@ async function stagePrompt(page, fullPrompt, marker, attempts=8){
       if(!editable) continue;
       const existing=await composerText(box);
       if(existing){
-        if(existing.includes(marker)) return {box,selector,attempt,recoveredStaged:true};
-        throw new Error('E_COMPOSER_NOT_EMPTY');
+        if(existing.includes(marker)) return {box,selector,attempt,recoveredStaged:true,staleCognitionDraftCleared};
+        if(!isInternalCognitionDraft(existing)) throw new Error('E_COMPOSER_NOT_EMPTY');
+        await box.fill('',{timeout:2500});
+        if(await composerText(box)) throw new Error('E_STALE_COGNITION_DRAFT_CLEAR');
+        staleCognitionDraftCleared=true;
       }
       try{
         await box.fill(fullPrompt,{timeout:2500});
         const staged=await composerText(box);
         if(!staged.includes(marker)){ await box.fill('').catch(()=>{}); throw new Error('E_STAGE_MISMATCH'); }
-        return {box,selector,attempt,recoveredStaged:false};
+        return {box,selector,attempt,recoveredStaged:false,staleCognitionDraftCleared};
       }catch(error){ lastError=String(error?.message??error).slice(0,240); }
     }
     await page.waitForTimeout(300*attempt);
@@ -148,7 +154,7 @@ export async function runRoundtrip({dieHome='/srv/die', requestFile, responseFil
       rebound=true;
     }
     await page.bringToFront();
-    const fingerprint=requestFingerprint(req); const marker=requestMarker(req.request_id,fingerprint); let stalePriorVersionStopped=false;
+    const fingerprint=requestFingerprint(req); const marker=requestMarker(req.request_id,fingerprint); let stalePriorVersionStopped=false, staleCognitionDraftCleared=false;
     let turns=await turnSnapshot(page); let recovered=chooseRecoveredTurn(turns,req.request_id,fingerprint,req.prompt); let assistant=null;
     if(recovered.state==='RESPONDED') assistant=recovered.assistant;
     if(recovered.state==='NOT_SENT') {
@@ -162,7 +168,7 @@ export async function runRoundtrip({dieHome='/srv/die', requestFile, responseFil
       }
       if(Date.now()>=parseTime(req.expires_at)) throw new Error('E_REQUEST_EXPIRED');
       const fullPrompt=`${marker}\n${req.prompt}`; if(fullPrompt.length>MAX_PROMPT_CHARS+220) throw new Error('E_FULL_PROMPT_OVERSIZE');
-      const composerAcquisition=await stagePrompt(page,fullPrompt,marker); const box=composerAcquisition.box;
+      const composerAcquisition=await stagePrompt(page,fullPrompt,marker); staleCognitionDraftCleared=Boolean(composerAcquisition.staleCognitionDraftCleared); const box=composerAcquisition.box;
       const sendAcquisition=await acquireSend(page); const send=sendAcquisition.send;
       await send.click(); submitted=true; recovered={state:'SENT_WAITING'};
     }
@@ -191,7 +197,7 @@ export async function runRoundtrip({dieHome='/srv/die', requestFile, responseFil
     }
     if(!assistant || !assistant.text) throw new Error('E_RESPONSE_TIMEOUT');
     if(assistant.text.length>MAX_RESPONSE_CHARS) throw new Error('E_RESPONSE_OVERSIZE');
-    const receipt={schema:'die.cognition.roundtrip-receipt.v1',company_instance_id:'DIE-LINUX',request_id:req.request_id,request_fingerprint:fingerprint,task_id:req.task_id,target_principal_id:req.target_principal_id,action_type:req.action_type,thread_generation:thread.generation,conversation_id:thread.conversation_id,bound_thread_recovered:rebound,submitted_by_transport:submitted,recovered_existing_request:!submitted,stale_prior_version_stopped:stalePriorVersionStopped,response_schema_expected:req.expected_response_schema,assistant_message_id:assistant.id,response_sha256:sha256(assistant.text),response_chars:assistant.text.length,credential_material_accessed:false,private_backend_called:false,observed_at:new Date().toISOString()};
+    const receipt={schema:'die.cognition.roundtrip-receipt.v1',company_instance_id:'DIE-LINUX',request_id:req.request_id,request_fingerprint:fingerprint,task_id:req.task_id,target_principal_id:req.target_principal_id,action_type:req.action_type,thread_generation:thread.generation,conversation_id:thread.conversation_id,bound_thread_recovered:rebound,submitted_by_transport:submitted,recovered_existing_request:!submitted,stale_prior_version_stopped:stalePriorVersionStopped,stale_cognition_draft_cleared:staleCognitionDraftCleared,response_schema_expected:req.expected_response_schema,assistant_message_id:assistant.id,response_sha256:sha256(assistant.text),response_chars:assistant.text.length,credential_material_accessed:false,private_backend_called:false,observed_at:new Date().toISOString()};
     const recPath=path.join(cfg.receiptDir,`${req.request_id}.json`); atomicJson(recPath,receipt);
     if(responseFile){ if(!path.isAbsolute(responseFile)) throw new Error('E_RESPONSE_PATH'); fs.mkdirSync(path.dirname(responseFile),{recursive:true,mode:0o750}); fs.writeFileSync(responseFile,assistant.text+'\n',{mode:0o640}); }
     return {...receipt,receipt_ref:recPath,response_file:responseFile};

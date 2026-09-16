@@ -183,26 +183,37 @@ def run_or_reuse_transport(node:str,transport:Path,reqp:Path,resp:Path,req:dict[
  if resp.is_file() and trp.is_file():return {'status':'REUSED','receipt_ref':str(trp)}
  return run_transport(node,transport,reqp,resp)
 
-def is_response_timeout_error(error:Exception)->bool:
- return 'E_TRANSPORT:E_RESPONSE_TIMEOUT' in str(error)
+def retryable_transport_reason(error:Exception)->str|None:
+ text=str(error)
+ for reason in ('E_RESPONSE_TIMEOUT','E_REQUEST_EXPIRED'):
+  if f'E_TRANSPORT:{reason}' in text:return reason
+ return None
 
-def record_transport_timeout(state:dict[str,Any],*,stage:str,request_id:str,lane:str)->dict[str,Any]:
+def is_response_timeout_error(error:Exception)->bool:
+ return retryable_transport_reason(error)=='E_RESPONSE_TIMEOUT'
+
+def record_transport_retry(state:dict[str,Any],*,stage:str,request_id:str,lane:str,reason:str)->dict[str,Any]:
+ if reason not in {'E_RESPONSE_TIMEOUT','E_REQUEST_EXPIRED'}:raise RuntimeError('E_TRANSPORT_RETRY_REASON')
+ event='TRANSPORT_RESPONSE_TIMEOUT' if reason=='E_RESPONSE_TIMEOUT' else 'TRANSPORT_REQUEST_EXPIRED'
  if lane=='AUTHOR':
   n=int(state.get('author_attempt',0))+1;state['author_attempt']=n
   retryable=n<MAX_SEMANTIC_ATTEMPTS;state['stage']=stage if retryable else 'WAITING_FOUNDER'
-  state['history'].append({'at':now(),'event':'TRANSPORT_RESPONSE_TIMEOUT','request_id':request_id,'lane':'AUTHOR','attempt':n,'retryable':retryable})
+  state['history'].append({'at':now(),'event':event,'request_id':request_id,'lane':'AUTHOR','reason':reason,'attempt':n,'retryable':retryable})
   return {'retryable':retryable,'attempt':n,'stage':state['stage']}
  if lane=='REVIEW':
   n=int(state.get('review_attempt',0))+1;state['review_attempt']=n
   retryable=n<=MAX_CONTEXT_RETRIES;state['stage']='NEED_REVIEW' if retryable else 'WAITING_FOUNDER'
-  state['history'].append({'at':now(),'event':'TRANSPORT_RESPONSE_TIMEOUT','request_id':request_id,'lane':'REVIEW','attempt':n,'retryable':retryable})
+  state['history'].append({'at':now(),'event':event,'request_id':request_id,'lane':'REVIEW','reason':reason,'attempt':n,'retryable':retryable})
   return {'retryable':retryable,'attempt':n,'stage':state['stage']}
  if lane=='SUBJECT':
   n=int(state.get('subject_attempt',0))+1;state['subject_attempt']=n
   retryable=n<MAX_SEMANTIC_ATTEMPTS;state['stage']='NEED_SUBJECT' if retryable else 'WAITING_FOUNDER'
-  state['history'].append({'at':now(),'event':'TRANSPORT_RESPONSE_TIMEOUT','request_id':request_id,'lane':'SUBJECT','attempt':n,'retryable':retryable})
+  state['history'].append({'at':now(),'event':event,'request_id':request_id,'lane':'SUBJECT','reason':reason,'attempt':n,'retryable':retryable})
   return {'retryable':retryable,'attempt':n,'stage':state['stage']}
  raise RuntimeError('E_TIMEOUT_LANE')
+
+def record_transport_timeout(state:dict[str,Any],*,stage:str,request_id:str,lane:str)->dict[str,Any]:
+ return record_transport_retry(state,stage=stage,request_id=request_id,lane=lane,reason='E_RESPONSE_TIMEOUT')
 
 def repair_context_recovery_state(state:dict[str,Any],*,author_artifact_exists:bool)->bool:
  hist=state.get('history') if isinstance(state.get('history'),list) else []
@@ -259,9 +270,10 @@ def tick(args)->dict[str,Any]:
   req=envelope(rid=rid,task=task,action='PRODUCTION_BLUEPRINT_REVISE' if stage=='NEED_REVISION' else 'PRODUCTION_BLUEPRINT_AUTHOR',target=DIV,prompt=prompt,response_schema='die.production.family-blueprint.v1',repo_sha=repo_sha,evidence=[{'ref':str(snap_path),'sha256':csha(snap)}]+([{'ref':str(cogn/'blueprint.review.json'),'sha256':csha(review)}] if review else [])); reqp=outbox/f'{rid}.json'; resp=responses/f'{rid}.txt'; trp=principal_transport_receipt(req); req=ensure_request(reqp,req,response_path=resp,transport_receipt_path=trp)
   try:tr=run_or_reuse_transport(args.node,Path(args.transport),reqp,resp,req)
   except RuntimeError as e:
-   if not is_response_timeout_error(e):raise
-   timeout=record_transport_timeout(state,stage=stage,request_id=rid,lane='AUTHOR');atomic_json(statep,state)
-   return {'schema':'die.production.cognition-tick.v1','status':'RETRY' if timeout['retryable'] else 'BLOCKED','task_id':task,'reason':'E_RESPONSE_TIMEOUT','author_attempt':timeout['attempt'],'stage':timeout['stage']}
+   reason=retryable_transport_reason(e)
+   if reason is None:raise
+   retry=record_transport_retry(state,stage=stage,request_id=rid,lane='AUTHOR',reason=reason);atomic_json(statep,state)
+   return {'schema':'die.production.cognition-tick.v1','status':'RETRY' if retry['retryable'] else 'BLOCKED','task_id':task,'reason':reason,'author_attempt':retry['attempt'],'stage':retry['stage']}
   parsed=parse_response(resp.read_text(encoding='utf-8'))
   if parsed.get('schema')=='die.cognition.blocked.v1':
    be=validate_blocked_response(parsed,req)
@@ -282,8 +294,9 @@ def tick(args)->dict[str,Any]:
   req=envelope(rid=rid,task=task,action='PRODUCTION_SUBJECT_SPEC_AUTHOR',target=DIV,prompt=prompt,response_schema='die.factory-asset.subject-spec.v1',repo_sha=repo_sha,evidence=[{'ref':str(snap_path),'sha256':csha(snap)},{'ref':str(cogn/'blueprint.author.json'),'sha256':csha(bp)},{'ref':str(cogn/'blueprint.review.json'),'sha256':csha(review)}]); reqp=outbox/f'{rid}.json'; resp=responses/f'{rid}.txt'; trp=principal_transport_receipt(req); req=ensure_request(reqp,req,response_path=resp,transport_receipt_path=trp)
   try:tr=run_or_reuse_transport(args.node,Path(args.transport),reqp,resp,req)
   except RuntimeError as e:
-   if not is_response_timeout_error(e):raise
-   timeout=record_transport_timeout(state,stage=stage,request_id=rid,lane='SUBJECT');atomic_json(statep,state);return {'schema':'die.production.cognition-tick.v1','status':'RETRY' if timeout['retryable'] else 'BLOCKED','task_id':task,'reason':'E_RESPONSE_TIMEOUT','subject_attempt':timeout['attempt'],'stage':timeout['stage']}
+   reason=retryable_transport_reason(e)
+   if reason is None:raise
+   retry=record_transport_retry(state,stage=stage,request_id=rid,lane='SUBJECT',reason=reason);atomic_json(statep,state);return {'schema':'die.production.cognition-tick.v1','status':'RETRY' if retry['retryable'] else 'BLOCKED','task_id':task,'reason':reason,'subject_attempt':retry['attempt'],'stage':retry['stage']}
   parsed=parse_response(resp.read_text(encoding='utf-8'))
   if parsed.get('schema')=='die.cognition.blocked.v1':
    be=validate_blocked_response(parsed,req)
@@ -307,9 +320,10 @@ def tick(args)->dict[str,Any]:
   bp=read_json(cogn/'blueprint.author.json'); rid=request_id(task,'BP_REVIEW',revision*10+review_attempt); prompt=review_prompt(rid,task,repo_sha,bp); req=envelope(rid=rid,task=task,action='PRODUCTION_BLUEPRINT_REVIEW',target=EXEC,prompt=prompt,response_schema='die.production.family-blueprint-review.v1',repo_sha=repo_sha,evidence=[{'ref':str(cogn/'blueprint.author.json'),'sha256':csha(bp)}]); reqp=outbox/f'{rid}.json'; resp=responses/f'{rid}.txt'; trp=principal_transport_receipt(req); req=ensure_request(reqp,req,response_path=resp,transport_receipt_path=trp)
   try:tr=run_or_reuse_transport(args.node,Path(args.transport),reqp,resp,req)
   except RuntimeError as e:
-   if not is_response_timeout_error(e):raise
-   timeout=record_transport_timeout(state,stage=stage,request_id=rid,lane='REVIEW');atomic_json(statep,state)
-   return {'schema':'die.production.cognition-tick.v1','status':'RETRY' if timeout['retryable'] else 'BLOCKED','task_id':task,'reason':'E_RESPONSE_TIMEOUT','review_attempt':timeout['attempt'],'stage':timeout['stage']}
+   reason=retryable_transport_reason(e)
+   if reason is None:raise
+   retry=record_transport_retry(state,stage=stage,request_id=rid,lane='REVIEW',reason=reason);atomic_json(statep,state)
+   return {'schema':'die.production.cognition-tick.v1','status':'RETRY' if retry['retryable'] else 'BLOCKED','task_id':task,'reason':reason,'review_attempt':retry['attempt'],'stage':retry['stage']}
   parsed=parse_response(resp.read_text(encoding='utf-8'))
   if parsed.get('schema')=='die.cognition.blocked.v1':
    be=validate_blocked_response(parsed,req)

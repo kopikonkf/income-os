@@ -989,3 +989,11 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - `FA-331 = DONE/PASS`: runtime consumption identity is semantic-expression level, with legacy baseline replay compatibility and near-duplicate quarantine.
 - `FA-332 = DONE/PASS`: Production Intelligence v2 trace accepted end-to-end while isolated cartoon/watercolor stays champion exploitation and alternate expressions remain bounded exploration.
 - Final pre-seal Linux Factory regression on `a3f377e...`: 903/903 PASS, one existing PyPDF2 deprecation warning. No throughput-scale, submission or publication authority changed.
+
+## 2026-09-16 - V1 + V2 product-line coexistence clarification
+
+- **Factory Asset V1 remains ACTIVE and is not a legacy/sunset line.** V1 is the broader multi-variant production line and retains its accepted raster, derivative, pattern, motion, provider-pool, QA/QC, postproduction and packaging capabilities.
+- **Factory Asset V2 product-line scope is native SVG/vector.** It closes the genuine SVG creator gap while reusing governed shared Factory infrastructure where appropriate. FA-320 and FA-321 are DONE; FA-322 is the live Claude ICON/OUTLINE acceptance frontier.
+- V1 and V2 are intended to **coexist in the same DIE H01 Linux Factory home**. Neither product line supersedes the other.
+- Internal version names such as `Asset Blueprint v2`, `Factory orchestration v2`, and `Production Intelligence v2` are contract/orchestration versions; they do **not** mean that the Factory Asset V1 product line is retired or replaced.
+- Canon interpretations or future documentation that describe V1 as retired merely because a `v2` internal contract exists are misleading and must be reconciled to this coexistence boundary.
