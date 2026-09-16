@@ -1,0 +1,43 @@
+{
+  "schema": "die.factory-asset.fa322-supersession-receipt.v1",
+  "task_id": "FA-322",
+  "status": "DONE",
+  "decision": "SUPERSEDED_BY_SEPARATE_V2_SVG_ENGINE_EVIDENCE",
+  "observed_at": "2026-09-16",
+  "v1_v2_boundary": {
+    "factory_asset_v1": "broad multi-variant line; remains active",
+    "factory_asset_v2": "separate SVG/vector production engine using h01-web-p001..p100 Brave fabric",
+    "decision": "do not duplicate Claude SVG provider acceptance inside V1"
+  },
+  "canonical_evidence": {
+    "h01_107": {
+      "receipt": "company/company-os/die-h01/receipts/H01-107-provider-native-svg-canaries.receipt.json",
+      "provider": "claude",
+      "classification": "TEXT_SVG",
+      "h01_103_status": "PASS",
+      "h01_104a_status": "SUCCEEDED",
+      "runtime_lifecycle_status": "PASS",
+      "provider_original_bytes": 908,
+      "provider_original_sha256": "1a8caf6b3e286443283350a270ecfbc392a25e0b122f1d224a33d71ec9f91868"
+    },
+    "h01_108_live_observation": {
+      "root": "/var/lib/die/h01/runs/H01-108",
+      "claude_terminal_run_count_observed": 21,
+      "representative_job": "068-bacteria-claude-a1",
+      "representative_provider_original_svg_sha256": "be49500502a95716cb97f382cc471905e39c2932dabcf3240f7729cbba5dea26",
+      "representative_canonical_svg_sha256": "5456165dd852cc67cecf6722c5abfbf2c504d90bb1dabdc85492b20e6a8a55c2",
+      "representative_optimized_svg_sha256": "22c3d861ae414453bee9f2288b0863ef0926a10a4be3a3e78538332309b0f45d",
+      "lineage_files_observed": [
+        "final/provider-original.svg",
+        "final/canonical.svg",
+        "postproduction/provider-original.svg",
+        "postproduction/canonical-master.svg",
+        "postproduction/optimized-master.svg"
+      ]
+    }
+  },
+  "duplicate_live_provider_call_performed": false,
+  "route_promoted_in_v1": false,
+  "submission_authorized": false,
+  "publication_authorized": false
+}

@@ -980,10 +980,10 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 
 ---
 
-## 2026-09-11 - FA-321/324/325/330/331/332 seal; FA-322 Claude Web waiting Founder login
+## 2026-09-11 - FA-321/324/325/330/331/332 seal; historical FA-322 preauth state
 - `FA-321 = DONE/PASS`: governed genuine-native SVG safety/editability/render/derivative pipeline accepted; SVG master deterministically yields EPS/PNG/JPEG and derivatives remain semantic-identity neutral.
-- `FA-322 = WAITING_FOUNDER`: corrected provider surface is Claude Web AI over governed H01 Web-AI production profiles using `BROWSER_CDP`, not Claude CLI. Claude is registered `AUTH_REQUIRED`; raw SVG extraction and FA-321 postproduction are prewired. Founder login then bounded ICON+OUTLINE live acceptance remains. Route is not promoted before that evidence.
-- `FA-324 = DONE/PASS`: read-only VNC on the two real production Xvfb displays `:101` and `:102`, loopback 59101/59102, browser/broker sessions preserved.
+- Historical note: FA-322 was originally left WAITING_FOUNDER for a duplicate Claude ICON/OUTLINE canary before the separate Factory Asset V2 SVG engine accumulated broader live evidence. This historical state is superseded by the 2026-09-16 reconciliation below.
+- `FA-324 = DONE/PASS`: historical read-only VNC observability on two V1 production browser displays was accepted; this is no longer the preferred Founder operating surface after the 2026-09-16 operability correction.
 - `FA-325 = DONE/PASS`: idle-only temporary interactive repair canary proved loopback 59201, 30-second hold, automatic revocation and read-only restoration; no secret reads or checkpoint bypass.
 - `FA-330 = DONE/PASS`: sparse evidence-bounded seed x mode x preset planner, no exhaustive Cartesian expansion.
 - `FA-331 = DONE/PASS`: runtime consumption identity is semantic-expression level, with legacy baseline replay compatibility and near-duplicate quarantine.
@@ -993,6 +993,16 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 ## 2026-09-16 - legacy FA-V vector roadmap reconciliation
 
 - `FA-V001..FA-V007` are closed as `DONE/SUPERSEDED`; they are historical phase-6 roadmap nodes and must not remain executable blockers.
-- Their maintained successors are `FA-320/FA-321/FA-322` for Claude native-vector contract, pipeline and bounded live acceptance, plus current H01 SVG Factory postproduction/delivery tasks `H01-115`, `H01-134`, and `H01-135`.
-- Supersession closes duplicate planning only; it does **not** claim FA-322 live acceptance. `FA-322` remains `WAITING_FOUNDER` until exactly one bounded ICON and one bounded OUTLINE Claude Web canary pass genuine-SVG extraction and FA-321 QA.
-- Alphabetic browser-group labels are historical implementation identifiers, not the preferred operating taxonomy. User-facing runtime references use governed H01 Web-AI production profiles / canonical profile IDs.
+- Their maintained outcomes are split cleanly by product line: V1 remains the broad MUXIA/Hermes multi-variant factory; V2 is the separate SVG production engine and owns `h01-web-p001..p100`, its Brave runtime, supervisor and orchestrator.
+- `FA-322 = DONE/SUPERSEDED`: H01-107 plus 21 observed H01-108 Claude production runs already prove real Claude SVG generation and lineage. No duplicate Founder login or ICON/OUTLINE canary is required inside V1 solely to re-prove Claude SVG capability.
+- Alphabetic browser-group labels are historical implementation identifiers only. User-facing V1 naming is `V1 Runtime 01`, `V1 Runtime 02`, etc.; V2 keeps its own canonical `h01-web-pNNN` / `h01-web-sNN` identities.
+
+## 2026-09-16 - V1 demand-driven browser and Founder-operability correction
+
+- Product-line boundary is explicit: Factory Asset V1 is the broad MUXIA/Hermes multi-variant engine. Factory Asset V2 is the separate SVG engine with `h01-web-p001..p100`, Brave job-scoped browser runtime, its own supervisor and orchestrator. Do not merge their runtime identities.
+- Live V2 evidence supersedes the old FA-322 proof gate: H01-107 Claude PASS plus 21 H01-108 Claude production runs were observed; representative `068-bacteria-claude-a1` has provider-original, canonical and postproduction SVG hashes recorded in the FA-322 supersession receipt.
+- `FA-337 = READY`: define a V1-only job-scoped browser lifecycle by adapting the proven V2 lifecycle semantics, not the V2 engine itself.
+- `FA-338 = BLOCKED`: implement V1 MUXIA/Hermes and applicable cognition browser ownership as `COLD -> SPAWN_HEADFUL -> WORK -> DURABLE_TERMINAL -> CLOSE -> COLD`, with no-CDP Founder auth repair for protection challenges.
+- `FA-339 = BLOCKED`: move V1 authenticated browser operability to Founder-visible DISPLAY `:12` workspaces with explicit Founder handoff/preemption; read-only VNC becomes optional fallback rather than the primary repair path.
+- `FA-340 = BLOCKED`: normalize Founder filesystem access so `kopiko` is not unexpectedly denied within governed DIE operational roots; stability relies on warnings, leases, backups and rollback instead of treating Founder as a guest.
+- Live 2026-09-16 repair state: Executive and Division01 were opened on DISPLAY `:12` in separate workspaces with CDP OFF for manual protection/auth inspection. Three actual permission-denied roots were identified and corrected live while preserving service ownership.
