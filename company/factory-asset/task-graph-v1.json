@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
-  "generated_at": "2026-09-11",
-  "revision": "11.2-native-vector-observability-production-intelligence-seal",
+  "generated_at": "2026-09-16",
+  "revision": "11.3-vector-roadmap-supersession",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -2667,11 +2667,12 @@
       "depends_on": [
         "FA-206"
       ],
-      "status": "DEFERRED",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "Claude native SVG provider contract and capability truth matrix",
-      "acceptance": "Define a text/code-output native-vector provider boundary for Claude SVG Artifacts without claiming raster image generation; pin supported SVG artifact extraction, model/surface truth, zero-spend authority and no Cluster A login requirement before canary.",
-      "defer_reason": "Founder approved as future work only; do not execute during FA-305/FA-306 scale-up."
+      "acceptance": "Define a text/code-output native-vector provider boundary for Claude SVG Artifacts without claiming raster image generation; pin supported SVG artifact extraction, model/surface truth, zero-spend authority and no production-profile login requirement before canary.",
+      "result": "SUPERSEDED: Contract scope absorbed by FA-320; this older phase-6 roadmap node is retired and must not be scheduled independently.",
+      "superseded_by": "FA-320"
     },
     {
       "id": "FA-V002",
@@ -2682,10 +2683,12 @@
       "depends_on": [
         "FA-V001"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "SVG sanitizer, parser and structural QA tests",
-      "acceptance": "Fail closed on scripts, external references, embedded raster, malformed XML, unsafe fonts/text and non-editable structure; preserve deterministic native vector geometry and lineage."
+      "acceptance": "Fail closed on scripts, external references, embedded raster, malformed XML, unsafe fonts/text and non-editable structure; preserve deterministic native vector geometry and lineage.",
+      "result": "SUPERSEDED: Sanitizer, safety, editability, render QA and vector derivative scope absorbed by FA-321; this older roadmap node is retired.",
+      "superseded_by": "FA-321"
     },
     {
       "id": "FA-V003",
@@ -2696,10 +2699,12 @@
       "depends_on": [
         "FA-V002"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_LIVE_PROVIDER_CALL",
       "artifact": "Claude bounded SVG canary receipt and original SVG bytes",
-      "acceptance": "One Founder-authorized Claude attempt produces extractable original SVG bytes that pass sanitizer/structural QA and are stored with exact hash lineage; no raster-image-generation claim, no publication, no spend."
+      "acceptance": "One Founder-authorized Claude attempt produces extractable original SVG bytes that pass sanitizer/structural QA and are stored with exact hash lineage; no raster-image-generation claim, no publication, no spend.",
+      "result": "SUPERSEDED: Live Claude native-vector acceptance is owned by FA-322; this older canary node is retired and does not imply the live acceptance has passed.",
+      "superseded_by": "FA-322"
     },
     {
       "id": "FA-V004",
@@ -2710,10 +2715,12 @@
       "depends_on": [
         "FA-V003"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "SVG master to EPS/PNG/JPEG/WEBP/PDF derivative pipeline",
-      "acceptance": "Native SVG master deterministically yields marketplace EPS plus preview derivatives while preserving editability, dimensions/viewBox and exact lineage; raster-to-vector fabrication remains forbidden."
+      "acceptance": "Native SVG master deterministically yields marketplace EPS plus preview derivatives while preserving editability, dimensions/viewBox and exact lineage; raster-to-vector fabrication remains forbidden.",
+      "result": "SUPERSEDED: SVG-to-EPS and preview derivative scope absorbed by FA-321; this older roadmap node is retired.",
+      "superseded_by": "FA-321"
     },
     {
       "id": "FA-V005",
@@ -2724,10 +2731,12 @@
       "depends_on": [
         "FA-V004"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "vector metadata, trademark/IP, structural distinctness and rights gates",
-      "acceptance": "Vector-native assets receive metadata/disclosure plus duplicate, trademark/logo, text/font and rights checks with explicit UNKNOWN/REVIEW_REQUIRED states."
+      "acceptance": "Vector-native assets receive metadata/disclosure plus duplicate, trademark/logo, text/font and rights checks with explicit UNKNOWN/REVIEW_REQUIRED states.",
+      "result": "SUPERSEDED: Rights classification and marketplace metadata/disclosure gating moved to the current H01 SVG Factory postproduction and delivery tasks; this older roadmap node is retired.",
+      "superseded_by": "H01-115,H01-134"
     },
     {
       "id": "FA-V006",
@@ -2738,10 +2747,12 @@
       "depends_on": [
         "FA-V005"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "FOUNDER_REQUIRED_FOR_ACCEPTANCE",
       "artifact": "Adobe Stock vector PACKAGE_READY canary receipt",
-      "acceptance": "One sanitized editable SVG vector package satisfies current Adobe-specific delivery evidence, metadata and Founder QC without marketplace submission/publication."
+      "acceptance": "One sanitized editable SVG vector package satisfies current Adobe-specific delivery evidence, metadata and Founder QC without marketplace submission/publication.",
+      "result": "SUPERSEDED: Adobe delivery packaging and submission-ready gating moved to the current H01 SVG Factory delivery chain; this older roadmap node is retired and does not claim Founder marketplace acceptance.",
+      "superseded_by": "H01-134,H01-135"
     },
     {
       "id": "FA-V007",
@@ -2752,10 +2763,12 @@
       "depends_on": [
         "FA-V006"
       ],
-      "status": "BLOCKED",
+      "status": "DONE",
       "authority": "ARCHITECT",
       "artifact": "multi-market vector packaging acceptance receipt",
-      "acceptance": "One native vector semantic asset compiles into evidence-supported per-market SVG/EPS/preview packages with unsupported or stale format rules explicit; no marketplace upload is performed."
+      "acceptance": "One native vector semantic asset compiles into evidence-supported per-market SVG/EPS/preview packages with unsupported or stale format rules explicit; no marketplace upload is performed.",
+      "result": "SUPERSEDED: Multi-market vector packaging is owned by H01-134 Marketplace Delivery Adapter v1; this older roadmap node is retired.",
+      "superseded_by": "H01-134"
     },
     {
       "id": "FA-310",
@@ -2983,7 +2996,7 @@
       "acceptance": "With Founder-authorized authenticated provider access, generate bounded genuine SVG ICON/OUTLINE masters from frozen blueprints, pass FA-321 safety/editability QA and derivative packaging, and only then promote the NATIVE_VECTOR ICON/OUTLINE route from UNAVAILABLE_NOT_ACCEPTED to ACCEPTED. No account multiplication, credential copying, submission or publication.",
       "updated_at": "2026-09-11",
       "receipt": "company/factory-asset/receipts/FA-322-claude-web-preauth.receipt.json",
-      "result": "WAITING_FOUNDER: Claude Web AI is prewired as AUTH_REQUIRED on Cluster A/B with BROWSER_CDP readiness, raw SVG extraction and FA-321 postproduction. Founder login is the only remaining prerequisite before bounded live ICON+OUTLINE acceptance; route remains UNAVAILABLE_NOT_ACCEPTED."
+      "result": "WAITING_FOUNDER: Claude Web AI is prewired as AUTH_REQUIRED on governed H01 Web-AI production profiles with BROWSER_CDP readiness, raw SVG extraction and FA-321 postproduction. Founder login is the only remaining prerequisite before bounded live ICON+OUTLINE acceptance; route remains UNAVAILABLE_NOT_ACCEPTED."
     },
     {
       "id": "FA-323",
