@@ -1,0 +1,37 @@
+{
+  "schema": "die.factory-asset.v1-readiness-bootstrap-hotfix.v1",
+  "status": "PASS",
+  "observed_at": "2026-09-16T15:53:04Z",
+  "root_cause": "production_multi_cluster_dispatch interpreted an absent broker provider_states entry as UNAVAILABLE even though ClusterTabLeaseManager.providerState defaults absent entries to HEALTHY; after broker restart snapshots contained provider_states={} so every route was rejected before live readiness classification",
+  "fix": "dispatcher now uses the broker contract default HEALTHY for absent explicit state; generateConsoleProviderImage still performs live provider readiness classification before prompt dispatch and persists AUTH_REQUIRED/CHECKPOINT/DEGRADED/HEALTHY back to broker state",
+  "pre_fix": {
+    "cluster_a_broker": "READY",
+    "cluster_b_broker": "READY",
+    "active_leases_each": 0,
+    "provider_states_each": {},
+    "result": "E_NO_ELIGIBLE_ROUTE"
+  },
+  "post_fix_plan": {
+    "eligible_candidate_count": 10,
+    "provider_calls_performed": false,
+    "browser_owner_actions": 0,
+    "live_tab_leases_acquired": 0
+  },
+  "live_canary": {
+    "task_id": "PRODSEED000127",
+    "provider_id": "gemini",
+    "runtime_id": "V1 Runtime 02",
+    "status": "ARTIFACT_CREATED",
+    "provider_original": "provider/source-original.jpg",
+    "bytes": 498982,
+    "dimensions": "1408x768",
+    "sha256": "a144d2b356943e0a8f14eead30f5cf0b90c807152d0b4f6684f191e0b8ed353d"
+  },
+  "authority": {
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_usd": 0,
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false
+  }
+}
