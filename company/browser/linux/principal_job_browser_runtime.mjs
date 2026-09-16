@@ -3,11 +3,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { spawn } from 'node:child_process';
+import { readRepairHold, writeAuthRepairHold } from './auth_repair_hold.mjs';
 
 const CFG={
   'die-lnx-executive-001':{profile:'/var/lib/die/executive/browser-profile',status:'/var/lib/die/executive/browser-status.json',script:'/srv/die/company/executive/linux/operator_browser.mjs',display:103,receiptDir:'/var/lib/die/executive/job-browser-receipts'},
   'die-lnx-division-001':{profile:'/var/lib/die/division01/browser-profile',status:'/var/lib/die/division01/browser-status.json',script:'/srv/die/company/division/division001/linux/operator_browser.mjs',display:104,receiptDir:'/var/lib/die/division01/job-browser-receipts'},
 };
+const HOLD_ROOT='/var/lib/die/state/principal-auth-repair';
 const sleep=(ms)=>new Promise((r)=>setTimeout(r,ms));
 function atomic(file,v){fs.mkdirSync(path.dirname(file),{recursive:true,mode:0o750});const t=`${file}.tmp-${process.pid}`;fs.writeFileSync(t,JSON.stringify(v,null,2)+'\n',{mode:0o640});fs.renameSync(t,file)}
 async function waitExit(c,ms){if(!c||c.exitCode!==null)return true;return await new Promise((resolve)=>{let done=false,timer;const finish=(v)=>{if(done)return;done=true;clearTimeout(timer);c.off('exit',onExit);resolve(v)};const onExit=()=>finish(true);c.once('exit',onExit);timer=setTimeout(()=>finish(false),ms)})}
@@ -29,6 +31,8 @@ async function waitStatus(cfg,started,child,timeout=45000){
 
 export async function withPrincipalJobBrowser({principalId,jobId,work,terminalEvidencePath=null}={}){
   const cfg=CFG[principalId];if(!cfg)throw new Error('E_PRINCIPAL_BROWSER_PRINCIPAL');
+  const holdPath=path.join(HOLD_ROOT,`${principalId}.json`);
+  if(readRepairHold(holdPath))throw new Error(`E_AUTH_REPAIR_REQUIRED_HELD:${principalId}`);
   if(procProfile(cfg.profile))throw new Error('E_PRINCIPAL_PROFILE_BUSY');
   const safeJob=String(jobId).replace(/[^A-Za-z0-9_.-]/g,'_');
   const receipt=path.join(cfg.receiptDir,`${safeJob}.json`),started=Date.now();
@@ -41,7 +45,7 @@ export async function withPrincipalJobBrowser({principalId,jobId,work,terminalEv
     owner=spawn('/usr/local/bin/node',[cfg.script,'launch'],{env:{...process.env,DISPLAY:`:${cfg.display}`,HOME:'/home/kopiko'},stdio:['ignore','pipe','pipe']});
     status=await waitStatus(cfg,started,owner);
     atomic(receipt,{...base,status:'WORK',browser_pid:status.browserPid,debug_host:status.debugHost,debug_port:status.debugPort,ready_state:status.state,ready_at:new Date().toISOString()});
-    if(status.state!=='READY')throw new Error(`E_AUTH_REPAIR_REQUIRED:${principalId}:${status.state}`);
+    if(status.state!=='READY'){writeAuthRepairHold(holdPath,{scopeId:principalId,profileId:cfg.profile,providerId:'chatgpt',reasonCode:status.state,sourceJobId:jobId});throw new Error(`E_AUTH_REPAIR_REQUIRED:${principalId}:${status.state}`);}
     try{
       result=await work();
       if(!terminalEvidencePath&&result?.receipt_ref)terminalEvidencePath=result.receipt_ref;

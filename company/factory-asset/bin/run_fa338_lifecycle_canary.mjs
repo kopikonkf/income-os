@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { startJobScopedClusterRuntime, runtimeIdleSnapshot } from '../../browser/linux/job_scoped_cluster_runtime.mjs';
 import { probeConsoleProvider } from '../lib/console_broker_provider_worker.mjs';
+import { writeAuthRepairHold } from '../../browser/linux/auth_repair_hold.mjs';
 
 const REPO=path.resolve(path.dirname(new URL(import.meta.url).pathname),'../../..');
 const REG=JSON.parse(fs.readFileSync(path.join(REPO,'company/factory-asset/registries/web-ai-clusters.v1.json'),'utf8'));
@@ -16,7 +17,7 @@ function atomic(file,v){fs.mkdirSync(path.dirname(file),{recursive:true,mode:0o7
 function cfg(provider){return{browser_url:URLS[provider],actual_live_transport:'BROWSER_CDP',transport_role:'FA338_LIFECYCLE_CANARY',primary_transport_contract:'BROWSER_CDP',session_api_live_executor_claimed:provider==='qwen'?false:null}}
 const before=runtimeIdleSnapshot({registry:REG});
 if(before.active_runtimes!==0||before.active_profile_processes!==0)throw new Error(`E_FA338_NOT_COLD:${JSON.stringify(before)}`);
-const rounds=[];
+const rounds=[];let failClosed=null;
 for(let i=1;i<=2;i++){
  const runtimeReceipt=path.join(ROOT,`round-${i}-runtime.json`),terminal=path.join(ROOT,`round-${i}-terminal.json`);
  const runtime=await startJobScopedClusterRuntime({dieHome:REPO,registry:REG,clusterId,jobId:`FA338-CANARY-R${i}`,receiptPath:runtimeReceipt});
@@ -25,11 +26,19 @@ for(let i=1;i<=2;i++){
  atomic(terminal,terminalValue);
  const closed=await runtime.stop({terminalEvidencePath:terminal,reason:'FA338_READINESS_CANARY'});
  rounds.push({round:i,profile_id:runtime.profile_id,browser_owner_pid:runtime.browser_owner_pid,debug_port:runtime.debug_port,readiness:observation.readiness,status:terminalValue.status,closed:{status:closed.status,debug_endpoint_closed:closed.debug_endpoint_closed,control_endpoint_closed:closed.control_endpoint_closed,profile_process_gone:closed.profile_process_gone,lease_released:closed.lease_released}});
- if(terminalValue.status!=='SUCCEEDED')throw new Error(`E_FA338_READINESS:${observation.readiness?.state||observation.failure_code||observation.status}`);
  const idle=runtimeIdleSnapshot({registry:REG});if(idle.active_runtimes!==0||idle.active_profile_processes!==0)throw new Error(`E_FA338_NOT_COLD_AFTER_ROUND:${i}`);
+ if(terminalValue.status!=='SUCCEEDED'){
+  const state=observation.readiness?.state||observation.failure_code||observation.status;
+  if(['CHECKPOINT','AUTH_REQUIRED'].includes(state)){
+   const c=REG.clusters.find(x=>x.cluster_id===clusterId),repairPath=`/var/lib/muxia/state/founder-repair/${clusterId}.json`;
+   const hold=writeAuthRepairHold(repairPath,{scopeId:clusterId,profileId:c?.profile_id||null,providerId,reasonCode:state,sourceJobId:`FA338-CANARY-R${i}`});
+   failClosed={state,repair_hold_path:repairPath,repair_hold_state:hold.state,round:i};break;
+  }
+  throw new Error(`E_FA338_READINESS:${state}`);
+ }
 }
 if(rounds[0].profile_id!==rounds[1].profile_id)throw new Error('E_FA338_PROFILE_IDENTITY_DRIFT');
 const after=runtimeIdleSnapshot({registry:REG});
-const out={schema:'die.factory-asset.fa338-live-canary.v1',task_id:'FA-338',status:'PASS',owner_model:'JOB_SCOPED_HEADFUL_BROWSER_CDP',cluster_id:clusterId,provider_id:providerId,before,rounds,after,same_persistent_profile_reopened:true,provider_generation_calls_performed:0,credential_values_read:false,cookies_or_tokens_read:false,submission_authorized:false,publication_authorized:false,spend_usd:0,completed_at:new Date().toISOString()};
+const out={schema:'die.factory-asset.fa338-live-canary.v1',task_id:'FA-338',status:failClosed?'PASS_FAIL_CLOSED':'PASS',owner_model:'JOB_SCOPED_HEADFUL_BROWSER_CDP',cluster_id:clusterId,provider_id:providerId,before,rounds,after,same_persistent_profile_reopened:rounds.length>1&&rounds.every(x=>x.profile_id===rounds[0].profile_id),fail_closed:failClosed,provider_generation_calls_performed:0,credential_values_read:false,cookies_or_tokens_read:false,submission_authorized:false,publication_authorized:false,spend_usd:0,completed_at:new Date().toISOString()};
 atomic(path.join(ROOT,'FA-338-live-canary.receipt.json'),out);
 console.log(JSON.stringify(out));

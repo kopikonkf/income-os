@@ -4,6 +4,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { MultiClusterScheduler } from '../../browser/linux/multi_cluster_scheduler.mjs';
 import { startJobScopedClusterRuntime, runtimeIdleSnapshot } from '../../browser/linux/job_scoped_cluster_runtime.mjs';
+import { readRepairHold, writeAuthRepairHold } from '../../browser/linux/auth_repair_hold.mjs';
 import { generateConsoleProviderImage } from '../lib/console_broker_provider_worker.mjs';
 
 const REPO=path.resolve(path.dirname(new URL(import.meta.url).pathname),'../../..');
@@ -23,7 +24,7 @@ function read(p,fallback=null){try{return JSON.parse(fs.readFileSync(p,'utf8'))}
 function atomic(p,v){fs.mkdirSync(path.dirname(p),{recursive:true});const t=`${p}.tmp-${process.pid}`;fs.writeFileSync(t,JSON.stringify(v,null,2)+'\n',{mode:0o640});fs.renameSync(t,p)}
 function now(){return new Date().toISOString()}
 function control(cluster){const c=REG.clusters.find(x=>x.cluster_id===cluster);return `http://127.0.0.1:${c.broker_control_port}/`}
-function repairHold(cluster){const p=path.join(REPAIR_ROOT,`${cluster}.json`),d=read(p);if(!d||d.state!=='ACTIVE')return null;const exp=Number(d.expires_at_epoch||0);if(!Number.isFinite(exp)||exp*1000<=Date.now())return null;return d}
+function repairHold(cluster){return readRepairHold(path.join(REPAIR_ROOT,`${cluster}.json`))}
 function loadState(){return read(STATE,{schema:'die.production.multi-cluster-state.v1',cluster_selection_counts:{},provider_circuits:{},cluster_circuits:{},route_latency_ms:{},updated_at:null})}
 function hydrate(s,x){s.clusterSelections=new Map(Object.entries(x.cluster_selection_counts||{}).map(([k,v])=>[k,Number(v)||0]));s.providerCircuits=new Map(Object.entries(x.provider_circuits||{}));s.clusterCircuits=new Map(Object.entries(x.cluster_circuits||{}))}
 function dump(s,x){x.cluster_selection_counts=Object.fromEntries(s.clusterSelections);x.provider_circuits=Object.fromEntries(s.providerCircuits);x.cluster_circuits=Object.fromEntries(s.clusterCircuits);x.updated_at=now();atomic(STATE,x)}
@@ -99,9 +100,17 @@ export async function runTask(task){
       atomic(finalReceipt,out);await runtime.stop({terminalEvidencePath:finalReceipt,reason:'INVALID_SUCCESS'});throw new Error('E_SUCCESS_WITHOUT_DISPATCH_COMMIT');
     }
     await runtime.stop({terminalEvidencePath:journal,reason:'PRE_DISPATCH_FAILURE'});
+    const preFailure=receipt.failure_code||'PROVIDER_ERROR';
+    if(['CHECKPOINT','AUTH_REQUIRED'].includes(preFailure)){
+      const clusterRow=REG.clusters.find(x=>x.cluster_id===cluster);
+      const repairPath=path.join(REPAIR_ROOT,`${cluster}.json`);
+      const hold=writeAuthRepairHold(repairPath,{scopeId:cluster,profileId:clusterRow?.profile_id||null,providerId:provider,reasonCode:preFailure,sourceJobId:task});
+      const out={schema:'die.production.multi-cluster-dispatch.v1',task_id:task,status:'FAILED',failure_code:'AUTH_REPAIR_REQUIRED',provider_failure_code:preFailure,dispatch_committed:false,retry_allowed:false,provider_id:provider,cluster_id:cluster,attempt,repair_hold_path:repairPath,repair_hold_state:hold.state,error:receipt.error||null,credential_values_read:false,cookies_or_tokens_read:false,spend_usd:0};
+      atomic(finalReceipt,out);dump(scheduler,state);return out;
+    }
     pool=await candidates(state);
-    try{decision=scheduler.reportPreDispatchFailure({idempotencyKey:job.idempotency_key,eventId:`${task}-predispatch-${attempt}`,failureCode:receipt.failure_code||'PROVIDER_ERROR',candidates:pool,queue:{depth:0,limit:1,observed_at:now()}});dump(scheduler,state)}
-    catch(e){dump(scheduler,state);const out={schema:'die.production.multi-cluster-dispatch.v1',task_id:task,status:'FAILED',failure_code:receipt.failure_code||'NO_ELIGIBLE_ROUTE',dispatch_committed:false,retry_allowed:false,error:String(e?.message||e),credential_values_read:false,cookies_or_tokens_read:false,spend_usd:0};atomic(finalReceipt,out);return out}
+    try{decision=scheduler.reportPreDispatchFailure({idempotencyKey:job.idempotency_key,eventId:`${task}-predispatch-${attempt}`,failureCode:preFailure,candidates:pool,queue:{depth:0,limit:1,observed_at:now()}});dump(scheduler,state)}
+    catch(e){dump(scheduler,state);const out={schema:'die.production.multi-cluster-dispatch.v1',task_id:task,status:'FAILED',failure_code:preFailure||'NO_ELIGIBLE_ROUTE',dispatch_committed:false,retry_allowed:false,error:String(e?.message||e),credential_values_read:false,cookies_or_tokens_read:false,spend_usd:0};atomic(finalReceipt,out);return out}
   }
 }
 

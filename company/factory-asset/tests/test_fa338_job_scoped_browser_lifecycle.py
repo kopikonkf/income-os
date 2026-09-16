@@ -6,6 +6,7 @@ RUNTIME=ROOT/'company/browser/linux/job_scoped_cluster_runtime.mjs'
 PRINCIPAL=ROOT/'company/browser/linux/principal_job_browser_runtime.mjs'
 COGNITION=ROOT/'company/browser/linux/cognition_roundtrip.mjs'
 REPAIR=ROOT/'company/browser/linux/founder_no_cdp_repair.sh'
+HOLD=ROOT/'company/browser/linux/auth_repair_hold.mjs'
 DISPATCH=ROOT/'company/factory-asset/bin/production_multi_cluster_dispatch.mjs'
 REG=ROOT/'company/factory-asset/registries/web-ai-clusters.v1.json'
 INSTALL=ROOT/'company/factory-asset/bin/install_fa338_job_scoped_lifecycle.sh'
@@ -26,6 +27,7 @@ def test_production_dispatch_owns_runtime_around_provider_attempt():
     assert 'await runtime.stop({terminalEvidencePath:finalReceipt' in s
     assert "await runtime.stop({terminalEvidencePath:journal,reason:'PRE_DISPATCH_FAILURE'})" in s
     assert 'FA338_LIVE_PROBE_REQUIRED_AFTER_SPAWN' in s
+    assert 'writeAuthRepairHold' in s and "['CHECKPOINT','AUTH_REQUIRED']" in s
     assert "schema:'die.muxia.cluster-tab-lease-snapshot.v1'" in s
     assert 'leases:[]' in s and 'max_tabs:Number(c.max_tabs||8)' in s
     assert "owner_model:'JOB_SCOPED_HEADFUL_BROWSER_CDP'" in s
@@ -49,6 +51,7 @@ def test_cognition_is_wrapped_in_bounded_principal_browser():
     assert 'withPrincipalJobBrowser' in c and 'withPrincipalJobBrowser' in s
     assert 'E_AUTH_REPAIR_REQUIRED' in s
     assert 'profile_process_gone' in s
+    assert 'readRepairHold' in s and 'writeAuthRepairHold' in s
     assert "spawn('/usr/bin/Xvfb'" in s
 
 
@@ -59,6 +62,8 @@ def test_founder_repair_is_same_profile_headful_and_no_cdp():
     assert 'DISPLAY="${DISPLAY:-:12.0}"' in r
     for name in ['executive','division01','cluster-a','cluster-b']:
         assert name in r
+    assert 'FOUNDER_NO_CDP_REPAIR' in r and "'state':'CLOSED'" in r
+    h=HOLD.read_text(encoding='utf-8'); assert 'requires_founder_release' in h and 'automated_cdp_allowed:false' in h
 
 
 def test_cutover_disables_legacy_owner_services_but_retains_rollback_files():
