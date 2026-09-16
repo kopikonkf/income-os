@@ -26,6 +26,8 @@ def test_production_dispatch_owns_runtime_around_provider_attempt():
     assert 'await runtime.stop({terminalEvidencePath:finalReceipt' in s
     assert "await runtime.stop({terminalEvidencePath:journal,reason:'PRE_DISPATCH_FAILURE'})" in s
     assert 'FA338_LIVE_PROBE_REQUIRED_AFTER_SPAWN' in s
+    assert "schema:'die.muxia.cluster-tab-lease-snapshot.v1'" in s
+    assert 'leases:[]' in s and 'max_tabs:Number(c.max_tabs||8)' in s
     assert "owner_model:'JOB_SCOPED_HEADFUL_BROWSER_CDP'" in s
 
 
