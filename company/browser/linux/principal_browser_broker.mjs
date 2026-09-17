@@ -27,6 +27,7 @@ const CFG={
 const SAFE_JOB=/^[A-Za-z0-9][A-Za-z0-9_.:-]{2,180}$/;
 const sleep=(ms)=>new Promise((r)=>setTimeout(r,ms));
 const active=new Map();
+function tailBuffer(limit=6000){let text='';return{push:(chunk)=>{text=(text+String(chunk)).slice(-limit)},get:()=>text}}
 
 function safeJob(value){return String(value||'').replace(/[^A-Za-z0-9_.-]/g,'_')}
 function atomicJson(file,value){
@@ -119,18 +120,19 @@ async function startRuntime(principalId,jobId){
   const started=Date.now(),startedAt=new Date(started).toISOString(),receipt=lifecycleReceipt(cfg,jobId);
   const base={schema:'die.cognition.principal-browser-broker-lifecycle.v1',principal_id:principalId,job_id:jobId,profile:cfg.profile,headful:true,virtual_display:cfg.display,broker_socket:SOCKET,credential_values_read:false,cookies_or_tokens_read:false,started_at:startedAt,status:'SPAWNING'};
   atomicJson(receipt,base);
-  let xvfb=null,owner=null;
+  let xvfb=null,owner=null;const ownerErr=tailBuffer();
   try{
     xvfb=spawn('/usr/bin/Xvfb',[`:${cfg.display}`,'-screen','0','1920x1080x24','-nolisten','tcp'],{stdio:'ignore'});
     await waitDisplay(cfg.display,xvfb);
     owner=spawn('/usr/local/bin/node',[cfg.script,'launch'],{env:{...process.env,DISPLAY:`:${cfg.display}`,HOME:'/home/kopiko'},stdio:['ignore','ignore','pipe']});
+    owner.stderr?.on('data',ownerErr.push);
     const status=await waitStatus(cfg,started,owner);
     const h={principalId,jobId,cfg,xvfb,owner,status,state:'WORK',startedAt,receipt};active.set(principalId,h);
     atomicJson(receipt,{...base,status:'WORK',browser_pid:status.browserPid,debug_host:status.debugHost,debug_port:status.debugPort,ready_state:status.state,ready_at:new Date().toISOString()});
     if(status.state!=='READY'){
       const repair=writeAuthRepairHold(holdPath,{scopeId:principalId,profileId:cfg.profile,providerId:'chatgpt',reasonCode:status.state,sourceJobId:jobId});
       const stopped=await stopChildren(h);active.delete(principalId);
-      atomicJson(receipt,{...base,status:'COLD',ready_state:status.state,auth_repair_required:true,repair_hold_path:holdPath,repair_hold_state:repair.state,...stopped,completed_at:new Date().toISOString()});
+      atomicJson(receipt,{...base,status:'COLD',ready_state:status.state,auth_repair_required:true,repair_hold_path:holdPath,repair_hold_state:repair.state,owner_stderr_tail:ownerErr.get(),...stopped,completed_at:new Date().toISOString()});
       const authError=Object.assign(new Error(`E_AUTH_REPAIR_REQUIRED:${principalId}:${status.state}`),{httpStatus:423,details:{repair_hold:repair},lifecycleHandled:true});
       throw authError;
     }
@@ -139,7 +141,7 @@ async function startRuntime(principalId,jobId){
     if(!active.has(principalId)&&!error?.lifecycleHandled){
       const h={principalId,jobId,cfg,xvfb,owner,status:null,state:'FAILED',startedAt,receipt};
       const stopped=await stopChildren(h).catch(()=>({profile_process_gone:!procProfile(cfg.profile)}));
-      atomicJson(receipt,{...base,status:'START_FAILED',error:String(error?.message||error).slice(0,800),...stopped,completed_at:new Date().toISOString()});
+      atomicJson(receipt,{...base,status:'START_FAILED',error:String(error?.message||error).slice(0,800),owner_stderr_tail:ownerErr.get(),...stopped,completed_at:new Date().toISOString()});
     }
     throw error;
   }
