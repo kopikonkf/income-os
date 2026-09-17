@@ -55,7 +55,7 @@ def image_dimensions(path: Path) -> tuple[int, int, str]:
                 h, w = struct.unpack(">HH", data[i + 3:i + 7])
                 return w, h, "JPEG"
             i += size
-    if len(data) >= 30 and data[:4] == b"RIFF" and data[8:12] == b"WEBP":
+    if len(data) >= 20 and data[:4] == b"RIFF" and data[8:12] == b"WEBP":
         chunk = data[12:16]
         if chunk == b"VP8X" and len(data) >= 30:
             w = 1 + int.from_bytes(data[24:27], "little")
