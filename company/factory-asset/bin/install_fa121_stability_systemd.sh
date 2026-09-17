@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+[[ "${FA338_LEGACY_ROLLBACK:-no}" == yes ]] || { echo E_SUPERSEDED_BY_FA338_USE_FA338_LEGACY_ROLLBACK_yes >&2; exit 2; }
 if [[ ${EUID:-$(id -u)} -ne 0 ]]; then
   echo E_FA121_INSTALL_REQUIRES_ROOT >&2
   exit 2

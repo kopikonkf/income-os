@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+[[ "${FA338_LEGACY_ROLLBACK:-no}" == yes ]] || { echo E_SUPERSEDED_BY_FA338_USE_FA338_LEGACY_ROLLBACK_yes >&2; exit 2; }
 ROOT=${1:-/srv/die}
 SRC="$ROOT/company/factory-asset/systemd/die-muxia-cluster-b.service"
 BROWSER_SRC="$ROOT/company/factory-asset/systemd/die-muxia-cluster-b-browser.service"

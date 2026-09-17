@@ -1023,3 +1023,14 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Automated path: `ADMITTED -> SPAWN_HEADFUL -> AUTOMATED_WORK -> DURABLE_TERMINAL or COMMITTED_UNRESOLVED -> Browser.close -> prove process/CDP/lease release -> COLD`.
 - Protection/auth challenge before dispatch fails closed to exclusive same-profile Founder repair with CDP OFF. A challenge/error after dispatch commit may not trigger automatic resubmission; durable reconciliation truth precedes closure.
 - FA-338 now owns runtime implementation/migration from `EXTERNAL_PERSISTENT_CHROME_CDP`; FA-339 remains responsible for permanent DISPLAY `:12` workspace mapping/handoff.
+
+## 2026-09-17 - FA-338 demand-driven V1 browser ownership PASS
+
+- `FA-338 = DONE/PASS`; `FA-339 = READY`. Factory Asset V1 now uses job-scoped headful browser ownership instead of always-on external Chrome/CDP owners.
+- Production lifecycle is `COLD -> SPAWN_HEADFUL -> WORK -> DURABLE_TERMINAL/COMMITTED_UNRESOLVED -> CLOSE -> COLD`; queue-empty owns zero governed V1 browser renderers, browser contexts and CDP listeners. Lightweight schedulers/control daemons may remain resident.
+- `die-hermes` no longer owns Executive or Division01 browser processes. Cognition uses local Unix socket `/run/die/principal-browser-broker.sock` (`0660 kopiko:die-runtime`) to a lightweight `kopiko` broker which owns Xvfb + Chrome only for the admitted cognition job. CDP remains loopback-only and terminal evidence is mandatory before close.
+- Live `PRODSEED000133` proved Division01 author R01 -> Executive reviewer `NO_VETO` -> cognition `READY` -> automatic production resume -> Manus on V1 Runtime 02 -> committed provider-original -> browser/CDP/control/lease release -> `COLD`. Provider-original SHA256 `8cc008cc5a50ee51c975b0a6ba15474f4a5bce8656ea53d6c0eab05e06e50bd1`.
+- Protection CHECKPOINT on V1 Runtime 01 proved fail-closed behavior: no generation dispatch, durable `FOUNDER_NO_CDP_AUTH_REPAIR` hold, runtime returned COLD, and scheduling continued through healthy sibling Runtime 02.
+- Cognition cron `04038951c58f` recovered from the previous browser-ownership failure streak. Direct run `65862c752630428ca10ac22187ab7829` and automatic builtin run `f673df19f051439199c072edcc4253df` both completed successfully; Executive and Division01 broker status returned COLD.
+- Historical external browser-owner/broker units remain disabled rollback material. No credential/cookie/token bytes were read; CAPTCHA bypass, submission and publication remain unauthorized.
+- Separate follow-up exposed after successful browser lifecycle: `PRODSEED000133` provider-original WebP is rejected by current upscale stage with `E_UNSUPPORTED_RASTER`. This is a postproduction format-support gap, not an FA-338 browser-ownership failure.

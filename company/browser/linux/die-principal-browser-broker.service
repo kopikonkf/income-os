@@ -1,0 +1,35 @@
+[Unit]
+Description=DIE job-scoped principal browser broker
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=kopiko
+Group=die-runtime
+WorkingDirectory=/srv/die
+Environment=HOME=/home/kopiko
+Environment=DIE_PRINCIPAL_BROWSER_BROKER_SOCKET=/run/die/principal-browser-broker.sock
+ExecStart=/usr/local/bin/node /srv/die/company/browser/linux/principal_browser_broker.mjs
+Restart=on-failure
+RestartSec=2
+TimeoutStartSec=30
+TimeoutStopSec=30
+KillMode=control-group
+UMask=0007
+RuntimeDirectory=die
+RuntimeDirectoryMode=0770
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+LockPersonality=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+ReadOnlyPaths=/srv/die /opt/die
+ReadWritePaths=/var/lib/die/executive /var/lib/die/division01 /var/lib/die/state/principal-auth-repair
+
+[Install]
+WantedBy=multi-user.target
