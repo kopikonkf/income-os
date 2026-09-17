@@ -4,6 +4,8 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3]
 RUNTIME=ROOT/'company/browser/linux/job_scoped_cluster_runtime.mjs'
 PRINCIPAL=ROOT/'company/browser/linux/principal_job_browser_runtime.mjs'
+BROKER=ROOT/'company/browser/linux/principal_browser_broker.mjs'
+BROKER_UNIT=ROOT/'company/browser/linux/die-principal-browser-broker.service'
 COGNITION=ROOT/'company/browser/linux/cognition_roundtrip.mjs'
 REPAIR=ROOT/'company/browser/linux/founder_no_cdp_repair.sh'
 HOLD=ROOT/'company/browser/linux/auth_repair_hold.mjs'
@@ -45,16 +47,21 @@ def test_registry_supersedes_external_persistent_owner_model():
         assert c['browser_debug_port'] is None
 
 
-def test_cognition_is_wrapped_in_bounded_principal_browser():
-    s=PRINCIPAL.read_text(encoding='utf-8')
-    c=COGNITION.read_text(encoding='utf-8')
-    assert 'withPrincipalJobBrowser' in c and 'withPrincipalJobBrowser' in s
-    assert 'E_AUTH_REPAIR_REQUIRED' in s
-    assert 'profile_process_gone' in s
-    assert '/cognition-receipts' in s and 'job-browser-receipts' not in s
-    assert 'browser-lifecycle-${safeJob}' in s
-    assert 'readRepairHold' in s and 'writeAuthRepairHold' in s
-    assert "spawn('/usr/bin/Xvfb'" in s
+def test_cognition_uses_local_kopiko_broker_not_hermes_browser_ownership():
+    client=PRINCIPAL.read_text(encoding='utf-8')
+    broker=BROKER.read_text(encoding='utf-8')
+    unit=BROKER_UNIT.read_text(encoding='utf-8')
+    cognition=COGNITION.read_text(encoding='utf-8')
+    assert 'withPrincipalJobBrowser' in cognition and 'withPrincipalJobBrowser' in client
+    assert '/run/die/principal-browser-broker.sock' in client and 'socketPath:SOCKET' in client
+    assert "spawn('/usr/bin/Xvfb'" not in client and 'operator_browser.mjs' not in client
+    assert "spawn('/usr/bin/Xvfb'" in broker and 'operator_browser.mjs' in broker
+    assert 'terminalEvidence' in broker and 'profile_process_gone' in broker
+    assert 'readRepairHold' in broker and 'writeAuthRepairHold' in broker
+    assert '/cognition-receipts' in client and 'job-browser-receipts' not in client
+    assert 'User=kopiko' in unit and 'Group=die-runtime' in unit
+    assert 'RuntimeDirectory=die' in unit and 'ProtectSystem=strict' in unit
+    assert 'ExecStart=/usr/local/bin/node /srv/die/company/browser/linux/principal_browser_broker.mjs' in unit
 
 
 def test_founder_repair_is_same_profile_headful_and_no_cdp():
@@ -74,6 +81,8 @@ def test_cutover_disables_legacy_owner_services_but_retains_rollback_files():
         assert unit in s
     assert 'disable --now' in s
     assert 'die-muxia-dispatch.service' in s
+    assert 'die-principal-browser-broker.service' in s and 'enable --now die-principal-browser-broker.service' in s
+    assert 'PRINCIPAL_BROWSER_BROKER=READY' in s
     assert (ROOT/'company/factory-asset/systemd/die-muxia-cluster-a-browser.service').exists()
     assert (ROOT/'company/factory-asset/systemd/die-muxia-cluster-b-browser.service').exists()
 
