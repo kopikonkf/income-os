@@ -8,7 +8,15 @@ case "$target" in
   runtime02|cluster-b) profile=/var/lib/muxia/profiles/web-ai-cluster-b/browser; hold=/var/lib/muxia/state/founder-repair/cluster-b.json; map=runtime02; klass=DIE-V1-Runtime02-FounderHandoff ;;
   *) echo 'usage: die-founder-browser-handoff acquire|status|release executive|division01|runtime01|runtime02 [url]' >&2; exit 64 ;;
 esac
-proc_for_profile(){ ps -eo pid=,args= | awk -v n="--user-data-dir=$profile" 'index($0,n) && ($0 ~ /chrome|chromium|brave/) {print $1; exit}'; }
+proc_for_profile(){
+  for d in /proc/[0-9]*; do
+    [[ -r "$d/cmdline" ]] || continue
+    first="$(tr '\0' '\n' <"$d/cmdline" 2>/dev/null | sed -n '1p')"
+    case "$first" in */chrome|*/chromium|*/brave|*/google-chrome|*/google-chrome-stable) ;; *) continue ;; esac
+    if tr '\0' '\n' <"$d/cmdline" 2>/dev/null | grep -Fqx -- "--user-data-dir=$profile"; then basename "$d"; return 0; fi
+  done
+  return 0
+}
 write_hold(){
   local state="$1" reason="$2"
   python3 - "$hold" "$target" "$profile" "$state" "$reason" <<'PY'

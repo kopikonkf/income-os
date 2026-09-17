@@ -9,7 +9,12 @@ case "$principal" in
   *) echo 'usage: founder_no_cdp_repair.sh executive|division01|cluster-a|cluster-b [url]' >&2; exit 64 ;;
 esac
 [[ -d "$profile" ]] || { echo E_REPAIR_PROFILE >&2; exit 66; }
-ps -eo args= | grep -F -- "--user-data-dir=$profile" | grep -E 'chrome|chromium|brave' >/dev/null && { echo E_REPAIR_PROFILE_BUSY >&2; exit 73; }
+for d in /proc/[0-9]*; do
+  [[ -r "$d/cmdline" ]] || continue
+  first="$(tr '\0' '\n' <"$d/cmdline" 2>/dev/null | sed -n '1p')"
+  case "$first" in */chrome|*/chromium|*/brave|*/google-chrome|*/google-chrome-stable) ;; *) continue ;; esac
+  if tr '\0' '\n' <"$d/cmdline" 2>/dev/null | grep -Fqx -- "--user-data-dir=$profile"; then echo E_REPAIR_PROFILE_BUSY >&2; exit 73; fi
+done
 export DISPLAY=:12.0
 /usr/bin/wmctrl -d >/dev/null 2>&1 || { echo E_FOUNDER_DISPLAY12_UNAVAILABLE >&2; exit 69; }
 /usr/bin/wmctrl -n 5
