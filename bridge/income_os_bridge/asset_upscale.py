@@ -55,6 +55,24 @@ def image_dimensions(path: Path) -> tuple[int, int, str]:
                 h, w = struct.unpack(">HH", data[i + 3:i + 7])
                 return w, h, "JPEG"
             i += size
+    if len(data) >= 30 and data[:4] == b"RIFF" and data[8:12] == b"WEBP":
+        chunk = data[12:16]
+        if chunk == b"VP8X" and len(data) >= 30:
+            w = 1 + int.from_bytes(data[24:27], "little")
+            h = 1 + int.from_bytes(data[27:30], "little")
+            if w > 0 and h > 0:
+                return w, h, "WEBP"
+        if chunk == b"VP8L" and len(data) >= 25 and data[20] == 0x2F:
+            b0, b1, b2, b3 = data[21:25]
+            w = 1 + b0 + ((b1 & 0x3F) << 8)
+            h = 1 + ((b1 & 0xC0) >> 6) + (b2 << 2) + ((b3 & 0x0F) << 10)
+            if w > 0 and h > 0:
+                return w, h, "WEBP"
+        if chunk == b"VP8 " and len(data) >= 30 and data[23:26] == b"\x9d\x01\x2a":
+            w = int.from_bytes(data[26:28], "little") & 0x3FFF
+            h = int.from_bytes(data[28:30], "little") & 0x3FFF
+            if w > 0 and h > 0:
+                return w, h, "WEBP"
     raise UpscaleError(f"E_UNSUPPORTED_RASTER:{path}")
 
 
