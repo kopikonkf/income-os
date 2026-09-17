@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-17",
-  "revision": "11.5-fa337-v1-job-scoped-browser-contract",
+  "revision": "11.6-fa338-demand-driven-browser-ownership",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -3276,10 +3276,12 @@
       "depends_on": [
         "FA-337"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
-      "artifact": "Job-scoped V1 browser runtime, Hermes wiring and lifecycle regression receipts",
-      "acceptance": "Replace EXTERNAL_PERSISTENT_CHROME_CDP ownership in V1 with COLD -> SPAWN_HEADFUL -> WORK -> DURABLE_TERMINAL -> CLOSE -> COLD semantics. A new queued job may spawn a fresh browser from the same persistent profile; queue-empty state owns no Chrome/Brave renderer. Executive and Division01 cognition browser use must follow the same bounded ownership principle where applicable. Cloudflare/protection challenge must fail closed into no-CDP Founder repair rather than looping automated verification. No provider credential/session bytes are copied or read."
+      "artifact": "company/browser/linux/job_scoped_cluster_runtime.mjs; company/browser/linux/principal_browser_broker.mjs; company/browser/linux/principal_job_browser_runtime.mjs; company/browser/linux/die-principal-browser-broker.service; company/browser/linux/founder_no_cdp_repair.sh; company/factory-asset/bin/production_multi_cluster_dispatch.mjs; company/factory-asset/docs/FA338_DEMAND_DRIVEN_V1_BROWSER_OWNERSHIP.md; company/factory-asset/receipts/FA-338-demand-driven-v1-browser-ownership.receipt.json",
+      "acceptance": "Replace EXTERNAL_PERSISTENT_CHROME_CDP ownership in V1 with COLD -> SPAWN_HEADFUL -> WORK -> DURABLE_TERMINAL -> CLOSE -> COLD semantics. A new queued job may spawn a fresh browser from the same persistent profile; queue-empty state owns no Chrome/Brave renderer. Executive and Division01 cognition browser use must follow the same bounded ownership principle where applicable. Cloudflare/protection challenge must fail closed into no-CDP Founder repair rather than looping automated verification. No provider credential/session bytes are copied or read.",
+      "completed_at": "2026-09-17",
+      "result": "DONE/PASS: V1 production browsers are job-scoped and return COLD after durable terminal evidence; queue-empty owns zero governed browser/CDP processes. Executive/Division01 cognition crosses the die-hermes -> kopiko ownership boundary through a local 0660 Unix-socket broker, preserving profile ownership and systemd sandboxing. PRODSEED000133 proved Division01 author, Executive NO_VETO review, automatic production resume, Manus dispatch on V1 Runtime 02, terminal-before-close and complete browser/CDP/control/lease release. Protection CHECKPOINT fails closed to durable same-profile Founder no-CDP repair. Cognition cron recovered from its prior failure streak and automatic minute execution is healthy."
     },
     {
       "id": "FA-339",
@@ -3290,7 +3292,7 @@
       "depends_on": [
         "FA-338"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "Founder-visible workspace mapping, exclusive-control handoff and recovery runbook",
       "acceptance": "V1 authenticated production and cognition browsers open on the persistent Founder XFCE DISPLAY :12 in dedicated workspaces instead of hidden Xvfb as the primary operating surface. Founder may take interactive control at any time through an explicit handoff that pauses dispatch for that profile; automation resumes only after Founder releases/closes the browser. Read-only VNC remains optional observation/fallback, not a barrier preventing Founder repair. Existing profile state persists and no public CDP exposure is introduced."

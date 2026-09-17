@@ -1,0 +1,102 @@
+{
+  "schema": "die.factory-asset.fa338-acceptance.v1",
+  "task_id": "FA-338",
+  "status": "PASS",
+  "completed_at": "2026-09-17",
+  "owner_model": "JOB_SCOPED_HEADFUL_BROWSER_CDP",
+  "production_runtime_acceptance": {
+    "task_id": "PRODSEED000133",
+    "provider_id": "manus",
+    "runtime": "V1 Runtime 02",
+    "profile_id": "web-ai-cluster-b",
+    "dispatch_status": "SUCCEEDED",
+    "dispatch_committed": true,
+    "provider_original_sha256": "8cc008cc5a50ee51c975b0a6ba15474f4a5bce8656ea53d6c0eab05e06e50bd1",
+    "lifecycle_status": "COLD",
+    "browser_owner_pid": 1679061,
+    "debug_host": "127.0.0.1",
+    "debug_port": 35157,
+    "debug_endpoint_closed": true,
+    "control_endpoint_closed": true,
+    "profile_process_gone": true,
+    "lease_released": true,
+    "forced_process_cleanup": false
+  },
+  "cognition_acceptance": {
+    "author": {
+      "task_id": "PRODSEED000133",
+      "request_id": "COG-PROD_BP_AUTHOR_PRODSEED000133_R01",
+      "principal_id": "die-lnx-division-001",
+      "browser_owner_pid": 1678501,
+      "debug_port": 40581,
+      "terminal_status": "COLD",
+      "profile_process_gone": true
+    },
+    "reviewer": {
+      "task_id": "PRODSEED000133",
+      "request_id": "COG-PROD_BP_REVIEW_PRODSEED000133_R00",
+      "principal_id": "die-lnx-executive-001",
+      "browser_owner_pid": 1678824,
+      "debug_port": 38083,
+      "review_outcome": "NO_VETO",
+      "terminal_status": "COLD",
+      "profile_process_gone": true
+    },
+    "blueprint_id": "BP-PROD-BASKET-ARTIFACT-001",
+    "blueprint_sha256": "282beac2365f3f6b5db155a5867b5c90734df123e558d70b0d540006ebdd1eac",
+    "cognition_state": "READY",
+    "principal_browser_broker": {
+      "transport": "UNIX_SOCKET",
+      "socket": "/run/die/principal-browser-broker.sock",
+      "service_user": "kopiko",
+      "service_group": "die-runtime",
+      "hermes_browser_process_ownership": false,
+      "idle_principal_browsers": 0
+    },
+    "cron_recovery": {
+      "job_id": "04038951c58f",
+      "direct_run_execution": "65862c752630428ca10ac22187ab7829",
+      "automatic_run_execution": "f673df19f051439199c072edcc4253df",
+      "last_status": "ok",
+      "failure_streak_recovered": true
+    }
+  },
+  "protection_challenge_acceptance": {
+    "runtime": "V1 Runtime 01",
+    "provider_id": "chatgpt",
+    "observed_state": "CHECKPOINT",
+    "automated_bypass_attempted": false,
+    "provider_generation_dispatched": false,
+    "durable_repair_hold": true,
+    "repair_mode": "FOUNDER_NO_CDP_AUTH_REPAIR",
+    "requires_founder_release": true,
+    "runtime_returned_cold": true
+  },
+  "regression": {
+    "isolated_branch_sha": "3991ff527fb72ef4ab63e8d18e4749bdadaa10a9",
+    "tests": {
+      "test_fa338_job_scoped_browser_lifecycle.py": "PASS 8/8",
+      "test_v1_provider_readiness_bootstrap.py": "PASS 3/3",
+      "test_attach_only_browser_lifecycle.py": "PASS 7/7",
+      "test_web_ai_cluster_registry.py": "PASS 6/6",
+      "test_v1_browser_lifecycle_frontier.py": "PASS 2/2"
+    },
+    "node_syntax": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "security_and_authority": {
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "captcha_bypass_authorized": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_usd": 0
+  },
+  "known_non_fa338_followup": {
+    "task_id": "PRODSEED000133",
+    "stage": "POSTPRODUCTION",
+    "error": "E_UNSUPPORTED_RASTER on provider/source-original.webp",
+    "classification": "SEPARATE_POSTPRODUCTION_FORMAT_SUPPORT_GAP",
+    "fa338_blocker": false
+  }
+}
