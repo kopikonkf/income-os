@@ -70,7 +70,7 @@ def test_founder_repair_is_same_profile_headful_and_no_cdp():
     r=REPAIR.read_text(encoding='utf-8')
     assert '--remote-debugging' not in r
     assert 'E_REPAIR_PROFILE_BUSY' in r
-    assert 'DISPLAY="${DISPLAY:-:12.0}"' in r
+    assert 'DISPLAY=:12.0' in r
     for name in ['executive','division01','cluster-a','cluster-b']:
         assert name in r
     assert 'FOUNDER_NO_CDP_REPAIR' in r and "'state':'CLOSED'" in r
