@@ -38,6 +38,7 @@ def test_browser_owning_services_can_see_host_x11_socket_without_public_control_
     muxia=MUXIA_UNIT.read_text(encoding='utf-8')
     assert 'Environment=DISPLAY=:12.0' in principal and 'Environment=DISPLAY=:12.0' in muxia
     assert 'PrivateTmp=true' not in principal and 'PrivateTmp=true' not in muxia
+    assert ' /tmp' in principal and ' /tmp' in muxia
     assert 'RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6' in principal
     assert 'RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX' in muxia
     assert '0.0.0.0' not in principal and '0.0.0.0' not in muxia

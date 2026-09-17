@@ -25,7 +25,7 @@ ProtectControlGroups=true
 LockPersonality=true
 RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
 ReadOnlyPaths=/srv/die /opt/die /opt/muxia
-ReadWritePaths=/var/lib/die/state/muxia-dispatch /var/lib/die/workspaces /var/lib/muxia
+ReadWritePaths=/var/lib/die/state/muxia-dispatch /var/lib/die/workspaces /var/lib/muxia /tmp
 
 [Install]
 WantedBy=multi-user.target

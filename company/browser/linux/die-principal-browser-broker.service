@@ -29,7 +29,7 @@ ProtectControlGroups=true
 LockPersonality=true
 RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
 ReadOnlyPaths=/srv/die /opt/die
-ReadWritePaths=/var/lib/die/executive /var/lib/die/division01 /var/lib/die/state/principal-auth-repair
+ReadWritePaths=/var/lib/die/executive /var/lib/die/division01 /var/lib/die/state/principal-auth-repair /tmp
 
 [Install]
 WantedBy=multi-user.target
