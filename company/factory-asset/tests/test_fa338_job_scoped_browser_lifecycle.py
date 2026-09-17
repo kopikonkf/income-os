@@ -60,7 +60,7 @@ def test_cognition_uses_local_kopiko_broker_not_hermes_browser_ownership():
     assert 'readRepairHold' in broker and 'writeAuthRepairHold' in broker
     assert '/cognition-receipts' in client and 'job-browser-receipts' not in client
     assert 'User=kopiko' in unit and 'Group=die-runtime' in unit
-    assert 'RuntimeDirectory=die' in unit and 'ProtectSystem=strict' in unit
+    assert 'RuntimeDirectory=die' in unit and 'ProtectSystem=strict' in unit and 'PrivateTmp=true' in unit
     assert 'ExecStart=/usr/local/bin/node /srv/die/company/browser/linux/principal_browser_broker.mjs' in unit
 
 

@@ -20,6 +20,7 @@ UMask=0007
 RuntimeDirectory=die
 RuntimeDirectoryMode=0770
 NoNewPrivileges=true
+PrivateTmp=true
 PrivateDevices=true
 ProtectSystem=strict
 ProtectHome=true
