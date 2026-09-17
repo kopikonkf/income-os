@@ -9,12 +9,12 @@ User=kopiko
 Group=die-runtime
 WorkingDirectory=/srv/die
 Environment=HOME=/var/lib/muxia/service-home
+Environment=DISPLAY=:12.0
 ExecStart=/usr/bin/python3 /opt/die/bin/die-muxia-dispatch-worker
 Restart=on-failure
 RestartSec=2
 UMask=0007
 NoNewPrivileges=true
-PrivateTmp=true
 PrivateDevices=true
 ProtectSystem=strict
 ProtectHome=true

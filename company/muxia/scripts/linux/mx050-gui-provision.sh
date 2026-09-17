@@ -33,6 +33,7 @@ grep -q '^port=tcp://\.:3389$' "$XRDP_CONFIG" || {
 adduser xrdp ssl-cert >/dev/null
 OPERATOR_HOME="$(getent passwd "$OPERATOR_USER" | cut -d: -f6)"
 OPERATOR_GROUP="$(id -gn "$OPERATOR_USER")"
+install -m 0755 "$SOURCE_DIR/../browser/linux/founder_display12_session_init.sh" /usr/local/bin/die-founder-display12-init
 install -o "$OPERATOR_USER" -g "$OPERATOR_GROUP" -m 0755 "$SOURCE_DIR/config/linux/xrdp/xsession" "$OPERATOR_HOME/.xsession"
 install -o "$OPERATOR_USER" -g "$OPERATOR_GROUP" -m 0644 "$SOURCE_DIR/config/linux/xrdp/xsessionrc" "$OPERATOR_HOME/.xsessionrc"
 install -o root -g root -m 0755 "$SOURCE_DIR/config/linux/xrdp/reconnectwm.sh" /etc/xrdp/reconnectwm.sh

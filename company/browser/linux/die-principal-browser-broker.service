@@ -10,6 +10,7 @@ Group=die-runtime
 WorkingDirectory=/srv/die
 Environment=HOME=/home/kopiko
 Environment=DIE_PRINCIPAL_BROWSER_BROKER_SOCKET=/run/die/principal-browser-broker.sock
+Environment=DISPLAY=:12.0
 ExecStart=/usr/local/bin/node /srv/die/company/browser/linux/principal_browser_broker.mjs
 Restart=on-failure
 RestartSec=2
@@ -20,7 +21,6 @@ UMask=0007
 RuntimeDirectory=die
 RuntimeDirectoryMode=0770
 NoNewPrivileges=true
-PrivateTmp=true
 ProtectSystem=strict
 ProtectKernelTunables=true
 ProtectKernelModules=true
