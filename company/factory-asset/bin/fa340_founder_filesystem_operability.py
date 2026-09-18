@@ -99,12 +99,23 @@ def apply():
  print(f'FA340_APPLY=PASS rollback={rb} files={len(files)} dirs={sum(p.exists() for p in DIRS)}')
 
 def audit():
- cmd="for r in /var/lib/die /srv/die /opt/die; do find \"$r\" -xdev -type d \\( ! -readable -o ! -executable \\) -print; done"
- cp=subprocess.run(['runuser','-u','kopiko','--','sh','-c',cmd],text=True,capture_output=True)
- denied=[x for x in cp.stdout.splitlines() if x.strip()]
- print(f'FA340_AUDIT directory_denials={len(denied)}')
- for x in denied[:100]: print(x)
- return 0 if not denied else 4
+ denied=set(); errors=[]
+ for root in ROOTS:
+  cp=subprocess.run(['runuser','-u','kopiko','--','find',str(root),'-xdev','-type','d','(','!','-readable','-o','!','-executable',')','-print'],text=True,capture_output=True)
+  denied.update(x.strip() for x in cp.stdout.splitlines() if x.strip())
+  for line in cp.stderr.splitlines():
+   if 'Permission denied' in line:
+    errors.append(line)
+ operational_unreadable=[]
+ for p,mode,kind in matching_files():
+  if not p.exists(): continue
+  cp=subprocess.run(['runuser','-u','kopiko','--','test','-r',str(p)])
+  if cp.returncode!=0: operational_unreadable.append(str(p))
+ print(f'FA340_AUDIT directory_denials={len(denied)} find_permission_errors={len(errors)} operational_unreadable={len(operational_unreadable)}')
+ for x in sorted(denied)[:100]: print(x)
+ for x in errors[:100]: print(x)
+ for x in operational_unreadable[:100]: print(x)
+ return 0 if not denied and not errors and not operational_unreadable else 4
 
 def main():
  ap=argparse.ArgumentParser(); ap.add_argument('action',choices=['audit','apply']); a=ap.parse_args()

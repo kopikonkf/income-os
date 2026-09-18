@@ -20,7 +20,7 @@ def test_contract_preserves_service_ownership_and_private_files():
     assert c['operational_file_mode']=='0640'
     assert any('MUST NOT recursively chown' in x for x in c['invariants'])
     private='\n'.join(c['intentionally_private_examples'])
-    for token in ['hermes.env','cron/jobs.json','plugin','tirith','Cookies','Login Data']:
+    for token in ['.env','cron/jobs.json','plugin','tirith','Cookies','Login Data']:
         assert token in private
 
 def test_apply_tool_is_allowlisted_and_refuses_active_runtime():
@@ -33,6 +33,8 @@ def test_apply_tool_is_allowlisted_and_refuses_active_runtime():
     assert "os.chown(p,kopiko" not in s
     assert "os.chown(root" not in s
     assert "chmod -R" not in s and "chown -R" not in s
+    assert "['runuser','-u','kopiko','--','find'" in s
+    assert "operational_unreadable" in s
     for token in ['postproduction-state.json','*.metadata.*','cron/output','ticker_heartbeat','factory-asset-canaries','rollback.sh']:
         assert token in s
 
