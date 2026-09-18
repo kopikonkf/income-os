@@ -1,0 +1,126 @@
+{
+  "schema": "die.factory-asset.fa339-acceptance.v1",
+  "task_id": "FA-339",
+  "status": "PASS",
+  "completed_at": "2026-09-18",
+  "operating_surface": {
+    "display": ":12.0",
+    "workspace_count": 5,
+    "mapping": {
+      "workspace_1": "FOUNDER_GENERAL",
+      "workspace_2": "EXECUTIVE",
+      "workspace_3": "DIVISION01",
+      "workspace_4": "V1_RUNTIME_01",
+      "workspace_5": "V1_RUNTIME_02"
+    },
+    "primary_founder_surface": "XFCE_XRDP_DISPLAY_12",
+    "read_only_vnc_role": "OPTIONAL_OBSERVATION_OR_FALLBACK_ONLY"
+  },
+  "visible_runtime_acceptance": {
+    "executive": {
+      "workspace_number": 2,
+      "browser_pid": 1716174,
+      "debug_port": 34409,
+      "terminal_status": "COLD",
+      "profile_process_gone": true,
+      "forced_process_cleanup": false
+    },
+    "division01": {
+      "workspace_number": 3,
+      "browser_pid": 1716602,
+      "debug_port": 44833,
+      "terminal_status": "COLD",
+      "profile_process_gone": true,
+      "forced_process_cleanup": false
+    },
+    "v1_runtime_02": {
+      "workspace_number": 5,
+      "browser_owner_pid": 1716883,
+      "debug_port": 45897,
+      "terminal_status": "COLD",
+      "profile_process_gone": true,
+      "debug_endpoint_closed": true,
+      "control_endpoint_closed": true,
+      "lease_released": true
+    }
+  },
+  "founder_handoff_acceptance": {
+    "runtime": "V1 Runtime 02",
+    "workspace_number": 5,
+    "durable_hold_blocks_new_admission": true,
+    "blocked_admission_error": "E_FOUNDER_HANDOFF_HELD:cluster-b",
+    "active_job_drained_before_founder_ownership": true,
+    "founder_browser_pid": 1720079,
+    "founder_browser_remote_debugging_enabled": false,
+    "same_persistent_profile": true,
+    "hold_final_state": "CLOSED",
+    "automated_cdp_allowed_during_handoff": false
+  },
+  "production_cognition_recovery": {
+    "task_id": "PRODSEED000138",
+    "malformed_request_id": "COG-PROD_BP_AUTHOR_PRODSEED000138_R00",
+    "malformed_response_sha256": "6ff2309103620fa426072a4bcaf2d13c5a119f048eeba8fd7d215f922a51f20c",
+    "malformed_response_bytes": 114,
+    "malformed_response_archived": true,
+    "retry_reason": "E_RESPONSE_MALFORMED",
+    "author": {
+      "request_id": "COG-PROD_BP_AUTHOR_PRODSEED000138_R01",
+      "principal_id": "die-lnx-division-001",
+      "workspace_number": 3,
+      "browser_pid": 1786185,
+      "debug_port": 39749,
+      "status": "VALID",
+      "terminal_status": "COLD"
+    },
+    "reviewer": {
+      "request_id": "COG-PROD_BP_REVIEW_PRODSEED000138_R00",
+      "principal_id": "die-lnx-executive-001",
+      "workspace_number": 2,
+      "browser_pid": 1786548,
+      "debug_port": 45569,
+      "review_outcome": "NO_VETO",
+      "terminal_status": "COLD"
+    },
+    "final_card_state": "BLUEPRINT_READY",
+    "composer_reacquire": {
+      "bounded_reload_before_failure": true,
+      "persistent_failure_reason": "E_COMPOSER_REACQUIRE",
+      "bounded_retry": true
+    }
+  },
+  "scheduler_acceptance": {
+    "job_id": "04038951c58f",
+    "direct_execution": "63fbab8ac4c5414e8d9e4a674b8ab652",
+    "automatic_builtin_execution": "90cd912bfc4e4714959c392206933b22",
+    "last_status": "ok",
+    "prior_failure_loop_recovered": true
+  },
+  "regression": {
+    "branch_sha": "7796c9c",
+    "node_cognition_roundtrip_tests": "PASS 16/16",
+    "focused_python_tests": "PASS 33/33",
+    "prior_fa339_final_regression": "PASS 40/40",
+    "syntax_checks": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "live_operating_state": {
+    "principal_browser_broker_service": "active",
+    "muxia_dispatch_service": "active",
+    "idle_governed_browser_processes": 0,
+    "workspace_count": 5
+  },
+  "security_and_authority": {
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "captcha_bypass_authorized": false,
+    "public_cdp_exposed": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_usd": 0
+  },
+  "live_version_skew_note": {
+    "live_srv_die_is_canonical_checkout": false,
+    "action": "MINIMAL_COMPATIBILITY_HOTFIX_ONLY",
+    "canonical_source_contains_current_implementation": true
+  }
+}
