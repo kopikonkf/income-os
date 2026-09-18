@@ -39,7 +39,7 @@ Instance principal bindings are:
 | DIE-LINUX | Executive | `die-lnx-executive-001` | `executive-h01-mcp.aethers.web.id` |
 | DIE-LINUX | Division01 | `die-lnx-division-001` | `division01-h01-mcp.aethers.web.id` |
 
-Windows Executive and Division01 now share the global `mission.aethers.web.id` capability endpoint. Their authority remains distinct because Mission binds the OAuth client to the exact organizational principal and enforces task/lease scope server-side. The historical `executive-mcp.aethers.web.id` and `division01-mcp.aethers.web.id` surfaces are rollback-only legacy runtime endpoints and are not canonical client attachment points.
+Windows Executive and Division01 now share the global `mission.aethers.web.id` capability endpoint. Their authority remains distinct because Mission binds the OAuth client to the exact organizational principal and enforces task/lease scope server-side. The historical `executive-mcp.aethers.web.id` and `division01-mcp.aethers.web.id` surfaces were retired by `MC-011D` on 2026-09-18: their Azure origins were stopped and their public DNS records removed. They remain historical identifiers only and are not canonical client attachment points.
 
 The two Linux principals reuse the shared semantic role anchors and capability contracts, but authority is resolved against their own server-pinned principal IDs.
 

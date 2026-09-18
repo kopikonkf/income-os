@@ -30,8 +30,8 @@ def test_company_instances_share_roles_but_not_principals_or_accounts() -> None:
     assert lnx["principals"] == {"executive": "die-lnx-executive-001", "division01": "die-lnx-division-001"}
     assert win["account_binding"] != lnx["account_binding"]
     assert win["mcp"] == {"mission": "https://mission.aethers.web.id/mcp"}
-    assert win["legacy_runtime_mcp"]["executive"]["status"] == "RETIREMENT_PENDING_ROLLBACK_ONLY"
-    assert win["legacy_runtime_mcp"]["division01"]["status"] == "RETIREMENT_PENDING_ROLLBACK_ONLY"
+    assert win["legacy_runtime_mcp"]["executive"]["status"] == "RETIRED"
+    assert win["legacy_runtime_mcp"]["division01"]["status"] == "RETIRED"
     assert data["doctrine"]["credential_reuse_between_instances"] == "forbidden"
     assert data["doctrine"]["independent_mutable_state"] is True
     assert "full operational active-active federation is NOT claimed" in data["transitional_boundaries"]["claim"]
