@@ -67,3 +67,29 @@ def test_repo_sha_command_scopes_safe_directory_to_repo():
 def test_node_runtime_is_discovered_not_hardcoded():
  t=P.read_text()
  assert "shutil.which('node')" in t
+
+
+def test_malformed_provider_response_is_archived_and_bounded_retry(tmp_path):
+    cogn=tmp_path/'cognition'; cogn.mkdir(); resp=cogn/'responses'/'R00.txt'; resp.parent.mkdir(); resp.write_text('Something went wrong.\n\nRetry\n',encoding='utf-8')
+    statep=cogn/'state.json'; state={'schema':'die.production.cognition-state.v1','task_id':'TASK0001','stage':'NEED_AUTHOR','author_attempt':0,'review_attempt':0,'subject_attempt':0,'revision':0,'history':[]}
+    parsed,retry=m.parse_response_or_record_retry(cogn=cogn,resp=resp,statep=statep,state=state,stage='NEED_AUTHOR',request_id='R00',lane='AUTHOR')
+    assert parsed is None and retry=={'retryable':True,'attempt':1,'stage':'NEED_AUTHOR'}
+    saved=json.loads(statep.read_text()); assert saved['author_attempt']==1
+    event=saved['history'][-1]; assert event['event']=='TRANSPORT_RESPONSE_MALFORMED' and event['reason']=='E_RESPONSE_MALFORMED'
+    rejected=event['rejected_response']; assert rejected['response_bytes']==resp.stat().st_size and Path(rejected['response_path']).read_text()==resp.read_text()
+
+
+def test_all_cognition_lanes_use_malformed_response_retry_guard():
+    src=P.read_text(encoding='utf-8')
+    assert src.count('parse_response_or_record_retry(cogn=cogn')==3
+    for lane in ["lane='AUTHOR'","lane='SUBJECT'","lane='REVIEW'"]:
+        assert lane in src
+
+
+def test_composer_reacquire_is_bounded_transport_retry_reason():
+    e=RuntimeError('E_TRANSPORT:E_COMPOSER_REACQUIRE:E_COMPOSER_NOT_EDITABLE')
+    assert m.retryable_transport_reason(e)=='E_COMPOSER_REACQUIRE'
+    state={'author_attempt':1,'review_attempt':0,'subject_attempt':0,'stage':'NEED_AUTHOR','history':[]}
+    retry=m.record_transport_retry(state,stage='NEED_AUTHOR',request_id='R01',lane='AUTHOR',reason='E_COMPOSER_REACQUIRE')
+    assert retry=={'retryable':True,'attempt':2,'stage':'NEED_AUTHOR'}
+    assert state['history'][-1]['event']=='TRANSPORT_COMPOSER_REACQUIRE'

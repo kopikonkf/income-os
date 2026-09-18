@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
-  "generated_at": "2026-09-17",
-  "revision": "11.6-fa338-demand-driven-browser-ownership",
+  "generated_at": "2026-09-18",
+  "revision": "11.7-fa339-founder-visible-display12-handoff",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -3292,10 +3292,12 @@
       "depends_on": [
         "FA-338"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
-      "artifact": "Founder-visible workspace mapping, exclusive-control handoff and recovery runbook",
-      "acceptance": "V1 authenticated production and cognition browsers open on the persistent Founder XFCE DISPLAY :12 in dedicated workspaces instead of hidden Xvfb as the primary operating surface. Founder may take interactive control at any time through an explicit handoff that pauses dispatch for that profile; automation resumes only after Founder releases/closes the browser. Read-only VNC remains optional observation/fallback, not a barrier preventing Founder repair. Existing profile state persists and no public CDP exposure is introduced."
+      "artifact": "company/browser/linux/founder_display12.mjs; company/browser/linux/founder_display12_session_init.sh; company/browser/linux/founder_browser_handoff.sh; company/browser/linux/founder_no_cdp_repair.sh; company/browser/linux/job_scoped_cluster_runtime.mjs; company/browser/linux/principal_browser_broker.mjs; company/factory-asset/bin/install_fa339_founder_display12.sh; company/factory-asset/docs/FA339_FOUNDER_VISIBLE_DISPLAY12_HANDOFF.md; company/factory-asset/receipts/FA-339-founder-visible-display12-handoff.receipt.json",
+      "acceptance": "V1 authenticated production and cognition browsers open on the persistent Founder XFCE DISPLAY :12 in dedicated workspaces instead of hidden Xvfb as the primary operating surface. Founder may take interactive control at any time through an explicit handoff that pauses dispatch for that profile; automation resumes only after Founder releases/closes the browser. Read-only VNC remains optional observation/fallback, not a barrier preventing Founder repair. Existing profile state persists and no public CDP exposure is introduced.",
+      "completed_at": "2026-09-18",
+      "result": "DONE/PASS: V1 production and cognition browsers now use Founder-visible XFCE DISPLAY :12 with dedicated workspaces while retaining FA-338 job-scoped ownership. Executive=Workspace 2, Division01=Workspace 3, V1 Runtime 01=Workspace 4, V1 Runtime 02=Workspace 5. Safe Founder handoff writes a durable hold before takeover, blocks new automation, drains committed work, opens the same profile headfully with CDP disabled, and resumes automation only after close/release. Live acceptance proved Runtime 02 handoff and real PRODSEED000138 cognition on the visible surface. Malformed cognition responses and non-editable composers now recover through bounded retry instead of infinite scheduler failure; direct and automatic post-recovery cognition runs are healthy."
     },
     {
       "id": "FA-340",
@@ -3306,7 +3308,7 @@
       "depends_on": [
         "FA-339"
       ],
-      "status": "BLOCKED",
+      "status": "READY",
       "authority": "ARCHITECT",
       "artifact": "Founder access audit and governed runtime-root permission contract",
       "acceptance": "User kopiko can read and traverse governed /var/lib/die, /srv/die and /opt/die operational roots without Permission denied surprises while service users remain canonical owners. Intentional repair writes use direct owner/group access where appropriate or Founder sudo for root-managed service files. Stability is enforced by explicit warnings, active-job/lease checks, backups and rollback rather than treating Founder as a guest. Secrets remain non-public and no network exposure is widened."

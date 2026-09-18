@@ -1,6 +1,6 @@
 {
   "schema": "die.factory-asset.web-ai-cluster-registry.v1",
-  "revision": "1.5.0-fa338-job-scoped-browser-lifecycle",
+  "revision": "1.6.0-fa339-founder-visible-display12",
   "status": "CANONICAL_ACTIVE_MULTI_CLUSTER",
   "rules": {
     "browser_owner_model": "JOB_SCOPED_HEADFUL_CHROME_PER_ADMITTED_JOB; MUXIA_BROKER_LIFETIME_EQUALS_JOB_BROWSER_LIFETIME",
@@ -17,7 +17,10 @@
     "checkpoint_policy": "DO_NOT_BYPASS_PROVIDER_CHALLENGES; FAIL_CLOSED_AND_ROUTE_OR_ESCALATE",
     "owner_health_policy": "READY IS PROVEN LIVE AFTER JOB-SCOPED SPAWN; PROVIDER READINESS IS RECLASSIFIED BEFORE DISPATCH; OWNER DEATH FAILS CLOSED",
     "browser_lifecycle_policy": "COLD -> SPAWN_HEADFUL -> WORK -> DURABLE_TERMINAL -> CLOSE -> COLD; LIGHTWEIGHT CONTROL PLANE MAY REMAIN RESIDENT WITHOUT BROWSER/CDP",
-    "normalization_evidence": "FA-338 supersedes always-on external browser ownership using the FA-337 contract and V2 H01-025/H01-026 lifecycle semantics while preserving V1 provider behavior."
+    "normalization_evidence": "FA-338 supersedes always-on external browser ownership using the FA-337 contract and V2 H01-025/H01-026 lifecycle semantics while preserving V1 provider behavior.",
+    "founder_operating_surface": "PRIMARY_DISPLAY_:12.0_XFCE; WORKSPACE_2_EXECUTIVE; WORKSPACE_3_DIVISION01; WORKSPACE_4_V1_RUNTIME_01; WORKSPACE_5_V1_RUNTIME_02",
+    "founder_handoff_policy": "SAFE_PREEMPT: DURABLE ACTIVE HOLD BLOCKS NEW ADMISSION IMMEDIATELY; CURRENT COMMITTED JOB DRAINS TO TERMINAL; FOUNDER SAME-PROFILE NO-CDP BROWSER OPENS ONLY AFTER AUTOMATION PROCESS CLOSES; AUTOMATION RESUMES ONLY AFTER FOUNDER BROWSER CLOSES OR EXPLICIT RELEASE",
+    "read_only_vnc_role": "OPTIONAL_OBSERVATION_OR_FALLBACK_ONLY; NOT PRIMARY_FOUNDER_REPAIR_SURFACE"
   },
   "health_states": {
     "tab": [
@@ -146,7 +149,11 @@
       "broker_control_port": 39121,
       "browser_lifecycle_service": null,
       "broker_service": null,
-      "job_runtime_module": "company/browser/linux/job_scoped_cluster_runtime.mjs"
+      "job_runtime_module": "company/browser/linux/job_scoped_cluster_runtime.mjs",
+      "primary_display": ":12.0",
+      "founder_workspace_index": 3,
+      "founder_workspace_number": 4,
+      "founder_handoff_target": "runtime01"
     },
     {
       "cluster_id": "cluster-b",
@@ -267,7 +274,11 @@
       "broker_control_port": 39122,
       "browser_lifecycle_service": null,
       "broker_service": null,
-      "job_runtime_module": "company/browser/linux/job_scoped_cluster_runtime.mjs"
+      "job_runtime_module": "company/browser/linux/job_scoped_cluster_runtime.mjs",
+      "primary_display": ":12.0",
+      "founder_workspace_index": 4,
+      "founder_workspace_number": 5,
+      "founder_handoff_target": "runtime02"
     }
   ]
 }

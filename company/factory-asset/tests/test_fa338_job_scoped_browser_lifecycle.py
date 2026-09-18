@@ -17,7 +17,7 @@ GRAPH=ROOT/'company/factory-asset/task-graph-v1.json'
 
 def test_cluster_runtime_is_headful_job_scoped_and_proves_close():
     s=RUNTIME.read_text(encoding='utf-8')
-    for token in ["spawn('/usr/bin/Xvfb'", "'--headless','false'", 'E_LIFECYCLE_TERMINAL_EVIDENCE_REQUIRED', 'debug_endpoint_closed', 'profile_process_gone', 'lease_released']:
+    for token in ["'--headless','false'", 'E_LIFECYCLE_TERMINAL_EVIDENCE_REQUIRED', 'debug_endpoint_closed', 'profile_process_gone', 'lease_released', 'founder_visible:true', 'placePidOnFounderWorkspace']:
         assert token in s
     assert '127.0.0.1' in s
 
@@ -37,7 +37,7 @@ def test_production_dispatch_owns_runtime_around_provider_attempt():
 
 def test_registry_supersedes_external_persistent_owner_model():
     r=json.loads(REG.read_text(encoding='utf-8'))
-    assert r['revision'].startswith('1.5.0-fa338')
+    assert r['revision'].startswith(('1.5.0-fa338','1.6.0-fa339'))
     assert 'JOB_SCOPED_HEADFUL_CHROME' in r['rules']['browser_owner_model']
     for c in r['clusters'][:2]:
         assert c['browser_owner_model']=='JOB_SCOPED_HEADFUL_BROWSER_CDP'
@@ -55,12 +55,14 @@ def test_cognition_uses_local_kopiko_broker_not_hermes_browser_ownership():
     assert 'withPrincipalJobBrowser' in cognition and 'withPrincipalJobBrowser' in client
     assert '/run/die/principal-browser-broker.sock' in client and 'socketPath:SOCKET' in client
     assert "spawn('/usr/bin/Xvfb'" not in client and 'operator_browser.mjs' not in client
-    assert "spawn('/usr/bin/Xvfb'" in broker and 'operator_browser.mjs' in broker
+    assert "spawn('/usr/bin/Xvfb'" not in broker and 'operator_browser.mjs' in broker
+    assert 'FOUNDER_DISPLAY' in broker and 'placePidOnFounderWorkspace' in broker
     assert 'terminalEvidence' in broker and 'profile_process_gone' in broker
     assert 'readRepairHold' in broker and 'writeAuthRepairHold' in broker
     assert '/cognition-receipts' in client and 'job-browser-receipts' not in client
     assert 'User=kopiko' in unit and 'Group=die-runtime' in unit
-    assert 'RuntimeDirectory=die' in unit and 'ProtectSystem=strict' in unit and 'PrivateTmp=true' in unit
+    assert 'RuntimeDirectory=die' in unit and 'ProtectSystem=strict' in unit
+    assert 'PrivateTmp=true' not in unit and 'Environment=DISPLAY=:12.0' in unit
     assert 'ExecStart=/usr/local/bin/node /srv/die/company/browser/linux/principal_browser_broker.mjs' in unit
 
 
@@ -68,7 +70,7 @@ def test_founder_repair_is_same_profile_headful_and_no_cdp():
     r=REPAIR.read_text(encoding='utf-8')
     assert '--remote-debugging' not in r
     assert 'E_REPAIR_PROFILE_BUSY' in r
-    assert 'DISPLAY="${DISPLAY:-:12.0}"' in r
+    assert 'DISPLAY=:12.0' in r
     for name in ['executive','division01','cluster-a','cluster-b']:
         assert name in r
     assert 'FOUNDER_NO_CDP_REPAIR' in r and "'state':'CLOSED'" in r

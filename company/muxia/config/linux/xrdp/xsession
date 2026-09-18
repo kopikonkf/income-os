@@ -1,2 +1,5 @@
 #!/bin/sh
+if [ "$(id -un)" = "kopiko" ] && [ -x /usr/local/bin/die-founder-display12-init ]; then
+  /usr/local/bin/die-founder-display12-init >/tmp/die-founder-display12-init.log 2>&1 &
+fi
 exec startxfce4

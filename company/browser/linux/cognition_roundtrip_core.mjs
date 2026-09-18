@@ -23,7 +23,7 @@ const COGNITION_SEND_SELECTORS = [
 export function isInternalCognitionDraft(text){
   return /^\[DIE-COGNITION-REQUEST:COG-PROD_[A-Z0-9_-]+(?::[0-9a-f]{12})?\](?:\s|$)/.test(String(text||'').trim());
 }
-async function stagePrompt(page, fullPrompt, marker, attempts=8){
+async function stagePrompt(page, fullPrompt, marker, attempts=8, allowReload=true){
   let lastError='E_COMPOSER_NOT_EDITABLE', staleCognitionDraftCleared=false;
   for(let attempt=1;attempt<=attempts;attempt++){
     for(const selector of COGNITION_COMPOSER_SELECTORS){
@@ -48,6 +48,7 @@ async function stagePrompt(page, fullPrompt, marker, attempts=8){
     }
     await page.waitForTimeout(300*attempt);
   }
+  if(allowReload){ await page.reload({waitUntil:'domcontentloaded',timeout:60000}); await page.waitForTimeout(1500); return await stagePrompt(page,fullPrompt,marker,attempts,false); }
   throw new Error(`E_COMPOSER_REACQUIRE:${lastError}`);
 }
 async function acquireSend(page, attempts=8){

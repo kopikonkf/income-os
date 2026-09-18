@@ -3,10 +3,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { spawn } from 'node:child_process';
+import { readRepairHold } from './auth_repair_hold.mjs';
+import { FOUNDER_DISPLAY, WORKSPACE_BY_TARGET, ensureFounderDisplay, placePidOnFounderWorkspace } from './founder_display12.mjs';
 
 const DEFAULT_STATE_ROOT='/var/lib/muxia/state/job-browser-runtime';
 const DEFAULT_BROKER_STATE_ROOT='/var/lib/muxia/state/job-cluster-brokers';
-const DISPLAY_BY_CLUSTER=Object.freeze({'cluster-a':101,'cluster-b':102});
+const SUPPORTED_CLUSTERS=new Set(['cluster-a','cluster-b']);
 const SAFE_JOB=/^[A-Za-z0-9][A-Za-z0-9_.:-]{2,180}$/;
 const sleep=(ms)=>new Promise((r)=>setTimeout(r,ms));
 
@@ -53,15 +55,6 @@ async function waitChildExit(child,ms){
     child.once('exit',onExit);timer=setTimeout(()=>finish(false),ms);
   });
 }
-async function waitDisplay(displayNum,xvfb,timeoutMs=10000){
-  const sock=`/tmp/.X11-unix/X${displayNum}`,end=Date.now()+timeoutMs;
-  while(Date.now()<end){
-    if(xvfb.exitCode!==null)throw new Error(`E_XVFB_EXIT:${xvfb.exitCode}`);
-    if(fs.existsSync(sock))return;
-    await sleep(100);
-  }
-  throw new Error('E_XVFB_READY_TIMEOUT');
-}
 async function fetchStatus(controlBaseUrl,timeoutMs=1500){
   const r=await fetch(new URL('/v1/status',controlBaseUrl),{signal:AbortSignal.timeout(timeoutMs)});
   if(!r.ok)throw new Error(`E_BROKER_HTTP:${r.status}`);
@@ -91,7 +84,7 @@ function validateTerminalEvidence(file){
 export function runtimeIdleSnapshot({registry,stateRoot=DEFAULT_STATE_ROOT}={}){
   const clusters=[];
   for(const c of registry.clusters||[]){
-    if(!DISPLAY_BY_CLUSTER[c.cluster_id])continue;
+    if(!SUPPORTED_CLUSTERS.has(c.cluster_id))continue;
     const lock=path.join(stateRoot,`${c.cluster_id}.lock`),old=safeReadJson(lock);
     const active=Boolean(old&&pidAlive(Number(old.owner_pid)));
     clusters.push({cluster_id:c.cluster_id,profile_id:c.profile_id,active_runtime:active,profile_process_active:procHasProfile(c.profile_dir),control_port:Number(c.broker_control_port)});
@@ -102,24 +95,27 @@ export function runtimeIdleSnapshot({registry,stateRoot=DEFAULT_STATE_ROOT}={}){
 export async function startJobScopedClusterRuntime({dieHome='/srv/die',registry,clusterId,jobId,stateRoot=DEFAULT_STATE_ROOT,brokerStateRoot=DEFAULT_BROKER_STATE_ROOT,browserExecutable='/usr/bin/google-chrome-stable',receiptPath=null}={}){
   if(!SAFE_JOB.test(String(jobId||'')))throw new Error('E_JOB_BROWSER_JOB_ID');
   const c=(registry.clusters||[]).find(x=>x.cluster_id===clusterId);if(!c)throw new Error(`E_JOB_BROWSER_CLUSTER:${clusterId}`);
-  const displayNum=DISPLAY_BY_CLUSTER[clusterId];if(!displayNum)throw new Error(`E_JOB_BROWSER_DISPLAY:${clusterId}`);
+  if(!SUPPORTED_CLUSTERS.has(clusterId))throw new Error(`E_JOB_BROWSER_CLUSTER:${clusterId}`);
+  const workspaceIndex=WORKSPACE_BY_TARGET[clusterId];if(!Number.isInteger(workspaceIndex))throw new Error(`E_JOB_BROWSER_WORKSPACE:${clusterId}`);
+  const handoff=readRepairHold(path.join('/var/lib/muxia/state/founder-repair',`${clusterId}.json`));
+  if(handoff)throw new Error(`E_FOUNDER_HANDOFF_HELD:${clusterId}`);
+  ensureFounderDisplay();
   const lockFile=path.join(stateRoot,`${clusterId}.lock`);
   acquireLock(lockFile,{schema:'die.factory-asset.v1-job-browser-lock.v1',cluster_id:clusterId,job_id:jobId,owner_pid:process.pid,acquired_at:new Date().toISOString()});
   const startedAt=new Date().toISOString(),controlBaseUrl=`http://127.0.0.1:${Number(c.broker_control_port)}/`;
-  let xvfb=null,broker=null,brokerStatus=null;const brokerOut=tailBuffer(),brokerErr=tailBuffer();
-  const base={schema:'die.factory-asset.v1-job-browser-runtime.v1',cluster_id:clusterId,profile_id:c.profile_id,job_id:jobId,profile_dir:c.profile_dir,headful:true,virtual_display:displayNum,control_base_url:controlBaseUrl,credential_values_read:false,cookies_or_tokens_read:false,started_at:startedAt,status:'SPAWNING'};
+  let broker=null,brokerStatus=null;const brokerOut=tailBuffer(),brokerErr=tailBuffer();
+  const base={schema:'die.factory-asset.v1-job-browser-runtime.v1',cluster_id:clusterId,profile_id:c.profile_id,job_id:jobId,profile_dir:c.profile_dir,headful:true,founder_visible:true,display:FOUNDER_DISPLAY,workspace_index:workspaceIndex,workspace_number:workspaceIndex+1,control_base_url:controlBaseUrl,credential_values_read:false,cookies_or_tokens_read:false,started_at:startedAt,status:'SPAWNING'};
   if(receiptPath)atomicJson(receiptPath,base);
   try{
     if(procHasProfile(c.profile_dir))throw new Error('E_JOB_BROWSER_PROFILE_ALREADY_OWNED');
     for(const name of ['SingletonLock','SingletonCookie','SingletonSocket'])fs.rmSync(path.join(c.profile_dir,name),{force:true});
     try{await fetchStatus(controlBaseUrl,500);throw new Error('E_JOB_BROWSER_CONTROL_PORT_BUSY')}catch(e){if(String(e?.message||e)==='E_JOB_BROWSER_CONTROL_PORT_BUSY')throw e}
-    xvfb=spawn('/usr/bin/Xvfb',[`:${displayNum}`,'-screen','0','1920x1080x24','-nolisten','tcp'],{stdio:['ignore','ignore','pipe']});
-    await waitDisplay(displayNum,xvfb);
     const brokerScript=path.join(dieHome,'company/muxia/scripts/linux/muxia-cluster-broker.mjs');
-    broker=spawn('/usr/local/bin/node',[brokerScript,'--die-home',dieHome,'--cluster-id',clusterId,'--registry',path.join(dieHome,'company/factory-asset/registries/web-ai-clusters.v1.json'),'--state-root',brokerStateRoot,'--control-port',String(c.broker_control_port),'--browser-executable',browserExecutable,'--headless','false'],{env:{...process.env,DISPLAY:`:${displayNum}`,HOME:process.env.HOME||'/var/lib/muxia/service-home'},stdio:['ignore','pipe','pipe']});
+    broker=spawn('/usr/local/bin/node',[brokerScript,'--die-home',dieHome,'--cluster-id',clusterId,'--registry',path.join(dieHome,'company/factory-asset/registries/web-ai-clusters.v1.json'),'--state-root',brokerStateRoot,'--control-port',String(c.broker_control_port),'--browser-executable',browserExecutable,'--headless','false'],{env:{...process.env,DISPLAY:FOUNDER_DISPLAY,HOME:process.env.HOME||'/var/lib/muxia/service-home'},stdio:['ignore','pipe','pipe']});
     broker.stdout?.on('data',brokerOut.push);broker.stderr?.on('data',brokerErr.push);
     brokerStatus=await waitBrokerReady(controlBaseUrl,broker);
-    const ready={...base,status:'WORK',browser_owner_pid:brokerStatus.browser_owner_pid,debug_host:brokerStatus.debug_host,debug_port:brokerStatus.debug_port,debug_url:`http://${brokerStatus.debug_host}:${brokerStatus.debug_port}`,broker_pid:broker.pid,xvfb_pid:xvfb.pid,ready_at:new Date().toISOString()};
+    const placement=await placePidOnFounderWorkspace(clusterId,brokerStatus.browser_owner_pid);
+    const ready={...base,status:'WORK',browser_owner_pid:brokerStatus.browser_owner_pid,debug_host:brokerStatus.debug_host,debug_port:brokerStatus.debug_port,debug_url:`http://${brokerStatus.debug_host}:${brokerStatus.debug_port}`,broker_pid:broker.pid,placement,ready_at:new Date().toISOString()};
     if(receiptPath)atomicJson(receiptPath,ready);
     let stopped=false;
     return{...ready,async stop({terminalEvidencePath,reason='JOB_TERMINAL'}={}){
@@ -134,17 +130,15 @@ export async function startJobScopedClusterRuntime({dieHome='/srv/die',registry,
         if(!await waitChildExit(broker,12000)){graceful=false;forced=true;broker.kill('SIGKILL');await waitChildExit(broker,3000)}
       }
       const debugClosed=ready.debug_url?await waitEndpointClosed(`${ready.debug_url}/json/version`):true;
-      if(xvfb&&xvfb.exitCode===null){xvfb.kill('SIGTERM');if(!await waitChildExit(xvfb,3000)){xvfb.kill('SIGKILL');await waitChildExit(xvfb,1000)}}
       const controlClosed=await waitEndpointClosed(new URL('/v1/status',controlBaseUrl).toString());
       const profileGone=!procHasProfile(c.profile_dir);fs.rmSync(lockFile,{force:true});
-      const out={...ready,status:(debugClosed&&controlClosed&&profileGone)?'COLD':'CLOSE_FAILED',close_reason:reason,terminal_evidence_path:terminalEvidencePath,terminal_evidence_sha256:terminalSha,terminal_status:terminal.status,browser_close_graceful:graceful,forced_process_cleanup:forced,debug_endpoint_closed:debugClosed,control_endpoint_closed:controlClosed,profile_process_gone:profileGone,lease_released:!fs.existsSync(lockFile),broker_exit_code:broker?.exitCode??null,xvfb_exit_code:xvfb?.exitCode??null,broker_stdout_tail:brokerOut.get(),broker_stderr_tail:brokerErr.get(),completed_at:new Date().toISOString()};
+      const out={...ready,status:(debugClosed&&controlClosed&&profileGone)?'COLD':'CLOSE_FAILED',close_reason:reason,terminal_evidence_path:terminalEvidencePath,terminal_evidence_sha256:terminalSha,terminal_status:terminal.status,browser_close_graceful:graceful,forced_process_cleanup:forced,debug_endpoint_closed:debugClosed,control_endpoint_closed:controlClosed,profile_process_gone:profileGone,lease_released:!fs.existsSync(lockFile),broker_exit_code:broker?.exitCode??null,broker_stdout_tail:brokerOut.get(),broker_stderr_tail:brokerErr.get(),completed_at:new Date().toISOString()};
       if(receiptPath)atomicJson(receiptPath,out);
       if(out.status!=='COLD')throw new Error('E_JOB_BROWSER_CLOSE_INCOMPLETE');
       return out;
     }};
   }catch(error){
     if(broker&&broker.exitCode===null){broker.kill('SIGTERM');await waitChildExit(broker,3000);if(broker.exitCode===null)broker.kill('SIGKILL')}
-    if(xvfb&&xvfb.exitCode===null){xvfb.kill('SIGTERM');await waitChildExit(xvfb,1500);if(xvfb.exitCode===null)xvfb.kill('SIGKILL')}
     fs.rmSync(lockFile,{force:true});
     const out={...base,status:'START_FAILED',error:String(error?.message||error).slice(0,800),broker_stdout_tail:brokerOut.get(),broker_stderr_tail:brokerErr.get(),completed_at:new Date().toISOString()};
     if(receiptPath)atomicJson(receiptPath,out);

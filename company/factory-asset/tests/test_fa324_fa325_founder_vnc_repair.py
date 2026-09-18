@@ -49,5 +49,5 @@ def test_production_dispatch_skips_cluster_with_active_founder_repair_hold():
  s=DISPATCH.read_text(encoding='utf-8')
  assert "DIE_FOUNDER_REPAIR_ROOT" in s
  assert "function repairHold(cluster)" in s
- assert "if(repairHold(c.cluster_id))continue" in s
- assert "d.state!=='ACTIVE'" in s and "expires_at_epoch" in s
+ assert 'repairHold(c.cluster_id)' in s
+ assert 'readRepairHold' in s
