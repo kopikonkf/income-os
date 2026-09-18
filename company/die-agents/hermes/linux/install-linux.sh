@@ -99,6 +99,18 @@ if old not in s: raise SystemExit('E_HERMES_CRON_OUTPUT_MODE_PATCH_DRIFT')
 p.write_text(s.replace(old,new,1),encoding='utf-8')
 PY
 
+# Ticker heartbeat/last-success are operational liveness evidence. Keep them
+# Founder-readable without changing jobs.json/control-file privacy.
+python3 - "$SOURCE_ROOT/cron/jobs.py" <<'PY'
+from pathlib import Path
+import sys
+p=Path(sys.argv[1]);s=p.read_text(encoding='utf-8')
+old='    atomic_write_text(path, str(time.time()), tmp_prefix=".hb_")\n'
+new='    atomic_write_text(path, str(time.time()), tmp_prefix=".hb_")\n    os.chmod(path, 0o640)\n'
+if old not in s: raise SystemExit('E_HERMES_TICKER_MODE_PATCH_DRIFT')
+p.write_text(s.replace(old,new,1),encoding='utf-8')
+PY
+
 # Pending-message payloads remain private 0600, but the recovery directory is
 # Founder-listable/traversable on this single-tenant host.
 python3 - "$SOURCE_ROOT/gateway/shutdown_flush.py" <<'PY'

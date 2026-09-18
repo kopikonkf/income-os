@@ -19,6 +19,8 @@ def test_installer_preserves_control_privacy_but_exposes_operational_outputs():
     assert 'Cron control/state files remain owner-private 0600' in s
     assert 'E_HERMES_CRON_OUTPUT_MODE_PATCH_DRIFT' in s
     assert 'os.chmod(output_file, 0o640)' in s
+    assert 'E_HERMES_TICKER_MODE_PATCH_DRIFT' in s
+    assert 'os.chmod(path, 0o640)' in s
     assert 'E_HERMES_PENDING_DIR_MODE_PATCH_DRIFT' in s
     assert 'os.chmod(flush_dir, 0o2750)' in s
     assert 'founder_directory_mode=0770' in s

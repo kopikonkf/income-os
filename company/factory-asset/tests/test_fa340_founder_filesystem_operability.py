@@ -53,6 +53,7 @@ def test_hermes_installer_persists_output_readability_without_opening_control_fi
     s=HERMES_INSTALL.read_text(encoding='utf-8')
     assert 'install -m 0755 "$DIE_HOME/company/die-agents/hermes/linux/founder-fs-runtime-normalize.sh"' in s
     assert 'os.chmod(output_file, 0o640)' in s
+    assert 'os.chmod(path, 0o640)' in s
     assert 'os.chmod(flush_dir, 0o2750)' in s
     assert 'cron_control_files_remain_owner_private=true' in s
     assert 'cron_output_files_founder_readable=0640' in s
