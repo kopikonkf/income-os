@@ -98,10 +98,15 @@ def apply():
   os.chmod(p,mode)
  print(f'FA340_APPLY=PASS rollback={rb} files={len(files)} dirs={sum(p.exists() for p in DIRS)}')
 
+def _founder_run(argv:list[str])->subprocess.CompletedProcess:
+ kopiko=pwd.getpwnam('kopiko')
+ cmd=argv if os.geteuid()==kopiko.pw_uid else ['runuser','-u','kopiko','--',*argv]
+ return subprocess.run(cmd,text=True,capture_output=True)
+
 def audit():
  denied=set(); errors=[]
  for root in ROOTS:
-  cp=subprocess.run(['runuser','-u','kopiko','--','find',str(root),'-xdev','-type','d','(','!','-readable','-o','!','-executable',')','-print'],text=True,capture_output=True)
+  cp=_founder_run(['find',str(root),'-xdev','-type','d','(','!','-readable','-o','!','-executable',')','-print'])
   denied.update(x.strip() for x in cp.stdout.splitlines() if x.strip())
   for line in cp.stderr.splitlines():
    if 'Permission denied' in line:
@@ -109,7 +114,7 @@ def audit():
  operational_unreadable=[]
  for p,mode,kind in matching_files():
   if not p.exists(): continue
-  cp=subprocess.run(['runuser','-u','kopiko','--','test','-r',str(p)])
+  cp=_founder_run(['test','-r',str(p)])
   if cp.returncode!=0: operational_unreadable.append(str(p))
  print(f'FA340_AUDIT directory_denials={len(denied)} find_permission_errors={len(errors)} operational_unreadable={len(operational_unreadable)}')
  for x in sorted(denied)[:100]: print(x)

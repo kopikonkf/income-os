@@ -20,7 +20,7 @@ def test_contract_preserves_service_ownership_and_private_files():
     assert c['operational_file_mode']=='0640'
     assert any('MUST NOT recursively chown' in x for x in c['invariants'])
     private='\n'.join(c['intentionally_private_examples'])
-    for token in ['.env','cron/jobs.json','plugin','tirith','Cookies','Login Data']:
+    for token in ['.env','cron/jobs.json','cache','tirith','Cookies','Login Data']:
         assert token in private
 
 def test_apply_tool_is_allowlisted_and_refuses_active_runtime():
@@ -33,7 +33,8 @@ def test_apply_tool_is_allowlisted_and_refuses_active_runtime():
     assert "os.chown(p,kopiko" not in s
     assert "os.chown(root" not in s
     assert "chmod -R" not in s and "chown -R" not in s
-    assert "['runuser','-u','kopiko','--','find'" in s
+    assert "def _founder_run" in s
+    assert "['runuser','-u','kopiko','--',*argv]" in s
     assert "operational_unreadable" in s
     for token in ['postproduction-state.json','*.metadata.*','cron/output','ticker_heartbeat','factory-asset-canaries','rollback.sh']:
         assert token in s
@@ -70,3 +71,11 @@ def test_graph_frontier_is_fa340_until_live_acceptance_seal():
     assert by['FA-339']['status']=='DONE'
     assert by['FA-340']['depends_on']==['FA-339']
     assert by['FA-340']['status']=='READY'
+
+
+def test_postproduction_state_runtime_writes_0640(tmp_path):
+    import importlib.util, stat, sys
+    spec=importlib.util.spec_from_file_location('fa340_state',STATE); mod=importlib.util.module_from_spec(spec); sys.modules[spec.name]=mod; spec.loader.exec_module(mod)
+    p=tmp_path/'postproduction-state.json'
+    mod.create_state(p,job_id='J1',semantic_asset_id='S1',blueprint_id='B1',source_master_sha256='a'*64)
+    assert stat.S_IMODE(p.stat().st_mode)==0o640
