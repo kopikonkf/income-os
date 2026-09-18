@@ -1,0 +1,127 @@
+{
+  "schema_version": "die.h03.rt010-office-live-acceptance.v1",
+  "task_id": "H03-RT-010",
+  "date": "2026-09-18",
+  "status": "PASS",
+  "decision": "ACCEPT",
+  "host": {
+    "name": "WIN-32LVBJDNU66",
+    "platform": "Windows Office 6133",
+    "interactive_session_id": 2
+  },
+  "mission_control": {
+    "endpoint": "127.0.0.1:8891",
+    "canonical_commit": "da8f5cd24dcc394fd57267ce91a5d15ac9ce8e07",
+    "bridge_schema": "mission-control.h03-supervisor-bridge.v1",
+    "headful_only": true,
+    "foreign_profile_reuse": false
+  },
+  "workforce": {
+    "knowledge": {
+      "pool_id": "H03-KNOWLEDGE-A",
+      "probe": {
+        "provider": "qwen",
+        "composer_ready": true,
+        "model": "Qwen3.8-Max",
+        "mode": "Auto",
+        "policy_verified": true,
+        "policy_evidence": "UI_EXACT"
+      },
+      "live_cognition": {
+        "role": "SEED_CURATOR",
+        "provider": "qwen",
+        "model": "Qwen3.8-Max",
+        "mode": "Auto",
+        "policy_verified": true,
+        "response_token": "H03_RT010_KNOWLEDGE_PASS",
+        "elapsed_ms": 15877,
+        "handoff_received": true
+      }
+    },
+    "review": {
+      "pool_id": "H03-REVIEW-A",
+      "primary_claude_readiness": {
+        "provider": "claude",
+        "composer_ready": true,
+        "model": "Sonnet 4.6",
+        "probe_mode": "Low",
+        "policy_verified": true,
+        "policy_evidence": "UI_EXACT"
+      },
+      "primary_claude_live_observation": {
+        "requested_model": "Sonnet 4.6",
+        "requested_mode": "Medium",
+        "policy_verified": true,
+        "terminal_result": "OUTPUT_MARKER_NONCE_MISMATCH",
+        "blocking": false,
+        "disposition": "Canonical review policy permits independent Review-A ChatGPT backup; no retry loop was forced."
+      },
+      "live_independent_review": {
+        "provider": "chatgpt",
+        "model": "GPT-5.6 Luna",
+        "mode": "Think",
+        "policy_verified": true,
+        "dominant_producer_provider": "qwen",
+        "reviewer_separation_enforced": true,
+        "response_token": "H03_RT010_REVIEW_PASS",
+        "elapsed_ms": 9040,
+        "handoff_received": true
+      }
+    },
+    "growth": {
+      "pool_id": "H03-GROWTH-A",
+      "headful_verified": true,
+      "browser_session_id": 2,
+      "readiness_surface": "facebook",
+      "surface_opened": true,
+      "publication_performed": false,
+      "founder_login_preverified": true
+    }
+  },
+  "final_lifecycle": {
+    "pending_sleep_pools": [],
+    "pools": [
+      {
+        "pool_id": "H03-KNOWLEDGE-A",
+        "state": "COLD",
+        "process_count": 0,
+        "cdp_alive": false
+      },
+      {
+        "pool_id": "H03-REVIEW-A",
+        "state": "COLD",
+        "process_count": 0,
+        "cdp_alive": false
+      },
+      {
+        "pool_id": "H03-GROWTH-A",
+        "state": "COLD",
+        "process_count": 0,
+        "cdp_alive": false
+      }
+    ]
+  },
+  "migration_acceptance_fixes": [
+    {
+      "pr": "kopikonkf/mission-control#135",
+      "purpose": "Reacquire H03 provider target during strict model/mode policy switch."
+    },
+    {
+      "pr": "kopikonkf/mission-control#136",
+      "purpose": "Reacquire provider target after submit during response monitoring."
+    },
+    {
+      "pr": "kopikonkf/mission-control#137",
+      "purpose": "Bind post-submit minimum-observation logic to policy['requested_mode'] and args.provider instead of undefined locals."
+    }
+  ],
+  "governance": {
+    "credentials_or_session_material_read": false,
+    "foreign_mission_control_profile_reused": false,
+    "social_publication_performed": false,
+    "product_publication_performed": false,
+    "paid_action_or_spend": false
+  },
+  "next_frontier": "H03-LIVE-ORG-001",
+  "marker": "H03_RT010_OFFICE_WORKFORCE_ACCEPTANCE_PASS"
+}
