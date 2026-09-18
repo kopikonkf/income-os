@@ -22,7 +22,7 @@
   "instances": {
     "DIE-WINDOWS": {
       "os": "windows",
-      "lifecycle": "STABLE_REFERENCE",
+      "lifecycle": "MISSION_BOUND_REFERENCE",
       "source_policy": "shared-canon-versioned",
       "state_boundary": "independent",
       "principals": {
@@ -30,10 +30,20 @@
         "division01": "division-head-division01"
       },
       "mcp": {
-        "executive": "https://executive-mcp.aethers.web.id/mcp",
-        "division01": "https://division01-mcp.aethers.web.id/mcp"
+        "mission": "https://mission.aethers.web.id/mcp"
       },
-      "account_binding": "existing dedicated accounts remain unchanged"
+      "account_binding": "existing dedicated accounts remain unchanged",
+      "legacy_runtime_mcp": {
+        "executive": {
+          "endpoint": "https://executive-mcp.aethers.web.id/mcp",
+          "status": "RETIREMENT_PENDING_ROLLBACK_ONLY"
+        },
+        "division01": {
+          "endpoint": "https://division01-mcp.aethers.web.id/mcp",
+          "status": "RETIREMENT_PENDING_ROLLBACK_ONLY"
+        }
+      },
+      "transport_note": "Windows organizational principals use the shared Mission endpoint; principal scope is resolved by Mission OAuth/client binding, not by per-principal public hostnames."
     },
     "DIE-LINUX": {
       "os": "linux",

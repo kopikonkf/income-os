@@ -34,10 +34,12 @@ Instance principal bindings are:
 
 | Instance | Role | Principal ID | MCP |
 | --- | --- | --- | --- |
-| DIE-WINDOWS | Executive | `chatgpt-plus-executive` | `executive-mcp.aethers.web.id` |
-| DIE-WINDOWS | Division01 | `division-head-division01` | `division01-mcp.aethers.web.id` |
+| DIE-WINDOWS | Executive | `chatgpt-plus-executive` | `mission.aethers.web.id` |
+| DIE-WINDOWS | Division01 | `division-head-division01` | `mission.aethers.web.id` |
 | DIE-LINUX | Executive | `die-lnx-executive-001` | `executive-h01-mcp.aethers.web.id` |
 | DIE-LINUX | Division01 | `die-lnx-division-001` | `division01-h01-mcp.aethers.web.id` |
+
+Windows Executive and Division01 now share the global `mission.aethers.web.id` capability endpoint. Their authority remains distinct because Mission binds the OAuth client to the exact organizational principal and enforces task/lease scope server-side. The historical `executive-mcp.aethers.web.id` and `division01-mcp.aethers.web.id` surfaces are rollback-only legacy runtime endpoints and are not canonical client attachment points.
 
 The two Linux principals reuse the shared semantic role anchors and capability contracts, but authority is resolved against their own server-pinned principal IDs.
 
