@@ -1,0 +1,43 @@
+{
+  "schema_version": "die.company-os.cos004-acceptance.v1",
+  "task_id": "COS-004",
+  "date": "2026-09-18",
+  "status": "PASS",
+  "decision": "MISSION_CONTROL_CONSTITUTIONAL_PROMOTION_ACCEPTED",
+  "founder_ratification": {
+    "decision": "RATIFY_COS002_MISSION_CONTROL_CONTROL_PLANE_V1",
+    "receipt": "company/company-os/receipts/COS-002-founder-ratification.receipt.json"
+  },
+  "canonical_authority": {
+    "operational_control_plane": "mission-control",
+    "canonical_state_writer": "die-state-manager",
+    "autonomy_level": "A0",
+    "founder_sovereignty": true,
+    "architect_dev_runtime_inheritance": false
+  },
+  "hermes": {
+    "control_plane_primacy": false,
+    "retained_role": "DELEGATED_OPERATIONAL_SPECIALIST_COMPATIBILITY_ADAPTER"
+  },
+  "red_zone_authority_added": false,
+  "runtime_mutation": {
+    "service_stop": false,
+    "service_disable": false,
+    "credential_mutation": false,
+    "external_publication": false,
+    "spend": false
+  },
+  "validation": {
+    "company_brain_registry_validator": "PASS",
+    "focused_control_plane_tests": "44 PASS / 1 PRE_EXISTING_BASELINE_HASH_TEST_DESELECTED",
+    "company_os_tests": "68 PASS",
+    "baseline_hash_failure_confirmed_on_main": true,
+    "one_canon_validator": "PARITY_WITH_MAIN_9_OF_11_PASS",
+    "one_canon_pre_existing_failures": [
+      "object_snapshot",
+      "oauth_snapshot"
+    ]
+  },
+  "artifact": "company/company-os/COS-004_MISSION_CONTROL_CONSTITUTIONAL_PROMOTION_V1.md",
+  "marker": "COS004_MISSION_CONTROL_CONSTITUTIONAL_PROMOTION_PASS"
+}

@@ -1,8 +1,9 @@
 # COS-002 — Founder Ratification Packet: Mission Control Operational Control Plane v1
 
-Status: **PREPARED / NOT RATIFIED**
+Status: **RATIFIED — 2026-09-18 / IMPLEMENTATION VIA COS-004**
 Prepared: 2026-09-09
 Decision authority: Founder only
+Ratification receipt: `company/company-os/receipts/COS-002-founder-ratification.receipt.json`
 
 This packet is intentionally inert. Merely merging this packet does **not** amend `CONSTITUTION.md`, change autonomy level, transfer authority, disable Hermes, or grant Mission Control spend/market/credential authority.
 
@@ -12,7 +13,7 @@ This packet is intentionally inert. Merely merging this packet does **not** amen
 
 > Ratify Mission Control as DIE's single deterministic operational control/enforcement plane, while preserving Founder sovereignty, DIE State Manager as the canonical company operational-state writer, Chief Executive Architect DEV as Founder-invoked/non-runtime authority, and all existing financial/market/credential/irreversible Founder gates. Hermes loses unique control-plane primacy but is not deleted; its retained role is decided separately from evidence.
 
-**Recommended decision today while MC-008J and MC-009D are incomplete:** `DEFER_RATIFICATION_UNTIL_GATES_PASS`.
+**Historical preparation note (2026-09-09):** ratification was deferred while MC-008J and MC-009D were incomplete. Those gates later passed, and Founder ratified the packet on 2026-09-18; see `company/company-os/receipts/COS-002-founder-ratification.receipt.json`.
 
 ## B. Required evidence attached to a future ratification event
 

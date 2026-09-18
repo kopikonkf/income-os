@@ -23,7 +23,7 @@ P6 extends the snapshot envelope with an optional server HMAC trust proof. Read-
 
 - `bin/die_event.py` remains the only physical writer for EVENTS/DECISIONS/ECONOMICS.
 - DIE State Manager remains persistence authority.
-- Hermes remains mission owner and operational control plane.
+- Mission Control is the deterministic operational control/enforcement plane for authorized work; Hermes may remain only as an explicitly delegated specialist.
 - Runtime cognition receives semantic projection only.
 - Architect DEV capability is never inherited by runtime identities.
 - `state/EVENTS.jsonl` is live truth and is neither rewritten nor included in this change.

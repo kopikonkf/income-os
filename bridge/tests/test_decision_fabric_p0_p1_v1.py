@@ -13,9 +13,7 @@ def test_decision_fabric_authority_matches_company_registry():
     )
     governance = registry["governance"]
     assert config.HERMES_PROFILE == "income-operator"
-    assert config.OPERATIONAL_CONTROL_PLANE == (
-        f'{governance["operational_control_plane"]}/{config.HERMES_PROFILE}'
-    )
+    assert config.OPERATIONAL_CONTROL_PLANE == governance["operational_control_plane"]
     assert config.CANONICAL_WRITER == governance["canonical_state_writer"]
 
 
@@ -26,7 +24,7 @@ def test_semantic_envelope_declares_operational_authority():
         ["config:DIE"],
         source_trust="VERIFIED",
     )
-    assert result["operational_control_plane"] == "hermes-operator/income-operator"
+    assert result["operational_control_plane"] == "mission-control"
     assert result["canonical_writer"] == "die-state-manager"
 
 
@@ -37,7 +35,7 @@ def test_truncated_envelope_preserves_operational_authority():
         ["fixture"],
     )
     assert result["completeness"] == "truncated"
-    assert result["operational_control_plane"] == "hermes-operator/income-operator"
+    assert result["operational_control_plane"] == "mission-control"
     assert result["canonical_writer"] == "die-state-manager"
     assert len(json.dumps(result, ensure_ascii=False).encode("utf-8")) <= config.MAX_RESP_BYTES
 
@@ -46,7 +44,7 @@ def test_p0_surface_exposes_authority_through_stdio_dispatch(monkeypatch, tmp_pa
     monkeypatch.setattr(config, "ACCESS_LOG", tmp_path / "ACCESS.jsonl")
     result = mcp_server.call_tool("system_state", {})
     payload = json.loads(result["content"][0]["text"])
-    assert payload["operational_control_plane"] == "hermes-operator/income-operator"
+    assert payload["operational_control_plane"] == "mission-control"
     assert payload["canonical_writer"] == "die-state-manager"
 
 
@@ -72,6 +70,6 @@ def test_briefing_surface_declares_operational_authority(monkeypatch, tmp_path):
     briefing.write_text("# BRIEFING fixture", encoding="utf-8")
     monkeypatch.setattr(config, "BRIEFING", briefing)
     result = projection.briefing_get()
-    assert result["operational_control_plane"] == "hermes-operator/income-operator"
+    assert result["operational_control_plane"] == "mission-control"
     assert result["canonical_writer"] == "die-state-manager"
     assert result["markdown"] == "# BRIEFING fixture"
