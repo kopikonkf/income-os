@@ -1,7 +1,7 @@
 {
   "schema": "die.factory-asset.task-graph.v1",
   "generated_at": "2026-09-18",
-  "revision": "11.7-fa339-founder-visible-display12-handoff",
+  "revision": "11.8-fa340-founder-filesystem-operability",
   "status": "CANONICAL",
   "project": "Factory Asset Level Up",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -3308,10 +3308,12 @@
       "depends_on": [
         "FA-339"
       ],
-      "status": "READY",
+      "status": "DONE",
       "authority": "ARCHITECT",
-      "artifact": "Founder access audit and governed runtime-root permission contract",
-      "acceptance": "User kopiko can read and traverse governed /var/lib/die, /srv/die and /opt/die operational roots without Permission denied surprises while service users remain canonical owners. Intentional repair writes use direct owner/group access where appropriate or Founder sudo for root-managed service files. Stability is enforced by explicit warnings, active-job/lease checks, backups and rollback rather than treating Founder as a guest. Secrets remain non-public and no network exposure is widened."
+      "artifact": "company/factory-asset/contracts/fa340-founder-filesystem-operability.v1.json; company/factory-asset/bin/fa340_founder_filesystem_operability.py; company/die-agents/hermes/linux/founder-fs-runtime-normalize.sh; company/factory-asset/docs/FA340_FOUNDER_FILESYSTEM_OPERABILITY.md; company/factory-asset/receipts/FA-340-founder-filesystem-operability.receipt.json",
+      "acceptance": "User kopiko can read and traverse governed /var/lib/die, /srv/die and /opt/die operational roots without Permission denied surprises while service users remain canonical owners. Intentional repair writes use direct owner/group access where appropriate or Founder sudo for root-managed service files. Stability is enforced by explicit warnings, active-job/lease checks, backups and rollback rather than treating Founder as a guest. Secrets remain non-public and no network exposure is widened.",
+      "completed_at": "2026-09-18",
+      "result": "DONE/PASS: Founder kopiko can now read/traverse governed /var/lib/die, /srv/die and /opt/die operational roots with zero directory denial and zero unreadable operational evidence, while service ownership remains canonical. Operational evidence is die-runtime group-readable; private control/session/credential-bearing files remain 0600. Hermes runtime directories are 2750 and normalized on gateway start/stop; cron output/ticker and Factory postproduction creators persist Founder-readable 0640. Rollback metadata/source snapshots were captured before mutation; world-writable count remains zero and post-restart cognition cron is healthy."
     }
   ],
   "windows_oauth_proof_levels": {

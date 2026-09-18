@@ -1,0 +1,102 @@
+{
+  "schema": "die.factory-asset.fa340-acceptance.v1",
+  "task_id": "FA-340",
+  "status": "PASS",
+  "completed_at": "2026-09-18",
+  "implementation_branch_sha": "583fd62",
+  "contract_ref": "company/factory-asset/contracts/fa340-founder-filesystem-operability.v1.json",
+  "initial_audit": {
+    "directory_denials": 2,
+    "denied_directories": [
+      "/var/lib/die/hermes/income-operator/pending_messages",
+      "/var/lib/die/hermes/.local/state/tirith/sessions"
+    ],
+    "unreadable_files": 180,
+    "unreadable_classes": {
+      "hermes_cron_output": 116,
+      "workspaces": 53,
+      "hermes_other": 7,
+      "other": 4
+    },
+    "srv_die_directory_denials": 0,
+    "opt_die_directory_denials": 0
+  },
+  "apply": {
+    "normalized_match_count": 214,
+    "normalized_directory_count": 2,
+    "mode_rollback_ref": "/var/lib/die/rollback/FA-340/20260918T050524Z/modes.tsv",
+    "source_rollback_ref": "/var/lib/die/rollback/FA-340/source-20260918T050427Z",
+    "hermes_source_rollback_ref": "/var/lib/die/rollback/FA-340/hermes-source-20260918T050613Z",
+    "ticker_rollback_ref": "/var/lib/die/rollback/FA-340/ticker-20260918T050803Z"
+  },
+  "final_audit": {
+    "directory_denials": 0,
+    "find_permission_errors": 0,
+    "operational_unreadable": 0,
+    "world_writable": 0,
+    "remaining_unreadable_private_files": 10
+  },
+  "ownership_preserved": {
+    "/var/lib/die": "die-executive:die-runtime 2770",
+    "/var/lib/die/hermes": "die-hermes:die-runtime 2770",
+    "/var/lib/die/workspaces": "root:die-runtime 2770",
+    "/var/lib/die/workspaces/PRODSEED000133": "die-hermes:die-runtime 2770",
+    "/srv/die": "kopiko:muxia 0775",
+    "/opt/die": "root:root 0755"
+  },
+  "operational_modes": {
+    "workspace_postproduction_state": "0640 die-hermes:die-runtime",
+    "metadata_derivative": "0640 die-hermes:die-runtime",
+    "hermes_cron_output": "0640 die-hermes:die-runtime",
+    "hermes_ticker": "0640 die-hermes:die-runtime",
+    "pending_messages_directory": "2750 die-hermes:die-runtime",
+    "tirith_sessions_directory": "2750 die-hermes:die-runtime",
+    "root_rollback_script": "0750 root:die-runtime"
+  },
+  "private_mode_proof": {
+    "hermes_env": "0600 root:root",
+    "cron_jobs_json": "0600 die-hermes:die-runtime",
+    "plugin_toolset_cache": "0600 die-hermes:die-runtime",
+    "tirith_log": "0600 die-hermes:die-runtime",
+    "division01_cookies": "0600 kopiko:die-runtime",
+    "executive_cookies": "0600 kopiko:die-runtime"
+  },
+  "persistence_proof": {
+    "gateway_start_normalizer": true,
+    "gateway_stop_normalizer": true,
+    "new_cron_output_mode": "0640",
+    "ticker_rewrite_mode": "0640",
+    "pending_payload_mode_unchanged": "0600",
+    "cron_control_mode_unchanged": "0600"
+  },
+  "runtime_health": {
+    "die_hermes_gateway": "active",
+    "principal_browser_broker": "active",
+    "muxia_dispatch": "active",
+    "latest_cognition_builtin_executions": [
+      "f32d02ac024d419b81d245ba8d2591a9",
+      "42ff851ece6e458ba029da97d2fcacbf",
+      "c0ad7317633448bc8b2fb6b4899680b1",
+      "7553f66ed6a14519b59fc4668e719392",
+      "221a6507fe8b4dbe80d3661f9f424072"
+    ],
+    "latest_cognition_status": "completed"
+  },
+  "regression": {
+    "focused_tests": "PASS 14/14",
+    "python_compile": "PASS",
+    "bash_syntax": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "security_and_authority": {
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "secret_contents_read": false,
+    "recursive_chown_to_founder": false,
+    "world_writable_created": false,
+    "network_exposure_widened": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_usd": 0
+  }
+}

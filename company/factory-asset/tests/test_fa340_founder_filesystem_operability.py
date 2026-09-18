@@ -67,11 +67,12 @@ def test_postproduction_state_and_derivatives_are_founder_readable():
     assert "make_founder_readable(target)" in orch
     assert "path.chmod(0o640)" in orch
 
-def test_graph_frontier_is_fa340_until_live_acceptance_seal():
+def test_graph_seals_fa340_after_live_acceptance():
     g=json.loads(GRAPH.read_text(encoding='utf-8')); by={t['id']:t for t in g['tasks']}
     assert by['FA-339']['status']=='DONE'
     assert by['FA-340']['depends_on']==['FA-339']
-    assert by['FA-340']['status']=='READY'
+    assert by['FA-340']['status']=='DONE'
+    assert 'FA-340-founder-filesystem-operability.receipt.json' in by['FA-340']['artifact']
 
 
 def test_postproduction_state_runtime_writes_0640(tmp_path):
