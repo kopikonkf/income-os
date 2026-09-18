@@ -33,27 +33,8 @@
         "mission": "https://mission.aethers.web.id/mcp"
       },
       "account_binding": "existing dedicated accounts remain unchanged",
-      "legacy_runtime_mcp": {
-        "executive": {
-          "endpoint": "https://executive-mcp.aethers.web.id/mcp",
-          "status": "RETIRED",
-          "retired_at": "2026-09-18",
-          "retirement_task": "MC-011D",
-          "public_dns": "REMOVED",
-          "azure_origin": "STOPPED",
-          "replacement": "https://mission.aethers.web.id/mcp"
-        },
-        "division01": {
-          "endpoint": "https://division01-mcp.aethers.web.id/mcp",
-          "status": "RETIRED",
-          "retired_at": "2026-09-18",
-          "retirement_task": "MC-011D",
-          "public_dns": "REMOVED",
-          "azure_origin": "STOPPED",
-          "replacement": "https://mission.aethers.web.id/mcp"
-        }
-      },
-      "transport_note": "Windows organizational principals use the shared Mission endpoint; principal scope is resolved by Mission OAuth/client binding, not by per-principal public hostnames."
+      "transport_note": "Windows organizational principals use the shared Mission endpoint; principal scope is resolved by Mission OAuth/client binding, not by per-principal public hostnames.",
+      "retirement_history_ref": "mission-control/config/control-endpoints.v1.json#retired_public_surfaces"
     },
     "DIE-LINUX": {
       "os": "linux",
