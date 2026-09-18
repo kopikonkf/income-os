@@ -13,7 +13,7 @@ from . import authority, config, snapshot, state_request
 RESULT_SCHEMA = "die.decision.gateway.result.v1"
 GATEWAY_ID = "die-decision-gateway"
 WRITER_ID = "die-state-manager"
-NEXT_OWNER = "hermes-operator"
+NEXT_OWNER = "mission-control"
 
 WRAPPER_FIELDS = {"accepted", "commit_status", "writer", "normalized"}
 NORMALIZED_FIELDS = {

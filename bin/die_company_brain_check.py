@@ -15,6 +15,7 @@ REQUIRED_IDENTITIES = {
     "chatgpt-plus-executive",
     "division-head-template",
     "hermes-operator",
+    "mission-control",
     "worker-template",
 }
 REQUIRED_GOVERNANCE_PATHS = {

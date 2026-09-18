@@ -108,4 +108,4 @@ Remote publication remains serialized by the shared `income-os.repo-write` engin
 
 `COS-001`, `COS-002`, `COS-003`, and `OPS-002` are now DONE. MC-008J and MC-009D are also accepted on the Mission Control side.
 
-There is currently no Company-OS `READY` node. The highest-priority blocked node is `COS-004` (Mission Control constitutional promotion implementation), and its remaining non-mechanical gate is Founder ratification of the exact COS-002 packet. Until that ratification exists, no constitutional authority transfer is implied by runtime evidence.
+`COS-004` is now DONE/PASS under Founder ratification: Mission Control is the canonical single deterministic operational control/enforcement plane, DIE State Manager remains the canonical company-state writer, and autonomy remains A0. No new spend/red-zone authority was granted. The next Company-OS frontier must be selected from the remaining graph without reopening the completed constitutional promotion.

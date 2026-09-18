@@ -22,8 +22,7 @@ source cannot repair a conflict by inference; unresolved conflict becomes
 
 ## 1.1 Runtime invariants
 
-1. **One operational control plane:** `hermes-operator`. Runtime cognition may
-   author proposals or bounded decisions; it does not orchestrate Workers.
+1. **One operational control plane:** `mission-control`. Runtime cognition may author proposals or bounded decisions; retained operational specialists and Workers do not orchestrate the company independently.
 2. **One canonical writer:** `die-state-manager`. Every canonical mutation is a
    typed request validated and committed by that deterministic boundary.
 3. **No raw access:** runtime cognition receives semantic projections, never
@@ -90,7 +89,8 @@ Runtime identities never inherit the `chief-executive-architect-dev` plane. A tr
 | Founder | Ratification, mandate, approval, escalation decision | Nothing constitutionally reserved above the Founder |
 | Executive | Company/portfolio thesis, bounded decision, mission proposal, challenge | Capital, constitutional change, irreversible action unless explicitly delegated |
 | Division | Division thesis, score, bounded decision, mission proposal | Cross-division, mandate, capital outside envelope |
-| Hermes | Mission operational decision, job delegation, execution report | Northstar, new mission class, constitutional change |
+| Mission Control | Deterministic work lifecycle, lease/routing/failover/review/recovery enforcement inside ratified policy | Northstar, strategic/business judgment, capital allocation, constitutional change, unrestricted DEV, unapproved red-zone actions |
+| Hermes | Explicitly delegated specialist/legacy operational work if retained | Company orchestration monopoly, canonical state sovereignty, undelegated worker control, privilege widening |
 | Worker | Job artifact, progress, evidence, error | Mission, strategy, state commit, market submission |
 | State Manager | Validation result, committed event/version | Mission choice or business judgment |
 
@@ -107,44 +107,52 @@ The snapshot declares scope, version, creation time, source cursors, redactions,
 ## 6. Decision and mutation path
 
 ```text
-Actor semantic artifact
+semantic author / canonical source
 -> authority validation
--> DIE State Manager commit
--> committed ID/version
--> Decision Gateway routing
--> Hermes operational acceptance
+-> DIE State Manager commit when company operational truth is mutated
+-> Mission Control lifecycle acceptance
+-> lease / route / dispatch bounded owner or worker
+-> result + evidence
+-> independent review when required
+-> Mission Control progression / governed publication
 ```
 
-Multiple actors may be semantic authors. Only State Manager performs physical canonical writes. Hermes remains mission owner and may reject an operationally invalid proposal with a recorded reason.
+Multiple actors may be semantic authors. Only State Manager performs physical canonical company-state writes. Mission Control owns deterministic lifecycle enforcement for work with a valid authority basis; it may reject or pause operationally invalid work with durable evidence, but it does not originate strategy or widen authority.
 
 No actor treats an uncommitted chat response as canonical truth.
 
 The cross-role control flow is fixed:
 
 ```text
-PROPOSE -> COMMIT -> DELEGATE -> REPORT
+semantic author / canonical source
+-> authority validation
+-> DIE State Manager commit when company operational truth is mutated
+-> Mission Control lifecycle acceptance
+-> lease / route / dispatch bounded owner or worker
+-> result + evidence
+-> independent review when required
+-> Mission Control progression / governed publication
 ```
 
-- Executive or Division cognition may `PROPOSE` or author a bounded decision.
-- DIE State Manager validates and `COMMIT`s the canonical record.
-- Hermes alone operationally accepts it and `DELEGATE`s bounded jobs.
-- Worker/Creator returns artifact and evidence; Hermes verifies and `REPORT`s.
+Runtime cognition authors proposals or bounded decisions within scope. Mission Control enforces the deterministic lifecycle after authority validation. Workers and retained specialists return bounded results and evidence; they do not create competing orchestration authority.
 
 Chief Executive Architect DEV is not a participant in this runtime flow. It
 builds and repairs the governed system only when invoked by the Founder and may
 not use engineering access to originate or execute a runtime mission.
 
+`chatgpt-architect` runtime cognition never inherits `chief-executive-architect-dev`. Proactive privileged execution requires a task-scoped delegated-execution contract; otherwise it must escalate or remain cognition-only.
+
 ## 7. Execution path
 
-Hermes decomposes accepted missions into Worker Contract jobs. A Worker returns artifact + evidence + tests. Hermes verifies the job result before reporting or requesting state mutation.
+Mission Control routes accepted work to bounded owners/Workers under the Worker Contract. A Worker returns artifact + evidence + tests. Mission Control enforces result/review/progression requirements; an explicitly delegated Hermes specialist may perform legacy/edge workflow steps but does not own the company lifecycle.
 
 Default production path:
 
 ```text
-Hermes -> Worker -> Proxima -> Production Engine
+Mission Control -> bounded owner / Worker -> Proxima -> Production Engine
 ```
 
-A narrow Hermes-to-Proxima call is permitted only for a small, stateless production operation where a Worker hop adds no control or evidence value. It does not create a second orchestrator.
+A narrow explicitly delegated specialist-to-Proxima call is permitted only for a small, stateless production operation where a Worker hop adds no control or evidence value. It does not create a second orchestrator.
 
 ## 8. Evidence and decision quality
 

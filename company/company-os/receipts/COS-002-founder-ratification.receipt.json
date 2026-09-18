@@ -1,0 +1,29 @@
+{
+  "schema_version": "die.company-os.founder-ratification.v1",
+  "decision_id": "COS002-RATIFICATION-20260918",
+  "date": "2026-09-18",
+  "decision": "RATIFY_COS002_MISSION_CONTROL_CONTROL_PLANE_V1",
+  "authority": "FOUNDER",
+  "founder_statement": "Saya mengesahkan arsitektur yang sebenarnya sudah kita bangun dan buktikan: Mission Control menjadi traffic controller resmi perusahaan, bukan Hermes.",
+  "normalized_effect": "Mission Control is ratified as DIE's single deterministic operational control/enforcement plane under the COS-002 packet.",
+  "preserved_invariants": [
+    "FOUNDER_SOVEREIGNTY",
+    "AUTONOMY_LEVEL_REMAINS_A0",
+    "DIE_STATE_MANAGER_CANONICAL_COMPANY_STATE_WRITER",
+    "CHIEF_EXECUTIVE_ARCHITECT_DEV_FOUNDER_INVOKED_NON_RUNTIME",
+    "NO_AUTONOMOUS_SPEND_OR_CAPITAL_AUTHORITY",
+    "NO_UNGATED_EXTERNAL_SUBMISSION_OR_PUBLICATION",
+    "NO_UNGATED_CREDENTIAL_OR_PERMISSION_MUTATION",
+    "NO_NEW_VENDOR_OR_IRREVERSIBLE_AUTHORITY",
+    "AMBIGUOUS_AUTHORITY_FAILS_CLOSED"
+  ],
+  "promotion_gates": {
+    "MC-008J_FULLY_UNATTENDED_24X7_ACCEPTED": true,
+    "MC-009D_DELEGATED_EXECUTION_ACCEPTED": true,
+    "COS-002A_STATE_MANAGER_WRITER_DOMAIN_CONFORMANCE": true,
+    "FOUNDER_RATIFICATION_COS002_PACKET": true
+  },
+  "hermes_effect": "Hermes loses unique operational-control-plane primacy and remains only in evidence-backed delegated specialist/compatibility roles under OPS-002.",
+  "effective_condition": "COS-004 applies and validates the ratified canonical governance changes.",
+  "packet": "company/company-os/COS-002_FOUNDER_RATIFICATION_PACKET_V1.md"
+}

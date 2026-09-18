@@ -240,4 +240,4 @@ The lanes may execute concurrently on disjoint tasks/resources. Remote `income-o
 
 **PASS.** Every company-critical Windows dependency discovered in the bounded audit has a migration class, target, deadline, rollback rule and evidence requirement. No runtime cutover, service stop, credential/session extraction, DNS change, spend, or Aether mutation occurred.
 
-Post-cutover update (2026-09-18): `COS-002`, `COS-003`, `OPS-002`, MC-008J, and MC-009D are complete. The remaining high-priority Company-OS promotion node `COS-004` stays blocked on Founder ratification; legacy Azure Hermes/OpenCode are not migration cargo.
+Post-cutover update (2026-09-18): `COS-002`, `COS-003`, `OPS-002`, MC-008J, MC-009D, and `COS-004` are complete. Founder ratified Mission Control as the single deterministic operational control/enforcement plane; legacy Azure Hermes/OpenCode remain retired and are not migration cargo.

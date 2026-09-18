@@ -239,7 +239,7 @@ economics:
 decision:
   worth_making: true|false
   reason: ""
-  next_owner: hermes-operator|founder|chatgpt-plus-executive
+  next_owner: mission-control|founder|chatgpt-plus-executive
 ```
 
 No master prompt without the preceding buyer, evidence, decision, and platform

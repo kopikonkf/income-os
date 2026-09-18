@@ -4038,3 +4038,14 @@ Mission Control task `SUB-001` completed through automatic canonical intake, own
 - New `purge-expired` removes only expired records while holding the per-resource kernel guard; active/corrupt/token-mismatch state remains fail-closed.
 - Protocol doctrine: acquire immediately before publication, never at session start; release in `finally`.
 - Focused lease regression: 8/8 PASS.
+
+
+---
+
+## 2026-09-18 - COS-004 Mission Control constitutional promotion DONE/PASS
+
+- Founder ratified the COS-002 packet: Mission Control is now DIE's single deterministic operational control/enforcement plane; Hermes is no longer the company control plane and remains only in explicitly delegated specialist/compatibility roles.
+- `CONSTITUTION.md`, `COMPANY_BRAIN.md`, `PROTOCOLS/agency-contract-v0.md`, and `company/identity-registry.json` were converged to the ratified model. DIE State Manager remains the sole canonical company operational-state writer; autonomy remains A0; `chief-executive-architect-dev` remains Founder-invoked/non-runtime and non-inheritable.
+- Generic Decision Gateway/runtime authority projection now routes/reports `mission-control`; retained Hermes profile/runtime paths remain compatibility/specialist surfaces rather than lifecycle authority.
+- Validation: Company Brain registry validator PASS; 44 focused control-plane tests PASS with one pre-existing runtime-canon pipeline-hash baseline test excluded after reproducing the same failure on canonical pre-change main; Company-OS tests 68/68 PASS; one-canon validator parity is 9/11 on both COS-004 and canonical pre-change main, with the same pre-existing object/oauth snapshot hash mismatches.
+- No spend, credential mutation, external submission/publication, service stop/disable, or destructive runtime action occurred. Receipt: `company/company-os/receipts/COS-004-mission-control-constitutional-promotion.receipt.json`.

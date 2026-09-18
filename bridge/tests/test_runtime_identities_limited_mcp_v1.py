@@ -33,7 +33,7 @@ def _surface(name: str, data: object) -> dict:
         "as_of": "2026-08-22T03:00:00Z",
         "completeness": "complete",
         "source_trust": "VERIFIED",
-        "operational_control_plane": "hermes-operator/income-operator",
+        "operational_control_plane": "mission-control",
         "canonical_writer": "die-state-manager",
         "sources": [f"semantic:{name}"],
         "notes": [],
@@ -254,7 +254,7 @@ def test_division_mission_proposal_commits_through_state_manager_and_routes_herm
     assert result.get("isError") is False
     assert payload["status"] == "committed"
     assert payload["writer"] == "die-state-manager"
-    assert payload["route"]["next_owner"] == "hermes-operator"
+    assert payload["route"]["next_owner"] == "mission-control"
     assert captured["object"]["buyer_path"]
     assert captured["object"]["kill_criteria"]
     assert captured["object"]["division_id"] == "DIVISION-01"

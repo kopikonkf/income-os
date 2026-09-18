@@ -1,7 +1,7 @@
 {
   "schema": "die.company-os.task-graph.v1",
   "generated_at": "2026-09-18",
-  "revision": "2.4-ops002-runtime-disposition",
+  "revision": "2.5-cos004-mission-control-constitutional-promotion",
   "status": "CANONICAL",
   "project": "DIE Company OS / Economic Layer",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -21,7 +21,7 @@
     "dirty_tree_rule": "Never mutate/reset/stash/clean live C:\\DIE. Use isolated clones/worktrees for all writes.",
     "aether_rule": "Aether remains KEEP_EXTERNAL. Read-only DNA analysis is allowed; no runtime, identity, memory, watchdog, service, or constitutional mutation without an explicit task and authority.",
     "economic_rule": "Economic Layer begins in observer/shadow mode. No spend, purchase, paid upgrade, capital transfer, vendor commitment, subscription change, or reinvestment action is authorized by this graph.",
-    "authority_rule": "Current Founder sovereignty and CONSTITUTION autonomy level remain authoritative. Mission Control becoming canonical operational control plane requires explicit reconciliation and Founder-ratified amendment where constitutional text is affected.",
+    "authority_rule": "Founder sovereignty and A0 autonomy remain authoritative. Mission Control is Founder-ratified as the single deterministic operational control/enforcement plane; DIE State Manager remains the canonical company operational-state writer; red-zone authority remains separately gated.",
     "lease_rule": "Before any remote repository mutation acquire income-os.repo-write plus company-os.<task_id>; BUSY/corrupt/token mismatch fails closed.",
     "stop_conditions": [
       "FOUNDER_RATIFICATION_REQUIRED",
@@ -159,7 +159,7 @@
       "id": "COS-004",
       "track": "GOVERNANCE",
       "title": "Mission Control constitutional promotion implementation",
-      "status": "BLOCKED",
+      "status": "DONE",
       "priority": 950,
       "depends_on": ["COS-002", "COS-002A"],
       "external_gates": [
@@ -169,7 +169,22 @@
       ],
       "execution_mode": "tool_native",
       "risk": "HIGH",
-      "acceptance": "Apply only the exact Founder-ratified control-plane amendments across Constitution, Company Brain, Agency Contract and identity registry; preserve State Manager company-state sovereignty and Architect DEV/runtime separation; validate no new spend/red-zone authority; do not disposition Hermes beyond the ratified text."
+      "acceptance": "Apply only the exact Founder-ratified control-plane amendments across Constitution, Company Brain, Agency Contract and identity registry; preserve State Manager company-state sovereignty and Architect DEV/runtime separation; validate no new spend/red-zone authority; do not disposition Hermes beyond the ratified text.",
+      "result": {
+        "status": "PASS",
+        "artifact": "company/company-os/COS-004_MISSION_CONTROL_CONSTITUTIONAL_PROMOTION_V1.md",
+        "receipt": "company/company-os/receipts/COS-004-mission-control-constitutional-promotion.receipt.json",
+        "founder_ratification_receipt": "company/company-os/receipts/COS-002-founder-ratification.receipt.json",
+        "operational_control_plane": "mission-control",
+        "canonical_state_writer": "die-state-manager",
+        "autonomy_level": "A0",
+        "hermes_control_plane_primacy": false,
+        "red_zone_authority_added": false,
+        "company_brain_registry_validator": "PASS",
+        "focused_control_plane_tests": "44 PASS / 1 PRE_EXISTING_BASELINE_HASH_TEST_DESELECTED",
+        "company_os_tests": "68 PASS",
+        "one_canon_validator": "PARITY_WITH_MAIN_9_OF_11_PASS_PRE_EXISTING_OBJECT_OAUTH_HASH_MISMATCHES"
+      }
     },
     {
       "id": "OPS-001",

@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0.0",
   "registry_id": "die.company.identity-registry",
-  "effective_date": "2026-08-21",
+  "effective_date": "2026-09-18",
   "governance": {
     "company_brain": "COMPANY_BRAIN.md",
     "constitution": "CONSTITUTION.md",
     "agency_contract": "PROTOCOLS/agency-contract-v0.md",
     "canonical_handoff": "LASTSTANDINGPOINT.md",
     "canonical_state_writer": "die-state-manager",
-    "operational_control_plane": "hermes-operator"
+    "operational_control_plane": "mission-control"
   },
   "security": {
     "default_policy": "deny",
@@ -147,22 +147,43 @@
       "role_profile_id": "division01-decision-engine-v1"
     },
     {
-      "id": "hermes-operator",
-      "kind": "operational_orchestrator",
-      "document": "company/die-agents/hermes/SOUL.md",
-      "scope": "committed_missions",
+      "id": "mission-control",
+      "kind": "deterministic_operational_control_plane",
+      "document": "company/mission-control/IDENTITY.md",
+      "scope": "authorized_company_work",
       "runtime": true,
       "template": false,
       "architect_dev_access": "deny",
       "inherits_identity_ids": [],
       "capabilities": [
-        "mission_orchestration",
-        "job_delegation",
+        "canonical_work_intake",
+        "eligibility_enforcement",
+        "lease_management",
+        "principal_routing",
+        "bounded_failover",
+        "review_routing",
+        "dependency_progression",
+        "runtime_supervision",
+        "incident_escalation",
+        "governed_task_graph_writeback"
+      ]
+    },
+    {
+      "id": "hermes-operator",
+      "kind": "delegated_operational_specialist",
+      "document": "company/die-agents/hermes/SOUL.md",
+      "scope": "explicitly_delegated_legacy_edge_work",
+      "runtime": true,
+      "template": false,
+      "architect_dev_access": "deny",
+      "inherits_identity_ids": [],
+      "capabilities": [
         "bounded_tool_use",
-        "worker_control",
         "evidence_submission",
         "semantic_state_request",
-        "operational_reporting"
+        "operational_reporting",
+        "delegated_edge_work",
+        "notification"
       ]
     },
     {

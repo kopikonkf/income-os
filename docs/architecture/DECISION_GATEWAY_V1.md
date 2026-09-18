@@ -106,7 +106,7 @@ Committed:
     "replayed": false
   },
   "route": {
-    "next_owner": "hermes-operator",
+    "next_owner": "mission-control",
     "status": "ready_for_operational_acceptance"
   }
 }

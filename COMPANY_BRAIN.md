@@ -43,9 +43,9 @@ When two sources conflict, the higher source wins. Unresolved conflict becomes `
 2. **No Founder as message broker.** The system must not require the Founder to relay routine messages between AI systems.
 3. **DEV/runtime separation.** Chief Executive Architect DEV capability is Founder-invoked, non-runtime, and non-inheritable. Executive, Division, Hermes, and Worker identities cannot acquire it.
 4. **One physical state writer.** Multiple actors may be semantic authors; only DIE State Manager commits canonical operational records.
-5. **One operational control plane.** Hermes owns mission orchestration. Runtime cognition proposes or decides within scope; it does not spawn or control workers.
+5. **One operational control plane.** Mission Control owns deterministic operational lifecycle enforcement for authorized work. Runtime cognition proposes/decides within scope; workers and retained specialists do not create competing schedulers/control planes. DIE State Manager remains the canonical company operational-state writer.
 6. **Workers receive jobs, not missions.** Strategy, Northstar, customer secrets, and production credentials are excluded from Worker context.
-7. **Proxima is a production gateway.** Default flow is `Hermes -> Worker -> Proxima -> Production Engine`; Proxima is not a second orchestrator.
+7. **Proxima is a production gateway.** Default production execution is routed by Mission Control to a bounded owner/Worker and may then use `Proxima -> Production Engine`; Proxima is not a second orchestrator.
 8. **Evidence before progress.** A claim without resolvable evidence is not complete.
 9. **No component without a failing mission.** Architecture follows demonstrated operational need.
 10. **Substrates are replaceable.** Durable identity and state live in governed artifacts, not a model conversation.
@@ -59,7 +59,8 @@ The machine-readable registry is authoritative for identity discovery. Each entr
 | Founder | Company | Sovereign intent, capital, risk, ratification, succession |
 | ChatGPT Plus Executive | Company portfolio | Executive Strategic Intelligence / Meta Cognitive Core |
 | Division Head template | One division | Bounded Division Decision Engine |
-| Hermes Operator | Operations | Persistent Operational Orchestrator |
+| Mission Control | Operations | Deterministic operational control/enforcement plane |
+| Hermes Operator | Operations specialist | Replaceable legacy/edge specialist when explicitly delegated; not a second control plane |
 | Worker template | One job | Replaceable specialist producing artifact + evidence |
 
 Chief Executive Architect DEV is a separate development plane, not a runtime organizational identity.
@@ -83,23 +84,17 @@ Company Brain documents describe durable meaning. Fast-changing missions, heartb
 The first complete economic loop remains:
 
 ```text
-Opportunity Signal
--> Research Brief
--> Scorecard
--> Founder Decision
--> Hermes Mission
--> Atomic Jobs
--> Worker / Proxima execution
--> Artifact
--> Market
--> Evidence
--> Learning
+Founder / authorized canonical decision
+-> State Manager commit where company operational truth is involved
+-> Mission Control work lifecycle
+-> bounded cognition / worker / provider / delegated executor
+-> independent review where required
+-> validated evidence + governed progression/writeback
 ```
 
 Each transition must name an authorized principal, an input version, an output artifact, and evidence or an explicit uncertainty.
 
-Hermes is responsible for discovering the next eligible operational transition;
-Founder and OpenCode are not routine message brokers. In Proactive Operator V0,
+Mission Control is responsible for deterministic eligibility/progression of already-authorized work; semantic judgment remains with the Founder or authorized cognition. Founder and OpenCode are not routine message brokers. In Proactive Operator V0,
 one bounded cognitive tick may assess state, request Division cognition, create
 or follow non-production cards, assemble evidence, and draft an approval
 request. Every tick is auditable, USD 0, and limited by
@@ -147,8 +142,7 @@ Founder gate.
 
 M-001 production is event-driven, not production-cron-driven. The one-shot
 mission compiler validates the committed authority and materializes a durable
-J1-J8 graph; the existing Hermes Gateway Kanban dispatcher performs continuous
-eligible-card dispatch. No runtime actor may substitute a timer prompt, wake
+J1-J8 graph; Mission Control owns the canonical lifecycle and may route explicitly delegated legacy execution through the Hermes Gateway where still retained. No runtime actor may substitute a timer prompt, wake
 message, or local approval flag for the committed production authorization.
 
 The Proactive Operator cron is a cognition trigger, not a production trigger.

@@ -132,7 +132,7 @@ def test_state_request_carries_snapshot_expiry_for_gateway() -> None:
     )
 
 
-def test_gateway_commits_and_routes_only_to_hermes() -> None:
+def test_gateway_commits_and_routes_to_mission_control() -> None:
     captured = {}
 
     def writer(normalized: dict) -> dict:
@@ -150,7 +150,7 @@ def test_gateway_commits_and_routes_only_to_hermes() -> None:
     assert result["canonical_mutation"] is True
     assert result["commit"]["record_id"] == "D-TEST"
     assert result["route"] == {
-        "next_owner": "hermes-operator",
+        "next_owner": "mission-control",
         "status": "ready_for_operational_acceptance",
     }
     assert captured["authority"]["action"] == "state.decision.submit"

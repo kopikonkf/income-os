@@ -136,7 +136,7 @@ def test_submit_pins_executive_identity_and_composes_p5_p6() -> None:
         now=NOW + dt.timedelta(minutes=1),
     )
     assert result["status"] == "committed"
-    assert result["route"]["next_owner"] == "hermes-operator"
+    assert result["route"]["next_owner"] == "mission-control"
     assert captured["principal_id"] == "chatgpt-plus-executive"
     assert captured["scope"] == "company_portfolio"
     assert captured["authority"]["action"] == "state.decision.submit"
