@@ -1,0 +1,40 @@
+{
+  "schema_version": "die.company-os.ops002-runtime-disposition.v1",
+  "task_id": "OPS-002",
+  "date": "2026-09-18",
+  "status": "PASS",
+  "decision": "ACCEPT",
+  "external_gate": {
+    "gate": "MC-008J_FINAL_ACCEPTANCE_AVAILABLE",
+    "satisfied": true,
+    "evidence": "mission-control/docs/receipts/MC-008J-fully-unattended-24x7.acceptance.receipt.json",
+    "decision": "FULLY_UNATTENDED_24X7_ACCEPTED"
+  },
+  "disposition": {
+    "azure_hermes_d01": "RETIRE_DO_NOT_MIGRATE",
+    "azure_opencode": "RETIRE_DO_NOT_MIGRATE",
+    "h01_linux_hermes_runtime": "KEEP",
+    "h01_linux_hermes_control_plane_role": "DEMOTE_PENDING_FOUNDER_RATIFICATION",
+    "h01_operator_v2_duplicate_orchestration": "PHASE_OUT_AFTER_AUTHORITY_RATIFICATION",
+    "office_hermes_installation": "KEEP_UTILITY_COMPATIBILITY",
+    "office_shared_opencode_3000": "KEEP_EXECUTOR_OPERATOR_SURFACE",
+    "h01_opencode": "KEEP_BOUNDED_EXECUTOR"
+  },
+  "runtime_mutation": {
+    "services_stopped": false,
+    "services_disabled": false,
+    "credentials_moved": false,
+    "azure_state_copied": false,
+    "constitutional_authority_changed": false
+  },
+  "evidence": {
+    "azure_retirement": "mission-control/docs/receipts/MC-011D-azure-retirement.acceptance.receipt.json",
+    "company_control_plane_reconciliation": "company/company-os/COS-002_OPERATIONAL_CONTROL_PLANE_RECONCILIATION_V1.md",
+    "founder_ratification_packet": "company/company-os/COS-002_FOUNDER_RATIFICATION_PACKET_V1.md",
+    "linux_hermes_activation": "company/muxia/receipts/DIE-202-final-activation.receipt.json",
+    "linux_hermes_opencode": "company/muxia/receipts/DIE-202-hermes-opencode-linux.receipt.json",
+    "linux_operator_v2": "company/muxia/receipts/ID-LNX-002-operator-v2-linux.acceptance.receipt.json"
+  },
+  "artifact": "company/company-os/OPS-002_RUNTIME_DISPOSITION_V1.md",
+  "marker": "OPS002_RUNTIME_DISPOSITION_ACCEPTED"
+}

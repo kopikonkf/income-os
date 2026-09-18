@@ -1,7 +1,7 @@
 {
   "schema": "die.company-os.task-graph.v1",
-  "generated_at": "2026-09-08",
-  "revision": "2.3-econ002b-economic-admission",
+  "generated_at": "2026-09-18",
+  "revision": "2.4-ops002-runtime-disposition",
   "status": "CANONICAL",
   "project": "DIE Company OS / Economic Layer",
   "target_repository": "github.com/kopikonkf/income-os",
@@ -12,7 +12,7 @@
     "priority_rule": "Host-exit and control-plane survivability outrank new economic autonomy implementation.",
     "economic_authority": "SHADOW_ONLY_UNTIL_FOUNDER_RATIFICATION",
     "aether_boundary": "KEEP_EXTERNAL_NO_MUTATION",
-    "mission_control_soak": "MC-008J_RUNNING_EXTERNAL_DEPENDENCY"
+    "mission_control_soak": "MC-008J_FULLY_UNATTENDED_24X7_ACCEPTED"
   },
   "execution_policy": {
     "selection_rule": "Execute one eligible highest-priority READY atomic leaf per lane, then stop and publish evidence.",
@@ -195,13 +195,27 @@
       "id": "OPS-002",
       "track": "RUNTIME_DISPOSITION",
       "title": "Hermes and OpenCode KEEP/DEMOTE/RETIRE disposition",
-      "status": "BLOCKED",
+      "status": "DONE",
       "priority": 890,
       "depends_on": ["COS-002"],
       "external_gates": ["MC-008J_FINAL_ACCEPTANCE_AVAILABLE"],
       "execution_mode": "cognition_only",
       "risk": "LOW",
-      "acceptance": "Evidence-backed disposition preserves any unique value while eliminating duplicate resident orchestration; OpenCode may remain an ephemeral executor/provider adapter."
+      "acceptance": "Evidence-backed disposition preserves any unique value while eliminating duplicate resident orchestration; OpenCode may remain an ephemeral executor/provider adapter.",
+      "result": {
+        "status": "PASS",
+        "artifact": "company/company-os/OPS-002_RUNTIME_DISPOSITION_V1.md",
+        "receipt": "company/company-os/receipts/OPS-002-runtime-disposition.receipt.json",
+        "external_gate": "MC-008J_FULLY_UNATTENDED_24X7_ACCEPTED",
+        "azure_hermes_d01": "RETIRE_DO_NOT_MIGRATE",
+        "azure_opencode": "RETIRE_DO_NOT_MIGRATE",
+        "h01_linux_hermes": "KEEP_RUNTIME_DEMOTE_CONTROL_PLANE_ROLE",
+        "office_hermes": "KEEP_UTILITY_COMPATIBILITY",
+        "office_shared_opencode_3000": "KEEP_EXECUTOR_OPERATOR_SURFACE",
+        "h01_opencode": "KEEP_BOUNDED_EXECUTOR",
+        "runtime_services_mutated": false,
+        "constitutional_authority_changed": false
+      }
     },
     {
       "id": "ORG-001",
@@ -537,4 +551,3 @@
     }
   ]
 }
-
