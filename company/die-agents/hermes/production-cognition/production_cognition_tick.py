@@ -193,8 +193,8 @@ def is_response_timeout_error(error:Exception)->bool:
  return retryable_transport_reason(error)=='E_RESPONSE_TIMEOUT'
 
 def record_transport_retry(state:dict[str,Any],*,stage:str,request_id:str,lane:str,reason:str)->dict[str,Any]:
- if reason not in {'E_RESPONSE_TIMEOUT','E_REQUEST_EXPIRED'}:raise RuntimeError('E_TRANSPORT_RETRY_REASON')
- event='TRANSPORT_RESPONSE_TIMEOUT' if reason=='E_RESPONSE_TIMEOUT' else 'TRANSPORT_REQUEST_EXPIRED'
+ if reason not in {'E_RESPONSE_TIMEOUT','E_REQUEST_EXPIRED','E_RESPONSE_MALFORMED'}:raise RuntimeError('E_TRANSPORT_RETRY_REASON')
+ event={'E_RESPONSE_TIMEOUT':'TRANSPORT_RESPONSE_TIMEOUT','E_REQUEST_EXPIRED':'TRANSPORT_REQUEST_EXPIRED','E_RESPONSE_MALFORMED':'TRANSPORT_RESPONSE_MALFORMED'}[reason]
  if lane=='AUTHOR':
   n=int(state.get('author_attempt',0))+1;state['author_attempt']=n
   retryable=n<MAX_SEMANTIC_ATTEMPTS;state['stage']=stage if retryable else 'WAITING_FOUNDER'
@@ -214,6 +214,25 @@ def record_transport_retry(state:dict[str,Any],*,stage:str,request_id:str,lane:s
 
 def record_transport_timeout(state:dict[str,Any],*,stage:str,request_id:str,lane:str)->dict[str,Any]:
  return record_transport_retry(state,stage=stage,request_id=request_id,lane=lane,reason='E_RESPONSE_TIMEOUT')
+
+def _malformed_response_reason(error:Exception)->str|None:
+ if isinstance(error,json.JSONDecodeError):return 'E_RESPONSE_MALFORMED'
+ if isinstance(error,RuntimeError) and str(error) in {'E_RESPONSE_FENCE','E_RESPONSE_OBJECT'}:return 'E_RESPONSE_MALFORMED'
+ return None
+
+def _archive_rejected_response(cogn:Path,request_id:str,resp:Path,error:Exception)->dict[str,Any]:
+ raw=resp.read_bytes(); digest=sha_bytes(raw); root=cogn/'rejected-responses'; root.mkdir(parents=True,exist_ok=True); dst=root/f'{request_id}.{digest[:12]}.txt'; meta=root/f'{request_id}.{digest[:12]}.json'
+ if not dst.exists():dst.write_bytes(raw)
+ info={'schema':'die.production.rejected-cognition-response.v1','request_id':request_id,'response_sha256':digest,'response_bytes':len(raw),'error_type':type(error).__name__,'error':str(error)[:300],'archived_at':now(),'response_path':str(dst)}
+ if not meta.exists():atomic_json(meta,info)
+ return info
+
+def parse_response_or_record_retry(*,cogn:Path,resp:Path,statep:Path,state:dict[str,Any],stage:str,request_id:str,lane:str)->tuple[dict[str,Any]|None,dict[str,Any]|None]:
+ try:return parse_response(resp.read_text(encoding='utf-8')),None
+ except (json.JSONDecodeError,RuntimeError) as e:
+  reason=_malformed_response_reason(e)
+  if reason is None:raise
+  rejected=_archive_rejected_response(cogn,request_id,resp,e); retry=record_transport_retry(state,stage=stage,request_id=request_id,lane=lane,reason=reason); state['history'][-1]['rejected_response']=rejected; atomic_json(statep,state); return None,retry
 
 def repair_context_recovery_state(state:dict[str,Any],*,author_artifact_exists:bool)->bool:
  hist=state.get('history') if isinstance(state.get('history'),list) else []
@@ -274,7 +293,8 @@ def tick(args)->dict[str,Any]:
    if reason is None:raise
    retry=record_transport_retry(state,stage=stage,request_id=rid,lane='AUTHOR',reason=reason);atomic_json(statep,state)
    return {'schema':'die.production.cognition-tick.v1','status':'RETRY' if retry['retryable'] else 'BLOCKED','task_id':task,'reason':reason,'author_attempt':retry['attempt'],'stage':retry['stage']}
-  parsed=parse_response(resp.read_text(encoding='utf-8'))
+  parsed,retry=parse_response_or_record_retry(cogn=cogn,resp=resp,statep=statep,state=state,stage=stage,request_id=rid,lane='AUTHOR')
+  if retry:return {'schema':'die.production.cognition-tick.v1','status':'RETRY' if retry['retryable'] else 'BLOCKED','task_id':task,'reason':'E_RESPONSE_MALFORMED','author_attempt':retry['attempt'],'stage':retry['stage']}
   if parsed.get('schema')=='die.cognition.blocked.v1':
    be=validate_blocked_response(parsed,req)
    if be: raise RuntimeError('E_BLOCKED_RESPONSE_BINDING:'+','.join(be))
@@ -297,7 +317,8 @@ def tick(args)->dict[str,Any]:
    reason=retryable_transport_reason(e)
    if reason is None:raise
    retry=record_transport_retry(state,stage=stage,request_id=rid,lane='SUBJECT',reason=reason);atomic_json(statep,state);return {'schema':'die.production.cognition-tick.v1','status':'RETRY' if retry['retryable'] else 'BLOCKED','task_id':task,'reason':reason,'subject_attempt':retry['attempt'],'stage':retry['stage']}
-  parsed=parse_response(resp.read_text(encoding='utf-8'))
+  parsed,retry=parse_response_or_record_retry(cogn=cogn,resp=resp,statep=statep,state=state,stage=stage,request_id=rid,lane='SUBJECT')
+  if retry:return {'schema':'die.production.cognition-tick.v1','status':'RETRY' if retry['retryable'] else 'BLOCKED','task_id':task,'reason':'E_RESPONSE_MALFORMED','subject_attempt':retry['attempt'],'stage':retry['stage']}
   if parsed.get('schema')=='die.cognition.blocked.v1':
    be=validate_blocked_response(parsed,req)
    if be:raise RuntimeError('E_BLOCKED_RESPONSE_BINDING:'+','.join(be))
@@ -324,7 +345,8 @@ def tick(args)->dict[str,Any]:
    if reason is None:raise
    retry=record_transport_retry(state,stage=stage,request_id=rid,lane='REVIEW',reason=reason);atomic_json(statep,state)
    return {'schema':'die.production.cognition-tick.v1','status':'RETRY' if retry['retryable'] else 'BLOCKED','task_id':task,'reason':reason,'review_attempt':retry['attempt'],'stage':retry['stage']}
-  parsed=parse_response(resp.read_text(encoding='utf-8'))
+  parsed,retry=parse_response_or_record_retry(cogn=cogn,resp=resp,statep=statep,state=state,stage=stage,request_id=rid,lane='REVIEW')
+  if retry:return {'schema':'die.production.cognition-tick.v1','status':'RETRY' if retry['retryable'] else 'BLOCKED','task_id':task,'reason':'E_RESPONSE_MALFORMED','review_attempt':retry['attempt'],'stage':retry['stage']}
   if parsed.get('schema')=='die.cognition.blocked.v1':
    be=validate_blocked_response(parsed,req)
    if be: raise RuntimeError('E_BLOCKED_RESPONSE_BINDING:'+','.join(be))
