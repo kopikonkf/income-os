@@ -87,8 +87,8 @@ def test_registry_and_installer_describe_current_founder_surface():
     assert 'die-principal-browser-broker.service die-muxia-dispatch.service' in i
 
 
-def test_graph_seals_fa339_and_opens_fa340():
+def test_graph_seals_fa339_then_fa340():
     g=json.loads(GRAPH.read_text(encoding='utf-8')); by={t['id']:t for t in g['tasks']}
     assert by['FA-339']['depends_on']==['FA-338'] and by['FA-338']['status']=='DONE'
-    assert by['FA-339']['status']=='DONE' and by['FA-340']['status']=='READY'
+    assert by['FA-339']['status']=='DONE' and by['FA-340']['status']=='DONE'
     assert 'FA-339-founder-visible-display12-handoff.receipt.json' in by['FA-339']['artifact']

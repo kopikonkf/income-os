@@ -50,8 +50,9 @@ test -z "$(git -C "$SOURCE_ROOT" status --porcelain)"
 
 # DIE is a single-tenant Founder-operated host. Hermes CLI already supports
 # HERMES_HOME_MODE for its home/subdirectories, but pinned cron/jobs.py has a
-# separate hard-coded 0700 directory helper. Make only that directory helper
-# honor the same override; cron files remain owner-private 0600.
+# separate hard-coded 0700 directory helper. Make directories honor the same
+# override. Cron control/state files remain owner-private 0600; per-run output
+# artifacts are Founder-readable 0640 through the die-runtime group.
 python3 - "$SOURCE_ROOT/cron/jobs.py" <<'PY'
 from pathlib import Path
 import sys
@@ -81,6 +82,53 @@ if old not in s:
 p.write_text(s.replace(old, new, 1), encoding="utf-8")
 PY
 
+# Founder-operability patch: cron output artifacts are operational evidence, not
+# credential/control state. Preserve jobs.json and other cron control files at
+# 0600 while publishing only per-run output files as 0640.
+python3 - "$SOURCE_ROOT/cron/jobs.py" <<'PY'
+from pathlib import Path
+import sys
+p=Path(sys.argv[1]);s=p.read_text(encoding='utf-8')
+old="""        atomic_replace(tmp_path, output_file)
+        _secure_file(output_file)
+"""
+new="""        atomic_replace(tmp_path, output_file)
+        os.chmod(output_file, 0o640)
+"""
+if old not in s: raise SystemExit('E_HERMES_CRON_OUTPUT_MODE_PATCH_DRIFT')
+p.write_text(s.replace(old,new,1),encoding='utf-8')
+PY
+
+# Ticker heartbeat/last-success are operational liveness evidence. Keep them
+# Founder-readable without changing jobs.json/control-file privacy.
+python3 - "$SOURCE_ROOT/cron/jobs.py" <<'PY'
+from pathlib import Path
+import sys
+p=Path(sys.argv[1]);s=p.read_text(encoding='utf-8')
+old='    atomic_write_text(path, str(time.time()), tmp_prefix=".hb_")\n'
+new='    atomic_write_text(path, str(time.time()), tmp_prefix=".hb_")\n    os.chmod(path, 0o640)\n'
+if old not in s: raise SystemExit('E_HERMES_TICKER_MODE_PATCH_DRIFT')
+p.write_text(s.replace(old,new,1),encoding='utf-8')
+PY
+
+# Pending-message payloads remain private 0600, but the recovery directory is
+# Founder-listable/traversable on this single-tenant host.
+python3 - "$SOURCE_ROOT/gateway/shutdown_flush.py" <<'PY'
+from pathlib import Path
+import sys
+p=Path(sys.argv[1]);s=p.read_text(encoding='utf-8')
+old="""    flush_dir.mkdir(parents=True, exist_ok=True, mode=0o700)
+    if os.name == "posix":
+        os.chmod(flush_dir, 0o700)
+"""
+new="""    flush_dir.mkdir(parents=True, exist_ok=True, mode=0o750)
+    if os.name == "posix":
+        os.chmod(flush_dir, 0o2750)
+"""
+if old not in s: raise SystemExit('E_HERMES_PENDING_DIR_MODE_PATCH_DRIFT')
+p.write_text(s.replace(old,new,1),encoding='utf-8')
+PY
+
 if [[ ! -x "$VENV/bin/python" ]] || ! "$VENV/bin/python" -m pip --version >/dev/null 2>&1; then
   rm -rf "$VENV"
   python3 -m venv "$VENV"
@@ -103,6 +151,7 @@ EOF
 chown root:root "$ENV_FILE"
 chmod 0600 "$ENV_FILE"
 
+install -m 0755 "$DIE_HOME/company/die-agents/hermes/linux/founder-fs-runtime-normalize.sh" /usr/local/bin/die-founder-fs-runtime-normalize
 install -m 0644 "$UNIT_SRC" "$UNIT_DST"
 systemctl daemon-reload
 systemctl disable die-hermes-gateway.service >/dev/null 2>&1 || true
@@ -123,7 +172,9 @@ windows_state_db_copied=false
 service_ready_gate=$ENV_DIR/READY
 terminal_cwd=$DIE_HOME/company/die-agents/hermes
 founder_directory_mode=0770
-cron_files_remain_owner_private=true
+cron_control_files_remain_owner_private=true
+cron_output_files_founder_readable=0640
+founder_private_runtime_dirs=2750
 root_agents_sha256=$root_agents_sha256
 hermes_agents_sha256=$hermes_agents_sha256
 hermes_soul_sha256=$hermes_soul_sha256

@@ -1,0 +1,69 @@
+{
+  "schema": "die.factory-asset.fa340-founder-filesystem-operability.v1",
+  "task_id": "FA-340",
+  "version": "1.0.0",
+  "founder": {
+    "user": "kopiko",
+    "required_group": "die-runtime",
+    "sudo_expected": true
+  },
+  "governed_roots": [
+    "/var/lib/die",
+    "/srv/die",
+    "/opt/die"
+  ],
+  "invariants": [
+    "Service users remain canonical owners; FA-340 MUST NOT recursively chown operational trees to kopiko.",
+    "All governed directories must be Founder-readable/traversable unless explicitly outside the operational roots.",
+    "Operational evidence files required for diagnosis/QC are die-runtime group-readable and never world-writable.",
+    "Secret/control/session-bearing files remain owner-private when Founder read access is not required for normal operations.",
+    "Root-managed repairs use Founder sudo; ordinary service-owned files are not made Founder-writable merely for convenience.",
+    "No network listener, credential copy, cookie/token read, CAPTCHA bypass, submission, publication or spend authority is introduced."
+  ],
+  "directory_policy": {
+    "operational_shared": "2770 or existing stricter owner-write + group-rx/rwx",
+    "service_private_runtime_founder_traverse": "2750",
+    "required_runtime_paths": [
+      "/var/lib/die/hermes/income-operator/pending_messages",
+      "/var/lib/die/hermes/.local/state/tirith/sessions"
+    ]
+  },
+  "founder_readable_operational_patterns": [
+    "/var/lib/die/workspaces/*/factory-v2/postproduction-state.json",
+    "/var/lib/die/workspaces/*/factory-v2/derivatives/*.metadata.*",
+    "/var/lib/die/workspaces/*/muxia-proof-root/state/receipts/*.json",
+    "/var/lib/die/workspaces/*/muxia-proof-root/jobs/*.json",
+    "/var/lib/die/hermes/income-operator/cron/output/*/*.md",
+    "/var/lib/die/hermes/income-operator/cron/ticker_heartbeat",
+    "/var/lib/die/hermes/income-operator/cron/ticker_last_success",
+    "/var/lib/die/state/factory-asset-canaries/**/*",
+    "/var/lib/die/state/fa319-acceptance-*/workspaces/*/factory-v2/postproduction-state.json",
+    "/var/lib/die/state/fa319-acceptance-*/workspaces/*/factory-v2/derivatives/*.metadata.*",
+    "/var/lib/die/state/*/rollback.sh"
+  ],
+  "intentionally_private_examples": [
+    "/etc/die/**/*.env",
+    "/var/lib/die/hermes/income-operator/cron/jobs.json",
+    "/var/lib/die/hermes/income-operator/cache/**",
+    "/var/lib/die/hermes/.local/share/tirith/**",
+    "/var/lib/die/**/browser-profile/**/Cookies",
+    "/var/lib/die/**/browser-profile/**/Login Data"
+  ],
+  "operational_file_mode": "0640",
+  "root_managed_executable_mode": "0750",
+  "service_private_file_mode": "0600",
+  "active_job_safety": {
+    "refuse_apply_when_process_cmdline_contains": [
+      "production_runtime_tick.py",
+      "production_multi_cluster_dispatch.mjs",
+      "job_scoped_cluster_runtime.mjs"
+    ],
+    "browser_profile_markers": [
+      "/var/lib/die/executive/browser-profile",
+      "/var/lib/die/division01/browser-profile",
+      "/var/lib/muxia/profiles/chatgpt-linux-a/browser",
+      "/var/lib/muxia/profiles/web-ai-cluster-b/browser"
+    ]
+  },
+  "rollback": "Before mode/group mutation, snapshot path/mode/uid/gid to /var/lib/die/rollback/FA-340/<timestamp>/modes.tsv."
+}

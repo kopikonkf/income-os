@@ -1002,10 +1002,10 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 ## 2026-09-16 - V1 demand-driven browser and Founder-operability correction
 
 - V1 adapts the **lifecycle semantics** proven by V2 without merging production engines.
-- `FA-337 = READY`: define a V1-only job-scoped browser lifecycle contract.
-- `FA-338 = BLOCKED`: implement V1 MUXIA/Hermes and applicable cognition browser ownership as `COLD -> SPAWN_HEADFUL -> WORK -> DURABLE_TERMINAL -> CLOSE -> COLD`, with no-CDP Founder auth repair for protection challenges.
-- `FA-339 = BLOCKED`: move V1 authenticated browser operability to Founder-visible DISPLAY `:12` workspaces with explicit Founder handoff/preemption; read-only VNC becomes optional fallback rather than the primary repair path.
-- `FA-340 = BLOCKED`: normalize Founder filesystem access so `kopiko` is not unexpectedly denied within governed DIE operational roots; stability relies on warnings, leases, backups and rollback instead of treating Founder as a guest.
+- Historical 2026-09-16 frontier: `FA-337 = READY`; this task was later completed.
+- Historical 2026-09-16 frontier: `FA-338 = BLOCKED`; this task was later completed with demand-driven ownership.
+- Historical 2026-09-16 frontier: `FA-339 = BLOCKED`; this task was later completed on Founder-visible DISPLAY `:12`.
+- Historical 2026-09-16 frontier: `FA-340 = BLOCKED`; this task was later completed with allowlisted Founder read/traverse normalization and preserved service ownership.
 - Live 2026-09-16 repair state: Executive and Division01 were opened on DISPLAY `:12` in separate workspaces with CDP OFF for manual protection/auth inspection.
 - Durable Founder traversal correction: Hermes itself was reapplying `0700` through both `hermes_cli/config.py` and `cron/jobs.py`. Live gateway now declares `HERMES_HOME_MODE=0770`; the pinned cron directory helper honors that override while cron files remain owner-private `0600`. Gateway restart plus `hermes cron list` preserved directory mode `0770`, and a bounded Founder directory rescan of `/var/lib/die`, `/srv/die`, and `/opt/die` returned `denied_count=0`.
 
@@ -1034,3 +1034,13 @@ Any income-os publication must acquire `income-os.repo-write` plus the task-spec
 - Cognition cron `04038951c58f` recovered from the previous browser-ownership failure streak. Direct run `65862c752630428ca10ac22187ab7829` and automatic builtin run `f673df19f051439199c072edcc4253df` both completed successfully; Executive and Division01 broker status returned COLD.
 - Historical external browser-owner/broker units remain disabled rollback material. No credential/cookie/token bytes were read; CAPTCHA bypass, submission and publication remain unauthorized.
 - Separate follow-up exposed after successful browser lifecycle: `PRODSEED000133` provider-original WebP is rejected by current upscale stage with `E_UNSUPPORTED_RASTER`. This is a postproduction format-support gap, not an FA-338 browser-ownership failure.
+
+## 2026-09-18 - FA-339 / FA-340 Founder operability completion
+
+- `FA-339 = DONE/PASS`: Executive, Division01 and V1 production browsers use Founder-visible XFCE DISPLAY `:12` workspaces with demand-driven ownership preserved. Safe Founder handoff blocks new automation, drains committed work, opens the same profile with CDP OFF, and releases back to automation only after Founder close/release.
+- `FA-340 = DONE/PASS`: Founder filesystem audit now reports `directory_denials=0`, `find_permission_errors=0`, `operational_unreadable=0`, and zero world-writable entries across governed roots. Service ownership was not transferred to Founder.
+- Operational evidence is `0640` through `die-runtime`; private runtime directories are `2750`; root-managed rollback scripts are `0750 root:die-runtime`.
+- Cron control/security material remains owner-private `0600` (including `cron/jobs.json`, plugin cache, Tirith session/log/threat files, Hermes env and browser cookie stores). Ten unreadable files remain by design, all within intentional-private classes.
+- Hermes creator persistence now emits cron output/ticker evidence as `0640`, keeps pending-message payloads `0600`, and normalizes private runtime directories at gateway start/stop. Factory postproduction state and generated derivatives persist Founder-readable modes.
+- FA-340 rollback evidence is under `/var/lib/die/rollback/FA-340/`; no network exposure, credential copying, submission/publication authority or spend authority changed.
+- Canonical graph revision after seal: `11.8-fa340-founder-filesystem-operability`. FA-340 has no direct dependent task in the current graph, so completing it does not invent a new READY frontier.
