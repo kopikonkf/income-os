@@ -84,3 +84,12 @@ def test_all_cognition_lanes_use_malformed_response_retry_guard():
     assert src.count('parse_response_or_record_retry(cogn=cogn')==3
     for lane in ["lane='AUTHOR'","lane='SUBJECT'","lane='REVIEW'"]:
         assert lane in src
+
+
+def test_composer_reacquire_is_bounded_transport_retry_reason():
+    e=RuntimeError('E_TRANSPORT:E_COMPOSER_REACQUIRE:E_COMPOSER_NOT_EDITABLE')
+    assert m.retryable_transport_reason(e)=='E_COMPOSER_REACQUIRE'
+    state={'author_attempt':1,'review_attempt':0,'subject_attempt':0,'stage':'NEED_AUTHOR','history':[]}
+    retry=m.record_transport_retry(state,stage='NEED_AUTHOR',request_id='R01',lane='AUTHOR',reason='E_COMPOSER_REACQUIRE')
+    assert retry=={'retryable':True,'attempt':2,'stage':'NEED_AUTHOR'}
+    assert state['history'][-1]['event']=='TRANSPORT_COMPOSER_REACQUIRE'

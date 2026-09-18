@@ -60,3 +60,10 @@ test('composer recovery clears only a stale internal cognition draft before rest
   assert.match(text,/E_STALE_COGNITION_DRAFT_CLEAR/);
   assert.match(text,/stale_cognition_draft_cleared/);
 });
+
+test('composer reacquire performs one bounded pre-submit reload before failing',()=>{
+  const text=fs.readFileSync(new URL('../../company/browser/linux/cognition_roundtrip_core.mjs',import.meta.url),'utf8');
+  assert.match(text,/allowReload=true/);
+  assert.match(text,/await page\.reload\(\{waitUntil:'domcontentloaded',timeout:60000\}\)/);
+  assert.match(text,/stagePrompt\(page,fullPrompt,marker,attempts,false\)/);
+});

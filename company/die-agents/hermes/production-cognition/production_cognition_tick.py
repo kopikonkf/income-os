@@ -185,7 +185,7 @@ def run_or_reuse_transport(node:str,transport:Path,reqp:Path,resp:Path,req:dict[
 
 def retryable_transport_reason(error:Exception)->str|None:
  text=str(error)
- for reason in ('E_RESPONSE_TIMEOUT','E_REQUEST_EXPIRED'):
+ for reason in ('E_RESPONSE_TIMEOUT','E_REQUEST_EXPIRED','E_COMPOSER_REACQUIRE'):
   if f'E_TRANSPORT:{reason}' in text:return reason
  return None
 
@@ -193,8 +193,8 @@ def is_response_timeout_error(error:Exception)->bool:
  return retryable_transport_reason(error)=='E_RESPONSE_TIMEOUT'
 
 def record_transport_retry(state:dict[str,Any],*,stage:str,request_id:str,lane:str,reason:str)->dict[str,Any]:
- if reason not in {'E_RESPONSE_TIMEOUT','E_REQUEST_EXPIRED','E_RESPONSE_MALFORMED'}:raise RuntimeError('E_TRANSPORT_RETRY_REASON')
- event={'E_RESPONSE_TIMEOUT':'TRANSPORT_RESPONSE_TIMEOUT','E_REQUEST_EXPIRED':'TRANSPORT_REQUEST_EXPIRED','E_RESPONSE_MALFORMED':'TRANSPORT_RESPONSE_MALFORMED'}[reason]
+ if reason not in {'E_RESPONSE_TIMEOUT','E_REQUEST_EXPIRED','E_RESPONSE_MALFORMED','E_COMPOSER_REACQUIRE'}:raise RuntimeError('E_TRANSPORT_RETRY_REASON')
+ event={'E_RESPONSE_TIMEOUT':'TRANSPORT_RESPONSE_TIMEOUT','E_REQUEST_EXPIRED':'TRANSPORT_REQUEST_EXPIRED','E_RESPONSE_MALFORMED':'TRANSPORT_RESPONSE_MALFORMED','E_COMPOSER_REACQUIRE':'TRANSPORT_COMPOSER_REACQUIRE'}[reason]
  if lane=='AUTHOR':
   n=int(state.get('author_attempt',0))+1;state['author_attempt']=n
   retryable=n<MAX_SEMANTIC_ATTEMPTS;state['stage']=stage if retryable else 'WAITING_FOUNDER'
