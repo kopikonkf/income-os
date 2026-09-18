@@ -16,9 +16,10 @@ class FakeClient:
 
 
 class FakeWorker:
-    def __init__(self, courier):
+    def __init__(self, courier, market_buyer_intent_state="MEDIUM"):
         self.courier = courier
         self.calls = []
+        self.market_buyer_intent_state = market_buyer_intent_state
 
     def _resolve_inputs(self, card):
         out = []
@@ -85,7 +86,7 @@ class FakeWorker:
             payload = {
                 "selected_problem_seed_id": pid,
                 "pain_observation": {"severity": "MEDIUM", "frequency": "HIGH", "urgency": "MEDIUM"},
-                "buyer_intent_state": "MEDIUM",
+                "buyer_intent_state": self.market_buyer_intent_state,
                 "productability_state": "HIGH",
                 "productability_source_ids": [pain_id],
                 "evidence": [
@@ -282,6 +283,32 @@ class LiveOrgRunnerTests(unittest.TestCase):
             self.assertTrue((root / "founder-qc" / product["product_id"] / "run-summary.json").is_file())
             self.assertIn("H03-WC-LIVE001-G-SYNTH", worker.calls)
             self.assertIn("H03-WC-LIVE001-K-REVIEW", worker.calls)
+
+    def test_research_more_becomes_structured_honest_stop(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            courier = artifact_courier.ArtifactCourier(root / "artifacts")
+            client = FakeClient()
+            worker = FakeWorker(courier, market_buyer_intent_state="WEAK")
+            result = mod.run_live_org(
+                artifact_root=root / "artifacts",
+                output_root=root / "products",
+                founder_qc_root=root / "founder-qc",
+                source_verifier=fake_source_verifier,
+                courier=courier,
+                client=client,
+                worker=worker,
+            )
+            self.assertEqual(result["status"], "HONEST_STOP_RESEARCH_MORE")
+            self.assertEqual(result["terminal_gate"], "WORTH_MAKING")
+            self.assertEqual(result["worth_making"]["decision"], "RESEARCH_MORE")
+            self.assertIn("BUYER_INTENT_WEAK", result["reason_codes"])
+            self.assertIsNone(result["product"])
+            self.assertIsNone(result["independent_review"])
+            self.assertFalse(result["external_publication"])
+            self.assertFalse(result["spend_authorized"])
+            self.assertNotIn("H03-WC-LIVE001-D1-SCOUT", worker.calls)
+            self.assertTrue((root / "artifacts" / "runs" / "LIVE-ORG-001" / "artifacts" / "LIVE001-RUN-SUMMARY.json").is_file())
 
     def test_market_evaluation_requires_paid_or_marketplace_signal(self):
         bundle = fake_source_verifier(

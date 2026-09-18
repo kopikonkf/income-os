@@ -899,6 +899,49 @@ def _copy_founder_qc_package(
     return dst
 
 
+def _commit_live_honest_stop(
+    *,
+    courier: artifact_courier.ArtifactCourier,
+    client: Any,
+    status: str,
+    terminal_gate: str,
+    reason_codes: list[str],
+    selected_seed: dict[str, Any] | None = None,
+    market_evaluation: dict[str, Any] | None = None,
+    demand_packet: dict[str, Any] | None = None,
+    worth: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    summary = {
+        "schema_version": RUN_SCHEMA,
+        "holding_id": "H03",
+        "task_id": TASK_ID,
+        "run_id": RUN_ID,
+        "status": status,
+        "terminal_gate": terminal_gate,
+        "execution_mode": EXECUTION_MODE,
+        "opportunity_question": OPPORTUNITY_QUESTION,
+        "reason_codes": list(reason_codes),
+        "selected_problem_seed": copy.deepcopy(selected_seed),
+        "market_evaluation": copy.deepcopy(market_evaluation),
+        "demand": copy.deepcopy(demand_packet),
+        "worth_making": copy.deepcopy(worth),
+        "product": None,
+        "independent_review": None,
+        "external_publication": False,
+        "paid_ads": False,
+        "spend_authorized": False,
+        "founder_publication_gate_crossed": False,
+    }
+    summary_ref, summary, _ = _ensure_local_artifact(
+        courier=courier, client=client,
+        artifact_id="LIVE001-RUN-SUMMARY", kind="live_organism_run_summary",
+        declared_schema=RUN_SCHEMA, stage_id="L00-SUMMARY", queue="L-run-summary",
+        builder=lambda: summary,
+    )
+    summary["summary_artifact_ref"] = summary_ref
+    return summary
+
+
 def run_live_org(
     *,
     artifact_root: Path,
@@ -1097,7 +1140,13 @@ def run_live_org(
     )
     market_eval = courier.resolve(market_eval_result["output_artifacts"][0])
     if market_eval.get("selected_problem_seed_id") is None:
-        raise RuntimeError("LIVE_ORG_NO_MAKE_CANDIDATE:" + market_eval["no_make_reason"])
+        return _commit_live_honest_stop(
+            courier=courier, client=client,
+            status="HONEST_STOP_NO_MAKE_CANDIDATE",
+            terminal_gate="MARKET_EVIDENCE",
+            reason_codes=[market_eval["no_make_reason"]],
+            market_evaluation=market_eval,
+        )
     selected_seed = next(s for s in seed_batch["candidates"] if s["problem_seed_id"] == market_eval["selected_problem_seed_id"])
 
     demand_ref, demand_packet, _ = _ensure_local_artifact(
@@ -1113,7 +1162,16 @@ def run_live_org(
         builder=lambda: build_demand_and_worth(seed=selected_seed, market_evaluation=market_eval, source_bundle=market_sources)[1],
     )
     if worth["decision"] != "MAKE":
-        raise RuntimeError(f"LIVE_ORG_WORTH_MAKING_STOP:{worth['decision']}:{','.join(worth['reason_codes'])}")
+        return _commit_live_honest_stop(
+            courier=courier, client=client,
+            status=f"HONEST_STOP_{worth['decision']}",
+            terminal_gate="WORTH_MAKING",
+            reason_codes=list(worth["reason_codes"]),
+            selected_seed=selected_seed,
+            market_evaluation=market_eval,
+            demand_packet=demand_packet,
+            worth=worth,
+        )
 
     selected_seed_ref, _, _ = _ensure_local_artifact(
         courier=courier, client=client,
