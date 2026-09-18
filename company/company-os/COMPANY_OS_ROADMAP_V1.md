@@ -99,16 +99,13 @@ Lane B — DIE Linux session
 H01/Linux migration and factory engineering using existing canonical graphs
 
 Lane C — Mission Control runtime
-MC-008J unattended soak; observation only unless invariant violation requires governed recovery
+MC-008J is accepted DONE/PASS; continue from the current Mission Control canonical graph and accepted runtime gates
 ```
 
 Remote publication remains serialized by the shared `income-os.repo-write` engineering lease. Parallel work means disjoint implementation and cognition, not simultaneous uncontrolled writes to `origin/main`.
 
 ## Immediate frontier
 
-1. `COS-001` — 21-day Windows host-exit dependency/survivability map.
-2. `COS-002` — operational control-plane authority reconciliation.
-3. `COS-003` — Aether-DIE constitutional bridge contract.
+`COS-001`, `COS-002`, `COS-003`, and `OPS-002` are now DONE. MC-008J and MC-009D are also accepted on the Mission Control side.
 
-These three are deliberately parallelizable and do not require changing Aether, spending money, or disturbing MC-008J.
-
+There is currently no Company-OS `READY` node. The highest-priority blocked node is `COS-004` (Mission Control constitutional promotion implementation), and its remaining non-mechanical gate is Founder ratification of the exact COS-002 packet. Until that ratification exists, no constitutional authority transfer is implied by runtime evidence.
