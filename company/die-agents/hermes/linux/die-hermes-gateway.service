@@ -21,6 +21,8 @@ Environment=DIE_OPERATOR_V2_SOURCE_ROOT=/opt/die/staging/income-os
 Environment=TERMINAL_CWD=/srv/die/company/die-agents/hermes
 Environment=HERMES_HOME_MODE=0770
 ExecStart=/opt/die/hermes/venv/bin/hermes gateway run
+ExecStartPost=/usr/local/bin/die-founder-fs-runtime-normalize
+ExecStopPost=/usr/local/bin/die-founder-fs-runtime-normalize
 Restart=on-failure
 RestartSec=5
 TimeoutStopSec=45

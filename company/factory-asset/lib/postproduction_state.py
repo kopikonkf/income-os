@@ -28,6 +28,7 @@ def _atomic_write(path:Path,value:dict[str,Any])->None:
         payload=json.dumps(value,sort_keys=True,indent=2,ensure_ascii=False)+'\n'
         with tmp.open('w',encoding='utf-8',newline='\n') as f:
             f.write(payload);f.flush();os.fsync(f.fileno())
+        os.chmod(tmp,0o640)
         os.replace(tmp,path)
     finally: tmp.unlink(missing_ok=True)
 

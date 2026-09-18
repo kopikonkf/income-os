@@ -181,6 +181,7 @@ def postprocess_raster_workspace(*,workspace:Path,source_path:Path,provider_id:s
             rec=raster.render_raster_derivative(active,out,_recipe(row,facts))
         q=derivqa.inspect_derivative(out,expected_format=row['format'],expected_dimensions=(facts['width_px'],facts['height_px']),expected_alpha='ABSENT' if row['format']=='JPEG' else 'ANY',expected_sha256=rec['output']['sha256'])
         if q['result']!='PASS':raise FactoryOrchestrationError('DERIVATIVE_QA_FAILED',row['derivative_id'])
+        make_founder_readable(out)
         evidence.append({'derivative_id':row['derivative_id'],'format':row['format'],'purpose':row['purpose'],'sha256':q['sha256'],'qa_sha256':q['sha256'],'sha256_verified':True,'master_sha256':facts['sha256'],'qa_result':'PASS','path':str(out),'qa':q})
     provenance={'source_class':'GENERATIVE_AI','ai_generated':True,'ai_disclosure':'GENERATIVE_AI'}
     provisional_meta=ready.build_metadata(blueprint=bp,master_sha256=facts['sha256'],derivative_hashes=evidence,provenance=provenance)
@@ -192,6 +193,7 @@ def postprocess_raster_workspace(*,workspace:Path,source_path:Path,provider_id:s
         if br['result']=='PASS':
             q=derivqa.inspect_derivative(target,expected_format=ev['format'],expected_dimensions=(facts['width_px'],facts['height_px']),expected_alpha='ABSENT' if ev['format']=='JPEG' else 'ANY',expected_sha256=br['output_sha256'])
             if q['result']!='PASS':raise FactoryOrchestrationError('BINARY_METADATA_DERIVATIVE_QA_FAILED',ev['derivative_id'])
+            make_founder_readable(target)
             ev.update({'sha256':q['sha256'],'qa_sha256':q['sha256'],'sha256_verified':True,'qa_result':'PASS','path':str(target),'qa':q,'binary_metadata_injected':True,'binary_metadata_readback':'PASS'})
         else:
             ev.update({'binary_metadata_injected':False,'binary_metadata_readback':'SIDECAR_ONLY'})
