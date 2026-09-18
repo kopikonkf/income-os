@@ -104,5 +104,14 @@
     "submission_authorized": false,
     "publication_authorized": false,
     "spend_usd": 0
+  },
+  "scheduler_verification": {
+    "job_id": "6c1d9f5c504e",
+    "direct_execution": "762400ca53f3432fa1d046e87fbe3c58",
+    "status": "completed",
+    "output_status": "IDLE",
+    "reason": "COMMITTED_UNRESOLVED",
+    "provider_call_performed": false,
+    "provider_attempt_count": 1
   }
 }

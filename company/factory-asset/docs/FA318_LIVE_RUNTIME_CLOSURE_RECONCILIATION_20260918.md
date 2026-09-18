@@ -89,3 +89,5 @@ The workspace still contains exactly one provider attempt.
 ## Current frontier
 
 The dependency-closure incident is resolved. The remaining blocker for `PRODSEED000138` is external/manual reconciliation of the already-committed Duck.ai request. Automatic resubmission is forbidden. If the Founder clears the human challenge, reconciliation should inspect the existing committed request/output and acquire it if present; it must not send the generation prompt a second time.
+
+Scheduler-path verification: direct Hermes execution `762400ca53f3432fa1d046e87fbe3c58` completed and emitted `IDLE / COMMITTED_UNRESOLVED` with `provider_call_performed=false`; provider attempt count remained one.
