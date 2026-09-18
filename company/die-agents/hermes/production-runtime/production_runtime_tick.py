@@ -171,6 +171,14 @@ def upscale_and_park(w:Path,provider_id:str|None=None)->dict:
  return result
 
 
+def committed_unresolved_state(w:Path)->dict|None:
+ p=w/'provider'/'multi-cluster-dispatch.receipt.json'
+ if not p.is_file():return None
+ try:r=json.loads(p.read_text())
+ except Exception:return None
+ if r.get('status')!='FAILED' or r.get('dispatch_committed') is not True:return None
+ return {'status':'IDLE','reason':'COMMITTED_UNRESOLVED','heartbeat':'PRODUCTION_RUNTIME_IDLE','observed_at':now(),'provider_call_performed':False,'task_id':w.name,'provider_id':r.get('provider_id'),'failure_code':r.get('failure_code'),'retry_allowed':False,'next_action':'FOUNDER_RECONCILIATION_REQUIRED_NO_AUTOMATIC_REDISPATCH'}
+
 def tick()->dict:
  if EXCLUSIVE_HOLD.is_file():
   try: hold=json.loads(EXCLUSIVE_HOLD.read_text())
@@ -192,7 +200,10 @@ def tick()->dict:
  if a['status']!='CONTINUE_ACTIVE_CARD':return {'status':'IDLE','reason':a['status'],'heartbeat':'PRODUCTION_RUNTIME_IDLE','observed_at':now(),'provider_call_performed':False,'parked_card_count':a.get('parked_card_count',0)}
  c=a['active_card'];w=Path(c['workspace']);state=c['state']
  if state=='BLUEPRINT_REQUIRED':return {'status':'IDLE','reason':'WAITING_COGNITION','heartbeat':'PRODUCTION_RUNTIME_IDLE','observed_at':now(),'provider_call_performed':False,'task_id':w.name}
- if state=='BLUEPRINT_READY':return generate(w)
+ if state=='BLUEPRINT_READY':
+  unresolved=committed_unresolved_state(w)
+  if unresolved:return unresolved
+  return generate(w)
  if state in {'ARTIFACT_CREATED','MASTER_VALIDATED','UPSCALE_DECIDED','DERIVATIVES_READY','TECHNICAL_QA_PASS','RIGHTS_SIGNAL_PASS_OR_REVIEW','METADATA_READY','PACKAGE_READY','POSTPROCESSING'}:return upscale_and_park(w)
  return {'status':'IDLE','reason':'UNHANDLED_STATE','state':state,'heartbeat':'PRODUCTION_RUNTIME_IDLE','observed_at':now(),'provider_call_performed':False,'task_id':w.name}
 

@@ -1,0 +1,117 @@
+{
+  "schema": "die.factory-asset.fa318-live-runtime-closure-reconciliation.v1",
+  "task_id": "FA-318",
+  "status": "PASS_CLOSURE_COMMITTED_UNRESOLVED_PROVIDER",
+  "reconciled_at": "2026-09-18",
+  "live_repo": "/srv/die",
+  "rollback_ref": "/var/lib/die/rollback/FA-318-runtime-closure/20260918T073922Z",
+  "scope": {
+    "current_card": "PRODSEED000138",
+    "compensating_seed_created": false,
+    "semantic_asset_duplicate_created": false,
+    "provider_resubmit_performed": false
+  },
+  "closure": {
+    "deployed_exact_from_origin_main": [
+      "company/die-agents/hermes/production-cognition/die.production.cognition-receipt.v1.schema.json",
+      "company/die-agents/hermes/production-cognition/production_cognition_tick.py",
+      "company/die-agents/hermes/production-cognition/validate_production_cognition.py",
+      "company/factory-asset/contracts/production-prompt-policy.v1.json",
+      "company/factory-asset/lib/pre_generation_contract.py",
+      "company/factory-asset/lib/production_prompt_compiler.py",
+      "company/factory-asset/registries/production-presets.v1.json",
+      "company/factory-asset/schemas/production-preset-registry.schema.json",
+      "company/factory-asset/schemas/subject-spec.v1.schema.json",
+      "company/factory-asset/schemas/visual-requirement-spec.v1.schema.json",
+      "company/factory-asset/schemas/compiled-provider-prompt.v1.schema.json"
+    ],
+    "already_canonical_live": [
+      "company/die-agents/hermes/production-runtime/factory_orchestration_v2.py",
+      "company/factory-asset/bin/production_multi_cluster_dispatch.mjs",
+      "company/factory-asset/lib/asset_expression_plan.py",
+      "company/factory-asset/lib/blueprint_compiler.py",
+      "company/factory-asset/lib/semantic_producer_router.py",
+      "company/factory-asset/schemas/asset-expression-plan.schema.json",
+      "company/factory-asset/schemas/asset-blueprint-v2.schema.json",
+      "company/factory-asset/schemas/asset-type-registry.schema.json"
+    ],
+    "deliberately_not_overwritten": [
+      {
+        "path": "company/die-agents/hermes/production-runtime/production_runtime_tick.py",
+        "reason": "live file contains later selective-runtime history; only committed-unresolved guard was patched minimally instead of replacing it with canonical expression-ledger evolution"
+      }
+    ]
+  },
+  "preflight": {
+    "prompt_policy_schema": "PASS",
+    "preset_registry_schema": "PASS",
+    "preset_count": 2,
+    "factory_orchestration_import": "PASS_WITH_FACTORY_VENV",
+    "legacy_resume_isolated_copy": "PASS",
+    "current_card_cognition_ready_no_resume": "PASS",
+    "provider_calls_during_preflight": 0
+  },
+  "live_replay": {
+    "task_id": "PRODSEED000138",
+    "provider_id": "duckai",
+    "runtime": "V1 Runtime 02",
+    "cluster_id": "cluster-b",
+    "provider_attempt": 1,
+    "dispatch_committed": true,
+    "commit_id": "206443d06d6195bd0e408c3700858d8e5ad085c1031371d963325569a9649206",
+    "failure_code": "CHECKPOINT",
+    "provider_error": "E_HUMAN_CHALLENGE_REQUIRED",
+    "retry_allowed": false,
+    "provider_original_acquired": false,
+    "postproduction_started": false,
+    "browser_runtime_terminal": "COLD",
+    "browser_close_graceful": true,
+    "forced_process_cleanup": false,
+    "debug_endpoint_closed": true,
+    "control_endpoint_closed": true,
+    "profile_process_gone": true,
+    "lease_released": true
+  },
+  "exactly_once_guard": {
+    "canonical_patch": "company/die-agents/hermes/production-runtime/production_runtime_tick.py",
+    "focused_regression": "PASS 22/22",
+    "live_direct_tick_result": {
+      "status": "IDLE",
+      "reason": "COMMITTED_UNRESOLVED",
+      "provider_call_performed": false,
+      "retry_allowed": false,
+      "provider_id": "duckai",
+      "failure_code": "CHECKPOINT"
+    },
+    "provider_attempt_count_after_guard": 1,
+    "next_action": "FOUNDER_RECONCILIATION_REQUIRED_NO_AUTOMATIC_REDISPATCH"
+  },
+  "cognition_health": {
+    "latest_builtin_runs": [
+      "49c49491a7974c05aa5a92ba4ac199ee",
+      "c9066338f2de472882eac25b571b4d0d",
+      "4210a83f37cf4d0a8ef1f7e99911f825",
+      "3653c8b8b12a4708a5f7d4a7650952b",
+      "e5aa1c3a85a448678817ac489763cf6d"
+    ],
+    "status": "completed"
+  },
+  "security_and_authority": {
+    "credential_values_read": false,
+    "cookies_or_tokens_read": false,
+    "captcha_bypass_attempted": false,
+    "provider_prompt_redispatched": false,
+    "submission_authorized": false,
+    "publication_authorized": false,
+    "spend_usd": 0
+  },
+  "scheduler_verification": {
+    "job_id": "6c1d9f5c504e",
+    "direct_execution": "762400ca53f3432fa1d046e87fbe3c58",
+    "status": "completed",
+    "output_status": "IDLE",
+    "reason": "COMMITTED_UNRESOLVED",
+    "provider_call_performed": false,
+    "provider_attempt_count": 1
+  }
+}
