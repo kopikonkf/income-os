@@ -22,6 +22,7 @@ raster=_load('fa139_raster','raster_derivative.py')
 derivqa=_load('fa139_dqa','derivative_qa.py')
 rights=_load('fa139_rights','rights_signal_gate.py')
 ready=_load('fa139_ready','package_readiness.py')
+handoff=_load('fa_handoff','media_rights_handoff.py')
 state=_load('fa139_state','postproduction_state.py')
 bmeta=_load('fa141_binary_metadata','binary_metadata.py')
 pregen=_load('fa318_pregen','pre_generation_contract.py')
@@ -230,6 +231,15 @@ def postprocess_raster_workspace(*,workspace:Path,source_path:Path,provider_id:s
     make_founder_readable(alias)
     final_manifest={'schema':'die.production.final-artifact.v2','task_id':workspace.name,'seed_noun':bp['semantic_identity']['subject'],'semantic_asset_id':sid,'blueprint_id':bp['blueprint_id'],'source_master_sha256':d['source_master_sha256'],'active_master_sha256':d['active_master_sha256'],'listing_filename':alias.name,'listing_path':str(alias),'listing_sha256':sha(alias),'metadata_ref':str(root/'metadata.json'),'submission_fields_ref':str(root/'submission-fields.json'),'binary_metadata_injected':meta['binary_metadata_injected'],'package_plan_sha256':pkg['package_plan']['package_plan_sha256'],'founder_qc':'PENDING','submission_authorized':False,'publication_authorized':False}
     atomic_json(final/'final-artifact.json',final_manifest)
+    auth_path=workspace/'rights-authorization.json'
+    try:
+        hm=handoff.build_handoff(workspace=workspace,package_readiness=pkg,rights_signal=rs,final_manifest=final_manifest,delivery_evidence=delivery,rights_authorization_path=auth_path if auth_path.is_file() else None)
+        ho=handoff.emit_outbox(workspace=workspace,manifest=hm)
+        hd=handoff.deliver_outbox(hm)
+        handoff_result={'schema':'die.production.media-rights-handoff-result.v1','state':hd['state'],'manifest':hm,'outbox':ho,'delivery':hd}
+    except Exception as exc:
+        handoff_result={'schema':'die.production.media-rights-handoff-result.v1','state':'BLOCKED','error_code':getattr(exc,'code',type(exc).__name__),'error':str(exc)}
+    atomic_json(root/'media-rights-handoff-result.json',handoff_result)
     d=state.advance(sm_path,target_state='WAITING_FOUNDER_QC',evidence={'founder_qc_required':True,'human_rights_clearance':False,'package_plan_sha256':pkg['package_plan']['package_plan_sha256']},event_id='FOUNDER-'+pkg['package_plan']['package_plan_sha256'][:16],expected_revision=d['revision'])
     telegram_event(workspace,'WAITING_FOUNDER_QC',{'seed':bp['semantic_identity']['subject'],'filename':alias.name,'sha256':sha(alias)[:12]+'...','state':d['state']},send_fn)
-    return {'status':'WAITING_FOUNDER_QC','task_id':workspace.name,'listing_path':str(alias),'metadata':str(root/'metadata.json'),'submission_fields':str(root/'submission-fields.json'),'state_path':str(sm_path)}
+    return {'status':'WAITING_FOUNDER_QC','task_id':workspace.name,'listing_path':str(alias),'metadata':str(root/'metadata.json'),'submission_fields':str(root/'submission-fields.json'),'state_path':str(sm_path),'media_rights_handoff':handoff_result}
