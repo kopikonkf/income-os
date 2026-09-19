@@ -65,3 +65,7 @@ V2 one queued item:
 
 ## Current deployment boundary
 The H01 dedicated browser requires a one-time manual NEXABOT login in Workspace 4. The Windows Office session is deliberately not copied.
+
+## Mass prompt authority gate
+
+Any batch above 100 rows requires both the runtime PRODUCTION_ARMED marker and per-row prompt_authority=TYPED_VISUAL_CONTRACT_V1 with a matching prompt SHA-256. Canary fallback prompts are intentionally ineligible for mass production.

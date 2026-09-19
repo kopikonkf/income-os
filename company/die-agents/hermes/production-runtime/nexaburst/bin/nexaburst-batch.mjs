@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 
 const argv=process.argv.slice(2);
@@ -27,6 +28,14 @@ if(rows.length>100 && !fs.existsSync(armFile)){
   console.error(JSON.stringify({status:'BLOCKED',code:'E_PRODUCTION_NOT_ARMED',rows:rows.length,required_marker:armFile}));
   process.exit(75);
 }
+if(rows.length>100){
+  const sha=s=>crypto.createHash('sha256').update(String(s),'utf8').digest('hex');
+  const bad=rows.find(r=>r.prompt_authority!=='TYPED_VISUAL_CONTRACT_V1' || !r.prompt || !r.prompt_sha256 || sha(r.prompt)!==r.prompt_sha256);
+  if(bad){
+    console.error(JSON.stringify({status:'BLOCKED',code:'E_TYPED_PROMPT_REQUIRED',asset_id:bad.asset_id||null,required_authority:'TYPED_VISUAL_CONTRACT_V1'}));
+    process.exit(76);
+  }
+}
 fs.mkdirSync(path.dirname(batchLedger),{recursive:true});
 let ok=0,fail=0,skip=0;
 for(let i=0;i<rows.length;i++){
@@ -37,6 +46,8 @@ for(let i=0;i<rows.length;i++){
   if(already){skip++;console.error(`NEXABURST_BATCH_SKIP ${i+1}/${rows.length} asset=${assetId}`);continue}
   const args=['--noun',noun,'--style',st,'--asset-id',assetId,'--aspect',String(r.aspect||aspect)];
   if(r.prompt)args.push('--prompt',r.prompt);
+  if(r.prompt_authority)args.push('--prompt-authority',r.prompt_authority);
+  if(r.compiled_contract_sha256)args.push('--compiled-contract-sha256',r.compiled_contract_sha256);
   console.error(`NEXABURST_BATCH_RUN ${i+1}/${rows.length} asset=${assetId}`);
   const cp=spawnSync('node',[adapter,...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']});
   if(cp.stderr)process.stderr.write(cp.stderr);

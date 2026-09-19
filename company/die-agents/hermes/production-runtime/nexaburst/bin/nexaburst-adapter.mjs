@@ -105,6 +105,8 @@ async function main(){
   const noun=args.noun||'ceramic mug';
   const style=args.style||'isolated-object';
   const prompt=args.prompt||buildPrompt(noun,style);
+  const promptAuthority=args['prompt-authority']||'NEXABURST_CANARY_TEMPLATE_V0';
+  const compiledContractSha256=args['compiled-contract-sha256']||null;
   const aspect=Number(args.aspect||1);
   const assetId=args['asset-id']||`OBJ-${slug(noun)}-${slug(style)}-${Date.now()}`;
   const promptSha=sha256(Buffer.from(prompt));
@@ -172,7 +174,7 @@ async function main(){
   const receipt={
     schema:'die.h01.nexaburst.generation-receipt.v1',
     engine_id:cfg.engine_id,profile_id:cfg.profile_id,transport:'WEB_SESSION_INTERNAL_JOB_API',
-    billing:'UNLIMITED',asset_id:assetId,noun,style,prompt,prompt_sha256:promptSha,aspect,
+    billing:'UNLIMITED',asset_id:assetId,noun,style,prompt,prompt_sha256:promptSha,prompt_authority:promptAuthority,compiled_contract_sha256:compiledContractSha256,aspect,
     job_id:jobId,submit:{mode_type:submit.mode_type,est_seconds:submit.est_seconds},
     result:{status:'DONE',provider_progress:lastProgress,source_path:out,sha256:digest,bytes:bytes.length,mime:dl.mime,format:info.format,width:info.width,height:info.height},
     timing:{started_at:new Date(started).toISOString(),finished_at:iso(),elapsed_ms:Date.now()-started},
