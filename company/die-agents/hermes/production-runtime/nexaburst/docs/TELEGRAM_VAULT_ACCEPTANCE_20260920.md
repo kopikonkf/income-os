@@ -38,7 +38,7 @@ Asset: NB-CANARY-001
 - Download-back SHA-256: 0e7a1a0ab1081f12ecd4dca58de56670fdda5a234e6e86bc8ec1c216acef6d0e
 - Result: BACKUP_VERIFIED
 
-The archive was uploaded, fetched again through Telegram getFile, downloaded to H01, rehashed, and accepted only after exact SHA-256 equality.
+The archive was uploaded, fetched again through Telegram getFile, streamed through SHA-256 in 1 MiB chunks without creating a restore file, and accepted only after exact byte-count and SHA-256 equality.
 
 ## Idempotency / scheduling
 
@@ -67,4 +67,4 @@ An archive above the restore-verification ceiling is not labeled BACKUP_VERIFIED
 
 ## Local retention
 
-Vault v1 never deletes the local source, workspace, or archive. Retention/eviction is outside this acceptance scope.
+Vault v1 never deletes the local source/raw/workspace. The local ZIP is transient staging and is deleted only after the durable BACKUP_VERIFIED receipt and ledger entry exist. Startup cleanup removes verified staging ZIPs left behind by a crash. In the canary, archives usage dropped from ~4.7 MiB to ~4 KiB while the 5.7 MiB workspace and provider raw remained present.

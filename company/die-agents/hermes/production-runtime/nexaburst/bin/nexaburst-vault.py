@@ -177,13 +177,17 @@ def upload_and_verify(archive,info):
     if not gf.get('ok'): raise RuntimeError('E_VAULT_GETFILE:'+str(gf.get('description')))
     remote=(gf.get('result') or {}).get('file_path')
     if not remote: raise RuntimeError('E_VAULT_REMOTE_PATH')
-    RESTORES.mkdir(parents=True,exist_ok=True)
-    restored=RESTORES/(archive.name+'.restore-canary')
+    h=hashlib.sha256()
+    downloaded=0
     with urllib.request.urlopen(f'https://api.telegram.org/file/bot{token}/{remote}',timeout=120) as r:
-        restored.write_bytes(r.read())
-    restored_sha=sha256_path(restored)
+        while True:
+            chunk=r.read(1024*1024)
+            if not chunk: break
+            h.update(chunk)
+            downloaded += len(chunk)
+    restored_sha=h.hexdigest()
+    if downloaded!=size: raise RuntimeError(f'E_VAULT_RESTORE_SIZE:{downloaded}:{size}')
     if restored_sha!=archive_sha: raise RuntimeError(f'E_VAULT_RESTORE_HASH:{restored_sha}')
-    restored.unlink(missing_ok=True)
     return {
       'schema':'die.h01.nexaburst.telegram-vault-receipt.v1',
       'status':'BACKUP_VERIFIED','asset_id':info['result']['asset_id'],
@@ -193,7 +197,9 @@ def upload_and_verify(archive,info):
       'telegram_chat_id':chat,'telegram_thread_id':thread,
       'telegram_message_id':msg.get('message_id'),'telegram_file_id':file_id,
       'telegram_file_unique_id':doc.get('file_unique_id'),
-      'restore_sha256':restored_sha,
+      'restore_sha256':restored_sha,'restore_bytes':downloaded,
+      'verification_mode':'STREAM_SHA256_NO_TEMP_FILE',
+      'local_archive_policy':'DELETE_AFTER_VERIFIED_LEDGER',
       'verified_at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime())
     }
 
@@ -211,7 +217,28 @@ def process(ws,dry_run=False):
     RECEIPTS.mkdir(parents=True,exist_ok=True)
     atomic(RECEIPTS/f'{receipt["asset_id"]}__{receipt["archive_sha256"][:12]}.json',receipt)
     append(DONE,receipt)
+    archive.unlink(missing_ok=True)
     return receipt
+
+
+def cleanup_verified_archives():
+    if not DONE.is_file(): return 0
+    removed=0
+    for line in DONE.read_text(encoding='utf-8').splitlines():
+        try: row=json.loads(line)
+        except Exception: continue
+        if row.get('status')!='BACKUP_VERIFIED': continue
+        raw=row.get('archive_path')
+        if not raw: continue
+        p=Path(raw)
+        try:
+            p.resolve().relative_to(ARCHIVES.resolve())
+        except Exception:
+            continue
+        if p.is_file():
+            p.unlink()
+            removed += 1
+    return removed
 
 def candidates(asset_id=None):
     if asset_id:
@@ -246,6 +273,7 @@ def main():
         try: fcntl.flock(lf,fcntl.LOCK_EX|fcntl.LOCK_NB)
         except BlockingIOError:
             print(json.dumps({'status':'SKIP','reason':'vault_lock_busy'})); return 0
+        cleanup_verified_archives()
         rows=candidates(args.asset_id)
         if not rows:
             print(json.dumps({'status':'IDLE'})); return 0
