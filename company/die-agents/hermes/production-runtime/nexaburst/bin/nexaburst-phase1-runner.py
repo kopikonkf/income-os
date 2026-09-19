@@ -16,6 +16,19 @@ PROGRESS=STATE/'phase1-progress.json'
 DONE_MARK=STATE/'phase1-first100-raw-complete.json'
 LANE='WC-L0'
 PRESET='ISOLATED_SOFT_WATERCOLOR_CLIPART_WHITE_L0'
+TYPED_CACHE=SESSION/'config'/'market-canary-100-wave3pass-watercolor-typed.jsonl'
+
+
+def typed_cache():
+    out={}
+    if TYPED_CACHE.is_file():
+        for line in TYPED_CACHE.read_text(encoding='utf-8').splitlines():
+            if not line.strip(): continue
+            try:
+                row=json.loads(line); out[str(row.get('candidate_id'))]=row
+            except Exception: pass
+    return out
+TYPED=typed_cache()
 
 def run(cmd,timeout=300):
     return subprocess.run(cmd,text=True,capture_output=True,timeout=timeout,check=False)
@@ -70,6 +83,10 @@ def parse_adapter_error(cp):
     return text[-600:].strip() or f'exit={cp.returncode}'
 
 def compile_prompt(row):
+    cached=TYPED.get(str(row['candidate_id']))
+    if cached:
+        if cached.get('prompt_authority')!='TYPED_VISUAL_CONTRACT_V1': raise RuntimeError('E_TYPED_CACHE_AUTHORITY')
+        return cached
     asset='NBWC-'+str(row['candidate_id']).replace('CAND-','C')
     cp=run([str(COMPILER),'--noun',row['canonical_name'],'--candidate-id',str(row['candidate_id']),
             '--suitability',row.get('suitability') or 'lexname=noun.artifact',
