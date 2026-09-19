@@ -81,7 +81,6 @@ def main():
     ap=argparse.ArgumentParser(); ap.add_argument('--max-success',type=int,default=100); ap.add_argument('--max-priority',type=int,default=999)
     args=ap.parse_args()
     successes=0
-    clear_pause()
     notify('PHASE1_PROGRESS','Watercolor Phase-1 acquisition started. Window: first 100 strict Wave3-pass/no-IP nouns.')
     while successes < args.max_success:
         h=health()

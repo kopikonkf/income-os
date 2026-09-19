@@ -47,30 +47,28 @@ if [[ -f "$PIDFILE" ]]; then
   if [[ -n "$PID" ]] && kill -0 "$PID" 2>/dev/null; then exit 0; fi
 fi
 
-# Respect retry backoff pause. Other pauses require the preflight below to recover.
+# Durable pause semantics. Only objectively recovered conditions auto-clear.
 if [[ -f "$PAUSE" ]]; then
-  read -r CODE RESUME < <(python3 - "$PAUSE" <<'PY'
-import json,sys
-try:
- d=json.load(open(sys.argv[1]));print(d.get('code',''),d.get('resume_after_epoch') or 0)
-except: print('',0)
-PY
-)
-  if [[ "$CODE" == "RETRY_BACKOFF" ]] && (( $(date +%s) < RESUME )); then exit 0; fi
+  CODE=$(python3 -c "import json; print(json.load(open('$PAUSE')).get('code',''))" 2>/dev/null || echo UNKNOWN)
+  RESUME=$(python3 -c "import json; print(json.load(open('$PAUSE')).get('resume_after_epoch') or 0)" 2>/dev/null || echo 0)
+  case "$CODE" in
+    RETRY_BACKOFF)
+      if (( $(date +%s) >= RESUME )); then rm -f "$PAUSE"; else exit 0; fi ;;
+    AUTH_REQUIRED|UNLIMITED_INACTIVE|PROVIDER_GATE|BROWSER_UNAVAILABLE)
+      H=$(node "$SESSION/bin/nexaburst-health.mjs" 2>/dev/null || true)
+      READY=$(python3 -c 'import json,sys; d=json.loads(sys.argv[1]); print("yes" if d.get("cdp") and d.get("page") and d.get("authenticated") and d.get("unlimited_active") else "no")' "$H" 2>/dev/null || echo no)
+      if [[ "$READY" == "yes" ]]; then rm -f "$PAUSE"; else exit 0; fi ;;
+    STORAGE_GATE)
+      FREE=$(df -B1 --output=avail "$ROOT" | tail -1 | tr -d ' ')
+      if (( FREE >= 32212254720 )); then rm -f "$PAUSE"; else exit 0; fi ;;
+    *)
+      # Candidate/config/lineage blocks require Founder resolution.
+      exit 0 ;;
+  esac
 fi
 
-HEALTH=$(node "$SESSION/bin/nexaburst-health.mjs" 2>/dev/null || true)
-READY=$(python3 - "$HEALTH" <<'PY'
-import json,sys
-try:
- d=json.loads(sys.argv[1]);print('yes' if d.get('cdp') and d.get('page') and d.get('authenticated') and d.get('unlimited_active') else 'no')
-except: print('no')
-PY
-)
-if [[ "$READY" != "yes" ]]; then
-  # runner itself performs deduplicated Founder escalation; launch once to classify/pause.
-  :
-fi
+# V2 durable pause blocks raw acquisition; never create an unbounded backlog.
+if [[ -f "$STATE/v2-pause.json" ]]; then exit 0; fi
 
 nohup "$RUNNER" --max-success 100 --max-priority 999 >"$STATE/phase1-first100.out" 2>"$STATE/phase1-first100.err" &
 echo $! >"$PIDFILE"
