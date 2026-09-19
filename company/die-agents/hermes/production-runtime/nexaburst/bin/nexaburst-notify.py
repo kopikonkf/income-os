@@ -26,7 +26,13 @@ def render_message(event,text):
       'V2_FAILED':'NexaBurst · Post-Processing Alert',
       'ROUTING_TEST':'NexaBurst · Routing Test',
       'CHALLENGE_STARTED':'NexaBurst · 30-Render Challenge Started',
-      'CHALLENGE_COMPLETE':'NexaBurst · 30-Render Challenge Complete'
+      'CHALLENGE_COMPLETE':'NexaBurst · 30-Render Challenge Complete',
+      'FOUNDER_ACTION_REQUIRED':'NexaBurst · Founder Action Required',
+      'V2_RETRY_SCHEDULED':'NexaBurst · V2 Retry Scheduled',
+      'VAULT_RETRY_SCHEDULED':'NexaBurst · Vault Retry Scheduled',
+      'PHASE1_PROGRESS':'NexaBurst · Watercolor Progress',
+      'PHASE1_PAUSED':'NexaBurst · Watercolor Lane Paused',
+      'PHASE1_BATCH_COMPLETE':'NexaBurst · Watercolor Batch Complete'
     }
     title=titles.get(event,'NexaBurst · '+event.replace('_',' ').title())
     pairs=re.findall(r'([A-Za-z0-9_]+)=([^\s]+)',text)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, fcntl, hashlib, json, mimetypes, os, time, urllib.parse, urllib.request, uuid, zipfile
+import argparse, fcntl, hashlib, json, mimetypes, os, time, urllib.parse, urllib.request, uuid, zipfile, subprocess
 from pathlib import Path
 
 ENV=Path('/home/kopiko/.config/die/nexaburst.env')
@@ -13,6 +13,9 @@ RECEIPTS=VAULT/'receipts'
 DONE=ROOT/'state'/'vault-done.jsonl'
 ERRORS=ROOT/'state'/'vault-errors.jsonl'
 LOCK=ROOT/'state'/'vault-worker.lock'
+HOLD=ROOT/'state'/'vault-hold-ids.txt'
+NOTIFIER=Path('/home/kopiko/die-sessions/NEXABURST-H01-P001/bin/nexaburst-notify.py')
+RESERVOIR=Path('/home/kopiko/die-sessions/NEXABURST-H01-P001/bin/nexaburst-reservoir.py')
 
 def load_env():
     if ENV.is_file():
@@ -22,6 +25,29 @@ def load_env():
                 k,v=line.split('=',1); os.environ.setdefault(k.strip(),v.strip())
 
 def truthy(v): return str(v or '').strip().lower() in {'1','true','yes','on'}
+
+def notify(event,text):
+    try:
+        subprocess.run([str(NOTIFIER),'--event',event,'--text',text],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=20,check=False)
+    except Exception: pass
+
+def held_assets():
+    if not HOLD.is_file(): return set()
+    return {x.strip() for x in HOLD.read_text(encoding='utf-8').splitlines() if x.strip()}
+
+def add_hold(asset_id):
+    held=held_assets(); held.add(asset_id)
+    tmp=HOLD.with_name(HOLD.name+f'.tmp-{os.getpid()}')
+    tmp.write_text('\n'.join(sorted(held))+'\n',encoding='utf-8'); os.replace(tmp,HOLD)
+
+def vault_error_count(asset_id):
+    if not ERRORS.is_file(): return 0
+    n=0
+    for line in ERRORS.read_text(encoding='utf-8').splitlines():
+        try:
+            if json.loads(line).get('asset_id')==asset_id:n+=1
+        except Exception:pass
+    return n
 
 def human_size(n):
     n=float(n)
@@ -241,6 +267,13 @@ def process(ws,dry_run=False):
     RECEIPTS.mkdir(parents=True,exist_ok=True)
     atomic(RECEIPTS/f'{receipt["asset_id"]}__{receipt["archive_sha256"][:12]}.json',receipt)
     append(DONE,receipt)
+    try:
+        src=read_json(ws/'nexaburst-source.json')
+        if src.get('candidate_id') and src.get('lane_id'):
+            subprocess.run([str(RESERVOIR),'mark','--candidate-id',str(src['candidate_id']),'--lane',str(src['lane_id']),
+                            '--status','VAULT_VERIFIED','--workspace',str(ws)],
+                           stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=20,check=False)
+    except Exception: pass
     archive.unlink(missing_ok=True)
     return receipt
 
@@ -269,8 +302,9 @@ def candidates(asset_id=None):
         ws=WORKSPACES/asset_id
         return [ws] if ws.is_dir() else []
     out=[]
-    done=completed_ids()
+    done=completed_ids(); held=held_assets()
     for ws in sorted(WORKSPACES.iterdir() if WORKSPACES.is_dir() else []):
+        if ws.name in held: continue
         try:
             info=workspace_info(ws)
             if not info or info['archive_identity'] in done: continue
@@ -305,9 +339,17 @@ def main():
             try:
                 result=process(ws,args.dry_run); print(json.dumps(result,sort_keys=True))
             except Exception as exc:
+                err=str(exc)
                 row={'schema':'die.h01.nexaburst.telegram-vault-error.v1','asset_id':ws.name,
-                     'error':str(exc),'at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime())}
-                append(ERRORS,row); print(json.dumps({'status':'ERROR','asset_id':ws.name,'error':str(exc)}))
+                     'error':err,'at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime())}
+                append(ERRORS,row); count=vault_error_count(ws.name)
+                fatal=err.startswith(('E_VAULT_CONFIG','E_VAULT_UPLOAD_LIMIT','E_VAULT_MASTER_SHA_MISSING'))
+                if fatal or count>=3:
+                    add_hold(ws.name)
+                    notify('FOUNDER_ACTION_REQUIRED',f'Vault held after error. asset={ws.name} attempts={count} error={err[:260]}')
+                else:
+                    notify('VAULT_RETRY_SCHEDULED',f'asset={ws.name} attempt={count}/3 next_retry=next_cron error={err[:220]}')
+                print(json.dumps({'status':'ERROR','asset_id':ws.name,'error':err,'attempt':count,'held':fatal or count>=3}))
                 return 2
     return 0
 

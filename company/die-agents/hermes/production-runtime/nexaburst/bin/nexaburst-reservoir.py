@@ -95,12 +95,16 @@ def cmd_claim(args):
     try:
         c.execute('BEGIN IMMEDIATE')
         q=",".join("?" for _ in CLAIMABLE)
+        params=[args.lane,*sorted(CLAIMABLE)]
+        priority_clause=''
+        if args.max_priority is not None:
+            priority_clause=' AND priority<=?'; params.append(args.max_priority)
         row=c.execute(f'''
           SELECT * FROM manifestations
-          WHERE lane_id=? AND status IN ({q})
+          WHERE lane_id=? AND status IN ({q}) {priority_clause}
           ORDER BY priority ASC, ordinal ASC
           LIMIT 1
-        ''',(args.lane,*sorted(CLAIMABLE))).fetchone()
+        ''',tuple(params)).fetchone()
         if not row:
             done=c.execute("select count(*) from manifestations where lane_id=? and status in ('WAITING_FOUNDER_QC','VAULT_VERIFIED')",(args.lane,)).fetchone()[0]
             total=c.execute("select count(*) from manifestations where lane_id=?",(args.lane,)).fetchone()[0]
@@ -114,7 +118,7 @@ def cmd_claim(args):
         c.execute('''INSERT INTO events(candidate_id,lane_id,from_status,to_status,claim_id,detail_json,observed_at) VALUES(?,?,?,'CLAIMED',?,?,?)''',
                   (row['candidate_id'],args.lane,row['status'],claim,json.dumps({'ordinal':row['ordinal'],'priority':row['priority']}),ts))
         c.commit()
-        out=dict(row);out.update({'status':'CLAIMED','claim_id':claim})
+        out=dict(row);out.update({'status':'CLAIMED','claim_id':claim,'attempts':int(row['attempts'])+1})
         print(json.dumps(out,ensure_ascii=False))
     except Exception:
         c.rollback();raise
@@ -153,7 +157,7 @@ def main():
     ap=argparse.ArgumentParser()
     sp=ap.add_subparsers(dest='cmd',required=True)
     p=sp.add_parser('init');p.add_argument('--lane',default=LANE);p.add_argument('--reservoir',default=str(RESERVOIR));p.add_argument('--priority',default=str(PRIORITY));p.set_defaults(fn=cmd_init)
-    p=sp.add_parser('claim');p.add_argument('--lane',default=LANE);p.add_argument('--claim-id');p.set_defaults(fn=cmd_claim)
+    p=sp.add_parser('claim');p.add_argument('--lane',default=LANE);p.add_argument('--claim-id');p.add_argument('--max-priority',type=int);p.set_defaults(fn=cmd_claim)
     p=sp.add_parser('mark');p.add_argument('--lane',default=LANE);p.add_argument('--candidate-id',required=True);p.add_argument('--claim-id');p.add_argument('--status',required=True);p.add_argument('--raw-job-id');p.add_argument('--raw-sha256');p.add_argument('--workspace');p.add_argument('--error');p.set_defaults(fn=cmd_mark)
     p=sp.add_parser('stats');p.add_argument('--lane',default=LANE);p.set_defaults(fn=cmd_stats)
     a=ap.parse_args();a.fn(a)

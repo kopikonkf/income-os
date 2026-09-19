@@ -174,7 +174,7 @@ async function main(){
   const receipt={
     schema:'die.h01.nexaburst.generation-receipt.v1',
     engine_id:cfg.engine_id,profile_id:cfg.profile_id,transport:'WEB_SESSION_INTERNAL_JOB_API',
-    billing:'UNLIMITED',asset_id:assetId,noun,style,prompt,prompt_sha256:promptSha,prompt_authority:promptAuthority,compiled_contract_sha256:compiledContractSha256,aspect,
+    billing:'UNLIMITED',asset_id:assetId,candidate_id:args['candidate-id']||null,lane_id:args['lane-id']||null,noun,style,prompt,prompt_sha256:promptSha,prompt_authority:promptAuthority,compiled_contract_sha256:compiledContractSha256,aspect,
     job_id:jobId,submit:{mode_type:submit.mode_type,est_seconds:submit.est_seconds},
     result:{status:'DONE',provider_progress:lastProgress,source_path:out,sha256:digest,bytes:bytes.length,mime:dl.mime,format:info.format,width:info.width,height:info.height},
     timing:{started_at:new Date(started).toISOString(),finished_at:iso(),elapsed_ms:Date.now()-started},
@@ -184,7 +184,7 @@ async function main(){
   const receiptPath=path.join(receiptRoot,`${assetId}__${jobId}.json`);
   fs.writeFileSync(receiptPath,JSON.stringify(receipt,null,2)+'\n',{mode:0o640});
   appendLedger({schema:'die.h01.nexaburst.event.v1',kind:'ARTIFACT_CREATED',job_id:jobId,asset_id:assetId,sha256:digest,path:out,at:iso()});
-  const queue={schema:'die.h01.nexaburst.v2-queue-item.v1',asset_id:assetId,noun,style,job_id:jobId,source_path:out,source_sha256:digest,generation_receipt:receiptPath,enqueued_at:iso()};
+  const queue={schema:'die.h01.nexaburst.v2-queue-item.v1',asset_id:assetId,candidate_id:args['candidate-id']||null,lane_id:args['lane-id']||null,noun,style,job_id:jobId,source_path:out,source_sha256:digest,generation_receipt:receiptPath,enqueued_at:iso()};
   fs.appendFileSync(path.join(stateRoot,'v2-queue.jsonl'),JSON.stringify(queue)+'\n',{encoding:'utf8',mode:0o640});
   setCooldown(Number(cfg.success_cooldown_ms||2000),'success');
   fs.writeFileSync(path.join(stateRoot,'last-success.json'),JSON.stringify(receipt,null,2)+'\n');
