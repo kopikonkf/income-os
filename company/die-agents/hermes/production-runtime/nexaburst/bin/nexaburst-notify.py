@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, json, os, sys, urllib.parse, urllib.request
+import argparse, json, os, re, sys, urllib.parse, urllib.request
 from pathlib import Path
 
 ENV=Path('/home/kopiko/.config/die/nexaburst.env')
@@ -15,6 +15,27 @@ def load_env():
 
 def truthy(v:str|None)->bool:
     return str(v or '').strip().lower() in {'1','true','yes','on'}
+
+def render_message(event,text):
+    titles={
+      'BATCH_SUMMARY':'NexaBurst · Batch Summary',
+      'JOB_FAILED':'NexaBurst · Job Needs Attention',
+      'BROWSER_ROTATE':'NexaBurst · Browser Refresh',
+      'BROWSER_MANAGER_FAILED':'NexaBurst · Browser Manager Alert',
+      'WAITING_FOUNDER_QC':'NexaBurst · Ready for Founder QC',
+      'V2_FAILED':'NexaBurst · Post-Processing Alert',
+      'ROUTING_TEST':'NexaBurst · Routing Test',
+      'CHALLENGE_STARTED':'NexaBurst · 30-Render Challenge Started',
+      'CHALLENGE_COMPLETE':'NexaBurst · 30-Render Challenge Complete'
+    }
+    title=titles.get(event,'NexaBurst · '+event.replace('_',' ').title())
+    pairs=re.findall(r'([A-Za-z0-9_]+)=([^\s]+)',text)
+    if pairs and len(' '.join(f'{k}={v}' for k,v in pairs)) >= max(1,len(text.strip())-10):
+        labels={'status':'Status','total':'Total','ok':'Succeeded','fail':'Failed','skip':'Skipped','asset':'Asset','noun':'Noun','elapsed_sec':'Elapsed','workspace':'Workspace','exit':'Exit code','reason':'Reason'}
+        body='\n'.join(f'{labels.get(k,k.replace("_"," ").title()):<12}: {v}' for k,v in pairs)
+    else:
+        body=text.strip()
+    return f'{title}\n'+'─'*28+f'\n{body}'
 
 def main():
     load_env()
@@ -32,7 +53,7 @@ def main():
         print(json.dumps({'status':'BLOCKED','code':'E_NOTIFY_CONFIG'})); return 2
     data={
       'chat_id':chat,
-      'text':f'[NexaBurst] {a.event}\n{a.text}',
+      'text':render_message(a.event,a.text),
       'disable_notification':'true' if a.silent else 'false',
       'disable_web_page_preview':'true',
     }

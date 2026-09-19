@@ -1,0 +1,14 @@
+{
+  "schema": "die.h01.nexaburst.market-canary-hold.v1",
+  "state": "HOLD_PENDING_FOUNDER_VISUAL_QC",
+  "cohort_rows": 100,
+  "source_path": "/home/kopiko/die-sessions/NEXABURST-H01-P001/config/market-canary-100-source.jsonl",
+  "source_sha256": "93ed16a3ebc7eed8934d8c26f43658faf5820dd81d433d4d8afeadd0028a5054",
+  "required_before_release": [
+    "FOUNDER_PRESET_CHAMPION",
+    "TYPED_VISUAL_CONTRACT_V1_COMPILED_FOR_100",
+    "DISK_GATE_PASS"
+  ],
+  "challenge_contact_sheets_thread": 5834,
+  "challenge_summary_message_id": 5852
+}

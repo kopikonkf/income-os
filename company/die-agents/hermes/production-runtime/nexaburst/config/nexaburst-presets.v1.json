@@ -1,0 +1,216 @@
+{
+  "schema": "die.factory-asset.production-preset-registry.v1",
+  "revision": "1.1",
+  "presets": [
+    {
+      "preset_id": "ISOLATED_SOFT_WATERCOLOR_CLIPART_WHITE_L0",
+      "revision": "1.0.0",
+      "status": "FOUNDER_DESIGN_CANDIDATE",
+      "activation": "CANARY_ONLY",
+      "asset_type": "ISOLATED_OBJECT",
+      "media_family": "RASTER",
+      "render_language": "ILLUSTRATION",
+      "style": {
+        "family": "ILLUSTRATIVE_CLIPART",
+        "variant": "SOFT_WATERCOLOR_CLIPART",
+        "medium": "WATERCOLOR",
+        "stylization": "LOW_MEDIUM"
+      },
+      "view_defaults": {
+        "viewpoint": "SUBJECT_APPROPRIATE"
+      },
+      "composition_defaults": {
+        "background_mode": "PURE_WHITE",
+        "allowed_background_modes": [
+          "PURE_WHITE"
+        ],
+        "centered": true,
+        "full_subject_visible": true,
+        "generous_whitespace": true,
+        "clean_silhouette": true,
+        "unrelated_props": false
+      },
+      "fidelity_defaults": {
+        "proportions": "NATURAL_RECOGNIZABLE",
+        "recognizability": "VERY_HIGH",
+        "texture_detail": "LIGHT",
+        "color_behavior": "NATURAL",
+        "edge_character": "SOFT_HAND_PAINTED",
+        "shading": "GENTLE"
+      },
+      "commercial_defaults": {
+        "stock_asset_quality": true,
+        "reusable_design_component": true,
+        "subject_separation": "VERY_CLEAR"
+      },
+      "prompt_descriptors": [
+        "polished commercial stock clipart illustration",
+        "soft hand-painted watercolor rendering",
+        "clean immediately recognizable subject form",
+        "natural proportions with gentle stylization",
+        "delicate pigment variation and light watercolor texture",
+        "soft clean hand-painted edges",
+        "versatile reusable design-component aesthetic"
+      ],
+      "negative_defaults": [
+        "people unless the noun itself is a person",
+        "readable text",
+        "logo",
+        "trademark",
+        "watermark",
+        "brand marks",
+        "unrelated props",
+        "environmental scene",
+        "border",
+        "collage"
+      ],
+      "evidence": {
+        "basis": "FOUNDER_SPECIFIED_DIRECTION",
+        "refs": [
+          "actual_income_research_intelligence-isolated_asset.zip",
+          "Founder isolated/composable stock direction 2026-09-19"
+        ]
+      }
+    },
+    {
+      "preset_id": "ISOLATED_PREMIUM_SEMI_REALISTIC_ILLUSTRATION_L0",
+      "revision": "1.0.0",
+      "status": "FOUNDER_DESIGN_CANDIDATE",
+      "activation": "CANARY_ONLY",
+      "asset_type": "ISOLATED_OBJECT",
+      "media_family": "RASTER",
+      "render_language": "ILLUSTRATION",
+      "style": {
+        "family": "ILLUSTRATIVE_CLIPART",
+        "variant": "PREMIUM_SEMI_REALISTIC_VECTOR_LIKE",
+        "medium": "DIGITAL_ILLUSTRATION",
+        "stylization": "LOW_MEDIUM"
+      },
+      "view_defaults": {
+        "viewpoint": "SUBJECT_APPROPRIATE"
+      },
+      "composition_defaults": {
+        "background_mode": "PURE_WHITE",
+        "allowed_background_modes": [
+          "PURE_WHITE"
+        ],
+        "centered": true,
+        "full_subject_visible": true,
+        "generous_whitespace": true,
+        "clean_silhouette": true,
+        "unrelated_props": false
+      },
+      "fidelity_defaults": {
+        "proportions": "REALISTIC",
+        "recognizability": "VERY_HIGH",
+        "texture_detail": "DETAILED",
+        "color_behavior": "VIBRANT_REALISTIC",
+        "edge_character": "CRISP_CLEAN",
+        "shading": "SUBTLE"
+      },
+      "commercial_defaults": {
+        "stock_asset_quality": true,
+        "reusable_design_component": true,
+        "subject_separation": "VERY_CLEAR"
+      },
+      "prompt_descriptors": [
+        "clean premium digital illustration",
+        "semi-realistic vector-like rendering",
+        "smooth natural shapes",
+        "slightly stylized but immediately recognizable subject",
+        "subtle highlights and shading",
+        "crisp contours",
+        "polished commercial stock illustration aesthetic"
+      ],
+      "negative_defaults": [
+        "people unless explicitly essential to the subject",
+        "readable text",
+        "logo",
+        "trademark",
+        "watermark",
+        "packaging unless explicitly essential",
+        "unrelated props",
+        "environmental scene",
+        "table or room background"
+      ],
+      "evidence": {
+        "basis": "FOUNDER_SPECIFIED_DIRECTION",
+        "refs": [
+          "Founder 2026-09-10 isolated-object reference/prompt direction",
+          "actual_income_research_intelligence-isolated_asset(1).zip category/visual-direction basis",
+          "NexaBurst A/B/C challenge 2026-09-20"
+        ]
+      }
+    },
+    {
+      "preset_id": "ISOLATED_CLEAN_COMMERCIAL_CLAY_3D_L0",
+      "revision": "1.0.0",
+      "status": "FOUNDER_DESIGN_CANDIDATE",
+      "activation": "CANARY_ONLY",
+      "asset_type": "ISOLATED_OBJECT",
+      "media_family": "RASTER",
+      "render_language": "THREE_D_RENDER",
+      "style": {
+        "family": "CLAY_TOY",
+        "variant": "CLEAN_COMMERCIAL_SOFT_CLAY",
+        "medium": "THREE_D",
+        "stylization": "LOW_MEDIUM"
+      },
+      "view_defaults": {
+        "viewpoint": "SUBJECT_APPROPRIATE"
+      },
+      "composition_defaults": {
+        "background_mode": "PURE_WHITE",
+        "allowed_background_modes": [
+          "PURE_WHITE"
+        ],
+        "centered": true,
+        "full_subject_visible": true,
+        "generous_whitespace": true,
+        "clean_silhouette": true,
+        "unrelated_props": false
+      },
+      "fidelity_defaults": {
+        "proportions": "NATURAL_RECOGNIZABLE",
+        "recognizability": "VERY_HIGH",
+        "texture_detail": "LIGHT",
+        "color_behavior": "FRIENDLY_STYLIZED",
+        "edge_character": "CRISP_CLEAN",
+        "shading": "NATURAL"
+      },
+      "commercial_defaults": {
+        "stock_asset_quality": true,
+        "reusable_design_component": true,
+        "subject_separation": "VERY_CLEAR"
+      },
+      "prompt_descriptors": [
+        "clean premium 3D commercial object render",
+        "soft clay-like material with refined smooth surfaces",
+        "simple tactile dimensional form",
+        "immediately recognizable subject silhouette",
+        "subtle studio-quality highlights and natural soft shading",
+        "polished reusable stock design-component aesthetic"
+      ],
+      "negative_defaults": [
+        "people unless explicitly essential to the subject",
+        "readable text",
+        "logo",
+        "trademark",
+        "watermark",
+        "brand marks",
+        "unrelated props",
+        "environmental scene",
+        "busy background",
+        "border",
+        "collage"
+      ],
+      "evidence": {
+        "basis": "FOUNDER_SPECIFIED_DIRECTION",
+        "refs": [
+          "NexaBurst market-evidence pass 2026-09-19",
+          "Founder approved A/B/C challenge 2026-09-20"
+        ]
+      }
+    }
+  ]
+}

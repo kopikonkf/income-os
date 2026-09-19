@@ -23,6 +23,24 @@ def load_env():
 
 def truthy(v): return str(v or '').strip().lower() in {'1','true','yes','on'}
 
+def human_size(n):
+    n=float(n)
+    for unit in ('B','KiB','MiB','GiB'):
+        if n < 1024 or unit=='GiB': return f'{n:.2f} {unit}' if unit!='B' else f'{int(n)} B'
+        n/=1024
+
+def vault_caption(title,asset,state,size,master_sha,archive_sha,verified=False):
+    mark='VERIFIED' if verified else 'PENDING VERIFY'
+    return (
+      f'NexaBurst Vault · {title}\n'
+      f'────────────────────────────\n'
+      f'Asset      : {asset}\n'
+      f'State      : {state}\n'
+      f'Archive    : {human_size(size)}\n'
+      f'Verify     : {mark}\n'
+      f'Master SHA : {master_sha}\n'
+      f'Archive SHA: {archive_sha}'
+    )
 def sha256_path(path):
     h=hashlib.sha256()
     with Path(path).open('rb') as f:
@@ -163,9 +181,15 @@ def upload_and_verify(archive,info):
     if size>max_upload: raise RuntimeError(f'E_VAULT_UPLOAD_LIMIT:{size}')
     if size>max_restore: raise RuntimeError(f'E_VAULT_RESTORE_LIMIT:{size}')
     archive_sha=sha256_path(archive)
-    cap=(f'NEXABURST_BACKUP\nasset={info["result"]["asset_id"]}\n'
-         f'state=WAITING_FOUNDER_QC\nmaster_sha256={info["master_sha256"]}\n'
-         f'archive_sha256={archive_sha}\nbytes={size}')
+    cap=vault_caption(
+        'Backup Archive',
+        info['result']['asset_id'],
+        'WAITING_FOUNDER_QC',
+        size,
+        info['master_sha256'],
+        archive_sha,
+        verified=False
+    )
     payload=multipart_post(f'https://api.telegram.org/bot{token}/sendDocument',
         {'chat_id':chat,'message_thread_id':thread,'caption':cap,'disable_notification':'true'},
         'document',archive)

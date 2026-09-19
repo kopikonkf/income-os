@@ -8,6 +8,7 @@ ROOT=Path('/var/lib/die/h01/nexaburst')
 QUEUE=ROOT/'state'/'v2-queue.jsonl'
 DONE=ROOT/'state'/'v2-done.jsonl'
 LOCK=ROOT/'state'/'v2-worker.lock'
+HOLD=ROOT/'state'/'v2-hold-ids.txt'
 WORKSPACES=ROOT/'workspaces'
 FO=Path('/srv/die/company/die-agents/hermes/production-runtime/factory_orchestration_v2.py')
 AU=Path('/srv/die/bridge/income_os_bridge/asset_upscale.py')
@@ -114,12 +115,16 @@ def processed_ids():
 
 def pending():
     if not QUEUE.is_file():return []
-    done=processed_ids();rows=[]
+    done=processed_ids(); held=set()
+    if HOLD.is_file():
+        held={x.strip() for x in HOLD.read_text(encoding='utf-8').splitlines() if x.strip()}
+    rows=[]
     for line in QUEUE.read_text(encoding='utf-8').splitlines():
         if not line.strip():continue
         try:d=json.loads(line)
         except Exception:continue
-        if d.get('asset_id') not in done:rows.append(d)
+        asset=d.get('asset_id')
+        if asset not in done and asset not in held:rows.append(d)
     return rows
 
 def process_item(item):

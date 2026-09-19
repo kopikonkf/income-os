@@ -90,3 +90,16 @@ Manual canary:
     python3 bin/nexaburst-vault.py --asset-id NB-CANARY-001
 
 H01 runtime cadence uses a one-minute cron calling --once. A non-blocking file lock prevents overlap. With the official cloud Bot API, v1 deliberately requires an archive below the configured restore-verification ceiling (default 19.5 MB); larger packages fail closed until a larger verified transport such as the official Local Bot API is enabled.
+
+## 30-render preset challenge
+
+The bounded preset-selection challenge is canonicalized under config/challenge-30-typed.jsonl.
+It uses 10 anchor nouns across three typed presets:
+
+1. ISOLATED_SOFT_WATERCOLOR_CLIPART_WHITE_L0
+2. ISOLATED_PREMIUM_SEMI_REALISTIC_ILLUSTRATION_L0
+3. ISOLATED_CLEAN_COMMERCIAL_CLAY_3D_L0
+
+The challenge hot path is deterministic and does not invoke an LLM. Challenge assets are held from Factory V2 using runtime v2-hold-ids.txt until a Founder preset champion is selected.
+
+A 100-noun market-canary source cohort is prepared but remains HOLD. Release requires a Founder preset champion, exact typed prompt compilation for all 100 rows, and disk-gate PASS.
