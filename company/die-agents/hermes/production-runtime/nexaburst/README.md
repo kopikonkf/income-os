@@ -69,3 +69,11 @@ The H01 dedicated browser requires a one-time manual NEXABOT login in Workspace 
 ## Mass prompt authority gate
 
 Any batch above 100 rows requires both the runtime PRODUCTION_ARMED marker and per-row prompt_authority=TYPED_VISUAL_CONTRACT_V1 with a matching prompt SHA-256. Canary fallback prompts are intentionally ineligible for mass production.
+
+## Browser lifecycle
+
+The NexaBurst H01 browser is a persistent authenticated UDD, but a single Chromium PID is not intended to live indefinitely. `nexaburst-browser-manager.sh ensure` enforces a default 3600-second maximum process age. Rotation is fail-safe: an active generation lock defers rotation; otherwise the old process is terminated first and the same UDD is reopened with a fresh PID. On H01, user cron invokes the manager every 5 minutes, so rotation occurs between jobs and never intentionally interrupts an in-flight generation.
+
+## Telegram topic routing
+
+Notifier configuration supports both `NEXABURST_TELEGRAM_CHAT_ID` and `NEXABURST_TELEGRAM_THREAD_ID`. Runtime credentials remain in `/home/kopiko/.config/die/nexaburst.env`; repository examples contain no secret values.

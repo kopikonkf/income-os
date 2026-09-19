@@ -71,6 +71,11 @@ for _ in $(seq 1 80); do
       wmctrl -i -r "$WIN" -b add,maximized_vert,maximized_horz >/dev/null 2>&1 || true
     fi
     wmctrl -s 3 >/dev/null 2>&1 || true
+    STARTED_EPOCH=$(date +%s)
+    cat > "$STATE/nexaburst-p001-browser-session.json" <<EOF
+{"pid":$PID,"started_epoch":$STARTED_EPOCH,"cdp":"127.0.0.1:$PORT","display":":12","workspace":4}
+EOF
+    chmod 640 "$STATE/nexaburst-p001-browser-session.json"
     echo "NEXABURST_BROWSER_READY pid=$PID udd=$UDD cdp=127.0.0.1:$PORT display=:12 workspace=4"
     exit 0
   fi

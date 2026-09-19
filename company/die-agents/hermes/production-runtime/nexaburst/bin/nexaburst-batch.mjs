@@ -12,6 +12,8 @@ const max=Number(get('max','0'));
 const aspect=Number(get('aspect','1'));
 if(!input){console.error('usage: nexaburst-batch.mjs --input nouns.txt|queue.jsonl [--style isolated-object] [--max N]');process.exit(64)}
 const adapter='/home/kopiko/die-sessions/NEXABURST-H01-P001/bin/nexaburst-adapter.mjs';
+const manager='/home/kopiko/die-sessions/NEXABURST-H01-P001/bin/nexaburst-browser-manager.sh';
+const notifier='/home/kopiko/die-sessions/NEXABURST-H01-P001/bin/nexaburst-notify.py';
 const receiptRoot='/var/lib/die/h01/nexaburst/receipts';
 const batchLedger='/var/lib/die/h01/nexaburst/state/batch-ledger.jsonl';
 const slug=s=>String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,72)||'asset';
@@ -49,12 +51,27 @@ for(let i=0;i<rows.length;i++){
   if(r.prompt_authority)args.push('--prompt-authority',r.prompt_authority);
   if(r.compiled_contract_sha256)args.push('--compiled-contract-sha256',r.compiled_contract_sha256);
   console.error(`NEXABURST_BATCH_RUN ${i+1}/${rows.length} asset=${assetId}`);
+  const bm=spawnSync(manager,['ensure'],{encoding:'utf8',stdio:['ignore','pipe','pipe']});
+  if(bm.stderr)process.stderr.write(bm.stderr);
+  if(bm.stdout)process.stderr.write(bm.stdout);
+  if(bm.status!==0){
+    console.error(`NEXABURST_BROWSER_MANAGER_FAILED asset=${assetId} exit=${bm.status}`);
+    spawnSync(notifier,['--event','BROWSER_MANAGER_FAILED','--text',`asset=${assetId} exit=${bm.status}`],{stdio:'ignore'});
+    fail++;
+    continue;
+  }
   const cp=spawnSync('node',[adapter,...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']});
   if(cp.stderr)process.stderr.write(cp.stderr);
   if(cp.stdout)process.stdout.write(cp.stdout);
   const event={schema:'die.h01.nexaburst.batch-event.v1',asset_id:assetId,noun,style:st,index:i+1,total:rows.length,exit_code:cp.status,at:new Date().toISOString()};
   fs.appendFileSync(batchLedger,JSON.stringify(event)+'\n');
-  if(cp.status===0)ok++;else fail++;
+  if(cp.status===0)ok++;
+  else {
+    fail++;
+    spawnSync(notifier,['--event','JOB_FAILED','--text',`asset=${assetId} noun=${noun} exit=${cp.status}`],{stdio:'ignore'});
+  }
 }
-console.error(JSON.stringify({status:fail?'PARTIAL':'DONE',total:rows.length,ok,fail,skip}));
+const summary={status:fail?'PARTIAL':'DONE',total:rows.length,ok,fail,skip};
+console.error(JSON.stringify(summary));
+spawnSync(notifier,['--event','BATCH_SUMMARY','--text',`status=${summary.status} total=${summary.total} ok=${ok} fail=${fail} skip=${skip}`],{stdio:'ignore'});
 process.exit(fail?2:0);
