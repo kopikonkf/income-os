@@ -55,12 +55,14 @@ def human_size(n):
         if n < 1024 or unit=='GiB': return f'{n:.2f} {unit}' if unit!='B' else f'{int(n)} B'
         n/=1024
 
-def vault_caption(title,asset,state,size,master_sha,archive_sha,verified=False):
+def vault_caption(title,asset,noun,lane,state,size,master_sha,archive_sha,verified=False):
     mark='VERIFIED' if verified else 'PENDING VERIFY'
     return (
       f'NexaBurst Vault · {title}\n'
       f'────────────────────────────\n'
+      f'Object     : {noun or "unknown"}\n'
       f'Asset      : {asset}\n'
+      f'Lane       : {lane or "n/a"}\n'
       f'State      : {state}\n'
       f'Archive    : {human_size(size)}\n'
       f'Verify     : {mark}\n'
@@ -116,7 +118,10 @@ def workspace_info(ws):
     package=read_json(package_path) if package_path.is_file() else {}
     rights_path=ws/'factory-v2'/'rights-signal.json'
     rights=read_json(rights_path) if rights_path.is_file() else {}
-    return {'result':result,'state':state,'package':package,'rights':rights,
+    src_path=ws/'nexaburst-source.json'
+    src=read_json(src_path) if src_path.is_file() else {}
+    return {'result':result,'state':state,'package':package,'rights':rights,'source':src,
+            'noun':src.get('noun'),'lane_id':src.get('lane_id'),'candidate_id':src.get('candidate_id'),
             'master_sha256':master_sha,'semantic_asset_id':semantic_id,'archive_identity':identity}
 
 def collect_files(ws):
@@ -210,6 +215,8 @@ def upload_and_verify(archive,info):
     cap=vault_caption(
         'Backup Archive',
         info['result']['asset_id'],
+        info.get('noun'),
+        info.get('lane_id'),
         'WAITING_FOUNDER_QC',
         size,
         info['master_sha256'],

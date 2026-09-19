@@ -32,7 +32,8 @@ def render_message(event,text):
       'VAULT_RETRY_SCHEDULED':'NexaBurst · Vault Retry Scheduled',
       'PHASE1_PROGRESS':'NexaBurst · Watercolor Progress',
       'PHASE1_PAUSED':'NexaBurst · Watercolor Lane Paused',
-      'PHASE1_BATCH_COMPLETE':'NexaBurst · Watercolor Batch Complete'
+      'PHASE1_BATCH_COMPLETE':'NexaBurst · Watercolor Batch Complete',
+      'ARTIFACT_READY':'NexaBurst · Artifact Ready'
     }
     title=titles.get(event,'NexaBurst · '+event.replace('_',' ').title())
     pairs=re.findall(r'([A-Za-z0-9_]+)=([^\s]+)',text)

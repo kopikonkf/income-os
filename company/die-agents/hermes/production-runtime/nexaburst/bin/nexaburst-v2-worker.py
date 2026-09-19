@@ -186,6 +186,14 @@ def process_item(item):
       'completed_at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime())
     }
     atomic(workspace/'nexaburst-v2-result.json',row);append(DONE,row)
+    if row['status']=='WAITING_FOUNDER_QC':
+        notify('ARTIFACT_READY',
+               f"Object: {item.get('noun','unknown')}\n"
+               f"Asset: {row['asset_id']}\n"
+               f"Lane: {item.get('lane_id') or item.get('style','n/a')}\n"
+               f"State: WAITING_FOUNDER_QC\n"
+               f"Post-process: {row['elapsed_sec']}s\n"
+               f"Vault: queued for archive verification")
     if item.get('candidate_id') and item.get('lane_id') and row['status']=='WAITING_FOUNDER_QC':
         try:
             subprocess.run([str(RESERVOIR),'mark','--candidate-id',str(item['candidate_id']),'--lane',str(item['lane_id']),
