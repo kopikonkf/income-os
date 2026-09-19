@@ -103,3 +103,11 @@ It uses 10 anchor nouns across three typed presets:
 The challenge hot path is deterministic and does not invoke an LLM. Challenge assets are held from Factory V2 using runtime v2-hold-ids.txt until a Founder preset champion is selected.
 
 A 100-noun market-canary source cohort is prepared but remains HOLD. Release requires a Founder preset champion, exact typed prompt compilation for all 100 rows, and disk-gate PASS.
+
+## Phase-1 reservoir selector
+
+Phase-1 is locked to one manifestation lane: `WC-L0` (Soft Watercolor Clipart). The lane owns an independent SQLite manifestation ledger under runtime state. A noun is not considered covered merely because generation was attempted; coverage is complete only after its lane row reaches `WAITING_FOUNDER_QC` or `VAULT_VERIFIED`.
+
+The selector is lane-aware. Future Semi-Realistic or Clay lanes therefore receive their own `(candidate_id, lane_id)` rows and are not blocked by a Watercolor completion.
+
+The first 100 strict canary rows are a subset of the 42,667 Wave3 pass/no-IP reservoir. After those 100 complete, selection continues automatically through the same reservoir until all 42,667 WC-L0 rows have one completed presence.
