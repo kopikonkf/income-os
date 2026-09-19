@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, json, os, subprocess, sys, time
+import argparse, json, os, re, subprocess, sys, time
 from pathlib import Path
 
 SESSION=Path('/home/kopiko/die-sessions/NEXABURST-H01-P001')
@@ -131,9 +131,21 @@ def main():
              '--asset-id',prompt['asset_id'],'--aspect','1','--prompt',prompt['prompt'],
              '--prompt-authority',prompt['prompt_authority'],'--compiled-contract-sha256',prompt['compiled_contract_sha256'],
              '--candidate-id',str(row['candidate_id']),'--lane-id',LANE]
+        if row.get('raw_job_id'):
+            cmd += ['--resume-job-id',str(row['raw_job_id'])]
         cp=run(cmd,360)
         if cp.returncode!=0:
             err=parse_adapter_error(cp)
+            if 'E_JOB_STILL_PROCESSING:' in err:
+                m=re.search(r'"job_id":"([^"]+)"',err)
+                job_id=m.group(1) if m else row.get('raw_job_id')
+                if attempts >= 3:
+                    mark(row,'BLOCKED',raw_job_id=job_id,error=err[:400])
+                    set_pause('CANDIDATE_BLOCKED',f'Provider job remained non-terminal across three bounded poll windows. noun={row["canonical_name"]} job_id={job_id}. No resubmit was made.',founder=True)
+                    return 28
+                mark(row,'FAILED_RETRYABLE',raw_job_id=job_id,error=err[:400])
+                set_pause('RETRY_BACKOFF',f'Resuming same provider job after bounded poll timeout. noun={row["canonical_name"]} job_id={job_id} poll_window={attempts}/3. No new submit.',resume_after=int(time.time())+120,founder=False)
+                return 13
             fatal=any(code in err for code in ('E_AUTH_REQUIRED','E_UNLIMITED_INACTIVE','E_RAW_STORAGE_GATE_FREE_BYTES','E_CDP_CONTEXT_MISSING'))
             if fatal:
                 mark(row,'FAILED_RETRYABLE',error=err[:400])

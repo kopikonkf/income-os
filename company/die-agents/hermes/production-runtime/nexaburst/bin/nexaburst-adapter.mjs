@@ -111,8 +111,15 @@ async function main(){
   const assetId=args['asset-id']||`OBJ-${slug(noun)}-${slug(style)}-${Date.now()}`;
   const promptSha=sha256(Buffer.from(prompt));
   let submit=null;
+  const resumeJobId=args['resume-job-id']||null;
+  let jobId=null;
 
-  for(let attempt=1;attempt<=Number(cfg.submit_retry_limit||4);attempt++){
+  if(resumeJobId){
+    jobId=resumeJobId;
+    submit={ok:true,job_id:jobId,status:'resume',mode_type:'resume_existing',est_seconds:null};
+    appendLedger({schema:'die.h01.nexaburst.event.v1',kind:'RESUME_JOB',job_id:jobId,asset_id:assetId,at:iso()});
+    console.error(`NEXABURST_RESUME_JOB job=${jobId} asset=${assetId}`);
+  }else for(let attempt=1;attempt<=Number(cfg.submit_retry_limit||4);attempt++){
     submit=await page.evaluate(async ({prompt,aspect})=>{
       const me=await (await fetch('/api/auth/me',{credentials:'same-origin',cache:'no-store'})).json();
       const payload={mode:'img',prompt,aspect,use_unlimited:true,telegram_id:me?.user?.telegramid||'web'};
@@ -128,7 +135,7 @@ async function main(){
     await sleep(ms);
   }
 
-  const jobId=submit.job_id;
+  if(!jobId)jobId=submit.job_id;
   const started=Date.now();
   let lastProgress='';
   let job=null;
@@ -149,9 +156,17 @@ async function main(){
     if(job?.status==='done'||job?.status==='failed')break;
     await sleep(Number(cfg.poll_ms||2000));
   }
-  if(!job||job.status!=='done'){
-    setCooldown(Number(cfg.busy_cooldown_ms),'job_failed_or_timeout');
-    throw new Error('E_JOB_TERMINAL:'+JSON.stringify({job_id:jobId,status:job?.status,error:job?.error}));
+  if(!job){
+    setCooldown(120000,'job_poll_empty');
+    throw new Error('E_JOB_STILL_PROCESSING:'+JSON.stringify({job_id:jobId,status:null,error:'poll window ended without terminal state'}));
+  }
+  if(job.status!=='done'&&job.status!=='failed'){
+    setCooldown(120000,'job_still_processing');
+    throw new Error('E_JOB_STILL_PROCESSING:'+JSON.stringify({job_id:jobId,status:job.status,error:job?.error||''}));
+  }
+  if(job.status!=='done'){
+    setCooldown(Number(cfg.busy_cooldown_ms),'job_failed_terminal');
+    throw new Error('E_JOB_TERMINAL:'+JSON.stringify({job_id:jobId,status:job.status,error:job?.error}));
   }
 
   const dl=await page.evaluate(async id=>{
