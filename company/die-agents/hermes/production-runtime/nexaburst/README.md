@@ -77,3 +77,16 @@ The NexaBurst H01 browser is a persistent authenticated UDD, but a single Chromi
 ## Telegram topic routing
 
 Notifier configuration supports both `NEXABURST_TELEGRAM_CHAT_ID` and `NEXABURST_TELEGRAM_THREAD_ID`. Runtime credentials remain in `/home/kopiko/.config/die/nexaburst.env`; repository examples contain no secret values.
+
+## Telegram Vault v1
+
+nexaburst-vault.py is an asynchronous disaster-recovery lane. It scans real NexaBurst WEB_SESSION_INTERNAL_JOB_API workspaces that have reached WAITING_FOUNDER_QC, creates a ZIP containing the workspace plus provider original and generation receipt, embeds ARCHIVE_MANIFEST.json and CHECKSUMS.sha256, uploads to a dedicated Telegram forum topic, downloads the uploaded document back through getFile, and only records BACKUP_VERIFIED when the restored ZIP SHA-256 exactly matches the local archive SHA-256.
+
+The vault is intentionally separate from post-processing: Telegram failure never causes rendering/upscale/post-production to rerun. archive_identity = SHA256(semantic_asset_id + master_sha256) makes retries idempotent. Synthetic/local post-process canaries are excluded from automatic scanning. Credential, token, cookie and UDD paths are excluded from archives. No local source is deleted by the vault.
+
+Manual canary:
+
+    python3 bin/nexaburst-vault.py --asset-id NB-CANARY-001 --dry-run
+    python3 bin/nexaburst-vault.py --asset-id NB-CANARY-001
+
+H01 runtime cadence uses a one-minute cron calling --once. A non-blocking file lock prevents overlap. With the official cloud Bot API, v1 deliberately requires an archive below the configured restore-verification ceiling (default 19.5 MB); larger packages fail closed until a larger verified transport such as the official Local Bot API is enabled.
