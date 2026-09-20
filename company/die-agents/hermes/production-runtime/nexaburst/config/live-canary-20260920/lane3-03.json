@@ -1,0 +1,28 @@
+{
+  "family_id": "HF-CARE-ACCESS",
+  "lane_id": "HC-L7",
+  "dimensions": {
+    "human": "older adult",
+    "activity": "participating in a telehealth video consultation",
+    "object": "tablet on table with simple non-readable consultation interface",
+    "place": "real home dining area",
+    "time": "daytime",
+    "demographic": "senior adult",
+    "emotion": "engaged and confident",
+    "problem": "accessing healthcare remotely from home",
+    "industry": "telehealth and healthcare services",
+    "commercial_intent": "remote healthcare access marketing"
+  },
+  "story": {
+    "job_to_be_done": "show believable senior telehealth use without futuristic clichés",
+    "commercial_buyer": "hospital, telehealth platform, insurer, senior-care service",
+    "problem_signal": "active remote consultation context is legible from posture and device",
+    "interaction": "older adult faces tablet naturally and gestures while listening",
+    "copy_space": "left-side copy space",
+    "anti_cliche": [
+      "holograms",
+      "readable medical text",
+      "helpless patient framing"
+    ]
+  }
+}

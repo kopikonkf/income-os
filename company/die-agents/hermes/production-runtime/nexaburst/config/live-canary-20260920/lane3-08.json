@@ -1,0 +1,28 @@
+{
+  "family_id": "HF-FIN-LIFE",
+  "lane_id": "HC-L3",
+  "dimensions": {
+    "human": "adult couple",
+    "activity": "planning household budget together",
+    "object": "calculator, laptop, paper with non-readable marks",
+    "place": "home dining table",
+    "time": "evening",
+    "demographic": "working-age couple",
+    "emotion": "serious but cooperative",
+    "problem": "balancing household expenses and financial goals",
+    "industry": "personal finance, banking, insurance",
+    "commercial_intent": "budgeting and financial planning communication"
+  },
+  "story": {
+    "job_to_be_done": "show a credible household financial decision moment",
+    "commercial_buyer": "bank, budgeting app, insurer, financial publisher",
+    "problem_signal": "calculator and planning materials are actively compared",
+    "interaction": "one person calculates while the other reviews information on laptop",
+    "copy_space": "left-side copy space",
+    "anti_cliche": [
+      "money raining",
+      "giant dollar symbols",
+      "readable account numbers"
+    ]
+  }
+}

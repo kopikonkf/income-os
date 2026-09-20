@@ -1,0 +1,28 @@
+{
+  "family_id": "HF-SUSTAIN-LIFE",
+  "lane_id": "HC-L10",
+  "dimensions": {
+    "human": "homeowner",
+    "activity": "checking a home EV charger installation safely",
+    "object": "EV charging unit and charging cable",
+    "place": "residential garage or driveway",
+    "time": "daytime",
+    "demographic": "adult homeowner",
+    "emotion": "attentive and practical",
+    "problem": "verifying safe home charging setup",
+    "industry": "electric mobility and home energy",
+    "commercial_intent": "EV adoption, charger installation, energy-service marketing"
+  },
+  "story": {
+    "job_to_be_done": "show responsible home EV charging setup and inspection",
+    "commercial_buyer": "EV charger company, electrician, utility, insurer, sustainability publisher",
+    "problem_signal": "person checks cable/charger connection before use",
+    "interaction": "homeowner visually inspects charger while holding cable correctly",
+    "copy_space": "garage wall or driveway negative space",
+    "anti_cliche": [
+      "futuristic neon city",
+      "floating energy graphics",
+      "car brand logos"
+    ]
+  }
+}

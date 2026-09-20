@@ -1,0 +1,19 @@
+{
+  "candidate_id": "CAND-1382593",
+  "noun": "frying pan",
+  "lane_id": "PSR-L0",
+  "subject_spec": {
+    "recognition_anchors": [
+      "circular pan body",
+      "single handle",
+      "cooking surface"
+    ],
+    "essential_components": [
+      "single cookware item"
+    ],
+    "forbidden_mutations": [
+      "extra handles unless intentional",
+      "warped cooking surface"
+    ]
+  }
+}

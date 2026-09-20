@@ -1,0 +1,27 @@
+{
+  "family_id": "HF-HOME-LIVING",
+  "lane_id": "HC-L5",
+  "dimensions": {
+    "human": "adult homeowner",
+    "activity": "tightening a loose kitchen cabinet hinge",
+    "object": "screwdriver and cabinet hinge",
+    "place": "real residential kitchen",
+    "time": "daytime",
+    "demographic": "working-age adult",
+    "emotion": "focused and calmly problem-solving",
+    "problem": "loose cabinet hinge requiring minor repair",
+    "industry": "home improvement and household services",
+    "commercial_intent": "practical DIY maintenance and repair service marketing"
+  },
+  "story": {
+    "job_to_be_done": "show a believable small home repair task for home-improvement marketing or instructional content",
+    "commercial_buyer": "home improvement retailer, repair service, insurer, property-management company, or DIY publisher",
+    "problem_signal": "cabinet door visibly misaligned while the hinge is adjusted",
+    "interaction": "one hand stabilizes the cabinet door while the other uses a screwdriver",
+    "copy_space": "clean upper-left copy space",
+    "anti_cliche": [
+      "posed thumbs-up",
+      "looking at camera instead of the task"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "candidate_id": "CAND-0830480",
+  "noun": "umbrella",
+  "lane_id": "PSR-L0",
+  "subject_spec": {
+    "recognition_anchors": [
+      "canopy",
+      "central shaft",
+      "handle"
+    ],
+    "essential_components": [
+      "single umbrella"
+    ],
+    "forbidden_mutations": [
+      "duplicate canopies",
+      "impossible spokes"
+    ]
+  }
+}

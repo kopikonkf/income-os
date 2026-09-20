@@ -1,0 +1,19 @@
+{
+  "candidate_id": "CAND-0869496",
+  "noun": "trophy",
+  "lane_id": "PSR-L0",
+  "subject_spec": {
+    "recognition_anchors": [
+      "cup or award body",
+      "base",
+      "handles if design requires"
+    ],
+    "essential_components": [
+      "single award object"
+    ],
+    "forbidden_mutations": [
+      "readable engraving",
+      "duplicate bases"
+    ]
+  }
+}

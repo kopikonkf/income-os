@@ -1,0 +1,28 @@
+{
+  "family_id": "HF-FOOD-SERVICE",
+  "lane_id": "HC-L0",
+  "dimensions": {
+    "human": "small food-business worker",
+    "activity": "preparing packaged customer orders",
+    "object": "food containers, labels without readable text, reusable kitchen tools",
+    "place": "clean small commercial kitchen workspace",
+    "time": "busy daytime service",
+    "demographic": "adult food-service worker",
+    "emotion": "focused and efficient",
+    "problem": "assembling accurate takeaway orders",
+    "industry": "small food service and hospitality",
+    "commercial_intent": "restaurant operations, delivery, packaging and local business marketing"
+  },
+  "story": {
+    "job_to_be_done": "show real small-business order preparation with useful operational context",
+    "commercial_buyer": "restaurant software, delivery platform, packaging supplier, hospitality publisher",
+    "problem_signal": "multiple takeaway orders are being assembled in an organized sequence",
+    "interaction": "worker portions and closes containers at prep counter",
+    "copy_space": "upper wall copy space",
+    "anti_cliche": [
+      "chef posing at camera",
+      "luxury fine-dining styling",
+      "readable brand labels"
+    ]
+  }
+}

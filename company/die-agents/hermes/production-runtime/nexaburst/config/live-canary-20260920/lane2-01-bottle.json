@@ -1,0 +1,19 @@
+{
+  "candidate_id": "CAND-0833466",
+  "noun": "bottle",
+  "lane_id": "PSR-L0",
+  "subject_spec": {
+    "recognition_anchors": [
+      "cylindrical or shaped container body",
+      "neck/opening",
+      "stable base"
+    ],
+    "essential_components": [
+      "single coherent container"
+    ],
+    "forbidden_mutations": [
+      "extra handles unless bottle type requires them",
+      "duplicate openings"
+    ]
+  }
+}

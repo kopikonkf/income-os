@@ -1,0 +1,20 @@
+{
+  "candidate_id": "CAND-0878345",
+  "noun": "laptop",
+  "lane_id": "PSR-L0",
+  "subject_spec": {
+    "recognition_anchors": [
+      "screen",
+      "keyboard deck",
+      "hinge"
+    ],
+    "essential_components": [
+      "single portable computer"
+    ],
+    "forbidden_mutations": [
+      "extra screens",
+      "floating keyboard",
+      "readable UI text"
+    ]
+  }
+}

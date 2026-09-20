@@ -1,0 +1,19 @@
+{
+  "candidate_id": "CANARY-GIFT-BOX",
+  "noun": "gift box",
+  "lane_id": "PSR-L0",
+  "subject_spec": {
+    "recognition_anchors": [
+      "box body",
+      "lid or closure",
+      "ribbon/bow if present"
+    ],
+    "essential_components": [
+      "single gift package"
+    ],
+    "forbidden_mutations": [
+      "multiple nested boxes",
+      "readable gift text"
+    ]
+  }
+}

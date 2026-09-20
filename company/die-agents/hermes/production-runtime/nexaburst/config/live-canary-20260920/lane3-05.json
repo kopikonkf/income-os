@@ -1,0 +1,28 @@
+{
+  "family_id": "HF-SMB-SERVICE",
+  "lane_id": "HC-L1",
+  "dimensions": {
+    "human": "barber and adult client",
+    "activity": "consulting about haircut style before service",
+    "object": "comb and salon chair",
+    "place": "small independent barbershop",
+    "time": "daytime",
+    "demographic": "adult service worker and client",
+    "emotion": "professional, attentive, relaxed",
+    "problem": "clarifying customer preference before service",
+    "industry": "local personal services",
+    "commercial_intent": "customer service and small-business marketing"
+  },
+  "story": {
+    "job_to_be_done": "show a real pre-service consultation rather than a posed salon portrait",
+    "commercial_buyer": "salon software, local business marketing agency, barber brand, service marketplace",
+    "problem_signal": "worker listens and gestures to hair while client explains preference",
+    "interaction": "natural face-to-face consultation beside salon chair",
+    "copy_space": "clean wall area for copy",
+    "anti_cliche": [
+      "both people smiling at camera",
+      "brand logos",
+      "fashion-editorial pose"
+    ]
+  }
+}
