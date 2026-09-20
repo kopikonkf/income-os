@@ -9,6 +9,10 @@ CONTROL=STATE/'operator-control.json'
 LEDGER=STATE/'nexaburst-manifestation-ledger.db'
 SESSION=Path('/home/kopiko/die-sessions/NEXABURST-H01-P001')
 HEALTH=SESSION/'bin'/'nexaburst-health.mjs'
+ROLLOUT_ARM=STATE/'FULL_ROLLOUT_ARMED.json'
+ROLLOUT_PROGRESS=STATE/'full-rollout-progress.json'
+ROLLOUT_PAUSE=STATE/'full-rollout-pause.json'
+ROLLOUT_PLAN=SESSION/'config'/'watercolor-rollout-plan-v1.jsonl'
 VALID={'RUNNING','PAUSED','STOPPED'}
 
 def now():
@@ -56,7 +60,32 @@ def stats():
         out['first100_complete']=c.execute("select count(*) from manifestations where lane_id='WC-L0' and priority<1000 and status in ('WAITING_FOUNDER_QC','VAULT_VERIFIED')").fetchone()[0]
         out['first100_failed']=c.execute("select count(*) from manifestations where lane_id='WC-L0' and priority<1000 and status in ('FAILED_RETRYABLE','BLOCKED')").fetchone()[0]
         out['first100_pending']=100-out['first100_complete']-out['first100_failed']
+        out['raw_backlog']=out['by_status'].get('RAW_DONE',0)
     finally:c.close()
+    return out
+
+def rollout_status():
+    out={'armed':False,'authorized_plan_items':0,'authorized_cohort_id':None,'next_index':1,'successes':0,'failures':0,
+         'pause_code':None,'runner_alive':bool(proc('nexaburst-rollout-runner.py')),'plan_rows':0}
+    if ROLLOUT_PLAN.is_file():
+        try: out['plan_rows']=sum(1 for x in ROLLOUT_PLAN.read_text(encoding='utf-8').splitlines() if x.strip())
+        except Exception: pass
+    if ROLLOUT_ARM.is_file():
+        try:
+            a=json.loads(ROLLOUT_ARM.read_text(encoding='utf-8'))
+            out['armed']=a.get('authorized') is True
+            out['authorized_plan_items']=int(a.get('authorized_plan_items') or 0)
+            out['authorized_cohort_id']=a.get('authorized_cohort_id')
+        except Exception: pass
+    if ROLLOUT_PROGRESS.is_file():
+        try:
+            p=json.loads(ROLLOUT_PROGRESS.read_text(encoding='utf-8'))
+            for k in ('next_index','successes','failures'):
+                if k in p: out[k]=int(p[k])
+        except Exception: pass
+    if ROLLOUT_PAUSE.is_file():
+        try: out['pause_code']=json.loads(ROLLOUT_PAUSE.read_text(encoding='utf-8')).get('code')
+        except Exception: out['pause_code']='UNKNOWN'
     return out
 
 def status():

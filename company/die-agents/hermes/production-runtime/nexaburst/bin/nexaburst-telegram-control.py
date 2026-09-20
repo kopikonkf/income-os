@@ -82,7 +82,12 @@ def tabs():
     except:return 0
 
 def fmt_status():
-    d=control_status(); c=d['control'];h=d['health'];s=d['stats']
+    d=control_status(); c=d['control'];h=d['health'];s=d['stats'];r=d.get('rollout') or {}
+    auth=int(r.get('authorized_plan_items') or 0)
+    next_index=int(r.get('next_index') or 1)
+    acquired=max(0,min(auth,next_index-1)) if auth else 0
+    remaining=max(0,auth-acquired) if auth else 0
+    boundary=(auth+1) if auth else 101
     return (
       'NexaBurst · Control Status\n'
       '────────────────────────────\n'
@@ -92,14 +97,18 @@ def fmt_status():
       f"Unlimited     : {'ACTIVE' if h.get('unlimited_active') else 'INACTIVE'}\n"
       f"First-100     : {s.get('first100_complete',0)}/100 complete"
       f" · {s.get('first100_failed',0)} retry/block · {s.get('first100_pending',0)} pending\n"
-      f"WC reservoir  : {s.get('complete',0)}/{s.get('total',0)} complete\n"
-      f"Technical gate: {d.get('phase1_pause') or 'none'}\n"
-      f"Runner        : {'RUNNING' if d.get('runner_alive') else 'IDLE'}\n"
-      f"V2 worker     : {'RUNNING' if d.get('v2_alive') else 'IDLE'}"
-      f" · RealESRGAN {'ACTIVE' if d.get('realesrgan_active') else 'idle'}\n"
-      f"Browser tabs  : {tabs()} Nexa\n"
-      f"Disk free     : {d.get('disk_free_gib')} GiB\n"
-      'Full 42.5K    : LOCKED (first-100 only)'
+      f"WC complete   : {s.get('complete',0)}/{s.get('total',0)}\n"
+      f"Raw backlog   : {s.get('raw_backlog',0)}\n"
+      f"Rollout       : {r.get('authorized_cohort_id') or 'LOCKED'}"
+      + (f" · {acquired}/{auth} acquired · {remaining} left\n" if auth else "\n")
+      + f"Rollout PID   : {'RUNNING' if r.get('runner_alive') else 'IDLE'}"
+      + (f" · gate {r.get('pause_code')}\n" if r.get('pause_code') else "\n")
+      + f"Phase1 gate   : {d.get('phase1_pause') or 'none'}\n"
+      + f"V2 worker     : {'RUNNING' if d.get('v2_alive') else 'IDLE'}"
+      + f" · RealESRGAN {'ACTIVE' if d.get('realesrgan_active') else 'idle'}\n"
+      + f"Browser tabs  : {tabs()} Nexa\n"
+      + f"Disk free     : {d.get('disk_free_gib')} GiB\n"
+      + f"Next boundary : #{boundary} LOCKED until new Founder authorization"
     )
 
 def register_commands():
