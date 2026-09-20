@@ -9,6 +9,7 @@ STATE=ROOT/'state'
 ENV=Path('/home/kopiko/.config/die/nexaburst.env')
 CONTROL=SESSION/'bin'/'nexaburst-control.py'
 OFFSET=STATE/'telegram-control-offset.json'
+AUDIT=STATE/'telegram-control-audit.jsonl'
 
 def load_env():
     out={}
@@ -33,11 +34,15 @@ def api(method,data=None,timeout=60):
         body=e.read().decode('utf-8','replace')
         raise RuntimeError(f'TELEGRAM_HTTP_{e.code}:{body[:300]}')
 
-def send(text,thread=None):
+def send(text,thread=None,use_default=False):
     d={'chat_id':str(CHAT),'text':text,'disable_web_page_preview':'true'}
-    tid=thread or DEFAULT_THREAD
+    tid=DEFAULT_THREAD if use_default and thread is None else thread
     if tid:d['message_thread_id']=str(tid)
     return api('sendMessage',d,20)
+
+def audit(event,**kw):
+    row={'at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'event':event,**kw}
+    with AUDIT.open('a',encoding='utf-8') as f:f.write(json.dumps(row,ensure_ascii=False,separators=(',',':'))+'\n')
 
 def offset_get():
     try:return int(json.loads(OFFSET.read_text()).get('offset',0))
@@ -48,6 +53,12 @@ def offset_set(v):
     tmp.write_text(json.dumps({'offset':int(v)})+'\n');os.replace(tmp,OFFSET)
 
 def admin(chat_id,user_id):
+    try:
+        d=api('getChatAdministrators',{'chat_id':str(chat_id)},15)
+        if d.get('ok'):
+            return any(int(((x.get('user') or {}).get('id') or 0))==int(user_id) for x in (d.get('result') or []))
+    except Exception:
+        pass
     try:
         d=api('getChatMember',{'chat_id':str(chat_id),'user_id':str(user_id)},15)
         return d.get('ok') and (d.get('result') or {}).get('status') in {'creator','administrator'}
@@ -106,14 +117,17 @@ def handle(msg):
     if int((msg.get('chat') or {}).get('id',0))!=CHAT:return
     text=str(msg.get('text') or '').strip()
     if not text.startswith('/nexa_'):return
-    thread=msg.get('message_thread_id') or DEFAULT_THREAD
+    thread=msg.get('message_thread_id')
     user=msg.get('from') or {};uid=int(user.get('id',0))
-    if not admin(CHAT,uid):
-        send('NexaBurst control denied: only Telegram group administrators can operate production controls.',thread);return
     cmdline=text.split(maxsplit=1);cmd=cmdline[0].split('@',1)[0].lower();arg=cmdline[1].strip() if len(cmdline)>1 else ''
+    audit('COMMAND_RECEIVED',command=cmd,thread=thread,user_id=uid,username=user.get('username'))
+    if not admin(CHAT,uid):
+        audit('COMMAND_DENIED',command=cmd,thread=thread,user_id=uid)
+        send('NexaBurst control denied: only Telegram group administrators can operate production controls.',thread);return
     actor=f"telegram:{uid}:{user.get('username') or user.get('first_name') or 'admin'}"
-    if cmd=='/nexa_status':send(fmt_status(),thread);return
+    if cmd=='/nexa_status': audit('COMMAND_OK',command=cmd,user_id=uid);send(fmt_status(),thread);return
     if cmd=='/nexa_help':
+        audit('COMMAND_OK',command=cmd,user_id=uid)
         send('NexaBurst · Founder Controls\n────────────────────────────\n'
              '/nexa_status — read-only status\n'
              '/nexa_pause [reason] — stop new provider submits; V2/Vault drain safely\n'
@@ -122,12 +136,15 @@ def handle(msg):
              'Full 42.5K cannot be unlocked by these commands.',thread);return
     if cmd=='/nexa_pause':
         set_mode('PAUSED',arg or 'Founder Telegram pause',actor)
+        audit('COMMAND_OK',command=cmd,user_id=uid,mode='PAUSED')
         send('NexaBurst · PAUSED\nNo new provider submit will start. Current in-flight job may finish; V2 and Vault may drain existing work.',thread);return
     if cmd=='/nexa_stop':
         set_mode('STOPPED',arg or 'Founder Telegram emergency stop',actor)
+        audit('COMMAND_OK',command=cmd,user_id=uid,mode='STOPPED')
         send('NexaBurst · STOPPED\nNo new provider submit will start. V2 will not take a new item after any active item finishes. Vault remains available for already-completed artifacts.',thread);return
     if cmd=='/nexa_resume':
         set_mode('RUNNING',arg or 'Founder Telegram resume',actor)
+        audit('COMMAND_OK',command=cmd,user_id=uid,mode='RUNNING')
         st=control_status(); gate=st.get('phase1_pause')
         send('NexaBurst · RESUME AUTHORIZED\nCurrent authorized window may run when health/auth/Unlimited/disk gates pass.'
              + (f'\nTechnical gate still present: {gate}' if gate else '')

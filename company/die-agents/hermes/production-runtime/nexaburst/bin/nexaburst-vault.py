@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, fcntl, hashlib, json, mimetypes, os, time, urllib.parse, urllib.request, uuid, zipfile, subprocess
+import argparse, fcntl, hashlib, json, mimetypes, os, time, urllib.parse, urllib.request, urllib.error, uuid, zipfile, subprocess
 from pathlib import Path
 
 ENV=Path('/home/kopiko/.config/die/nexaburst.env')
@@ -39,6 +39,13 @@ def add_hold(asset_id):
     held=held_assets(); held.add(asset_id)
     tmp=HOLD.with_name(HOLD.name+f'.tmp-{os.getpid()}')
     tmp.write_text('\n'.join(sorted(held))+'\n',encoding='utf-8'); os.replace(tmp,HOLD)
+
+def remove_hold(asset_id):
+    held=held_assets()
+    if asset_id not in held:return
+    held.discard(asset_id)
+    tmp=HOLD.with_name(HOLD.name+f'.tmp-{os.getpid()}')
+    tmp.write_text(('\n'.join(sorted(held))+'\n') if held else '',encoding='utf-8'); os.replace(tmp,HOLD)
 
 def vault_error_count(asset_id):
     if not ERRORS.is_file(): return 0
@@ -191,15 +198,23 @@ def multipart_post(url,fields,file_field,file_path,timeout=120):
               f'--{boundary}--\r\n'.encode()]
     req=urllib.request.Request(url,data=b''.join(parts),method='POST',
         headers={'Content-Type':f'multipart/form-data; boundary={boundary}'})
-    with urllib.request.urlopen(req,timeout=timeout) as r:
-        return json.loads(r.read().decode('utf-8'))
+    try:
+        with urllib.request.urlopen(req,timeout=timeout) as r:
+            return json.loads(r.read().decode('utf-8'))
+    except urllib.error.HTTPError as e:
+        body=e.read().decode('utf-8','replace')
+        raise RuntimeError(f'E_TELEGRAM_HTTP_{e.code}:{body[:700]}') from e
 
 def api_post(token,method,data,timeout=30):
     req=urllib.request.Request(f'https://api.telegram.org/bot{token}/{method}',
         data=urllib.parse.urlencode(data).encode(),method='POST',
         headers={'Content-Type':'application/x-www-form-urlencoded'})
-    with urllib.request.urlopen(req,timeout=timeout) as r:
-        return json.loads(r.read().decode('utf-8'))
+    try:
+        with urllib.request.urlopen(req,timeout=timeout) as r:
+            return json.loads(r.read().decode('utf-8'))
+    except urllib.error.HTTPError as e:
+        body=e.read().decode('utf-8','replace')
+        raise RuntimeError(f'E_TELEGRAM_HTTP_{e.code}:{body[:700]}') from e
 
 def upload_and_verify(archive,info):
     token=os.getenv('NEXABURST_TELEGRAM_BOT_TOKEN','').strip()
@@ -274,6 +289,7 @@ def process(ws,dry_run=False):
     RECEIPTS.mkdir(parents=True,exist_ok=True)
     atomic(RECEIPTS/f'{receipt["asset_id"]}__{receipt["archive_sha256"][:12]}.json',receipt)
     append(DONE,receipt)
+    remove_hold(receipt['asset_id'])
     try:
         src=read_json(ws/'nexaburst-source.json')
         if src.get('candidate_id') and src.get('lane_id'):
