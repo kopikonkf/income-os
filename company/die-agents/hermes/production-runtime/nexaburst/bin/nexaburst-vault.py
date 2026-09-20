@@ -19,6 +19,7 @@ RESERVOIR=Path('/home/kopiko/die-sessions/NEXABURST-H01-P001/bin/nexaburst-reser
 CONTROL_SCRIPT=Path('/home/kopiko/die-sessions/NEXABURST-H01-P001/bin/nexaburst-control.py')
 MANIFEST_DB=ROOT/'state'/'nexaburst-manifestation-ledger.db'
 FIRST100_COMPLETE=ROOT/'state'/'FIRST100_COMPLETE.json'
+PRESENCE_GATE=Path('/home/kopiko/die-sessions/NEXABURST-H01-P001/bin/nexaburst-presence-gate.py')
 
 def load_env():
     if ENV.is_file():
@@ -323,6 +324,9 @@ def maybe_complete_first100():
     if total!=100 or verified!=100:return False
     row={'schema':'die.h01.nexaburst.first100-complete.v1','status':'COMPLETE','lane_id':'WC-L0','verified':verified,'total':total,'completed_at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime())}
     atomic(FIRST100_COMPLETE,row)
+    try:
+        subprocess.run([str(PRESENCE_GATE),'--write'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=120,check=False)
+    except Exception:pass
     try:
         subprocess.run([str(CONTROL_SCRIPT),'set','--mode','PAUSED','--reason','First-100 completed 100/100 VAULT_VERIFIED; full reservoir remains locked.','--actor','nexaburst-first100-completion'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=20,check=False)
     except Exception:pass
