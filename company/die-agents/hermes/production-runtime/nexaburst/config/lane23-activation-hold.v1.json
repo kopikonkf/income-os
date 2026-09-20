@@ -1,0 +1,35 @@
+{
+  "schema": "die.h01.nexaburst.lane23-activation-hold.v1",
+  "status": "HOLD",
+  "lane2": {
+    "engine_id": "NEXABURST-LANE2-OBJECT-PSR",
+    "live": false,
+    "required_before_live": [
+      "Founder review WC-C0001 results",
+      "Founder review round-robin cohort",
+      "dedicated Nexabot account/profile #2",
+      "PSR canary acceptance",
+      "expression-aware semantic identity"
+    ]
+  },
+  "lane3": {
+    "engine_id": "NEXABURST-LANE3-HUMAN-SCENE",
+    "live": false,
+    "required_before_live": [
+      "Founder review WC-C0001 results",
+      "Founder review round-robin cohort",
+      "dedicated Nexabot account/profile #3",
+      "human-scene canary acceptance",
+      "family validation",
+      "human/object/context coherence validation"
+    ]
+  },
+  "invariants": [
+    "no cron",
+    "no systemd service",
+    "no provider dispatch",
+    "no H03 dependency",
+    "no Executive/Division web-AI cognition dependency",
+    "no automatic activation"
+  ]
+}

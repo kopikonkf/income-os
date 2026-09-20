@@ -1,0 +1,28 @@
+{
+  "family_id": "HF-DIGITAL-TRUST",
+  "lane_id": "HC-L7",
+  "dimensions": {
+    "human": "middle-aged adult",
+    "activity": "reviewing a suspicious mobile message before taking action",
+    "object": "smartphone with non-readable generic message blocks",
+    "place": "home desk",
+    "time": "evening",
+    "demographic": "middle-aged consumer",
+    "emotion": "cautious and analytical",
+    "problem": "possible scam or phishing message",
+    "industry": "cybersecurity and consumer protection",
+    "commercial_intent": "fraud awareness and digital safety communication"
+  },
+  "story": {
+    "job_to_be_done": "communicate scam-awareness and thoughtful verification behavior",
+    "commercial_buyer": "bank, cybersecurity company, insurer, government awareness campaign",
+    "problem_signal": "person pauses before interacting with suspicious message",
+    "interaction": "phone held naturally while person cross-checks on laptop",
+    "copy_space": "upper-right copy space",
+    "anti_cliche": [
+      "hooded hacker",
+      "red warning text",
+      "floating padlock hologram"
+    ]
+  }
+}

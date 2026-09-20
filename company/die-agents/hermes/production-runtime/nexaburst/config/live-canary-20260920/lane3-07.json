@@ -1,0 +1,28 @@
+{
+  "family_id": "HF-EDU-SKILL",
+  "lane_id": "HC-L2",
+  "dimensions": {
+    "human": "adult learner and instructor",
+    "activity": "receiving practical computer guidance",
+    "object": "laptop and notebook without readable text",
+    "place": "adult training classroom or community learning center",
+    "time": "daytime",
+    "demographic": "adult learner",
+    "emotion": "curious, slightly concentrated, supported",
+    "problem": "building practical digital literacy",
+    "industry": "education and workforce development",
+    "commercial_intent": "adult learning, reskilling, digital inclusion"
+  },
+  "story": {
+    "job_to_be_done": "show hands-on digital skills coaching for workforce or community education",
+    "commercial_buyer": "training provider, community college, nonprofit, workforce agency",
+    "problem_signal": "learner is actively completing a task while instructor guides",
+    "interaction": "instructor points near laptop while learner controls the computer",
+    "copy_space": "clean background board area",
+    "anti_cliche": [
+      "graduation cap",
+      "posed classroom smile",
+      "readable screen text"
+    ]
+  }
+}

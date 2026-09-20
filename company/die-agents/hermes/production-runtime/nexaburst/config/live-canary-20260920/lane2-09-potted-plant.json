@@ -1,0 +1,19 @@
+{
+  "candidate_id": "CAND-1328357",
+  "noun": "potted plant",
+  "lane_id": "PSR-L0",
+  "subject_spec": {
+    "recognition_anchors": [
+      "plant foliage",
+      "pot/container",
+      "visible planting relationship"
+    ],
+    "essential_components": [
+      "single coherent potted plant"
+    ],
+    "forbidden_mutations": [
+      "floating foliage",
+      "multiple unrelated pots"
+    ]
+  }
+}

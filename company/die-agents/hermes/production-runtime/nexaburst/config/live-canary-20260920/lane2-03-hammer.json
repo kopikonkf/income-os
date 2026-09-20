@@ -1,0 +1,19 @@
+{
+  "candidate_id": "CAND-0834159",
+  "noun": "hammer",
+  "lane_id": "PSR-L0",
+  "subject_spec": {
+    "recognition_anchors": [
+      "handle",
+      "hammer head",
+      "striking face"
+    ],
+    "essential_components": [
+      "single usable hand tool"
+    ],
+    "forbidden_mutations": [
+      "extra heads",
+      "bent impossible handle"
+    ]
+  }
+}

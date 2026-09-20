@@ -1,0 +1,17 @@
+[Unit]
+Description=NexaBurst Telegram founder control
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=kopiko
+Group=kopiko
+ExecStart=/usr/bin/python3 /home/kopiko/die-sessions/NEXABURST-H01-P001/bin/nexaburst-telegram-control.py
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

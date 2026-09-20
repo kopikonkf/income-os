@@ -1,0 +1,19 @@
+{
+  "candidate_id": "CAND-0851225",
+  "noun": "backpack",
+  "lane_id": "PSR-L0",
+  "subject_spec": {
+    "recognition_anchors": [
+      "main bag body",
+      "shoulder straps",
+      "zipper or closure"
+    ],
+    "essential_components": [
+      "single wearable backpack"
+    ],
+    "forbidden_mutations": [
+      "extra straps without function",
+      "merged pockets"
+    ]
+  }
+}

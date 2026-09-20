@@ -1,0 +1,28 @@
+{
+  "family_id": "HF-CARE-ACCESS",
+  "lane_id": "HC-L4",
+  "dimensions": {
+    "human": "adult daughter and independent older mother",
+    "activity": "organizing a weekly medication routine together",
+    "object": "medication organizer and tablet",
+    "place": "comfortable home kitchen table",
+    "time": "morning",
+    "demographic": "multigenerational adult family",
+    "emotion": "collaborative, calm, attentive",
+    "problem": "coordinating medication routine without portraying helplessness",
+    "industry": "home care, pharmacy, insurance, digital health",
+    "commercial_intent": "care coordination and independent-living communication"
+  },
+  "story": {
+    "job_to_be_done": "communicate practical family caregiving with dignity and shared agency",
+    "commercial_buyer": "home-care provider, insurer, pharmacy, caregiver platform, health publisher",
+    "problem_signal": "weekly medication organizer is actively being arranged",
+    "interaction": "both women review the organizer and tablet together",
+    "copy_space": "right-side copy space",
+    "anti_cliche": [
+      "sad helpless senior",
+      "doctor costume",
+      "melodramatic distress"
+    ]
+  }
+}

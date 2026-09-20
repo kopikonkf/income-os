@@ -1,0 +1,347 @@
+[
+  {
+    "seed_id": "SEED-000021",
+    "noun": "bottle",
+    "subject_class": "CONTAINER",
+    "primary_form": "one generic unbranded upright bottle with a clearly defined body, shoulder, neck and simple cap",
+    "components": [
+      {
+        "name": "bottle body",
+        "description": "single clean container body",
+        "placement": "centered main form"
+      },
+      {
+        "name": "neck and opening",
+        "description": "narrow neck terminating in a simple generic cap",
+        "placement": "at the top of the body"
+      }
+    ],
+    "anchors": [
+      "distinct bottle silhouette with body, shoulder and neck",
+      "stable upright proportions",
+      "generic non-branded container design"
+    ],
+    "natural_attributes": [
+      "generic unbranded appearance",
+      "natural materials, colors and visible details appropriate to a typical bottle"
+    ],
+    "forbidden_subject_mutations": [
+      "do not merge the subject with unrelated objects",
+      "do not distort defining parts beyond immediate recognizability"
+    ],
+    "spatial_relationships": []
+  },
+  {
+    "seed_id": "SEED-000026",
+    "noun": "chair",
+    "subject_class": "FURNITURE",
+    "primary_form": "one generic freestanding chair with a seat, backrest and four structurally plausible legs",
+    "components": [
+      {
+        "name": "seat",
+        "description": "single horizontal seating surface",
+        "placement": "central"
+      },
+      {
+        "name": "backrest",
+        "description": "upright support rising from rear of seat",
+        "placement": "rear upper area"
+      },
+      {
+        "name": "legs",
+        "description": "four plausible supporting legs",
+        "placement": "below seat"
+      }
+    ],
+    "anchors": [
+      "recognizable chair silhouette",
+      "seat and backrest clearly separated",
+      "stable plausible leg geometry"
+    ],
+    "natural_attributes": [
+      "generic unbranded appearance",
+      "natural materials, colors and visible details appropriate to a typical chair"
+    ],
+    "forbidden_subject_mutations": [
+      "do not merge the subject with unrelated objects",
+      "do not distort defining parts beyond immediate recognizability"
+    ],
+    "spatial_relationships": []
+  },
+  {
+    "seed_id": "SEED-000122",
+    "noun": "hammer",
+    "subject_class": "TOOL",
+    "primary_form": "one generic hand hammer with a straight handle and a clearly recognizable metal hammer head",
+    "components": [
+      {
+        "name": "handle",
+        "description": "straight ergonomic generic handle",
+        "placement": "extends downward from head"
+      },
+      {
+        "name": "hammer head",
+        "description": "solid striking head with conventional hammer geometry",
+        "placement": "fixed at top of handle"
+      }
+    ],
+    "anchors": [
+      "clear hammer head and handle relationship",
+      "recognizable hand-tool proportions",
+      "generic unbranded construction"
+    ],
+    "natural_attributes": [
+      "generic unbranded appearance",
+      "natural materials, colors and visible details appropriate to a typical hammer"
+    ],
+    "forbidden_subject_mutations": [
+      "do not merge the subject with unrelated objects",
+      "do not distort defining parts beyond immediate recognizability"
+    ],
+    "spatial_relationships": []
+  },
+  {
+    "seed_id": "SEED-000023",
+    "noun": "laptop",
+    "subject_class": "SIMPLE_OBJECT",
+    "primary_form": "one generic open laptop computer with a thin display panel hinged to a keyboard base",
+    "components": [
+      {
+        "name": "display",
+        "description": "plain blank screen with thin bezel",
+        "placement": "upper hinged panel"
+      },
+      {
+        "name": "keyboard base",
+        "description": "thin base containing keyboard and trackpad area",
+        "placement": "lower horizontal panel"
+      }
+    ],
+    "anchors": [
+      "open clamshell laptop silhouette",
+      "screen and keyboard base clearly connected by hinge",
+      "generic device with no logos or readable UI"
+    ],
+    "natural_attributes": [
+      "generic unbranded appearance",
+      "natural materials, colors and visible details appropriate to a typical laptop"
+    ],
+    "forbidden_subject_mutations": [
+      "do not merge the subject with unrelated objects",
+      "do not distort defining parts beyond immediate recognizability"
+    ],
+    "spatial_relationships": []
+  },
+  {
+    "seed_id": "SEED-000028",
+    "noun": "gift box",
+    "subject_class": "CONTAINER",
+    "primary_form": "one generic closed gift box with a fitted lid and a simple decorative ribbon and bow",
+    "components": [
+      {
+        "name": "box body",
+        "description": "clean rectangular gift box body",
+        "placement": "central main form"
+      },
+      {
+        "name": "lid",
+        "description": "fitted lid aligned with box body",
+        "placement": "top"
+      },
+      {
+        "name": "ribbon and bow",
+        "description": "simple ribbon wrapping the box with a neat bow",
+        "placement": "centered over lid"
+      }
+    ],
+    "anchors": [
+      "recognizable boxed gift silhouette",
+      "lid visibly distinct from box body",
+      "simple centered ribbon and bow"
+    ],
+    "natural_attributes": [
+      "generic unbranded appearance",
+      "natural materials, colors and visible details appropriate to a typical gift box"
+    ],
+    "forbidden_subject_mutations": [
+      "do not merge the subject with unrelated objects",
+      "do not distort defining parts beyond immediate recognizability"
+    ],
+    "spatial_relationships": []
+  },
+  {
+    "seed_id": "SEED-000132",
+    "noun": "backpack",
+    "subject_class": "CONTAINER",
+    "primary_form": "one generic everyday backpack with a main soft-sided body, top handle and two shoulder straps",
+    "components": [
+      {
+        "name": "main body",
+        "description": "single practical backpack compartment",
+        "placement": "central"
+      },
+      {
+        "name": "top handle",
+        "description": "small carrying loop",
+        "placement": "top"
+      },
+      {
+        "name": "shoulder straps",
+        "description": "pair of wearable straps",
+        "placement": "rear sides"
+      }
+    ],
+    "anchors": [
+      "recognizable backpack silhouette",
+      "main compartment with top handle",
+      "plausible pair of shoulder straps"
+    ],
+    "natural_attributes": [
+      "generic unbranded appearance",
+      "natural materials, colors and visible details appropriate to a typical backpack"
+    ],
+    "forbidden_subject_mutations": [
+      "do not merge the subject with unrelated objects",
+      "do not distort defining parts beyond immediate recognizability"
+    ],
+    "spatial_relationships": []
+  },
+  {
+    "seed_id": "SEED-000141",
+    "noun": "frying pan",
+    "subject_class": "TOOL",
+    "primary_form": "one generic shallow round frying pan with a flat cooking basin and one long handle",
+    "components": [
+      {
+        "name": "pan basin",
+        "description": "shallow circular cooking vessel",
+        "placement": "main body"
+      },
+      {
+        "name": "handle",
+        "description": "single long straight ergonomic handle",
+        "placement": "extends from one side"
+      }
+    ],
+    "anchors": [
+      "clear round pan basin",
+      "single attached long handle",
+      "recognizable cookware proportions"
+    ],
+    "natural_attributes": [
+      "generic unbranded appearance",
+      "natural materials, colors and visible details appropriate to a typical frying pan"
+    ],
+    "forbidden_subject_mutations": [
+      "do not merge the subject with unrelated objects",
+      "do not distort defining parts beyond immediate recognizability"
+    ],
+    "spatial_relationships": []
+  },
+  {
+    "seed_id": "SEED-000129",
+    "noun": "umbrella",
+    "subject_class": "SIMPLE_OBJECT",
+    "primary_form": "one generic closed umbrella with a wrapped canopy, straight shaft and curved handle",
+    "components": [
+      {
+        "name": "canopy",
+        "description": "closed wrapped umbrella canopy",
+        "placement": "upper elongated section"
+      },
+      {
+        "name": "shaft",
+        "description": "straight central support shaft",
+        "placement": "runs through length"
+      },
+      {
+        "name": "handle",
+        "description": "simple curved grip",
+        "placement": "bottom"
+      }
+    ],
+    "anchors": [
+      "recognizable closed umbrella silhouette",
+      "long shaft with wrapped canopy",
+      "distinct simple curved handle"
+    ],
+    "natural_attributes": [
+      "generic unbranded appearance",
+      "natural materials, colors and visible details appropriate to a typical umbrella"
+    ],
+    "forbidden_subject_mutations": [
+      "do not merge the subject with unrelated objects",
+      "do not distort defining parts beyond immediate recognizability"
+    ],
+    "spatial_relationships": []
+  },
+  {
+    "seed_id": "SEED-000034",
+    "noun": "potted plant",
+    "subject_class": "PLANT",
+    "primary_form": "one healthy generic decorative houseplant growing from a simple unbranded plant pot",
+    "components": [
+      {
+        "name": "plant pot",
+        "description": "simple stable generic pot",
+        "placement": "bottom"
+      },
+      {
+        "name": "foliage",
+        "description": "compact cluster of healthy green leaves",
+        "placement": "grows upward from pot"
+      }
+    ],
+    "anchors": [
+      "clear separation between pot and foliage",
+      "healthy recognizable houseplant form",
+      "balanced compact decorative silhouette"
+    ],
+    "natural_attributes": [
+      "generic unbranded appearance",
+      "natural materials, colors and visible details appropriate to a typical potted plant"
+    ],
+    "forbidden_subject_mutations": [
+      "do not merge the subject with unrelated objects",
+      "do not distort defining parts beyond immediate recognizability"
+    ],
+    "spatial_relationships": []
+  },
+  {
+    "seed_id": "SEED-000027",
+    "noun": "trophy",
+    "subject_class": "SIMPLE_OBJECT",
+    "primary_form": "one generic award trophy with a cup-shaped body, two side handles, narrow stem and stable base",
+    "components": [
+      {
+        "name": "cup",
+        "description": "classic open trophy cup",
+        "placement": "upper center"
+      },
+      {
+        "name": "handles",
+        "description": "two symmetrical curved handles",
+        "placement": "left and right of cup"
+      },
+      {
+        "name": "stem and base",
+        "description": "narrow support stem on stable pedestal base",
+        "placement": "below cup"
+      }
+    ],
+    "anchors": [
+      "classic trophy-cup silhouette",
+      "symmetrical side handles",
+      "stable pedestal base"
+    ],
+    "natural_attributes": [
+      "generic unbranded appearance",
+      "natural materials, colors and visible details appropriate to a typical trophy"
+    ],
+    "forbidden_subject_mutations": [
+      "do not merge the subject with unrelated objects",
+      "do not distort defining parts beyond immediate recognizability"
+    ],
+    "spatial_relationships": []
+  }
+]

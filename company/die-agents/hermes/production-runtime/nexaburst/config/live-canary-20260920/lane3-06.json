@@ -1,0 +1,28 @@
+{
+  "family_id": "HF-WORK-OPS",
+  "lane_id": "HC-L8",
+  "dimensions": {
+    "human": "warehouse worker",
+    "activity": "scanning inventory during active stock handling",
+    "object": "handheld scanner and labeled-looking but unreadable cartons",
+    "place": "organized warehouse aisle",
+    "time": "day shift",
+    "demographic": "adult frontline worker",
+    "emotion": "focused and efficient",
+    "problem": "maintaining accurate inventory flow",
+    "industry": "warehouse logistics and supply chain",
+    "commercial_intent": "operations software and logistics marketing"
+  },
+  "story": {
+    "job_to_be_done": "show actual inventory work with task evidence",
+    "commercial_buyer": "warehouse software vendor, logistics company, staffing company, industrial publisher",
+    "problem_signal": "scanner is actively used on a carton while inventory is handled",
+    "interaction": "worker scans one carton while moving through shelving",
+    "copy_space": "upper aisle copy space",
+    "anti_cliche": [
+      "generic team meeting",
+      "fake floating dashboards",
+      "readable brand labels"
+    ]
+  }
+}
