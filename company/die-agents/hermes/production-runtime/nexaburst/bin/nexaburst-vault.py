@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, fcntl, hashlib, json, mimetypes, os, time, urllib.parse, urllib.request, urllib.error, uuid, zipfile, subprocess
+import argparse, fcntl, hashlib, json, mimetypes, os, time, urllib.parse, urllib.request, urllib.error, uuid, zipfile, subprocess, sqlite3
 from pathlib import Path
 
 ENV=Path('/home/kopiko/.config/die/nexaburst.env')
@@ -16,6 +16,9 @@ LOCK=ROOT/'state'/'vault-worker.lock'
 HOLD=ROOT/'state'/'vault-hold-ids.txt'
 NOTIFIER=Path('/home/kopiko/die-sessions/NEXABURST-H01-P001/bin/nexaburst-notify.py')
 RESERVOIR=Path('/home/kopiko/die-sessions/NEXABURST-H01-P001/bin/nexaburst-reservoir.py')
+CONTROL_SCRIPT=Path('/home/kopiko/die-sessions/NEXABURST-H01-P001/bin/nexaburst-control.py')
+MANIFEST_DB=ROOT/'state'/'nexaburst-manifestation-ledger.db'
+FIRST100_COMPLETE=ROOT/'state'/'FIRST100_COMPLETE.json'
 
 def load_env():
     if ENV.is_file():
@@ -298,8 +301,25 @@ def process(ws,dry_run=False):
                            stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=20,check=False)
     except Exception: pass
     archive.unlink(missing_ok=True)
+    maybe_complete_first100()
     return receipt
 
+
+def maybe_complete_first100():
+    if FIRST100_COMPLETE.is_file() or not MANIFEST_DB.is_file(): return False
+    c=sqlite3.connect(str(MANIFEST_DB))
+    try:
+        total=c.execute("select count(*) from manifestations where lane_id='WC-L0' and priority<1000").fetchone()[0]
+        verified=c.execute("select count(*) from manifestations where lane_id='WC-L0' and priority<1000 and status='VAULT_VERIFIED'").fetchone()[0]
+    finally:c.close()
+    if total!=100 or verified!=100:return False
+    row={'schema':'die.h01.nexaburst.first100-complete.v1','status':'COMPLETE','lane_id':'WC-L0','verified':verified,'total':total,'completed_at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime())}
+    atomic(FIRST100_COMPLETE,row)
+    try:
+        subprocess.run([str(CONTROL_SCRIPT),'set','--mode','PAUSED','--reason','First-100 completed 100/100 VAULT_VERIFIED; full reservoir remains locked.','--actor','nexaburst-first100-completion'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=20,check=False)
+    except Exception:pass
+    notify('PHASE1_BATCH_COMPLETE','First-100 COMPLETE: 100/100 WC-L0 assets are VAULT_VERIFIED. Production auto-paused. Full 42.5K reservoir remains LOCKED pending Founder authorization.')
+    return True
 
 def cleanup_verified_archives():
     if not DONE.is_file(): return 0
