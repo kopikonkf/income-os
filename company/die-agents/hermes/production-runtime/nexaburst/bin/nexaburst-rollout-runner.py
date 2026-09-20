@@ -16,6 +16,7 @@ COMPILER=SESSION/'bin'/'nexaburst-prompt-compile.py'
 ADAPTER=SESSION/'bin'/'nexaburst-adapter.mjs'
 HEALTH=SESSION/'bin'/'nexaburst-health.mjs'
 NOTIFIER=SESSION/'bin'/'nexaburst-notify.py'
+CONTROL_SCRIPT=SESSION/'bin'/'nexaburst-control.py'
 PROGRESS=STATE/'full-rollout-progress.json'
 PAUSE=STATE/'full-rollout-pause.json'
 LANE='WC-L0'
@@ -62,6 +63,10 @@ def require_authority():
         raise RuntimeError('E_FULL_ROLLOUT_ARM_INVALID')
     if a.get('plan_sha256')!=plan_sha():
         raise RuntimeError('E_FULL_ROLLOUT_PLAN_SHA_MISMATCH')
+    try: limit=int(a.get('authorized_plan_items',0))
+    except Exception: raise RuntimeError('E_FULL_ROLLOUT_AUTH_LIMIT_INVALID')
+    if limit<1: raise RuntimeError('E_FULL_ROLLOUT_AUTH_LIMIT_INVALID')
+    a['authorized_plan_items']=limit
     return a
 
 def plan_rows():
@@ -119,16 +124,17 @@ def checkpoint_ok(progress):
     }
 
 def main():
-    try: require_authority()
+    try: authority=require_authority()
     except Exception as e:
         print(json.dumps({'status':'LOCKED','error':str(e)}));return 76
     rows=plan_rows()
+    authorized_limit=min(int(authority['authorized_plan_items']),len(rows))
     progress={'next_index':1,'successes':0,'failures':0,'checkpoint_attempts':0,'checkpoint_failures':0}
     if PROGRESS.is_file():
         try:progress.update(json.loads(PROGRESS.read_text(encoding='utf-8')))
         except Exception:pass
 
-    while int(progress['next_index'])<=len(rows):
+    while int(progress['next_index'])<=authorized_limit:
         if control_mode()!='RUNNING':
             print(json.dumps({'status':'PAUSED_BY_OPERATOR','next_index':progress['next_index']}));return 0
         h=health()
@@ -185,13 +191,20 @@ def main():
         # Every 100 planned items: health checkpoint. No manual approval if green.
         if (int(progress['next_index'])-1)%100==0:
             ok,metrics=checkpoint_ok(progress)
-            notify('PHASE1_PROGRESS',f"Full rollout checkpoint {int(progress['next_index'])-1}/{len(rows)} metrics={json.dumps(metrics,separators=(',',':'))}")
+            notify('PHASE1_PROGRESS',f"Authorized rollout checkpoint {int(progress['next_index'])-1}/{authorized_limit} metrics={json.dumps(metrics,separators=(',',':'))}")
             if not ok:
                 set_pause('CHECKPOINT_GATE',f'Checkpoint unhealthy: {json.dumps(metrics,separators=(",",":"))}')
                 return 27
             progress['checkpoint_attempts']=0;progress['checkpoint_failures']=0
             atomic(PROGRESS,progress)
-    notify('PHASE1_BATCH_COMPLETE',f'Full WC-L0 semantic-presence rollout raw plan drained: {len(rows)} planned representatives.')
+    # Authorization boundary is always a durable pause. A new Founder authorization
+    # is required before the next cohort/slice can start.
+    run([str(CONTROL_SCRIPT),'set','--mode','PAUSED','--reason',
+         f'Authorized WC-L0 slice complete: {authorized_limit}/{len(rows)} planned representatives; next slice locked.',
+         '--actor','nexaburst-rollout-authorization-boundary'],30)
+    notify('PHASE1_BATCH_COMPLETE',
+           f'Authorized WC-L0 slice COMPLETE: {authorized_limit}/{authorized_limit} raw representatives acquired. '
+           f'Production auto-paused at Founder authorization boundary; {len(rows)-authorized_limit} planned representatives remain locked.')
     return 0
 
 if __name__=='__main__':raise SystemExit(main())
