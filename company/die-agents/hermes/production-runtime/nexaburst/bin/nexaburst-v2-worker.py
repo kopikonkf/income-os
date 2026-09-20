@@ -16,6 +16,7 @@ POLICY=Path('/srv/die/company/atlas/object-centric/object-asset-engine/source/sc
 NOTIFIER=SESSION/'bin'/'nexaburst-notify.py'
 RESERVOIR=SESSION/'bin'/'nexaburst-reservoir.py'
 PAUSE=ROOT/'state'/'v2-pause.json'
+CONTROL=ROOT/'state'/'operator-control.json'
 
 def loadmod(name,path):
     spec=importlib.util.spec_from_file_location(name,path);mod=importlib.util.module_from_spec(spec)
@@ -135,6 +136,12 @@ def upscale_fn(source,output):
       timeout_sec=1800
     )
 
+def operator_mode():
+    try:
+        return json.loads(CONTROL.read_text(encoding='utf-8')).get('mode','PAUSED')
+    except Exception:
+        return 'PAUSED'
+
 def processed_ids():
     out=set()
     if DONE.is_file():
@@ -147,6 +154,7 @@ def processed_ids():
     return out
 
 def pending():
+    if operator_mode()=='STOPPED':return []
     if not QUEUE.is_file():return []
     done=processed_ids(); held=set()
     if HOLD.is_file():

@@ -14,10 +14,18 @@ NOTIFIER=SESSION/'bin'/'nexaburst-notify.py'
 PAUSE=STATE/'phase1-pause.json'
 PROGRESS=STATE/'phase1-progress.json'
 DONE_MARK=STATE/'phase1-first100-raw-complete.json'
+CONTROL=STATE/'operator-control.json'
 LANE='WC-L0'
 PRESET='ISOLATED_SOFT_WATERCOLOR_CLIPART_WHITE_L0'
 TYPED_CACHE=SESSION/'config'/'market-canary-100-wave3pass-watercolor-typed.jsonl'
 
+
+def control_mode():
+    try:
+        d=json.loads(CONTROL.read_text(encoding='utf-8'))
+        return d.get('mode','PAUSED')
+    except Exception:
+        return 'PAUSED'
 
 def typed_cache():
     out={}
@@ -100,6 +108,10 @@ def main():
     successes=0
     notify('PHASE1_PROGRESS','Watercolor Phase-1 acquisition started. Window: first 100 strict Wave3-pass/no-IP nouns.')
     while successes < args.max_success:
+        mode=control_mode()
+        if mode!='RUNNING':
+            notify('PHASE1_PAUSED',f'Watercolor acquisition stopped before next submit by operator control mode={mode}.')
+            return 0
         h=health()
         if not h.get('cdp') or not h.get('page'):
             set_pause('BROWSER_UNAVAILABLE','Browser/CDP is unavailable. Phase-1 stopped before submit.',founder=True); return 20

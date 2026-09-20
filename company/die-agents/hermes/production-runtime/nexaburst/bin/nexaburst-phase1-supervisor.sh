@@ -9,6 +9,17 @@ NOTIFY=$SESSION/bin/nexaburst-notify.py
 PIDFILE=$STATE/phase1-first100.pid
 PAUSE=$STATE/phase1-pause.json
 DONE=$STATE/phase1-first100-raw-complete.json
+CONTROL=$STATE/operator-control.json
+
+control_mode(){
+  python3 - "$CONTROL" <<'EOF'
+import json,sys
+try:
+ d=json.load(open(sys.argv[1])); print(d.get('mode','PAUSED'))
+except Exception: print('PAUSED')
+EOF
+}
+MODE=$(control_mode)
 
 # First gate: all 10 Watercolor visual-challenge assets reached Founder QC.
 WC_DONE=$(python3 - <<'PY'
@@ -33,8 +44,8 @@ if [[ -f "$STATE/v2-reload-after-canary.required" ]]; then
   rm -f "$STATE/v2-reload-after-canary.required"
 fi
 
-# Ensure postprocessor stays alive while phase-1 has work.
-if ! pgrep -f "$V2 --continuous" >/dev/null 2>&1; then
+# Ensure postprocessor stays alive while phase-1 has work, except hard STOP.
+if [[ "$MODE" != "STOPPED" ]] && ! pgrep -f "$V2 --continuous" >/dev/null 2>&1; then
   nohup "$V2" --continuous --poll-seconds 5 >>"$STATE/v2-phase1.out" 2>>"$STATE/v2-phase1.err" &
 fi
 
@@ -69,6 +80,8 @@ fi
 
 # V2 durable pause blocks raw acquisition; never create an unbounded backlog.
 if [[ -f "$STATE/v2-pause.json" ]]; then exit 0; fi
+
+[[ "$MODE" == "RUNNING" ]] || exit 0
 
 nohup "$RUNNER" --max-success 100 --max-priority 999 >"$STATE/phase1-first100.out" 2>"$STATE/phase1-first100.err" &
 echo $! >"$PIDFILE"
