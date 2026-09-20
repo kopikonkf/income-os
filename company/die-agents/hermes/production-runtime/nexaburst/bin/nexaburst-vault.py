@@ -263,6 +263,14 @@ def upload_and_verify(archive,info):
     restored_sha=h.hexdigest()
     if downloaded!=size: raise RuntimeError(f'E_VAULT_RESTORE_SIZE:{downloaded}:{size}')
     if restored_sha!=archive_sha: raise RuntimeError(f'E_VAULT_RESTORE_HASH:{restored_sha}')
+    caption_updated=False
+    try:
+        verified_cap=vault_caption('Backup Archive',info['result']['asset_id'],info.get('noun'),info.get('lane_id'),
+                                   'WAITING_FOUNDER_QC',size,info['master_sha256'],archive_sha,verified=True)
+        ed=api_post(token,'editMessageCaption',{'chat_id':chat,'message_id':msg.get('message_id'),'caption':verified_cap})
+        caption_updated=bool(ed.get('ok'))
+    except Exception:
+        caption_updated=False
     return {
       'schema':'die.h01.nexaburst.telegram-vault-receipt.v1',
       'status':'BACKUP_VERIFIED','asset_id':info['result']['asset_id'],
@@ -273,7 +281,7 @@ def upload_and_verify(archive,info):
       'telegram_message_id':msg.get('message_id'),'telegram_file_id':file_id,
       'telegram_file_unique_id':doc.get('file_unique_id'),
       'restore_sha256':restored_sha,'restore_bytes':downloaded,
-      'verification_mode':'STREAM_SHA256_NO_TEMP_FILE',
+      'verification_mode':'STREAM_SHA256_NO_TEMP_FILE','telegram_caption_verified':caption_updated,
       'local_archive_policy':'DELETE_AFTER_VERIFIED_LEDGER',
       'verified_at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime())
     }
