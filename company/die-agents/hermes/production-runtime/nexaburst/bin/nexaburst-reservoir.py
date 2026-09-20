@@ -97,11 +97,14 @@ def cmd_claim(args):
         q=",".join("?" for _ in CLAIMABLE)
         params=[args.lane,*sorted(CLAIMABLE)]
         priority_clause=''
+        candidate_clause=''
         if args.max_priority is not None:
             priority_clause=' AND priority<=?'; params.append(args.max_priority)
+        if getattr(args,'candidate_id',None):
+            candidate_clause=' AND candidate_id=?'; params.append(args.candidate_id)
         row=c.execute(f'''
           SELECT * FROM manifestations
-          WHERE lane_id=? AND status IN ({q}) {priority_clause}
+          WHERE lane_id=? AND status IN ({q}) {priority_clause} {candidate_clause}
           ORDER BY priority ASC, ordinal ASC
           LIMIT 1
         ''',tuple(params)).fetchone()
@@ -157,7 +160,7 @@ def main():
     ap=argparse.ArgumentParser()
     sp=ap.add_subparsers(dest='cmd',required=True)
     p=sp.add_parser('init');p.add_argument('--lane',default=LANE);p.add_argument('--reservoir',default=str(RESERVOIR));p.add_argument('--priority',default=str(PRIORITY));p.set_defaults(fn=cmd_init)
-    p=sp.add_parser('claim');p.add_argument('--lane',default=LANE);p.add_argument('--claim-id');p.add_argument('--max-priority',type=int);p.set_defaults(fn=cmd_claim)
+    p=sp.add_parser('claim');p.add_argument('--lane',default=LANE);p.add_argument('--claim-id');p.add_argument('--max-priority',type=int);p.add_argument('--candidate-id');p.set_defaults(fn=cmd_claim)
     p=sp.add_parser('mark');p.add_argument('--lane',default=LANE);p.add_argument('--candidate-id',required=True);p.add_argument('--claim-id');p.add_argument('--status',required=True);p.add_argument('--raw-job-id');p.add_argument('--raw-sha256');p.add_argument('--workspace');p.add_argument('--error');p.set_defaults(fn=cmd_mark)
     p=sp.add_parser('stats');p.add_argument('--lane',default=LANE);p.set_defaults(fn=cmd_stats)
     a=ap.parse_args();a.fn(a)
