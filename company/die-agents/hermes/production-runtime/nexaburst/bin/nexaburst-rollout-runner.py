@@ -51,8 +51,16 @@ def health():
     try:return json.loads(cp.stdout.strip().splitlines()[-1])
     except Exception:return {'cdp':False,'error':(cp.stderr or cp.stdout)[-300:]}
 
-def plan_sha():
-    return hashlib.sha256(PLAN.read_bytes()).hexdigest()
+def resolve_plan_path(authority=None):
+    if authority and authority.get('plan_path'):
+        p=Path(str(authority['plan_path'])).expanduser()
+        if not p.is_absolute(): raise RuntimeError('E_ROLLOUT_PLAN_PATH_NOT_ABSOLUTE')
+        return p
+    return PLAN
+
+def plan_sha(path=None):
+    p=Path(path) if path else PLAN
+    return hashlib.sha256(p.read_bytes()).hexdigest()
 
 def require_authority():
     if not FIRST100.is_file(): raise RuntimeError('E_FIRST100_NOT_COMPLETE')
@@ -61,16 +69,20 @@ def require_authority():
     a=json.loads(ARM.read_text(encoding='utf-8'))
     if a.get('authorized') is not True or a.get('lane_id')!=LANE:
         raise RuntimeError('E_FULL_ROLLOUT_ARM_INVALID')
-    if a.get('plan_sha256')!=plan_sha():
+    plan_path=resolve_plan_path(a)
+    if not plan_path.is_file(): raise RuntimeError('E_ROLLOUT_PLAN_MISSING:'+str(plan_path))
+    if a.get('plan_sha256')!=plan_sha(plan_path):
         raise RuntimeError('E_FULL_ROLLOUT_PLAN_SHA_MISMATCH')
+    a['resolved_plan_path']=str(plan_path)
     try: limit=int(a.get('authorized_plan_items',0))
     except Exception: raise RuntimeError('E_FULL_ROLLOUT_AUTH_LIMIT_INVALID')
     if limit<1: raise RuntimeError('E_FULL_ROLLOUT_AUTH_LIMIT_INVALID')
     a['authorized_plan_items']=limit
     return a
 
-def plan_rows():
-    return [json.loads(x) for x in PLAN.read_text(encoding='utf-8').splitlines() if x.strip()]
+def plan_rows(path=None):
+    p=Path(path) if path else PLAN
+    return [json.loads(x) for x in p.read_text(encoding='utf-8').splitlines() if x.strip()]
 
 def ledger_row(candidate_id):
     c=sqlite3.connect(str(LEDGER));c.row_factory=sqlite3.Row
@@ -135,7 +147,7 @@ def main():
     try: authority=require_authority()
     except Exception as e:
         print(json.dumps({'status':'LOCKED','error':str(e)}));return 76
-    rows=plan_rows()
+    rows=plan_rows(authority.get('resolved_plan_path'))
     authorized_limit=min(int(authority['authorized_plan_items']),len(rows))
     progress={'next_index':1,'successes':0,'failures':0,'checkpoint_attempts':0,'checkpoint_failures':0}
     if PROGRESS.is_file():

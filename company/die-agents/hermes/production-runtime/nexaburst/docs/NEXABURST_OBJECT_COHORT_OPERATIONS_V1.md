@@ -87,3 +87,31 @@ Required report:
 ## End-of-universe behavior
 
 When fewer than 500 uncovered concepts remain, the final cohort contains only the remaining concepts. When none remain, `selected=0`; the lane is semantically exhausted.
+
+## Validate and arm a prepared WC cohort
+
+Validation is safe and does not change production state:
+
+```bash
+$RT/bin/nexaburst-arm-cohort.py \
+  --cohort-file $RT/config/cohorts/WC-C0002.jsonl \
+  --lane WC-L0 \
+  --cohort-id WC-C0002 \
+  --validate-only
+```
+
+After explicit Founder authorization, arm the exact cohort file:
+
+```bash
+$RT/bin/nexaburst-arm-cohort.py \
+  --cohort-file $RT/config/cohorts/WC-C0002.jsonl \
+  --lane WC-L0 \
+  --cohort-id WC-C0002 \
+  --authorized-by "Founder Dee via OpenCode" \
+  --arm \
+  --founder-go I_AUTHORIZE_THIS_COHORT
+```
+
+Then set operator control to RUNNING and invoke the rollout supervisor. The runner reads the exact `plan_path` and SHA-256 stored in the arm file. It no longer requires overwriting the original rollout plan.
+
+Every cohort boundary auto-pauses and the next cohort requires a fresh Founder authorization.
