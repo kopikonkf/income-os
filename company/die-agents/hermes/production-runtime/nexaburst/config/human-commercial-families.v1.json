@@ -1,0 +1,208 @@
+{
+  "schema": "die.h01.nexaburst.human-commercial-family-registry.v1",
+  "revision": "1.0",
+  "activation": "RESEARCH_PREPARED_NOT_AUTHORIZED",
+  "doctrine": "Families are demand/problem domains. Each family may reuse multiple HC-LN scene lanes.",
+  "families": [
+    {
+      "family_id": "HF-CARE-ACCESS",
+      "name": "Care Economy, Aging, Accessibility And Independent Living",
+      "anchors": [
+        "caregiving",
+        "independent living",
+        "accessibility",
+        "telehealth",
+        "home support"
+      ],
+      "eligible_lanes": [
+        "HC-L0",
+        "HC-L1",
+        "HC-L3",
+        "HC-L4",
+        "HC-L6",
+        "HC-L7",
+        "HC-L10"
+      ],
+      "object_atlas_role": "medication organizers, tablets, mobility aids, household fixtures, care tools"
+    },
+    {
+      "family_id": "HF-WORK-OPS",
+      "name": "Workplace Operations And Frontline Work",
+      "anchors": [
+        "warehouse",
+        "field service",
+        "manufacturing",
+        "hybrid work",
+        "operations"
+      ],
+      "eligible_lanes": [
+        "HC-L0",
+        "HC-L1",
+        "HC-L5",
+        "HC-L7",
+        "HC-L8",
+        "HC-L10"
+      ],
+      "object_atlas_role": "tools, scanners, tablets, PPE, equipment, workstations"
+    },
+    {
+      "family_id": "HF-SMB-SERVICE",
+      "name": "Small Business And Local Service Economy",
+      "anchors": [
+        "retail",
+        "repair",
+        "salon",
+        "food service",
+        "local professional services"
+      ],
+      "eligible_lanes": [
+        "HC-L0",
+        "HC-L1",
+        "HC-L5",
+        "HC-L8",
+        "HC-L9",
+        "HC-L10"
+      ],
+      "object_atlas_role": "service tools, merchandise, counters, packaging, equipment"
+    },
+    {
+      "family_id": "HF-EDU-SKILL",
+      "name": "Education, Reskilling And Practical Learning",
+      "anchors": [
+        "school",
+        "adult learning",
+        "vocational training",
+        "digital literacy",
+        "onboarding"
+      ],
+      "eligible_lanes": [
+        "HC-L0",
+        "HC-L2",
+        "HC-L3",
+        "HC-L7",
+        "HC-L8"
+      ],
+      "object_atlas_role": "books, devices, lab objects, craft tools, training equipment"
+    },
+    {
+      "family_id": "HF-FIN-LIFE",
+      "name": "Household Finance And Life Decisions",
+      "anchors": [
+        "budgeting",
+        "retirement",
+        "insurance",
+        "home buying",
+        "debt planning"
+      ],
+      "eligible_lanes": [
+        "HC-L3",
+        "HC-L7",
+        "HC-L9",
+        "HC-L11"
+      ],
+      "object_atlas_role": "documents represented without readable text, calculator, device, house keys, household objects"
+    },
+    {
+      "family_id": "HF-HOME-LIVING",
+      "name": "Home Maintenance, Setup And Everyday Independence",
+      "anchors": [
+        "repair",
+        "moving",
+        "home organization",
+        "energy use",
+        "safety"
+      ],
+      "eligible_lanes": [
+        "HC-L0",
+        "HC-L3",
+        "HC-L5",
+        "HC-L10",
+        "HC-L11"
+      ],
+      "object_atlas_role": "tools, furniture, fixtures, appliances, storage objects"
+    },
+    {
+      "family_id": "HF-DIGITAL-TRUST",
+      "name": "Digital Safety, Remote Services And Technology Assistance",
+      "anchors": [
+        "cyber safety",
+        "scam avoidance",
+        "remote support",
+        "account security",
+        "digital access"
+      ],
+      "eligible_lanes": [
+        "HC-L1",
+        "HC-L2",
+        "HC-L3",
+        "HC-L7",
+        "HC-L10"
+      ],
+      "object_atlas_role": "phones, laptops, routers, authentication devices, desk objects"
+    },
+    {
+      "family_id": "HF-SUSTAIN-LIFE",
+      "name": "Practical Sustainability And Energy Transition",
+      "anchors": [
+        "EV charging",
+        "home energy",
+        "recycling",
+        "repair/reuse",
+        "water efficiency"
+      ],
+      "eligible_lanes": [
+        "HC-L0",
+        "HC-L2",
+        "HC-L3",
+        "HC-L5",
+        "HC-L10"
+      ],
+      "object_atlas_role": "chargers, meters, solar/energy components, bins, tools, household fixtures"
+    },
+    {
+      "family_id": "HF-FOOD-SERVICE",
+      "name": "Food Preparation, Service And Small Hospitality",
+      "anchors": [
+        "meal prep",
+        "commercial kitchen",
+        "delivery",
+        "food safety",
+        "local hospitality"
+      ],
+      "eligible_lanes": [
+        "HC-L0",
+        "HC-L1",
+        "HC-L5",
+        "HC-L8",
+        "HC-L9",
+        "HC-L10"
+      ],
+      "object_atlas_role": "ingredients, cookware, containers, appliances, service objects"
+    },
+    {
+      "family_id": "HF-FAMILY-TRANSITION",
+      "name": "Family Logistics And Life Transitions",
+      "anchors": [
+        "new parent",
+        "multigenerational household",
+        "moving",
+        "school transition",
+        "household coordination"
+      ],
+      "eligible_lanes": [
+        "HC-L0",
+        "HC-L2",
+        "HC-L3",
+        "HC-L4",
+        "HC-L7",
+        "HC-L11"
+      ],
+      "object_atlas_role": "baby objects, school objects, boxes, schedules without readable text, household goods"
+    }
+  ],
+  "authority": {
+    "production": false,
+    "external_demand_validation_required_before_family_activation": true,
+    "h03_dependency": false
+  }
+}

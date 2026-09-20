@@ -1,0 +1,184 @@
+{
+  "schema": "die.h01.nexaburst.human-scene-lane-registry.v1",
+  "revision": "1.0",
+  "activation": "PREPARED_NOT_AUTHORIZED",
+  "engine_id": "NEXABURST-LANE3-HUMAN-SCENE",
+  "doctrine": "LN is a reusable scene/commercial expression; it is NOT a niche or industry.",
+  "lanes": [
+    {
+      "lane_id": "HC-L0",
+      "name": "Workflow In Context",
+      "job": "show a real task being performed in its natural environment",
+      "required": [
+        "human_role",
+        "activity",
+        "primary_object",
+        "place",
+        "commercial_intent"
+      ],
+      "composition": "environment legible; action legible; room for copy where useful"
+    },
+    {
+      "lane_id": "HC-L1",
+      "name": "Service Interaction",
+      "job": "show provider/customer or helper/recipient interaction around a real service",
+      "required": [
+        "provider_role",
+        "recipient_role",
+        "service_activity",
+        "service_object",
+        "place",
+        "commercial_intent"
+      ],
+      "composition": "interaction-first; believable distance/eye-line; no handshake cliché unless semantically essential"
+    },
+    {
+      "lane_id": "HC-L2",
+      "name": "Guidance And Learning",
+      "job": "show teaching, coaching, onboarding, explanation or assisted learning",
+      "required": [
+        "guide_role",
+        "learner_role",
+        "learning_activity",
+        "evidence_object",
+        "place"
+      ],
+      "composition": "guidance relationship visible; artifact/tool supports the story"
+    },
+    {
+      "lane_id": "HC-L3",
+      "name": "Decision And Planning",
+      "job": "show a meaningful decision, planning or comparison moment",
+      "required": [
+        "human_role",
+        "decision_activity",
+        "decision_object",
+        "place",
+        "problem_or_goal"
+      ],
+      "composition": "focused attention; evidence object visible; avoid fake readable UI/text"
+    },
+    {
+      "lane_id": "HC-L4",
+      "name": "Care And Support",
+      "job": "show practical support without portraying the recipient as helpless",
+      "required": [
+        "supporter_role",
+        "recipient_role",
+        "support_activity",
+        "evidence_object",
+        "place"
+      ],
+      "composition": "dignified agency; collaborative framing; no melodrama"
+    },
+    {
+      "lane_id": "HC-L5",
+      "name": "Maintenance Repair And Setup",
+      "job": "show human solving a physical setup/repair/maintenance problem",
+      "required": [
+        "human_role",
+        "repair_activity",
+        "tool_or_object",
+        "place",
+        "problem"
+      ],
+      "composition": "hands/action/tool relationship visible; safety coherent"
+    },
+    {
+      "lane_id": "HC-L6",
+      "name": "Access Mobility And Adaptation",
+      "job": "show accessibility, mobility or adaptation as normal functional life",
+      "required": [
+        "human_role",
+        "activity",
+        "assistive_or_environment_object",
+        "place",
+        "commercial_intent"
+      ],
+      "composition": "person-first; capability visible; avoid pity framing"
+    },
+    {
+      "lane_id": "HC-L7",
+      "name": "Digital Task And Assistance",
+      "job": "show a meaningful digital workflow, help, security or remote service interaction",
+      "required": [
+        "human_role",
+        "digital_activity",
+        "device_object",
+        "place",
+        "problem_or_goal"
+      ],
+      "composition": "device supports human task; no fake hologram; no readable proprietary UI"
+    },
+    {
+      "lane_id": "HC-L8",
+      "name": "Team Collaboration And Operations",
+      "job": "show real coordinated work with task evidence rather than generic meeting poses",
+      "required": [
+        "roles",
+        "shared_activity",
+        "work_objects",
+        "workplace",
+        "business_goal"
+      ],
+      "composition": "task artifacts and role relationships visible; reject generic smiling meeting"
+    },
+    {
+      "lane_id": "HC-L9",
+      "name": "Transaction And Exchange",
+      "job": "show legitimate purchase, handoff, booking, delivery or service exchange",
+      "required": [
+        "roles",
+        "transaction_activity",
+        "transaction_object",
+        "place",
+        "commercial_intent"
+      ],
+      "composition": "exchange event legible; brands/payment data absent"
+    },
+    {
+      "lane_id": "HC-L10",
+      "name": "Safety Prevention And Compliance",
+      "job": "show prevention, inspection, preparation or safe practice before failure occurs",
+      "required": [
+        "human_role",
+        "preventive_activity",
+        "safety_object",
+        "place",
+        "risk"
+      ],
+      "composition": "correct protective context; no disaster sensationalism"
+    },
+    {
+      "lane_id": "HC-L11",
+      "name": "Life Transition And Small Milestone",
+      "job": "show practical human milestones with believable emotion and useful context",
+      "required": [
+        "human_role",
+        "milestone_activity",
+        "evidence_object",
+        "place",
+        "life_context"
+      ],
+      "composition": "specific event evidence; restrained authentic emotion; avoid greeting-card cliché"
+    }
+  ],
+  "global_forbidden": [
+    "readable fake text",
+    "logos",
+    "trademarks",
+    "watermarks",
+    "extra fingers/limbs",
+    "anatomical merge",
+    "generic stock handshake",
+    "fake holograms unless family explicitly requires speculative technology",
+    "random props without story function"
+  ],
+  "authority": {
+    "live_generation": false,
+    "cron": false,
+    "service": false,
+    "requires_founder_review": true,
+    "requires_dedicated_nexabot_profile": true
+  }
+}

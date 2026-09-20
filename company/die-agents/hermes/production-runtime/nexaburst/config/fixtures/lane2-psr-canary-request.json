@@ -1,0 +1,19 @@
+{
+  "candidate_id": "CAND-DEMO-CHAIR",
+  "noun": "chair",
+  "lane_id": "PSR-L0",
+  "subject_spec": {
+    "recognition_anchors": [
+      "seat",
+      "backrest",
+      "supporting legs or base"
+    ],
+    "essential_components": [
+      "stable seating surface"
+    ],
+    "forbidden_mutations": [
+      "extra seats",
+      "impossible leg geometry"
+    ]
+  }
+}

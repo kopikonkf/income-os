@@ -1,0 +1,90 @@
+{
+  "schema": "die.h01.nexaburst.object-expression-lane-registry.v1",
+  "revision": "1.0",
+  "activation": "PREPARED_NOT_AUTHORIZED",
+  "engine_id": "NEXABURST-LANE2-OBJECT-PSR",
+  "source_universe": "OBJECT_ATLAS",
+  "provider_class": "NEXABOT_RASTER_GENERATIVE",
+  "lanes": [
+    {
+      "lane_id": "PSR-L0",
+      "name": "Premium Semi-Realistic Commercial Hero",
+      "status": "DESIGN_READY_NOT_LIVE",
+      "buyer_utility": [
+        "premium marketing illustration",
+        "catalog/ecommerce visual",
+        "presentation design component"
+      ],
+      "subject_policy": "same Object Atlas semantic concept; expression-aware identity required",
+      "composition": {
+        "background": "PURE_WHITE",
+        "framing": "FULL_SUBJECT",
+        "viewpoint": "SUBJECT_APPROPRIATE_PRODUCT_HERO",
+        "copy_space": "GENEROUS",
+        "props": "NONE_UNLESS_SEMANTICALLY_REQUIRED"
+      },
+      "style": {
+        "medium": "DIGITAL_ILLUSTRATION",
+        "render": "SEMI_REALISTIC_VECTOR_LIKE",
+        "proportions": "REALISTIC",
+        "edges": "CRISP_CLEAN",
+        "texture": "DETAILED_CONTROLLED",
+        "shading": "SUBTLE_DIMENSIONAL"
+      },
+      "distinctness_from_wc": [
+        "different buyer utility",
+        "different render language",
+        "different edge/texture treatment",
+        "different lighting/shading intent",
+        "different commercial composition"
+      ],
+      "forbidden": [
+        "watercolor texture",
+        "clipart wash",
+        "readable text",
+        "logos",
+        "trademarks",
+        "watermarks",
+        "unrelated props",
+        "busy environment"
+      ]
+    },
+    {
+      "lane_id": "PSR-L1",
+      "name": "Premium Functional Feature Illustration",
+      "status": "FUTURE_DESIGN_ONLY",
+      "buyer_utility": [
+        "instructional marketing",
+        "feature explanation",
+        "product/service education"
+      ],
+      "eligibility": "only concepts with meaningful visible functional features; not universal",
+      "composition": {
+        "background": "PURE_WHITE",
+        "framing": "FULL_SUBJECT_PLUS_FEATURE_EMPHASIS",
+        "viewpoint": "FUNCTION_REVEALING",
+        "copy_space": "SIDE_COPY_SPACE",
+        "props": "ONLY_FUNCTIONALLY_REQUIRED"
+      },
+      "distinctness_from_l0": [
+        "feature-led utility rather than hero portrait",
+        "function-revealing composition",
+        "must communicate a concrete feature/use"
+      ],
+      "forbidden": [
+        "cosmetic angle-only variation",
+        "mere recolor",
+        "mirror-only variation",
+        "unrelated annotations",
+        "readable text"
+      ]
+    }
+  ],
+  "authority": {
+    "live_generation": false,
+    "cron": false,
+    "service": false,
+    "requires_founder_review": true,
+    "requires_dedicated_nexabot_profile": true
+  }
+}
