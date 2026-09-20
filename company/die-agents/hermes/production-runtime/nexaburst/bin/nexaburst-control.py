@@ -101,7 +101,8 @@ def status():
       'phase1_pause':phase_pause,
       'runner_alive':bool(proc('nexaburst-phase1-runner.py')),
       'v2_alive':bool(proc('nexaburst-v2-worker.py --continuous')),
-      'realesrgan_active':bool(proc('realesrgan_backend.py'))
+      'realesrgan_active':bool(proc('realesrgan_backend.py')),
+      'rollout':rollout_status()
     }
 
 def main():
