@@ -1,0 +1,21 @@
+{
+  "schema": "die.h01.nexaburst.profile-config.v2",
+  "engine_id": "NEXABURST-LANE3-HUMAN-SCENE",
+  "profile_id": "nexaburst-hc-p001",
+  "udd": "/var/lib/die/h01/nexaburst-lane3-human/profiles/nexaburst-hc-p001/udd",
+  "cdp_host": "127.0.0.1",
+  "cdp_port": 9331,
+  "landing_url": "https://nexabot.id/image-generator",
+  "state_root": "/var/lib/die/h01/nexaburst-lane3-human/state",
+  "receipt_root": "/var/lib/die/h01/nexaburst-lane3-human/receipts",
+  "raw_root": "/var/lib/die/h01/nexaburst-lane3-human/raw",
+  "workspace_root": "/var/lib/die/h01/nexaburst-lane3-human/workspaces",
+  "lane_registry": "human-scene-lanes.v1.json",
+  "family_registry": "human-commercial-families.v1.json",
+  "activation": "PREPARED_NOT_AUTHORIZED",
+  "notes": [
+    "example only; no credentials",
+    "dedicated Nexabot account/profile #3 required",
+    "do not reuse WC or PSR UDD/CDP"
+  ]
+}

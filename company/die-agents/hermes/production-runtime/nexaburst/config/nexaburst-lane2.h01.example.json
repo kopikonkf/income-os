@@ -1,0 +1,20 @@
+{
+  "schema": "die.h01.nexaburst.profile-config.v2",
+  "engine_id": "NEXABURST-LANE2-OBJECT-PSR",
+  "profile_id": "nexaburst-psr-p001",
+  "udd": "/var/lib/die/h01/nexaburst-lane2-psr/profiles/nexaburst-psr-p001/udd",
+  "cdp_host": "127.0.0.1",
+  "cdp_port": 9321,
+  "landing_url": "https://nexabot.id/image-generator",
+  "state_root": "/var/lib/die/h01/nexaburst-lane2-psr/state",
+  "receipt_root": "/var/lib/die/h01/nexaburst-lane2-psr/receipts",
+  "raw_root": "/var/lib/die/h01/nexaburst-lane2-psr/raw",
+  "workspace_root": "/var/lib/die/h01/nexaburst-lane2-psr/workspaces",
+  "lane_registry": "lane2-object-psr-registry.v1.json",
+  "activation": "PREPARED_NOT_AUTHORIZED",
+  "notes": [
+    "example only; no credentials",
+    "dedicated Nexabot account/profile #2 required",
+    "do not reuse WC UDD/CDP"
+  ]
+}

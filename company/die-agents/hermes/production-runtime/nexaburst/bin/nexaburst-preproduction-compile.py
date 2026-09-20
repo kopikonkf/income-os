@@ -86,11 +86,15 @@ def compile_object_psr(req:dict)->dict:
     prompt.append("DISTINCTNESS: "+'; '.join(contract['commercial_expression']['distinctness_requirements'])+'.')
     prompt.append("FORBIDDEN: "+'; '.join(contract['visual_requirement']['forbidden'])+'.')
     contract_sha=sha(contract)
+    system_prompt=' '.join(common_system_rules())
+    provider_prompt=' '.join(prompt)
+    final_provider_prompt=system_prompt+'\n\n'+provider_prompt
     return {
       'schema':'die.h01.nexaburst.compiled-preproduction.v1','kind':'OBJECT_EXPRESSION',
       'semantic_asset_id':semantic_asset_id,'lane_id':lane_id,'contract':contract,
-      'contract_sha256':contract_sha,'system_prompt':' '.join(common_system_rules()),
-      'provider_prompt':' '.join(prompt),'provider_prompt_sha256':sha(' '.join(prompt).encode()),
+      'contract_sha256':contract_sha,'system_prompt':system_prompt,
+      'provider_prompt':provider_prompt,'provider_prompt_sha256':sha(provider_prompt.encode()),
+      'final_provider_prompt':final_provider_prompt,'final_provider_prompt_sha256':sha(final_provider_prompt.encode()),
       'dispatch_authorized':False
     }
 
@@ -151,16 +155,19 @@ def compile_human_scene(req:dict)->dict:
       "FORBIDDEN: "+'; '.join(contract['visual_requirement']['forbidden'])+'.'
     ]
     contract_sha=sha(contract);provider_prompt=' '.join(prompt)
+    system_prompt=' '.join(common_system_rules()+[
+        'Humans are demand/story carriers, not decorative extras.',
+        'Every visible object must support the activity, problem, environment or buyer message.',
+        'Avoid generic posed stock scenes; prefer believable task evidence and interaction.'
+      ])
+    final_provider_prompt=system_prompt+'\n\n'+provider_prompt
     return {
       'schema':'die.h01.nexaburst.compiled-preproduction.v1','kind':'HUMAN_SCENE',
       'semantic_asset_id':semantic_asset_id,'lane_id':lane_id,'family_id':family_id,
       'contract':contract,'contract_sha256':contract_sha,
-      'system_prompt':' '.join(common_system_rules()+[
-        'Humans are demand/story carriers, not decorative extras.',
-        'Every visible object must support the activity, problem, environment or buyer message.',
-        'Avoid generic posed stock scenes; prefer believable task evidence and interaction.'
-      ]),
+      'system_prompt':system_prompt,
       'provider_prompt':provider_prompt,'provider_prompt_sha256':sha(provider_prompt.encode()),
+      'final_provider_prompt':final_provider_prompt,'final_provider_prompt_sha256':sha(final_provider_prompt.encode()),
       'dispatch_authorized':False
     }
 
