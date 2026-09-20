@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import hashlib, json, os, sqlite3, subprocess, sys, time
+import hashlib, json, os, re, sqlite3, subprocess, sys, time
 from pathlib import Path
 
 SESSION=Path('/home/kopiko/die-sessions/NEXABURST-H01-P001')
@@ -86,8 +86,9 @@ def backlog():
 def free_gib():
     s=os.statvfs(ROOT);return s.f_bavail*s.f_frsize/1024**3
 
-def set_pause(code,detail):
-    atomic(PAUSE,{'schema':'die.h01.nexaburst.full-rollout-pause.v1','status':'PAUSED','code':code,'detail':detail,'at':now()})
+def set_pause(code,detail,resume_after=None):
+    atomic(PAUSE,{'schema':'die.h01.nexaburst.full-rollout-pause.v1','status':'PAUSED','code':code,'detail':detail,
+                  'resume_after_epoch':resume_after,'at':now()})
     notify('PHASE1_PAUSED','Full rollout paused: '+detail)
 
 def clear_pause():
@@ -105,6 +106,13 @@ def mark(row,status,**kw):
         if v is not None:cmd+=['--'+k.replace('_','-'),str(v)]
     cp=run(cmd,60)
     if cp.returncode!=0:raise RuntimeError('E_RESERVOIR_MARK:'+(cp.stderr or cp.stdout)[-500:])
+
+def parse_adapter_error(cp):
+    text=(cp.stderr or '')+'\n'+(cp.stdout or '')
+    for line in reversed(text.splitlines()):
+        if 'NEXABURST_ERROR ' in line:
+            return line.split('NEXABURST_ERROR ',1)[1][:600]
+    return text[-600:].strip() or f'exit={cp.returncode}'
 
 def compile_prompt(row):
     asset='NBWC-'+str(row['candidate_id']).replace('CAND-','C')
@@ -162,21 +170,47 @@ def main():
         progress['checkpoint_attempts']=int(progress.get('checkpoint_attempts',0))+1
         try:
             prompt=compile_prompt(row)
-            cp=run(['node',str(ADAPTER),'--noun',row['canonical_name'],'--style','soft-watercolor-clipart',
-                    '--asset-id',prompt['asset_id'],'--aspect','1','--prompt',prompt['prompt'],
-                    '--prompt-authority',prompt['prompt_authority'],'--compiled-contract-sha256',prompt['compiled_contract_sha256'],
-                    '--candidate-id',row['candidate_id'],'--lane-id',LANE],360)
+            cmd=['node',str(ADAPTER),'--noun',row['canonical_name'],'--style','soft-watercolor-clipart',
+                 '--asset-id',prompt['asset_id'],'--aspect','1','--prompt',prompt['prompt'],
+                 '--prompt-authority',prompt['prompt_authority'],'--compiled-contract-sha256',prompt['compiled_contract_sha256'],
+                 '--candidate-id',row['candidate_id'],'--lane-id',LANE]
+            if row.get('raw_job_id'):
+                cmd += ['--resume-job-id',str(row['raw_job_id'])]
+            cp=run(cmd,360)
             if cp.returncode!=0:
-                err=((cp.stderr or '')+'\n'+(cp.stdout or ''))[-600:]
+                err=parse_adapter_error(cp)
+                attempts=int(row.get('attempts') or 1)
                 progress['failures']=int(progress.get('failures',0))+1
                 progress['checkpoint_failures']=int(progress.get('checkpoint_failures',0))+1
-                mark(row,'FAILED_RETRYABLE',error=err[:400])
                 atomic(PROGRESS,progress)
-                if '429' in err:
-                    set_pause('PROVIDER_429','Provider returned 429/rate limit; Founder review required.')
+                if 'E_JOB_STILL_PROCESSING:' in err:
+                    m=re.search(r'"job_id":"([^"]+)"',err)
+                    job_id=m.group(1) if m else row.get('raw_job_id')
+                    if attempts>=3:
+                        mark(row,'BLOCKED',raw_job_id=job_id,error=err[:400])
+                        set_pause('CANDIDATE_BLOCKED',f'Provider job stayed non-terminal across three bounded poll windows. noun={row["canonical_name"]} job_id={job_id}. No resubmit.')
+                        return 28
+                    mark(row,'FAILED_RETRYABLE',raw_job_id=job_id,error=err[:400])
+                    set_pause('RETRY_BACKOFF',f'Resume same provider job after bounded poll timeout. noun={row["canonical_name"]} job_id={job_id} poll_window={attempts}/3. No new submit.',
+                              resume_after=int(time.time())+120)
+                    return 13
+                fatal=any(code in err for code in ('E_AUTH_REQUIRED','E_UNLIMITED_INACTIVE','E_RAW_STORAGE_GATE_FREE_BYTES','E_CDP_CONTEXT_MISSING'))
+                if fatal:
+                    mark(row,'FAILED_RETRYABLE',error=err[:400])
+                    set_pause('PROVIDER_GATE',f'Provider gate stopped rollout at {row["canonical_name"]}: {err[:260]}')
+                    return 25
+                if '429' in err or 'E_PROVIDER_RATE_LIMITED' in err:
+                    mark(row,'FAILED_RETRYABLE',error=err[:400])
+                    set_pause('PROVIDER_429',f'Provider returned rate limit at noun={row["canonical_name"]}; Founder review required.')
                     return 24
-                set_pause('PROVIDER_FAILURE','Bounded rollout stopped after provider failure; no loop.')
-                return 25
+                if attempts>=2:
+                    mark(row,'BLOCKED',error=err[:400])
+                    set_pause('CANDIDATE_BLOCKED',f'Candidate failed two bounded outer attempts. noun={row["canonical_name"]} candidate={row["candidate_id"]} error={err[:240]}')
+                    return 26
+                mark(row,'FAILED_RETRYABLE',error=err[:400])
+                set_pause('RETRY_BACKOFF',f'One bounded retry scheduled for noun={row["canonical_name"]}. No immediate retry loop. error={err[:220]}',
+                          resume_after=int(time.time())+300)
+                return 12
             result=json.loads(cp.stdout.strip().splitlines()[-1])
             mark(row,'RAW_DONE',raw_job_id=result.get('job_id'),raw_sha256=result.get('sha256'))
             progress['successes']=int(progress.get('successes',0))+1

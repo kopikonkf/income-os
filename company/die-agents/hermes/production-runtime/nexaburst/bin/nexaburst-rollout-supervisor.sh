@@ -36,6 +36,20 @@ except Exception: print('UNKNOWN')
 PY
 )
   case "$CODE" in
+    RETRY_BACKOFF)
+      RESUME_AFTER=$(python3 - "$PAUSE" <<'PY'
+import json,sys
+try: print(int(json.load(open(sys.argv[1])).get('resume_after_epoch') or 0))
+except Exception: print(0)
+PY
+)
+      NOW=$(date +%s)
+      if (( RESUME_AFTER > 0 && NOW >= RESUME_AFTER )); then
+        rm -f "$PAUSE"
+      else
+        exit 0
+      fi
+      ;;
     V2_BACKLOG_GATE)
       BACKLOG=$(python3 - <<'PY'
 import sqlite3
