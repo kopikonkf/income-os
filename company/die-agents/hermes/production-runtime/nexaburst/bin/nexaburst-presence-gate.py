@@ -124,8 +124,11 @@ def build_presence_map():
         for i in range(len(members)): comps[find(i)].append(i)
         syn_hash=hashlib.sha256(('\n'.join(syn)).encode()).hexdigest()[:16] if syn else 'nosyn'
         for inds in comps.values():
-            # Prefer shortest normalized surface: normally singular/common form.
-            rep_i=sorted(inds,key=lambda i:(len(members[i][2]),members[i][2],members[i][0]))[0]
+            # Prefer an exact WordNet head surface when the family contains one;
+            # otherwise fall back to the shortest normalized surface.
+            exact_head=[i for i in inds if heads[i] is not None and compact(members[i][2])==heads[i]]
+            pool=exact_head or inds
+            rep_i=sorted(pool,key=lambda i:(len(members[i][2]),members[i][2],members[i][0]))[0]
             rep_norm=members[rep_i][2]
             key=f'wcsem:{syn_hash}:{rep_norm}'
             rep_row=members[rep_i][1]
