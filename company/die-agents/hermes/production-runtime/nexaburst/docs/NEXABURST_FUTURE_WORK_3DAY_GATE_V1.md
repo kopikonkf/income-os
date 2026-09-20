@@ -91,3 +91,25 @@ After three days, produce a Founder decision memo comparing:
 4. Local Factory V1/V2 synthesis cost.
 
 No future lane should be mass-armed only because a small canary looks visually good.
+
+## Evidence Update — 2026-09-20 Nexabot SVG Modality Canary
+
+The current NexaBurst production adapter uses Nexabot `/api/v1/generate` with `mode=img`.
+
+An isolated canary explicitly requested an actual editable native SVG file (paper-airplane vector). Nexabot completed the provider job successfully but returned:
+
+- MIME: `image/jpeg`
+- detected format: `JPEG`
+- provider download filename: `.jpg`
+- native_svg_pass: `false`
+- queued_for_v2: `false`
+- latency: approximately 17 seconds
+
+A second isolated SVG-requirement canary terminated with Nexabot provider error `fetch failed` before producing an artifact. It was not retried in the modality experiment and did not enter V2.
+
+Operational conclusion:
+
+- Native SVG does **not** pass through the currently observed Nexabot `mode=img` path merely by requesting SVG in the prompt.
+- Do not create a dedicated Nexabot-native-SVG lane unless a separate official/backend modality or endpoint is discovered and verified to return `image/svg+xml` / actual SVG bytes.
+- Nexabot may still be useful for raster assets rendered in vector-like styles (flat, outline, icon, pattern, etc.), but those remain raster assets unless a separate vectorization workflow is intentionally introduced.
+- Direct Gemini web native-SVG capability remains a separate future lane and must use the repaired semantic/hash binding guards.
