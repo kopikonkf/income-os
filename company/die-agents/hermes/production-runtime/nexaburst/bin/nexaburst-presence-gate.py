@@ -22,6 +22,43 @@ def norm(s:str)->str:
     s=re.sub(r'[^a-z0-9 ]+',' ',s)
     return re.sub(r'\s+',' ',s).strip()
 
+def compact(s:str)->str:
+    return norm(s).replace(' ','')
+
+IRREGULAR_PLURALS={
+    'child':'children','person':'people','man':'men','woman':'women',
+    'mouse':'mice','louse':'lice','goose':'geese','tooth':'teeth',
+    'foot':'feet','ox':'oxen','die':'dice'
+}
+
+def plural_forms(base:str)->set[str]:
+    b=compact(base)
+    out={b,b+'s',b+'es'}
+    if b in IRREGULAR_PLURALS: out.add(IRREGULAR_PLURALS[b])
+    if b.endswith('y') and len(b)>1 and b[-2] not in 'aeiou': out.add(b[:-1]+'ies')
+    if b.endswith('f'): out.add(b[:-1]+'ves')
+    if b.endswith('fe'): out.add(b[:-2]+'ves')
+    if b.endswith('us') and len(b)>2: out.add(b[:-2]+'i')
+    if b.endswith('is') and len(b)>2: out.add(b[:-2]+'es')
+    if b.endswith('um') and len(b)>2: out.add(b[:-2]+'a')
+    if b.endswith('on') and len(b)>2: out.add(b[:-2]+'a')
+    if b.endswith('ix') or b.endswith('ex'): out.add(b[:-2]+'ices')
+    if b.endswith('o'): out.add(b+'es')
+    return out
+
+def synset_heads(synsets:tuple[str,...])->set[str]:
+    out=set()
+    for syn in synsets:
+        m=re.match(r'^(.*)\.n\.\d+$',str(syn))
+        if m: out.add(compact(m.group(1).replace('_',' ')))
+    return out
+
+def morphological_head(surface:str,synsets:tuple[str,...])->str|None:
+    c=compact(surface)
+    for head in sorted(synset_heads(synsets)):
+        if c in plural_forms(head): return head
+    return None
+
 def simple_variants(s:str)->set[str]:
     out={s}
     if len(s)>3 and s.endswith('ies'): out.add(s[:-3]+'y')
@@ -77,10 +114,12 @@ def build_presence_map():
         def union(a,b):
             a,b=find(a),find(b)
             if a!=b: parent[b]=a
+        heads=[morphological_head(m[2],syn) for m in members]
         for i in range(len(members)):
             for j in range(i+1,len(members)):
                 ni,nj=members[i][2],members[j][2]
-                if ni==nj or inflection_related(ni,nj): union(i,j)
+                same_head=heads[i] is not None and heads[i]==heads[j]
+                if ni==nj or same_head or inflection_related(ni,nj): union(i,j)
         comps=collections.defaultdict(list)
         for i in range(len(members)): comps[find(i)].append(i)
         syn_hash=hashlib.sha256(('\n'.join(syn)).encode()).hexdigest()[:16] if syn else 'nosyn'
@@ -103,7 +142,7 @@ def build_presence_map():
                   'family_size':len(inds),
                   'ordinal':ordinal,
                   'wordnet_synsets':list(syn),
-                  'dedup_policy':'NORMALIZED_SURFACE_PLUS_SIMPLE_INFLECTION_WITH_IDENTICAL_WORDNET_SENSE_SET'
+                  'dedup_policy':'NORMALIZED_SURFACE_PLUS_WORDNET_HEAD_MORPHOLOGY_WITH_IDENTICAL_SENSE_SET'
                 })
     result.sort(key=lambda x:x['ordinal'])
     return result
@@ -193,7 +232,7 @@ def build_plan(cohort_size:int=500,checkpoint_size:int=100):
       'first100_complete_marker':FIRST100_COMPLETE.is_file(),
       'activation_allowed':False,
       'activation_requirement':'FIRST100_COMPLETE + explicit FULL_ROLLOUT_ARMED.json Founder authorization',
-      'dedup_policy':'conservative: normalized punctuation/case + simple singular/plural only when WordNet sense-set is identical; no broad synonym collapsing'
+      'dedup_policy':'conservative: normalized punctuation/case + WordNet-head morphology/irregular plurals only when WordNet sense-set is identical; no broad synonym collapsing'
     }
     return pmap,plan,summary
 
