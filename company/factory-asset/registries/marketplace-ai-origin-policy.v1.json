@@ -1,0 +1,98 @@
+{
+  "schema": "die.factory-asset.marketplace-ai-origin-policy.v1",
+  "version": "1.0.0",
+  "task_id": "MARKETPLACE_DERIVATIVE_COMPATIBILITY_V1",
+  "observed_at": "2026-09-22",
+  "source": "founder_supplied_matrix_20260922",
+  "verification": "PENDING_OFFICIAL_URL_RECHECK",
+  "lineage_rule": "AI-origin is bound to semantic_asset_id/master lineage, not to file extension. AI raster -> SVG/EPS/PSD/PNG remains AI-origin and must carry disclosure everywhere.",
+  "policies": [
+    {
+      "platform_id": "ADOBE_STOCK",
+      "marketplace": true,
+      "ai_accepted": true,
+      "route": "READY_FOR_MANUAL_SUBMISSION",
+      "raster_delivery": ["JPEG"],
+      "disclosure": "GENERATIVE_AI_CHECKBOX_REQUIRED",
+      "notes": "Raster photo lane: single JPG sufficient. Min 4MP."
+    },
+    {
+      "platform_id": "DREAMSTIME",
+      "marketplace": true,
+      "ai_accepted": true,
+      "route": "READY_FOR_MANUAL_SUBMISSION",
+      "raster_delivery": ["JPEG"],
+      "disclosure": "AI_GENERATED_CATEGORY_AND_TITLE_REQUIRED",
+      "notes": "Raster lane: JPG priority. Min 3MP. AI faces generally rejected."
+    },
+    {
+      "platform_id": "VECTEEZY",
+      "marketplace": true,
+      "ai_accepted": true,
+      "route": "READY_FOR_MANUAL_SUBMISSION",
+      "raster_delivery": ["JPEG"],
+      "disclosure": "AI_GENERATED_IN_TITLE_AND_KEYWORDS_REQUIRED",
+      "notes": "Photo JPG sRGB min 4MP. Vector lane separate (EPS)."
+    },
+    {
+      "platform_id": "FREEPIK",
+      "marketplace": true,
+      "ai_accepted": true,
+      "route": "READY_FOR_MANUAL_SUBMISSION",
+      "raster_delivery": ["JPEG"],
+      "disclosure": "AI_TAG_REQUIRED",
+      "notes": "Photos/vectors/PSD accepted with AI tag. EPS/PSD containing AI elements still AI-origin."
+    },
+    {
+      "platform_id": "123RF",
+      "marketplace": true,
+      "ai_accepted": true,
+      "route": "READY_FOR_MANUAL_SUBMISSION",
+      "raster_delivery": ["JPEG"],
+      "disclosure": "AI_GENERATED_IMAGES_CATEGORY_REQUIRED",
+      "notes": "Regular image JPEG min 6MP. No high-repetition variants."
+    },
+    {
+      "platform_id": "MOTIONELEMENTS",
+      "marketplace": true,
+      "ai_accepted": true,
+      "route": "READY_FOR_MANUAL_SUBMISSION",
+      "raster_delivery": ["JPEG"],
+      "disclosure": "AI_GENERATED_REQUIRED",
+      "account_requirement": "SEPARATE_AI_CONTRIBUTOR_ACCOUNT",
+      "notes": "AI and traditional content cannot mix in one account. No editorial use for AI."
+    },
+    {
+      "platform_id": "POND5",
+      "marketplace": true,
+      "ai_accepted": false,
+      "route": "BLOCKED_AI_EXCLUDED",
+      "raster_delivery": [],
+      "disclosure": "N/A",
+      "notes": "AI-generated contributor content not accepted for licensing. Vectorize/PSD does not change origin."
+    },
+    {
+      "platform_id": "SHUTTERSTOCK",
+      "marketplace": true,
+      "ai_accepted": false,
+      "route": "BLOCKED_AI_EXCLUDED",
+      "raster_delivery": [],
+      "disclosure": "N/A",
+      "notes": "Contributors may not submit external AI-generated content for licensing (policy updated 2025-07-16 per founder matrix)."
+    },
+    {
+      "platform_id": "MAGNIFIC",
+      "marketplace": false,
+      "ai_accepted": false,
+      "route": "NOT_A_MARKETPLACE",
+      "raster_delivery": [],
+      "disclosure": "N/A",
+      "notes": "Production/recovery (upscale) service, not a licensing marketplace. Never a submission route."
+    }
+  ],
+  "authority": {
+    "automated_compatibility_pass_claimed": false,
+    "submission_authorized": false,
+    "meaning": "READY_FOR_MANUAL_SUBMISSION means the Founder may upload the single JPG manually after QC/rights clearance. It is NOT an automated COMPATIBLE/PASS claim and MUST NOT unblock package-readiness without human gates."
+  }
+}
