@@ -1,4 +1,5 @@
 import importlib.util,json,sys
+import pytest
 from pathlib import Path
 R=Path(__file__).resolve().parents[3]
 def load():
@@ -21,3 +22,34 @@ def test_metadata_binary_injection_flag_is_explicit_and_hash_bound():
  assert md['binary_metadata_injected'] is True
  assert md['metadata_delivery']=='BINARY_IPTC_XMP_AND_SIDECAR_AND_SUBMISSION_FIELDS'
  assert len(md['metadata_sha256'])==64
+
+
+def test_metadata_overrides_replace_listing_fields_and_normalize_keywords():
+ x=args()
+ x['provenance'].update({
+  'title_override':'  Solar Energy Data Center Cooling  ',
+  'description_override':'  Commercial illustration for efficient cooling. ',
+  'keywords_override':['Solar Energy','data center','DATA CENTER',' cooling ','renewable power']
+ })
+ md=m.build_metadata(
+  blueprint=BP,
+  master_sha256=REC['master']['sha256'],
+  derivative_hashes=REC['derivatives'],
+  provenance=x['provenance']
+ )
+ assert md['title']=='Solar Energy Data Center Cooling'
+ assert md['description']=='Commercial illustration for efficient cooling.'
+ assert md['keywords']==['solar energy','data center','cooling','renewable power']
+
+
+def test_metadata_keyword_override_fails_closed_on_too_few_unique_terms():
+ x=args()
+ x['provenance']['keywords_override']=['same','same']
+ with pytest.raises(m.PackageReadinessError) as exc:
+  m.build_metadata(
+   blueprint=BP,
+   master_sha256=REC['master']['sha256'],
+   derivative_hashes=REC['derivatives'],
+   provenance=x['provenance']
+  )
+ assert exc.value.code=='KEYWORDS_OVERRIDE_TOO_FEW'

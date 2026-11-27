@@ -142,7 +142,7 @@ def _recipe(plan_row:dict[str,Any],facts:dict[str,Any])->dict[str,Any]:
 def _default_rights_observation(master_sha:str)->dict[str,Any]:
     return {'schema':'die.factory-asset.rights-observation.v1','master_sha256':master_sha,'detectors':{'text':{'state':'UNAVAILABLE','detected_strings':[],'confirmed_trademark_terms':[],'trademark_candidates':[],'unresolved_strings':[]},'logo':{'state':'UNAVAILABLE','candidates':[]},'watermark':{'state':'UNAVAILABLE','candidates':[]},'safety':{'state':'UNAVAILABLE','flags':[]}}}
 
-def postprocess_raster_workspace(*,workspace:Path,source_path:Path,provider_id:str,expected_source_sha256:str,upscale_fn:Callable[[Path,Path],dict[str,Any]],send_fn:Callable[[str],None]|None=None)->dict[str,Any]:
+def postprocess_raster_workspace(*,workspace:Path,source_path:Path,provider_id:str,expected_source_sha256:str,upscale_fn:Callable[[Path,Path],dict[str,Any]],send_fn:Callable[[str],None]|None=None,metadata_overrides:dict[str,Any]|None=None)->dict[str,Any]:
     legacy=json.loads((workspace/'blueprint.json').read_text());lock=json.loads((workspace/'blueprint.lock.json').read_text());bridge=resolve_bridge_artifacts(workspace,legacy,lock);bp=bridge['blueprint'];root=bridge['root'];sid=bp['semantic_identity']['semantic_asset_id']
     if bridge['route']['route_kind']!='PROVIDER_ROUTER':raise FactoryOrchestrationError('LIVE_RASTER_ROUTE_EXPECTED',bridge['route']['route_kind'])
     ingest=intake.intake_provider_original(source_path=source_path,staging_root=root/'master-staging',attempt_id=workspace.name+'-provider-original',semantic_asset_id=sid,blueprint_id=bp['blueprint_id'],provider_id=provider_id,expected_sha256=expected_source_sha256)
@@ -184,6 +184,12 @@ def postprocess_raster_workspace(*,workspace:Path,source_path:Path,provider_id:s
         make_founder_readable(out)
         evidence.append({'derivative_id':row['derivative_id'],'format':row['format'],'purpose':row['purpose'],'sha256':q['sha256'],'qa_sha256':q['sha256'],'sha256_verified':True,'master_sha256':facts['sha256'],'qa_result':'PASS','path':str(out),'qa':q})
     provenance={'source_class':'GENERATIVE_AI','ai_generated':True,'ai_disclosure':'GENERATIVE_AI'}
+    if metadata_overrides:
+        # OPSI A hook: {title_override?, description_override?, keywords_override?}
+        # dari KW-Gemini worker. None/absent = perilaku lama (tokenizer minimalis).
+        for _k in ('title_override', 'description_override', 'keywords_override'):
+            if metadata_overrides.get(_k) is not None:
+                provenance[_k] = metadata_overrides[_k]
     provisional_meta=ready.build_metadata(blueprint=bp,master_sha256=facts['sha256'],derivative_hashes=evidence,provenance=provenance)
     binary_receipts=[]
     for ev in evidence:

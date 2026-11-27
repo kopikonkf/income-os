@@ -86,3 +86,54 @@ def test_client_and_broker_expose_lease_api_without_profile_launch():
     assert '/v1/leases/reclaim' in bs
     assert 'setProviderState' in bs
     assert 'providers' in bs and 'state' in bs
+
+
+def test_readiness_probe_bypasses_provider_block_and_exposes_target_id():
+    with tempfile.TemporaryDirectory() as td:
+        h = Path(td) / 'h.mjs'
+        script = f"""
+import {{ ClusterTabLeaseManager }} from {json.dumps(LEASES.as_uri())};
+class P {{ constructor(){{this.u="about:blank";this.closed=false;}} url(){{return this.u;}} isClosed(){{return this.closed;}} async goto(u){{this.u=u;}} async close(){{this.closed=true;}} }}
+class S {{ async send(cmd){{if(cmd!=="Target.getTargetInfo") throw new Error("bad command"); return {{targetInfo:{{targetId:"target-123"}}}};}} async detach(){{}} }}
+class C {{ constructor(){{this.ps=[new P()]}} pages(){{return this.ps.filter(p=>!p.closed)}} async newPage(){{const p=new P();this.ps.push(p);return p;}} async newCDPSession(){{return new S();}} }}
+const c=new C(); const m=new ClusterTabLeaseManager({{context:c,maxTabs:8,providerLimits:{{chatgpt:1}},defaultProviderLimit:1}});
+m.setProviderState("chatgpt","CHECKPOINT");
+let normal=""; try{{await m.acquire({{providerId:"chatgpt",jobId:"normal"}})}}catch(e){{normal=String(e.message)}}
+const probe=await m.acquire({{providerId:"chatgpt",jobId:"probe",purpose:"READINESS_PROBE"}});
+console.log(JSON.stringify({{normal,probe}}));
+"""
+        h.write_text(script)
+        r = subprocess.run(['node', str(h)], capture_output=True, text=True, check=True, timeout=30)
+        v = json.loads(r.stdout.strip().splitlines()[-1])
+        assert 'E_PROVIDER_NOT_SCHEDULABLE:chatgpt:CHECKPOINT' in v['normal']
+        assert v['probe']['purpose'] == 'READINESS_PROBE'
+        assert v['probe']['target_id'] == 'target-123'
+
+
+def test_release_compacts_surplus_idle_blank_pages():
+    with tempfile.TemporaryDirectory() as td:
+        h = Path(td) / 'h.mjs'
+        script = f"""
+import {{ ClusterTabLeaseManager }} from {json.dumps(LEASES.as_uri())};
+class P {{ constructor(){{this.u="about:blank";this.closed=false;}} url(){{return this.u;}} isClosed(){{return this.closed;}} async goto(u){{this.u=u;}} async close(){{this.closed=true;}} }}
+class C {{ constructor(){{this.ps=[new P(),new P(),new P()]}} pages(){{return this.ps.filter(p=>!p.closed)}} async newPage(){{const p=new P();this.ps.push(p);return p;}} }}
+const c=new C(); const m=new ClusterTabLeaseManager({{context:c,maxTabs:8,defaultProviderLimit:1}});
+const lease=await m.acquire({{providerId:"qwen",jobId:"j1"}});
+const rel=await m.release(lease.lease_id,"DONE");
+console.log(JSON.stringify({{rel,open:c.pages().length,urls:c.pages().map(p=>p.url())}}));
+"""
+        h.write_text(script)
+        r = subprocess.run(['node', str(h)], capture_output=True, text=True, check=True, timeout=30)
+        v = json.loads(r.stdout.strip().splitlines()[-1])
+        assert v['rel']['idle_pages_compacted'] >= 1
+        assert v['open'] == 1
+        assert v['urls'] == ['about:blank']
+
+
+def test_client_and_core_propagate_lease_purpose_and_target_identity():
+    cs = CLIENT.read_text()
+    bs = CORE.read_text()
+    assert "purpose = 'GENERATION'" in cs
+    assert 'purpose' in bs
+    assert 'target_id' in cs
+    assert 'Target.getTargetInfo' in cs

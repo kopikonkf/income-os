@@ -15,6 +15,30 @@ def _sha(value:Any)->str:
 def _clean(text:str)->str:
     return ' '.join(str(text).split()).strip()
 
+def _override_keywords(provenance:dict[str,Any])->list[str]|None:
+    """Gemini KW-worker hook (OPSI A): provenance['keywords_override'] menggantikan
+    tokenizer _keywords(). Validasi ketat — fallback None (pemanggil pakai _keywords)."""
+    kw = provenance.get('keywords_override')
+    if kw is None:
+        return None
+    if not isinstance(kw, list):
+        raise PackageReadinessError('KEYWORDS_OVERRIDE_TYPE', type(kw).__name__)
+    out, seen = [], set()
+    for k in kw:
+        if not isinstance(k, str):
+            raise PackageReadinessError('KEYWORDS_OVERRIDE_ITEM_TYPE', repr(k)[:40])
+        k = ' '.join(k.split()).strip().lower()
+        if not k or k in seen:
+            continue
+        seen.add(k)
+        out.append(k)
+    if len(out) < 3:
+        raise PackageReadinessError('KEYWORDS_OVERRIDE_TOO_FEW', str(len(out)))
+    if len(out) > 50:
+        raise PackageReadinessError('KEYWORDS_OVERRIDE_TOO_MANY', str(len(out)))
+    return out
+
+
 def _keywords(blueprint:dict[str,Any])->list[str]:
     sem=blueprint['semantic_identity']
     sources=[sem['subject'],sem['commercial_use_case'],blueprint['asset_type'].replace('_',' ')]
@@ -53,7 +77,7 @@ def build_metadata(*,blueprint:dict[str,Any],master_sha256:str,derivative_hashes
     sem=blueprint['semantic_identity'];subject=_clean(sem['subject']);use=_clean(sem['commercial_use_case'])
     title=_clean(provenance.get('title_override') or f"{subject.title()} - {blueprint['asset_type'].replace('_',' ').title()}")
     description=_clean(provenance.get('description_override') or f"{subject.capitalize()} created for {use}.")
-    keywords=_keywords(blueprint)
+    keywords=_override_keywords(provenance) or _keywords(blueprint)
     if not title or not description or len(keywords)<3: raise PackageReadinessError('METADATA_INCOMPLETE','title/description/keywords')
     bindings=sorted([{'derivative_id':str(x['derivative_id']),'format':str(x['format']),'purpose':str(x['purpose']),'sha256':str(x['sha256'])} for x in derivative_hashes],key=lambda x:x['derivative_id'])
     listing_filename=_listing_filename(blueprint,master_sha256,bindings)

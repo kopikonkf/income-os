@@ -3,6 +3,7 @@ import crypto from 'node:crypto';
 const BLOCKING_PROVIDER_STATES = new Set(['AUTH_REQUIRED', 'CHECKPOINT', 'UNAVAILABLE']);
 const ALLOWED_PROVIDER_STATES = new Set(['HEALTHY', 'DEGRADED', 'AUTH_REQUIRED', 'CHECKPOINT', 'UNAVAILABLE']);
 const ALLOWED_LEASE_STATES = new Set(['LEASED', 'IN_FLIGHT', 'COOLDOWN', 'CHECKPOINT', 'FAILED']);
+const ALLOWED_LEASE_PURPOSES = new Set(['GENERATION', 'READINESS_PROBE']);
 
 function validId(value) { return typeof value === 'string' && /^[A-Za-z0-9][A-Za-z0-9._:-]{1,160}$/.test(value); }
 
@@ -30,7 +31,7 @@ export class ClusterTabLeaseManager {
   publicLease(lease) {
     return {
       schema: 'die.muxia.cluster-tab-lease.v1', lease_id: lease.leaseId, provider_id: lease.providerId,
-      job_id: lease.jobId, state: lease.state, claim_url: lease.claimUrl,
+      job_id: lease.jobId, state: lease.state, purpose: lease.purpose, claim_url: lease.claimUrl, target_id: lease.targetId || null,
       acquired_at: new Date(lease.acquiredAt).toISOString(), expires_at: new Date(lease.expiresAt).toISOString(),
       max_tabs: this.maxTabs, provider_limit: this.providerLimit(lease.providerId),
     };
@@ -38,11 +39,12 @@ export class ClusterTabLeaseManager {
   activeForProvider(providerId) { return [...this.leases.values()].filter((x) => x.providerId === providerId).length; }
   pageIsLeased(page) { return [...this.leases.values()].some((x) => x.page === page); }
 
-  async acquire({ providerId, jobId, ttlMs = this.defaultTtlMs }) {
+  async acquire({ providerId, jobId, ttlMs = this.defaultTtlMs, purpose = 'GENERATION' }) {
     if (!validId(providerId) || !validId(jobId)) throw new Error('E_TAB_LEASE_ID');
     if (!Number.isInteger(ttlMs) || ttlMs < 1000 || ttlMs > 3600000) throw new Error('E_TAB_LEASE_TTL');
+    if (!ALLOWED_LEASE_PURPOSES.has(purpose)) throw new Error('E_TAB_LEASE_PURPOSE');
     await this.reclaimExpired();
-    if (BLOCKING_PROVIDER_STATES.has(this.providerState(providerId))) throw new Error(`E_PROVIDER_NOT_SCHEDULABLE:${providerId}:${this.providerState(providerId)}`);
+    if (BLOCKING_PROVIDER_STATES.has(this.providerState(providerId)) && purpose !== 'READINESS_PROBE') throw new Error(`E_PROVIDER_NOT_SCHEDULABLE:${providerId}:${this.providerState(providerId)}`);
     if ([...this.leases.values()].some((x) => x.jobId === jobId)) throw new Error(`E_JOB_ALREADY_LEASED:${jobId}`);
     if (this.activeForProvider(providerId) >= this.providerLimit(providerId)) throw new Error(`E_PROVIDER_TAB_CAPACITY:${providerId}`);
     if (this.leases.size >= this.maxTabs) throw new Error('E_CLUSTER_TAB_CAPACITY');
@@ -56,8 +58,14 @@ export class ClusterTabLeaseManager {
     const leaseId = crypto.randomUUID();
     const claimUrl = `about:blank#die-lease=${leaseId}`;
     await page.goto(claimUrl);
+    let targetId = null;
+    if (typeof this.context.newCDPSession === 'function') {
+      let session = null;
+      try { session = await this.context.newCDPSession(page); const info = await session.send('Target.getTargetInfo'); targetId = info?.targetInfo?.targetId || null; }
+      catch {} finally { if (session?.detach) await session.detach().catch(() => {}); }
+    }
     const acquiredAt = this.now();
-    const lease = { leaseId, providerId, jobId, state: 'LEASED', claimUrl, acquiredAt, expiresAt: acquiredAt + ttlMs, page };
+    const lease = { leaseId, providerId, jobId, purpose, state: 'LEASED', claimUrl, targetId, acquiredAt, expiresAt: acquiredAt + ttlMs, page };
     this.leases.set(leaseId, lease);
     return this.publicLease(lease);
   }
@@ -83,7 +91,15 @@ export class ClusterTabLeaseManager {
       if (!otherOpen.length) { try { await this.context.newPage(); standbyCreated = true; } catch {} }
       if (!lease.page.isClosed()) await lease.page.close({ runBeforeUnload: false }).catch(() => {});
     }
-    return { lease_id: leaseId, released: true, reason, provider_id: lease.providerId, job_id: lease.jobId, page_recycled: pageRecycled, standby_created: standbyCreated };
+    let idlePagesCompacted = 0;
+    if (this.leases.size === 0) {
+      const idle = this.context.pages().filter((page) => !page.isClosed() && page.url() === 'about:blank');
+      for (const extra of idle.slice(1)) {
+        await extra.close({ runBeforeUnload: false }).catch(() => {});
+        if (extra.isClosed()) idlePagesCompacted += 1;
+      }
+    }
+    return { lease_id: leaseId, released: true, reason, provider_id: lease.providerId, job_id: lease.jobId, page_recycled: pageRecycled, standby_created: standbyCreated, idle_pages_compacted: idlePagesCompacted };
   }
 
   async reclaimExpired() {
