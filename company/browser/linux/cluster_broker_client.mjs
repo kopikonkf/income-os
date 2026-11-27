@@ -24,8 +24,8 @@ export async function fetchClusterAttach(controlBaseUrl, timeoutMs = 5000) {
   return v;
 }
 
-export async function acquireClusterTab(controlBaseUrl, { providerId, jobId, ttlMs = undefined, timeoutMs = 5000 }) {
-  return await requestJson(controlBaseUrl, '/v1/leases/acquire', { method: 'POST', body: { provider_id: providerId, job_id: jobId, ttl_ms: ttlMs }, timeoutMs });
+export async function acquireClusterTab(controlBaseUrl, { providerId, jobId, ttlMs = undefined, purpose = 'GENERATION', timeoutMs = 5000 }) {
+  return await requestJson(controlBaseUrl, '/v1/leases/acquire', { method: 'POST', body: { provider_id: providerId, job_id: jobId, ttl_ms: ttlMs, purpose }, timeoutMs });
 }
 
 export async function releaseClusterTab(controlBaseUrl, leaseId, reason = 'RELEASED', timeoutMs = 5000) {
@@ -64,8 +64,17 @@ export async function connectLeasedClusterTab({ controlBaseUrl, lease, playwrigh
   const deadline = Date.now() + timeoutMs;
   while (Date.now() < deadline) {
     for (const context of browser.contexts()) {
-      const page = context.pages().find((p) => p.url() === lease.claim_url);
-      if (page) return { browser, page, attach, lease, ownership: 'BROKER_OWNS_BROWSER', disconnect };
+      for (const page of context.pages()) {
+        if (lease.target_id && typeof context.newCDPSession === 'function') {
+          let session = null;
+          try {
+            session = await context.newCDPSession(page);
+            const info = await session.send('Target.getTargetInfo');
+            if (info?.targetInfo?.targetId === lease.target_id) return { browser, page, attach, lease, ownership: 'BROKER_OWNS_BROWSER', disconnect };
+          } catch {} finally { if (session?.detach) await session.detach().catch(() => {}); }
+        }
+        if (page.url() === lease.claim_url) return { browser, page, attach, lease, ownership: 'BROKER_OWNS_BROWSER', disconnect };
+      }
     }
     await new Promise((resolve) => setTimeout(resolve, 50));
   }

@@ -144,7 +144,7 @@ export class ClusterBrokerCore {
         this.assertOwnerReady();
         if (!this.leaseManager) throw new Error('E_CLUSTER_TAB_LEASES_DISABLED');
         const body = await readJson(req);
-        const lease = await this.leaseManager.acquire({ providerId: body.provider_id, jobId: body.job_id, ttlMs: body.ttl_ms ?? undefined });
+        const lease = await this.leaseManager.acquire({ providerId: body.provider_id, jobId: body.job_id, ttlMs: body.ttl_ms ?? undefined, purpose: body.purpose || 'GENERATION' });
         return jsonReply(res, 201, lease);
       }
       const release = req.url?.match(/^\/v1\/leases\/([^/]+)\/release$/);
@@ -187,6 +187,12 @@ export class ClusterBrokerCore {
       if (this.leaseManagerFactory) {
         const context = this.handle.browser.contexts()[0];
         if (!context) throw new Error('E_CLUSTER_BROKER_CONTEXT_MISSING');
+        let pages = context.pages().filter((page) => !page.isClosed());
+        let standby = pages.find((page) => page.url() === 'about:blank') || pages[0] || await context.newPage();
+        if (standby.url() !== 'about:blank') await standby.goto('about:blank').catch(() => {});
+        for (const page of pages) if (page !== standby && !page.isClosed()) await page.close({ runBeforeUnload: false }).catch(() => {});
+        pages = context.pages().filter((page) => !page.isClosed());
+        if (!pages.length) standby = await context.newPage();
         this.leaseManager = await this.leaseManagerFactory({ context, maxTabs: this.maxTabs });
       }
       this.server = http.createServer((req, res) => { void this.route(req, res); });

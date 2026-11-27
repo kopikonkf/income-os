@@ -27,3 +27,11 @@ def test_fa141_binary_metadata_is_rehashed_before_package_and_manifest():
  assert "atomic_json(root/'binary-metadata-receipts.json'" in src
  assert "expected_sha256=br['output_sha256']" in src
  assert "'binary_metadata_injected':meta['binary_metadata_injected']" in src
+
+
+def test_kw_metadata_overrides_are_explicitly_threaded_into_package_metadata():
+ src=(R/'company/die-agents/hermes/production-runtime/factory_orchestration_v2.py').read_text()
+ assert 'metadata_overrides:dict[str,Any]|None=None' in src
+ for key in ('title_override','description_override','keywords_override'):
+  assert key in src
+ assert 'provisional_meta=ready.build_metadata' in src
